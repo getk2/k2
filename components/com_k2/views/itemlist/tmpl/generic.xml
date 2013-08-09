@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Generic" hidden="true">
+		<message>
+			<![CDATA[This XML file is intentionally left blank to override the pre-v2.5 generic.xml file, which K2 used to create the 'tag' menu item. The 'tag' menu item now has its own tag.xml menu definition file.]]>
+		</message>
+	</layout>
+	<state></state>
+</metadata>

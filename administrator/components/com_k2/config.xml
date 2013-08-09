@@ -1,0 +1,1134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<params group="K2_LAYOUT_VIEWS" addpath="/administrator/components/com_k2/elements">
+		<!-- ######################### CSS Settings ######################### -->
+		<param menu="hide" name="" type="header" default="K2_CSS_SETTINGS" label="" description="" />
+		<param menu="hide" name="enable_css" type="radio" default="1" label="K2_DEFAULT_CSS" description="K2_THIS_OPTION_WILL_LOAD_THE_BUILTIN_CSS_STYLING_THAT_COMES_WITH_K2_BY_DEFAULT_IF_YOU_ARE_USING_A_JOOMLA_TEMPLATE_WHICH_SUPPORTS_K2_STYLES_YOU_MAY_HAVE_TO_DISABLE_THIS_OPTION_TO_APPLY_YOUR_JOOMLA_TEMPLATES_CSS_STYLING_TO_THE_K2_COMPONENT_AND_MODULES">
+			<option value="0">K2_DISABLE</option>
+			<option value="1">K2_ENABLE</option>
+		</param>
+		<param menu="hide" name="jQueryHandling" type="list" default="1.8remote" label="K2_COM_JQUERY_HANDLING" description="">
+			<option value="0">K2_COM_DO_NOT_LOAD_THE_JQUERY_LIBRARY</option>
+			<option value="1.3.2">K2_COM_LOAD_V1_3_2_LOCAL_COPY</option>
+			<option value="1.3remote">K2_COM_LOAD_V1_3_2_REMOTE_COPY</option>
+			<option value="1.4.4">K2_COM_LOAD_V1_4_4_LOCAL_COPY</option>
+			<option value="1.4remote">K2_COM_LOAD_V1_4_4_REMOTE_COPY</option>
+			<option value="1.5.2">K2_COM_LOAD_V1_5_2_LOCAL_COPY</option>
+			<option value="1.5remote">K2_COM_LOAD_V1_5_2_REMOTE_COPY</option>
+			<option value="1.6.4">K2_COM_LOAD_V1_6_LOCAL_COPY</option>
+			<option value="1.6remote">K2_COM_LOAD_V1_6_X_LATEST_REMOTE_COPY</option>
+			<option value="1.7.2">K2_COM_LOAD_V1_7_LOCAL_COPY</option>
+			<option value="1.7remote">K2_COM_LOAD_V1_7_X_LATEST_REMOTE_COPY</option>
+			<option value="1.8.3">K2_COM_LOAD_V1_8_LOCAL_COPY</option>
+			<option value="1.8remote">K2_COM_LOAD_V1_8_X_LATEST_REMOTE_COPY</option>
+			<option value="1.9.1">K2_COM_LOAD_V1_9_LOCAL_COPY</option>
+			<option value="1.9.1remote">K2_COM_LOAD_V1_9_X_LATEST_REMOTE_COPY</option>
+			<option value="1.10.2">K2_COM_LOAD_V1_10_LOCAL_COPY</option>
+			<option value="1.10.1remote">K2_COM_LOAD_V1_10_X_LATEST_REMOTE_COPY</option>
+		</param>
+		<param menu="hide" name="backendJQueryHandling" type="list" default="remote" label="K2_COM_BACKEND_JQUERY_HANDLING" description="K2_COM_BACKEND_JQUERY_HANDLING_DESC">
+			<option value="local">K2_COM_LOAD_A_LOCAL_COPY</option>
+			<option value="remote">K2_COM_LOAD_A_REMOTE_COPY</option>
+		</param>
+
+		<!-- ######################### Layout and view options for user (blog/profile) pages ######################### -->
+		<param menu="hide" name="" type="header" default="K2_LAYOUT_AND_VIEW_OPTIONS_FOR_USERS_PAGES" label="" description="" />
+		<param menu="hide" name="userName" type="radio" default="1" label="K2_NAME" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="userImage" type="radio" default="1" label="K2_IMAGE_AVATAR" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="userDescription" type="radio" default="1" label="K2_DESCRIPTION" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="userURL" type="radio" default="1" label="K2_URL" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="userEmail" type="radio" default="0" label="K2_EMAIL" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="userFeedLink" type="radio" default="1" label="K2_RSS_FEED_LINK" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="userFeedIcon" type="radio" default="1" label="K2_RSS_FEED_ICON" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="userItemCount" type="text" default="10" size="4" label="K2_ITEM_COUNT_ON_USER_PAGES" description="" />
+		<param menu="hide" name="userItemTitle" type="radio" default="1" label="K2_ITEM_TITLE" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="userItemTitleLinked" type="radio" default="1" label="K2_LINK_ON_ITEM_TITLE" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="userItemDateCreated" type="radio" default="1" label="K2_ITEM_CREATED_DATE_TIME" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="userItemImage" type="radio" default="1" label="K2_ITEM_IMAGE" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="userItemIntroText" type="radio" default="1" label="K2_ITEM_INTROTEXT" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="userItemCategory" type="radio" default="1" label="K2_ITEM_CATEGORY" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="userItemTags" type="radio" default="1" label="K2_ITEM_TAGS" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="userItemCommentsAnchor" type="radio" default="1" label="K2_ANCHOR_LINK_WITH_COMMENTS_COUNTER_TO_ITEMS_COMMENT_FORM" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="userItemReadMore" type="radio" default="1" label="K2_ITEM_READ_MORE_LINK" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="userItemK2Plugins" type="radio" default="1" label="K2_ENABLE_K2_PLUGINS" description="">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<!-- ######################### Layout and view options for Tag listings ######################### -->
+		<param menu="hide" name="" type="header" default="K2_LAYOUT_VIEW_OPTIONS_FOR_TAG_LISTINGS" label="" description="" />
+		<param menu="hide" name="tagItemCount" type="text" default="10" size="4" label="K2_ITEM_COUNT_FOR_TAG_LISTINGS" description="" />
+		<param menu="hide" name="tagItemTitle" type="radio" default="1" label="K2_ITEM_TITLE" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="tagItemTitleLinked" type="radio" default="1" label="K2_LINK_ON_ITEM_TITLE" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="tagItemDateCreated" type="radio" default="1" label="K2_ITEM_CREATED_DATE_TIME" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="tagItemImage" type="radio" default="1" label="K2_ITEM_IMAGE" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="tagItemIntroText" type="radio" default="1" label="K2_ITEM_INTROTEXT" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="tagItemCategory" type="radio" default="1" label="K2_ITEM_CATEGORY" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="tagItemReadMore" type="radio" default="1" label="K2_ITEM_READ_MORE_LINK" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="tagItemExtraFields" type="radio" default="0" label="K2_ITEM_EXTRA_FIELDS" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="tagOrdering" type="list" default="" label="K2_ITEM_ORDERING_ONLY_FOR_TAG_LISTINGS" description="">
+			<option value="">K2_DEFAULT</option>
+			<option value="date">K2_OLDEST_FIRST</option>
+			<option value="rdate">K2_MOST_RECENT_FIRST</option>
+			<option value="publishUp">K2_RECENTLY_PUBLISHED</option>
+			<option value="alpha">K2_TITLE_ALPHABETICAL</option>
+			<option value="ralpha">K2_TITLE_REVERSEALPHABETICAL</option>
+			<option value="order">K2_ORDERING</option>
+			<option value="rorder">K2_ORDERING_REVERSE</option>
+			<option value="hits">K2_MOST_POPULAR</option>
+			<option value="best">K2_HIGHEST_RATED</option>
+			<option value="rand">K2_RANDOM_ORDERING</option>
+		</param>
+		<param menu="hide" name="tagFeedLink" type="radio" default="1" label="K2_RSS_FEED_LINK" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="tagFeedIcon" type="radio" default="1" label="K2_RSS_FEED_ICON" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<!-- ######################### Layout and view options for Search and Date listings ######################### -->
+		<param menu="hide" name="" type="header" default="K2_LAYOUT_VIEW_OPTIONS_FOR_SEARCH_TAG_DATE_LISTINGS" label="" description="" />
+		<param menu="hide" name="genericItemCount" type="text" default="10" size="4" label="K2_ITEM_COUNT_FOR_SEARCH_TAG_DATE_LISTINGS" description="" />
+		<param menu="hide" name="genericItemTitle" type="radio" default="1" label="K2_ITEM_TITLE" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="genericItemTitleLinked" type="radio" default="1" label="K2_LINK_ON_ITEM_TITLE" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="genericItemDateCreated" type="radio" default="1" label="K2_ITEM_CREATED_DATE_TIME" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="genericItemImage" type="radio" default="1" label="K2_ITEM_IMAGE" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="genericItemIntroText" type="radio" default="1" label="K2_ITEM_INTROTEXT" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="genericItemCategory" type="radio" default="1" label="K2_ITEM_CATEGORY" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="genericItemReadMore" type="radio" default="1" label="K2_ITEM_READ_MORE_LINK" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="genericItemExtraFields" type="radio" default="0" label="K2_ITEM_EXTRA_FIELDS" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="genericFeedLink" type="radio" default="1" label="K2_RSS_FEED_LINK" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="genericFeedIcon" type="radio" default="1" label="K2_RSS_FEED_ICON" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+	</params>
+	<params group="K2_CONTENT" addpath="/administrator/components/com_k2/elements">
+		<!-- ######################### RSS Feed Settings ######################### -->
+		<param menu="hide" name="" type="header" default="K2_RSS_FEEDS" label="" description="" />
+		<param menu="hide" name="feedLimit" type="text" size="3" default="10" label="K2_FEED_LIMIT" description="" />
+		<param menu="hide" name="feedItemImage" type="radio" default="1" label="K2_ITEM_IMAGE" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="feedImgSize" type="list" default="S" label="K2_IMAGE_SIZE_FOR_ITEMS" description="">
+			<option value="XS">K2_XSMALL</option>
+			<option value="S">K2_SMALL</option>
+			<option value="M">K2_MEDIUM</option>
+			<option value="L">K2_LARGE</option>
+			<option value="XL">K2_XLARGE</option>
+		</param>
+		<param menu="hide" name="feedItemIntroText" type="radio" default="1" label="K2_ITEM_INTROTEXT" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="feedTextWordLimit" type="text" size="4" default="" label="K2_ITEM_INTROTEXT_WORD_LIMIT" description="" />
+		<param menu="hide" name="feedItemFullText" type="radio" default="1" label="K2_ITEM_FULLTEXT" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="feedItemTags" type="radio" default="0" label="K2_ITEM_TAGS" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="feedItemVideo" type="radio" default="0" label="K2_ITEM_VIDEO" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="feedItemGallery" type="radio" default="0" label="K2_ITEM_GALLERY" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="feedItemAttachments" type="radio" default="0" label="K2_ITEM_ATTACHMENTS" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="feedBogusEmail" type="text" default="" label="K2_USE_BOGUS_EMAIL" description="K2_USE_BOGUS_EMAIL_DESC" />
+		<!-- ######################### Content Cleanup Settings ######################### -->
+		<param menu="hide" name="" type="header" default="K2_CONTENT_CLEANUP" label="" description="" />
+		<param menu="hide" name="introTextCleanup" type="radio" default="0" label="K2_INTROTEXT_HTML_CLEANUP_TAG_STRIP" description="K2_ENABLE_THIS_TO_STRIP_ALL_HTML_TAGS_EXCEPT_THE_ONES_DEFINED_BELOW_INSIDE_THE_INTROTEXT">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="introTextCleanupExcludeTags" type="text" default="" label="K2_ENTER_WHICH_HTML_TAGS_NOT_TO_STRIP_IN_INTROTEXT" description="K2_SEPARATE_VALID_HTML_TAGS_BY_COMMA_EG_IMGBRPABSPAN_ETC" />
+		<param menu="hide" name="introTextCleanupTagAttr" type="text" default="" label="K2_ENTER_WHICH_HTML_TAG_ATTRIBUTES_TO_STRIP_IN_INTROTEXT" description="K2_SEPARATE_VALID_HTML_TAG_ATTRIBUTES_BY_COMMA_EG_WIDTHHEIGHTBORDER_ETC" />
+		<param menu="hide" name="fullTextCleanup" type="radio" default="0" label="K2_FULLTEXT_HTML_CLEANUP_TAG_STRIP" description="K2_ENABLE_THIS_TO_STRIP_ALL_HTML_TAGS_EXCEPT_THE_ONES_DEFINED_BELOW_INSIDE_THE_FULLTEXT">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="fullTextCleanupExcludeTags" type="text" default="" label="K2_ENTER_WHICH_HTML_TAGS_NOT_TO_STRIP_IN_FULLTEXT" description="K2_SEPARATE_VALID_HTML_TAGS_BY_COMMA_EG_IMGBRPABSPAN_ETC" />
+		<param menu="hide" name="fullTextCleanupTagAttr" type="text" default="" label="K2_ENTER_WHICH_HTML_TAG_ATTRIBUTES_TO_STRIP_IN_FULLTEXT" description="K2_SEPARATE_VALID_HTML_TAG_ATTRIBUTES_BY_COMMA_EG_WIDTHHEIGHTBORDER_ETC" />
+		<param menu="hide" name="xssFiltering" type="radio" default="0" label="K2_XSS_FILTERING_ON_SAVE" description="K2_ENABLE_THIS_FILTER_TO_PREVENT_A_MALICIOUS_USER_TO_INJECT_CLIENTSIDE_SCRIPT_INTO_YOUR_SITE_DISABLED_BY_DEFAULT">
+			<option value="0">K2_DISABLED</option>
+			<option value="1">K2_ENABLED</option>
+		</param>
+		<!-- ######################### Extra Fields Settings ######################### -->
+		<param menu="hide" name="" type="header" default="K2_EXTRA_FIELDS" label="" description="" />
+		<param menu="hide" name="linkPopupWidth" type="text" size="4" default="900" label="K2_POPUP_WIDTH_FOR_LINKS" description="K2_USED_WHEN_CREATING_LINKS_THAT_OPEN_UP_IN_LIGHTBOX_OR_CLASSIC_JAVASCRIPT_POPUPS" />
+		<param menu="hide" name="linkPopupHeight" type="text" size="4" default="600" label="K2_POPUP_HEIGHT_FOR_LINKS" description="K2_USED_WHEN_CREATING_LINKS_THAT_OPEN_UP_IN_LIGHTBOX_OR_CLASSIC_JAVASCRIPT_POPUPS" />
+	</params>
+	<params group="K2_IMAGES" addpath="/administrator/components/com_k2/elements">
+		<!-- ######################### Image Settings ######################### -->
+		<param menu="hide" name="imagesQuality" type="text" default="100" size="4" label="K2_QUALITY_USED_WHEN_PROCESSING_IMAGES" description="" />
+		<param menu="hide" name="itemImageXS" type="text" default="100" size="4" label="K2_ITEM_XSMALL_IMAGE_WIDTH_IN_PX" description="" />
+		<param menu="hide" name="itemImageS" type="text" default="200" size="4" label="K2_ITEM_SMALL_IMAGE_WIDTH_IN_PX" description="" />
+		<param menu="hide" name="itemImageM" type="text" default="400" size="4" label="K2_ITEM_MEDIUM_IMAGE_WIDTH_IN_PX" description="" />
+		<param menu="hide" name="itemImageL" type="text" default="600" size="4" label="K2_ITEM_LARGE_IMAGE_WIDTH_IN_PX" description="" />
+		<param menu="hide" name="itemImageXL" type="text" default="900" size="4" label="K2_ITEM_XLARGE_IMAGE_WIDTH_IN_PX" description="" />
+		<param menu="hide" name="itemImageGeneric" type="text" default="300" size="4" label="K2_ITEM_GENERIC_IMAGE_WIDTH_IN_PX_USED_IN_USER_PAGES_AS_WELL_AS_TAG_SEARCH_DATE_LISTINGS" description="" />
+		<param menu="hide" name="catImageWidth" type="text" default="100" size="4" label="K2_CATEGORY_IMAGE_WIDTH_IN_PX" description="" />
+		<param menu="hide" name="catImageDefault" type="radio" default="1" label="K2_PLACEHOLDER_IMAGE_FOR_CATEGORY_IF_NONE_EXISTS" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="userImageWidth" type="text" default="100" size="4" label="K2_USER_IMAGE_AVATAR_WIDTH_IN_PX" description="" />
+		<param menu="hide" name="userImageDefault" type="radio" default="1" label="K2_PLACEHOLDER_IMAGE_FOR_USER_IF_NONE_EXISTS" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="commenterImgWidth" type="text" default="48" size="4" label="K2_COMMENTER_IMAGE_AVATAR_WIDTH_IN_PX" description="" />
+		<param menu="hide" name="" type="header" default="K2_ONLINE_IMAGE_EDITOR" label="" description="" />
+		<param menu="hide" name="onlineImageEditor" type="list" default="splashup" label="K2_SELECT_ONLINE_IMAGE_EDITOR" description="">
+			<option value="splashup">K2_IMG_EDITOR_SPLASHUP</option>
+			<option value="sumopaint">K2_IMG_EDITOR_SUMOPAINT</option>
+			<option value="pixlr">K2_IMG_EDITOR_PIXLR</option>
+		</param>
+		<param menu="hide" name="" type="header" default="K2_ADVANCED_IMAGE_SETTINGS" label="" description="" />
+		<param menu="hide" name="imageTimestamp" type="radio" default="0" label="K2_FORCE_ITEM_MODIFIED_DATE_AS_URL_TIMESTAMP_ON_IMAGE_PATHS" description="K2_IF_YOU_ENABLE_THIS_OPTION_THE_ITEM_MODIFIED_DATE_IS_APPENDED_AS_A_URL_TIMESTAMP_IN_UNIX_TIME_FORMAT_AN_ALL_ITEM_IMAGE_PATHS_USE_THIS_OPTION_IF_YOUR_SITE_IS_UTILIZING_A_CONTENT_DISTRIBUTION_NETWORK_CDN_AND_YOU_WANT_NEWLY_UPLOADED_IMAGES_IN_THE_SAME_ITEM_TO_BE_INSTANTLY_RECACHED_BY_THE_CDN_AND_USERS_BROWSERS">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="imageMemoryLimit" type="text" default="" size="4" label="K2_ENFORCE_MEMORY_LIMIT" description="K2_ENFORCE_MEMORY_LIMIT_DESC" />
+	</params>
+	<params group="K2_SOCIAL" addpath="/administrator/components/com_k2/elements">
+		<!-- ######################### Social Settings ######################### -->
+		<param menu="hide" name="socialButtonCode" type="textarea" default="" label="K2_SOCIAL_BUTTON_CODE" description="K2_PASTE_HTML_CODE_HERE_TO_INTEGRATE_SERVICES_LIKE_ADD_THIS_OR_SHARE_THIS_IN_THE_ITEM_PAGE" rows="8" cols="40" />
+		<param menu="hide" name="twitterUsername" type="text" default="" label="K2_YOUR_TWITTER_USERNAME" description="K2_ENTER_YOUR_TWITTER_USERNAME_ACCOUNT_TO_ENABLE_TWITTER_BUTTON_PERSONALIZATION" />
+		<param menu="hide" name="facebookImage" type="list" default="Medium" label="K2_FACEBOOK_IMAGE_SIZE" description="K2_FACEBOOK_IMAGE_SIZE_DESC">
+			<option value="XSmall">K2_XSMALL</option>
+			<option value="Small">K2_SMALL</option>
+			<option value="Medium">K2_MEDIUM</option>
+			<option value="Large">K2_LARGE</option>
+			<option value="XLarge">K2_XLARGE</option>
+		</param>
+	</params>
+	<params group="K2_COMMENTS" addpath="/administrator/components/com_k2/elements">
+		<!-- ######################### Comments ######################### -->
+		<param menu="hide" name="comments" type="list" default="1" label="K2_GLOBAL_SETTING_FOR_COMMENTS" description="">
+			<option value="0">K2_DISABLED</option>
+			<option value="1">K2_ENABLED_FOR_EVERYONE</option>
+			<option value="2">K2_ENABLED_FOR_REGISTERED_USERS_ONLY</option>
+		</param>
+		<param menu="hide" name="commentsOrdering" type="list" default="DESC" label="K2_ORDERING" description="">
+			<option value="DESC">K2_NEWEST_FIRST</option>
+			<option value="ASC">K2_OLDEST_FIRST</option>
+		</param>
+		<param menu="hide" name="commentsLimit" type="text" size="4" default="10" label="K2_COMMENTS_LIMIT" description="" />
+		<param menu="hide" name="commentsFormPosition" type="list" default="below" label="K2_COMMENTS_FORM_POSITION" description="">
+			<option value="above">K2_ABOVE_COMMENTS</option>
+			<option value="below">K2_BELOW_COMMENTS</option>
+		</param>
+		<param menu="hide" name="commentsPublishing" type="radio" default="1" label="K2_ENABLE_COMMENT_AUTOPUBLISHING" description="">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="commentsReporting" type="list" default="2" label="K2_REPORT_COMMENTS" description="">
+			<option value="0">K2_DISABLED</option>
+			<option value="1">K2_ENABLED_FOR_EVERYONE</option>
+			<option value="2">K2_ENABLED_FOR_REGISTERED_USERS_ONLY</option>
+		</param>
+		<param menu="hide" name="commentsReportRecipient" type="text" default="" label="K2_COMMENT_REPORTS_RECIPIENT" description="K2_ENTER_THE_EMAIL_ADDRESS_OF_THE_COMMENT_REPORTS_RECIPIENT" />
+		<param menu="hide" name="inlineCommentsModeration" type="radio" default="0" label="K2_ENABLE_INLINE_COMMENTS_MODERATION" description="K2_SET_THIS_TO_YES_TO_ALLOW_LOGGED_IN_USERS_TO_MODERATE_THE_COMMENTS_OF_THEIR_ITEMS_DIRECTLY_FROM_THE_ITEM_PAGE">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="gravatar" type="radio" default="1" label="K2_ENABLE_GRAVATARCOM_AVATAR_LOOKUP_FOR_NONREGISTERED_COMMENTERS" description="">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="antispam" type="list" default="" label="K2_ANTI_SPAM_PROTECTION" description="">
+			<option value="0">K2_NONE</option>
+			<option value="recaptcha">K2_GOOGLE_RECAPTCHA</option>
+			<option value="akismet">K2_AKISMET</option>
+			<option value="both">K2_BOTH</option>
+		</param>
+		<param menu="hide" name="recaptchaForRegistered" type="radio" default="1" label="K2_RECAPTCHA_FOR_REGISTERED_USERS" description="">
+			<option value="0">K2_DISABLED</option>
+			<option value="1">K2_ENABLED</option>
+		</param>
+		<param menu="hide" name="akismetForRegistered" type="radio" default="1" label="K2_AKISMET_FOR_REGISTERED_USERS" description="">
+			<option value="0">K2_DISABLED</option>
+			<option value="1">K2_ENABLED</option>
+		</param>
+		<param menu="hide" name="commentsFormNotes" type="radio" default="1" label="K2_ENABLE_COMMENT_FORM_NOTES" description="K2_USE_THIS_OPTION_TO_ENABLE_SOME_NOTES_OR_LEGAL_TEXT_REGARDING_COMMENTING_RIGHT_BEFORE_THE_COMMENTS_FORM">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="commentsFormNotesText" type="textarea" default="" label="K2_COMMENT_FORM_NOTES_HTML_ALLOWED" description="K2_COMMENT_FORM_NOTES_HTML_ALLOWED_DESC" rows="8" cols="40" />
+	</params>
+	<params group="K2_FRONTEND_EDITING" addpath="/administrator/components/com_k2/elements">
+		<!-- ######################### Frontend Editing ######################### -->
+		<param menu="hide" name="frontendEditing" type="radio" default="1" label="K2_ENABLE_FRONTEND_EDITING_DISABLED_ALWAYS_IF_JOOMFISH_IS_INSTALLED_AND_ENABLED" description="">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="showImageTab" type="radio" default="1" label="K2_IMAGE_TAB_ON_EDIT_FORM" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="showImageGalleryTab" type="radio" default="1" label="K2_IMAGE_GALLERY_TAB_ON_EDIT_FORM" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="showVideoTab" type="radio" default="1" label="K2_MEDIA_TAB_ON_EDIT_FORM" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="showExtraFieldsTab" type="radio" default="1" label="K2_EXTRA_FIELDS_TAB_ON_EDIT_FORM" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="showAttachmentsTab" type="radio" default="1" label="K2_ATTACHMENTS_TAB_ON_EDIT_FORM" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="showK2Plugins" type="radio" default="1" label="K2_PLUGIN_FIELDS_ON_EDIT_FORM" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
+		<param menu="hide" name="sideBarDisplayFrontend" type="radio" default="0" label="K2_DEFAULT_STATE_FOR_THE_ITEM_FORM_SIDEBAR" description="">
+			<option value="0">K2_HIDDEN</option>
+			<option value="1">K2_SHOWN</option>
+		</param>
+	</params>
+	<params group="K2_ADVANCED" addpath="/administrator/components/com_k2/elements">
+		<!-- ######################### Advanced Settings ######################### -->
+		<param menu="hide" name="mergeEditors" type="radio" default="1" label="K2_USE_ONE_EDITOR_WINDOW_FOR_INTROTEXT_FULLTEXT" description="">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="sideBarDisplay" type="radio" default="1" label="K2_DEFAULT_STATE_FOR_THE_ITEM_FORM_SIDEBAR" description="">
+			<option value="0">K2_HIDDEN</option>
+			<option value="1">K2_SHOWN</option>
+		</param>
+		<param menu="hide" name="attachmentsFolder" type="text" default="" size="40" label="K2_CHANGE_ROOT_ATTACHMENTS_FOLDER" description="K2_ENTER_THE_RELATIVE_PATH_TO_THE_FOLDER_FOR_STORING_ATTACHMENTS_LEAVE_THIS_BLANK_TO_USE_THE_DEFAULT_K2_ATTACHMENTS_FOLDER_MEDIAK2ATTACHMENTS_IF_YOU_CHANGE_THIS_SETTING_AT_ANY_POINT_REMEMBER_TO_MOVE_YOUR_FILES_FROM_THE_OLD_FOLDER_TO_THE_NEWLY_CREATED_ONE" />
+		<param menu="hide" name="hideImportButton" type="radio" default="0" label="K2_HIDE_IMPORT_BUTTONS" description="K2_HIDE_IMPORT_JOOMLA_CONTENT_AND_IMPORT_JOOMLA_USERS_BUTTONS">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="googleSearch" type="radio" default="0" label="K2_GOOGLE_SEARCH_INTEGRATION" description="K2_SET_THIS_TO_YES_IF_YOU_WANT_TO_INTEGRATE_GOOGLE_SEARCH_ON_YOUR_SITE_NOTE_THAT_THIS_WILL_DISABLE_THE_K2_ORIGINAL_SEARCH_FUNCTION">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="googleSearchContainer" type="text" default="k2GoogleSearchContainer" label="K2_CONTAINER_ID_TO_RENDER_THE_GOOGLE_SEARCH" description="K2_ENTER_THE_ID_OF_THE_ELEMENT_YOU_WISH_TO_RENDER_IN_THE_GOOGLE_SEARCH_RESULTS_NOTE_THAT_YOU_HAVE_TO_ENABLE_THIS_ON_THE_COMPONENT_PARAMS" />
+		<param menu="hide" name="K2UserProfile" type="radio" default="1" label="K2_ENABLE_K2_USER_PROFILE" description="K2_EXTEND_THE_USER_PROFILE_WITH_THE_K2_TEMPLATE">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="K2UserGroup" type="sql" default="" description="K2_SELECT_THE_DEFAULT_K2_USER_GROUP_FOR_NEW_REGISTRATIONS" label="K2_SELECT_DEFAULT_K2_USER_GROUP" query="SELECT id AS value, name AS K2UserGroup FROM #__k2_user_groups" />
+		<param menu="hide" name="redirect" type="menuitem" default="" label="K2_PROFILE_EDIT_REDIRECT" description="K2_SELECT_A_MENU_ITEM_TO_REDIRECT_AFTER_USER_PROFILE_EDIT_PLEASE_NOTE_THAT_THE_PLUGIN_MUST_BE_THE_LAST_ONE_IN_USER_GROUP_OR_IT_WILL_BREAK_THE_EXECUTION_OF_OTHER_USER_PLUGINS" />
+		<param menu="hide" name="adminSearch" type="list" default="simple" label="K2_ADMINISTRATION_ITEM_SEARCH" description="">
+			<option value="simple">K2_SIMPLE_TITLE_ONLY</option>
+			<option value="full">K2_FULL_EVERYTHING</option>
+		</param>
+		<param menu="hide" name="cookieDomain" type="text" default="" label="K2_COOKIE_DOMAIN" description="K2_SET_THE_DOMAIN_OF_YOUR_SITE_HERE_AND_K2_WILL_CREATE_A_COOKIE_CONTAINING_THE_USER_ID_FOR_LOGGED_IN_USERS" />
+		<!-- ######################### Tag System Settings ######################### -->
+		<param menu="hide" name="" type="header" default="K2_TAG_SYSTEM_SETTINGS" label="" description="" />
+		<param menu="hide" name="taggingSystem" type="radio" default="1" label="K2_TAGGING_SYSTEM" description="">
+			<option value="0">K2_SELECTIONBASED_TAGGING</option>
+			<option value="1">K2_FREE_TAGGING_WITH_AUTO_COMPLETE</option>
+		</param>
+		<param menu="hide" name="lockTags" type="radio" default="0" label="K2_LOCK_TAGS" description="K2_SWITCH_TO_SELECTION_BASED_TAGGING_FOR_MANAGERS_AND_BELOW_PREVENTING_THEM_FROM_CREATING_NEW_TAGS">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="showTagFilter" type="radio" default="0" label="K2_ALLOW_ITEM_FILTERING_BY_TAG_IN_THE_BACKEND" description="K2_SETTING_THIS_TO_YES_WILL_ENABLE_A_DROPDOWN_LIST_OF_THE_SITES_TAGS_TO_FILTER_ITEMS_BY_A_SPECIFIC_TAG_IT_IS_NOT_ADVISED_TO_HAVE_THIS_OPTION_SET_TO_YES_IF_YOUR_SITE_CONTAINS_MORE_THAN_A_THOUSAND_TAGS_AS_IT_WILL_SLOW_DOWN_YOUR_K2_BACKEND">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="k2TagNorm" type="radio" default="0" label="K2_TAG_NORMALIZATION" description="K2_TAG_NORMALIZATION_DESC">
+			<option value="0">K2_DISABLE</option>
+			<option value="1">K2_ENABLE</option>
+		</param>
+		<param menu="hide" name="k2TagNormCase" type="radio" default="lower" label="K2_TAG_CASE" description="">
+			<option value="lower">K2_LOWERCASE</option>
+			<option value="upper">K2_UPPERCASE</option>
+		</param>
+		<param menu="hide" name="k2TagNormAdditionalReplacements" type="textarea" default="" label="K2_ADDITIONAL_CHAR_REPLACEMENTS" description="K2_ADDITIONAL_CHAR_REPLACEMENTS_DESC" rows="4" cols="40" />
+		<!-- ######################### Anti-spam Settings ######################### -->
+		<param menu="hide" name="" type="header" default="K2_ANTI_SPAM_SETTINGS" label="" description="" />
+		<param menu="hide" name="recaptcha_public_key" type="text" default="" size="40" label="K2_RECAPTCHA_PUBLIC_KEY" description="K2_RECAPTCHA_KEY_DESC" />
+		<param menu="hide" name="recaptcha_private_key" type="password" default="" size="40" label="K2_RECAPTCHA_PRIVATE_KEY" description="K2_RECAPTCHA_KEY_DESC" />
+		<param menu="hide" name="recaptcha_theme" type="list" default="clean" label="K2_RECAPTCHA_THEME" description="K2_SELECT_THE_RECAPTCHA_THEME">
+			<option value="red">K2_RED</option>
+			<option value="white">K2_WHITE</option>
+			<option value="blackglass">K2_BLACKGLASS</option>
+			<option value="clean">K2_CLEAN</option>
+			<option value="custom">K2_CUSTOM</option>
+		</param>
+		<param menu="hide" name="recaptchaOnRegistration" type="radio" default="0" label="K2_ENABLE_RECAPTCHA_ON_REGISTRATION_FORM" description="K2_ENABLE_RECAPTCHA_ON_REGISTRATION_FORM_DESC">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="akismetApiKey" type="text" default="" size="40" label="K2_AKISMET_API_KEY" description="K2_AKISMET_API_KEY_DESC" />
+		<param menu="hide" name="stopForumSpam" type="radio" default="0" label="K2_STOP_FORUM_SPAM" description="K2_STOP_FORUM_SPAM_DESCRIPTION">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="stopForumSpamApiKey" type="text" default="" label="K2_STOP_FORUM_SPAM_API_KEY" description="K2_STOP_FORUM_SPAM_API_KEY_DESCRIPTION" />
+		<!-- ######################### Performance Settings ######################### -->
+		<param menu="hide" name="" type="header" default="K2_PERFORMANCE" label="" description="" />
+		<param menu="hide" name="showItemsCounterAdmin" type="radio" default="1" label="K2_ITEM_COUNTER_NEXT_TO_THE_CATEGORY_TITLE_IN_THE_CATEGORY_MANAGER" description="K2_DISABLING_THIS_WILL_REDUCE_THE_NUMBER_OF_QUERIES_IN_THE_BACKEND_AND_OVERALL_IMPROVE_PERFORMANCE_FOR_SITES_WITH_THOUSANDS_OF_ITEMS">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="showChildCatItems" type="radio" default="1" label="K2_DISPLAY_ITEMS_FROM_BOTH_PARENT_AND_CHILDREN_CATEGORIES_WHEN_FILTERING_ITEMS_BY_CATEGORY" description="K2_DISABLING_THIS_WILL_REDUCE_THE_NUMBER_OF_QUERIES_IN_THE_BACKEND_AND_OVERALL_IMPROVE_PERFORMANCE_FOR_SITES_WITH_THOUSANDS_OF_ITEMS">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="disableCompactOrdering" type="radio" default="0" label="K2_DISABLE_ORDERING_COMPACTING" description="K2_SETTING_THIS_TO_YES_WILL_REDUCE_THE_NUMBER_OF_QUERIES_IN_THE_BACKEND_AND_OVERALL_IMPROVE_PERFORMANCE_FOR_SITES_WITH_THOUSANDS_OF_ITEMS">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<!-- ######################### SEO Settings ######################### -->
+		<param menu="hide" name="" type="header" default="K2_SEO" label="" description="" />
+		<param menu="hide" name="metaDescLimit" type="text" size="4" default="150" label="K2_CHARACTER_LIMIT_FOR_AUTOGENERATED_META_DESCRIPTION_TAG_IN_ITEMS" description="K2_THIS_OPTION_APPLIES_TO_ITEMS_ONLY_WHEN_THERE_IS_NO_META_DESCRIPTION_TAG_SET_BY_THE_AUTHOR" />
+		<param menu="hide" name="SEFReplacements" type="textarea" default="À|A, Á|A, Â|A, Ã|A, Ä|A, Å|A, à|a, á|a, â|a, ã|a, ä|a, å|a, Ā|A, ā|a, Ă|A, ă|a, Ą|A, ą|a, Ç|C, ç|c, Ć|C, ć|c, Ĉ|C, ĉ|c, Ċ|C, ċ|c, Č|C, č|c, Ð|D, ð|d, Ď|D, ď|d, Đ|D, đ|d, È|E, É|E, Ê|E, Ë|E, è|e, é|e, ê|e, ë|e, Ē|E, ē|e, Ĕ|E, ĕ|e, Ė|E, ė|e, Ę|E, ę|e, Ě|E, ě|e, Ĝ|G, ĝ|g, Ğ|G, ğ|g, Ġ|G, ġ|g, Ģ|G, ģ|g, Ĥ|H, ĥ|h, Ħ|H, ħ|h, Ì|I, Í|I, Î|I, Ï|I, ì|i, í|i, î|i, ï|i, Ĩ|I, ĩ|i, Ī|I, ī|i, Ĭ|I, ĭ|i, Į|I, į|i, İ|I, ı|i, Ĵ|J, ĵ|j, Ķ|K, ķ|k, ĸ|k, Ĺ|L, ĺ|l, Ļ|L, ļ|l, Ľ|L, ľ|l, Ŀ|L, ŀ|l, Ł|L, ł|l, Ñ|N, ñ|n, Ń|N, ń|n, Ņ|N, ņ|n, Ň|N, ň|n, ŉ|n, Ŋ|N, ŋ|n, Ò|O, Ó|O, Ô|O, Õ|O, Ö|O, Ø|O, ò|o, ó|o, ô|o, õ|o, ö|o, ø|o, Ō|O, ō|o, Ŏ|O, ŏ|o, Ő|O, ő|o, Ŕ|R, ŕ|r, Ŗ|R, ŗ|r, Ř|R, ř|r, Ś|S, ś|s, Ŝ|S, ŝ|s, Ş|S, ş|s, Š|S, š|s, ſ|s, Ţ|T, ţ|t, Ť|T, ť|t, Ŧ|T, ŧ|t, Ù|U, Ú|U, Û|U, Ü|U, ù|u, ú|u, û|u, ü|u, Ũ|U, ũ|u, Ū|U, ū|u, Ŭ|U, ŭ|u, Ů|U, ů|u, Ű|U, ű|u, Ų|U, ų|u, Ŵ|W, ŵ|w, Ý|Y, ý|y, ÿ|y, Ŷ|Y, ŷ|y, Ÿ|Y, Ź|Z, ź|z, Ż|Z, ż|z, Ž|Z, ž|z, α|a, β|b, γ|g, δ|d, ε|e, ζ|z, η|h, θ|th, ι|i, κ|k, λ|l, μ|m, ν|n, ξ|x, ο|o, π|p, ρ|r, σ|s, τ|t, υ|y, φ|f, χ|ch, ψ|ps, ω|w, Α|A, Β|B, Γ|G, Δ|D, Ε|E, Ζ|Z, Η|H, Θ|Th, Ι|I, Κ|K, Λ|L, Μ|M, Ξ|X, Ο|O, Π|P, Ρ|R, Σ|S, Τ|T, Υ|Y, Φ|F, Χ|Ch, Ψ|Ps, Ω|W, ά|a, έ|e, ή|h, ί|i, ό|o, ύ|y, ώ|w, Ά|A, Έ|E, Ή|H, Ί|I, Ό|O, Ύ|Y, Ώ|W, ϊ|i, ΐ|i, ϋ|y, ς|s, А|A, Ӑ|A, Ӓ|A, Ә|E, Ӛ|E, Ӕ|E, Б|B, В|V, Г|G, Ґ|G, Ѓ|G, Ғ|G, Ӷ|G, y|Y, Д|D, Е|E, Ѐ|E, Ё|YO, Ӗ|E, Ҽ|E, Ҿ|E, Є|YE, Ж|ZH, Ӂ|DZH, Җ|ZH, Ӝ|DZH, З|Z, Ҙ|Z, Ӟ|DZ, Ӡ|DZ, Ѕ|DZ, И|I, Ѝ|I, Ӥ|I, Ӣ|I, І|I, Ї|JI, Ӏ|I, Й|Y, Ҋ|Y, Ј|J, К|K, Қ|Q, Ҟ|Q, Ҡ|K, Ӄ|Q, Ҝ|K, Л|L, Ӆ|L, Љ|L, М|M, Ӎ|M, Н|N, Ӊ|N, Ң|N, Ӈ|N, Ҥ|N, Њ|N, О|O, Ӧ|O, Ө|O, Ӫ|O, Ҩ|O, П|P, Ҧ|PF, Р|P, Ҏ|P, С|S, Ҫ|S, Т|T, Ҭ|TH, Ћ|T, Ќ|K, У|U, Ў|U, Ӳ|U, Ӱ|U, Ӯ|U, Ү|U, Ұ|U, Ф|F, Х|H, Ҳ|H, Һ|H, Ц|TS, Ҵ|TS, Ч|CH, Ӵ|CH, Ҷ|CH, Ӌ|CH, Ҹ|CH, Џ|DZ, Ш|SH, Щ|SHT, Ъ|A, Ы|Y, Ӹ|Y, Ь|Y, Ҍ|Y, Э|E, Ӭ|E, Ю|YU, Я|YA, а|a, ӑ|a, ӓ|a, ә|e, ӛ|e, ӕ|e, б|b, в|v, г|g, ґ|g, ѓ|g, ғ|g, ӷ|g, y|y, д|d, е|e, ѐ|e, ё|yo, ӗ|e, ҽ|e, ҿ|e, є|ye, ж|zh, ӂ|dzh, җ|zh, ӝ|dzh, з|z, ҙ|z, ӟ|dz, ӡ|dz, ѕ|dz, и|i, ѝ|i, ӥ|i, ӣ|i, і|i, ї|ji, Ӏ|i, й|y, ҋ|y, ј|j, к|k, қ|q, ҟ|q, ҡ|k, ӄ|q, ҝ|k, л|l, ӆ|l, љ|l, м|m, ӎ|m, н|n, ӊ|n, ң|n, ӈ|n, ҥ|n, њ|n, о|o, ӧ|o, ө|o, ӫ|o, ҩ|o, п|p, ҧ|pf, р|p, ҏ|p, с|s, ҫ|s, т|t, ҭ|th, ћ|t, ќ|k, у|u, ў|u, ӳ|u, ӱ|u, ӯ|u, ү|u, ұ|u, ф|f, х|h, ҳ|h, һ|h, ц|ts, ҵ|ts, ч|ch, ӵ|ch, ҷ|ch, ӌ|ch, ҹ|ch, џ|dz, ш|sh, щ|sht, ъ|a, ы|y, ӹ|y, ь|y, ҍ|y, э|e, ӭ|e, ю|yu, я|ya" label="K2_SEF_URL_CHARACTER_REPLACEMENTS" description="K2_SEF_URL_CHARACTER_REPLACEMENTS_DESC" rows="8" cols="40" />
+		<!-- ######################### Advanced SEF Settings ######################### -->
+		<param menu="hide" name="" type="header" default="K2_ADVANCED_SEF_SETTINGS" label="" description="" />
+		<param menu="hide" name="k2Sef" type="radio" default="0" label="K2_ADVANCED_SEF" description="K2_ADVANCED_SEF_DESC">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="k2SefLabelCat" type="text" default="content" label="K2_SEF_URL_PREFIX_FOR_CATEGORIES" description="K2_SEF_URL_PREFIX_FOR_CATEGORIES_DESC" />
+		<param menu="hide" name="k2SefLabelTag" type="text" default="tag" label="K2_SEF_URL_PREFIX_FOR_TAGS" description="K2_SEF_URL_PREFIX_FOR_TAGS_DESC" />
+		<param menu="hide" name="k2SefLabelUser" type="text" default="author" label="K2_SEF_URL_PREFIX_FOR_USERSAUTHORS" description="K2_SEF_URL_PREFIX_FOR_USERSAUTHORS_DESC" />
+		<param menu="hide" name="k2SefLabelSearch" type="text" default="search" label="K2_SEF_URL_PREFIX_FOR_SEARCH_RESULTS" description="K2_SEF_URL_PREFIX_FOR_SEARCH_RESULTS_DESC" />
+		<param menu="hide" name="k2SefLabelDate" type="text" default="date" label="K2_SEF_URL_PREFIX_FOR_DATE_LISTINGS" description="K2_SEF_URL_PREFIX_FOR_DATE_LISTINGS_DESC" />
+		<param menu="hide" name="k2SefLabelItem" type="radio" default="0" label="K2_SEF_URL_CATEGORY_PREFIX_FOR_ITEMS" description="K2_SEF_URL_CATEGORY_PREFIX_FOR_ITEMS_DESC">
+			<option value="0">K2_NONE</option>
+			<option value="1">K2_SEF_USE_CATEGORY_NAME_WITH_ID</option>
+			<option value="2">K2_SEF_USE_CUSTOM_PREFIX</option>
+		</param>
+		<param menu="hide" name="k2SefLabelItemCustomPrefix" type="text" default="" label="K2_SEF_ITEM_URL_CUSTOM_PREFIX" description="K2_SEF_ITEM_URL_CUSTOM_PREFIX_DESC" />
+		<param menu="hide" name="k2SefInsertItemId" type="radio" default="1" label="K2_SEF_USE_ITEM_ID_IN_URL" description="K2_SEF_USE_ITEM_ID_IN_URL_DESC">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="k2SefItemIdTitleAliasSep" type="radio" default="dash" label="K2_SEF_ITEM_ID_TITLE_ALIAS_SEPARATOR" description="K2_SEF_ITEM_ID_TITLE_ALIAS_SEPARATOR_DESC">
+			<option value="dash">K2_USE_A_DASH</option>
+			<option value="slash">K2_USE_A_FORWARD_SLASH</option>
+		</param>
+		<param menu="hide" name="k2SefUseItemTitleAlias" type="radio" default="1" label="K2_SEF_USE_ITEM_TITLE_ALIAS" description="K2_SEF_USE_ITEM_TITLE_ALIAS_DESC">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="k2SefInsertCatId" type="radio" default="1" label="K2_SEF_USE_CAT_ID_IN_URL" description="K2_SEF_USE_CAT_ID_IN_URL_DESC">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="k2SefCatIdTitleAliasSep" type="radio" default="dash" label="K2_SEF_CAT_ID_TITLE_ALIAS_SEPARATOR" description="K2_SEF_CAT_ID_TITLE_ALIAS_SEPARATOR_DESC">
+			<option value="dash">K2_USE_A_DASH</option>
+			<option value="slash">K2_USE_A_FORWARD_SLASH</option>
+		</param>
+		<param menu="hide" name="k2SefUseCatTitleAlias" type="radio" default="1" label="K2_SEF_USE_CAT_TITLE_ALIAS" description="K2_SEF_USE_CAT_TITLE_ALIAS_DESC">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<!-- ######################### sh404SEF Settings ######################### -->
+		<param menu="hide" name="" type="header" default="K2_SH404SEF" label="" description="" />
+		<param menu="hide" name="sh404SefLabelCat" type="text" default="" label="K2_SH404SEF_URL_PREFIX_FOR_CATEGORIES" description="" />
+		<param menu="hide" name="sh404SefLabelUser" type="text" default="blog" label="K2_SH404SEF_URL_PREFIX_FOR_USERSAUTHORS" description="" />
+		<param menu="hide" name="sh404SefLabelItem" type="list" default="2" label="K2_SH404SEF_URL_CATEGORY_PREFIX_FOR_ITEMS" description="">
+			<option value="0">K2_NO_CATEGORIES</option>
+			<option value="1">K2_ONLY_THE_LAST_CATEGORY</option>
+			<option value="2">K2_ALL_CATEGORIES</option>
+		</param>
+		<param menu="hide" name="sh404SefTitleAlias" type="list" default="alias" label="K2_USE_TITLE_ALIAS_FOR_SH404SEF_URLS" description="">
+			<option value="alias">K2_YES</option>
+			<option value="title">K2_NO_USE_THE_ITEMS_TITLE</option>
+		</param>
+		<param menu="hide" name="sh404SefModK2ContentFeedAlias" type="text" default="feed" label="K2_SH404SEF_URL_PREFIX_FOR_K2_CONTENT_MODULE_FEED" description="" />
+		<param menu="hide" name="sh404SefInsertItemId" type="radio" default="0" label="K2_INSERT_ITEM_ID_IN_URL" description="">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="sh404SefInsertUniqueItemId" type="radio" default="0" label="K2_INSERT_UNIQUE_ITEM_ID_IN_URL" description="">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param menu="hide" name="" type="header" default="K2_COMMUNITY_BUILDER" label="" description="" />
+		<param menu="hide" name="cbIntegration" type="radio" default="0" label="K2_CB_INTEGRATION" description="K2_CB_INTEGRATION_DESC">
+			<option value="0">K2_DISABLED</option>
+			<option value="1">K2_ENABLED</option>
+		</param>
+	</params>
+	<fieldset name="COM_K2_LAYOUT_OPTIONS" label="K2_LAYOUT_VIEWS" addfieldpath="/administrator/components/com_k2/elements">
+		<!-- ######################### CSS Settings ######################### -->
+		<field menu="hide" name="" type="header" default="K2_CSS_SETTINGS" label="" description="" />
+		<field menu="hide" name="enable_css" type="radio" default="1" label="K2_DEFAULT_CSS" description="K2_THIS_OPTION_WILL_LOAD_THE_BUILTIN_CSS_STYLING_THAT_COMES_WITH_K2_BY_DEFAULT_IF_YOU_ARE_USING_A_JOOMLA_TEMPLATE_WHICH_SUPPORTS_K2_STYLES_YOU_MAY_HAVE_TO_DISABLE_THIS_OPTION_TO_APPLY_YOUR_JOOMLA_TEMPLATES_CSS_STYLING_TO_THE_K2_COMPONENT_AND_MODULES">
+			<option value="0">K2_DISABLE</option>
+			<option value="1">K2_ENABLE</option>
+		</field>
+		<field menu="hide" name="jQueryHandling" type="list" default="1.8remote" label="K2_COM_JQUERY_HANDLING" description="">
+			<option value="0">K2_COM_DO_NOT_LOAD_THE_JQUERY_LIBRARY</option>
+			<option value="1.3.2">K2_COM_LOAD_V1_3_2_LOCAL_COPY</option>
+			<option value="1.3remote">K2_COM_LOAD_V1_3_2_REMOTE_COPY</option>
+			<option value="1.4.4">K2_COM_LOAD_V1_4_4_LOCAL_COPY</option>
+			<option value="1.4remote">K2_COM_LOAD_V1_4_4_REMOTE_COPY</option>
+			<option value="1.5.2">K2_COM_LOAD_V1_5_2_LOCAL_COPY</option>
+			<option value="1.5remote">K2_COM_LOAD_V1_5_2_REMOTE_COPY</option>
+			<option value="1.6.4">K2_COM_LOAD_V1_6_LOCAL_COPY</option>
+			<option value="1.6remote">K2_COM_LOAD_V1_6_X_LATEST_REMOTE_COPY</option>
+			<option value="1.7.2">K2_COM_LOAD_V1_7_LOCAL_COPY</option>
+			<option value="1.7remote">K2_COM_LOAD_V1_7_X_LATEST_REMOTE_COPY</option>
+			<option value="1.8.3">K2_COM_LOAD_V1_8_LOCAL_COPY</option>
+			<option value="1.8remote">K2_COM_LOAD_V1_8_X_LATEST_REMOTE_COPY</option>
+			<option value="1.9.1">K2_COM_LOAD_V1_9_LOCAL_COPY</option>
+			<option value="1.9.1remote">K2_COM_LOAD_V1_9_X_LATEST_REMOTE_COPY</option>
+			<option value="1.10.2">K2_COM_LOAD_V1_10_LOCAL_COPY</option>
+			<option value="1.10.1remote">K2_COM_LOAD_V1_10_X_LATEST_REMOTE_COPY</option>
+		</field>
+		<field menu="hide" name="backendJQueryHandling" type="list" default="remote" label="K2_COM_BACKEND_JQUERY_HANDLING" description="K2_COM_BACKEND_JQUERY_HANDLING_DESC">
+			<option value="local">K2_COM_LOAD_A_LOCAL_COPY</option>
+			<option value="remote">K2_COM_LOAD_A_REMOTE_COPY</option>
+		</field>
+
+		<!-- ######################### Layout and view options for user (blog/profile) pages ######################### -->
+		<field menu="hide" name="" type="header" default="K2_LAYOUT_AND_VIEW_OPTIONS_FOR_USERS_PAGES" label="" description="" />
+		<field menu="hide" name="userName" type="radio" default="1" label="K2_NAME" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="userImage" type="radio" default="1" label="K2_IMAGE_AVATAR" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="userDescription" type="radio" default="1" label="K2_DESCRIPTION" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="userURL" type="radio" default="1" label="K2_URL" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="userEmail" type="radio" default="0" label="K2_EMAIL" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="userFeedLink" type="radio" default="1" label="K2_RSS_FEED_LINK" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="userFeedIcon" type="radio" default="1" label="K2_RSS_FEED_ICON" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="userItemCount" type="text" default="10" size="4" label="K2_ITEM_COUNT_ON_USER_PAGES" description="" />
+		<field menu="hide" name="userItemTitle" type="radio" default="1" label="K2_ITEM_TITLE" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="userItemTitleLinked" type="radio" default="1" label="K2_LINK_ON_ITEM_TITLE" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="userItemDateCreated" type="radio" default="1" label="K2_ITEM_CREATED_DATE_TIME" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="userItemImage" type="radio" default="1" label="K2_ITEM_IMAGE" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="userItemIntroText" type="radio" default="1" label="K2_ITEM_INTROTEXT" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="userItemCategory" type="radio" default="1" label="K2_ITEM_CATEGORY" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="userItemTags" type="radio" default="1" label="K2_ITEM_TAGS" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="userItemCommentsAnchor" type="radio" default="1" label="K2_ANCHOR_LINK_WITH_COMMENTS_COUNTER_TO_ITEMS_COMMENT_FORM" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="userItemReadMore" type="radio" default="1" label="K2_ITEM_READ_MORE_LINK" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="userItemK2Plugins" type="radio" default="1" label="K2_ENABLE_K2_PLUGINS" description="">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<!-- ######################### Layout and view options for Tag listings ######################### -->
+		<field menu="hide" name="" type="header" default="K2_LAYOUT_VIEW_OPTIONS_FOR_TAG_LISTINGS" label="" description="" />
+		<field menu="hide" name="tagItemCount" type="text" default="10" size="4" label="K2_ITEM_COUNT_FOR_TAG_LISTINGS" description="" />
+		<field menu="hide" name="tagItemTitle" type="radio" default="1" label="K2_ITEM_TITLE" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="tagItemTitleLinked" type="radio" default="1" label="K2_LINK_ON_ITEM_TITLE" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="tagItemDateCreated" type="radio" default="1" label="K2_ITEM_CREATED_DATE_TIME" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="tagItemImage" type="radio" default="1" label="K2_ITEM_IMAGE" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="tagItemIntroText" type="radio" default="1" label="K2_ITEM_INTROTEXT" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="tagItemCategory" type="radio" default="1" label="K2_ITEM_CATEGORY" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="tagItemReadMore" type="radio" default="1" label="K2_ITEM_READ_MORE_LINK" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="tagItemExtraFields" type="radio" default="0" label="K2_ITEM_EXTRA_FIELDS" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="tagOrdering" type="list" default="" label="K2_ITEM_ORDERING_ONLY_FOR_TAG_LISTINGS" description="">
+			<option value="">K2_DEFAULT</option>
+			<option value="date">K2_OLDEST_FIRST</option>
+			<option value="rdate">K2_MOST_RECENT_FIRST</option>
+			<option value="publishUp">K2_RECENTLY_PUBLISHED</option>
+			<option value="alpha">K2_TITLE_ALPHABETICAL</option>
+			<option value="ralpha">K2_TITLE_REVERSEALPHABETICAL</option>
+			<option value="order">K2_ORDERING</option>
+			<option value="rorder">K2_ORDERING_REVERSE</option>
+			<option value="hits">K2_MOST_POPULAR</option>
+			<option value="best">K2_HIGHEST_RATED</option>
+			<option value="rand">K2_RANDOM_ORDERING</option>
+		</field>
+		<field menu="hide" name="tagFeedLink" type="radio" default="1" label="K2_RSS_FEED_LINK" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="tagFeedIcon" type="radio" default="1" label="K2_RSS_FEED_ICON" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<!-- ######################### Layout and view options for Search and Date listings ######################### -->
+		<field menu="hide" name="" type="header" default="K2_LAYOUT_VIEW_OPTIONS_FOR_SEARCH_TAG_DATE_LISTINGS" label="" description="" />
+		<field menu="hide" name="genericItemCount" type="text" default="10" size="4" label="K2_ITEM_COUNT_FOR_SEARCH_TAG_DATE_LISTINGS" description="" />
+		<field menu="hide" name="genericItemTitle" type="radio" default="1" label="K2_ITEM_TITLE" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="genericItemTitleLinked" type="radio" default="1" label="K2_LINK_ON_ITEM_TITLE" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="genericItemDateCreated" type="radio" default="1" label="K2_ITEM_CREATED_DATE_TIME" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="genericItemImage" type="radio" default="1" label="K2_ITEM_IMAGE" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="genericItemIntroText" type="radio" default="1" label="K2_ITEM_INTROTEXT" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="genericItemCategory" type="radio" default="1" label="K2_ITEM_CATEGORY" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="genericItemReadMore" type="radio" default="1" label="K2_ITEM_READ_MORE_LINK" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="genericItemExtraFields" type="radio" default="0" label="K2_ITEM_EXTRA_FIELDS" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="genericFeedLink" type="radio" default="1" label="K2_RSS_FEED_LINK" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="genericFeedIcon" type="radio" default="1" label="K2_RSS_FEED_ICON" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+	</fieldset>
+	<fieldset name="COM_K2_CONTENT_OPTIONS" label="K2_CONTENT" addfieldpath="/administrator/components/com_k2/elements">
+		<!-- ######################### RSS Feed Settings ######################### -->
+		<field menu="hide" name="" type="header" default="K2_RSS_FEEDS" label="" description="" />
+		<field menu="hide" name="feedLimit" type="text" size="3" default="10" label="K2_FEED_LIMIT" description="" />
+		<field menu="hide" name="feedItemImage" type="radio" default="1" label="K2_ITEM_IMAGE" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="feedImgSize" type="list" default="S" label="K2_IMAGE_SIZE_FOR_ITEMS" description="">
+			<option value="XS">K2_XSMALL</option>
+			<option value="S">K2_SMALL</option>
+			<option value="M">K2_MEDIUM</option>
+			<option value="L">K2_LARGE</option>
+			<option value="XL">K2_XLARGE</option>
+		</field>
+		<field menu="hide" name="feedItemIntroText" type="radio" default="1" label="K2_ITEM_INTROTEXT" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="feedTextWordLimit" type="text" size="4" default="" label="K2_ITEM_INTROTEXT_WORD_LIMIT" description="" />
+		<field menu="hide" name="feedItemFullText" type="radio" default="1" label="K2_ITEM_FULLTEXT" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="feedItemTags" type="radio" default="0" label="K2_ITEM_TAGS" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="feedItemVideo" type="radio" default="0" label="K2_ITEM_VIDEO" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="feedItemGallery" type="radio" default="0" label="K2_ITEM_GALLERY" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="feedItemAttachments" type="radio" default="0" label="K2_ITEM_ATTACHMENTS" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="feedBogusEmail" type="text" default="" label="K2_USE_BOGUS_EMAIL" description="K2_USE_BOGUS_EMAIL_DESC" />
+		<!-- ######################### Content Cleanup Settings ######################### -->
+		<field menu="hide" name="" type="header" default="K2_CONTENT_CLEANUP" label="" description="" />
+		<field menu="hide" name="introTextCleanup" type="radio" default="0" label="K2_INTROTEXT_HTML_CLEANUP_TAG_STRIP" description="K2_ENABLE_THIS_TO_STRIP_ALL_HTML_TAGS_EXCEPT_THE_ONES_DEFINED_BELOW_INSIDE_THE_INTROTEXT">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="introTextCleanupExcludeTags" type="text" default="" label="K2_ENTER_WHICH_HTML_TAGS_NOT_TO_STRIP_IN_INTROTEXT" description="K2_SEPARATE_VALID_HTML_TAGS_BY_COMMA_EG_IMGBRPABSPAN_ETC" />
+		<field menu="hide" name="introTextCleanupTagAttr" type="text" default="" label="K2_ENTER_WHICH_HTML_TAG_ATTRIBUTES_TO_STRIP_IN_INTROTEXT" description="K2_SEPARATE_VALID_HTML_TAG_ATTRIBUTES_BY_COMMA_EG_WIDTHHEIGHTBORDER_ETC" />
+		<field menu="hide" name="fullTextCleanup" type="radio" default="0" label="K2_FULLTEXT_HTML_CLEANUP_TAG_STRIP" description="K2_ENABLE_THIS_TO_STRIP_ALL_HTML_TAGS_EXCEPT_THE_ONES_DEFINED_BELOW_INSIDE_THE_FULLTEXT">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="fullTextCleanupExcludeTags" type="text" default="" label="K2_ENTER_WHICH_HTML_TAGS_NOT_TO_STRIP_IN_FULLTEXT" description="K2_SEPARATE_VALID_HTML_TAGS_BY_COMMA_EG_IMGBRPABSPAN_ETC" />
+		<field menu="hide" name="fullTextCleanupTagAttr" type="text" default="" label="K2_ENTER_WHICH_HTML_TAG_ATTRIBUTES_TO_STRIP_IN_FULLTEXT" description="K2_SEPARATE_VALID_HTML_TAG_ATTRIBUTES_BY_COMMA_EG_WIDTHHEIGHTBORDER_ETC" />
+		<field menu="hide" name="xssFiltering" type="radio" default="0" label="K2_XSS_FILTERING_ON_SAVE" description="K2_ENABLE_THIS_FILTER_TO_PREVENT_A_MALICIOUS_USER_TO_INJECT_CLIENTSIDE_SCRIPT_INTO_YOUR_SITE_DISABLED_BY_DEFAULT">
+			<option value="0">K2_DISABLED</option>
+			<option value="1">K2_ENABLED</option>
+		</field>
+		<!-- ######################### Extra Fields Settings ######################### -->
+		<field menu="hide" name="" type="header" default="K2_EXTRA_FIELDS" label="" description="" />
+		<field menu="hide" name="linkPopupWidth" type="text" size="4" default="900" label="K2_POPUP_WIDTH_FOR_LINKS" description="K2_USED_WHEN_CREATING_LINKS_THAT_OPEN_UP_IN_LIGHTBOX_OR_CLASSIC_JAVASCRIPT_POPUPS" />
+		<field menu="hide" name="linkPopupHeight" type="text" size="4" default="600" label="K2_POPUP_HEIGHT_FOR_LINKS" description="K2_USED_WHEN_CREATING_LINKS_THAT_OPEN_UP_IN_LIGHTBOX_OR_CLASSIC_JAVASCRIPT_POPUPS" />
+	</fieldset>
+	<fieldset name="COM_K2_IMAGES_OPTIONS" label="K2_IMAGES" addfieldpath="/administrator/components/com_k2/elements">
+		<!-- ######################### Image Settings ######################### -->
+		<field menu="hide" name="imagesQuality" type="text" default="100" size="4" label="K2_QUALITY_USED_WHEN_PROCESSING_IMAGES" description="" />
+		<field menu="hide" name="itemImageXS" type="text" default="100" size="4" label="K2_ITEM_XSMALL_IMAGE_WIDTH_IN_PX" description="" />
+		<field menu="hide" name="itemImageS" type="text" default="200" size="4" label="K2_ITEM_SMALL_IMAGE_WIDTH_IN_PX" description="" />
+		<field menu="hide" name="itemImageM" type="text" default="400" size="4" label="K2_ITEM_MEDIUM_IMAGE_WIDTH_IN_PX" description="" />
+		<field menu="hide" name="itemImageL" type="text" default="600" size="4" label="K2_ITEM_LARGE_IMAGE_WIDTH_IN_PX" description="" />
+		<field menu="hide" name="itemImageXL" type="text" default="900" size="4" label="K2_ITEM_XLARGE_IMAGE_WIDTH_IN_PX" description="" />
+		<field menu="hide" name="itemImageGeneric" type="text" default="300" size="4" label="K2_ITEM_GENERIC_IMAGE_WIDTH_IN_PX_USED_IN_USER_PAGES_AS_WELL_AS_TAG_SEARCH_DATE_LISTINGS" description="" />
+		<field menu="hide" name="catImageWidth" type="text" default="100" size="4" label="K2_CATEGORY_IMAGE_WIDTH_IN_PX" description="" />
+		<field menu="hide" name="catImageDefault" type="radio" default="1" label="K2_PLACEHOLDER_IMAGE_FOR_CATEGORY_IF_NONE_EXISTS" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="userImageWidth" type="text" default="100" size="4" label="K2_USER_IMAGE_AVATAR_WIDTH_IN_PX" description="" />
+		<field menu="hide" name="userImageDefault" type="radio" default="1" label="K2_PLACEHOLDER_IMAGE_FOR_USER_IF_NONE_EXISTS" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="commenterImgWidth" type="text" default="48" size="4" label="K2_COMMENTER_IMAGE_AVATAR_WIDTH_IN_PX" description="" />
+		<field menu="hide" name="" type="header" default="K2_ONLINE_IMAGE_EDITOR" label="" description="" />
+		<field menu="hide" name="onlineImageEditor" type="list" default="splashup" label="K2_SELECT_ONLINE_IMAGE_EDITOR" description="">
+			<option value="splashup">K2_IMG_EDITOR_SPLASHUP</option>
+			<option value="sumopaint">K2_IMG_EDITOR_SUMOPAINT</option>
+			<option value="pixlr">K2_IMG_EDITOR_PIXLR</option>
+		</field>
+		<field menu="hide" name="" type="header" default="K2_ADVANCED_IMAGE_SETTINGS" label="" description="" />
+		<field menu="hide" name="imageTimestamp" type="radio" default="0" label="K2_FORCE_ITEM_MODIFIED_DATE_AS_URL_TIMESTAMP_ON_IMAGE_PATHS" description="K2_IF_YOU_ENABLE_THIS_OPTION_THE_ITEM_MODIFIED_DATE_IS_APPENDED_AS_A_URL_TIMESTAMP_IN_UNIX_TIME_FORMAT_AN_ALL_ITEM_IMAGE_PATHS_USE_THIS_OPTION_IF_YOUR_SITE_IS_UTILIZING_A_CONTENT_DISTRIBUTION_NETWORK_CDN_AND_YOU_WANT_NEWLY_UPLOADED_IMAGES_IN_THE_SAME_ITEM_TO_BE_INSTANTLY_RECACHED_BY_THE_CDN_AND_USERS_BROWSERS">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="imageMemoryLimit" type="text" default="" size="4" label="K2_ENFORCE_MEMORY_LIMIT" description="K2_ENFORCE_MEMORY_LIMIT_DESC" />
+	</fieldset>
+	<fieldset name="COM_K2_SOCIAL_OPTIONS" label="K2_SOCIAL" addfieldpath="/administrator/components/com_k2/elements">
+		<!-- ######################### Social Settings ######################### -->
+		<field menu="hide" name="socialButtonCode" type="textarea" default="" filter="raw" label="K2_SOCIAL_BUTTON_CODE" description="K2_PASTE_HTML_CODE_HERE_TO_INTEGRATE_SERVICES_LIKE_ADD_THIS_OR_SHARE_THIS_IN_THE_ITEM_PAGE" rows="8" cols="40" />
+		<field menu="hide" name="twitterUsername" type="text" default="" label="K2_YOUR_TWITTER_USERNAME" description="K2_ENTER_YOUR_TWITTER_USERNAME_ACCOUNT_TO_ENABLE_TWITTER_BUTTON_PERSONALIZATION" />
+		<field menu="hide" name="facebookImage" type="list" default="Medium" label="K2_FACEBOOK_IMAGE_SIZE" description="K2_FACEBOOK_IMAGE_SIZE_DESC">
+			<option value="XSmall">K2_XSMALL</option>
+			<option value="Small">K2_SMALL</option>
+			<option value="Medium">K2_MEDIUM</option>
+			<option value="Large">K2_LARGE</option>
+			<option value="XLarge">K2_XLARGE</option>
+		</field>
+	</fieldset>
+	<fieldset name="COM_K2_COMMENTS_OPTIONS" label="K2_COMMENTS" addfieldpath="/administrator/components/com_k2/elements">
+		<!-- ######################### Comments ######################### -->
+		<field menu="hide" name="comments" type="list" default="1" label="K2_GLOBAL_SETTING_FOR_COMMENTS" description="">
+			<option value="0">K2_DISABLED</option>
+			<option value="1">K2_ENABLED_FOR_EVERYONE</option>
+			<option value="2">K2_ENABLED_FOR_REGISTERED_USERS_ONLY</option>
+		</field>
+		<field menu="hide" name="commentsOrdering" type="list" default="DESC" label="K2_ORDERING" description="">
+			<option value="DESC">K2_NEWEST_FIRST</option>
+			<option value="ASC">K2_OLDEST_FIRST</option>
+		</field>
+		<field menu="hide" name="commentsLimit" type="text" size="4" default="10" label="K2_COMMENTS_LIMIT" description="" />
+		<field menu="hide" name="commentsFormPosition" type="list" default="below" label="K2_COMMENTS_FORM_POSITION" description="">
+			<option value="above">K2_ABOVE_COMMENTS</option>
+			<option value="below">K2_BELOW_COMMENTS</option>
+		</field>
+		<field menu="hide" name="commentsPublishing" type="radio" default="1" label="K2_ENABLE_COMMENT_AUTOPUBLISHING" description="">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="commentsReporting" type="list" default="2" label="K2_REPORT_COMMENTS" description="">
+			<option value="0">K2_DISABLED</option>
+			<option value="1">K2_ENABLED_FOR_EVERYONE</option>
+			<option value="2">K2_ENABLED_FOR_REGISTERED_USERS_ONLY</option>
+		</field>
+		<field menu="hide" name="commentsReportRecipient" type="text" default="" label="K2_COMMENT_REPORTS_RECIPIENT" description="K2_ENTER_THE_EMAIL_ADDRESS_OF_THE_COMMENT_REPORTS_RECIPIENT" />
+		<field menu="hide" name="inlineCommentsModeration" type="radio" default="0" label="K2_ENABLE_INLINE_COMMENTS_MODERATION" description="K2_SET_THIS_TO_YES_TO_ALLOW_LOGGED_IN_USERS_TO_MODERATE_THE_COMMENTS_OF_THEIR_ITEMS_DIRECTLY_FROM_THE_ITEM_PAGE">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="gravatar" type="radio" default="1" label="K2_ENABLE_GRAVATARCOM_AVATAR_LOOKUP_FOR_NONREGISTERED_COMMENTERS" description="">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="antispam" type="list" default="" label="K2_ANTI_SPAM_PROTECTION" description="">
+			<option value="0">K2_NONE</option>
+			<option value="recaptcha">K2_GOOGLE_RECAPTCHA</option>
+			<option value="akismet">K2_AKISMET</option>
+			<option value="both">K2_BOTH</option>
+		</field>
+		<field menu="hide" name="recaptchaForRegistered" type="radio" default="1" label="K2_RECAPTCHA_FOR_REGISTERED_USERS" description="">
+			<option value="0">K2_DISABLED</option>
+			<option value="1">K2_ENABLED</option>
+		</field>
+		<field menu="hide" name="akismetForRegistered" type="radio" default="1" label="K2_AKISMET_FOR_REGISTERED_USERS" description="">
+			<option value="0">K2_DISABLED</option>
+			<option value="1">K2_ENABLED</option>
+		</field>
+		<field menu="hide" name="commentsFormNotes" type="radio" default="1" filter="raw" label="K2_ENABLE_COMMENT_FORM_NOTES" description="K2_USE_THIS_OPTION_TO_ENABLE_SOME_NOTES_OR_LEGAL_TEXT_REGARDING_COMMENTING_RIGHT_BEFORE_THE_COMMENTS_FORM">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="commentsFormNotesText" type="textarea" default="" label="K2_COMMENT_FORM_NOTES_HTML_ALLOWED" description="K2_COMMENT_FORM_NOTES_HTML_ALLOWED_DESC" rows="8" cols="40" />
+	</fieldset>
+	<fieldset name="COM_K2_FRONTEND_EDITING_OPTIONS" label="K2_FRONTEND_EDITING" addfieldpath="/administrator/components/com_k2/elements">
+		<!-- ######################### Frontend Editing ######################### -->
+		<field menu="hide" name="frontendEditing" type="radio" default="1" label="K2_ENABLE_FRONTEND_EDITING_DISABLED_ALWAYS_IF_JOOMFISH_IS_INSTALLED_AND_ENABLED" description="">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="showImageTab" type="radio" default="1" label="K2_IMAGE_TAB_ON_EDIT_FORM" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="showImageGalleryTab" type="radio" default="1" label="K2_IMAGE_GALLERY_TAB_ON_EDIT_FORM" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="showVideoTab" type="radio" default="1" label="K2_MEDIA_TAB_ON_EDIT_FORM" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="showExtraFieldsTab" type="radio" default="1" label="K2_EXTRA_FIELDS_TAB_ON_EDIT_FORM" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="showAttachmentsTab" type="radio" default="1" label="K2_ATTACHMENTS_TAB_ON_EDIT_FORM" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="showK2Plugins" type="radio" default="1" label="K2_PLUGIN_FIELDS_ON_EDIT_FORM" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="sideBarDisplayFrontend" type="radio" default="0" label="K2_DEFAULT_STATE_FOR_THE_ITEM_FORM_SIDEBAR" description="">
+			<option value="0">K2_HIDDEN</option>
+			<option value="1">K2_SHOWN</option>
+		</field>
+	</fieldset>
+	<fieldset name="COM_K2_ADVANCED_OPTIONS" label="K2_ADVANCED" addfieldpath="/libraries/joomla/form/fields">
+		<!-- ######################### Advanced Settings ######################### -->
+		<field menu="hide" name="mergeEditors" type="radio" default="1" label="K2_USE_ONE_EDITOR_WINDOW_FOR_INTROTEXT_FULLTEXT" description="">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="sideBarDisplay" type="radio" default="1" label="K2_DEFAULT_STATE_FOR_THE_ITEM_FORM_SIDEBAR" description="">
+			<option value="0">K2_HIDDEN</option>
+			<option value="1">K2_SHOWN</option>
+		</field>
+		<field menu="hide" name="attachmentsFolder" type="text" default="" size="40" label="K2_CHANGE_ROOT_ATTACHMENTS_FOLDER" description="K2_ENTER_THE_RELATIVE_PATH_TO_THE_FOLDER_FOR_STORING_ATTACHMENTS_LEAVE_THIS_BLANK_TO_USE_THE_DEFAULT_K2_ATTACHMENTS_FOLDER_MEDIAK2ATTACHMENTS_IF_YOU_CHANGE_THIS_SETTING_AT_ANY_POINT_REMEMBER_TO_MOVE_YOUR_FILES_FROM_THE_OLD_FOLDER_TO_THE_NEWLY_CREATED_ONE" />
+		<field menu="hide" name="hideImportButton" type="radio" default="0" label="K2_HIDE_IMPORT_BUTTONS" description="K2_HIDE_IMPORT_JOOMLA_CONTENT_AND_IMPORT_JOOMLA_USERS_BUTTONS">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="googleSearch" type="radio" default="0" label="K2_GOOGLE_SEARCH_INTEGRATION" description="K2_SET_THIS_TO_YES_IF_YOU_WANT_TO_INTEGRATE_GOOGLE_SEARCH_ON_YOUR_SITE_NOTE_THAT_THIS_WILL_DISABLE_THE_K2_ORIGINAL_SEARCH_FUNCTION">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="googleSearchContainer" type="text" default="k2GoogleSearchContainer" label="K2_CONTAINER_ID_TO_RENDER_THE_GOOGLE_SEARCH" description="K2_ENTER_THE_ID_OF_THE_ELEMENT_YOU_WISH_TO_RENDER_IN_THE_GOOGLE_SEARCH_RESULTS_NOTE_THAT_YOU_HAVE_TO_ENABLE_THIS_ON_THE_COMPONENT_PARAMS" />
+		<field menu="hide" name="K2UserProfile" type="radio" default="1" label="K2_ENABLE_K2_USER_PROFILE" description="K2_EXTEND_THE_USER_PROFILE_WITH_THE_K2_TEMPLATE">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="K2UserGroup" type="sql" default="" description="K2_SELECT_THE_DEFAULT_K2_USER_GROUP_FOR_NEW_REGISTRATIONS" label="K2_SELECT_DEFAULT_K2_USER_GROUP" query="SELECT id AS value, name AS K2UserGroup FROM #__k2_user_groups" />
+		<field menu="hide" name="redirect" type="menuitem" disable="separator" default="" label="K2_PROFILE_EDIT_REDIRECT" description="K2_SELECT_A_MENU_ITEM_TO_REDIRECT_AFTER_USER_PROFILE_EDIT_PLEASE_NOTE_THAT_THE_PLUGIN_MUST_BE_THE_LAST_ONE_IN_USER_GROUP_OR_IT_WILL_BREAK_THE_EXECUTION_OF_OTHER_USER_PLUGINS" />
+		<field menu="hide" name="adminSearch" type="list" default="simple" label="K2_ADMINISTRATION_ITEM_SEARCH" description="">
+			<option value="simple">K2_SIMPLE_TITLE_ONLY</option>
+			<option value="full">K2_FULL_EVERYTHING</option>
+		</field>
+		<field menu="hide" name="cookieDomain" type="text" default="" label="K2_COOKIE_DOMAIN" description="K2_SET_THE_DOMAIN_OF_YOUR_SITE_HERE_AND_K2_WILL_CREATE_A_COOKIE_CONTAINING_THE_USER_ID_FOR_LOGGED_IN_USERS" />
+		<!-- ######################### Tag System Settings ######################### -->
+		<field menu="hide" name="" type="header" default="K2_TAG_SYSTEM_SETTINGS" label="" description="" />
+		<field menu="hide" name="taggingSystem" type="radio" default="1" label="K2_TAGGING_SYSTEM" description="">
+			<option value="0">K2_SELECTIONBASED_TAGGING</option>
+			<option value="1">K2_FREE_TAGGING_WITH_AUTO_COMPLETE</option>
+		</field>
+		<field menu="hide" name="lockTags" type="radio" default="0" label="K2_LOCK_TAGS" description="K2_SWITCH_TO_SELECTION_BASED_TAGGING_FOR_MANAGERS_AND_BELOW_PREVENTING_THEM_FROM_CREATING_NEW_TAGS">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="showTagFilter" type="radio" default="0" label="K2_ALLOW_ITEM_FILTERING_BY_TAG_IN_THE_BACKEND" description="K2_SETTING_THIS_TO_YES_WILL_ENABLE_A_DROPDOWN_LIST_OF_THE_SITES_TAGS_TO_FILTER_ITEMS_BY_A_SPECIFIC_TAG_IT_IS_NOT_ADVISED_TO_HAVE_THIS_OPTION_SET_TO_YES_IF_YOUR_SITE_CONTAINS_MORE_THAN_A_THOUSAND_TAGS_AS_IT_WILL_SLOW_DOWN_YOUR_K2_BACKEND">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="k2TagNorm" type="radio" default="0" label="K2_TAG_NORMALIZATION" description="K2_TAG_NORMALIZATION_DESC">
+			<option value="0">K2_DISABLE</option>
+			<option value="1">K2_ENABLE</option>
+		</field>
+		<field menu="hide" name="k2TagNormCase" type="radio" default="lower" label="K2_TAG_CASE" description="">
+			<option value="lower">K2_LOWERCASE</option>
+			<option value="upper">K2_UPPERCASE</option>
+		</field>
+		<field menu="hide" name="k2TagNormAdditionalReplacements" type="textarea" default="" label="K2_ADDITIONAL_CHAR_REPLACEMENTS" description="K2_ADDITIONAL_CHAR_REPLACEMENTS_DESC" rows="4" cols="40" />
+		<!-- ######################### Anti-spam Settings ######################### -->
+		<field menu="hide" name="" type="header" default="K2_ANTI_SPAM_SETTINGS" label="" description="" />
+		<field menu="hide" name="recaptcha_public_key" type="text" default="" size="40" label="K2_RECAPTCHA_PUBLIC_KEY" description="K2_RECAPTCHA_KEY_DESC" />
+		<field menu="hide" name="recaptcha_private_key" type="password" default="" size="40" label="K2_RECAPTCHA_PRIVATE_KEY" description="K2_RECAPTCHA_KEY_DESC" />
+		<field menu="hide" name="recaptcha_theme" type="list" default="clean" label="K2_RECAPTCHA_THEME" description="K2_SELECT_THE_RECAPTCHA_THEME">
+			<option value="red">K2_RED</option>
+			<option value="white">K2_WHITE</option>
+			<option value="blackglass">K2_BLACKGLASS</option>
+			<option value="clean">K2_CLEAN</option>
+			<option value="custom">K2_CUSTOM</option>
+		</field>
+		<field menu="hide" name="recaptchaOnRegistration" type="radio" default="0" label="K2_ENABLE_RECAPTCHA_ON_REGISTRATION_FORM" description="K2_ENABLE_RECAPTCHA_ON_REGISTRATION_FORM_DESC">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="akismetApiKey" type="text" default="" size="40" label="K2_AKISMET_API_KEY" description="K2_AKISMET_API_KEY_DESC" />
+		<field menu="hide" name="stopForumSpam" type="radio" default="0" label="K2_STOP_FORUM_SPAM" description="K2_STOP_FORUM_SPAM_DESCRIPTION">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="stopForumSpamApiKey" type="text" default="" label="K2_STOP_FORUM_SPAM_API_KEY" description="K2_STOP_FORUM_SPAM_API_KEY_DESCRIPTION" />
+		<!-- ######################### Performance Settings ######################### -->
+		<field menu="hide" name="" type="header" default="K2_PERFORMANCE" label="" description="" />
+		<field menu="hide" name="showItemsCounterAdmin" type="radio" default="1" label="K2_ITEM_COUNTER_NEXT_TO_THE_CATEGORY_TITLE_IN_THE_CATEGORY_MANAGER" description="K2_DISABLING_THIS_WILL_REDUCE_THE_NUMBER_OF_QUERIES_IN_THE_BACKEND_AND_OVERALL_IMPROVE_PERFORMANCE_FOR_SITES_WITH_THOUSANDS_OF_ITEMS">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="showChildCatItems" type="radio" default="1" label="K2_DISPLAY_ITEMS_FROM_BOTH_PARENT_AND_CHILDREN_CATEGORIES_WHEN_FILTERING_ITEMS_BY_CATEGORY" description="K2_DISABLING_THIS_WILL_REDUCE_THE_NUMBER_OF_QUERIES_IN_THE_BACKEND_AND_OVERALL_IMPROVE_PERFORMANCE_FOR_SITES_WITH_THOUSANDS_OF_ITEMS">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="disableCompactOrdering" type="radio" default="0" label="K2_DISABLE_ORDERING_COMPACTING" description="K2_SETTING_THIS_TO_YES_WILL_REDUCE_THE_NUMBER_OF_QUERIES_IN_THE_BACKEND_AND_OVERALL_IMPROVE_PERFORMANCE_FOR_SITES_WITH_THOUSANDS_OF_ITEMS">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<!-- ######################### SEO Settings ######################### -->
+		<field menu="hide" name="" type="header" default="K2_SEO" label="" description="" />
+		<field menu="hide" name="metaDescLimit" type="text" size="4" default="150" label="K2_CHARACTER_LIMIT_FOR_AUTOGENERATED_META_DESCRIPTION_TAG_IN_ITEMS" description="K2_THIS_OPTION_APPLIES_TO_ITEMS_ONLY_WHEN_THERE_IS_NO_META_DESCRIPTION_TAG_SET_BY_THE_AUTHOR" />
+		<field menu="hide" name="enforceSEFReplacements" type="radio" default="0" label="K2_ENFORCE_SEF_URL_CHARACTER_REPLACEMENTS">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="SEFReplacements" type="textarea" default="À|A, Á|A, Â|A, Ã|A, Ä|A, Å|A, à|a, á|a, â|a, ã|a, ä|a, å|a, Ā|A, ā|a, Ă|A, ă|a, Ą|A, ą|a, Ç|C, ç|c, Ć|C, ć|c, Ĉ|C, ĉ|c, Ċ|C, ċ|c, Č|C, č|c, Ð|D, ð|d, Ď|D, ď|d, Đ|D, đ|d, È|E, É|E, Ê|E, Ë|E, è|e, é|e, ê|e, ë|e, Ē|E, ē|e, Ĕ|E, ĕ|e, Ė|E, ė|e, Ę|E, ę|e, Ě|E, ě|e, Ĝ|G, ĝ|g, Ğ|G, ğ|g, Ġ|G, ġ|g, Ģ|G, ģ|g, Ĥ|H, ĥ|h, Ħ|H, ħ|h, Ì|I, Í|I, Î|I, Ï|I, ì|i, í|i, î|i, ï|i, Ĩ|I, ĩ|i, Ī|I, ī|i, Ĭ|I, ĭ|i, Į|I, į|i, İ|I, ı|i, Ĵ|J, ĵ|j, Ķ|K, ķ|k, ĸ|k, Ĺ|L, ĺ|l, Ļ|L, ļ|l, Ľ|L, ľ|l, Ŀ|L, ŀ|l, Ł|L, ł|l, Ñ|N, ñ|n, Ń|N, ń|n, Ņ|N, ņ|n, Ň|N, ň|n, ŉ|n, Ŋ|N, ŋ|n, Ò|O, Ó|O, Ô|O, Õ|O, Ö|O, Ø|O, ò|o, ó|o, ô|o, õ|o, ö|o, ø|o, Ō|O, ō|o, Ŏ|O, ŏ|o, Ő|O, ő|o, Ŕ|R, ŕ|r, Ŗ|R, ŗ|r, Ř|R, ř|r, Ś|S, ś|s, Ŝ|S, ŝ|s, Ş|S, ş|s, Š|S, š|s, ſ|s, Ţ|T, ţ|t, Ť|T, ť|t, Ŧ|T, ŧ|t, Ù|U, Ú|U, Û|U, Ü|U, ù|u, ú|u, û|u, ü|u, Ũ|U, ũ|u, Ū|U, ū|u, Ŭ|U, ŭ|u, Ů|U, ů|u, Ű|U, ű|u, Ų|U, ų|u, Ŵ|W, ŵ|w, Ý|Y, ý|y, ÿ|y, Ŷ|Y, ŷ|y, Ÿ|Y, Ź|Z, ź|z, Ż|Z, ż|z, Ž|Z, ž|z, α|a, β|b, γ|g, δ|d, ε|e, ζ|z, η|h, θ|th, ι|i, κ|k, λ|l, μ|m, ν|n, ξ|x, ο|o, π|p, ρ|r, σ|s, τ|t, υ|y, φ|f, χ|ch, ψ|ps, ω|w, Α|A, Β|B, Γ|G, Δ|D, Ε|E, Ζ|Z, Η|H, Θ|Th, Ι|I, Κ|K, Λ|L, Μ|M, Ξ|X, Ο|O, Π|P, Ρ|R, Σ|S, Τ|T, Υ|Y, Φ|F, Χ|Ch, Ψ|Ps, Ω|W, ά|a, έ|e, ή|h, ί|i, ό|o, ύ|y, ώ|w, Ά|A, Έ|E, Ή|H, Ί|I, Ό|O, Ύ|Y, Ώ|W, ϊ|i, ΐ|i, ϋ|y, ς|s, А|A, Ӑ|A, Ӓ|A, Ә|E, Ӛ|E, Ӕ|E, Б|B, В|V, Г|G, Ґ|G, Ѓ|G, Ғ|G, Ӷ|G, y|Y, Д|D, Е|E, Ѐ|E, Ё|YO, Ӗ|E, Ҽ|E, Ҿ|E, Є|YE, Ж|ZH, Ӂ|DZH, Җ|ZH, Ӝ|DZH, З|Z, Ҙ|Z, Ӟ|DZ, Ӡ|DZ, Ѕ|DZ, И|I, Ѝ|I, Ӥ|I, Ӣ|I, І|I, Ї|JI, Ӏ|I, Й|Y, Ҋ|Y, Ј|J, К|K, Қ|Q, Ҟ|Q, Ҡ|K, Ӄ|Q, Ҝ|K, Л|L, Ӆ|L, Љ|L, М|M, Ӎ|M, Н|N, Ӊ|N, Ң|N, Ӈ|N, Ҥ|N, Њ|N, О|O, Ӧ|O, Ө|O, Ӫ|O, Ҩ|O, П|P, Ҧ|PF, Р|P, Ҏ|P, С|S, Ҫ|S, Т|T, Ҭ|TH, Ћ|T, Ќ|K, У|U, Ў|U, Ӳ|U, Ӱ|U, Ӯ|U, Ү|U, Ұ|U, Ф|F, Х|H, Ҳ|H, Һ|H, Ц|TS, Ҵ|TS, Ч|CH, Ӵ|CH, Ҷ|CH, Ӌ|CH, Ҹ|CH, Џ|DZ, Ш|SH, Щ|SHT, Ъ|A, Ы|Y, Ӹ|Y, Ь|Y, Ҍ|Y, Э|E, Ӭ|E, Ю|YU, Я|YA, а|a, ӑ|a, ӓ|a, ә|e, ӛ|e, ӕ|e, б|b, в|v, г|g, ґ|g, ѓ|g, ғ|g, ӷ|g, y|y, д|d, е|e, ѐ|e, ё|yo, ӗ|e, ҽ|e, ҿ|e, є|ye, ж|zh, ӂ|dzh, җ|zh, ӝ|dzh, з|z, ҙ|z, ӟ|dz, ӡ|dz, ѕ|dz, и|i, ѝ|i, ӥ|i, ӣ|i, і|i, ї|ji, Ӏ|i, й|y, ҋ|y, ј|j, к|k, қ|q, ҟ|q, ҡ|k, ӄ|q, ҝ|k, л|l, ӆ|l, љ|l, м|m, ӎ|m, н|n, ӊ|n, ң|n, ӈ|n, ҥ|n, њ|n, о|o, ӧ|o, ө|o, ӫ|o, ҩ|o, п|p, ҧ|pf, р|p, ҏ|p, с|s, ҫ|s, т|t, ҭ|th, ћ|t, ќ|k, у|u, ў|u, ӳ|u, ӱ|u, ӯ|u, ү|u, ұ|u, ф|f, х|h, ҳ|h, һ|h, ц|ts, ҵ|ts, ч|ch, ӵ|ch, ҷ|ch, ӌ|ch, ҹ|ch, џ|dz, ш|sh, щ|sht, ъ|a, ы|y, ӹ|y, ь|y, ҍ|y, э|e, ӭ|e, ю|yu, я|ya" label="K2_SEF_URL_CHARACTER_REPLACEMENTS" description="K2_SEF_URL_CHARACTER_REPLACEMENTS_DESC" rows="8" cols="40" />
+		<!-- ######################### Advanced SEF Settings ######################### -->
+		<field menu="hide" name="" type="header" default="K2_ADVANCED_SEF_SETTINGS" label="" description="" />
+		<field menu="hide" name="k2Sef" type="radio" default="0" label="K2_ADVANCED_SEF" description="K2_ADVANCED_SEF_DESC">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="k2SefLabelCat" type="text" default="content" label="K2_SEF_URL_PREFIX_FOR_CATEGORIES" description="K2_SEF_URL_PREFIX_FOR_CATEGORIES_DESC" />
+		<field menu="hide" name="k2SefLabelTag" type="text" default="tag" label="K2_SEF_URL_PREFIX_FOR_TAGS" description="K2_SEF_URL_PREFIX_FOR_TAGS_DESC" />
+		<field menu="hide" name="k2SefLabelUser" type="text" default="author" label="K2_SEF_URL_PREFIX_FOR_USERSAUTHORS" description="K2_SEF_URL_PREFIX_FOR_USERSAUTHORS_DESC" />
+		<field menu="hide" name="k2SefLabelSearch" type="text" default="search" label="K2_SEF_URL_PREFIX_FOR_SEARCH_RESULTS" description="K2_SEF_URL_PREFIX_FOR_SEARCH_RESULTS_DESC" />
+		<field menu="hide" name="k2SefLabelDate" type="text" default="date" label="K2_SEF_URL_PREFIX_FOR_DATE_LISTINGS" description="K2_SEF_URL_PREFIX_FOR_DATE_LISTINGS_DESC" />
+		<field menu="hide" name="k2SefLabelItem" type="radio" default="0" label="K2_SEF_URL_CATEGORY_PREFIX_FOR_ITEMS" description="K2_SEF_URL_CATEGORY_PREFIX_FOR_ITEMS_DESC">
+			<option value="0">K2_NONE</option>
+			<option value="1">K2_SEF_USE_CATEGORY_NAME_WITH_ID</option>
+			<option value="2">K2_SEF_USE_CUSTOM_PREFIX</option>
+		</field>
+		<field menu="hide" name="k2SefLabelItemCustomPrefix" type="text" default="" label="K2_SEF_ITEM_URL_CUSTOM_PREFIX" description="K2_SEF_ITEM_URL_CUSTOM_PREFIX_DESC" />
+		<field menu="hide" name="k2SefInsertItemId" type="radio" default="1" label="K2_SEF_USE_ITEM_ID_IN_URL" description="K2_SEF_USE_ITEM_ID_IN_URL_DESC">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="k2SefItemIdTitleAliasSep" type="radio" default="dash" label="K2_SEF_ITEM_ID_TITLE_ALIAS_SEPARATOR" description="K2_SEF_ITEM_ID_TITLE_ALIAS_SEPARATOR_DESC">
+			<option value="dash">K2_USE_A_DASH</option>
+			<option value="slash">K2_USE_A_FORWARD_SLASH</option>
+		</field>
+		<field menu="hide" name="k2SefUseItemTitleAlias" type="radio" default="1" label="K2_SEF_USE_ITEM_TITLE_ALIAS" description="K2_SEF_USE_ITEM_TITLE_ALIAS_DESC">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="k2SefInsertCatId" type="radio" default="1" label="K2_SEF_USE_CAT_ID_IN_URL" description="K2_SEF_USE_CAT_ID_IN_URL_DESC">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="k2SefCatIdTitleAliasSep" type="radio" default="dash" label="K2_SEF_CAT_ID_TITLE_ALIAS_SEPARATOR" description="K2_SEF_CAT_ID_TITLE_ALIAS_SEPARATOR_DESC">
+			<option value="dash">K2_USE_A_DASH</option>
+			<option value="slash">K2_USE_A_FORWARD_SLASH</option>
+		</field>
+		<field menu="hide" name="k2SefUseCatTitleAlias" type="radio" default="1" label="K2_SEF_USE_CAT_TITLE_ALIAS" description="K2_SEF_USE_CAT_TITLE_ALIAS_DESC">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<!-- ######################### sh404SEF Settings ######################### -->
+		<field menu="hide" name="" type="header" default="K2_SH404SEF" label="" description="" />
+		<field menu="hide" name="sh404SefLabelCat" type="text" default="" label="K2_SH404SEF_URL_PREFIX_FOR_CATEGORIES" description="" />
+		<field menu="hide" name="sh404SefLabelUser" type="text" default="blog" label="K2_SH404SEF_URL_PREFIX_FOR_USERSAUTHORS" description="" />
+		<field menu="hide" name="sh404SefLabelItem" type="list" default="2" label="K2_SH404SEF_URL_CATEGORY_PREFIX_FOR_ITEMS" description="">
+			<option value="0">K2_NO_CATEGORIES</option>
+			<option value="1">K2_ONLY_THE_LAST_CATEGORY</option>
+			<option value="2">K2_ALL_CATEGORIES</option>
+		</field>
+		<field menu="hide" name="sh404SefTitleAlias" type="list" default="alias" label="K2_USE_TITLE_ALIAS_FOR_SH404SEF_URLS" description="">
+			<option value="alias">K2_YES</option>
+			<option value="title">K2_NO_USE_THE_ITEMS_TITLE</option>
+		</field>
+		<field menu="hide" name="sh404SefModK2ContentFeedAlias" type="text" default="feed" label="K2_SH404SEF_URL_PREFIX_FOR_K2_CONTENT_MODULE_FEED" description="" />
+		<field menu="hide" name="sh404SefInsertItemId" type="radio" default="0" label="K2_INSERT_ITEM_ID_IN_URL" description="">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="sh404SefInsertUniqueItemId" type="radio" default="0" label="K2_INSERT_UNIQUE_ITEM_ID_IN_URL" description="">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
+		<field menu="hide" name="" type="header" default="K2_COMMUNITY_BUILDER" label="" description="" />
+		<field menu="hide" name="cbIntegration" type="radio" default="0" label="K2_CB_INTEGRATION" description="K2_CB_INTEGRATION_DESC">
+			<option value="0">K2_DISABLED</option>
+			<option value="1">K2_ENABLED</option>
+		</field>
+	</fieldset>
+	<fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">
+		<field name="rules" type="rules" label="JCONFIG_PERMISSIONS_LABEL" class="inputbox" validate="rules" filter="rules" component="com_k2" section="component" />
+	</fieldset>
+</config>

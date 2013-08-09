@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="josetta_ext" method="upgrade">
+    <name>Josetta - K2 Items</name>
+    <author>JoomlaWorks</author>
+    <creationDate>June 7th, 2012</creationDate>
+    <copyright>Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.</copyright>
+    <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
+    <authorUrl>www.joomlaworks.net</authorUrl>
+    <version>2.6.7</version>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <description></description>
+    <files>
+        <filename plugin="k2item">k2item.php</filename>
+        <filename>definitions.xml</filename>
+        <filename>fields_common.xml</filename>
+        <folder>classes</folder>
+        <folder>fields</folder>
+        <folder>helpers</folder>
+        <folder>models</folder>
+    </files>
+</extension>

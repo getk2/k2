@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="finder" method="upgrade">
+    <name>plg_finder_k2</name>
+    <author>JoomlaWorks</author>
+    <creationDate>July 8th, 2013</creationDate>
+    <copyright>Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
+    <authorUrl>www.joomlaworks.net</authorUrl>
+    <version>2.6.7</version>
+    <description>PLG_FINDER_K2_DESCRIPTION</description>
+    <files>
+        <file plugin="k2">k2.php</file>
+    </files>
+</extension>

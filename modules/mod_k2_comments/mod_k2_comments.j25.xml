@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" client="site" version="2.5" method="upgrade">
+    <name>K2 Comments</name>
+    <author>JoomlaWorks</author>
+    <creationDate>July 8th, 2013</creationDate>
+    <copyright>Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.</copyright>
+    <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
+    <authorUrl>www.joomlaworks.net</authorUrl>
+    <version>2.6.7</version>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <description>MOD_K2_COMMENTS_DESCRIPTION</description>
+    <files>
+        <filename module="mod_k2_comments">mod_k2_comments.php</filename>
+        <filename>helper.php</filename>
+        <filename>index.html</filename>
+        <folder>tmpl</folder>
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic" addfieldpath="/administrator/components/com_k2/elements/">
+                <field name="moduleclass_sfx" type="text" default="" label="K2_MODULE_CLASS_SUFFIX" description="K2_MODULE_CLASS_SUFFIX_DESCRIPTION"/>
+                <field name="module_usage" type="list" default="" label="K2_SELECT_MODULE_FUNCTIONALITY" description="K2_SELECT_MODULE_FUNCTIONALITY_DESC">
+                    <option value="0">K2_LATEST_COMMENTS</option>
+                    <option value="1">K2_TOP_COMMENTERS</option>
+                </field>
+                <!-- Latest Comments -->
+                <field name="" type="header" default="K2_LATEST_COMMENTS" label="" description=""/>
+                <field name="catfilter" type="radio" default="0" label="K2_CATEGORY_FILTER">
+                    <option value="0">K2_ALL</option>
+                    <option value="1">K2_SELECT</option>
+                </field>
+                <field name="category_id" type="categoriesmultiple" default="" label="K2_FILTER_COMMENTS_BY_SELECTED_CATEGORIES" description="K2_SELECT_ONE_ORE_MORE_CATEGORIES_FROM_WHICH_YOU_WANT_TO_FILTER_THEIR_COMMENTS_SELECT_NONE_TO_FETCH_COMMENTS_FROM_ALL_CATEGORIES"/>
+                <field name="comments_limit" type="text" size="4" default="5" label="K2_COMMENTS_LIST_LIMIT" description=""/>
+                <field name="comments_word_limit" type="text" size="4" default="10" label="K2_COMMENT_WORD_LIMIT" description="K2_IF_WORD_LIMIT_IS_ENABLED_ANY_HTML_TAGS_WILL_BE_STRIPPED_OFF_TO_PREVENT_THE_PAGE_MARKUP_FROM_BREAKING"/>
+                <field name="commenterName" type="list" default="1" label="K2_COMMENTER_IDENTIFIER" description="">
+                    <option value="0">K2_DONTSHOW</option>
+                    <option value="1">K2_SHOW_NAME</option>
+                    <option value="2">K2_SHOW_USERNAME_IFEXISTS</option>
+                </field>
+                <field name="commentAvatar" type="radio" default="1" label="K2_COMMENTER_AVATAR" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="commentAvatarWidthSelect" type="list" default="custom" label="K2_COMMENTER_AVATAR_WIDTH" description="">
+                    <option value="inherit">K2_INHERIT_FROM_COMPONENT_PARAMETERS</option>
+                    <option value="custom">K2_USE_CUSTOM_WIDTH</option>
+                </field>
+                <field name="commentAvatarWidth" type="text" default="50" size="4" label="K2_CUSTOM_WIDTH_FOR_COMMENTER_AVATAR_IN_PX" description=""/>
+                <field name="commentDate" type="radio" default="1" label="K2_COMMENT_DATE" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="commentDateFormat" type="list" default="absolute" label="K2_COMMENT_DATE_FORMAT" description="">
+                    <option value="absolute">K2_ABSOLUTE_EG_POSTED_1225_THU_JULY_30TH</option>
+                    <option value="relative">K2_RELATIVE_EG_POSTED_2_HOURS_AGO</option>
+                </field>
+                <field name="commentLink" type="radio" default="1" label="K2_COMMENT_LINK" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="itemTitle" type="radio" default="1" label="K2_ITEM_TITLE" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="itemCategory" type="radio" default="1" label="K2_ITEM_CATEGORY" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="feed" type="radio" default="1" label="K2_FEED_LINK" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <!-- Top Commenters -->
+                <field name="" type="header" default="K2_TOP_COMMENTERS" label="" description=""/>
+                <field name="commenters_limit" type="text" size="4" default="5" label="K2_COMMENTERS_LIST_LIMIT" description=""/>
+                <field name="commenterNameOrUsername" type="list" default="1" label="K2_COMMENTER_IDENTIFIER" description="">
+                    <option value="1">K2_SHOW_NAME</option>
+                    <option value="2">K2_SHOW_USERNAME</option>
+                </field>
+                <field name="commenterAvatar" type="radio" default="1" label="K2_COMMENTER_AVATAR" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="commenterAvatarWidthSelect" type="list" default="custom" label="K2_COMMENTER_AVATAR_WIDTH" description="">
+                    <option value="inherit">K2_INHERIT_FROM_COMPONENT_PARAMETERS</option>
+                    <option value="custom">K2_USE_CUSTOM_WIDTH</option>
+                </field>
+                <field name="commenterAvatarWidth" type="text" default="50" size="4" label="K2_CUSTOM_WIDTH_FOR_COMMENTER_AVATAR_IN_PX" description=""/>
+                <field name="commenterLink" type="radio" default="1" label="K2_COMMENTER_LINK_TO_USER_PAGE" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="commenterCommentsCounter" type="radio" default="1" label="K2_COMMENTS_COUNTER" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="commenterLatestComment" type="radio" default="1" label="K2_LATEST_COMMENT_FROM_EACH_COMMENTER" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+            </fieldset>
+            <fieldset name="advanced">
+                <field name="cache" type="list" default="1" label="K2_CACHING" description="K2_SELECT_WHETHER_TO_CACHE_THE_CONTENT_OF_THIS_MODULE">
+                    <option value="1">K2_USE_GLOBAL</option>
+                    <option value="0">K2_NO_CACHING</option>
+                </field>
+                <field name="cache_time" type="text" default="900" label="K2_CACHE_TIME" description="K2_THE_TIME_IN_SECONDS_BEFORE_THE_MODULE_IS_RECACHED"/>
+            </fieldset>
+        </fields>
+    </config>
+</extension>

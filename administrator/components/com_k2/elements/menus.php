@@ -1,0 +1,44 @@
+<?php
+/**
+ * @version		$Id: menus.php 1812 2013-01-14 18:45:06Z lefteris.kavadas $
+ * @package		K2
+ * @author		JoomlaWorks http://www.joomlaworks.net
+ * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ */
+
+// no direct access
+defined('_JEXEC') or die ;
+
+require_once (JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
+
+class K2ElementMenus extends K2Element
+{
+
+    function fetchElement($name, $value, &$node, $control_name)
+    {
+        $fieldName = (K2_JVERSION != '15') ? $name : $control_name.'['.$name.']';
+        $db = JFactory::getDBO();
+        $query = "SELECT menutype, title FROM #__menu_types";
+        $db->setQuery($query);
+        $menus = $db->loadObjectList();
+        $options = array();
+        $options[] = JHTML::_('select.option', '', JText::_('K2_NONE_ONSELECTLISTS'));
+        foreach ($menus as $menu)
+        {
+            $options[] = JHTML::_('select.option', $menu->menutype, $menu->title);
+        }
+        return JHTML::_('select.genericlist', $options, $fieldName, 'class="inputbox"', 'value', 'text', $value);
+    }
+
+}
+
+class JFormFieldMenus extends K2ElementMenus
+{
+    var $type = 'menus';
+}
+
+class JElementMenus extends K2ElementMenus
+{
+    var $_name = 'menus';
+}

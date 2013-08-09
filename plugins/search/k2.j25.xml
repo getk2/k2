@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="search" method="upgrade">
+    <name>Search - K2</name>
+    <author>JoomlaWorks</author>
+    <creationDate>July 8th, 2013</creationDate>
+    <copyright>Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.</copyright>
+    <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
+    <authorUrl>www.joomlaworks.net</authorUrl>
+    <version>2.6.7</version>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <description>K2_THIS_PLUGIN_EXTENDS_THE_DEFAULT_JOOMLA_SEARCH_FUNCTIONALITY_TO_K2_CONTENT</description>
+    <files>
+        <filename plugin="k2">k2.php</filename>
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="search_limit" type="text" size="5" default="50" label="K2_SEARCH_LIMIT" description="K2_THE_NUMBER_OF_ITEMS_TO_RETURN_WHEN_PERFORMING_A_SEARCH"/>
+                <field name="search_tags" type="radio" default="0" label="K2_ENABLE_SEARCHING_IN_TAGS" description="K2_SELECT_IF_YOU_WANT_TO_SEARCH_ITEMS_TAGS_NOTE_THAT_THIS_CAN_BE_VERY_SLOW_ON_LARGE_SITES">
+                    <option value="0">K2_NO</option>
+                    <option value="1">K2_YES</option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+</extension>

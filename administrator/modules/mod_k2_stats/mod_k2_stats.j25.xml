@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" client="administrator" method="upgrade" version="2.5" position="icon">
+    <name>K2 Stats (admin)</name>
+    <author>JoomlaWorks</author>
+    <creationDate>July 8th, 2013</creationDate>
+    <copyright>Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.</copyright>
+    <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
+    <authorUrl>www.joomlaworks.net</authorUrl>
+    <version>2.6.7</version>
+    <description>K2_STATS_FOR_USE_IN_THE_K2_DASHBOARD_PAGE</description>
+    <files>
+        <filename module="mod_k2_stats">mod_k2_stats.php</filename>
+        <file>helper.php</file>
+        <folder>tmpl</folder>
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="latestItems" type="radio" default="1" label="K2_LATEST_ITEMS_TAB">
+                    <option value="0">K2_DISABLE</option>
+                    <option value="1">K2_ENABLE</option>
+                </field>
+                <field name="popularItems" type="radio" default="1" label="K2_POPULAR_ITEMS_TAB">
+                    <option value="0">K2_DISABLE</option>
+                    <option value="1">K2_ENABLE</option>
+                </field>
+                <field name="mostCommentedItems" type="radio" default="1" label="K2_MOST_COMMENTED_ITEMS_TAB">
+                    <option value="0">K2_DISABLE</option>
+                    <option value="1">K2_ENABLE</option>
+                </field>
+                <field name="latestComments" type="radio" default="1" label="K2_LATEST_COMMENTS_TAB">
+                    <option value="0">K2_DISABLE</option>
+                    <option value="1">K2_ENABLE</option>
+                </field>
+                <field name="statistics" type="radio" default="1" label="K2_STATISTICS_TAB">
+                    <option value="0">K2_DISABLE</option>
+                    <option value="1">K2_ENABLE</option>
+                </field>
+            </fieldset>
+            <fieldset name="advanced">
+                <field name="cache" type="list" default="0" label="K2_CACHING" description="K2_SELECT_WHETHER_TO_CACHE_THE_CONTENT_OF_THIS_MODULE">
+                    <option value="0">K2_NO_CACHING</option>
+                    <option value="1">K2_USE_GLOBAL</option>
+                </field>
+                <field name="cache_time" type="text" default="900" label="K2_CACHE_TIME" description="K2_THE_TIME_IN_SECONDS_BEFORE_THE_MODULE_IS_RECACHED"/>
+            </fieldset>
+        </fields>
+    </config>
+</extension>

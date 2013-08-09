@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="module" client="site" version="2.5" method="upgrade">
+    <name>K2 Users</name>
+    <author>JoomlaWorks</author>
+    <creationDate>July 8th, 2013</creationDate>
+    <copyright>Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.</copyright>
+    <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
+    <authorUrl>www.joomlaworks.net</authorUrl>
+    <version>2.6.7</version>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <description>K2_MOD_K2_USERS_DESCRTIPTION</description>
+    <files>
+        <filename module="mod_k2_users">mod_k2_users.php</filename>
+        <filename>helper.php</filename>
+        <folder>tmpl</folder>
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic" addfieldpath="/administrator/components/com_k2/elements/">
+                <field name="moduleclass_sfx" type="text" default="" label="K2_MODULE_CLASS_SUFFIX" description="K2_MODULE_CLASS_SUFFIX_DESCRIPTION"/>
+                <field name="getTemplate" type="moduletemplate" modulename="mod_k2_users" default="Default" label="K2_SELECT_SUBTEMPLATE" description="This module utilizes on-the-fly MVC template overrides. What this means is that you can create a new sub-template folder for this module within your Joomla! template's /html/mod_k2_users/ folder. The module will then pickup the new sub-template auto-magically, without you editing any XML file or doing any other non-designer work!"/>
+                <field name="source" type="list" default="0" label="K2_SOURCE" description="">
+                    <option value="filter">K2_RETRIEVE_USERS_USING_FILTERS</option>
+                    <option value="specific">K2_RETRIEVE_SPECIFIC_USERS</option>
+                </field>
+                <field name="" type="header" default="K2_RETRIEVE_USERS_USING_FILTERS" label="" description=""/>
+                <field name="filter" type="list" default="1" label="K2_FETCH_USERS" description="">
+                    <option value="0">K2_BY_K2_USER_GROUP</option>
+                    <option value="1">K2_WITH_MOST_ITEMS</option>
+                    <option value="2">K2_WITH_MOST_POPULAR_ITEMS</option>
+                    <option value="3">K2_WITH_MOST_COMMENTED_ITEMS</option>
+                </field>
+                <field name="K2UserGroup" type="sql" default="" label="K2_SELECT_A_K2_USER_GROUP" query="SELECT id AS value, name AS K2UserGroup FROM #__k2_user_groups"/>
+                <field name="ordering" type="list" default="1" label="K2_ORDERING" description="">
+                    <option value="alpha">K2_ALPHABETICAL</option>
+                    <option value="recent">K2_MOST_RECENT_ITEM</option>
+                    <option value="random">K2_RANDOM</option>
+                </field>
+                <field name="limit" type="text" default="4" size="4" label="K2_LIMIT" description=""/>
+                <field name="" type="header" default="K2_RETRIEVE_SPECIFIC_USERS" label="" description=""/>
+                <field name="userIDs" type="userslatest" default="" label="K2_SELECTED_USERS_SORT_WITH_DRAG_DROP" description="K2_DRAG_USERS_ONE_BY_ONE_TO_REORDER_THE_LIST_CLICK_THE_REMOVE_ICON_TO_REMOVE_A_USER_FROM_THE_LIST"/>
+                <field name="" type="header" default="K2_DISPLAY_OPTIONS" label="" description=""/>
+                <field name="userName" type="radio" default="1" label="K2_NAME" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="userAvatar" type="radio" default="1" label="K2_USER_AVATAR" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="userAvatarWidthSelect" type="list" default="custom" label="K2_USER_AVATAR_WIDTH" description="">
+                    <option value="inherit">K2_INHERIT_FROM_COMPONENT_PARAMETERS</option>
+                    <option value="custom">K2_USE_CUSTOM_WIDTH</option>
+                </field>
+                <field name="userAvatarWidth" type="text" default="50" size="4" label="K2_CUSTOM_WIDTH_FOR_USER_AVATAR_IN_PX" description=""/>
+                <field name="userDescription" type="radio" default="1" label="K2_USER_DESCRIPTION" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="userDescriptionWordLimit" type="text" default="" size="4" label="K2_WORD_LIMIT_FOR_USER_DESCRIPTION" description=""/>
+                <field name="userURL" type="radio" default="1" label="K2_URL" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="userEmail" type="radio" default="0" label="K2_EMAIL" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="userFeed" type="radio" default="1" label="K2_RSS_FEED_ICON" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="userItemCount" type="text" default="1" size="4" label="K2_ITEM_COUNT" description=""/>
+            </fieldset>
+            <fieldset name="advanced">
+                <field name="cache" type="list" default="1" label="K2_CACHING" description="K2_SELECT_WHETHER_TO_CACHE_THE_CONTENT_OF_THIS_MODULE">
+                    <option value="1">K2_USE_GLOBAL</option>
+                    <option value="0">K2_NO_CACHING</option>
+                </field>
+                <field name="cache_time" type="text" default="900" label="K2_CACHE_TIME" description="K2_THE_TIME_IN_SECONDS_BEFORE_THE_MODULE_IS_RECACHED"/>
+            </fieldset>
+        </fields>
+    </config>
+</extension>

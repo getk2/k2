@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="K2_USER_PAGE_BLOG">
+		<message>
+			<![CDATA[K2_CREATE_A_MENU_ITEM_LINKING_TO_A_USER_PAGE_BLOG]]>
+		</message>
+	</layout>
+	<state>
+		<name>K2_USER_PAGE_BLOG</name>
+		<description>K2_CREATE_A_MENU_ITEM_LINKING_TO_A_USER_PAGE_BLOG</description>
+		<params addPath="/administrator/components/com_k2/elements">
+			<param name="theme" type="template" default="default" label="K2_SELECT_A_TEMPLATE"/>
+			<param name="userCategoriesFilter" type="categories" multiple="multiple" default="" label="K2_FILTER_CATEGORIES" description=""/>
+			<param name="userOrdering" type="list" default="" label="K2_ITEM_ORDERING" description="">
+				<option value="">K2_DEFAULT</option>
+				<option value="date">K2_OLDEST_FIRST</option>
+				<option value="rdate">K2_MOST_RECENT_FIRST</option>
+				<option value="publishUp">K2_RECENTLY_PUBLISHED</option>
+				<option value="alpha">K2_TITLE_ALPHABETICAL</option>
+				<option value="ralpha">K2_TITLE_REVERSEALPHABETICAL</option>
+				<option value="order">K2_ORDERING</option>
+				<option value="rorder">K2_ORDERING_REVERSE</option>
+				<option value="featured">K2_FEATURED_FIRST</option>
+				<option value="hits">K2_MOST_POPULAR</option>
+				<option value="best">K2_HIGHEST_RATED</option>
+				<option value="rand">K2_RANDOM_ORDERING</option>
+			</param>
+			<param name="userFeedLink" type="radio" default="1" label="K2_RSS_FEED_LINK" description="">
+				<option value="0">K2_DISABLE</option>
+				<option value="1">K2_ENABLE</option>
+			</param>
+			<param name="userFeedIcon" type="radio" default="1" label="K2_RSS_FEED_ICON" description="">
+				<option value="0">K2_DISABLE</option>
+				<option value="1">K2_ENABLE</option>
+			</param>
+		</params>
+		<url addpath="/administrator/components/com_k2/elements">
+			<param name="id" type="user" default="" label="K2_SELECT_USER" description=""/>
+			<param name="task" type="hidden" default="user"/>
+		</url>
+		<fields name="request" addfieldpath="/administrator/components/com_k2/elements">
+			<fieldset name="request">
+				<field name="id" type="k2user" default="" label="K2_SELECT_USER" description=""/>
+				<field name="task" type="hidden" default="user"/>
+			</fieldset>
+		</fields>
+		<fields name="params" addfieldpath="/administrator/components/com_k2/elements">
+			<fieldset name="basic">
+				<field name="theme" type="template" default="default" label="K2_SELECT_A_TEMPLATE"/>
+				<field name="userCategoriesFilter" type="categories" multiple="multiple" default="" label="K2_FILTER_CATEGORIES" description=""/>
+				<field name="userOrdering" type="list" default="" label="K2_ITEM_ORDERING" description="">
+					<option value="">K2_DEFAULT</option>
+					<option value="date">K2_OLDEST_FIRST</option>
+					<option value="rdate">K2_MOST_RECENT_FIRST</option>
+					<option value="publishUp">K2_RECENTLY_PUBLISHED</option>
+					<option value="alpha">K2_TITLE_ALPHABETICAL</option>
+					<option value="ralpha">K2_TITLE_REVERSEALPHABETICAL</option>
+					<option value="order">K2_ORDERING</option>
+					<option value="rorder">K2_ORDERING_REVERSE</option>
+					<option value="featured">K2_FEATURED_FIRST</option>
+					<option value="hits">K2_MOST_POPULAR</option>
+					<option value="best">K2_HIGHEST_RATED</option>
+					<option value="rand">K2_RANDOM_ORDERING</option>
+				</field>
+				<field name="userFeedLink" type="radio" default="1" label="K2_RSS_FEED_LINK" description="">
+					<option value="0">K2_DISABLE</option>
+					<option value="1">K2_ENABLE</option>
+				</field>
+				<field name="userFeedIcon" type="radio" default="1" label="K2_RSS_FEED_ICON" description="">
+					<option value="0">K2_DISABLE</option>
+					<option value="1">K2_ENABLE</option>
+				</field>
+			</fieldset>
+		</fields>
+	</state>
+</metadata>

@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<!DOCTYPE jupgrade>
+<jupgrade>
+	<collection>http://getk2.org/collection.xml</collection>
+	<installer>
+		<file>administrator/components/com_k2/jupgrade/j25upgrade.php</file>
+		<class>jUpgradeComponentK2</class>
+	</installer>
+	<!-- The tables to copy to the new site. -->
+	<tables>
+		<table>k2_attachments</table>
+		<table>k2_categories</table>
+		<table>k2_comments</table>
+		<table>k2_extra_fields</table>
+		<table>k2_extra_fields_groups</table>
+		<table>k2_items</table>
+		<table>k2_rating</table>
+		<table>k2_tags</table>
+		<table>k2_tags_xref</table>
+		<table>k2_users</table>
+		<table>k2_user_groups</table>
+	</tables>
+	<!-- The folders to copy to the new site. -->
+	<folders>
+		<folder>administrator/components/com_k2</folder>
+		<folder>components/com_k2</folder>
+		<folder>media/k2</folder>
+	</folders>
+	<package>
+		<extension>
+			<name>mod_k2_comments</name>
+		</extension>
+		<extension>
+			<name>mod_k2_content</name>
+		</extension>
+		<extension>
+			<name>mod_k2_login</name>
+		</extension>
+		<extension>
+			<name>mod_k2_tools</name>
+		</extension>
+		<extension>
+			<name>mod_k2_user</name>
+		</extension>
+		<extension>
+			<name>mod_k2_users</name>
+		</extension>
+	</package>
+</jupgrade>

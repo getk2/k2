@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" client="site" version="2.5" method="upgrade">
+    <name>K2 Content</name>
+    <author>JoomlaWorks</author>
+    <creationDate>July 8th, 2013</creationDate>
+    <copyright>Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.</copyright>
+    <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
+    <authorUrl>www.joomlaworks.net</authorUrl>
+    <version>2.6.7</version>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <description>K2_MOD_K2_CONTENT_DESCRIPTION</description>
+    <files>
+        <filename module="mod_k2_content">mod_k2_content.php</filename>
+        <filename>helper.php</filename>
+        <filename>index.html</filename>
+        <folder>tmpl</folder>
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic" addfieldpath="/administrator/components/com_k2/elements/">
+                <field name="moduleclass_sfx" type="text" default="" label="K2_MODULE_CLASS_SUFFIX" description="K2_MODULE_CLASS_SUFFIX_DESCRIPTION"/>
+                <field name="getTemplate" type="moduletemplate" modulename="mod_k2_content" default="Default" label="K2_SELECT_SUBTEMPLATE" description="K2_THIS_MODULE_UTILIZES_ONTHEFLY_MVC_TEMPLATE_OVERRIDES_WHAT_THIS_MEANS_IS_THAT_YOU_CAN_CREATE_A_NEW_SUBTEMPLATE_FOLDER_FOR_THIS_MODULE_WITHIN_YOUR_JOOMLA_TEMPLATES_HTMLMOD_K2_CONTENT_FOLDER_THE_MODULE_WILL_THEN_PICKUP_THE_NEW_SUBTEMPLATE_AUTOMAGICALLY_WITHOUT_YOU_EDITING_ANY_XML_FILE_OR_DOING_ANY_OTHER_NONDESIGNER_WORK"/>
+                <field name="source" type="list" default="filter" label="K2_SOURCE" description="">
+                    <option value="filter">K2_RETRIEVE_ITEMS_FROM_CATEGORIES</option>
+                    <option value="specific">K2_SELECT_SPECIFIC_ITEMS</option>
+                </field>
+                <field name="" type="header" default="K2_RETRIEVE_ITEMS_FROM_CATEGORIES" label="" description=""/>
+                <field name="catfilter" type="radio" default="0" label="K2_CATEGORY_FILTER" description="">
+                    <option value="0">K2_ALL</option>
+                    <option value="1">K2_SELECT</option>
+                </field>
+                <field name="category_id" type="categoriesmultiple" default="" label="K2_SELECT_ONE_OR_MORE_CATEGORIES" description="K2_SELECT_ONE_ORE_MORE_CATEGORIES_FOR_WHICH_YOU_WANT_TO_FILTER_AN_ITEMS_LIST_SELECT_NONE_TO_FETCH_ITEMS_FROM_ALL_CATEGORIES"/>
+                <field name="getChildren" type="radio" default="0" label="K2_FETCH_ITEMS_FROM_CHILDREN_CATEGORIES" description="">
+                    <option value="0">K2_NO</option>
+                    <option value="1">K2_YES</option>
+                </field>
+                <field name="itemCount" type="text" size="4" default="5" label="K2_ITEM_COUNT" description=""/>
+                <field name="itemsOrdering" type="list" default="" label="K2_ITEM_ORDERING" description="">
+                    <option value="">K2_DEFAULT</option>
+                    <option value="date">K2_OLDEST_FIRST</option>
+                    <option value="rdate">K2_MOST_RECENT_FIRST</option>
+                    <option value="publishUp">K2_RECENTLY_PUBLISHED</option>
+                    <option value="alpha">K2_TITLE_ALPHABETICAL</option>
+                    <option value="ralpha">K2_TITLE_REVERSEALPHABETICAL</option>
+                    <option value="order">K2_ORDERING</option>
+                    <option value="rorder">K2_ORDERING_REVERSE</option>
+                    <option value="hits">K2_MOST_POPULAR</option>
+                    <option value="best">K2_HIGHEST_RATED</option>
+                    <option value="comments">K2_MOST_COMMENTED</option>
+                    <option value="modified">K2_LATEST_MODIFIED</option>
+                    <option value="rand">K2_RANDOM_ORDERING</option>
+                </field>
+                <field name="FeaturedItems" type="list" default="1" label="K2_FEATURED_ITEMS" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                    <option value="2">K2_SHOW_ONLY_FEATURED_ITEMS</option>
+                </field>
+                <field name="popularityRange" type="list" default="" label="K2_TIME_RANGE_IF_ORDERING_IS_SET_TO_MOST_POPULAR_OR_MOST_COMMENTED" description="">
+                    <option value="">K2_ALL_TIME</option>
+                    <option value="1">K2_1_DAY</option>
+                    <option value="3">K2_3_DAYS</option>
+                    <option value="7">K2_1_WEEK</option>
+                    <option value="15">K2_2_WEEKS</option>
+                    <option value="30">K2_1_MONTH</option>
+                    <option value="90">K2_3_MONTHS</option>
+                    <option value="180">K2_6_MONTHS</option>
+                </field>
+                <field name="videosOnly" type="radio" default="0" label="K2_FETCH_ONLY_ITEMS_WITH_VIDEOS" description="">
+                    <option value="0">K2_NO</option>
+                    <option value="1">K2_YES</option>
+                </field>
+                <field name="" type="header" default="K2_SELECT_SPECIFIC_ITEMS" label="" description=""/>
+                <field name="item" type="item" default="" label="K2_ADD_ITEMS" description="K2_USE_THIS_TO_ADD_ITEMS_TO_THE_LIST_BELOW"/>
+                <field name="items" type="items" default="" label="K2_DRAG_AND_DROP_TO_REORDER_ITEMS" description="K2_DRAG_AND_DROP_TO_REORDER_ITEMS_CLICK_THE_REMOVE_ICON_TO_REMOVE_AN_ITEM_FROM_THE_LIST"/>
+                <field name="" type="header" default="K2_ITEM_VIEW_OPTIONS_COMMON_FOR_EITHER_SOURCE" label="" description=""/>
+                <field name="itemTitle" type="radio" default="1" label="K2_TITLE" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="itemAuthor" type="radio" default="1" label="K2_USER_AUTHOR" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="itemAuthorAvatar" type="radio" default="1" label="K2_USER_AVATAR" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="itemAuthorAvatarWidthSelect" type="list" default="custom" label="K2_USER_AVATAR_WIDTH" description="">
+                    <option value="inherit">K2_INHERIT_FROM_COMPONENT_PARAMETERS</option>
+                    <option value="custom">K2_USE_CUSTOM_WIDTH</option>
+                </field>
+                <field name="itemAuthorAvatarWidth" type="text" default="50" size="4" label="K2_CUSTOM_WIDTH_FOR_USER_AVATAR_IN_PX" description=""/>
+                <field name="userDescription" type="radio" default="1" label="K2_USER_DESCRIPTION" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="itemIntroText" type="radio" default="1" label="K2_INTROTEXT" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="itemIntroTextWordLimit" type="text" size="4" default="" label="K2_INTROTEXT_WORD_LIMIT" description="K2_LEAVE_BLANK_TO_DIASBLE_IF_YOU_ENABLE_THIS_OPTION_ALL_HTML_TAGS_FROM_THE_TEXT_WILL_BE_CLEANED_UP_TO_MAKE_SURE_THE_HTML_STRUCTURE_OF_THE_SITE_DOES_NOT_BRAKE"/>
+                <field name="itemImage" type="radio" default="1" label="K2_IMAGE" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="itemImgSize" type="list" default="Small" label="K2_IMAGE_SIZE" description="">
+                    <option value="XSmall">K2_XSMALL</option>
+                    <option value="Small">K2_SMALL</option>
+                    <option value="Medium">K2_MEDIUM</option>
+                    <option value="Large">K2_LARGE</option>
+                    <option value="XLarge">K2_XLARGE</option>
+                </field>
+                <field name="itemVideo" type="radio" default="1" label="K2_VIDEO" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="itemVideoCaption" type="radio" default="1" label="K2_MEDIA_CAPTION" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="itemVideoCredits" type="radio" default="1" label="K2_MEDIA_CREDITS" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="itemAttachments" type="radio" default="1" label="K2_ATTACHMENTS" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="itemTags" type="radio" default="1" label="K2_TAGS" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="itemCategory" type="radio" default="1" label="K2_CATEGORY" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="itemDateCreated" type="radio" default="1" label="K2_CREATED_DATE_AND_TIME" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="itemHits" type="radio" default="1" label="K2_HITS" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="itemReadMore" type="radio" default="1" label="K2_READ_MORE_LINK" description="K2_THIS_OPTION_IS_NOT_APPLICABLE_FOR_AN_ITEM_IN_WHICH_THE_FULLTEXT_BLOCK_IS_EMPTY">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="itemExtraFields" type="radio" default="0" label="K2_EXTRA_FIELDS" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="itemCommentsCounter" type="radio" default="1" label="K2_COMMENTS_COUNTER_AND_ANCHOR_LINK" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="" type="header" default="K2_OTHER_OPTIONS" label="" description=""/>
+                <field name="feed" type="radio" default="1" label="K2_AUTOGENERATED_RSS_FEED_ICON" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="itemPreText" type="textarea" default="" label="K2_DESCRIPTION_TEXT_AT_THE_TOP_OPTIONAL" description="" cols="40" rows="4" filter="raw"/>
+                <field name="itemCustomLink" type="radio" default="0" label="K2_CUSTOM_LINK_AT_THE_BOTTOM" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="itemCustomLinkTitle" type="text" default="" label="K2_CUSTOM_LINK_TITLE" description="K2_CUSTOM_LINK_TITLE_DESC"/>
+                <field name="itemCustomLinkURL" type="text" default="http://" label="K2_CUSTOM_LINK_URL" description=""/>
+                <field name="itemCustomLinkMenuItem" type="menuitem" default="" label="K2_OR_SELECT_A_MENU_ITEM" description=""/>
+            </fieldset>
+            <fieldset name="advanced">
+                <field name="K2Plugins" type="radio" default="1" label="K2_ENABLE_K2_PLUGINS" description="">
+                    <option value="0">K2_NO</option>
+                    <option value="1">K2_YES</option>
+                </field>
+                <field name="JPlugins" type="radio" default="1" label="K2_ENABLE_JOOMLA_CONTENT_PLUGINS" description="">
+                    <option value="0">K2_NO</option>
+                    <option value="1">K2_YES</option>
+                </field>
+                <field name="cache" type="list" default="1" label="K2_CACHING" description="K2_SELECT_WHETHER_TO_CACHE_THE_CONTENT_OF_THIS_MODULE">
+                    <option value="1">K2_USE_GLOBAL</option>
+                    <option value="0">K2_NO_CACHING</option>
+                </field>
+                <field name="cache_time" type="text" default="900" label="K2_CACHE_TIME" description="K2_THE_TIME_IN_SECONDS_BEFORE_THE_MODULE_IS_RECACHED"/>
+            </fieldset>
+        </fields>
+    </config>
+</extension>

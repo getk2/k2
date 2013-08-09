@@ -1,0 +1,93 @@
+<?php
+/**
+ * @version		$Id: moduletemplate.php 1812 2013-01-14 18:45:06Z lefteris.kavadas $
+ * @package		K2
+ * @author		JoomlaWorks http://www.joomlaworks.net
+ * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ */
+
+// no direct access
+defined('_JEXEC') or die ;
+
+require_once (JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
+
+class K2ElementModuleTemplate extends K2Element
+{
+    function fetchElement($name, $value, &$node, $control_name)
+    {
+
+        jimport('joomla.filesystem.folder');
+        if (K2_JVERSION != '15')
+        {
+            $moduleName = $node->attributes()->modulename;
+        }
+        else
+        {
+            $moduleName = $node->_attributes['modulename'];
+        }
+        $moduleTemplatesPath = JPATH_SITE.DS.'modules'.DS.$moduleName.DS.'tmpl';
+        $moduleTemplatesFolders = JFolder::folders($moduleTemplatesPath);
+        
+        $db = JFactory::getDBO();
+        if (K2_JVERSION != '15')
+        {
+            $query = "SELECT template FROM #__template_styles WHERE client_id = 0 AND home = 1";
+        }
+        else
+        {
+            $query = "SELECT template FROM #__templates_menu WHERE client_id = 0 AND menuid = 0";
+        }
+        $db->setQuery($query);
+        $defaultemplate = $db->loadResult();
+        $templatePath = JPATH_SITE.DS.'templates'.DS.$defaultemplate.DS.'html'.DS.$moduleName;
+
+        if (JFolder::exists($templatePath))
+        {
+            $templateFolders = JFolder::folders($templatePath);
+            $folders = @array_merge($templateFolders, $moduleTemplatesFolders);
+            $folders = @array_unique($folders);
+        }
+        else
+        {
+            $folders = $moduleTemplatesFolders;
+        }
+
+        $exclude = 'Default';
+        $options = array();
+
+        foreach ($folders as $folder)
+        {
+            if (preg_match(chr(1).$exclude.chr(1), $folder))
+            {
+                continue;
+            }
+            $options[] = JHTML::_('select.option', $folder, $folder);
+        }
+
+        array_unshift($options, JHTML::_('select.option', 'Default', '-- '.JText::_('K2_USE_DEFAULT').' --'));
+
+        if (K2_JVERSION != '15')
+        {
+            $fieldName = $name;
+        }
+        else
+        {
+            $fieldName = $control_name.'['.$name.']';
+        }
+
+        return JHTML::_('select.genericlist', $options, $fieldName, 'class="inputbox"', 'value', 'text', $value, $control_name.$name);
+
+    }
+
+}
+
+class JFormFieldModuleTemplate extends K2ElementModuleTemplate
+{
+    var $type = 'moduletemplate';
+}
+
+class JElementModuleTemplate extends K2ElementModuleTemplate
+{
+    var $_name = 'moduletemplate';
+}

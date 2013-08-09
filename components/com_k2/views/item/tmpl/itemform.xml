@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+  <layout title="K2_ITEM_EDIT_FORM">
+    <message>K2_CREATE_A_MENU_ITEM_LINKING_TO_ITEM_EDIT_FORM</message>
+  </layout>
+  <state>
+    <name>K2_ITEM_EDIT_FORM</name>
+    <description>K2_CREATE_A_MENU_ITEM_LINKING_TO_ITEM_EDIT_FORM</description>
+    <params addpath="/administrator/components/com_k2/elements">
+        <param name="theme" type="template" default="default" label="K2_SELECT_A_TEMPLATE" />
+        <param name="category" type="categories" default="" label="K2_PRESELECTED_CATEGORY" />
+        <param name="itemform" type="itemform" />
+    </params>
+    <url addpath="/administrator/components/com_k2/elements">
+      <param name="task" type="hidden" default="add"/>
+    </url>
+    <params>
+    </params>
+    <fields name="params">
+		<fieldset name="basic" addfieldpath="/administrator/components/com_k2/elements">
+			<field name="theme" type="template" default="default" label="K2_SELECT_A_TEMPLATE"/>
+            <field name="category" type="categories" default="" label="K2_PRESELECTED_CATEGORY" />
+            <field name="itemform" type="itemform" />
+		</fieldset>
+	</fields>
+    <fields name="request">
+		<fieldset name="request" addfieldpath="/administrator/components/com_k2/elements">
+			<field name="task" type="hidden" default="add" />
+		</fieldset>
+	</fields>
+  </state>
+</metadata>

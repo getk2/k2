@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="K2_LATEST_ITEMS_FROM_ONE_OR_MORE_USERS_OR_CATEGORIES">
+		<message>
+			<![CDATA[K2_CREATE_A_MENU_ITEM_LINKING_TO_A_GRID_PAGE_WITH_THE_LATEST_ITEMS_FROM_SPECIFIC_CATEGORIES_OR_USERS_IN_K2]]>
+		</message>
+	</layout>
+	<state>
+		<name>K2_LATEST_ITEMS_FROM_ONE_OR_MORE_USERS_OR_CATEGORIES</name>
+		<description>K2_CREATE_A_MENU_ITEM_LINKING_TO_A_GRID_PAGE_WITH_THE_LATEST_ITEMS_FROM_SPECIFIC_CATEGORIES_OR_USERS_IN_K2</description>
+		<params addPath="/administrator/components/com_k2/elements">
+		    <param name="theme" type="template" default="default" label="K2_SELECT_A_TEMPLATE"/>
+			<param name="" type="header" default="K2_CONTENT_SOURCE" label="" description=""/>
+			<param name="source" type="list" default="0" label="K2_CHOOSE_CONTENT_SOURCE" description="K2_PLEASE_SELECT_WHETHER_TO_RETRIEVE_CONTENT_FROM_K2_USERS_OR_CATEGORIES">
+				<option value="0">K2_USERS</option>
+				<option value="1">K2_CATEGORIES</option>
+			</param>
+			<param name="latestItemsCols" type="text" default="2" size="4" label="K2_NUMBER_OF_COLUMNS"/>
+			<param name="latestItemsLimit" type="text" default="3" size="4" label="K2_MAXIMUM_NUMBER_OF_ITEMS_PER_USER_OR_CATEGORY"/>
+			<param name="latestItemsDisplayEffect" type="list" default="all" label="K2_ITEM_VIEW_OPTIONS_SET_BELOW_EFFECT" description="">
+				<option value="first">K2_EFFECT_THE_FIRST_ITEM_ONLY_SUBSEQUENT_ITEMS_DISPLAY_TITLE_ONLY</option>
+				<option value="all">K2_ALL_FETCHED_ITEMS</option>
+			</param>
+			<param name="" type="header" default="K2_USER_SETTINGS" label="" description=""/>
+			<param name="userIDs" type="userslatest" default="" label="K2_SELECTED_USERS_SORT_WITH_DRAG_DROP" description="K2_DRAG_USERS_ONE_BY_ONE_TO_REORDER_THE_LIST_CLICK_THE_REMOVE_ICON_TO_REMOVE_A_USER_FROM_THE_LIST"/>
+			<param name="userName" type="radio" default="1" label="K2_NAME" description="">
+				<option value="0">K2_HIDE</option>
+				<option value="1">K2_SHOW</option>
+			</param>
+			<param name="userImage" type="radio" default="1" label="K2_IMAGE_AVATAR" description="">
+				<option value="0">K2_HIDE</option>
+				<option value="1">K2_SHOW</option>
+			</param>
+			<param name="userDescription" type="radio" default="1" label="K2_DESCRIPTION" description="">
+				<option value="0">K2_HIDE</option>
+				<option value="1">K2_SHOW</option>
+			</param>
+			<param name="userURL" type="radio" default="1" label="K2_URL" description="">
+				<option value="0">K2_HIDE</option>
+				<option value="1">K2_SHOW</option>
+			</param>
+			<param name="userEmail" type="radio" default="0" label="K2_EMAIL" description="">
+				<option value="0">K2_HIDE</option>
+				<option value="1">K2_SHOW</option>
+			</param>
+			<param name="userFeed" type="radio" default="1" label="K2_RSS_FEED_ICON" description="">
+				<option value="0">K2_HIDE</option>
+				<option value="1">K2_SHOW</option>
+			</param>
+			<param name="" type="header" default="K2_CATEGORY_SETTINGS" label="" description=""/>
+			<param name="categoryIDs" type="categorieslatest" default="" label="K2_SELECTED_CATEGORIES_SORT_WITH_DRAG_DROP" description="K2_DRAG_CATEGORIES_ONE_BY_ONE_TO_REORDER_THE_LIST_CLICK_THE_REMOVE_ICON_TO_REMOVE_A_CATEGORY_FROM_THE_LIST"/>
+			<param name="categoryTitle" type="radio" default="1" label="K2_TITLE" description="">
+				<option value="0">K2_HIDE</option>
+				<option value="1">K2_SHOW</option>
+			</param>
+			<param name="categoryDescription" type="radio" default="1" label="K2_DESCRIPTION" description="">
+				<option value="0">K2_HIDE</option>
+				<option value="1">K2_SHOW</option>
+			</param>
+			<param name="categoryImage" type="radio" default="1" label="K2_IMAGE" description="">
+				<option value="0">K2_HIDE</option>
+				<option value="1">K2_SHOW</option>
+			</param>
+			<param name="categoryFeed" type="radio" default="1" label="K2_RSS_FEED_ICON" description="">
+				<option value="0">K2_HIDE</option>
+				<option value="1">K2_SHOW</option>
+			</param>
+			<param name="" type="header" default="K2_ITEM_VIEW_OPTIONS_COMMON_FOR_USER_OR_CATEGORY_SOURCE" label="" description=""/>
+			<param name="latestItemTitle" type="radio" default="1" label="K2_TITLE" description="">
+				<option value="0">K2_HIDE</option>
+				<option value="1">K2_SHOW</option>
+			</param>
+			<param name="latestItemTitleLinked" type="radio" default="1" label="K2_LINK_ON_TITLE" description="">
+				<option value="0">K2_HIDE</option>
+				<option value="1">K2_SHOW</option>
+			</param>
+			<param name="latestItemDateCreated" type="radio" default="1" label="K2_ITEM_CREATED_DATE_AND_TIME" description="">
+				<option value="0">K2_HIDE</option>
+				<option value="1">K2_SHOW</option>
+			</param>
+			<param name="latestItemImage" type="radio" default="1" label="K2_IMAGE" description="">
+				<option value="0">K2_HIDE</option>
+				<option value="1">K2_SHOW</option>
+			</param>
+			<param name="latestItemImageSize" type="list" default="Medium" label="K2_IMAGE_SIZE" description="">
+				<option value="XSmall">K2_XSMALL</option>
+				<option value="Small">K2_SMALL</option>
+				<option value="Medium">K2_MEDIUM</option>
+				<option value="Large">K2_LARGE</option>
+				<option value="XLarge">K2_XLARGE</option>
+			</param>
+			<param name="latestItemVideo" type="radio" default="1" label="K2_VIDEO" description="">
+				<option value="0">K2_HIDE</option>
+				<option value="1">K2_SHOW</option>
+			</param>
+			<param name="latestItemVideoWidth" type="text" default="" size="4" label="K2_VIDEO_WIDTH" description=""/>
+			<param name="latestItemVideoHeight" type="text" default="" size="4" label="K2_VIDEO_HEIGHT" description=""/>
+			<param name="latestItemAudioWidth" type="text" default="" size="4" label="K2_AUDIO_WIDTH" description=""/>
+			<param name="latestItemAudioHeight" type="text" default="" size="4" label="K2_AUDIO_HEIGHT" description=""/>
+			<param name="latestItemVideoAutoPlay" type="radio" default="0" label="K2_MEDIA_AUTOPLAY" description="">
+				<option value="0">K2_NO</option>
+				<option value="1">K2_YES</option>
+			</param>
+			<param name="latestItemIntroText" type="radio" default="1" label="K2_INTROTEXT" description="">
+				<option value="0">K2_HIDE</option>
+				<option value="1">K2_SHOW</option>
+			</param>
+			<param name="latestItemCategory" type="radio" default="1" label="K2_CATEGORY" description="">
+				<option value="0">K2_HIDE</option>
+				<option value="1">K2_SHOW</option>
+			</param>
+			<param name="latestItemTags" type="radio" default="1" label="K2_TAGS" description="">
+				<option value="0">K2_HIDE</option>
+				<option value="1">K2_SHOW</option>
+			</param>
+			<param name="latestItemReadMore" type="radio" default="1" label="K2_READ_MORE_LINK" description="">
+				<option value="0">K2_HIDE</option>
+				<option value="1">K2_SHOW</option>
+			</param>
+			<param name="latestItemCommentsAnchor" type="radio" default="0" label="K2_ANCHOR_LINK_WITH_COMMENTS_COUNTER_TO_ITEMS_COMMENT_FORM" description="">
+				<option value="0">K2_HIDE</option>
+				<option value="1">K2_SHOW</option>
+			</param>
+			<param name="" type="header" default="K2_ADVANCED" label="" description=""/>
+			<param name="feedLink" type="radio" default="1" label="K2_RSS_FEED_LINK" description="">
+				<option value="0">K2_DISABLE</option>
+				<option value="1">K2_ENABLE</option>
+			</param>
+			<param name="latestItemK2Plugins" type="radio" default="0" label="K2_ENABLE_K2_PLUGINS" description="">
+				<option value="0">K2_NO</option>
+				<option value="1">K2_YES</option>
+			</param>
+		</params>
+		<fields name="params">
+			<fieldset name="basic" addfieldpath="/administrator/components/com_k2/elements">
+			    <field name="theme" type="template" default="default" label="K2_SELECT_A_TEMPLATE"/>
+				<field name="" type="header" default="K2_CONTENT_SOURCE" label="" description=""/>
+				<field name="source" type="list" default="0" label="K2_CHOOSE_CONTENT_SOURCE" description="K2_PLEASE_SELECT_WHETHER_TO_RETRIEVE_CONTENT_FROM_K2_USERS_OR_CATEGORIES">
+					<option value="0">K2_USERS</option>
+					<option value="1">K2_CATEGORIES</option>
+				</field>
+				<field name="latestItemsCols" type="text" default="2" size="4" label="K2_NUMBER_OF_COLUMNS"/>
+				<field name="latestItemsLimit" type="text" default="3" size="4" label="K2_MAXIMUM_NUMBER_OF_ITEMS_PER_USER_OR_CATEGORY"/>
+				<field name="latestItemsDisplayEffect" type="list" default="all" label="K2_ITEM_VIEW_OPTIONS_SET_BELOW_EFFECT" description="">
+					<option value="first">K2_EFFECT_THE_FIRST_ITEM_ONLY_SUBSEQUENT_ITEMS_DISPLAY_TITLE_ONLY</option>
+					<option value="all">K2_ALL_FETCHED_ITEMS</option>
+				</field>
+				<field name="" type="header" default="K2_USER_SETTINGS" label="" description=""/>
+				<field name="userIDs" type="userslatest" default="" label="K2_SELECTED_USERS_SORT_WITH_DRAG_DROP" description="K2_DRAG_USERS_ONE_BY_ONE_TO_REORDER_THE_LIST_CLICK_THE_REMOVE_ICON_TO_REMOVE_A_USER_FROM_THE_LIST"/>
+				<field name="userName" type="radio" default="1" label="K2_NAME" description="">
+					<option value="0">K2_HIDE</option>
+					<option value="1">K2_SHOW</option>
+				</field>
+				<field name="userImage" type="radio" default="1" label="K2_IMAGE_AVATAR" description="">
+					<option value="0">K2_HIDE</option>
+					<option value="1">K2_SHOW</option>
+				</field>
+				<field name="userDescription" type="radio" default="1" label="K2_DESCRIPTION" description="">
+					<option value="0">K2_HIDE</option>
+					<option value="1">K2_SHOW</option>
+				</field>
+				<field name="userURL" type="radio" default="1" label="K2_URL" description="">
+					<option value="0">K2_HIDE</option>
+					<option value="1">K2_SHOW</option>
+				</field>
+				<field name="userEmail" type="radio" default="0" label="K2_EMAIL" description="">
+					<option value="0">K2_HIDE</option>
+					<option value="1">K2_SHOW</option>
+				</field>
+				<field name="userFeed" type="radio" default="1" label="K2_RSS_FEED_ICON" description="">
+					<option value="0">K2_HIDE</option>
+					<option value="1">K2_SHOW</option>
+				</field>
+				<field name="" type="header" default="K2_CATEGORY_SETTINGS" label="" description=""/>
+				<field name="categoryIDs" type="categorieslatest" default="" label="K2_SELECTED_CATEGORIES_SORT_WITH_DRAG_DROP" description="K2_DRAG_CATEGORIES_ONE_BY_ONE_TO_REORDER_THE_LIST_CLICK_THE_REMOVE_ICON_TO_REMOVE_A_CATEGORY_FROM_THE_LIST"/>
+				<field name="categoryTitle" type="radio" default="1" label="K2_TITLE" description="">
+					<option value="0">K2_HIDE</option>
+					<option value="1">K2_SHOW</option>
+				</field>
+				<field name="categoryDescription" type="radio" default="1" label="K2_DESCRIPTION" description="">
+					<option value="0">K2_HIDE</option>
+					<option value="1">K2_SHOW</option>
+				</field>
+				<field name="categoryImage" type="radio" default="1" label="K2_IMAGE" description="">
+					<option value="0">K2_HIDE</option>
+					<option value="1">K2_SHOW</option>
+				</field>
+				<field name="categoryFeed" type="radio" default="1" label="K2_RSS_FEED_ICON" description="">
+					<option value="0">K2_HIDE</option>
+					<option value="1">K2_SHOW</option>
+				</field>
+				<field name="" type="header" default="K2_ITEM_VIEW_OPTIONS_COMMON_FOR_USER_OR_CATEGORY_SOURCE" label="" description=""/>
+				<field name="latestItemTitle" type="radio" default="1" label="K2_TITLE" description="">
+					<option value="0">K2_HIDE</option>
+					<option value="1">K2_SHOW</option>
+				</field>
+				<field name="latestItemTitleLinked" type="radio" default="1" label="K2_LINK_ON_TITLE" description="">
+					<option value="0">K2_HIDE</option>
+					<option value="1">K2_SHOW</option>
+				</field>
+				<field name="latestItemDateCreated" type="radio" default="1" label="K2_ITEM_CREATED_DATE_AND_TIME" description="">
+					<option value="0">K2_HIDE</option>
+					<option value="1">K2_SHOW</option>
+				</field>
+				<field name="latestItemImage" type="radio" default="1" label="K2_IMAGE" description="">
+					<option value="0">K2_HIDE</option>
+					<option value="1">K2_SHOW</option>
+				</field>
+				<field name="latestItemImageSize" type="list" default="Medium" label="K2_IMAGE_SIZE" description="">
+					<option value="XSmall">K2_XSMALL</option>
+					<option value="Small">K2_SMALL</option>
+					<option value="Medium">K2_MEDIUM</option>
+					<option value="Large">K2_LARGE</option>
+					<option value="XLarge">K2_XLARGE</option>
+				</field>
+				<field name="latestItemVideo" type="radio" default="1" label="K2_VIDEO" description="">
+					<option value="0">K2_HIDE</option>
+					<option value="1">K2_SHOW</option>
+				</field>
+				<field name="latestItemVideoWidth" type="text" default="" size="4" label="K2_VIDEO_WIDTH" description=""/>
+				<field name="latestItemVideoHeight" type="text" default="" size="4" label="K2_VIDEO_HEIGHT" description=""/>
+				<field name="latestItemAudioWidth" type="text" default="" size="4" label="K2_AUDIO_WIDTH" description=""/>
+				<field name="latestItemAudioHeight" type="text" default="" size="4" label="K2_AUDIO_HEIGHT" description=""/>
+				<field name="latestItemVideoAutoPlay" type="radio" default="0" label="K2_MEDIA_AUTOPLAY" description="">
+					<option value="0">K2_NO</option>
+					<option value="1">K2_YES</option>
+				</field>
+				<field name="latestItemIntroText" type="radio" default="1" label="K2_INTROTEXT" description="">
+					<option value="0">K2_HIDE</option>
+					<option value="1">K2_SHOW</option>
+				</field>
+				<field name="latestItemCategory" type="radio" default="1" label="K2_CATEGORY" description="">
+					<option value="0">K2_HIDE</option>
+					<option value="1">K2_SHOW</option>
+				</field>
+				<field name="latestItemTags" type="radio" default="1" label="K2_TAGS" description="">
+					<option value="0">K2_HIDE</option>
+					<option value="1">K2_SHOW</option>
+				</field>
+				<field name="latestItemReadMore" type="radio" default="1" label="K2_READ_MORE_LINK" description="">
+					<option value="0">K2_HIDE</option>
+					<option value="1">K2_SHOW</option>
+				</field>
+				<field name="latestItemCommentsAnchor" type="radio" default="0" label="K2_ANCHOR_LINK_WITH_COMMENTS_COUNTER_TO_ITEMS_COMMENT_FORM" description="">
+					<option value="0">K2_HIDE</option>
+					<option value="1">K2_SHOW</option>
+				</field>
+				<field name="" type="header" default="K2_ADVANCED" label="" description=""/>
+				<field name="feedLink" type="radio" default="1" label="K2_RSS_FEED_LINK" description="">
+					<option value="0">K2_DISABLE</option>
+					<option value="1">K2_ENABLE</option>
+				</field>
+				<field name="latestItemK2Plugins" type="radio" default="0" label="K2_ENABLE_K2_PLUGINS" description="">
+					<option value="0">K2_NO</option>
+					<option value="1">K2_YES</option>
+				</field>
+			</fieldset>
+		</fields>
+	</state>
+</metadata>

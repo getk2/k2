@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" client="administrator" method="upgrade" version="2.5" position="icon">
+    <name>K2 Quick Icons (admin)</name>
+    <author>JoomlaWorks</author>
+    <creationDate>July 8th, 2013</creationDate>
+    <copyright>Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.</copyright>
+    <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
+    <authorUrl>www.joomlaworks.net</authorUrl>
+    <version>2.6.7</version>
+    <description>K2_QUICKICONS_FOR_USE_IN_THE_JOOMLA_CONTROL_PANEL_DASHBOARD_PAGE</description>
+    <files>
+        <filename module="mod_k2_quickicons">mod_k2_quickicons.php</filename>
+        <filename>index.html</filename>
+        <folder>tmpl</folder>
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="modCSSStyling" type="list" default="1" label="K2_MODULE_DEFAULT_CSS" description="">
+                    <option value="1">K2_ENABLED</option>
+                    <option value="0">K2_DISABLED</option>
+                </field>
+                <field name="modLogo" type="list" default="1" label="K2_MODULE_LOGO" description="">
+                    <option value="1">K2_SHOW</option>
+                    <option value="0">K2_HIDE</option>
+                </field>
+            </fieldset>
+            <fieldset name="advanced">
+                <field name="cache" type="list" default="0" label="K2_CACHING" description="K2_SELECT_WHETHER_TO_CACHE_THE_CONTENT_OF_THIS_MODULE">
+                    <option value="0">K2_NO_CACHING</option>
+                    <option value="1">K2_USE_GLOBAL</option>
+                </field>
+                <field name="cache_time" type="text" default="900" label="K2_CACHE_TIME" description="K2_THE_TIME_IN_SECONDS_BEFORE_THE_MODULE_IS_RECACHED"/>
+            </fieldset>
+        </fields>
+    </config>
+</extension>

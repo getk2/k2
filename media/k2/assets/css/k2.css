@@ -1,0 +1,360 @@
+/**
+ * @version		$Id: k2.css 1971 2013-05-01 16:04:17Z lefteris.kavadas $
+ * @package		K2
+ * @author		JoomlaWorks http://www.joomlaworks.net
+ * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @license		GNU/GPL license:http://www.gnu.org/copyleft/gpl.html
+ */
+
+/* Common */
+a:active,a:focus {outline:0;}
+.clr {clear:both;height:0;line-height:0;border:none;float:none;background:none;padding:0;margin:0;}
+hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding:0;margin:4px 0;}
+
+.k2Center {text-align:center;}
+.k2Left {text-align:left;}
+.k2Right {text-align:right;}
+.k2ForceWrap {white-space:normal !important;max-width:120px;overflow:hidden;}
+.k2Date {white-space:nowrap;text-align:center;}
+.k2Order {white-space:nowrap !important; text-align:right; width:auto !important; min-width:80px;}
+	.k2Order span {}
+	.k2OrderBox {text-align:center;}
+.k2NoWrap {white-space:nowrap;}
+.k2IsIcon {font-family:Arial, Helvetica, sans-serif !important;font-size:16px !important;}
+.k2IsIcon:hover {color:#BB3A00;text-decoration:none;}
+.k2TitleBox {width:99%;font-size:20px;}
+.k2TitleAliasBox {width:60%;font-size:14px;}
+.k2TextBox {background:#fff;padding:4px;}
+.k2ListItemDisabled {cursor:pointer;color:#0B55C4;} /* used in popup lists */
+
+.k2Toggler {display:block;width:16px;height:16px;margin:0 auto;padding:0;background-repeat:no-repeat;background-position:0 0;text-indent:-500px;overflow:hidden;}
+	.k2Active {background-image:url(../images/system/tick.png);}
+	.k2Inactive{background-image:url(../images/system/cross.png);}
+
+.k2clr {clear:both; height:0; line-height:0; border:none; float:none; background:none; padding:0; margin:0;}
+.paramHeaderContainer {clear:both; font-weight:bold; font-size:12px; color:#369; margin:12px 0 4px; padding:0; background:#d5e7fa; border-bottom:2px solid #96b0cb; float:left; width:100%;}
+.paramHeaderContainer15 {clear:both; font-weight:bold; font-size:12px; color:#369; margin:0; padding:0; background:#d5e7fa; border-bottom:2px solid #96b0cb; float:left; width:100%;}
+.paramHeader {padding:6px 8px;}
+
+ul.k2GenericList {list-style:square;margin:0 8px 8px;padding:2px 8px;}
+ul.k2GenericList li {list-style:square;padding:2px 0;}
+
+/* -------------- Admin Common -------------- */
+a.k2ReportUserButton {}
+
+div#k2AdminContainer {padding:2px;}
+div#k2AdminContainer h1 {padding:0 0 8px 0;margin:0;}
+
+input.fileUpload {border:1px solid #c0c0c0;} /* file uploads */
+
+a#imagethumb {}
+a#galleryPreview {display:block;}
+img.k2AdminImage {border:4px solid #ddd;margin:10px 0;padding:0;display:block;}
+span.k2Notice {cursor:pointer;font-weight:bold;text-decoration:underline;}
+
+.k2LimitBox { float: left; margin: 0 10px 0 0;}
+
+/* Filters on listings */
+table.k2AdminTableFilters {width:100%;}
+	table.k2AdminTableFilters tr td.k2AdminTableFiltersSearch {white-space:nowrap;}
+	table.k2AdminTableFilters tr td.k2AdminTableFiltersSelects {text-align:right;}
+	table.k2AdminTableFilters tr td.k2AdminTableFiltersSelects .chzn-container {text-align:left;}
+	table.k2AdminTableFilters tr td.k2AdminTableFiltersSelects select {margin:1px 0 1px 4px;}
+
+table.adminFormK2Container {width:100%;}
+table.adminFormK2Container tr td {vertical-align:top;}
+
+	/* Edit Forms */
+	table.adminFormK2 {width:100%;margin-bottom:16px;}
+	div.isJ30 table.adminFormK2 {border:1px solid #e9e9e9;background:#f9f9f9;}
+	table.adminFormK2 tr td {}
+		table.adminFormK2 tr td.adminK2LeftCol {width:100px;vertical-align:middle;background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-right:1px solid #e9e9e9;color:#666;font-weight:bold;text-align:right;}
+		table.adminFormK2 tr td.adminK2RightCol {}
+		div.isJ30 table.adminFormK2 tr td.adminK2RightCol {border-top:none;}
+			table.adminFormK2 tr td.adminK2RightCol select#catid {font-size:14px;}
+	table.adminFormK2 tr td label {font-weight:bold;}
+
+	.k2RadioButtonContainer input,
+	.K2AdminViewTag input,
+	.K2AdminViewUser input,
+	/*.K2AdminViewUserGroup input,*/
+	.K2AdminViewExtraField input {float:none!important; display:inline!important; vertical-align:inherit !important;}
+	.k2RadioButtonContainer label,
+	.K2AdminViewTag label,
+	.K2AdminViewUser label,
+	.K2AdminViewUserGroup label,
+	.K2AdminViewExtraField label {float:none!important; display:inline!important; vertical-align:inherit !important;}
+
+/* Header */
+.icon-48-k2 {background:url(../images/system/K2_Logo_105x40_24.png) no-repeat 0 50%;color:#222!important; padding-left:120px!important; font-size:24px!important;}
+.icon-48-k2 h2 {color:#222!important; font-size:24px!important; margin-left:10px!important;}
+
+/* Joomla! 3.0 header */
+body.com_k2 .page-title {background:url(../images/system/K2_Logo_85x36_24.png) no-repeat 0 50%;padding-left:100px;}
+@media (max-width: 767px) { body.com_k2 .page-title {background:url(../images/system/K2_Logo_85x36_24.png) no-repeat center center;padding-left:0; text-indent: -800px} }
+
+/* Footer */
+#k2AdminFooter {text-align:center;margin:20px auto 4px auto;}
+
+/* Common for Joomla! 2.5 */
+div.isJ25 table.admintable {}
+div.isJ25 table.admintable td.key {background:#f6f6f6;/*border-bottom:1px solid #e9e9e9;border-right:1px solid #e9e9e9;*/color:#666;font-weight:bold;text-align:right;font-size:11px;width:140px;}
+div.isJ25 table.admintable td.key label {margin:0;padding:0;}
+
+
+/* -------------- View Styling -------------- */
+
+/* Admin - Dashboard */
+#cpanel.k2AdminCpanel {float:left;width:52%;}
+
+#k2AdminStats {float:right;width:47%;}
+#k2AdminStats dl.tabs dt.closed {border:1px solid #ccc;}
+#k2AdminStats dl.tabs dt.open {background:#fff;border:1px solid #ccc;border-bottom:1px solid #fff;}
+div.isJ25 div.current {background:#fff;}
+#k2AdminStats table.adminlist {width:100%;}
+.ie7fix {display:block;clear:both;height:1px;line-height:1px;}
+
+/* Admin - Items */
+div#admContainer {width:100%;}
+div#admContainer .admLeft {float:left;width:74%;}
+div#admContainer .admRight {float:right;width:24%;padding-top:29px;}
+div#admContainer .cleaner {clear:both;}
+
+/* Admin - Item & Category */
+#adminFormK2Sidebar {vertical-align:top;width:320px;padding-left:6px;}
+div.isJ30 #adminFormK2Sidebar {width:360px;}
+table.adminK2Category #adminFormK2Sidebar {width:400px;}
+#adminFormK2Sidebar table.sidebarDetails {border:1px dashed #ccc;padding:0;margin:0 0 10px 0;width:100%;}
+#adminFormK2Sidebar table.sidebarDetails tr td {padding:1px 2px;}
+div.isJ30 #adminFormK2Sidebar table.sidebarDetails tr td {border:none;}
+
+div#k2ToggleSidebarContainer {text-align:right;clear:both;margin-bottom:4px;}
+	a#k2ToggleSidebar {-moz-border-radius:4px;-webkit-border-radius:4px;border:1px solid #ccc;background:#f6f6f6 url(../images/editforms/Size-Horz.png) no-repeat;padding:2px 4px 1px 20px;text-decoration:none;}
+	a#k2ToggleSidebar:hover {background:#eee url(../images/editforms/Size-Horz.png) no-repeat;}
+
+/* Admin - Item */
+table.adminFormK2 tr td label {}
+div.isJ30 table div.controls label {display:inline-block;margin-right:8px;}
+div.isJ30 table div.controls label input {margin-right:4px;}
+span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;line-height:16px;background:url(../images/system/question-frame.png) no-repeat 50% 50%;padding:0;margin:0 0 -4px 0;display:inline-block;overflow-x:hidden;}
+
+/* Admin - Item - Free tagging */
+ul.tags {background:#fff;border:1px solid #c0c0c0;padding:0;cursor:default;margin:0;padding:0;width:99%;min-height:26px;}
+ul.tags li {-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;background:#cfe4fa;color:#222;border:1px solid #b0d2f9;padding:2px 4px 4px;line-height:12px;list-style:none;float:left;clear:none;margin:2px 1px 1px;font-size:12px;font-weight:normal;font-family:"Lucida Grande";}
+	ul.tags li span.tagRemove {font-size:12px;font-family:"Lucida Grande";color:#5279a1;padding-left:4px;cursor:pointer;}
+	ul.tags li span.tagRemove:hover {color:#505050;cursor:pointer;}
+ul.tags li input {border:none;padding-top:2px;background:none;font-size:12px;font-weight:normal;font-family:"Lucida Grande";float:left;clear:none;}
+ul.tags li input:focus {background:none;}
+ul.tags li input.tagsLoading {background:url(../images/system/loader.gif) no-repeat 50% 50%;}
+ul.tags li.clr {clear:both;height:0;line-height:0;border:none;float:none;background:none;padding:0;margin:0;}
+ul.tags li.tagAdd {border:none;padding:0;background:none;}
+ul.tags li.tagAdd input {border:none;}
+span.k2Note {display:block;padding:4px 0 0 0;font-style:italic;color:#777;}
+
+/* Admin - Item - Selection based tagging */
+#tagsLog {float:left;padding-left:4px;font-weight:bold;line-height:16px;vertical-align:middle;}
+#tagsLog.tagsLoading {background:url(../images/system/loader.gif) no-repeat 50% 50%;margin-left:4px;padding:0;width:16px;height:16px;display:block;float:left;}
+
+table#tagLists {width:100%;}
+table#tagLists tr td span {display:block;font-weight:bold;}
+table#tagLists tr td#tagListsLeft {width:40%;}
+table#tagLists tr td#tagListsLeft select {width:99%;height:106px;}
+table#tagLists tr td#tagListsButtons {vertical-align:middle;width:20%;}
+table#tagLists tr td#tagListsButtons input {width:99%;}
+table#tagLists tr td#tagListsRight {width:40%;}
+table#tagLists tr td#tagListsRight select {width:99%;height:106px;}
+
+.itemPlugins {margin-top:20px;}
+.k2ItemFormEditor {clear:both;position:relative;padding:24px 4px 8px 4px;margin:0 0 16px 0;background:#e0e0e0 url(../images/system/boxTopBackground.png) repeat-x top;-moz-border-radius:4px;-webkit-border-radius:4px;border:1px solid #ccc;}
+span.k2ItemFormEditorTitle {font-family:Georgia, "Times New Roman", Times, serif;font-size:13px;color:#222;position:absolute;top:4px;right:4px;}
+
+#editor-xtd-buttons {margin:0;padding:0 0 0 4px;}
+#editor-xtd-buttons div.button2-left {margin:0 4px 0 0;padding:0;float:left;}
+#editor-xtd-buttons div.button2-left div.image,
+#editor-xtd-buttons div.button2-left div.readmore {margin:0;padding:0;}
+div.dummyHeight {height:28px;background:#F0F0EE;background:#F0F0EE;border:1px solid #ccc;border-top:0;padding:4px;margin-top:-10px;}
+div.isJ30 div.dummyHeight {visibility:hidden;}
+div.isJ25 div.button2-left {margin-left:4px;}
+
+/* Admin - Item - Autocomplete */
+.ui-autocomplete {position:absolute;margin:0;padding:0;list-style:none;border:1px solid #eee;background-color:white;border-right-color:#ddd;border-bottom-color:#ddd;text-align:left;sans-serif;z-index:50;}
+* html .ui-autocomplete {width:1px;} /* without this, the menu expands to 100% in IE6 */
+.ui-menu {list-style:none;padding:2px;	margin:0;	margin-top:-3px;display:block;	float:left;}
+.ui-menu .ui-menu-item {margin:0; padding:0; zoom:0; float:left; clear:left; width:99%;}
+.ui-menu .ui-menu-item a {text-decoration:none;	display:block;	padding:.2em .4em;	line-height:1.5;zoom:1; font-weight:bold;}
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-active {margin:-1px; background-color:#444; color:#fff;}
+
+/* Admin - Item - Accordion */
+h3.ui-accordion-header {border:1px solid #ccc; margin:4px 0 0 0; padding:2px; cursor:pointer; clear:both; background-color:#F6F6F6; font-size:13px; font-weight:bold;}
+h3.ui-accordion-header:first-child {margin-top:0;}
+#k2Accordion .ui-state-active,
+#k2Accordion .ui-state-active a {color:#666; background-color:#F6F6F6;}
+h3.ui-accordion-header a,
+h3.ui-accordion-header a:link,
+h3.ui-accordion-header a:hover {text-decoration:none; color:#666;}
+h3.ui-accordion-header,
+h3.ui-accordion-header a {outline:0;}
+h3.ui-accordion-header a:hover,
+h3.ui-accordion-header:hover {background-color:#F6F6F6}
+h3.ui-accordion-header span.ui-icon {display:block;width:16px;height:16px;float:left;background:#F6F6F6 url(../images/system/ui-icons_228ef1_256x240.png) no-repeat -32px -16px;}
+h3.ui-state-active span.ui-icon {display:block;width:16px;height:16px;float:left;background:#F6F6F6 url(../images/system/ui-icons_228ef1_256x240.png) no-repeat -64px -16px;}
+.ui-accordion-content {background-color:#fff; border:1px solid #ccc; border-top:none;}
+
+/* Admin - Item Extra Fields Validation */
+#k2ExtraFieldsValidationResults {clear:both;font-weight:bold;font-size:12px;color:#369;margin:12px 0 4px;padding:16px;background:#d5e7fa url(../images/system/warning.png) no-repeat 90% 50%;border-top:4px solid #96b0cb;display:none;}
+#k2ExtraFieldsValidationResults h3 {padding:0;margin:0;font-size:20px;}
+	ul#k2ExtraFieldsMissing {margin:8px;padding:0 8px;}
+	ul#k2ExtraFieldsMissing li {font-weight:normal;}
+.k2Invalid {border-color:red;}
+
+/* Extra Fields - Textarea with WYSIWYG - Remove outline */
+.nicEdit-main {outline:0;}
+
+/* Extra Fields - Textarea with WYSIWYG - Remove outline */
+.k2ExtraFieldHeader {display:block; color: #336699; font-size: 12px; font-weight: bold; background: none repeat scroll 0 0 #D5E7FA; border-bottom: 2px solid #96B0CB; padding: 6px 8px; margin:0;}
+
+table#item_video_content tr td div.panel {width:480px;}
+dl.tabs dt.closed {border:1px solid #ccc;}
+dl.tabs dt.open {background:#fff !important;border:1px solid #ccc;border-bottom:1px solid #fff !important;}
+
+.itemAttachments {margin-bottom:15px;}
+.itemAttachments a {border:1px solid silver;font-size:10px;padding:2px;background-color:#f0f0f0;color:#000;}
+.itemAttachments a:hover {text-decoration:none;}
+#itemAttachments {margin-top:15px;padding-top:10px;}
+#itemAttachments label {margin-right:10px;font-weight:bold;width:170px;float:left;clear:left;}
+#itemAttachments input {margin-right:10px;margin-bottom:10px;}
+#itemAttachments input.linkTitle {width:200px;}
+#itemAttachments textarea {width:200px;}
+#itemAttachments a.k2AttachmentBrowseServer {margin-right:8px;}
+td.k2ItemFormDateField {white-space:nowrap;}
+td.k2ItemFormDateField input {}
+td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
+#extraFieldsContainer table tr td label .xmlParamsFields
+#extraFieldsContainer table tr td input,#extraFieldsContainer table tr td select {margin:0 8px 0 0;}
+
+/* Admin - Item - Image */
+input#k2ImageBrowseServer {background:#eee;}
+input#k2ImageBrowseServer:hover {background:#fffff0;cursor:pointer;}
+
+/* Admin - Item - Extra fields editor */
+.k2ExtraFieldEditor {width:400px; height:172px;}
+
+/* Admin - Item - Attachments */
+div#addAttachment {padding:0 16px;}
+input#addAttachmentButton {font-size:14px;font-weight:bold;background:#eee;}
+input#addAttachmentButton:hover {background:#fffff0;cursor:pointer;}
+
+/* Admin - Item - Other */
+td#k2AuthorOptions span#k2Author {margin-right:4px;}
+td#k2AuthorOptions a.modal {text-decoration:underline;}
+
+/* Admin - Category */
+table.adminK2Category table.adminFormK2 tr td.adminK2LeftCol {width:140px;}
+table.adminK2Category table.adminFormK2 {margin-top:4px;}
+table.adminK2Category table.adminFormK2 tr td select#parent,
+table.adminK2Category table.adminFormK2 tr td select#paramsinheritFrom {font-size:14px;}
+
+/* Admin - Item, Category, Usergroup fields in Joomla! 2.5 */
+.xmlParamsFields {}
+.xmlParamsFields .paramHeader {clear:both; font-weight:bold; font-size:12px; color:#369; margin:12px 0 4px; padding:6px 8px; background:#d5e7fa; border-bottom:2px solid #96b0cb;}
+.xmlParamsFields fieldset.panelform {border:none;padding:4px;margin:0;}
+.xmlParamsFields fieldset.panelform ul.adminformlist {list-style:none; padding:0; margin:0;}
+.xmlParamsFields fieldset.panelform ul.adminformlist li {padding:0 0 1px 0;}
+.xmlParamsFields fieldset.panelform ul.adminformlist .chzn-drop li {padding:5px 6px;}
+.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramLabel {float:left;width:140px;padding:4px;}
+.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramLabel label {min-width:140px;width:140px;padding:0;margin:0;float:none;}
+.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue {float:left;padding:4px 4px 0 4px;}
+
+.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue input,
+.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue textarea,
+.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue select,
+.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue img,
+.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue button,
+.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue label {margin:0 4px 0 0;float:none!important;}
+.K2AdminViewUsergroup .xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue label {display:inline !important;}
+.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue select.chzn-done {display:none!important;}
+.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue fieldset {float:none;margin:0!important;}
+
+.xmlParamsFields fieldset.panelform ul.adminformlist li label,
+.xmlParamsFields fieldset.panelform ul.adminformlist li span.faux-label {margin:0;font-size:11px;}
+
+.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramLabel,
+.xmlParamsFields .key {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-right:1px solid #e9e9e9;color:#666;font-weight:bold;text-align:right;font-size:11px;}
+.xmlParamsFields .key input {float:none!important;}
+
+div#k2AdminContainer.isJ25 form#adminForm div.xmlParamsFields fieldset input {float:none!important;}
+
+div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-right:1px solid #e9e9e9;color:#666;font-weight:bold;text-align:right;font-size:11px;}
+
+/* Admin - Comments */
+td#k2Comment {}
+	div.commentText {}
+	div.commentToolbar {padding-top:4px;}
+		a.editComment {}
+		a.saveComment {display:none;}
+		a.closeComment {display:none;padding-left:4px;margin-left:4px;border-left:1px solid #aaa;}
+	div.commentToolbar span.k2CommentsLog {display:block;float:right;font-weight:bold;}
+	div.commentToolbar span.k2CommentsLoader {background:url(../images/system/loader.gif) no-repeat 0 50%;padding-left:24px;}
+
+/* Admin - Users */
+
+/* Admin - User groups */
+div#k2AdminContainer.K2AdminViewUserGroup form#adminForm {width:600px;}
+div#k2AdminContainer.K2AdminViewUserGroup form#adminForm .xmlParamsFields {margin-bottom:16px;}
+div#k2AdminContainer.K2AdminViewUsergroup form#adminForm div.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue fieldset input,
+div#k2AdminContainer.K2AdminViewUsergroup form#adminForm div.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue fieldset label {display:inline!important;float:none!important;}
+div#k2AdminContainer.K2AdminViewUsergroup form#adminForm div.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue select#paramscategories {width:400px;}
+
+/* Admin - Extra fields */
+#exFieldsTypesDiv {}
+#exFieldsTypesDiv label {margin:4px;font-weight:bold;width:80px;float:left;clear:left;display:block;}
+#exFieldsTypesDiv input,#exFieldsTypesDiv textarea,#exFieldsTypesDiv select {margin:4px 4px 4px 0;}
+#exFieldsTypesDiv span {color:#555;font-style:italic;}
+#exFieldsTypesDiv span.notice {color:#333;font-style:normal;}
+div#groupContainer {display:inline;margin-left:16px;}
+div#groupContainer span {font-weight:bold;}
+
+/* Admin - Extra field groups */
+
+/* Admin - Media Manager */
+#elfinder {font-size:16px; font-family:Arial, Helvetica, sans-serif;}
+
+/* Admin - Information */
+table#k2InfoPage {}
+table#k2InfoPage tr td {width:50%;vertical-align:top;}
+div#k2AboutBlock h2 {padding:0;margin:16px 0 0;}
+
+/* SimpleTabs */
+div.simpleTabs {clear:both;padding:10px 0;}
+ul.simpleTabsNavigation {margin:0 10px;padding:0;text-align:left;white-space:nowrap;}
+ul.simpleTabsNavigation li {list-style:none;display:inline;margin:0;padding:0;}
+ul.simpleTabsNavigation li a {border:1px solid #E0E0E0;padding:3px 6px;margin:0;background-color:#F0F0F0;font-size:14px;text-decoration:none;font-family:Georgia, "Times New Roman", Times, serif;color:#666;font-weight:normal;}
+ul.simpleTabsNavigation li a:hover {text-decoration:none;background-color:#f6f6f6;}
+
+ul.simpleTabsNavigation li.ui-tabs-selected a {background-color:#fff;color:#222;border-bottom:1px solid #fff;}
+div.simpleTabsContent {border:1px solid #E0E0E0;padding:8px;margin-top:3px;}
+div.isJ30 div.simpleTabsContent {margin-top:2px;}
+ul.simpleTabsNavigation li.ui-tabs-selected a:hover {background-color:#fff;}
+div.isJ25 div.simpleTabsContent {background:#fff;}
+.ui-tabs-hide {display:none;}
+
+/* Custom tab icons */
+ul.simpleTabsNavigation li a {padding-left:24px;background-repeat:no-repeat;background-position:4px 3px;}
+ul.simpleTabsNavigation li#tabContent a {background-image:url(../images/editforms/Write2.png);}
+ul.simpleTabsNavigation li#tabImage a {background-image:url(../images/editforms/Picture.png);}
+ul.simpleTabsNavigation li#tabImageGallery a {background-image:url(../images/editforms/Photo.png);}
+ul.simpleTabsNavigation li#tabVideo a {background-image:url(../images/editforms/Movie.png);}
+ul.simpleTabsNavigation li#tabExtraFields a {background-image:url(../images/editforms/Puzzle.png);}
+ul.simpleTabsNavigation li#tabAttachments a {background-image:url(../images/editforms/Attach.png);}
+ul.simpleTabsNavigation li#tabPlugins a {background-image:url(../images/editforms/Gear.png);}
+ul.simpleTabsNavigation li a {background-repeat:no-repeat !important;}
+
+/* Override for video tabs */
+#k2VideoTabs {padding:0 0 10px 0;}
+#k2VideoTabs ul.simpleTabsNavigation li a {padding-left:6px;font-size:11px;font-family:Arial, Helvetica, sans-serif;}
+
+/* Fix user group permissions category drop-down glitches under Joomla! 3.0 */
+#paramscategories_chzn li {padding:3px 20px 3px 5px;}
+
+/* End */

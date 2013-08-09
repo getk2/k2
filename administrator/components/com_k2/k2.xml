@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="2.5" method="upgrade">
+	<name>COM_K2</name>
+	<author>JoomlaWorks</author>
+	<creationDate>July 8th, 2013</creationDate>
+	<copyright>Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.</copyright>
+	<authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
+	<authorUrl>www.joomlaworks.net</authorUrl>
+	<version>2.6.7</version>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<description>Thank you for installing K2 by JoomlaWorks, the powerful content extension for Joomla!</description>
+	<installfile>install.k2.php</installfile>
+	<uninstallfile>uninstall.k2.php</uninstallfile>
+	<scriptfile>script.k2.php</scriptfile>
+	<install>
+		<sql>
+			<file driver="mysqli" charset="utf8">install.mysql.sql</file>
+			<file driver="mysql" charset="utf8">install.mysql.sql</file>
+		</sql>
+	</install>
+	<uninstall>
+		<sql>
+			<file driver="mysqli" charset="utf8">uninstall.mysql.sql</file>
+			<file driver="mysql" charset="utf8">uninstall.mysql.sql</file>
+		</sql>
+	</uninstall>
+	<updateservers>
+		<server type="extension" priority="1" name="K2 Updates">http://getk2.org/update.xml</server>
+	</updateservers>
+	<files folder="components/com_k2">
+		<folder>controllers</folder>
+		<folder>css</folder>
+		<folder>helpers</folder>
+		<folder>images</folder>
+		<folder>js</folder>
+		<folder>models</folder>
+		<folder>sef_ext</folder>
+		<folder>templates</folder>
+		<folder>views</folder>
+		<filename>k2.php</filename>
+		<filename>router.php</filename>
+	</files>
+	<media destination="k2" folder="media/k2">
+		<folder>assets</folder>
+		<folder>attachments</folder>
+		<folder>categories</folder>
+		<folder>galleries</folder>
+		<folder>items</folder>
+		<folder>users</folder>
+		<folder>videos</folder>
+	</media>
+	<languages folder="language/en-GB">
+		<language tag="en-GB">en-GB.com_k2.ini</language>
+		<language tag="en-GB">en-GB.mod_k2_comments.ini</language>
+		<language tag="en-GB">en-GB.mod_k2_comments.sys.ini</language>
+		<language tag="en-GB">en-GB.mod_k2_content.ini</language>
+		<language tag="en-GB">en-GB.mod_k2_content.sys.ini</language>
+		<language tag="en-GB">en-GB.mod_k2_tools.ini</language>
+		<language tag="en-GB">en-GB.mod_k2_tools.sys.ini</language>
+		<language tag="en-GB">en-GB.mod_k2_users.ini</language>
+		<language tag="en-GB">en-GB.mod_k2_users.sys.ini</language>
+		<language tag="en-GB">en-GB.mod_k2_user.ini</language>
+		<language tag="en-GB">en-GB.mod_k2_user.sys.ini</language>
+	</languages>
+	<administration>
+		<menu img="../media/k2/assets/images/system/k2_16x16.png" view="items">COM_K2</menu>
+		<submenu>
+			<menu view="items" link="option=com_k2&amp;view=items">K2_ITEMS</menu>
+			<menu view="categories" link="option=com_k2&amp;view=categories">K2_CATEGORIES</menu>
+			<menu view="tags" link="option=com_k2&amp;view=tags">K2_TAGS</menu>
+			<menu view="comments" link="option=com_k2&amp;view=comments">K2_COMMENTS</menu>
+			<menu view="usergroups" link="option=com_k2&amp;view=users">K2_USERS</menu>
+			<menu view="usergroups" link="option=com_k2&amp;view=usergroups">K2_USER_GROUPS</menu>
+			<menu view="extrafields" link="option=com_k2&amp;view=extrafields">K2_EXTRA_FIELDS</menu>
+			<menu view="extrafieldgroups" link="option=com_k2&amp;view=extrafieldsgroups">K2_EXTRA_FIELD_GROUPS</menu>
+			<menu view="media" link="option=com_k2&amp;view=media">K2_MEDIA_MANAGER</menu>
+			<menu view="info" link="option=com_k2&amp;view=info">K2_INFORMATION</menu>
+		</submenu>
+		<files folder="administrator/components/com_k2">
+			<folder>controllers</folder>
+			<folder>elements</folder>
+			<folder>helpers</folder>
+			<folder>jupgrade</folder>
+			<folder>lib</folder>
+			<folder>models</folder>
+			<folder>tables</folder>
+			<folder>views</folder>
+			<filename>access.xml</filename>
+			<filename>k2.php</filename>
+			<filename>config.xml</filename>
+			<filename>install.mysql.sql</filename>
+			<filename>uninstall.mysql.sql</filename>
+		</files>
+		<languages folder="administrator/language/en-GB">
+			<language tag="en-GB">en-GB.com_k2.ini</language>
+			<language tag="en-GB">en-GB.com_k2.menu.ini</language>
+			<language tag="en-GB">en-GB.com_k2.j16.ini</language>
+			<language tag="en-GB">en-GB.mod_k2_quickicons.ini</language>
+			<language tag="en-GB">en-GB.mod_k2_quickicons.sys.ini</language>
+			<language tag="en-GB">en-GB.mod_k2_stats.ini</language>
+			<language tag="en-GB">en-GB.mod_k2_stats.sys.ini</language>
+			<language tag="en-GB">en-GB.mod_k2.j16.ini</language>
+			<language tag="en-GB">en-GB.plg_finder_k2.ini</language>
+			<language tag="en-GB">en-GB.plg_finder_k2.sys.ini</language>
+			<language tag="en-GB">en-GB.plg_search_k2.ini</language>
+			<language tag="en-GB">en-GB.plg_search_k2.sys.ini</language>
+			<language tag="en-GB">en-GB.plg_system_k2.ini</language>
+			<language tag="en-GB">en-GB.plg_system_k2.sys.ini</language>
+			<language tag="en-GB">en-GB.plg_user_k2.ini</language>
+			<language tag="en-GB">en-GB.plg_user_k2.sys.ini</language>
+		</languages>
+	</administration>
+	<config>
+		<fields>
+			<fieldset>
+				<!-- ######################### CSS Settings ######################### -->
+				<field name="enable_css" default="1" />
+				<field name="jQueryHandling" default="1.8remote" />
+				<field name="backendJQueryHandling" default="remote" />
+				<!-- ######################### Layout and view options for user (blog/profile) pages ######################### -->
+				<field name="userName" default="1" />
+				<field name="userImage" default="1" />
+				<field name="userDescription" default="1" />
+				<field name="userURL" default="1" />
+				<field name="userEmail" default="0" />
+				<field name="userFeedLink" default="1" />
+				<field name="userFeedIcon" default="1" />
+				<field name="userItemCount" default="10" />
+				<field name="userItemTitle" default="1" />
+				<field name="userItemTitleLinked" default="1" />
+				<field name="userItemDateCreated" default="1" />
+				<field name="userItemImage" default="1" />
+				<field name="userItemIntroText" default="1" />
+				<field name="userItemCategory" default="1" />
+				<field name="userItemTags" default="1" />
+				<field name="userItemCommentsAnchor" default="1" />
+				<field name="userItemReadMore" default="1" />
+				<field name="userItemK2Plugins" default="1" />
+				<!-- ######################### Layout and view options for Tag listings ######################### -->
+				<field name="tagItemCount" default="10" />
+				<field name="tagItemTitle" default="1" />
+				<field name="tagItemTitleLinked" default="1" />
+				<field name="tagItemDateCreated" default="1" />
+				<field name="tagItemImage" default="1" />
+				<field name="tagItemIntroText" default="1" />
+				<field name="tagItemCategory" default="1" />
+				<field name="tagItemReadMore" default="1" />
+				<field name="tagItemExtraFields" default="0" />
+				<field name="tagOrdering" default="" />
+				<field name="tagFeedLink" default="1" />
+				<field name="tagFeedIcon" default="1" />
+				<!-- ######################### Layout and view options for Search and Date listings ######################### -->
+				<field name="genericItemCount" default="10" />
+				<field name="genericItemTitle" default="1" />
+				<field name="genericItemTitleLinked" default="1" />
+				<field name="genericItemDateCreated" default="1" />
+				<field name="genericItemImage" default="1" />
+				<field name="genericItemIntroText" default="1" />
+				<field name="genericItemCategory" default="1" />
+				<field name="genericItemReadMore" default="1" />
+				<field name="genericItemExtraFields" default="0" />
+				<field name="genericFeedLink" default="1" />
+				<field name="genericFeedIcon" default="1" />
+				<!-- ######################### RSS Feed Settings ######################### -->
+				<field name="feedLimit" default="10" />
+				<field name="feedItemImage" default="1" />
+				<field name="feedImgSize" default="S" />
+				<field name="feedItemIntroText" default="1" />
+				<field name="feedTextWordLimit" default="" />
+				<field name="feedItemFullText" default="1" />
+				<field name="feedItemTags" default="0" />
+				<field name="feedItemVideo" default="0" />
+				<field name="feedItemGallery" default="0" />
+				<field name="feedItemAttachments" default="0" />
+				<field name="feedBogusEmail" default="" />
+				<!-- ######################### Content Cleanup Settings ######################### -->
+				<field name="introTextCleanup" default="0" />
+				<field name="introTextCleanupExcludeTags" default="" />
+				<field name="introTextCleanupTagAttr" default="" />
+				<field name="fullTextCleanup" default="0" />
+				<field name="fullTextCleanupExcludeTags" default="" />
+				<field name="fullTextCleanupTagAttr" default="" />
+				<field name="xssFiltering" default="0" />
+				<!-- ######################### Extra Fields Settings ######################### -->
+				<field name="linkPopupWidth" default="900" />
+				<field name="linkPopupHeight" default="600" />
+				<!-- ######################### Image Settings ######################### -->
+				<field name="imagesQuality" default="100" />
+				<field name="itemImageXS" default="100" />
+				<field name="itemImageS" default="200" />
+				<field name="itemImageM" default="400" />
+				<field name="itemImageL" default="600" />
+				<field name="itemImageXL" default="900" />
+				<field name="itemImageGeneric" default="300" />
+				<field name="catImageWidth" default="100" />
+				<field name="catImageDefault" default="1" />
+				<field name="userImageWidth" default="100" />
+				<field name="userImageDefault" default="1" />
+				<field name="commenterImgWidth" default="48" />
+				<field name="onlineImageEditor" default="splashup" />
+				<field name="imageTimestamp" default="0" />
+				<field name="imageMemoryLimit" default="" />
+				<!-- ######################### Social Settings ######################### -->
+				<field name="socialButtonCode" default="" />
+				<field name="twitterUsername" default="" />
+				<field name="facebookImage" default="Medium" />
+				<!-- ######################### Comments ######################### -->
+				<field name="comments" default="1" />
+				<field name="commentsOrdering" default="DESC" />
+				<field name="commentsLimit" default="10" />
+				<field name="commentsFormPosition" default="below" />
+				<field name="commentsPublishing" default="1" />
+				<field name="commentsReporting" default="2" />
+				<field name="commentsReportRecipient" default="" />
+				<field name="inlineCommentsModeration" default="0" />
+				<field name="gravatar" default="1" />
+				<field name="recaptcha" default="0" />
+				<field name="recaptchaForRegistered" default="1" />
+				<field name="commentsFormNotes" default="1" />
+				<field name="commentsFormNotesText" default="" />
+				<!-- ######################### Frontend Editing ######################### -->
+				<field name="frontendEditing" default="1" />
+				<field name="showImageTab" default="1" />
+				<field name="showImageGalleryTab" default="1" />
+				<field name="showVideoTab" default="1" />
+				<field name="showExtraFieldsTab" default="1" />
+				<field name="showAttachmentsTab" default="1" />
+				<field name="showK2Plugins" default="1" />
+				<field name="sideBarDisplayFrontend" default="0" />
+				<!-- ######################### Advanced Settings ######################### -->
+				<field name="mergeEditors" default="1" />
+				<field name="sideBarDisplay" default="1" />
+				<field name="attachmentsFolder" default="" />
+				<field name="hideImportButton" default="0" />
+				<field name="googleSearch" default="0" />
+				<field name="googleSearchContainer" default="k2GoogleSearchContainer" />
+				<field name="K2UserProfile" default="1" />
+				<field name="K2UserGroup" default="" />
+				<field name="redirect" default="" />
+				<field name="adminSearch" default="simple" />
+				<field name="cookieDomain" default="" />
+				<!-- ######################### Tag System Settings ######################### -->
+				<field name="taggingSystem" default="1" />
+				<field name="lockTags" default="0" />
+				<field name="showTagFilter" default="0" />
+				<field name="k2TagNorm" default="0" />
+				<field name="k2TagNormCase" default="lower" />
+				<field name="k2TagNormAdditionalReplacements" default="" />
+				<!-- ######################### Anti-spam Settings ######################### -->
+				<field name="recaptcha_public_key" default="" />
+				<field name="recaptcha_private_key" default="" />
+				<field name="recaptcha_theme" default="clean" />
+				<field name="recaptchaOnRegistration" default="0" />
+				<field name="stopForumSpam" default="0" />
+				<field name="stopForumSpamApiKey" default="" />
+				<!-- ######################### Performance Settings ######################### -->
+				<field name="showItemsCounterAdmin" default="1" />
+				<field name="showChildCatItems" default="1" />
+				<field name="disableCompactOrdering" default="0" />
+				<!-- ######################### SEO Settings ######################### -->
+				<field name="metaDescLimit" default="150" />
+				<field name="enforceSEFReplacements" default="0" />
+				<field name="SEFReplacements" default="" />
+				<!-- ######################### Advanced SEF Settings ######################### -->
+				<field name="k2Sef" default="0" />
+				<field name="k2SefLabelCat" default="content" />
+				<field name="k2SefLabelTag" default="tag" />
+				<field name="k2SefLabelUser" default="author" />
+				<field name="k2SefLabelSearch" default="search" />
+				<field name="k2SefLabelDate" default="date" />
+				<field name="k2SefLabelItem" default="0" />
+				<field name="k2SefLabelItemCustomPrefix" default="" />
+				<field name="k2SefInsertItemId" default="1" />
+				<field name="k2SefItemIdTitleAliasSep" default="dash" />
+				<field name="k2SefUseItemTitleAlias" default="1" />
+				<field name="k2SefInsertCatId" default="1" />
+				<field name="k2SefCatIdTitleAliasSep" default="dash" />
+				<field name="k2SefUseCatTitleAlias" default="1" />
+				<!-- ######################### sh404SEF Settings ######################### -->
+				<field name="sh404SefLabelCat" default="" />
+				<field name="sh404SefLabelUser" default="blog" />
+				<field name="sh404SefLabelItem" default="2" />
+				<field name="sh404SefTitleAlias" default="alias" />
+				<field name="sh404SefModK2ContentFeedAlias" default="feed" />
+				<field name="sh404SefInsertItemId" default="0" />
+				<field name="sh404SefInsertUniqueItemId" default="0" />
+				<field name="cbIntegration" default="0" />
+			</fieldset>
+		</fields>
+	</config>
+	<modules>
+		<module module="mod_k2_comments" client="site" />
+		<module module="mod_k2_content" client="site" />
+		<module module="mod_k2_tools" client="site" />
+		<module module="mod_k2_users" client="site" />
+		<module module="mod_k2_user" client="site" />
+		<module module="mod_k2_quickicons" client="administrator" />
+		<module module="mod_k2_stats" client="administrator" />
+	</modules>
+	<plugins>
+		<plugin plugin="k2" group="finder" />
+		<plugin plugin="k2" group="search" />
+		<plugin plugin="k2" group="system" />
+		<plugin plugin="k2" group="user" />
+		<plugin plugin="k2category" group="josetta_ext" />
+		<plugin plugin="k2item" group="josetta_ext" />
+	</plugins>
+	<joomfish>
+		<file>k2_attachments.xml</file>
+		<file>k2_categories.xml</file>
+		<file>k2_extra_fields.xml</file>
+		<file>k2_items.xml</file>
+		<file>k2_tags.xml</file>
+		<file>k2_users.xml</file>
+	</joomfish>
+</extension>

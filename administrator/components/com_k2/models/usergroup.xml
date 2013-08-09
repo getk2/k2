@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<name>K2_USER_GROUP_EDIT_FORM</name>
+	<params addpath="/administrator/components/com_k2/elements">
+		<param name="comment" type="radio" default="1" label="K2_POST_COMMENTS" description="">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param name="frontEdit" type="radio" default="0" label="K2_FRONTEND_ITEM_EDITING" description="">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param name="add" type="radio" default="0" label="K2_ADD_ITEMS" description="">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param name="editOwn" type="radio" default="0" label="K2_EDIT_OWN_ITEMS" description="">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param name="editAll" type="radio" default="0" label="K2_EDIT_ANY_ITEM" description="">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param name="publish" type="radio" default="0" label="K2_PUBLISH_ITEMS" description="K2_PERMISSION_TO_PUBLISH_NEW_OR_EDITED_ITEMS">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+		<param name="editPublished" type="radio" default="0" label="K2_ALLOW_EDITING_OF_ALREADY_PUBLISHED_ITEMS" description="">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
+	</params>
+	<fields name="params">
+		<fieldset name="user-permissions" addfieldpath="/administrator/components/com_k2/elements">
+			<field name="comment" type="radio" default="1" label="K2_POST_COMMENTS" description="">
+				<option value="0">K2_NO</option>
+				<option value="1">K2_YES</option>
+			</field>
+			<field name="frontEdit" type="radio" default="0" label="K2_FRONTEND_ITEM_EDITING" description="">
+				<option value="0">K2_NO</option>
+				<option value="1">K2_YES</option>
+			</field>
+			<field name="add" type="radio" default="0" label="K2_ADD_ITEMS" description="">
+				<option value="0">K2_NO</option>
+				<option value="1">K2_YES</option>
+			</field>
+			<field name="editOwn" type="radio" default="0" label="K2_EDIT_OWN_ITEMS" description="">
+				<option value="0">K2_NO</option>
+				<option value="1">K2_YES</option>
+			</field>
+			<field name="editAll" type="radio" default="0" label="K2_EDIT_ANY_ITEM" description="">
+				<option value="0">K2_NO</option>
+				<option value="1">K2_YES</option>
+			</field>
+			<field name="publish" type="radio" default="0" label="K2_PUBLISH_ITEMS" description="K2_PERMISSION_TO_PUBLISH_NEW_OR_EDITED_ITEMS">
+				<option value="0">K2_NO</option>
+				<option value="1">K2_YES</option>
+			</field>
+			<field name="editPublished" type="radio" default="0" label="K2_ALLOW_EDITING_OF_ALREADY_PUBLISHED_ITEMS" description="">
+				<option value="0">K2_NO</option>
+				<option value="1">K2_YES</option>
+			</field>
+		</fieldset>
+	</fields>
+</form>

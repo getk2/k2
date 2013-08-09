@@ -1,0 +1,124 @@
+/**
+ * @version		$Id: k2tags.css 1812 2013-01-14 18:45:06Z lefteris.kavadas $
+ * @package		K2
+ * @author		JoomlaWorks http://www.joomlaworks.net
+ * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ */
+
+.ui-autocomplete {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	border: 1px solid #eee;
+	background-color: white;
+	border-right-color: #ddd;
+	border-bottom-color: #ddd;
+	text-align: left;sans-serif;
+	z-index: 50;
+}
+* html .ui-autocomplete {
+	width: 1px;
+}/* without this, the menu expands to 100% in IE6 */
+.ui-menu {
+	list-style: none;
+	padding: 2px;
+	margin: 0;
+	margin-top: -3px;
+	display: block;
+	float: left;
+}
+.ui-menu .ui-menu-item {
+	margin: 0;
+	padding: 0;
+	zoom: 0;
+	float: left;
+	clear: left;
+	width: 99%;
+}
+.ui-menu .ui-menu-item a {
+	text-decoration: none;
+	display: block;
+	padding: .2em .4em;
+	line-height: 1.5;
+	zoom: 1;
+	font-weight: bold;
+}
+.ui-menu .ui-menu-item a.ui-state-hover, .ui-menu .ui-menu-item a.ui-state-active {
+	margin: -1px;
+	background-color: #444;
+	color: #fff;
+}
+
+ul.tags {
+	background: #fff;
+	border: 1px solid #c0c0c0;
+	padding: 0;
+	cursor: default;
+	margin: 0;
+	padding: 0;
+	width: 99%;
+}
+ul.tags li {
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	background: #cfe4fa;
+	color: #222;
+	border: 1px solid #b0d2f9;
+	padding: 2px 4px 4px;
+	list-style: none;
+	float: left;
+	clear: none;
+	height: 18px;
+	margin: 2px 1px 1px;
+}
+ul.tags li span.tagRemove {
+	color: #5279a1;
+	padding-left: 4px;
+	cursor: pointer;
+}
+ul.tags li span.tagRemove:hover {
+	color: #505050;
+	cursor: pointer;
+}
+ul.tags li input {
+	border: none;
+	padding-top: 2px;
+	background: none;
+	float: left;
+	clear: none;
+	margin:0;
+	padding:0;
+	height:18px;
+}
+ul.tags li input:focus {
+	background: none;
+}
+ul.tags li input.tagsLoading {
+	background: url(../../../../media/k2/assets/images/system/loader.gif) no-repeat 50% 50%;
+}
+ul.tags li.clr {
+	clear: both;
+	height: 0;
+	line-height: 0;
+	border: none;
+	float: none;
+	background: none;
+	padding: 0;
+	margin: 0;
+}
+ul.tags li.tagAdd {
+	border-color: #fff;
+	background: none;
+}
+ul.tags li.tagAdd input {
+	border: none;
+}
+span.k2Note {
+	display: block;
+	padding: 4px 0 0 0;
+	font-style: italic;
+	color: #777;
+}

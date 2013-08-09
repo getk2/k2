@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" client="site" version="2.5" method="upgrade">
+    <name>K2 User</name>
+    <author>JoomlaWorks</author>
+    <creationDate>July 8th, 2013</creationDate>
+    <copyright>Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.</copyright>
+    <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
+    <authorUrl>www.joomlaworks.net</authorUrl>
+    <version>2.6.7</version>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <description>K2_MOD_K2_USER_DESCRIPTION</description>
+    <files>
+        <filename module="mod_k2_user">mod_k2_user.php</filename>
+        <filename>helper.php</filename>
+        <filename>index.html</filename>
+        <folder>tmpl</folder>
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic" addfieldpath="/administrator/components/com_k2/elements/">
+                <field name="moduleclass_sfx" type="text" default="" label="K2_MODULE_CLASS_SUFFIX" description="K2_MODULE_CLASS_SUFFIX_DESCRIPTION" />
+                <field name="pretext" type="textarea" cols="30" rows="5" default="" label="K2_PRETEXT" description="" />
+                <field name="posttext" type="textarea" cols="30" rows="5" label="K2_POSTTEXT" description="" />
+                <field name="" type="header" default="K2_OPTIONS_FOR_LOGGED_IN_USERS" label="" description="" />
+                <field name="userGreetingText" type="textarea" cols="30" rows="5" label="K2_GREETING_TEXT" description="K2_WRITE_A_CUSTOM_TEXT_TO_DISPLAY_TO_YOUR_USERS_WHEN_THEY_ARE_LOGGED_IN" />
+                <field name="name" type="list" default="1" label="K2_DISPLAY_USERNAME_OR_NAME" description="">
+                    <option value="0">K2_USERNAME</option>
+                    <option value="1">K2_NAME</option>
+                </field>
+                <field name="userAvatar" type="radio" default="1" label="K2_USER_AVATAR" description="">
+                    <option value="0">K2_HIDE</option>
+                    <option value="1">K2_SHOW</option>
+                </field>
+                <field name="userAvatarWidthSelect" type="list" default="custom" label="K2_USER_AVATAR_WIDTH" description="">
+                    <option value="inherit">K2_INHERIT_FROM_COMPONENT_PARAMETERS</option>
+                    <option value="custom">K2_USE_CUSTOM_WIDTH</option>
+                </field>
+                <field name="userAvatarWidth" type="text" default="50" size="4" label="K2_CUSTOM_WIDTH_FOR_USER_AVATAR_IN_PX" description="" />
+                <field name="" type="header" default="K2_MENU_RENDER_OPTION" label="" description="" />
+                <field name="menu" type="menus" default="" label="K2_MENU_TO_RENDER" description="K2_MENU_TO_RENDER_DESC" />
+                <field name="" type="header" default="K2_LOGIN_LOGOUT_REDIRECTION" label="" description="" />
+                <field name="login" type="menuitem" default="" disable="separator" label="K2_LOGIN_REDIRECTION_URL" description="K2_LOGIN_REDIRECTION_URL_DESCRIPTION" />
+                <field name="logout" type="menuitem" default="" disable="separator" label="K2_LOGOUT_REDIRECTION_URL" description="K2_LOGOUT_REDIRECTION_URL_DESCRIPTION" />
+                <field name="usesecure" type="radio" default="0" label="K2_ENCRYPT_LOGIN_FORM" description="K2_SUBMIT_ENCRYPTED_LOGIN_DATA_REQUIRES_SSL">
+                    <option value="0">K2_NO</option>
+                    <option value="1">K2_YES</option>
+                </field>
+            </fieldset>
+            <fieldset name="advanced">
+                <field name="cache" type="list" default="0" label="K2_CACHING" description="K2_SELECT_WHETHER_TO_CACHE_THE_CONTENT_OF_THIS_MODULE">
+                    <option value="1">K2_USE_GLOBAL</option>
+                    <option value="0">K2_NO_CACHING</option>
+                </field>
+                <field name="cache_time" type="text" default="900" label="K2_CACHE_TIME" description="K2_THE_TIME_IN_SECONDS_BEFORE_THE_MODULE_IS_RECACHED" />
+            </fieldset>
+        </fields>
+    </config>
+</extension>

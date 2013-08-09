@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+  <layout title="K2_ITEM">
+    <message>K2_CREATE_A_MENU_ITEM_LINKING_DIRECTLY_TO_AN_ITEM_IN_K2</message>
+  </layout>
+  <state>
+    <name>K2_ITEM</name>
+    <description>K2_CREATE_A_MENU_ITEM_LINKING_DIRECTLY_TO_AN_ITEM_IN_K2</description>
+    <url addpath="/administrator/components/com_k2/elements">
+      <param name="id" type="item" default="" label="K2_SELECT_ITEM" description="K2_SELECT_AN_ITEM_TO_LINK_TO_DIRECTLY"/>
+    </url>
+    <params>
+    </params>
+    <fields name="request">
+		<fieldset name="request" addfieldpath="/administrator/components/com_k2/elements">
+			<field name="id" type="item" default="" label="K2_SELECT_ITEM" description="K2_SELECT_AN_ITEM_TO_LINK_TO_DIRECTLY" required="true"/>
+		</fieldset>
+	</fields>
+  </state>
+</metadata>
