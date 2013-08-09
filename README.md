@@ -25,7 +25,7 @@ K2 was actually built on these 4 principles: feature-rich content in Joomla!, ea
 * The Joomla! Magazine and JoomlaGov.info (the directory for government websites built with Joomla!) are powered by K2
 * K2 is used in some of the top Joomla! websites worldwide by organizations like the Harvard Unibersity, The National Institute of Technology in Brazil, the UK's NHS, Top Gear, MTV, Nickelodeon, Jaguar, Groupama, Amnesty International, ActionAid, The High Court of Australia, Citrix, Impact Wrestling, DPG, OPAP, Avin Oil, Carrefour.
 * The Gorillaz, one of the coolest music bands in the world use K2 for their website
-* K2 is designed and developed by JoomlaWorks (established in 2006) and Nuevvo (established in 2010), both award winning & acclaimed Joomla! extensions companies. 
+* K2 is designed and developed by JoomlaWorks (established in 2006) and Nuevvo (established in 2010), both award winning & acclaimed Joomla! centric companies. 
 
 
 
