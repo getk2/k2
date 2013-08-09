@@ -16,7 +16,7 @@ K2 was actually built on these 4 principles: feature-rich content in Joomla!, ea
 And best of all? K2 is totally free to use!
 
 
-===Some facts about K2:
+### Some facts about K2:
 * It has been downloaded more than 1 million times since March 2009 (to Jan 2013)
 * Almost all template clubs provide K2 specific styling and display K2 as part of their demo sites (thank you template folks!)
 * There are almost 500 extensions supporting or integrating K2 in the Joomla! Extensions Directory - see http://extensions.joomla.org/search?q=k2
@@ -27,7 +27,7 @@ And best of all? K2 is totally free to use!
 * K2 is designed and developed by JoomlaWorks (established in 2006) and Nuevvo (established in 2010), both award winning & acclaimed Joomla! extensions companies. 
 
 
-===Resources
+### Resources
 Join the K2 Community to learn more on K2 and download the latest stable release at: http://getk2.org
 
 -- the JoomlaWorks team
