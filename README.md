@@ -1,7 +1,5 @@
-K2
-==
-
 ![K2](http://getk2.org/assets/files/logo/k2_logo.png)
+==
 
 You've already been there... Joomla! is a great content management system. In fact it's considered one of the best in the world. But the default article system in Joomla! is so spartan! Just a title, your content body and that's it. This is where K2 comes in.
 
