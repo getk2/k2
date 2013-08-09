@@ -1,6 +1,8 @@
 K2
 ==
 
+![K2](http://getk2.org/assets/files/logo/K2_logo_600x237_24b.png)
+
 You've already been there... Joomla! is a great content management system. In fact it's considered one of the best in the world. But the default article system in Joomla! is so spartan! Just a title, your content body and that's it. This is where K2 comes in.
 
 K2 was built as a complete replacement of the default article system in Joomla!. Install it like any Joomla! extension, import your articles from the default Joomla! article system and you instantly get a host of new features for your existing content: rich content forms for items (think of Joomla! articles with additional fields for article images, videos, podcasts & other audio files, image galleries and attachments), hassle-free image management (uploaded item images are auto-resized to 6 configurable dimensions, either globally or per category - you can now forget about using Photoshop resizing!), comments, tagging, built-in options to extend content forms (e.g. to create product catalogs), powerful content modules fetching K2 content in any way you can imagine, frontend editing with easy to use access control settings (for content-heavy websites), powerful yet easy templating (and sub-templating) for going above the "Joomla! average", extended user profiles, user groups, blogs, a powerful plugin API to extend item/category/user forms, "drag and drop" media manager and many more!
