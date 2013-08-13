@@ -51,11 +51,11 @@ class K2ControllerComments extends K2Controller
         $language->load('com_k2', JPATH_ADMINISTRATOR);
 
         // CSS
-        $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v=2.6.7');
+        $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v=2.6.8');
 
         // JS
         K2HelperHTML::loadjQuery(true);
-        $document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v=2.6.7&amp;sitepath='.JURI::root(true).'/');
+        $document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v=2.6.8&amp;sitepath='.JURI::root(true).'/');
 
         $this->addViewPath(JPATH_COMPONENT_ADMINISTRATOR.DS.'views');
         $this->addModelPath(JPATH_COMPONENT_ADMINISTRATOR.DS.'models');

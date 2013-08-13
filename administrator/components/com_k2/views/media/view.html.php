@@ -21,8 +21,8 @@ class K2ViewMedia extends K2View
         $user = JFactory::getUser();
         $document = JFactory::getDocument();
         $document->addStyleSheet('//ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/smoothness/jquery-ui.css');
-        $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/theme.css?v=2.6.7');
-        $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/elfinder.min.css?v=2.6.7');
+        $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/theme.css?v=2.6.8');
+        $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/elfinder.min.css?v=2.6.8');
         $type = JRequest::getCmd('type');
         $fieldID = JRequest::getCmd('fieldID');
         if ($type == 'video')

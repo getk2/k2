@@ -187,7 +187,7 @@ class K2ViewComments extends K2View
 		if ($mainframe->isSite())
 		{
 			// CSS
-			$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.frontend.css?v=2.6.7');
+			$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.frontend.css?v=2.6.8');
 			$document->addStyleSheet(JURI::root(true).'/templates/system/css/general.css');
 			$document->addStyleSheet(JURI::root(true).'/templates/system/css/system.css');
 			if (K2_JVERSION != '15')
