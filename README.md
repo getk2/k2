@@ -28,7 +28,7 @@ K2 was actually built on these 4 principles: feature-rich content in Joomla!, ea
 * K2 is designed and developed by JoomlaWorks (established in 2006) and Nuevvo (established in 2010), both award winning & acclaimed Joomla! centric companies. 
 
 
-
+***
 ### Downloading K2
 You can find the latest stable release on: http://getk2.org
 
