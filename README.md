@@ -1,5 +1,5 @@
 ![K2](http://getk2.org/assets/files/logo/k2_logo.png)
-==
+***
 
 You've already been there... Joomla! is a great content management system. In fact it's considered one of the best in the world. But the default article system in Joomla! is so spartan! Just a title, your content body and that's it. This is where K2 comes in.
 
@@ -16,7 +16,7 @@ K2 was actually built on these 4 principles: feature-rich content in Joomla!, ea
 **And best of all? K2 is totally free to use!**
 
 
-
+==
 ### Some facts about K2
 * It has been downloaded more than 1 million times since March 2009 (to Jan 2013)
 * Almost all template clubs provide K2 specific styling and display K2 as part of their demo sites (thank you template folks!)
@@ -28,14 +28,14 @@ K2 was actually built on these 4 principles: feature-rich content in Joomla!, ea
 * K2 is designed and developed by JoomlaWorks (established in 2006) and Nuevvo (established in 2010), both award winning & acclaimed Joomla! centric companies. 
 
 
-***
+==
 ### Downloading K2
 You can find the latest stable release on: http://getk2.org
 
 If you are looking for the latest developer build (a snapshot from this Github repository) please do not use Github's "Download ZIP" button but instead grab the developer build from this link: http://getk2.org/assets/get/ (updated hourly)
 
 
-
+==
 ### Resources
 Join the K2 Community to learn more and download the latest stable release at: http://getk2.org
 
