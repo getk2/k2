@@ -29,6 +29,13 @@ K2 was actually built on these 4 principles: feature-rich content in Joomla!, ea
 
 
 
+### Downloading K2
+You can find the latest stable release on: http://getk2.org
+
+If you are looking for the latest deveoper build (from this Github repository) please do not use Github's "Download ZIP" button but instead grab it from this link: http://getk2.org/assets/get/
+
+
+
 ### Resources
 Join the K2 Community to learn more and download the latest stable release at: http://getk2.org
 
