@@ -54,7 +54,7 @@ class K2ModelItem extends K2Model
 			}
 		}
 
-		($row->id) ? $isNew = false : $isNew = true;
+		$isNew = ($row->id) ? false : true;
 
 		if ($params->get('mergeEditors'))
 		{

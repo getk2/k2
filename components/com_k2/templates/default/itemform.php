@@ -57,7 +57,7 @@ $document->addScriptDeclaration("
 			</div>
 			<div class="clr"></div>
 			<hr class="sep" />
-			<?php if(!$this->permissions->get('publish')): ?>
+			<?php if(!$this->permissions->get('publish') && !$this->permissions->get('editPublished')): ?>
 			<div id="k2FrontendPermissionsNotice">
 				<p><?php echo JText::_('K2_FRONTEND_PERMISSIONS_NOTICE'); ?></p>
 			</div>
@@ -146,7 +146,7 @@ $document->addScriptDeclaration("
 										<?php endif; ?>
 									</td>
 								</tr>
-								<?php if($this->mainframe->isAdmin() || ($this->mainframe->isSite() && $this->permissions->get('publish'))): ?>
+								<?php if($this->mainframe->isAdmin() || ($this->mainframe->isSite() && $this->permissions->get('publish')  || ($this->permissions->get('editPublished') && $this->row->id)  )): ?>
 								<tr>
 									<td class="adminK2LeftCol">
 										<label for="featured"><?php echo JText::_('K2_IS_IT_FEATURED'); ?></label>
