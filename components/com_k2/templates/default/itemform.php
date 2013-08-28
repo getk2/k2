@@ -165,7 +165,15 @@ $document->addScriptDeclaration("
 								</tr>
 								<?php endif; ?>
 							</table>
-							<ul id="k2ExtraFieldsValidationResults"></ul>
+							
+							<!-- Required extra field warning -->
+							<div id="k2ExtraFieldsValidationResults">
+								<h3><?php echo JText::_('K2_THE_FOLLOWING_FIELDS_ARE_REQUIRED'); ?></h3>
+								<ul id="k2ExtraFieldsMissing">
+									<li><?php echo JText::_('K2_LOADING'); ?></li>
+								</ul>
+							</div>
+							
 							<!-- Tabs start here -->
 							<div class="simpleTabs" id="k2Tabs">
 								<ul class="simpleTabsNavigation">
