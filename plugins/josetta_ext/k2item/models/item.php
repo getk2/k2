@@ -13,7 +13,7 @@ jimport('joomla.application.component.model');
 
 JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
 
-class JosettaK2ModelItem extends JModel
+class JosettaK2ModelItem extends JModelLegacy
 {
 
     public function save($item, $front = false)
