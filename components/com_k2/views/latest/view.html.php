@@ -226,6 +226,22 @@ class K2ViewLatest extends K2View
             $this->assignRef('blocks', $users);
         }
 
+		// Browser title
+		$browserTitle = $params->get('page_title');
+		if (K2_JVERSION != '15')
+		{
+			if ($mainframe->getCfg('sitename_pagetitles', 0) == 1)
+            {
+                $browserTitle = JText::sprintf('JPAGETITLE', $mainframe->getCfg('sitename'), $params->get('page_title'));
+            }
+            elseif ($mainframe->getCfg('sitename_pagetitles', 0) == 2)
+            {
+                $browserTitle = JText::sprintf('JPAGETITLE', $params->get('page_title'), $mainframe->getCfg('sitename'));
+            }
+		}
+		$document->setTitle($browserTitle);
+		
+
         // Set menu metadata for Joomla! 2.5+
         if (K2_JVERSION != '15')
         {
