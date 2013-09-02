@@ -178,7 +178,7 @@ if ($params->get('k2Sef'))
 				else
 				{
 					$temp = @explode(':', $segments[1]);
-					$segments[1] = (int)$temp[0];
+					$segments[1] = $temp[0];
 				}
 
 			}
@@ -333,7 +333,7 @@ if ($params->get('k2Sef'))
 				}
 
 				// Reinsert item id to the item alias
-				if (!$params->get('k2SefInsertItemId') && @$segments[1] != 'download' &&  @$segments[1] != 'edit')
+				if (!$params->get('k2SefInsertItemId') && @$segments[1] != 'download' && @$segments[1] != 'edit')
 				{
 					$segments[1] = str_replace(':', '-', $segments[1]);
 					$ItemId = getItemId($segments[1]);
