@@ -80,15 +80,18 @@ class K2ModelExtraField extends K2Model
 			}
 			elseif ($row->type == 'link')
 			{
-				if (substr($values[$i], 0, 7) == 'http://')
+				if (trim($values[$i]) != '')
 				{
-					$values[$i] = $values[$i];
+					if (substr($values[$i], 0, 7) == 'http://')
+					{
+						$values[$i] = $values[$i];
+					}
+					else
+					{
+						$values[$i] = 'http://'.$values[$i];
+					}
 				}
-				else
-				{
-					$values[$i] = 'http://'.$values[$i];
-				}
-				$object->set('value', $values[$i]);
+				$object->set('value', trim($values[$i]));
 			}
 			elseif ($row->type == 'csv')
 			{
