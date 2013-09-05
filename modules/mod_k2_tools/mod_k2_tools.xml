@@ -57,8 +57,8 @@
             <option value="1">K2_SHOW</option>
         </param>
         <!-- Calendar Settings -->
-        <param name="" type="header" default="K2_CALENDAR_SETTINGS" label="" description=""/>
-        <param name="calendarCategory" type="categories" label="K2_CATEGORY_FILTER" description="" default=""/>
+        <field name="" type="header" default="K2_CALENDAR_SETTINGS" label="" description=""/>
+        <field name="calendarCategory" type="categories" multiple="multiple" default="0" label="K2_CATEGORY_FILTER" description=""/>
         <!-- Breadcrumbs Settings -->
         <param name="" type="header" default="K2_BREADCRUMBS_SETTINGS" label="" description=""/>
         <param name="home" type="text" default="" label="K2_ROOT_LABEL_EG_HOME" description="K2_THE_LABEL_FOR_THE_HOME_LINK_LEAVE_THIS_BLANK_IF_YOU_DONT_WISH_TO_INCLUDE_A_HOME_LINK_IN_YOUR_PATH"/>
