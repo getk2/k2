@@ -226,20 +226,69 @@ $K2(document).ready(function(){
 		});
 	}
 	else {
-		$K2('a.calendarNavLink').live('click',  function(event){
-			event.preventDefault();
-			var parentElement = $K2(this).parent().parent().parent().parent();
-			var url = $K2(this).attr('href');
-			parentElement.empty().addClass('k2CalendarLoader');
-			$K2.ajax({
-				url: url,
-				type: 'post',
-				success: function(response){
-					parentElement.html(response);
-					parentElement.removeClass('k2CalendarLoader');
-				}
-			});
-		});
+		
+		function URLToArray(url) {
+	            var request = {};
+	            var pairs = url.substring(url.indexOf('?') + 1).split('&');
+	            for (var i = 0; i < pairs.length; i++) {
+	                var pair = pairs[i].split('=');
+	                request[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+	            }
+	            return request;
+	        }
+
+
+	        if($K2(".edit-metalic").on("click")){
+	            $K2(".edit-metalic").on("click",function(event){
+	                if($K2(this).is(":checked"))
+	                {
+	                    /* get html Calendar and remove it*/
+	                    var parentElement = $K2("a.calendarNavLink").parent().parent().parent().parent();
+	                    var url = $K2("a.calendarNavLink").attr('href');
+	                    parentElement.empty().addClass('k2CalendarLoader');
+	
+	                    /* get link after get month +1
+	                    after insert this var in our old link /replace/
+	                    var url = "index.php?option=com_k2&view=itemlist&task=calendar&month=7&year=2013&catid=130,134,133,92,93,150,151,91,152&Itemid=0";*/
+	                    var asd = URLToArray(url);
+	                    var month = parseInt(asd['month'])+1;
+	                    var url = url.replace(/(month=)([0-9]+)/, '$1' + month);
+	
+	
+	                    var cat_id = "";
+	                    $K2(".edit-metalic").each(function(){
+	                        if($K2(this).is(":checked")){
+	                            cat_id += $K2(this).val() + ",";
+	                        }
+	                    });
+	                    $K2.ajax({
+	                        url: url + "&cat_id=" + cat_id.substr(0,cat_id.length-1),
+	                        type: 'post',
+	                        success: function(response){
+	                            $K2(".k2CalendarBlock").html(response);
+	                            parentElement.removeClass('k2CalendarLoader');
+	                        }
+	                    });
+	                }
+	            });
+	        }
+	        if($K2("a.calendarNavLink").click()){
+	            $K2('a.calendarNavLink').live('click',  function(event){
+	                event.preventDefault();
+	                var parentElement = $K2(this).parent().parent().parent().parent();
+	                var url = $K2(this).attr('href');
+	                parentElement.empty().addClass('k2CalendarLoader');
+	                $K2.ajax({
+	                    url: url,
+	                    type: 'post',
+	                    success: function(response){
+	                        parentElement.html(response);
+	                        parentElement.removeClass('k2CalendarLoader');
+	                    }
+	                });
+	            });
+	        }
+		
 	}
 
 	// Generic Element Scroller (use .k2Scroller in the container and .k2ScrollerElement for each contained element)
