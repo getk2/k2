@@ -61,7 +61,13 @@ class K2ControllerItemlist extends K2Controller
 		$cal = new MyCalendar;
 		$cal->setMonthNames($months);
 		$cal->setDayNames($days);
-		$cal->category = JRequest::getInt('catid');
+		
+		if(JRequest::getInt('cat_id')){
+	            $cal->category = JRequest::getVar('cat_id');
+	        }
+	        else{
+	            $cal->category = JRequest::getVar('catid');
+	        }
 		$cal->setStartDay(1);
 		if (($month) && ($year))
 		{
