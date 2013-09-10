@@ -63,8 +63,18 @@ class K2Plugin extends JPlugin
 			$fields = '';
 			foreach ($form->getFieldset() as $field)
 			{
-				$search = 'name="'.$field->name.'"';
-				$replace = 'name="plugins['.$this->pluginName.$field->name.']"';
+				if ($field->__get('multiple'))
+				{
+					$search  = 'name="'.$field->name.'"';
+					$newName = JString::str_ireplace('[]', '', $field->name);
+					$replace = 'name="plugins['.$this->pluginName.$newName.'][]"';
+				}
+				else
+				{
+                	$search  = 'name="'.$field->name.'"';
+                	$replace = 'name="plugins['.$this->pluginName.$field->name.']"';
+				}
+				
 				$input = JString::str_ireplace($search, $replace, $field->__get('input'));
 				$fields .= $field->__get('label').' '.$input;
 			}
