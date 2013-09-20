@@ -67,6 +67,34 @@ class K2ViewItem extends K2View
 			// Get permissions
 			$K2Permissions = K2Permissions::getInstance();
 			$this->assignRef('permissions', $K2Permissions->permissions);
+
+			// Build permissions message
+			$permissionsLabels = array();
+
+			if ($permissions->get('add'))
+			{
+				$permissionsLabels[]= JText::_('K2_ADD_ITEMS');
+			}
+			if ($permissions->get('editOwn'))
+			{
+				$permissionsLabels[] = JText::_('K2_EDIT_OWN_ITEMS');
+			}
+			if ($permissions->get('editAll'))
+			{
+				$permissionsLabels[] = JText::_('K2_EDIT_ANY_ITEM');
+			}
+			if ($permissions->get('publish'))
+			{
+				$permissionsLabels[] = JText::_('K2_PUBLISH_ITEMS');
+			}
+			if ($permissions->get('editPublished'))
+			{
+				$permissionsLabels[] = JText::_('K2_ALLOW_EDITING_OF_ALREADY_PUBLISHED_ITEMS');
+			}
+			
+			$permissionsMessage = JText::_('K2_YOU_ARE_ALLOWED_TO').' '.implode(', ', $permissionsLabels);
+			$this->assignRef('permissionsMessage', $permissionsMessage);
+
 		}
 
 		if ($item->isCheckedOut($user->get('id'), $item->checked_out))
