@@ -82,7 +82,7 @@ class K2ModelExtraField extends K2Model
 			{
 				if (trim($values[$i]) != '')
 				{
-					if (substr($values[$i], 0, 7) == 'http://')
+					if (substr($values[$i], 0, 7) == 'http://' || substr($values[$i], 0, 8) == 'https://' || substr($values[$i], 0, 2) == '//' || substr($values[$i], 0, 1) == '/')
 					{
 						$values[$i] = $values[$i];
 					}
