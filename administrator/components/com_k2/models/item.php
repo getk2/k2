@@ -56,6 +56,15 @@ class K2ModelItem extends K2Model
 
 		$isNew = ($row->id) ? false : true;
 
+		// If we are in front-end and the item is not new we need to get it's current published state.
+		if (!$isNew && $front)
+		{
+			$id = JRequest::getInt('id');
+			$currentRow = JTable::getInstance('K2Item', 'Table');
+			$currentRow->load($id);
+			$isAlreadyPublished = $currentRow->published;
+		}
+
 		if ($params->get('mergeEditors'))
 		{
 			$text = JRequest::getVar('text', '', 'post', 'string', 2);
@@ -852,13 +861,27 @@ class K2ModelItem extends K2Model
 
 		}
 
-		if ($front && $row->published)
+		// If we are in front-end check publishing permissions properly.
+		if ($front)
 		{
-			if (($isNew && !K2HelperPermissions::canPublishItem($row->catid)) || (!$isNew && !K2HelperPermissions::canEditPublished($row->catid)))
+			// New items require the "Publish items" permission.
+			if ($isNew && $row->published && !K2HelperPermissions::canPublishItem($row->catid))
 			{
 				$row->published = 0;
 				$mainframe->enqueueMessage(JText::_('K2_YOU_DONT_HAVE_THE_PERMISSION_TO_PUBLISH_ITEMS'), 'notice');
 			}
+
+			// Existing items require either the "Publish items" or the "Allow editing of already published items" permission.
+			if (!$isNew && $row->published)
+			{
+				$canEditPublished = $isAlreadyPublished && K2HelperPermissions::canEditPublished($row->catid);
+				if (!K2HelperPermissions::canPublishItem($row->catid) && (!$canEditPublished))
+				{
+					$row->published = 0;
+					$mainframe->enqueueMessage(JText::_('K2_YOU_DONT_HAVE_THE_PERMISSION_TO_PUBLISH_ITEMS'), 'notice');
+				}
+			}
+
 		}
 
 		$query = "UPDATE #__k2_items SET 
