@@ -1115,22 +1115,31 @@ class MyCalendar extends Calendar
 		{
 			$accessCheck = " access <= {$aid}";
 		}
+			
+			// it is not correct/ IT IS BAD
+		//$query = "SELECT COUNT(*) FROM #__k2_items WHERE YEAR(created)={$year} AND MONTH(created)={$month} AND DAY(created)={$day} AND published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) AND trash=0 AND {$accessCheck} {$languageCheck} AND EXISTS(SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND {$accessCheck} {$languageCheck})";
 
-		$query = "SELECT COUNT(*) FROM #__k2_items WHERE YEAR(created)={$year} AND MONTH(created)={$month} AND DAY(created)={$day} AND published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) AND trash=0 AND {$accessCheck} {$languageCheck} AND EXISTS(SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND {$accessCheck} {$languageCheck})";
-
+		$query = "SELECT DAY(created) as day FROM #__k2_items WHERE YEAR(created)={$year} AND MONTH(created)={$month}  AND published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) AND trash=0 AND {$accessCheck} {$languageCheck} AND EXISTS(SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND {$accessCheck} {$languageCheck})";
+		
 		$catid = $this->category;
 		if ($catid > 0)
 			$query .= " AND catid={$catid}";
 
 		$db->setQuery($query);
-		$result = $db->loadResult();
+		//$result = $db->loadResult();
+		
+		// load in array
+		// we will use it in file calendarClass.php in module k2 tools
+		return $db->loadResultArray();
+		
+		
 		if ($db->getErrorNum())
 		{
 			echo $db->stderr();
 			return false;
 		}
 
-		if ($result > 0)
+		/*if ($result > 0)
 		{
 			if ($catid > 0)
 				return JRoute::_(K2HelperRoute::getDateRoute($year, $month, $day, $catid));
@@ -1140,9 +1149,15 @@ class MyCalendar extends Calendar
 		else
 		{
 			return false;
-		}
+		}*/
 	}
 
+	//new method 
+	
+	    function get_catid($day, $month, $year){
+	        return K2HelperRoute::getDateRoute($year, $month, $day, $this->category);
+	    }
+	    
 	function getCalendarLink($month, $year)
 	{
 		$itemID = JRequest::getInt('Itemid');
