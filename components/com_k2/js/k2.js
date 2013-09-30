@@ -143,6 +143,9 @@ $K2(document).ready(function(){
 	$K2('.itemRatingForm a').click(function(event){
 		event.preventDefault();
 		var itemID = $K2(this).attr('rel');
+		if(!itemID) {
+			itemID = $K2(this).data('id');
+		}
 		var log = $K2('#itemRatingLog' + itemID).empty().addClass('formLogLoading');
 		var rating = $K2(this).html();
 		$K2.ajax({
