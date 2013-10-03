@@ -107,7 +107,7 @@ class K2ViewCategory extends K2View
         (JRequest::getInt('cid')) ? $title = JText::_('K2_EDIT_CATEGORY') : $title = JText::_('K2_ADD_CATEGORY');
         JToolBarHelper::title($title, 'k2.png');
         JToolBarHelper::save();
-        JToolBarHelper::custom('saveAndNew', 'save.png', 'save_f2.png', 'K2_SAVE_AND_NEW', false);
+        JToolBarHelper::custom('saveAndNew', 'save-new.png', 'save_f2.png', 'K2_SAVE_AND_NEW', false);
         JToolBarHelper::apply();
         JToolBarHelper::cancel();
 
