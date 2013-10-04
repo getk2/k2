@@ -573,7 +573,8 @@ class K2ViewItem extends K2View
 			$this->params->set('showK2Plugins', true);
 			JToolBarHelper::title($title, 'k2.png');
 			JToolBarHelper::save();
-			JToolBarHelper::custom('saveAndNew', 'save-new.png', 'save_f2.png', 'K2_SAVE_AND_NEW', false);
+			$saveNewIcon = version_compare(JVERSION, '2.5.0', 'ge') ? 'save-new.png' : 'save.png';
+			JToolBarHelper::custom('saveAndNew', $saveNewIcon, 'save_f2.png', 'K2_SAVE_AND_NEW', false);
 			JToolBarHelper::apply();
 			JToolBarHelper::cancel();
 		}
