@@ -57,7 +57,7 @@ class K2ModelItems extends K2Model
 			$words = explode(' ', $search);
 			for ($i = 0; $i < count($words); $i++)
 			{
-				$words[$i] = '+'.$words[$i];
+				$words[$i] = '+'.$db->quote($words[$i]);
 				$words[$i] .= '*';
 			}
 			$search = implode(' ', $words);
@@ -171,7 +171,7 @@ class K2ModelItems extends K2Model
 			$words = explode(' ', $search);
 			for ($i = 0; $i < count($words); $i++)
 			{
-				$words[$i] = '+'.$words[$i];
+				$words[$i] = '+'.$db->quote($words[$i]);
 				$words[$i] .= '*';
 			}
 			$search = implode(' ', $words);
