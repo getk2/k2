@@ -14,6 +14,7 @@ if (K2_JVERSION != '15')
 {
     $language = JFactory::getLanguage();
     $language->load('mod_k2.j16', JPATH_ADMINISTRATOR, null, true);
+	require_once JPATH_SITE.'/components/com_users/helpers/route.php';
 }
 
 require_once (dirname(__FILE__).DS.'helper.php');
@@ -67,9 +68,9 @@ if ($user->guest)
 
     // Define some variables depending on Joomla! version
     $passwordFieldName = K2_JVERSION != '15' ? 'password' : 'passwd';
-    $resetLink = JRoute::_((K2_JVERSION != '15') ? 'index.php?option=com_users&view=reset' : 'index.php?option=com_user&view=reset');
-    $remindLink = JRoute::_((K2_JVERSION != '15') ? 'index.php?option=com_users&view=remind' : 'index.php?option=com_user&view=remind');
-    $registrationLink = JRoute::_((K2_JVERSION != '15') ? 'index.php?option=com_users&view=registration' : 'index.php?option=com_user&view=register');
+    $resetLink = JRoute::_((K2_JVERSION != '15') ? 'index.php?option=com_users&view=reset&Itemid='.UsersHelperRoute::getResetRoute() : 'index.php?option=com_user&view=reset');
+    $remindLink = JRoute::_((K2_JVERSION != '15') ? 'index.php?option=com_users&view=remind&Itemid='.UsersHelperRoute::getRemindRoute() : 'index.php?option=com_user&view=remind');
+    $registrationLink = JRoute::_((K2_JVERSION != '15') ? 'index.php?option=com_users&view=registration&Itemid='.UsersHelperRoute::getRegistrationRoute() : 'index.php?option=com_user&view=register');
     $option = K2_JVERSION != '15' ? 'com_users' : 'com_user';
     $task = K2_JVERSION != '15' ? 'user.login' : 'login';
     require (JModuleHelper::getLayoutPath('mod_k2_user', 'login'));
@@ -81,7 +82,7 @@ else
     $user->profile = modK2UserHelper::getProfile($params);
     $user->numOfComments = modK2UserHelper::countUserComments($user->id);
     $menu = modK2UserHelper::getMenu($params);
-    $profileLink = JRoute::_((K2_JVERSION != '15') ? 'index.php?option=com_users&view=profile&layout=edit' : 'index.php?option=com_user&view=user&task=edit');
+    $profileLink = JRoute::_((K2_JVERSION != '15') ? 'index.php?option=com_users&view=profile&layout=edit&Itemid='.UsersHelperRoute::getProfileRoute() : 'index.php?option=com_user&view=user&task=edit');
     $option = K2_JVERSION != '15' ? 'com_users' : 'com_user';
     $task = K2_JVERSION != '15' ? 'user.logout' : 'logout';
     require (JModuleHelper::getLayoutPath('mod_k2_user', 'userblock'));
