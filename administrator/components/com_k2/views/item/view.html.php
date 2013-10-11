@@ -71,23 +71,23 @@ class K2ViewItem extends K2View
 			// Build permissions message
 			$permissionsLabels = array();
 
-			if ($permissions->get('add'))
+			if ($this->permissions->get('add'))
 			{
 				$permissionsLabels[]= JText::_('K2_ADD_ITEMS');
 			}
-			if ($permissions->get('editOwn'))
+			if ($this->permissions->get('editOwn'))
 			{
 				$permissionsLabels[] = JText::_('K2_EDIT_OWN_ITEMS');
 			}
-			if ($permissions->get('editAll'))
+			if ($this->permissions->get('editAll'))
 			{
 				$permissionsLabels[] = JText::_('K2_EDIT_ANY_ITEM');
 			}
-			if ($permissions->get('publish'))
+			if ($this->permissions->get('publish'))
 			{
 				$permissionsLabels[] = JText::_('K2_PUBLISH_ITEMS');
 			}
-			if ($permissions->get('editPublished'))
+			if ($this->permissions->get('editPublished'))
 			{
 				$permissionsLabels[] = JText::_('K2_ALLOW_EDITING_OF_ALREADY_PUBLISHED_ITEMS');
 			}
