@@ -297,13 +297,21 @@ class Calendar
     	    for ($i = 0; $i < 7; $i++)
     	    {
         	    $class = ($year == $today["year"] && $month == $today["mon"] && $d == $today["mday"]) ? "calendarToday" : "calendarDate";
-    	              
-    	        if ($d > 0 && $d <= $daysInMonth){
-    	            $link = $this->getDateLink($d, $month, $year);
+    	            
+                    $byDayArr = $this->fetchMonthByDayItemCount($month, $year);
+           
+    	            if ($d > 0 && $d <= $daysInMonth){
+                    
+                    $link="";
+                    $daycount = $byDayArr[$d];
+                    if (isset($daycount)){
+                        $link = $this->getDateLink($d, $month, $year);
+                    }
+
     	            if($link == ""){
     	            	$s .= "<td class=\"{$class}\">$d</td>\n"; 
     	            } else {
-    	            	$s .= "<td class=\"{$class}Linked\"><a href=\"$link\">$d</a></td>\n";
+    	            	$s .= "<td data-itemcount=\"".$daycount."\" class=\"{$class}Linked\"><a href=\"$link\">$d</a></td>\n";
     	            }
     	        } else {
     	        		$s .= "<td class=\"calendarDateEmpty\">&nbsp;</td>\n";
