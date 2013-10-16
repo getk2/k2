@@ -144,6 +144,18 @@ class Calendar
         return "";
     }
 
+    /*
+        Return an associative array in which the key is the daydate and the value is the k2 item count (created on that day)
+        You must override this method if you want to activate the date linking
+        feature of the calendar.
+        
+        Note: If you return an empty array from this function, no navigation link will
+        be displayed. This is the default behaviour.
+    */
+    function fetchMonthByDayItemCount($month,$year){
+          return array();
+    }
+
 
     /*
         Return the HTML for the current month
