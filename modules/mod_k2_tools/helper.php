@@ -1090,6 +1090,7 @@ class MyCalendar extends Calendar
 	var $category = null;
 
         function fetchMonthByDayItemCount($month,$year){
+        	$mainframe = JFactory::getApplication();
 		$user = JFactory::getUser();
 		$aid = $user->get('aid');
 		$db = JFactory::getDBO();
