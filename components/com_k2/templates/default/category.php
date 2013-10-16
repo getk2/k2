@@ -251,7 +251,7 @@ defined('_JEXEC') or die;
 	</div>
 
 	<!-- Pagination -->
-	<?php if(count($this->pagination->getPagesLinks())): ?>
+	<?php if($this->pagination->getPagesLinks()): ?>
 	<div class="k2Pagination">
 		<?php if($this->params->get('catPagination')) echo $this->pagination->getPagesLinks(); ?>
 		<div class="clr"></div>
