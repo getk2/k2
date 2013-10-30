@@ -1123,26 +1123,22 @@ class K2ModelItemlist extends K2Model
 		else
 		{
 
-			$sql .= " AND MATCH(i.title, i.introtext, i.`fulltext`,i.image_caption,i.image_credits,i.video_caption,i.video_credits,i.extra_fields_search,i.metadesc,i.metakey) ";
+			$escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
+			$quoted = $db->Quote('%'.$escaped.'%', false);
+
 			if ($type == 'exact')
 			{
 				$text = JString::trim($search, '"');
 				$escaped = K2_JVERSION == '15' ? $db->getEscaped($text, true) : $db->escape($text, true);
-				$text = $db->Quote('"'.$db->getEscaped($text, true).'"', false);
+				$quoted = $db->Quote('%'.$escaped.'%', false);
+				$sql .= " AND ( LOWER(i.title) = ".$quoted." OR LOWER(i.introtext) = ".$quoted." OR LOWER(i.`fulltext`) = ".$quoted." OR LOWER(i.extra_fields_search) = ".$quoted." OR LOWER(i.image_caption) = ".$quoted." OR LOWER(i.image_credits) = ".$quoted." OR LOWER(i.video_caption) = ".$quoted." OR LOWER(i.video_credits) = ".$quoted." OR LOWER(i.metadesc) = ".$quoted." OR LOWER(i.metakey) = ".$quoted.") ";
 			}
 			else
 			{
-				$search = JString::str_ireplace('*', '', $search);
-				$words = explode(' ', $search);
-				for ($i = 0; $i < count($words); $i++)
-				{
-					$words[$i] .= '*';
-				}
-				$search = implode(' ', $words);
 				$escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
-				$text = $db->Quote($escaped, false);
+				$text = $db->Quote($escaped);
+				$sql .= " AND ( LOWER(i.title) LIKE ".$quoted." OR LOWER(i.introtext) LIKE ".$quoted." OR LOWER(i.`fulltext`) LIKE ".$quoted." OR LOWER(i.extra_fields_search) LIKE ".$quoted." OR LOWER(i.image_caption) LIKE ".$quoted." OR LOWER(i.image_credits) LIKE ".$quoted." OR LOWER(i.video_caption) LIKE ".$quoted." OR LOWER(i.video_credits) LIKE ".$quoted." OR LOWER(i.metadesc) LIKE ".$quoted." OR LOWER(i.metakey) LIKE ".$quoted.") ";
 			}
-			$sql .= " AGAINST ({$text} IN BOOLEAN MODE)";
 
 		}
 

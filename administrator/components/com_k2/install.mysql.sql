@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS `#__k2_attachments` (
   `hits` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `itemID` (`itemID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `#__k2_categories` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `#__k2_categories` (
   KEY `access` (`access`),
   KEY `trash` (`trash`),
   KEY `language` (`language`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `#__k2_comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `#__k2_comments` (
   KEY `userID` (`userID`),
   KEY `published` (`published`),
   KEY `latestComments` (`published`,`commentDate`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `#__k2_extra_fields` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -63,13 +63,13 @@ CREATE TABLE IF NOT EXISTS `#__k2_extra_fields` (
   KEY `group` (`group`),
   KEY `published` (`published`),
   KEY `ordering` (`ordering`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `#__k2_extra_fields_groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `#__k2_items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -117,10 +117,8 @@ CREATE TABLE IF NOT EXISTS `#__k2_items` (
   KEY `featured_ordering` (`featured_ordering`),
   KEY `hits` (`hits`),
   KEY `created` (`created`),
-  KEY `language` (`language`),
-  FULLTEXT KEY `search` (`title`,`introtext`,`fulltext`,`extra_fields_search`,`image_caption`,`image_credits`,`video_caption`,`video_credits`,`metadesc`,`metakey`),
-  FULLTEXT KEY `title` (`title`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+  KEY `language` (`language`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `#__k2_rating` (
   `itemID` int(11) NOT NULL DEFAULT '0',
@@ -128,16 +126,15 @@ CREATE TABLE IF NOT EXISTS `#__k2_rating` (
   `rating_count` int(11) unsigned NOT NULL DEFAULT '0',
   `lastip` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`itemID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `#__k2_tags` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `published` smallint(6) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `published` (`published`),
-  FULLTEXT KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+  KEY `published` (`published`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `#__k2_tags_xref` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -146,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `#__k2_tags_xref` (
   PRIMARY KEY (`id`),
   KEY `tagID` (`tagID`),
   KEY `itemID` (`itemID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `#__k2_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -164,11 +161,11 @@ CREATE TABLE IF NOT EXISTS `#__k2_users` (
   PRIMARY KEY (`id`),
   KEY `userID` (`userID`),
   KEY `group` (`group`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `#__k2_user_groups` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `permissions` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;

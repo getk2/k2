@@ -52,24 +52,17 @@ class K2ModelItems extends K2Model
 
 		if ($search)
 		{
-
-			$search = JString::str_ireplace('*', '', $search);
-			$words = explode(' ', $search);
-			for ($i = 0; $i < count($words); $i++)
-			{
-				$words[$i] = '+'.$db->quote($words[$i]);
-				$words[$i] .= '*';
-			}
-			$search = implode(' ', $words);
 			$escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
-			$search = $db->Quote($escaped, false);
+			$quoted = $db->Quote('%'.$escaped.'%', false);
 
 			if ($params->get('adminSearch') == 'full')
-				$query .= " AND MATCH(i.title, i.introtext, i.`fulltext`, i.extra_fields_search, i.image_caption,i.image_credits,i.video_caption,i.video_credits,i.metadesc,i.metakey)";
+			{
+				$query .= " AND ( LOWER(i.title) LIKE ".$quoted." OR LOWER(i.introtext) LIKE ".$quoted." OR LOWER(i.`fulltext`) LIKE ".$quoted." OR LOWER(i.extra_fields_search) LIKE ".$quoted." OR LOWER(i.image_caption) LIKE ".$quoted." OR LOWER(i.image_credits) LIKE ".$quoted." OR LOWER(i.video_caption) LIKE ".$quoted." OR LOWER(i.video_credits) LIKE ".$quoted." OR LOWER(i.metadesc) LIKE ".$quoted." OR LOWER(i.metakey) LIKE ".$quoted.") ";
+			}
 			else
-				$query .= " AND MATCH( i.title )";
-
-			$query .= " AGAINST ({$search} IN BOOLEAN MODE)";
+			{
+				$query .= " AND LOWER(i.title) LIKE ".$quoted;
+			}
 		}
 
 		if ($filter_state > -1)
@@ -166,24 +159,17 @@ class K2ModelItems extends K2Model
 
 		if ($search)
 		{
-
-			$search = JString::str_ireplace('*', '', $search);
-			$words = explode(' ', $search);
-			for ($i = 0; $i < count($words); $i++)
-			{
-				$words[$i] = '+'.$db->quote($words[$i]);
-				$words[$i] .= '*';
-			}
-			$search = implode(' ', $words);
 			$escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
-			$search = $db->Quote($escaped, false);
+			$quoted = $db->Quote('%'.$escaped.'%', false);
 
 			if ($params->get('adminSearch') == 'full')
-				$query .= " AND MATCH(title, introtext, `fulltext`, extra_fields_search, image_caption, image_credits, video_caption, video_credits, metadesc, metakey)";
+			{
+				$query .= " AND ( LOWER(i.title) LIKE ".$quoted." OR LOWER(i.introtext) LIKE ".$quoted." OR LOWER(i.`fulltext`) LIKE ".$quoted." OR LOWER(i.extra_fields_search) LIKE ".$quoted." OR LOWER(i.image_caption) LIKE ".$quoted." OR LOWER(i.image_credits) LIKE ".$quoted." OR LOWER(i.video_caption) LIKE ".$quoted." OR LOWER(i.video_credits) LIKE ".$quoted." OR LOWER(i.metadesc) LIKE ".$quoted." OR LOWER(i.metakey) LIKE ".$quoted.") ";
+			}
 			else
-				$query .= " AND MATCH( title )";
-
-			$query .= " AGAINST ({$search} IN BOOLEAN MODE)";
+			{
+				$query .= " AND LOWER(i.title) LIKE ".$quoted;
+			}
 		}
 
 		if ($filter_state > -1)
@@ -249,7 +235,11 @@ class K2ModelItems extends K2Model
 		}
 		JPluginHelper::importPlugin('finder');
 		$dispatcher = JDispatcher::getInstance();
-		$dispatcher->trigger('onFinderChangeState', array('com_k2.item', $cid, 1));
+		$dispatcher->trigger('onFinderChangeState', array(
+			'com_k2.item',
+			$cid,
+			1
+		));
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
 		$mainframe->redirect('index.php?option=com_k2&view=items');
@@ -268,7 +258,11 @@ class K2ModelItems extends K2Model
 		}
 		JPluginHelper::importPlugin('finder');
 		$dispatcher = JDispatcher::getInstance();
-		$dispatcher->trigger('onFinderChangeState', array('com_k2.item', $cid, 0));
+		$dispatcher->trigger('onFinderChangeState', array(
+			'com_k2.item',
+			$cid,
+			0
+		));
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
 		$mainframe->redirect('index.php?option=com_k2&view=items');
@@ -767,8 +761,30 @@ class K2ModelItems extends K2Model
 			$videotype = $matches[1][0];
 			$videofile = $matches[2][0];
 
-			$videoExtensions = array('flv', 'mp4', 'ogv', 'webm', 'f4v', 'm4v', '3gp', '3g2', 'mov', 'mpeg', 'mpg', 'avi', 'wmv', 'divx', 'swf');
-			$audioExtensions = array('mp3', 'aac', 'mp4', 'ogg', 'wma');
+			$videoExtensions = array(
+				'flv',
+				'mp4',
+				'ogv',
+				'webm',
+				'f4v',
+				'm4v',
+				'3gp',
+				'3g2',
+				'mov',
+				'mpeg',
+				'mpg',
+				'avi',
+				'wmv',
+				'divx',
+				'swf'
+			);
+			$audioExtensions = array(
+				'mp3',
+				'aac',
+				'mp4',
+				'ogg',
+				'wma'
+			);
 
 			if (in_array($videotype, $videoExtensions) || in_array($videotype, $audioExtensions))
 			{
@@ -811,7 +827,10 @@ class K2ModelItems extends K2Model
 
 			$row->delete($id);
 
-			$dispatcher->trigger('onFinderAfterDelete', array('com_k2.item', $row));
+			$dispatcher->trigger('onFinderAfterDelete', array(
+				'com_k2.item',
+				$row
+			));
 		}
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
@@ -1108,7 +1127,7 @@ class K2ModelItems extends K2Model
 		jimport('joomla.utilities.xmlelement');
 		$mainframe = JFactory::getApplication();
 		$db = JFactory::getDBO();
-		
+
 		$query = "SELECT COUNT(*) FROM #__k2_categories";
 		$db->setQuery($query);
 		$result = $db->loadResult();

@@ -86,17 +86,10 @@ class plgSearchK2 extends JPlugin
 
             if ($pluginParams->get('search_tags'))
             {
-                $tagQuery = JString::str_ireplace('*', '', $text);
-                $words = explode(' ', $tagQuery);
-                for ($i = 0; $i < count($words); $i++)
-                {
-                    $words[$i] .= '*';
-                }
-                $tagQuery = implode(' ', $words);
+                $tagQuery = JString::strtolower($text);
                 $escaped = K2_JVERSION == '15' ? $db->getEscaped($tagQuery, true) : $db->escape($tagQuery, true);
-                $tagQuery = $db->Quote($escaped, false);
-
-                $query = "SELECT id FROM #__k2_tags WHERE MATCH(name) AGAINST ({$tagQuery} IN BOOLEAN MODE) AND published=1";
+                $tagQuery = $db->Quote('%'.$escaped.'%', false);
+                $query = "SELECT id FROM #__k2_tags WHERE LOWER(name) LIKE ".$quoted." AND published=1";
                 $db->setQuery($query);
                 $tagIDs = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
 
@@ -108,28 +101,25 @@ class plgSearchK2 extends JPlugin
                     $itemIDs = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
                 }
             }
-
             if ($phrase == 'exact')
             {
                 $text = JString::trim($text, '"');
                 $escaped = K2_JVERSION == '15' ? $db->getEscaped($text, true) : $db->escape($text, true);
-                $text = $db->Quote('"'.$db->getEscaped($text, true).'"', false);
+				$quoted = $db->Quote($escaped);
+				$where = " ( LOWER(i.title) = ".$quoted." OR LOWER(i.introtext) = ".$quoted." OR LOWER(i.`fulltext`) = ".$quoted." OR LOWER(i.extra_fields_search) = ".$quoted." OR LOWER(i.image_caption) = ".$quoted." OR LOWER(i.image_credits) = ".$quoted." OR LOWER(i.video_caption) = ".$quoted." OR LOWER(i.video_credits) = ".$quoted." OR LOWER(i.metadesc) = ".$quoted." OR LOWER(i.metakey) = ".$quoted.") ";
             }
             else
             {
-                $text = JString::str_ireplace('*', '', $text);
-                $words = explode(' ', $text);
-                for ($i = 0; $i < count($words); $i++)
-                {
-                    if ($phrase == 'all')
-                        $words[$i] = '+'.$words[$i];
-                    $words[$i] .= '*';
-                }
-                $text = implode(' ', $words);
                 $escaped = K2_JVERSION == '15' ? $db->getEscaped($text, true) : $db->escape($text, true);
-                $text = $db->Quote($escaped, false);
+				$quoted = $db->Quote('%'.$escaped.'%', false);
+				$where = " ( LOWER(i.title) LIKE ".$quoted." OR LOWER(i.introtext) LIKE ".$quoted." OR LOWER(i.`fulltext`) LIKE ".$quoted." OR LOWER(i.extra_fields_search) LIKE ".$quoted." OR LOWER(i.image_caption) LIKE ".$quoted." OR LOWER(i.image_credits) LIKE ".$quoted." OR LOWER(i.video_caption) LIKE ".$quoted." OR LOWER(i.video_credits) LIKE ".$quoted." OR LOWER(i.metadesc) LIKE ".$quoted." OR LOWER(i.metakey) LIKE ".$quoted.") ";
             }
-
+            
+            if ($pluginParams->get('search_tags') && count($itemIDs))
+            {
+                JArrayHelper::toInteger($itemIDs);
+                $where .= " OR i.id IN (".implode(',', $itemIDs);
+            }
             $query = "
 		SELECT i.title AS title,
 	    i.metadesc,
@@ -146,14 +136,7 @@ class plgSearchK2 extends JPlugin
     	CASE WHEN CHAR_LENGTH(c.alias) THEN CONCAT_WS(':', c.id, c.alias) ELSE c.id END as catslug
     	FROM #__k2_items AS i
     	INNER JOIN #__k2_categories AS c ON c.id=i.catid AND c.access {$accessCheck}
-		WHERE (";
-            if ($pluginParams->get('search_tags') && count($itemIDs))
-            {
-                JArrayHelper::toInteger($itemIDs);
-                $query .= " i.id IN (".implode(',', $itemIDs).") OR ";
-            }
-            $query .= "MATCH(i.title, i.introtext, i.`fulltext`,i.extra_fields_search,i.image_caption,i.image_credits,i.video_caption,i.video_credits,i.metadesc,i.metakey) AGAINST ({$text} IN BOOLEAN MODE)
-		)
+		WHERE (".$where.")
 		AND i.trash = 0
 	    AND i.published = 1
 	    AND i.access {$accessCheck}
