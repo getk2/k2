@@ -1100,6 +1100,20 @@ class K2ModelItem extends K2Model
 		//Check permissions
 		if ((($params->get('comments') == '2') && ($user->id > 0) && K2HelperPermissions::canAddComment($item->catid)) || ($params->get('comments') == '1'))
 		{
+			
+			// If new antispam settings are not saved, show a message to the comments form and stop the comment submission
+			$antispamProtection = $params->get('antispam', null);
+			if(
+			$antispamProtection === null
+			|| (($antispamProtection == 'recaptcha' || $antispamProtection == 'both') && !$params->get('recaptcha_private_key'))
+			|| (($antispamProtection == 'akismet' || $antispamProtection == 'both') && !$params->get('akismetApiKey'))
+			)
+			{
+				$response->message(JText::_('K2_ANTISPAM_SETTINGS_ERROR'));
+				echo $json->encode($response);
+				$mainframe->close();
+			}
+			
 
 			$row = JTable::getInstance('K2Comment', 'Table');
 
