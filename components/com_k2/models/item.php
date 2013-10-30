@@ -1109,7 +1109,7 @@ class K2ModelItem extends K2Model
 			|| (($antispamProtection == 'akismet' || $antispamProtection == 'both') && !$params->get('akismetApiKey'))
 			)
 			{
-				$response->message(JText::_('K2_ANTISPAM_SETTINGS_ERROR'));
+				$response->message = JText::_('K2_ANTISPAM_SETTINGS_ERROR');
 				echo $json->encode($response);
 				$mainframe->close();
 			}
@@ -1119,7 +1119,7 @@ class K2ModelItem extends K2Model
 
 			if (!$row->bind(JRequest::get('post')))
 			{
-				$response->message($row->getError());
+				$response->message = $row->getError();
 				echo $json->encode($response);
 				$mainframe->close();
 			}
