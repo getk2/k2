@@ -10,122 +10,108 @@
 // no direct access
 defined('_JEXEC') or die ;
 
-$params = JComponentHelper::getParams('com_k2');
-
-// Quick implementation of "Improved K2 router.php" https://gist.github.com/phproberto/4687829
-// @TODO Merge the two routers
-if ($params->get('k2Sef'))
+function K2BuildRoute(&$query)
 {
+	// Initialize
+	$segments = array();
 
-	/**
-	 * Build the SEF route from the query
-	 *
-	 * @param   array  &$query  The array of query string values for which to build a route
-	 *
-	 * @return  array           The URL arguments to use to assemble the subsequent URL.
-	 *
-	 * @since	1.5
-	 */
-	function k2BuildRoute(&$query)
+	// Get params
+	$params = JComponentHelper::getParams('com_k2');
+
+	// Get the menu
+	$menu = JFactory::getApplication()->getMenu();
+
+	// Detect the active menu item
+	if (empty($query['Itemid']))
 	{
-		// Initialize
-		$segments = array();
+		$menuItem = $menu->getActive();
+	}
+	else
+	{
+		$menuItem = $menu->getItem($query['Itemid']);
+	}
 
-		// Get params
-		$params = JComponentHelper::getParams('com_k2');
+	// Load data from the current menu item
+	$mView = ( empty($menuItem->query['view'])) ? null : $menuItem->query['view'];
+	$mTask = ( empty($menuItem->query['task'])) ? null : $menuItem->query['task'];
+	$mId = ( empty($menuItem->query['id'])) ? null : $menuItem->query['id'];
+	$mTag = ( empty($menuItem->query['tag'])) ? null : $menuItem->query['tag'];
 
-		// Get the menu
-		$menu = JFactory::getApplication()->getMenu();
+	if (isset($query['layout']))
+	{
+		unset($query['layout']);
+	}
 
-		// Detect the active menu item
-		if (empty($query['Itemid']))
-		{
-			$menuItem = $menu->getActive();
-		}
-		else
-		{
-			$menuItem = $menu->getItem($query['Itemid']);
-		}
+	if ($mView == @$query['view'] && $mTask == @$query['task'] && $mId == @intval($query['id']) && @intval($query['id']) > 0)
+	{
+		unset($query['view']);
+		unset($query['task']);
+		unset($query['id']);
+	}
 
-		// Load data from the current menu item
-		$mView = ( empty($menuItem->query['view'])) ? null : $menuItem->query['view'];
-		$mTask = ( empty($menuItem->query['task'])) ? null : $menuItem->query['task'];
-		$mId = ( empty($menuItem->query['id'])) ? null : $menuItem->query['id'];
-		$mTag = ( empty($menuItem->query['tag'])) ? null : $menuItem->query['tag'];
+	if ($mView == @$query['view'] && $mTask == @$query['task'] && $mTag == @$query['tag'] && isset($query['tag']))
+	{
+		unset($query['view']);
+		unset($query['task']);
+		unset($query['tag']);
+	}
 
-		if (isset($query['layout']))
-		{
-			unset($query['layout']);
-		}
+	if (isset($query['view']))
+	{
+		$segments[] = $query['view'];
+		unset($query['view']);
+	}
 
-		if ($mView == @$query['view'] && $mTask == @$query['task'] && $mId == @intval($query['id']) && @intval($query['id']) > 0)
-		{
-			unset($query['view']);
-			unset($query['task']);
-			unset($query['id']);
-		}
+	if (isset($query['task']))
+	{
+		$segments[] = $query['task'];
+		unset($query['task']);
+	}
 
-		if ($mView == @$query['view'] && $mTask == @$query['task'] && $mTag == @$query['tag'] && isset($query['tag']))
-		{
-			unset($query['view']);
-			unset($query['task']);
-			unset($query['tag']);
-		}
+	if (isset($query['id']))
+	{
+		$segments[] = $query['id'];
+		unset($query['id']);
+	}
 
-		if (isset($query['view']))
-		{
-			$segments[] = $query['view'];
-			unset($query['view']);
-		}
+	if (isset($query['cid']))
+	{
+		$segments[] = $query['cid'];
+		unset($query['cid']);
+	}
 
-		if (isset($query['task']))
-		{
-			$segments[] = $query['task'];
-			unset($query['task']);
-		}
+	if (isset($query['tag']))
+	{
+		$segments[] = $query['tag'];
+		unset($query['tag']);
+	}
 
-		if (isset($query['id']))
-		{
-			$segments[] = $query['id'];
-			unset($query['id']);
-		}
+	if (isset($query['year']))
+	{
+		$segments[] = $query['year'];
+		unset($query['year']);
+	}
 
-		if (isset($query['cid']))
-		{
-			$segments[] = $query['cid'];
-			unset($query['cid']);
-		}
+	if (isset($query['month']))
+	{
+		$segments[] = $query['month'];
+		unset($query['month']);
+	}
 
-		if (isset($query['tag']))
-		{
-			$segments[] = $query['tag'];
-			unset($query['tag']);
-		}
+	if (isset($query['day']))
+	{
+		$segments[] = $query['day'];
+		unset($query['day']);
+	}
 
-		if (isset($query['year']))
-		{
-			$segments[] = $query['year'];
-			unset($query['year']);
-		}
+	if (isset($query['task']))
+	{
+		$segments[] = $query['task'];
+		unset($query['task']);
+	}
 
-		if (isset($query['month']))
-		{
-			$segments[] = $query['month'];
-			unset($query['month']);
-		}
-
-		if (isset($query['day']))
-		{
-			$segments[] = $query['day'];
-			unset($query['day']);
-		}
-
-		if (isset($query['task']))
-		{
-			$segments[] = $query['task'];
-			unset($query['task']);
-		}
-
+	if ($params->get('k2Sef'))
+	{
 		// Item view
 		if (isset($segments[0]) && $segments[0] == 'item')
 		{
@@ -258,34 +244,36 @@ if ($params->get('k2Sef'))
 			}
 
 		}
-		// Return reordered segments array
-		return array_values($segments);
 	}
 
-	/**
-	 * Get back the url from the segments
-	 *
-	 * @param   array  $segments  Segments in the SEF URL
-	 *
-	 * @return  array             Generated vars for the query
-	 */
-	function k2ParseRoute($segments)
+	if ($params->get('k2Sef'))
 	{
+		return array_values($segments);
+	}
+	else
+	{
+		return $segments;
+	}
+}
 
-		// Initialize
-		$vars = array();
+function K2ParseRoute($segments)
+{
+	// Initialize
+	$vars = array();
 
-		$params = JComponentHelper::getParams('com_k2');
+	$params = JComponentHelper::getParams('com_k2');
 
-		$reservedViews = array(
-			'item',
-			'itemlist',
-			'media',
-			'users',
-			'comments',
-			'latest'
-		);
+	$reservedViews = array(
+		'item',
+		'itemlist',
+		'media',
+		'users',
+		'comments',
+		'latest'
+	);
 
+	if ($params->get('k2Sef'))
+	{
 		if (!in_array($segments[0], $reservedViews))
 		{
 			// Category view
@@ -342,327 +330,141 @@ if ($params->get('k2Sef'))
 			}
 
 		}
+	}
 
-		$vars['view'] = $segments[0];
+	$vars['view'] = $segments[0];
 
-		if (!isset($segments[1]))
-		{
-			$segments[1] = '';
-		}
+	if (!isset($segments[1]))
+	{
+		$segments[1] = '';
 		$vars['task'] = $segments[1];
-		if ($segments[0] == 'itemlist')
-		{
-			switch ($segments[1])
-			{
-
-				case 'category' :
-					if (isset($segments[2]))
-					{
-						$vars['id'] = $segments[2];
-					}
-					break;
-
-				case 'tag' :
-					if (isset($segments[2]))
-					{
-						$vars['tag'] = $segments[2];
-					}
-					break;
-
-				case 'user' :
-					if (isset($segments[2]))
-					{
-						$vars['id'] = $segments[2];
-					}
-					break;
-
-				case 'date' :
-					if (isset($segments[2]))
-					{
-						$vars['year'] = $segments[2];
-					}
-					if (isset($segments[3]))
-					{
-						$vars['month'] = $segments[3];
-					}
-					if (isset($segments[4]))
-					{
-						$vars['day'] = $segments[4];
-					}
-					break;
-			}
-
-		}
-		elseif ($segments[0] == 'item')
-		{
-			switch ($segments[1])
-			{
-				case 'edit' :
-					if (isset($segments[2]))
-					{
-						$vars['cid'] = $segments[2];
-					}
-					break;
-
-				case 'download' :
-					if (isset($segments[2]))
-					{
-						$vars['id'] = $segments[2];
-					}
-					break;
-
-				default :
-					$vars['id'] = $segments[1];
-					break;
-			}
-
-		}
-
-		if ($segments[0] == 'comments' && isset($segments[1]) && $segments[1] == 'reportSpammer')
-		{
-			$vars['id'] = $segments[2];
-		}
-
-		return $vars;
 	}
 
-	/**
-	 * Get a category alias
-	 *
-	 * @param   integer  $ItemId  The category id
-	 *
-	 * @return  string            The category alias
-	 */
-	function getCategorySlug($ItemId = null)
+	if (isset($segments[1]) && ($segments[1]=='edit' || $segments[1]=='add' || $segments[1]=='download' || $segments[1]=='tag'))
 	{
-		$slug = null;
-
-		$db = JFactory::getDBO();
-		$query = "SELECT items.id, categories.id AS catid, CASE WHEN CHAR_LENGTH(categories.alias) THEN CONCAT_WS('-', categories.id, categories.alias) ELSE categories.id END AS catslug 
-		FROM #__k2_items AS items 
-		INNER JOIN #__k2_categories AS categories ON items.catid = categories.id 
-		WHERE items.id = ".(int)$ItemId;
-		$db->setQuery($query);
-
-		try
-		{
-			if ($result = $db->loadObject())
-			{
-				$slug = $result->catslug;
-			}
-		}
-		catch (Exception $e)
-		{
-			$this->setError($e->getMessage());
-
-			return false;
-		}
-
-		return $slug;
+		$vars['task'] = $segments[1];
 	}
 
-	/**
-	 * Get id K2.
-	 *
-	 * @param   string  $alias  The k2 item alias
-	 *
-	 * @return  integer
-	 */
-	function getItemId($alias)
+	if ($segments[0] == 'itemlist')
 	{
-		$id = null;
-		$db = JFactory::getDBO();
-		$query = "SELECT id FROM #__k2_items WHERE alias = ".$db->quote($alias);
-		$db->setQuery($query);
-		try
+
+		switch($segments[1])
 		{
-			$id = $db->loadResult();
+
+			case 'category' :
+				if (isset($segments[2]))
+					$vars['id'] = $segments[2];
+				break;
+
+			case 'tag' :
+				if (isset($segments[2]))
+					$vars['tag'] = $segments[2];
+				break;
+
+			case 'user' :
+				if (isset($segments[2]))
+					$vars['id'] = $segments[2];
+				break;
+
+			case 'date' :
+				if (isset($segments[2]))
+					$vars['year'] = $segments[2];
+				if (isset($segments[3]))
+					$vars['month'] = $segments[3];
+				if (isset($segments[4]))
+				{
+					$vars['day'] = $segments[4];
+				}
+				break;
 		}
-		catch (Exception $e)
+
+	}
+	else if ($segments[0] == 'item')
+	{
+
+		switch($segments[1])
 		{
-			$this->setError($e->getMessage());
-			return false;
+
+			case 'edit' :
+				if (isset($segments[2]))
+					$vars['cid'] = $segments[2];
+				break;
+
+			case 'download' :
+				if (isset($segments[2]))
+					$vars['id'] = $segments[2];
+				break;
+
+			default :
+				$vars['id'] = $segments[1];
+				break;
 		}
-		return $id;
+
 	}
 
+	if ($segments[0] == 'comments' && isset($segments[1]) && $segments[1] == 'reportSpammer')
+	{
+		$vars['id'] = $segments[2];
+	}
+
+	return $vars;
 }
-else
+/**
+ * Get a category alias
+ *
+ * @param   integer  $ItemId  The category id
+ *
+ * @return  string            The category alias
+ */
+function getCategorySlug($ItemId = null)
 {
-	function K2BuildRoute(&$query)
+	$slug = null;
+
+	$db = JFactory::getDBO();
+	$query = "SELECT items.id, categories.id AS catid, CASE WHEN CHAR_LENGTH(categories.alias) THEN CONCAT_WS('-', categories.id, categories.alias) ELSE categories.id END AS catslug
+	FROM #__k2_items AS items 
+	INNER JOIN #__k2_categories AS categories ON items.catid = categories.id 
+	WHERE items.id = ".(int)$ItemId;
+	$db->setQuery($query);
+
+	try
 	{
-		$segments = array();
-		$application = JFactory::getApplication();
-		$menu = $application->getMenu();
-		if (empty($query['Itemid']))
+		if ($result = $db->loadObject())
 		{
-			$menuItem = $menu->getActive();
+			$slug = $result->catslug;
 		}
-		else
-		{
-			$menuItem = $menu->getItem($query['Itemid']);
-		}
-		$mView = ( empty($menuItem->query['view'])) ? null : $menuItem->query['view'];
-		$mTask = ( empty($menuItem->query['task'])) ? null : $menuItem->query['task'];
-		$mId = ( empty($menuItem->query['id'])) ? null : $menuItem->query['id'];
-		$mTag = ( empty($menuItem->query['tag'])) ? null : $menuItem->query['tag'];
+	}
+	catch (Exception $e)
+	{
+		$this->setError($e->getMessage());
 
-		if (isset($query['layout']))
-		{
-			unset($query['layout']);
-		}
-
-		if ($mView == @$query['view'] && $mTask == @$query['task'] && $mId == @intval($query['id']) && @intval($query['id']) > 0)
-		{
-			unset($query['view']);
-			unset($query['task']);
-			unset($query['id']);
-		}
-
-		if ($mView == @$query['view'] && $mTask == @$query['task'] && $mTag == @$query['tag'] && isset($query['tag']))
-		{
-			unset($query['view']);
-			unset($query['task']);
-			unset($query['tag']);
-		}
-
-		if (isset($query['view']))
-		{
-			$view = $query['view'];
-			$segments[] = $view;
-			unset($query['view']);
-		}
-
-		if (@ isset($query['task']))
-		{
-			$task = $query['task'];
-			$segments[] = $task;
-			unset($query['task']);
-		}
-
-		if (isset($query['id']))
-		{
-			$id = $query['id'];
-			$segments[] = $id;
-			unset($query['id']);
-		}
-
-		if (isset($query['cid']))
-		{
-			$cid = $query['cid'];
-			$segments[] = $cid;
-			unset($query['cid']);
-		}
-
-		if (isset($query['tag']))
-		{
-			$tag = $query['tag'];
-			$segments[] = $tag;
-			unset($query['tag']);
-		}
-
-		if (isset($query['year']))
-		{
-			$year = $query['year'];
-			$segments[] = $year;
-			unset($query['year']);
-		}
-
-		if (isset($query['month']))
-		{
-			$month = $query['month'];
-			$segments[] = $month;
-			unset($query['month']);
-		}
-
-		if (isset($query['day']))
-		{
-			$day = $query['day'];
-			$segments[] = $day;
-			unset($query['day']);
-		}
-
-		if (isset($query['task']))
-		{
-			$task = $query['task'];
-			$segments[] = $task;
-			unset($query['task']);
-		}
-
-		return $segments;
+		return false;
 	}
 
-	function K2ParseRoute($segments)
+	return $slug;
+}
+
+/**
+ * Get id K2.
+ *
+ * @param   string  $alias  The k2 item alias
+ *
+ * @return  integer
+ */
+function getItemId($alias)
+{
+	$id = null;
+	$db = JFactory::getDBO();
+	$query = "SELECT id FROM #__k2_items WHERE alias = ".$db->quote($alias);
+	$db->setQuery($query);
+	try
 	{
-		$vars = array();
-		$vars['view'] = $segments[0];
-		if (!isset($segments[1]))
-			$segments[1] = '';
-		$vars['task'] = $segments[1];
-
-		if ($segments[0] == 'itemlist')
-		{
-
-			switch($segments[1])
-			{
-
-				case 'category' :
-					if (isset($segments[2]))
-						$vars['id'] = $segments[2];
-					break;
-
-				case 'tag' :
-					if (isset($segments[2]))
-						$vars['tag'] = $segments[2];
-					break;
-
-				case 'user' :
-					if (isset($segments[2]))
-						$vars['id'] = $segments[2];
-					break;
-
-				case 'date' :
-					if (isset($segments[2]))
-						$vars['year'] = $segments[2];
-					if (isset($segments[3]))
-						$vars['month'] = $segments[3];
-					if (isset($segments[4]))
-					{
-						$vars['day'] = $segments[4];
-					}
-					break;
-			}
-
-		}
-		else if ($segments[0] == 'item')
-		{
-
-			switch($segments[1])
-			{
-
-				case 'edit' :
-					if (isset($segments[2]))
-						$vars['cid'] = $segments[2];
-					break;
-
-				case 'download' :
-					if (isset($segments[2]))
-						$vars['id'] = $segments[2];
-					break;
-
-				default :
-					$vars['id'] = $segments[1];
-					break;
-			}
-
-		}
-
-		if ($segments[0] == 'comments' && isset($segments[1]) && $segments[1] == 'reportSpammer')
-		{
-			$vars['id'] = $segments[2];
-		}
-
-		return $vars;
+		$id = $db->loadResult();
 	}
-
+	catch (Exception $e)
+	{
+		$this->setError($e->getMessage());
+		return false;
+	}
+	return $id;
 }
