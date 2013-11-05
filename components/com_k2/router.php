@@ -413,6 +413,7 @@ if ($params->get('k2Sef'))
 
 				default :
 					$vars['id'] = $segments[1];
+					unset($vars['task']);
 					break;
 			}
 
@@ -652,6 +653,7 @@ else
 
 				default :
 					$vars['id'] = $segments[1];
+					unset($vars['task']);
 					break;
 			}
 
