@@ -145,7 +145,7 @@ $document->addScriptDeclaration("
 									</td>
 								</tr>
 								<?php if($this->mainframe->isAdmin() || ($this->mainframe->isSite() && $this->permissions->get('publish')  || ($this->permissions->get('editPublished') && $this->row->id && $this->row->published)  )): ?>
-								<?php if($this->permissions->get('editPublished')): ?>
+								<?php if($this->permissions->get('publish')): ?>
 								<tr>
 									<td class="adminK2LeftCol">
 										<label for="featured"><?php echo JText::_('K2_IS_IT_FEATURED'); ?></label>

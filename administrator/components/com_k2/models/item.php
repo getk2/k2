@@ -63,6 +63,7 @@ class K2ModelItem extends K2Model
 			$currentRow = JTable::getInstance('K2Item', 'Table');
 			$currentRow->load($id);
 			$isAlreadyPublished = $currentRow->published;
+			$currentFeaturedState = $currentRow->featured;
 		}
 
 		if ($params->get('mergeEditors'))
@@ -881,11 +882,18 @@ class K2ModelItem extends K2Model
 					$mainframe->enqueueMessage(JText::_('K2_YOU_DONT_HAVE_THE_PERMISSION_TO_PUBLISH_ITEMS'), 'notice');
 				}
 			}
-			
-			// If user has the "Allow editing of already published items" this means that he cannot make any item featured.
-			if(K2HelperPermissions::canEditPublished($row->catid))
+
+			// If user has cannot publish the item then also cannot make it featured
+			if (!K2HelperPermissions::canPublishItem($row->catid))
 			{
-				$row->featured = 0;
+				if ($isNew)
+				{
+					$row->featured = 0;
+				}
+				else
+				{
+					$row->featured = $currentFeaturedState;
+				}
 			}
 
 		}
