@@ -145,6 +145,7 @@ $document->addScriptDeclaration("
 									</td>
 								</tr>
 								<?php if($this->mainframe->isAdmin() || ($this->mainframe->isSite() && $this->permissions->get('publish')  || ($this->permissions->get('editPublished') && $this->row->id && $this->row->published)  )): ?>
+								<?php if($this->permissions->get('editPublished')): ?>
 								<tr>
 									<td class="adminK2LeftCol">
 										<label for="featured"><?php echo JText::_('K2_IS_IT_FEATURED'); ?></label>
@@ -153,6 +154,7 @@ $document->addScriptDeclaration("
 										<?php echo $this->lists['featured']; ?>
 									</td>
 								</tr>
+								<?php endif; ?>
 								<tr>
 									<td class="adminK2LeftCol">
 										<label><?php echo JText::_('K2_PUBLISHED'); ?></label>
