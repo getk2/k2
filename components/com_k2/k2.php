@@ -56,9 +56,9 @@ jimport('joomla.html.parameter');
 
 if (JFile::exists(JPATH_COMPONENT.DS.'controllers'.DS.$controller.'.php'))
 {
+    $classname = 'K2Controller'.$controller;
     if(!class_exists($classname))
         require_once (JPATH_COMPONENT.DS.'controllers'.DS.$controller.'.php');
-    $classname = 'K2Controller'.$controller;
     $controller = new $classname();
     $controller->execute($task);
     $controller->redirect();
