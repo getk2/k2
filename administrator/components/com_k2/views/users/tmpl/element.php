@@ -34,22 +34,22 @@ defined('_JEXEC') or die;
 					<?php echo JText::_('K2_NUM'); ?>
 				</th>
 				<th>
-					<?php echo JHTML::_('grid.sort', 'K2_NAME', 'juser.name', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
+					<?php echo JHTML::_('grid.sort', 'K2_NAME', 'juser.name', @$this->lists['order_Dir'], @$this->lists['order'], 'element' ); ?>
 				</th>
 				<th>
-					<?php echo JHTML::_('grid.sort', 'K2_USER_NAME', 'juser.username', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
+					<?php echo JHTML::_('grid.sort', 'K2_USER_NAME', 'juser.username', @$this->lists['order_Dir'], @$this->lists['order'], 'element' ); ?>
 				</th>
 				<th>
-					<?php echo JHTML::_('grid.sort', 'K2_ENABLED', 'juser.block', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
+					<?php echo JHTML::_('grid.sort', 'K2_ENABLED', 'juser.block', @$this->lists['order_Dir'], @$this->lists['order'], 'element' ); ?>
 				</th>
 				<th>
-					<?php echo JHTML::_('grid.sort', 'K2_GROUP', 'juser.usertype', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
+					<?php echo JHTML::_('grid.sort', 'K2_GROUP', 'juser.usertype', @$this->lists['order_Dir'], @$this->lists['order'], 'element' ); ?>
 				</th>
 				<th>
-					<?php echo JHTML::_('grid.sort', 'K2_K2_GROUP', 'groupname', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
+					<?php echo JHTML::_('grid.sort', 'K2_K2_GROUP', 'groupname', @$this->lists['order_Dir'], @$this->lists['order'], 'element' ); ?>
 				</th>
 				<th>
-					<?php echo JHTML::_('grid.sort', 'K2_ID', 'juser.id', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
+					<?php echo JHTML::_('grid.sort', 'K2_ID', 'juser.id', @$this->lists['order_Dir'], @$this->lists['order'], 'element' ); ?>
 				</th>
 			</tr>
 		</thead>
