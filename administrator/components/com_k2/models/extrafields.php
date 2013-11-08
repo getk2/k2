@@ -128,7 +128,8 @@ class K2ModelExtraFields extends K2Model
         {
         	$row = JTable::getInstance('K2ExtraField', 'Table');
             $row->load($id);
-            $row->publish($id, 1);
+            $row->published = 1;
+			$row->store();
         }
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
@@ -144,7 +145,8 @@ class K2ModelExtraFields extends K2Model
         {
         	$row = JTable::getInstance('K2ExtraField', 'Table');
             $row->load($id);
-            $row->publish($id, 0);
+            $row->published = 0;
+			$row->store();
         }
         $cache = JFactory::getCache('com_k2');
         $cache->clean();

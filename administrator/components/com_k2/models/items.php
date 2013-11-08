@@ -231,7 +231,8 @@ class K2ModelItems extends K2Model
 		{
 			$row = JTable::getInstance('K2Item', 'Table');
 			$row->load($id);
-			$row->publish($id, 1);
+			$row->published = 1;
+			$row->store();
 		}
 		JPluginHelper::importPlugin('finder');
 		$dispatcher = JDispatcher::getInstance();
@@ -254,7 +255,8 @@ class K2ModelItems extends K2Model
 		{
 			$row = JTable::getInstance('K2Item', 'Table');
 			$row->load($id);
-			$row->publish($id, 0);
+			$row->published = 0;
+			$row->store();
 		}
 		JPluginHelper::importPlugin('finder');
 		$dispatcher = JDispatcher::getInstance();
