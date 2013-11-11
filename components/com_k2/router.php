@@ -397,6 +397,7 @@ if ($params->get('k2Sef'))
 		{
 			switch ($segments[1])
 			{
+				case 'add' :
 				case 'edit' :
 					if (isset($segments[2]))
 					{
@@ -640,7 +641,8 @@ else
 
 			switch($segments[1])
 			{
-
+				
+				case 'add' :
 				case 'edit' :
 					if (isset($segments[2]))
 						$vars['cid'] = $segments[2];
