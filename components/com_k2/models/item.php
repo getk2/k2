@@ -662,6 +662,10 @@ class K2ModelItem extends K2Model
 			if ($item->params->get('itemFullText'))
 				$item->text .= '{K2Splitter}'.$item->fulltext;
 		}
+		else if($view == 'latest') {
+			if ($item->params->get('latestItemIntroText'))
+				$item->text .= $item->introtext;
+		}
 		else
 		{
 
