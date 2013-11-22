@@ -149,7 +149,8 @@ class plgUserK2 extends JPlugin
 				$url = JRoute::_($item->link.'&Itemid='.$itemid, false);
 				if (JURI::isInternal($url))
 				{
-					$mainframe->redirect($url, JText::_('K2_YOUR_SETTINGS_HAVE_BEEN_SAVED'));
+					$mainframe->enqueueMessage(JText::_('K2_YOUR_SETTINGS_HAVE_BEEN_SAVED'));
+					$mainframe->redirect($url);
 				}
 			}
 		}
@@ -243,7 +244,8 @@ class plgUserK2 extends JPlugin
 				{
 					$url = 'index.php?option=com_user&view=register';
 				}
-				$mainframe->redirect($url, JText::_('K2_THE_WORDS_YOU_TYPED_DID_NOT_MATCH_THE_ONES_DISPLAYED_PLEASE_TRY_AGAIN'), 'error');
+				$mainframe->enqueueMessage(JText::_('K2_THE_WORDS_YOU_TYPED_DID_NOT_MATCH_THE_ONES_DISPLAYED_PLEASE_TRY_AGAIN'), 'error');
+				$mainframe->redirect($url);
 			}
 		}
 	}

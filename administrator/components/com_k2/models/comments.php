@@ -183,7 +183,8 @@ class K2ModelComments extends K2Model {
 			echo 'true';
 			$mainframe->close();
 		}
-		$mainframe->redirect('index.php?option=com_k2&view=comments', JText::_('K2_DELETE_COMPLETED'));
+		$mainframe->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
+		$mainframe->redirect('index.php?option=com_k2&view=comments');
 	}
 
 	function deleteUnpublished() {
@@ -212,7 +213,8 @@ class K2ModelComments extends K2Model {
 
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
-		$mainframe->redirect('index.php?option=com_k2&view=comments', JText::_('K2_DELETE_COMPLETED'));
+		$mainframe->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
+		$mainframe->redirect('index.php?option=com_k2&view=comments');
 	}
 
 	function save() {

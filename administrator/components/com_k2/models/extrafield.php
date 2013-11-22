@@ -33,7 +33,8 @@ class K2ModelExtraField extends K2Model
 		$row = JTable::getInstance('K2ExtraField', 'Table');
 		if (!$row->bind(JRequest::get('post')))
 		{
-			$mainframe->redirect('index.php?option=com_k2&view=extrafields', $row->getError(), 'error');
+			$mainframe->enqueueMessage($row->getError(), 'error');
+			$mainframe->redirect('index.php?option=com_k2&view=extrafields');
 		}
 
 		$isNewGroup = JRequest::getInt('isNew');
@@ -153,12 +154,14 @@ class K2ModelExtraField extends K2Model
 
 		if (!$row->check())
 		{
-			$mainframe->redirect('index.php?option=com_k2&view=extrafield&cid='.$row->id, $row->getError(), 'error');
+			$mainframe->enqueueMessage($row->getError(), 'error');
+			$mainframe->redirect('index.php?option=com_k2&view=extrafield&cid='.$row->id);
 		}
 
 		if (!$row->store())
 		{
-			$mainframe->redirect('index.php?option=com_k2&view=extrafields', $row->getError(), 'error');
+			$mainframe->enqueueMessage($row->getError(), 'error');
+			$mainframe->redirect('index.php?option=com_k2&view=extrafields');
 		}
 
 		$params = JComponentHelper::getParams('com_k2');
@@ -180,8 +183,8 @@ class K2ModelExtraField extends K2Model
 				$link = 'index.php?option=com_k2&view=extrafields';
 				break;
 		}
-
-		$mainframe->redirect($link, $msg);
+		$mainframe->enqueueMessage($msg);
+		$mainframe->redirect($link);
 	}
 
 	function getExtraFieldsByGroup($group)

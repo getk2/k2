@@ -34,17 +34,20 @@ class K2ModelTag extends K2Model
 
         if (!$row->bind(JRequest::get('post')))
         {
-            $mainframe->redirect('index.php?option=com_k2&view=tags', $row->getError(), 'error');
+        	$mainframe->enqueueMessage($row->getError(), 'error');
+            $mainframe->redirect('index.php?option=com_k2&view=tags');
         }
 
         if (!$row->check())
         {
-            $mainframe->redirect('index.php?option=com_k2&view=tag&cid='.$row->id, $row->getError(), 'error');
+        	$mainframe->enqueueMessage($row->getError(), 'error');
+            $mainframe->redirect('index.php?option=com_k2&view=tag&cid='.$row->id);
         }
 
         if (!$row->store())
         {
-            $mainframe->redirect('index.php?option=com_k2&view=tags', $row->getError(), 'error');
+        	$mainframe->enqueueMessage($row->getError(), 'error');
+            $mainframe->redirect('index.php?option=com_k2&view=tags');
         }
 
         $cache = JFactory::getCache('com_k2');
@@ -62,7 +65,8 @@ class K2ModelTag extends K2Model
                 $link = 'index.php?option=com_k2&view=tags';
                 break;
         }
-        $mainframe->redirect($link, $msg);
+		$mainframe->enqueueMessage($msg);
+        $mainframe->redirect($link);
     }
 
     function addTag()

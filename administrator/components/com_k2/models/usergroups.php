@@ -72,7 +72,8 @@ class K2ModelUserGroups extends K2Model
         }
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
-        $mainframe->redirect('index.php?option=com_k2&view=usergroups', JText::_('K2_DELETE_COMPLETED'));
+		$mainframe->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
+        $mainframe->redirect('index.php?option=com_k2&view=usergroups');
     }
 
 }

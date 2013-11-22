@@ -323,7 +323,8 @@ class K2ModelItems extends K2Model
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
 		$msg = JText::_('K2_NEW_ORDERING_SAVED');
-		$mainframe->redirect('index.php?option=com_k2&view=items', $msg);
+		$mainframe->enqueueMessage($msg);
+		$mainframe->redirect('index.php?option=com_k2&view=items');
 	}
 
 	function orderdown()
@@ -340,7 +341,8 @@ class K2ModelItems extends K2Model
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
 		$msg = JText::_('K2_NEW_ORDERING_SAVED');
-		$mainframe->redirect('index.php?option=com_k2&view=items', $msg);
+		$mainframe->enqueueMessage($msg);
+		$mainframe->redirect('index.php?option=com_k2&view=items');
 	}
 
 	function savefeaturedorder()
@@ -396,7 +398,8 @@ class K2ModelItems extends K2Model
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
 		$msg = JText::_('K2_NEW_ORDERING_SAVED');
-		$mainframe->redirect('index.php?option=com_k2&view=items', $msg);
+		$mainframe->enqueueMessage($msg);
+		$mainframe->redirect('index.php?option=com_k2&view=items');
 	}
 
 	function featuredorderdown()
@@ -413,7 +416,8 @@ class K2ModelItems extends K2Model
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
 		$msg = JText::_('K2_NEW_ORDERING_SAVED');
-		$mainframe->redirect('index.php?option=com_k2&view=items', $msg);
+		$mainframe->enqueueMessage($msg);
+		$mainframe->redirect('index.php?option=com_k2&view=items');
 	}
 
 	function accessregistered()
@@ -436,7 +440,8 @@ class K2ModelItems extends K2Model
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
 		$msg = JText::_('K2_NEW_ACCESS_SETTING_SAVED');
-		$mainframe->redirect('index.php?option=com_k2&view=items', $msg);
+		$mainframe->enqueueMessage($msg);
+		$mainframe->redirect('index.php?option=com_k2&view=items');
 	}
 
 	function accessspecial()
@@ -459,7 +464,8 @@ class K2ModelItems extends K2Model
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
 		$msg = JText::_('K2_NEW_ACCESS_SETTING_SAVED');
-		$mainframe->redirect('index.php?option=com_k2&view=items', $msg);
+		$mainframe->enqueueMessage($msg);
+		$mainframe->redirect('index.php?option=com_k2&view=items');
 	}
 
 	function accesspublic()
@@ -482,7 +488,8 @@ class K2ModelItems extends K2Model
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
 		$msg = JText::_('K2_NEW_ACCESS_SETTING_SAVED');
-		$mainframe->redirect('index.php?option=com_k2&view=items', $msg);
+		$mainframe->enqueueMessage($msg);
+		$mainframe->redirect('index.php?option=com_k2&view=items');
 	}
 
 	function copy()
@@ -627,8 +634,8 @@ class K2ModelItems extends K2Model
 
 			$row->store();
 		}
-
-		$mainframe->redirect('index.php?option=com_k2&view=items', JText::_('K2_COPY_COMPLETED'));
+		$mainframe->enqueueMessage(JText::_('K2_COPY_COMPLETED'));
+		$mainframe->redirect('index.php?option=com_k2&view=items');
 	}
 
 	function featured()
@@ -652,7 +659,8 @@ class K2ModelItems extends K2Model
 		}
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
-		$mainframe->redirect('index.php?option=com_k2&view=items', JText::_('K2_ITEMS_CHANGED'));
+		$mainframe->enqueueMessage(JText::_('K2_ITEMS_CHANGED'));
+		$mainframe->redirect('index.php?option=com_k2&view=items');
 	}
 
 	function trash()
@@ -671,7 +679,8 @@ class K2ModelItems extends K2Model
 		}
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
-		$mainframe->redirect('index.php?option=com_k2&view=items', JText::_('K2_ITEMS_MOVED_TO_TRASH'));
+		$mainframe->enqueueMessage(JText::_('K2_ITEMS_MOVED_TO_TRASH'));
+		$mainframe->redirect('index.php?option=com_k2&view=items');
 
 	}
 
@@ -704,7 +713,8 @@ class K2ModelItems extends K2Model
 		$cache->clean();
 		if ($warning)
 			$mainframe->enqueueMessage(JText::_('K2_SOME_OF_THE_ITEMS_HAVE_NOT_BEEN_RESTORED_BECAUSE_THEY_BELONG_TO_A_CATEGORY_WHICH_IS_IN_TRASH'), 'notice');
-		$mainframe->redirect('index.php?option=com_k2&view=items', JText::_('K2_ITEMS_RESTORED'));
+		$mainframe->enqueueMessage(JText::_('K2_ITEMS_RESTORED'));
+		$mainframe->redirect('index.php?option=com_k2&view=items');
 
 	}
 
@@ -836,7 +846,8 @@ class K2ModelItems extends K2Model
 		}
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
-		$mainframe->redirect('index.php?option=com_k2&view=items', JText::_('K2_DELETE_COMPLETED'));
+		$mainframe->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
+		$mainframe->redirect('index.php?option=com_k2&view=items');
 	}
 
 	function import()
@@ -1118,7 +1129,8 @@ class K2ModelItems extends K2Model
 				}
 			}
 		}
-		$mainframe->redirect('index.php?option=com_k2&view=items', JText::_('K2_IMPORT_COMPLETED'));
+		$mainframe->enqueueMessage(JText::_('K2_IMPORT_COMPLETED'));
+		$mainframe->redirect('index.php?option=com_k2&view=items');
 	}
 
 	function importJ16()
@@ -1324,8 +1336,8 @@ class K2ModelItems extends K2Model
 			$db->setQuery($query);
 			$db->query();
 		}
-
-		$mainframe->redirect('index.php?option=com_k2&view=items', JText::_('K2_IMPORT_COMPLETED'));
+		$mainframe->enqueueMessage(JText::_('K2_IMPORT_COMPLETED'));
+		$mainframe->redirect('index.php?option=com_k2&view=items');
 	}
 
 	function move()
@@ -1344,7 +1356,8 @@ class K2ModelItems extends K2Model
 		}
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
-		$mainframe->redirect('index.php?option=com_k2&view=items', JText::_('K2_MOVE_COMPLETED'));
+		$mainframe->enqueueMessage(JText::_('K2_MOVE_COMPLETED'));
+		$mainframe->redirect('index.php?option=com_k2&view=items');
 
 	}
 

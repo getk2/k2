@@ -78,7 +78,8 @@ class K2ViewItem extends K2View
                 {
                     $uri = JFactory::getURI();
                     $url = 'index.php?option=com_users&view=login&return='.base64_encode($uri->toString());
-                    $mainframe->redirect(JRoute::_($url, false), JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'));
+					$mainframe->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
+                    $mainframe->redirect(JRoute::_($url, false));
                 }
                 else
                 {
@@ -95,7 +96,8 @@ class K2ViewItem extends K2View
                 {
                     $uri = JFactory::getURI();
                     $url = 'index.php?option=com_user&view=login&return='.base64_encode($uri->toString());
-                    $mainframe->redirect(JRoute::_($url, false), JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'));
+					$mainframe->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
+                    $mainframe->redirect(JRoute::_($url, false));
                 }
                 else
                 {

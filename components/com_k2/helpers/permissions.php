@@ -147,13 +147,14 @@ class K2HelperPermissions
             $mainframe = JFactory::getApplication();
             $uri = JURI::getInstance();
             $return = base64_encode($uri->toString());
+			$mainframe->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
             if (K2_JVERSION == '15')
             {
-                $mainframe->redirect('index.php?option=com_user&view=login&return='.$return.'&tmpl=component', JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
+                $mainframe->redirect('index.php?option=com_user&view=login&return='.$return.'&tmpl=component');
             }
             else
             {
-                $mainframe->redirect('index.php?option=com_users&view=login&return='.$return.'&tmpl=component', JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
+                $mainframe->redirect('index.php?option=com_users&view=login&return='.$return.'&tmpl=component');
             }
         }
 

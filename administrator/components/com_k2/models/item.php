@@ -42,7 +42,8 @@ class K2ModelItem extends K2Model
 
 		if (!$row->bind(JRequest::get('post')))
 		{
-			$mainframe->redirect('index.php?option=com_k2&view=items', $row->getError(), 'error');
+			$mainframe->enqueueMessage($row->getError(), 'error');
+			$mainframe->redirect('index.php?option=com_k2&view=items');
 		}
 
 		if ($front && $row->id == NULL)
@@ -50,7 +51,8 @@ class K2ModelItem extends K2Model
 			JLoader::register('K2HelperPermissions', JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'permissions.php');
 			if (!K2HelperPermissions::canAddItem($row->catid))
 			{
-				$mainframe->redirect('index.php?option=com_k2&view=item&task=add&tmpl=component', JText::_('K2_YOU_ARE_NOT_ALLOWED_TO_POST_TO_THIS_CATEGORY_SAVE_FAILED'), 'error');
+				$mainframe->enqueueMessage(JText::_('K2_YOU_ARE_NOT_ALLOWED_TO_POST_TO_THIS_CATEGORY_SAVE_FAILED'), 'error');
+				$mainframe->redirect('index.php?option=com_k2&view=item&task=add&tmpl=component');
 			}
 		}
 
@@ -176,7 +178,8 @@ class K2ModelItem extends K2Model
 
 		if (!$row->check())
 		{
-			$mainframe->redirect('index.php?option=com_k2&view=item&cid='.$row->id, $row->getError(), 'error');
+			$mainframe->enqueueMessage($row->getError(), 'error');
+			$mainframe->redirect('index.php?option=com_k2&view=item&cid='.$row->id);
 		}
 
 		$dispatcher = JDispatcher::getInstance();
@@ -242,7 +245,8 @@ class K2ModelItem extends K2Model
 
 		if (!$row->store())
 		{
-			$mainframe->redirect('index.php?option=com_k2&view=items', $row->getError(), 'error');
+			$mainframe->enqueueMessage($row->getError(), 'error');
+			$mainframe->redirect('index.php?option=com_k2&view=items');
 		}
 
 		// JoomFish! Front-end editing compatibility
@@ -428,7 +432,8 @@ class K2ModelItem extends K2Model
 			}
 			else
 			{
-				$mainframe->redirect('index.php?option=com_k2&view=items', $handle->error, 'error');
+				$mainframe->enqueueMessage($handle->error, 'error');
+				$mainframe->redirect('index.php?option=com_k2&view=items');
 			}
 
 		}
@@ -562,7 +567,8 @@ class K2ModelItem extends K2Model
 						}
 						else
 						{
-							$mainframe->redirect('index.php?option=com_k2&view=items', $handle->error, 'error');
+							$mainframe->enqueueMessage($handle->error, 'error');
+							$mainframe->redirect('index.php?option=com_k2&view=items');
 						}
 
 					}
@@ -617,7 +623,8 @@ class K2ModelItem extends K2Model
 
 				if (!JArchive::extract($savepath.DS.$handle->file_dst_name, $savepath.DS.$row->id))
 				{
-					$mainframe->redirect('index.php?option=com_k2&view=items', JText::_('K2_GALLERY_UPLOAD_ERROR_CANNOT_EXTRACT_ARCHIVE'), 'error');
+					$mainframe->enqueueMessage(JText::_('K2_GALLERY_UPLOAD_ERROR_CANNOT_EXTRACT_ARCHIVE'), 'error');
+					$mainframe->redirect('index.php?option=com_k2&view=items');
 				}
 				else
 				{
@@ -629,7 +636,8 @@ class K2ModelItem extends K2Model
 			}
 			else
 			{
-				$mainframe->redirect('index.php?option=com_k2&view=items', $handle->error, 'error');
+				$mainframe->enqueueMessage($handle->error, 'error');
+				$mainframe->redirect('index.php?option=com_k2&view=items');
 			}
 		}
 
@@ -680,7 +688,8 @@ class K2ModelItem extends K2Model
 
 				if (!in_array($filetype, $validExtensions))
 				{
-					$mainframe->redirect('index.php?option=com_k2&view=items', JText::_('K2_INVALID_VIDEO_FILE'), 'error');
+					$mainframe->enqueueMessage(JText::_('K2_INVALID_VIDEO_FILE'), 'error');
+					$mainframe->redirect('index.php?option=com_k2&view=items');
 				}
 
 				if (in_array($filetype, $videoExtensions))
@@ -918,7 +927,8 @@ class K2ModelItem extends K2Model
 
 		if (!$db->query())
 		{
-			$mainframe->redirect('index.php?option=com_k2&view=items', $db->getErrorMsg(), 'error');
+			$mainframe->enqueueMessage($db->getErrorMsg(), 'error');
+			$mainframe->redirect('index.php?option=com_k2&view=items');
 		}
 
 		$row->checkin();
@@ -975,7 +985,8 @@ class K2ModelItem extends K2Model
 					$link = 'index.php?option=com_k2&view=items';
 				break;
 		}
-		$mainframe->redirect($link, $msg);
+		$mainframe->enqueueMessage($msg);
+		$mainframe->redirect($link);
 	}
 
 	function cancel()
@@ -1233,7 +1244,8 @@ class K2ModelItem extends K2Model
 			$url = 'index.php?option=com_k2&view=item&cid='.$id;
 		else
 			$url = 'index.php?option=com_k2&view=item&task=edit&cid='.$id.'&tmpl=component';
-		$mainframe->redirect($url, JText::_('K2_SUCCESSFULLY_RESET_ITEM_HITS'));
+		$mainframe->enqueueMessage(JText::_('K2_SUCCESSFULLY_RESET_ITEM_HITS'));
+		$mainframe->redirect($url);
 	}
 
 	function resetRating()
@@ -1248,7 +1260,8 @@ class K2ModelItem extends K2Model
 			$url = 'index.php?option=com_k2&view=item&cid='.$id;
 		else
 			$url = 'index.php?option=com_k2&view=item&task=edit&cid='.$id.'&tmpl=component';
-		$mainframe->redirect($url, JText::_('K2_SUCCESSFULLY_RESET_ITEM_RATING'));
+		$mainframe->enqueueMessage(JText::_('K2_SUCCESSFULLY_RESET_ITEM_RATING'));
+		$mainframe->redirect($url);
 	}
 
 	function getRating()

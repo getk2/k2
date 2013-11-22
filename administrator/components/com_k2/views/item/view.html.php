@@ -101,7 +101,8 @@ class K2ViewItem extends K2View
 		{
 			$message = JText::_('K2_THE_ITEM').': '.$item->title.' '.JText::_('K2_IS_CURRENTLY_BEING_EDITED_BY_ANOTHER_ADMINISTRATOR');
 			$url = ($mainframe->isSite()) ? 'index.php?option=com_k2&view=item&id='.$item->id.'&tmpl=component' : 'index.php?option=com_k2';
-			$mainframe->redirect($url, $message);
+			$mainframe->enqueueMessage($message);
+			$mainframe->redirect($url);
 		}
 
 		if ($item->id)

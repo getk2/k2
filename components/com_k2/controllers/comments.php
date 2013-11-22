@@ -29,7 +29,8 @@ class K2ControllerComments extends K2Controller
                 $url = 'index.php?option=com_user&view=login&return='.base64_encode($uri->toString());
             }
             $application = JFactory::getApplication();
-            $application->redirect(JRoute::_($url, false), JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'));
+			$application->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
+            $application->redirect(JRoute::_($url, false));
         }
         JRequest::setVar('tmpl', 'component');
 

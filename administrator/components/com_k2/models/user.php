@@ -42,7 +42,8 @@ class K2ModelUser extends K2Model
 
         if (!$row->bind(JRequest::get('post')))
         {
-            $mainframe->redirect('index.php?option=com_k2&view=users', $row->getError(), 'error');
+        	$mainframe->enqueueMessage($row->getError(), 'error');
+            $mainframe->redirect('index.php?option=com_k2&view=users');
         }
 
         $row->description = JRequest::getVar('description', '', 'post', 'string', 2);
@@ -56,7 +57,8 @@ class K2ModelUser extends K2Model
 
         if (!$row->store())
         {
-            $mainframe->redirect('index.php?option=com_k2&view=users', $row->getError(), 'error');
+        	$mainframe->enqueueMessage($row->getError(), 'error');
+            $mainframe->redirect('index.php?option=com_k2&view=users');
         }
 
         //Image
@@ -85,7 +87,8 @@ class K2ModelUser extends K2Model
             }
             else
             {
-                $mainframe->redirect('index.php?option=com_k2&view=users', $handle->error, 'error');
+            	$mainframe->enqueueMessage($handle->error, 'error');
+                $mainframe->redirect('index.php?option=com_k2&view=users');
             }
             $row->image = $handle->file_dst_name;
         }
@@ -104,12 +107,14 @@ class K2ModelUser extends K2Model
 
         if (!$row->check())
         {
-            $mainframe->redirect('index.php?option=com_k2&view=user&cid='.$row->id, $row->getError(), 'error');
+        	$mainframe->enqueueMessage($row->getError(), 'error');
+            $mainframe->redirect('index.php?option=com_k2&view=user&cid='.$row->id);
         }
 
         if (!$row->store())
         {
-            $mainframe->redirect('index.php?option=com_k2&view=users', $row->getError(), 'error');
+        	$mainframe->enqueueMessage($row->getError(), 'error');
+            $mainframe->redirect('index.php?option=com_k2&view=users');
         }
 
         $cache = JFactory::getCache('com_k2');
@@ -127,7 +132,8 @@ class K2ModelUser extends K2Model
                 $link = 'index.php?option=com_k2&view=users';
                 break;
         }
-        $mainframe->redirect($link, $msg);
+		$mainframe->enqueueMessage($msg);
+        $mainframe->redirect($link);
     }
 
     function getUserGroups()

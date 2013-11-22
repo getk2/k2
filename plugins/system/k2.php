@@ -166,7 +166,8 @@ class plgSystemK2 extends JPlugin
 
 			if (!$user->guest)
 			{
-				$mainframe->redirect(JURI::root(), JText::_('K2_YOU_ARE_ALREADY_REGISTERED_AS_A_MEMBER'), 'notice');
+				$mainframe->enqueueMessage(JText::_('K2_YOU_ARE_ALREADY_REGISTERED_AS_A_MEMBER'), 'notice');
+				$mainframe->redirect(JURI::root());
 				$mainframe->close();
 			}
 			if (K2_JVERSION != '15')
@@ -260,7 +261,8 @@ class plgSystemK2 extends JPlugin
 				{
 					$url = 'index.php?option=com_user&view=login&return='.base64_encode($uri->toString());
 				}
-				$mainframe->redirect(JRoute::_($url, false), JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'));
+				$mainframe->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
+				$mainframe->redirect(JRoute::_($url, false));
 			}
 
 			if (K2_JVERSION != '15')

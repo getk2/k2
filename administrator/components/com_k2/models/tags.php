@@ -142,7 +142,8 @@ class K2ModelTags extends K2Model
 		}
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
-		$mainframe->redirect('index.php?option=com_k2&view=tags', JText::_('K2_DELETE_COMPLETED'));
+		$mainframe->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
+		$mainframe->redirect('index.php?option=com_k2&view=tags');
 	}
 
 	function getFilter()
@@ -171,7 +172,8 @@ class K2ModelTags extends K2Model
 		$db->setQuery("DELETE FROM #__k2_tags WHERE id NOT IN (SELECT DISTINCT tagID FROM #__k2_tags_xref)");
 		$db->query();
 		$mainframe = JFactory::getApplication();
-		$mainframe->redirect('index.php?option=com_k2&view=tags', JText::_('K2_DELETE_COMPLETED'));
+		$mainframe->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
+		$mainframe->redirect('index.php?option=com_k2&view=tags');
 	}
 
 }

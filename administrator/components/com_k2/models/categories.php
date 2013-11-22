@@ -297,8 +297,9 @@ class K2ModelCategories extends K2Model
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         $msg = JText::_('K2_NEW_ORDERING_SAVED');
-        $mainframe->redirect('index.php?option=com_k2&view=categories', $msg);
-    }
+		$mainframe->enqueueMessage($msg);
+        $mainframe->redirect('index.php?option=com_k2&view=categories');
+	}
 
     function orderdown()
     {
@@ -314,7 +315,8 @@ class K2ModelCategories extends K2Model
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         $msg = JText::_('K2_NEW_ORDERING_SAVED');
-        $mainframe->redirect('index.php?option=com_k2&view=categories', $msg);
+		$mainframe->enqueueMessage($msg);
+        $mainframe->redirect('index.php?option=com_k2&view=categories');
     }
 
     function accessregistered()
@@ -337,7 +339,8 @@ class K2ModelCategories extends K2Model
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         $msg = JText::_('K2_NEW_ACCESS_SETTING_SAVED');
-        $mainframe->redirect('index.php?option=com_k2&view=categories', $msg);
+        $mainframe->enqueueMessage($msg);
+        $mainframe->redirect('index.php?option=com_k2&view=categories');
     }
 
     function accessspecial()
@@ -360,8 +363,9 @@ class K2ModelCategories extends K2Model
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         $msg = JText::_('K2_NEW_ACCESS_SETTING_SAVED');
-        $mainframe->redirect('index.php?option=com_k2&view=categories', $msg);
-    }
+        $mainframe->enqueueMessage($msg);
+        $mainframe->redirect('index.php?option=com_k2&view=categories');
+	}
 
     function accesspublic()
     {
@@ -383,8 +387,9 @@ class K2ModelCategories extends K2Model
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         $msg = JText::_('K2_NEW_ACCESS_SETTING_SAVED');
-        $mainframe->redirect('index.php?option=com_k2&view=categories', $msg);
-    }
+        $mainframe->enqueueMessage($msg);
+        $mainframe->redirect('index.php?option=com_k2&view=categories');
+	}
 
     function trash()
     {
@@ -408,7 +413,8 @@ class K2ModelCategories extends K2Model
 
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
-        $mainframe->redirect('index.php?option=com_k2&view=categories', JText::_('K2_CATEGORIES_MOVED_TO_TRASH'));
+		$mainframe->enqueueMessage(JText::_('K2_CATEGORIES_MOVED_TO_TRASH'));
+        $mainframe->redirect('index.php?option=com_k2&view=categories');
 
     }
 
@@ -460,7 +466,8 @@ class K2ModelCategories extends K2Model
         $cache->clean();
         if ($warning)
             $mainframe->enqueueMessage(JText::_('K2_SOME_OF_THE_CATEGORIES_HAVE_NOT_BEEN_RESTORED_BECAUSE_THEIR_PARENT_CATEGORY_IS_IN_TRASH'), 'notice');
-        $mainframe->redirect('index.php?option=com_k2&view=categories', JText::_('K2_CATEGORIES_RESTORED'));
+		$mainframe->enqueueMessage(JText::_('K2_CATEGORIES_MOVED_TO_TRASH'));
+        $mainframe->redirect('index.php?option=com_k2&view=categories');
 
     }
 
@@ -523,8 +530,9 @@ class K2ModelCategories extends K2Model
         {
             $mainframe->enqueueMessage(JText::_('K2_SOME_OF_THE_CATEGORIES_HAVE_NOT_BEEN_DELETED_BECAUSE_THEY_HAVE_CHILD_CATEGORIES'), 'notice');
         }
-
-        $mainframe->redirect('index.php?option=com_k2&view=categories', JText::_('K2_DELETE_COMPLETED'));
+		
+		$mainframe->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
+        $mainframe->redirect('index.php?option=com_k2&view=categories');
     }
 
     function categoriesTree($row = NULL, $hideTrashed = false, $hideUnpublished = true)
@@ -621,8 +629,8 @@ class K2ModelCategories extends K2Model
                 $row->store();
             }
         }
-
-        $mainframe->redirect('index.php?option=com_k2&view=categories', JText::_('K2_COPY_COMPLETED'));
+		$mainframe->enqueueMessage(JText::_('K2_COPY_COMPLETED'));
+        $mainframe->redirect('index.php?option=com_k2&view=categories');
     }
 
     function move()
@@ -642,7 +650,8 @@ class K2ModelCategories extends K2Model
         }
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
-        $mainframe->redirect('index.php?option=com_k2&view=categories', JText::_('K2_MOVE_COMPLETED'));
+		$mainframe->enqueueMessage(JText::_('K2_MOVE_COMPLETED'));
+        $mainframe->redirect('index.php?option=com_k2&view=categories');
 
     }
 
