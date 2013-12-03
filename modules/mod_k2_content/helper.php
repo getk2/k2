@@ -93,8 +93,15 @@ class modK2ContentHelper
 
 		else
 		{
-			$query = "SELECT i.*, CASE WHEN i.modified = 0 THEN i.created ELSE i.modified END as lastChanged, c.name AS categoryname,c.id AS categoryid, c.alias AS categoryalias, c.params AS categoryparams";
+			$query = "SELECT i.*,";
 
+			if ($ordering == 'modified')
+			{
+				$query .= " CASE WHEN i.modified = 0 THEN i.created ELSE i.modified END as lastChanged,";
+			}
+			
+			$query .= "c.name AS categoryname,c.id AS categoryid, c.alias AS categoryalias, c.params AS categoryparams";
+			
 			if ($ordering == 'best')
 				$query .= ", (r.rating_sum/r.rating_count) AS rating";
 

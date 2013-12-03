@@ -36,8 +36,18 @@ class K2ModelItemlist extends K2Model
 
 		if (JRequest::getWord('format') == 'feed')
 			$limit = $params->get('feedLimit');
+		
+		$query = "SELECT i.*,";
+		
+		if($ordering == 'modified')
+		{
+			$query .= " CASE WHEN i.modified = 0 THEN i.created ELSE i.modified END as lastChanged, ";
+		}
 
-		$query = "SELECT i.*, CASE WHEN i.modified = 0 THEN i.created ELSE i.modified END as lastChanged, c.name as categoryname,c.id as categoryid, c.alias as categoryalias, c.params as categoryparams";
+		$query .= " c.name as categoryname,c.id as categoryid, c.alias as categoryalias, c.params as categoryparams";
+		
+		
+		
 		if ($ordering == 'best')
 			$query .= ", (r.rating_sum/r.rating_count) AS rating";
 
