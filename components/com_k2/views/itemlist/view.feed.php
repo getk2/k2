@@ -210,7 +210,7 @@ class K2ViewItemlist extends K2View
         }
 
         // Prepare feed items
-        $model = &$this->getModel('item');
+        $model = $this->getModel('item');
         foreach ($items as $item)
         {
 
@@ -246,7 +246,7 @@ class K2ViewItemlist extends K2View
 
         // Set title
         $document = JFactory::getDocument();
-        $menus = JSite::getMenu();
+        $menus = $mainframe->getMenu();
         $menu = $menus->getActive();
         if (is_object($menu))
         {
