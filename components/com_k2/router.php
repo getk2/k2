@@ -127,7 +127,7 @@ if ($params->get('k2Sef'))
 		}
 
 		// Item view
-		if (isset($segments[0]) && $segments[0] == 'item')
+		if (isset($segments[0]) && $segments[0] == 'item' && @$segments[1] != 'add')
 		{
 			// Enabled category prefix  for items
 			if ($params->get('k2SefLabelItem'))
