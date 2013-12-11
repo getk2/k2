@@ -363,9 +363,9 @@ $K2(document).ready(function() {
                         success : function(response) {
                             $K2('#extraFieldsContainer').html(response);
                             initExtraFieldsEditor();
-                            $K2('img.calendar').each(function() {
-                                inputFieldID = $K2(this).prev().attr('id');
-                                imgFieldID = $K2(this).attr('id');
+                            $K2('.k2Calendar').each(function() {
+                                inputFieldID = $K2(this).attr('id');
+                                imgFieldID = $K2(this).next().attr('id');
                                 Calendar.setup({
                                     inputField : inputFieldID,
                                     ifFormat : "%Y-%m-%d",
