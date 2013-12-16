@@ -73,7 +73,7 @@ class K2ViewItem extends K2View
 
 			if ($this->permissions->get('add'))
 			{
-				$permissionsLabels[]= JText::_('K2_ADD_ITEMS');
+				$permissionsLabels[] = JText::_('K2_ADD_ITEMS');
 			}
 			if ($this->permissions->get('editOwn'))
 			{
@@ -91,7 +91,7 @@ class K2ViewItem extends K2View
 			{
 				$permissionsLabels[] = JText::_('K2_ALLOW_EDITING_OF_ALREADY_PUBLISHED_ITEMS');
 			}
-			
+
 			$permissionsMessage = JText::_('K2_YOU_ARE_ALLOWED_TO').' '.implode(', ', $permissionsLabels);
 			$this->assignRef('permissionsMessage', $permissionsMessage);
 
@@ -129,33 +129,26 @@ class K2ViewItem extends K2View
 		{
 			$dateFormat = JText::_('K2_DATE_FORMAT_CALENDAR');
 		}
-		if (version_compare(JVERSION, '2.5', 'lt'))
-		{
-			$item->publish_up = JHTML::_('date', $item->publish_up, $dateFormat);
-		}
 
-		if ($item->publish_down == $db->getNullDate())
+		$created = $item->created;
+		$publishUp = $item->publish_up;
+		$publishDown = $item->publish_down;
+
+		$created = JHTML::_('date', $item->created, $dateFormat);
+		$publishUp = JHTML::_('date', $item->publish_up, $dateFormat);
+		if ((int)$item->publish_down)
 		{
-			$item->publish_down = '';
+			$publishDown = JHTML::_('date', $item->publish_down, $dateFormat);
 		}
 		else
 		{
-			if (version_compare(JVERSION, '2.5', 'lt'))
-			{
-				$item->publish_down = JHTML::_('date', $item->publish_down, $dateFormat);
-			}
-
-		}
-		$created = $item->created;
-		if (version_compare(JVERSION, '2.5', 'lt'))
-		{
-			$created = JHTML::_('date', $item->created, $dateFormat);
+			$publishDown = '';
 		}
 
 		// Set up calendars
 		$lists['createdCalendar'] = JHTML::_('calendar', $created, 'created', 'created');
-		$lists['publish_up'] = JHTML::_('calendar', $item->publish_up, 'publish_up', 'publish_up');
-		$lists['publish_down'] = JHTML::_('calendar', $item->publish_down, 'publish_down', 'publish_down');
+		$lists['publish_up'] = JHTML::_('calendar', $publishUp, 'publish_up', 'publish_up');
+		$lists['publish_down'] = JHTML::_('calendar', $publishDown, 'publish_down', 'publish_down');
 
 		if ($item->id)
 		{
