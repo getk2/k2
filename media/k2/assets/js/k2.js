@@ -871,7 +871,13 @@ function initExtraFieldsEditor() {
             if (tinyMCE.get(id)) {
                 tinymce.EditorManager.remove(tinyMCE.get(id));
             }
-            tinyMCE.execCommand('mceAddControl', false, id);
+            if(tinymce.majorVersion == 4) {
+            	tinymce.init({selector: '#'+id});
+            	tinymce.editors[id].show();
+            } else {
+            	tinyMCE.execCommand('mceAddControl', false, id);
+            }
+
         } else {
             new nicEditor({
                 fullPanel : true,
