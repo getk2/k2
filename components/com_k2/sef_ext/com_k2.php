@@ -106,7 +106,7 @@ $sh404SefInsertItemId = $params->get('sh404SefInsertItemId');
 $sh404SefInsertUniqueItemId = $params->get('sh404SefInsertUniqueItemId');
 
 $database = JFactory::getDBO();
-$menu = JSite::getMenu();
+$menu = JFactory::getApplication()->getMenu();
 $menuparams = NULL;
 $menuparams = $menu->getParams($Itemid);
 
