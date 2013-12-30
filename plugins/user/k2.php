@@ -168,8 +168,8 @@ class plgUserK2 extends JPlugin
 			$db->setQuery("SELECT id FROM #__users WHERE username = ".$db->Quote($user['username']));
 			$id = $db->loadResult();
 
-			// If K2 profiles are enabled assign non-existing K2 users to the default K2 group. Update user info for existing K2 users.
-			if ($params->get('K2UserProfile') && $id)
+			// Assign non-existing K2 users to the default K2 group. Update user info for existing K2 users.
+			if ($id)
 			{
 				$k2id = $this->getK2UserID($id);
 				JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'tables');
