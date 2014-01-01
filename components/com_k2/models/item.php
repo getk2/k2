@@ -262,16 +262,21 @@ class K2ModelItem extends K2Model
 		}
 
 		//Num of comments
-		$user = JFactory::getUser();
-		if (!$user->guest && $user->id == $item->created_by && $params->get('inlineCommentsModeration'))
+		if ($params->get('comments', 0) > 0)
 		{
-			$item->numOfComments = $this->countItemComments($item->id, false);
+			$user = JFactory::getUser();
+			if (!$user->guest && $user->id == $item->created_by && $params->get('inlineCommentsModeration'))
+			{
+				$item->numOfComments = $this->countItemComments($item->id, false);
+			}
+			else
+			{
+				$item->numOfComments = $this->countItemComments($item->id);
+			}
 		}
-		else
-		{
-			$item->numOfComments = $this->countItemComments($item->id);
-		}
+		
 		return $item;
+		
 	}
 
 	function prepareFeedItem(&$item)
