@@ -545,7 +545,7 @@ function validateExtraFields() {
 
 // Extra Fields image field
 function extraFieldsImage() {
-	$K2('#extraFieldsContainer').on('click', '.k2ExtraFieldImageButton', function(event) {
+	$K2('body').on('click', '.k2ExtraFieldImageButton', function(event) {
     	event.preventDefault();
     	var href = $K2(this).attr('href');
     	SqueezeBox.initialize();
