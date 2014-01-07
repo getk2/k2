@@ -444,15 +444,21 @@ class K2ViewItemlist extends K2View
 			// Plugins
 			$items[$i] = $model->execPlugins($items[$i], $view, $task);
 
-			// Trigger comments counter event
-			$dispatcher = JDispatcher::getInstance();
-			JPluginHelper::importPlugin('k2');
-			$results = $dispatcher->trigger('onK2CommentsCounter', array(
-				&$items[$i],
-				&$params,
-				$limitstart
-			));
-			$items[$i]->event->K2CommentsCounter = trim(implode("\n", $results));
+			// Trigger comments counter event if needed
+			if ($cparams->get('catItemCommentsAnchor') ||
+			    $cparams->get('itemCommentsAnchor') ||
+			    $cparams->get('itemComments'))
+			{
+				// Trigger comments counter event
+				$dispatcher = JDispatcher::getInstance();
+				JPluginHelper::importPlugin('k2');
+				$results = $dispatcher->trigger('onK2CommentsCounter', array(
+					&$items[$i],
+					&$params,
+					$limitstart
+				));
+				$items[$i]->event->K2CommentsCounter = trim(implode("\n", $results));
+			}
 		}
 
 		// Set title
