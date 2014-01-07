@@ -444,11 +444,12 @@ class K2ViewItemlist extends K2View
 			// Plugins
 			$items[$i] = $model->execPlugins($items[$i], $view, $task);
 
-			// Trigger comments counter event if needed
-			if ($cparams->get('catItemCommentsAnchor') ||
-			    $cparams->get('itemCommentsAnchor') ||
-			    $cparams->get('itemComments'))
-			{
+	            // Trigger comments counter event if needed
+	            if ($params->get('catItemK2Plugins') &&
+                	($params->get('catItemCommentsAnchor') ||
+                 	 $params->get('itemCommentsAnchor') ||
+                 	 $params->get('itemComments')))
+            	    {
 				// Trigger comments counter event
 				$dispatcher = JDispatcher::getInstance();
 				JPluginHelper::importPlugin('k2');
