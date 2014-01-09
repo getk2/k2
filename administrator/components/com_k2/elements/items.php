@@ -71,7 +71,6 @@ class K2ElementItems extends K2Element
 				items: 'li',
 				handle: 'span.handle'
 			});
-			\$K2('body').css('overflow-y', 'scroll');
 			\$K2('#itemsList .remove').click(function(){
 				\$K2(this).parent().remove();
 			});

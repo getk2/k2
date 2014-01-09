@@ -72,7 +72,6 @@ class K2ElementUsers extends K2Element
 				items: 'li',
 				handle: 'span.handle'
 			});
-			\$K2('body').css('overflow-y', 'scroll');
 			\$K2('#usersList .remove').click(function(){
 				\$K2(this).parent().remove();
 			});
