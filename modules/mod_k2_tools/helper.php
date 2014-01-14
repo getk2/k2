@@ -703,7 +703,10 @@ class modK2ToolsHelper
 		$db = JFactory::getDBO();
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
-
+		
+		$menu = $mainframe->getMenu();
+		$active = $menu->getActive();
+		
 		if ($option == 'com_k2')
 		{
 
@@ -732,6 +735,17 @@ class modK2ToolsHelper
 						echo $db->stderr();
 						return false;
 					}
+					
+					$matchItem = !is_null($active) && @$active->query['view'] == 'item' && @$active->query['id'] == $id;
+					$matchCategory = !is_null($active) && @$active->query['view'] == 'itemlist' && @$active->query['task'] == 'category' && @$active->query['id'] == $row->catid;
+					
+					if($matchItem || $matchCategory)
+					{
+						$title = ($matchCategory) ? $row->title : '';
+						$path = modK2ToolsHelper::getSitePath();
+						return array($path, $title);
+					}
+					
 					$title = $row->title;
 					$path = modK2ToolsHelper::getCategoryPath($row->catid);
 
@@ -740,6 +754,15 @@ class modK2ToolsHelper
 				case 'itemlist' :
 					if ($task == 'category')
 					{
+
+						$match = !is_null($active) && @$active->query['view'] == 'itemlist' && @$active->query['task'] == 'category' && @$active->query['id'] == $id;
+						if($match)
+						{
+							$title = '';
+							$path = modK2ToolsHelper::getSitePath();
+							return array($path, $title);
+						}
+
 
 						$query = "SELECT * FROM #__k2_categories  WHERE id={$id} AND published=1 AND trash=0 ";
 						if (K2_JVERSION != '15')
