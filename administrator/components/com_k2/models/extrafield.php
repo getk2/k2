@@ -278,7 +278,7 @@ class K2ModelExtraField extends K2Model
 			}
 
 		}
-
+		$attributes = '';
 		if (version_compare(JVERSION, '3.2', 'ge'))
 		{
 			$arrayAttributes = array();
@@ -289,7 +289,6 @@ class K2ModelExtraField extends K2Model
 		}
 		else
 		{
-			$attributes = '';
 			if ($required)
 			{
 				$attributes .= 'class="k2Required"';
