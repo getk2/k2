@@ -243,7 +243,7 @@ class Com_K2InstallerScript
             $db->query();
         }
 
-        $query = "SHOW INDEX FROM #__k2_items";
+        /*$query = "SHOW INDEX FROM #__k2_items";
         $db->setQuery($query);
         $indexes = $db->loadObjectList();
         $indexExists = false;
@@ -279,7 +279,7 @@ class Com_K2InstallerScript
             $query = "ALTER TABLE #__k2_tags ADD FULLTEXT (`name`)";
             $db->setQuery($query);
             $db->query();
-        }
+        }*/
 
         $query = "SELECT COUNT(*) FROM #__k2_user_groups";
         $db->setQuery($query);
