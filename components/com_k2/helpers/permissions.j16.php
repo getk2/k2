@@ -56,6 +56,7 @@ class K2HelperPermissions
                     break;
                 case 'publish' :
                 case 'unpublish' :
+				case 'featured':
                     $action = 'core.edit.state';
             }
 
