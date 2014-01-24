@@ -123,11 +123,11 @@ class K2ViewItem extends K2View
 		$lists = array();
 		if (version_compare(JVERSION, '1.6.0', 'ge'))
 		{
-			$dateFormat = JText::_('K2_J16_DATE_FORMAT_CALENDAR');
+			$dateFormat = 'Y-m-d H:i:s';
 		}
 		else
 		{
-			$dateFormat = JText::_('K2_DATE_FORMAT_CALENDAR');
+			$dateFormat = '%Y-%m-%d %H:%M:%S';
 		}
 
 		$created = $item->created;
