@@ -133,10 +133,7 @@ if ($params->get('k2Sef'))
 			if ($params->get('k2SefLabelItem'))
 			{
 				// Tasks available for an item
-				$itemTasks = array(
-					'edit',
-					'download'
-				);
+				$itemTasks = array('edit', 'download');
 
 				// If it's a task pick the next key
 				if (in_array($segments[1], $itemTasks))
@@ -201,60 +198,63 @@ if ($params->get('k2Sef'))
 		// Itemlist view. Check for prefix segments
 		elseif (isset($segments[0]) && $segments[0] == 'itemlist')
 		{
-			switch ($segments[1])
+			if (isset($segments[1]))
 			{
-				case 'category' :
-					$segments[0] = $params->get('k2SefLabelCat', 'content');
-					unset($segments[1]);
-					// Handle category id and alias
-					if ($params->get('k2SefInsertCatId'))
-					{
-						if ($params->get('k2SefUseCatTitleAlias'))
+				switch ($segments[1])
+				{
+					case 'category' :
+						$segments[0] = $params->get('k2SefLabelCat', 'content');
+						unset($segments[1]);
+						// Handle category id and alias
+						if ($params->get('k2SefInsertCatId'))
 						{
-							if ($params->get('k2SefCatIdTitleAliasSep') == 'slash')
+							if ($params->get('k2SefUseCatTitleAlias'))
 							{
-								$segments[2] = JString::str_ireplace(':', '/', $segments[2]);
+								if ($params->get('k2SefCatIdTitleAliasSep') == 'slash')
+								{
+									$segments[2] = JString::str_ireplace(':', '/', $segments[2]);
+								}
 							}
+							else
+							{
+								$temp = @explode(':', $segments[2]);
+								$segments[2] = (int)$temp[0];
+							}
+
 						}
 						else
 						{
+							// Try to split the slud
 							$temp = @explode(':', $segments[2]);
-							$segments[2] = (int)$temp[0];
+
+							// If the slug contained an item id do not use it
+							if (count($temp) > 1)
+							{
+								@$segments[1] = $temp[2];
+							}
 						}
 
-					}
-					else
-					{
-						// Try to split the slud
-						$temp = @explode(':', $segments[2]);
-
-						// If the slug contained an item id do not use it
-						if (count($temp) > 1)
-						{
-							@$segments[1] = $temp[2];
-						}
-					}
-
-					break;
-				case 'tag' :
-					$segments[0] = $params->get('k2SefLabelTag', 'tag');
-					unset($segments[1]);
-					break;
-				case 'user' :
-					$segments[0] = $params->get('k2SefLabelUser', 'author');
-					unset($segments[1]);
-					break;
-				case 'date' :
-					$segments[0] = $params->get('k2SefLabelDate', 'date');
-					unset($segments[1]);
-					break;
-				case 'search' :
-					$segments[0] = $params->get('k2SefLabelSearch', 'search');
-					unset($segments[1]);
-					break;
-				default :
-					$segments[0] = 'itemlist';
-					break;
+						break;
+					case 'tag' :
+						$segments[0] = $params->get('k2SefLabelTag', 'tag');
+						unset($segments[1]);
+						break;
+					case 'user' :
+						$segments[0] = $params->get('k2SefLabelUser', 'author');
+						unset($segments[1]);
+						break;
+					case 'date' :
+						$segments[0] = $params->get('k2SefLabelDate', 'date');
+						unset($segments[1]);
+						break;
+					case 'search' :
+						$segments[0] = $params->get('k2SefLabelSearch', 'search');
+						unset($segments[1]);
+						break;
+					default :
+						$segments[0] = 'itemlist';
+						break;
+				}
 			}
 
 		}
@@ -277,14 +277,7 @@ if ($params->get('k2Sef'))
 
 		$params = JComponentHelper::getParams('com_k2');
 
-		$reservedViews = array(
-			'item',
-			'itemlist',
-			'media',
-			'users',
-			'comments',
-			'latest'
-		);
+		$reservedViews = array('item', 'itemlist', 'media', 'users', 'comments', 'latest');
 
 		if (!in_array($segments[0], $reservedViews))
 		{
@@ -641,7 +634,7 @@ else
 
 			switch($segments[1])
 			{
-				
+
 				case 'add' :
 				case 'edit' :
 					if (isset($segments[2]))
