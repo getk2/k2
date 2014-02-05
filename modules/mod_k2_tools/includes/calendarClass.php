@@ -143,6 +143,20 @@ class Calendar
     {
         return "";
     }
+    
+    
+    /*
+        Return an associative array in which the key is the daydate and the value is the k2 item count (created on that day)
+        You must override this method if you want to activate the date linking
+        feature of the calendar.
+        
+        Note: If you return an empty array from this function, no navigation link will
+        be displayed. This is the default behaviour.
+    */
+    function fetchMonthByDayItemCount($month,$year){
+          return array();
+    }
+
 
 
     /*
@@ -290,29 +304,37 @@ class Calendar
         // Make sure we know when today is, so that we can use a different CSS style
         $today = getdate(time());
     	
-    	while ($d <= $daysInMonth)
-    	{
-    	    $s .= "<tr>\n";       
-    	    
-    	    for ($i = 0; $i < 7; $i++)
-    	    {
-        	    $class = ($year == $today["year"] && $month == $today["mon"] && $d == $today["mday"]) ? "calendarToday" : "calendarDate";
-    	              
-    	        if ($d > 0 && $d <= $daysInMonth){
-    	            $link = $this->getDateLink($d, $month, $year);
-    	            if($link == ""){
-    	            	$s .= "<td class=\"{$class}\">$d</td>\n"; 
-    	            } else {
-    	            	$s .= "<td class=\"{$class}Linked\"><a href=\"$link\">$d</a></td>\n";
-    	            }
-    	        } else {
-    	        		$s .= "<td class=\"calendarDateEmpty\">&nbsp;</td>\n";
-    	        }
-      	               
-        	    $d++;
-    	    }
-    	    $s .= "</tr>\n";    
-    	}
+        while ($d <= $daysInMonth)
+        {
+                $s .= "<tr>\n";       
+                
+                for ($i = 0; $i < 7; $i++)
+                {
+                    $class = ($year == $today["year"] && $month == $today["mon"] && $d == $today["mday"]) ? "calendarToday" : "calendarDate";
+                        
+                    $byDayArr = $this->fetchMonthByDayItemCount($month, $year);
+           
+                        if ($d > 0 && $d <= $daysInMonth){
+                    
+                    $link="";
+                    $daycount = $byDayArr[$d];
+                    if (isset($daycount)){
+                        $link = $this->getDateLink($d, $month, $year);
+                    }
+
+                        if($link == ""){
+                                $s .= "<td class=\"{$class}\">$d</td>\n"; 
+                        } else {
+                                $s .= "<td data-itemcount=\"".$daycount."\" class=\"{$class}Linked\"><a href=\"$link\">$d</a></td>\n";
+                        }
+                    } else {
+                                    $s .= "<td class=\"calendarDateEmpty\">&nbsp;</td>\n";
+                    }
+                             
+                    $d++;
+                }
+                $s .= "</tr>\n";    
+        }       
     	
     	$s .= "</table>\n";
     	
