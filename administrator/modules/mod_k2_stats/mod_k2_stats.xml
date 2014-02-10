@@ -22,7 +22,7 @@
             <option value="0">K2_DISABLE</option>
             <option value="1">K2_ENABLE</option>
         </param>
-        <param name="mostCommentedItems" type="radio" default="1" label="K2_MOST_COMMENTED_ITEMS_TAB">
+        <param name="mostCommentedItems" type="radio" default="0" label="K2_MOST_COMMENTED_ITEMS_TAB">
             <option value="0">K2_DISABLE</option>
             <option value="1">K2_ENABLE</option>
         </param>
