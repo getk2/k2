@@ -57,7 +57,6 @@ class K2HelperHTML
 
 		if ($document->getType() == 'html')
 		{
-
 			if (K2_JVERSION == '15')
 			{
 				JHtml::_('behavior.mootools');
@@ -68,10 +67,17 @@ class K2HelperHTML
 			}
 			else
 			{
-				JHtml::_('behavior.framework');
-				if ($application->isAdmin() || ($application->isSite() && $params->get('jQueryHandling')))
+				if($mediaManager)
 				{
-					JHtml::_('jquery.framework');
+					$document->addScript('//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
+				}
+				else
+				{
+					JHtml::_('behavior.framework');
+					if ($application->isAdmin() || ($application->isSite() && $params->get('jQueryHandling')))
+					{
+						JHtml::_('jquery.framework');
+					}
 				}
 			}
 
