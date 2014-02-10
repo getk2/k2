@@ -325,7 +325,7 @@ div#groupContainer span {font-weight:bold;}
 
 /* Admin - Media Manager */
 #elfinder {font-size:16px; font-family:Arial, Helvetica, sans-serif;}
-#elfinder input {width:auto;}/* Fix for Joomla! 3.2 CSS... */
+.isJ30 #elfinder input {width:auto;}/* Fix for Joomla! 3.2 CSS... */
 
 /* Admin - Information */
 table#k2InfoPage {}
