@@ -260,7 +260,6 @@ class K2ViewItemlist extends K2View
 
 				// Set title
 				$title = $userObject->name;
-				$userObject->name = htmlspecialchars($userObject->name, ENT_QUOTES);
 
 				// Set ordering
 				$ordering = $params->get('userOrdering');
