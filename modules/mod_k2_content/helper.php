@@ -423,6 +423,13 @@ class modK2ContentHelper
 
 					$params->set('parsedInModule', 1);
 					// for plugins to know when they are parsed inside this module
+					
+					$item->event = new stdClass;
+					$item->event->BeforeDisplay = '';
+					$item->event->AfterDisplay = '';
+					$item->event->AfterDisplayTitle = '';
+					$item->event->BeforeDisplayContent = '';
+					$item->event->AfterDisplayContent = '';
 
 					if ($params->get('JPlugins', 1))
 					{
