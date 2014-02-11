@@ -46,7 +46,7 @@ class modK2StatsHelper
     public static function getMostCommentedItems()
     {
         $db = JFactory::getDBO();
-        $query = "SELECT i.*, v.name AS author, (SELECT COUNT(*) FROM #__k2_comments WHERE itemID = i.id) AS numOfComments, FROM #__k2_items as i 
+        $query = "SELECT i.*, v.name AS author, (SELECT COUNT(*) FROM #__k2_comments WHERE itemID = i.id) AS numOfComments FROM #__k2_items as i 
         LEFT JOIN #__k2_categories AS c ON c.id = i.catid 
         LEFT JOIN #__users AS v ON v.id = i.created_by 
         WHERE i.trash = 0  AND c.trash = 0
