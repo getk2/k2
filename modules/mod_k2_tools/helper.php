@@ -16,6 +16,7 @@ require_once (dirname(__FILE__).DS.'includes'.DS.'calendarClass.php');
 
 class modK2ToolsHelper
 {
+	public static $paths = array();
 
 	public static function getAuthors(&$params)
 	{
@@ -841,10 +842,13 @@ class modK2ToolsHelper
 
 	}
 
-	public static function getCategoryPath($catid)
+	public static function getCategoryPath($catid, $array = array())
 	{
+		if(isset(self::$paths[$catid]))
+		{
+			return self::$paths[$catid];
+		}
 
-		static $array = array();
 		$mainframe = JFactory::getApplication();
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
@@ -877,10 +881,11 @@ class modK2ToolsHelper
 		foreach ($rows as $row)
 		{
 			array_push($array, '<a href="'.urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($row->id.':'.urlencode($row->alias)))).'">'.$row->name.'</a>');
-			modK2ToolsHelper::getCategoryPath($row->parent);
+			modK2ToolsHelper::getCategoryPath($row->parent, $array);
 		}
-
-		return array_reverse($array);
+		$return = array_reverse($array);
+		self::$paths[$catid] = $return;
+		return $return;
 	}
 
 	public static function getCategoryChildren($catid)
