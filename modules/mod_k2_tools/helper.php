@@ -842,7 +842,7 @@ class modK2ToolsHelper
 
 	}
 
-	public static function getCategoryPath($catid, $array = array())
+	public static function getCategoryPath($catid, &$array = array())
 	{
 		if(isset(self::$paths[$catid]))
 		{
