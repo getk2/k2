@@ -3,7 +3,7 @@
  * @version		$Id: utilities.php 1977 2013-05-15 11:39:46Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.
  * @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 

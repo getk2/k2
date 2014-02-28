@@ -3,7 +3,7 @@
  * @version		$Id: k2.php 1995 2013-07-04 17:27:53Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.
  * @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
@@ -138,6 +138,6 @@ $controller->redirect();
 if( $document->getType() != 'raw' &&  JRequest::getWord('task')!='deleteAttachment' && JRequest::getWord('task')!='connector' && JRequest::getWord('task')!='tag' && JRequest::getWord('task')!='extrafields' && JRequest::getWord('task')!='download' && JRequest::getWord('task')!='saveComment'): ?>
 </div>
 <div id="k2AdminFooter">
-	<a target="_blank" href="http://getk2.org/">K2 v2.6.8</a> (Dev Build) | Copyright &copy; 2006-<?php echo date('Y'); ?> <a target="_blank" href="http://www.joomlaworks.net/">JoomlaWorks Ltd.</a>
+	<a target="_blank" href="http://getk2.org/">K2 v2.6.8</a> | Copyright &copy; 2006-<?php echo date('Y'); ?> <a target="_blank" href="http://www.joomlaworks.net/">JoomlaWorks Ltd.</a>
 </div>
 <?php endif;

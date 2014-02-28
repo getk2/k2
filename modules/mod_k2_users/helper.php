@@ -3,7 +3,7 @@
  * @version		$Id: helper.php 1812 2013-01-14 18:45:06Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.
  * @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
@@ -131,7 +131,7 @@ class modK2UsersHelper
 					i.published = 1 AND {$itemAccessCheck} AND i.trash = 0 AND c.published = 1 AND {$categoryAccessCheck} AND c.trash = 0
 					AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
 					AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )
-					AND i.created_by_alias='' 
+					AND i.created_by_alias=''
 					{$languageCheck}
 					GROUP BY users.id ORDER BY counter DESC";
 
@@ -146,7 +146,7 @@ class modK2UsersHelper
 					i.published = 1 AND {$itemAccessCheck} AND i.trash = 0 AND c.published = 1 AND {$categoryAccessCheck} AND c.trash = 0
 					AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
 					AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )
-					AND i.created_by_alias='' 
+					AND i.created_by_alias=''
 					{$languageCheck}
 					GROUP BY users.id ORDER BY counter DESC";
                     break;
@@ -162,7 +162,7 @@ class modK2UsersHelper
 					AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
 					AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )
 					AND i.created_by_alias=''
-					AND comment.published=1 
+					AND comment.published=1
 					{$languageCheck}
 					GROUP BY users.id ORDER BY counter DESC";
                     break;
@@ -193,7 +193,7 @@ class modK2UsersHelper
 					AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
 					AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )
 					AND i.created_by=".(int)$userObject->UID."
-					AND i.created_by_alias='' 
+					AND i.created_by_alias=''
 					{$languageCheck}
 					ORDER BY i.created DESC";
 

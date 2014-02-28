@@ -2,7 +2,7 @@
  * @version		$Id: k2tags.js 1919 2013-02-11 19:02:02Z joomlaworks $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.
  * @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
