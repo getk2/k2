@@ -1,5 +1,5 @@
 /**
- * @version		$Id: k2.js 1987 2013-06-27 11:51:59Z lefteris.kavadas $
+ * @version		2.6.x
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.

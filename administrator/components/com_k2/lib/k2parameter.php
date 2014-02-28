@@ -1,6 +1,6 @@
 <?php
 /**
- * @version     $Id: k2parameter.php 1829 2013-01-25 15:36:59Z lefteris.kavadas $
+ * @version     2.6.x
  * @package     K2
  * @author      JoomlaWorks http://www.joomlaworks.net
  * @copyright   Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.

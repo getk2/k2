@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: helper.php 1832 2013-01-30 13:05:12Z lefteris.kavadas $
+ * @version		2.6.x
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.

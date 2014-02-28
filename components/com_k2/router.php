@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: router.php 1935 2013-03-04 16:09:34Z lefteris.kavadas $
+ * @version		2.6.x
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.

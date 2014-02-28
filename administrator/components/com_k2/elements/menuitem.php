@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: menuitem.php 1949 2013-03-11 16:59:08Z lefteris.kavadas $
+ * @version		2.6.x
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.

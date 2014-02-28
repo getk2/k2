@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: mod_k2_stats.php 1851 2013-02-06 17:55:26Z joomlaworks $
+ * @version		2.6.x
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.

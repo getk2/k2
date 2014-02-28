@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: comments.php 1992 2013-07-04 16:36:38Z lefteris.kavadas $
+ * @version		2.6.x
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.

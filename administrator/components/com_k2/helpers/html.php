@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: html.php 2002 2013-07-08 15:43:14Z joomlaworks $
+ * @version		2.6.x
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.

@@ -1,6 +1,6 @@
 <?php 
 /**
- * @version		$Id: archive.php 1899 2013-02-08 18:57:03Z lefteris.kavadas $
+ * @version		2.6.x
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.

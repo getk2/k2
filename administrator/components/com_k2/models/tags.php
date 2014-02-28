@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: tags.php 1947 2013-03-11 11:46:13Z lefteris.kavadas $
+ * @version		2.6.x
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.

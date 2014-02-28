@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: translationK2_categoryFilter.php 1618 2012-09-21 11:23:08Z lefteris.kavadas $
+ * @version		2.6.x
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2010 JoomlaWorks Ltd. All rights reserved.

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: default.php 1944 2013-03-08 19:14:17Z joomlaworks $
+ * @version		2.6.x
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.

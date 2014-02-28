@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: item.php 1985 2013-06-25 16:58:55Z lefteris.kavadas $
+ * @version		2.6.x
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.

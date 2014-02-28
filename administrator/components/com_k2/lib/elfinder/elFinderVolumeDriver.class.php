@@ -1,6 +1,6 @@
 <?php
 /**
- * @version     $Id: elFinderVolumeDriver.class.php 1989 2013-07-04 13:52:28Z lefteris.kavadas $
+ * @version     2.6.x
  * @package     K2
  * @author      JoomlaWorks http://www.joomlaworks.net
  * @copyright   Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.

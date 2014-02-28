@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: itemform.php 1982 2013-05-30 12:55:18Z lefteris.kavadas $
+ * @version		2.6.x
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.

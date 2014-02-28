@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: view.html.php 1928 2013-02-12 12:13:18Z lefteris.kavadas $
+ * @version		2.6.x
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.
