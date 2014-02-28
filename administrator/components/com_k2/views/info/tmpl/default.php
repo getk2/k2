@@ -69,7 +69,7 @@ defined('_JEXEC') or die;
 					    </tr>
 					    <tr>
 					      <td><a target="_blank" href="http://jquery.com">jQuery</a></td>
-					      <td>1.5.x - 1.9.x</td>
+					      <td>1.3.x - 1.11.x</td>
 					      <td><?php echo JText::_('K2_JS_LIB'); ?></td>
 					      <td><?php echo JText::_('K2_MIT'); ?></td>
 					    </tr>
@@ -81,7 +81,7 @@ defined('_JEXEC') or die;
 					    </tr>
 					    <tr>
 					      <td><a target="_blank" href="http://elfinder.org/">elFinder</a></td>
-					      <td>2.0 (rc1)</td>
+					      <td>2.0 (rc1) [patched by JoomlaWorks]</td>
 					      <td><?php echo JText::_('K2_INFO_FILE_MANAGER'); ?></td>
 					      <td><?php echo JText::_('K2_BSD'); ?></td>
 					    </tr>
