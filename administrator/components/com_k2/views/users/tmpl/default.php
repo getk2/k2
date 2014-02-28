@@ -25,22 +25,24 @@ $document->addScriptDeclaration("
 ?>
 
 <form action="index.php" method="post" name="adminForm" id="adminForm">
-<table class="k2AdminTableFilters table">
-	<tr>
-		<td class="k2AdminTableFiltersSearch">
-			<?php echo JText::_('K2_FILTER'); ?>
-			<input type="text" name="search" value="<?php echo $this->lists['search'] ?>" class="text_area"	title="<?php echo JText::_('K2_FILTER_BY_NAME'); ?>" />
-			<button id="k2SubmitButton"><?php echo JText::_('K2_GO'); ?></button>
-			<button id="k2ResetButton"><?php echo JText::_('K2_RESET'); ?></button>
-		</td>
-		<td class="k2AdminTableFiltersSelects hidden-phone">
-			<?php echo $this->lists['filter_group_k2']; ?>
-			<?php echo $this->lists['filter_group']; ?>
-			<?php echo $this->lists['status']; ?>
-		</td>
-	</tr>
-</table>
-<table class="adminlist table table-striped">
+	<table class="k2AdminTableFilters table">
+		<tr>
+			<td class="k2AdminTableFiltersSearch">
+				<!--<label><?php echo JText::_('K2_FILTER'); ?></label>-->
+				<div class="btn-wrapper input-append">
+					<input type="text" name="search" value="<?php echo $this->lists['search'] ?>" class="text_area"	title="<?php echo JText::_('K2_FILTER_BY_TITLE'); ?>" placeholder="<?php echo JText::_('K2_FILTER'); ?>" />
+					<button id="k2SubmitButton" class="btn"><?php echo JText::_('K2_GO'); ?></button>
+					<button id="k2ResetButton" class="btn"><?php echo JText::_('K2_RESET'); ?></button>
+				</div>
+			</td>
+			<td class="k2AdminTableFiltersSelects hidden-phone">
+				<?php echo $this->lists['filter_group_k2']; ?>
+				<?php echo $this->lists['filter_group']; ?>
+				<?php echo $this->lists['status']; ?>
+			</td>
+		</tr>
+	</table>
+	<table class="adminlist table table-striped">
     <thead>
       <tr>
         <th class="hidden-phone">#</th>
