@@ -97,10 +97,12 @@ class K2HelperHTML
 				{
 					if ($handling && JString::strpos($handling, 'remote') !== false)
 					{
+						// Remove this if statement in 2.7.0
 						if ($handling == '1.9remote')
 						{
 							$handling = '1remote';
 						}
+						
 						$document->addScript('//ajax.googleapis.com/ajax/libs/jquery/'.str_replace('remote', '', $handling).'/jquery.min.js');
 					}
 					else if ($handling && JString::strpos($handling, 'remote') === false)
