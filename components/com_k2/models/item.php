@@ -538,6 +538,7 @@ class K2ModelItem extends K2Model
 		if (!isset($this->isSigInstalled))
 		{
 			$this->isSigInstalled = (
+			JFile::exists(JPATH_SITE.'/plugins/content/jw_sigpro.php') || 
 			JFile::exists(JPATH_SITE.'/plugins/content/jw_sigpro/jw_sigpro.php') || 
 			JFile::exists(JPATH_SITE.'/plugins/content/jw_sigpro/jw_sigpro/jw_sigpro.php') || 
 			JFile::exists(JPATH_SITE.'/plugins/content/jw_sig/jw_sig.php') || 
