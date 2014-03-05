@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: calendarClass.php 1812 2013-01-14 18:45:06Z lefteris.kavadas $
+ * @version		2.6.x
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.
  * @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
@@ -11,18 +11,18 @@
 defined('_JEXEC') or die;
 
 // PHP Calendar Class Version 1.4 (5th March 2001)
-//  
+//
 // Copyright David Wilkinson 2000 - 2001. All Rights reserved.
-// 
+//
 // This software may be used, modified and distributed freely
-// providing this copyright notice remains intact at the head 
+// providing this copyright notice remains intact at the head
 // of the file.
 //
 // This software is freeware. The author accepts no liability for
-// any loss or damages whatsoever incurred directly or indirectly 
-// from the use of this script. The author of this software makes 
-// no claims as to its fitness for any purpose whatsoever. If you 
-// wish to use this software you should first satisfy yourself that 
+// any loss or damages whatsoever incurred directly or indirectly
+// from the use of this script. The author of this software makes
+// no claims as to its fitness for any purpose whatsoever. If you
+// wish to use this software you should first satisfy yourself that
 // it meets your requirements.
 //
 // URL:   http://www.cascade.org.uk/software/php/calendar/
@@ -37,48 +37,48 @@ class Calendar
     function Calendar()
     {
     }
-    
-    
+
+
     /*
-        Get the array of strings used to label the days of the week. This array contains seven 
-        elements, one for each day of the week. The first entry in this array represents Sunday. 
+        Get the array of strings used to label the days of the week. This array contains seven
+        elements, one for each day of the week. The first entry in this array represents Sunday.
     */
     function getDayNames()
     {
         return $this->dayNames;
     }
-    
+
 
     /*
-        Set the array of strings used to label the days of the week. This array must contain seven 
-        elements, one for each day of the week. The first entry in this array represents Sunday. 
+        Set the array of strings used to label the days of the week. This array must contain seven
+        elements, one for each day of the week. The first entry in this array represents Sunday.
     */
     function setDayNames($names)
     {
         $this->dayNames = $names;
     }
-    
+
     /*
-        Get the array of strings used to label the months of the year. This array contains twelve 
-        elements, one for each month of the year. The first entry in this array represents January. 
+        Get the array of strings used to label the months of the year. This array contains twelve
+        elements, one for each month of the year. The first entry in this array represents January.
     */
     function getMonthNames()
     {
         return $this->monthNames;
     }
-    
+
     /*
-        Set the array of strings used to label the months of the year. This array must contain twelve 
-        elements, one for each month of the year. The first entry in this array represents January. 
+        Set the array of strings used to label the months of the year. This array must contain twelve
+        elements, one for each month of the year. The first entry in this array represents January.
     */
     function setMonthNames($names)
     {
         $this->monthNames = $names;
     }
-    
-    
-    
-    /* 
+
+
+
+    /*
         Gets the start day of the week. This is the day that appears in the first column
         of the calendar. Sunday = 0.
     */
@@ -86,8 +86,8 @@ class Calendar
     {
         return $this->startDay;
     }
-    
-    /* 
+
+    /*
         Sets the start day of the week. This is the day that appears in the first column
         of the calendar. Sunday = 0.
     */
@@ -95,9 +95,9 @@ class Calendar
     {
         $this->startDay = $day;
     }
-    
-    
-    /* 
+
+
+    /*
         Gets the start month of the year. This is the month that appears first in the year
         view. January = 1.
     */
@@ -105,8 +105,8 @@ class Calendar
     {
         return $this->startMonth;
     }
-    
-    /* 
+
+    /*
         Sets the start month of the year. This is the month that appears first in the year
         view. January = 1.
     */
@@ -114,28 +114,28 @@ class Calendar
     {
         $this->startMonth = $month;
     }
-    
-    
+
+
     /*
         Return the URL to link to in order to display a calendar for a given month/year.
-        You must override this method if you want to activate the "forward" and "back" 
+        You must override this method if you want to activate the "forward" and "back"
         feature of the calendar.
-        
+
         Note: If you return an empty string from this function, no navigation link will
         be displayed. This is the default behaviour.
-        
+
         If the calendar is being displayed in "year" view, $month will be set to zero.
     */
     function getCalendarLink($month, $year)
     {
         return "";
     }
-    
+
     /*
         Return the URL to link to  for a given date.
         You must override this method if you want to activate the date linking
         feature of the calendar.
-        
+
         Note: If you return an empty string from this function, no navigation link will
         be displayed. This is the default behaviour.
     */
@@ -153,7 +153,7 @@ class Calendar
         $d = getdate(time());
         return $this->getMonthView($d["mon"], $d["year"]);
     }
-    
+
 
     /*
         Return the HTML for the current year
@@ -163,8 +163,8 @@ class Calendar
         $d = getdate(time());
         return $this->getYearView($d["year"]);
     }
-    
-    
+
+
     /*
         Return the HTML for a specified month
     */
@@ -172,7 +172,7 @@ class Calendar
     {
         return $this->getMonthHTML($month, $year);
     }
-    
+
 
     /*
         Return the HTML for a specified year
@@ -181,15 +181,15 @@ class Calendar
     {
         return $this->getYearHTML($year);
     }
-    
-    
-    
+
+
+
     /********************************************************************************
-    
+
         The rest are private methods. No user-servicable parts inside.
-        
+
         You shouldn't need to call any of these functions directly.
-        
+
     *********************************************************************************/
 
 
@@ -202,14 +202,14 @@ class Calendar
         {
             return 0;
         }
-   
+
         $d = $this->daysInMonth[$month - 1];
-   
+
         if ($month == 2)
         {
             // Check for leap year
             // Forget the 4000 rule, I doubt I'll be around then...
-        
+
             if ($year%4 == 0)
             {
                 if ($year%100 == 0)
@@ -225,7 +225,7 @@ class Calendar
                 }
             }
         }
-    
+
         return $d;
     }
 
@@ -236,20 +236,20 @@ class Calendar
     function getMonthHTML($m, $y, $showYear = 1)
     {
         $s = "";
-        
+
         $a = $this->adjustDate($m, $y);
         $month = $a[0];
-        $year = $a[1];        
-        
+        $year = $a[1];
+
     	$daysInMonth = $this->getDaysInMonth($month, $year);
     	$date = getdate(mktime(12, 0, 0, $month, 1, $year));
-    	
+
     	$first = $date["wday"];
     	$monthName = $this->monthNames[$month - 1];
-    	
+
     	$prev = $this->adjustDate($month - 1, $year);
     	$next = $this->adjustDate($month + 1, $year);
-    	
+
     	if ($showYear == 1)
     	{
     	    $prevMonth = $this->getCalendarLink($prev[0], $prev[1]);
@@ -260,16 +260,16 @@ class Calendar
     	    $prevMonth = "";
     	    $nextMonth = "";
     	}
-    	
+
     	$header = $monthName . (($showYear > 0) ? " " . $year : "");
-    	
+
     	$s .= "<table class=\"calendar\">\n";
     	$s .= "<tr>\n";
     	$s .= "<td class=\"calendarNavMonthPrev\">" . (($prevMonth == "") ? "&nbsp;" : "<a class=\"calendarNavLink\" href=\"$prevMonth\">&laquo;</a>")  . "</td>\n";
-    	$s .= "<td class=\"calendarCurrentMonth\" colspan=\"5\">$header</td>\n"; 
+    	$s .= "<td class=\"calendarCurrentMonth\" colspan=\"5\">$header</td>\n";
     	$s .= "<td class=\"calendarNavMonthNext\">" . (($nextMonth == "") ? "&nbsp;" : "<a class=\"calendarNavLink\" href=\"$nextMonth\">&raquo;</a>")  . "</td>\n";
     	$s .= "</tr>\n";
-    	
+
     	$s .= "<tr>\n";
     	$s .= "<td class=\"calendarDayName\" style=\"width:".round(100/7)."%\">" . $this->dayNames[($this->startDay)%7] . "</td>\n";
     	$s .= "<td class=\"calendarDayName\" style=\"width:".round(100/7)."%\">" . $this->dayNames[($this->startDay+1)%7] . "</td>\n";
@@ -279,7 +279,7 @@ class Calendar
     	$s .= "<td class=\"calendarDayName\" style=\"width:".round(100/7)."%\">" . $this->dayNames[($this->startDay+5)%7] . "</td>\n";
     	$s .= "<td class=\"calendarDayName\" style=\"width:".round(100/7)."%\">" . $this->dayNames[($this->startDay+6)%7] . "</td>\n";
     	$s .= "</tr>\n";
-    	
+
     	// We need to work out what date to start at so that the first appears in the correct column
     	$d = $this->startDay + 1 - $first;
     	while ($d > 1)
@@ -289,37 +289,37 @@ class Calendar
 
         // Make sure we know when today is, so that we can use a different CSS style
         $today = getdate(time());
-    	
+
     	while ($d <= $daysInMonth)
     	{
-    	    $s .= "<tr>\n";       
-    	    
+    	    $s .= "<tr>\n";
+
     	    for ($i = 0; $i < 7; $i++)
     	    {
         	    $class = ($year == $today["year"] && $month == $today["mon"] && $d == $today["mday"]) ? "calendarToday" : "calendarDate";
-    	              
+
     	        if ($d > 0 && $d <= $daysInMonth){
     	            $link = $this->getDateLink($d, $month, $year);
     	            if($link == ""){
-    	            	$s .= "<td class=\"{$class}\">$d</td>\n"; 
+    	            	$s .= "<td class=\"{$class}\">$d</td>\n";
     	            } else {
     	            	$s .= "<td class=\"{$class}Linked\"><a href=\"$link\">$d</a></td>\n";
     	            }
     	        } else {
     	        		$s .= "<td class=\"calendarDateEmpty\">&nbsp;</td>\n";
     	        }
-      	               
+
         	    $d++;
     	    }
-    	    $s .= "</tr>\n";    
+    	    $s .= "</tr>\n";
     	}
-    	
+
     	$s .= "</table>\n";
-    	
-    	return $s;  	
+
+    	return $s;
     }
-    
-    
+
+
     /*
         Generate the HTML for a given year
     */
@@ -328,7 +328,7 @@ class Calendar
         $s = "";
     	$prev = $this->getCalendarLink(0, $year - 1);
     	$next = $this->getCalendarLink(0, $year + 1);
-        
+
         $s .= "<table class=\"calendar\" border=\"0\">\n";
         $s .= "<tr>";
     		$s .= "<td class=\"calendarNavMonthPrev\">" . (($prev == "") ? "&nbsp;" : "<a class=\"calendarNavLink\" href=\"$prev\">&laquo;</a>")  . "</td>\n";
@@ -356,7 +356,7 @@ class Calendar
         $s .= "<td class=\"calendarMonth\">" . $this->getMonthHTML(11 + $this->startMonth, $year, 0) ."</td>\n";
         $s .= "</tr>\n";
         $s .= "</table>\n";
-        
+
         return $s;
     }
 
@@ -366,32 +366,32 @@ class Calendar
     */
     function adjustDate($month, $year)
     {
-        $a = array();  
+        $a = array();
         $a[0] = $month;
         $a[1] = $year;
-        
+
         while ($a[0] > 12)
         {
             $a[0] -= 12;
             $a[1]++;
         }
-        
+
         while ($a[0] <= 0)
         {
             $a[0] += 12;
             $a[1]--;
         }
-        
+
         return $a;
     }
 
-    /* 
+    /*
         The start day of the week. This is the day that appears in the first column
         of the calendar. Sunday = 0.
     */
     var $startDay = 0;
 
-    /* 
+    /*
         The start month of the year. This is the month that appears in the first slot
         of the calendar in the year view. January = 1.
     */
@@ -402,19 +402,19 @@ class Calendar
         represents Sunday.
     */
     var $dayNames = array("S", "M", "T", "W", "T", "F", "S");
-    
+
     /*
         The labels to display for the months of the year. The first entry in this array
         represents January.
     */
     var $monthNames = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-         
+
     /*
         The number of days in each month. You're unlikely to want to change this...
         The first entry in this array represents January.
     */
     var $daysInMonth = array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
-    
+
 }
 
 ?>

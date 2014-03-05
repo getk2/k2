@@ -43,7 +43,7 @@ More at: http://getk2.org
 
 
 ==
-Copyright &copy; 2009-2013 [JoomlaWorks Ltd.](http://www.joomlaworks.net) & [Nuevvo Webware Ltd.](http://nuevvo.com)
+Copyright &copy; 2009-2013 [JoomlaWorks Ltd.](http://www.joomlaworks.net) & [Nuevvo Webware P.C.](http://nuevvo.com)
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/joomlaworks/k2/trend.png)](https://bitdeli.com/free "Bitdeli Badge")

@@ -1,8 +1,8 @@
 /**
- * @version		$Id: k2.css 1971 2013-05-01 16:04:17Z lefteris.kavadas $
+ * @version		2.6.x
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.
  * @license		GNU/GPL license:http://www.gnu.org/copyleft/gpl.html
  */
 
@@ -135,8 +135,8 @@ div.isJ30 #adminFormK2Sidebar fieldset.radio input { float: left!important; marg
 div.isJ30 #adminFormK2Sidebar fieldset.radio label { float:left!important; margin:0 12px 0 0!important; position: relative; top: -3px;}
 
 div#k2ToggleSidebarContainer {text-align:right;clear:both;margin-bottom:4px;}
-	a#k2ToggleSidebar {-moz-border-radius:4px;-webkit-border-radius:4px;border:1px solid #ccc;background:#f6f6f6 url(../images/editforms/Size-Horz.png) no-repeat;padding:2px 4px 1px 20px;text-decoration:none;}
-	a#k2ToggleSidebar:hover {background:#eee url(../images/editforms/Size-Horz.png) no-repeat;}
+	a#k2ToggleSidebar {border-radius:4px;border:1px solid #ccc;background:url(../images/editforms/Size-Horz.png) no-repeat;padding:1px 4px 1px 20px;text-decoration:none;height:16px;line-height:16px;overflow-y:hidden;font-size:10px;color:#999;outline:0;}
+	a#k2ToggleSidebar:hover {color:#777;}
 
 /* Admin - Item */
 table.adminFormK2 tr td label {}
@@ -146,7 +146,7 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 
 /* Admin - Item - Free tagging */
 ul.tags {background:#fff;border:1px solid #c0c0c0;padding:0;cursor:default;margin:0;padding:0;width:99%;min-height:26px;}
-ul.tags li {-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;background:#cfe4fa;color:#222;border:1px solid #b0d2f9;padding:2px 4px 4px;line-height:12px;list-style:none;float:left;clear:none;margin:2px 1px 1px;font-size:12px;font-weight:normal;font-family:"Lucida Grande";}
+ul.tags li {border-radius:4px;background:#cfe4fa;color:#222;border:1px solid #b0d2f9;padding:2px 4px 4px;line-height:12px;list-style:none;float:left;clear:none;margin:2px 1px 1px;font-size:12px;font-weight:normal;font-family:"Lucida Grande";}
 	ul.tags li span.tagRemove {font-size:12px;font-family:"Lucida Grande";color:#5279a1;padding-left:4px;cursor:pointer;}
 	ul.tags li span.tagRemove:hover {color:#505050;cursor:pointer;}
 ul.tags li input {border:none;padding-top:2px;background:none;font-size:12px;font-weight:normal;font-family:"Lucida Grande";float:left;clear:none;}
@@ -171,7 +171,7 @@ table#tagLists tr td#tagListsRight {width:40%;}
 table#tagLists tr td#tagListsRight select {width:99%;height:106px;}
 
 .itemPlugins {margin-top:20px;}
-.k2ItemFormEditor {clear:both;position:relative;padding:24px 4px 8px 4px;margin:0 0 16px 0;background:#e0e0e0 url(../images/system/boxTopBackground.png) repeat-x top;-moz-border-radius:4px;-webkit-border-radius:4px;border:1px solid #ccc;}
+.k2ItemFormEditor {clear:both;position:relative;padding:24px 4px 8px 4px;margin:0 0 16px 0;background:#e0e0e0 url(../images/system/boxTopBackground.png) repeat-x top;border-radius:4px;border:1px solid #ccc;}
 span.k2ItemFormEditorTitle {font-family:Georgia, "Times New Roman", Times, serif;font-size:13px;color:#222;position:absolute;top:4px;right:4px;}
 
 #editor-xtd-buttons {margin:0;padding:0 0 0 4px;}
@@ -336,12 +336,12 @@ div#k2AboutBlock h2 {padding:0;margin:16px 0 0;}
 div.simpleTabs {clear:both;padding:10px 0;}
 ul.simpleTabsNavigation {margin:0 10px;padding:0;text-align:left;white-space:nowrap;}
 ul.simpleTabsNavigation li {list-style:none;display:inline;margin:0;padding:0;}
-ul.simpleTabsNavigation li a {border:1px solid #E0E0E0;padding:3px 6px;margin:0;background-color:#F0F0F0;font-size:14px;text-decoration:none;font-family:Georgia, "Times New Roman", Times, serif;color:#666;font-weight:normal;}
+ul.simpleTabsNavigation li a {border:1px solid #E0E0E0;padding:3px 6px;margin:0;background-color:#F0F0F0;font-size:14px;text-decoration:none;font-family:Georgia, "Times New Roman", Times, serif;color:#666;font-weight:normal;outline:0;}
 ul.simpleTabsNavigation li a:hover {text-decoration:none;background-color:#f6f6f6;}
 
 ul.simpleTabsNavigation li.ui-tabs-selected a {background-color:#fff;color:#222;border-bottom:1px solid #fff;}
 div.simpleTabsContent {border:1px solid #E0E0E0;padding:8px;margin-top:3px;}
-div.isJ30 div.simpleTabsContent {margin-top:2px;}
+div.isJ30 div.simpleTabsContent {margin-top:3px;}
 ul.simpleTabsNavigation li.ui-tabs-selected a:hover {background-color:#fff;}
 div.isJ25 div.simpleTabsContent {background:#fff;}
 .ui-tabs-hide {display:none;}

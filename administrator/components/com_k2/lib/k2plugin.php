@@ -1,9 +1,9 @@
 <?php
 /**
- * @version     $Id: k2plugin.php 1964 2013-04-29 13:14:09Z lefteris.kavadas $
+ * @version     2.6.x
  * @package     K2
  * @author      JoomlaWorks http://www.joomlaworks.net
- * @copyright   Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @copyright   Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.
  * @license     GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 

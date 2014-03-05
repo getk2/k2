@@ -2,8 +2,8 @@
 <extension version="2.5" type="plugin" group="finder" method="upgrade">
     <name>plg_finder_k2</name>
     <author>JoomlaWorks</author>
-    <creationDate>August 13th, 2013</creationDate>
-    <copyright>Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.</copyright>
+    <creationDate>February 28th, 2014</creationDate>
+    <copyright>Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
     <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
     <authorUrl>www.joomlaworks.net</authorUrl>
