@@ -259,6 +259,11 @@ class K2ViewItem extends K2View
 				}
 
 				$item->comments = $comments;
+				
+				if(!isset($item->numOfComments))
+				{
+					$item->numOfComments = 0;
+				}
 
 				jimport('joomla.html.pagination');
 				$total = $item->numOfComments;
