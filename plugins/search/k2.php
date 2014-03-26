@@ -88,63 +88,64 @@ class plgSearchK2 extends JPlugin
             {
                 $tagQuery = JString::strtolower($text);
                 $escaped = K2_JVERSION == '15' ? $db->getEscaped($tagQuery, true) : $db->escape($tagQuery, true);
-                $tagQuery = $db->Quote('%'.$escaped.'%', false);
+                $quoted = $db->Quote('%'.$escaped.'%', false);
                 $query = "SELECT id FROM #__k2_tags WHERE LOWER(name) LIKE ".$quoted." AND published=1";
                 $db->setQuery($query);
                 $tagIDs = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
 
                 if (count($tagIDs))
                 {
-                    JArrayHelper::toInteger($tagIDs);
-                    $query = "SELECT itemID FROM #__k2_tags_xref WHERE tagID IN (".implode(',', $tagIDs).")";
-                    $db->setQuery($query);
-                    $itemIDs = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
+									JArrayHelper::toInteger($tagIDs);
+									$query = "SELECT itemID FROM #__k2_tags_xref WHERE tagID IN (".implode(',', $tagIDs).")";
+									$db->setQuery($query);
+									$itemIDs = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
                 }
             }
             if ($phrase == 'exact')
             {
-                $text = JString::trim($text, '"');
-                $escaped = K2_JVERSION == '15' ? $db->getEscaped($text, true) : $db->escape($text, true);
-				$quoted = $db->Quote($escaped);
-				$where = " ( LOWER(i.title) = ".$quoted." OR LOWER(i.introtext) = ".$quoted." OR LOWER(i.`fulltext`) = ".$quoted." OR LOWER(i.extra_fields_search) = ".$quoted." OR LOWER(i.image_caption) = ".$quoted." OR LOWER(i.image_credits) = ".$quoted." OR LOWER(i.video_caption) = ".$quoted." OR LOWER(i.video_credits) = ".$quoted." OR LOWER(i.metadesc) = ".$quoted." OR LOWER(i.metakey) = ".$quoted.") ";
+							$text = JString::trim($text, '"');
+							$escaped = K2_JVERSION == '15' ? $db->getEscaped($text, true) : $db->escape($text, true);
+							$quoted = $db->Quote($escaped);
+							$where = " ( LOWER(i.title) = ".$quoted." OR LOWER(i.introtext) = ".$quoted." OR LOWER(i.`fulltext`) = ".$quoted." OR LOWER(i.extra_fields_search) = ".$quoted." OR LOWER(i.image_caption) = ".$quoted." OR LOWER(i.image_credits) = ".$quoted." OR LOWER(i.video_caption) = ".$quoted." OR LOWER(i.video_credits) = ".$quoted." OR LOWER(i.metadesc) = ".$quoted." OR LOWER(i.metakey) = ".$quoted.") ";
             }
             else
             {
-                $escaped = K2_JVERSION == '15' ? $db->getEscaped($text, true) : $db->escape($text, true);
-				$quoted = $db->Quote('%'.$escaped.'%', false);
-				$where = " ( LOWER(i.title) LIKE ".$quoted." OR LOWER(i.introtext) LIKE ".$quoted." OR LOWER(i.`fulltext`) LIKE ".$quoted." OR LOWER(i.extra_fields_search) LIKE ".$quoted." OR LOWER(i.image_caption) LIKE ".$quoted." OR LOWER(i.image_credits) LIKE ".$quoted." OR LOWER(i.video_caption) LIKE ".$quoted." OR LOWER(i.video_credits) LIKE ".$quoted." OR LOWER(i.metadesc) LIKE ".$quoted." OR LOWER(i.metakey) LIKE ".$quoted.") ";
+							$escaped = K2_JVERSION == '15' ? $db->getEscaped($text, true) : $db->escape($text, true);
+							$quoted = $db->Quote('%'.$escaped.'%', false);
+							$where = " ( LOWER(i.title) LIKE ".$quoted." OR LOWER(i.introtext) LIKE ".$quoted." OR LOWER(i.`fulltext`) LIKE ".$quoted." OR LOWER(i.extra_fields_search) LIKE ".$quoted." OR LOWER(i.image_caption) LIKE ".$quoted." OR LOWER(i.image_credits) LIKE ".$quoted." OR LOWER(i.video_caption) LIKE ".$quoted." OR LOWER(i.video_credits) LIKE ".$quoted." OR LOWER(i.metadesc) LIKE ".$quoted." OR LOWER(i.metakey) LIKE ".$quoted.") ";
             }
 
             if ($pluginParams->get('search_tags') && count($itemIDs))
             {
-                JArrayHelper::toInteger($itemIDs);
-                $where .= " OR i.id IN (".implode(',', $itemIDs);
+							JArrayHelper::toInteger($itemIDs);
+							$where .= " OR i.id IN (".implode(',', $itemIDs).")";
             }
             $query = "
-		SELECT i.title AS title,
-	    i.metadesc,
-	    i.metakey,
-	    c.name as section,
-	    i.image_caption,
-	    i.image_credits,
-	    i.video_caption,
-	    i.video_credits,
-	    i.extra_fields_search,
-	    i.created,
-    	CONCAT(i.introtext, i.fulltext) AS text,
-    	CASE WHEN CHAR_LENGTH(i.alias) THEN CONCAT_WS(':', i.id, i.alias) ELSE i.id END as slug,
-    	CASE WHEN CHAR_LENGTH(c.alias) THEN CONCAT_WS(':', c.id, c.alias) ELSE c.id END as catslug
-    	FROM #__k2_items AS i
-    	INNER JOIN #__k2_categories AS c ON c.id=i.catid AND c.access {$accessCheck}
-		WHERE (".$where.")
-		AND i.trash = 0
-	    AND i.published = 1
-	    AND i.access {$accessCheck}
-	    AND c.published = 1
-	    AND c.access {$accessCheck}
-	    AND c.trash = 0
-	    AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
-        AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )";
+							SELECT i.title AS title,
+						    i.metadesc,
+						    i.metakey,
+						    c.name as section,
+						    i.image_caption,
+						    i.image_credits,
+						    i.video_caption,
+						    i.video_credits,
+						    i.extra_fields_search,
+						    i.created,
+					    	CONCAT(i.introtext, i.fulltext) AS text,
+					    	CASE WHEN CHAR_LENGTH(i.alias) THEN CONCAT_WS(':', i.id, i.alias) ELSE i.id END as slug,
+					    	CASE WHEN CHAR_LENGTH(c.alias) THEN CONCAT_WS(':', c.id, c.alias) ELSE c.id END as catslug
+					    	FROM #__k2_items AS i
+					    	INNER JOIN #__k2_categories AS c ON c.id=i.catid AND c.access {$accessCheck}
+							WHERE {$where}
+								AND i.trash = 0
+								AND i.published = 1
+								AND i.access {$accessCheck}
+								AND c.published = 1
+								AND c.access {$accessCheck}
+								AND c.trash = 0
+								AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
+								AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )";
+
             if (K2_JVERSION != '15' && $mainframe->isSite() && $mainframe->getLanguageFilter())
             {
                 $languageTag = JFactory::getLanguage()->getTag();
