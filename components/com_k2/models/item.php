@@ -233,7 +233,8 @@ class K2ModelItem extends K2Model
 		$item->image_caption = htmlspecialchars($item->image_caption, ENT_QUOTES);
 
 		//Author
-		if (($view == 'item' && ($item->params->get('itemAuthorBlock') || $item->params->get('itemAuthor'))) || ($view == 'itemlist' && ($task == '' || $task == 'category') && ($item->params->get('catItemAuthorBlock') || $item->params->get('catItemAuthor'))) || ($view == 'itemlist' && $task == 'user') || ($view == 'relatedByTag'))
+		$metaAuthor = K2_JVERSION != '15' && $application->getCfg('MetaAuthor');
+		if ($metaAuthor || ($view == 'item' && ($item->params->get('itemAuthorBlock') || $item->params->get('itemAuthor'))) ||  ($view == 'itemlist' && ($task == '' || $task == 'category') && ($item->params->get('catItemAuthorBlock') || $item->params->get('catItemAuthor'))) || ($view == 'itemlist' && $task == 'user') || ($view == 'relatedByTag'))
 		{
 			if (!empty($item->created_by_alias))
 			{
