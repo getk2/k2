@@ -79,7 +79,15 @@ K2HelperHTML::loadjQuery(true, JRequest::getCmd('view') == 'media');
 // JS
 if(K2_JVERSION == '30')
 {
-    JHtml::_('formbehavior.chosen', 'select');
+	if($view == 'item' && !$params->get('taggingSystem'))
+	{
+		JHtml::_('formbehavior.chosen', 'select:not(#selectedTags, #tags)');
+	}
+	else
+	{
+		JHtml::_('formbehavior.chosen', 'select');
+	}
+    
 }
 $document->addScriptDeclaration('K2JVersion = "'.K2_JVERSION.'";');
 $document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v=2.6.9&amp;sitepath='.JURI::root(true).'/');
