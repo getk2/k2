@@ -88,6 +88,11 @@ if ($params->get('k2Sef'))
 		{
 			$segments[] = $query['id'];
 			unset($query['id']);
+			//Remove id from item url
+			if($segments[0] == 'item') {
+				$parts = explode(':', $segments[1]);
+				$segments[1] = $parts[1];
+			}
 		}
 
 		if (isset($query['cid']))
@@ -406,7 +411,10 @@ if ($params->get('k2Sef'))
 					break;
 
 				default :
-					$vars['id'] = $segments[1];
+					$segments[1] = str_replace(':', '-', $segments[1]);
+					$itemId     = getItemId($segments[1]);
+					//Add itemId back for parse
+					$vars['id'] = $itemId.':'.$segments[1];
 					unset($vars['task']);
 					break;
 			}
@@ -455,32 +463,6 @@ if ($params->get('k2Sef'))
 
 		return $slug;
 	}
-
-	/**
-	 * Get id K2.
-	 *
-	 * @param   string  $alias  The k2 item alias
-	 *
-	 * @return  integer
-	 */
-	function getItemId($alias)
-	{
-		$id = null;
-		$db = JFactory::getDBO();
-		$query = "SELECT id FROM #__k2_items WHERE alias = ".$db->quote($alias);
-		$db->setQuery($query);
-		try
-		{
-			$id = $db->loadResult();
-		}
-		catch (Exception $e)
-		{
-			$this->setError($e->getMessage());
-			return false;
-		}
-		return $id;
-	}
-
 }
 else
 {
@@ -540,6 +522,12 @@ else
 			$id = $query['id'];
 			$segments[] = $id;
 			unset($query['id']);
+			
+			//Remove id from item url
+			if($segments[0] == 'item') {
+				$parts = explode(':', $segments[1]);
+				$segments[1] = $parts[1];
+			}
 		}
 
 		if (isset($query['cid']))
@@ -647,7 +635,10 @@ else
 					break;
 
 				default :
-					$vars['id'] = $segments[1];
+					$segments[1] = str_replace(':', '-', $segments[1]);
+					$itemId     = getItemId($segments[1]);
+					//Add itemId back for parse
+					$vars['id'] = $itemId.':'.$segments[1];
 					unset($vars['task']);
 					break;
 			}
@@ -662,4 +653,29 @@ else
 		return $vars;
 	}
 
+}
+
+/**
+ * Get id K2.
+ *
+ * @param   string  $alias  The k2 item alias
+ *
+ * @return  integer
+ */
+function getItemId($alias)
+{
+	$id = null;
+	$db = JFactory::getDBO();
+	$query = "SELECT id FROM #__k2_items WHERE alias = ".$db->quote($alias);
+	$db->setQuery($query);
+	try
+	{
+		$id = $db->loadResult();
+	}
+	catch (Exception $e)
+	{
+		$this->setError($e->getMessage());
+		return false;
+	}
+	return $id;
 }
