@@ -11,23 +11,11 @@ defined('_JEXEC') or die ;
 
 jimport('joomla.application.component.model');
 
-if (version_compare(JVERSION, '3.0', 'ge'))
+if (version_compare(JVERSION, '2.5', 'ge'))
 {
     class K2Model extends JModelLegacy
     {
-        public static function addIncludePath($path = '', $prefix = '')
-        {
-            return parent::addIncludePath($path, $prefix);
-        }
-
-    }
-
-}
-else if (version_compare(JVERSION, '2.5', 'ge'))
-{
-    class K2Model extends JModel
-    {
-        public static function addIncludePath($path = '', $prefix = '')
+        public static function addIncludePath($path = '', $prefix = 'K2Model')
         {
             return parent::addIncludePath($path, $prefix);
         }
@@ -39,7 +27,7 @@ else
 {
     class K2Model extends JModel
     {
-        public function addIncludePath($path = '', $prefix = '')
+        public function addIncludePath($path = '', $prefix = 'K2Model')
         {
             return parent::addIncludePath($path);
         }
