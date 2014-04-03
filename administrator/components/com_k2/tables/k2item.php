@@ -10,6 +10,8 @@
 // no direct access
 defined('_JEXEC') or die ;
 
+require_once JPATH_ADMINISTRATOR.'/components/com_k2/tables/table.php';
+
 class TableK2Item extends K2Table
 {
 
