@@ -407,6 +407,10 @@ if ($params->get('k2Sef'))
 
 				default :
 					$vars['id'] = $segments[1];
+					if(isset($segments[2]) && strpos($segments[2], ':'))
+					{
+						$vars['id'] .= ':'.str_replace(':', '-', $segments[2]);
+					}
 					unset($vars['task']);
 					break;
 			}
