@@ -454,7 +454,7 @@ class K2ModelUsers extends K2Model
                 else
                 {
                     $user = JFactory::getUser($id);
-                    $query = "INSERT INTO #__k2_users VALUES ('', {$id}, {$db->Quote($user->username)}, '', '', '', '', {$k2group}, '')";
+                    $query = "INSERT INTO #__k2_users VALUES ('', {$id}, {$db->Quote($user->username)}, '', '', '', '', {$k2group}, '', '', '', '')";
                 }
                 $db->setQuery($query);
                 $db->query();
