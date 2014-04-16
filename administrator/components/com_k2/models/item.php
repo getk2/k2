@@ -307,125 +307,102 @@ class K2ModelItem extends K2Model
 
 				$params->merge($cparams);
 
-				//Original image
-				$savepath = JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'src';
-				$handle->image_convert = 'jpg';
-				$handle->jpeg_quality = 100;
-				$handle->file_auto_rename = false;
-				$handle->file_overwrite = true;
-				$handle->file_new_name_body = md5("Image".$row->id);
-				$handle->Process($savepath);
 
-				$filename = $handle->file_dst_name_body;
-				$savepath = JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache';
-
-				//XLarge image
-				$handle->image_resize = true;
-				$handle->image_ratio_y = true;
-				$handle->image_convert = 'jpg';
-				$handle->jpeg_quality = $params->get('imagesQuality');
-				$handle->file_auto_rename = false;
-				$handle->file_overwrite = true;
-				$handle->file_new_name_body = $filename.'_XL';
-				if (JRequest::getInt('itemImageXL'))
-				{
-					$imageWidth = JRequest::getInt('itemImageXL');
-				}
-				else
-				{
-					$imageWidth = $params->get('itemImageXL', '800');
-				}
-				$handle->image_x = $imageWidth;
-				$handle->Process($savepath);
-
-				//Large image
-				$handle->image_resize = true;
-				$handle->image_ratio_y = true;
-				$handle->image_convert = 'jpg';
-				$handle->jpeg_quality = $params->get('imagesQuality');
-				$handle->file_auto_rename = false;
-				$handle->file_overwrite = true;
-				$handle->file_new_name_body = $filename.'_L';
-				if (JRequest::getInt('itemImageL'))
-				{
-					$imageWidth = JRequest::getInt('itemImageL');
-				}
-				else
-				{
-					$imageWidth = $params->get('itemImageL', '600');
-				}
-				$handle->image_x = $imageWidth;
-				$handle->Process($savepath);
-
-				//Medium image
-				$handle->image_resize = true;
-				$handle->image_ratio_y = true;
-				$handle->image_convert = 'jpg';
-				$handle->jpeg_quality = $params->get('imagesQuality');
-				$handle->file_auto_rename = false;
-				$handle->file_overwrite = true;
-				$handle->file_new_name_body = $filename.'_M';
-				if (JRequest::getInt('itemImageM'))
-				{
-					$imageWidth = JRequest::getInt('itemImageM');
-				}
-				else
-				{
-					$imageWidth = $params->get('itemImageM', '400');
-				}
-				$handle->image_x = $imageWidth;
-				$handle->Process($savepath);
-
-				//Small image
-				$handle->image_resize = true;
-				$handle->image_ratio_y = true;
-				$handle->image_convert = 'jpg';
-				$handle->jpeg_quality = $params->get('imagesQuality');
-				$handle->file_auto_rename = false;
-				$handle->file_overwrite = true;
-				$handle->file_new_name_body = $filename.'_S';
-				if (JRequest::getInt('itemImageS'))
-				{
-					$imageWidth = JRequest::getInt('itemImageS');
-				}
-				else
-				{
-					$imageWidth = $params->get('itemImageS', '200');
-				}
-				$handle->image_x = $imageWidth;
-				$handle->Process($savepath);
-
-				//XSmall image
-				$handle->image_resize = true;
-				$handle->image_ratio_y = true;
-				$handle->image_convert = 'jpg';
-				$handle->jpeg_quality = $params->get('imagesQuality');
-				$handle->file_auto_rename = false;
-				$handle->file_overwrite = true;
-				$handle->file_new_name_body = $filename.'_XS';
-				if (JRequest::getInt('itemImageXS'))
-				{
-					$imageWidth = JRequest::getInt('itemImageXS');
-				}
-				else
-				{
-					$imageWidth = $params->get('itemImageXS', '100');
-				}
-				$handle->image_x = $imageWidth;
-				$handle->Process($savepath);
-
-				//Generic image
-				$handle->image_resize = true;
-				$handle->image_ratio_y = true;
-				$handle->image_convert = 'jpg';
-				$handle->jpeg_quality = $params->get('imagesQuality');
-				$handle->file_auto_rename = false;
-				$handle->file_overwrite = true;
-				$handle->file_new_name_body = $filename.'_Generic';
-				$imageWidth = $params->get('itemImageGeneric', '300');
-				$handle->image_x = $imageWidth;
-				$handle->Process($savepath);
-
+		                /**
+		                 * cropping image
+		                 * @param Upload $handle
+		                 * @param string $type
+		                 * @param string $default
+		                 */
+		                $imageCrop = function(Upload $handle, $type, $default) {
+		                    if (is_string($type) && is_string($default)) {
+		                        $jinput = JFactory::getApplication()->input;
+		                        $size = $jinput->get($type, '', 'WORD') ?
+		                            explode('x', $jinput->get($type, '', 'WORD')) : explode('x', $default);
+		
+		                        if (count($size) > 1) {
+		                            $handle->image_x = (int)trim($size[0]);
+		                            $handle->image_y = (int)trim($size[1]);
+		                            $handle->image_ratio_crop = 'L';
+		                        } else {
+		                            $handle->image_ratio_y = true;
+		                            $handle->image_x = (int)trim($size[0]);
+		                        }
+		                    }
+		                };
+		
+		                //Original image
+		                $savepath = JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'src';
+		                $handle->image_convert = 'jpg';
+		                $handle->jpeg_quality = 100;
+		                $handle->file_auto_rename = false;
+		                $handle->file_overwrite = true;
+		                $handle->file_new_name_body = md5("Image".$row->id);
+		                $handle->Process($savepath);
+		
+		                $filename = $handle->file_dst_name_body;
+		                $savepath = JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache';
+		
+		                //XLarge image
+		                $handle->image_resize = true;
+		                $handle->image_convert = 'jpg';
+		                $handle->jpeg_quality = $params->get('imagesQuality');
+		                $handle->file_auto_rename = false;
+		                $handle->file_overwrite = true;
+		                $handle->file_new_name_body = $filename.'_XL';
+		                $imageCrop($handle, 'itemImageXL', $params->get('itemImageXL', '800'));
+		                $handle->Process($savepath);
+		
+		                //Large image
+		                $handle->image_resize = true;
+		                $handle->image_convert = 'jpg';
+		                $handle->jpeg_quality = $params->get('imagesQuality');
+		                $handle->file_auto_rename = false;
+		                $handle->file_overwrite = true;
+		                $handle->file_new_name_body = $filename.'_L';
+		                $imageCrop($handle, 'itemImageL', $params->get('itemImageL', '600'));
+		                $handle->Process($savepath);
+		
+		                //Medium image
+		                $handle->image_resize = true;
+		                $handle->image_convert = 'jpg';
+		                $handle->jpeg_quality = $params->get('imagesQuality');
+		                $handle->file_auto_rename = false;
+		                $handle->file_overwrite = true;
+		                $handle->file_new_name_body = $filename.'_M';
+		                $imageCrop($handle, 'itemImageM', $params->get('itemImageM', '400'));
+		                $handle->Process($savepath);
+		
+		                //Small image
+		                $handle->image_resize = true;
+		                $handle->image_convert = 'jpg';
+		                $handle->jpeg_quality = $params->get('imagesQuality');
+		                $handle->file_auto_rename = false;
+		                $handle->file_overwrite = true;
+		                $handle->file_new_name_body = $filename.'_S';
+		                $imageCrop($handle, 'itemImageS', $params->get('itemImageS', '200'));
+		                $handle->Process($savepath);
+		
+		                //XSmall image
+		                $handle->image_resize = true;
+		                $handle->image_convert = 'jpg';
+		                $handle->jpeg_quality = $params->get('imagesQuality');
+		                $handle->file_auto_rename = false;
+		                $handle->file_overwrite = true;
+		                $handle->file_new_name_body = $filename.'_XS';
+		                $imageCrop($handle, 'itemImageXS', $params->get('itemImageXS', '100'));
+		                $handle->Process($savepath);
+		
+		                //Generic image
+		                $handle->image_resize = true;
+		                $handle->image_convert = 'jpg';
+		                $handle->jpeg_quality = $params->get('imagesQuality');
+		                $handle->file_auto_rename = false;
+		                $handle->file_overwrite = true;
+		                $handle->file_new_name_body = $filename.'_Generic';
+		                $imageCrop($handle, 'itemImageGeneric', $params->get('itemImageGeneric', '300'));
+		                $handle->Process($savepath);
+                
 				if ($files['image']['error'] === 0)
 					$handle->Clean();
 
