@@ -461,8 +461,12 @@ $K2(document).ready(function() {
                 }
             });
             if ($K2('input[name=isSite]').val() == 1) {
-                parent.$('sbox-overlay').removeEvents('click');
-                parent.$('sbox-btn-close').removeEvents('click');
+            	if(parent.$('sbox-overlay') != undefined) {
+            		 parent.$('sbox-overlay').removeEvents('click');
+            	}
+            	if(parent.$('sbox-btn-close') != undefined) {
+            		 parent.$('sbox-btn-close').removeEvents('click');
+            	}
                 var elements = [parent.$K2('#sbox-btn-close'), $K2('#toolbar-cancel a')];
                 $K2.each(elements, function(index, element) {
                     element.unbind();
