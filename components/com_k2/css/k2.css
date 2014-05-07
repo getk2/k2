@@ -174,9 +174,11 @@ div.itemToolbar {padding:2px 0;margin:16px 0 0 0;border-top:1px dotted #ccc;bord
 	div.itemToolbar ul li a img {vertical-align:middle;}
 	div.itemToolbar ul li span.itemTextResizerTitle {}
 	div.itemToolbar ul li a#fontDecrease {margin:0 0 0 2px;}
-	div.itemToolbar ul li a#fontDecrease img {width:13px;height:13px;background:url(../images/system/font_decrease.gif) no-repeat;}
+	div.itemToolbar ul li a#fontDecrease img {width:13px;height:13px;background:url(../images/system/font_decrease_faded.gif) no-repeat;}
+	div.itemToolbar ul li a#fontDecrease.solid img {width:13px;height:13px;background:url(../images/system/font_decrease.gif) no-repeat;}
 	div.itemToolbar ul li a#fontIncrease {margin:0 0 0 2px;}
 	div.itemToolbar ul li a#fontIncrease img {width:13px;height:13px;background:url(../images/system/font_increase.gif) no-repeat;}
+	div.itemToolbar ul li a#fontIncrease.faded img {width:13px;height:13px;background:url(../images/system/font_increase_faded.gif) no-repeat;}
 	div.itemToolbar ul li a#fontDecrease span,
 	div.itemToolbar ul li a#fontIncrease span {display:none;}
 
