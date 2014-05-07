@@ -123,11 +123,15 @@ $K2(document).ready(function(){
 		event.preventDefault();
 		$K2('.itemFullText').removeClass('largerFontSize');
 		$K2('.itemFullText').addClass('smallerFontSize');
+		$K2(this).addClass('faded').removeClass('solid');
+		$K2('#fontIncrease').addClass('solid').removeClass('faded');
 	});
 	$K2('#fontIncrease').click(function(event){
 		event.preventDefault();
 		$K2('.itemFullText').removeClass('smallerFontSize');
 		$K2('.itemFullText').addClass('largerFontSize');
+		$K2(this).addClass('faded').removeClass('solid');
+		$K2('#fontDecrease').addClass('solid').removeClass('faded');
 	});
 
 	// Smooth Scroll
