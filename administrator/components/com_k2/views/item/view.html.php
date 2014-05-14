@@ -121,24 +121,11 @@ class K2ViewItem extends K2View
 		}
 
 		$lists = array();
-		if (version_compare(JVERSION, '1.6.0', 'ge'))
-		{
-			$dateFormat = 'Y-m-d H:i:s';
-		}
-		else
-		{
-			$dateFormat = '%Y-%m-%d %H:%M:%S';
-		}
+		
 
-		$created = $item->created;
-		$publishUp = $item->publish_up;
-		$publishDown = $item->publish_down;
-
-		$created = JHTML::_('date', $item->created, $dateFormat);
-		$publishUp = JHTML::_('date', $item->publish_up, $dateFormat);
 		if ((int)$item->publish_down)
 		{
-			$publishDown = JHTML::_('date', $item->publish_down, $dateFormat);
+			$publishDown = $item->publish_down;
 		}
 		else
 		{
@@ -146,8 +133,8 @@ class K2ViewItem extends K2View
 		}
 
 		// Set up calendars
-		$lists['createdCalendar'] = JHTML::_('calendar', $created, 'created', 'created', '%Y-%m-%d %H:%M:%S');
-		$lists['publish_up'] = JHTML::_('calendar', $publishUp, 'publish_up', 'publish_up', '%Y-%m-%d %H:%M:%S');
+		$lists['createdCalendar'] = JHTML::_('calendar', $item->created, 'created', 'created', '%Y-%m-%d %H:%M:%S');
+		$lists['publish_up'] = JHTML::_('calendar', $item->publish_up, 'publish_up', 'publish_up', '%Y-%m-%d %H:%M:%S');
 		$lists['publish_down'] = JHTML::_('calendar', $publishDown, 'publish_down', 'publish_down', '%Y-%m-%d %H:%M:%S');
 
 		if ($item->id)
