@@ -63,7 +63,7 @@ defined('_JEXEC') or die;
 					    </tr>
 					    <tr>
 					      <td><a target="_blank" href="http://www.verot.net/php_class_upload.htm">class.upload.php</a></td>
-					      <td>0.32</td>
+					      <td>0.33dev</td>
 					      <td><?php echo JText::_('K2_PHP_CLASS'); ?></td>
 					      <td><?php echo JText::_('K2_GNUGPL'); ?></td>
 					    </tr>
