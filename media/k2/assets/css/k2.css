@@ -84,6 +84,9 @@ table.adminFormK2Container tr td {vertical-align:top;}
 	.K2AdminViewUser label,
 	.K2AdminViewUserGroup label,
 	.K2AdminViewExtraField label {float:none!important; display:inline!important; vertical-align:inherit !important;}
+	/* Fix K2 plugins in user form under J3. */
+	.isJ30.K2AdminViewUser label { display:block!important;}
+	
 
 /* Header */
 .icon-48-k2 {background:url(../images/system/K2_Logo_105x40_24.png) no-repeat 0 50%;color:#222!important; padding-left:120px!important; font-size:24px!important;}
