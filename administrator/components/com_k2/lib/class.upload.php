@@ -7,15 +7,15 @@
  * @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
-// no direct access
-defined('_JEXEC') or die;
+// No direct access
+defined('_JEXEC') or die ;
 
 // +------------------------------------------------------------------------+
 // | class.upload.php                                                       |
 // +------------------------------------------------------------------------+
-// | Copyright (c) Colin Verot 2003-2010. All rights reserved.              |
-// | Version       0.32                                                     |
-// | Last modified 15/01/2013                                               |
+// | Copyright (c) Colin Verot 2003-2014. All rights reserved.              |
+// | Version       0.33dev                                                  |
+// | Last modified 28/03/2014                                               |
 // | Email         colin@verot.net                                          |
 // | Web           http://www.verot.net                                     |
 // +------------------------------------------------------------------------+
@@ -42,7 +42,7 @@ defined('_JEXEC') or die;
 /**
  * Class upload
  *
- * @version   0.32
+ * @version   0.33dev
  * @author    Colin Verot <colin@verot.net>
  * @license   http://opensource.org/licenses/gpl-license.php GNU Public License
  * @copyright Colin Verot
@@ -422,9 +422,9 @@ defined('_JEXEC') or die;
  * </ul>
  * If the file is a supported image type
  * <ul>
+ *  <li><b>{@link image_dst_type}</b> Destination file type (png, jpg, gif or bmp)</li>
  *  <li><b>{@link image_dst_x}</b> Destination file width</li>
  *  <li><b>{@link image_dst_y}</b> Destination file height</li>
- *  <li><b>{@link image_convert}</b> Destination file format</li>
  * </ul>
  *
  * <b>Requirements</b>
@@ -435,6 +435,13 @@ defined('_JEXEC') or die;
  *
  * <b>Changelog</b>
  * <ul>
+ *  <li><b>v 0.33dev</b> 28/03/2014<br>
+ *   - added {@link image_dst_type}<br>
+ *   - fixed filesize when using XMLHttpRequest<br>
+ *   - added Hungarian translation<br>
+ *   - fixed Turkish translation<br>
+ *   - updated regex rules for MIME detection<br>
+ *   - added composer.json</li>
  *  <li><b>v 0.32</b> 15/01/2013<br>
  *   - add support for XMLHttpRequest uploads<br>
  *   - added {@link image_pixelate}<br>
@@ -784,6 +791,14 @@ class upload {
      * @var integer
      */
     var $image_dst_y;
+
+    /**
+     * Destination image type (png, gif, jpg or bmp)
+     *
+     * @access public
+     * @var integer
+     */
+    var $image_dst_type;
 
     /**
      * Supported image formats
@@ -2583,7 +2598,7 @@ class upload {
      */
     function upload($file, $lang = 'en_GB') {
 
-        $this->version            = '0.32';
+        $this->version            = '0.33dev';
 
         $this->file_src_name      = '';
         $this->file_src_name_body = '';
@@ -2607,6 +2622,7 @@ class upload {
         $this->image_src_pixels   = null;
         $this->image_dst_x        = 0;
         $this->image_dst_y        = 0;
+        $this->image_dst_type     = '';
 
         $this->uploaded           = true;
         $this->no_upload_check    = false;
@@ -2766,7 +2782,7 @@ class upload {
                             $this->file_src_name_ext      = '';
                             $this->file_src_name_body     = $this->file_src_name;
                         }
-                        $this->file_src_size = (file_exists($file) ? filesize($file) : 0);
+                        $this->file_src_size = (file_exists($this->file_src_pathname) ? filesize($this->file_src_pathname) : 0);
                     }
                     $this->file_src_error = 0;
 
@@ -2797,7 +2813,7 @@ class upload {
                             $this->file_src_name_ext      = '';
                             $this->file_src_name_body     = $this->file_src_name;
                         }
-                        $this->file_src_size = (file_exists($file) ? filesize($file) : 0);
+                        $this->file_src_size = (file_exists($this->file_src_pathname) ? filesize($this->file_src_pathname) : 0);
                     }
                     $this->file_src_error = 0;  
                 }
@@ -2907,8 +2923,8 @@ class upload {
                             finfo_close($f);
                             $this->file_src_mime = $mime;
                             $this->log .= '&nbsp;&nbsp;&nbsp;&nbsp;MIME type detected as ' . $this->file_src_mime . ' by Fileinfo PECL extension<br />';
-                            if (preg_match("/^([\.-\w]+)\/([\.-\w]+)(.*)$/i", $this->file_src_mime)) {
-                                $this->file_src_mime = preg_replace("/^([\.-\w]+)\/([\.-\w]+)(.*)$/i", '$1/$2', $this->file_src_mime);
+                            if (preg_match("/^([\.\-\w]+)\/([\.\-\w]+)(.*)$/i", $this->file_src_mime)) {
+                                $this->file_src_mime = preg_replace("/^([\.\-\w]+)\/([\.\-\w]+)(.*)$/i", '$1/$2', $this->file_src_mime);
                                 $this->log .= '-&nbsp;MIME validated as ' . $this->file_src_mime . '<br />';
                             } else {
                                 $this->file_src_mime = null;
@@ -2921,8 +2937,8 @@ class upload {
                         if ($f) {
                             $this->file_src_mime = $f->file(realpath($this->file_src_pathname));
                             $this->log .= '- MIME type detected as ' . $this->file_src_mime . ' by Fileinfo PECL extension<br />';
-                            if (preg_match("/^([\.-\w]+)\/([\.-\w]+)(.*)$/i", $this->file_src_mime)) {
-                                $this->file_src_mime = preg_replace("/^([\.-\w]+)\/([\.-\w]+)(.*)$/i", '$1/$2', $this->file_src_mime);
+                            if (preg_match("/^([\.\-\w]+)\/([\.\-\w]+)(.*)$/i", $this->file_src_mime)) {
+                                $this->file_src_mime = preg_replace("/^([\.\-\w]+)\/([\.\-\w]+)(.*)$/i", '$1/$2', $this->file_src_mime);
                                 $this->log .= '-&nbsp;MIME validated as ' . $this->file_src_mime . '<br />';
                             } else {
                                 $this->file_src_mime = null;
@@ -2947,8 +2963,8 @@ class upload {
                             if (strlen($mime = @exec("file -bi ".escapeshellarg($this->file_src_pathname))) != 0) {
                                 $this->file_src_mime = trim($mime);
                                 $this->log .= '&nbsp;&nbsp;&nbsp;&nbsp;MIME type detected as ' . $this->file_src_mime . ' by UNIX file() command<br />';
-                                if (preg_match("/^([\.-\w]+)\/([\.-\w]+)(.*)$/i", $this->file_src_mime)) {
-                                    $this->file_src_mime = preg_replace("/^([\.-\w]+)\/([\.-\w]+)(.*)$/i", '$1/$2', $this->file_src_mime);
+                                if (preg_match("/^([\.\-\w]+)\/([\.\-\w]+)(.*)$/i", $this->file_src_mime)) {
+                                    $this->file_src_mime = preg_replace("/^([\.\-\w]+)\/([\.\-\w]+)(.*)$/i", '$1/$2', $this->file_src_mime);
                                     $this->log .= '-&nbsp;MIME validated as ' . $this->file_src_mime . '<br />';
                                 } else {
                                     $this->file_src_mime = null;
@@ -2974,8 +2990,8 @@ class upload {
                     if (function_exists('mime_content_type')) {
                         $this->file_src_mime = mime_content_type($this->file_src_pathname);
                         $this->log .= '&nbsp;&nbsp;&nbsp;&nbsp;MIME type detected as ' . $this->file_src_mime . ' by mime_content_type()<br />';
-                        if (preg_match("/^([\.-\w]+)\/([\.-\w]+)(.*)$/i", $this->file_src_mime)) {
-                            $this->file_src_mime = preg_replace("/^([\.-\w]+)\/([\.-\w]+)(.*)$/i", '$1/$2', $this->file_src_mime);
+                        if (preg_match("/^([\.\-\w]+)\/([\.\-\w]+)(.*)$/i", $this->file_src_mime)) {
+                            $this->file_src_mime = preg_replace("/^([\.\-\w]+)\/([\.\-\w]+)(.*)$/i", '$1/$2', $this->file_src_mime);
                             $this->log .= '-&nbsp;MIME validated as ' . $this->file_src_mime . '<br />';
                         } else {
                             $this->file_src_mime = null;
@@ -3001,8 +3017,8 @@ class upload {
                             $this->file_src_mime = ($mime==IMAGETYPE_GIF ? 'image/gif' : ($mime==IMAGETYPE_JPEG ? 'image/jpeg' : ($mime==IMAGETYPE_PNG ? 'image/png' : ($mime==IMAGETYPE_BMP ? 'image/bmp' : null))));
                         }
                         $this->log .= '&nbsp;&nbsp;&nbsp;&nbsp;MIME type detected as ' . $this->file_src_mime . ' by PHP getimagesize() function<br />';
-                        if (preg_match("/^([\.-\w]+)\/([\.-\w]+)(.*)$/i", $this->file_src_mime)) {
-                            $this->file_src_mime = preg_replace("/^([\.-\w]+)\/([\.-\w]+)(.*)$/i", '$1/$2', $this->file_src_mime);
+                        if (preg_match("/^([\.\-\w]+)\/([\.\-\w]+)(.*)$/i", $this->file_src_mime)) {
+                            $this->file_src_mime = preg_replace("/^([\.\-\w]+)\/([\.\-\w]+)(.*)$/i", '$1/$2', $this->file_src_mime);
                             $this->log .= '-&nbsp;MIME validated as ' . $this->file_src_mime . '<br />';
                         } else {
                             $this->file_src_mime = null;
@@ -3019,8 +3035,8 @@ class upload {
             if (!empty($mime_from_browser) && !$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime)) {
                 $this->file_src_mime =$mime_from_browser;
                 $this->log .= '- MIME type detected as ' . $this->file_src_mime . ' by browser<br />';
-                if (preg_match("/^([\.-\w]+)\/([\.-\w]+)(.*)$/i", $this->file_src_mime)) {
-                    $this->file_src_mime = preg_replace("/^([\.-\w]+)\/([\.-\w]+)(.*)$/i", '$1/$2', $this->file_src_mime);
+                if (preg_match("/^([\.\-\w]+)\/([\.\-\w]+)(.*)$/i", $this->file_src_mime)) {
+                    $this->file_src_mime = preg_replace("/^([\.\-\w]+)\/([\.\-\w]+)(.*)$/i", '$1/$2', $this->file_src_mime);
                     $this->log .= '-&nbsp;MIME validated as ' . $this->file_src_mime . '<br />';
                 } else {
                     $this->file_src_mime = null;
@@ -3611,8 +3627,8 @@ class upload {
                 $this->log .= '- file name body prepend : ' . $this->file_name_body_pre . '<br />';
             }
             if ($this->file_safe_name) { // formats the name
-                $this->file_dst_name_body = utf8_encode(strtr(utf8_decode($this->file_dst_name_body), utf8_decode('ŠŽšžŸÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïñòóôõöøùúûüýÿ'), 'SZszYAAAAAACEEEEIIIINOOOOOOUUUUYaaaaaaceeeeiiiinoooooouuuuyy'));
-                $this->file_dst_name_body = strtr($this->file_dst_name_body, array('Þ' => 'TH', 'þ' => 'th', 'Ð' => 'DH', 'ð' => 'dh', 'ß' => 'ss', 'Œ' => 'OE', 'œ' => 'oe', 'Æ' => 'AE', 'æ' => 'ae', 'µ' => 'u'));
+                $this->file_dst_name_body = utf8_encode(strtr(utf8_decode($this->file_dst_name_body), utf8_decode('Å Å½Å¡Å¾Å¸Ã€ÃÃ‚ÃƒÃ„Ã…Ã‡ÃˆÃ‰ÃŠÃ‹ÃŒÃÃŽÃÃ‘Ã’Ã“Ã”Ã•Ã–Ã˜Ã™ÃšÃ›ÃœÃÃ Ã¡Ã¢Ã£Ã¤Ã¥Ã§Ã¨Ã©ÃªÃ«Ã¬Ã­Ã®Ã¯Ã±Ã²Ã³Ã´ÃµÃ¶Ã¸Ã¹ÃºÃ»Ã¼Ã½Ã¿'), 'SZszYAAAAAACEEEEIIIINOOOOOOUUUUYaaaaaaceeeeiiiinoooooouuuuyy'));
+                $this->file_dst_name_body = strtr($this->file_dst_name_body, array('Ãž' => 'TH', 'Ã¾' => 'th', 'Ã' => 'DH', 'Ã°' => 'dh', 'ÃŸ' => 'ss', 'Å’' => 'OE', 'Å“' => 'oe', 'Ã†' => 'AE', 'Ã¦' => 'ae', 'Âµ' => 'u'));
                 $this->file_dst_name_body = preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $this->file_dst_name_body);
                 $this->log .= '- file name safe format<br />';
             }
@@ -3804,7 +3820,7 @@ class upload {
             if ($image_manipulation) {
 
                 // make sure GD doesn't complain too much
-                ini_set("gd.jpeg_ignore_warning", 1);
+                @ini_set("gd.jpeg_ignore_warning", 1);
 
                 // checks if the source file is readable
                 if ($this->processed && !($f = @fopen($this->file_src_pathname, 'r'))) {
@@ -4220,7 +4236,7 @@ class upload {
                     // unsharp mask
                     if ($gd_version >= 2 && $this->image_unsharp && is_numeric($this->image_unsharp_amount) && is_numeric($this->image_unsharp_radius) && is_numeric($this->image_unsharp_threshold)) {
                         // Unsharp Mask for PHP - version 2.1.1
-                        // Unsharp mask algorithm by Torstein Hønsi 2003-07. 
+                        // Unsharp mask algorithm by Torstein HÃ¸nsi 2003-07. 
                         // Used with permission
                         // Modified to support alpha transparency
                         if ($this->image_unsharp_amount > 500)    $this->image_unsharp_amount = 500; 
@@ -4948,6 +4964,7 @@ class upload {
 
                     // converts image from true color, and fix transparency if needed
                     $this->log .= '- converting...<br />';
+                    $this->image_dst_type = $this->image_convert;
                     switch($this->image_convert) {
                         case 'gif':
                             // if the image is true color, we convert it to a palette
