@@ -29,8 +29,9 @@ If you wish to use the live search option, it's important that you maintain the 
 		<input type="submit" value="<?php echo $button_text; ?>" class="button" onclick="this.form.searchword.focus();" />
 		<?php endif; ?>
 		<?php endif; ?>
-
+		<?php if($categoryFilter): ?>
 		<input type="hidden" name="categories" value="<?php echo $categoryFilter; ?>" />
+		<?php endif; ?>
 		<?php if(!$app->getCfg('sef')): ?>
 		<input type="hidden" name="option" value="com_k2" />
 		<input type="hidden" name="view" value="itemlist" />
