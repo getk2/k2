@@ -219,7 +219,7 @@ class K2ModelExtraField extends K2Model
 			$required = isset($value->required) ? $value->required : 0;
 			$showNull = isset($value->showNull) ? $value->showNull : 0;
 
-			if ($extraField->type == 'textfield' || $extraField->type == 'csv' || $extraField->type == 'labels' || $extraField->type == 'date')
+			if ($extraField->type == 'textfield' || $extraField->type == 'csv' || $extraField->type == 'labels' || $extraField->type == 'date' || $extraField->type == 'image')
 			{
 				$active = $value->value;
 			}
