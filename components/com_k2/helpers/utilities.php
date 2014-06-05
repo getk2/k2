@@ -165,7 +165,10 @@ class K2HelperUtilities
 	// Cleanup HTML entities
 	public static function cleanHtml($text)
 	{
-		return htmlentities($text, ENT_QUOTES, 'UTF-8', false);
+		if (version_compare(PHP_VERSION, '5.2.3', '<'))
+			return htmlentities(html_entity_decode($text, ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8'); // To prevent double encoding
+		else
+			return htmlentities($text, ENT_QUOTES, 'UTF-8', false);
 	}
 
 	// Gender
