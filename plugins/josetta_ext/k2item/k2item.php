@@ -21,7 +21,7 @@ class plgJosetta_extK2item extends plgJosetta_extBaseK2Plugin
 	public function onJosettaGetTypes()
 	{
 		$this->loadLanguages();
-		$item = array(self::$this->_context => 'K2 ' . JText::_('K2_ITEMS'));
+		$item = array($this->_context => 'K2 ' . JText::_('K2_ITEMS'));
 		$items[] = $item;
 		return $items;
 	}
@@ -51,7 +51,7 @@ class plgJosetta_extK2item extends plgJosetta_extBaseK2Plugin
 		$item->tags = implode(', ', $tmp);
 
 		// Get extra fields
-		$extraFields = $model->getItemExtraFields($item->extra_fields);
+		$extraFields = $model->getItemExtraFields($item->extra_fields, $item);
 		$html = '';
 		if (count($extraFields))
 		{

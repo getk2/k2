@@ -7,10 +7,10 @@
  * @license     GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
-defined('_JEXEC') or die;
+defined('_JEXEC') or die ;
 
 // include K2Base Josetta plugin, which shares many methods and thus is used as a base class
-require_once JPATH_PLUGINS . '/josetta_ext/k2item/classes/basek2plugin.php';
+require_once JPATH_PLUGINS.'/josetta_ext/k2item/classes/basek2plugin.php';
 
 class plgJosetta_extK2Category extends plgJosetta_extBaseK2Plugin
 {
@@ -27,7 +27,7 @@ class plgJosetta_extK2Category extends plgJosetta_extBaseK2Plugin
 	public function onJosettaGetTypes()
 	{
 		$this->loadLanguages();
-		$item = array(self::$this->_context => 'K2 ' . JText::_('K2_CATEGORIES'));
+		$item = array($this->_context => 'K2 '.JText::_('K2_CATEGORIES'));
 		$items[] = $item;
 		return $items;
 	}
@@ -56,7 +56,7 @@ class plgJosetta_extK2Category extends plgJosetta_extBaseK2Plugin
 		// Check for a database error.
 		if ($db->getErrorNum())
 		{
-			ShlSystem_Log::logError(__METHOD__ . ': ' . $db->getErrorMsg());
+			ShlSystem_Log::logError(__METHOD__.': '.$db->getErrorMsg());
 			$rawItems = array();
 		}
 
@@ -103,7 +103,7 @@ class plgJosetta_extK2Category extends plgJosetta_extBaseK2Plugin
 
 		// Display the parent category name instead of the ID
 		$db = JFactory::getDBO();
-		$db->setQuery('SELECT name FROM #__k2_categories WHERE id = ' . (int) $category->parent);
+		$db->setQuery('SELECT name FROM #__k2_categories WHERE id = '.(int)$category->parent);
 		$category->parent = $db->loadResult();
 
 		// Convert the meta description and meta keywords params to fields so user can translate them
@@ -147,8 +147,8 @@ class plgJosetta_extK2Category extends plgJosetta_extBaseK2Plugin
 
 		// Save
 		jimport('joomla.filesystem.file');
-		JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_k2/tables');
-		require_once(JPATH_ADMINISTRATOR . '/components/com_k2/lib/class.upload.php');
+		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
+		require_once (JPATH_ADMINISTRATOR.'/components/com_k2/lib/class.upload.php');
 		$row = JTable::getInstance('K2Category', 'Table');
 		$params = JComponentHelper::getParams('com_k2');
 
@@ -158,7 +158,7 @@ class plgJosetta_extK2Category extends plgJosetta_extBaseK2Plugin
 			return false;
 		}
 
-		$row->parent = (int) $row->parent;
+		$row->parent = (int)$row->parent;
 
 		//$input = JRequest::get('post');
 		$filter = JFilterInput::getInstance();
@@ -176,20 +176,20 @@ class plgJosetta_extK2Category extends plgJosetta_extBaseK2Plugin
 
 		if ($params->get('xssFiltering'))
 		{
-			$filter = new JFilterInput(array(), array(), 1, 1, 0);
+			$filter = new JFilterInput( array(), array(), 1, 1, 0);
 			$row->description = $filter->clean($row->description);
 		}
 
 		if (!$row->id)
 		{
-			$row->ordering = $row->getNextOrder('parent = ' . $row->parent . ' AND trash=0');
+			$row->ordering = $row->getNextOrder('parent = '.$row->parent.' AND trash=0');
 		}
 
-		$savepath = JPATH_ROOT . '/media/k2/categories/';
-		if ($row->image && JFile::exists($savepath . $image))
+		$savepath = JPATH_ROOT.'/media/k2/categories/';
+		if (isset($row->image) && $row->image && JFile::exists($savepath.$row->image))
 		{
-			$uniqueName = uniqid() . '.jpg';
-			JFile::copy($savepath . $row->image, $savepath . $uniqueName);
+			$uniqueName = uniqid().'.jpg';
+			JFile::copy($savepath.$row->image, $savepath.$uniqueName);
 			$row->image = $uniqueName;
 		}
 
@@ -206,16 +206,16 @@ class plgJosetta_extK2Category extends plgJosetta_extBaseK2Plugin
 		}
 
 		if (!$params->get('disableCompactOrdering'))
-			$row->reorder('parent = ' . $row->parent . ' AND trash=0');
+			$row->reorder('parent = '.$row->parent.' AND trash=0');
 
-		if ((int) $params->get('imageMemoryLimit'))
+		if ((int)$params->get('imageMemoryLimit'))
 		{
-			ini_set('memory_limit', (int) $params->get('imageMemoryLimit') . 'M');
+			ini_set('memory_limit', (int)$params->get('imageMemoryLimit').'M');
 		}
 
 		//$files = JRequest::get('files');
 
-		$savepath = JPATH_ROOT . '/media/k2/categories/';
+		$savepath = JPATH_ROOT.'/media/k2/categories/';
 
 		// TODO: this will be renamed when used through Josetta
 		//$existingImage = JRequest::getVar('existingImage');
@@ -229,7 +229,7 @@ class plgJosetta_extK2Category extends plgJosetta_extBaseK2Plugin
 				}
 				else
 				{
-					$image = JPATH_SITE . '/' . JPath::clean($item['existingImage']);
+					$image = JPATH_SITE.'/'.JPath::clean($item['existingImage']);
 				}
 
 				$handle = new Upload($image);
@@ -260,9 +260,9 @@ class plgJosetta_extK2Category extends plgJosetta_extBaseK2Plugin
 		{
 			$currentRow = JTable::getInstance('K2Category', 'Table');
 			$currentRow->load($row->id);
-			if (JFile::exists(JPATH_ROOT . '/media/k2/categories/' . $currentRow->image))
+			if (JFile::exists(JPATH_ROOT.'/media/k2/categories/'.$currentRow->image))
 			{
-				JFile::delete(JPATH_ROOT . '/media/k2/categories/' . $currentRow->image);
+				JFile::delete(JPATH_ROOT.'/media/k2/categories/'.$currentRow->image);
 			}
 			$row->image = '';
 		}
