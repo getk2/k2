@@ -130,15 +130,11 @@ class K2ViewItem extends K2View
 			$dateFormat = '%Y-%m-%d %H:%M:%S';
 		}
 
-		$created = $item->created;
-		$publishUp = $item->publish_up;
-		$publishDown = $item->publish_down;
-
-		$created = JHTML::_('date', $item->created, $dateFormat);
-		$publishUp = JHTML::_('date', $item->publish_up, $dateFormat);
+		$created = JFactory::getDate($item->created)->format($dateFormat);
+		$publishUp = JFactory::getDate($item->publish_up)->format($dateFormat);
 		if ((int)$item->publish_down)
 		{
-			$publishDown = JHTML::_('date', $item->publish_down, $dateFormat);
+			$publishDown = JFactory::getDate($item->publish_down)->format($dateFormat);
 		}
 		else
 		{
