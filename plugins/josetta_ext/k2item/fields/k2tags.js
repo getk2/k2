@@ -42,7 +42,7 @@ $K2(document).ready(function() {
   $K2('.k2-search-field').keypress(function(event) {
     if (event.which == '13') {
       if ($K2(this).val() != '') {
-        $K2('<li id="' + this.attributes['rel'].value + '_tagAdd" class="addedTag">' + $K2(this).val() + '<span class="tagRemove" onclick="Josetta.itemChanged('+this.id+');$K2(this).parent().remove();">x</span><input type="hidden" value="' + $K2(this).val() + '" name="'+this.attributes['rel'].value + '[tags][]"></li>').insertBefore('.tags #' + this.attributes['rel'].value + '_tagAdd.tagAdd');
+        $K2('<li id="' + this.attributes['rel'].value + '_tagAdd" class="addedTag">' + $K2(this).val() + '<span class="tagRemove" onclick="Josetta.itemChanged('+this.id+');$K2(this).parent().remove();">&times;</span><input type="hidden" value="' + $K2(this).val() + '" name="'+this.attributes['rel'].value + '[tags][]"></li>').insertBefore('.tags #' + this.attributes['rel'].value + '_tagAdd.tagAdd');
         Josetta.itemChanged(this);
         $K2(this).val('');
       }
@@ -67,7 +67,7 @@ $K2(document).ready(function() {
     },
     minLength : 3,
     select : function(event, ui) {
-      $K2('<li id="' + this.attributes['rel'].value + '_tagAdd" class="addedTag">' + ui.item.label + '<span class="tagRemove" onclick="Josetta.itemChanged('+this.id+');$K2(this).parent().remove();">x</span><input type="hidden" value="' + ui.item.value + '" name="'+this.attributes['rel'].value + '[tags][]"></li>').insertBefore('.tags #' + this.attributes['rel'].value + '_tagAdd.tagAdd');
+      $K2('<li id="' + this.attributes['rel'].value + '_tagAdd" class="addedTag">' + ui.item.label + '<span class="tagRemove" onclick="Josetta.itemChanged('+this.id+');$K2(this).parent().remove();">&times;</span><input type="hidden" value="' + ui.item.value + '" name="'+this.attributes['rel'].value + '[tags][]"></li>').insertBefore('.tags #' + this.attributes['rel'].value + '_tagAdd.tagAdd');
       Josetta.itemChanged(this);
       this.value = '';
       return false;
