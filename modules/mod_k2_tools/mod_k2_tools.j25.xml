@@ -2,7 +2,7 @@
 <extension type="module" client="site" version="2.5" method="upgrade">
     <name>K2 Tools</name>
     <author>JoomlaWorks</author>
-    <creationDate>February 28th, 2014</creationDate>
+    <creationDate>June 16th, 2014</creationDate>
     <copyright>Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.</copyright>
     <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
     <authorUrl>www.joomlaworks.net</authorUrl>

@@ -2,7 +2,7 @@
 <extension type="module" client="administrator" method="upgrade" version="2.5" position="icon">
     <name>K2 Stats (admin)</name>
     <author>JoomlaWorks</author>
-    <creationDate>February 28th, 2014</creationDate>
+    <creationDate>June 16th, 2014</creationDate>
     <copyright>Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.</copyright>
     <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
     <authorUrl>www.joomlaworks.net</authorUrl>
