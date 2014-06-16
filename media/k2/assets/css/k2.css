@@ -361,8 +361,8 @@ ul.simpleTabsNavigation li#tabPlugins a {background-image:url(../images/editform
 ul.simpleTabsNavigation li a {background-repeat:no-repeat !important;}
 
 /* Override for video tabs */
-#k2VideoTabs {padding:0 0 10px 0;}
-#k2VideoTabs ul.simpleTabsNavigation li a {padding-left:6px;font-size:11px;font-family:Arial, Helvetica, sans-serif;}
+#k2MediaTabs {padding:0 0 10px 0;}
+#k2MediaTabs ul.simpleTabsNavigation li a {padding-left:6px;font-size:11px;font-family:Arial, Helvetica, sans-serif;}
 
 /* Fix user group permissions category drop-down glitches under Joomla! 3.0 */
 #paramscategories_chzn li {padding:3px 20px 3px 5px;}

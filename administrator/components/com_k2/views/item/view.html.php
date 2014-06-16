@@ -268,7 +268,7 @@ class K2ViewItem extends K2View
 			$options['startOffset'] = 0;
 		}
 
-		$document->addScriptDeclaration("var K2ActiveVideoTab = ".$options['startOffset']);
+		$document->addScriptDeclaration("var K2ActiveMediaTab = ".$options['startOffset']);
 
 		$lists['remoteVideo'] = ($remoteVideo) ? preg_replace('%\{[a-z0-9-_]*\}(.*)\{/[a-z0-9-_]*\}%i', '\1', $item->video) : '';
 		$lists['remoteVideoType'] = ($remoteVideo) ? preg_replace('%\{([a-z0-9-_]*)\}.*\{/[a-z0-9-_]*\}%i', '\1', $item->video) : '';

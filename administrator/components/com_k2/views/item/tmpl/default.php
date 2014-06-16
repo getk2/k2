@@ -383,33 +383,33 @@ $document->addScriptDeclaration("
 												<?php echo JText::_('K2_MEDIA_SOURCE'); ?>
 											</td>
 											<td>
-												<div id="k2VideoTabs" class="simpleTabs">
+												<div id="k2MediaTabs" class="simpleTabs">
 													<ul class="simpleTabsNavigation">
-														<li><a href="#k2VideoTab1"><?php echo JText::_('K2_UPLOAD'); ?></a></li>
-														<li><a href="#k2VideoTab2"><?php echo JText::_('K2_BROWSE_SERVERUSE_REMOTE_MEDIA'); ?></a></li>
-														<li><a href="#k2VideoTab3"><?php echo JText::_('K2_MEDIA_USE_ONLINE_VIDEO_SERVICE'); ?></a></li>
-														<li><a href="#k2VideoTab4"><?php echo JText::_('K2_EMBED'); ?></a></li>
+														<li><a href="#k2MediaTab1"><?php echo JText::_('K2_UPLOAD'); ?></a></li>
+														<li><a href="#k2MediaTab2"><?php echo JText::_('K2_BROWSE_SERVERUSE_REMOTE_MEDIA'); ?></a></li>
+														<li><a href="#k2MediaTab3"><?php echo JText::_('K2_MEDIA_USE_ONLINE_VIDEO_SERVICE'); ?></a></li>
+														<li><a href="#k2MediaTab4"><?php echo JText::_('K2_EMBED'); ?></a></li>
 													</ul>
-													<div id="k2VideoTab1" class="simpleTabsContent">
+													<div id="k2MediaTab1" class="simpleTabsContent">
 														<div class="panel" id="Upload_video">
 															<input type="file" name="video" class="fileUpload" />
 															<i>(<?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?>)</i> </div>
 													</div>
-													<div id="k2VideoTab2" class="simpleTabsContent">
+													<div id="k2MediaTab2" class="simpleTabsContent">
 														<div class="panel" id="Remote_video"> <a id="k2MediaBrowseServer" href="index.php?option=com_k2&view=media&type=video&tmpl=component&fieldID=remoteVideo"><?php echo JText::_('K2_BROWSE_VIDEOS_ON_SERVER')?></a> <?php echo JText::_('K2_OR'); ?> <?php echo JText::_('K2_PASTE_REMOTE_VIDEO_URL'); ?>
 															<br />
 															<br />
 															<input type="text" size="50" name="remoteVideo" id="remoteVideo" value="<?php echo $this->lists['remoteVideo'] ?>" />
 														</div>
 													</div>
-													<div id="k2VideoTab3" class="simpleTabsContent">
+													<div id="k2MediaTab3" class="simpleTabsContent">
 														<div class="panel" id="Video_from_provider"> <?php echo JText::_('K2_SELECT_VIDEO_PROVIDER'); ?> <?php echo $this->lists['providers']; ?> <br/><br/> <?php echo JText::_('K2_AND_ENTER_VIDEO_ID'); ?>
 															<input type="text" size="50" name="videoID" value="<?php echo $this->lists['providerVideo'] ?>" />
 															<br />
 															<br />
 															<a class="modal" rel="{handler: 'iframe', size: {x: 990, y: 600}}" href="http://www.joomlaworks.net/allvideos-documentation"><?php echo JText::_('K2_READ_THE_ALLVIDEOS_DOCUMENTATION_FOR_MORE'); ?></a> </div>
 													</div>
-													<div id="k2VideoTab4" class="simpleTabsContent">
+													<div id="k2MediaTab4" class="simpleTabsContent">
 														<div class="panel" id="embedVideo">
 															<?php echo JText::_('K2_PASTE_HTML_EMBED_CODE_BELOW'); ?>
 															<br />
@@ -482,11 +482,11 @@ $document->addScriptDeclaration("
 												<?php echo JText::_('K2_MEDIA_SOURCE'); ?>
 											</td>
 											<td>
-												<div id="k2VideoTabs" class="simpleTabs">
+												<div id="k2MediaTabs" class="simpleTabs">
 													<ul class="simpleTabsNavigation">
-														<li><a href="#k2VideoTab4"><?php echo JText::_('K2_EMBED'); ?></a></li>
+														<li><a href="#k2MediaTab4"><?php echo JText::_('K2_EMBED'); ?></a></li>
 													</ul>
-													<div class="simpleTabsContent" id="k2VideoTab4">
+													<div class="simpleTabsContent" id="k2MediaTab4">
 														<div class="panel" id="embedVideo">
 															<?php echo JText::_('K2_PASTE_HTML_EMBED_CODE_BELOW'); ?>
 															<br />

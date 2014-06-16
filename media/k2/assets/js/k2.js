@@ -254,7 +254,7 @@ $K2(document).ready(function() {
                 collapsible : true,
                 autoHeight : false
             });
-            $K2('#k2Tabs').tabs();
+            $K2('.k2Tabs').tabs();
             $K2('#k2ImageBrowseServer').click(function(event) {
                 event.preventDefault();
                 SqueezeBox.initialize();
@@ -274,12 +274,12 @@ $K2(document).ready(function() {
                 collapsible : true,
                 autoHeight : false
             });
-            $K2('#k2Tabs').tabs();
-            if ( typeof (K2ActiveVideoTab) === 'undefined') {
-                $K2('#k2VideoTabs').tabs();
+            $K2('.k2Tabs').tabs();
+            if ( typeof (K2ActiveMediaTab) === 'undefined') {
+                $K2('#k2MediaTabs').tabs();
             } else {
-                $K2('#k2VideoTabs').tabs({
-                    selected : K2ActiveVideoTab
+                $K2('#k2MediaTabs').tabs({
+                    selected : K2ActiveMediaTab
                 });
             }
             $K2('#k2ToggleSidebar').click(function(event) {
