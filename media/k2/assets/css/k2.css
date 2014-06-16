@@ -232,10 +232,12 @@ table#tagLists tr td#tagListsRight select {width:99%;height:106px;}
 /* ====================================================================================================== */
 /* Joomla 1.5 */
 html.isJ15 {overflow-y:scroll;}
+html.isJ15 #system-message {margin:-26px 0 16px;}
+html.isJ15 #system-message dd ul {padding:20px 10px;}
 html.isJ15 div#element-box div.m {padding:0;}
 html.isJ15 div#element-box div.m div#k2AdminContainer {margin-top:-22px;background:#fff;}
 html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs {border-top:1px solid #d4d7d9;}
-html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2ScrollSpyMenu {position:fixed;list-style:none;padding:4px;margin:0 4px;}
+html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {content: "\f0d8";font-family:"FontAwesome";font-style:normal;font-weight:normal;text-decoration:inherit;color:#fff;font-size:32px;position:absolute;bottom:-12px;left:50%;margin-left:-16px;width:32px;text-shadow:0px -1px 1px #ccc;}
 
 /* Joomla 2.5 */
 html.isJ25 {overflow-y:scroll;}
@@ -243,7 +245,7 @@ html.isJ25 div#element-box div.m {padding:0;border:1px solid #ccc;border-top:0;b
 html.isJ25 div#element-box div.m div#k2AdminContainer {margin-top:-28px;background:#fff;}
 html.isJ25 div#element-box div.m div#k2AdminContainer #k2FormTopNav {padding:0;margin-top:0;}
 html.isJ25 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs {border-top:1px solid #d4d7d9;}
-html.isJ25 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2ScrollSpyMenu {position:fixed;list-style:none;padding:4px;margin:0 4px;}
+html.isJ25 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {content: "\f0d8";font-family:"FontAwesome";font-style:normal;font-weight:normal;text-decoration:inherit;color:#fff;font-size:32px;position:absolute;bottom:-12px;left:50%;margin-left:-16px;width:32px;text-shadow:0px -1px 1px #ccc;}
 
 /* Joomla 3.x */
 html.isJ30 {}
