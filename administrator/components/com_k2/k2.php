@@ -96,21 +96,13 @@ $document->addScriptDeclaration('
 	K2JVersion = "'.K2_JVERSION.'";
 	
 	// Set Joomla version as body tag
-	function setJoomlaVersion() {
-		var bodyClass = document.getElementsByTagName("body")[0].className;
-		if(bodyClass !== ""){
-			document.getElementsByTagName("body")[0].className += " isJ'.K2_JVERSION.'";
+	(function(){
+		if(document.getElementsByTagName("html")[0].className !== ""){
+			document.getElementsByTagName("html")[0].className += " isJ'.K2_JVERSION.'";
 		} else {
-			document.getElementsByTagName("body")[0].className = "isJ'.K2_JVERSION.'";
+			document.getElementsByTagName("html")[0].className = "isJ'.K2_JVERSION.'";
 		}
-	}
-	if (window.addEventListener){
-		window.addEventListener("load", setJoomlaVersion, false);
-	} else if (window.attachEvent){
-		window.attachEvent("onload", setJoomlaVersion);
-	} else {
-		window.onload = setJoomlaVersion;
-	}
+	})();
 	
 ');
 $document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v=2.7.0&amp;sitepath='.JURI::root(true).'/');
