@@ -105,8 +105,8 @@ div.isJ25 div.k2TabsContent {}
 div.isJ30 div.k2TabsContent {}
 
 /* Top Nav Tabs */
-#k2FormTopNav {}
-	#k2FormTopNav ul.k2NavTabs {margin:-10px 0 0 0;padding:0;text-align:left;white-space:nowrap;background:#f0f2f2;border-bottom:1px solid #d4d7d9;}
+#k2FormTopNav {padding:0;margin-top:-10px;}
+	#k2FormTopNav ul.k2NavTabs {margin:0;padding:0;text-align:left;white-space:nowrap;background:#f0f2f2;border-bottom:1px solid #d4d7d9;}
 		#k2FormTopNav ul.k2NavTabs  li {list-style:none;display:inline-block;margin:0;padding:0;color:#414042;}
 			#k2FormTopNav ul.k2NavTabs li a {display:block;font-size:18px;text-decoration:none;font-weight:normal;outline:0;padding:21px 24px;margin:0;border-right:1px solid #d4d7d9;color:#414042;}
 			#k2FormTopNav ul.k2NavTabs li a:hover {text-decoration:none;color:#0091ff;}
@@ -122,8 +122,8 @@ div.k2NavTabContent {padding:20px;}
 div#k2ID {position:absolute;right:0;top:0;font-size:18px;font-weight:normal;padding:21px 24px;color:#0091ff;}
 div#k2ID strong {color:#a8c5dd;}
 
-/* Params */
-ul.k2ScrollSpyMenu {position:fixed;list-style:none;padding:4px;margin:0 4px;top:200px;}
+/* XML Parameter Rendering */
+ul.k2ScrollSpyMenu {position:fixed;list-style:none;padding:4px;margin:0 4px;}
 	ul.k2ScrollSpyMenu li a { display:block; -webkit-transition:.5s all ease-out; -moz-transition:.5s all ease-out; transition:.5s all ease-out; color:#aaa; text-decoration:none; }
 	ul.k2ScrollSpyMenu li a:hover { color:#000; }
 	ul.k2ScrollSpyMenu li.active a { color:#333; }
@@ -225,8 +225,29 @@ table#tagLists tr td#tagListsRight select {width:99%;height:106px;}
 
 
 
+/* ====================================================================================================== */
+/* ====================================================================================================== */
+/* ====================================== Joomla CSS Normalizations ===================================== */
+/* ====================================================================================================== */
+/* ====================================================================================================== */
+/* Joomla 1.5 */
+html.isJ15 {overflow-y:scroll;}
+html.isJ15 div#element-box div.m {padding:0;}
+html.isJ15 div#element-box div.m div#k2AdminContainer {margin-top:-22px;background:#fff;}
+html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs {border-top:1px solid #d4d7d9;}
+html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2ScrollSpyMenu {position:fixed;list-style:none;padding:4px;margin:0 4px;}
 
+/* Joomla 2.5 */
+html.isJ25 {overflow-y:scroll;}
+html.isJ25 div#element-box div.m {padding:0;border:1px solid #ccc;border-top:0;border-radius:0 0 10px 10px;}
+html.isJ25 div#element-box div.m div#k2AdminContainer {margin-top:-28px;background:#fff;}
+html.isJ25 div#element-box div.m div#k2AdminContainer #k2FormTopNav {padding:0;margin-top:0;}
+html.isJ25 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs {border-top:1px solid #d4d7d9;}
+html.isJ25 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2ScrollSpyMenu {position:fixed;list-style:none;padding:4px;margin:0 4px;}
 
+/* Joomla 3.x */
+html.isJ30 {}
+body#com_k2 {}
 
 
 
