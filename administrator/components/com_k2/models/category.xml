@@ -7,7 +7,7 @@
 		<param name="" type="header" default="K2_LAYOUT_GRID" label="" description=""/>
 		<param name="num_leading_items" type="text" size="4" default="2" label="K2_LEADING_COUNT" description="K2_NUMBER_OF_ITEMS_TO_DISPLAY_AS_LEADING"/>
 		<param name="num_leading_columns" type="text" size="4" default="1" label="K2_COLUMNS_FOR_LEADING" description=""/>
-		<param name="leadingImgSize" type="list" default="Large" label="K2_IMAGE_SIZE_FOR_LEADING_ITEMS" description="K2_YOU_CAN_OVERRIDE_THE_GLOBAL_DIMENSIONS_FOR_EACH_SIZE_BY_ADJUSTING_THE_RELATED_SETTING_IN_THE_ITEM_IMAGE_OPTIONS_PANE_BELOW">
+		<param name="leadingImgSize" type="radio" default="Large" label="K2_IMAGE_SIZE_FOR_LEADING_ITEMS" description="K2_YOU_CAN_OVERRIDE_THE_GLOBAL_DIMENSIONS_FOR_EACH_SIZE_BY_ADJUSTING_THE_RELATED_SETTING_IN_THE_ITEM_IMAGE_OPTIONS_PANE_BELOW">
 			<option value="XSmall">K2_XSMALL</option>
 			<option value="Small">K2_SMALL</option>
 			<option value="Medium">K2_MEDIUM</option>
@@ -18,7 +18,7 @@
 		<param name="@spacer" type="spacer" default="" label="" description=""/>
 		<param name="num_primary_items" type="text" size="4" default="4" label="K2_PRIMARY_COUNT" description="K2_NUMBER_OF_ITEMS_TO_DISPLAY_AS_PRIMARY"/>
 		<param name="num_primary_columns" type="text" size="4" default="2" label="K2_COLUMNS_FOR_PRIMARY" description=""/>
-		<param name="primaryImgSize" type="list" default="Medium" label="K2_IMAGE_SIZE_FOR_PRIMARY_ITEMS" description="K2_YOU_CAN_OVERRIDE_THE_GLOBAL_DIMENSIONS_FOR_EACH_SIZE_BY_ADJUSTING_THE_RELATED_SETTING_IN_THE_ITEM_IMAGE_OPTIONS_PANE_BELOW">
+		<param name="primaryImgSize" type="radio" default="Medium" label="K2_IMAGE_SIZE_FOR_PRIMARY_ITEMS" description="K2_YOU_CAN_OVERRIDE_THE_GLOBAL_DIMENSIONS_FOR_EACH_SIZE_BY_ADJUSTING_THE_RELATED_SETTING_IN_THE_ITEM_IMAGE_OPTIONS_PANE_BELOW">
 			<option value="XSmall">K2_XSMALL</option>
 			<option value="Small">K2_SMALL</option>
 			<option value="Medium">K2_MEDIUM</option>
@@ -29,7 +29,7 @@
 		<param name="@spacer" type="spacer" default="" label="" description=""/>
 		<param name="num_secondary_items" type="text" size="4" default="4" label="K2_SECONDARY_COUNT" description="K2_NUMBER_OF_ITEMS_TO_DISPLAY_AS_SECONDARY"/>
 		<param name="num_secondary_columns" type="text" size="4" default="1" label="K2_COLUMNS_FOR_SECONDARY" description=""/>
-		<param name="secondaryImgSize" type="list" default="Small" label="K2_IMAGE_SIZE_FOR_SECONDARY_ITEMS" description="K2_YOU_CAN_OVERRIDE_THE_GLOBAL_DIMENSIONS_FOR_EACH_SIZE_BY_ADJUSTING_THE_RELATED_SETTING_IN_THE_ITEM_IMAGE_OPTIONS_PANE_BELOW">
+		<param name="secondaryImgSize" type="radio" default="Small" label="K2_IMAGE_SIZE_FOR_SECONDARY_ITEMS" description="K2_YOU_CAN_OVERRIDE_THE_GLOBAL_DIMENSIONS_FOR_EACH_SIZE_BY_ADJUSTING_THE_RELATED_SETTING_IN_THE_ITEM_IMAGE_OPTIONS_PANE_BELOW">
 			<option value="XSmall">K2_XSMALL</option>
 			<option value="Small">K2_SMALL</option>
 			<option value="Medium">K2_MEDIUM</option>
@@ -40,7 +40,7 @@
 		<param name="@spacer" type="spacer" default="" label="" description=""/>
 		<param name="num_links" type="text" size="4" default="4" label="K2_LINKS_COUNT" description="K2_NUMBER_OF_ITEMS_TO_DISPLAY_AS_LINKS"/>
 		<param name="num_links_columns" type="text" size="4" default="1" label="K2_COLUMNS_FOR_LINKS" description=""/>
-		<param name="linksImgSize" type="list" default="XSmall" label="K2_IMAGE_SIZE_FOR_LINK_ITEMS" description="K2_YOU_CAN_OVERRIDE_THE_GLOBAL_DIMENSIONS_FOR_EACH_SIZE_BY_ADJUSTING_THE_RELATED_SETTING_IN_THE_ITEM_IMAGE_OPTIONS_PANE_BELOW">
+		<param name="linksImgSize" type="radio" default="XSmall" label="K2_IMAGE_SIZE_FOR_LINK_ITEMS" description="K2_YOU_CAN_OVERRIDE_THE_GLOBAL_DIMENSIONS_FOR_EACH_SIZE_BY_ADJUSTING_THE_RELATED_SETTING_IN_THE_ITEM_IMAGE_OPTIONS_PANE_BELOW">
 			<option value="XSmall">K2_XSMALL</option>
 			<option value="Small">K2_SMALL</option>
 			<option value="Medium">K2_MEDIUM</option>
@@ -49,16 +49,16 @@
 			<option value="none">K2_NO_IMAGE</option>
 		</param>
 		<param name="" type="header" default="K2_OTHER_LAYOUT_OPTIONS" label="" description=""/>
-		<param name="catCatalogMode" type="list" default="0" label="K2_CATALOG_MODE" description="K2_IF_YOU_SELECT_YES_THEN_ONLY_THE_ITEMS_DIRECTLY_BELONGING_TO_THIS_CATEGORY_WILL_BE_RETRIEVED_IF_YOU_SELECT_NO_THEN_ITEMS_FROM_ALL_SUBCATEGORIES_WILL_BE_RETRIEVED_SETTING_THIS_OPTION_TO_NO_IS_IDEAL_FOR_NEWSPORTALMAGAZINEBLOG_LAYOUTS">
+		<param name="catCatalogMode" type="radio" default="0" label="K2_CATALOG_MODE" description="K2_IF_YOU_SELECT_YES_THEN_ONLY_THE_ITEMS_DIRECTLY_BELONGING_TO_THIS_CATEGORY_WILL_BE_RETRIEVED_IF_YOU_SELECT_NO_THEN_ITEMS_FROM_ALL_SUBCATEGORIES_WILL_BE_RETRIEVED_SETTING_THIS_OPTION_TO_NO_IS_IDEAL_FOR_NEWSPORTALMAGAZINEBLOG_LAYOUTS">
 			<option value="0">K2_NO</option>
 			<option value="1">K2_YES</option>
 		</param>
-		<param name="catFeaturedItems" type="list" default="1" label="K2_FEATURED_ITEMS" description="">
+		<param name="catFeaturedItems" type="radio" default="1" label="K2_FEATURED_ITEMS" description="">
 			<option value="0">K2_HIDE</option>
 			<option value="1">K2_SHOW</option>
 			<option value="2">K2_SHOW_ONLY_FEATURED_ITEMS</option>
 		</param>
-		<param name="catOrdering" type="list" default="" label="K2_ITEM_ORDERING" description="">
+		<param name="catOrdering" type="radio" default="" label="K2_ITEM_ORDERING" description="">
 			<option value="">K2_DEFAULT</option>
 			<option value="date">K2_OLDEST_FIRST</option>
 			<option value="rdate">K2_MOST_RECENT_FIRST</option>
@@ -73,7 +73,7 @@
 			<option value="modified">K2_LATEST_MODIFIED</option>
 			<option value="rand">K2_RANDOM_ORDERING</option>
 		</param>
-		<param name="catPagination" type="list" default="2" label="K2_PAGINATION" description="">
+		<param name="catPagination" type="radio" default="2" label="K2_PAGINATION" description="">
 			<option value="0">K2_HIDE</option>
 			<option value="1">K2_SHOW</option>
 			<option value="2">K2_AUTO</option>
@@ -114,7 +114,7 @@
 			<option value="1">K2_SHOW</option>
 		</param>
 		<param name="subCatColumns" type="text" default="2" size="4" label="K2_COLUMNS" description=""/>
-		<param name="subCatOrdering" type="list" default="" label="K2_SUBCATEGORY_ORDERING" description="">
+		<param name="subCatOrdering" type="radio" default="" label="K2_SUBCATEGORY_ORDERING" description="">
 			<option value="">K2_DEFAULT_BY_ID_ASCENDING</option>
 			<option value="reversedefault">K2_REVERSE_DEFAULT_BY_ID_DESCENDING</option>
 			<option value="alpha">K2_TITLE_ALPHABETICAL</option>
@@ -290,7 +290,7 @@
 			<option value="0">K2_HIDE</option>
 			<option value="1">K2_SHOW</option>
 		</param>
-		<param name="itemImgSize" type="list" default="Large" label="K2_IMAGE_SIZE" description="">
+		<param name="itemImgSize" type="radio" default="Large" label="K2_IMAGE_SIZE" description="">
 			<option value="XSmall">K2_XSMALL</option>
 			<option value="Small">K2_SMALL</option>
 			<option value="Medium">K2_MEDIUM</option>
@@ -426,7 +426,7 @@
 			<option value="0">K2_HIDE</option>
 			<option value="1">K2_SHOW</option>
 		</param>
-		<param name="itemRelatedImageSize" type="list" default="0" label="K2_RELATED_ITEMS_IMAGE" description="">
+		<param name="itemRelatedImageSize" type="radio" default="0" label="K2_RELATED_ITEMS_IMAGE" description="">
 			<option value="0">K2_NONE_SELECTED</option>
 			<option value="XSmall">K2_XSMALL</option>
 			<option value="Small">K2_SMALL</option>
@@ -474,7 +474,7 @@
 			<field name="" type="header" default="K2_LAYOUT_GRID" label="" description=""/>
 			<field name="num_leading_items" type="text" size="4" default="2" label="K2_LEADING_COUNT" description="K2_NUMBER_OF_ITEMS_TO_DISPLAY_AS_LEADING"/>
 			<field name="num_leading_columns" type="text" size="4" default="1" label="K2_COLUMNS_FOR_LEADING" description=""/>
-			<field name="leadingImgSize" type="list" default="Large" label="K2_IMAGE_SIZE_FOR_LEADING_ITEMS" description="K2_YOU_CAN_OVERRIDE_THE_GLOBAL_DIMENSIONS_FOR_EACH_SIZE_BY_ADJUSTING_THE_RELATED_SETTING_IN_THE_ITEM_IMAGE_OPTIONS_PANE_BELOW">
+			<field name="leadingImgSize" type="radio" default="Large" label="K2_IMAGE_SIZE_FOR_LEADING_ITEMS" description="K2_YOU_CAN_OVERRIDE_THE_GLOBAL_DIMENSIONS_FOR_EACH_SIZE_BY_ADJUSTING_THE_RELATED_SETTING_IN_THE_ITEM_IMAGE_OPTIONS_PANE_BELOW">
 				<option value="XSmall">K2_XSMALL</option>
 				<option value="Small">K2_SMALL</option>
 				<option value="Medium">K2_MEDIUM</option>
@@ -485,7 +485,7 @@
 			<field name="@spacer" type="spacer" default="" label="" description=""/>
 			<field name="num_primary_items" type="text" size="4" default="4" label="K2_PRIMARY_COUNT" description="K2_NUMBER_OF_ITEMS_TO_DISPLAY_AS_PRIMARY"/>
 			<field name="num_primary_columns" type="text" size="4" default="2" label="K2_COLUMNS_FOR_PRIMARY" description=""/>
-			<field name="primaryImgSize" type="list" default="Medium" label="K2_IMAGE_SIZE_FOR_PRIMARY_ITEMS" description="K2_YOU_CAN_OVERRIDE_THE_GLOBAL_DIMENSIONS_FOR_EACH_SIZE_BY_ADJUSTING_THE_RELATED_SETTING_IN_THE_ITEM_IMAGE_OPTIONS_PANE_BELOW">
+			<field name="primaryImgSize" type="radio" default="Medium" label="K2_IMAGE_SIZE_FOR_PRIMARY_ITEMS" description="K2_YOU_CAN_OVERRIDE_THE_GLOBAL_DIMENSIONS_FOR_EACH_SIZE_BY_ADJUSTING_THE_RELATED_SETTING_IN_THE_ITEM_IMAGE_OPTIONS_PANE_BELOW">
 				<option value="XSmall">K2_XSMALL</option>
 				<option value="Small">K2_SMALL</option>
 				<option value="Medium">K2_MEDIUM</option>
@@ -496,7 +496,7 @@
 			<field name="@spacer" type="spacer" default="" label="" description=""/>
 			<field name="num_secondary_items" type="text" size="4" default="4" label="K2_SECONDARY_COUNT" description="K2_NUMBER_OF_ITEMS_TO_DISPLAY_AS_SECONDARY"/>
 			<field name="num_secondary_columns" type="text" size="4" default="1" label="K2_COLUMNS_FOR_SECONDARY" description=""/>
-			<field name="secondaryImgSize" type="list" default="Small" label="K2_IMAGE_SIZE_FOR_SECONDARY_ITEMS" description="K2_YOU_CAN_OVERRIDE_THE_GLOBAL_DIMENSIONS_FOR_EACH_SIZE_BY_ADJUSTING_THE_RELATED_SETTING_IN_THE_ITEM_IMAGE_OPTIONS_PANE_BELOW">
+			<field name="secondaryImgSize" type="radio" default="Small" label="K2_IMAGE_SIZE_FOR_SECONDARY_ITEMS" description="K2_YOU_CAN_OVERRIDE_THE_GLOBAL_DIMENSIONS_FOR_EACH_SIZE_BY_ADJUSTING_THE_RELATED_SETTING_IN_THE_ITEM_IMAGE_OPTIONS_PANE_BELOW">
 				<option value="XSmall">K2_XSMALL</option>
 				<option value="Small">K2_SMALL</option>
 				<option value="Medium">K2_MEDIUM</option>
@@ -507,7 +507,7 @@
 			<field name="@spacer" type="spacer" default="" label="" description=""/>
 			<field name="num_links" type="text" size="4" default="4" label="K2_LINKS_COUNT" description="K2_NUMBER_OF_ITEMS_TO_DISPLAY_AS_LINKS"/>
 			<field name="num_links_columns" type="text" size="4" default="1" label="K2_COLUMNS_FOR_LINKS" description=""/>
-			<field name="linksImgSize" type="list" default="XSmall" label="K2_IMAGE_SIZE_FOR_LINK_ITEMS" description="K2_YOU_CAN_OVERRIDE_THE_GLOBAL_DIMENSIONS_FOR_EACH_SIZE_BY_ADJUSTING_THE_RELATED_SETTING_IN_THE_ITEM_IMAGE_OPTIONS_PANE_BELOW">
+			<field name="linksImgSize" type="radio" default="XSmall" label="K2_IMAGE_SIZE_FOR_LINK_ITEMS" description="K2_YOU_CAN_OVERRIDE_THE_GLOBAL_DIMENSIONS_FOR_EACH_SIZE_BY_ADJUSTING_THE_RELATED_SETTING_IN_THE_ITEM_IMAGE_OPTIONS_PANE_BELOW">
 				<option value="XSmall">K2_XSMALL</option>
 				<option value="Small">K2_SMALL</option>
 				<option value="Medium">K2_MEDIUM</option>
@@ -516,16 +516,16 @@
 				<option value="none">K2_NO_IMAGE</option>
 			</field>
 			<field name="" type="header" default="K2_OTHER_LAYOUT_OPTIONS" label="" description=""/>
-			<field name="catCatalogMode" type="list" default="0" label="K2_CATALOG_MODE" description="K2_IF_YOU_SELECT_YES_THEN_ONLY_THE_ITEMS_DIRECTLY_BELONGING_TO_THIS_CATEGORY_WILL_BE_RETRIEVED_IF_YOU_SELECT_NO_THEN_ITEMS_FROM_ALL_SUBCATEGORIES_WILL_BE_RETRIEVED_SETTING_THIS_OPTION_TO_NO_IS_IDEAL_FOR_NEWSPORTALMAGAZINEBLOG_LAYOUTS">
+			<field name="catCatalogMode" type="radio" default="0" label="K2_CATALOG_MODE" description="K2_IF_YOU_SELECT_YES_THEN_ONLY_THE_ITEMS_DIRECTLY_BELONGING_TO_THIS_CATEGORY_WILL_BE_RETRIEVED_IF_YOU_SELECT_NO_THEN_ITEMS_FROM_ALL_SUBCATEGORIES_WILL_BE_RETRIEVED_SETTING_THIS_OPTION_TO_NO_IS_IDEAL_FOR_NEWSPORTALMAGAZINEBLOG_LAYOUTS">
 				<option value="0">K2_NO</option>
 				<option value="1">K2_YES</option>
 			</field>
-			<field name="catFeaturedItems" type="list" default="1" label="K2_FEATURED_ITEMS" description="">
+			<field name="catFeaturedItems" type="radio" default="1" label="K2_FEATURED_ITEMS" description="">
 				<option value="0">K2_HIDE</option>
 				<option value="1">K2_SHOW</option>
 				<option value="2">K2_SHOW_ONLY_FEATURED_ITEMS</option>
 			</field>
-			<field name="catOrdering" type="list" default="" label="K2_ITEM_ORDERING" description="">
+			<field name="catOrdering" type="radio" default="" label="K2_ITEM_ORDERING" description="">
 				<option value="">K2_DEFAULT</option>
 				<option value="date">K2_OLDEST_FIRST</option>
 				<option value="rdate">K2_MOST_RECENT_FIRST</option>
@@ -540,7 +540,7 @@
 				<option value="modified">K2_LATEST_MODIFIED</option>
 				<option value="rand">K2_RANDOM_ORDERING</option>
 			</field>
-			<field name="catPagination" type="list" default="2" label="K2_PAGINATION" description="">
+			<field name="catPagination" type="radio" default="2" label="K2_PAGINATION" description="">
 				<option value="0">K2_HIDE</option>
 				<option value="1">K2_SHOW</option>
 				<option value="2">K2_AUTO</option>
@@ -581,7 +581,7 @@
 				<option value="1">K2_SHOW</option>
 			</field>
 			<field name="subCatColumns" type="text" default="2" size="4" label="K2_COLUMNS" description=""/>
-			<field name="subCatOrdering" type="list" default="" label="K2_SUBCATEGORY_ORDERING" description="">
+			<field name="subCatOrdering" type="radio" default="" label="K2_SUBCATEGORY_ORDERING" description="">
 				<option value="">K2_DEFAULT_BY_ID_ASCENDING</option>
 				<option value="reversedefault">K2_REVERSE_DEFAULT_BY_ID_DESCENDING</option>
 				<option value="alpha">K2_TITLE_ALPHABETICAL</option>
@@ -757,7 +757,7 @@
 				<option value="0">K2_HIDE</option>
 				<option value="1">K2_SHOW</option>
 			</field>
-			<field name="itemImgSize" type="list" default="Large" label="K2_IMAGE_SIZE" description="">
+			<field name="itemImgSize" type="radio" default="Large" label="K2_IMAGE_SIZE" description="">
 				<option value="XSmall">K2_XSMALL</option>
 				<option value="Small">K2_SMALL</option>
 				<option value="Medium">K2_MEDIUM</option>
@@ -893,7 +893,7 @@
 				<option value="0">K2_HIDE</option>
 				<option value="1">K2_SHOW</option>
 			</field>
-			<field name="itemRelatedImageSize" type="list" default="0" label="K2_RELATED_ITEMS_IMAGE" description="">
+			<field name="itemRelatedImageSize" type="radio" default="0" label="K2_RELATED_ITEMS_IMAGE" description="">
 				<option value="0">K2_NONE_SELECTED</option>
 				<option value="XSmall">K2_XSMALL</option>
 				<option value="Small">K2_SMALL</option>
