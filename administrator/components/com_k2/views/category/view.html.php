@@ -53,7 +53,7 @@ class K2ViewCategory extends K2View
 
         $lists = array();
         $lists['published'] = JHTML::_('select.booleanlist', 'published', 'class="inputbox"', $category->published);
-        $lists['access'] = version_compare(JVERSION, '3.0', 'ge') ? JHTML::_('access.level', 'access', $category->access) : JHTML::_('list.accesslevel', $category);
+        $lists['access'] = version_compare(JVERSION, '2.5', 'ge') ? JHTML::_('access.level', 'access', $category->access, '', false) : str_replace('size="3"', "", JHTML::_('list.accesslevel', $category));
         $query = 'SELECT ordering AS value, name AS text FROM #__k2_categories ORDER BY ordering';
         $lists['ordering'] = version_compare(JVERSION, '3.0', 'ge') ? NUll : JHTML::_('list.specificordering', $category, $category->id, $query);
         $categories[] = JHTML::_('select.option', '0', JText::_('K2_NONE_ONSELECTLISTS'));

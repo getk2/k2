@@ -206,7 +206,7 @@ class K2ViewItem extends K2View
 
 		$lists['published'] = JHTML::_('select.booleanlist', 'published', 'class="inputbox"', $item->published);
 		$lists['featured'] = JHTML::_('select.booleanlist', 'featured', 'class="inputbox"', $item->featured);
-		$lists['access'] = version_compare(JVERSION, '3.0', 'ge') ? JHTML::_('access.level', 'access', $item->access) : JHTML::_('list.accesslevel', $item);
+		$lists['access'] = version_compare(JVERSION, '2.5', 'ge') ? JHTML::_('access.level', 'access', $item->access, '', false) : str_replace('size="3"', "", JHTML::_('list.accesslevel', $item));
 
 		$query = "SELECT ordering AS value, title AS text FROM #__k2_items WHERE catid={$item->catid}";
 		$lists['ordering'] = version_compare(JVERSION, '3.0', 'ge') ? NUll : JHTML::_('list.specificordering', $item, $item->id, $query);
