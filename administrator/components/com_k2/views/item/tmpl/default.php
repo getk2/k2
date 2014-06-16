@@ -953,9 +953,9 @@ $document->addScriptDeclaration("
 				<a id="catViewOptions"></a>
 				<h3><?php echo JText::_('K2_ITEM_VIEW_OPTIONS_IN_CATEGORY_LISTINGS'); ?></h3>
 				<div class="xmlParamsFields">
-					<?php if(version_compare( JVERSION, '1.6.0', 'ge' )): ?>
 					<fieldset class="panelform">
 						<ul class="adminformlist">
+							<?php if(version_compare( JVERSION, '1.6.0', 'ge' )): ?>
 							<?php foreach($this->form->getFieldset('item-view-options-listings') as $field): ?>
 							<li>
 								<?php if($field->type=='header'): ?>
@@ -970,12 +970,8 @@ $document->addScriptDeclaration("
 								<?php endif; ?>
 							</li>
 							<?php endforeach; ?>
-						</ul>
-					</fieldset>
-					<?php else: ?>
-					<fieldset class="panelform">
-						<ul class="adminformlist">
-						<?php foreach($this->form->getParams('params', 'item-view-options-listings') as $param): ?>
+							<?php else: ?>
+							<?php foreach($this->form->getParams('params', 'item-view-options-listings') as $param): ?>
 							<li>
 								<?php if((string)$param[1]=='' || $param[5] == ''): ?>
 								<div class="paramValueHeader"><?php echo $param[1]; ?></div>
@@ -985,17 +981,17 @@ $document->addScriptDeclaration("
 								<div class="clr"></div>
 								<?php endif; ?>
 							</li>
-						<?php endforeach; ?>
+							<?php endforeach; ?>
+							<?php endif; ?>
 						</ul>
 					</fieldset>
-					<?php endif; ?>
 				</div>
 				<a id="itemViewOptions"></a>
 				<h3><?php echo JText::_('K2_ITEM_VIEW_OPTIONS'); ?></h3>
 				<div class="xmlParamsFields">
-					<?php if(version_compare( JVERSION, '1.6.0', 'ge' )): ?>
 					<fieldset class="panelform">
 						<ul class="adminformlist">
+							<?php if(version_compare( JVERSION, '1.6.0', 'ge' )): ?>
 							<?php foreach($this->form->getFieldset('item-view-options') as $field): ?>
 							<li>
 								<?php if($field->type=='header'): ?>
@@ -1010,12 +1006,8 @@ $document->addScriptDeclaration("
 								<?php endif; ?>
 							</li>
 							<?php endforeach; ?>
-						</ul>
-					</fieldset>
-					<?php else: ?>
-					<fieldset class="panelform">
-						<ul class="adminformlist">
-						<?php foreach($this->form->getParams('params', 'item-view-options') as $param): ?>
+							<?php else: ?>
+							<?php foreach($this->form->getParams('params', 'item-view-options') as $param): ?>
 							<li>
 								<?php if((string)$param[1]=='' || $param[5] == ''): ?>
 								<div class="paramValueHeader"><?php echo $param[1]; ?></div>
@@ -1025,10 +1017,10 @@ $document->addScriptDeclaration("
 								<div class="clr"></div>
 								<?php endif; ?>
 							</li>
-						<?php endforeach; ?>
+							<?php endforeach; ?>
+							<?php endif; ?>
 						</ul>
 					</fieldset>
-					<?php endif; ?>
 				</div>
 
 				<?php if($this->aceAclFlag): ?>

@@ -161,13 +161,15 @@ $document->addScriptDeclaration("
 					<?php endif; ?>
 					<div class="clr"></div>
 				</td>
+				
 				<td id="adminFormK2Sidebar" class="xmlParamsFields">
 					<div id="k2Accordion">
+					
 						<h3><a href="#"><?php echo JText::_('K2_CATEGORY_ITEM_LAYOUT'); ?></a></h3>
 						<div>
-							<?php if(K2_JVERSION != '15'): ?>
 							<fieldset class="panelform">
 								<ul class="adminformlist">
+									<?php if(version_compare( JVERSION, '1.6.0', 'ge' )): ?>
 									<?php foreach ($this->form->getFieldset('category-item-layout') as $field): ?>
 									<li>
 										<?php if($field->type=='header'): ?>
@@ -182,12 +184,8 @@ $document->addScriptDeclaration("
 										<?php endif; ?>
 									</li>
 									<?php endforeach; ?>
-								</ul>
-							</fieldset>
-							<?php else: ?>
-							<fieldset class="panelform">
-								<ul class="adminformlist">
-								<?php foreach($this->form->getParams('params', 'category-item-layout') as $param): ?>
+									<?php else: ?>
+									<?php foreach($this->form->getParams('params', 'category-item-layout') as $param): ?>
 									<li>
 										<?php if((string)$param[1]=='' || $param[5] == ''): ?>
 										<div class="paramValueHeader"><?php echo $param[1]; ?></div>
@@ -197,16 +195,17 @@ $document->addScriptDeclaration("
 										<div class="clr"></div>
 										<?php endif; ?>
 									</li>
-								<?php endforeach; ?>
+									<?php endforeach; ?>
+									<?php endif; ?>
 								</ul>
 							</fieldset>
-							<?php endif; ?>
 						</div>
+						
 						<h3><a href="#"><?php echo JText::_('K2_CATEGORY_VIEW_OPTIONS'); ?></a></h3>
 						<div>
-							<?php if(K2_JVERSION != '15'): ?>
 							<fieldset class="panelform">
 								<ul class="adminformlist">
+									<?php if(version_compare( JVERSION, '1.6.0', 'ge' )): ?>
 									<?php foreach ($this->form->getFieldset('category-view-options') as $field): ?>
 									<li>
 										<?php if($field->type=='header'): ?>
@@ -221,12 +220,8 @@ $document->addScriptDeclaration("
 										<?php endif; ?>
 									</li>
 									<?php endforeach; ?>
-								</ul>
-							</fieldset>
-							<?php else: ?>
-							<fieldset class="panelform">
-								<ul class="adminformlist">
-								<?php foreach($this->form->getParams('params', 'category-view-options') as $param): ?>
+									<?php else: ?>
+									<?php foreach($this->form->getParams('params', 'category-view-options') as $param): ?>
 									<li>
 										<?php if((string)$param[1]=='' || $param[5] == ''): ?>
 										<div class="paramValueHeader"><?php echo $param[1]; ?></div>
@@ -236,16 +231,17 @@ $document->addScriptDeclaration("
 										<div class="clr"></div>
 										<?php endif; ?>
 									</li>
-								<?php endforeach; ?>
+									<?php endforeach; ?>
+									<?php endif; ?>
 								</ul>
 							</fieldset>
-							<?php endif; ?>
 						</div>
+						
 						<h3><a href="#"><?php echo JText::_('K2_ITEM_IMAGE_OPTIONS'); ?></a></h3>
 						<div>
-							<?php if(K2_JVERSION != '15'): ?>
 							<fieldset class="panelform">
 								<ul class="adminformlist">
+									<?php if(version_compare( JVERSION, '1.6.0', 'ge' )): ?>
 									<?php foreach ($this->form->getFieldset('item-image-options') as $field): ?>
 									<li>
 										<?php if($field->type=='header'): ?>
@@ -260,12 +256,8 @@ $document->addScriptDeclaration("
 										<?php endif; ?>
 									</li>
 									<?php endforeach; ?>
-								</ul>
-							</fieldset>
-							<?php else: ?>
-							<fieldset class="panelform">
-								<ul class="adminformlist">
-								<?php foreach($this->form->getParams('params', 'item-image-options') as $param): ?>
+									<?php else: ?>
+									<?php foreach($this->form->getParams('params', 'item-image-options') as $param): ?>
 									<li>
 										<?php if((string)$param[1]=='' || $param[5] == ''): ?>
 										<div class="paramValueHeader"><?php echo $param[1]; ?></div>
@@ -275,16 +267,17 @@ $document->addScriptDeclaration("
 										<div class="clr"></div>
 										<?php endif; ?>
 									</li>
-								<?php endforeach; ?>
+									<?php endforeach; ?>
+									<?php endif; ?>
 								</ul>
 							</fieldset>
-							<?php endif; ?>
 						</div>
+						
 						<h3><a href="#"><?php echo JText::_('K2_ITEM_VIEW_OPTIONS_IN_CATEGORY_LISTINGS'); ?></a></h3>
 						<div>
-							<?php if(K2_JVERSION != '15'): ?>
 							<fieldset class="panelform">
 								<ul class="adminformlist">
+									<?php if(version_compare( JVERSION, '1.6.0', 'ge' )): ?>
 									<?php foreach ($this->form->getFieldset('item-view-options-listings') as $field): ?>
 									<li>
 										<?php if($field->type=='header'): ?>
@@ -299,12 +292,8 @@ $document->addScriptDeclaration("
 										<?php endif; ?>
 									</li>
 									<?php endforeach; ?>
-								</ul>
-							</fieldset>
-							<?php else: ?>
-							<fieldset class="panelform">
-								<ul class="adminformlist">
-								<?php foreach($this->form->getParams('params', 'item-view-options-listings') as $param): ?>
+									<?php else: ?>
+									<?php foreach($this->form->getParams('params', 'item-view-options-listings') as $param): ?>
 									<li>
 										<?php if((string)$param[1]=='' || $param[5] == ''): ?>
 										<div class="paramValueHeader"><?php echo $param[1]; ?></div>
@@ -314,16 +303,17 @@ $document->addScriptDeclaration("
 										<div class="clr"></div>
 										<?php endif; ?>
 									</li>
-								<?php endforeach; ?>
+									<?php endforeach; ?>
+									<?php endif; ?>
 								</ul>
 							</fieldset>
-							<?php endif; ?>
 						</div>
+						
 						<h3><a href="#"><?php echo JText::_('K2_ITEM_VIEW_OPTIONS'); ?></a></h3>
 						<div>
-							<?php if(K2_JVERSION != '15'): ?>
 							<fieldset class="panelform">
 								<ul class="adminformlist">
+									<?php if(version_compare( JVERSION, '1.6.0', 'ge' )): ?>
 									<?php foreach ($this->form->getFieldset('item-view-options') as $field): ?>
 									<li>
 										<?php if($field->type=='header'): ?>
@@ -338,12 +328,8 @@ $document->addScriptDeclaration("
 										<?php endif; ?>
 									</li>
 									<?php endforeach; ?>
-								</ul>
-							</fieldset>
-							<?php else: ?>
-							<fieldset class="panelform">
-								<ul class="adminformlist">
-								<?php foreach($this->form->getParams('params', 'item-view-options') as $param): ?>
+									<?php else: ?>
+									<?php foreach($this->form->getParams('params', 'item-view-options') as $param): ?>
 									<li>
 										<?php if((string)$param[1]=='' || $param[5] == ''): ?>
 										<div class="paramValueHeader"><?php echo $param[1]; ?></div>
@@ -353,16 +339,17 @@ $document->addScriptDeclaration("
 										<div class="clr"></div>
 										<?php endif; ?>
 									</li>
-								<?php endforeach; ?>
+									<?php endforeach; ?>
+									<?php endif; ?>
 								</ul>
 							</fieldset>
-							<?php endif; ?>
 						</div>
+						
 						<h3><a href="#"><?php echo JText::_('K2_METADATA_INFORMATION'); ?></a></h3>
 						<div>
-							<?php if(K2_JVERSION != '15'): ?>
 							<fieldset class="panelform">
 								<ul class="adminformlist">
+									<?php if(version_compare( JVERSION, '1.6.0', 'ge' )): ?>
 									<?php foreach ($this->form->getFieldset('category-metadata-information') as $field): ?>
 									<li>
 										<?php if($field->type=='header'): ?>
@@ -377,12 +364,8 @@ $document->addScriptDeclaration("
 										<?php endif; ?>
 									</li>
 									<?php endforeach; ?>
-								</ul>
-							</fieldset>
-							<?php else: ?>
-							<fieldset class="panelform">
-								<ul class="adminformlist">
-								<?php foreach($this->form->getParams('params', 'category-metadata-information') as $param): ?>
+									<?php else: ?>
+									<?php foreach($this->form->getParams('params', 'category-metadata-information') as $param): ?>
 									<li>
 										<?php if((string)$param[1]=='' || $param[5] == ''): ?>
 										<div class="paramValueHeader"><?php echo $param[1]; ?></div>
@@ -392,15 +375,17 @@ $document->addScriptDeclaration("
 										<div class="clr"></div>
 										<?php endif; ?>
 									</li>
-								<?php endforeach; ?>
+									<?php endforeach; ?>
+									<?php endif; ?>
 								</ul>
 							</fieldset>
-							<?php endif; ?>
 						</div>
+						
 						<?php if($this->aceAclFlag): ?>
 						<h3><a href="#"><?php echo JText::_('AceACL') . ' ' . JText::_('COM_ACEACL_COMMON_PERMISSIONS'); ?></a></h3>
 						<div><?php AceaclApi::getWidget('com_k2.category.'.$this->row->id, true); ?></div>
 						<?php endif; ?>
+						
 					</div>
 				</td>
 			</tr>
