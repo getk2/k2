@@ -103,14 +103,14 @@ $document->addScriptDeclaration("
 					</table>
 					
 					<!-- Tabs start here -->
-					<div class="simpleTabs" id="k2Tabs">
-						<ul class="simpleTabsNavigation">
+					<div class="k2Tabs" id="k2Tabs">
+						<ul class="k2TabsNavigation">
 							<li id="tabContent"><a href="#k2Tab1"><?php echo JText::_('K2_DESCRIPTION'); ?></a></li>
 							<li id="tabImage"><a href="#k2Tab2"><?php echo JText::_('K2_IMAGE'); ?></a></li>
 						</ul>
 						
 						<!-- Tab content -->
-						<div class="simpleTabsContent" id="k2Tab1">
+						<div class="k2TabsContent" id="k2Tab1">
 							<div class="k2ItemFormEditor"> <span class="k2ItemFormEditorTitle"> <?php echo JText::_('K2_CATEGORY_DESCRIPTION'); ?> </span> <?php echo $this->editor; ?>
 								<div class="dummyHeight"></div>
 								<div class="clr"></div>
@@ -119,7 +119,7 @@ $document->addScriptDeclaration("
 						</div>
 						
 						<!-- Tab image -->
-						<div class="simpleTabsContent" id="k2Tab2">
+						<div class="k2TabsContent" id="k2Tab2">
 							<table class="admintable table">
 								<tr>
 									<td align="right" class="key">

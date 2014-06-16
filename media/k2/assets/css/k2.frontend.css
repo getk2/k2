@@ -57,4 +57,4 @@ div#k2Frontend .k2CommentsPagination .pagination span,
 div#k2Frontend .k2CommentsPagination .pagination a {padding:0 2px;}
 
 /* Tabs in the frontend */
-div#k2Frontend div.simpleTabsContent {margin-top:3px;}
+div#k2Frontend div.k2TabsContent {margin-top:3px;}

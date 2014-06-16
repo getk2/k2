@@ -335,34 +335,34 @@ table#k2InfoPage {}
 table#k2InfoPage tr td {width:50%;vertical-align:top;}
 div#k2AboutBlock h2 {padding:0;margin:16px 0 0;}
 
-/* SimpleTabs */
-div.simpleTabs {clear:both;padding:10px 0;}
-ul.simpleTabsNavigation {margin:0 10px;padding:0;text-align:left;white-space:nowrap;}
-ul.simpleTabsNavigation li {list-style:none;display:inline;margin:0;padding:0;}
-ul.simpleTabsNavigation li a {border:1px solid #E0E0E0;padding:3px 6px;margin:0;background-color:#F0F0F0;font-size:14px;text-decoration:none;font-family:Georgia, "Times New Roman", Times, serif;color:#666;font-weight:normal;outline:0;}
-ul.simpleTabsNavigation li a:hover {text-decoration:none;background-color:#f6f6f6;}
+/* k2Tabs */
+div.k2Tabs {clear:both;padding:10px 0;}
+ul.k2TabsNavigation {margin:0 10px;padding:0;text-align:left;white-space:nowrap;}
+ul.k2TabsNavigation li {list-style:none;display:inline;margin:0;padding:0;}
+ul.k2TabsNavigation li a {border:1px solid #E0E0E0;padding:3px 6px;margin:0;background-color:#F0F0F0;font-size:14px;text-decoration:none;font-family:Georgia, "Times New Roman", Times, serif;color:#666;font-weight:normal;outline:0;}
+ul.k2TabsNavigation li a:hover {text-decoration:none;background-color:#f6f6f6;}
 
-ul.simpleTabsNavigation li.ui-tabs-selected a {background-color:#fff;color:#222;border-bottom:1px solid #fff;}
-div.simpleTabsContent {border:1px solid #E0E0E0;padding:8px;margin-top:3px;}
-div.isJ30 div.simpleTabsContent {margin-top:3px;}
-ul.simpleTabsNavigation li.ui-tabs-selected a:hover {background-color:#fff;}
-div.isJ25 div.simpleTabsContent {background:#fff;}
+ul.k2TabsNavigation li.ui-tabs-selected a {background-color:#fff;color:#222;border-bottom:1px solid #fff;}
+div.k2TabsContent {border:1px solid #E0E0E0;padding:8px;margin-top:3px;}
+div.isJ30 div.k2TabsContent {margin-top:3px;}
+ul.k2TabsNavigation li.ui-tabs-selected a:hover {background-color:#fff;}
+div.isJ25 div.k2TabsContent {background:#fff;}
 .ui-tabs-hide {display:none;}
 
 /* Custom tab icons */
-ul.simpleTabsNavigation li a {padding-left:24px;background-repeat:no-repeat;background-position:4px 3px;}
-ul.simpleTabsNavigation li#tabContent a {background-image:url(../images/editforms/Write2.png);}
-ul.simpleTabsNavigation li#tabImage a {background-image:url(../images/editforms/Picture.png);}
-ul.simpleTabsNavigation li#tabImageGallery a {background-image:url(../images/editforms/Photo.png);}
-ul.simpleTabsNavigation li#tabVideo a {background-image:url(../images/editforms/Movie.png);}
-ul.simpleTabsNavigation li#tabExtraFields a {background-image:url(../images/editforms/Puzzle.png);}
-ul.simpleTabsNavigation li#tabAttachments a {background-image:url(../images/editforms/Attach.png);}
-ul.simpleTabsNavigation li#tabPlugins a {background-image:url(../images/editforms/Gear.png);}
-ul.simpleTabsNavigation li a {background-repeat:no-repeat !important;}
+ul.k2TabsNavigation li a {padding-left:24px;background-repeat:no-repeat;background-position:4px 3px;}
+ul.k2TabsNavigation li#tabContent a {background-image:url(../images/editforms/Write2.png);}
+ul.k2TabsNavigation li#tabImage a {background-image:url(../images/editforms/Picture.png);}
+ul.k2TabsNavigation li#tabImageGallery a {background-image:url(../images/editforms/Photo.png);}
+ul.k2TabsNavigation li#tabVideo a {background-image:url(../images/editforms/Movie.png);}
+ul.k2TabsNavigation li#tabExtraFields a {background-image:url(../images/editforms/Puzzle.png);}
+ul.k2TabsNavigation li#tabAttachments a {background-image:url(../images/editforms/Attach.png);}
+ul.k2TabsNavigation li#tabPlugins a {background-image:url(../images/editforms/Gear.png);}
+ul.k2TabsNavigation li a {background-repeat:no-repeat !important;}
 
 /* Override for video tabs */
 #k2MediaTabs {padding:0 0 10px 0;}
-#k2MediaTabs ul.simpleTabsNavigation li a {padding-left:6px;font-size:11px;font-family:Arial, Helvetica, sans-serif;}
+#k2MediaTabs ul.k2TabsNavigation li a {padding-left:6px;font-size:11px;font-family:Arial, Helvetica, sans-serif;}
 
 /* Fix user group permissions category drop-down glitches under Joomla! 3.0 */
 #paramscategories_chzn li {padding:3px 20px 3px 5px;}

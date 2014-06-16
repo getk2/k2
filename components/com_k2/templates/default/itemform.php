@@ -175,8 +175,8 @@ $document->addScriptDeclaration("
 							</div>
 							
 							<!-- Tabs start here -->
-							<div class="simpleTabs" id="k2Tabs">
-								<ul class="simpleTabsNavigation">
+							<div class="k2Tabs" id="k2Tabs">
+								<ul class="k2TabsNavigation">
 									<li id="tabContent"><a href="#k2Tab1"><?php echo JText::_('K2_CONTENT'); ?></a></li>
 									<?php if ($this->params->get('showImageTab')): ?>
 									<li id="tabImage"><a href="#k2Tab2"><?php echo JText::_('K2_IMAGE'); ?></a></li>
@@ -199,7 +199,7 @@ $document->addScriptDeclaration("
 								</ul>
 
 								<!-- Tab content -->
-								<div class="simpleTabsContent" id="k2Tab1">
+								<div class="k2TabsContent" id="k2Tab1">
 									<?php if($this->params->get('mergeEditors')): ?>
 									<div class="k2ItemFormEditor"> <?php echo $this->text; ?>
 										<div class="dummyHeight"></div>
@@ -231,7 +231,7 @@ $document->addScriptDeclaration("
 								</div>
 								<?php if ($this->params->get('showImageTab')): ?>
 								<!-- Tab image -->
-								<div class="simpleTabsContent" id="k2Tab2">
+								<div class="k2TabsContent" id="k2Tab2">
 									<table class="admintable">
 										<tr>
 											<td align="right" class="key">
@@ -295,7 +295,7 @@ $document->addScriptDeclaration("
 								<?php endif; ?>
 								<?php if ($this->params->get('showImageGalleryTab')): ?>
 								<!-- Tab image gallery -->
-								<div class="simpleTabsContent" id="k2Tab3">
+								<div class="k2TabsContent" id="k2Tab3">
 									<?php if ($this->lists['checkSIG']): ?>
 									<table class="admintable table" id="item_gallery_content">
 										<tr>
@@ -372,7 +372,7 @@ $document->addScriptDeclaration("
 								<?php endif; ?>
 								<?php if ($this->params->get('showVideoTab')): ?>
 								<!-- Tab video -->
-								<div class="simpleTabsContent" id="k2Tab4">
+								<div class="k2TabsContent" id="k2Tab4">
 									<?php if ($this->lists['checkAllVideos']): ?>
 									<table class="admintable" id="item_video_content">
 										<tr>
@@ -380,33 +380,33 @@ $document->addScriptDeclaration("
 												<?php echo JText::_('K2_MEDIA_SOURCE'); ?>
 											</td>
 											<td>
-												<div id="k2VideoTabs" class="simpleTabs">
-													<ul class="simpleTabsNavigation">
+												<div id="k2VideoTabs" class="k2Tabs">
+													<ul class="k2TabsNavigation">
 														<li><a href="#k2VideoTab1"><?php echo JText::_('K2_UPLOAD'); ?></a></li>
 														<li><a href="#k2VideoTab2"><?php echo JText::_('K2_BROWSE_SERVERUSE_REMOTE_MEDIA'); ?></a></li>
 														<li><a href="#k2VideoTab3"><?php echo JText::_('K2_MEDIA_USE_ONLINE_VIDEO_SERVICE'); ?></a></li>
 														<li><a href="#k2VideoTab4"><?php echo JText::_('K2_EMBED'); ?></a></li>
 													</ul>
-													<div id="k2VideoTab1" class="simpleTabsContent">
+													<div id="k2VideoTab1" class="k2TabsContent">
 														<div class="panel" id="Upload_video">
 															<input type="file" name="video" class="fileUpload" />
 															<i>(<?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?>)</i> </div>
 													</div>
-													<div id="k2VideoTab2" class="simpleTabsContent">
+													<div id="k2VideoTab2" class="k2TabsContent">
 														<div class="panel" id="Remote_video"> <a id="k2MediaBrowseServer" href="index.php?option=com_k2&view=media&type=video&tmpl=component&fieldID=remoteVideo"><?php echo JText::_('K2_BROWSE_VIDEOS_ON_SERVER')?></a> <?php echo JText::_('K2_OR'); ?> <?php echo JText::_('K2_PASTE_REMOTE_VIDEO_URL'); ?>
 															<br />
 															<br />
 															<input type="text" size="50" name="remoteVideo" id="remoteVideo" value="<?php echo $this->lists['remoteVideo'] ?>" />
 														</div>
 													</div>
-													<div id="k2VideoTab3" class="simpleTabsContent">
+													<div id="k2VideoTab3" class="k2TabsContent">
 														<div class="panel" id="Video_from_provider"> <?php echo JText::_('K2_SELECT_VIDEO_PROVIDER'); ?> <?php echo $this->lists['providers']; ?> <br/><br/> <?php echo JText::_('K2_AND_ENTER_VIDEO_ID'); ?>
 															<input type="text" size="50" name="videoID" value="<?php echo $this->lists['providerVideo'] ?>" />
 															<br />
 															<br />
 															<a class="modal" rel="{handler: 'iframe', size: {x: 990, y: 600}}" href="http://www.joomlaworks.net/allvideos-documentation"><?php echo JText::_('K2_READ_THE_ALLVIDEOS_DOCUMENTATION_FOR_MORE'); ?></a> </div>
 													</div>
-													<div id="k2VideoTab4" class="simpleTabsContent">
+													<div id="k2VideoTab4" class="k2TabsContent">
 														<div class="panel" id="embedVideo">
 															<?php echo JText::_('K2_PASTE_HTML_EMBED_CODE_BELOW'); ?>
 															<br />
@@ -479,11 +479,11 @@ $document->addScriptDeclaration("
 												<?php echo JText::_('K2_MEDIA_SOURCE'); ?>
 											</td>
 											<td>
-												<div id="k2VideoTabs" class="simpleTabs">
-													<ul class="simpleTabsNavigation">
+												<div id="k2VideoTabs" class="k2Tabs">
+													<ul class="k2TabsNavigation">
 														<li><a href="#k2VideoTab4"><?php echo JText::_('K2_EMBED'); ?></a></li>
 													</ul>
-													<div class="simpleTabsContent" id="k2VideoTab4">
+													<div class="k2TabsContent" id="k2VideoTab4">
 														<div class="panel" id="embedVideo">
 															<?php echo JText::_('K2_PASTE_HTML_EMBED_CODE_BELOW'); ?>
 															<br />
@@ -540,7 +540,7 @@ $document->addScriptDeclaration("
 								<?php endif; ?>
 								<?php if ($this->params->get('showExtraFieldsTab')): ?>
 								<!-- Tab extra fields -->
-								<div class="simpleTabsContent" id="k2Tab5">
+								<div class="k2TabsContent" id="k2Tab5">
 									<div id="extraFieldsContainer">
 										<?php if (count($this->extraFields)): ?>
 										<table class="admintable" id="extraFields">
@@ -608,7 +608,7 @@ $document->addScriptDeclaration("
 								<?php endif; ?>
 								<?php if ($this->params->get('showAttachmentsTab')): ?>
 								<!-- Tab attachements -->
-								<div class="simpleTabsContent" id="k2Tab6">
+								<div class="k2TabsContent" id="k2Tab6">
 									<div class="itemAttachments">
 										<?php if (count($this->row->attachments)): ?>
 										<table class="adminlist">
@@ -671,7 +671,7 @@ $document->addScriptDeclaration("
 								<?php endif; ?>
 								<?php if(count(array_filter($this->K2PluginsItemOther)) && $this->params->get('showK2Plugins')): ?>
 								<!-- Tab other plugins -->
-								<div class="simpleTabsContent" id="k2Tab7">
+								<div class="k2TabsContent" id="k2Tab7">
 									<div class="itemPlugins">
 										<?php foreach($this->K2PluginsItemOther as $K2Plugin): ?>
 										<?php if(!is_null($K2Plugin)): ?>
