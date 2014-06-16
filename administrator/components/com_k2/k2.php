@@ -97,10 +97,11 @@ $document->addScriptDeclaration('
 	
 	// Set Joomla version as body tag
 	(function(){
+		var addedClass = "isJ'.K2_JVERSION.' k2ViewIs'.ucfirst(JRequest::getCmd('view')).' k2TaskIs'.ucfirst(JRequest::getCmd('task')).'";
 		if(document.getElementsByTagName("html")[0].className !== ""){
-			document.getElementsByTagName("html")[0].className += " isJ'.K2_JVERSION.'";
+			document.getElementsByTagName("html")[0].className += " "+addedClass;
 		} else {
-			document.getElementsByTagName("html")[0].className = "isJ'.K2_JVERSION.'";
+			document.getElementsByTagName("html")[0].className = addedClass;
 		}
 	})();
 	
