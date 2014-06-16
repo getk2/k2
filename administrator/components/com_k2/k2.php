@@ -90,7 +90,29 @@ if(K2_JVERSION == '30')
 	}
     
 }
-$document->addScriptDeclaration('K2JVersion = "'.K2_JVERSION.'";');
+$document->addScriptDeclaration('
+	
+	// Set K2 version as global JS var
+	K2JVersion = "'.K2_JVERSION.'";
+	
+	// Set Joomla version as body tag
+	function setJoomlaVersion() {
+		var bodyClass = document.getElementsByTagName("body")[0].className;
+		if(bodyClass !== ""){
+			bodyClass += " isJ'.K2_JVERSION.'";
+		} else {
+			bodyClass = "isJ'.K2_JVERSION.'";
+		}
+	}
+	if (window.addEventListener){
+		window.addEventListener("load", setJoomlaVersion, false);
+	} else if (window.attachEvent){
+		window.attachEvent("onload", setJoomlaVersion);
+	} else {
+		window.onload = setJoomlaVersion;
+	}
+	
+');
 $document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v=2.7.0&amp;sitepath='.JURI::root(true).'/');
 
 // Container CSS class definition
