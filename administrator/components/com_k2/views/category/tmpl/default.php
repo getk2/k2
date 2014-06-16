@@ -185,7 +185,21 @@ $document->addScriptDeclaration("
 								</ul>
 							</fieldset>
 							<?php else: ?>
-							<?php echo $this->form->render('params', 'category-item-layout'); ?>
+							<fieldset class="panelform">
+								<ul class="adminformlist">
+								<?php foreach($this->form->getParams('params', 'category-item-layout') as $param): ?>
+									<li>
+										<?php if((string)$param[1]=='' || $param[5] == ''): ?>
+										<div class="paramValueHeader"><?php echo $param[1]; ?></div>
+										<?php else: ?>
+										<div class="paramLabel"><?php echo $param[0]; ?></div>
+										<div class="paramValue"><?php echo $param[1]; ?></div>
+										<div class="clr"></div>
+										<?php endif; ?>
+									</li>
+								<?php endforeach; ?>
+								</ul>
+							</fieldset>
 							<?php endif; ?>
 						</div>
 						<h3><a href="#"><?php echo JText::_('K2_CATEGORY_VIEW_OPTIONS'); ?></a></h3>
@@ -210,7 +224,21 @@ $document->addScriptDeclaration("
 								</ul>
 							</fieldset>
 							<?php else: ?>
-							<?php echo $this->form->render('params', 'category-view-options'); ?>
+							<fieldset class="panelform">
+								<ul class="adminformlist">
+								<?php foreach($this->form->getParams('params', 'category-view-options') as $param): ?>
+									<li>
+										<?php if((string)$param[1]=='' || $param[5] == ''): ?>
+										<div class="paramValueHeader"><?php echo $param[1]; ?></div>
+										<?php else: ?>
+										<div class="paramLabel"><?php echo $param[0]; ?></div>
+										<div class="paramValue"><?php echo $param[1]; ?></div>
+										<div class="clr"></div>
+										<?php endif; ?>
+									</li>
+								<?php endforeach; ?>
+								</ul>
+							</fieldset>
 							<?php endif; ?>
 						</div>
 						<h3><a href="#"><?php echo JText::_('K2_ITEM_IMAGE_OPTIONS'); ?></a></h3>
@@ -235,7 +263,21 @@ $document->addScriptDeclaration("
 								</ul>
 							</fieldset>
 							<?php else: ?>
-							<?php echo $this->form->render('params', 'item-image-options'); ?>
+							<fieldset class="panelform">
+								<ul class="adminformlist">
+								<?php foreach($this->form->getParams('params', 'item-image-options') as $param): ?>
+									<li>
+										<?php if((string)$param[1]=='' || $param[5] == ''): ?>
+										<div class="paramValueHeader"><?php echo $param[1]; ?></div>
+										<?php else: ?>
+										<div class="paramLabel"><?php echo $param[0]; ?></div>
+										<div class="paramValue"><?php echo $param[1]; ?></div>
+										<div class="clr"></div>
+										<?php endif; ?>
+									</li>
+								<?php endforeach; ?>
+								</ul>
+							</fieldset>
 							<?php endif; ?>
 						</div>
 						<h3><a href="#"><?php echo JText::_('K2_ITEM_VIEW_OPTIONS_IN_CATEGORY_LISTINGS'); ?></a></h3>
@@ -260,7 +302,21 @@ $document->addScriptDeclaration("
 								</ul>
 							</fieldset>
 							<?php else: ?>
-							<?php echo $this->form->render('params', 'item-view-options-listings'); ?>
+							<fieldset class="panelform">
+								<ul class="adminformlist">
+								<?php foreach($this->form->getParams('params', 'item-view-options-listings') as $param): ?>
+									<li>
+										<?php if((string)$param[1]=='' || $param[5] == ''): ?>
+										<div class="paramValueHeader"><?php echo $param[1]; ?></div>
+										<?php else: ?>
+										<div class="paramLabel"><?php echo $param[0]; ?></div>
+										<div class="paramValue"><?php echo $param[1]; ?></div>
+										<div class="clr"></div>
+										<?php endif; ?>
+									</li>
+								<?php endforeach; ?>
+								</ul>
+							</fieldset>
 							<?php endif; ?>
 						</div>
 						<h3><a href="#"><?php echo JText::_('K2_ITEM_VIEW_OPTIONS'); ?></a></h3>
@@ -285,7 +341,21 @@ $document->addScriptDeclaration("
 								</ul>
 							</fieldset>
 							<?php else: ?>
-							<?php echo $this->form->render('params', 'item-view-options'); ?>
+							<fieldset class="panelform">
+								<ul class="adminformlist">
+								<?php foreach($this->form->getParams('params', 'item-view-options') as $param): ?>
+									<li>
+										<?php if((string)$param[1]=='' || $param[5] == ''): ?>
+										<div class="paramValueHeader"><?php echo $param[1]; ?></div>
+										<?php else: ?>
+										<div class="paramLabel"><?php echo $param[0]; ?></div>
+										<div class="paramValue"><?php echo $param[1]; ?></div>
+										<div class="clr"></div>
+										<?php endif; ?>
+									</li>
+								<?php endforeach; ?>
+								</ul>
+							</fieldset>
 							<?php endif; ?>
 						</div>
 						<h3><a href="#"><?php echo JText::_('K2_METADATA_INFORMATION'); ?></a></h3>
@@ -310,7 +380,21 @@ $document->addScriptDeclaration("
 								</ul>
 							</fieldset>
 							<?php else: ?>
-							<?php echo $this->form->render('params', 'category-metadata-information'); ?>
+							<fieldset class="panelform">
+								<ul class="adminformlist">
+								<?php foreach($this->form->getParams('params', 'category-metadata-information') as $param): ?>
+									<li>
+										<?php if((string)$param[1]=='' || $param[5] == ''): ?>
+										<div class="paramValueHeader"><?php echo $param[1]; ?></div>
+										<?php else: ?>
+										<div class="paramLabel"><?php echo $param[0]; ?></div>
+										<div class="paramValue"><?php echo $param[1]; ?></div>
+										<div class="clr"></div>
+										<?php endif; ?>
+									</li>
+								<?php endforeach; ?>
+								</ul>
+							</fieldset>
 							<?php endif; ?>
 						</div>
 						<?php if($this->aceAclFlag): ?>
