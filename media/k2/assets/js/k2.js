@@ -38,7 +38,7 @@ $K2(document).ready(function() {
 	var K2SitePath = getUrlParams('k2.js', 'sitepath');
 
     // --- Common functions ---
-        
+
     // Minimal Scrollspy
 	$K2(".k2ScrollSpyMenu").each(function( index ) {
 
@@ -53,22 +53,22 @@ $K2(document).ready(function() {
 		      var item = $K2($K2(this).attr("href"));
 		      if (item.length) { return item; }
 		    });
-		
+
 		// Bind click handler to menu items so we can get a fancy scroll animation
 		menuItems.click(function(e){
 		  var href = $K2(this).attr("href"),
 		      offsetTop = (href === "#") ? 0 : $K2(href).offset().top-topMenuHeight-60;
-		  $K2('html, body').stop().animate({ 
+		  $K2('html, body').stop().animate({
 		      scrollTop: offsetTop
 		  }, 300);
 		  e.preventDefault();
 		});
-		
+
 		// Bind to scroll
 		$K2(window).scroll(function(){
 		   // Get container scroll position
 		   var fromTop = $K2(this).scrollTop()+topMenuHeight;
-		   
+
 		   // Get id of current scroll item
 		   var cur = scrollItems.map(function(){
 		     if ($K2(this).offset().top < fromTop)
@@ -77,18 +77,18 @@ $K2(document).ready(function() {
 		   // Get the id of the current element
 		   cur = cur[cur.length-1];
 		   var id = cur && cur.length ? cur[0].id : "";
-		   
+
 		   if (lastId !== id) {
 		       lastId = id;
 		       // Set/remove active class
 		       menuItems
 		         .parent().removeClass("active")
 		         .end().filter("[href=#"+id+"]").parent().addClass("active");
-		   }                   
+		   }
 		});
 
 	});
-	
+
 	// Toggler
     $K2('#jToggler').click(function() {
         if ($K2(this).attr('checked')) {
@@ -99,12 +99,12 @@ $K2(document).ready(function() {
             $K2('input[name=boxchecked]').val('0');
         }
     });
-    
+
     // Submit form
     $K2('#k2SubmitButton').click(function() {
         this.form.submit();
     });
-    
+
     // Form filters reset
     $K2('#k2ResetButton').click(function(event) {
         event.preventDefault();
