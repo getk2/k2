@@ -30,16 +30,16 @@ class K2ViewItem extends K2View
 		$document->addScript(JURI::root(true).'/media/k2/assets/js/nicEdit.js?v=2.7.0');
 		//var K2SitePath = '".JURI::root(true)."/';
 		$js = "
-					var K2BasePath = '".JURI::base(true)."/';
-					var K2Language = [
-						'".JText::_('K2_REMOVE', true)."',
-						'".JText::_('K2_LINK_TITLE_OPTIONAL', true)."',
-						'".JText::_('K2_LINK_TITLE_ATTRIBUTE_OPTIONAL', true)."',
-						'".JText::_('K2_ARE_YOU_SURE', true)."',
-						'".JText::_('K2_YOU_ARE_NOT_ALLOWED_TO_POST_TO_THIS_CATEGORY', true)."',
-						'".JText::_('K2_OR_SELECT_A_FILE_ON_THE_SERVER', true)."'
-					]
-				";
+			var K2BasePath = '".JURI::base(true)."/';
+			var K2Language = [
+				'".JText::_('K2_REMOVE', true)."',
+				'".JText::_('K2_LINK_TITLE_OPTIONAL', true)."',
+				'".JText::_('K2_LINK_TITLE_ATTRIBUTE_OPTIONAL', true)."',
+				'".JText::_('K2_ARE_YOU_SURE', true)."',
+				'".JText::_('K2_YOU_ARE_NOT_ALLOWED_TO_POST_TO_THIS_CATEGORY', true)."',
+				'".JText::_('K2_OR_SELECT_A_FILE_ON_THE_SERVER', true)."'
+			]
+		";
 		$document->addScriptDeclaration($js);
 		K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'models');
 		$model = K2Model::getInstance('Item', 'K2Model', array('table_path' => JPATH_COMPONENT_ADMINISTRATOR.DS.'tables'));
