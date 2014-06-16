@@ -99,9 +99,9 @@ $document->addScriptDeclaration('
 	function setJoomlaVersion() {
 		var bodyClass = document.getElementsByTagName("body")[0].className;
 		if(bodyClass !== ""){
-			bodyClass += " isJ'.K2_JVERSION.'";
+			document.getElementsByTagName("body")[0].className += " isJ'.K2_JVERSION.'";
 		} else {
-			bodyClass = "isJ'.K2_JVERSION.'";
+			document.getElementsByTagName("body")[0].className = "isJ'.K2_JVERSION.'";
 		}
 	}
 	if (window.addEventListener){
