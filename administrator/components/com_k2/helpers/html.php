@@ -132,7 +132,7 @@ class K2HelperHTML
 
 			if ($mediaManager)
 			{
-				$document->addScript(JURI::root(true).'/media/k2/assets/js/elfinder.min.js?v=2.6.9');
+				$document->addScript(JURI::root(true).'/media/k2/assets/js/elfinder.min.js?v=2.7.0');
 			}
 		}
 	}
