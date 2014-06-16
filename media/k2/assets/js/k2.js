@@ -18,24 +18,24 @@ $K2(document).ready(function() {
     }
 
     // Generic function to get URL params passed in .js script include
-		function getUrlParams(targetScript, varName) {
-			var scripts = document.getElementsByTagName('script');
-			var scriptCount = scripts.length;
-			for (var a = 0; a < scriptCount; a++) {
-				var scriptSrc = scripts[a].src;
-				if (scriptSrc.indexOf(targetScript) >= 0) {
-					varName = varName.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-					var re = new RegExp("[\\?&]" + varName + "=([^&#]*)");
-					var parsedVariables = re.exec(scriptSrc);
-					if (parsedVariables !== null) {
-						return parsedVariables[1];
-					}
+	function getUrlParams(targetScript, varName) {
+		var scripts = document.getElementsByTagName('script');
+		var scriptCount = scripts.length;
+		for (var a = 0; a < scriptCount; a++) {
+			var scriptSrc = scripts[a].src;
+			if (scriptSrc.indexOf(targetScript) >= 0) {
+				varName = varName.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+				var re = new RegExp("[\\?&]" + varName + "=([^&#]*)");
+				var parsedVariables = re.exec(scriptSrc);
+				if (parsedVariables !== null) {
+					return parsedVariables[1];
 				}
 			}
 		}
+	}
 
-		// Set the site root path
-		var K2SitePath = getUrlParams('k2.js', 'sitepath');
+	// Set the site root path
+	var K2SitePath = getUrlParams('k2.js', 'sitepath');
 
     // Common functions
     $K2('#jToggler').click(function() {
@@ -640,29 +640,29 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                 cols : '40',
                 rows : '10'
             }).appendTo(target);
-			
+
             var br = $K2('<br/>').appendTo(target);
             var label = $K2('<label/>').html(K2Language[17]).appendTo(target);
 			var input = $K2('<input/>', {
                 name : 'option_rows[]',
                 type : 'text'
             }).appendTo(target);
-            
+
             if (!isNewField && currentType == fieldType) {
                 input.val(fieldValues[0].rows);
             }
-            
+
             var br = $K2('<br/>').appendTo(target);
             var label = $K2('<label/>').html(K2Language[16]).appendTo(target);
 			var input = $K2('<input/>', {
                 name : 'option_cols[]',
                 type : 'text'
             }).appendTo(target);
-            
+
             if (!isNewField && currentType == fieldType) {
                 input.val(fieldValues[0].cols);
             }
-            
+
             var br = $K2('<br/>').appendTo(target);
             var label = $K2('<label/>').html(K2Language[3]).appendTo(target);
             var input = $K2('<input/>', {
@@ -670,7 +670,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                 type : 'checkbox',
                 value : '1'
             }).appendTo(target);
-            
+
             var br = $K2('<br/>').appendTo(target);
             var br = $K2('<br/>').appendTo(target);
             var notice = $K2('<span/>').html('(' + K2Language[4] + ')').appendTo(target);
