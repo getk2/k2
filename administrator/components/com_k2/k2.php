@@ -72,6 +72,7 @@ if(version_compare(JVERSION,'1.6.0','ge')) {
 }
 
 // CSS
+$document->addStyleSheet('//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css?v=2.7.0');
 $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v=2.7.0');
 
 K2HelperHTML::loadjQuery(true, JRequest::getCmd('view') == 'media');
