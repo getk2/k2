@@ -101,6 +101,7 @@ class plgUserK2 extends JPlugin
 				$filter = new JFilterInput( array(), array(), 1, 1, 0);
 				$row->description = $filter->clean($row->description);
 			}
+			$row->store();
 
 			$file = JRequest::get('files');
 
@@ -126,7 +127,7 @@ class plgUserK2 extends JPlugin
 				{
 					$mainframe->enqueueMessage(JText::_('K2_COULD_NOT_UPLOAD_YOUR_IMAGE').$handle->error, 'notice');
 				}
-				$row->image = $handle->file_dst_name;
+				$image = $handle->file_dst_name;
 			}
 
 			if (JRequest::getBool('del_image'))
@@ -136,10 +137,14 @@ class plgUserK2 extends JPlugin
 				{
 					JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'users'.DS.$row->image);
 				}
-				$row->image = '';
+				$image = '';
+			}
+			if(isset($image))
+			{
+				$row->image = $image;
+				$row->store();
 			}
 
-			$row->store();
 			$itemid = $params->get('redirect');
 
 			if (!$isnew && $itemid)
