@@ -170,6 +170,7 @@ class plgFinderK2 extends FinderIndexerAdapter
         $item->addInstruction(FinderIndexer::META_CONTEXT, 'metaauthor');
         $item->addInstruction(FinderIndexer::META_CONTEXT, 'author');
         $item->addInstruction(FinderIndexer::META_CONTEXT, 'created_by_alias');
+        $item->addInstruction(FinderIndexer::META_CONTEXT, 'extra_fields_search');
 
         // Translate the state. Articles should only be published if the category is published.
         $item->state = $this->translateState($item->state, $item->cat_state);
@@ -194,6 +195,9 @@ class plgFinderK2 extends FinderIndexerAdapter
 
         // Add the language taxonomy data.
         $item->addTaxonomy('Language', $item->language);
+
+        // Add the extra_fields data.
+        $item->addTaxonomy('Extra fields', $item->extra_fields);
 
         // Get content extras.
         FinderIndexerHelper::getContentExtras($item);
@@ -229,6 +233,7 @@ class plgFinderK2 extends FinderIndexerAdapter
         $sql->select('a.publish_up AS publish_start_date, a.publish_down AS publish_end_date');
         $sql->select('a.trash, c.trash AS cat_trash');
         $sql->select('c.name AS category, c.published AS cat_state, c.access AS cat_access');
+        $sql->select('a.extra_fields_search, a.extra_fields');
 
         // Handle the alias CASE WHEN portion of the query
         $case_when_item_alias = ' CASE WHEN ';
