@@ -104,7 +104,7 @@ class K2ModelItems extends K2Model
 
 		if ($language)
 		{
-			$query .= " AND (i.language = ".$db->Quote($language)." OR i.language = '*')";
+			$query .= " AND i.language = ".$db->Quote($language);
 		}
 
 		if ($filter_order == 'i.ordering')
@@ -211,7 +211,7 @@ class K2ModelItems extends K2Model
 
 		if ($language)
 		{
-			$query .= " AND (language = ".$db->Quote($language)." OR language = '*')";
+			$query .= " AND language = ".$db->Quote($language);
 		}
 		$dispatcher = JDispatcher::getInstance();
 		JPluginHelper::importPlugin('k2');

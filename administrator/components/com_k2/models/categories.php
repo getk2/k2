@@ -54,7 +54,7 @@ class K2ModelCategories extends K2Model
         }
         if ($language)
         {
-            $query .= " AND (c.language = ".$db->Quote($language)." OR c.language = '*')";
+            $query .= " AND c.language = ".$db->Quote($language);
         }
 
         if ($filter_category)
@@ -170,7 +170,7 @@ class K2ModelCategories extends K2Model
 
         if ($language)
         {
-            $query .= " AND (language = ".$db->Quote($language)." OR language = '*')";
+            $query .= " AND language = ".$db->Quote($language);
         }
 
         if ($filter_category)
