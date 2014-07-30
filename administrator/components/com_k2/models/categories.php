@@ -101,6 +101,10 @@ class K2ModelCategories extends K2Model
                 $db->setQuery('SELECT parent FROM #__k2_categories WHERE id = '.$filter_category);
                 $root = $db->loadResult();
             }
+            else if($language)
+            {
+            	$root = $categories[0]->parent;
+            }
             else
             {
                 $root = 0;
