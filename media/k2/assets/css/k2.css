@@ -22,7 +22,8 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .k2NoWrap {white-space:nowrap;}
 .k2IsIcon {font-family:Arial, Helvetica, sans-serif !important;font-size:16px !important;}
 .k2IsIcon:hover {color:#BB3A00;text-decoration:none;}
-.k2TitleBox {box-sizing:border-box;width:100%;font-size:20px !important;padding:14px 6px !important;}
+/*.k2TitleBox {box-sizing:border-box;width:100%;font-size:20px !important;padding:14px 6px !important;}*/
+.k2TitleBox {font-size:20px !important;height:25px !important;padding:5px 6px !important;width:100%;}
 .k2TitleAliasBox {width:60%;font-size:12px;}
 .k2TextBox {background:#fff;padding:4px;}
 .k2ListItemDisabled {cursor:pointer;color:#0B55C4;} /* used in popup lists */
