@@ -110,9 +110,27 @@ class plgSearchK2 extends JPlugin
             }
             else
             {
-							$escaped = K2_JVERSION == '15' ? $db->getEscaped($text, true) : $db->escape($text, true);
-							$quoted = $db->Quote('%'.$escaped.'%', false);
-							$where = " ( LOWER(i.title) LIKE ".$quoted." OR LOWER(i.introtext) LIKE ".$quoted." OR LOWER(i.`fulltext`) LIKE ".$quoted." OR LOWER(i.extra_fields_search) LIKE ".$quoted." OR LOWER(i.image_caption) LIKE ".$quoted." OR LOWER(i.image_credits) LIKE ".$quoted." OR LOWER(i.video_caption) LIKE ".$quoted." OR LOWER(i.video_credits) LIKE ".$quoted." OR LOWER(i.metadesc) LIKE ".$quoted." OR LOWER(i.metakey) LIKE ".$quoted.") ";
+							$words = explode(' ', $text);
+      				$wheres = array();
+      
+      				foreach ($words as $word)
+      				{
+      					$escaped = K2_JVERSION == '15' ? $db->getEscaped($word, true) : $db->escape($word, true);
+      					$quoted = $db->Quote('%'.$escaped.'%', false);	
+      					$wheres2 = array();
+      					$wheres2[] = "LOWER(i.title) LIKE ".$quoted;
+      					$wheres2[] = "LOWER(i.introtext) LIKE ".$quoted;
+      					$wheres2[] = "LOWER(i.`fulltext`) LIKE ".$quoted;
+      					$wheres2[] = "LOWER(i.extra_fields_search) LIKE ".$quoted;
+      					$wheres2[] = "LOWER(i.image_caption) LIKE ".$quoted;
+      					$wheres2[] = "LOWER(i.image_credits) LIKE ".$quoted;
+      					$wheres2[] = "LOWER(i.video_caption) LIKE ".$quoted;
+      					$wheres2[] = "LOWER(i.video_credits) LIKE ".$quoted;
+      					$wheres2[] = "LOWER(i.metadesc) LIKE ".$quoted;
+      					$wheres2[] = "LOWER(i.metakey) LIKE ".$quoted;
+      					$wheres[] = implode(' OR ', $wheres2);
+      				}
+      				$where = '(' . implode(($phrase == 'all' ? ') AND (' : ') OR ('), $wheres) . ')';
             }
 
             if ($pluginParams->get('search_tags') && count($itemIDs))
