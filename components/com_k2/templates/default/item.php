@@ -90,9 +90,9 @@ defined('_JEXEC') or die;
 		$this->item->params->get('itemPrintButton') ||
 		$this->item->params->get('itemEmailButton') ||
 		$this->item->params->get('itemSocialButton') ||
-		$this->item->params->get('itemVideoAnchor') ||
-		$this->item->params->get('itemImageGalleryAnchor') ||
-		$this->item->params->get('itemCommentsAnchor')
+		($this->item->params->get('itemVideoAnchor') && !empty($this->item->video)) ||
+		($this->item->params->get('itemImageGalleryAnchor') && !empty($this->item->gallery)) ||
+		($this->item->params->get('itemCommentsAnchor') && $this->item->params->get('itemComments') && $this->item->params->get('comments'))
 	): ?>
   <div class="itemToolbar">
 		<ul>
