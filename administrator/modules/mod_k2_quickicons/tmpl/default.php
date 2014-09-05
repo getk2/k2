@@ -156,6 +156,6 @@ defined('_JEXEC') or die;
 	    </a>
     </div>
   </div>
-  <div style="clear: both;"></div>
   <?php endif; ?>
+  <div style="clear: both;"></div>
 </div>
