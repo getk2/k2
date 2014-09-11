@@ -36,7 +36,7 @@ defined('_JEXEC') or die;
 	<!-- Blocks for current category and subcategories -->
 	<div class="itemListCategoriesBlock">
 
-		<?php if(isset($this->category) && ( $this->params->get('catImage') || $this->params->get('catTitle') || $this->params->get('catDescription') || $this->category->event->K2CategoryDisplay )): ?>
+		<?php if(isset($this->category) && ( $this->params->get('catImage') || $this->params->get('catTitle') || ($this->params->get('catDescription') && !empty($this->category->description) ) || $this->category->event->K2CategoryDisplay )): ?>
 		<!-- Category block -->
 		<div class="itemListCategory">
 
@@ -61,7 +61,7 @@ defined('_JEXEC') or die;
 
 			<?php if($this->params->get('catDescription')): ?>
 			<!-- Category description -->
-			<p><?php echo $this->category->description; ?></p>
+			<div><?php echo $this->category->description; ?></div>
 			<?php endif; ?>
 
 			<!-- K2 Plugins: K2CategoryDisplay -->
