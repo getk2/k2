@@ -118,8 +118,10 @@ $K2(document).ready(function() {
 
     // View specific functions
     if ($K2('#k2AdminContainer').length > 0) {
+    	var K2IsAdmin = true;
         var view = $K2('#k2AdminContainer input[name=view]').val();
     } else {
+    	var K2IsAdmin = false;
         var view = $K2('#k2FrontendContainer input[name=view]').val();
     }
 
@@ -492,11 +494,16 @@ $K2(document).ready(function() {
                     }
                 }
             });
+            var tagsUrl = K2SitePath;
+            if(K2IsAdmin) {
+            	tagsUrl += 'administrator/';
+            }
+            tagsUrl += 'index.php?option=com_k2&view=item&task=tags';
             $K2('#search-field').autocomplete({
                 source : function(request, response) {
                     $K2.ajax({
                         type : 'post',
-                        url : K2SitePath + 'index.php?option=com_k2&view=item&task=tags',
+                        url : tagsUrl,
                         data : 'q=' + request.term,
                         dataType : 'json',
                         success : function(data) {

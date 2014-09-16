@@ -119,7 +119,7 @@ if(K2_JVERSION == '15'){
 	$k2CSSContainerClass = '';
 }
 
-if( $document->getType() != 'raw' && JRequest::getWord('task')!='deleteAttachment' && JRequest::getWord('task')!='connector' && JRequest::getWord('task')!='tag' && JRequest::getWord('task')!='extrafields' && JRequest::getWord('task')!='download' && JRequest::getWord('task')!='saveComment'): ?>
+if( $document->getType() != 'raw' && JRequest::getWord('task')!='deleteAttachment' && JRequest::getWord('task')!='connector' && JRequest::getWord('task')!='tag' && JRequest::getWord('task')!='tags' && JRequest::getWord('task')!='extrafields' && JRequest::getWord('task')!='download' && JRequest::getWord('task')!='saveComment'): ?>
 <!--[if lt IE 7]>
 <div style="border:1px solid #F7941D;background:#FEEFDA;text-align:center;clear:both;height:75px;position:relative;margin-bottom:16px;">
   <div style="position:absolute;right:3px;top:3px;font-family:courier new;font-weight:bold;">

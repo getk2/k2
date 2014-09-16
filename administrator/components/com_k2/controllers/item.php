@@ -51,6 +51,17 @@ class K2ControllerItem extends K2Controller
 		$model = $this->getModel('tag');
 		$model->addTag();
 	}
+	
+	function tags()
+	{
+		$user = JFactory::getUser();
+		if($user->guest)
+		{
+			JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
+		}
+		$model = $this->getModel('tag');
+		$model->tags();
+	}
 
 	function download()
 	{
