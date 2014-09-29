@@ -1303,27 +1303,31 @@ class K2ModelItems extends K2Model
 					foreach ($itemTags as $itemTag)
 					{
 						$itemTag = JString::trim($itemTag);
-						if (in_array($itemTag, JArrayHelper::getColumn($tags, 'name')))
+						if($itemTag)
 						{
+							if (in_array($itemTag, JArrayHelper::getColumn($tags, 'name')))
+							{
+	
+								$query = "SELECT id FROM #__k2_tags WHERE name=".$db->Quote($itemTag);
+								$db->setQuery($query);
+								$id = $db->loadResult();
+								$query = "INSERT INTO #__k2_tags_xref (`id`, `tagID`, `itemID`) VALUES (NULL, {$id}, {$K2Item->id})";
+								$db->setQuery($query);
+								$db->query();
+							}
+							else
+							{
+								$K2Tag = JTable::getInstance('K2Tag', 'Table');
+								$K2Tag->name = $itemTag;
+								$K2Tag->published = 1;
+								$K2Tag->store();
+								$tags[] = $K2Tag;
+								$query = "INSERT INTO #__k2_tags_xref (`id`, `tagID`, `itemID`) VALUES (NULL, {$K2Tag->id}, {$K2Item->id})";
+								$db->setQuery($query);
+								$db->query();
+							}
+						}
 
-							$query = "SELECT id FROM #__k2_tags WHERE name=".$db->Quote($itemTag);
-							$db->setQuery($query);
-							$id = $db->loadResult();
-							$query = "INSERT INTO #__k2_tags_xref (`id`, `tagID`, `itemID`) VALUES (NULL, {$id}, {$K2Item->id})";
-							$db->setQuery($query);
-							$db->query();
-						}
-						else
-						{
-							$K2Tag = JTable::getInstance('K2Tag', 'Table');
-							$K2Tag->name = $itemTag;
-							$K2Tag->published = 1;
-							$K2Tag->store();
-							$tags[] = $K2Tag;
-							$query = "INSERT INTO #__k2_tags_xref (`id`, `tagID`, `itemID`) VALUES (NULL, {$K2Tag->id}, {$K2Item->id})";
-							$db->setQuery($query);
-							$db->query();
-						}
 					}
 				}
 			}
