@@ -564,7 +564,6 @@ class K2ViewItem extends K2View
 			{
 				$image = substr(JURI::root(), 0, -1).str_replace(JURI::root(true), '', $item->$facebookImage);
 				$document->setMetaData('og:image', $image);
-				$document->setMetaData('image', $image);
 			}
 		}
 		$document->setMetaData('og:description', strip_tags($document->getDescription()));
