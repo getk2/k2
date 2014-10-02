@@ -704,7 +704,6 @@ class K2ViewItemlist extends K2View
 		{
 			$image = substr(JURI::root(), 0, -1).str_replace(JURI::root(true), '', $this->category->image);
 			$document->setMetaData('og:image', $image);
-			$document->setMetaData('image', $image);
 		}
 		$document->setMetaData('og:description', strip_tags($document->getDescription()));
 
