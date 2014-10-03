@@ -23,7 +23,7 @@ class K2HelperPermissions
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
         $task = JRequest::getCmd('task');
-        $id = JRequest::getInt('cid');
+        $id = ($task == 'apply' || $task == 'save') ? JRequest::getInt('id') : JRequest::getInt('cid');
 
         //Generic manage check
         if (!$user->authorise('core.manage', $option))
