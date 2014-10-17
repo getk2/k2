@@ -59,7 +59,7 @@ class K2ControllerItem extends K2Controller
 				$profile = $itemListModel->getUserProfile($user->id);
 				$script = "
 \$K2(document).ready(function() {
-\$K2('#userName').val('".$view->escape($user->name)."').attr('disabled', 'disabled');
+\$K2('#userName').val(".json_encode($user->name).").attr('disabled', 'disabled');
 \$K2('#commentEmail').val('".$user->email."').attr('disabled', 'disabled');";
 				if (is_object($profile) && $profile->url)
 				{
