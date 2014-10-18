@@ -677,6 +677,13 @@ class K2ModelItems extends K2Model
 			$row->trash = 1;
 			$row->store();
 		}
+		JPluginHelper::importPlugin('finder');
+		$dispatcher = JDispatcher::getInstance();
+		$dispatcher->trigger('onFinderChangeState', array(
+			'com_k2.item',
+			$cid,
+			0
+		));
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
 		$mainframe->enqueueMessage(JText::_('K2_ITEMS_MOVED_TO_TRASH'));
@@ -709,6 +716,13 @@ class K2ModelItems extends K2Model
 			}
 
 		}
+		JPluginHelper::importPlugin('finder');
+		$dispatcher = JDispatcher::getInstance();
+		$dispatcher->trigger('onFinderChangeState', array(
+			'com_k2.item',
+			$cid,
+			1
+		));
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
 		if ($warning)
