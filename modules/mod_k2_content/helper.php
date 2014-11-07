@@ -563,11 +563,13 @@ class modK2ContentHelper
 					if (!empty($item->created_by_alias))
 					{
 						$item->authorAvatar = K2HelperUtilities::getAvatar('alias');
+						$item->authorLink = Juri::root(true);
 					}
 					else
 					{
 						$jAuthor = JFactory::getUser($item->created_by);
 						$item->authorAvatar = K2HelperUtilities::getAvatar($jAuthor->id, $jAuthor->email, $componentParams->get('userImageWidth'));
+						$item->authorLink = JRoute::_(K2HelperRoute::getUserRoute($item->created_by));
 					}
 				}
 
