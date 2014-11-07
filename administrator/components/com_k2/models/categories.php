@@ -415,6 +415,9 @@ class K2ModelCategories extends K2Model
         $db->setQuery($query);
         $db->query();
 
+        JPluginHelper::importPlugin('finder');
+        $dispatcher = JDispatcher::getInstance();
+        $dispatcher->trigger('onFinderChangeState', array('com_k2.category', $cid, 0));
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
 		$mainframe->enqueueMessage(JText::_('K2_CATEGORIES_MOVED_TO_TRASH'));
@@ -466,6 +469,9 @@ class K2ModelCategories extends K2Model
             $db->setQuery('UPDATE #__k2_items SET trash = 0 WHERE catid IN ('.implode(',', $restored).') AND trash = 1');
             $db->query();
         }
+        JPluginHelper::importPlugin('finder');
+        $dispatcher = JDispatcher::getInstance();
+        $dispatcher->trigger('onFinderChangeState', array('com_k2.category', $cid, 1));
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         if ($warning)
