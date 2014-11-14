@@ -588,7 +588,7 @@ function validateExtraFields() {
 		var value;
 		if ($K2(this).hasClass('k2ExtraFieldEditor')) {
 			if ( typeof tinymce != 'undefined') {
-				var value = tinyMCE.get(id).getContent()
+				var value = tinyMCE.get(id).getContent();
 			}
 		} else {
 			var value = $K2(this).val();
@@ -667,7 +667,7 @@ function addOption() {
     }).appendTo(div);
     input.click(function() {
         $K2(this).parent().remove();
-    })
+    });
 }
 
 function renderExtraFields(fieldType, fieldValues, isNewField) {
@@ -783,7 +783,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                     }).appendTo(div);
                     input.click(function() {
                         $K2(this).parent().remove();
-                    })
+                    });
                 });
             }
             break;
@@ -855,7 +855,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                         } else {
                             var th = $K2('<th/>').html(cell).appendTo(tr);
                         }
-                    })
+                    });
                 });
                 var label = $K2('<label/>').html(K2Language[13]).appendTo(target);
                 var input = $K2('<input/>', {
