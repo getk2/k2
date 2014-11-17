@@ -226,27 +226,6 @@ if (version_compare(JVERSION, '1.6.0', '<'))
 	$query = "DELETE FROM #__k2_users WHERE userID = 0";
 	$db->setQuery($query);
 	$db->query();
-	
-	// Fix media manager folder permissions
-	set_time_limit(0);
-	jimport('joomla.filesystem.folder');
-	jimport('joomla.filesystem.path');
-	$params = JComponentHelper::getParams('com_media');
-    $root = $params->get('file_path', 'media');
-	$mediaPath = JPATH_SITE.DS.JPath::clean($root);
-	$folders = JFolder::folders($mediaPath, '.', true, true, array());
-	foreach($folders as $folder)
-	{
-		@chmod($folder, 0755);
-	}
-	if(JFolder::exists($mediaPath.DS.'.tmb'))
-	{
-		@chmod($mediaPath.DS.'.tmb', 0755);
-	}
-	if(JFolder::exists($mediaPath.DS.'.quarantine'))
-	{
-		@chmod($mediaPath.DS.'.quarantine', 0755);
-	}
 }
 ?>
 <?php if (version_compare(JVERSION, '1.6.0', '<')): ?>

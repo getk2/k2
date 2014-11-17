@@ -115,27 +115,6 @@ class Com_K2InstallerScript
 		$db->setQuery($query);
 		$db->query();
 		
-		// Fix media manager folder permissions
-		set_time_limit(0);
-		jimport('joomla.filesystem.folder');
-		jimport('joomla.filesystem.path');
-		$params = JComponentHelper::getParams('com_media');
-        $root = $params->get('file_path', 'media');
-		$mediaPath = JPATH_SITE.'/'.JPath::clean($root);
-		$folders = JFolder::folders($mediaPath, '.', true, true, array());
-		foreach($folders as $folder)
-		{
-			@chmod($folder, 0755);
-		}
-		if(JFolder::exists($mediaPath.'/'.'.tmb'))
-		{
-			@chmod($mediaPath.'/'.'.tmb', 0755);
-		}
-		if(JFolder::exists($mediaPath.'/'.'.quarantine'))
-		{
-			@chmod($mediaPath.'/'.'.quarantine', 0755);
-		}
-		
         $this->installationResults($status);
        
     }
