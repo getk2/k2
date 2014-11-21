@@ -422,7 +422,7 @@ class K2ModelExtraField extends K2Model
 				break;
 			case 'image' :
 				$output = '<input type="text" name="K2ExtraField_'.$extraField->id.'" id="K2ExtraField_'.$extraField->id.'" value="'.$active.'" '.$attributes.' />
-				<a class="k2ExtraFieldImageButton" href="'.JRoute::_('index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID=K2ExtraField_'.$extraField->id).'">'.JText::_('K2_SELECT').'</a>';
+				<a class="k2ExtraFieldImageButton" href="'.JURI::base(true).'/index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID=K2ExtraField_'.$extraField->id.'">'.JText::_('K2_SELECT').'</a>';
 				break;
 			case 'header' :
 				$output = '';
