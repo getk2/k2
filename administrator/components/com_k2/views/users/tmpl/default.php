@@ -51,7 +51,11 @@ $document->addScriptDeclaration("
         <th class="hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_USERNAME', 'juser.username', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
         <th class="center"><?php echo JText::_('K2_LOGGED_IN'); ?></th>
         <th class="center"><?php echo JHTML::_('grid.sort', 'K2_ENABLED', 'juser.block', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
+        <?php if(K2_JVERSION == '30'): ?>
+        <th class="hidden-phone"><?php echo JText::_('K2_JOOMLA_GROUP'); ?></th>	
+        <?php else: ?>
         <th class="hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_JOOMLA_GROUP', 'juser.usertype', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
+        <?php endif; ?>
         <th class="hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_GROUP', 'groupname', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
         <th><?php echo JHTML::_('grid.sort', 'K2_EMAIL', 'juser.email', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
         <th class="hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_LAST_VISIT', 'juser.lastvisitDate', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
