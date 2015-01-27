@@ -449,6 +449,8 @@ td#k2Comment {}
 	div.commentToolbar span.k2CommentsLoader {background:url(../images/system/loader.gif) no-repeat 0 50%;padding-left:24px;}
 
 /* Admin - Users */
+div#k2AdminContainer.K2AdminViewUser .adminform label { display: block!important; }
+div#k2AdminContainer.K2AdminViewUser .adminform label + input { display: block!important; clear: both; }
 
 /* Admin - User groups */
 div#k2AdminContainer.K2AdminViewUserGroup form#adminForm {width:600px;}
