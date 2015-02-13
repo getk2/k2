@@ -179,7 +179,6 @@ class K2ModelItem extends K2Model
 		}
 
 		//Extra fields
-		//Modified by Mohamed Adbelaziz to have extra fields available for related items
 		if ((($view == 'item' || $view == 'relatedByTag') && $item->params->get('itemExtraFields')) || ($view == 'itemlist' && ($task == '' || $task == 'category') && $item->params->get('catItemExtraFields')) || ($view == 'itemlist' && $task == 'tag' && $item->params->get('tagItemExtraFields')) || ($view == 'itemlist' && ($task == 'search' || $task == 'date') && $item->params->get('genericItemExtraFields')))
 		{
 			$item->extra_fields = $this->getItemExtraFields($item->extra_fields, $item);
