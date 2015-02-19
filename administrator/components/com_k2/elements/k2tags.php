@@ -29,6 +29,7 @@ class K2ElementK2Tags extends K2Element
 				$K2(".k2TagsElement").chosen("destroy");
 			}
 			$K2(".k2TagsElement").select2({
+				width : "300px",
 				minimumInputLength : 2,
 				ajax: {
 					dataType : "json",
