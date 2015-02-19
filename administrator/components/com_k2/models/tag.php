@@ -130,6 +130,7 @@ class K2ModelTag extends K2Model
         $mainframe = JFactory::getApplication();
         $db = JFactory::getDBO();
         $word = JRequest::getString('q', null);
+		$id = JRequest::getInt('id');
         if (K2_JVERSION == '15')
         {
             $word = $db->Quote($db->getEscaped($word, true).'%', false);
@@ -138,9 +139,20 @@ class K2ModelTag extends K2Model
         {
             $word = $db->Quote($db->escape($word, true).'%', false);
         }
-        $query = "SELECT name FROM #__k2_tags WHERE name LIKE ".$word;
-        $db->setQuery($query);
-        $result = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
+		
+		if($id)
+		{
+			$query = "SELECT id,name FROM #__k2_tags WHERE name LIKE ".$word;
+        	$db->setQuery($query);
+        	$result = $db->loadObjectList();
+		}
+		else
+		{
+			$query = "SELECT name FROM #__k2_tags WHERE name LIKE ".$word;
+        	$db->setQuery($query);
+        	$result = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
+		}
+		
         require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'lib'.DS.'JSON.php');
         $json = new Services_JSON;
         echo $json->encode($result);
