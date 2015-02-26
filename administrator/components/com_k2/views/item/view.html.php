@@ -408,6 +408,10 @@ class K2ViewItem extends K2View
 		JTable::addIncludePath(JPATH_COMPONENT.DS.'tables');
 		$category = JTable::getInstance('K2Category', 'Table');
 		$category->load($item->catid);
+		//JAW modified - for multiple extended field groups
+		$query = "SELECT extraFieldsGroup FROM `#__k2_extra_fields_groups_xref` WHERE viewID=".(int)$item->catid." AND viewType='category'";
+		$db->setQuery($query);
+		$category->extraFieldsGroups = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
 
 		$extraFieldModel = K2Model::getInstance('ExtraField', 'K2Model');
 		if ($category->id)

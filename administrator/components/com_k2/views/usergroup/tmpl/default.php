@@ -34,6 +34,14 @@ $document->addScriptDeclaration("
 	      <td class="key"><?php echo JText::_('K2_GROUP_NAME'); ?></td>
 	      <td><input class="text_area k2TitleBox" type="text" name="name" id="name" value="<?php echo $this->row->name; ?>" size="50" maxlength="250" /></td>
 	    </tr>
+			<tr>
+				<td class="key">
+					<label for="extraFieldsGroups"><?php echo JText::_('K2_ASSOCIATED_EXTRA_FIELDS_GROUPS'); ?></label>
+				</td>
+				<td>
+					<?php echo $this->lists['extraFieldsGroups']; ?>
+				</td>
+			</tr>
 	  </table>
   </div>
 

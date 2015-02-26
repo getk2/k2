@@ -34,7 +34,16 @@ class K2ModelExtraFields extends K2Model
         $filter_type = $mainframe->getUserStateFromRequest($option.$view.'filter_type', 'filter_type', '', 'string');
         $filter_group = $mainframe->getUserStateFromRequest($option.$view.'filter_group', 'filter_group', 0, 'int');
 
-        $query = "SELECT exf.*, exfg.name as groupname FROM #__k2_extra_fields AS exf LEFT JOIN #__k2_extra_fields_groups exfg ON exf.group=exfg.id  WHERE exf.id>0";
+		// JAW modified - query to return multiple values of extra fields group as string
+		$query = "SELECT exf.*, GROUP_CONCAT(exfg.name) AS extraFieldsGroups FROM #__k2_extra_fields AS exf "
+				. "LEFT JOIN #__k2_extra_fields_xref AS exfxref ON exf.id = exfxref.extraFieldsID "
+				. "LEFT JOIN #__k2_extra_fields_groups AS exfg ON exfxref.extraFieldsGroupID = exfg.id "
+				. "WHERE exf.id>0";
+
+		//JAW modified - original query
+		//$query = "SELECT exf.*, exfg.name as groupname FROM #__k2_extra_fields AS exf LEFT JOIN #__k2_extra_fields_groups exfg ON exf.group=exfg.id  WHERE exf.id>0";
+
+		//$query = "SELECT exf.* FROM #__k2_extra_fields AS exf WHERE exf.id>0";
 
         if ($filter_state > -1)
         {
@@ -51,25 +60,27 @@ class K2ModelExtraFields extends K2Model
         {
             $query .= " AND `type`=".$db->Quote($filter_type);
         }
-
-        if ($filter_group)
+		//JAW modified
+		/*if ($filter_group)
         {
             $query .= " AND `group`={$filter_group}";
-        }
+		}*/
 
-        if (!$filter_order)
+		/*if (!$filter_order)
         {
             $filter_order = '`group`';
-        }
+		}*/
+		//JAW modified
+		$query .= " GROUP BY exf.id";
 
         if ($filter_order == 'ordering')
         {
-            $query .= " ORDER BY `group`, ordering {$filter_order_Dir}";
+            $query .= " ORDER BY ordering {$filter_order_Dir}";
         }
-        else
+		/*else
         {
-            $query .= " ORDER BY {$filter_order} {$filter_order_Dir}, `group`, ordering";
-        }
+			$query .= " ORDER BY {$filter_order} {$filter_order_Dir}, ordering";
+		}*/
 
         $db->setQuery($query, $limitstart, $limit);
         $rows = $db->loadObjectList();
@@ -89,7 +100,7 @@ class K2ModelExtraFields extends K2Model
         $search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
         $filter_type = $mainframe->getUserStateFromRequest($option.$view.'filter_type', 'filter_type', '', 'string');
-        $filter_group = $mainframe->getUserStateFromRequest($option.$view.'filter_group', 'filter_group', '', 'string');
+		//$filter_group = $mainframe->getUserStateFromRequest($option.$view.'filter_group', 'filter_group', '', 'string');
 
         $query = "SELECT COUNT(*) FROM #__k2_extra_fields WHERE id>0";
 
@@ -109,10 +120,10 @@ class K2ModelExtraFields extends K2Model
             $query .= " AND `type`=".$db->Quote($filter_type);
         }
 
-        if ($filter_group)
+		/* if ($filter_group)
         {
             $query .= " AND `group`=".$db->Quote($filter_group);
-        }
+		} */
 
         $db->setQuery($query);
         $total = $db->loadresult();
@@ -275,9 +286,12 @@ class K2ModelExtraFields extends K2Model
         }
 
         $rows = $db->loadObjectList();
+
+		// JAW modified - for user groups multiple extra field groups
         for ($i = 0; $i < sizeof($rows); $i++)
         {
-            $query = "SELECT name FROM #__k2_categories WHERE extraFieldsGroup=".(int)$rows[$i]->id;
+			//$query = "SELECT name FROM #__k2_categories WHERE extraFieldsGroup=".(int)$rows[$i]->id;
+			$query = "SELECT category.name FROM #__k2_categories AS category LEFT JOIN #__k2_extra_fields_groups_xref AS exfgxref ON exfgxref.viewID = category.id AND exfgxref.viewType = 'category' WHERE exfgxref.extraFieldsGroup =".(int)$rows[$i]->id;
             $db->setQuery($query);
             $categories = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
             if (is_array($categories))
@@ -288,8 +302,19 @@ class K2ModelExtraFields extends K2Model
             {
                 $rows[$i]->categories = '';
             }
-
-        }
+			//$query = "SELECT name FROM #__k2_user_groups WHERE extraFieldsGroup=".(int)$rows[$i]->id;
+			$query = "SELECT userGroup.name FROM #__k2_user_groups AS userGroup LEFT JOIN #__k2_extra_fields_groups_xref AS exfgxref ON exfgxref.viewID = userGroup.id AND exfgxref.viewType = 'user_group' WHERE exfgxref.extraFieldsGroup =".(int)$rows[$i]->id;
+			$db->setQuery($query);
+			$user_groups = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
+			if (is_array($user_groups))
+			{
+				$rows[$i]->user_groups = implode(', ', $user_groups);
+			}
+			else
+			{
+				$rows[$i]->user_groups = '';
+			}
+		}
         return $rows;
     }
 
@@ -350,7 +375,7 @@ class K2ModelExtraFields extends K2Model
     {
 
         $mainframe = JFactory::getApplication();
-        $db = &JFactory::getDBO();
+        $db = JFactory::getDBO();
         $cid = JRequest::getVar('cid');
         JArrayHelper::toInteger($cid);
         foreach ($cid as $id)
@@ -362,7 +387,7 @@ class K2ModelExtraFields extends K2Model
             $db->query();
             $row->delete($id);
         }
-        $cache = &JFactory::getCache('com_k2');
+        $cache = JFactory::getCache('com_k2');
         $cache->clean();
 		$mainframe->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
         $mainframe->redirect('index.php?option=com_k2&view=extrafieldsgroups');

@@ -56,8 +56,16 @@ class K2ViewUserGroup extends K2View
         $categoriesModel = K2Model::getInstance('Categories', 'K2Model');
         $categories = $categoriesModel->categoriesTree(NULL, true);
         $categories_options = @array_merge($categories_option, $categories);
-        $lists['categories'] = JHTML::_('select.genericlist', $categories, 'params[categories][]', 'multiple="multiple" size="15"', 'value', 'text', $appliedCategories);
-        $lists['inheritance'] = JHTML::_('select.booleanlist', 'params[inheritance]', NULL, $inheritance);
+		$lists['categories'] = JHtml::_('select.genericlist', $categories, 'params[categories][]', 'multiple="multiple" size="15"', 'value', 'text', $appliedCategories);
+		$lists['inheritance'] = JHtml::_('select.booleanlist', 'params[inheritance]', NULL, $inheritance);
+
+		$extraFieldsModel = K2Model::getInstance('ExtraFields', 'K2Model');
+		$groups = $extraFieldsModel->getGroups();
+		$group [] = JHtml::_ ( 'select.option', '0', JText::_ ( 'K2_NONE_ONSELECTLISTS' ), 'id', 'name' );
+		$extraFieldsGroups = array_merge ( $group, $groups );
+		//JAW modified - made multiple select
+		$lists['extraFieldsGroups'] = JHtml::_ ( 'select.genericlist', $extraFieldsGroups, 'extraFieldsGroups[]', 'class="inputbox" size="5" multiple="multiple"', 'id', 'name', $userGroup->extraFieldsGroups );
+
         $this->assignRef('lists', $lists);
         (JRequest::getInt('cid')) ? $title = JText::_('K2_EDIT_USER_GROUP') : $title = JText::_('K2_ADD_USER_GROUP');
         JToolBarHelper::title($title, 'k2.png');

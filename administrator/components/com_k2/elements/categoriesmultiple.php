@@ -95,7 +95,6 @@ class K2ElementCategoriesMultiple extends K2Element
 				
 			});
 			";
-
         }
         else
         {
@@ -130,7 +129,6 @@ class K2ElementCategoriesMultiple extends K2Element
 				
 			});
 			";
-
         }
 
         if (K2_JVERSION != '15')

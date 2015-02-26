@@ -23,6 +23,13 @@ class K2ModelExtraField extends K2Model
 		$cid = JRequest::getVar('cid');
 		$row = JTable::getInstance('K2ExtraField', 'Table');
 		$row->load($cid);
+			
+		//JAW added - for multiple extra field groups
+		$db = JFactory::getDBO();
+		$query = 'SELECT extraFieldsGroupID FROM `#__k2_extra_fields_xref` WHERE extraFieldsID='.(int)$cid;
+		$db->setQuery($query);
+		$row->groups = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
+		
 		return $row;
 	}
 
@@ -31,11 +38,15 @@ class K2ModelExtraField extends K2Model
 
 		$mainframe = JFactory::getApplication();
 		$row = JTable::getInstance('K2ExtraField', 'Table');
+		
 		if (!$row->bind(JRequest::get('post')))
 		{
 			$mainframe->enqueueMessage($row->getError(), 'error');
 			$mainframe->redirect('index.php?option=com_k2&view=extrafields');
 		}
+		// JAW modified - allow multiple extra field groups
+		$extraFieldsGroupsIds = JRequest::getVar('extraFieldGroups', array(0), 'post', 'array');
+		/* $row->group = implode(',', $groups); */
 
 		$isNewGroup = JRequest::getInt('isNew');
 
@@ -43,15 +54,15 @@ class K2ModelExtraField extends K2Model
 		{
 
 			$group = JTable::getInstance('K2ExtraFieldsGroup', 'Table');
-			$group->set('name', JRequest::getVar('group'));
+			$group->set('name', JRequest::getVar('extraFieldGroup'));
 			$group->store();
-			$row->group = $group->id;
+			$extraFieldsGroupsIds[] = $group->id;
 		}
 
-		if (!$row->id)
+		/*if (!$row->id)
 		{
 			$row->ordering = $row->getNextOrder("`group` = {$row->group}");
-		}
+		}*/
 
 		$objects = array();
 		$values = JRequest::getVar('option_value', null, 'default', 'none', 4);
@@ -165,9 +176,65 @@ class K2ModelExtraField extends K2Model
 		}
 
 		$params = JComponentHelper::getParams('com_k2');
-		if (!$params->get('disableCompactOrdering'))
-			$row->reorder("`group` = {$row->group}");
-
+		//JAW modified - no longer useful
+		/*if (!$params->get('disableCompactOrdering'))
+			$row->reorder("`group` = {$row->group}");*/
+			
+		//JAW modified - save multiple field groups
+		if ($row->id)
+		{
+			$db = JFactory::getDBO();
+			$query = "SELECT * FROM #__k2_extra_fields_xref WHERE extraFieldsID ={$row->id}";
+			$db->setQuery($query);
+			$extraFieldsGroups = $db->loadObjectList();
+			$filters = array('extraFieldsID='.$row->id);
+			if (count($extraFieldsGroups))
+			{
+				$ids = array();
+				foreach ($extraFieldsGroupsIds as $extraFieldsGroupId)
+				{
+					$ids[] = $extraFieldsGroupId;
+				}
+				if (!empty($ids))
+				{
+					$filters[] = 'extraFieldsGroupID NOT IN ('.implode(',', $ids).')';
+				}
+			}			
+			$query = 'DELETE FROM #__k2_extra_fields_xref WHERE '.implode(' AND ', $filters);		
+			$db->setQuery($query);
+			$db->query();
+		
+			if (count($extraFieldsGroupsIds))
+			{
+				$i = 0;
+				$insert = array();
+				foreach ($extraFieldsGroupsIds as $extraFieldsGroupsId)
+				{
+					if ($extraFieldsGroupsId == '0')
+					{
+						continue;
+					}
+					if (!in_array($extraFieldsGroups[$i]->extraFieldsGroupID, $extraFieldsGroupsIds))
+					{
+						$id = 'NULL';
+					}
+					else
+					{
+						$id = $extraFieldsGroups[$i]->id;
+					}
+					$insert[] = '('.$id.','.(int)$row->id.','.$extraFieldsGroupsId.')';
+					$i++;
+				}			
+				if (!empty($insert))
+				{					
+					$select = 'id,extraFieldsID,extraFieldsGroupID';
+					$query = 'REPLACE #__k2_extra_fields_xref ('.$select.') VALUES '.implode(',', $insert).';';
+					$db->setQuery($query);
+					$db->query();
+				}
+			}
+		}
+				
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
 
@@ -187,18 +254,20 @@ class K2ModelExtraField extends K2Model
 		$mainframe->redirect($link);
 	}
 
-	function getExtraFieldsByGroup($group)
+	function getExtraFieldsByGroup($groups)
 	{
-
+		//JAW modified - multiple groups
 		$db = JFactory::getDBO();
-		$group = (int)$group;
-		$query = "SELECT * FROM #__k2_extra_fields WHERE `group`={$group} AND published=1 ORDER BY ordering";
+		//$group = (int)$group;
+		$groupIDs = implode(',', $groups);
+		$query = "SELECT DISTINCT exf.* FROM #__k2_extra_fields AS exf LEFT JOIN #__k2_extra_fields_xref AS exfxref ON exf.id=exfxref.extraFieldsID WHERE exfxref.extraFieldsGroupID IN ({$groupIDs}) AND published=1 ORDER BY ordering ASC";
+		//$query = "SELECT * FROM #__k2_extra_fields WHERE `group`={$group} AND published=1 ORDER BY ordering";
 		$db->setQuery($query);
 		$rows = $db->loadObjectList();
 		return $rows;
 	}
 
-	function renderExtraField($extraField, $itemID = NULL)
+	function renderExtraField($extraField, $oid = NULL, $type = 'item')//JAW modified - added type so can be used for users as well.
 	{
 
 		$mainframe = JFactory::getApplication();

@@ -192,7 +192,23 @@ class Com_K2InstallerScript
     public function update($type)
     {
         $db = JFactory::getDBO();
-        $fields = $db->getTableColumns('#__k2_categories');
+		//JAW modified - for the creation of the multiple select fields
+		$query = "CREATE TABLE IF NOT EXISTS `#__k2_extra_fields_groups_xref` (
+				`id` int(11) NOT NULL AUTO_INCREMENT,
+				`viewID` int(11) NOT NULL,
+				`viewType` varchar(64) NOT NULL,
+				`extraFieldsGroup` int(11) NOT NULL
+			  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+		$db->setQuery($query);
+		$db->query();
+		$query = "CREATE TABLE IF NOT EXISTS `#__k2_extra_fields_xref` (
+				`id` int(11) NOT NULL AUTO_INCREMENT,
+				`extraFieldsID` int(11) NOT NULL,
+				`extraFieldsGroupID` int(11) NOT NULL
+			  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+		$db->setQuery($query);
+		$db->query();
+		$fields = $db->getTableColumns('#__k2_categories');
         if (!array_key_exists('language', $fields))
         {
             $query = "ALTER TABLE #__k2_categories ADD `language` CHAR(7) NOT NULL";
@@ -203,7 +219,39 @@ class Com_K2InstallerScript
             $db->setQuery($query);
             $db->query();
         }
-
+		//JAW modified
+		if (array_key_exists('extraFieldsGroup', $fields))
+		{
+			$query = "INSERT INTO #__k2_extra_fields_groups_xref (id, viewID, viewType, extraFieldsGroup)
+					  SELECT '', id, 'category', extraFieldsGroup FROM #__k2_categories WHERE `extraFieldsGroup` > 0" ;
+			$db->setQuery($query);
+			$db->query();			
+			
+			$query = "ALTER TABLE #__k2_categories DROP COLUMN `extraFieldsGroup`";
+			$db->setQuery($query);
+			$db->query();
+		}
+		
+		// JAW modified - added description fields
+		$fields = $db->getTableColumns('#__k2_extra_fields');
+		if (!array_key_exists('description', $fields))
+		{
+			$query = "ALTER TABLE #__k2_extra_fields ADD `description` VARCHAR(255) NULL DEFAULT NULL AFTER `name`";
+			$db->setQuery($query);
+			$db->query();			
+		}
+		if (!array_key_exists('group', $fields))
+		{
+			$query = "INSERT INTO #__k2_extra_fields_xref (`id`, `extraFieldsID`, `extraFieldsGroupID`)
+					  SELECT '', `id`, `group` FROM #__k2_extra_fields WHERE `group` > 0" ;
+			$db->setQuery($query);
+			$db->query();			
+			
+			$query = "ALTER TABLE #__k2_extra_fields DROP COLUMN `group`";
+			$db->setQuery($query);
+			$db->query();			
+		}
+		
         $fields = $db->getTableColumns('#__k2_items');
         if (!array_key_exists('featured_ordering', $fields))
         {

@@ -48,6 +48,9 @@ class K2ModelItems extends K2Model
 			$query .= " LEFT JOIN #__k2_tags_xref AS tags_xref ON tags_xref.itemID = i.id";
 		}
 
+		//JAW modified add rating
+		$query .= " LEFT JOIN #__k2_rating AS r ON r.itemID = i.id";
+
 		$query .= " WHERE i.trash={$filter_trash}";
 
 		if ($search)
@@ -154,6 +157,9 @@ class K2ModelItems extends K2Model
 		{
 			$query .= " LEFT JOIN #__k2_tags_xref AS tags_xref ON tags_xref.itemID = i.id";
 		}
+
+		//JAW modified add rating
+		$query .= " LEFT JOIN #__k2_rating AS r ON r.itemID = i.id";
 
 		$query .= " WHERE trash={$filter_trash} ";
 

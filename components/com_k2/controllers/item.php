@@ -213,11 +213,15 @@ class K2ControllerItem extends K2Controller
 		$catid = JRequest::getInt('cid');
 		$category = JTable::getInstance('K2Category', 'Table');
 		$category->load($catid);
+		//JAW modified - for multiple extended field groups
+		$query = "SELECT extraFieldsGroup FROM `#__k2_extra_fields_groups_xref` WHERE viewID=".(int)$catid." AND viewType='category'";
+		$db->setQuery($query);
+		$category->extraFieldsGroups = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
 
 		require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'models'.DS.'extrafield.php');
 		$extraFieldModel = new K2ModelExtraField;
 
-		$extraFields = $extraFieldModel->getExtraFieldsByGroup($category->extraFieldsGroup);
+		$extraFields = $extraFieldModel->getExtraFieldsByGroup($category->extraFieldsGroups);
 
 		$output = '<table class="admintable" id="extraFields">';
 		$counter = 0;

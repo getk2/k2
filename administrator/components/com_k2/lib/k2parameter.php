@@ -216,38 +216,64 @@ else
 
             $params = $this->getParams($name, $group);
             $html = array();
-            $html[] = '<table class="paramlist admintable" cellspacing="1">';
 
-            if ($description = $this->_xml[$group]->attributes('description'))
-            {
-                // add the params description to the display
-                $desc = JText::_($description);
-                $html[] = '<tr><td class="paramlist_description" colspan="2">'.$desc.'</td></tr>';
-            }
+			if (K2_JVERSION != '15')
+			{
+				if ($description = $this->_xml[$group]->attributes('description'))
+				{
+					// add the params description to the display
+					$desc = JText::_($description);
+					$html[] = '<legend>' . $desc . '</legend>';
+				}
+				foreach ($params as $param)
+				{
+					$html[] = '<div class="control-group">';
+					if ($param[0])
+					{
+						$html[] = '<div class="control-label">';
+						$html[] = $param[0];
+						$html[] = '</div>';
+					}
+					$html[] = '<div class="controls">';
+					$html[] = $param[1];
+					$html[] = '</div></div>';
+				}
+			}
+			else
+			{
+				$html[] = '<table class="paramlist admintable" cellspacing="1">';
 
-            foreach ($params as $param)
-            {
-                $html[] = '<tr>';
+				if ($description = $this->_xml[$group]->attributes('description'))
+				{
+					// add the params description to the display
+					$desc = JText::_($description);
+					$html[] = '<tr><td class="paramlist_description" colspan="2">'.$desc.'</td></tr>';
+				}
 
-                if ($param[0])
-                {
-                    $html[] = '<td class="paramlist_key"><span class="editlinktip">'.$param[0].'</span></td>';
-                    $html[] = '<td class="paramlist_value">'.$param[1].'</td>';
-                }
-                else
-                {
-                    $html[] = '<td class="paramlist_value" colspan="2">'.$param[1].'</td>';
-                }
+				foreach ($params as $param)
+				{
+					$html[] = '<tr>';
 
-                $html[] = '</tr>';
-            }
+					if ($param[0])
+					{
+						$html[] = '<td class="paramlist_key"><span class="editlinktip">'.$param[0].'</span></td>';
+						$html[] = '<td class="paramlist_value">'.$param[1].'</td>';
+					}
+					else
+					{
+						$html[] = '<td class="paramlist_value" colspan="2">'.$param[1].'</td>';
+					}
 
-            if (count($params) < 1)
-            {
-                $html[] = "<tr><td colspan=\"2\"><i>".(K2_JVERSION != '15') ? JText::_('JLIB_HTML_NO_PARAMETERS_FOR_THIS_ITEM') : JText::_('There are no Parameters for this item')."</i></td></tr>";
-            }
+					$html[] = '</tr>';
+				}
 
-            $html[] = '</table>';
+				if (count($params) < 1)
+				{
+					$html[] = "<tr><td colspan=\"2\"><i>".(K2_JVERSION != '15') ? JText::_('JLIB_HTML_NO_PARAMETERS_FOR_THIS_ITEM') : JText::_('There are no Parameters for this item')."</i></td></tr>";
+				}
+
+				$html[] = '</table>';
+			}
 
             return implode("\n", $html);
         }

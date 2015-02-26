@@ -151,6 +151,15 @@ class K2ViewItems extends K2View
 				}
 
 			}
+			// JAW modified - added rating
+			if (!empty($item->rating_sum))
+			{
+				$item->rating = number_format(((int)$item->rating_sum / (int)$item->rating_count), 2);
+			}
+			else
+			{
+				$item->rating = 0;
+			}
 		}
 		$this->assignRef('rows', $items);
 

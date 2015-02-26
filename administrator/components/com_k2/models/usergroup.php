@@ -22,6 +22,13 @@ class K2ModelUserGroup extends K2Model
         $cid = JRequest::getVar('cid');
         $row = JTable::getInstance('K2UserGroup', 'Table');
         $row->load($cid);
+		
+		//JAW added - for multiple extended field groups
+		$db = JFactory::getDBO();
+		$query = "SELECT extraFieldsGroup FROM `#__k2_extra_fields_groups_xref` WHERE viewID=".(int)$cid." AND viewType='user_group'";
+		$db->setQuery($query);
+		$row->extraFieldsGroups = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();			
+		
         return $row;
     }
 
@@ -48,7 +55,62 @@ class K2ModelUserGroup extends K2Model
             $mainframe->redirect('index.php?option=com_k2&view=usergroups');
         }
 
-        $cache = JFactory::getCache('com_k2');
+		// JAW modified - allow multiple extra field groups
+		$extraFieldsGroupsIds = JRequest::getVar('extraFieldsGroups', array(0), 'post', 'array');
+
+
+		//JAW modified - save usergroup to multiple extrafields groups
+		if ($row->id)
+		{
+			$db = JFactory::getDBO();
+			$query = "SELECT * FROM #__k2_extra_fields_groups_xref WHERE viewID={$row->id}";
+			$db->setQuery($query);
+			$extraFieldsGroups = $db->loadObjectList();
+			$filters = array('viewID='.$row->id);
+			if (count($extraFieldsGroups))
+			{
+				$ids = array();
+				foreach ($extraFieldsGroupsIds as $extraFieldsGroupId)
+				{
+					$ids[] = $extraFieldsGroupId;
+				}
+				if (!empty($ids))
+				{
+					$filters[] = 'extraFieldsGroup NOT IN ('.implode(',', $ids).')';
+				}
+			}
+			$query = 'DELETE FROM #__k2_extra_fields_groups_xref WHERE '.implode(' AND ', $filters);
+			$db->setQuery($query);
+			$db->query();
+		
+			if (count($extraFieldsGroupsIds))
+			{
+				$i = 0;
+				$insert = array();
+				foreach ($extraFieldsGroupsIds as $extraFieldsGroupsId)
+				{					
+					if ($extraFieldsGroupsId != $extraFieldsGroups[$i]->extraFieldsGroup)
+					{
+						$id = null;
+					}
+					else
+					{
+						$id = $extraFieldsGroups[$i]->id;
+					}
+					$insert[] = '('.(int)$id.','.(int)$row->id.',"user_group",'.$extraFieldsGroupsId.')';
+					$i++;
+				}			
+				if (!empty($insert))
+				{
+					$select = 'id,viewID,viewType,extraFieldsGroup';
+					$query = 'REPLACE #__k2_extra_fields_groups_xref ('.$select.') VALUES '.implode(',', $insert).';';
+					$db->setQuery($query);
+					$db->query();
+				}
+			}
+		}
+		
+		$cache = JFactory::getCache('com_k2');
         $cache->clean();
 
         switch(JRequest::getCmd('task'))

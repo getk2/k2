@@ -71,6 +71,7 @@ class K2ControllerItemlist extends K2Controller
 		{
 			echo $cal->getCurrentMonthView();
 		}
+
 		$mainframe->close();
 	}
 

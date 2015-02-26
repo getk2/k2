@@ -27,6 +27,8 @@ class TableK2User extends K2Table
     var $ip = null;
     var $hostname = null;
     var $notes = null;
+	var $extra_fields = null;//JAW modified
+	var $extra_fields_search = null;//JAW modified
 
     function __construct(&$db)
     {

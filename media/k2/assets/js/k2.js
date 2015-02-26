@@ -212,20 +212,19 @@ $K2(document).ready(function() {
             break;
 
         case 'extrafield':
-            if ($K2('#groups').val() > 0) {
-                $K2('#groupContainer').fadeOut(0);
+			// JAW modified to handle multiple fields
+			var multipleSelect = $K2('#extraFieldGroups').val();
+			if ($K2.isArray(multipleSelect)) {
+				$K2('#groupContainer').fadeOut(0);
             }
-            selectsInstance('#groups').change(function() {
-                var selectedValue = selectsInstance(this).val();
-                if (selectedValue == 0) {
-                    $K2('#group').val('');
-                    $K2('#isNew').val('1');
-                    $K2('#groupContainer').fadeIn('slow');
+			selectsInstance('#extraFieldGroups').change(function() {
+				var selectValueArray = selectsInstance(this).val() || [];
+				if($K2.inArray('0', selectValueArray) !== -1 ) {
+					$K2('#isNew').val('1');
+					$K2('#groupContainer').fadeIn('slow');
                 } else {
-                    $K2('#groupContainer').fadeOut('slow', function() {
-                        $K2('#group').val(selectedValue);
-                        $K2('#isNew').val('0');
-                    });
+					$K2('#isNew').val('0');
+					$K2('#groupContainer').fadeOut('slow');
                 }
             });
             if ($K2('input[name=id]').val()) {

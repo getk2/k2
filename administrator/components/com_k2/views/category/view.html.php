@@ -67,8 +67,9 @@ class K2ViewCategory extends K2View
         $extraFieldsModel = K2Model::getInstance('ExtraFields', 'K2Model');
         $groups = $extraFieldsModel->getGroups();
         $group[] = JHTML::_('select.option', '0', JText::_('K2_NONE_ONSELECTLISTS'), 'id', 'name');
-        $group = array_merge($group, $groups);
-        $lists['extraFieldsGroup'] = JHTML::_('select.genericlist', $group, 'extraFieldsGroup', 'class="inputbox" size="1" ', 'id', 'name', $category->extraFieldsGroup);
+		$extraFieldsGroups = array_merge ( $group, $groups );
+		//JAW modified - made multiple select		
+		$lists['extraFieldsGroups'] = JHtml::_ ( 'select.genericlist', $extraFieldsGroups, 'extraFieldsGroups[]', 'class="inputbox" size="5" multiple="multiple"', 'id', 'name', $category->extraFieldsGroups );
 
         if (version_compare(JVERSION, '1.6.0', 'ge'))
         {

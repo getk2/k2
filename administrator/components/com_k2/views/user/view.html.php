@@ -47,6 +47,27 @@ class K2ViewUser extends K2View
         $userGroupOptions = $model->getUserGroups();
         $lists['userGroup'] = JHTML::_('select.genericlist', $userGroupOptions, 'group', 'class="inputbox"', 'id', 'name', $user->group);
 
+		//JAW modified - for multiple extended field groups
+		$query = "SELECT extraFieldsGroup FROM `#__k2_extra_fields_groups_xref` WHERE viewID=".(int)$user->group." AND viewType='user_group'";
+		$db->setQuery($query);
+		$usergroup->extraFieldsGroups = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();	
+
+		$extraFieldModel = K2Model::getInstance('ExtraField', 'K2Model');
+		if ($usergroup->id)
+		{
+		  $extraFields = $extraFieldModel->getExtraFieldsByGroup($usergroup->extraFieldsGroups);
+		}
+		else
+		{
+		  $extraFields = NULL;
+		}
+
+		for ($i = 0; $i < sizeof($extraFields); $i++)
+		{
+		  $extraFields[$i]->element = $extraFieldModel->renderExtraField($extraFields[$i], $user->id, 'user');
+		}
+
+		$this->assignRef('extraFields', $extraFields);
         $this->assignRef('lists', $lists);
 
         $params = JComponentHelper::getParams('com_k2');

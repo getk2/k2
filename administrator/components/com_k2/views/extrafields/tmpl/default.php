@@ -41,7 +41,7 @@ defined('_JEXEC') or die;
         <?php endif; ?>
         <th class="k2Center center"><input id="jToggler" type="checkbox" name="toggle" value="" /></th>
         <th><?php echo JHTML::_('grid.sort', 'K2_NAME', 'name', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
-        <th class="k2Center center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_GROUP', 'groupname', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
+        <th class="k2Center center hidden-phone"><?php echo JText::_('K2_EXTRA_FIELD_GROUPS'); ?></th>
         <?php if(K2_JVERSION != '30'): ?>
         <th><?php echo JHTML::_('grid.sort', 'K2_ORDER', 'ordering', @$this->lists['order_Dir'], @$this->lists['order']); ?> <?php if ($this->ordering) echo JHTML::_('grid.order',  $this->rows ); ?></th>
         <?php endif; ?>
@@ -63,7 +63,7 @@ defined('_JEXEC') or die;
         <?php endif; ?>
         <td class="k2Center center"><?php $row->checked_out = 0; echo @JHTML::_('grid.checkedout', $row, $key ); ?></td>
         <td><a href="<?php echo JRoute::_('index.php?option=com_k2&view=extrafield&cid='.$row->id); ?>"><?php echo $row->name; ?></a><br /><?php echo JText::_('K2_ALIAS'); ?>: <?php echo $row->alias; ?></td>
-        <td class="k2Center center hidden-phone"><?php echo $row->groupname; ?></td>
+        <td class="k2Center center hidden-phone"><?php echo $row->extraFieldsGroups; ?></td>
         <?php if(K2_JVERSION != '30'): ?>
         <td class="order">
         	<span><?php echo $this->page->orderUpIcon($key, ($row->group == @$this->rows[$key-1]->group), 'orderup', 'Move Up', $this->ordering); ?></span>

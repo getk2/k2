@@ -33,11 +33,12 @@ $document->addScriptDeclaration("
         <th class="center"><input id="jToggler" type="checkbox" name="toggle" value="" /></th>
         <th><?php echo JText::_('K2_GROUP_NAME'); ?></th>
         <th class="hidden-phone"><?php echo JText::_('K2_ASSIGNED_CATEGORIES'); ?></th>
+		<th class="hidden-phone"><?php echo JText::_('K2_ASSIGNED_USER_GROUPS'); ?></th>
       </tr>
     </thead>
     <tfoot>
       <tr>
-        <td colspan="4">
+        <td colspan="5">
         	<?php if(K2_JVERSION == '30'): ?>
 			<div class="k2LimitBox">
 				<?php echo $this->page->getLimitBox(); ?>
@@ -54,6 +55,7 @@ $document->addScriptDeclaration("
         <td class="k2Center center"><?php $row->checked_out = 0; echo @JHTML::_('grid.checkedout', $row, $key ); ?></td>
         <td><a href="<?php echo JRoute::_('index.php?option=com_k2&view=extrafieldsgroup&cid='.$row->id); ?>"><?php echo $row->name; ?></a></td>
         <td class="hidden-phone"><?php echo $row->categories; ?></td>
+        <td class="hidden-phone"><?php echo $row->user_groups; ?></td>
       </tr>
       <?php endforeach; ?>
     </tbody>

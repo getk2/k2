@@ -17,8 +17,16 @@ $document->addScriptDeclaration("
 			submitform( pressbutton );
 			return;
 		}
-		if (\$K2.trim(\$K2('#group').val()) == '') {
+		var selectValueArray = \$K2('#extraFieldGroups').val() || [];
+		if (\$K2.trim(\$K2('#extraFieldGroups').val()) == '' ) {
 			alert( '".JText::_('K2_PLEASE_SELECT_A_GROUP_OR_CREATE_A_NEW_ONE', true)."' );
+		}
+		else if ((\$K2.trim(\$K2('#extraFieldGroup').val()) === '".JText::_('K2_TYPE_NEW_EXTRA_FIELD_GROUP_HERE')."') && (\$K2.inArray('0', selectValueArray) != -1 )) {
+			alert( '".JText::_('K2_NEW_GROUP_NAME_CANNOT_BE_DEFAULT_VALUE', true)."' );
+		}
+		else if (\$K2.trim(\$K2('#extraFieldGroup').val()) === '') {
+			var test = \$K2('#name').val();
+			alert( '".JText::_('K2_NEW_GROUP_NAME_CANNOT_BE_EMPTY', true)."' );
 		}
 		else if (\$K2.trim(\$K2('#name').val()) == '') {
 			alert( '".JText::_('K2_NAME_CANNOT_BE_EMPTY', true)."' );
@@ -45,16 +53,20 @@ $document->addScriptDeclaration("
       <td><input id="alias" type="text" name="alias" value="<?php echo $this->row->alias; ?>" /></td>
     </tr>
     <tr>
+      <td class="key"><?php echo JText::_('K2_DESCRIPTION'); ?></td>
+      <td><input id="description" type="text" name="description" value="<?php echo $this->row->description; ?>" size="100" maxlength="250" /></td>
+    </tr>
+    <tr>
       <td class="key"><?php echo JText::_('K2_PUBLISHED'); ?></td>
       <td><?php echo $this->lists['published']; ?></td>
     </tr>
     <tr>
-      <td class="key"><?php echo JText::_('K2_GROUP'); ?></td>
+      <td class="key"><?php echo JText::_('K2_EXTRA_FIELD_GROUPS'); ?></td>
       <td>
-        <?php echo $this->lists['group']; ?>
+        <?php echo $this->lists['extraFieldGroups']; ?>
         <div id="groupContainer">
         	<span><?php echo JText::_('K2_NEW_GROUP_NAME'); ?></span>
-        	<input id="group" type="text" name="group" value="<?php echo $this->row->group; ?>" />
+			<input id="extraFieldGroup" onfocus="this.value='';" type="text" name="extraFieldGroup" value="<?php echo JText::_('K2_TYPE_NEW_EXTRA_FIELD_GROUP_HERE'); ?>" />
         </div>
       </td>
     </tr>
@@ -90,7 +102,7 @@ $document->addScriptDeclaration("
   </table>
 
   <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
-  <input type="hidden" name="isNew" id="isNew" value="<?php echo ($this->row->group)?'0':'1'; ?>" />
+  <input type="hidden" name="isNew" id="isNew" value="0" />
   <input type="hidden" name="option" value="com_k2" />
   <input type="hidden" name="view" value="<?php echo JRequest::getVar('view'); ?>" />
   <input type="hidden" name="task" value="<?php echo JRequest::getVar('task'); ?>" />

@@ -79,16 +79,17 @@ class K2ViewExtraField extends K2View
 		$lists = array();
 		$lists['published'] = JHTML::_('select.booleanlist', 'published', 'class="inputbox"', $extraField->published);
 
-		$groups[] = JHTML::_('select.option', 0, JText::_('K2_CREATE_NEW_GROUP'));
+		$extraFieldGroups = array();
+		$extraFieldGroups[] = JHtml::_('select.option', 0, JText::_('K2_CREATE_NEW_GROUP'));
 
 		$extraFieldModel = K2Model::getInstance('ExtraFields', 'K2Model');
 		$uniqueGroups = $extraFieldModel->getGroups(true);
 		foreach ($uniqueGroups as $group)
 		{
-			$groups[] = JHTML::_('select.option', $group->id, $group->name);
+		  $extraFieldGroups[] = JHtml::_('select.option', $group->id, $group->name);
 		}
-
-		$lists['group'] = JHTML::_('select.genericlist', $groups, 'groups', '', 'value', 'text', $extraField->group);
+		//JAW modified - made multiple select
+		$lists['extraFieldGroups'] = JHtml::_('select.genericlist', $extraFieldGroups, 'extraFieldGroups[]', 'multiple="multiple"', 'value', 'text', $extraField->groups);
 
 		$typeOptions[] = JHTML::_('select.option', 0, JText::_('K2_SELECT_TYPE'));
 		$typeOptions[] = JHTML::_('select.option', 'textfield', JText::_('K2_TEXT_FIELD'));

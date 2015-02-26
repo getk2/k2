@@ -68,10 +68,10 @@ $document->addScriptDeclaration("
 						</tr>
 						<tr>
 							<td class="adminK2LeftCol">
-								<label for="extraFieldsGroup"><?php echo JText::_('K2_ASSOCIATED_EXTRA_FIELDS_GROUP');	?></label>
+								<label for="extraFieldsGroups"><?php echo JText::_('K2_ASSOCIATED_EXTRA_FIELDS_GROUPS');	?></label>
 							</td>
 							<td class="adminK2RightCol">
-								<?php echo $this->lists['extraFieldsGroup']; ?>
+								<?php echo $this->lists['extraFieldsGroups']; ?>
 							</td>
 						</tr>
 						<tr>

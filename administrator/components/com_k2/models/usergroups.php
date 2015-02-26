@@ -29,7 +29,10 @@ class K2ModelUserGroups extends K2Model
         $filter_order = $mainframe->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', '', 'cmd');
         $filter_order_Dir = $mainframe->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', '', 'word');
 
-        $query = "SELECT userGroup.*, (SELECT COUNT(DISTINCT userID) FROM #__k2_users WHERE `group`=userGroup.id) AS numOfUsers FROM #__k2_user_groups AS userGroup";
+		// JAW modified - query to return multiple values of extra fields group as string
+		$query = "SELECT userGroup.*, (SELECT COUNT(DISTINCT userID) FROM #__k2_users WHERE `group`=userGroup.id) AS numOfUsers, GROUP_CONCAT(exfg.name) as extraFieldsGroups FROM #__k2_user_groups AS userGroup LEFT JOIN #__k2_extra_fields_groups_xref AS exfgxref ON exfgxref.viewID = userGroup.id AND exfgxref.viewtype = 'user_group' LEFT JOIN #__k2_extra_fields_groups AS exfg ON exfg.id = exfgxref.extraFieldsGroup GROUP BY id";
+		// JAW modified - original query
+		//$query = "SELECT userGroup.*, (SELECT COUNT(DISTINCT userID) FROM #__k2_users WHERE `group`=userGroup.id) AS numOfUsers, exfg.name as extra_fields_group FROM #__k2_user_groups AS userGroup LEFT JOIN #__k2_extra_fields_groups AS exfg ON exfg.id = userGroup.extraFieldsGroup";
 
         if (!$filter_order)
         {

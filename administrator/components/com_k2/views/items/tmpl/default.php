@@ -92,6 +92,7 @@ $document->addScriptDeclaration("
 				<th class="hidden-phone"> <?php echo JHTML::_('grid.sort', 'K2_CREATED', 'i.created', @$this->lists['order_Dir'], @$this->lists['order']); ?> </th>
 				<th class="hidden-phone"> <?php echo JHTML::_('grid.sort', 'K2_MODIFIED', 'i.modified', @$this->lists['order_Dir'], @$this->lists['order']); ?> </th>
 				<th class="center hidden-phone"> <?php echo JHTML::_('grid.sort', 'K2_HITS', 'i.hits', @$this->lists['order_Dir'], @$this->lists['order']); ?> </th>
+				<th class="hidden-phone center"> <?php echo JHtml::_('grid.sort', 'K2_RATING', 'rating', @$this->lists['order_Dir'], @$this->lists['order'] ); ?> </th>
 				<th class="hidden-phone center"> <?php echo JText::_('K2_IMAGE'); ?> </th>
 				<?php if(isset($this->lists['language'])): ?>
 				<th class="hidden-phone"> <?php echo JHTML::_('grid.sort', 'K2_LANGUAGE', 'i.language', @$this->lists['order_Dir'], @$this->lists['order']); ?> </th>
@@ -104,7 +105,7 @@ $document->addScriptDeclaration("
 		</thead>
 		<tfoot>
 			<tr>
-				<td colspan="<?php echo 16+sizeof($this->columns); ?>">
+				<td colspan="<?php echo 17+sizeof($this->columns); ?>">
 					<?php if(K2_JVERSION == '30'): ?>
 					<div class="k2LimitBox">
 						<?php echo $this->page->getLimitBox(); ?>
@@ -173,6 +174,13 @@ $document->addScriptDeclaration("
 				<td class="k2Date hidden-phone"><?php echo JHTML::_('date', $row->created , $this->dateFormat); ?></td>
 				<td class="k2Date hidden-phone"><?php echo ($row->modified == $this->nullDate) ? JText::_('K2_NEVER') : JHTML::_('date', $row->modified , $this->dateFormat); ?></td>
 				<td class="center hidden-phone"><?php echo $row->hits ?></td>
+				<td class="k2Center hidden-phone center">
+				<?php if(!empty($row->rating)): ?>
+					<?php echo $row->rating; ?>/5.00
+				<?php else: ?>
+					<img src="templates/<?php echo $this->template; ?>/images/menu/icon-16-notdefault.png" alt="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>" />
+				<?php endif; ?>
+				</td>
 				<td class="k2Center center hidden-phone">
 					<?php if(JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$row->id).'_XL.jpg')): ?>
 					<a href="<?php echo JURI::root(true).'/media/k2/items/cache/'.md5("Image".$row->id).'_XL.jpg'; ?>" title="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>" class="modal">

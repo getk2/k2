@@ -20,7 +20,7 @@ class TableK2Category extends K2Table
 	var $alias = null;
 	var $description = null;
 	var $parent = null;
-	var $extraFieldsGroup = null;
+	//var $extraFieldsGroup = null;//JAW @TODO - delete because we can now save multipe extra Field groups 
 	var $published = null;
 	var $image = null;
 	var $access = null;

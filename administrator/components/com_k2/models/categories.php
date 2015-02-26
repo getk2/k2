@@ -35,7 +35,10 @@ class K2ModelCategories extends K2Model
         $language = $mainframe->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
         $filter_category = $mainframe->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
 
-        $query = "SELECT c.*, g.name AS groupname, exfg.name as extra_fields_group FROM #__k2_categories as c LEFT JOIN #__groups AS g ON g.id = c.access LEFT JOIN #__k2_extra_fields_groups AS exfg ON exfg.id = c.extraFieldsGroup WHERE c.id>0";
+		// JAW modified - query to return multiple values of extra fields group as string
+		$query = "SELECT c.*, g.name AS groupname, GROUP_CONCAT(exfg.name) as extraFieldsGroups FROM #__k2_categories AS c LEFT JOIN #__groups AS g ON g.id = c.access LEFT JOIN #__k2_extra_fields_groups_xref AS exfgxref ON exfgxref.viewID = c.id AND exfgxref.viewtype = 'category' LEFT JOIN #__k2_extra_fields_groups AS exfg ON exfg.id = exfgxref.extraFieldsGroup WHERE c.id>0";
+		// JAW modified - original query
+		//$query = "SELECT c.*, g.name AS groupname, exfg.name AS extra_fields_group FROM #__k2_categories AS c LEFT JOIN #__groups AS g ON g.id = c.access LEFT JOIN #__k2_extra_fields_groups AS exfg ON exfg.id = c.extraFieldsGroup WHERE c.id>0";
 
         if (!$filter_trash)
         {
@@ -65,6 +68,9 @@ class K2ModelCategories extends K2Model
             $query .= " AND c.id IN (".implode(',', $tree).")";
         }
 
+		//JAW modified
+		$query .= " GROUP BY c.id";
+		
         $query .= " ORDER BY {$filter_order} {$filter_order_Dir}";
 
         if (K2_JVERSION != '15')

@@ -155,7 +155,7 @@ $document->addScriptDeclaration("
 					<?php echo $row->inheritFrom; ?>
 				</td>
 				<td class="k2Center center hidden-phone">
-					<?php echo $row->extra_fields_group; ?>
+					<?php echo $row->extraFieldsGroups; //JAW modified - add multiple groups?>
 				</td>
 				<td class="k2Center center hidden-phone">
 					<?php echo $row->template; ?>

@@ -17,9 +17,10 @@ class TableK2ExtraField extends K2Table
 
     var $id = null;
     var $name = null;
+	var $description = null;//JAW modified - added description for frontend tooltip
     var $value = null;
     var $type = null;
-    var $group = null;
+	//var $group = null;//JAW @TODO- remove this group because we can now save multiple groups
     var $published = null;
     var $ordering = null;
 

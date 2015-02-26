@@ -33,6 +33,7 @@ $document->addScriptDeclaration("
         <th class="center"><input id="jToggler" type="checkbox" name="toggle" value="" /></th>
         <th class="title"><?php echo JHTML::_('grid.sort', 'K2_NAME', 'name', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
         <th class="center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_USER_COUNT', 'numOfUsers', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
+		<th class="center hidden-phone"><?php echo JHtml::_('grid.sort', 'K2_ASSOCIATED_EXTRA_FIELD_GROUPS', 'extra_fields_group', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
         <th class="center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_ID', 'id', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
       </tr>
     </thead>
@@ -55,6 +56,7 @@ $document->addScriptDeclaration("
         <td class="k2Center center"><?php $row->checked_out = 0; echo @JHTML::_('grid.checkedout', $row, $key ); ?></td>
         <td><a href="<?php echo JRoute::_('index.php?option=com_k2&view=usergroup&cid='.$row->id); ?>"><?php echo $row->name; ?></a></td>
         <td class="k2Center center hidden-phone"><?php echo $row->numOfUsers; ?></td>
+		<td class="k2Center center hidden-phone"><?php echo $row->extraFieldsGroups; ?></td>
         <td class="k2Center center hidden-phone"><?php echo $row->id; ?></td>
       </tr>
       <?php endforeach; ?>

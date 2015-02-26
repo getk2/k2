@@ -15,7 +15,6 @@ CREATE TABLE IF NOT EXISTS `#__k2_categories` (
   `alias` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `parent` int(11) DEFAULT '0',
-  `extraFieldsGroup` int(11) NOT NULL,
   `published` smallint(6) NOT NULL DEFAULT '0',
   `access` int(11) NOT NULL DEFAULT '0',
   `ordering` int(11) NOT NULL DEFAULT '0',
@@ -54,6 +53,7 @@ CREATE TABLE IF NOT EXISTS `#__k2_comments` (
 CREATE TABLE IF NOT EXISTS `#__k2_extra_fields` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
   `value` text NOT NULL,
   `type` varchar(255) NOT NULL,
   `group` int(11) NOT NULL,
@@ -70,6 +70,20 @@ CREATE TABLE IF NOT EXISTS `#__k2_extra_fields_groups` (
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `#__k2_extra_fields_groups_xref` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `viewID` int(11) NOT NULL,
+  `viewType` varchar(64) NOT NULL,
+  `extraFieldsGroup` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `#__k2_extra_fields_xref` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `extra_fields_id` int(11) NOT NULL,
+  `extra_fields_group_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `#__k2_items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -158,6 +172,8 @@ CREATE TABLE IF NOT EXISTS `#__k2_users` (
   `ip` varchar(15) NOT NULL,
   `hostname` varchar(255) NOT NULL,
   `notes` text NOT NULL,
+  `extra_fields` text DEFAULT NULL,
+  `extra_fields_search` text NOT NULL, 
   PRIMARY KEY (`id`),
   KEY `userID` (`userID`),
   KEY `group` (`group`)

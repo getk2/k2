@@ -84,7 +84,9 @@ class K2ModelItem extends K2Model
 				$row->fulltext = '';
 			}
 			else
+			{
 				list($row->introtext, $row->fulltext) = preg_split($pattern, $text, 2);
+			}
 		}
 		else
 		{
