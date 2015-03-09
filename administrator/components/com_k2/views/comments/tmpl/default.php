@@ -39,7 +39,7 @@ defined('_JEXEC') or die;
 		}  else { 
 			submitform( pressbutton );
 		}
-	}
+	};
 </script>
 <form action="<?php echo JRoute::_('index.php'); ?>" method="post" name="adminForm" id="adminForm">
 	<?php if($this->mainframe->isSite()): ?>

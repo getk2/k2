@@ -31,7 +31,7 @@ $document->addScriptDeclaration("
 				submitform( pressbutton );
 			}
 		}
-	}
+	};
 ");
 
 ?>

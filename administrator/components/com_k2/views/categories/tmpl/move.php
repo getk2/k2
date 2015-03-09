@@ -22,7 +22,7 @@ $document->addScriptDeclaration("
 		} else {
 			submitform( pressbutton );
 		}
-	}
+	};
 ");
 
 ?>
