@@ -440,6 +440,10 @@ class K2ModelItem extends K2Model
 		//Author
 		if (!empty($item->created_by_alias))
 		{
+			if(!isset($item->author))
+			{
+				$item->author = new stdClass;
+			}
 			$item->author->name = $item->created_by_alias;
 			$item->author->email = '';
 		}
