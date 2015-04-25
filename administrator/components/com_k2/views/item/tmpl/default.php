@@ -615,13 +615,13 @@ $document->addScriptDeclaration("
 							<?php foreach($this->extraFields as $extraField): ?>
 							<tr>
 								<?php if($extraField->type == 'header'): ?>
-								<td colspan="2" ><h4 class="k2ExtraFieldHeader"><?php echo $extraField->name; ?></h4></td>
+								<td colspan="2" ><h4 class="k2ExtraFieldHeader"><?php echo JText::_($extraField->name); ?></h4></td>
 								<?php else: ?>
 								<td align="right" class="key">
-									<label for="K2ExtraField_<?php echo $extraField->id; ?>"><?php echo $extraField->name; ?></label>
+									<label for="K2ExtraField_<?php echo $extraField->id; ?>"><?php echo JText::_($extraField->name); ?></label>
 								</td>
 								<td>
-									<?php echo $extraField->element; ?>
+									<?php echo JText::_($extraField->element); ?>
 								</td>
 								<?php endif; ?>
 							</tr>
