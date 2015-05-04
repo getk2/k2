@@ -846,30 +846,35 @@ class plgSystemK2 extends JPlugin
 
 	function onAfterRender()
 	{
-		$response = JResponse::getBody();
-		$searches = array(
-			'<meta name="og:url"',
-			'<meta name="og:title"',
-			'<meta name="og:type"',
-			'<meta name="og:image"',
-			'<meta name="og:description"'
-		);
-		$replacements = array(
-			'<meta property="og:url"',
-			'<meta property="og:title"',
-			'<meta property="og:type"',
-			'<meta property="og:image"',
-			'<meta property="og:description"'
-		);
-		if (JString::strpos($response, 'prefix="og: http://ogp.me/ns#"') === false)
+		$application = JFactory::getApplication();
+		if($application->isSite())
 		{
-			$searches[] = '<html ';
-			$searches[] = '<html>';
-			$replacements[] = '<html prefix="og: http://ogp.me/ns#" ';
-			$replacements[] = '<html prefix="og: http://ogp.me/ns#">';
+			$response = JResponse::getBody();
+			$searches = array(
+				'<meta name="og:url"',
+				'<meta name="og:title"',
+				'<meta name="og:type"',
+				'<meta name="og:image"',
+				'<meta name="og:description"'
+			);
+			$replacements = array(
+				'<meta property="og:url"',
+				'<meta property="og:title"',
+				'<meta property="og:type"',
+				'<meta property="og:image"',
+				'<meta property="og:description"'
+			);
+			if (JString::strpos($response, 'prefix="og: http://ogp.me/ns#"') === false)
+			{
+				$searches[] = '<html ';
+				$searches[] = '<html>';
+				$replacements[] = '<html prefix="og: http://ogp.me/ns#" ';
+				$replacements[] = '<html prefix="og: http://ogp.me/ns#">';
+			}
+			$response = JString::str_ireplace($searches, $replacements, $response);
+			JResponse::setBody($response);			
 		}
-		$response = JString::str_ireplace($searches, $replacements, $response);
-		JResponse::setBody($response);
+
 	}
 
 	function getSearchValue($id, $currentValue)
