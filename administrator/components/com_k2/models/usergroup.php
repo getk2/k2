@@ -88,16 +88,20 @@ class K2ModelUserGroup extends K2Model
 				$i = 0;
 				$insert = array();
 				foreach ($extraFieldsGroupsIds as $extraFieldsGroupsId)
-				{					
-					if ($extraFieldsGroupsId != $extraFieldsGroups[$i]->extraFieldsGroup)
+				{	
+					if ($extraFieldsGroupsId === 0)
 					{
-						$id = null;
+						continue;
+					}
+					elseif ($extraFieldsGroupsId != $extraFieldsGroups[$i]->extraFieldsGroup)
+					{
+						$id = 'NULL';
 					}
 					else
 					{
 						$id = $extraFieldsGroups[$i]->id;
 					}
-					$insert[] = '('.(int)$id.','.(int)$row->id.',"user_group",'.$extraFieldsGroupsId.')';
+					$insert[] = '('.$id.','.(int)$row->id.',"user_group",'.$extraFieldsGroupsId.')';
 					$i++;
 				}			
 				if (!empty($insert))

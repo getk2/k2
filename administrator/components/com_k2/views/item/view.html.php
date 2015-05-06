@@ -414,9 +414,9 @@ class K2ViewItem extends K2View
 		$category->extraFieldsGroups = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
 
 		$extraFieldModel = K2Model::getInstance('ExtraField', 'K2Model');
-		if ($category->id)
+		if ($category->extraFieldsGroups)
 		{
-			$extraFields = $extraFieldModel->getExtraFieldsByGroup($category->extraFieldsGroup);
+			$extraFields = $extraFieldModel->getExtraFieldsByGroup($category->extraFieldsGroups);
 		}
 		else
 		{

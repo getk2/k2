@@ -197,14 +197,16 @@ class Com_K2InstallerScript
 				`id` int(11) NOT NULL AUTO_INCREMENT,
 				`viewID` int(11) NOT NULL,
 				`viewType` varchar(64) NOT NULL,
-				`extraFieldsGroup` int(11) NOT NULL
+				`extraFieldsGroup` int(11) NOT NULL,
+				PRIMARY KEY (`id`)
 			  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 		$db->setQuery($query);
 		$db->query();
 		$query = "CREATE TABLE IF NOT EXISTS `#__k2_extra_fields_xref` (
 				`id` int(11) NOT NULL AUTO_INCREMENT,
 				`extraFieldsID` int(11) NOT NULL,
-				`extraFieldsGroupID` int(11) NOT NULL
+				`extraFieldsGroupID` int(11) NOT NULL,
+				PRIMARY KEY (`id`)
 			  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 		$db->setQuery($query);
 		$db->query();

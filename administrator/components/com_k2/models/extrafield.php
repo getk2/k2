@@ -210,7 +210,7 @@ class K2ModelExtraField extends K2Model
 				$insert = array();
 				foreach ($extraFieldsGroupsIds as $extraFieldsGroupsId)
 				{
-					if ($extraFieldsGroupsId == '0')
+					if ($extraFieldsGroupsId === 0)
 					{
 						continue;
 					}
@@ -260,11 +260,14 @@ class K2ModelExtraField extends K2Model
 		$db = JFactory::getDBO();
 		//$group = (int)$group;
 		$groupIDs = implode(',', $groups);
-		$query = "SELECT DISTINCT exf.* FROM #__k2_extra_fields AS exf LEFT JOIN #__k2_extra_fields_xref AS exfxref ON exf.id=exfxref.extraFieldsID WHERE exfxref.extraFieldsGroupID IN ({$groupIDs}) AND published=1 ORDER BY ordering ASC";
-		//$query = "SELECT * FROM #__k2_extra_fields WHERE `group`={$group} AND published=1 ORDER BY ordering";
-		$db->setQuery($query);
-		$rows = $db->loadObjectList();
-		return $rows;
+		if($groupIDs)
+		{
+			$query = "SELECT DISTINCT exf.* FROM #__k2_extra_fields AS exf LEFT JOIN #__k2_extra_fields_xref AS exfxref ON exf.id=exfxref.extraFieldsID WHERE exfxref.extraFieldsGroupID IN ({$groupIDs}) AND published=1 ORDER BY ordering ASC";
+			//$query = "SELECT * FROM #__k2_extra_fields WHERE `group`={$group} AND published=1 ORDER BY ordering";
+			$db->setQuery($query);
+			$rows = $db->loadObjectList();
+			return $rows;
+		}
 	}
 
 	function renderExtraField($extraField, $oid = NULL, $type = 'item')//JAW modified - added type so can be used for users as well.

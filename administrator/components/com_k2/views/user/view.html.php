@@ -53,7 +53,7 @@ class K2ViewUser extends K2View
 		$usergroup->extraFieldsGroups = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();	
 
 		$extraFieldModel = K2Model::getInstance('ExtraField', 'K2Model');
-		if ($usergroup->id)
+		if ($usergroup->extraFieldsGroups)
 		{
 		  $extraFields = $extraFieldModel->getExtraFieldsByGroup($usergroup->extraFieldsGroups);
 		}
