@@ -34,6 +34,8 @@
                     <option value="0">K2_NO</option>
                     <option value="1">K2_YES</option>
                 </field>
+                <field name="tags" type="k2tags" label="K2_TAGS"/>
+                <field name="users" type="k2users" label="K2_USERS"/>
                 <field name="itemCount" type="text" size="4" default="5" label="K2_ITEM_COUNT" description=""/>
                 <field name="itemsOrdering" type="list" default="" label="K2_ITEM_ORDERING" description="">
                     <option value="">K2_DEFAULT</option>

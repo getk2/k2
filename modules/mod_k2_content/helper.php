@@ -115,6 +115,12 @@ class modK2ContentHelper
 
 			if ($ordering == 'comments')
 				$query .= " LEFT JOIN #__k2_comments comments ON comments.itemID = i.id";
+	
+			$tagsFilter = $params->get('tags');
+			if($tagsFilter && is_array($tagsFilter) && count($tagsFilter))
+			{
+				$query .= " INNER JOIN #__k2_tags_xref tags_xref ON tags_xref.itemID = i.id";
+			}
 
 			if (K2_JVERSION != '15')
 			{
@@ -165,6 +171,18 @@ class modK2ContentHelper
 
 					}
 				}
+			}
+			
+			$tagsFilter = $params->get('tags');
+			if($tagsFilter && is_array($tagsFilter) && count($tagsFilter))
+			{
+				$query .= " AND tags_xref.tagID IN(".implode(',', $tagsFilter).")";
+			}
+			
+			$usersFilter = $params->get('users');
+			if($usersFilter && is_array($usersFilter) && count($usersFilter))
+			{
+				$query .= " AND i.created_by IN(".implode(',', $usersFilter).") AND i.created_by_alias = ''";
 			}
 
 			if ($params->get('FeaturedItems') == '0')

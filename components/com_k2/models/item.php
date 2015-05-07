@@ -179,7 +179,7 @@ class K2ModelItem extends K2Model
 		}
 
 		//Extra fields
-		if (($view == 'item' && $item->params->get('itemExtraFields')) || ($view == 'itemlist' && ($task == '' || $task == 'category') && $item->params->get('catItemExtraFields')) || ($view == 'itemlist' && $task == 'tag' && $item->params->get('tagItemExtraFields')) || ($view == 'itemlist' && ($task == 'search' || $task == 'date') && $item->params->get('genericItemExtraFields')))
+		if ((($view == 'item' || $view == 'relatedByTag') && $item->params->get('itemExtraFields')) || ($view == 'itemlist' && ($task == '' || $task == 'category') && $item->params->get('catItemExtraFields')) || ($view == 'itemlist' && $task == 'tag' && $item->params->get('tagItemExtraFields')) || ($view == 'itemlist' && ($task == 'search' || $task == 'date') && $item->params->get('genericItemExtraFields')))
 		{
 			$item->extra_fields = $this->getItemExtraFields($item->extra_fields, $item);
 		}
@@ -440,6 +440,10 @@ class K2ModelItem extends K2Model
 		//Author
 		if (!empty($item->created_by_alias))
 		{
+			if(!isset($item->author))
+			{
+				$item->author = new stdClass;
+			}
 			$item->author->name = $item->created_by_alias;
 			$item->author->email = '';
 		}

@@ -351,21 +351,13 @@ class K2ModelExtraField extends K2Model
 
 		}
 		$attributes = '';
-		if (version_compare(JVERSION, '3.2', 'ge'))
+		$arrayAttributes = array();
+		if ($required)
 		{
-			$arrayAttributes = array();
-			if ($required)
-			{
-				$arrayAttributes['class'] = "k2Required";
-			}
+			$arrayAttributes['class'] = "k2Required";
+			$attributes .= 'class="k2Required"';
 		}
-		else
-		{
-			if ($required)
-			{
-				$attributes .= 'class="k2Required"';
-			}
-		}
+		
 
 		if ($showNull && in_array($extraField->type, array(
 			'select',

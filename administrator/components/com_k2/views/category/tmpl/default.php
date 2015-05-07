@@ -23,7 +23,7 @@ $document->addScriptDeclaration("
 			".$this->onSave."
 			submitform( pressbutton );
 		}
-	}
+	};
 ");
 
 ?>

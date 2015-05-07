@@ -84,5 +84,29 @@ class K2ControllerUsers extends K2Controller
         $model = $this->getModel('users');
         $model->import();
     }
+	
+	function search()
+	{
+		$mainframe = JFactory::getApplication();
+        $db = JFactory::getDBO();
+        $word = JRequest::getString('q', null);
+        if (K2_JVERSION == '15')
+        {
+            $word = $db->Quote($db->getEscaped($word, true).'%', false);
+        }
+        else
+        {
+            $word = $db->Quote($db->escape($word, true).'%', false);
+        }
+		
+		$query = "SELECT id,name FROM #__users WHERE name LIKE ".$word." OR username LIKE ".$word." OR email LIKE ".$word;
+        $db->setQuery($query);
+        $result = $db->loadObjectList();
+		
+        require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'lib'.DS.'JSON.php');
+        $json = new Services_JSON;
+        echo $json->encode($result);
+        $mainframe->close();
+	}
 
 }

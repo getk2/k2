@@ -178,9 +178,9 @@ class TableK2Item extends K2Table
 			$db = JFactory::getDBO();
 			$db->setQuery("SELECT id FROM #__k2_items WHERE alias = ".$db->quote($this->alias)." AND id != ".(int)$this->id);
 			$result = count($db->loadObjectList());
-			if ($result > 1)
+			if ($result > 0)
 			{
-				$this->alias .= '-'.(int)$result + 1;
+				$this->alias .= '-'.((int)$result + 1);
 				$application = JFactory::getApplication();
 				$application->enqueueMessage(JText::_('K2_WARNING_DUPLICATE_TITLE_ALIAS_DETECTED'), 'notice');
 			}

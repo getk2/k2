@@ -194,7 +194,7 @@ ul.tags {background:#fff;border:1px solid #ccc;cursor:default;min-height:48px;di
 	ul.tags li.tagAdd input {border:none;}
 p.k2TagsNotice {display:block;font-size:11px;font-weight:bold;margin:0;padding:0;color:#999;}
 
-.ui-autocomplete {position:absolute;margin:0;padding:0;list-style:none;border:1px solid #eee;background-color:white;border-right-color:#ddd;border-bottom-color:#ddd;text-align:left;sans-serif;z-index:50;}
+.ui-autocomplete {position:absolute;margin:0;padding:0;list-style:none;border:1px solid #eee;background-color:white;border-right-color:#ddd;border-bottom-color:#ddd;text-align:left;z-index:50;}
 * html .ui-autocomplete {width:1px;} /* without this, the menu expands to 100% in IE6 */
 .ui-menu {list-style:none;padding:2px;	margin:0;	margin-top:-3px;display:block;	float:left;}
 .ui-menu .ui-menu-item {margin:0; padding:0; zoom:0; float:left; clear:left; width:99%;}
@@ -367,7 +367,7 @@ div.isJ25 div.button2-left {margin-left:4px;}
 */
 
 /* Admin - Item - Autocomplete */
-.ui-autocomplete {position:absolute;margin:0;padding:0;list-style:none;border:1px solid #eee;background-color:white;border-right-color:#ddd;border-bottom-color:#ddd;text-align:left;sans-serif;z-index:50;}
+.ui-autocomplete {position:absolute;margin:0;padding:0;list-style:none;border:1px solid #eee;background-color:white;border-right-color:#ddd;border-bottom-color:#ddd;text-align:left;z-index:50;}
 * html .ui-autocomplete {width:1px;} /* without this, the menu expands to 100% in IE6 */
 .ui-menu {list-style:none;padding:2px;	margin:0;	margin-top:-3px;display:block;	float:left;}
 .ui-menu .ui-menu-item {margin:0; padding:0; zoom:0; float:left; clear:left; width:99%;}
@@ -449,6 +449,8 @@ td#k2Comment {}
 	div.commentToolbar span.k2CommentsLoader {background:url(../images/system/loader.gif) no-repeat 0 50%;padding-left:24px;}
 
 /* Admin - Users */
+div#k2AdminContainer.K2AdminViewUser .adminform label { display: block!important; }
+div#k2AdminContainer.K2AdminViewUser .adminform label + input { display: block!important; clear: both; }
 
 /* Admin - User groups */
 div#k2AdminContainer.K2AdminViewUserGroup form#adminForm {width:600px;}

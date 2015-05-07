@@ -32,6 +32,8 @@
             <option value="0">K2_NO</option>
             <option value="1">K2_YES</option>
         </param>
+        <param name="tags" type="k2tags" label="K2_TAGS"/>
+        <param name="users" type="k2users" label="K2_USERS"/>
         <param name="itemCount" type="text" size="4" default="5" label="K2_ITEM_COUNT" description=""/>
         <param name="itemsOrdering" type="list" default="" label="K2_ITEM_ORDERING" description="">
             <option value="">K2_DEFAULT</option>
