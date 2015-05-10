@@ -3,8 +3,8 @@ DROP TABLE IF EXISTS `#__k2_categories`;
 DROP TABLE IF EXISTS `#__k2_comments`;
 DROP TABLE IF EXISTS `#__k2_extra_fields`;
 DROP TABLE IF EXISTS `#__k2_extra_fields_groups`;
-DROP TABLE IF EXISTS `#__K2_extra_fields_groups_xref`
-DROP TABLE IF EXISTS `#__K2_extra_fields_xref`
+DROP TABLE IF EXISTS `#__K2_extra_fields_groups_xref`;
+DROP TABLE IF EXISTS `#__K2_extra_fields_xref`;
 DROP TABLE IF EXISTS `#__k2_items`;
 DROP TABLE IF EXISTS `#__k2_rating`;
 DROP TABLE IF EXISTS `#__k2_tags`;

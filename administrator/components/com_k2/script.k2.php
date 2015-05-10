@@ -234,8 +234,8 @@ class Com_K2InstallerScript
 			$db->query();
 		}
 		
-		// JAW modified - added description fields
-		$fields = $db->getTableColumns('#__k2_extra_fields');
+		//JAW modified - for the creation of the multiple select fields can delete group field
+		$fields = $db->getTableFields('#__advkontent_extra_fields');
 		if (!array_key_exists('description', $fields))
 		{
 			$query = "ALTER TABLE #__k2_extra_fields ADD `description` VARCHAR(255) NULL DEFAULT NULL AFTER `name`";
