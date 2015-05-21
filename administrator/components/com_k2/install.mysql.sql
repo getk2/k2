@@ -81,8 +81,8 @@ CREATE TABLE IF NOT EXISTS `#__k2_extra_fields_groups_xref` (
 
 CREATE TABLE IF NOT EXISTS `#__k2_extra_fields_xref` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `extra_fields_id` int(11) NOT NULL,
-  `extra_fields_group_id` int(11) NOT NULL,
+  `extraFieldsID` int(11) NOT NULL,
+  `extraFieldsGroupID` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
