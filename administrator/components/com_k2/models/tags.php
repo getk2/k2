@@ -151,7 +151,7 @@ class K2ModelTags extends K2Model
 
 		$db = JFactory::getDBO();
 		$query = "SELECT name, id FROM #__k2_tags ORDER BY name";
-		$db->setQuery($query, 0, 1000);
+		$db->setQuery($query);
 		$rows = $db->loadObjectList();
 		return $rows;
 
