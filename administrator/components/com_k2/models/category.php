@@ -173,15 +173,19 @@ class K2ModelCategory extends K2Model
 				$insert = array();
 				foreach ($extraFieldsGroupsIds as $extraFieldsGroupsId)
 				{					
-					if ($extraFieldsGroupsId != $extraFieldsGroups[$i]->extraFieldsGroup)
+					if ($extraFieldsGroupsId === 0)
 					{
-						$id = null;
+						continue;
+					}
+					elseif ($extraFieldsGroupsId != $extraFieldsGroups[$i]->extraFieldsGroup)
+					{
+						$id = 'NULL';
 					}
 					else
 					{
 						$id = $extraFieldsGroups[$i]->id;
 					}
-					$insert[] = '('.(int)$id.','.(int)$row->id.',"category",'.$extraFieldsGroupsId.')';
+					$insert[] = '('.$id.','.(int)$row->id.',"category",'.$extraFieldsGroupsId.')';
 					$i++;
 				}			
 				if (!empty($insert))
