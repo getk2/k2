@@ -502,9 +502,18 @@ class plgSystemK2 extends JPlugin
 			return;
 		}
 
-		$option = JRequest::getCmd('option');
-		$task = JRequest::getCmd('task');
-		$type = JRequest::getCmd('catid');
+		if ((int)K2_JVERSION < 25) {
+
+			$option = JRequest::getCmd('option');
+			$task = JRequest::getCmd('task');
+			$type = JRequest::getCmd('catid');
+
+		} else {
+
+			$option = JFactory::getApplication()->input->get('option');
+			$task = JFactory::getApplication()->input->get('task');
+			$type =  JRequest::getCmd('catid');	
+		}
 
 		if ($option != 'com_joomfish')
 			return;
