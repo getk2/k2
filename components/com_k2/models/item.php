@@ -1394,218 +1394,225 @@ class K2ModelItem extends K2Model
 		JArrayHelper::toInteger($extraFieldsIDs);
 		$condition = @implode(',', $extraFieldsIDs);
 
-		$query = "SELECT extraFieldsGroup FROM #__k2_categories WHERE id=".(int)$item->catid;
+		//JAW modified - for multiple extended field groups
+		$query = "SELECT extraFieldsGroup FROM `#__k2_extra_fields_groups_xref` WHERE viewID=".(int)$item->catid." AND viewType='category'";
+		/*$query = "SELECT extraFieldsGroup FROM #__k2_categories WHERE id=".(int)$item->catid;*/
 		$db->setQuery($query);
-		$group = $db->loadResult();
-
-		$query = "SELECT * FROM #__k2_extra_fields WHERE `group` = ".(int)$group." AND published=1 AND (id IN ({$condition}) OR `type` = 'header') ORDER BY ordering ASC";
-		$db->setQuery($query);
-		$rows = $db->loadObjectList();
-		$size = count($rows);
-
-		for ($i = 0; $i < $size; $i++)
+		$groups = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
+		$groupIDs = implode(',', $groups);
+		
+		if($groupIDs)
 		{
+			$query = "SELECT DISTINCT exf.* FROM #__k2_extra_fields AS exf LEFT JOIN #__k2_extra_fields_xref AS exfxref ON exf.id=exfxref.extraFieldsID WHERE exfxref.extraFieldsGroupID IN ({$groupIDs}) AND published=1 AND (exf.id IN ({$condition}) OR exf.type = 'header') ORDER BY ordering ASC";
+			//$query = "SELECT * FROM #__k2_extra_fields WHERE `group` = ".(int)$group." AND published=1 AND (id IN ({$condition}) OR `type` = 'header') ORDER BY ordering ASC";
+			$db->setQuery($query);
+			$rows = $db->loadObjectList();
+			$size = count($rows);
 
-			$value = '';
-			$values = array();
-			foreach ($jsonObjects as $object)
+			for ($i = 0; $i < $size; $i++)
 			{
-				if ($rows[$i]->id == $object->id)
-				{
-					if ($rows[$i]->type == 'textfield' || $rows[$i]->type == 'textarea' || $rows[$i]->type == 'date')
-					{
-						$value = $object->value;
-						if ($rows[$i]->type == 'date' && $value)
-						{
-							$offset = (K2_JVERSION != '15') ? null : 0;
-							$value = JHTML::_('date', $value, JText::_('K2_DATE_FORMAT_LC'), $offset);
-						}
 
-					}
-					else if ($rows[$i]->type == 'image')
+				$value = '';
+				$values = array();
+				foreach ($jsonObjects as $object)
+				{
+					if ($rows[$i]->id == $object->id)
 					{
-						if ($object->value)
+						if ($rows[$i]->type == 'textfield' || $rows[$i]->type == 'textarea' || $rows[$i]->type == 'date')
 						{
-							$src = '';
-							if (JString::strpos('http://', $object->value) === false)
+							$value = $object->value;
+							if ($rows[$i]->type == 'date' && $value)
 							{
-								$src .= JURI::root(true);
+								$offset = (K2_JVERSION != '15') ? null : 0;
+								$value = JHTML::_('date', $value, JText::_('K2_DATE_FORMAT_LC'), $offset);
 							}
-							$src .= $object->value;
-							$value = '<img src="'.$src.'" alt="'.$rows[$i]->name.'" />';
+
+						}
+						else if ($rows[$i]->type == 'image')
+						{
+							if ($object->value)
+							{
+								$src = '';
+								if (JString::strpos('http://', $object->value) === false)
+								{
+									$src .= JURI::root(true);
+								}
+								$src .= $object->value;
+								$value = '<img src="'.$src.'" alt="'.$rows[$i]->name.'" />';
+							}
+							else
+							{
+								$value = false;
+							}
+
+						}
+						else if ($rows[$i]->type == 'labels')
+						{
+							$labels = explode(',', $object->value);
+							if (!is_array($labels))
+							{
+								$labels = (array)$labels;
+							}
+							$value = '';
+							foreach ($labels as $label)
+							{
+								$label = JString::trim($label);
+								$label = str_replace('-', ' ', $label);
+								$value .= '<a href="'.JRoute::_('index.php?option=com_k2&view=itemlist&task=search&searchword='.urlencode($label)).'">'.$label.'</a> ';
+							}
+
+						}
+						else if ($rows[$i]->type == 'select' || $rows[$i]->type == 'radio')
+						{
+							foreach ($json->decode($rows[$i]->value) as $option)
+							{
+								if ($option->value == $object->value)
+								{
+									$value .= $option->name;
+								}
+
+							}
+						}
+						else if ($rows[$i]->type == 'multipleSelect')
+						{
+							foreach ($json->decode($rows[$i]->value) as $option)
+							{
+								if (@in_array($option->value, $object->value))
+								{
+									$values[] = $option->name;
+								}
+
+							}
+							$value = @implode(', ', $values);
+						}
+						else if ($rows[$i]->type == 'csv')
+						{
+							$array = $object->value;
+							if (count($array))
+							{
+								$value .= '<table cellspacing="0" cellpadding="0" class="csvTable">';
+								foreach ($array as $key => $row)
+								{
+									$value .= '<tr>';
+									foreach ($row as $cell)
+									{
+										$value .= ($key > 0) ? '<td>'.$cell.'</td>' : '<th>'.$cell.'</th>';
+									}
+									$value .= '</tr>';
+								}
+								$value .= '</table>';
+							}
+
 						}
 						else
 						{
-							$value = false;
-						}
 
-					}
-					else if ($rows[$i]->type == 'labels')
-					{
-						$labels = explode(',', $object->value);
-						if (!is_array($labels))
-						{
-							$labels = (array)$labels;
-						}
-						$value = '';
-						foreach ($labels as $label)
-						{
-							$label = JString::trim($label);
-							$label = str_replace('-', ' ', $label);
-							$value .= '<a href="'.JRoute::_('index.php?option=com_k2&view=itemlist&task=search&searchword='.urlencode($label)).'">'.$label.'</a> ';
-						}
-
-					}
-					else if ($rows[$i]->type == 'select' || $rows[$i]->type == 'radio')
-					{
-						foreach ($json->decode($rows[$i]->value) as $option)
-						{
-							if ($option->value == $object->value)
+							switch ($object->value[2])
 							{
-								$value .= $option->name;
+								case 'same' :
+								default :
+									$attributes = '';
+									break;
+
+								case 'new' :
+									$attributes = 'target="_blank"';
+									break;
+
+								case 'popup' :
+									$attributes = 'class="classicPopup" rel="{\'x\':'.$params->get('linkPopupWidth').',\'y\':'.$params->get('linkPopupHeight').'}"';
+									break;
+
+								case 'lightbox' :
+
+									// Joomla! modal required
+									if (!defined('K2_JOOMLA_MODAL_REQUIRED'))
+										define('K2_JOOMLA_MODAL_REQUIRED', true);
+
+									$filename = @basename($object->value[1]);
+									$extension = JFile::getExt($filename);
+									if (!empty($extension) && in_array($extension, $imgExtensions))
+									{
+										$attributes = 'class="modal"';
+									}
+									else
+									{
+										$attributes = 'class="modal" rel="{handler:\'iframe\',size:{x:'.$params->get('linkPopupWidth').',y:'.$params->get('linkPopupHeight').'}}"';
+									}
+									break;
 							}
+							$object->value[0] = JString::trim($object->value[0]);
+							$object->value[1] = JString::trim($object->value[1]);
 
-						}
-					}
-					else if ($rows[$i]->type == 'multipleSelect')
-					{
-						foreach ($json->decode($rows[$i]->value) as $option)
-						{
-							if (@in_array($option->value, $object->value))
+							if ($object->value[1] && $object->value[1] != 'http://' && $object->value[1] != 'https://')
 							{
-								$values[] = $option->name;
-							}
-
-						}
-						$value = @implode(', ', $values);
-					}
-					else if ($rows[$i]->type == 'csv')
-					{
-						$array = $object->value;
-						if (count($array))
-						{
-							$value .= '<table cellspacing="0" cellpadding="0" class="csvTable">';
-							foreach ($array as $key => $row)
-							{
-								$value .= '<tr>';
-								foreach ($row as $cell)
+								if ($object->value[0] == '')
 								{
-									$value .= ($key > 0) ? '<td>'.$cell.'</td>' : '<th>'.$cell.'</th>';
+									$object->value[0] = $object->value[1];
 								}
-								$value .= '</tr>';
+								$rows[$i]->url = $object->value[1];
+								$rows[$i]->text = $object->value[0];
+								$rows[$i]->attributes = $attributes;
+								$value = '<a href="'.$object->value[1].'" '.$attributes.'>'.$object->value[0].'</a>';
 							}
-							$value .= '</table>';
+							else
+							{
+								$value = false;
+							}
 						}
 
+					}
+
+				}
+
+				if ($rows[$i]->type == 'header')
+				{
+					$tmp = json_decode($rows[$i]->value);
+					if (!$tmp[0]->displayInFrontEnd)
+					{
+						$value = null;
 					}
 					else
 					{
-
-						switch ($object->value[2])
-						{
-							case 'same' :
-							default :
-								$attributes = '';
-								break;
-
-							case 'new' :
-								$attributes = 'target="_blank"';
-								break;
-
-							case 'popup' :
-								$attributes = 'class="classicPopup" rel="{\'x\':'.$params->get('linkPopupWidth').',\'y\':'.$params->get('linkPopupHeight').'}"';
-								break;
-
-							case 'lightbox' :
-
-								// Joomla! modal required
-								if (!defined('K2_JOOMLA_MODAL_REQUIRED'))
-									define('K2_JOOMLA_MODAL_REQUIRED', true);
-
-								$filename = @basename($object->value[1]);
-								$extension = JFile::getExt($filename);
-								if (!empty($extension) && in_array($extension, $imgExtensions))
-								{
-									$attributes = 'class="modal"';
-								}
-								else
-								{
-									$attributes = 'class="modal" rel="{handler:\'iframe\',size:{x:'.$params->get('linkPopupWidth').',y:'.$params->get('linkPopupHeight').'}}"';
-								}
-								break;
-						}
-						$object->value[0] = JString::trim($object->value[0]);
-						$object->value[1] = JString::trim($object->value[1]);
-
-						if ($object->value[1] && $object->value[1] != 'http://' && $object->value[1] != 'https://')
-						{
-							if ($object->value[0] == '')
-							{
-								$object->value[0] = $object->value[1];
-							}
-							$rows[$i]->url = $object->value[1];
-							$rows[$i]->text = $object->value[0];
-							$rows[$i]->attributes = $attributes;
-							$value = '<a href="'.$object->value[1].'" '.$attributes.'>'.$object->value[0].'</a>';
-						}
-						else
-						{
-							$value = false;
-						}
+						$value = $tmp[0]->value;
 					}
-
 				}
 
-			}
-
-			if ($rows[$i]->type == 'header')
-			{
-				$tmp = json_decode($rows[$i]->value);
-				if (!$tmp[0]->displayInFrontEnd)
+				// Detect alias
+				$tmpValues = $json->decode($rows[$i]->value);
+				if (isset($tmpValues[0]) && isset($tmpValues[0]->alias) && !empty($tmpValues[0]->alias))
 				{
-					$value = null;
+					$rows[$i]->alias = $tmpValues[0]->alias;
 				}
 				else
 				{
-					$value = $tmp[0]->value;
-				}
-			}
-
-			// Detect alias
-			$tmpValues = $json->decode($rows[$i]->value);
-			if (isset($tmpValues[0]) && isset($tmpValues[0]->alias) && !empty($tmpValues[0]->alias))
-			{
-				$rows[$i]->alias = $tmpValues[0]->alias;
-			}
-			else
-			{
-				$filter = JFilterInput::getInstance();
-				$rows[$i]->alias = $filter->clean($rows[$i]->name, 'WORD');
-				if (!$rows[$i]->alias)
-				{
-					$rows[$i]->alias = 'extraField'.$rows[$i]->id;
-				}
-			}
-
-			if (JString::trim($value) != '')
-			{
-				$rows[$i]->value = $value;
-				if (!is_null($item))
-				{
-					if (!isset($item->extraFields))
+					$filter = JFilterInput::getInstance();
+					$rows[$i]->alias = $filter->clean($rows[$i]->name, 'WORD');
+					if (!$rows[$i]->alias)
 					{
-						$item->extraFields = new stdClass;
+						$rows[$i]->alias = 'extraField'.$rows[$i]->id;
 					}
-					$tmpAlias = $rows[$i]->alias;
-					$item->extraFields->$tmpAlias = $rows[$i];
 				}
-			}
-			else
-			{
-				unset($rows[$i]);
+
+				if (JString::trim($value) != '')
+				{
+					$rows[$i]->value = $value;
+					if (!is_null($item))
+					{
+						if (!isset($item->extraFields))
+						{
+							$item->extraFields = new stdClass;
+						}
+						$tmpAlias = $rows[$i]->alias;
+						$item->extraFields->$tmpAlias = $rows[$i];
+					}
+				}
+				else
+				{
+					unset($rows[$i]);
+				}
 			}
 		}
-
+		
 		if ($item)
 		{
 			$K2ItemExtraFieldsInstances[$item->id] = $rows;
