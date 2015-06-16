@@ -214,6 +214,7 @@ class K2ControllerItem extends K2Controller
 		$category = JTable::getInstance('K2Category', 'Table');
 		$category->load($catid);
 		//JAW modified - for multiple extended field groups
+		$db = JFactory::getDBO();		
 		$query = "SELECT extraFieldsGroup FROM `#__k2_extra_fields_groups_xref` WHERE viewID=".(int)$catid." AND viewType='category'";
 		$db->setQuery($query);
 		$category->extraFieldsGroups = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();

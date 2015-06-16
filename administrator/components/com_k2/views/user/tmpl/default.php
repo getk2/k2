@@ -55,7 +55,58 @@ defined('_JEXEC') or die;
       <td><textarea name="notes" cols="60" rows="5"><?php echo $this->row->notes; ?></textarea></td>
     </tr>
   </table>
-  
+ 	<!-- JAW modified - added extraFields to users -->
+    <!-- user extra fields -->
+	<div id="extraFieldsContainer">
+		<?php if (count($this->extraFields)): ?>
+			<table class="admintable table" id="extraFields">
+				<?php foreach ($this->extraFields as $extraField): ?>
+					<tr>
+						<?php if ($extraField->type == 'header'): ?>
+							<td colspan="2" ><h4 class="k2ExtraFieldHeader"><?php echo $extraField->name; ?></h4></td>
+						<?php else: ?>
+							<td align="right" class="key">
+								<label for="K2ExtraField_<?php echo $extraField->id; ?>"><?php echo $extraField->name; ?></label>
+							</td>
+							<td>
+								<?php echo $extraField->element; ?>
+							</td>
+						<?php endif; ?>
+					</tr>
+				<?php endforeach; ?>
+			</table>
+		<?php else: ?>
+			<?php if (K2_JVERSION == '15'): ?>
+				<dl id="system-message">
+					<dt class="notice"><?php echo JText::_('K2_NOTICE'); ?></dt>
+					<dd class="notice message fade">
+						<ul>
+							<li><?php echo JText::_('K2_PLEASE_SELECT_A_USER_GROUP_FIRST_TO_RETRIEVE_ITS_RELATED_EXTRA_FIELDS'); ?></li>
+						</ul>
+					</dd>
+				</dl>
+			<?php elseif (K2_JVERSION == '25'): ?>
+				<div id="system-message-container">
+					<dl id="system-message">
+						<dt class="notice"><?php echo JText::_('K2_NOTICE'); ?></dt>
+						<dd class="notice message">
+							<ul>
+								<li><?php echo JText::_('K2_PLEASE_SELECT_A_USER_GROUP_FIRST_TO_RETRIEVE_ITS_RELATED_EXTRA_FIELDS'); ?></li>
+							</ul>
+						</dd>
+					</dl>
+				</div>
+			<?php else: ?>
+				<div class="alert">
+					<h4 class="alert-heading"><?php echo JText::_('K2_NOTICE'); ?></h4>
+					<div>
+						<p><?php echo JText::_('K2_PLEASE_SELECT_A_USER_GROUP_FIRST_TO_RETRIEVE_ITS_RELATED_EXTRA_FIELDS'); ?></p>
+					</div>
+				</div>
+			<?php endif; ?>
+		<?php endif; ?>
+	</div> 
+
 	<?php if(count(array_filter($this->K2Plugins))): ?>
 	<?php foreach ($this->K2Plugins as $K2Plugin): ?>
 	<?php if(!is_null($K2Plugin)): ?>

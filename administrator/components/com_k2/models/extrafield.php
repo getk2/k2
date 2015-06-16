@@ -277,10 +277,22 @@ class K2ModelExtraField extends K2Model
 		require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'lib'.DS.'JSON.php');
 		$json = new Services_JSON;
 
-		if (!is_null($itemID))
+		// JAW modified - added different types
+		if ($type == 'item')
 		{
-			$item = JTable::getInstance('K2Item', 'Table');
-			$item->load($itemID);
+			if (!is_null($oid))
+			{		
+				$item = JTable::getInstance('K2Item', 'Table');
+				$item->load($oid);
+			}
+		}
+		elseif ($type == 'user')
+		{
+			if (!is_null($oid))
+			{		
+				$user = JTable::getInstance('K2User', 'Table');
+				$user->load($oid);
+			}
 		}
 
 		$defaultValues = $json->decode($extraField->value);
@@ -320,9 +332,17 @@ class K2ModelExtraField extends K2Model
 			$active = '';
 		}
 
-		if (isset($item))
+		if (isset($item)|| isset($user))
 		{
+			if($item)
+			{
 			$currentValues = $json->decode($item->extra_fields);
+			}
+			elseif($user)
+			{
+				$currentValues = $json->decode($user->extra_fields);
+			}
+			
 			if (count($currentValues))
 			{
 				foreach ($currentValues as $value)
@@ -333,11 +353,11 @@ class K2ModelExtraField extends K2Model
 						{
 							$active[0] = $value->value;
 						}
-						else if ($extraField->type == 'date')
+						elseif ($extraField->type == 'date')
 						{
 							$active = (is_array($value->value)) ? $value->value[0] : $value->value;
 						}
-						else if ($extraField->type == 'header')
+						elseif ($extraField->type == 'header')
 						{
 							continue;
 						}

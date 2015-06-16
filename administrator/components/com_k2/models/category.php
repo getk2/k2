@@ -147,10 +147,10 @@ class K2ModelCategory extends K2Model
 		if ($row->id)
 		{
 			$db = JFactory::getDBO();
-			$query = "SELECT * FROM #__k2_extra_fields_groups_xref WHERE viewID={$row->id}";
+			$query = "SELECT * FROM #__k2_extra_fields_groups_xref WHERE viewID={$row->id} AND viewType='category'";
 			$db->setQuery($query);
 			$extraFieldsGroups = $db->loadObjectList();
-			$filters = array('viewID='.$row->id);
+			$filters = array('viewID='.$row->id.' AND viewType=\'category\'');
 			if (count($extraFieldsGroups))
 			{
 				$ids = array();
