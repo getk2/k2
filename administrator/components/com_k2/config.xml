@@ -289,8 +289,7 @@
 		</param>
 		<param menu="hide" name="commenterImgWidth" type="text" default="48" size="4" label="K2_COMMENTER_IMAGE_AVATAR_WIDTH_IN_PX" description="" />
 		<param menu="hide" name="" type="header" default="K2_ONLINE_IMAGE_EDITOR" label="" description="" />
-		<param menu="hide" name="onlineImageEditor" type="list" default="splashup" label="K2_SELECT_ONLINE_IMAGE_EDITOR" description="">
-			<option value="splashup">K2_IMG_EDITOR_SPLASHUP</option>
+		<param menu="hide" name="onlineImageEditor" type="list" default="sumopaint" label="K2_SELECT_ONLINE_IMAGE_EDITOR" description="">
 			<option value="sumopaint">K2_IMG_EDITOR_SUMOPAINT</option>
 			<option value="pixlr">K2_IMG_EDITOR_PIXLR</option>
 		</param>
@@ -853,8 +852,7 @@
 		</field>
 		<field menu="hide" name="commenterImgWidth" type="text" default="48" size="4" label="K2_COMMENTER_IMAGE_AVATAR_WIDTH_IN_PX" description="" />
 		<field menu="hide" name="" type="header" default="K2_ONLINE_IMAGE_EDITOR" label="" description="" />
-		<field menu="hide" name="onlineImageEditor" type="list" default="splashup" label="K2_SELECT_ONLINE_IMAGE_EDITOR" description="">
-			<option value="splashup">K2_IMG_EDITOR_SPLASHUP</option>
+		<field menu="hide" name="onlineImageEditor" type="list" default="sumopaint" label="K2_SELECT_ONLINE_IMAGE_EDITOR" description="">
 			<option value="sumopaint">K2_IMG_EDITOR_SUMOPAINT</option>
 			<option value="pixlr">K2_IMG_EDITOR_PIXLR</option>
 		</field>

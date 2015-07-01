@@ -50,13 +50,11 @@ $modLogo = (int)$params->get('modLogo', 1);
 // Component parameters
 $componentParams = JComponentHelper::getParams('com_k2');
 
-$onlineImageEditor = $componentParams->get('onlineImageEditor', 'splashup');
+$onlineImageEditor = $componentParams->get('onlineImageEditor', 'sumopaint');
 
 switch($onlineImageEditor)
 {
-	case 'splashup' :
-		$onlineImageEditorLink = 'http://splashup.com/splashup/';
-		break;
+	default:
 	case 'sumopaint' :
 		$onlineImageEditorLink = 'http://www.sumopaint.com/app/';
 		break;

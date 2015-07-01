@@ -191,7 +191,7 @@
 		<param name="userImageWidth" default="100" />
 		<param name="userImageDefault" default="1" />
 		<param name="commenterImgWidth" default="48" />
-		<param name="onlineImageEditor" default="splashup" />
+		<param name="onlineImageEditor" default="sumopaint" />
 		<param name="imageTimestamp" default="0" />
 		<param name="imageMemoryLimit" default="" />
 		<!-- ######################### Social Settings ######################### -->
