@@ -146,6 +146,7 @@ class K2ViewItemlist extends K2View
                     $category->description = $category->text;
 
                     //Category K2 plugins
+                    $category->event = new stdClass;
                     $category->event->K2CategoryDisplay = '';
                     JPluginHelper::importPlugin('k2');
                     $results = $dispatcher->trigger('onK2CategoryDisplay', array(&$category, &$params, $limitstart));
