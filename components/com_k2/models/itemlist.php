@@ -134,7 +134,10 @@ class K2ModelItemlist extends K2Model
 				{
 					$categories = array_filter($categories);
 					JArrayHelper::toInteger($categories);
-					$query .= " AND c.id IN(".implode(',', $categories).")";
+					if(count($categories))
+					{
+						$query .= " AND c.id IN(".implode(',', $categories).")";
+					}
 				}
 				if (is_string($categories) && $categories > 0)
 				{
@@ -449,7 +452,10 @@ class K2ModelItemlist extends K2Model
 				{
 					$categories = array_filter($categories);
 					JArrayHelper::toInteger($categories);
-					$query .= " AND c.id IN(".implode(',', $categories).")";
+					if(count($categories))
+					{
+						$query .= " AND c.id IN(".implode(',', $categories).")";
+					}
 				}
 				if (is_string($categories) && $categories > 0)
 				{
