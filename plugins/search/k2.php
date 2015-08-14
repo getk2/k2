@@ -83,7 +83,74 @@ class plgSearchK2 extends JPlugin
 
         if ($limit > 0)
         {
+/* search categories */
+            if ($phrase == 'exact')
+            {
+                $text = JString::trim($text, '"');
+                $escaped = K2_JVERSION == '15' ? $db->getEscaped($text, true) : $db->escape($text, true);
+		$quoted = $db->Quote($escaped);
+		$where = " ( LOWER(c.name) = ".$quoted." OR LOWER(c.alias) = ".$quoted." OR LOWER(c.`description`) = ".$quoted.")  ";
+            }
+            else
+            {
+                $escaped = K2_JVERSION == '15' ? $db->getEscaped($text, true) : $db->escape($text, true);
+		$quoted = $db->Quote('%'.$escaped.'%', false);
+		$where = " ( LOWER(c.name) LIKE ".$quoted." OR LOWER(c.alias) LIKE ".$quoted." OR LOWER(c.description) LIKE ".$quoted." ) ";
+            }
 
+        $query = "
+		SELECT c.name AS title, c.description AS text, c.alias AS alias, 
+		c.date_created AS created, 
+		CASE WHEN p.name IS NULL THEN '' ELSE p.name END AS section, 
+		c.id as catslug
+		FROM #__k2_categories AS c LEFT JOIN #__k2_categories AS p ON (c.parent = p.id ) 
+		WHERE (".$where.")
+		    AND c.published = 1
+		    AND c.access {$accessCheck}
+		    AND c.trash = 0 ";
+
+            if (K2_JVERSION != '15' && $mainframe->isSite() && $mainframe->getLanguageFilter())
+            {
+                $languageTag = JFactory::getLanguage()->getTag();
+                $query .= " AND c.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") " ;
+            }
+
+            switch ($ordering)
+            {
+                case 'oldest' :
+                    $query .= 'ORDER BY c.date_created ASC';
+                    break;
+
+                case 'popular' :
+                    $query .= 'ORDER BY c.id ASC';
+                    break;
+
+                case 'category' :
+                case 'alpha' :
+                    $query .= 'ORDER BY c.name ASC';
+                    break;
+
+                case 'newest' :
+                default :
+                    $query .= 'ORDER BY c.date_created DESC';
+                    break;
+            }
+
+            $db->setQuery($query, 0, $limit);
+            $list = $db->loadObjectList();
+            $limit -= count($list);
+            if (isset($list))
+            {
+                foreach ($list as $key => $item)
+                {
+                    $list[$key]->href = JRoute::_(K2HelperRoute::getCategoryRoute($item->catslug));
+
+                }
+            }
+            $rows[] = $list;
+
+/* search items */
+	    $list=array();
             if ($pluginParams->get('search_tags'))
             {
                 $tagQuery = JString::strtolower($text);
