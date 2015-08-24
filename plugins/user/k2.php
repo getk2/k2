@@ -139,7 +139,7 @@ class plgUserK2 extends JPlugin
 				}
 				$image = '';
 			}
-			if(isset($image))
+			if (isset($image))
 			{
 				$row->image = $image;
 				$row->store();
@@ -152,10 +152,18 @@ class plgUserK2 extends JPlugin
 				$menu = JSite::getMenu();
 				$item = $menu->getItem($itemid);
 				$url = JRoute::_($item->link.'&Itemid='.$itemid, false);
-				if (JURI::isInternal($url))
+
+				if (K2_JVERSION == '15')
 				{
-					$mainframe->enqueueMessage(JText::_('K2_YOUR_SETTINGS_HAVE_BEEN_SAVED'));
-					$mainframe->redirect($url);
+					if (JURI::isInternal($url))
+					{
+						$mainframe->enqueueMessage(JText::_('K2_YOUR_SETTINGS_HAVE_BEEN_SAVED'));
+						$mainframe->redirect($url);
+					}
+				}
+				else
+				{
+					$mainframe->setUserState('com_users.edit.profile.redirect', $url);
 				}
 			}
 		}
