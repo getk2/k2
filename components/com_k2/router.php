@@ -226,11 +226,12 @@ if ($params->get('k2Sef'))
 						{
 							// Try to split the slud
 							$temp = @explode(':', $segments[2]);
+							unset($segments[2]);
 
 							// If the slug contained an item id do not use it
 							if (count($temp) > 1)
 							{
-								@$segments[1] = $temp[2];
+								@$segments[1] = $temp[1];
 							}
 						}
 
@@ -351,6 +352,13 @@ if ($params->get('k2Sef'))
 				case 'category' :
 					if (isset($segments[2]))
 					{
+						// Reinsert item id to the item alias
+						if (!$params->get('k2SefInsertCatId'))
+						{
+							$segments[2] = str_replace(':', '-', $segments[2]);
+							$catId = getCatId($segments[2]);
+							$segments[2] = $catId.':'.$segments[2];
+						}
 						$vars['id'] = $segments[2];
 					}
 					break;
@@ -407,7 +415,7 @@ if ($params->get('k2Sef'))
 
 				default :
 					$vars['id'] = $segments[1];
-					if(isset($segments[2]))
+					if (isset($segments[2]))
 					{
 						$vars['id'] .= ':'.str_replace(':', '-', $segments[2]);
 					}
@@ -472,6 +480,31 @@ if ($params->get('k2Sef'))
 		$id = null;
 		$db = JFactory::getDBO();
 		$query = "SELECT id FROM #__k2_items WHERE alias = ".$db->quote($alias);
+		$db->setQuery($query);
+		try
+		{
+			$id = $db->loadResult();
+		}
+		catch (Exception $e)
+		{
+			$this->setError($e->getMessage());
+			return false;
+		}
+		return $id;
+	}
+
+	/**
+	 * Get id K2.
+	 *
+	 * @param   string  $alias  The k2 category alias
+	 *
+	 * @return  integer
+	 */
+	function getCatId($alias)
+	{
+		$id = null;
+		$db = JFactory::getDBO();
+		$query = "SELECT id FROM #__k2_categories WHERE alias = ".$db->quote($alias);
 		$db->setQuery($query);
 		try
 		{
