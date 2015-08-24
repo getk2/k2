@@ -90,11 +90,6 @@ class K2ModelUsers extends K2Model
             $filter_order = "juser.name";
         }
 
-        if (K2_JVERSION != '15' && $filter_group)
-        {
-            $query .= "  GROUP BY juser.id  ";
-        }
-
         $query .= " ORDER BY {$filter_order} {$filter_order_Dir}";
 
         $db->setQuery($query, $limitstart, $limit);
