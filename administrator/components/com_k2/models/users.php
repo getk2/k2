@@ -36,7 +36,7 @@ class K2ModelUsers extends K2Model
 
         $query = "SELECT juser.*, k2user.group, k2group.name as groupname FROM #__users as juser "."LEFT JOIN #__k2_users as k2user ON juser.id=k2user.userID "."LEFT JOIN #__k2_user_groups as k2group ON k2user.group=k2group.id ";
 
-        if (K2_JVERSION != '15')
+        if (K2_JVERSION != '15' && $filter_group)
         {
             $query .= " LEFT JOIN #__user_usergroup_map as `map` ON juser.id=map.user_id ";
         }
@@ -90,7 +90,7 @@ class K2ModelUsers extends K2Model
             $filter_order = "juser.name";
         }
 
-        if (K2_JVERSION != '15')
+        if (K2_JVERSION != '15' && $filter_group)
         {
             $query .= "  GROUP BY juser.id  ";
         }
@@ -146,7 +146,7 @@ class K2ModelUsers extends K2Model
 
         $query = "SELECT COUNT(DISTINCT juser.id) FROM #__users as juser "."LEFT JOIN #__k2_users as k2user ON juser.id=k2user.userID "."LEFT JOIN #__k2_user_groups as k2group ON k2user.group=k2group.id ";
 
-        if (K2_JVERSION != '15')
+        if (K2_JVERSION != '15' && $filter_group)
         {
             $query .= " LEFT JOIN #__user_usergroup_map as `map` ON juser.id=map.user_id ";
         }
