@@ -380,7 +380,6 @@ class K2ViewItem extends K2View
 		{
 			$active = $user->id;
 		}
-		$lists['authors'] = JHTML::_('list.users', 'created_by', $active, false);
 
 		$categories_option[] = JHTML::_('select.option', 0, JText::_('K2_SELECT_CATEGORY'));
 		$categories = $categoriesModel->categoriesTree(NUll, true, false);
