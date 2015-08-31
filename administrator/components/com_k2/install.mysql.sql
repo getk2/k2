@@ -48,7 +48,8 @@ CREATE TABLE IF NOT EXISTS `#__k2_comments` (
   KEY `itemID` (`itemID`),
   KEY `userID` (`userID`),
   KEY `published` (`published`),
-  KEY `latestComments` (`published`,`commentDate`)
+  KEY `latestComments` (`published`,`commentDate`),
+  KEY `countComments` (`itemID`,`published`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `#__k2_extra_fields` (

@@ -260,6 +260,26 @@ class Com_K2InstallerScript
             $db->query();
         }*/
 
+        // Add index for comments count
+        $query = "SHOW INDEX FROM #__k2_comments";
+        $db->setQuery($query);
+        $indexes = $db->loadObjectList();
+        $indexExists = false;
+        foreach ($indexes as $index)
+        {
+            if ($index->Key_name == 'countComments')
+                $indexExists = true;
+        }
+
+        if (!$indexExists)
+        {
+            $query = "ALTER TABLE #__k2_comments ADD INDEX `countComments` (`itemID`, `published`)";
+            $db->setQuery($query);
+            $db->query();
+        }
+        
+        
+        
         $query = "SELECT COUNT(*) FROM #__k2_user_groups";
         $db->setQuery($query);
         $num = $db->loadResult();

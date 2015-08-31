@@ -210,6 +210,24 @@ if (version_compare(JVERSION, '1.6.0', '<'))
         $db->setQuery($query);
         $db->query();
     }*/
+    
+    // Add index for comments count
+    $query = "SHOW INDEX FROM #__k2_comments";
+    $db->setQuery($query);
+    $indexes = $db->loadObjectList();
+    $indexExists = false;
+    foreach ($indexes as $index)
+    {
+        if ($index->Key_name == 'countComments')
+            $indexExists = true;
+    }
+    if (!$indexExists)
+    {
+        $query = "ALTER TABLE #__k2_comments ADD INDEX `countComments` (`itemID`, `published`)";
+        $db->setQuery($query);
+        $db->query();
+    }
+	
 
     $fields = $db->getTableFields('#__k2_users');
     if (!array_key_exists('ip', $fields['#__k2_users']))
