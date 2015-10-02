@@ -89,28 +89,13 @@ class K2ControllerMedia extends K2Controller
 
 		if ($mainframe->isAdmin())
 		{
-			$permissions = array(
-				'read' => true,
-				'write' => true
-			);
+			$permissions = array('read' => true, 'write' => true);
 		}
 		else
 		{
-			$permissions = array(
-				'read' => true,
-				'write' => false
-			);
+			$permissions = array('read' => true, 'write' => false);
 		}
-		$options = array(
-			'debug' => false,
-			'roots' => array( array(
-					'driver' => 'LocalFileSystem',
-					'path' => $path,
-					'URL' => $url,
-					'accessControl' => 'access',
-					'defaults' => $permissions
-				))
-		);
+		$options = array('debug' => false, 'roots' => array( array('driver' => 'LocalFileSystem', 'path' => $path, 'URL' => $url, 'accessControl' => 'access', 'defaults' => $permissions, 'uploadAllow' => array('image', 'video', 'audio', 'text/plain', 'text/html', 'application/json', 'application/pdf', 'application/zip', 'application/x-7z-compressed', 'application/x-bzip', 'application/x-bzip2', 'text/css', 'application/msword', 'application/vnd.ms-excel', 'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.openxmlformats-officedocument.presentationml.presentation'), 'uploadOrder' => array('allow', 'deny'))));
 		$connector = new elFinderConnector(new elFinder($options));
 		$connector->run();
 	}
