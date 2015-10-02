@@ -297,7 +297,7 @@ class K2ModelCategories extends K2Model
         $row->move(-1, 'parent = '.$row->parent.' AND trash=0');
         $params = JComponentHelper::getParams('com_k2');
         if (!$params->get('disableCompactOrdering'))
-            $row->reorder('parent = '.$row->parent.' AND trash=0');
+            $row->reorder('parent = '.(int)$row->parent.' AND trash=0');
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         $msg = JText::_('K2_NEW_ORDERING_SAVED');
@@ -315,7 +315,7 @@ class K2ModelCategories extends K2Model
         $row->move(1, 'parent = '.$row->parent.' AND trash=0');
         $params = JComponentHelper::getParams('com_k2');
         if (!$params->get('disableCompactOrdering'))
-            $row->reorder('parent = '.$row->parent.' AND trash=0');
+            $row->reorder('parent = '.(int)$row->parent.' AND trash=0');
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         $msg = JText::_('K2_NEW_ORDERING_SAVED');
@@ -655,7 +655,7 @@ class K2ModelCategories extends K2Model
         	$row = JTable::getInstance('K2Category', 'Table');
             $row->load($id);
             $row->parent = $catid;
-            $row->ordering = $row->getNextOrder('parent = '.$row->parent.' AND published = 1');
+            $row->ordering = $row->getNextOrder('parent = '.(int)$row->parent.' AND published = 1');
             $row->store();
         }
         $cache = JFactory::getCache('com_k2');

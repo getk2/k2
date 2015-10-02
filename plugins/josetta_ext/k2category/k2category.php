@@ -182,7 +182,7 @@ class plgJosetta_extK2Category extends plgJosetta_extBaseK2Plugin
 
 		if (!$row->id)
 		{
-			$row->ordering = $row->getNextOrder('parent = '.$row->parent.' AND trash=0');
+			$row->ordering = $row->getNextOrder('parent = '.(int)$row->parent.' AND trash=0');
 		}
 
 		$savepath = JPATH_ROOT.'/media/k2/categories/';
@@ -206,7 +206,7 @@ class plgJosetta_extK2Category extends plgJosetta_extBaseK2Plugin
 		}
 
 		if (!$params->get('disableCompactOrdering'))
-			$row->reorder('parent = '.$row->parent.' AND trash=0');
+			$row->reorder('parent = '.(int)$row->parent.' AND trash=0');
 
 		if ((int)$params->get('imageMemoryLimit'))
 		{

@@ -50,7 +50,7 @@ class K2ModelExtraField extends K2Model
 
 		if (!$row->id)
 		{
-			$row->ordering = $row->getNextOrder("`group` = {$row->group}");
+			$row->ordering = $row->getNextOrder("`group` = ".(int)$row->group);
 		}
 
 		$objects = array();
@@ -166,7 +166,7 @@ class K2ModelExtraField extends K2Model
 
 		$params = JComponentHelper::getParams('com_k2');
 		if (!$params->get('disableCompactOrdering'))
-			$row->reorder("`group` = {$row->group}");
+			$row->reorder("`group` = ".(int)$row->group);
 
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();

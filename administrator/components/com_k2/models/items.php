@@ -1372,7 +1372,7 @@ class K2ModelItems extends K2Model
 			$row = JTable::getInstance('K2Item', 'Table');
 			$row->load($id);
 			$row->catid = $catid;
-			$row->ordering = $row->getNextOrder('catid = '.$row->catid.' AND published = 1');
+			$row->ordering = $row->getNextOrder('catid = '.(int)$row->catid.' AND published = 1');
 			$row->store();
 		}
 		$cache = JFactory::getCache('com_k2');

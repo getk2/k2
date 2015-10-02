@@ -55,7 +55,7 @@ class K2ModelCategory extends K2Model
 
         if (!$row->id)
         {
-            $row->ordering = $row->getNextOrder('parent = '.$row->parent.' AND trash=0');
+            $row->ordering = $row->getNextOrder('parent = '.(int)$row->parent.' AND trash=0');
         }
 
         if (!$row->check())
@@ -71,7 +71,7 @@ class K2ModelCategory extends K2Model
         }
 
         if (!$params->get('disableCompactOrdering'))
-            $row->reorder('parent = '.$row->parent.' AND trash=0');
+            $row->reorder('parent = '.(int)$row->parent.' AND trash=0');
 
         if ((int)$params->get('imageMemoryLimit'))
         {

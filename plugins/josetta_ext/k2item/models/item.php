@@ -74,7 +74,7 @@ class JosettaK2ModelItem extends JModelLegacy
 		}
 		else
 		{
-			$row->ordering = $row->getNextOrder("catid = {$row->catid} AND trash = 0");
+			$row->ordering = $row->getNextOrder("catid = ".(int)$row->catid." AND trash = 0");
 			if ($row->featured)
 				$row->featured_ordering = $row->getNextOrder("featured = 1 AND trash = 0", 'featured_ordering');
 		}
@@ -150,7 +150,7 @@ class JosettaK2ModelItem extends JModelLegacy
 
 		if (!$params->get('disableCompactOrdering'))
 		{
-			$row->reorder("catid = {$row->catid} AND trash = 0");
+			$row->reorder("catid = ".(int)$row->catid." AND trash = 0");
 		}
 		if ($row->featured && !$params->get('disableCompactOrdering'))
 		{

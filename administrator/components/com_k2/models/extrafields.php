@@ -184,7 +184,7 @@ class K2ModelExtraFields extends K2Model
             foreach ($groupings as $group)
             {
             	$row = JTable::getInstance('K2ExtraField', 'Table');
-                $row->reorder("`group` = {$group}");
+                $row->reorder("`group` = ".(int)$group);
             }
         }
         $cache = JFactory::getCache('com_k2');
@@ -202,7 +202,7 @@ class K2ModelExtraFields extends K2Model
         $row->move(-1, "`group` = '{$row->group}'");
         $params = JComponentHelper::getParams('com_k2');
         if (!$params->get('disableCompactOrdering'))
-            $row->reorder("`group` = '{$row->group}'");
+            $row->reorder("`group` = ".(int)$row->group);
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         $msg = JText::_('K2_NEW_ORDERING_SAVED');
@@ -220,7 +220,7 @@ class K2ModelExtraFields extends K2Model
         $row->move(1, "`group` = '{$row->group}'");
         $params = JComponentHelper::getParams('com_k2');
         if (!$params->get('disableCompactOrdering'))
-            $row->reorder("`group` = '{$row->group}'");
+            $row->reorder("`group` = ".(int)$row->group);
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         $msg = JText::_('K2_NEW_ORDERING_SAVED');
