@@ -18,7 +18,7 @@ class K2ViewComments extends K2View
 	function report($tpl = null)
 	{
 		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
-		$row = &JTable::getInstance('K2Comment', 'Table');
+		$row = JTable::getInstance('K2Comment', 'Table');
 		$row->load(JRequest::getInt('commentID'));
 		if (!$row->published)
 		{
@@ -27,7 +27,7 @@ class K2ViewComments extends K2View
 		$this->assignRef('row', $row);
 		$user = JFactory::getUser();
 		$this->assignRef('user', $user);
-		$params = &K2HelperUtilities::getParams('com_k2');
+		$params = K2HelperUtilities::getParams('com_k2');
 		if (!$params->get('comments') || !$params->get('commentsReporting') || ($params->get('commentsReporting') == '2' && $user->guest))
 		{
 			JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
