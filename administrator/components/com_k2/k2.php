@@ -72,7 +72,7 @@ if(version_compare(JVERSION,'1.6.0','ge')) {
 }
 
 // CSS
-$document->addStyleSheet('//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css?v=2.7.0');
+$document->addStyleSheet('//netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css?v=2.7.0');
 $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v=2.7.0');
 
 K2HelperHTML::loadjQuery(true, JRequest::getCmd('view') == 'media');
@@ -88,13 +88,13 @@ if(K2_JVERSION == '30')
 	{
 		JHtml::_('formbehavior.chosen', 'select');
 	}
-    
+
 }
 $document->addScriptDeclaration('
-	
+
 	// Set K2 version as global JS var
 	K2JVersion = "'.K2_JVERSION.'";
-	
+
 	// Set Joomla version as body tag
 	(function(){
 		var addedClass = "isJ'.K2_JVERSION.' k2ViewIs'.ucfirst(JRequest::getCmd('view')).' k2TaskIs'.ucfirst(JRequest::getCmd('task')).'";
@@ -104,7 +104,7 @@ $document->addScriptDeclaration('
 			document.getElementsByTagName("html")[0].className = addedClass;
 		}
 	})();
-	
+
 ');
 $document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v=2.7.0&amp;sitepath='.JURI::root(true).'/');
 
