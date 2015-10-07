@@ -183,7 +183,7 @@ $document->addScriptDeclaration("
 		<!-- END of Basic parameters -->
 		
 		<div class="k2NavTabContent" id="k2TabPubAndMeta">
-			<div class="xmlParamsFields">
+			<div class="xmlParamsFields limitWidth">
 				<h3><?php echo JText::_('K2_METADATA_INFORMATION'); ?></h3>
 				<fieldset class="panelform">
 					<ul class="adminformlist">

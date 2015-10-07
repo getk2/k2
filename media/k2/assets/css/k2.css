@@ -150,6 +150,7 @@ div.k2ScrollingContent { margin-left: 320px; padding-left: 30px; padding-right: 
 
 /* The fields */
 .xmlParamsFields {}
+	.xmlParamsFields.limitWidth { max-width: 850px; padding: 0 20px; }
 	.xmlParamsFields ul { list-style: none outside none; margin: 0; padding: 0; clear: both; }
 	.xmlParamsFields ul li { display: block; float: left; width: 100%; clear: both; border-radius: 3px; margin: 0; padding: 10px 20px 10px 0; }
 	.xmlParamsFields ul li:nth-child(2n-2) { background: #f7f7f7; }
