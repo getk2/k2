@@ -111,7 +111,7 @@ div.isJ25 div.k2TabsContent {}
 div.isJ30 div.k2TabsContent {}
 
 /* Top Nav Tabs */
-#k2FormTopNav {padding:0;margin-top:-10px;}
+#k2FormTopNav {padding:0; }
 	#k2FormTopNav ul.k2NavTabs {margin:0;padding:0;text-align:left;white-space:nowrap;background:#f0f2f2;border-bottom:1px solid #d4d7d9;}
 		#k2FormTopNav ul.k2NavTabs  li {list-style:none;display:inline-block;margin:0;padding:0;color:#414042;}
 			#k2FormTopNav ul.k2NavTabs li a {display:block;font-size:18px;text-decoration:none;font-weight:normal;outline:0;padding:21px 24px;margin:0;border-right:1px solid #d4d7d9;color:#414042;}
@@ -142,7 +142,7 @@ ul.k2ScrollSpyMenu { position:fixed; list-style:none; padding: 20px 0 0; margin:
 	ul.k2ScrollSpyMenu li a:hover { color:#000; }
 	ul.k2ScrollSpyMenu li.active a { background: #f7f7f7; }
 
-div.k2ScrollingContent { margin-left: 320px; padding-left: 30px; padding-top: 20px; border-left: 1px solid #e3e4e4; }
+div.k2ScrollingContent { margin-left: 320px; padding-left: 30px; padding-right: 30px; padding-top: 20px; border-left: 1px solid #e3e4e4; }
 	div.K2ScrollingContent h3 { margin-top:20px; }
 
 /* The fields */
@@ -212,7 +212,7 @@ box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff; }
 	/* Checked boxes - hide/ No */
 	.controls input[value="0"]:checked + label,
 	label[id*="0-"].radio.isChecked { background: #bd362f; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
-	
+
 	/* Checked boxes - Generic */
 	label.isChecked { background: #63696f; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
 
@@ -333,7 +333,8 @@ html.isJ25 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs
 /* Joomla 3.x */
 html.isJ30 {}
 body#com_k2 {}
-
+.com_k2 .subhead-collapse { margin-bottom: 1px; }
+.com_k2 .subhead { border-bottom: 1px solid #D4D7D7;margin-bottom: 0; }
 
 
 /* ====================================================================================================== */
