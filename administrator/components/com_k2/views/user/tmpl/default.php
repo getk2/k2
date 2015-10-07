@@ -13,60 +13,88 @@ defined('_JEXEC') or die;
 ?>
 
 <form action="index.php" enctype="multipart/form-data" method="post" name="adminForm" id="adminForm">
-  <table class="admintable table">
-    <tr>
-      <td class="key"><?php	echo JText::_('K2_NAME'); ?></td>
-      <td><?php echo $this->row->name; ?></td>
-    </tr>
-    <tr>
-      <td class="key"><?php	echo JText::_('K2_GENDER'); ?></td>
-      <td><fieldset class="k2RadioButtonContainer"><?php echo $this->lists['gender']; ?></fieldset></td>
-    </tr>
-    <tr>
-      <td class="key"><?php	echo JText::_('K2_USER_GROUP'); ?></td>
-      <td><?php echo $this->lists['userGroup']; ?></td>
-    </tr>
-    <tr>
-      <td class="key"><?php echo JText::_('K2_DESCRIPTION'); ?></td>
-      <td>
-  			<div class="k2ItemFormEditor">
-  				<?php echo $this->editor; ?>
-					<div class="dummyHeight"></div>
-					<div class="clr"></div>
-				</div>
-			</td>
-    </tr>
-    <tr>
-      <td class="key"><?php echo JText::_('K2_USER_IMAGE_AVATAR'); ?></td>
-      <td>
-      	<input type="file" name="image" />
-        <?php if($this->row->image): ?>
+  <div class="xmlParamsFields k2GenericForm">
+    <h3><?php echo JText::_('K2_EDIT_USER'); ?></h3>
+    <ul class="adminformlist">
+      <li>
+        <div class="paramLabel">
+          <label><?php echo JText::_('K2_NAME'); ?></label>
+        </div>
+        <div class="paramValue">
+          <?php echo $this->row->name; ?>
+        </div>
+      </li>
+      <li>
+        <div class="paramLabel">
+          <label><?php	echo JText::_('K2_GENDER'); ?></label>
+        </div>
+        <div class="paramValue">
+          <fieldset class="k2RadioButtonContainer"><?php echo $this->lists['gender']; ?></fieldset>
+        </div>
+      </li>
+      <li>
+        <div class="paramLabel">
+          <label><?php	echo JText::_('K2_USER_GROUP'); ?></label>
+        </div>
+        <div class="paramValue">
+          <?php echo $this->lists['userGroup']; ?>
+        </div>
+      </li>
+      <li>
+        <div class="paramLabel">
+          <label><?php echo JText::_('K2_DESCRIPTION'); ?></label>
+        </div>
+        <div class="k2ItemFormEditor">
+          <label><?php echo $this->editor; ?></label>
+          <div class="dummyHeight"></div>
+          <div class="clr"></div>
+        </div>
+      </li>
+      <li>
+        <div class="paramLabel">
+          <label><?php echo JText::_('K2_USER_IMAGE_AVATAR'); ?></label>
+        </div>
+        <div class="paramValue">
+          <input type="file" name="image" />
+        </div>
+      </li>
+      <?php if($this->row->image): ?>
+      <li>  
         <img class="k2AdminImage" src="<?php echo JURI::root().'media/k2/users/'.$this->row->image; ?>" alt="<?php echo $this->row->name; ?>" />
         <input type="checkbox" name="del_image" id="del_image" />
         <label for="del_image"><?php echo JText::_('K2_CHECK_THIS_BOX_TO_DELETE_CURRENT_IMAGE_OR_JUST_UPLOAD_A_NEW_IMAGE_TO_REPLACE_THE_EXISTING_ONE'); ?></label>
-        <?php endif; ?></td>
-    </tr>
-    <tr>
-      <td class="key"><?php	echo JText::_('K2_URL'); ?></td>
-      <td><input type="text" size="50" value="<?php echo $this->row->url; ?>" name="url" /></td>
-    </tr>
-    <tr>
-      <td class="key"><?php	echo JText::_('K2_NOTES'); ?></td>
-      <td><textarea name="notes" cols="60" rows="5"><?php echo $this->row->notes; ?></textarea></td>
-    </tr>
-  </table>
-  
-	<?php if(count(array_filter($this->K2Plugins))): ?>
-	<?php foreach ($this->K2Plugins as $K2Plugin): ?>
-	<?php if(!is_null($K2Plugin)): ?>
-	<fieldset class="adminform">
-		<legend><?php echo $K2Plugin->name; ?></legend>
-		<?php echo $K2Plugin->fields; ?>
-	</fieldset>
-	<?php endif; ?>
-	<?php endforeach; ?>
-	<?php endif; ?>
-	
+      </li>
+      <?php endif; ?>
+      <li>
+        <div class="paramLabel">
+          <label><?php	echo JText::_('K2_URL'); ?></label>
+        </div>
+        <div class="paramValue">
+          <input type="text" size="50" value="<?php echo $this->row->url; ?>" name="url" />
+        </div>
+      </li>
+      <li>
+        <div class="paramLabel">
+          <label><?php	echo JText::_('K2_NOTES'); ?></label>
+        </div>
+        <div class="paramValue">
+          <textarea name="notes" cols="60" rows="5"><?php echo $this->row->notes; ?></textarea>
+        </div>
+      </li>
+      <?php if(count(array_filter($this->K2Plugins))): ?>
+      <?php foreach ($this->K2Plugins as $K2Plugin): ?>
+      <?php if(!is_null($K2Plugin)): ?>
+      <li>
+      	<fieldset class="adminform">
+      		<legend><?php echo $K2Plugin->name; ?></legend>
+      		<?php echo $K2Plugin->fields; ?>
+      	</fieldset>
+      </li>
+      <?php endif; ?>
+      <?php endforeach; ?>
+      <?php endif; ?>
+    </ul>
+  </div>
   <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
   <input type="hidden" name="option" value="com_k2" />
   <input type="hidden" name="view" value="user" />

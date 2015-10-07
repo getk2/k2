@@ -573,6 +573,19 @@ $K2(document).ready(function() {
             extraFieldsImage();
             break;
     }
+
+    // Add the correct CSS classes for the checked labels
+    $K2('label.radio').has('input:checked').addClass('isChecked');
+
+    // Toggle clickable Labels
+    $K2('label.radio').has('input').click(function(e){
+
+        $K2(this).parent().children().removeClass('isChecked');
+
+        if( !$K2(this).hasClass('isChecked') ) {
+            $K2(this).addClass('isChecked');
+        }
+    });
 });
 
 // Extra fields validation

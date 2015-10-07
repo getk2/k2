@@ -34,8 +34,7 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 
 .k2clr {clear:both; height:0; line-height:0; border:none; float:none; background:none; padding:0; margin:0;}
 
-.paramHeaderContainer {clear:both; font-weight:bold; font-size:12px; color:#369; margin:12px 0 4px; padding:0; background:#d5e7fa; border-bottom:2px solid #96b0cb; float:left; width:100%;}
-.paramHeaderContainer15 {clear:both; font-weight:bold; font-size:12px; color:#369; margin:0; padding:0; background:#d5e7fa; border-bottom:2px solid #96b0cb; float:left; width:100%;}
+
 .paramHeader {padding:6px 8px;}
 
 ul.k2GenericList {list-style:square;margin:0 8px 8px;padding:2px 8px;}
@@ -79,9 +78,15 @@ div.k2Table {margin:0 0 20px 0;}
 	div.k2Table .k2TableLabel > label {font-weight:normal;color:#777;}
 	div.k2Table .k2TableValue {margin-left:120px;vertical-align:top;}
 	div.k2Table .k2TableValue:after {content:" ";display:block;margin-bottom:8px;}
-		div.k2SubTable {}
+		div.k2SubTable { margin-bottom: 15px; }
 			div.k2SubTable .k2SubTableLabel {display:inline-block;text-align:right;vertical-align:top;padding:4px 8px;margin:0 0 0 20px;}
 			div.k2SubTable .k2SubTableLabel > label {font-weight:normal;color:#777;}
+			
+			/* Category specific styling */
+			.k2CategoryForm div.k2SubTable .k2SubTableLabel > label { width: 105px; max-width: 105px; }
+			.k2CategoryForm div.k2Table .k2TableLabel > label { width: 125px; max-width: 125px; }
+			.k2CategoryForm div.k2Table .k2TableValue { margin-left: 145px; }
+
 			div.k2SubTable .k2SubTableValue label {padding-left:4px !important;}
 			div.k2SubTable .k2SubTableValue input[type="radio"] {margin:2px 8px 0 0 !important;}
 			div.k2SubTable .k2SubTableValue {display:inline-block;vertical-align:top;}
@@ -93,13 +98,13 @@ div.k2Table {margin:0 0 20px 0;}
 .ui-tabs-hide {display:none;}
 div.k2Tabs {clear:both;padding:10px 0;}
 ul.k2TabsNavigation {margin:0;padding:0;text-align:left;white-space:nowrap;list-style:none;}
-ul.k2TabsNavigation li {display:inline-block;margin:0 -2px 0 0;padding:0;}
-ul.k2TabsNavigation li a {display:block;padding:10px 21px;margin:0;background:#f0f2f2;font-size:14px;text-decoration:none;font-weight:normal;outline:0;border-radius:3px 3px 0 0;color:#6d6f71;border-bottom:1px solid #d4d7d9;}
-ul.k2TabsNavigation li a:hover {text-decoration:none;background-color:#f6f6f6;}
-ul.k2TabsNavigation li a i {margin-right:8px;color:#6d6f71;}
-ul.k2TabsNavigation li.ui-tabs-selected a {padding:10px 20px;background:#fff;color:#58595b;border:1px solid #d4d7d9;border-bottom:1px solid #fff;}
-ul.k2TabsNavigation li.ui-tabs-selected a i {color:#0091ff;}
-ul.k2TabsNavigation li.ui-tabs-selected a:hover {background-color:#fff;}
+	ul.k2TabsNavigation li {display:inline-block;margin:0 -2px 0 0;padding:0;}
+	ul.k2TabsNavigation li a {display:block;padding:10px 21px;margin:0;background:#f0f2f2;font-size:14px;text-decoration:none;font-weight:normal;outline:0;border-radius:3px 3px 0 0;color:#6d6f71;border-bottom:1px solid #d4d7d9;}
+	ul.k2TabsNavigation li a:hover {text-decoration:none;background-color:#f6f6f6;}
+	ul.k2TabsNavigation li a i {margin-right:8px;color:#6d6f71;}
+	ul.k2TabsNavigation li.ui-tabs-selected a {padding:10px 20px;background:#fff;color:#58595b;border:1px solid #d4d7d9;border-bottom:1px solid #fff;}
+	ul.k2TabsNavigation li.ui-tabs-selected a i {color:#0091ff;}
+	ul.k2TabsNavigation li.ui-tabs-selected a:hover {background-color:#fff;}
 
 div.k2TabsContent {background:#fff;border:1px solid #d4d7d9;padding:10px;margin-top:-1px;}
 div.isJ25 div.k2TabsContent {}
@@ -124,51 +129,132 @@ div#k2ID {position:absolute;right:0;top:0;font-size:18px;font-weight:normal;padd
 div#k2ID strong {color:#a8c5dd;}
 
 /* XML Parameter Rendering */
-ul.k2ScrollSpyMenu {position:fixed;list-style:none;padding:4px;margin:0 4px;}
-	ul.k2ScrollSpyMenu li a { display:block; -webkit-transition:.5s all ease-out; -moz-transition:.5s all ease-out; transition:.5s all ease-out; color:#aaa; text-decoration:none; }
+form#adminForm { overflow: hidden; }
+#k2TabDisplaySet, #k2TabPubAndMeta { padding: 0; }
+
+/* Metadata specific styling */
+#k2TabPubAndMeta .xmlParamsFields { padding: 0 20px; width: 850px; max-width: 100%; }
+
+ul.k2ScrollSpyMenu { position:fixed; list-style:none; padding: 20px 0 0; margin: 0; width: 320px; }
+	ul.k2ScrollSpyMenu li a { display:block; -webkit-transition:.5s all ease-out; -moz-transition:.5s all ease-out; transition:.5s all ease-out; font-size: 16px;
+    color: #00afec; padding: 14px 28px; text-decoration:none; }
+
 	ul.k2ScrollSpyMenu li a:hover { color:#000; }
-	ul.k2ScrollSpyMenu li.active a { color:#333; }
-div.k2ScrollingContent {margin-left:260px;}
-	div.K2ScrollingContent h3 {margin-top:20px;}
+	ul.k2ScrollSpyMenu li.active a { background: #f7f7f7; }
 
+div.k2ScrollingContent { margin-left: 320px; padding-left: 30px; padding-top: 20px; border-left: 1px solid #e3e4e4; }
+	div.K2ScrollingContent h3 { margin-top:20px; }
+
+/* The fields */
 .xmlParamsFields {}
-.xmlParamsFields .paramHeader {clear:both; font-weight:bold; font-size:12px; color:#369; margin:12px 0 4px; padding:6px 8px; background:#d5e7fa; border-bottom:2px solid #96b0cb;}
-.xmlParamsFields fieldset.panelform {border:none;padding:4px;margin:0;}
-.xmlParamsFields fieldset.panelform ul.adminformlist {list-style:none; padding:0; margin:0;}
-.xmlParamsFields fieldset.panelform ul.adminformlist li {padding:0 0 1px 0;}
-.xmlParamsFields fieldset.panelform ul.adminformlist .chzn-drop li {padding:5px 6px;}
-.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramLabel {float:left;width:140px;padding:4px;}
-.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramLabel label {min-width:140px;width:140px;padding:0;margin:0;float:none;}
-.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue {float:left;padding:4px 4px 0 4px;}
+	.xmlParamsFields ul { list-style: none outside none; margin: 0; padding: 0; clear: both; }
+	.xmlParamsFields ul li { display: block; float: left; width: 100%; clear: both; border-radius: 3px; margin: 0; padding: 10px 20px 10px 0; }
+	.xmlParamsFields ul li:nth-child(2n-2) { background: #f7f7f7; }
+	.xmlParamsFields ul li.headerElement { padding: 0; background: #fff; }
 
-.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue input,
-.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue textarea,
-.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue select,
-.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue img,
-.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue button,
-.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue label {margin:0 4px 0 0;float:none!important;}
-.K2AdminViewUsergroup .xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue label {display:inline !important;}
-.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue select.chzn-done {display:none!important;}
-.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue fieldset {float:none;margin:0!important;}
+	.xmlParamsFields .paramValue label { min-width:85px;width:auto; text-align:center; border:1px solid #d4d6d8;line-height:33px;vertical-align:top;height:33px;font-size:12px;margin:0 -2px;padding:0 13px;
+	color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background-color:#eff1f1;
+	box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff; }
+		.xmlParamsFields .paramValue label:hover {cursor:pointer; box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 0 10px rgba(0,0,0,.15);}
+		.xmlParamsFields .paramValue input[type="radio"] { opacity: 0; position: absolute; clip: rect(0,0,0,0); }
+		.xmlParamsFields .paramValue input[type="text"] { float: right; }
+		
+	/* Checked boxes - generic */
+	.xmlParamsFields .paramValue input:checked + label { background: #63696f; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
+	/* Checked boxes - show */
+	.xmlParamsFields .paramValue input[value="1"]:checked + label { background: #3fa800; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
+	/* Checked boxes - hide */
+	.xmlParamsFields .paramValue input[value="0"]:checked + label { background: #bd362f; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
+	/* Checked boxes - inherit */
+	.xmlParamsFields .paramValue input[value=""]:checked + label { background: #63696f; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
+	.xmlParamsFields .paramValue input[value=""] + label { border-radius: 3px 0 0 3px; }
+	.xmlParamsFields .paramValue input[value="1"] + label { border-radius: 0 3px 3px 0; }
 
-.xmlParamsFields fieldset.panelform ul.adminformlist li label,
-.xmlParamsFields fieldset.panelform ul.adminformlist li span.faux-label {margin:0;font-size:11px;}
-
-.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramLabel,
-.xmlParamsFields .key {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-right:1px solid #e9e9e9;color:#666;font-weight:bold;text-align:right;font-size:11px;}
-.xmlParamsFields .key input {float:none!important;}
+	/* the labels */
+	.xmlParamsFields .paramLabel label { font-size: 13px; font-weight: 700; color: #777778;  padding: 10px 10px 10px 20px; line-height: 1; margin: 0; }
+	.xmlParamsFields .paramValue, .xmlParamsFields .paramLabel { display: inline-block; vertical-align: middle; }
+	.xmlParamsFields .paramValue { float: right; }
+	.k2ScrollingContent > h3,
+	.k2NavTabContent h3 { font-size: 24px; font-weight: 300; padding-bottom: 16px; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #dddedf; color: #00afec; }
 
 div#k2AdminContainer.isJ25 form#adminForm div.xmlParamsFields fieldset input {float:none!important;}
-
 div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-right:1px solid #e9e9e9;color:#666;font-weight:bold;text-align:right;font-size:11px;}
 
-
+/* Generic form additional styling - tags, users, usergroups etc.. */
+.k2GenericForm { width: 850px; max-width: 100%; padding: 0 20px;}
+	.k2GenericForm h3 { font-size: 24px; font-weight: 300; padding-bottom: 16px; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #dddedf; color: #00afec; }
+	.k2GenericForm .k2ItemFormEditor { padding: 20px 0 20px 20px; }
 
 /* ====================================================================================================== */
 /* ====================================================================================================== */
 /* ====================================== Backend View Specific CSS ===================================== */
 /* ====================================================================================================== */
 /* ====================================================================================================== */
+
+/* Settings - Joomla! 3.x */
+.paramHeaderContent { background: #e5f7fd; border-radius: 3px; line-height: 1; padding: 18px 25px; margin: 25px 0 10px 0; color: #346b93; font-size: 18px; }
+	.tab-pane > .control-group:first-child .paramHeaderContent { margin-top: 0; }
+
+.form-horizontal .controls label, .controls label { min-width:85px;width:auto; text-align:center; border:1px solid #d4d6d8;line-height:33px;vertical-align:top;height:33px;font-size:12px;margin:0 -2px;padding:0 13px;
+color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background-color:#eff1f1;
+box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff; }
+
+	.controls label:hover {cursor:pointer; box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 0 10px rgba(0,0,0,.15);}
+	.controls input[type="radio"] { opacity: 0; position: absolute; clip: rect(0,0,0,0); }
+
+	.controls label:first-of-type { border-radius: 3px 0 0 3px; }
+	.controls label:last-of-type { border-radius:  0 3px 3px 0; }
+
+	/* Checked boxes - show/ Yes */
+	.controls input[value="1"]:checked + label,
+	label[id*="1-"].radio.isChecked  { background: #3fa800; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
+
+	/* Checked boxes - hide/ No */
+	.controls input[value="0"]:checked + label,
+	label[id*="0-"].radio.isChecked { background: #bd362f; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
+	
+	/* Checked boxes - Generic */
+	label.isChecked { background: #63696f; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
+
+
+/* Redefining the form */
+.form-horizontal .control-label:empty { display: none; }
+.form-horizontal .controls { margin-left: 0!important;  }
+
+.form-horizontal .control-label {  min-width: 350px; max-width: 350px; }
+.form-horizontal .control-label label { font-size: 13px; font-weight: 700; color: #777778;  padding: 15px 10px 10px; line-height: 1; margin: 0; }
+.controls .radio, .controls .checkbox { padding-left: 0; }
+
+/* BS resets */
+.form-horizontal .control-group { margin-bottom: 0!important; border-radius: 3px; }
+.form-horizontal .control-group:nth-child(2n-2) { background: #f7f7f7; }
+
+.form-horizontal .controls > .radio:first-child, .form-horizontal .controls > .checkbox:first-child { padding-top: 10px; }
+.k2Table .controls > .radio:first-child, .k2Table .controls > .checkbox:first-child,
+.k2GenericForm .controls > .radio:first-child, .k2GenericForm .controls > .checkbox:first-child { padding-top: 0px; }
+
+.form-horizontal .controls fieldset { padding: 10px 0; }
+.form-horizontal .controls .chzn-container { margin: 15px 0; }
+.form-horizontal .controls input[type="text"], .form-horizontal .controls textarea { margin: 10px 0 15px 0; }
+
+/* Tabs */
+ul#configTabs {margin:0;padding:0;text-align:left;white-space:nowrap;list-style:none;}
+	ul#configTabs li { display:inline-block; margin:0 1px -1px; padding:0; }
+	ul#configTabs li a {display:block;padding:10px 21px;margin:0;background:#f0f2f2;font-size:14px;text-decoration:none;font-weight:normal;outline:0;border-radius:3px 3px 0 0;color:#6d6f71;border-bottom:1px solid #d4d7d9;}
+	ul#configTabs li a:hover {text-decoration:none;background-color:#f6f6f6;}
+	ul#configTabs li a i {margin-right:8px;color:#6d6f71;}
+	ul#configTabs li.active a {padding:10px 20px;background:#fff;color:#58595b;border:1px solid #d4d7d9;border-bottom:1px solid #fff;}
+	ul#configTabs li.active a i {color:#0091ff;}
+	ul#configTabs li.active a:hover {background-color:#fff;}
+
+.tab-pane { padding-top: 25px; }
+
+/* Permissions */
+#permissions-sliders, .rule-desc { padding: 15px 15px 0; }
+#permissions .alert { margin: 5px 0 0; }
+#permissions-sliders { border-radius: 3px; }
+
+
 
 /* Item - Overrides */
 .K2AdminViewItem {}
@@ -221,10 +307,6 @@ table#tagLists tr td#tagListsRight select {width:99%;height:106px;}
 	ul#k2ExtraFieldsMissing {margin:8px;padding:0 8px;}
 	ul#k2ExtraFieldsMissing li {font-weight:normal;}
 .k2Invalid {border-color:red;}
-
-
-
-
 
 /* ====================================================================================================== */
 /* ====================================================================================================== */
@@ -297,16 +379,14 @@ table.adminFormK2Container tr td {vertical-align:top;}
 	.k2RadioButtonContainer input,
 	.K2AdminViewTag input,
 	.K2AdminViewUser input,
-	/*.K2AdminViewUserGroup input,*/
+	/*.K2AdminViewUserGroup input,
 	.K2AdminViewExtraField input {float:none!important; display:inline!important; vertical-align:inherit !important;}
 	.k2RadioButtonContainer label,
 	.K2AdminViewTag label,
 	.K2AdminViewUser label,
 	.K2AdminViewUserGroup label,
 	.K2AdminViewExtraField label {float:none!important; display:inline!important; vertical-align:inherit !important;}
-	/* Fix K2 plugins in user form under J3. */
-	.isJ30.K2AdminViewUser label { display:block!important;}
-
+	*/
 
 
 /* -------------- View Styling -------------- */
@@ -330,7 +410,7 @@ div#admContainer .cleaner {clear:both;}
 /* --- Admin - Item & Category --- */
 
 /* Sidebar */
-#adminFormK2Sidebar {vertical-align:top;width:320px;padding-left:6px;}
+#adminFormK2Sidebar {vertical-align:top; width:320px; padding-left:6px; }
 div.isJ30 #adminFormK2Sidebar {width:360px;}
 table.adminK2Category #adminFormK2Sidebar {width:400px;}
 #adminFormK2Sidebar table.sidebarDetails {border:1px dashed #ccc;padding:0;margin:0 0 10px 0;width:100%;}
@@ -448,16 +528,6 @@ td#k2Comment {}
 	div.commentToolbar span.k2CommentsLog {display:block;float:right;font-weight:bold;}
 	div.commentToolbar span.k2CommentsLoader {background:url(../images/system/loader.gif) no-repeat 0 50%;padding-left:24px;}
 
-/* Admin - Users */
-div#k2AdminContainer.K2AdminViewUser .adminform label { display: block!important; }
-div#k2AdminContainer.K2AdminViewUser .adminform label + input { display: block!important; clear: both; }
-
-/* Admin - User groups */
-div#k2AdminContainer.K2AdminViewUserGroup form#adminForm {width:600px;}
-div#k2AdminContainer.K2AdminViewUserGroup form#adminForm .xmlParamsFields {margin-bottom:16px;}
-div#k2AdminContainer.K2AdminViewUsergroup form#adminForm div.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue fieldset input,
-div#k2AdminContainer.K2AdminViewUsergroup form#adminForm div.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue fieldset label {display:inline!important;float:none!important;}
-div#k2AdminContainer.K2AdminViewUsergroup form#adminForm div.xmlParamsFields fieldset.panelform ul.adminformlist li div.paramValue select#paramscategories {width:400px;}
 
 /* Admin - Extra fields */
 #exFieldsTypesDiv {}
