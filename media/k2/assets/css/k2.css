@@ -109,6 +109,7 @@ ul.k2TabsNavigation {margin:0;padding:0;text-align:left;white-space:nowrap;list-
 	ul.k2TabsNavigation li.ui-tabs-selected a:hover {background-color:#fff;}
 
 div.k2TabsContent {background:#fff;border:1px solid #d4d7d9;padding:10px;margin-top:-1px;}
+	.k2TabsContent.k2TabsContentLower { padding: 25px 30px; }
 div.isJ25 div.k2TabsContent {}
 div.isJ30 div.k2TabsContent {}
 
@@ -209,12 +210,14 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
 /* Small - responsive blocks */
 @media screen and (min-width: 767px) {
 	.row-resposive > .col:first-child { padding-left: 0; }
+	.row-resposive > .col:last-child { padding-right: 0; }
 	.row-resposive { overflow: hidden; width: 100%; }
 	.col { float: left; padding: 0 15px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 	.col6 { width: 50%; }
 	.col3 { width: 25%; }
 }
 .row-resposive { margin-bottom: 45px; }
+
 
 /* ====================================================================================================== */
 /* ====================================================================================================== */
@@ -286,7 +289,6 @@ ul#configTabs {margin:0;padding:0;text-align:left;white-space:nowrap;list-style:
 #permissions-sliders { border-radius: 3px; }
 
 
-
 /* Item - Overrides */
 .K2AdminViewItem {}
 label[for="title"] {font-size:18px;}
@@ -338,6 +340,41 @@ table#tagLists tr td#tagListsRight select {width:99%;height:106px;}
 	ul#k2ExtraFieldsMissing {margin:8px;padding:0 8px;}
 	ul#k2ExtraFieldsMissing li {font-weight:normal;}
 .k2Invalid {border-color:red;}
+
+/* Item - Attachments */
+#itemAttachments {margin-top:15px;padding-top:10px;}
+	#itemAttachments label {margin-right:10px;font-weight:bold;width:170px;float:left;clear:left;}
+	#itemAttachments input {margin-right:10px;margin-bottom:10px;}
+	#itemAttachments input.linkTitle {width:200px;}
+	#itemAttachments textarea {width:200px;}
+	#itemAttachments a.k2AttachmentBrowseServer {margin-right:8px;}
+	td.k2ItemFormDateField {white-space:nowrap;}
+	td.k2ItemFormDateField input {}
+	td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
+
+.itemAttachmentsTable { width: 100%; margin: 0 0 20px; }
+	.itemAttachmentsTable th { border-bottom: 3px solid #d7d9d9; border-top: 0; color: #6d6f71; font-size: 14px; font-weight: 700; text-align: left; line-height: 1; padding: 12px 14px 12px 0; }
+	.itemAttachmentsTable th.k2Center { text-align: center; }
+	.itemAttachmentsTable td { padding: 12px 14px 12px 0; font-size: 13px; }
+	.itemAttachmentsTable td input { padding: 8px 10px 7px;  border: 1px solid #d7d9d9; border-radius: 3px; height: auto; }
+	.deleteAttachmentButton { font-size: 18px; color: #9e0b0f; }
+	.downloadAttachmentButton { padding-right: 10px; font-size: 18px; }
+
+
+/* Item - Extrafields */
+#extraFields { padding-top: 20px; }
+	.itemAdditionalField { overflow: hidden; margin-bottom: 25px; }
+		.itemAdditionalField .itemAdditionalValue { width: 100px; margin-right: 15px; }
+		.itemAdditionalField label { font-size: 13px; font-weight: 700; display: inline-block; vertical-align: middle; margin-top: 0; margin-bottom: 0; padding-top: 5px; }
+		.itemAdditionalField .itemAdditionalData { overflow: hidden; }
+		.itemAdditionalField input, .itemAdditionalField textarea { width: 450px; max-width: 100%; }
+
+/* Item - Image */
+
+/* Item - Gallery */
+
+/* Item - Video */
+
 
 /* ====================================================================================================== */
 /* ====================================================================================================== */
@@ -411,14 +448,6 @@ table.adminFormK2Container tr td {vertical-align:top;}
 	.k2RadioButtonContainer input,
 	.K2AdminViewTag input,
 	.K2AdminViewUser input,
-	/*.K2AdminViewUserGroup input,
-	.K2AdminViewExtraField input {float:none!important; display:inline!important; vertical-align:inherit !important;}
-	.k2RadioButtonContainer label,
-	.K2AdminViewTag label,
-	.K2AdminViewUser label,
-	.K2AdminViewUserGroup label,
-	.K2AdminViewExtraField label {float:none!important; display:inline!important; vertical-align:inherit !important;}
-	*/
 
 
 /* -------------- View Styling -------------- */
@@ -441,42 +470,9 @@ div#admContainer .cleaner {clear:both;}
 
 /* --- Admin - Item & Category --- */
 
-/* Sidebar */
-#adminFormK2Sidebar {vertical-align:top; width:320px; padding-left:6px; }
-div.isJ30 #adminFormK2Sidebar {width:360px;}
-table.adminK2Category #adminFormK2Sidebar {width:400px;}
-#adminFormK2Sidebar table.sidebarDetails {border:1px dashed #ccc;padding:0;margin:0 0 10px 0;width:100%;}
-#adminFormK2Sidebar table.sidebarDetails tr td {padding:1px 2px;}
-div.isJ30 #adminFormK2Sidebar table.sidebarDetails tr td {border:none;}
-div.isJ30 #adminFormK2Sidebar select {max-width:190px;}
-div.isJ30 #adminFormK2Sidebar input[type="text"] { max-width: 174px;}
-div.isJ30 #adminFormK2Sidebar .paramValue { padding-top: 0;}
-div.isJ30 #adminFormK2Sidebar fieldset.radio { padding:6px 0 0 0;}
-div.isJ30 #adminFormK2Sidebar fieldset.radio input { float: left!important; margin: 0 4px 0 0 !important; }
-div.isJ30 #adminFormK2Sidebar fieldset.radio label { float:left!important; margin:0 12px 0 0!important; position: relative; top: -3px;}
-
-div#k2ToggleSidebarContainer {text-align:right;clear:both;margin-bottom:4px;}
-	a#k2ToggleSidebar {border-radius:4px;border:1px solid #ccc;background:url(../images/editforms/Size-Horz.png) no-repeat;padding:1px 4px 1px 20px;text-decoration:none;height:16px;line-height:16px;overflow-y:hidden;font-size:10px;color:#999;outline:0;}
-	a#k2ToggleSidebar:hover {color:#777;}
-
 /* Admin - Item */
-table.adminFormK2 tr td label {}
-div.isJ30 table div.controls label {display:inline-block;margin-right:8px;}
-div.isJ30 table div.controls label input {margin-right:4px;}
 span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;line-height:16px;background:url(../images/system/question-frame.png) no-repeat 50% 50%;padding:0;margin:0 0 -4px 0;display:inline-block;overflow-x:hidden;}
-
 .itemPlugins {margin-top:20px;}
-/* REMOVE
-.k2ItemFormEditor {clear:both;position:relative;padding:24px 4px 8px 4px;margin:0 0 16px 0;background:#e0e0e0 url(../images/system/boxTopBackground.png) repeat-x top;border-radius:4px;border:1px solid #ccc;}
-span.k2ItemFormEditorTitle {font-family:Georgia, "Times New Roman", Times, serif;font-size:13px;color:#222;position:absolute;top:4px;right:4px;}
-#editor-xtd-buttons {margin:0;padding:0 0 0 4px;}
-#editor-xtd-buttons div.button2-left {margin:0 4px 0 0;padding:0;float:left;}
-#editor-xtd-buttons div.button2-left div.image,
-#editor-xtd-buttons div.button2-left div.readmore {margin:0;padding:0;}
-div.dummyHeight {height:28px;background:#F0F0EE;background:#F0F0EE;border:1px solid #ccc;border-top:0;padding:4px;margin-top:-10px;}
-div.isJ30 div.dummyHeight {visibility:hidden;}
-div.isJ25 div.button2-left {margin-left:4px;}
-*/
 
 /* Admin - Item - Autocomplete */
 .ui-autocomplete {position:absolute;margin:0;padding:0;list-style:none;border:1px solid #eee;background-color:white;border-right-color:#ddd;border-bottom-color:#ddd;text-align:left;sans-serif;z-index:50;}
@@ -486,22 +482,6 @@ div.isJ25 div.button2-left {margin-left:4px;}
 .ui-menu .ui-menu-item a {text-decoration:none;	display:block;	padding:.2em .4em;	line-height:1.5;zoom:1; font-weight:bold;}
 .ui-menu .ui-menu-item a.ui-state-hover,
 .ui-menu .ui-menu-item a.ui-state-active {margin:-1px; background-color:#444; color:#fff;}
-
-/* Admin - Item - Accordion */
-h3.ui-accordion-header {border:1px solid #ccc; margin:4px 0 0 0; padding:2px; cursor:pointer; clear:both; background-color:#F6F6F6; font-size:13px; font-weight:bold;}
-h3.ui-accordion-header:first-child {margin-top:0;}
-#k2Accordion .ui-state-active,
-#k2Accordion .ui-state-active a {color:#666; background-color:#F6F6F6;}
-h3.ui-accordion-header a,
-h3.ui-accordion-header a:link,
-h3.ui-accordion-header a:hover {text-decoration:none; color:#666;}
-h3.ui-accordion-header,
-h3.ui-accordion-header a {outline:0;}
-h3.ui-accordion-header a:hover,
-h3.ui-accordion-header:hover {background-color:#F6F6F6}
-h3.ui-accordion-header span.ui-icon {display:block;width:16px;height:16px;float:left;background:#F6F6F6 url(../images/system/ui-icons_228ef1_256x240.png) no-repeat -32px -16px;}
-h3.ui-state-active span.ui-icon {display:block;width:16px;height:16px;float:left;background:#F6F6F6 url(../images/system/ui-icons_228ef1_256x240.png) no-repeat -64px -16px;}
-.ui-accordion-content {background-color:#fff; border:1px solid #ccc; border-top:none;}
 
 /* Extra Fields - Textarea with WYSIWYG - Remove outline */
 .nicEdit-main {outline:0;}
@@ -513,18 +493,6 @@ table#item_video_content tr td div.panel {width:480px;}
 dl.tabs dt.closed {border:1px solid #ccc;}
 dl.tabs dt.open {background:#fff !important;border:1px solid #ccc;border-bottom:1px solid #fff !important;}
 
-.itemAttachments {margin-bottom:15px;}
-.itemAttachments a {border:1px solid silver;font-size:10px;padding:2px;background-color:#f0f0f0;color:#000;}
-.itemAttachments a:hover {text-decoration:none;}
-#itemAttachments {margin-top:15px;padding-top:10px;}
-#itemAttachments label {margin-right:10px;font-weight:bold;width:170px;float:left;clear:left;}
-#itemAttachments input {margin-right:10px;margin-bottom:10px;}
-#itemAttachments input.linkTitle {width:200px;}
-#itemAttachments textarea {width:200px;}
-#itemAttachments a.k2AttachmentBrowseServer {margin-right:8px;}
-td.k2ItemFormDateField {white-space:nowrap;}
-td.k2ItemFormDateField input {}
-td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 #extraFieldsContainer table tr td label .xmlParamsFields
 #extraFieldsContainer table tr td input,#extraFieldsContainer table tr td select {margin:0 8px 0 0;}
 
@@ -534,11 +502,6 @@ input#k2ImageBrowseServer:hover {background:#fffff0;cursor:pointer;}
 
 /* Admin - Item - Extra fields editor */
 .k2ExtraFieldEditor {width:400px; height:172px;}
-
-/* Admin - Item - Attachments */
-div#addAttachment {padding:0 16px;}
-input#addAttachmentButton {font-size:14px;font-weight:bold;background:#eee;}
-input#addAttachmentButton:hover {background:#fffff0;cursor:pointer;}
 
 /* Admin - Item - Other */
 td#k2AuthorOptions span#k2Author {margin-right:4px;}
@@ -559,7 +522,6 @@ td#k2Comment {}
 		a.closeComment {display:none;padding-left:4px;margin-left:4px;border-left:1px solid #aaa;}
 	div.commentToolbar span.k2CommentsLog {display:block;float:right;font-weight:bold;}
 	div.commentToolbar span.k2CommentsLoader {background:url(../images/system/loader.gif) no-repeat 0 50%;padding-left:24px;}
-
 
 /* Admin - Extra fields */
 #exFieldsTypesDiv {}

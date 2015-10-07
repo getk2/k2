@@ -296,7 +296,7 @@ $document->addScriptDeclaration("
 				</div>
 				<?php if ($this->params->get('showImageTab')): ?>
 				<!-- Tab image -->
-				<div class="k2TabsContent" id="k2TabImage">
+				<div class="k2TabsContent k2TabsContentLower" id="k2TabImage">
 					<table class="admintable table">
 						<tr>
 							<td align="right" class="key">
@@ -365,7 +365,7 @@ $document->addScriptDeclaration("
 
 				<?php if ($this->params->get('showImageGalleryTab')): ?>
 				<!-- Tab image gallery -->
-				<div class="k2TabsContent" id="k2TabImageGallery">
+				<div class="k2TabsContent k2TabsContentLower" id="k2TabImageGallery">
 					<?php if ($this->lists['checkSIG']): ?>
 					<table class="admintable table" id="item_gallery_content">
 						<tr>
@@ -442,7 +442,7 @@ $document->addScriptDeclaration("
 				<?php endif; ?>
 				<?php if ($this->params->get('showVideoTab')): ?>
 				<!-- Tab video -->
-				<div class="k2TabsContent" id="k2TabMedia">
+				<div class="k2TabsContent k2TabsContentLower" id="k2TabMedia">
 					<?php if ($this->lists['checkAllVideos']): ?>
 					<table class="admintable table" id="item_video_content">
 						<tr>
@@ -610,25 +610,29 @@ $document->addScriptDeclaration("
 				<?php endif; ?>
 				<?php if ($this->params->get('showExtraFieldsTab')): ?>
 				<!-- Tab extra fields -->
-				<div class="k2TabsContent" id="k2TabExtraFields">
+				<div class="k2TabsContent k2TabsContentLower" id="k2TabExtraFields">
 					<div id="extraFieldsContainer">
+						
 						<?php if (count($this->extraFields)): ?>
-						<table class="admintable table" id="extraFields">
+						<div id="extraFields">
 							<?php foreach($this->extraFields as $extraField): ?>
-							<tr>
+							<div class="itemAdditionalField">
+								
 								<?php if($extraField->type == 'header'): ?>
-								<td colspan="2" ><h4 class="k2ExtraFieldHeader"><?php echo $extraField->name; ?></h4></td>
+								<h4 class="k2ExtraFieldHeader"><?php echo $extraField->name; ?></h4>
 								<?php else: ?>
-								<td align="right" class="key">
+
+								<div class="k2Right k2FLeft itemAdditionalValue">
 									<label for="K2ExtraField_<?php echo $extraField->id; ?>"><?php echo $extraField->name; ?></label>
-								</td>
-								<td>
+								</div>
+								<div class="itemAdditionalData">
 									<?php echo $extraField->element; ?>
-								</td>
+								</div>
 								<?php endif; ?>
-							</tr>
+							</div>
 							<?php endforeach; ?>
-						</table>
+						</div>
+
 						<?php else: ?>
 							<?php if (K2_JVERSION == '15'): ?>
 								<dl id="system-message">
@@ -676,10 +680,10 @@ $document->addScriptDeclaration("
 				<?php endif; ?>
 				<?php if ($this->params->get('showAttachmentsTab')): ?>
 				<!-- Tab attachements -->
-				<div class="k2TabsContent" id="k2TabAttachments">
-					<div class="itemAttachments">
+				<div class="k2TabsContent k2TabsContentLower" id="k2TabAttachments">
+					<div class="itemAttachments table-responsive">
 						<?php if (count($this->row->attachments)): ?>
-						<table class="adminlist table">
+						<table class="itemAttachmentsTable">
 							<tr>
 								<th>
 									<?php echo JText::_('K2_FILENAME'); ?>
@@ -693,7 +697,7 @@ $document->addScriptDeclaration("
 								<th>
 									<?php echo JText::_('K2_DOWNLOADS'); ?>
 								</th>
-								<th>
+								<th class="k2Center">
 									<?php echo JText::_('K2_OPERATIONS'); ?>
 								</th>
 							</tr>
@@ -711,8 +715,15 @@ $document->addScriptDeclaration("
 								<td>
 									<?php echo $attachment->hits; ?>
 								</td>
-								<td>
-									<a href="<?php echo $attachment->link; ?>"><?php echo JText::_('K2_DOWNLOAD'); ?></a> <a class="deleteAttachmentButton" href="<?php echo JURI::base(true); ?>/index.php?option=com_k2&amp;view=item&amp;task=deleteAttachment&amp;id=<?php echo $attachment->id?>&amp;cid=<?php echo $this->row->id; ?>"><?php echo JText::_('K2_DELETE'); ?></a>
+								<td class="k2Center">
+									<a class="downloadAttachmentButton" href="<?php echo $attachment->link; ?>" title="<?php echo JText::_('K2_DOWNLOAD'); ?>">
+										<i class="fa fa-download"></i>
+										<span class="hidden"><?php echo JText::_('K2_DOWNLOAD'); ?></span>
+									</a> 
+									<a class="deleteAttachmentButton" title="<?php echo JText::_('K2_DELETE'); ?>" href="<?php echo JURI::base(true); ?>/index.php?option=com_k2&amp;view=item&amp;task=deleteAttachment&amp;id=<?php echo $attachment->id?>&amp;cid=<?php echo $this->row->id; ?>">
+										<i class="fa fa-ban"></i>
+										<span class="hidden"><?php echo JText::_('K2_DELETE'); ?></span>
+									</a>
 								</td>
 							</tr>
 							<?php endforeach; ?>
@@ -740,7 +751,7 @@ $document->addScriptDeclaration("
 				<?php endif; ?>
 				<?php if(count(array_filter($this->K2PluginsItemOther)) && $this->params->get('showK2Plugins')): ?>
 				<!-- Tab other plugins -->
-				<div class="k2TabsContent" id="k2TabPlugins">
+				<div class="k2TabsContent k2TabsContentLower" id="k2TabPlugins">
 					<div class="itemPlugins">
 						<?php foreach($this->K2PluginsItemOther as $K2Plugin): ?>
 						<?php if(!is_null($K2Plugin)): ?>
@@ -754,7 +765,7 @@ $document->addScriptDeclaration("
 				</div>
 				<?php endif; ?>
 			</div>
-			<!-- Tabs end here -->
+			<!-- Lower Tabs end here -->
 
 			<input type="hidden" name="isSite" value="<?php echo (int)$this->mainframe->isSite(); ?>" />
 			<?php if($this->mainframe->isSite()): ?>
@@ -768,6 +779,8 @@ $document->addScriptDeclaration("
 			<?php echo JHTML::_('form.token'); ?>
 
 		</div>
+		<!-- End of the basic parameters -->
+
 		<div class="k2NavTabContent" id="k2TabPubAndMeta">
 
 			<ul class="k2ScrollSpyMenu">
@@ -943,7 +956,7 @@ $document->addScriptDeclaration("
 						<ul class="adminformlist">
 							<?php if(version_compare( JVERSION, '1.6.0', 'ge' )): ?>
 							<?php foreach($this->form->getFieldset('item-view-options-listings') as $field): ?>
-							<li>
+							<li<?php if($field->type=='header') echo ' class="headerElement"'; ?>>
 								<?php if($field->type=='header'): ?>
 								<div class="paramValueHeader"><?php echo $field->input; ?></div>
 								<?php elseif($field->type=='Spacer'): ?>
@@ -958,7 +971,7 @@ $document->addScriptDeclaration("
 							<?php endforeach; ?>
 							<?php else: ?>
 							<?php foreach($this->form->getParams('params', 'item-view-options-listings') as $param): ?>
-							<li>
+							<li<?php if((string)$param[1]=='' || $param[5] == '') echo ' class="headerElement"'; ?>>
 								<?php if((string)$param[1]=='' || $param[5] == ''): ?>
 								<div class="paramValueHeader"><?php echo $param[1]; ?></div>
 								<?php else: ?>
@@ -979,7 +992,7 @@ $document->addScriptDeclaration("
 						<ul class="adminformlist">
 							<?php if(version_compare( JVERSION, '1.6.0', 'ge' )): ?>
 							<?php foreach($this->form->getFieldset('item-view-options') as $field): ?>
-							<li>
+							<li<?php if($field->type=='header') echo ' class="headerElement"'; ?>>
 								<?php if($field->type=='header'): ?>
 								<div class="paramValueHeader"><?php echo $field->input; ?></div>
 								<?php elseif($field->type=='Spacer'): ?>
@@ -994,7 +1007,7 @@ $document->addScriptDeclaration("
 							<?php endforeach; ?>
 							<?php else: ?>
 							<?php foreach($this->form->getParams('params', 'item-view-options') as $param): ?>
-							<li>
+							<li<?php if((string)$param[1]=='' || $param[5] == '') echo ' class="headerElement"'; ?>>
 								<?php if((string)$param[1]=='' || $param[5] == ''): ?>
 								<div class="paramValueHeader"><?php echo $param[1]; ?></div>
 								<?php else: ?>
