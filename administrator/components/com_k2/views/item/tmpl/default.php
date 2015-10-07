@@ -781,93 +781,75 @@ $document->addScriptDeclaration("
 			<div class="k2ScrollingContent">
 
 				<?php if($this->row->id): ?>
-				<a id="iteminfo"></a>
 				<h3><?php echo JText::_('K2_ITEM_INFO'); ?></h3>
-				<table class="sidebarDetails table">
-					<tr>
-						<td>
-							<strong><?php echo JText::_('K2_ITEM_ID'); ?></strong>
-						</td>
-						<td>
-							<?php echo $this->row->id; ?>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<strong><?php echo JText::_('K2_PUBLISHED'); ?></strong>
-						</td>
-						<td>
-							<?php echo ($this->row->published > 0) ? JText::_('K2_YES') : JText::_('K2_NO'); ?>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<strong><?php echo JText::_('K2_FEATURED'); ?></strong>
-						</td>
-						<td>
-							<?php echo ($this->row->featured > 0) ? JText::_('K2_YES'):	JText::_('K2_NO'); ?>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<strong><?php echo JText::_('K2_CREATED_DATE'); ?></strong>
-						</td>
-						<td>
-							<?php echo $this->lists['created']; ?>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<strong><?php echo JText::_('K2_CREATED_BY'); ?></strong>
-						</td>
-						<td>
-							<?php echo $this->row->author; ?>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<strong><?php echo JText::_('K2_MODIFIED_DATE'); ?></strong>
-						</td>
-						<td>
-							<?php echo $this->lists['modified']; ?>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<strong><?php echo JText::_('K2_MODIFIED_BY'); ?></strong>
-						</td>
-						<td>
-							<?php echo $this->row->moderator; ?>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<strong><?php echo JText::_('K2_HITS'); ?></strong>
-						</td>
-						<td>
-							<?php echo $this->row->hits; ?>
+				<div class="row-resposive">
+					<div class="col col6">
+						<a id="iteminfo"></a>
+						<ul class="additionalParams">
+							<li>
+								<label class="k2FLeft"><?php echo JText::_('K2_ITEM_ID'); ?></label>
+								<label class="k2FRight"><?php echo $this->row->id; ?></label>
+							</li>
+
+							<li>
+								<label class="k2FLeft"><?php echo JText::_('K2_PUBLISHED'); ?></label>
+								<label class="k2FRight"><?php echo ($this->row->published > 0) ? JText::_('K2_YES') : JText::_('K2_NO'); ?></label>
+							</li>
+							<li>
+								<label class="k2FLeft"><?php echo JText::_('K2_FEATURED'); ?></label>
+								<label class="k2FRight"><?php echo ($this->row->featured > 0) ? JText::_('K2_YES'):	JText::_('K2_NO'); ?></label>
+							</li>
+							<li>
+								<label class="k2FLeft"><?php echo JText::_('K2_CREATED_DATE'); ?></label>
+								<label class="k2FRight"><?php echo $this->lists['created']; ?></label>
+							</li>
+							<li>
+								<label class="k2FLeft"><?php echo JText::_('K2_CREATED_BY'); ?></label>
+								<label class="k2FRight"><?php echo $this->row->author; ?></label>
+							</li>
+							<li>
+								<label class="k2FLeft"><?php echo JText::_('K2_MODIFIED_DATE'); ?></label>
+								<label class="k2FRight"><?php echo $this->lists['modified']; ?></label>
+							</li>
+							<?php if($this->row->moderator): ?>
+							<li>
+								<label class="k2FLeft"><?php echo JText::_('K2_MODIFIED_BY'); ?></label>
+								<label class="k2FRight"><?php echo $this->row->moderator; ?></label>
+							</li>
+							<?php endif; ?>
+						</ul>
+					</div>
+					
+					<div class="col col3">
+						<div class="itemHits">
+							<?php echo JText::_('K2_HITS'); ?>
+
+							<span><?php echo $this->row->hits; ?></span>
 							<?php if($this->row->hits): ?>
-							<input id="resetHitsButton" type="button" value="<?php echo JText::_('K2_RESET'); ?>" class="button" name="resetHits" />
+							<div class="itemHitsReset">
+								<input id="resetHitsButton" type="button" value="<?php echo JText::_('K2_RESET'); ?>" class="button" name="resetHits" />
+							</div>
 							<?php endif; ?>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<strong><?php echo JText::_('K2_RATING'); ?></strong>
-						</td>
-						<td>
-							<?php echo $this->row->ratingCount; ?> <?php echo JText::_('K2_VOTES'); ?>
+						</div>
+					</div>
+					
+					<div class="col col3">
+						<div class="itemRating">
+							<?php echo JText::_('K2_RATING'); ?>
+							
 							<?php if($this->row->ratingCount): ?>
-							<br />
-							(<?php echo JText::_('K2_AVERAGE_RATING'); ?>: <?php echo number_format(($this->row->ratingSum/$this->row->ratingCount),2); ?>/5.00)
+							<span><?php echo number_format(($this->row->ratingSum/$this->row->ratingCount),2); ?>/5.00</span>
 							<?php endif; ?>
-							<input id="resetRatingButton" type="button" value="<?php echo JText::_('K2_RESET'); ?>" class="button" name="resetRating" />
-						</td>
-					</tr>
-				</table>
+
+							<?php echo $this->row->ratingCount; ?> <?php echo JText::_('K2_VOTES'); ?>
+							
+							<div class="itemRatingReset">
+								<input id="resetRatingButton" type="button" value="<?php echo JText::_('K2_RESET'); ?>" class="button" name="resetRating" />
+							</div>
+						</div>
+					</div>
+				</div>
 				<?php endif; ?>
-
-
 
 				<div class="xmlParamsFields">
 					<a id="publishing"></a>
