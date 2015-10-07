@@ -361,6 +361,8 @@ $document->addScriptDeclaration("
 					<?php endif; ?>
 				</div>
 				<?php endif; ?>
+
+
 				<?php if ($this->params->get('showImageGalleryTab')): ?>
 				<!-- Tab image gallery -->
 				<div class="k2TabsContent" id="k2TabImageGallery">
@@ -865,74 +867,76 @@ $document->addScriptDeclaration("
 				</table>
 				<?php endif; ?>
 
-				<a id="publishing"></a>
-				<h3><?php echo JText::_('K2_PUBLISHING'); ?></h3>
-				<div>
-					<table class="admintable table">
-						<tr>
-							<td align="right" class="key">
-								<?php echo JText::_('K2_CREATION_DATE'); ?>
-							</td>
-							<td class="k2ItemFormDateField">
-								<?php echo $this->lists['createdCalendar']; ?>
-							</td>
-						</tr>
-						<tr>
-							<td align="right" class="key">
-								<?php echo JText::_('K2_START_PUBLISHING'); ?>
-							</td>
-							<td class="k2ItemFormDateField">
-								<?php echo $this->lists['publish_up']; ?>
-							</td>
-						</tr>
-						<tr>
-							<td align="right" class="key">
-								<?php echo JText::_('K2_FINISH_PUBLISHING'); ?>
-							</td>
-							<td class="k2ItemFormDateField">
-								<?php echo $this->lists['publish_down']; ?>
-							</td>
-						</tr>
-					</table>
-				</div>
 
-				<a id="metadata"></a>
-				<h3><?php echo JText::_('K2_METADATA'); ?></h3>
-				<div>
-					<table class="admintable table">
-						<tr>
-							<td align="right" class="key">
-								<?php echo JText::_('K2_DESCRIPTION'); ?>
-							</td>
-							<td>
+
+				<div class="xmlParamsFields">
+					<a id="publishing"></a>
+					<h3><?php echo JText::_('K2_PUBLISHING'); ?></h3>
+					<ul class="adminformlist">				
+						<li>
+						    <div class="paramLabel">
+								<label><?php echo JText::_('K2_CREATION_DATE'); ?></label>
+							</div>
+							<div class="paramValue">
+								<?php echo $this->lists['createdCalendar']; ?>
+							</div>
+						<li>
+						    <div class="paramLabel">
+								<label><?php echo JText::_('K2_START_PUBLISHING'); ?></label>
+							</div>
+							<div class="paramValue">
+								<?php echo $this->lists['publish_up']; ?>
+							</div>
+						</li>
+						<li>
+						    <div class="paramLabel">
+								<label><?php echo JText::_('K2_FINISH_PUBLISHING'); ?></label>
+							</div>
+							<div class="paramValue">
+								<?php echo $this->lists['publish_down']; ?>
+							</div>
+						</li>
+					</ul>
+				
+					<div class="clr"></div>
+					<a id="metadata"></a>
+
+					<h3><?php echo JText::_('K2_METADATA'); ?></h3>
+					<ul class="adminformlist">				
+						<li>
+							<div class="paramLabel">
+								<label><?php echo JText::_('K2_DESCRIPTION'); ?></label>
+							</div>
+							<div class="paramValue">
 								<textarea name="metadesc" rows="5" cols="20"><?php echo $this->row->metadesc; ?></textarea>
-							</td>
-						</tr>
-						<tr>
-							<td align="right" class="key">
-								<?php echo JText::_('K2_KEYWORDS'); ?>
-							</td>
-							<td>
+							</div>
+						</li>
+
+						<li>
+							<div class="paramLabel">
+								<label><?php echo JText::_('K2_KEYWORDS'); ?></label>
+							</div>
+							<div class="paramValue">
 								<textarea name="metakey" rows="5" cols="20"><?php echo $this->row->metakey; ?></textarea>
-							</td>
-						</tr>
-						<tr>
-							<td align="right" class="key">
-								<?php echo JText::_('K2_ROBOTS'); ?>
-							</td>
-							<td>
+							</div>
+						</li>
+						<li>
+							<div class="paramLabel">
+								<label><?php echo JText::_('K2_ROBOTS'); ?></label>
+							</div>
+							<div class="paramValue">
 								<input type="text" name="meta[robots]" value="<?php echo $this->lists['metadata']->get('robots'); ?>" />
-							</td>
-						</tr>
-						<tr>
-							<td align="right" class="key">
-								<?php echo JText::_('K2_AUTHOR'); ?>
-							</td>
-							<td>
+							</div>
+						</li>
+						<li>
+							<div class="paramLabel">
+								<label><?php echo JText::_('K2_AUTHOR'); ?></label>
+							</div>
+							<div class="paramValue">
 								<input type="text" name="meta[author]" value="<?php echo $this->lists['metadata']->get('author'); ?>" />
-							</td>
-						</tr>
-					</table>
+							</div>
+						</li>
+					<ul>
 				</div>
 			</div>
 		</div>
