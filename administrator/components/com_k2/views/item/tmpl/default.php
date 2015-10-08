@@ -297,71 +297,77 @@ $document->addScriptDeclaration("
 				<?php if ($this->params->get('showImageTab')): ?>
 				<!-- Tab image -->
 				<div class="k2TabsContent k2TabsContentLower" id="k2TabImage">
-					<table class="admintable table">
-						<tr>
-							<td align="right" class="key">
-								<?php echo JText::_('K2_ITEM_IMAGE'); ?>
-							</td>
-							<td>
-								<input type="file" name="image" class="fileUpload" />
-								<i>(<?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?>)</i>
-								<br />
-								<br />
-								<?php echo JText::_('K2_OR'); ?>
-								<br />
-								<br />
-								<input type="text" name="existingImage" id="existingImageValue" class="text_area" readonly />
-								<input type="button" value="<?php echo JText::_('K2_BROWSE_SERVER'); ?>" id="k2ImageBrowseServer"  />
-								<br />
-								<br />
-							</td>
-						</tr>
-						<tr>
-							<td align="right" class="key">
-								<?php echo JText::_('K2_ITEM_IMAGE_CAPTION'); ?>
-							</td>
-							<td>
-								<input type="text" name="image_caption" size="30" class="text_area" value="<?php echo $this->row->image_caption; ?>" />
-							</td>
-						</tr>
-						<tr>
-							<td align="right" class="key">
-								<?php echo JText::_('K2_ITEM_IMAGE_CREDITS'); ?>
-							</td>
-							<td>
-								<input type="text" name="image_credits" size="30" class="text_area" value="<?php echo $this->row->image_credits; ?>" />
-							</td>
-						</tr>
-						<?php if (!empty($this->row->image)): ?>
-						<tr>
-							<td align="right" class="key">
-								<?php echo JText::_('K2_ITEM_IMAGE_PREVIEW'); ?>
-							</td>
-							<td>
-								<a class="modal" rel="{handler: 'image'}" href="<?php echo $this->row->image; ?>" title="<?php echo JText::_('K2_CLICK_ON_IMAGE_TO_PREVIEW_IN_ORIGINAL_SIZE'); ?>">
-									<img alt="<?php echo $this->row->title; ?>" src="<?php echo $this->row->thumb; ?>" class="k2AdminImage" />
-								</a>
-								<input type="checkbox" name="del_image" id="del_image" />
-								<label for="del_image"><?php echo JText::_('K2_CHECK_THIS_BOX_TO_DELETE_CURRENT_IMAGE_OR_JUST_UPLOAD_A_NEW_IMAGE_TO_REPLACE_THE_EXISTING_ONE'); ?></label>
-							</td>
-						</tr>
-						<?php endif; ?>
-					</table>
+
+					<div class="itemAdditionalField">
+						<div class="k2FLeft k2Right itemAdditionalValue">
+							<label><?php echo JText::_('K2_ITEM_IMAGE'); ?></label>
+						</div>
+
+						<div class="itemAdditionalData">
+							<input type="file" name="image" class="fileUpload" />
+							<i>(<?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?>)</i>
+
+							<span class="sep"><?php echo JText::_('K2_OR'); ?></span>
+							
+							<input type="text" name="existingImage" id="existingImageValue" class="text_area" readonly />
+							<input type="button" value="<?php echo JText::_('K2_BROWSE_SERVER'); ?>" id="k2ImageBrowseServer"  />
+						</div>
+					</div>
+
+					<?php if (!empty($this->row->image)): ?>
+					<div class="itemAdditionalField">
+						<div class="k2FLeft k2Right itemAdditionalValue">
+							<label><?php echo JText::_('K2_ITEM_IMAGE_PREVIEW'); ?></label>
+						</div>
+						
+						<div class="itemAdditionalData">
+							<a class="modal" rel="{handler: 'image'}" href="<?php echo $this->row->image; ?>" title="<?php echo JText::_('K2_CLICK_ON_IMAGE_TO_PREVIEW_IN_ORIGINAL_SIZE'); ?>">
+								<img alt="<?php echo $this->row->title; ?>" src="<?php echo $this->row->thumb; ?>" class="k2AdminImage" />
+							</a>
+							<input type="checkbox" name="del_image" id="del_image" />
+							<label for="del_image"><?php echo JText::_('K2_CHECK_THIS_BOX_TO_DELETE_CURRENT_IMAGE_OR_JUST_UPLOAD_A_NEW_IMAGE_TO_REPLACE_THE_EXISTING_ONE'); ?></label>
+						</div>
+					</div>
+					<?php endif; ?>
+
+					<div class="itemAdditionalField">
+						<div class="k2FLeft k2Right itemAdditionalValue">
+							<label><?php echo JText::_('K2_ITEM_IMAGE_CAPTION'); ?></label>
+						</div>
+						<div class="itemAdditionalData">
+							<input type="text" name="image_caption" size="30" class="text_area" value="<?php echo $this->row->image_caption; ?>" />
+						</div>
+					</div>
+
+					<div class="itemAdditionalField">
+						<div class="k2FLeft k2Right itemAdditionalValue">
+							<label><?php echo JText::_('K2_ITEM_IMAGE_CREDITS'); ?></label>
+						</div>
+						<div class="itemAdditionalData">
+							<input type="text" name="image_credits" size="30" class="text_area" value="<?php echo $this->row->image_credits; ?>" />
+						</div>
+					</div>
+
 					<?php if (count($this->K2PluginsItemImage)): ?>
 					<div class="itemPlugins">
 						<?php foreach($this->K2PluginsItemImage as $K2Plugin): ?>
-						<?php if(!is_null($K2Plugin)): ?>
-						<fieldset>
-							<legend><?php echo $K2Plugin->name; ?></legend>
-							<?php echo $K2Plugin->fields; ?>
-						</fieldset>
+						<div class="itemAdditionalField">
+							<?php if(!is_null($K2Plugin)): ?>
+							<fieldset>
+								<div class="k2FLeft k2Right itemAdditionalValue">
+									<label><?php echo $K2Plugin->name; ?></label>
+								</div>
+								<div class="itemAdditionalData">
+									<?php echo $K2Plugin->fields; ?>
+								</div>
+							</fieldset>
+						</div>
 						<?php endif; ?>
 						<?php endforeach; ?>
 					</div>
 					<?php endif; ?>
 				</div>
 				<?php endif; ?>
-
 
 				<?php if ($this->params->get('showImageGalleryTab')): ?>
 				<!-- Tab image gallery -->
@@ -441,15 +447,17 @@ $document->addScriptDeclaration("
 				</div>
 				<?php endif; ?>
 				<?php if ($this->params->get('showVideoTab')): ?>
+
 				<!-- Tab video -->
 				<div class="k2TabsContent k2TabsContentLower" id="k2TabMedia">
 					<?php if ($this->lists['checkAllVideos']): ?>
-					<table class="admintable table" id="item_video_content">
-						<tr>
-							<td align="right" class="key">
-								<?php echo JText::_('K2_MEDIA_SOURCE'); ?>
-							</td>
-							<td>
+					<div id="item_video_content">
+						<div class="itemAdditionalField">
+							<div class="k2FLeft k2Right itemAdditionalValue">
+								<label><?php echo JText::_('K2_MEDIA_SOURCE'); ?></label>
+							</div>
+
+							<div class="itemAdditionalData">
 								<div id="k2MediaTabs" class="k2Tabs">
 									<ul class="k2TabsNavigation">
 										<li><a href="#k2MediaTab1"><?php echo JText::_('K2_UPLOAD'); ?></a></li>
@@ -457,143 +465,189 @@ $document->addScriptDeclaration("
 										<li><a href="#k2MediaTab3"><?php echo JText::_('K2_MEDIA_USE_ONLINE_VIDEO_SERVICE'); ?></a></li>
 										<li><a href="#k2MediaTab4"><?php echo JText::_('K2_EMBED'); ?></a></li>
 									</ul>
-									<div id="k2MediaTab1" class="k2TabsContent">
+
+									<div id="k2MediaTab1" class="k2TabsContent k2TabsContentLower">
 										<div class="panel" id="Upload_video">
 											<input type="file" name="video" class="fileUpload" />
-											<i>(<?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?>)</i></div>
-									</div>
-									<div id="k2MediaTab2" class="k2TabsContent">
-										<div class="panel" id="Remote_video"> <a id="k2MediaBrowseServer" href="index.php?option=com_k2&view=media&type=video&tmpl=component&fieldID=remoteVideo"><?php echo JText::_('K2_BROWSE_VIDEOS_ON_SERVER')?></a> <?php echo JText::_('K2_OR'); ?> <?php echo JText::_('K2_PASTE_REMOTE_VIDEO_URL'); ?>
-											<br />
-											<br />
-											<input type="text" size="50" name="remoteVideo" id="remoteVideo" value="<?php echo $this->lists['remoteVideo'] ?>" />
+											<i>(<?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?>)</i>
 										</div>
 									</div>
-									<div id="k2MediaTab3" class="k2TabsContent">
-										<div class="panel" id="Video_from_provider"> <?php echo JText::_('K2_SELECT_VIDEO_PROVIDER'); ?> <?php echo $this->lists['providers']; ?> <br/><br/> <?php echo JText::_('K2_AND_ENTER_VIDEO_ID'); ?>
-											<input type="text" size="50" name="videoID" value="<?php echo $this->lists['providerVideo'] ?>" />
-											<br />
-											<br />
-											<a class="modal" rel="{handler: 'iframe', size: {x: 990, y: 600}}" href="http://www.joomlaworks.net/allvideos-documentation"><?php echo JText::_('K2_READ_THE_ALLVIDEOS_DOCUMENTATION_FOR_MORE'); ?></a> </div>
+
+									<div id="k2MediaTab2" class="k2TabsContent k2TabsContentLower">
+										<div class="panel" id="Remote_video">
+											<div class="itemAdditionalBlock">
+												<a id="k2MediaBrowseServer" class="k2Button" href="index.php?option=com_k2&amp;view=media&amp;type=video&amp;tmpl=component&amp;fieldID=remoteVideo">
+													<?php echo JText::_('K2_BROWSE_VIDEOS_ON_SERVER')?>
+												</a>
+											</div>
+
+											<div class="itemAdditionalBlock sep">
+												<label><?php echo JText::_('K2_OR'); ?></label>
+											</div>
+											
+											<div class="itemAdditionalBlock">
+												<label><?php echo JText::_('K2_PASTE_REMOTE_VIDEO_URL'); ?></label>
+											</div>
+
+											<div class="itemAdditionalBlock">
+												<input type="text" size="50" name="remoteVideo" id="remoteVideo" value="<?php echo $this->lists['remoteVideo'] ?>" />
+											</div>
+										</div>
 									</div>
-									<div id="k2MediaTab4" class="k2TabsContent">
-										<div class="panel" id="embedVideo">
-											<?php echo JText::_('K2_PASTE_HTML_EMBED_CODE_BELOW'); ?>
-											<br />
-											<textarea name="embedVideo" rows="5" cols="50" class="textarea"><?php echo $this->lists['embedVideo']; ?></textarea>
+
+									<div id="k2MediaTab3" class="k2TabsContent k2TabsContentLower">
+										
+										<div class="panel" id="Video_from_provider"> 
+
+											<div class="itemAdditionalBlock">
+												<label><?php echo JText::_('K2_SELECT_VIDEO_PROVIDER'); ?></label>
+											</div>
+											<div class="itemAdditionalBlock">
+												<?php echo $this->lists['providers']; ?>
+											</div>
+											
+											<div class="itemAdditionalBlock">
+												<label><?php echo JText::_('K2_AND_ENTER_VIDEO_ID'); ?></label>
+											</div>
+											<div class="itemAdditionalBlock">
+												<input type="text" size="50" name="videoID" value="<?php echo $this->lists['providerVideo'] ?>" />
+											</div>
+
+											<div class="k2Right k2DocLink">
+												<a class="modal" rel="{handler: 'iframe', size: {x: 990, y: 600}}" href="http://www.joomlaworks.net/allvideos-documentation">
+													<i class="fa fa-info"></i>
+													<span><?php echo JText::_('K2_READ_THE_ALLVIDEOS_DOCUMENTATION_FOR_MORE'); ?></span>
+												</a>
+											</div>
+										</div>
+									</div>
+									<div id="k2MediaTab4" class="k2TabsContent k2TabsContentLower">
+										<div class="itemAdditionalField panel" id="embedVideo">
+											<div class="k2FLeft k2Right itemAdditionalValue">
+												<label><?php echo JText::_('K2_PASTE_HTML_EMBED_CODE_BELOW'); ?></label>
+											</div>
+											<div class="itemAdditionalData">
+												<textarea name="embedVideo" rows="5" cols="50" class="textarea"><?php echo $this->lists['embedVideo']; ?></textarea>
+											</div>
 										</div>
 									</div>
 								</div>
-							</td>
-						</tr>
-						<tr>
-							<td align="right" class="key">
-								<?php echo JText::_('K2_MEDIA_CAPTION'); ?>
-							</td>
-							<td>
-								<input type="text" name="video_caption" size="50" class="text_area" value="<?php echo $this->row->video_caption; ?>" />
-							</td>
-						</tr>
-						<tr>
-							<td align="right" class="key">
-								<?php echo JText::_('K2_MEDIA_CREDITS'); ?>
-							</td>
-							<td>
-								<input type="text" name="video_credits" size="50" class="text_area" value="<?php echo $this->row->video_credits; ?>" />
-							</td>
-						</tr>
+							</div>
+						</div>
+
 						<?php if($this->row->video): ?>
-						<tr>
-							<td align="right" class="key">
-								<?php echo JText::_('K2_MEDIA_PREVIEW'); ?>
-							</td>
-							<td>
+						<div class="itemAdditionalField">
+							<div class="k2FLeft k2Right itemAdditionalValue">
+								<label><?php echo JText::_('K2_MEDIA_PREVIEW'); ?></label>
+							</div>
+							<div class="itemAdditionalData">
 								<?php echo $this->row->video; ?>
-								<br />
+								<div class="clr"></div>
 								<input type="checkbox" name="del_video" id="del_video" />
 								<label for="del_video"><?php echo JText::_('K2_CHECK_THIS_BOX_TO_DELETE_CURRENT_VIDEO_OR_USE_THE_FORM_ABOVE_TO_REPLACE_THE_EXISTING_ONE'); ?></label>
-							</td>
-						</tr>
+							</div>
+						</div>
 						<?php endif; ?>
-					</table>
-					<?php else: ?>
-						<?php if (K2_JVERSION == '15'): ?>
+					
+						<div class="itemAdditionalField">
+							<div class="k2FLeft k2Right itemAdditionalValue">
+								<label><?php echo JText::_('K2_MEDIA_CAPTION'); ?></label>
+							</div>
+							<div class="itemAdditionalData">
+								<input type="text" name="video_caption" size="50" class="text_area" value="<?php echo $this->row->video_caption; ?>" />
+							</div>
+						</div>
+
+						<div class="itemAdditionalField">
+							<div class="k2FLeft k2Right itemAdditionalValue">
+								<label><?php echo JText::_('K2_MEDIA_CREDITS'); ?></label>
+							</div>
+							<div class="itemAdditionalData">
+								<input type="text" name="video_credits" size="50" class="text_area" value="<?php echo $this->row->video_credits; ?>" />
+							</div>
+						</div>
+
+					</div>
+					<?php 
+					// No AllVideos - Show default fields
+					else: ?>
+
+					<!-- No AllVideos alert goes here -->
+					<?php if (K2_JVERSION == '15'): ?>
+					<dl id="system-message">
+						<dt class="notice"><?php echo JText::_('K2_NOTICE'); ?></dt>
+						<dd class="notice message fade">
+							<ul>
+								<li><?php echo JText::_('K2_NOTICE_PLEASE_INSTALL_JOOMLAWORKS_ALLVIDEOS_PLUGIN_IF_YOU_WANT_TO_USE_THE_FULL_VIDEO_FEATURES_OF_K2'); ?></li>
+							</ul>
+						</dd>
+					</dl>
+					<?php elseif(K2_JVERSION == '25'): ?>
+					<div id="system-message-container">
 						<dl id="system-message">
 							<dt class="notice"><?php echo JText::_('K2_NOTICE'); ?></dt>
-							<dd class="notice message fade">
+							<dd class="notice message">
 								<ul>
 									<li><?php echo JText::_('K2_NOTICE_PLEASE_INSTALL_JOOMLAWORKS_ALLVIDEOS_PLUGIN_IF_YOU_WANT_TO_USE_THE_FULL_VIDEO_FEATURES_OF_K2'); ?></li>
 								</ul>
 							</dd>
 						</dl>
-						<?php elseif(K2_JVERSION == '25'): ?>
-						<div id="system-message-container">
-							<dl id="system-message">
-								<dt class="notice"><?php echo JText::_('K2_NOTICE'); ?></dt>
-								<dd class="notice message">
-									<ul>
-										<li><?php echo JText::_('K2_NOTICE_PLEASE_INSTALL_JOOMLAWORKS_ALLVIDEOS_PLUGIN_IF_YOU_WANT_TO_USE_THE_FULL_VIDEO_FEATURES_OF_K2'); ?></li>
-									</ul>
-								</dd>
-							</dl>
-						</div>
-						<?php else: ?>
-						<div class="alert">
-							<h4 class="alert-heading"><?php echo JText::_('K2_NOTICE'); ?></h4>
-							<div><p><?php echo JText::_('K2_NOTICE_PLEASE_INSTALL_JOOMLAWORKS_ALLVIDEOS_PLUGIN_IF_YOU_WANT_TO_USE_THE_FULL_VIDEO_FEATURES_OF_K2'); ?></p></div>
-						</div>
-						<?php endif; ?>
-					<table class="admintable table" id="item_video_content">
-						<tr>
-							<td align="right" class="key">
-								<?php echo JText::_('K2_MEDIA_SOURCE'); ?>
-							</td>
-							<td>
-								<div id="k2MediaTabs" class="k2Tabs">
-									<ul class="k2TabsNavigation">
-										<li><a href="#k2MediaTab4"><?php echo JText::_('K2_EMBED'); ?></a></li>
-									</ul>
-									<div class="k2TabsContent" id="k2MediaTab4">
-										<div class="panel" id="embedVideo">
-											<?php echo JText::_('K2_PASTE_HTML_EMBED_CODE_BELOW'); ?>
-											<br />
-											<textarea name="embedVideo" rows="5" cols="50" class="textarea"><?php echo $this->lists['embedVideo']; ?></textarea>
-										</div>
-									</div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td align="right" class="key">
-								<?php echo JText::_('K2_MEDIA_CAPTION'); ?>
-							</td>
-							<td>
-								<input type="text" name="video_caption" size="50" class="text_area" value="<?php echo $this->row->video_caption; ?>" />
-							</td>
-						</tr>
-						<tr>
-							<td align="right" class="key">
-								<?php echo JText::_('K2_MEDIA_CREDITS'); ?>
-							</td>
-							<td>
-								<input type="text" name="video_credits" size="50" class="text_area" value="<?php echo $this->row->video_credits; ?>" />
-							</td>
-						</tr>
-						<?php if($this->row->video): ?>
-						<tr>
-							<td align="right" class="key">
-								<?php echo JText::_('K2_MEDIA_PREVIEW'); ?>
-							</td>
-							<td>
-								<?php echo $this->row->video; ?>
-								<br />
-								<input type="checkbox" name="del_video" id="del_video" />
-								<label for="del_video"><?php echo JText::_('K2_USE_THE_FORM_ABOVE_TO_REPLACE_THE_EXISTING_VIDEO_OR_CHECK_THIS_BOX_TO_DELETE_CURRENT_VIDEO'); ?></label>
-							</td>
-						</tr>
-						<?php endif; ?>
-					</table>
+					</div>
+					<?php else: ?>
+					<div class="alert">
+						<h4 class="alert-heading"><?php echo JText::_('K2_NOTICE'); ?></h4>
+						<div><p><?php echo JText::_('K2_NOTICE_PLEASE_INSTALL_JOOMLAWORKS_ALLVIDEOS_PLUGIN_IF_YOU_WANT_TO_USE_THE_FULL_VIDEO_FEATURES_OF_K2'); ?></p></div>
+					</div>
 					<?php endif; ?>
+					<!-- End of the alert -->
+
+					<div id="k2MediaTabs" class="k2Tabs">
+						<ul class="k2TabsNavigation">
+							<li><a href="#k2MediaTab4"><?php echo JText::_('K2_EMBED'); ?></a></li>
+						</ul>
+
+						<div class="k2TabsContent" id="k2MediaTab4">
+							<div class="panel" id="embedVideo">
+								<?php echo JText::_('K2_PASTE_HTML_EMBED_CODE_BELOW'); ?>
+								<br />
+								<textarea name="embedVideo" rows="5" cols="50" class="textarea"><?php echo $this->lists['embedVideo']; ?></textarea>
+							</div>
+						</div>
+					</div>
+
+					<?php if($this->row->video): ?>
+					<div class="itemAdditionalField">
+						<div class="k2FLeft k2Right itemAdditionalValue">
+							<label><?php echo JText::_('K2_MEDIA_PREVIEW'); ?></label>
+						</div>
+						<div class="itemAdditionalData">
+							<?php echo $this->row->video; ?>
+							<input type="checkbox" name="del_video" id="del_video" />
+							<label for="del_video"><?php echo JText::_('K2_USE_THE_FORM_ABOVE_TO_REPLACE_THE_EXISTING_VIDEO_OR_CHECK_THIS_BOX_TO_DELETE_CURRENT_VIDEO'); ?></label>
+						</div>
+					</div>
+					<?php endif; ?>
+
+					<div class="itemAdditionalField">
+						<div class="k2FLeft k2Right itemAdditionalValue">
+							<label><?php echo JText::_('K2_MEDIA_CAPTION'); ?></label>
+						</div>
+						<div class="itemAdditionalData">
+							<input type="text" name="video_caption" size="50" class="text_area" value="<?php echo $this->row->video_caption; ?>" />
+						</div>
+					</div>
+
+					<div class="itemAdditionalField">
+						<div class="k2FLeft k2Right itemAdditionalValue">
+							<label><?php echo JText::_('K2_MEDIA_CREDITS'); ?></label>
+						</div>
+						<div class="itemAdditionalData">
+							<input type="text" name="video_credits" size="50" class="text_area" value="<?php echo $this->row->video_credits; ?>" />
+						</div>
+					</div>
+					<?php endif; ?>
+					<!-- END of the AllVideos check -->
+
 					<?php if (count($this->K2PluginsItemVideo)): ?>
 					<div class="itemPlugins">
 						<?php foreach($this->K2PluginsItemVideo as $K2Plugin): ?>
@@ -606,6 +660,7 @@ $document->addScriptDeclaration("
 						<?php endforeach; ?>
 					</div>
 					<?php endif; ?>
+
 				</div>
 				<?php endif; ?>
 				<?php if ($this->params->get('showExtraFieldsTab')): ?>
@@ -731,10 +786,11 @@ $document->addScriptDeclaration("
 						<?php endif; ?>
 					</div>
 					<div id="addAttachment">
-						<input type="button" id="addAttachmentButton" class="k2Selector" value="<?php echo JText::_('K2_ADD_ATTACHMENT_FIELD'); ?>" />
+						<input type="button" id="addAttachmentButton" class="k2Selector k2Button" value="<?php echo JText::_('K2_ADD_ATTACHMENT_FIELD'); ?>" />
 						<i>(<?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?>)</i>
 					</div>
 					<div id="itemAttachments"></div>
+
 					<?php if (count($this->K2PluginsItemAttachments)): ?>
 					<div class="itemPlugins">
 						<?php foreach($this->K2PluginsItemAttachments as $K2Plugin): ?>

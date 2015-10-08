@@ -136,31 +136,35 @@ $document->addScriptDeclaration("
 				</div>
 									
 				<!-- Tab image -->
-				<div class="k2TabsContent" id="k2Tab2">
-					<table class="admintable table">
-						<tr>
-							<td align="right" class="key">
-								<?php echo JText::_('K2_CATEGORY_IMAGE'); ?>
-							</td>
-							<td>
-								<input type="file" name="image" class="fileUpload" />
-								<i>(<?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?>)</i>
-								<br />
-								<br />
-								<input type="text" name="existingImage" id="existingImageValue" class="text_area" readonly />
-								<input type="button" value="<?php echo JText::_('K2_BROWSE_SERVER'); ?>" id="k2ImageBrowseServer"  />
-								<br />
-								<br />
-								<?php if (!empty($this->row->image)): ?>
-								<img src="<?php echo JURI::root(true); ?>/media/k2/categories/<?php echo $this->row->image; ?>" alt="<?php echo $this->row->name; ?>" class="k2AdminImage" />
-								<input type="checkbox" name="del_image" id="del_image" />
-								<label for="del_image"><?php echo JText::_('K2_CHECK_THIS_BOX_TO_DELETE_CURRENT_IMAGE_OR_JUST_UPLOAD_A_NEW_IMAGE_TO_REPLACE_THE_EXISTING_ONE'); ?></label>
-								<?php endif; ?>
-							</td>
-						</tr>
-					</table>
-				</div>
+				<div class="k2TabsContent k2TabsContentLower" id="k2Tab2">
 
+					<?php if (!empty($this->row->image)): ?>
+					<div class="itemAdditionalField">
+						<div class="k2FLeft k2Right itemAdditionalValue">
+							<label><?php echo JText::_('K2_ITEM_IMAGE_PREVIEW'); ?></label>
+						</div>
+						<div class="itemAdditionalData">
+							<img src="<?php echo JURI::root(true); ?>/media/k2/categories/<?php echo $this->row->image; ?>" alt="<?php echo $this->row->name; ?>" class="k2AdminImage" />
+							<input type="checkbox" name="del_image" id="del_image" />
+							<label for="del_image"><?php echo JText::_('K2_CHECK_THIS_BOX_TO_DELETE_CURRENT_IMAGE_OR_JUST_UPLOAD_A_NEW_IMAGE_TO_REPLACE_THE_EXISTING_ONE'); ?></label>
+						</div>
+					</div>
+					<?php endif; ?>
+
+					<div class="itemAdditionalField">
+						<div class="k2FLeft k2Right itemAdditionalValue">
+							<label><?php echo JText::_('K2_CATEGORY_IMAGE'); ?></label>
+						</div>
+						<div class="itemAdditionalData">
+							<input type="file" name="image" class="fileUpload" />
+							<i>(<?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?>)</i>
+							<span class="sep"><?php echo JText::_('K2_OR'); ?></span>
+							<input type="text" name="existingImage" id="existingImageValue" class="text_area" readonly />
+							<input type="button" value="<?php echo JText::_('K2_BROWSE_SERVER'); ?>" id="k2ImageBrowseServer"  />
+						</div>
+					</div>
+				</div>
+				<!-- image tab ends here -->
 			</div>
 			<!-- Tabs end here --> 
 					
