@@ -400,10 +400,14 @@ table#tagLists tr td#tagListsRight select {width:99%;height:106px;}
 
 /* Item - Image - inherits from above */
 
-
 /* Item - Gallery */
+.itemGalleryBlock { margin-bottom: 20px; }
+	.itemGalleryBlock label { display: block; margin-bottom: 10px; }
+	.itemGalleryBlock input[type="text"] { max-width: 300px; }
+	.itemGalleryBlock.separator { text-transform: uppercase; font-weight: 700; color: #46afff; }
 
-/* Item - Video */
+
+/* Item - Video - inherits from above  */
 .avPlayerWrapper .avPlayerContainer { float: left; }
 
 /* ====================================================================================================== */

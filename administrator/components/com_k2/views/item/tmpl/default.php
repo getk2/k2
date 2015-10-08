@@ -370,41 +370,64 @@ $document->addScriptDeclaration("
 				<?php endif; ?>
 
 				<?php if ($this->params->get('showImageGalleryTab')): ?>
+				
 				<!-- Tab image gallery -->
 				<div class="k2TabsContent k2TabsContentLower" id="k2TabImageGallery">
 					<?php if ($this->lists['checkSIG']): ?>
-					<table class="admintable table" id="item_gallery_content">
-						<tr>
-							<td align="right" valign="top" class="key">
-								<?php echo JText::_('K2_COM_BE_ITEM_ITEM_IMAGE_GALLERY'); ?>
-							</td>
-							<td valign="top">
-								<?php if($this->sigPro): ?>
-								<a class="modal" rel="{handler: 'iframe', size: {x: 940, y: 560}}" href="index.php?option=com_sigpro&view=galleries&task=create&newFolder=<?php echo $this->sigProFolder; ?>&type=k2&tmpl=component"><?php echo JText::_('K2_COM_BE_ITEM_SIGPRO_UPLOAD'); ?></a> <i>(<?php echo JText::_('K2_COM_BE_ITEM_SIGPRO_UPLOAD_NOTE'); ?>)</i>
-								<input name="sigProFolder" type="hidden" value="<?php echo $this->sigProFolder; ?>" />
-								<br />
-								<br />
-								<?php echo JText::_('K2_OR'); ?>
-								<?php endif; ?>
-								<?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_WITH_IMAGES'); ?> <input type="file" name="gallery" class="fileUpload" /> <span class="hasTip k2GalleryNotice" title="<?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP_HEADER'); ?>::<?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP_TEXT'); ?>"><?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP'); ?></span> <i>(<?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?>)</i>
-								<br />
-								<br />
-								<?php echo JText::_('K2_OR_ENTER_A_FLICKR_SET_URL'); ?><?php echo JText::_('K2_OR_ENTER_A_FLICKR_SET_URL'); ?>
-								<input type="text" name="flickrGallery" size="50" value="<?php echo ($this->row->galleryType == 'flickr') ? $this->row->galleryValue : ''; ?>" /> <span class="hasTip k2GalleryNotice" title="<?php echo JText::_('K2_VALID_FLICK_API_KEY_HELP_HEADER'); ?>::<?php echo JText::_('K2_VALID_FLICK_API_KEY_HELP_TEXT'); ?>"><?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP'); ?></span>
+					<div id="item_gallery_content" class="itemAdditionalField">
+	
+						<?php if($this->sigPro): ?>
+						<div class="itemGalleryBlock">
+							<a class="k2Button" class="modal" rel="{handler: 'iframe', size: {x: 940, y: 560}}" href="index.php?option=com_sigpro&view=galleries&task=create&newFolder=<?php echo $this->sigProFolder; ?>&type=k2&tmpl=component">
+								<?php echo JText::_('K2_COM_BE_ITEM_SIGPRO_UPLOAD'); ?>
+							</a>
+							<br />
+							<label><?php echo JText::_('K2_COM_BE_ITEM_SIGPRO_UPLOAD_NOTE'); ?>)</label>
+							<input name="sigProFolder" type="hidden" value="<?php echo $this->sigProFolder; ?>" />
+						</div>
 
-								<?php if (!empty($this->row->gallery)): ?>
-								<!-- Preview -->
-								<div id="itemGallery">
-									<?php echo $this->row->gallery; ?>
-									<br />
-									<input type="checkbox" name="del_gallery" id="del_gallery" />
-									<label for="del_gallery"><?php echo JText::_('K2_CHECK_THIS_BOX_TO_DELETE_CURRENT_IMAGE_GALLERY_OR_JUST_UPLOAD_A_NEW_IMAGE_GALLERY_TO_REPLACE_THE_EXISTING_ONE'); ?></label>
-								</div>
-								<?php endif; ?>
-							</td>
-						</tr>
-					</table>
-					<?php else: ?>
+						<div class="itemGalleryBlock separator">
+							<?php echo JText::_('K2_OR'); ?>
+						</div>
+						<?php endif; ?>
+
+						<div class="itemGalleryBlock">
+							<label><?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_WITH_IMAGES'); ?></label>
+							<input type="file" name="gallery" class="fileUpload" />
+							<span class="hasTip k2GalleryNotice" title="
+								<?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP_HEADER'); ?>::<?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP_TEXT'); ?>">
+								<?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP'); ?>
+							</span> 
+							<label><?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?></label>
+						</div>
+
+						<div class="itemGalleryBlock separator">
+							<?php echo JText::_('K2_OR'); ?>
+						</div>
+
+						<div class="itemGalleryBlock">
+							<label><?php echo JText::_('K2_OR_ENTER_A_FLICKR_SET_URL'); ?></label>
+							<input type="text" name="flickrGallery" size="50" value="<?php echo ($this->row->galleryType == 'flickr') ? $this->row->galleryValue : ''; ?>" /> 
+							<span class="hasTip k2GalleryNotice" title="<?php echo JText::_('K2_VALID_FLICK_API_KEY_HELP_HEADER'); ?>::<?php echo JText::_('K2_VALID_FLICK_API_KEY_HELP_TEXT'); ?>">
+								<?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP'); ?>
+							</span>
+						</div>
+
+						<?php if (!empty($this->row->gallery)): ?>
+						<!-- Preview -->
+						<div id="itemGallery" class="itemGalleryBlock">
+							<?php echo $this->row->gallery; ?>
+
+							<input type="checkbox" name="del_gallery" id="del_gallery" />
+							<label for="del_gallery"><?php echo JText::_('K2_CHECK_THIS_BOX_TO_DELETE_CURRENT_IMAGE_GALLERY_OR_JUST_UPLOAD_A_NEW_IMAGE_GALLERY_TO_REPLACE_THE_EXISTING_ONE'); ?></label>
+						</div>
+						<?php endif; ?>
+
+					</div>
+
+					<?php 
+					// SigPro is not present
+					else: ?>
 						<?php if (K2_JVERSION == '15'): ?>
 						<dl id="system-message">
 							<dt class="notice"><?php echo JText::_('K2_NOTICE'); ?></dt>
