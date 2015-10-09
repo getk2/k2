@@ -33,3 +33,49 @@ body.contentpane ul.config-option-list li>label { background:#f6f6f6; border-bot
 body.contentpane div.current select { margin-bottom:0!important; }
 body.contentpane dl.tabs { padding-left:8px!important; }
 body.contentpane dl.tabs dt.open { background:#fff!important; border-bottom:1px solid #fff!important; }
+
+/* Settings - Joomla! 3.x */
+.paramHeaderContent { background: #e5f7fd; border-radius: 3px; line-height: 1; padding: 18px 25px; margin: 25px 0 10px 0; color: #346b93; font-size: 18px; }
+	.tab-pane > .control-group:first-child .paramHeaderContent { margin-top: 0; }
+
+.form-horizontal .controls label, .controls label { min-width:85px;width:auto; text-align:center; border:1px solid #d4d6d8;line-height:33px;vertical-align:top;height:33px;font-size:12px;margin:0 -2px;padding:0 13px;
+color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background-color:#eff1f1;
+box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff; }
+
+	.controls label:hover {cursor:pointer; box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 0 10px rgba(0,0,0,.15);}
+	.controls input[type="radio"] { opacity: 0; position: absolute; clip: rect(0,0,0,0); }
+
+	.controls label:first-of-type { border-radius: 3px 0 0 3px; }
+	.controls label:last-of-type { border-radius:  0 3px 3px 0; }
+
+	/* Checked boxes - show/ Yes */
+	.controls input[value="1"]:checked + label,
+	label[id*="1-"].radio.isChecked  { background: #3fa800; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
+
+	/* Checked boxes - hide/ No */
+	.controls input[value="0"]:checked + label,
+	label[id*="0-"].radio.isChecked { background: #bd362f; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
+
+	/* Checked boxes - Generic */
+	label.isChecked { background: #63696f; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
+
+
+/* Redefining the form */
+.form-horizontal .control-label:empty { display: none; }
+.form-horizontal .controls { margin-left: 0!important;  }
+
+.form-horizontal .control-label {  min-width: 350px; max-width: 350px; }
+.form-horizontal .control-label label { font-size: 13px; font-weight: 700; color: #777778;  padding: 15px 10px 10px; line-height: 1; margin: 0; }
+.controls .radio, .controls .checkbox { padding-left: 0; }
+
+/* BS resets */
+.form-horizontal .control-group { margin-bottom: 0!important; border-radius: 3px; }
+.form-horizontal .control-group:nth-child(2n-2) { background: #f7f7f7; }
+
+.form-horizontal .controls > .radio:first-child, .form-horizontal .controls > .checkbox:first-child { padding-top: 10px; }
+.k2Table .controls > .radio:first-child, .k2Table .controls > .checkbox:first-child,
+.k2GenericForm .controls > .radio:first-child, .k2GenericForm .controls > .checkbox:first-child { padding-top: 0px; }
+
+.form-horizontal .controls fieldset { padding: 10px 0; }
+.form-horizontal .controls .chzn-container { margin: 15px 0; }
+.form-horizontal .controls input[type="text"], .form-horizontal .controls textarea { margin: 10px 0 15px 0; }
