@@ -83,7 +83,7 @@ div.k2Table {margin:0 0 20px 0;}
 		div.k2SubTable { margin-bottom: 15px; }
 			div.k2SubTable .k2SubTableLabel {display:inline-block;text-align:right;vertical-align:top;padding:4px 8px;margin:0 0 0 20px;}
 			div.k2SubTable .k2SubTableLabel > label {font-weight:normal;color:#777;}
-			
+
 			/* Category specific styling */
 			.k2CategoryForm div.k2SubTable .k2SubTableLabel > label { width: 105px; max-width: 105px; }
 			.k2CategoryForm div.k2Table .k2TableLabel > label { width: 125px; max-width: 125px; }
@@ -162,7 +162,7 @@ div.k2ScrollingContent { margin-left: 320px; padding-left: 30px; padding-right: 
 		.xmlParamsFields .paramValue label:hover {cursor:pointer; box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 0 10px rgba(0,0,0,.15);}
 		.xmlParamsFields .paramValue input[type="radio"] { opacity: 0; position: absolute; clip: rect(0,0,0,0); }
 		.xmlParamsFields .paramValue input[type="text"] { float: right; }
-		
+
 	/* Checked boxes - generic */
 	.xmlParamsFields .paramValue input:checked + label { background: #63696f; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
 	/* Checked boxes - show */
@@ -222,7 +222,7 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
 /* Extrafields - newly generated elements */
 #exFieldsTypesDiv { padding-top: 15px; }
 	#exFieldsTypesDiv input[type="text"] { margin-bottom: 20px; min-height: 30px; line-height: 40px; }
-	#exFieldsTypesDiv input[type="button"], #exFieldsTypesDiv button { margin-bottom: 20px; display: inline-block; vertical-align: top; margin-right: 10px; 
+	#exFieldsTypesDiv input[type="button"], #exFieldsTypesDiv button { margin-bottom: 20px; display: inline-block; vertical-align: top; margin-right: 10px;
 	color: #414042; min-width: 100px; padding: 10px 15px; border-radius: 3px; border: 1px solid #dedede; border-bottom-color: #cacaca; background: #fdfdfd; white-space: normal;position: relative; font-weight: 700;
     background: -moz-linear-gradient(top, #fdfdfd 0%, #f5f5f5 100%);
     background: -webkit-linear-gradient(top, #fdfdfd 0%, #f5f5f5 100%);
@@ -402,8 +402,8 @@ table#tagLists tr td#tagListsRight select {width:99%;height:106px;}
     background: linear-gradient(to bottom, #fdfdfd 0%, #f5f5f5 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd', endColorstr='#f5f5f5',GradientType=0);
     box-shadow: 0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff; }
-   
-    .itemAdditionalField .itemAdditionalData > button:hover, .itemAdditionalField .itemAdditionalData > input[type="button"]:hover, .itemAdditionalField .itemAdditionalData > input[type="submit"]:hover, .itemAdditionalField .k2Button:hover {  
+
+    .itemAdditionalField .itemAdditionalData > button:hover, .itemAdditionalField .itemAdditionalData > input[type="button"]:hover, .itemAdditionalField .itemAdditionalData > input[type="submit"]:hover, .itemAdditionalField .k2Button:hover {
     text-decoration: none; border-color: #dedede; border-bottom-color: #cacaca; background: #fdfdfd;
     background: -moz-linear-gradient(top, #fdfdfd 0%, #f5f5f5 100%);
     background: -webkit-linear-gradient(top, #fdfdfd 0%, #f5f5f5 100%);
@@ -446,7 +446,7 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 	/* Lists - filters */
 	#k2AdminContainer .k2AdminTableFilters { margin-bottom: 0; width: 100%; border-left: 1px solid #dbdcdc; }
 		#k2AdminContainer .k2AdminTableFilters tr td { background: #fff; border-bottom: 1px solid #dbdcdc; padding-top: 15px; }
-	
+
 	/* Legacy styling */
 	table.k2AdminTableFilters {width:100%;}
 		table.k2AdminTableFilters tr td.k2AdminTableFiltersSearch {white-space:nowrap;}
@@ -485,11 +485,32 @@ html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs
 
 /* Joomla 2.5 */
 html.isJ25 {overflow-y:scroll;}
-html.isJ25 div#element-box div.m {padding:0;border:1px solid #ccc;border-top:0;border-radius:0 0 10px 10px;}
-html.isJ25 div#element-box div.m div#k2AdminContainer {margin-top:-28px;background:#fff;}
+html.isJ25 div#element-box div.m { padding: 10px 0; }
+html.isJ25 div#element-box div.m div#k2AdminContainer {margin-top:-10px;background:#fff;}
 html.isJ25 div#element-box div.m div#k2AdminContainer #k2FormTopNav {padding:0;margin-top:0;}
 html.isJ25 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs {border-top:1px solid #d4d7d9;}
 html.isJ25 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {content: "\f0d8";font-family:"FontAwesome";font-style:normal;font-weight:normal;text-decoration:inherit;color:#fff;font-size:32px;position:absolute;bottom:-12px;left:50%;margin-left:-16px;width:32px;text-shadow:0px -1px 1px #ccc;}
+html.isJ25 fieldset { padding-left: 0; border: 0; }
+html.isJ25 div.m { border: 0; }
+html.isJ25 div.m, html.isJ25 #content-box { -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; }
+html.isJ25 .xmlParamsFields .paramValue label { padding: 0 13px!important; }
+html.isJ25 #element-box { margin-bottom: 0; padding: 0; }
+html.isJ25 #toolbar-box { padding: 10px 0 0; }
+html.isJ25 #k2AdminContainer .k2AdminTableFilters,html.isJ25 #k2AdminContainer .adminlist { border-left: 0; }
+
+/* The submenu */
+html.isJ25 #toolbar-box { margin-bottom: 0; }
+html.isJ25 #submenu-box { padding: 0; margin: 0; border-top: 1px solid #d4d7d9; }
+html.isJ25 #submenu-box div.m { border: 0; padding: 0; }
+	html.isJ25 #submenu li a { display: block; font-size: 15px; text-decoration: none; font-weight: normal; outline: 0; padding: 21px 24px;  margin: 0; border-right: 1px solid #d4d7d9; color: #414042; }
+
+/* The list */
+html.isJ25 table.adminlist { border-spacing: 0; }
+	html.isJ25 table.adminlist tbody tr td { border: 0; }
+	html.isJ25 table.adminlist thead th { padding: 10px 0; border-left: 0; border-right: 0; }
+	html.isJ25 #k2AdminContainer .adminlist tfoot tr td { border-top: 0; padding: 15px 0; }
+
+html.isJ25 #k2AdminContainer .k2AdminTableFilters tr td { padding: 10px; }
 
 /* Joomla 3.x */
 html.isJ30 {}
