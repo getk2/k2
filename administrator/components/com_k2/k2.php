@@ -110,9 +110,9 @@ $document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v=2.7.0&amp;sit
 
 // Container CSS class definition
 if(K2_JVERSION == '15'){
-	$k2CSSContainerClass = ' isJ15';
+	$k2CSSContainerClass = ' oldJ isJ15';
 } elseif(K2_JVERSION == '25'){
-	$k2CSSContainerClass = ' isJ25';
+	$k2CSSContainerClass = ' oldJ isJ25';
 } elseif(K2_JVERSION == '30'){
 	$k2CSSContainerClass = ' isJ25 isJ30';
 } else {
