@@ -469,6 +469,47 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 
 		#k2AdminContainer .adminlist tr td { background: #f0f2f2; border-bottom: 1px solid #dbdcdc; }
 
+/* Information View */
+.k2ViewIsInfo .header, .k2ViewIsInfo .subhead { display: none; position: relative; z-index: 2; }
+
+#k2InfoPage { max-width: 1300px; }
+#k2InfoPage .k2ScrollingContent { margin-top: -41px; margin-bottom: 10px }
+
+	#k2AdminContainer #k2InfoPage h1, #k2AdminContainer #k2InfoPage h2 { margin-bottom:20px; padding: 0; font-weight: 400; font-size: 26px; line-height: 28px; }
+	#k2InfoPage a {color:#00afec;}
+	#k2InfoPage ul { margin-bottom:30px; }
+		#k2InfoPage table li { background: #fff; }
+	#k2InfoPage ul.k2ScrollSpyMenu { padding: 0; border-left: 1px solid #e3e4e4; height: 100%; top: 0; padding-top: 31px; z-index: 1; }
+		#k2InfoPage ul.k2ScrollSpyMenu li { border-bottom:1px solid #e3e4e4;}
+		#k2InfoPage ul.k2ScrollSpyMenu > li:first-child { border-top:1px solid #e3e4e4; }
+
+		#k2InfoPage ul.k2ScrollSpyMenu li a {font-size:14px;padding:17px 28px;display:block; color: #636b6e; }
+		#k2InfoPage ul.k2ScrollSpyMenu li a.active { background: #f7f7f7; }
+		#k2InfoPage ul.k2ScrollSpyMenu li a:hover {background:#00afec;color:#fff;}
+		#k2InfoPage .fa { float: right; }
+
+#k2InfoPage table,
+#k2InfoPage fieldset {width:100%;border:0;}
+#k2InfoPage fieldset div {padding:10px 0 0;}
+	#k2InfoPage .k2InfoTable tr td:first-child {width:70%;}
+	#k2InfoPage .k2InfoTable tr td:last-child {width:30%;}
+
+	#k2InfoPage fieldset {margin-bottom:40px;}
+
+	#k2InfoPage legend {font-size:23px;font-weight:300;color:#4a4949;display:block;margin:0 0 10px;padding-bottom:10px;border-bottom:1px solid #c5c4c4;position:static;float:none;}
+	#k2InfoPage th {background:#fff;height:35px;line-height:35px;text-align:left;padding:0 15px;}
+	#k2InfoPage td {padding:12px 15px; border: 0;}
+	#k2InfoPage tr td:first-child {border-radius:3px 0 0 3px;}
+	#k2InfoPage tr td:last-child {border-radius:0 3px 3px 0;}
+	#k2InfoPage table.stripped tr:nth-child(2n-1) td {background:#f7f7f7;}
+	#k2InfoPage .green {color: #3fa800; font-weight: 600; }
+	#k2InfoPage .red { color: #bd362f; font-weight: 600 }
+
+	/* About Block */
+	#k2InfoPage #k2AboutBlock {font-size:14px;line-height:1.65;}
+		#k2InfoPage #k2AboutBlock h2 {margin:30px 0 10px;border:none;
+padding:0;color:#4a4949;}
+		#k2InfoPage #k2AboutBlock a {padding-bottom:2px;border-bottom:1px solid #dbdcdc;}
 
 /* ====================================================================================================== */
 /* ====================================================================================================== */
