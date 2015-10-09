@@ -233,6 +233,7 @@
 		<param name="redirect" default="" />
 		<param name="adminSearch" default="simple" />
 		<param name="cookieDomain" default="" />
+		<param name="gatherStatistics" default="1" />
 		<!-- ######################### Tag System Settings ######################### -->
 		<param name="taggingSystem" default="1" />
 		<param name="lockTags" default="0" />

@@ -306,6 +306,18 @@ class Com_K2InstallerScript
             $db->setQuery($query);
             $db->query();
         }
+		
+		
+		 $query = "CREATE TABLE IF NOT EXISTS `#__k2_log` (
+  `status` int(11) NOT NULL,
+  `response` text NOT NULL,
+  `timestamp` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+            $db->setQuery($query);
+            $db->query();
+		
+		
+		
     }
     private function installationResults($status)
     {

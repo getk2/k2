@@ -199,4 +199,24 @@ class K2ControllerItems extends K2Controller
         $model->move();
     }
 
+	function logStats()
+	{
+		JRequest::checkToken() or jexit('Invalid Token');
+		$status = JRequest::getInt('status');
+		$response = JRequest::getString('response');
+		$date = JFactory::getDate();
+		$now = version_compare(JVERSION, '2.5', 'ge') ? $date->toSql() : $date->toMySQL();
+		$db = JFactory::getDbo();
+		$query = 'DELETE FROM #__k2_log';
+		$db->setQuery($query);
+		$db->query();
+		
+		
+		$query = 'INSERT INTO #__k2_log VALUES('.$status.', '.$db->quote($response).', '.$db->quote($now).')';
+		$db->setQuery($query);
+		$db->query();
+		
+		exit;
+	}
+
 }

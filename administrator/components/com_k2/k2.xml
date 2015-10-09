@@ -239,6 +239,7 @@
 				<field name="redirect" default="" />
 				<field name="adminSearch" default="simple" />
 				<field name="cookieDomain" default="" />
+				<field name="gatherStatistics" default="1" />
 				<!-- ######################### Tag System Settings ######################### -->
 				<field name="taggingSystem" default="1" />
 				<field name="lockTags" default="0" />

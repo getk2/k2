@@ -856,6 +856,7 @@ class plgSystemK2 extends JPlugin
 	function onAfterRender()
 	{
 		$application = JFactory::getApplication();
+		$params = JComponentHelper::getParams('com_k2');
 		if($application->isSite())
 		{
 			$response = JResponse::getBody();
@@ -882,6 +883,23 @@ class plgSystemK2 extends JPlugin
 			}
 			$response = JString::str_ireplace($searches, $replacements, $response);
 			JResponse::setBody($response);			
+		}
+		if($application->isAdmin() && $params->get('gatherStatistics', 1))
+		{
+			$option = JRequest::getCmd('option');
+			$view = JRequest::getCmd('view');
+			$views = array('items', 'categories', 'tags', 'comments', 'users', 'usergroups', 'extrafields', 'extrafieldsgroups', '');
+			if($option == 'com_k2' && in_array($view, $views))
+			{
+				require_once JPATH_ADMINISTRATOR.'/components/com_k2/helpers/stats.php';
+				if(K2HelperStats::shouldLog())
+				{
+					$response = JResponse::getBody();
+					$response = JString::str_ireplace('</body>', K2HelperStats::getScripts().'</body>', $response);
+					JResponse::setBody($response);		
+				}
+			}
+				
 		}
 
 	}

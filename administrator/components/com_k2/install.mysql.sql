@@ -170,3 +170,9 @@ CREATE TABLE IF NOT EXISTS `#__k2_user_groups` (
   `permissions` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `#__k2_log` (
+  `status` int(11) NOT NULL,
+  `response` text NOT NULL,
+  `timestamp` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -239,6 +239,15 @@ if (version_compare(JVERSION, '1.6.0', '<'))
         $db->setQuery($query);
         $db->query();
     }
+	
+	$query = "CREATE TABLE IF NOT EXISTS `#__k2_log` (
+  `status` int(11) NOT NULL,
+  `response` text NOT NULL,
+  `timestamp` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+            $db->setQuery($query);
+            $db->query();
+		
     
     // Clean up empty entries in #__k2_users table caused by an issue in the K2 user plugin. Fix details: http://code.google.com/p/getk2/source/detail?r=1966
 	$query = "DELETE FROM #__k2_users WHERE userID = 0";

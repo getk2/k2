@@ -432,6 +432,10 @@
 			<option value="full">K2_FULL_EVERYTHING</option>
 		</param>
 		<param menu="hide" name="cookieDomain" type="text" default="" label="K2_COOKIE_DOMAIN" description="K2_SET_THE_DOMAIN_OF_YOUR_SITE_HERE_AND_K2_WILL_CREATE_A_COOKIE_CONTAINING_THE_USER_ID_FOR_LOGGED_IN_USERS" />
+		<param menu="hide" name="gatherStatistics" type="radio" default="1" label="K2_ENABLE_ANONYMOUS_SYSTEM_STATISTICS_GATHERING" description="K2_ENABLE_ANONYMOUS_SYSTEM_STATISTICS_GATHERING_DESC">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
 		<!-- ######################### Tag System Settings ######################### -->
 		<param menu="hide" name="" type="header" default="K2_TAG_SYSTEM_SETTINGS" label="" description="" />
 		<param menu="hide" name="taggingSystem" type="radio" default="1" label="K2_TAGGING_SYSTEM" description="">
@@ -995,6 +999,10 @@
 			<option value="full">K2_FULL_EVERYTHING</option>
 		</field>
 		<field menu="hide" name="cookieDomain" type="text" default="" label="K2_COOKIE_DOMAIN" description="K2_SET_THE_DOMAIN_OF_YOUR_SITE_HERE_AND_K2_WILL_CREATE_A_COOKIE_CONTAINING_THE_USER_ID_FOR_LOGGED_IN_USERS" />
+		<field menu="hide" name="gatherStatistics" type="radio" default="1" label="K2_ENABLE_ANONYMOUS_SYSTEM_STATISTICS_GATHERING" description="K2_ENABLE_ANONYMOUS_SYSTEM_STATISTICS_GATHERING_DESC">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
 		<!-- ######################### Tag System Settings ######################### -->
 		<field menu="hide" name="" type="header" default="K2_TAG_SYSTEM_SETTINGS" label="" description="" />
 		<field menu="hide" name="taggingSystem" type="radio" default="1" label="K2_TAGGING_SYSTEM" description="">
