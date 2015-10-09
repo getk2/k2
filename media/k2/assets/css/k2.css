@@ -231,7 +231,8 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
     box-shadow: 0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff;
 	}
 		#exFieldsTypesDiv input[type="button"]:hover, #exFieldsTypesDiv button:hover { background: #d4d7d9; }
-
+		#groupContainer { text-align: right; width: 100%; clear: both; float: left; margin: 20px 0 0; }
+				#groupContainer > span, 	#groupContainer > label { font-weight: 700; color: #777; padding-right: 10px; }
 
 /* ====================================================================================================== */
 /* ====================================================================================================== */
@@ -495,7 +496,8 @@ html.isJ25 div.m { border: 0; }
 html.isJ25 div.m, html.isJ25 #content-box { -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; }
 html.isJ25 .xmlParamsFields .paramValue label { padding: 0 13px!important; }
 html.isJ25 #element-box { margin-bottom: 0; padding: 0; }
-html.isJ25 #toolbar-box { padding: 10px 0 0; }
+html.isJ25 #toolbar-box { padding: 0 0; }
+html.isJ25 div#toolbar-box div.m { padding: 10px 0; }
 html.isJ25 #k2AdminContainer .k2AdminTableFilters,html.isJ25 #k2AdminContainer .adminlist { border-left: 0; }
 
 /* The submenu */
@@ -511,6 +513,27 @@ html.isJ25 table.adminlist { border-spacing: 0; }
 	html.isJ25 #k2AdminContainer .adminlist tfoot tr td { border-top: 0; padding: 15px 0; }
 
 html.isJ25 #k2AdminContainer .k2AdminTableFilters tr td { padding: 10px; }
+
+/* Item form */
+.oldJ .k2TagsNotice { margin-bottom: 30px;}
+.oldJ #itemAttachments a.k2AttachmentBrowseServer { margin-left: 20px; }
+
+/* Mimick J!3's inout styling for 1.5 and 2.5 */
+.oldJ label, .oldJ .paramLabel { font-size: 13px; font-weight: 700; display: inline-block; vertical-align: middle; color: #777; }
+.oldJ textarea, .oldJ input[type="text"], .oldJ input[type="password"],  .oldJ input[type="number"], .oldJ input[type="email"], .oldJ input[type="url"], .oldJ .uneditable-input, .oldJ .k2ViewIsItem select, .oldJ .k2ViewIsCategory select, .oldJ .k2GenericForm select {
+    background-color: #fff; border: 1px solid #ccc;  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    -webkit-transition: border linear .2s, box-shadow linear .2s;
+    -moz-transition: border linear .2s, box-shadow linear .2s;
+    transition: border linear .2s, box-shadow linear .2s;
+		display: inline-block;   height: 35px; font-size: 13px; padding: 0 10px; min-width: 80px; line-height: 18px; color: #555;  border-radius: 3px; vertical-align: middle;
+	}
+	.oldJ .k2GenericForm select { min-width: 169px; }
+	.oldJ input.k2OrderBox { max-width: 30px; min-width: 0; }
+	.oldJ td.order span { display: none;}
+	/* Forms */
+	.k2GenericForm > h3:first-child { display: none; }
+	/* Params */
+	.oldJ .xmlParamsFields ul li { padding: 10px 20px 10px 0; }
 
 /* Joomla 3.x */
 html.isJ30 {}
