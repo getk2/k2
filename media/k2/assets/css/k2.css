@@ -435,8 +435,8 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 .avPlayerWrapper .avPlayerContainer { float: left; }
 
 /* Admin - Media Manager */
-#elfinder {font-size:16px; font-family:Arial, Helvetica, sans-serif;}
 .isJ30 #elfinder input {width:auto;}/* Fix for Joomla! 3.2 CSS... */
+.K2AdminViewMedia { border-left: 1px solid #d3d3d3; border-bottom: 1px solid #d3d3d3; }
 
 /* Lists - Generic styling */
 #k2AdminContainer { position: relative; }
