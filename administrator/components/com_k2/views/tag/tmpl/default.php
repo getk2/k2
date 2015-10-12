@@ -40,7 +40,7 @@ $document->addScriptDeclaration("
         <ul class="adminformlist">
             <li>
             	<div class="paramLabel">
-					<?php echo JText::_('K2_NAME'); ?>
+					<label><?php echo JText::_('K2_NAME'); ?></label>
 				</div>
 				<div class="paramValue">
 					<input class="text_area k2TitleBox" type="text" name="name" id="name" value="<?php echo $this->row->name; ?>" size="50" maxlength="250" />
@@ -48,7 +48,7 @@ $document->addScriptDeclaration("
 			</li>
 			<li>
 				<div class="paramLabel">
-					<?php echo JText::_('K2_PUBLISHED'); ?>
+					<label><?php echo JText::_('K2_PUBLISHED'); ?></label>
 				</div>
 				<div class="paramValue">
 					<?php echo $this->lists['published']; ?>
