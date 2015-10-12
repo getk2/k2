@@ -13,6 +13,11 @@ a:active,a:focus {outline:0;}
 .clr {clear:both;height:0;line-height:0;border:none;float:none;background:none;padding:0;margin:0;}
 hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding:0;margin:4px 0;}
 
+.isJ30 body { padding-right: 0; padding-left: 0; }
+.com_k2 select[multiple], .com_k2 select[size], .com_k2 select { min-height: 40px; height: 40px; max-width: 100%; }
+/* reset stupid BS responsive stuff */
+.isJ30 .header, .isJ30 .navbar-fixed-top, .isJ30 .navbar-fixed-bottom, .isJ30 .navbar-static-top, .isJ30 .btn-subhead, .isJ30 .subhead { margin-left: 0; margin-right: 0; }
+
 .k2Center {text-align:center;}
 .k2Left {text-align:left;}
 .k2Right {text-align:right;}
@@ -27,7 +32,7 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .k2IsIcon {font-family:Arial, Helvetica, sans-serif !important;font-size:16px !important;}
 .k2IsIcon:hover {color:#BB3A00;text-decoration:none;}
 /*.k2TitleBox {box-sizing:border-box;width:100%;font-size:20px !important;padding:14px 6px !important;}*/
-.k2TitleBox {font-size:20px !important;height:25px !important;padding:5px 6px !important;width:100%;}
+.k2TitleBox {font-size:20px !important;height:35px !important;padding:5px 6px !important;width:100%;  -webkit-box-sizing: border-box;  -moz-box-sizing: border-box; box-sizing: border-box; }
 .k2TitleAliasBox {width:60%;font-size:12px;}
 .k2TextBox {background:#fff;padding:4px;}
 .k2ListItemDisabled {cursor:pointer;color:#0B55C4;} /* used in popup lists */
@@ -76,60 +81,112 @@ div.controls label.radio {display:inline-block;}
 
 /* Div Tables */
 div.k2Table {margin:0 0 20px 0;}
-	div.k2Table .k2TableLabel {position:absolute;width:100px;vertical-align:top;text-align:right;padding:4px 8px;}
 	div.k2Table .k2TableLabel > label {font-weight:normal;color:#777;}
-	div.k2Table .k2TableValue {margin-left:120px;vertical-align:top;}
+	div.k2Table .k2TableValue { }
+	div.k2Table .k2TableValue input[type="text"]{ min-height: 40px; line-height: 40px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 	div.k2Table .k2TableValue:after {content:" ";display:block;margin-bottom:8px;}
 		div.k2SubTable { margin-bottom: 15px; }
-			div.k2SubTable .k2SubTableLabel {display:inline-block;text-align:right;vertical-align:top;padding:4px 8px;margin:0 0 0 20px;}
+			div.k2SubTable .k2SubTableLabel {display:inline-block;text-align:right;vertical-align:top;}
 			div.k2SubTable .k2SubTableLabel > label {font-weight:normal;color:#777;}
-
-			/* Category specific styling */
-			.k2CategoryForm div.k2SubTable .k2SubTableLabel > label { width: 105px; max-width: 105px; }
-			.k2CategoryForm div.k2Table .k2TableLabel > label { width: 125px; max-width: 125px; }
-			.k2CategoryForm div.k2Table .k2TableValue { margin-left: 145px; }
-
+		
 			div.k2SubTable .k2SubTableValue label {padding-left:4px !important;}
 			div.k2SubTable .k2SubTableValue input[type="radio"] {margin:2px 8px 0 0 !important;}
-			div.k2SubTable .k2SubTableValue {display:inline-block;vertical-align:top;}
-		div.k2TableInline {display:inline-block;}
-		div.k2TableLeft {float:left;}
-		div.k2TableRight {float:right;}
+
+			.k2TableValue, .k2SubTableValue { margin-bottom: 15px; }
+			
+@media screen and (max-width: 1240px) {
+	.k2TableRightTop { margin-top: 20px; }
+}
+@media screen and (min-width: 1240px) {
+	div.k2TableInline {display:inline-block;}
+	div.k2TableLeft {float:left;}
+	div.k2TableRight {float:right; text-align: right;}
+	div.k2SubTable .k2SubTableLabel:first-child { margin-left:0; width: auto; }
+}
+@media screen and (min-width: 1000px) {
+	div.k2Table .k2TableValue {margin-left:120px;vertical-align:top;}
+	div.k2Table .k2TableLabel { position:absolute;width:100px;vertical-align:top;text-align:right; }
+
+	div.k2SubTable .k2SubTableValue {display:inline-block;vertical-align:top;}
+	div.k2SubTable .k2SubTableLabel { margin:0 0 0 20px; padding: 9px 8px 0; }
+	div.k2SubTable .k2SubTableValue { width: 210px; }
+	div.k2SubTable .k2SubTableLabel { width: 90px; }
+}
+@media screen and (min-width: 767px) {
+
+	div.k2Table .k2TableLabel { display: block; padding: 10px 0; }
+	div.k2SubTable .k2SubTableLabel:first-child { margin-left: -107px; }
+
+	/* Category specific styling */
+	.k2CategoryForm div.k2SubTable .k2SubTableLabel > label { width: 105px; max-width: 105px; }
+	.k2CategoryForm div.k2Table .k2TableLabel > label { width: 125px; max-width: 125px; }
+	.k2CategoryForm div.k2Table .k2TableValue { margin-left: 145px; }
+
+	label[for="title"] {font-size:18px;}
+	label[for="tags"] {padding:20px 0 0 0;}
+}
 
 /* Generic Tabs Layout */
 .ui-tabs-hide {display:none;}
 div.k2Tabs {clear:both;padding:10px 0;}
-ul.k2TabsNavigation {margin:0;padding:0;text-align:left;white-space:nowrap;list-style:none;}
-	ul.k2TabsNavigation li {display:inline-block;margin:0 -2px 0 0;padding:0;}
-	ul.k2TabsNavigation li a {display:block;padding:10px 21px;margin:0;background:#f0f2f2;font-size:14px;text-decoration:none;font-weight:normal;outline:0;border-radius:3px 3px 0 0;color:#6d6f71;border-bottom:1px solid #d4d7d9;}
+ul.k2TabsNavigation {margin:0;padding:0;text-align:left; list-style:none;}
+	ul.k2TabsNavigation li {display:inline-block;margin:0 -2px 0 0;padding:0; width: 49%}
+	ul.k2TabsNavigation li a {display:block;padding:10px;margin:0;background:#f0f2f2;font-size:14px;text-decoration:none;font-weight:normal;outline:0;border-radius:3px 3px 0 0;color:#6d6f71;border-bottom:1px solid #d4d7d9;}
 	ul.k2TabsNavigation li a:hover {text-decoration:none;background-color:#f6f6f6;}
-	ul.k2TabsNavigation li a i {margin-right:8px;color:#6d6f71;}
+	ul.k2TabsNavigation li a i {margin-right:8px;color:#6d6f71; display: none;}
 	ul.k2TabsNavigation li.ui-tabs-selected a {padding:10px 20px;background:#fff;color:#58595b;border:1px solid #d4d7d9;border-bottom:1px solid #fff;}
 	ul.k2TabsNavigation li.ui-tabs-selected a i {color:#0091ff;}
 	ul.k2TabsNavigation li.ui-tabs-selected a:hover {background-color:#fff;}
+	#k2MediaTabs ul.k2TabsNavigation li { width: 100%; font-size: 12px; }
+
+	@media screen and (min-width: 480px) {
+		ul.k2TabsNavigation li { width: 32.3333%; }
+	}
+	@media screen and (min-width: 600px) {
+		ul.k2TabsNavigation li { width: auto; width: auto; }
+	}
+	@media screen and (min-width: 800px) {
+		ul.k2TabsNavigation li a i { display: inline-block; }
+		ul.k2TabsNavigation li a { padding:10px 21px; }
+		#k2MediaTabs ul.k2TabsNavigation li {width: 50%; }
+	}
+	/* Media Tabs */
+	@media screen and (min-width: 1024px) { 
+		#k2MediaTabs ul.k2TabsNavigation li {width: auto; font-size: 16px; }
+	}
+
 
 div.k2TabsContent {background:#fff;border:1px solid #d4d7d9;padding:10px;margin-top:-1px;}
 	.k2TabsContent.k2TabsContentLower { padding: 25px 30px; }
 div.isJ25 div.k2TabsContent {}
 div.isJ30 div.k2TabsContent {}
 
+/* Entity ID */
+div#k2ID {position:absolute;right:0;top:0;font-size:18px;font-weight:normal;padding:21px 24px;color:#0091ff; display: none;}
+div#k2ID strong {color:#a8c5dd;}
+
 /* Top Nav Tabs */
 #k2FormTopNav {padding:0; }
 	#k2FormTopNav ul.k2NavTabs {margin:0;padding:0;text-align:left;white-space:nowrap;background:#f0f2f2;border-bottom:1px solid #d4d7d9;}
 		#k2FormTopNav ul.k2NavTabs  li {list-style:none;display:inline-block;margin:0;padding:0;color:#414042;}
-			#k2FormTopNav ul.k2NavTabs li a {display:block;font-size:18px;text-decoration:none;font-weight:normal;outline:0;padding:21px 24px;margin:0;border-right:1px solid #d4d7d9;color:#414042;}
+			#k2FormTopNav ul.k2NavTabs li a {display:block;font-size:14px;text-decoration:none;font-weight:normal;outline:0; padding: 21px 10px; margin:0;border-right:1px solid #d4d7d9;color:#414042;}
 			#k2FormTopNav ul.k2NavTabs li a:hover {text-decoration:none;color:#0091ff;}
 			#k2FormTopNav ul.k2NavTabs li:last-child a {border-right:0;}
-			#k2FormTopNav ul.k2NavTabs li a i {font-size:18px;margin-right:12px;color:#9cbcd3;}
+			#k2FormTopNav ul.k2NavTabs li a i {font-size:18px;margin-right:12px;color:#9cbcd3; display: none;}
 			#k2FormTopNav ul.k2NavTabs li a:hover i {color:#0091ff;}
 			#k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a {position:relative;color:#122747;}
 			#k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {content: "\f0d8";font-family:"FontAwesome";font-style:normal;font-weight:normal;text-decoration:inherit;color:#fff;font-size:32px;position:absolute;bottom:-5px;left:50%;margin-left:-16px;width:32px;text-shadow:0px -1px 1px #ccc;}
 			#k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a i {color:#0091ff;}
-div.k2NavTabContent {padding:20px;}
 
-/* Entity ID */
-div#k2ID {position:absolute;right:0;top:0;font-size:18px;font-weight:normal;padding:21px 24px;color:#0091ff;}
-div#k2ID strong {color:#a8c5dd;}
+@media screen and ( min-width: 640px ) {
+	#k2FormTopNav ul.k2NavTabs li a { font-size: 18px; padding:21px 24px;}
+	#k2FormTopNav ul.k2NavTabs li a i { display: inline-block; }
+}
+@media screen and ( min-width: 500px ) {
+	div#k2ID { display: block; }
+	#k2FormTopNav ul.k2NavTabs li a { }
+}
+div.k2NavTabContent {padding:20px;}
 
 /* XML Parameter Rendering */
 form#adminForm { }
@@ -138,15 +195,20 @@ form#adminForm { }
 /* Metadata specific styling */
 #k2TabPubAndMeta .row { margin-left: 0; max-width: 100%; }
 
-ul.k2ScrollSpyMenu { position:fixed; list-style:none; padding: 20px 0 0; margin: 0; width: 320px; }
+ul.k2ScrollSpyMenu { position:fixed; list-style:none; padding: 20px 0 0; margin: 0; width: 320px; display: none; }
 	ul.k2ScrollSpyMenu li a { display:block; -webkit-transition:.5s all ease-out; -moz-transition:.5s all ease-out; transition:.5s all ease-out; font-size: 16px;
     color: #00afec; padding: 14px 28px; text-decoration:none; }
 
 	ul.k2ScrollSpyMenu li a:hover { color:#000; }
 	ul.k2ScrollSpyMenu li.active a { background: #f7f7f7; }
 
-div.k2ScrollingContent { margin-left: 320px; padding-left: 30px; padding-right: 30px; padding-top: 20px; border-left: 1px solid #e3e4e4; }
+div.k2ScrollingContent {  margin-left: 0; padding: 20px 20px 0;  }
 	div.K2ScrollingContent h3 { margin-top:20px; }
+
+@media screen and (min-width: 900px) {
+	ul.k2ScrollSpyMenu { display: block; }
+	div.k2ScrollingContent { margin-left: 320px; padding-left: 30px; padding-right: 30px; padding-top: 20px; border-left: 1px solid #e3e4e4; }
+}
 
 /* The fields */
 .xmlParamsFields {}
@@ -161,7 +223,7 @@ div.k2ScrollingContent { margin-left: 320px; padding-left: 30px; padding-right: 
 	box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff; }
 		.xmlParamsFields .paramValue label:hover {cursor:pointer; box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 0 10px rgba(0,0,0,.15);}
 		.xmlParamsFields .paramValue input[type="radio"] { opacity: 0; position: absolute; clip: rect(0,0,0,0); }
-		.xmlParamsFields .paramValue input[type="text"] { float: right; }
+		.xmlParamsFields .paramValue input[type="text"], .xmlParamsFields .paramValue textarea, .xmlParamsFields .paramValue select { margin-left: 20px; }
 
 	/* Checked boxes - generic */
 	.xmlParamsFields .paramValue input:checked + label { background: #63696f; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
@@ -177,9 +239,16 @@ div.k2ScrollingContent { margin-left: 320px; padding-left: 30px; padding-right: 
 	/* the labels */
 	.xmlParamsFields .paramLabel label { font-size: 13px; font-weight: 700; color: #777778;  padding: 10px 10px 10px 20px; line-height: 1; margin: 0; }
 	.xmlParamsFields .paramValue, .xmlParamsFields .paramLabel { display: inline-block; vertical-align: middle; }
-	.xmlParamsFields .paramValue { float: right; }
+	.xmlParamsFields .paramValue  { width: 100%; }
+	
 	.k2ScrollingContent > h3,
-	.k2NavTabContent h3 { font-size: 24px; font-weight: 300; padding-bottom: 16px; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #dddedf; color: #00afec; }
+	.k2NavTabContent h3 { font-size: 16px; font-weight: 300; padding-bottom: 16px; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #dddedf; color: #00afec; }
+	@media screen and (min-width: 767px) {
+		.xmlParamsFields .paramValue { float: right; width: auto; }
+		.k2ScrollingContent > h3, .k2NavTabContent h3 { font-size: 24px; }
+		.xmlParamsFields .paramValue input[type="text"],
+		.xmlParamsFields .paramValue textarea { float: right; }
+	}
 
 div#k2AdminContainer.isJ25 form#adminForm div.xmlParamsFields fieldset input {float:none!important;}
 div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-right:1px solid #e9e9e9;color:#666;font-weight:bold;text-align:right;font-size:11px;}
@@ -305,9 +374,7 @@ ul#configTabs {margin:0;padding:0;text-align:left;white-space:nowrap;list-style:
 
 /* Item - Overrides */
 .K2AdminViewItem {}
-label[for="title"] {font-size:18px;}
-label[for="tags"] {padding:20px 0 0 0;}
-#k2Author {font-weight:bold;color:#333;}
+#k2Author {font-weight:bold;color:#333; display: inline-block;  margin-top: 10px; margin-right: 10px;}
 div#k2TabContent {padding:0;}
 span.k2ItemFormEditorTitle {display:block;color:#58595b;font-size:20px;font-weight:bold;padding:24px 0 12px 24px;}
 .k2ItemFormEditor .editor {background:#f0f2f2;border-top:1px solid #d7d9d9;border-bottom:1px solid #e9ebec;}
@@ -360,7 +427,7 @@ table#tagLists tr td#tagListsRight select {width:99%;height:106px;}
 
 /* Item - Attachments */
 #itemAttachments {margin-top:15px;padding-top:10px;}
-	#itemAttachments label {margin-right:10px;font-weight:bold;width:170px;float:left;clear:left;}
+	#itemAttachments label { font-weight:bold; }
 	#itemAttachments input {margin-bottom:10px;}
 	#itemAttachments input.linkTitle {width:200px;}
 	#itemAttachments textarea {width:200px;}
@@ -368,6 +435,10 @@ table#tagLists tr td#tagListsRight select {width:99%;height:106px;}
 	td.k2ItemFormDateField {white-space:nowrap;}
 	td.k2ItemFormDateField input {}
 	td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
+
+	@media screen and (min-width: 767px){ 
+		#itemAttachments label { margin-right:10px;width:170px;float:left;clear:left; text-align: right; }
+	}
 
 .itemAttachmentsTable { width: 100%; margin: 0 0 20px; }
 	.itemAttachmentsTable th { border-bottom: 3px solid #d7d9d9; border-top: 0; color: #6d6f71; font-size: 14px; font-weight: 700; text-align: left; line-height: 1; padding: 12px 14px 12px 0; }
@@ -380,20 +451,28 @@ table#tagLists tr td#tagListsRight select {width:99%;height:106px;}
 /* New attachments form */
 .itemNewAttachment {  border-top: 3px solid #d7d9d9; padding: 20px 0; }
 	.itemNewAttachment button { background: none; float: right; border: 0; font-size: 16px; color: #9e0b0f; font-size: 18px; }
-	.itemNewAttachment label { text-align: right;  }
 	.itemNewAttachment .attachmentGap { margin-bottom: 20px; }
-	.itemNewAttachment button + input[type="text"] { margin-left: -12px; min-height: 30px; line-height: 40px; vertical-align: top; }
+	.itemNewAttachment button + input[type="text"] { min-height: 30px; line-height: 40px; vertical-align: top; }
 
 /* Item - Extrafields & Image Fields */
 #extraFields { padding-top: 20px; }
 	.itemAdditionalField { overflow: hidden; margin-bottom: 25px; }
-		.itemAdditionalField .itemAdditionalValue { width: 100px; margin-right: 15px; }
-		.itemAdditionalField label { font-size: 13px; color: #68696b; font-weight: 700; display: inline-block; vertical-align: middle; margin-top: 0; margin-bottom: 0; padding-top: 5px; }
-		.itemAdditionalField .sep, .itemAdditionalField label.sep { display: inline-block; vertical-align: middle; font-weight: 700; margin: 0 25px; font-size: 15px; text-transform: uppercase; }
-		.itemAdditionalField .itemAdditionalData { overflow: hidden; padding-right: 15px; }
-		.itemAdditionalField input[type="text"], .itemAdditionalField input[type="email"], .itemAdditionalField textarea { width: 100%; max-width: 100%; min-height: 30px; line-height: 40px;}
-		.itemAdditionalField input[type="text"]#existingImageValue { width: auto; display: inline-block; vertical-align: middle; margin-right: -10px; margin-bottom: 0; }
+		.itemAdditionalField .itemAdditionalValue { margin-right: 15px; margin-bottom: 10px; }
+		.itemAdditionalField label { font-size: 13px; color: #68696b; font-weight: 700; display: block; margin-top: 0; margin-bottom: 0; padding-top: 5px; }
+		.itemAdditionalField .sep, .itemAdditionalField label.sep { display: block; font-weight: 700; margin: 25px 0; font-size: 15px; text-transform: uppercase; }
+		.itemAdditionalField .itemAdditionalData { }
+		.itemAdditionalField input[type="text"], .itemAdditionalField input[type="email"], .itemAdditionalField textarea { width: 100%; max-width: 100%; min-height: 40px; line-height: 40px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+		.itemAdditionalField input[type="text"]#existingImageValue { width: 100%; display: block; margin-bottom: 15px; }
 	.nicEdit-main {outline:0;}
+	
+	@media screen and (min-width: 767px) {
+		.itemAdditionalField .itemAdditionalValue {  width: 100px; margin-bottom: 0 }
+		.itemAdditionalField label { display: inline-block; vertical-align: middle; }
+		.itemAdditionalField .itemAdditionalData { overflow: hidden; padding-right: 15px; }
+		.itemNewAttachment button + input[type="text"] { margin-left: -12px; }
+		.itemAdditionalField .sep, .itemAdditionalField label.sep { display: inline-block; vertical-align: middle; margin: 0 25px; }
+		.itemAdditionalField input[type="text"]#existingImageValue { width: auto; display: inline-block; vertical-align: middle; margin-right: -10px; margin-bottom: 0; }
+	}
 
 /* Item Buttons */
 .itemAdditionalField .itemAdditionalData > button, .itemAdditionalField .itemAdditionalData > input[type="button"], .itemAdditionalField .itemAdditionalData > input[type="submit"], .k2Button { color: #414042; min-width: 150px; padding: 10px 15px; border-radius: 3px;; border: 1px solid #dedede; border-bottom-color: #cacaca; background: #fdfdfd; white-space: normal;
@@ -468,6 +547,9 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 		#k2AdminContainer .adminlist a:hover { color: #46afff; }
 
 		#k2AdminContainer .adminlist tr td { background: #f0f2f2; border-bottom: 1px solid #dbdcdc; }
+		
+		.table-responsive-wrap { position: relative; }
+		.table-responsive { width: 100%; margin-bottom: 15px; overflow-x: scroll; overflow-y: hidden; -webkit-overflow-scrolling: touch; -ms-overflow-style: -ms-autohiding-scrollbar; }
 
 /* Information View */
 .k2ViewIsInfo .header, .k2ViewIsInfo .subhead { display: none; position: relative; z-index: 2; }
@@ -584,7 +666,13 @@ body#com_k2 {}
 /* Fix user group permissions category drop-down glitches under Joomla! 3.0 */
 #paramscategories_chzn li {padding:3px 20px 3px 5px;}
 
-
+@media screen and (max-width: 600px){ 
+	.k2ItemFormEditor .editor .btn { display: block; margin: 0 0 15px!important; text-align: left; }
+	.k2ItemFormEditor .editor .btn-group { display: block; }
+	.k2ItemFormEditor .editor .btn-toolbar { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+	.k2ItemFormEditor .editor .btn-toolbar.pull-right { float: none; width: 100%; padding-top: 0; margin-top: -10px; }
+	.k2ItemFormEditor .editor .btn-toolbar.pull-left { float: none; }
+}
 
 /* ====================================================================================================== */
 /* ====================================================================================================== */

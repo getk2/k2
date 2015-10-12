@@ -110,7 +110,7 @@ $document->addScriptDeclaration("
 					<?php echo $this->lists['categories']; ?>
 
 					<?php if($this->mainframe->isAdmin() || ($this->mainframe->isSite() && $this->permissions->get('publish'))): ?>
-					<div class="k2SubTable k2TableRight">
+					<div class="k2SubTable k2TableRight k2TableRightTop">
 						<div class="k2SubTableLabel">
 							<label for="featured"><?php echo JText::_('K2_IS_IT_FEATURED'); ?></label>
 						</div>
