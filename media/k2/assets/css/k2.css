@@ -528,7 +528,7 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 .avPlayerWrapper .avPlayerContainer { float: left; }
 
 /* Admin - Item */
-.itemPlugins {margin-top:20px;}
+.itemPlugins {margin-top:20px; clear: both; }
 	.itemPlugins label { font-size: 13px; color: #68696b; font-weight: 700; display: block; margin-top: 0; margin-bottom: 0; padding-top: 5px; padding-bottom: 10px; }
 
 /* Admin - Media Manager */
@@ -645,7 +645,7 @@ html.isJ25 #toolbar-box { margin-bottom: 0; }
 html.isJ25 #submenu-box, html.isJ15 #submenu-box { padding: 0; margin: 0; border-top: 1px solid #d4d7d9; }
 	html.isJ25 #submenu-box div.m, html.isJ15 #submenu-box .m { border: 0; padding: 0; }
 
-	html.isJ25 #submenu, html.isJ15 #submenu  { border-bottom: 1px solid #d4d7d9; float: left; width: 100%; background: #f0f2f2; }
+	html.isJ25 #submenu, html.isJ15 #submenu  { border-bottom: 1px solid #d4d7d9; float: left; width: 100; background: #f0f2f2; }
 		html.isJ25 #submenu li a, html.isJ15 #submenu li a { display: block; color: #777; font-size: 14px; text-decoration: none; font-weight: normal; outline: 0; padding: 21px 24px;  margin: 0; border-right: 1px solid #d4d7d9; position: relative;}
 		html.isJ25 #submenu li a.active, html.isJ15 #submenu li a.active { color: #0091ff; }
 		html.isJ25 #submenu li a.active:before, html.isJ15 #submenu li a.active:before	{ text-align: center; content: "\f0d8"; font-family: "FontAwesome"; color: #fff; position: absolute; font-size: 32px; bottom: -2px; left: 50%; margin-left: -16px;  width: 32px; text-shadow: 0px -1px 1px #ccc; }
