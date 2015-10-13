@@ -625,7 +625,7 @@ html.isJ15 div#element-box div.m div#k2AdminContainer {margin-top:-22px;backgrou
 html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs {border-top:1px solid #d4d7d9;}
 html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {content: "\f0d8";font-family:"FontAwesome";font-style:normal;font-weight:normal;text-decoration:inherit;color:#fff;font-size:32px;position:absolute;bottom:-12px;left:50%;margin-left:-16px;width:32px;text-shadow:0px -1px 1px #ccc;}
 
-/* Joomla 2.5 */
+/* Joomla 1.5 + 2.5 */
 html.isJ25 {overflow-y:scroll;}
 html.isJ25 div#element-box div.m { padding: 10px 0; }
 html.isJ25 div#element-box div.m div#k2AdminContainer {margin-top:-10px;background:#fff;}
@@ -638,7 +638,8 @@ html.isJ25 .xmlParamsFields .paramValue label { padding: 0 13px!important; }
 html.isJ25 #element-box { margin-bottom: 0; padding: 0; }
 html.isJ25 #toolbar-box { padding: 0 0; }
 html.isJ25 div#toolbar-box div.m { padding: 10px 0; }
-html.isJ25 #k2AdminContainer .k2AdminTableFilters,html.isJ25 #k2AdminContainer .adminlist { border-left: 0; }
+html.oldJ #k2AdminContainer .k2AdminTableFilters,
+html.oldJ #k2AdminContainer .adminlist { border-left: 0; }
 
 /* The submenu */
 html.isJ25 #toolbar-box { margin-bottom: 0; }
