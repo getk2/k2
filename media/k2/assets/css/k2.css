@@ -73,8 +73,10 @@ div.controls label.radio input[type="radio"] {}
 */
 
 /* Footer */
-#k2AdminFooter {text-align:center;margin:20px auto 4px auto; width: 100%; clear: both; }
-
+#k2AdminFooter {text-align:center;margin:20px auto 4px auto; width: 100%; clear: both; float: left; }
+	@media screen and (min-width: 767px) {
+		#k2AdminFooter { margin-bottom: 45px; }
+	}
 /* Common for Joomla 2.5 */
 div.isJ25 table.admintable {}
 div.isJ25 table.admintable td.key {background:#f6f6f6;/*border-bottom:1px solid #e9e9e9;border-right:1px solid #e9e9e9;*/color:#666;font-weight:bold;text-align:right;font-size:11px;width:140px;}
@@ -525,12 +527,16 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 /* Item - Video - inherits from above  */
 .avPlayerWrapper .avPlayerContainer { float: left; }
 
+/* Admin - Item */
+.itemPlugins {margin-top:20px;}
+	.itemPlugins label { font-size: 13px; color: #68696b; font-weight: 700; display: block; margin-top: 0; margin-bottom: 0; padding-top: 5px; padding-bottom: 10px; }
+
 /* Admin - Media Manager */
 .isJ30 #elfinder input {width:auto;}/* Fix for Joomla! 3.2 CSS... */
 .K2AdminViewMedia { border-left: 1px solid #d3d3d3; border-bottom: 1px solid #d3d3d3; }
 
 /* Lists - Generic styling */
-#k2AdminContainer { position: relative; }
+#k2AdminContainer { position: relative; width: 100%; clear: both; margin-bottom: 10px; }
 	.com_k2.view-items, .com_k2.view-categories, .com_k2.view-tags, .com_k2.view-comments, .com_k2.view-usergroups, .com_k2.view-users, .com_k2.view-extrafields, .com_k2.view-extrafieldsgroups { background: #f0f2f2; }
 	.isJ30 .row-fluid .span10 { margin-left: 0; min-width: 85%; }
 	.isJ30 .row-fluid .span2 { min-width: 15%; }
@@ -713,18 +719,6 @@ span.k2Notice {cursor:pointer;font-weight:bold;}
 #k2AdminStats dl.tabs dt.open {background:#fff;border:1px solid #ccc;border-bottom:1px solid #fff;}
 div.isJ25 div.current {background:#fff;}
 #k2AdminStats table.adminlist {width:100%;}
-.ie7fix {display:block;clear:both;height:1px;line-height:1px;}
-
-/* Admin - Items */
-div#admContainer {width:100%;}
-div#admContainer .admLeft {float:left;width:74%;}
-div#admContainer .admRight {float:right;width:24%;padding-top:29px;}
-div#admContainer .cleaner {clear:both;}
-
-/* --- Admin - Item & Category --- */
-
-/* Admin - Item */
-.itemPlugins {margin-top:20px;}
 
 /* Admin - Item - Autocomplete */
 .ui-autocomplete {position:absolute;margin:0;padding:0;list-style:none;border:1px solid #eee;background-color:white;border-right-color:#ddd;border-bottom-color:#ddd;text-align:left;sans-serif;z-index:50;}
@@ -748,10 +742,5 @@ td#k2Comment {}
 		a.closeComment {display:none;padding-left:4px;margin-left:4px;border-left:1px solid #aaa;}
 	div.commentToolbar span.k2CommentsLog {display:block;float:right;font-weight:bold;}
 	div.commentToolbar span.k2CommentsLoader {background:url(../images/system/loader.gif) no-repeat 0 50%;padding-left:24px;}
-
-/* Admin - Information */
-table#k2InfoPage {}
-table#k2InfoPage tr td {width:50%;vertical-align:top;}
-div#k2AboutBlock h2 {padding:0;margin:16px 0 0;}
 
 /* End */
