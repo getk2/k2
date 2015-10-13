@@ -314,26 +314,27 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
 .paramHeaderContent { background: #e5f7fd; border-radius: 3px; line-height: 1; padding: 18px 25px; margin: 25px 0 10px 0; color: #346b93; font-size: 18px; }
 	.tab-pane > .control-group:first-child .paramHeaderContent { margin-top: 0; }
 
-.form-horizontal .controls label, .controls label, .oldJ .k2SubTableValue input[type="radio"] + label { min-width:85px;width:auto; text-align:center; border:1px solid #d4d6d8;line-height:33px;vertical-align:top;height:33px;font-size:12px;margin:0 -2px;padding:0 13px;
+.form-horizontal .controls label, .controls label { min-width:85px;width:auto; text-align:center; border:1px solid #d4d6d8;line-height:33px;vertical-align:top;height:33px;font-size:12px;margin:0 -2px;padding:0 13px;
 color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background-color:#eff1f1;
 box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff; }
 
 	.controls label:hover {cursor:pointer; box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 0 10px rgba(0,0,0,.15);}
-	.controls input[type="radio"], .oldJ .k2SubTableValue  input[type="radio"] { opacity: 0; position: absolute; clip: rect(0,0,0,0); }
+	.controls input[type="radio"] { opacity: 0; position: absolute; clip: rect(0,0,0,0); }
 
 	.controls label:first-of-type { border-radius: 3px 0 0 3px; }
 	.controls label:last-of-type { border-radius:  0 3px 3px 0; }
 
 	/* Checked boxes - show/ Yes */
 	.controls input[value="1"]:checked + label,
-	label[id*="1-"].radio.isChecked, .oldJ .k2SubTableValue input[value="1"]:checked + label { background: #3fa800; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
+	label[id*="1-"].radio.isChecked  { background: #3fa800; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
 
 	/* Checked boxes - hide/ No */
 	.controls input[value="0"]:checked + label,
-	label[id*="0-"].radio.isChecked, .oldJ .k2SubTableValue input[value="0"]:checked + label { background: #bd362f; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
+	label[id*="0-"].radio.isChecked { background: #bd362f; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
 
 	/* Checked boxes - Generic */
-	label.isChecked { background: #63696f; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
+	.xmlParamsFields .paramValue label.isChecked,
+	.controls label.isChecked { background: #63696f; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
 
 
 /* Redefining the form */
@@ -385,7 +386,7 @@ span.k2ItemFormEditorTitle {display:block;color:#58595b;font-size:20px;font-weig
 	.view-item #system-message-container .alert { margin-bottom: 0; border-radius: 0; }
 
 /* Item - Free tagging */
-ul.tags {background:#fff;border:1px solid #ccc;cursor:default;min-height:48px;display:inline-block;margin:0;padding:4px 6px;border-radius:3px;box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);box-sizing:border-box;width:100%;}
+ul.tags {background:#fff;border:1px solid #ccc;cursor:default;min-height:48px; height: 48px; display:inline-block;margin:0;padding:4px 6px;border-radius:3px;box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);box-sizing:border-box;width:100%;}
 	ul.tags li {border-radius:3px;background:#d1e8fc;color:#0f4776;line-height:14px;list-style:none;float:left;clear:none;padding:10px;margin:2px 2px 2px 0;font-size:14px;font-weight:bold;font-family:"Lucida Grande";vertical-align:middle;}
 		ul.tags li span.tagRemove {font-size:12px;font-family:"Lucida Grande";color:#0b4373;cursor:pointer;}
 		ul.tags li span.tagRemove:hover {color:#505050;cursor:pointer;}
@@ -465,6 +466,8 @@ table#tagLists tr td#tagListsRight select {width:99%;height:106px;}
 		.itemAdditionalField input[type="text"], .itemAdditionalField input[type="email"], .itemAdditionalField textarea { width: 100%; max-width: 100%; min-height: 40px; line-height: 40px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 		.itemAdditionalField input[type="text"]#existingImageValue { width: 100%; display: block; margin-bottom: 15px; }
 	.nicEdit-main {outline:0;}
+	.k2ExtraFieldHeader { font-size: 16px; color: #68696b; font-weight: 300; display: block; margin-top: 0; margin-bottom: 0; padding-top: 5px; }
+
 
 	@media screen and (min-width: 767px) {
 		.itemAdditionalField .itemAdditionalValue {  width: 100px; margin-bottom: 0 }
@@ -473,6 +476,7 @@ table#tagLists tr td#tagListsRight select {width:99%;height:106px;}
 		.itemNewAttachment button + input[type="text"] { margin-left: -12px; }
 		.itemAdditionalField .sep, .itemAdditionalField label.sep { display: inline-block; vertical-align: middle; margin: 0 25px; }
 		.itemAdditionalField input[type="text"]#existingImageValue { width: auto; display: inline-block; vertical-align: middle; margin-right: -10px; margin-bottom: 0; }
+		.k2ExtraFieldHeader { margin-left: 120px; }
 	}
 
 /* Item Buttons */
@@ -641,7 +645,6 @@ html.isJ25 #k2AdminContainer .k2AdminTableFilters tr td { padding: 10px; }
 .oldJ fieldset { padding-left: 0; border: 0; }
 .oldJ input, .oldJ select { height: 40px; width: auto; max-width: 100%; }
 .oldJ input[type="text"] { width: 100%; }
-.isJ15 select { min-width: 200px; }
 
 .oldJ .k2TagsNotice { margin-bottom: 30px;}
 .oldJ #itemAttachments a.k2AttachmentBrowseServer { margin-left: 20px; }
@@ -730,12 +733,6 @@ div#admContainer .cleaner {clear:both;}
 	.ui-menu .ui-menu-item a.ui-state-hover,
 	.ui-menu .ui-menu-item a.ui-state-active {margin:-1px; background-color:#444; color:#fff;}
 
-
-/* Extra Fields - Textarea with WYSIWYG - Remove outline */
-.k2ExtraFieldHeader {display:block; color: #336699; font-size: 12px; font-weight: bold; background: none repeat scroll 0 0 #D5E7FA; border-bottom: 2px solid #96B0CB; padding: 6px 8px; margin:0;}
-
-#extraFieldsContainer table tr td label .xmlParamsFields
-#extraFieldsContainer table tr td input,#extraFieldsContainer table tr td select {margin:0 8px 0 0;}
 
 /* Admin - Item - Extra fields editor */
 .k2ExtraFieldEditor {width:400px; height:172px;}
