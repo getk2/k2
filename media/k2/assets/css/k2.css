@@ -366,16 +366,6 @@ box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff; }
 .form-horizontal .controls .chzn-container { margin: 15px 0; }
 .form-horizontal .controls input[type="text"], .form-horizontal .controls textarea { margin: 10px 0 15px 0; }
 
-/* Tabs */
-ul#configTabs {margin:0;padding:0;text-align:left;white-space:nowrap;list-style:none;}
-	ul#configTabs li { display:inline-block; margin:0 1px -1px; padding:0; }
-	ul#configTabs li a {display:block;padding:10px 21px;margin:0;background:#f0f2f2;font-size:14px;text-decoration:none;font-weight:normal;outline:0;border-radius:3px 3px 0 0;color:#6d6f71;border-bottom:1px solid #d4d7d9;}
-	ul#configTabs li a:hover {text-decoration:none;background-color:#f6f6f6;}
-	ul#configTabs li a i {margin-right:8px;color:#6d6f71;}
-	ul#configTabs li.active a {padding:10px 20px;background:#fff;color:#58595b;border:1px solid #d4d7d9;border-bottom:1px solid #fff;}
-	ul#configTabs li.active a i {color:#0091ff;}
-	ul#configTabs li.active a:hover {background-color:#fff;}
-
 .tab-pane { padding-top: 25px; }
 
 /* Permissions */
@@ -664,7 +654,7 @@ html.isJ25 #k2AdminContainer .k2AdminTableFilters tr td { padding: 10px; }
 
 /* Item form */
 .oldJ fieldset { padding-left: 0; border: 0; }
-.oldJ select, .oldJ input { height: 30px; min-height: 30px; width: auto; max-width: 100%; }
+.oldJ select, .oldJ input[type="text"], .oldJ input[type="email"] { height: 30px; min-height: 30px; width: auto; max-width: 100%; }
 .k2ViewIsCategory .oldJ input, .k2ViewIsItem .oldJ input,  .k2ViewIsCategory .oldJ select, .k2ViewIsItem .oldJ select { height: 40px; width: 100%; }
 .oldJ input[type="text"] { width: 100%; }
 
@@ -678,7 +668,7 @@ html.isJ25 #k2AdminContainer .k2AdminTableFilters tr td { padding: 10px; }
     -webkit-transition: border linear .2s, box-shadow linear .2s;
     -moz-transition: border linear .2s, box-shadow linear .2s;
     transition: border linear .2s, box-shadow linear .2s;
-		display: inline-block;  height: 30px; font-size: 13px; padding: 0 10px; min-width: 80px; line-height: 18px; color: #555;  border-radius: 3px; vertical-align: middle;
+		display: inline-block;  height: 30px; font-size: 13px; padding: 0 10px; min-width: 80px; line-height: 18px; color: #555;  border-radius: 3px; vertical-align: middle; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 	}
 	.oldJ .k2GenericForm select { min-width: 169px; }
 	.oldJ input.k2OrderBox { max-width: 30px; min-width: 0; }

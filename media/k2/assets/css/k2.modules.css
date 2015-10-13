@@ -15,6 +15,8 @@
 
 /* header.php */
 .k2clr { clear:both; height:0; line-height:0; border:none; float:none; background:none; padding:0; margin:0; }
+.paramHeaderContainer15 { clear:both; font-weight:bold; font-size:12px; color:#369; margin:0; padding:0; background:#d5e7fa; border-bottom:2px solid #96b0cb; float:left; width:100%; }
+
 
 /* Normalize module param width in Joomla! 1.6+ */
 .pane-sliders ul.adminformlist { margin:0; padding:0; list-style:none; }
@@ -33,7 +35,7 @@ body.contentpane dl.tabs { padding-left:8px!important; }
 body.contentpane dl.tabs dt.open { background:#fff!important; border-bottom:1px solid #fff!important; }
 
 /* Settings - Joomla! 3.x */
-.paramHeaderContent { background: #e5f7fd; border-radius: 3px; line-height: 1; padding: 18px 25px; margin: 25px 0 10px 0; color: #346b93; font-size: 18px; }
+.paramHeaderContent { background: #e5f7fd; border-radius: 3px; line-height: 1; padding: 18px 25px; color: #346b93; font-size: 18px; }
 	.tab-pane > .control-group:first-child .paramHeaderContent { margin-top: 0; }
 
 .form-horizontal .controls label, .controls label { min-width:85px;width:auto; text-align:center; border:1px solid #d4d6d8;line-height:33px;vertical-align:top;height:33px;font-size:12px;margin:0 -2px;padding:0 13px;
@@ -67,7 +69,7 @@ box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff; }
 .controls .radio, .controls .checkbox { padding-left: 0; }
 
 /* BS resets */
-.form-horizontal .control-group { margin-bottom: 0!important; border-radius: 3px; }
+.form-horizontal .control-group {margin-bottom: 15px; border-radius: 3px; }
 .form-horizontal .control-group:nth-child(2n-2) { background: #f7f7f7; }
 
 .form-horizontal .controls > .radio:first-child, .form-horizontal .controls > .checkbox:first-child { padding-top: 10px; }
@@ -77,3 +79,13 @@ box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff; }
 .form-horizontal .controls fieldset { padding: 10px 0; }
 .form-horizontal .controls .chzn-container { margin: 15px 0; }
 .form-horizontal .controls input[type="text"], .form-horizontal .controls textarea { margin: 10px 0 15px 0; }
+
+/* Tabs */
+ul#configTabs {margin:0 0 18px;padding:0;text-align:left;white-space:nowrap;list-style:none;}
+	ul#configTabs li { display:inline-block; margin:0 1px -1px; padding:0; }
+	ul#configTabs li a {display:block;padding:10px 21px;margin:0;background:#f0f2f2;font-size:14px;text-decoration:none;font-weight:normal;outline:0;border-radius:3px 3px 0 0;color:#6d6f71;border-bottom:1px solid #d4d7d9;}
+	ul#configTabs li a:hover {text-decoration:none;background-color:#f6f6f6;}
+	ul#configTabs li a i {margin-right:8px;color:#6d6f71;}
+	ul#configTabs li.active a {padding:10px 20px;background:#fff;color:#58595b;border:1px solid #d4d7d9;border-bottom:1px solid #fff;}
+	ul#configTabs li.active a i {color:#0091ff;}
+	ul#configTabs li.active a:hover {background-color:#fff;}
