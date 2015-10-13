@@ -15,7 +15,7 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 
 .isJ30 body { padding-right: 0; padding-left: 0; }
 .com_k2 select[multiple], .com_k2 select[size], .com_k2 select { min-height: 40px; height: 40px; max-width: 100%; }
-/* reset stupid BS responsive stuff */
+/* reset BS responsive stuff */
 .isJ30 .header, .isJ30 .navbar-fixed-top, .isJ30 .navbar-fixed-bottom, .isJ30 .navbar-static-top, .isJ30 .btn-subhead, .isJ30 .subhead { margin-left: 0; margin-right: 0; }
 
 .k2Center {text-align:center;}
@@ -44,6 +44,10 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .k2clr {clear:both; height:0; line-height:0; border:none; float:none; background:none; padding:0; margin:0;}
 
 div#k2AdminContainer { font-family: 'Open Sans', sans-serif; }
+
+/* Common image styling */
+img.k2AdminImage {border:4px solid #ddd;margin:10px 0;padding:0;display:block;}
+img.k2UserAvatar { margin: 10px 20px; }
 
 .paramHeader {padding:6px 8px;}
 
@@ -238,8 +242,10 @@ div.k2ScrollingContent {  margin-left: 0; padding: 20px 20px 0;  }
 	.xmlParamsFields .paramValue input[value="1"] + label { border-radius: 0 3px 3px 0; }
 
 	/* the labels */
-	.xmlParamsFields .paramLabel label { font-size: 13px; font-weight: 700; color: #777778;  padding: 10px 10px 10px 20px; line-height: 1; margin: 0; }
+	.xmlParamsFields .paramLabel label { font-size: 13px; font-weight: 700; color: #777778;  padding: 10px 10px 10px 20px; line-height: 1; margin: 0; display: inline-block; vertical-align: middle; }
 	.xmlParamsFields .paramValue, .xmlParamsFields .paramLabel { display: inline-block; vertical-align: middle; }
+	.xmlParamsFields .paramLabel input[type="checkbox"] { margin-left: 20px; display: inline-block; vertical-align: middle; position: relative; top: -2px; }
+	.xmlParamsFields .paramLabel input[type="checkbox"] + label { padding-left: 5px; }
 	.xmlParamsFields .paramValue  { width: 100%; }
 
 	.k2ScrollingContent > h3,
@@ -691,12 +697,7 @@ body#com_k2 {}
 /* -------------- Admin Common -------------- */
 
 div#k2AdminContainer h1 {padding:0 0 8px 0;margin:0;}
-
-input.fileUpload {border:1px solid #c0c0c0;} /* file uploads */
-a.k2ReportUserButton {}
-
-img.k2AdminImage {border:4px solid #ddd;margin:10px 0;padding:0;display:block;}
-span.k2Notice {cursor:pointer;font-weight:bold;text-decoration:underline;}
+span.k2Notice {cursor:pointer;font-weight:bold;}
 
 .k2LimitBox { float: left; margin: 0 10px 0 0;}
 
