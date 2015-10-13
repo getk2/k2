@@ -15,6 +15,8 @@
 
 /* header.php */
 .k2clr { clear:both; height:0; line-height:0; border:none; float:none; background:none; padding:0; margin:0; }
+.paramHeaderContainer15 { clear:both; font-weight:bold; font-size:12px; color:#369; margin:0; padding:0; background:#d5e7fa; border-bottom:2px solid #96b0cb; float:left; width:100%; }
+
 
 /* Normalize module param width in Joomla! 1.6+ */
 .pane-sliders ul.adminformlist { margin:0; padding:0; list-style:none; }
