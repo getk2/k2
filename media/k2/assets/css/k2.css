@@ -579,7 +579,7 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 		#k2InfoPage .fa { float: right; }
 
 #k2InfoPage table,
-#k2InfoPage fieldset {width:100%;border:0;}
+#k2InfoPage fieldset {width:100%;border:0; border-spacing: 0;}
 #k2InfoPage fieldset div {padding:10px 0 0;}
 	#k2InfoPage .k2InfoTable tr td:first-child {width:70%;}
 	#k2InfoPage .k2InfoTable tr td:last-child {width:30%;}
@@ -656,8 +656,8 @@ html.isJ25 #k2AdminContainer .k2AdminTableFilters tr td { padding: 10px; }
 
 /* Info page */
 .oldJ h1 { color: #00AFEB; }
-.isJ25 #k2InfoPage ul.k2ScrollSpyMenu { top: 183px; }
-.isJ15 #k2InfoPage ul.k2ScrollSpyMenu { top: 175px; }
+.isJ25 #k2InfoPage ul.k2ScrollSpyMenu { top: 183px; border-left: 0; }
+.isJ15 #k2InfoPage ul.k2ScrollSpyMenu { top: 175px; border-left: 0; }
 
 /* Item form */
 .oldJ fieldset { padding-left: 0; border: 0; }
