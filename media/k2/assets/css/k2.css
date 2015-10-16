@@ -694,6 +694,19 @@ html.isJ25 #k2AdminContainer .k2AdminTableFilters tr td { padding: 10px; }
 	/* Params */
 	.oldJ .xmlParamsFields ul li { padding: 10px 20px 10px 0; }
 
+	.oldJ #k2SubmitButton, .oldJ #k2ResetButton{ color: #414042; padding: 7px 15px; margin: 0; border-radius: 3px; border: 1px solid #dedede; border-bottom-color: #cacaca; background: #fdfdfd; white-space: normal;
+    display: inline-block; vertical-align: middle; position: relative; font-weight: 700;
+    background: -moz-linear-gradient(top, #fdfdfd 0%, #f5f5f5 100%);
+    background: -webkit-linear-gradient(top, #fdfdfd 0%, #f5f5f5 100%);
+    background: linear-gradient(to bottom, #fdfdfd 0%, #f5f5f5 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd', endColorstr='#f5f5f5',GradientType=0);
+    box-shadow: 0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff; }
+	.oldJ #k2SubmitButton:hover , .oldJ #k2ResetButton:hover { cursor: pointer; text-decoration: none; border-color: #dedede; border-bottom-color: #cacaca; background: #fdfdfd;
+		    background: -moz-linear-gradient(top, #fdfdfd 0%, #f5f5f5 100%);
+		    background: -webkit-linear-gradient(top, #fdfdfd 0%, #f5f5f5 100%);
+		    background: linear-gradient(to bottom, #fdfdfd 0%, #f5f5f5 100%);
+		    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd', endColorstr='#f5f5f5',GradientType=0);}
+
 /* Joomla! 1.5! specific */
 .isJ15 div.header { padding: 12px 0; }
 .isJ15 div.toolbar { margin-top: 10px; }
