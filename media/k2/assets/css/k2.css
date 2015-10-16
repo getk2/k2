@@ -6,7 +6,7 @@
  * @license		GNU/GPL license:http://www.gnu.org/copyleft/gpl.html
  */
 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,700italic,400italic,300italic,300&subset=latin,greek);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,700italic,400italic,300italic,300&subset=latin,greek);
 
 /* Common */
 a:active,a:focus {outline:0;}
@@ -309,9 +309,14 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd', endColorstr='#f5f5f5',GradientType=0);
     box-shadow: 0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff;
 	}
+
 		#exFieldsTypesDiv input[type="button"]:hover, #exFieldsTypesDiv button:hover { background: #d4d7d9; }
 		#groupContainer { text-align: right; width: 100%; clear: both; float: left; margin: 20px 0 0; }
 				#groupContainer > span, 	#groupContainer > label { font-weight: 700; color: #777; padding-right: 10px; }
+		
+		#exFieldsTypesDiv textarea { width: 100%; clear: both; min-height: 150px; margin-bottom: 15px; }
+		#exFieldsTypesDiv span.label { font-size: 14px; color: #777; font-weight: 600; display: inline-block; vertical-align: middle; margin-bottom: 20px; line-height: 40px; }
+		#exFieldsTypesDiv span.label + input[type="checkbox"] { display: inline-block; vertical-align: middle; margin: -19px 0 0 10px; }
 
 /* ====================================================================================================== */
 /* ====================================================================================================== */
@@ -632,13 +637,14 @@ html.isJ25 .xmlParamsFields .paramValue input[type="text"], html.isJ25 .xmlParam
 html.oldJ #k2AdminContainer .k2AdminTableFilters,
 html.oldJ #k2AdminContainer .adminlist { border-left: 0; }
 .oldJ .controls input[type="radio"], .oldJ .k2Table .k2SubTableValue input[type="radio"] { top: 0; left: 0; }
+.isJ25 #k2AdminFooter, .isJ15 #k2AdminFooter { margin-bottom: 15px; }
 
 /* The submenu 1.5 + 2.5 */
 html.isJ25 #toolbar-box { margin-bottom: 0; }
 html.isJ25 #submenu-box, html.isJ15 #submenu-box { padding: 0; margin: 0; border-top: 1px solid #d4d7d9; float: left; width: 100%; }
 	html.isJ25 #submenu-box div.m, html.isJ15 #submenu-box .m { border: 0; padding: 0; }
 
-	html.isJ25 #submenu, html.isJ15 #submenu  { border-bottom: 1px solid #d4d7d9; float: left; width: 100%; background: #f0f2f2; }
+	html.isJ25 #submenu, html.isJ15 #submenu  { border-bottom: 1px solid #d4d7d9; float: left; width: 100%; background: #f0f2f2; position: relative; z-index: 999; }
 		html.isJ25 #submenu li a, html.isJ15 #submenu li a { display: block; color: #777; font-size: 14px; text-decoration: none; font-weight: normal; outline: 0; padding: 21px 24px;  margin: 0; border-right: 1px solid #d4d7d9; position: relative;}
 		html.isJ25 #submenu li a.active, html.isJ15 #submenu li a.active { color: #0091ff;  background: #f0f2f2; }
 		html.isJ25 #submenu li a.active:before, html.isJ15 #submenu li a.active:before	{ text-align: center; content: "\f0d8"; font-family: "FontAwesome"; color: #fff; position: absolute; font-size: 32px; bottom: -2px; left: 50%; margin-left: -16px;  width: 32px; text-shadow: 0px -1px 1px #ccc; }
@@ -664,6 +670,7 @@ html.isJ25 #k2AdminContainer .k2AdminTableFilters tr td { padding: 10px; }
 .oldJ fieldset { padding-left: 0; border: 0; }
 .oldJ select, .oldJ input[type="text"], .oldJ input[type="email"] { height: 30px; min-height: 30px; width: auto; max-width: 100%; }
 .oldJ select { width: 100%; max-width: 300px; }
+.oldJ table.k2AdminTableFilters tr td.k2AdminTableFiltersSelects select { max-width: 180px; }
 .k2ViewIsCategory .oldJ input, .k2ViewIsItem .oldJ input,  .k2ViewIsCategory .oldJ select, .k2ViewIsItem .oldJ select { height: 40px;}
 
 .oldJ .k2TagsNotice { margin-bottom: 30px;}
@@ -678,6 +685,7 @@ html.isJ25 #k2AdminContainer .k2AdminTableFilters tr td { padding: 10px; }
     transition: border linear .2s, box-shadow linear .2s;
 		display: inline-block;  height: 40px; font-size: 13px; padding: 0 10px; min-width: 80px; line-height: 18px; color: #555;  border-radius: 3px; vertical-align: middle; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 	}
+	.oldJ input[name="search"], .oldJ input.text_area.k2OrderBox { max-height: 30px; }
 	.oldJ .k2GenericForm select { min-width: 169px; }
 	.oldJ input.k2OrderBox { max-width: 30px; min-width: 0; }
 	.oldJ td.order span { display: none;}

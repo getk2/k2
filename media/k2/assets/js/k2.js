@@ -719,7 +719,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             }).appendTo(target);
 
             var br = $K2('<br/>').appendTo(target);
-            var label = $K2('<label/>').html(K2Language[17]).appendTo(target);
+            var label = $K2('<span class="label"/>').html(K2Language[17]).appendTo(target);
 			var input = $K2('<input/>', {
                 name : 'option_rows[]',
                 type : 'text'
@@ -730,7 +730,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             }
 
             var br = $K2('<br/>').appendTo(target);
-            var label = $K2('<label/>').html(K2Language[16]).appendTo(target);
+            var label = $K2('<span class="label"/>').html(K2Language[16]).appendTo(target);
 			var input = $K2('<input/>', {
                 name : 'option_cols[]',
                 type : 'text'
@@ -741,7 +741,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             }
 
             var br = $K2('<br/>').appendTo(target);
-            var label = $K2('<label/>').html(K2Language[3]).appendTo(target);
+            var label = $K2('<span class="label"/>').html(K2Language[3]).appendTo(target);
             var input = $K2('<input/>', {
                 name : 'option_editor[]',
                 type : 'checkbox',
@@ -750,7 +750,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
 
             var br = $K2('<br/>').appendTo(target);
             var br = $K2('<br/>').appendTo(target);
-            var notice = $K2('<span/>').html('(' + K2Language[4] + ')').appendTo(target);
+            var notice = $K2('<span class="label"/>').html('(' + K2Language[4] + ')').appendTo(target);
             if (!isNewField && currentType == fieldType) {
                 textarea.val(fieldValues[0].value);
                 if (fieldValues[0].editor) {
