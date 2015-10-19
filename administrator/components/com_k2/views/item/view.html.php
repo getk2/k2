@@ -287,7 +287,7 @@ class K2ViewItem extends K2View
 		$dispatcher = JDispatcher::getInstance();
 
 		// Detect gallery type
-		if (JString::strpos($item->gallery, 'http://'))
+		if (JString::strpos($item->gallery, 'http://') || JString::strpos($item->gallery, 'https://'))
 		{
 			$item->galleryType = 'flickr';
 			$item->galleryValue = JString::substr($item->gallery, 9);
