@@ -281,13 +281,15 @@ $document->addScriptDeclaration("
 					</div>
 					<?php endif; ?>
 					<?php if (count($this->K2PluginsItemContent)): ?>
-					<div class="itemPlugins">
+					<div class="itemPlugins itemPluginsContent">
 						<?php foreach($this->K2PluginsItemContent as $K2Plugin): ?>
 						<?php if(!is_null($K2Plugin)): ?>
-						<fieldset>
+						<div class="itemAdditionalField">
 							<legend><?php echo $K2Plugin->name; ?></legend>
-							<?php echo $K2Plugin->fields; ?>
-						</fieldset>
+							<div class="itemAdditionalData">
+								<?php echo $K2Plugin->fields; ?>
+							</div>
+						</div>
 						<?php endif; ?>
 						<?php endforeach; ?>
 					</div>
@@ -459,10 +461,14 @@ $document->addScriptDeclaration("
 					<div class="itemPlugins">
 						<?php foreach($this->K2PluginsItemGallery as $K2Plugin): ?>
 						<?php if(!is_null($K2Plugin)): ?>
-						<fieldset>
-							<legend><?php echo $K2Plugin->name; ?></legend>
-							<?php echo $K2Plugin->fields; ?>
-						</fieldset>
+						<div class="itemAdditionalField">
+							<fieldset>
+								<legend><?php echo $K2Plugin->name; ?></legend>
+								<div class="itemAdditionalData">
+									<?php echo $K2Plugin->fields; ?>
+								</div>
+							</fieldset>
+						</div>
 						<?php endif; ?>
 						<?php endforeach; ?>
 					</div>
@@ -675,10 +681,12 @@ $document->addScriptDeclaration("
 					<div class="itemPlugins">
 						<?php foreach($this->K2PluginsItemVideo as $K2Plugin): ?>
 						<?php if(!is_null($K2Plugin)): ?>
-						<fieldset>
+						<div class="itemAdditionalField">
 							<legend><?php echo $K2Plugin->name; ?></legend>
-							<?php echo $K2Plugin->fields; ?>
-						</fieldset>
+							<div class="itemAdditionalData">
+								<?php echo $K2Plugin->fields; ?>
+							</div>
+						</div>
 						<?php endif; ?>
 						<?php endforeach; ?>
 					</div>
@@ -746,10 +754,10 @@ $document->addScriptDeclaration("
 					<div class="itemPlugins">
 						<?php foreach($this->K2PluginsItemExtraFields as $K2Plugin): ?>
 						<?php if(!is_null($K2Plugin)): ?>
-						<fieldset>
+						<div class="itemAdditionalField">
 							<legend><?php echo $K2Plugin->name; ?></legend>
-							<?php echo $K2Plugin->fields; ?>
-						</fieldset>
+							<div class="itemAdditionalData"><?php echo $K2Plugin->fields; ?></div>
+						</div>
 						<?php endif; ?>
 						<?php endforeach; ?>
 					</div>
@@ -818,10 +826,10 @@ $document->addScriptDeclaration("
 					<div class="itemPlugins">
 						<?php foreach($this->K2PluginsItemAttachments as $K2Plugin): ?>
 						<?php if(!is_null($K2Plugin)): ?>
-						<fieldset>
+						<div class="itemAdditionalField">
 							<legend><?php echo $K2Plugin->name; ?></legend>
-							<?php echo $K2Plugin->fields; ?>
-						</fieldset>
+							<div class="itemAdditionalData"><?php echo $K2Plugin->fields; ?></div>
+						</div>
 						<?php endif; ?>
 						<?php endforeach; ?>
 					</div>

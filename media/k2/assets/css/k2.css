@@ -6,7 +6,7 @@
  * @license		GNU/GPL license:http://www.gnu.org/copyleft/gpl.html
  */
 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,700italic,400italic,300italic,300&subset=latin,greek);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,700italic,400italic,300italic,300&subset=latin,greek);
 
 /* Common */
 a:active,a:focus {outline:0;}
@@ -309,14 +309,9 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd', endColorstr='#f5f5f5',GradientType=0);
     box-shadow: 0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff;
 	}
-
 		#exFieldsTypesDiv input[type="button"]:hover, #exFieldsTypesDiv button:hover { background: #d4d7d9; }
 		#groupContainer { text-align: right; width: 100%; clear: both; float: left; margin: 20px 0 0; }
 				#groupContainer > span, 	#groupContainer > label { font-weight: 700; color: #777; padding-right: 10px; }
-		
-		#exFieldsTypesDiv textarea { width: 100%; clear: both; min-height: 150px; margin-bottom: 15px; }
-		#exFieldsTypesDiv span.label { font-size: 14px; color: #777; font-weight: 600; display: inline-block; vertical-align: middle; margin-bottom: 20px; line-height: 40px; }
-		#exFieldsTypesDiv span.label + input[type="checkbox"] { display: inline-block; vertical-align: middle; margin: -19px 0 0 10px; }
 
 /* ====================================================================================================== */
 /* ====================================================================================================== */
@@ -525,6 +520,7 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 /* Admin - Item */
 .itemPlugins {margin-top:20px; clear: both; }
 	.itemPlugins label { font-size: 13px; color: #68696b; font-weight: 700; display: block; margin-top: 0; margin-bottom: 0; padding-top: 5px; padding-bottom: 10px; }
+	.itemPluginsContent { padding: 0 20px; }
 
 /* Admin - Media Manager */
 .isJ30 #elfinder input {width:auto;}/* Fix for Joomla! 3.2 CSS... */
@@ -614,7 +610,6 @@ padding:0;color:#4a4949;}
 /* Joomla 1.5 */
 html.isJ15 {overflow-y:scroll;}
 html.isJ15 #system-message {margin:-26px 0 16px;}
-#system-message dd { overflow: hidden; }
 html.isJ15 #system-message dd ul {padding:20px 10px;}
 html.isJ15 div#element-box div.m {padding:0; border-bottom: 1px solid #ccc; }
 html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs {border-top:1px solid #d4d7d9;}
@@ -637,14 +632,13 @@ html.isJ25 .xmlParamsFields .paramValue input[type="text"], html.isJ25 .xmlParam
 html.oldJ #k2AdminContainer .k2AdminTableFilters,
 html.oldJ #k2AdminContainer .adminlist { border-left: 0; }
 .oldJ .controls input[type="radio"], .oldJ .k2Table .k2SubTableValue input[type="radio"] { top: 0; left: 0; }
-.isJ25 #k2AdminFooter, .isJ15 #k2AdminFooter { margin-bottom: 15px; }
 
 /* The submenu 1.5 + 2.5 */
 html.isJ25 #toolbar-box { margin-bottom: 0; }
 html.isJ25 #submenu-box, html.isJ15 #submenu-box { padding: 0; margin: 0; border-top: 1px solid #d4d7d9; float: left; width: 100%; }
 	html.isJ25 #submenu-box div.m, html.isJ15 #submenu-box .m { border: 0; padding: 0; }
 
-	html.isJ25 #submenu, html.isJ15 #submenu  { border-bottom: 1px solid #d4d7d9; float: left; width: 100%; background: #f0f2f2; position: relative; z-index: 999; }
+	html.isJ25 #submenu, html.isJ15 #submenu  { border-bottom: 1px solid #d4d7d9; float: left; width: 100%; background: #f0f2f2; }
 		html.isJ25 #submenu li a, html.isJ15 #submenu li a { display: block; color: #777; font-size: 14px; text-decoration: none; font-weight: normal; outline: 0; padding: 21px 24px;  margin: 0; border-right: 1px solid #d4d7d9; position: relative;}
 		html.isJ25 #submenu li a.active, html.isJ15 #submenu li a.active { color: #0091ff;  background: #f0f2f2; }
 		html.isJ25 #submenu li a.active:before, html.isJ15 #submenu li a.active:before	{ text-align: center; content: "\f0d8"; font-family: "FontAwesome"; color: #fff; position: absolute; font-size: 32px; bottom: -2px; left: 50%; margin-left: -16px;  width: 32px; text-shadow: 0px -1px 1px #ccc; }
@@ -669,9 +663,9 @@ html.isJ25 #k2AdminContainer .k2AdminTableFilters tr td { padding: 10px; }
 /* Item form */
 .oldJ fieldset { padding-left: 0; border: 0; }
 .oldJ select, .oldJ input[type="text"], .oldJ input[type="email"] { height: 30px; min-height: 30px; width: auto; max-width: 100%; }
-.oldJ select { width: 100%; max-width: 300px; }
-.oldJ table.k2AdminTableFilters tr td.k2AdminTableFiltersSelects select { max-width: 180px; }
-.k2ViewIsCategory .oldJ input, .k2ViewIsItem .oldJ input,  .k2ViewIsCategory .oldJ select, .k2ViewIsItem .oldJ select { height: 40px;}
+.oldJ select { max-width: 300px; }
+.k2ViewIsCategory .oldJ input, .k2ViewIsItem .oldJ input,  .k2ViewIsCategory .oldJ select, .k2ViewIsItem .oldJ select { height: 40px; width: 100%; }
+.oldJ input[type="text"] { width: 100%; }
 
 .oldJ .k2TagsNotice { margin-bottom: 30px;}
 .oldJ #itemAttachments a.k2AttachmentBrowseServer { margin-left: 20px; }
@@ -683,9 +677,8 @@ html.isJ25 #k2AdminContainer .k2AdminTableFilters tr td { padding: 10px; }
     -webkit-transition: border linear .2s, box-shadow linear .2s;
     -moz-transition: border linear .2s, box-shadow linear .2s;
     transition: border linear .2s, box-shadow linear .2s;
-		display: inline-block;  height: 40px; font-size: 13px; padding: 0 10px; min-width: 80px; line-height: 18px; color: #555;  border-radius: 3px; vertical-align: middle; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+		display: inline-block;  height: 30px; font-size: 13px; padding: 0 10px; min-width: 80px; line-height: 18px; color: #555;  border-radius: 3px; vertical-align: middle; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 	}
-	.oldJ input[name="search"], .oldJ input.text_area.k2OrderBox { max-height: 30px; }
 	.oldJ .k2GenericForm select { min-width: 169px; }
 	.oldJ input.k2OrderBox { max-width: 30px; min-width: 0; }
 	.oldJ td.order span { display: none;}
@@ -693,19 +686,6 @@ html.isJ25 #k2AdminContainer .k2AdminTableFilters tr td { padding: 10px; }
 	.k2GenericForm > h3:first-child { display: none; }
 	/* Params */
 	.oldJ .xmlParamsFields ul li { padding: 10px 20px 10px 0; }
-
-	.oldJ #k2SubmitButton, .oldJ #k2ResetButton{ color: #414042; padding: 7px 15px; margin: 0; border-radius: 3px; border: 1px solid #dedede; border-bottom-color: #cacaca; background: #fdfdfd; white-space: normal;
-    display: inline-block; vertical-align: middle; position: relative; font-weight: 700;
-    background: -moz-linear-gradient(top, #fdfdfd 0%, #f5f5f5 100%);
-    background: -webkit-linear-gradient(top, #fdfdfd 0%, #f5f5f5 100%);
-    background: linear-gradient(to bottom, #fdfdfd 0%, #f5f5f5 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd', endColorstr='#f5f5f5',GradientType=0);
-    box-shadow: 0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff; }
-	.oldJ #k2SubmitButton:hover , .oldJ #k2ResetButton:hover { cursor: pointer; text-decoration: none; border-color: #dedede; border-bottom-color: #cacaca; background: #fdfdfd;
-		    background: -moz-linear-gradient(top, #fdfdfd 0%, #f5f5f5 100%);
-		    background: -webkit-linear-gradient(top, #fdfdfd 0%, #f5f5f5 100%);
-		    background: linear-gradient(to bottom, #fdfdfd 0%, #f5f5f5 100%);
-		    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd', endColorstr='#f5f5f5',GradientType=0);}
 
 /* Joomla! 1.5! specific */
 .isJ15 div.header { padding: 12px 0; }
