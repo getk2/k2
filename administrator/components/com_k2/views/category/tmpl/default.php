@@ -58,7 +58,7 @@ $document->addScriptDeclaration("
 				</div>
 
 
-				<div class="k2SubTable k2TableLeft">
+				<div class="k2SubTable k2CatTableLeft">
 					<div class="k2SubTableLabel">
 						<label for="parent"><?php echo JText::_('K2_PARENT_CATEGORY'); ?></label>
 					</div>
@@ -75,7 +75,7 @@ $document->addScriptDeclaration("
 					</div>
 				</div>
 				
-				<div class="k2SubTable k2TableRight">
+				<div class="k2SubTable k2CatTableRight">
 					<div class="k2SubTableLabel">
 						<label for="extraFieldsGroup"><?php echo JText::_('K2_ASSOCIATED_EXTRA_FIELDS_GROUP');	?></label>
 					</div>
@@ -93,7 +93,7 @@ $document->addScriptDeclaration("
 
 				<div class="clr"></div>
 				
-				<div class="k2SubTable k2TableLeft">
+				<div class="k2SubTable k2CatTableLeft">
 					<div class="k2SubTableLabel">
 						<label for="access"><?php echo JText::_('K2_ACCESS_LEVEL'); ?></label>
 					</div>
