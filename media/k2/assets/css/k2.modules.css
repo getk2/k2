@@ -38,7 +38,7 @@ body.contentpane dl.tabs dt.open { background:#fff!important; border-bottom:1px 
 .paramHeaderContent { background: #e5f7fd; border-radius: 3px; line-height: 1; padding: 18px 25px; color: #346b93; font-size: 18px; }
 	.tab-pane > .control-group:first-child .paramHeaderContent { margin-top: 0; }
 
-.form-horizontal .controls label, .controls label { min-width:85px;width:auto; text-align:center; border:1px solid #d4d6d8;line-height:33px;vertical-align:top;height:33px;font-size:12px;margin:0 -2px;padding:0 13px;
+.form-horizontal .controls:not(#jform_menuselect) label, .controls:not(#jform_menuselect) label { min-width:85px;width:auto; text-align:center; border:1px solid #d4d6d8;line-height:33px;vertical-align:top;height:33px;font-size:12px;margin:0 -2px;padding:0 13px;
 color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background-color:#eff1f1;
 box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff; }
 
