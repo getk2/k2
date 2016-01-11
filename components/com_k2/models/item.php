@@ -1698,11 +1698,23 @@ class K2ModelItem extends K2Model
 	function checkin()
 	{
 
-		$mainframe = JFactory::getApplication();
+    $mainframe = JFactory::getApplication();
 		$id = JRequest::getInt('cid');
-		$row = JTable::getInstance('K2Item', 'Table');
-		$row->load($id);
-		$row->checkin();
+    if($id)
+    {
+      $row = JTable::getInstance('K2Item', 'Table');
+      $row->load($id);
+      $row->checkin();
+    }
+    else
+    {
+      // Clean up SigPro
+      $sigProFolder = JRequest::getCmd('sigProFolder');
+      if($sigProFolder && !is_numeric($sigProFolder) && JFolder::exists(JPATH_SITE.'/media/k2/galleries/'.$sigProFolder))
+      {
+        JFolder::delete(JPATH_SITE.'/media/k2/galleries/'.$sigProFolder);
+      }
+    }
 		$mainframe->close();
 	}
 

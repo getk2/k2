@@ -907,9 +907,7 @@ class K2ModelItem extends K2Model
 
 		}
 
-		$query = "UPDATE #__k2_items SET 
-        video_caption = ".$db->Quote($row->video_caption).", 
-        video_credits = ".$db->Quote($row->video_credits).", ";
+		$query = "UPDATE #__k2_items SET video_caption = ".$db->Quote($row->video_caption).", video_credits = ".$db->Quote($row->video_credits).", ";
 
 		if (!is_null($row->video))
 		{
@@ -919,10 +917,7 @@ class K2ModelItem extends K2Model
 		{
 			$query .= " gallery = ".$db->Quote($row->gallery).", ";
 		}
-		$query .= " extra_fields = ".$db->Quote($row->extra_fields).", 
-        extra_fields_search = ".$db->Quote($row->extra_fields_search)." ,
-        published = ".$db->Quote($row->published)." 
-        WHERE id = ".$row->id;
+		$query .= " extra_fields = ".$db->Quote($row->extra_fields).", extra_fields_search = ".$db->Quote($row->extra_fields_search)." , published = ".$db->Quote($row->published)." WHERE id = ".$row->id;
 		$db->setQuery($query);
 
 		if (!$db->query())
@@ -1001,6 +996,15 @@ class K2ModelItem extends K2Model
 			$row->load($cid);
 			$row->checkin();
 		}
+    else
+    {
+      // Clean up SigPro
+      $sigProFolder = JRequest::getCmd('sigProFolder');
+      if($sigProFolder && !is_numeric($sigProFolder) && JFolder::exists(JPATH_SITE.'/media/k2/galleries/'.$sigProFolder))
+      {
+        JFolder::delete(JPATH_SITE.'/media/k2/galleries/'.$sigProFolder);
+      }
+    }
 
 		$mainframe->redirect('index.php?option=com_k2&view=items');
 	}
@@ -1223,10 +1227,7 @@ class K2ModelItem extends K2Model
 
 		$db = JFactory::getDBO();
 		$itemID = (int)$itemID;
-		$query = "SELECT tags.*
-        FROM #__k2_tags AS tags 
-        JOIN #__k2_tags_xref AS xref ON tags.id = xref.tagID 
-        WHERE xref.itemID = ".(int)$itemID." ORDER BY xref.id ASC";
+		$query = "SELECT tags.* FROM #__k2_tags AS tags JOIN #__k2_tags_xref AS xref ON tags.id = xref.tagID WHERE xref.itemID = ".(int)$itemID." ORDER BY xref.id ASC";
 		$db->setQuery($query);
 		$rows = $db->loadObjectList();
 		return $rows;

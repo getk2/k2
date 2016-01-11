@@ -536,37 +536,29 @@ $K2(document).ready(function() {
                     element.unbind();
                     element.click(function(event) {
                         event.preventDefault();
-                        if ($K2('input[name=id]').val()) {
-                            $K2.ajax({
-                                type : 'get',
-                                cache : false,
-                                url : K2SitePath + 'index.php?option=com_k2&view=item&task=checkin&cid=' + $K2('input[name=id]').val() + '&lang=' + $K2('input[name=lang]').val(),
-                                success : function() {
-                                    if (window.opener) {
-                                        window.opener.location.reload();
-                                    } else {
-                                        parent.window.location.reload();
-                                    }
-                                    if ( typeof (window.parent.SqueezeBox.close == 'function')) {
-                                        window.parent.SqueezeBox.close();
-                                    } else {
-                                        parent.$K2('#sbox-window').close();
-                                    }
-                                    if (window.opener) {
-                                        window.close();
-                                    }
+                        var k2ItemId = $K2('input[name=id]').val();
+                        var sigProFolder = $K2('input[name=sigProFolder]').val();
+                        $K2.ajax({
+                            type : 'get',
+                            cache : false,
+                            url : K2SitePath + 'index.php?option=com_k2&view=item&task=checkin&cid=' + k2ItemId + '&lang=' + $K2('input[name=lang]').val() + '&sigProFolder=' + sigProFolder,
+                            success : function() {
+                                if (window.opener) {
+                                    window.opener.location.reload();
+                                } else {
+                                    parent.window.location.reload();
                                 }
-                            });
-                        } else {
-                            if ( typeof (window.parent.SqueezeBox.close == 'function')) {
-                                window.parent.SqueezeBox.close();
-                            } else {
-                                parent.$K2('#sbox-window').close();
+                                if ( typeof (window.parent.SqueezeBox.close == 'function')) {
+                                    window.parent.SqueezeBox.close();
+                                } else {
+                                    parent.$K2('#sbox-window').close();
+                                }
+                                if (window.opener) {
+                                    window.close();
+                                }
                             }
-                            if (window.opener) {
-                                window.close();
-                            }
-                        }
+                        });
+
                     });
                 });
             }
