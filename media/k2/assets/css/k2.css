@@ -105,10 +105,20 @@ div.k2Table {margin:0 0 20px 0;}
 }
 @media screen and (min-width: 1240px) {
 	div.k2TableInline {display:inline-block;}
+	
 	div.k2TableLeft {float:left;}
 	div.k2TableRight {float:right; text-align: right;}
+
 	div.k2TableRight .chzn-container { text-align: left; }
 	.k2ViewIsItem div.k2SubTable .k2SubTableLabel:first-child { margin-left:0; width: auto; }
+	.k2ItemTableRightPad { padding-left: 16px; }
+}
+@media screen and (min-width: 1400px) {
+	div.k2CatTableLeft {float:left;}
+	div.k2CatTableRight {float:right; text-align: right;}
+	
+	div.k2ItemTableLeft {float:left;}
+	div.k2ItemTableRight {float:right; text-align: right;}
 }
 @media screen and (min-width: 1000px) {
 	div.k2Table .k2TableValue {margin-left:120px;vertical-align:top;}
@@ -117,7 +127,7 @@ div.k2Table {margin:0 0 20px 0;}
 	div.k2SubTable .k2SubTableValue {display:inline-block;vertical-align:top;}
 	div.k2SubTable .k2SubTableLabel { margin:0 0 0 20px; padding: 9px 8px 0; }
 	div.k2SubTable .k2SubTableValue { width: 210px; }
-	.k2ViewIsCategory div.k2SubTable .k2SubTableLabel { width: 105px; }
+	.k2ViewIsCategory div.k2SubTable .k2SubTableLabel { width: 150px; }
 	.k2ViewIsItem div.k2SubTable .k2SubTableLabel { width: 90px; }
 }
 @media screen and (min-width: 767px) {
@@ -132,6 +142,15 @@ div.k2Table {margin:0 0 20px 0;}
 	label[for="title"] {font-size:18px;}
 	label[for="tags"] {padding:20px 0 0 0;}
 }
+
+/* Chozen plugin */
+.com_k2 .chzn-container, .com_k2 .chzn-drop,
+.com_k2 .chzn-container-active.chzn-with-drop .chzn-single,
+.com_k2 .chzn-container-single .chzn-single,
+.com_k2 .chzn-container-single .chzn-single span { min-height: 35px; }
+.com_k2 .chzn-container-single .chzn-single span { line-height: 35px; }
+.com_k2 .chzn-container-single .chzn-single div b { background-position: 2px 8px; }
+.com_k2 .chzn-container-active.chzn-with-drop .chzn-single div b { background-position: -14px 8px; }
 
 /* Generic Tabs Layout */
 .ui-tabs-hide {display:none;}
@@ -535,6 +554,7 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 	/* Lists - filters */
 	#k2AdminContainer .k2AdminTableFilters { margin-bottom: 0; width: 100%; border-left: 1px solid #dbdcdc; }
 		#k2AdminContainer .k2AdminTableFilters tr td { background: #fff; border-bottom: 1px solid #dbdcdc; padding-top: 15px; }
+		#k2AdminContainer .k2AdminTableFilters .chzn-container { margin-bottom: 5px; }
 
 	/* Legacy styling */
 	table.k2AdminTableFilters {width:100%;}

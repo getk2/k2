@@ -38,7 +38,10 @@ body.contentpane dl.tabs dt.open { background:#fff!important; border-bottom:1px 
 .paramHeaderContent { background: #e5f7fd; border-radius: 3px; line-height: 1; padding: 18px 25px; color: #346b93; font-size: 18px; }
 	.tab-pane > .control-group:first-child .paramHeaderContent { margin-top: 0; }
 
-.form-horizontal .controls label, .controls label { min-width:85px;width:auto; text-align:center; border:1px solid #d4d6d8;line-height:33px;vertical-align:top;height:33px;font-size:12px;margin:0 -2px;padding:0 13px;
+.com_modules .form-horizontal .controls:not(#jform_menuselect) label, 
+.com_modules .controls:not(#jform_menuselect) label,
+.com_menus .controls label { min-width:85px;width:auto; text-align:center; border:1px solid #d4d6d8;line-height:33px;vertical-align:top;height:33px;font-size:12px;margin:0 -2px;padding:0 13px;
+
 color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background-color:#eff1f1;
 box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff; }
 
@@ -64,7 +67,7 @@ box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff; }
 .form-horizontal .control-label:empty { display: none; }
 .form-horizontal .controls { margin-left: 0!important;  }
 
-.form-horizontal .control-label {  min-width: 350px; max-width: 350px; }
+.form-horizontal .control-label {  min-width: 200px; max-width: 200px; }
 .form-horizontal .control-label label { font-size: 13px; font-weight: 700; color: #777778;  padding: 15px 10px 10px; line-height: 1; margin: 0; }
 .controls .radio, .controls .checkbox { padding-left: 0; }
 
@@ -78,7 +81,7 @@ box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff; }
 
 .form-horizontal .controls fieldset { padding: 10px 0; }
 .form-horizontal .controls .chzn-container { margin: 15px 0; }
-.form-horizontal .controls input[type="text"], .form-horizontal .controls textarea { margin: 10px 0 15px 0; }
+.form-horizontal .controls input[type="text"], .form-horizontal .controls textarea, .form-horizontal .controls input[type="text"] + .btn { margin: 10px 0 15px 0; }
 
 /* Tabs */
 ul#configTabs {margin:0 0 18px;padding:0;text-align:left;white-space:nowrap;list-style:none;}

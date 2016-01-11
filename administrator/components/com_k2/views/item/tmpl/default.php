@@ -207,7 +207,7 @@ $document->addScriptDeclaration("
 						</div>
 					</div>
 
-					<div class="k2SubTable k2TableRight">
+					<div class="k2SubTable k2ItemTableRight k2ItemTableRightPad">
 						<div class="k2SubTableLabel">
 							<label><?php echo JText::_('K2_ACCESS_LEVEL'); ?></label>
 						</div>
