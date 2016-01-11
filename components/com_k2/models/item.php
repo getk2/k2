@@ -275,9 +275,9 @@ class K2ModelItem extends K2Model
 				$item->numOfComments = $this->countItemComments($item->id);
 			}
 		}
-		
+
 		return $item;
-		
+
 	}
 
 	function prepareFeedItem(&$item)
@@ -543,8 +543,8 @@ class K2ModelItem extends K2Model
 		if (!isset($this->isSigInstalled))
 		{
 			$this->isSigInstalled = (
-			JFile::exists(JPATH_SITE.'/plugins/content/jw_sigpro.php') || 
-			JFile::exists(JPATH_SITE.'/plugins/content/jw_sigpro/jw_sigpro.php') || 
+			JFile::exists(JPATH_SITE.'/plugins/content/jw_sigpro.php') ||
+			JFile::exists(JPATH_SITE.'/plugins/content/jw_sigpro/jw_sigpro.php') ||
 			JFile::exists(JPATH_SITE.'/plugins/content/jw_sigpro/jw_sigpro/jw_sigpro.php')
 			);
 		}
@@ -1113,7 +1113,7 @@ class K2ModelItem extends K2Model
 		//Check permissions
 		if ((($params->get('comments') == '2') && ($user->id > 0) && K2HelperPermissions::canAddComment($item->catid)) || ($params->get('comments') == '1'))
 		{
-			
+
 			// If new antispam settings are not saved, show a message to the comments form and stop the comment submission
 			$antispamProtection = $params->get('antispam', null);
 			if(
@@ -1126,7 +1126,7 @@ class K2ModelItem extends K2Model
 				echo $json->encode($response);
 				$mainframe->close();
 			}
-			
+
 
 			$row = JTable::getInstance('K2Comment', 'Table');
 
@@ -1218,7 +1218,7 @@ class K2ModelItem extends K2Model
 					{
 						require_once (JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'lib'.DS.'recaptchalib.php');
 					}
-					$privatekey = $params->get('recaptcha_private_key');
+					$privatekey = trim($params->get('recaptcha_private_key'));
 					$recaptcha_challenge_field = isset($_POST["recaptcha_challenge_field"]) ? $_POST["recaptcha_challenge_field"] : '';
 					$recaptcha_response_field = isset($_POST["recaptcha_response_field"]) ? $_POST["recaptcha_response_field"] : '';
 					$resp = recaptcha_check_answer($privatekey, $_SERVER["REMOTE_ADDR"], $recaptcha_challenge_field, $recaptcha_response_field);
@@ -1240,7 +1240,7 @@ class K2ModelItem extends K2Model
 					if ($params->get('akismetApiKey'))
 					{
 						require_once (JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'lib'.DS.'akismet.class.php');
-						$akismetApiKey = $params->get('akismetApiKey');
+						$akismetApiKey = trim($params->get('akismetApiKey'));
 						$akismet = new Akismet(JURI::root(false), $akismetApiKey);
 						$akismet->setCommentAuthor($userName);
 						$akismet->setCommentAuthorEmail($commentEmail);
