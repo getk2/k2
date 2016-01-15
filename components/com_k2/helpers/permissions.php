@@ -170,15 +170,15 @@ class K2HelperPermissions
             case 'deleteAttachment' :
             case 'checkin' :
                 $cid = JRequest::getInt('cid');
-                if (!$cid)
-                    JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
+                if($cid)
+                {
+                  JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
+                  $item = JTable::getInstance('K2Item', 'Table');
+                  $item->load($cid);
 
-                JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
-                $item = JTable::getInstance('K2Item', 'Table');
-                $item->load($cid);
-
-                if (!K2HelperPermissions::canEditItem($item->created_by, $item->catid))
-                    JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
+                  if (!K2HelperPermissions::canEditItem($item->created_by, $item->catid))
+                      JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
+                }
                 break;
 
             case 'save' :
@@ -319,7 +319,7 @@ class K2HelperPermissions
         $K2Permissions = K2Permissions::getInstance();
         return in_array('comment.category.all', $K2Permissions->actions) || in_array('comment.category.'.$itemCategory, $K2Permissions->actions);
     }
-	
+
     public static function canEditPublished($itemCategory)
     {
         $K2Permissions = K2Permissions::getInstance();
