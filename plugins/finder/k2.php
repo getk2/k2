@@ -32,6 +32,11 @@ class plgFinderK2 extends FinderIndexerAdapter
     public function __construct(&$subject, $config)
     {
         parent::__construct($subject, $config);
+        if (PHP_SAPI === 'cli')
+        {
+          JPluginHelper::importPlugin('system', 'k2');
+          JEventDispatcher::getInstance()->trigger('onAfterInitialise');
+        }
         $this->loadLanguage();
     }
 
