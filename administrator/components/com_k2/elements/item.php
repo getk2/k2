@@ -53,10 +53,14 @@ class K2ElementItem extends K2Element
             if(!$value) {
               $value = '';
             }
+            $class = '';
+            if($node->attributes()->required) {
+              $class = 'required ';
+            }
             $html = '<span class="input-append">
             <input type="text" id="'.$name.'_name" value="'.htmlspecialchars($item->title, ENT_QUOTES, 'UTF-8').'" disabled="disabled" />
             <a class="modal btn" title="'.JText::_('K2_SELECT_AN_ITEM').'"  href="'.$link.'" rel="{handler: \'iframe\', size: {x: 700, y: 450}}"><i class="icon-file"></i>'.JText::_('K2_SELECT').'</a>
-            <input type="hidden" class="required modal-value" id="'.$name.'_id" name="'.$fieldName.'" value="'.$value.'" />
+            <input type="hidden" class="'.$class.'modal-value" id="'.$name.'_id" name="'.$fieldName.'" value="'.$value.'" />
             </span>';
         }
         else
