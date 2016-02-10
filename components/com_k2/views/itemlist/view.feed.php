@@ -150,8 +150,20 @@ class K2ViewItemlist extends K2View
                     break;
 
                 case 'tag' :
+
+                    // Prevent spammers from using the tag view
+                    $tag = JRequest::getString('tag');
+                    $db = JFactory::getDBO();
+                    $db->setQuery('SELECT id, name FROM #__k2_tags WHERE name = '.$db->quote($tag));
+                    $tag = $db->loadObject();
+                    if (!$tag->id)
+                    {
+                      JError::raiseError(404, JText::_('K2_NOT_FOUND'));
+                      return false;
+                    }
+
                     //set title
-                    $title = JText::_('K2_DISPLAYING_ITEMS_BY_TAG').' '.JRequest::getVar('tag');
+                    $title = JText::_('K2_DISPLAYING_ITEMS_BY_TAG').' '.$tag->name;
 
                     // Set ordering
                     $ordering = $params->get('tagOrdering');
@@ -272,20 +284,6 @@ class K2ViewItemlist extends K2View
             }
         }
         $document->setTitle($params->get('page_title'));
-
-        // Prevent spammers from using the tag view
-        if ($task == 'tag' && !count($items))
-        {
-            $tag = JRequest::getString('tag');
-            $db = JFactory::getDBO();
-            $db->setQuery('SELECT id FROM #__k2_tags WHERE name = '.$db->quote($tag));
-            $tagID = $db->loadResult();
-            if (!$tagID)
-            {
-                JError::raiseError(404, JText::_('K2_NOT_FOUND'));
-                return false;
-            }
-        }
 
     }
 

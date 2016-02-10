@@ -275,8 +275,19 @@ class K2ViewItemlist extends K2View
 				// Set limit
 				$limit = $params->get('tagItemCount');
 
+				// Prevent spammers from using the tag view
+				$tag = JRequest::getString('tag');
+				$db = JFactory::getDBO();
+				$db->setQuery('SELECT id, name FROM #__k2_tags WHERE name = '.$db->quote($tag));
+				$tag = $db->loadObject();
+				if (!$tag->id)
+				{
+					JError::raiseError(404, JText::_('K2_NOT_FOUND'));
+					return false;
+				}
+
 				// Set title
-				$title = JText::_('K2_DISPLAYING_ITEMS_BY_TAG').' '.JRequest::getVar('tag');
+				$title = JText::_('K2_DISPLAYING_ITEMS_BY_TAG').' '.$tag->name;
 
 				// Set ordering
 				$ordering = $params->get('tagOrdering');
@@ -659,7 +670,7 @@ class K2ViewItemlist extends K2View
 			$offset = (int)$params->get('num_leading_items');
 			$length = (int)$params->get('num_primary_items');
 			$primary = array_slice($items, $offset, $length);
-			
+
 			// Secondary
 			$offset = (int)($params->get('num_leading_items') + $params->get('num_primary_items'));
 			$length = (int)$params->get('num_secondary_items');
@@ -733,19 +744,7 @@ class K2ViewItemlist extends K2View
 		$dispatcher = JDispatcher::getInstance();
 		JPluginHelper::importPlugin('k2');
 		$dispatcher->trigger('onK2BeforeViewDisplay');
-		// Prevent spammers from using the tag view
-		if ($task == 'tag' && !count($this->items))
-		{
-			$tag = JRequest::getString('tag');
-			$db = JFactory::getDBO();
-			$db->setQuery('SELECT id FROM #__k2_tags WHERE name = '.$db->quote($tag));
-			$tagID = $db->loadResult();
-			if (!$tagID)
-			{
-				JError::raiseError(404, JText::_('K2_NOT_FOUND'));
-				return false;
-			}
-		}
+
 		parent::display($tpl);
 	}
 
