@@ -50,24 +50,24 @@ class modK2ToolsHelper
 				$languageCheck = "AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').")";
 			}
 			$query = "SELECT DISTINCT created_by FROM #__k2_items
-	        WHERE {$where} published=1 
-	        AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) 
-	        AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) 
-	        AND trash=0 
-	        AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") 
-	        AND created_by_alias='' 
+	        WHERE {$where} published=1
+	        AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." )
+	        AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." )
+	        AND trash=0
+	        AND access IN(".implode(',', $user->getAuthorisedViewLevels()).")
+	        AND created_by_alias=''
 			{$languageCheck}
 	        AND EXISTS (SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") {$languageCheck})";
 		}
 		else
 		{
 			$query = "SELECT DISTINCT created_by FROM #__k2_items
-	        WHERE {$where} published=1 
-	        AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) 
-	        AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) 
-	        AND trash=0 
-	        AND access<={$aid} 
-	        AND created_by_alias='' 
+	        WHERE {$where} published=1
+	        AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." )
+	        AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." )
+	        AND trash=0
+	        AND access<={$aid}
+	        AND created_by_alias=''
 	        AND EXISTS (SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND access<={$aid} )";
 		}
 
@@ -103,7 +103,7 @@ class modK2ToolsHelper
 			        LEFT JOIN #__k2_categories c ON c.id = i.catid
 			        WHERE i.created_by = ".(int)$author->id."
 			        AND i.published = 1
-			        AND i.access IN(".implode(',', $user->getAuthorisedViewLevels()).") 
+			        AND i.access IN(".implode(',', $user->getAuthorisedViewLevels()).")
 			        AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
 			        AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )
 			        AND i.trash = 0 AND created_by_alias='' AND c.published = 1 AND c.access IN(".implode(',', $user->getAuthorisedViewLevels()).") AND c.trash = 0 {$languageCheck} ORDER BY created DESC";
@@ -326,8 +326,8 @@ class modK2ToolsHelper
 
 		$query = "SELECT tag.name, tag.id
         FROM #__k2_tags as tag
-        LEFT JOIN #__k2_tags_xref AS xref ON xref.tagID = tag.id 
-        WHERE xref.itemID IN (".implode(',', $IDs).") 
+        LEFT JOIN #__k2_tags_xref AS xref ON xref.tagID = tag.id
+        WHERE xref.itemID IN (".implode(',', $IDs).")
         AND tag.published = 1";
 		$db->setQuery($query);
 		$rows = $db->loadObjectList();
@@ -704,10 +704,10 @@ class modK2ToolsHelper
 		$db = JFactory::getDBO();
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
-		
+
 		$menu = $mainframe->getMenu();
 		$active = $menu->getActive();
-		
+
 		if ($option == 'com_k2')
 		{
 
@@ -736,17 +736,17 @@ class modK2ToolsHelper
 						echo $db->stderr();
 						return false;
 					}
-					
+
 					$matchItem = !is_null($active) && @$active->query['view'] == 'item' && @$active->query['id'] == $id;
 					$matchCategory = !is_null($active) && @$active->query['view'] == 'itemlist' && @$active->query['task'] == 'category' && @$active->query['id'] == $row->catid;
-					
+
 					if($matchItem || $matchCategory)
 					{
 						$title = ($matchCategory) ? $row->title : '';
 						$path = modK2ToolsHelper::getSitePath();
 						return array($path, $title);
 					}
-					
+
 					$title = $row->title;
 					$path = modK2ToolsHelper::getCategoryPath($row->catid);
 
@@ -1115,53 +1115,65 @@ class MyCalendar extends Calendar
 {
 
 	var $category = null;
+	var $cache = null;
 
 	function getDateLink($day, $month, $year)
 	{
 
-		$mainframe = JFactory::getApplication();
-		$user = JFactory::getUser();
-		$aid = $user->get('aid');
-		$db = JFactory::getDBO();
+		if(is_null($this->cache)) {
 
-		$jnow = JFactory::getDate();
-		$now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
+			$this->cache = array();
+			$mainframe = JFactory::getApplication();
+			$user = JFactory::getUser();
+			$aid = $user->get('aid');
+			$db = JFactory::getDBO();
 
-		$nullDate = $db->getNullDate();
+			$jnow = JFactory::getDate();
+			$now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
 
-		$languageCheck = '';
-		if (K2_JVERSION != '15')
-		{
-			$accessCheck = " access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
-			if ($mainframe->getLanguageFilter())
+			$nullDate = $db->getNullDate();
+
+			$languageCheck = '';
+			if (K2_JVERSION != '15')
 			{
-				$languageTag = JFactory::getLanguage()->getTag();
-				$languageCheck = " AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") ";
+				$accessCheck = " access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
+				if ($mainframe->getLanguageFilter())
+				{
+					$languageTag = JFactory::getLanguage()->getTag();
+					$languageCheck = " AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") ";
+				}
 			}
-		}
-		else
-		{
-			$accessCheck = " access <= {$aid}";
-		}
+			else
+			{
+				$accessCheck = " access <= {$aid}";
+			}
 
-		$query = "SELECT COUNT(*) FROM #__k2_items WHERE YEAR(created)={$year} AND MONTH(created)={$month} AND DAY(created)={$day} AND published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) AND trash=0 AND {$accessCheck} {$languageCheck} AND EXISTS(SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND {$accessCheck} {$languageCheck})";
+			$query = "SELECT DAY(created) AS day, COUNT(*) AS counter FROM #__k2_items WHERE YEAR(created)={$year} AND MONTH(created)={$month} AND published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) AND trash=0 AND {$accessCheck} {$languageCheck} AND EXISTS(SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND {$accessCheck} {$languageCheck})";
 
-		$catid = $this->category;
-		if ($catid > 0)
-			$query .= " AND catid={$catid}";
+			$catid = $this->category;
+			if ($catid > 0)
+				$query .= " AND catid={$catid}";
 
-		$db->setQuery($query);
-		$result = $db->loadResult();
-		if ($db->getErrorNum())
-		{
-			echo $db->stderr();
-			return false;
+			$query .= ' GROUP BY day';
+
+			$db->setQuery($query);
+			$objects = $db->loadObjectList();
+			if ($db->getErrorNum())
+			{
+				echo $db->stderr();
+				return false;
+			}
+			foreach($objects as $object) {
+				$this->cache[$object->day] = $object->counter;
+			}
+
 		}
+		$result = isset($this->cache[$day]) ? $this->cache[$day] : 0;
 
 		if ($result > 0)
 		{
-			if ($catid > 0)
-				return JRoute::_(K2HelperRoute::getDateRoute($year, $month, $day, $catid));
+			if ($this->category > 0)
+				return JRoute::_(K2HelperRoute::getDateRoute($year, $month, $day, $this->category));
 			else
 				return JRoute::_(K2HelperRoute::getDateRoute($year, $month, $day));
 		}
