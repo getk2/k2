@@ -2,7 +2,7 @@
  * @version		2.7.x
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.
+ * @copyright	Copyright (c) 2006 - 2016 JoomlaWorks Ltd. All rights reserved.
  * @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
@@ -38,10 +38,9 @@ body.contentpane dl.tabs dt.open { background:#fff!important; border-bottom:1px 
 .paramHeaderContent { background: #e5f7fd; border-radius: 3px; line-height: 1; padding: 18px 25px; color: #346b93; font-size: 18px; }
 	.tab-pane > .control-group:first-child .paramHeaderContent { margin-top: 0; }
 
-.com_modules .form-horizontal .controls:not(#jform_menuselect) label, 
+.com_modules .form-horizontal .controls:not(#jform_menuselect) label,
 .com_modules .controls:not(#jform_menuselect) label,
 .com_menus .controls label, .com_config .controls label { min-width:85px;width:auto; text-align:center; border:1px solid #d4d6d8;line-height:33px;vertical-align:top;height:33px;font-size:12px;margin:0 -2px;padding:0 13px;
-
 color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background-color:#eff1f1;
 box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff; }
 
@@ -51,11 +50,20 @@ box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff; }
 	.controls label:first-of-type { border-radius: 3px 0 0 3px; }
 	.controls label:last-of-type { border-radius:  0 3px 3px 0; }
 
+
 	/* Checked boxes - show/ Yes */
+	.com_modules .form-horizontal .controls:not(#jform_menuselect) input[value="1"]:checked + label,
+	.com_modules .controls:not(#jform_menuselect) input[value="1"]:checked + label,
+	.com_menus .controls input[value="1"]:checked + label,
+	.com_config .controls input[value="1"]:checked + label,
 	.controls input[value="1"]:checked + label,
 	label[id*="1-"].radio.isChecked  { background: #3fa800; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
 
 	/* Checked boxes - hide/ No */
+	.com_modules .form-horizontal .controls:not(#jform_menuselect) input[value="0"]:checked + label,
+	.com_modules .controls:not(#jform_menuselect) input[value="0"]:checked + label,
+	.com_menus .controls input[value="0"]:checked + label,
+	.com_config .controls input[value="0"]:checked + label,
 	.controls input[value="0"]:checked + label,
 	label[id*="0-"].radio.isChecked { background: #bd362f; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
 
