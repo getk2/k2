@@ -34,7 +34,6 @@
 		<folder>images</folder>
 		<folder>js</folder>
 		<folder>models</folder>
-		<folder>sef_ext</folder>
 		<folder>templates</folder>
 		<folder>views</folder>
 		<filename>k2.php</filename>
@@ -277,14 +276,6 @@
 				<field name="k2SefInsertCatId" default="1" />
 				<field name="k2SefCatIdTitleAliasSep" default="dash" />
 				<field name="k2SefUseCatTitleAlias" default="1" />
-				<!-- ######################### sh404SEF Settings ######################### -->
-				<field name="sh404SefLabelCat" default="" />
-				<field name="sh404SefLabelUser" default="blog" />
-				<field name="sh404SefLabelItem" default="2" />
-				<field name="sh404SefTitleAlias" default="alias" />
-				<field name="sh404SefModK2ContentFeedAlias" default="feed" />
-				<field name="sh404SefInsertItemId" default="0" />
-				<field name="sh404SefInsertUniqueItemId" default="0" />
 			</fieldset>
 		</fields>
 	</config>

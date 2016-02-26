@@ -539,28 +539,6 @@
 			<option value="0">K2_NO</option>
 			<option value="1">K2_YES</option>
 		</param>
-		<!-- ######################### sh404SEF Settings ######################### -->
-		<param menu="hide" name="" type="header" default="K2_SH404SEF" label="" description="" />
-		<param menu="hide" name="sh404SefLabelCat" type="text" default="" label="K2_SH404SEF_URL_PREFIX_FOR_CATEGORIES" description="" />
-		<param menu="hide" name="sh404SefLabelUser" type="text" default="blog" label="K2_SH404SEF_URL_PREFIX_FOR_USERSAUTHORS" description="" />
-		<param menu="hide" name="sh404SefLabelItem" type="list" default="2" label="K2_SH404SEF_URL_CATEGORY_PREFIX_FOR_ITEMS" description="">
-			<option value="0">K2_NO_CATEGORIES</option>
-			<option value="1">K2_ONLY_THE_LAST_CATEGORY</option>
-			<option value="2">K2_ALL_CATEGORIES</option>
-		</param>
-		<param menu="hide" name="sh404SefTitleAlias" type="list" default="alias" label="K2_USE_TITLE_ALIAS_FOR_SH404SEF_URLS" description="">
-			<option value="alias">K2_YES</option>
-			<option value="title">K2_NO_USE_THE_ITEMS_TITLE</option>
-		</param>
-		<param menu="hide" name="sh404SefModK2ContentFeedAlias" type="text" default="feed" label="K2_SH404SEF_URL_PREFIX_FOR_K2_CONTENT_MODULE_FEED" description="" />
-		<param menu="hide" name="sh404SefInsertItemId" type="radio" default="0" label="K2_INSERT_ITEM_ID_IN_URL" description="">
-			<option value="0">K2_NO</option>
-			<option value="1">K2_YES</option>
-		</param>
-		<param menu="hide" name="sh404SefInsertUniqueItemId" type="radio" default="0" label="K2_INSERT_UNIQUE_ITEM_ID_IN_URL" description="">
-			<option value="0">K2_NO</option>
-			<option value="1">K2_YES</option>
-		</param>
 	</params>
 	<fieldset name="COM_K2_LAYOUT_OPTIONS" label="K2_LAYOUT_VIEWS" addfieldpath="/administrator/components/com_k2/elements">
 		<!-- ######################### CSS Settings ######################### -->
@@ -1102,28 +1080,6 @@
 			<option value="slash">K2_USE_A_FORWARD_SLASH</option>
 		</field>
 		<field menu="hide" name="k2SefUseCatTitleAlias" type="radio" default="1" label="K2_SEF_USE_CAT_TITLE_ALIAS" description="K2_SEF_USE_CAT_TITLE_ALIAS_DESC">
-			<option value="0">K2_NO</option>
-			<option value="1">K2_YES</option>
-		</field>
-		<!-- ######################### sh404SEF Settings ######################### -->
-		<field menu="hide" name="" type="header" default="K2_SH404SEF" label="" description="" />
-		<field menu="hide" name="sh404SefLabelCat" type="text" default="" label="K2_SH404SEF_URL_PREFIX_FOR_CATEGORIES" description="" />
-		<field menu="hide" name="sh404SefLabelUser" type="text" default="blog" label="K2_SH404SEF_URL_PREFIX_FOR_USERSAUTHORS" description="" />
-		<field menu="hide" name="sh404SefLabelItem" type="list" default="2" label="K2_SH404SEF_URL_CATEGORY_PREFIX_FOR_ITEMS" description="">
-			<option value="0">K2_NO_CATEGORIES</option>
-			<option value="1">K2_ONLY_THE_LAST_CATEGORY</option>
-			<option value="2">K2_ALL_CATEGORIES</option>
-		</field>
-		<field menu="hide" name="sh404SefTitleAlias" type="list" default="alias" label="K2_USE_TITLE_ALIAS_FOR_SH404SEF_URLS" description="">
-			<option value="alias">K2_YES</option>
-			<option value="title">K2_NO_USE_THE_ITEMS_TITLE</option>
-		</field>
-		<field menu="hide" name="sh404SefModK2ContentFeedAlias" type="text" default="feed" label="K2_SH404SEF_URL_PREFIX_FOR_K2_CONTENT_MODULE_FEED" description="" />
-		<field menu="hide" name="sh404SefInsertItemId" type="radio" default="0" label="K2_INSERT_ITEM_ID_IN_URL" description="">
-			<option value="0">K2_NO</option>
-			<option value="1">K2_YES</option>
-		</field>
-		<field menu="hide" name="sh404SefInsertUniqueItemId" type="radio" default="0" label="K2_INSERT_UNIQUE_ITEM_ID_IN_URL" description="">
 			<option value="0">K2_NO</option>
 			<option value="1">K2_YES</option>
 		</field>

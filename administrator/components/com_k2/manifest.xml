@@ -30,7 +30,6 @@
 		<folder>images</folder>
 		<folder>js</folder>
 		<folder>models</folder>
-		<folder>sef_ext</folder>
 		<folder>templates</folder>
 		<folder>views</folder>
 		<filename>k2.php</filename>
@@ -270,14 +269,6 @@
 		<param name="k2SefInsertCatId" default="1" />
 		<param name="k2SefCatIdTitleAliasSep" default="dash" />
 		<param name="k2SefUseCatTitleAlias" default="1" />
-		<!-- ######################### sh404SEF Settings ######################### -->
-		<param name="sh404SefLabelCat" default="" />
-		<param name="sh404SefLabelUser" default="blog" />
-		<param name="sh404SefLabelItem" default="2" />
-		<param name="sh404SefTitleAlias" default="alias" />
-		<param name="sh404SefModK2ContentFeedAlias" default="feed" />
-		<param name="sh404SefInsertItemId" default="0" />
-		<param name="sh404SefInsertUniqueItemId" default="0" />
 	</params>
 	<modules>
 		<module module="mod_k2_comments" client="site" />
