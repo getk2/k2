@@ -379,8 +379,9 @@ class K2ModelItemlist extends K2Model
 
 		$query = "SELECT COUNT(*) FROM #__k2_items as i RIGHT JOIN #__k2_categories c ON c.id = i.catid";
 
-		if ($task == 'tag')
-			$query .= " LEFT JOIN #__k2_tags_xref tags_xref ON tags_xref.itemID = i.id LEFT JOIN #__k2_tags tags ON tags.id = tags_xref.tagID";
+		// Changed the query for the tag case for better performance
+		// if ($task == 'tag')
+		// 		$query .= " LEFT JOIN #__k2_tags_xref tags_xref ON tags_xref.itemID = i.id LEFT JOIN #__k2_tags tags ON tags.id = tags_xref.tagID";
 
 		if ($task == 'user' && !$user->guest && $user->id == JRequest::getInt('id'))
 		{
@@ -539,14 +540,23 @@ class K2ModelItemlist extends K2Model
 
 				}
 
-				if (isset($result) && $result > 0)
+				if (!isset($result) || $result < 1)
+				{
+					$sql = "SELECT id FROM #__k2_tags WHERE name=".$db->Quote($tag);
+					$db->setQuery($sql, 0, 1);
+					$result = $db->loadResult();
+				}
+				
+				$query .= " AND i.id IN (SELECT itemID FROM #__k2_tags_xref WHERE tagID=".(int)$result.")";
+
+				/*if (isset($result) && $result > 0)
 				{
 					$query .= " AND (tags.id) = {$result}";
 				}
 				else
 				{
 					$query .= " AND (tags.name) = ".$db->Quote($tag);
-				}
+				}*/
 				$categories = $params->get('categoriesFilter', NULL);
 				if (is_array($categories))
 					$query .= " AND c.id IN(".implode(',', $categories).")";
