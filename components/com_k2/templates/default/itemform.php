@@ -165,7 +165,7 @@ $document->addScriptDeclaration("
 								</tr>
 								<?php endif; ?>
 							</table>
-							
+
 							<!-- Required extra field warning -->
 							<div id="k2ExtraFieldsValidationResults">
 								<h3><?php echo JText::_('K2_THE_FOLLOWING_FIELDS_ARE_REQUIRED'); ?></h3>
@@ -173,7 +173,7 @@ $document->addScriptDeclaration("
 									<li><?php echo JText::_('K2_LOADING'); ?></li>
 								</ul>
 							</div>
-							
+
 							<!-- Tabs start here -->
 							<div class="k2Tabs" id="k2Tabs">
 								<ul class="k2TabsNavigation">
@@ -941,10 +941,6 @@ $document->addScriptDeclaration("
 									<?php echo $this->form->render('params', 'item-view-options'); ?>
 									<?php endif; ?>
 								</div>
-								<?php endif; ?>
-								<?php if($this->aceAclFlag): ?>
-								<h3><a href="#"><?php echo JText::_('AceACL') . ' ' . JText::_('COM_ACEACL_COMMON_PERMISSIONS'); ?></a></h3>
-								<div><?php AceaclApi::getWidget('com_k2.item.'.$this->row->id, true); ?></div>
 								<?php endif; ?>
 							</div>
 						</td>

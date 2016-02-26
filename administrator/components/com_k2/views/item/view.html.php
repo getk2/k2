@@ -571,16 +571,8 @@ class K2ViewItem extends K2View
 			JToolBarHelper::apply();
 			JToolBarHelper::cancel();
 		}
-		// ACE ACL integration
-		$definedConstants = get_defined_constants();
-		if (!empty($definedConstants['ACEACL']) && AceaclApi::authorize('permissions', 'com_aceacl'))
-		{
-			$aceAclFlag = true;
-		}
-		else
-		{
-			$aceAclFlag = false;
-		}
+		// ACE ACL integration has been removed. We keep this flag to avoid php notices for users who have overrides 
+		$aceAclFlag = false;
 		$this->assignRef('aceAclFlag', $aceAclFlag);
 
 		// SIG PRO v3 integration

@@ -310,7 +310,7 @@ $document->addScriptDeclaration("
 							<i>(<?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?>)</i>
 
 							<span class="sep"><?php echo JText::_('K2_OR'); ?></span>
-							
+
 							<input type="text" name="existingImage" id="existingImageValue" class="text_area" readonly />
 							<input type="button" value="<?php echo JText::_('K2_BROWSE_SERVER'); ?>" id="k2ImageBrowseServer"  />
 						</div>
@@ -321,7 +321,7 @@ $document->addScriptDeclaration("
 						<div class="k2FLeft k2Right itemAdditionalValue">
 							<label><?php echo JText::_('K2_ITEM_IMAGE_PREVIEW'); ?></label>
 						</div>
-						
+
 						<div class="itemAdditionalData">
 							<a class="modal" rel="{handler: 'image'}" href="<?php echo $this->row->image; ?>" title="<?php echo JText::_('K2_CLICK_ON_IMAGE_TO_PREVIEW_IN_ORIGINAL_SIZE'); ?>">
 								<img alt="<?php echo $this->row->title; ?>" src="<?php echo $this->row->thumb; ?>" class="k2AdminImage" />
@@ -372,12 +372,12 @@ $document->addScriptDeclaration("
 				<?php endif; ?>
 
 				<?php if ($this->params->get('showImageGalleryTab')): ?>
-				
+
 				<!-- Tab image gallery -->
 				<div class="k2TabsContent k2TabsContentLower" id="k2TabImageGallery">
 					<?php if ($this->lists['checkSIG']): ?>
 					<div id="item_gallery_content" class="itemAdditionalField">
-	
+
 						<?php if($this->sigPro): ?>
 						<div class="itemGalleryBlock">
 							<a class="k2Button modal" rel="{handler: 'iframe', size: {x: 940, y: 560}}" href="index.php?option=com_sigpro&view=galleries&task=create&newFolder=<?php echo $this->sigProFolder; ?>&type=k2&tmpl=component">
@@ -399,7 +399,7 @@ $document->addScriptDeclaration("
 							<span class="hasTip k2GalleryNotice" title="
 								<?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP_HEADER'); ?>::<?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP_TEXT'); ?>">
 								<?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP'); ?>
-							</span> 
+							</span>
 							<label><?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?></label>
 						</div>
 
@@ -409,7 +409,7 @@ $document->addScriptDeclaration("
 
 						<div class="itemGalleryBlock">
 							<label><?php echo JText::_('K2_OR_ENTER_A_FLICKR_SET_URL'); ?></label>
-							<input type="text" name="flickrGallery" size="50" value="<?php echo ($this->row->galleryType == 'flickr') ? $this->row->galleryValue : ''; ?>" /> 
+							<input type="text" name="flickrGallery" size="50" value="<?php echo ($this->row->galleryType == 'flickr') ? $this->row->galleryValue : ''; ?>" />
 							<span class="hasTip k2GalleryNotice" title="<?php echo JText::_('K2_VALID_FLICK_API_KEY_HELP_HEADER'); ?>::<?php echo JText::_('K2_VALID_FLICK_API_KEY_HELP_TEXT'); ?>">
 								<?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP'); ?>
 							</span>
@@ -427,7 +427,7 @@ $document->addScriptDeclaration("
 
 					</div>
 
-					<?php 
+					<?php
 					// SigPro is not present
 					else: ?>
 						<?php if (K2_JVERSION == '15'): ?>
@@ -513,7 +513,7 @@ $document->addScriptDeclaration("
 											<div class="itemAdditionalBlock sep">
 												<label><?php echo JText::_('K2_OR'); ?></label>
 											</div>
-											
+
 											<div class="itemAdditionalBlock">
 												<label><?php echo JText::_('K2_PASTE_REMOTE_VIDEO_URL'); ?></label>
 											</div>
@@ -525,8 +525,8 @@ $document->addScriptDeclaration("
 									</div>
 
 									<div id="k2MediaTab3" class="k2TabsContent k2TabsContentLower">
-										
-										<div class="panel" id="Video_from_provider"> 
+
+										<div class="panel" id="Video_from_provider">
 
 											<div class="itemAdditionalBlock">
 												<label><?php echo JText::_('K2_SELECT_VIDEO_PROVIDER'); ?></label>
@@ -534,7 +534,7 @@ $document->addScriptDeclaration("
 											<div class="itemAdditionalBlock">
 												<?php echo $this->lists['providers']; ?>
 											</div>
-											
+
 											<div class="itemAdditionalBlock">
 												<label><?php echo JText::_('K2_AND_ENTER_VIDEO_ID'); ?></label>
 											</div>
@@ -577,7 +577,7 @@ $document->addScriptDeclaration("
 							</div>
 						</div>
 						<?php endif; ?>
-					
+
 						<div class="itemAdditionalField">
 							<div class="k2FLeft k2Right itemAdditionalValue">
 								<label><?php echo JText::_('K2_MEDIA_CAPTION'); ?></label>
@@ -597,7 +597,7 @@ $document->addScriptDeclaration("
 						</div>
 
 					</div>
-					<?php 
+					<?php
 					// No AllVideos - Show default fields
 					else: ?>
 
@@ -698,12 +698,12 @@ $document->addScriptDeclaration("
 				<!-- Tab extra fields -->
 				<div class="k2TabsContent k2TabsContentLower" id="k2TabExtraFields">
 					<div id="extraFieldsContainer">
-						
+
 						<?php if (count($this->extraFields)): ?>
 						<div id="extraFields">
 							<?php foreach($this->extraFields as $extraField): ?>
 							<div class="itemAdditionalField">
-								
+
 								<?php if($extraField->type == 'header'): ?>
 								<h4 class="k2ExtraFieldHeader"><?php echo $extraField->name; ?></h4>
 								<?php else: ?>
@@ -805,7 +805,7 @@ $document->addScriptDeclaration("
 									<a class="downloadAttachmentButton" href="<?php echo $attachment->link; ?>" title="<?php echo JText::_('K2_DOWNLOAD'); ?>">
 										<i class="fa fa-download"></i>
 										<span class="hidden"><?php echo JText::_('K2_DOWNLOAD'); ?></span>
-									</a> 
+									</a>
 									<a class="deleteAttachmentButton" title="<?php echo JText::_('K2_DELETE'); ?>" href="<?php echo JURI::base(true); ?>/index.php?option=com_k2&amp;view=item&amp;task=deleteAttachment&amp;id=<?php echo $attachment->id?>&amp;cid=<?php echo $this->row->id; ?>">
 										<i class="fa fa-ban"></i>
 										<span class="hidden"><?php echo JText::_('K2_DELETE'); ?></span>
@@ -919,7 +919,7 @@ $document->addScriptDeclaration("
 							<?php endif; ?>
 						</ul>
 					</div>
-					
+
 					<div class="col col3">
 						<div class="itemHits">
 							<?php echo JText::_('K2_HITS'); ?>
@@ -932,17 +932,17 @@ $document->addScriptDeclaration("
 							<?php endif; ?>
 						</div>
 					</div>
-					
+
 					<div class="col col3">
 						<div class="itemRating">
 							<?php echo JText::_('K2_RATING'); ?>
-							
+
 							<?php if($this->row->ratingCount): ?>
 							<span><?php echo number_format(($this->row->ratingSum/$this->row->ratingCount),2); ?>/5.00</span>
 							<?php endif; ?>
 
 							<?php echo $this->row->ratingCount; ?> <?php echo JText::_('K2_VOTES'); ?>
-							
+
 							<div class="itemRatingReset">
 								<input id="resetRatingButton" type="button" value="<?php echo JText::_('K2_RESET'); ?>" class="button" name="resetRating" />
 							</div>
@@ -954,7 +954,7 @@ $document->addScriptDeclaration("
 				<div class="xmlParamsFields">
 					<a id="publishing"></a>
 					<h3><?php echo JText::_('K2_PUBLISHING'); ?></h3>
-					<ul class="adminformlist">				
+					<ul class="adminformlist">
 						<li>
 						    <div class="paramLabel">
 								<label><?php echo JText::_('K2_CREATION_DATE'); ?></label>
@@ -979,12 +979,12 @@ $document->addScriptDeclaration("
 							</div>
 						</li>
 					</ul>
-				
+
 					<div class="clr"></div>
 					<a id="metadata"></a>
 
 					<h3><?php echo JText::_('K2_METADATA'); ?></h3>
-					<ul class="adminformlist">				
+					<ul class="adminformlist">
 						<li>
 							<div class="paramLabel">
 								<label><?php echo JText::_('K2_DESCRIPTION'); ?></label>
@@ -1029,10 +1029,6 @@ $document->addScriptDeclaration("
 			<ul class="k2ScrollSpyMenu">
 				<li><a href="#catViewOptions"><?php echo JText::_('K2_ITEM_VIEW_OPTIONS_IN_CATEGORY_LISTINGS'); ?></a></li>
 				<li><a href="#itemViewOptions"><?php echo JText::_('K2_ITEM_VIEW_OPTIONS'); ?></a></li>
-				<?php if($this->aceAclFlag): ?>
-				<!-- AceACL -->
-				<li><a href="#aceACLOptions"><?php echo JText::_('AceACL') . ' ' . JText::_('COM_ACEACL_COMMON_PERMISSIONS'); ?></a></li>
-				<?php endif; ?>
 			</ul>
 
 			<div class="k2ScrollingContent">
@@ -1109,12 +1105,6 @@ $document->addScriptDeclaration("
 					</fieldset>
 				</div>
 
-				<?php if($this->aceAclFlag): ?>
-				<!-- AceACL -->
-				<a id="aceACLOptions"></a>
-				<h3><?php echo JText::_('AceACL') . ' ' . JText::_('COM_ACEACL_COMMON_PERMISSIONS'); ?></h3>
-				<div><?php AceaclApi::getWidget('com_k2.item.'.$this->row->id, true); ?></div>
-				<?php endif; ?>
 			</div>
 
 		</div>

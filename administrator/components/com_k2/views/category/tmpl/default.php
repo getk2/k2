@@ -29,19 +29,19 @@ $document->addScriptDeclaration("
 ?>
 
 <form action="index.php" enctype="multipart/form-data" method="post" name="adminForm" id="adminForm" class="k2CategoryForm">
-	
+
 	<!-- Top Nav Tabs START here -->
 	<div id="k2FormTopNav" class="k2Tabs">
-		
+
 		<ul class="k2NavTabs">
-			<li id="tabContent"><a href="#k2TabBasic"><i class="fa fa-home"></i><?php echo JText::_('K2_BASIC'); ?></a></li>	
+			<li id="tabContent"><a href="#k2TabBasic"><i class="fa fa-home"></i><?php echo JText::_('K2_BASIC'); ?></a></li>
 			<li><a href="#k2TabPubAndMeta"><i class="fa fa-info-circle"></i><?php echo JText::_('K2_PUBLISHING_AND_METADATA'); ?></a></li>
 			<li id="tabContent"><a href="#k2TabDisplaySet"><i class="fa fa-desktop"></i><?php echo JText::_('K2_DISPLAY_SETTINGS'); ?></a></li>
 		</ul>
-		
+
 		<!-- Top Nav Tabs content -->
 		<div class="k2NavTabContent" id="k2TabBasic">
-			
+
 			<div class="k2Table ">
 				<div class="k2TableLabel">
 					<label for="name"><?php echo JText::_('K2_TITLE'); ?></label>
@@ -74,7 +74,7 @@ $document->addScriptDeclaration("
 						<br /><?php echo JText::_('K2_LEARN_WHAT_THIS_MEANS'); ?></span>
 					</div>
 				</div>
-				
+
 				<div class="k2SubTable k2CatTableRight">
 					<div class="k2SubTableLabel">
 						<label for="extraFieldsGroup"><?php echo JText::_('K2_ASSOCIATED_EXTRA_FIELDS_GROUP');	?></label>
@@ -86,13 +86,13 @@ $document->addScriptDeclaration("
 					<div class="k2SubTableLabel">
 						<label><?php echo JText::_('K2_PUBLISHED');	?></label>
 					</div>
-					<div class="k2SubTableValue">				
+					<div class="k2SubTableValue">
 						<?php echo $this->lists['published']; ?>
 					</div>
 				</div>
 
 				<div class="clr"></div>
-				
+
 				<div class="k2SubTable k2CatTableLeft">
 					<div class="k2SubTableLabel">
 						<label for="access"><?php echo JText::_('K2_ACCESS_LEVEL'); ?></label>
@@ -100,7 +100,7 @@ $document->addScriptDeclaration("
 					<div class="k2SubTableValue">
 						<?php echo $this->lists['access']; ?>
 					</div>
-			
+
 					<?php if(isset($this->lists['language'])): ?>
 					<div class="k2SubTableLabel">
 						<label><?php echo JText::_('K2_LANGUAGE'); ?></label>
@@ -113,7 +113,7 @@ $document->addScriptDeclaration("
 			</div>
 
 			<div class="clr"></div>
-		
+
 			<!-- Tabs start here -->
 			<div class="k2Tabs" id="k2Tabs">
 				<ul class="k2TabsNavigation">
@@ -125,7 +125,7 @@ $document->addScriptDeclaration("
 						<i class="fa fa-camera"></i><?php echo JText::_('K2_IMAGE'); ?></a>
 					</li>
 				</ul>
-				
+
 				<!-- Tab content -->
 				<div class="k2TabsContent" id="k2Tab1">
 					<div class="k2ItemFormEditor"> <span class="k2ItemFormEditorTitle"> <?php echo JText::_('K2_CATEGORY_DESCRIPTION'); ?> </span> <?php echo $this->editor; ?>
@@ -134,7 +134,7 @@ $document->addScriptDeclaration("
 					</div>
 					<div class="clr"></div>
 				</div>
-									
+
 				<!-- Tab image -->
 				<div class="k2TabsContent k2TabsContentLower" id="k2Tab2">
 
@@ -166,8 +166,8 @@ $document->addScriptDeclaration("
 				</div>
 				<!-- image tab ends here -->
 			</div>
-			<!-- Tabs end here --> 
-					
+			<!-- Tabs end here -->
+
 			<!-- K2 Category Plugins -->
 			<?php if (count($this->K2Plugins)): ?>
 			<div class="itemPlugins">
@@ -185,7 +185,7 @@ $document->addScriptDeclaration("
 
 		</div>
 		<!-- END of Basic parameters -->
-		
+
 		<div class="k2NavTabContent" id="k2TabPubAndMeta">
 			<div class="xmlParamsFields limitWidth">
 				<h3><?php echo JText::_('K2_METADATA_INFORMATION'); ?></h3>
@@ -233,15 +233,11 @@ $document->addScriptDeclaration("
 				<li><a href="#catImageOptions"><?php echo JText::_('K2_ITEM_IMAGE_OPTIONS'); ?></a></li>
 				<li><a href="#catItemsOptions"><?php echo JText::_('K2_ITEM_VIEW_OPTIONS_IN_CATEGORY_LISTINGS'); ?></a></li>
 				<li><a href="#catItemOptions"><?php echo JText::_('K2_ITEM_VIEW_OPTIONS'); ?></a></li>
-				<?php if($this->aceAclFlag): ?>
-				<!-- AceACL -->
-				<li><a href="#aceACLOptions"><?php echo JText::_('AceACL') . ' ' . JText::_('COM_ACEACL_COMMON_PERMISSIONS'); ?></a></li>
-				<?php endif; ?>
 			</ul>
 
-					
+
 			<div class="k2ScrollingContent xmlParamsFields">
-				
+
 				<h3><?php echo JText::_('K2_CATEGORY_ITEM_LAYOUT'); ?></h3>
 				<div id="catLayoutOptions">
 					<fieldset class="panelform">
@@ -277,7 +273,7 @@ $document->addScriptDeclaration("
 						</ul>
 					</fieldset>
 				</div>
-				
+
 				<h3><a href="#"><?php echo JText::_('K2_CATEGORY_VIEW_OPTIONS'); ?></a></h3>
 				<div id="catViewOptions">
 					<fieldset class="panelform">
@@ -313,7 +309,7 @@ $document->addScriptDeclaration("
 						</ul>
 					</fieldset>
 				</div>
-				
+
 				<h3><?php echo JText::_('K2_ITEM_IMAGE_OPTIONS'); ?></h3>
 				<div id="catImageOptions">
 					<fieldset class="panelform">
@@ -349,7 +345,7 @@ $document->addScriptDeclaration("
 						</ul>
 					</fieldset>
 				</div>
-				
+
 				<h3><?php echo JText::_('K2_ITEM_VIEW_OPTIONS_IN_CATEGORY_LISTINGS'); ?></h3>
 				<div id="catItemsOptions">
 					<fieldset class="panelform">
@@ -385,7 +381,7 @@ $document->addScriptDeclaration("
 						</ul>
 					</fieldset>
 				</div>
-				
+
 				<h3><?php echo JText::_('K2_ITEM_VIEW_OPTIONS'); ?></h3>
 				<div id="catItemOptions">
 					<fieldset class="panelform">
@@ -421,11 +417,7 @@ $document->addScriptDeclaration("
 						</ul>
 					</fieldset>
 				</div>
-				
-				<?php if($this->aceAclFlag): ?>
-				<h3><?php echo JText::_('AceACL') . ' ' . JText::_('COM_ACEACL_COMMON_PERMISSIONS'); ?></h3>
-				<div id="aceACLOptions"><?php AceaclApi::getWidget('com_k2.category.'.$this->row->id, true); ?></div>
-				<?php endif; ?>
+
 
 			</div><!-- END of the scrollable -->
 		</div><!-- END of the Display settings tab -->
