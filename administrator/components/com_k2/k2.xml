@@ -285,7 +285,6 @@
 				<field name="sh404SefModK2ContentFeedAlias" default="feed" />
 				<field name="sh404SefInsertItemId" default="0" />
 				<field name="sh404SefInsertUniqueItemId" default="0" />
-				<field name="cbIntegration" default="0" />
 			</fieldset>
 		</fields>
 	</config>

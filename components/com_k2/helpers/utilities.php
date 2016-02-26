@@ -22,16 +22,6 @@ class K2HelperUtilities
 		$mainframe = JFactory::getApplication();
 		$params = K2HelperUtilities::getParams('com_k2');
 
-		if (K2_CB && $userID != 'alias')
-		{
-			$cbUser = CBuser::getInstance((int)$userID);
-			if (is_object($cbUser))
-			{
-				$avatar = $cbUser->getField('avatar', null, 'csv', 'none', 'profile');
-				return $avatar;
-			}
-		}
-
 		// Check for placeholder overrides
 		if (JFile::exists(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'images'.DS.'placeholder'.DS.'user.png'))
 		{

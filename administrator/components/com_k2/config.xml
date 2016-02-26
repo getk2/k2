@@ -561,11 +561,6 @@
 			<option value="0">K2_NO</option>
 			<option value="1">K2_YES</option>
 		</param>
-		<param menu="hide" name="" type="header" default="K2_COMMUNITY_BUILDER" label="" description="" />
-		<param menu="hide" name="cbIntegration" type="radio" default="0" label="K2_CB_INTEGRATION" description="K2_CB_INTEGRATION_DESC">
-			<option value="0">K2_DISABLED</option>
-			<option value="1">K2_ENABLED</option>
-		</param>
 	</params>
 	<fieldset name="COM_K2_LAYOUT_OPTIONS" label="K2_LAYOUT_VIEWS" addfieldpath="/administrator/components/com_k2/elements">
 		<!-- ######################### CSS Settings ######################### -->
@@ -1131,11 +1126,6 @@
 		<field menu="hide" name="sh404SefInsertUniqueItemId" type="radio" default="0" label="K2_INSERT_UNIQUE_ITEM_ID_IN_URL" description="">
 			<option value="0">K2_NO</option>
 			<option value="1">K2_YES</option>
-		</field>
-		<field menu="hide" name="" type="header" default="K2_COMMUNITY_BUILDER" label="" description="" />
-		<field menu="hide" name="cbIntegration" type="radio" default="0" label="K2_CB_INTEGRATION" description="K2_CB_INTEGRATION_DESC">
-			<option value="0">K2_DISABLED</option>
-			<option value="1">K2_ENABLED</option>
 		</field>
 	</fieldset>
 	<fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">

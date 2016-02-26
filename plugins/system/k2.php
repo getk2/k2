@@ -433,18 +433,6 @@ class plgSystemK2 extends JPlugin
 
 		// Community Builder integration
 		$componentParams = JComponentHelper::getParams('com_k2');
-		if ($componentParams->get('cbIntegration') && JFile::exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_comprofiler'.DS.'plugin.foundation.php'))
-		{
-			define('K2_CB', true);
-			global $_CB_framework;
-			require_once (JPATH_ADMINISTRATOR.DS.'components'.DS.'com_comprofiler'.DS.'plugin.foundation.php');
-			cbimport('cb.html');
-			cbimport('language.front');
-		}
-		else
-		{
-			define('K2_CB', false);
-		}
 
 		// Define the default Itemid for users and tags. Defined here instead of the K2HelperRoute for performance reasons.
 		// UPDATE : Removed. All K2 links without Itemid now use the anyK2Link defined in the router helper.
@@ -512,7 +500,7 @@ class plgSystemK2 extends JPlugin
 
 			$option = JFactory::getApplication()->input->get('option');
 			$task = JFactory::getApplication()->input->get('task');
-			$type =  JRequest::getCmd('catid');	
+			$type =  JRequest::getCmd('catid');
 		}
 
 		if ($option != 'com_joomfish')
@@ -882,7 +870,7 @@ class plgSystemK2 extends JPlugin
 				$replacements[] = '<html prefix="og: http://ogp.me/ns#">';
 			}
 			$response = JString::str_ireplace($searches, $replacements, $response);
-			JResponse::setBody($response);			
+			JResponse::setBody($response);
 		}
 		if($application->isAdmin() && $params->get('gatherStatistics', 1))
 		{
@@ -896,10 +884,10 @@ class plgSystemK2 extends JPlugin
 				{
 					$response = JResponse::getBody();
 					$response = JString::str_ireplace('</body>', K2HelperStats::getScripts().'</body>', $response);
-					JResponse::setBody($response);		
+					JResponse::setBody($response);
 				}
 			}
-				
+
 		}
 
 	}

@@ -278,7 +278,6 @@
 		<param name="sh404SefModK2ContentFeedAlias" default="feed" />
 		<param name="sh404SefInsertItemId" default="0" />
 		<param name="sh404SefInsertUniqueItemId" default="0" />
-		<param name="cbIntegration" default="0" />
 	</params>
 	<modules>
 		<module module="mod_k2_comments" client="site" />

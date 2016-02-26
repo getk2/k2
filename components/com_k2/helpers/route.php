@@ -65,13 +65,6 @@ class K2HelperRoute
 
 	public static function getUserRoute($userID)
 	{
-
-		if (K2_CB)
-		{
-			global $_CB_framework;
-			return $_CB_framework->userProfileUrl((int)$userID);
-		}
-
 		$key = (int)$userID;
 		if (isset(self::$cache['user'][$key]))
 		{
