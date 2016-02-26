@@ -302,8 +302,6 @@
 		<plugin plugin="k2" group="search" />
 		<plugin plugin="k2" group="system" />
 		<plugin plugin="k2" group="user" />
-		<plugin plugin="k2category" group="josetta_ext" />
-		<plugin plugin="k2item" group="josetta_ext" />
 	</plugins>
 	<joomfish>
 		<file>k2_attachments.xml</file>

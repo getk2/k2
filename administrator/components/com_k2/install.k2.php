@@ -62,7 +62,7 @@ if (version_compare(JVERSION, '1.6.0', '<'))
         {
             $pname = $plugin->attributes('plugin');
             $pgroup = $plugin->attributes('group');
-            if ($pgroup == 'finder' || $pgroup == 'josetta_ext')
+            if ($pgroup == 'finder')
             {
                 continue;
             }
@@ -210,7 +210,7 @@ if (version_compare(JVERSION, '1.6.0', '<'))
         $db->setQuery($query);
         $db->query();
     }*/
-    
+
     // Add index for comments count
     $query = "SHOW INDEX FROM #__k2_comments";
     $db->setQuery($query);
@@ -227,19 +227,19 @@ if (version_compare(JVERSION, '1.6.0', '<'))
         $db->setQuery($query);
         $db->query();
     }
-	
+
 
     $fields = $db->getTableFields('#__k2_users');
     if (!array_key_exists('ip', $fields['#__k2_users']))
     {
-        $query = "ALTER TABLE `#__k2_users` 
-        ADD `ip` VARCHAR( 15 ) NOT NULL , 
-        ADD `hostname` VARCHAR( 255 ) NOT NULL , 
+        $query = "ALTER TABLE `#__k2_users`
+        ADD `ip` VARCHAR( 15 ) NOT NULL ,
+        ADD `hostname` VARCHAR( 255 ) NOT NULL ,
         ADD `notes` TEXT NOT NULL";
         $db->setQuery($query);
         $db->query();
     }
-	
+
 	$query = "CREATE TABLE IF NOT EXISTS `#__k2_log` (
   `status` int(11) NOT NULL,
   `response` text NOT NULL,
@@ -247,8 +247,8 @@ if (version_compare(JVERSION, '1.6.0', '<'))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             $db->setQuery($query);
             $db->query();
-		
-    
+
+
     // Clean up empty entries in #__k2_users table caused by an issue in the K2 user plugin. Fix details: http://code.google.com/p/getk2/source/detail?r=1966
 	$query = "DELETE FROM #__k2_users WHERE userID = 0";
 	$db->setQuery($query);

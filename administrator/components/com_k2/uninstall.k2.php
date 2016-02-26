@@ -52,7 +52,7 @@ if (version_compare(JVERSION, '1.6.0', '<'))
         {
             $pname = $plugin->attributes('plugin');
             $pgroup = $plugin->attributes('group');
-            if ($pgroup == 'finder' || $pgroup == 'josetta_ext')
+            if ($pgroup == 'finder')
             {
                 continue;
             }
@@ -82,7 +82,7 @@ if (version_compare(JVERSION, '1.6.0', '<'))
                 {
                     JFile::delete(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomfish'.DS.'contentelements'.DS.$element->data());
                 }
-            }            
+            }
         }
     }
 }
