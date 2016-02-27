@@ -18,7 +18,7 @@ K2 was actually built on these 4 principles: feature-rich content in Joomla!, ea
 
 ==
 ### Some facts about K2
-* It has been downloaded more than 2 million times since March 2009 (to Sept 2015)
+* It has been downloaded more than 2 million times since March 2009
 * Almost all template clubs provide K2 specific styling and display K2 as part of their demo sites (thank you template folks!)
 * There are almost 500 extensions supporting or integrating K2 in the Joomla! Extensions Directory - see http://extensions.joomla.org/search?q=k2
 * There are more than 150 K2 specific extensions in the Joomla! Extensions Directory - see the "K2 Extensions" category at http://extensions.joomla.org/extensions/extension-specific/k2-extensions
@@ -43,8 +43,4 @@ More at: http://getk2.org
 
 
 ==
-Copyright &copy; 2009-2015 [JoomlaWorks Ltd.](http://www.joomlaworks.net) & [Nuevvo Webware P.C.](http://nuevvo.com)
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/joomlaworks/k2/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
+Copyright &copy; 2009-2016 [JoomlaWorks Ltd.](http://www.joomlaworks.net) & [Nuevvo Webware P.C.](http://nuevvo.com)
