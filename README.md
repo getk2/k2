@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/getk2/k2.png?label=ready&title=Ready)](https://waffle.io/getk2/k2)
 ![K2](http://getk2.org/assets/files/logo/k2_logo.png)
 ***
 
