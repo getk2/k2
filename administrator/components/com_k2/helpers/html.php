@@ -102,7 +102,7 @@ class K2HelperHTML
 						{
 							$handling = '1remote';
 						}
-						
+
 						$document->addScript('//ajax.googleapis.com/ajax/libs/jquery/'.str_replace('remote', '', $handling).'/jquery.min.js');
 					}
 					else if ($handling && JString::strpos($handling, 'remote') === false)
@@ -122,11 +122,11 @@ class K2HelperHTML
 
 				if ($handling == 'local')
 				{
-					$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-ui-1.8.24.custom.min.js');
+					$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-ui-1.11.4.custom.min.js');
 				}
 				else
 				{
-					$document->addScript('//ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js');
+					$document->addScript('//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js');
 				}
 			}
 
