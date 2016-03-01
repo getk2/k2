@@ -120,30 +120,6 @@ if(K2_JVERSION == '15'){
 }
 
 if( $document->getType() != 'raw' && JRequest::getWord('task')!='deleteAttachment' && JRequest::getWord('task')!='connector' && JRequest::getWord('task')!='tag' && JRequest::getWord('task')!='tags' && JRequest::getWord('task')!='extrafields' && JRequest::getWord('task')!='download' && JRequest::getWord('task')!='saveComment'): ?>
-<!--[if lt IE 7]>
-<div style="border:1px solid #F7941D;background:#FEEFDA;text-align:center;clear:both;height:75px;position:relative;margin-bottom:16px;">
-  <div style="position:absolute;right:3px;top:3px;font-family:courier new;font-weight:bold;">
-  	<a href="#" onclick="javascript:this.parentNode.parentNode.style.display='none';return false;"><img src="<?php echo JURI::root(true); ?>/media/k2/assets/images/ie6nomore/ie6nomore-cornerx.jpg" style="border:none;" alt="<?php echo JText::_('K2_CLOSE_THIS_NOTICE'); ?>"/></a>
-  </div>
-  <div style="width:640px;margin:0 auto;text-align:left;padding:0;overflow:hidden;color:black;">
-    <div style="width:75px;float:left;">
-    	<img src="<?php echo JURI::root(true); ?>/media/k2/assets/images/ie6nomore/ie6nomore-warning.jpg" alt="<?php echo JText::_('K2_WARNING'); ?>"/>
-    </div>
-    <div style="width:275px;float:left;font-family:Arial,sans-serif;">
-      <div style="font-size:14px;font-weight:bold;margin-top:12px;">
-      	<?php echo JText::_('K2_YOU_ARE_USING_AN_OUTDATED_BROWSER'); ?>
-      </div>
-      <div style="font-size:12px;margin-top:6px;line-height:12px;">
-      	<?php echo JText::_('K2_FOR_A_BETTER_EXPERIENCE_USING_THIS_SITE_PLEASE_UPGRADE_TO_A_MODERN_WEB_BROWSER'); ?>
-      </div>
-    </div>
-    <div style="width:75px;float:left;"><a href="http://www.firefox.com" target="_blank"><img src="<?php echo JURI::root(true); ?>/media/k2/assets/images/ie6nomore/ie6nomore-firefox.jpg" style="border:none;" alt="<?php echo JText::_('K2_GET_FIREFOX_35'); ?>"/></a></div>
-    <div style="width:75px;float:left;"><a href="http://www.browserforthebetter.com/download.html" target="_blank"><img src="<?php echo JURI::root(true); ?>/media/k2/assets/images/ie6nomore/ie6nomore-ie8.jpg" style="border:none;" alt="<?php echo JText::_('K2_GET_INTERNET_EXPLORER_8'); ?>"/></a></div>
-    <div style="width:73px;float:left;"><a href="http://www.apple.com/safari/download/" target="_blank"><img src="<?php echo JURI::root(true); ?>/media/k2/assets/images/ie6nomore/ie6nomore-safari.jpg" style="border:none;" alt="<?php echo JText::_('K2_GET_SAFARI_4'); ?>"/></a></div>
-    <div style="float:left;"><a href="http://www.google.com/chrome" target="_blank"><img src="<?php echo JURI::root(true); ?>/media/k2/assets/images/ie6nomore/ie6nomore-chrome.jpg" style="border:none;" alt="<?php echo JText::_('K2_GET_GOOGLE_CHROME'); ?>"/></a></div>
-  </div>
-</div>
-<![endif]-->
 <div id="k2AdminContainer" class="K2AdminView<?php echo ucfirst($view).$k2CSSContainerClass; ?>">
 <?php endif;
 JLoader::register('K2Controller', JPATH_COMPONENT.'/controllers/controller.php');
