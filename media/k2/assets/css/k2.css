@@ -105,7 +105,7 @@ div.k2Table {margin:0 0 20px 0;}
 }
 @media screen and (min-width: 1240px) {
 	div.k2TableInline {display:inline-block;}
-	
+
 	div.k2TableLeft {float:left;}
 	div.k2TableRight {float:right; text-align: right;}
 
@@ -116,7 +116,7 @@ div.k2Table {margin:0 0 20px 0;}
 @media screen and (min-width: 1400px) {
 	div.k2CatTableLeft {float:left;}
 	div.k2CatTableRight {float:right; text-align: right;}
-	
+
 	div.k2ItemTableLeft {float:left;}
 	div.k2ItemTableRight {float:right; text-align: right;}
 }
@@ -590,7 +590,12 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 	#k2InfoPage a {color:#00afec;}
 	#k2InfoPage ul { margin-bottom:30px; }
 		#k2InfoPage table li { background: #fff; }
-	#k2InfoPage ul.k2ScrollSpyMenu { padding: 0; border-left: 1px solid #e3e4e4; height: 100%; top: 0; padding-top: 31px; z-index: 1; }
+
+	.isJ15 #k2InfoPage ul.k2ScrollSpyMenu { top: 175px; }
+	.isJ25 #k2InfoPage ul.k2ScrollSpyMenu { top: 183px; }
+	.isJ30 #k2InfoPage ul.k2ScrollSpyMenu { top: 0; border-left: 1px solid #e3e4e4; }
+
+	#k2InfoPage ul.k2ScrollSpyMenu { padding: 0; height: 100%; padding-top: 31px; z-index: 1; }
 		#k2InfoPage ul.k2ScrollSpyMenu li { border-bottom:1px solid #e3e4e4;}
 		#k2InfoPage ul.k2ScrollSpyMenu > li:first-child { border-top:1px solid #e3e4e4; }
 
@@ -662,7 +667,7 @@ html.isJ25 #submenu-box, html.isJ15 #submenu-box { padding: 0; margin: 0; border
 		html.isJ25 #submenu li a, html.isJ15 #submenu li a { display: block; color: #777; font-size: 14px; text-decoration: none; font-weight: normal; outline: 0; padding: 21px 24px;  margin: 0; border-right: 1px solid #d4d7d9; position: relative;}
 		html.isJ25 #submenu li a.active, html.isJ15 #submenu li a.active { color: #0091ff;  background: #f0f2f2; }
 		html.isJ25 #submenu li a.active:before, html.isJ15 #submenu li a.active:before	{ text-align: center; content: "\f0d8"; font-family: "FontAwesome"; color: #fff; position: absolute; font-size: 32px; bottom: -2px; left: 50%; margin-left: -16px;  width: 32px; text-shadow: 0px -1px 1px #ccc; }
-		
+
 /* The list */
 .oldJ table.adminlist { border-spacing: 0; }
 	.oldJ table.adminlist tbody tr td { border: 0; }
@@ -677,9 +682,6 @@ html.isJ25 #k2AdminContainer .k2AdminTableFilters tr td { padding: 10px; }
 
 /* Info page */
 .oldJ h1 { color: #00AFEB; }
-.isJ25 #k2InfoPage ul.k2ScrollSpyMenu { top: 183px; border-left: 0; }
-.isJ15 #k2InfoPage ul.k2ScrollSpyMenu { top: 175px; border-left: 0; }
-
 /* Item form */
 .oldJ fieldset { padding-left: 0; border: 0; }
 .oldJ select, .oldJ input[type="text"], .oldJ input[type="email"] { height: 30px; min-height: 30px; width: auto; max-width: 100%; }
