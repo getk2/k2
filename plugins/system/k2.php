@@ -845,7 +845,7 @@ class plgSystemK2 extends JPlugin
 	{
 		$application = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
-		if($application->isSite())
+		if($application->isSite() && $params->get('facebookMetatags', 1))
 		{
 			$response = JResponse::getBody();
 			$searches = array(

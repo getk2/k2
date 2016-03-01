@@ -304,6 +304,10 @@
 		<!-- ######################### Social Settings ######################### -->
 		<param menu="hide" name="socialButtonCode" type="textarea" default="" label="K2_SOCIAL_BUTTON_CODE" description="K2_PASTE_HTML_CODE_HERE_TO_INTEGRATE_SERVICES_LIKE_ADD_THIS_OR_SHARE_THIS_IN_THE_ITEM_PAGE" rows="8" cols="40" />
 		<param menu="hide" name="twitterUsername" type="text" default="" label="K2_YOUR_TWITTER_USERNAME" description="K2_ENTER_YOUR_TWITTER_USERNAME_ACCOUNT_TO_ENABLE_TWITTER_BUTTON_PERSONALIZATION" />
+		<param menu="hide" name="facebookMetatags" type="radio" default="1" label="K2_ENABLE_FACEBOOK_META_TAGS">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
 		<param menu="hide" name="facebookImage" type="list" default="Medium" label="K2_FACEBOOK_IMAGE_SIZE" description="K2_FACEBOOK_IMAGE_SIZE_DESC">
 			<option value="XSmall">K2_XSMALL</option>
 			<option value="Small">K2_SMALL</option>
@@ -844,6 +848,10 @@
 		<!-- ######################### Social Settings ######################### -->
 		<field menu="hide" name="socialButtonCode" type="textarea" default="" filter="raw" label="K2_SOCIAL_BUTTON_CODE" description="K2_PASTE_HTML_CODE_HERE_TO_INTEGRATE_SERVICES_LIKE_ADD_THIS_OR_SHARE_THIS_IN_THE_ITEM_PAGE" rows="8" cols="40" />
 		<field menu="hide" name="twitterUsername" type="text" default="" label="K2_YOUR_TWITTER_USERNAME" description="K2_ENTER_YOUR_TWITTER_USERNAME_ACCOUNT_TO_ENABLE_TWITTER_BUTTON_PERSONALIZATION" />
+		<field menu="hide" name="facebookMetatags" type="radio" default="1" label="K2_ENABLE_FACEBOOK_META_TAGS">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</field>
 		<field menu="hide" name="facebookImage" type="list" default="Medium" label="K2_FACEBOOK_IMAGE_SIZE" description="K2_FACEBOOK_IMAGE_SIZE_DESC">
 			<option value="XSmall">K2_XSMALL</option>
 			<option value="Small">K2_SMALL</option>

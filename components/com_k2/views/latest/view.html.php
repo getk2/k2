@@ -269,12 +269,15 @@ class K2ViewLatest extends K2View
         }
 
         // Set Facebook meta data
-        $document = JFactory::getDocument();
-        $uri = JURI::getInstance();
-        $document->setMetaData('og:url', $uri->toString());
-        $document->setMetaData('og:title', (K2_JVERSION == '15') ? htmlspecialchars($document->getTitle(), ENT_QUOTES, 'UTF-8') : $document->getTitle());
-        $document->setMetaData('og:type', 'website');
-        $document->setMetaData('og:description', strip_tags($document->getDescription()));
+        if($params->get('facebookMetatags', '1'))
+        {
+          $document = JFactory::getDocument();
+          $uri = JURI::getInstance();
+          $document->setMetaData('og:url', $uri->toString());
+          $document->setMetaData('og:title', (K2_JVERSION == '15') ? htmlspecialchars($document->getTitle(), ENT_QUOTES, 'UTF-8') : $document->getTitle());
+          $document->setMetaData('og:type', 'website');
+          $document->setMetaData('og:description', strip_tags($document->getDescription()));
+        }
 
         //Look for template files in component folders
         $this->_addPath('template', JPATH_COMPONENT.DS.'templates');
