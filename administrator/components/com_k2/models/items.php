@@ -965,8 +965,8 @@ class K2ModelItems extends K2Model
 				}
 
 				$query = "SELECT article.*, xref.content_id
-				FROM #__content AS article 
-				LEFT JOIN #__content_frontpage AS xref ON article.id = xref.content_id 
+				FROM #__content AS article
+				LEFT JOIN #__content_frontpage AS xref ON article.id = xref.content_id
 				WHERE catid = ".(int)$category->id;
 				$db->setQuery($query);
 				$items = $db->loadObjectList();
@@ -1256,15 +1256,14 @@ class K2ModelItems extends K2Model
 				JFile::copy(realpath(JPATH_SITE.DS.$category->image), JPATH_SITE.DS.'media'.DS.'k2'.DS.'categories'.DS.$K2Category->image);
 			}
 			$query = "SELECT article.*, xref.content_id
-				FROM #__content AS article 
-				LEFT JOIN #__content_frontpage AS xref ON article.id = xref.content_id 
+				FROM #__content AS article
+				LEFT JOIN #__content_frontpage AS xref ON article.id = xref.content_id
 				WHERE catid = ".(int)$category->id;
 			$db->setQuery($query);
 			$items = $db->loadObjectList();
 
 			foreach ($items as $item)
 			{
-
 				$K2Item = JTable::getInstance('K2Item', 'Table');
 				$K2Item->title = $item->title;
 				$K2Item->alias = $item->title;
@@ -1301,6 +1300,7 @@ class K2ModelItems extends K2Model
 				$K2Item->params = $itemParams;
 				$K2Item->language = $item->language;
 				$K2Item->check();
+
 				if ($preserveItemIDs)
 				{
 					$K2Item->id = $item->id;
@@ -1311,9 +1311,21 @@ class K2ModelItems extends K2Model
 					$K2Item->store();
 				}
 
-				if (!empty($item->metakey))
+				$item->tags = array();
+				if(class_exists('JHelperTags')) {
+					$tagsHelper = new JHelperTags;
+					$tagsHelper->getItemTags('com_content.article', $item->id);
+					$tags = $tagsHelper->itemTags;
+					foreach($tags as $tag) {
+						$item->tags[] = $tag->title;
+					}
+				}
+
+				if (!empty($item->metakey) || count($item->tags))
 				{
-					$itemTags = explode(',', $item->metakey);
+					$itemTags = array_merge(explode(',', $item->metakey), $item->tags);
+					$itemTags = array_filter($itemTags);
+					$itemTags = array_unique($itemTags);
 					foreach ($itemTags as $itemTag)
 					{
 						$itemTag = JString::trim($itemTag);
@@ -1321,7 +1333,7 @@ class K2ModelItems extends K2Model
 						{
 							if (in_array($itemTag, JArrayHelper::getColumn($tags, 'name')))
 							{
-	
+
 								$query = "SELECT id FROM #__k2_tags WHERE name=".$db->Quote($itemTag);
 								$db->setQuery($query);
 								$id = $db->loadResult();
