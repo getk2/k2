@@ -40,14 +40,14 @@ class K2ViewItems extends K2View
 		$db = JFactory::getDBO();
 		$nullDate = $db->getNullDate();
 		$this->assignRef('nullDate', $nullDate);
-		
-		
+
+
 		if(K2_JVERSION == '30' && $filter_featured == 1 && $filter_order == 'i.ordering')
 		{
 			$filter_order = 'i.featured_ordering';
 			JRequest::setVar('filter_order', 'i.featured_ordering');
 		}
-		
+
 		if(K2_JVERSION == '30' && $filter_featured != 1 && $filter_order == 'i.featured_ordering')
 		{
 			$filter_order = 'i.ordering';

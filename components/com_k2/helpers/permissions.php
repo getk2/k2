@@ -142,9 +142,9 @@ class K2HelperPermissions
         }
         $task = JRequest::getCmd('task');
         $user = JFactory::getUser();
+        $mainframe = JFactory::getApplication();
         if ($user->guest && ($task == 'add' || $task == 'edit'))
         {
-            $mainframe = JFactory::getApplication();
             $uri = JURI::getInstance();
             $return = base64_encode($uri->toString());
 			$mainframe->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
@@ -177,7 +177,20 @@ class K2HelperPermissions
                   $item->load($cid);
 
                   if (!K2HelperPermissions::canEditItem($item->created_by, $item->catid))
+                  {
+                    // Handle in a different way the case when user can add an item but not edit it.
+                    if($task == 'edit' && !$user->guest && $item->created_by == $user->id && (int)$item->modified == 0 && K2HelperPermissions::canAddItem())
+                    {
+                      echo '<script>parent.location.href = "'.JUri::root().'";</script>';
+                      exit;
+                    }
+                    else
+                    {
                       JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
+                    }
+
+                  }
+
                 }
                 break;
 
