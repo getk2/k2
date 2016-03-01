@@ -46,7 +46,7 @@ class K2ViewCategories extends K2View
 
 		$params = JComponentHelper::getParams('com_k2');
 		$this->assignRef('params', $params);
-		
+
 		if (K2_JVERSION != '15')
 		{
 			$langs = JLanguageHelper::getLanguages();
@@ -57,8 +57,8 @@ class K2ViewCategories extends K2View
 				$langsMapping[$lang->lang_code] = $lang->title;
 			}
 		}
-		
-		
+
+
 		for ($i = 0; $i < sizeof($categories); $i++)
 		{
 			$categories[$i]->status = K2_JVERSION == '15' ? JHTML::_('grid.published', $categories[$i], $i) : JHtml::_('jgrid.published', $categories[$i]->published, $i, '', $filter_trash == 0 && $task != 'element');
@@ -102,6 +102,10 @@ class K2ViewCategories extends K2View
 		}
 
 		$this->assignRef('rows', $categories);
+
+		if(count($categories) && $filter_trash) {
+			$mainframe->enqueueMessage(JText::_('K2_ALL_TRASHED_ITEMS_IN_A_CATEGORY_MUST_BE_DELETED_FIRST'));
+		}
 
 		jimport('joomla.html.pagination');
 		$pageNav = new JPagination($total, $limitstart, $limit);
