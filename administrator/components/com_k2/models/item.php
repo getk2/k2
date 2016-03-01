@@ -287,10 +287,10 @@ class K2ModelItem extends K2Model
 
 			$handle = new Upload($image);
 			$handle->allowed = array('image/*');
+			$handle->forbidden = array('image/tiff');
 
-			if ($handle->uploaded)
+			if ($handle->file_is_image && $handle->uploaded)
 			{
-
 				//Image params
 				$category = JTable::getInstance('K2Category', 'Table');
 				$category->load($row->catid);
@@ -432,8 +432,7 @@ class K2ModelItem extends K2Model
 			}
 			else
 			{
-				$mainframe->enqueueMessage($handle->error, 'error');
-				$mainframe->redirect('index.php?option=com_k2&view=items');
+				$mainframe->enqueueMessage(JText::_('K2_IMAGE_WAS_NOT_UPLOADED'), 'notice');
 			}
 
 		}
