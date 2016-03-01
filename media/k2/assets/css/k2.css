@@ -37,6 +37,18 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .k2TextBox {background:#fff;padding:4px;}
 .k2ListItemDisabled {cursor:pointer;color:#0B55C4;} /* used in popup lists */
 
+/* Sprite */
+.icon-48-k2, body.com_k2 .page-title, #k2ExtraFieldsValidationResults, .k2Inactive, span.k2GalleryNotice ,
+.k2Active { display: inline-block; background: url('../images/system/sprite-backend.png') no-repeat; overflow: hidden; text-indent: -9999px; text-align: left; }
+
+	span.k2GalleryNotice { background-position: -79px -118px; width: 16px; height: 16px; }
+	#k2ExtraFieldsValidationResults { background-position: -10px -92px; width: 59px; height: 54px; }
+	.icon-48-k2{ background-position: -10px -0px; width: 95px; height: 36px; }
+	body.com_k2 .page-title { background-position: -10px -46px; width: 85px; height: 36px; }
+	.k2Inactive { background-position: -79px -92px; width: 16px; height: 16px; }
+	.k2Active { background-position: -79px -144px; width: 16px; height: 16px; }
+/* End of the sprite */
+
 .k2Toggler {display:block;width:16px;height:16px;margin:0 auto;padding:0;background-repeat:no-repeat;background-position:0 0;text-indent:-500px;overflow:hidden;}
 	.k2Active {background-image:url(../images/system/tick.png);}
 	.k2Inactive{background-image:url(../images/system/cross.png);}
@@ -55,17 +67,17 @@ ul.k2GenericList {list-style:square;margin:0 8px 8px;padding:2px 8px;}
 ul.k2GenericList li {list-style:square;padding:2px 0;}
 
 /* Generic button */
-.k2Selector {background:#f0f2f2;border:1px solid #d4d7d9;border-radius:3px;display:inline-block;margin:0;padding:4px 8px;color:#555;font-weight:bold;font-size:12px;cursor:pointer;text-decoration:none;-webkit-box-shadow:0 0 1px 0 rgba(41, 40, 42, 0.2);box-shadow:0 0 1px 0 rgba(41, 40, 42, 0.2);}
-.k2Selector:hover {color:#222;text-decoration:none;border-color:rgba(82,168,236,0.8);-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,0.6);box-shadow:inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,0.6);-webkit-transition:box-shadow 300ms ease;transition:box-shadow 300ms ease;}
+.k2Selector {background:#f0f2f2;border:1px solid #d4d7d9;border-radius:3px;display:inline-block;margin:0;padding:4px 8px;color:#555;font-weight:bold;font-size:12px;cursor:pointer;text-decoration:none;box-shadow:0 0 1px 0 rgba(41, 40, 42, 0.2);}
+.k2Selector:hover {color:#222;text-decoration:none;border-color:rgba(82,168,236,0.8); box-shadow:inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,0.6);-webkit-transition:box-shadow 300ms ease;transition:box-shadow 300ms ease;}
 
 /* Header */
-.icon-48-k2 {background:url(../images/system/K2_Logo_105x40_24.png) no-repeat 0 50%;color:#222!important; padding-left:120px!important; font-size:24px!important;}
+.icon-48-k2 { color:#222!important; padding-left:120px!important; font-size:24px!important;}
 .icon-48-k2 h2 {color:#222!important; font-size:24px!important; margin-left:10px!important;}
 
 /* Joomla! 3.x Specific */
 body.com_k2 .container-fluid {padding:0 !important;}
-body.com_k2 .page-title {background:url(../images/system/K2_Logo_85x36_24.png) no-repeat 0 50%;padding-left:100px;}
-@media (max-width: 767px) { body.com_k2 .page-title {background:url(../images/system/K2_Logo_85x36_24.png) no-repeat center center;padding-left:0; text-indent: -800px} }
+body.com_k2 .page-title { padding-left:100px;}
+@media (max-width: 767px) { body.com_k2 .page-title { padding-left:0; text-indent: -800px} }
 
 /* Normalize all Joomla radio controls?
 div.controls label.radio {}
@@ -439,7 +451,7 @@ table#tagLists tr td#tagListsRight select {width:99%;height:106px;}
 
 
 /* Item - Extra Fields Validation */
-#k2ExtraFieldsValidationResults {clear:both;font-weight:bold;font-size:12px;color:#369;margin:12px 0 4px;padding:16px;background:#d5e7fa url(../images/system/warning.png) no-repeat 90% 50%;border-top:4px solid #96b0cb;display:none;}
+#k2ExtraFieldsValidationResults {clear:both;font-weight:bold;font-size:12px;color:#369;margin:12px 0 4px;padding:16px;background-color:#d5e7fa; border-top:4px solid #96b0cb;display:none;}
 #k2ExtraFieldsValidationResults h3 {padding:0;margin:0;font-size:20px;}
 	ul#k2ExtraFieldsMissing {margin:8px;padding:0 8px;}
 	ul#k2ExtraFieldsMissing li {font-weight:normal;}
@@ -530,7 +542,7 @@ table#tagLists tr td#tagListsRight select {width:99%;height:106px;}
 	.itemGalleryBlock label { display: block; margin-bottom: 10px; }
 	.itemGalleryBlock input[type="text"] { max-width: 300px; }
 	.itemGalleryBlock.separator { text-transform: uppercase; font-weight: 700; color: #46afff; }
-span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;line-height:16px;background:url(../images/system/question-frame.png) no-repeat 50% 50%;padding:0;margin:0 0 -4px 0;display:inline-block;overflow-x:hidden;}
+span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;line-height:16px;padding:0;margin:0 0 -4px 0;display:inline-block;overflow-x:hidden;}
 
 
 /* Item - Video - inherits from above  */
