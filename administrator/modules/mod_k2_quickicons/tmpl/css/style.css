@@ -8,8 +8,28 @@
 
 .clr { clear:both; height:0; line-height:0; display:block; float:none; }
 div#k2QuickIconsTitle { margin:16px 0 0; padding:0; /*background:url(../images/bg.jpg) repeat-x 0 50%;height:8px;*/ position:relative; z-index:9; }
-div#k2QuickIconsTitle a { display:block; clear:both; float:none; background:#f9f9f9 url(../images/k2_logo_46x18.png) no-repeat 50% 50%; width:46px; height:18px; padding:2px 6px; margin:0 0 0 24px; border:1px solid #d5d5d5; border-bottom:1px solid #f9f9f9; }
+div#k2QuickIconsTitle a { display:block; clear:both; float:none; background-color:#f9f9f9 ; width:46px; height:18px; padding:2px 6px; margin:0 0 0 24px; border:1px solid #d5d5d5; border-bottom:1px solid #f9f9f9; }
 div#k2QuickIconsTitle a span { display:none; }
+
+/* Sprite */
+.dashicon { display: inline-block; background: url('../../../../../media/k2/assets/images/dashboard/sprite-dashboard.png') no-repeat; overflow: hidden; text-indent: -9999px; text-align: left; margin: 10px auto; }
+	.categories-trashed { background-position: -10px -0px; width: 48px; height: 48px; }
+	.categories { background-position: -10px -58px; width: 48px; height: 48px; }
+	.comments { background-position: -10px -116px; width: 48px; height: 48px; }
+	.documentation { background-position: -10px -174px; width: 48px; height: 48px; }
+	.extend { background-position: -10px -232px; width: 48px; height: 48px; }
+	.extra-field-groups { background-position: -10px -290px; width: 48px; height: 48px; }
+	.extra-fields { background-position: -10px -348px; width: 48px; height: 48px; }
+	.help { background-position: -10px -406px; width: 48px; height: 48px; }
+	.image-editing { background-position: -10px -464px; width: 48px; height: 48px; }
+	.item-new { background-position: -10px -522px; width: 48px; height: 48px; }
+	.items-featured { background-position: -10px -580px; width: 48px; height: 48px; }
+	.items-trashed { background-position: -10px -638px; width: 48px; height: 48px; }
+	.items { background-position: -10px -696px; width: 48px; height: 48px; }
+	.joomlareader { background-position: -10px -754px; width: 48px; height: 48px; }
+	.mediamanager { background-position: -10px -812px; width: 48px; height: 48px; }
+	.tags { background-position: -10px -870px; width: 48px; height: 48px; }
+	.k2logo { background-position: -4px -924px; }
 
 /* Joomla! 1.5 */
 #k2QuickIcons15 {clear:both;margin:-1px 0 8px 0;padding:8px 0;border-top:1px solid #d5d5d5;position:relative;z-index:8;}
