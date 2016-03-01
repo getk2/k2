@@ -391,6 +391,11 @@ class K2ViewItemlist extends K2View
 			$items = $model->getData($ordering);
 		}
 
+		// If a user has no published items, do not display their K2 user page (in the frontend) and redirect to the homepage of the site.
+		if(count($items) == 0) {
+			$mainframe->redirect(JUri::root());
+		}
+
 		// Pagination
 		jimport('joomla.html.pagination');
 		$total = count($items) ? $model->getTotal() : 0;
