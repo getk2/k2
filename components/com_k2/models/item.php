@@ -568,6 +568,30 @@ class K2ModelItem extends K2Model
 					}
 				}
 				$params->set('galleries_rootfolder', 'media/k2/galleries');
+
+				if ($view == 'item')
+				{
+					$width = (int)$item->params->get('itemImageGalleryWidth');
+					$height = (int)$item->params->get('itemImageGalleryHeight');
+				}
+				else
+				{
+					$width = (int)$item->params->get('catItemImageGalleryWidth');
+					$height = (int)$item->params->get('catItemImageGalleryHeight');
+				}
+
+				if($width && $height) {
+					if (JString::strpos($item->gallery, 'flickr.com') !== false)
+					{
+						$sigParams = JComponentHelper::getParams('com_sigpro');
+						$item->gallery = str_replace('{/gallery}', ':'.$sigParams->get('flickrImageCount', 20).':'.$width.':'.$height.'{/gallery}', $item->gallery);
+					}
+					else
+					{
+						$item->gallery = str_replace('{/gallery}', ':'.$width.':'.$height.'{/gallery}', $item->gallery);
+					}
+				}
+
 				$item->text = $item->gallery;
 				if (K2_JVERSION == '15')
 				{

@@ -219,6 +219,8 @@
 			<option value="0">K2_HIDE</option>
 			<option value="1">K2_SHOW</option>
 		</param>
+		<param name="catItemImageGalleryWidth" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAILS_WIDTH" description=""/>
+		<param name="catItemImageGalleryHeight" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAILS_HEIGHT" description=""/>
 		<param name="catItemDateModified" type="radio" default="0" label="K2_ITEM_MODIFIED_DATE_AND_TIME" description="">
 			<option value="0">K2_HIDE</option>
 			<option value="1">K2_SHOW</option>
@@ -365,6 +367,8 @@
 			<option value="0">K2_HIDE</option>
 			<option value="1">K2_SHOW</option>
 		</param>
+		<param name="itemImageGalleryWidth" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAILS_WIDTH" description=""/>
+		<param name="itemImageGalleryHeight" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAILS_HEIGHT" description=""/>
 		<param name="itemNavigation" type="radio" default="1" label="K2_ITEM_NAVIGATION" description="">
 			<option value="0">K2_HIDE</option>
 			<option value="1">K2_SHOW</option>
@@ -686,6 +690,8 @@
 				<option value="0">K2_HIDE</option>
 				<option value="1">K2_SHOW</option>
 			</field>
+			<field name="catItemImageGalleryWidth" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAILS_WIDTH" description=""/>
+			<field name="catItemImageGalleryHeight" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAILS_HEIGHT" description=""/>
 			<field name="catItemDateModified" type="radio" default="0" label="K2_ITEM_MODIFIED_DATE_AND_TIME" description="">
 				<option value="0">K2_HIDE</option>
 				<option value="1">K2_SHOW</option>
@@ -832,6 +838,8 @@
 				<option value="0">K2_HIDE</option>
 				<option value="1">K2_SHOW</option>
 			</field>
+			<field name="itemImageGalleryWidth" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAILS_WIDTH" description=""/>
+			<field name="itemImageGalleryHeight" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAILS_HEIGHT" description=""/>
 			<field name="itemNavigation" type="radio" default="1" label="K2_ITEM_NAVIGATION" description="">
 				<option value="0">K2_HIDE</option>
 				<option value="1">K2_SHOW</option>
