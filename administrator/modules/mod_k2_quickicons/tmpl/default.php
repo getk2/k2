@@ -16,7 +16,7 @@ defined('_JEXEC') or die;
 
 <?php if($modLogo): ?>
 <div id="k2QuickIconsTitle">
-	<a href="<?php echo JRoute::_('index.php?option=com_k2&amp;view=items&amp;filter_featured=-1&amp;filter_trash=0'); ?>" title="<?php echo JText::_('K2_DASHBOARD'); ?>">
+	<a class="dashicon k2logo" href="<?php echo JRoute::_('index.php?option=com_k2&amp;view=items&amp;filter_featured=-1&amp;filter_trash=0'); ?>" title="<?php echo JText::_('K2_DASHBOARD'); ?>">
 		<span>K2</span>
 	</a>
 </div>
@@ -26,7 +26,7 @@ defined('_JEXEC') or die;
   <div class="icon-wrapper">
     <div class="icon">
 	    <a href="<?php echo JRoute::_('index.php?option=com_k2&amp;view=item'); ?>">
-		    <img alt="<?php echo JText::_('K2_ADD_NEW_ITEM'); ?>" src="<?php echo JURI::root(true); ?>/media/k2/assets/images/dashboard/item-new.png" />
+				<i class="dashicon item-new"></i>
 		    <span><?php echo JText::_('K2_ADD_NEW_ITEM'); ?></span>
 	    </a>
     </div>
@@ -34,7 +34,7 @@ defined('_JEXEC') or die;
   <div class="icon-wrapper">
     <div class="icon">
 	    <a href="<?php echo JRoute::_('index.php?option=com_k2&amp;view=items&amp;filter_featured=-1&amp;filter_trash=0'); ?>">
-		    <img alt="<?php echo JText::_('K2_ITEMS'); ?>" src="<?php echo JURI::root(true); ?>/media/k2/assets/images/dashboard/items.png" />
+				<i class="dashicon items"></i>
 		    <span><?php echo JText::_('K2_ITEMS'); ?></span>
 	    </a>
     </div>
@@ -42,7 +42,7 @@ defined('_JEXEC') or die;
 	<div class="icon-wrapper">
     <div class="icon">
 	    <a href="<?php echo JRoute::_('index.php?option=com_k2&amp;view=items&amp;filter_featured=1&amp;filter_trash=0'); ?>">
-		    <img alt="<?php echo JText::_('K2_FEATURED_ITEMS'); ?>" src="<?php echo JURI::root(true); ?>/media/k2/assets/images/dashboard/items-featured.png" />
+				<i class="dashicon items-featured"></i>
 		    <span><?php echo JText::_('K2_FEATURED_ITEMS'); ?></span>
 	    </a>
     </div>
@@ -50,7 +50,7 @@ defined('_JEXEC') or die;
   <div class="icon-wrapper">
     <div class="icon">
 	    <a href="<?php echo JRoute::_('index.php?option=com_k2&amp;view=items&amp;filter_featured=-1&amp;filter_trash=1'); ?>">
-		    <img alt="<?php echo JText::_('K2_TRASHED_ITEMS'); ?>" src="<?php echo JURI::root(true); ?>/media/k2/assets/images/dashboard/items-trashed.png" />
+				<i class="dashicon items-trashed"></i>
 		    <span><?php echo JText::_('K2_TRASHED_ITEMS'); ?></span>
 	    </a>
     </div>
@@ -58,7 +58,7 @@ defined('_JEXEC') or die;
 	<div class="icon-wrapper">
     <div class="icon">
 	    <a href="<?php echo JRoute::_('index.php?option=com_k2&amp;view=categories&amp;filter_trash=0'); ?>">
-		    <img alt="<?php echo JText::_('K2_CATEGORIES'); ?>" src="<?php echo JURI::root(true); ?>/media/k2/assets/images/dashboard/categories.png" />
+				<i class="dashicon categories"></i>
 		    <span><?php echo JText::_('K2_CATEGORIES'); ?></span>
 	    </a>
     </div>
@@ -66,7 +66,7 @@ defined('_JEXEC') or die;
 	<div class="icon-wrapper">
     <div class="icon">
 	    <a href="<?php echo JRoute::_('index.php?option=com_k2&amp;view=categories&amp;filter_trash=1'); ?>">
-		    <img alt="<?php echo JText::_('K2_TRASHED_CATEGORIES'); ?>" src="<?php echo JURI::root(true); ?>/media/k2/assets/images/dashboard/categories-trashed.png" />
+				<i class="dashicon categories-trashed"></i>
 		    <span><?php echo JText::_('K2_TRASHED_CATEGORIES'); ?></span>
 	    </a>
     </div>
@@ -75,7 +75,7 @@ defined('_JEXEC') or die;
 	<div class="icon-wrapper">
     <div class="icon">
 	    <a href="<?php echo JRoute::_('index.php?option=com_k2&amp;view=tags'); ?>">
-		    <img alt="<?php echo JText::_('K2_TAGS'); ?>" src="<?php echo JURI::root(true); ?>/media/k2/assets/images/dashboard/tags.png" />
+				<i class="dashicon tags"></i>
 		    <span><?php echo JText::_('K2_TAGS'); ?></span>
 	    </a>
     </div>
@@ -84,7 +84,7 @@ defined('_JEXEC') or die;
 	<div class="icon-wrapper">
     <div class="icon">
 	    <a href="<?php echo JRoute::_('index.php?option=com_k2&amp;view=comments'); ?>">
-		    <img alt="<?php echo JText::_('K2_COMMENTS'); ?>" src="<?php echo JURI::root(true); ?>/media/k2/assets/images/dashboard/comments.png" />
+				<i class="dashicon comments"></i>
 		    <span><?php echo JText::_('K2_COMMENTS'); ?></span>
 	    </a>
     </div>
@@ -93,7 +93,7 @@ defined('_JEXEC') or die;
   <div class="icon-wrapper">
     <div class="icon">
 	    <a href="<?php echo JRoute::_('index.php?option=com_k2&amp;view=extrafields'); ?>">
-		    <img alt="<?php echo JText::_('K2_EXTRA_FIELDS'); ?>" src="<?php echo JURI::root(true); ?>/media/k2/assets/images/dashboard/extra-fields.png" />
+				<i class="dashicon extra-fields"></i>
 		    <span><?php echo JText::_('K2_EXTRA_FIELDS'); ?></span>
 	    </a>
     </div>
@@ -101,7 +101,7 @@ defined('_JEXEC') or die;
 	<div class="icon-wrapper">
     <div class="icon">
 	    <a href="<?php echo JRoute::_('index.php?option=com_k2&amp;view=extrafieldsgroups'); ?>">
-		    <img alt="<?php echo JText::_('K2_EXTRA_FIELD_GROUPS'); ?>" src="<?php echo JURI::root(true); ?>/media/k2/assets/images/dashboard/extra-field-groups.png" />
+				<i class="dashicon extra-field-groups"></i>
 		    <span><?php echo JText::_('K2_EXTRA_FIELD_GROUPS'); ?></span>
 	    </a>
     </div>
@@ -110,7 +110,7 @@ defined('_JEXEC') or die;
 	<div class="icon-wrapper">
     <div class="icon">
 	    <a href="<?php echo JRoute::_('index.php?option=com_k2&amp;view=media'); ?>">
-		    <img alt="<?php echo JText::_('K2_MEDIA_MANAGER'); ?>" src="<?php echo JURI::root(true); ?>/media/k2/assets/images/dashboard/mediamanager.png" />
+				<i class="dashicon mediamanager"></i>
 		    <span><?php echo JText::_('K2_MEDIA_MANAGER'); ?></span>
 	    </a>
     </div>
@@ -118,7 +118,7 @@ defined('_JEXEC') or die;
 	<div class="icon-wrapper">
     <div class="icon">
     	<a id="k2OnlineImageEditor" target="_blank" href="<?php echo $onlineImageEditorLink; ?>">
-		    <img alt="<?php echo JText::_('K2_ONLINE_IMAGE_EDITOR'); ?>" src="<?php echo JURI::root(true); ?>/media/k2/assets/images/dashboard/image-editing.png" />
+				<i class="dashicon image-editing"></i>
 		    <span><?php echo JText::_('K2_ONLINE_IMAGE_EDITOR'); ?></span>
 	    </a>
     </div>
@@ -126,7 +126,7 @@ defined('_JEXEC') or die;
   <div class="icon-wrapper">
     <div class="icon">
     	<a class="modal" rel="{handler:'iframe', size:{x:(document.documentElement.clientWidth)*0.9, y:(document.documentElement.clientHeight)*0.95}}" target="_blank" href="http://getk2.org/documentation/">
-    		<img alt="<?php echo JText::_('K2_DOCS_AND_TUTORIALS'); ?>" src="<?php echo JURI::root(true); ?>/media/k2/assets/images/dashboard/documentation.png" />
+				<i class="dashicon documentation"></i>
     		<span><?php echo JText::_('K2_DOCS_AND_TUTORIALS'); ?></span>
     	</a>
     </div>
@@ -135,7 +135,7 @@ defined('_JEXEC') or die;
   <div class="icon-wrapper">
     <div class="icon">
     	<a class="modal" rel="{handler:'iframe', size:{x:(document.documentElement.clientWidth)*0.9, y:(document.documentElement.clientHeight)*0.95}}" target="_blank" href="http://getk2.org/extend/">
-    		<img alt="<?php echo JText::_('K2_EXTEND'); ?>" src="<?php echo JURI::root(true); ?>/media/k2/assets/images/dashboard/extend.png" />
+				<i class="dashicon extend"></i>
     		<span><?php echo JText::_('K2_EXTEND'); ?></span>
     	</a>
     </div>
@@ -143,7 +143,7 @@ defined('_JEXEC') or die;
   <div class="icon-wrapper">
     <div class="icon">
     	<a class="modal" rel="{handler:'iframe', size:{x:(document.documentElement.clientWidth)*0.9, y:(document.documentElement.clientHeight)*0.95}}" target="_blank" href="http://getk2.org/community/">
-    		<img alt="<?php echo JText::_('K2_COMMUNITY'); ?>" src="<?php echo JURI::root(true); ?>/media/k2/assets/images/dashboard/help.png" />
+				<i class="dashicon help"></i>
     		<span><?php echo JText::_('K2_COMMUNITY'); ?></span>
     	</a>
     </div>
@@ -151,7 +151,7 @@ defined('_JEXEC') or die;
   <div class="icon-wrapper">
     <div class="icon">
 	    <a class="modal" rel="{handler:'iframe', size:{x:(document.documentElement.clientWidth)*0.9, y:(document.documentElement.clientHeight)*0.95}}" href="http://joomlareader.com/" title="<?php echo JText::_('K2_JOOMLA_NEWS_FROM_MORE_THAN_200_SOURCES_WORLDWIDE'); ?>">
-		    <img alt="<?php echo JText::_('K2_JOOMLA_NEWS_FROM_MORE_THAN_200_SOURCES_WORLDWIDE'); ?>" src="<?php echo JURI::root(true); ?>/media/k2/assets/images/dashboard/joomlareader.png" />
+				<i class="dashicon joomlareader"></i>
 		    <span><?php echo JText::_('K2_JOOMLAREADERCOM'); ?></span>
 	    </a>
     </div>
