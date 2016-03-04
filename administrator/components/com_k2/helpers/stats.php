@@ -29,7 +29,7 @@ class K2HelperStats
 			\$K2.ajax({
 				crossDomain: true,
 				type : 'POST',
-				url : 'http://localhost/office/stats/gather.php',
+				url : 'http://localhost/stats/gather.php',
 				data : ".$data."
 			}).done(function(response, result, xhr) {
 				K2LogResult(xhr);
@@ -49,7 +49,8 @@ class K2HelperStats
 		$data->server = self::getServer();
 		$data->serverInterface = self::getServerInterface();
 		$data->cms = self::getCmsVersion();
-		$data->extension = self::getExtensionVersion();
+		$data->extensionName = 'K2';
+		$data->extensionVersion = self::getExtensionVersion();
 		$data->caching = self::getCaching();
 		$data->cachingDriver = self::getCachingDriver();
 		if (function_exists('json_encode'))
