@@ -29,13 +29,15 @@ defined('_JEXEC') or die;
 		<textarea name="reportReason" id="reportReason" cols="60" rows="10"></textarea>
 
 		<?php if($this->params->get('recaptcha') && $this->user->guest): ?>
+		<?php if(!$this->params->get('recaptchaV2')): ?>
 		<label class="formRecaptcha"><?php echo JText::_('K2_ENTER_THE_TWO_WORDS_YOU_SEE_BELOW'); ?></label>
-		<div id="recaptcha"></div>
+		<?php endif; ?>
+		<div id="recaptcha" class="<?php echo $this->recaptchaClass; ?>"></div>
 
 		<?php endif; ?>
 		<button class="button"><?php echo JText::_('K2_SEND_REPORT'); ?></button>
 		<span id="formLog"></span>
-		
+
 		<input type="hidden" name="option" value="com_k2" />
 		<input type="hidden" name="view" value="comments" />
 		<input type="hidden" name="task" value="sendReport" />

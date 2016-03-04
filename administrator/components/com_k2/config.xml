@@ -474,6 +474,10 @@
 			<option value="clean">K2_CLEAN</option>
 			<option value="custom">K2_CUSTOM</option>
 		</param>
+		<param menu="hide" name="recaptchaV2" type="radio" default="1" label="K2_RECAPTCHA_VERSION_2">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
+		</param>
 		<param menu="hide" name="recaptchaOnRegistration" type="radio" default="0" label="K2_ENABLE_RECAPTCHA_ON_REGISTRATION_FORM" description="K2_ENABLE_RECAPTCHA_ON_REGISTRATION_FORM_DESC">
 			<option value="0">K2_NO</option>
 			<option value="1">K2_YES</option>
@@ -1017,6 +1021,10 @@
 			<option value="blackglass">K2_BLACKGLASS</option>
 			<option value="clean">K2_CLEAN</option>
 			<option value="custom">K2_CUSTOM</option>
+		</field>
+		<field menu="hide" name="recaptchaV2" type="radio" default="1" label="K2_RECAPTCHA_VERSION_2">
+			<option value="0">K2_NO</option>
+			<option value="1">K2_YES</option>
 		</field>
 		<field menu="hide" name="recaptchaOnRegistration" type="radio" default="0" label="K2_ENABLE_RECAPTCHA_ON_REGISTRATION_FORM" description="K2_ENABLE_RECAPTCHA_ON_REGISTRATION_FORM_DESC">
 			<option value="0">K2_NO</option>

@@ -144,7 +144,7 @@ defined('_JEXEC') or die;
 			<?php endif; ?>
 			<?php endforeach; ?>
 			<?php endif; ?>
-			
+
 			<!-- Joomla! 1.6+ JForm implementation -->
 			<?php if(isset($this->form)): ?>
 			<?php foreach ($this->form->getFieldsets() as $fieldset): // Iterate through the form fieldsets and display each one.?>
@@ -177,14 +177,16 @@ defined('_JEXEC') or die;
 				<?php endif; ?>
 			<?php endforeach;?>
 			<?php endif; ?>
-			
+
 		</table>
-		
+
 		<?php if($this->K2Params->get('recaptchaOnRegistration') && $this->K2Params->get('recaptcha_public_key')): ?>
+		<?php if(!$this->K2Params->get('recaptchaV2')): ?>
 		<label class="formRecaptcha"><?php echo JText::_('K2_ENTER_THE_TWO_WORDS_YOU_SEE_BELOW'); ?></label>
-		<div id="recaptcha"></div>
 		<?php endif; ?>
-		
+		<div id="recaptcha" class="<?php echo $this->recaptchaClass; ?>"></div>
+		<?php endif; ?>
+
 		<div class="k2AccountPageNotice"><?php echo JText::_('K2_REGISTER_REQUIRED'); ?></div>
 		<div class="k2AccountPageUpdate">
 			<button class="button validate" type="submit">

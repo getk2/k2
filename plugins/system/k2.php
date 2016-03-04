@@ -150,18 +150,29 @@ class plgSystemK2 extends JPlugin
 			if ($params->get('recaptchaOnRegistration') && $params->get('recaptcha_public_key'))
 			{
 				$document = JFactory::getDocument();
-				$document->addScript('https://www.google.com/recaptcha/api/js/recaptcha_ajax.js');
-				$js = '
-				function showRecaptcha(){
-					Recaptcha.create("'.$params->get('recaptcha_public_key').'", "recaptcha", {
-						theme: "'.$params->get('recaptcha_theme', 'clean').'"
-					});
+				if($params->get('recaptchaV2')) {
+					$document->addScript('https://www.google.com/recaptcha/api.js?onload=onK2RecaptchaLoaded&render=explicit');
+					$js = 'function onK2RecaptchaLoaded(){grecaptcha.render("recaptcha", {"sitekey" : "'.$params->get('recaptcha_public_key').'"});}';
+					$document->addScriptDeclaration($js);
+					$recaptchaClass = 'k2-recaptcha-v2';
 				}
-				$K2(document).ready(function() {
-					showRecaptcha();
-				});
-				';
-				$document->addScriptDeclaration($js);
+				else
+				{
+					$document->addScript('https://www.google.com/recaptcha/api/js/recaptcha_ajax.js');
+					$js = '
+					function showRecaptcha(){
+						Recaptcha.create("'.$params->get('recaptcha_public_key').'", "recaptcha", {
+							theme: "'.$params->get('recaptcha_theme', 'clean').'"
+						});
+					}
+					$K2(document).ready(function() {
+						showRecaptcha();
+					});
+					';
+					$document->addScriptDeclaration($js);
+					$recaptchaClass = 'k2-recaptcha-v1';
+				}
+
 			}
 
 			if (!$user->guest)
@@ -206,6 +217,7 @@ class plgSystemK2 extends JPlugin
 
 			$view->assignRef('lists', $lists);
 			$view->assignRef('K2Params', $params);
+			$view->assignRef('recaptchaClass', $recaptchaClass);
 
 			JPluginHelper::importPlugin('k2');
 			$dispatcher = JDispatcher::getInstance();
