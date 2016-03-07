@@ -37,6 +37,18 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .k2TextBox {background:#fff;padding:4px;}
 .k2ListItemDisabled {cursor:pointer;color:#0B55C4;} /* used in popup lists */
 
+/* Simple grid based on Foundation */
+#k2AdminContainer .row { margin-left: auto; margin-right: auto; width: 100%; max-width: 1200px; }
+	#k2AdminContainer .row .row  { margin-left: -0.625em; margin-right: -0.625em;}
+	#k2AdminContainer .row.row-nomax { max-width: 100%; }
+.column, .columns { float: left; padding-left: 0.625em; padding-right: 0.625em; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+.small-12 { width: 100%; }
+@media screen and (min-width: 60em) {
+	.large-6 { width: 50%; }
+	.large-8 { width: 75%; }
+}
+.column.small-centered, .columns.small-centered { float: none; margin-left: auto; margin-right: auto; }
+
 /* Sprite */
 .icon-48-k2, body.com_k2 .page-title, #k2ExtraFieldsValidationResults, .k2Inactive, span.k2GalleryNotice ,
 .k2Active { display: inline-block; background: url('../images/system/sprite-backend.png') no-repeat; overflow: hidden; text-indent: -9999px; text-align: left; }
@@ -787,4 +799,17 @@ td#k2Comment {}
 		a.closeComment {display:none;padding-left:4px;margin-left:4px;border-left:1px solid #aaa;}
 	div.commentToolbar span.k2CommentsLog {display:block;float:right;font-weight:bold;}
 	div.commentToolbar span.k2CommentsLoader {background:url(../images/system/loader.gif) no-repeat 0 50%;padding-left:24px;}
+
+/* New views introduced in 2.7 - Batch & Move, use the -alt suffix*/
+.header-alt {  padding: 15px 8px; font-size: 20px; font-weight: 300; letter-spacing: -1px; background-color: #fff; box-shadow: 0 1px 0 rgba(0,0,0,.18); overflow: hidden; }
+	.header-alt h3 { margin: 0; padding: 0; line-height: 1; font-weight: 300; }
+
+.subheader-alt { overflow: hidden; padding-top: 24px; padding-bottom: 24px; border-top: 1px solid #d0d0cf; border-bottom: 1px solid #d0d0cf; margin-bottom: 24px; }
+	.subheader-alt label { display: inline-block; vertical-align: middle; color: #000; font-weight: 700; margin: 0; line-height: 1;	}
+	.subheader-alt input[type="radio"] { display: inline-block; vertical-align: middle; margin-right: 5px; margin-top: 0; }
+
+	.action-alt { margin-bottom: 25px; min-height: 66px; }
+	.label-alt { font-weight: 700; color: #636a6f; font-size: 13px; line-height: 1; }
+		.label-alt .fa { font-size: 18px; display: inline-block; vertical-align: middle; margin-right: 5px; }
+
 /* End */
