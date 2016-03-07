@@ -250,6 +250,7 @@ class K2ViewItems extends K2View
 			JToolBarHelper::unpublishList();
 			JToolBarHelper::custom('move', 'move.png', 'move_f2.png', 'K2_MOVE', true);
 			JToolBarHelper::custom('copy', 'copy.png', 'copy_f2.png', 'K2_COPY', true);
+			JToolBarHelper::custom('batch', 'edit.png', 'edit.png', 'K2_BATCH', true);
 			JToolBarHelper::editList();
 			JToolBarHelper::addNew();
 			JToolBarHelper::trash('trash');
@@ -358,6 +359,53 @@ class K2ViewItems extends K2View
 
 		JToolBarHelper::custom('saveMove', 'save.png', 'save_f2.png', 'K2_SAVE', false);
 		JToolBarHelper::cancel();
+
+		parent::display();
+	}
+
+	function batch()
+	{
+
+		$mainframe = JFactory::getApplication();
+		$cid = JRequest::getVar('cid', array());
+		$this->ids = $cid;
+
+		$categoriesModel = K2Model::getInstance('Categories', 'K2Model');
+		$categories = $categoriesModel->categoriesTree(null, true, false);
+		array_unshift($categories, JHtml::_('select.option', '', JText::_('K2_LEAVE_UNCHANGED')));
+		$lists['categories'] = JHTML::_('select.genericlist', $categories, 'category', 'class="inputbox" size="8"', 'value', 'text');
+
+
+		$lists['access'] = version_compare(JVERSION, '2.5', 'ge') ? JHTML::_('access.level', 'access', null, '', array(JHtml::_('select.option', '', JText::_('K2_LEAVE_UNCHANGED')))) : str_replace('size="3"', "", JHTML::_('list.accesslevel', $item));
+
+		if (version_compare(JVERSION, '2.5.0', 'ge'))
+		{
+			$languages = JHTML::_('contentlanguage.existing', true, true);
+			array_unshift($languages, JHtml::_('select.option', '', JText::_('K2_LEAVE_UNCHANGED')));
+			$lists['language'] = JHTML::_('select.genericlist', $languages, 'language', '', 'value', 'text', null);
+		}
+
+		$model = $this->getModel('items');
+		$authors = $model->getItemsAuthors();
+		$options = array();
+		$options[] = JHTML::_('select.option', '', JText::_('K2_LEAVE_UNCHANGED'));
+		foreach ($authors as $author)
+		{
+			$name = $author->name;
+			if ($author->block)
+			{
+				$name .= ' ['.JText::_('K2_USER_DISABLED').']';
+			}
+			$options[] = JHTML::_('select.option', $author->id, $name);
+		}
+		$lists['author'] = JHTML::_('select.genericlist', $options, 'author', '', 'value', 'text', null);
+
+
+		$this->assignRef('lists', $lists);
+
+		JToolBarHelper::title(JText::_('K2_BATCH_OPERATIONS'), 'k2.png');
+		JToolBarHelper::custom('saveBatch', 'save.png', 'save_f2.png', 'K2_APPLY', false);
+		JToolBarHelper::cancel('cancelBatch');
 
 		parent::display();
 	}

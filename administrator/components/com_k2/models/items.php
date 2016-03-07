@@ -492,7 +492,7 @@ class K2ModelItems extends K2Model
 		$mainframe->redirect('index.php?option=com_k2&view=items');
 	}
 
-	function copy()
+	function copy($batch = false)
 	{
 
 		$mainframe = JFactory::getApplication();
@@ -504,7 +504,7 @@ class K2ModelItems extends K2Model
 		$cid = JRequest::getVar('cid');
 		JArrayHelper::toInteger($cid);
 		$row = JTable::getInstance('K2Item', 'Table');
-
+		$copies = array();
 		$nullDate = $db->getNullDate();
 
 		foreach ($cid as $id)
@@ -561,6 +561,7 @@ class K2ModelItems extends K2Model
 			$row->created = K2_JVERSION == '15' ? $datenow->toMySQL() : $datenow->toSql();
 			$row->modified = $nullDate;
 			$row->store();
+			$copies[] = $row->id;
 
 			//Target images
 			if (JFile::exists($sourceImage))
@@ -634,8 +635,13 @@ class K2ModelItems extends K2Model
 
 			$row->store();
 		}
-		$mainframe->enqueueMessage(JText::_('K2_COPY_COMPLETED'));
-		$mainframe->redirect('index.php?option=com_k2&view=items');
+		if($batch) {
+			return $copies;
+		} else {
+			$mainframe->enqueueMessage(JText::_('K2_COPY_COMPLETED'));
+			$mainframe->redirect('index.php?option=com_k2&view=items');
+		}
+
 	}
 
 	function featured()
@@ -1401,6 +1407,49 @@ class K2ModelItems extends K2Model
 		$db->setQuery($query);
 		$rows = $db->loadObjectList();
 		return $rows;
+	}
+
+	function saveBatch()
+	{
+		$application = JFactory::getApplication();
+		$cid = JRequest::getVar('cid');
+		$batchMode = JRequest::getCmd('batchMode');
+		$catid = JRequest::getInt('category');
+		$access = JRequest::getCmd('access');
+		$author = JRequest::getInt('author');
+		$language = JRequest::getCmd('language');
+		if($batchMode == 'clone'){
+			$cid = $this->copy(true);
+		}
+		foreach ($cid as $id)
+		{
+			$row = JTable::getInstance('K2Item', 'Table');
+			$row->load($id);
+			if($catid)
+			{
+				$row->catid = $catid;
+				$row->ordering = $row->getNextOrder('catid = '.(int)$row->catid.' AND published = 1');
+			}
+			if($access)
+			{
+				$row->access = $access;
+			}
+			if($author)
+			{
+				$row->created_by = $author;
+				$row->created_by_alias = '';
+			}
+			if($language)
+			{
+				$row->language = $language;
+			}
+			$row->store();
+		}
+		$cache = JFactory::getCache('com_k2');
+		$cache->clean();
+		$application->enqueueMessage(JText::_('K2_BATCH_COMPLETED'));
+		$application->redirect('index.php?option=com_k2&view=items');
+
 	}
 
 }
