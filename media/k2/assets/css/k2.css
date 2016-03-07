@@ -801,15 +801,20 @@ td#k2Comment {}
 	div.commentToolbar span.k2CommentsLoader {background:url(../images/system/loader.gif) no-repeat 0 50%;padding-left:24px;}
 
 /* New views introduced in 2.7 - Batch & Move, use the -alt suffix*/
-.header-alt {  padding: 15px 8px; font-size: 20px; font-weight: 300; letter-spacing: -1px; background-color: #fff; box-shadow: 0 1px 0 rgba(0,0,0,.18); overflow: hidden; }
+.header-alt {  padding: 15px 8px; font-size: 20px; font-weight: 300; letter-spacing: -1px; background-color: #fff; box-shadow: 0 1px 0 rgba(0,0,0,.18); }
 	.header-alt h3 { margin: 0; padding: 0; line-height: 1; font-weight: 300; }
+	.header-alt.margin { margin-bottom: 48px;}
 
 .subheader-alt { overflow: hidden; padding-top: 24px; padding-bottom: 24px; border-top: 1px solid #d0d0cf; border-bottom: 1px solid #d0d0cf; margin-bottom: 24px; }
 	.subheader-alt label { display: inline-block; vertical-align: middle; color: #000; font-weight: 700; margin: 0; line-height: 1;	}
 	.subheader-alt input[type="radio"] { display: inline-block; vertical-align: middle; margin-right: 5px; margin-top: 0; }
 
 	.action-alt { margin-bottom: 25px; min-height: 66px; }
+		.action-alt ol { padding-left: 15px; margin: 10px 0 15px 0; font-size: 13px; font-weight: 500; }
+		.action-alt ol li { margin-bottom: 8px; }
+
 	.label-alt { font-weight: 700; color: #636a6f; font-size: 13px; line-height: 1; }
+		.label-alt.margin { margin-bottom: 10px; }
 		.label-alt .fa { font-size: 18px; display: inline-block; vertical-align: middle; margin-right: 5px; }
 
 /* End */
