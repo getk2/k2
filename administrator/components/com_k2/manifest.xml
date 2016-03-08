@@ -203,7 +203,7 @@
 		<param name="commentsOrdering" default="DESC" />
 		<param name="commentsLimit" default="10" />
 		<param name="commentsFormPosition" default="below" />
-		<param name="commentsPublishing" default="1" />
+		<param name="commentsPublishing" default="0" />
 		<param name="commentsReporting" default="2" />
 		<param name="commentsReportRecipient" default="" />
 		<param name="inlineCommentsModeration" default="0" />

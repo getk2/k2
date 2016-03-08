@@ -209,7 +209,7 @@
 				<field name="commentsOrdering" default="DESC" />
 				<field name="commentsLimit" default="10" />
 				<field name="commentsFormPosition" default="below" />
-				<field name="commentsPublishing" default="1" />
+				<field name="commentsPublishing" default="0" />
 				<field name="commentsReporting" default="2" />
 				<field name="commentsReportRecipient" default="" />
 				<field name="inlineCommentsModeration" default="0" />

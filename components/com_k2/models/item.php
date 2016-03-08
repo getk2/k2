@@ -1317,7 +1317,7 @@ class K2ModelItem extends K2Model
 				}
 			}
 
-			if ($params->get('commentsPublishing'))
+			if ($params->get('commentsPublishing', false))
 			{
 				$row->published = 1;
 			}
