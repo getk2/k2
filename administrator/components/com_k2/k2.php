@@ -10,12 +10,15 @@
 // no direct access
 defined('_JEXEC') or die;
 
-JHTML::_('behavior.tooltip');
 $user = JFactory::getUser();
 $view = JRequest::getWord('view', 'items');
 $view = JString::strtolower($view);
 $task = JRequest::getCmd('task');
 $params = JComponentHelper::getParams('com_k2');
+
+if($view != 'media') {
+  JHTML::_('behavior.tooltip');
+}
 
 if(K2_JVERSION=='15'){
     if(($params->get('lockTags') && $user->gid<=23 && ($view=='tags' || $view=='tag')) || ($user->gid <= 23) && (
