@@ -54,9 +54,10 @@
 .ui-icon:hover,
 .elfinder-button.elfinder-button-search:hover  { background-color: transparent!important; cursor: pointer; }
 /* dialog boxes */
-.ui-dialog {position: absolute; z-index: 10005; margin-top: 190px; } 
+.ui-dialog {position: absolute; z-index: 10005; margin-top: 190px; }
 .ui-dialog { margin-top: 110px; }
 .elfinder-quicklook { margin-top: 75px; }
 
 .elfinder-statusbar { padding-top: 15px; padding-bottom: 15px; }
 .ui-resizable-se { right: -3px; bottom: 1px; }
+.elfinder-resize-control input[type=text] { width: auto; }
