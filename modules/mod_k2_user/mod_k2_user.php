@@ -77,7 +77,6 @@ if ($user->guest)
 }
 else
 {
-		JHTML::_('behavior.modal');
 
     $user->profile = modK2UserHelper::getProfile($params);
     $user->numOfComments = modK2UserHelper::countUserComments($user->id);

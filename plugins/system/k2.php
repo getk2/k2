@@ -42,17 +42,18 @@ class plgSystemK2 extends JPlugin
 			return;
 		}
 
-		// Joomla! modal trigger
-		if ( !$user->guest || (JRequest::getCmd('option') == 'com_k2' && JRequest::getCmd('view') == 'item') || defined('K2_JOOMLA_MODAL_REQUIRED') ){
-			JHTML::_('behavior.modal');
-		}
+		$document = JFactory::getDocument();
 
 		$params = JComponentHelper::getParams('com_k2');
 
-		$document = JFactory::getDocument();
-
 		// jQuery and K2 JS loading
 		K2HelperHTML::loadjQuery();
+
+		// Joomla! modal trigger
+		if ( !$user->guest || (JRequest::getCmd('option') == 'com_k2' && JRequest::getCmd('view') == 'item') || defined('K2_JOOMLA_MODAL_REQUIRED') ){
+			$document->addScript(JUri::root(true).'/media/k2/assets/js/jquery.magnific-popup.min.js');
+			$document->addStyleSheet(JUri::root(true).'/media/k2/assets/css/magnific-popup.css');
+		}
 
 		$document->addScript(JURI::root(true).'/components/com_k2/js/k2.js?v2.7.0&amp;sitepath='.JURI::root(true).'/');
 		//$document->addScriptDeclaration("var K2SitePath = '".JURI::root(true)."/';");

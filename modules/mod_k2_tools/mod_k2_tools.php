@@ -31,16 +31,6 @@ $width = intval($params->get('width', 20));
 $maxlength = $width > 20 ? $width : 20;
 $text = $params->get('text', JText::_('K2_SEARCH'));
 
-if (K2_JVERSION == '15')
-{
-    JHTML::_('behavior.mootools');
-}
-else
-{
-    JHTML::_('behavior.framework');
-
-}
-
 // API
 $document = JFactory::getDocument();
 $app = JFactory::getApplication();

@@ -525,12 +525,14 @@ $K2(document).ready(function() {
                 }
             });
             if ($K2('input[name=isSite]').val() == 1) {
-            	if(parent.$('sbox-overlay') != undefined) {
-            		 parent.$('sbox-overlay').removeEvents('click');
-            	}
-            	if(parent.$('sbox-btn-close') != undefined) {
-            		 parent.$('sbox-btn-close').removeEvents('click');
-            	}
+              if(typeof(parent.$) !== 'undefined') {
+                if(parent.$('sbox-overlay') != undefined) {
+                   parent.$('sbox-overlay').removeEvents('click');
+                }
+                if(parent.$('sbox-btn-close') != undefined) {
+                   parent.$('sbox-btn-close').removeEvents('click');
+                }
+              }
                 var elements = [parent.$K2('#sbox-btn-close'), $K2('#toolbar-cancel a')];
                 $K2.each(elements, function(index, element) {
                     element.unbind();
@@ -543,16 +545,23 @@ $K2(document).ready(function() {
                             cache : false,
                             url : K2SitePath + 'index.php?option=com_k2&view=item&task=checkin&cid=' + k2ItemId + '&lang=' + $K2('input[name=lang]').val() + '&sigProFolder=' + sigProFolder,
                             success : function() {
+                                // Refresh parent
                                 if (window.opener) {
                                     window.opener.location.reload();
                                 } else {
                                     parent.window.location.reload();
                                 }
-                                if ( typeof (window.parent.SqueezeBox.close == 'function')) {
+
+                                // Close modal
+                                if (typeof(parent.$K2.magnificPopup) !== 'undefined') {
+                                  parent.$K2.magnificPopup.close();
+                                }
+                                if ( typeof (window.parent.SqueezeBox !== 'undefined')) {
                                     window.parent.SqueezeBox.close();
                                 } else {
                                     parent.$K2('#sbox-window').close();
                                 }
+                                
                                 if (window.opener) {
                                     window.close();
                                 }

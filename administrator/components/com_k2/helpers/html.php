@@ -59,11 +59,11 @@ class K2HelperHTML
 		{
 			if (K2_JVERSION == '15')
 			{
-				JHtml::_('behavior.mootools');
+				//JHtml::_('behavior.mootools');
 			}
 			else if (K2_JVERSION == '25')
 			{
-				JHtml::_('behavior.framework');
+				//JHtml::_('behavior.framework');
 			}
 			else
 			{
@@ -73,7 +73,7 @@ class K2HelperHTML
 				}
 				else
 				{
-					JHtml::_('behavior.framework');
+					//JHtml::_('behavior.framework');
 					if ($application->isAdmin() || ($application->isSite() && $params->get('jQueryHandling')))
 					{
 						JHtml::_('jquery.framework');
@@ -122,11 +122,11 @@ class K2HelperHTML
 
 				if ($handling == 'local')
 				{
-					$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-ui-1.11.4.custom.min.js');
+					$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-ui-1.8.24.custom.min.js');
 				}
 				else
 				{
-					$document->addScript('//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js');
+					$document->addScript('//ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js');
 				}
 			}
 

@@ -1563,11 +1563,11 @@ class K2ModelItem extends K2Model
 								$extension = JFile::getExt($filename);
 								if (!empty($extension) && in_array($extension, $imgExtensions))
 								{
-									$attributes = 'class="modal"';
+									$attributes = 'class="k2ExtraFieldsImageModal"';
 								}
 								else
 								{
-									$attributes = 'class="modal" rel="{handler:\'iframe\',size:{x:'.$params->get('linkPopupWidth').',y:'.$params->get('linkPopupHeight').'}}"';
+									$attributes = 'class="k2ExtraFieldsIframeModal" rel="{handler:\'iframe\',size:{x:'.$params->get('linkPopupWidth').',y:'.$params->get('linkPopupHeight').'}}"';
 								}
 								break;
 						}
