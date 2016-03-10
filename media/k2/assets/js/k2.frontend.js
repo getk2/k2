@@ -12,6 +12,9 @@ $K2(document).ready(function(){
 
 	// Magnific popup
 	if(typeof($K2.magnificPopup) !== 'undefined') {
+
+		// Backwards compatibility for users with overrides - START
+
 		// First remove possible attached events of the core modal in case it is loaded by a third party extension
 		$K2('.itemImage a.modal, .itemEditLink a.modal, .catItemEditLink a.modal, .catItemAddLink a.modal, .userItemAddLink a.modal, .userItemEditLink a.modal, .k2UserBlockActions a.modal, .k2UserBlockRenderedMenu a.modal, .commentToolbar a.modal').unbind('click');
 
@@ -24,10 +27,15 @@ $K2(document).ready(function(){
 		// Rest links
 		$K2('.k2UserBlockActions a.modal, .k2UserBlockRenderedMenu a.modal, .commentToolbar a.modal').magnificPopup({type:'iframe'});
 
-		// Extra fields modals
-		$K2('a.k2ExtraFieldsImageModal').magnificPopup({type:'image', image: {titleSrc : function() {return '';}}});
-		$K2('a.k2ExtraFieldsIframeModal').magnificPopup({type:'iframe'});
+		// Backwards compatibility for users with overrides - END
 
+		// New layouts
+		// Image
+		$K2('[data-k2-modal="image"]').magnificPopup({type:'image', image: {titleSrc : function() {return '';}}});
+		// Edit links
+		$K2('[data-k2-modal="edit"]').magnificPopup({type:'iframe', modal: true});
+		// Rest links
+		$K2('[data-k2-modal="iframe"]').magnificPopup({type:'iframe'});
 
 	}
 

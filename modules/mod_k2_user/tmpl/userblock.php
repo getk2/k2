@@ -32,7 +32,7 @@ defined('_JEXEC') or die;
   <ul class="k2UserBlockActions">
 		<?php if(is_object($user->profile) && isset($user->profile->addLink)): ?>
 		<li>
-			<a class="modal" rel="{handler:'iframe',size:{x:990,y:550}}" href="<?php echo $user->profile->addLink; ?>"><?php echo JText::_('K2_ADD_NEW_ITEM'); ?></a>
+			<a data-k2-modal="edit" href="<?php echo $user->profile->addLink; ?>"><?php echo JText::_('K2_ADD_NEW_ITEM'); ?></a>
 		</li>
 		<?php endif; ?>
 		<li>
@@ -43,30 +43,30 @@ defined('_JEXEC') or die;
 		</li>
 		<?php if($K2CommentsEnabled): ?>
 		<li>
-			<a class="modal" rel="{handler:'iframe',size:{x:990,y:550}}" href="<?php echo JRoute::_('index.php?option=com_k2&view=comments&tmpl=component'); ?>"><?php echo JText::_('K2_MODERATE_COMMENTS_TO_MY_PUBLISHED_ITEMS'); ?></a>
+			<a data-k2-modal="iframe" href="<?php echo JRoute::_('index.php?option=com_k2&view=comments&tmpl=component'); ?>"><?php echo JText::_('K2_MODERATE_COMMENTS_TO_MY_PUBLISHED_ITEMS'); ?></a>
 		</li>
 		<?php endif; ?>
 	</ul>
-	
+
 	<ul class="k2UserBlockRenderedMenu">
 		<?php $level = 1; foreach($menu as $key => $link): $level++; ?>
 		<li class="linkItemId<?php echo $link->id; ?>">
 			<?php if($link->type=='url' && $link->browserNav==0): ?>
 			<a href="<?php echo $link->route; ?>"><?php echo $link->name; ?></a>
 			<?php elseif(strpos($link->link,'option=com_k2&view=item&layout=itemform') || $link->browserNav==2): ?>
-			<a class="modal" rel="{handler:'iframe',size:{x:990,y:550}}" href="<?php echo $link->route; ?>"><?php echo $link->name; ?></a>
+			<a data-k2-modal="edit" href="<?php echo $link->route; ?>"><?php echo $link->name; ?></a>
 			<?php else: ?>
 			<a href="<?php echo $link->route; ?>"<?php if($link->browserNav==1) echo ' target="_blank"'; ?>><?php echo $link->name; ?></a>
 			<?php endif; ?>
-	
+
 			<?php if(isset($menu[$key+1]) && $menu[$key]->level < $menu[$key+1]->level): ?>
 			<ul>
 			<?php endif; ?>
-	
+
 			<?php if(isset($menu[$key+1]) && $menu[$key]->level > $menu[$key+1]->level): ?>
 			<?php echo str_repeat('</li></ul>', $menu[$key]->level - $menu[$key+1]->level); ?>
 			<?php endif; ?>
-	
+
 		<?php if(isset($menu[$key+1]) && $menu[$key]->level == $menu[$key+1]->level): ?>
 		</li>
 		<?php endif; ?>

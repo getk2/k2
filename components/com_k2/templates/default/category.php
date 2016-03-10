@@ -43,7 +43,7 @@ defined('_JEXEC') or die;
 			<?php if(isset($this->addLink)): ?>
 			<!-- Item add link -->
 			<span class="catItemAddLink">
-				<a class="modal" rel="{handler:'iframe',size:{x:990,y:650}}" href="<?php echo $this->addLink; ?>">
+				<a data-k2-modal="edit" href="<?php echo $this->addLink; ?>">
 					<?php echo JText::_('K2_ADD_A_NEW_ITEM_IN_THIS_CATEGORY'); ?>
 				</a>
 			</span>
@@ -147,7 +147,7 @@ defined('_JEXEC') or die;
 			else
 				$lastContainer='';
 			?>
-			
+
 			<div class="itemContainer<?php echo $lastContainer; ?>"<?php echo (count($this->leading)==1) ? '' : ' style="width:'.number_format(100/$this->params->get('num_leading_columns'), 1).'%;"'; ?>>
 				<?php
 					// Load category_item.php by default
@@ -167,7 +167,7 @@ defined('_JEXEC') or die;
 		<!-- Primary items -->
 		<div id="itemListPrimary">
 			<?php foreach($this->primary as $key=>$item): ?>
-			
+
 			<?php
 			// Define a CSS class for the last container on each row
 			if( (($key+1)%($this->params->get('num_primary_columns'))==0) || count($this->primary)<$this->params->get('num_primary_columns') )
@@ -175,7 +175,7 @@ defined('_JEXEC') or die;
 			else
 				$lastContainer='';
 			?>
-			
+
 			<div class="itemContainer<?php echo $lastContainer; ?>"<?php echo (count($this->primary)==1) ? '' : ' style="width:'.number_format(100/$this->params->get('num_primary_columns'), 1).'%;"'; ?>>
 				<?php
 					// Load category_item.php by default
@@ -195,7 +195,7 @@ defined('_JEXEC') or die;
 		<!-- Secondary items -->
 		<div id="itemListSecondary">
 			<?php foreach($this->secondary as $key=>$item): ?>
-			
+
 			<?php
 			// Define a CSS class for the last container on each row
 			if( (($key+1)%($this->params->get('num_secondary_columns'))==0) || count($this->secondary)<$this->params->get('num_secondary_columns') )
@@ -203,7 +203,7 @@ defined('_JEXEC') or die;
 			else
 				$lastContainer='';
 			?>
-			
+
 			<div class="itemContainer<?php echo $lastContainer; ?>"<?php echo (count($this->secondary)==1) ? '' : ' style="width:'.number_format(100/$this->params->get('num_secondary_columns'), 1).'%;"'; ?>>
 				<?php
 					// Load category_item.php by default
