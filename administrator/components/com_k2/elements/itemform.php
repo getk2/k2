@@ -16,6 +16,9 @@ class K2ElementItemForm extends K2Element
 {
     function fetchElement($name, $value, &$node, $control_name)
     {
+      if(version_compare(JVERSION, '3.5', 'ge')) {
+        JHtml::_('behavior.framework');
+      }
         $document = JFactory::getDocument();
         $document->addScriptDeclaration("
 			window.addEvent('domready', function() {
@@ -32,7 +35,7 @@ class K2ElementItemForm extends K2Element
 					if(options.length == 3) {
 						options[0].remove();
 					}
-				}				
+				}
 			});
 		");
         return '';
