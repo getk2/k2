@@ -199,8 +199,8 @@ $document->addScriptDeclaration("
 	</table>
 
 	<div id="k2BatchOperations" class="jw-modal">
-		<div>
-		<div class="header-alt">
+		<div class="jw-modal-content">
+		<div class="jw-modal-header">
 			<div class="row row-nomax">
 					<h3 class="k2FLeft"><?php echo JText::_('K2_BATCH_OPERATIONS'); ?></h3>
 					<span class="k2FRight">
@@ -211,7 +211,7 @@ $document->addScriptDeclaration("
 		</div>
 		<div class="subheader-alt">
 			<div class="row">
-				<div class="column small-12 large-6 small-centered">
+				<div class="column small-12 large-9 small-centered">
 					<div class="row">
 						<div class="column small-12 large-6">
 							<input type="radio" name="batchMode" value="apply" id="assign" checked="checked" />
@@ -227,7 +227,7 @@ $document->addScriptDeclaration("
 		</div>
 		<div class="row">
 
-			<div class="column small-12 large-6 small-centered">
+			<div class="column small-12 large-9 small-centered">
 				<div class="row">
 					<div class="column small-12 large-6 action-alt">
 						<label class="label-alt"><i class="fa fa-folder-open"></i> <?php echo JText::_('K2_CATEGORY'); ?></label>
@@ -250,24 +250,28 @@ $document->addScriptDeclaration("
 				</div>
 			</div>
 		</div>
-		<?php if(K2_JVERSION == '15'): ?>
-			<button onclick="javascript:submitbutton('saveBatch')"><?php echo JText::_('K2_APPLY'); ?></button>
-		<?php else: ?>
-			<button onclick="Joomla.submitbutton('saveBatch')" class="btn btn-small"><span class="icon-save"></span><?php echo JText::_('K2_APPLY'); ?></button>
-		<?php endif; ?>
-			<button onclick="$K2('.jw-modal-open').removeClass('jw-modal-open'); return false;"><?php echo JText::_('K2_CANCEL'); ?></button>
-</div>
+		<div class="jw-modal-footer text-right">
+			<div class="column large-9 small-centered">
+			<?php if(K2_JVERSION == '15'): ?>
+				<button class="jw-btn" onclick="javascript:submitbutton('saveBatch')"><?php echo JText::_('K2_APPLY'); ?></button>
+			<?php else: ?>
+				<button class="btn btn-success" onclick="Joomla.submitbutton('saveBatch')" class="btn btn-small"><?php echo JText::_('K2_APPLY'); ?></button>
+			<?php endif; ?>
+				<button class="btn btn-danger" onclick="$K2('.jw-modal-open').removeClass('jw-modal-open'); return false;"><?php echo JText::_('K2_CANCEL'); ?></button>
+			</div>
+		</div>
+	</div>
 	</div>
 
 	<div id="k2MoveOperations" class="jw-modal">
-		<div>
-		<div class="header-alt margin">
+		<div class="jw-modal-content">
+		<div class="jw-modal-header">
 			<div class="row row-nomax">
 				<h3><?php echo JText::_('K2_MOVE'); ?></h3>
 			</div>
 		</div>
 		<div class="row">
-			<div class="column small-12 large-6 small-centered">
+			<div class="column small-12 large-9 small-centered">
 				<div class="row">
 					<div class="column small-12 large-6 action-alt">
 						<label class="label-alt margin">
@@ -285,14 +289,17 @@ $document->addScriptDeclaration("
 				</div>
 			</div>
 		</div>
-
-		<?php if(K2_JVERSION == '15'): ?>
-			<button onclick="javascript:submitbutton('saveMove')"><?php echo JText::_('K2_APPLY'); ?></button>
-		<?php else: ?>
-			<button onclick="Joomla.submitbutton('saveMove')" class="btn btn-small"><span class="icon-save"></span><?php echo JText::_('K2_APPLY'); ?></button>
-		<?php endif; ?>
-			<button onclick="$K2('.jw-modal-open').removeClass('jw-modal-open'); return false;"><?php echo JText::_('K2_CANCEL'); ?></button>
-	</div>
+		<div class="jw-modal-footer text-right">
+			<div class="column large-9 small-centered">
+			<?php if(K2_JVERSION == '15'): ?>
+				<button onclick="javascript:submitbutton('saveMove')"><?php echo JText::_('K2_APPLY'); ?></button>
+			<?php else: ?>
+				<button onclick="Joomla.submitbutton('saveMove')" class="btn btn-small btn-success"><?php echo JText::_('K2_APPLY'); ?></button>
+			<?php endif; ?>
+				<button class="btn btn-danger" onclick="$K2('.jw-modal-open').removeClass('jw-modal-open'); return false;"><?php echo JText::_('K2_CANCEL'); ?></button>
+				</div>
+			</div>
+		</div>
 	</div>
 
 
