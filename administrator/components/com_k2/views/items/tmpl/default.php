@@ -197,6 +197,105 @@ $document->addScriptDeclaration("
 			<?php endforeach; ?>
 		</tbody>
 	</table>
+
+	<div id="k2BatchOperations" class="jw-modal">
+		<div>
+		<div class="header-alt">
+			<div class="row row-nomax">
+					<h3 class="k2FLeft"><?php echo JText::_('K2_BATCH_OPERATIONS'); ?></h3>
+					<span class="k2FRight">
+							<strong><span id="k2BatchOperationsCounter">0</span></strong>
+							<?php echo JText::_('K2_SELECTED_ITEMS'); ?>
+					</span>
+			</div>
+		</div>
+		<div class="subheader-alt">
+			<div class="row">
+				<div class="column small-12 large-6 small-centered">
+					<div class="row">
+						<div class="column small-12 large-6">
+							<input type="radio" name="batchMode" value="apply" id="assign" checked="checked" />
+							<label for="assign"><?php echo JText::_('K2_ASSIGN'); ?></label>
+						</div>
+						<div class="column small-12 large-6 clearfix">
+							<input type="radio" name="batchMode" value="clone" id="clone" />
+							<label for="clone"><?php echo JText::_('K2_CREATE_DUPLICATE'); ?></label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+
+			<div class="column small-12 large-6 small-centered">
+				<div class="row">
+					<div class="column small-12 large-6 action-alt">
+						<label class="label-alt"><i class="fa fa-folder-open"></i> <?php echo JText::_('K2_CATEGORY'); ?></label>
+						<?php echo $this->lists['batchCategories']; ?>
+					</div>
+					<div class="column small-12 large-6 clearfix action-alt">
+						<label class="label-alt"><i class="fa fa-unlock-alt"></i> <?php echo JText::_('K2_ACCESS_LEVEL'); ?></label>
+						<?php echo $this->lists['batchAccess']; ?>
+					</div>
+					<div class="column small-12 large-6 action-alt">
+						<label class="label-alt"><i class="fa fa-user"></i> <?php echo JText::_('K2_AUTHOR'); ?></label>
+						<?php echo $this->lists['batchAuthor']; ?>
+					</div>
+					<div class="column small-12 large-6 clearfix action-alt">
+						<?php if(isset($this->lists['language'])): ?>
+						<label class="label-alt"><i class="fa fa-globe"></i> <?php echo JText::_('K2_LANGUAGE'); ?></label>
+						<?php echo $this->lists['batchLanguage']; ?>
+						<?php endif; ?>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php if(K2_JVERSION == '15'): ?>
+			<button onclick="javascript:submitbutton('saveBatch')"><?php echo JText::_('K2_APPLY'); ?></button>
+		<?php else: ?>
+			<button onclick="Joomla.submitbutton('saveBatch')" class="btn btn-small"><span class="icon-save"></span><?php echo JText::_('K2_APPLY'); ?></button>
+		<?php endif; ?>
+			<button onclick="$K2('.jw-modal-open').removeClass('jw-modal-open'); return false;"><?php echo JText::_('K2_CANCEL'); ?></button>
+</div>
+	</div>
+
+	<div id="k2MoveOperations" class="jw-modal">
+		<div>
+		<div class="header-alt margin">
+			<div class="row row-nomax">
+				<h3><?php echo JText::_('K2_MOVE'); ?></h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="column small-12 large-6 small-centered">
+				<div class="row">
+					<div class="column small-12 large-6 action-alt">
+						<label class="label-alt margin">
+							<i class="fa fa-folder"></i>
+							<?php echo JText::_('K2_TARGET_CATEGORY'); ?>
+						</label>
+						<?php echo $this->lists['moveCategories']; ?>
+					</div>
+					<div class="column small-12 large-6 clearfix action-alt">
+						<label class="label-alt">
+							<i class="fa fa-arrows"></i>
+							<span id="k2MoveOperationsCounter"></span> <?php echo JText::_('K2_ITEMS_BEING_MOVED'); ?>
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<?php if(K2_JVERSION == '15'): ?>
+			<button onclick="javascript:submitbutton('saveMove')"><?php echo JText::_('K2_APPLY'); ?></button>
+		<?php else: ?>
+			<button onclick="Joomla.submitbutton('saveMove')" class="btn btn-small"><span class="icon-save"></span><?php echo JText::_('K2_APPLY'); ?></button>
+		<?php endif; ?>
+			<button onclick="$K2('.jw-modal-open').removeClass('jw-modal-open'); return false;"><?php echo JText::_('K2_CANCEL'); ?></button>
+	</div>
+	</div>
+
+
 	<input type="hidden" name="option" value="com_k2" />
 	<input type="hidden" name="view" value="<?php echo JRequest::getVar('view'); ?>" />
 	<input type="hidden" name="task" value="<?php echo JRequest::getVar('task'); ?>" />

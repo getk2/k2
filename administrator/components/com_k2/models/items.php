@@ -1384,7 +1384,7 @@ class K2ModelItems extends K2Model
 
 		$mainframe = JFactory::getApplication();
 		$cid = JRequest::getVar('cid');
-		$catid = JRequest::getInt('category');
+		$catid = JRequest::getInt('moveCategories');
 		foreach ($cid as $id)
 		{
 			$row = JTable::getInstance('K2Item', 'Table');
@@ -1414,10 +1414,10 @@ class K2ModelItems extends K2Model
 		$application = JFactory::getApplication();
 		$cid = JRequest::getVar('cid');
 		$batchMode = JRequest::getCmd('batchMode');
-		$catid = JRequest::getInt('category');
-		$access = JRequest::getCmd('access');
-		$author = JRequest::getInt('author');
-		$language = JRequest::getCmd('language');
+		$catid = JRequest::getInt('batchCategory');
+		$access = JRequest::getCmd('batchAccess');
+		$author = JRequest::getInt('batchAuthor');
+		$language = JRequest::getCmd('batchLanguage');
 		if($batchMode == 'clone'){
 			$cid = $this->copy(true);
 		}

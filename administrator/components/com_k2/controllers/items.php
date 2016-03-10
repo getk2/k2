@@ -199,25 +199,11 @@ class K2ControllerItems extends K2Controller
 				$model->move();
 		}
 
-		function batch()
-		{
-				$view = $this->getView('items', 'html');
-				$view->setLayout('batch');
-				$model = $this->getModel('items');
-				$view->setModel($model);
-				$view->batch();
-		}
-
 		function saveBatch()
 		{
 				JRequest::checkToken() or jexit('Invalid Token');
 				$model = $this->getModel('items');
 				$model->saveBatch();
-		}
-
-		function cancelBatch()
-		{
-				$this->setRedirect('index.php?option=com_k2&view=items');
 		}
 
 		function logStats()

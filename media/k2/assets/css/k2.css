@@ -605,6 +605,9 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 
 		.table-responsive-wrap { position: relative; }
 		.table-responsive { width: 100%; margin-bottom: 15px; overflow-x: scroll; overflow-y: hidden; -webkit-overflow-scrolling: touch; -ms-overflow-style: -ms-autohiding-scrollbar; }
+		.jw-modal { position: absolute; left: 50%; top: 100px; display: none; }
+		.jw-modal > div { position: relative; left: -50%; background: #fff;}
+		.jw-modal-open { display: block;}
 
 /* Information View */
 .k2ViewIsInfo .header, .k2ViewIsInfo .subhead { display: none; position: relative; z-index: 2; }

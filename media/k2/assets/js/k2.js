@@ -328,6 +328,29 @@ $K2(document).ready(function() {
             });
             break;
 
+        case 'items':
+            $K2('#K2BatchButton').click(function(event) {
+                event.preventDefault();
+                var checked = $K2('input[name="cid[]"]:checked').length;
+                $K2('#k2BatchOperationsCounter').text(checked);
+                if(checked > 0) {
+                  $K2('#k2BatchOperations').addClass('jw-modal-open');
+                } else {
+                  alert(K2SelectItemsError);
+                }
+            });
+            $K2('#K2MoveButton').click(function(event) {
+                event.preventDefault();
+                var checked = $K2('input[name="cid[]"]:checked').length;
+                $K2('#k2MoveOperationsCounter').text(checked);
+                if(checked > 0) {
+                  $K2('#k2MoveOperations').addClass('jw-modal-open');
+                } else {
+                  alert(K2SelectItemsError);
+                }
+            });
+            break;
+
         case 'item':
             $K2('#k2Accordion').accordion({
                 collapsible : true,
@@ -561,7 +584,7 @@ $K2(document).ready(function() {
                                 } else {
                                     parent.$K2('#sbox-window').close();
                                 }
-                                
+
                                 if (window.opener) {
                                     window.close();
                                 }
