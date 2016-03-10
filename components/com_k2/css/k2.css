@@ -81,6 +81,24 @@ span.siteRoot {display:none;}
 #recaptcha_response_field {border-color: #ccc !important;background-color:#fff !important;}
 .k2-recaptcha-v2 { margin-top: 12px;}
 
+/* --- Icon Font Support --- */
+/* resets for users with older overrides */
+div.itemToolbar ul li a#fontDecrease img, div.itemToolbar ul li a#fontIncrease img { background: none; }
+div.itemToolbar ul li a#fontDecrease, div.itemToolbar ul li a#fontIncrease { font-size: 14px; }
+a.ubUserFeedIcon, a.ubUserFeedIcon:hover, a.ubUserURL, a.ubUserURL:hover, span.ubUserEmail, div.itemIsFeatured:before, div.catItemIsFeatured:before, div.userItemIsFeatured:before,
+div.k2FeedIcon a, div.k2FeedIcon a:hover, div.itemToolbar ul li a#fontDecrease, div.itemToolbar ul li a#fontIncrease { background: none; text-decoration: none; vertical-align: middle;
+font-family:'simple-line-icons';speak:none;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale }
+
+/* Font assignments */
+div.catItemIsFeatured:before, 
+div.userItemIsFeatured:before, 
+div.itemIsFeatured:before{ content:"\e09b" }
+a#fontIncrease:before {content:"\e091"}
+a#fontDecrease:before {content:"\e092"}
+div.k2FeedIcon a:before, 
+a.ubUserFeedIcon:before {content:"\e03b"}
+a.ubUserURL:before{content:"\e037"}
+span.ubUserEmail:before {content:"\e086"}
 
 /* --- Primary lists in modules --- */
 div.k2LatestCommentsBlock ul,
@@ -128,11 +146,8 @@ table.csvData tr th {}
 table.csvData tr td {}
 
 /* --- Featured flags: the classes are repeated further below to indicate placement in the CSS structure --- */
-div.itemIsFeatured,
-div.catItemIsFeatured,
-div.userItemIsFeatured {}
-
-
+div.itemIsFeatured, div.catItemIsFeatured, div.userItemIsFeatured { position: relative; }
+div.itemIsFeatured:before, div.catItemIsFeatured:before, div.userItemIsFeatured:before { position: absolute; top: 10px; right: 10px; color: #CF1919; font-size: 20px; }
 
 /*----------------------------------------------------------------------
 	Component: Item view
@@ -176,9 +191,9 @@ div.itemToolbar {padding:2px 0;margin:16px 0 0 0;border-top:1px dotted #ccc;bord
 	div.itemToolbar ul li a img {vertical-align:middle;}
 	div.itemToolbar ul li span.itemTextResizerTitle {}
 	div.itemToolbar ul li a#fontDecrease {margin:0 0 0 2px;}
-	div.itemToolbar ul li a#fontDecrease img {width:13px;height:13px;background:url(../images/system/font_decrease.gif) no-repeat;}
+	div.itemToolbar ul li a#fontDecrease img {width:13px;height:13px;font-size: 13px;}
 	div.itemToolbar ul li a#fontIncrease {margin:0 0 0 2px;}
-	div.itemToolbar ul li a#fontIncrease img {width:13px;height:13px;background:url(../images/system/font_increase.gif) no-repeat;}
+	div.itemToolbar ul li a#fontIncrease img {width:13px;height:13px;font-size: 13px;}
 	div.itemToolbar ul li a#fontDecrease span,
 	div.itemToolbar ul li a#fontIncrease span {display:none;}
 
@@ -1002,14 +1017,14 @@ div.k2UsersBlock ul li a.ubUserName:hover {}
 div.k2UsersBlock ul li div.ubUserDescription {}
 div.k2UsersBlock ul li div.ubUserAdditionalInfo {}
 	a.ubUserFeedIcon,
-	a.ubUserFeedIcon:hover {display:inline-block;margin:0 2px 0 0;padding:0;width:16px;height:16px;}
+	a.ubUserFeedIcon:hover {display:inline-block;margin:0 2px 0 0;padding:0; font-size: 15px; }
 	a.ubUserFeedIcon span,
 	a.ubUserFeedIcon:hover span {display:none;}
 	a.ubUserURL,
-	a.ubUserURL:hover {display:inline-block;margin:0 2px 0 0;padding:0;width:16px;height:16px;}
+	a.ubUserURL:hover {display:inline-block;margin:0 2px 0 0;padding:0; font-size: 15px;}
 	a.ubUserURL span,
 	a.ubUserURL:hover span {display:none;}
-	span.ubUserEmail {display:inline-block;margin:0 2px 0 0;padding:0;width:16px;height:16px;overflow:hidden;}
+	span.ubUserEmail {display:inline-block;margin:0 2px 0 0;padding:0;overflow:hidden; font-size: 15px;}
 	span.ubUserEmail a {display:inline-block;margin:0;padding:0;width:16px;height:16px;text-indent:-9999px;}
 
 div.k2UsersBlock ul li h3 {clear:both;margin:8px 0 0 0;padding:0;}
