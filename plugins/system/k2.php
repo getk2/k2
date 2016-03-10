@@ -55,7 +55,7 @@ class plgSystemK2 extends JPlugin
 			$document->addStyleSheet(JUri::root(true).'/media/k2/assets/css/magnific-popup.css');
 		}
 
-		$document->addScript(JURI::root(true).'/components/com_k2/js/k2.js?v2.7.0&amp;sitepath='.JURI::root(true).'/');
+		$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.frontend.js?v2.7.0&amp;sitepath='.JURI::root(true).'/');
 		//$document->addScriptDeclaration("var K2SitePath = '".JURI::root(true)."/';");
 
 		if (JRequest::getCmd('task') == 'search' && $params->get('googleSearch'))

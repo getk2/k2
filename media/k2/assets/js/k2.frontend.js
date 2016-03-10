@@ -49,7 +49,7 @@ $K2(document).ready(function(){
 	}
 
 	// Set the site root path
-	var K2SitePath = getUrlParams('k2.js', 'sitepath');
+	var K2SitePath = getUrlParams('k2.frontend.js', 'sitepath');
 
 	// Comments
 	$K2('#comment-form').submit(function(event){
