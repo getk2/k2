@@ -72,7 +72,6 @@ defined('_JEXEC') or die;
 	<?php if($params->get('feed')): ?>
 	<div class="k2FeedIcon">
 		<a href="<?php echo JRoute::_('index.php?option=com_k2&view=itemlist&format=feed&moduleID='.$module->id); ?>" title="<?php echo JText::_('K2_SUBSCRIBE_TO_THIS_RSS_FEED'); ?>">
-			<i class="k2icon-feed"></i>
 			<span><?php echo JText::_('K2_SUBSCRIBE_TO_THIS_RSS_FEED'); ?></span>
 		</a>
 		<div class="clr"></div>

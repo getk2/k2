@@ -24,9 +24,9 @@ defined('_JEXEC') or die;
 
 	<?php foreach($this->blocks as $key=>$block): ?>
 	<div class="latestItemsContainer" style="width:<?php echo number_format(100/$this->params->get('latestItemsCols'), 1); ?>%;">
-
+	
 		<?php if($this->source=='categories'): $category=$block; ?>
-
+		
 		<?php if($this->params->get('categoryFeed') || $this->params->get('categoryImage') || $this->params->get('categoryTitle') || $this->params->get('categoryDescription')): ?>
 		<!-- Start K2 Category block -->
 		<div class="latestItemsCategory">

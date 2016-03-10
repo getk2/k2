@@ -199,7 +199,9 @@
 .k2icon-social-dropbox:before{content:"\e00c"}
 
 /* new icon styling introduced in 2.7 */
-
+/* resets for users with older overrides */
+a.ubUserFeedIcon, a.ubUserFeedIcon:hover, a.ubUserURL, a.ubUserURL:hover, span.ubUserEmail,
+div.k2FeedIcon a, div.k2FeedIcon a:hover, div.catItemIsFeatured, div.userItemIsFeatured { background: none;}
 
 /* new helper classes */
 .k2-loader {  -webkit-animation: fa-spin 2s infinite linear; animation: fa-spin 2s infinite linear; }
