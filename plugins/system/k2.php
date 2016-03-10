@@ -105,6 +105,12 @@ class plgSystemK2 extends JPlugin
 			else
 				$document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.css');
 
+			// k2.fonts.css
+			if (JFile::exists(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'css'.DS.'k2.fonts.css'))
+				$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.fonts.css');
+			else
+				$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.fonts.css');
+
 			// k2.print.css
 			if (JRequest::getInt('print') == 1)
 			{
