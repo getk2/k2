@@ -509,7 +509,9 @@ table#tagLists tr td#tagListsRight select {width:99%;height:106px;}
 		.itemAdditionalField input[type="text"]#existingImageValue { width: 100%; display: block; margin-bottom: 15px; }
 	.nicEdit-main {outline:0;}
 	.k2ExtraFieldHeader { font-size: 16px; color: #68696b; font-weight: 300; display: block; margin-top: 0; margin-bottom: 0; padding-top: 5px; }
-
+	/* padding correction for the calendar */
+	#extraFieldsContainer .k2Calendar + .btn { padding: 10px 12px; }
+	#extraFieldsContainer .icon-calendar { margin-right: 0;}
 
 	@media screen and (min-width: 767px) {
 		.itemAdditionalField .itemAdditionalValue {  width: 100px; margin-bottom: 0 }
