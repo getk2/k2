@@ -51,7 +51,7 @@ class K2ControllerItem extends K2Controller
 		$model = $this->getModel('tag');
 		$model->addTag();
 	}
-	
+
 	function tags()
 	{
 		$user = JFactory::getUser();
@@ -78,7 +78,6 @@ class K2ControllerItem extends K2Controller
 		$extraFieldModel = $this->getModel('extraField');
 		$extraFields = $extraFieldModel->getExtraFieldsByGroup($category->extraFieldsGroup);
 
-		$output = '<table class="admintable" id="extraFields">';
 		$counter = 0;
 		if (count($extraFields))
 		{
@@ -87,17 +86,19 @@ class K2ControllerItem extends K2Controller
 
 				if ($extraField->type == 'header')
 				{
-					$output .= '<tr><td colspan="2" ><h4 class="k2ExtraFieldHeader">'.$extraField->name.'</h4></td></tr>';
+					$output .= '<div class="itemAdditionalField"><h4 class="k2ExtraFieldHeader">'.$extraField->name.'</h4></div>';
 				}
 				else
 				{
-					$output .= '<tr><td align="right" class="key"><label for="K2ExtraField_'.$extraField->id.'">'.$extraField->name.'</label></td>';
-					$output .= '<td>'.$extraFieldModel->renderExtraField($extraField, $itemID).'</td></tr>';
+					$output .= '<div class="itemAdditionalField">';
+					$output .= '<div class="k2Right k2FLeft itemAdditionalValue"><label for="K2ExtraField_'.$extraField->id.'">'.$extraField->name.'</label></div>';
+					$output .= '<div class="itemAdditionalData">'.$extraFieldModel->renderExtraField($extraField, $itemID).'</div>';
+					$output .= '</div>';
 				}
 				$counter++;
 			}
 		}
-		$output .= '</table>';
+
 
 		if ($counter == 0)
 			$output = JText::_('K2_THIS_CATEGORY_DOESNT_HAVE_ASSIGNED_EXTRA_FIELDS');
