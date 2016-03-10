@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'simple-line-icons';
   src: url('../fonts/Simple-Line-Icons.eot?v=2.2.2');
-  src: url('../fonts/Simple-Line-Icons.eot?#iefix&v=2.2.2') format('embedded-opentype'), 
-  url('../fonts/Simple-Line-Icons.ttf?v=2.2.2') format('truetype'), 
-  url('../fonts/Simple-Line-Icons.woff2?v=2.2.2') format('woff2'), 
-  url('../fonts/Simple-Line-Icons.woff?v=2.2.2') format('woff'), 
+  src: url('../fonts/Simple-Line-Icons.eot?#iefix&v=2.2.2') format('embedded-opentype'),
+  url('../fonts/Simple-Line-Icons.ttf?v=2.2.2') format('truetype'),
+  url('../fonts/Simple-Line-Icons.woff2?v=2.2.2') format('woff2'),
+  url('../fonts/Simple-Line-Icons.woff?v=2.2.2') format('woff'),
   url('../fonts/Simple-Line-Icons.svg?v=2.2.2#simple-line-icons') format('svg');
   font-weight: normal;
   font-style: normal;
@@ -197,3 +197,31 @@
 .k2icon-social-stumbleupon:before{content:"\e614"}
 .k2icon-social-youtube:before{content:"\e008"}
 .k2icon-social-dropbox:before{content:"\e00c"}
+
+/* new icon styling introduced in 2.7 */
+
+
+/* new helper classes */
+.k2-loader {  -webkit-animation: fa-spin 2s infinite linear; animation: fa-spin 2s infinite linear; }
+
+/* simple animation for spining icons */
+@-webkit-keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}

@@ -46,18 +46,21 @@ defined('_JEXEC') or die;
 				<!-- RSS feed icon -->
 				<a class="ubUserFeedIcon" href="<?php echo $user->feed; ?>" title="<?php echo JText::_('K2_SUBSCRIBE_TO_THIS_USERS_RSS_FEED'); ?>">
 					<span><?php echo JText::_('K2_SUBSCRIBE_TO_THIS_USERS_RSS_FEED'); ?></span>
+					<i class="k2icon-feed"></i>
 				</a>
 				<?php endif; ?>
 
 				<?php if($userURL && $user->url): ?>
 				<a class="ubUserURL" rel="me" href="<?php echo $user->url; ?>" title="<?php echo JText::_('K2_WEBSITE'); ?>" target="_blank">
 					<span><?php echo JText::_('K2_WEBSITE'); ?></span>
+					<i class="k2icon-globe"></i>
 				</a>
 				<?php endif; ?>
 
 				<?php if($userEmail): ?>
 				<span class="ubUserEmail" title="<?php echo JText::_('K2_EMAIL'); ?>">
 					<?php echo JHTML::_('Email.cloak', $user->email); ?>
+					<i class="k2icon-envelope"></i>
 				</span>
 				<?php endif; ?>
 			</div>

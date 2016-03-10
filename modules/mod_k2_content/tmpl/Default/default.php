@@ -41,17 +41,17 @@ defined('_JEXEC') or die;
       <?php if($params->get('itemAuthor')): ?>
       <div class="moduleItemAuthor">
 	      <?php echo K2HelperUtilities::writtenBy($item->authorGender); ?>
-	
+
 				<?php if(isset($item->authorLink)): ?>
 				<a rel="author" title="<?php echo K2HelperUtilities::cleanHtml($item->author); ?>" href="<?php echo $item->authorLink; ?>"><?php echo $item->author; ?></a>
 				<?php else: ?>
 				<?php echo $item->author; ?>
 				<?php endif; ?>
-				
+
 				<?php if($params->get('userDescription')): ?>
 				<?php echo $item->authorDescription; ?>
 				<?php endif; ?>
-				
+
 			</div>
 			<?php endif; ?>
 
@@ -145,7 +145,7 @@ defined('_JEXEC') or die;
 			</div>
       <?php endif; ?>
 
-			<?php if($params->get('itemCommentsCounter') && $componentParams->get('comments')): ?>		
+			<?php if($params->get('itemCommentsCounter') && $componentParams->get('comments')): ?>
 				<?php if(!empty($item->event->K2CommentsCounter)): ?>
 					<!-- K2 Plugins: K2CommentsCounter -->
 					<?php echo $item->event->K2CommentsCounter; ?>
@@ -194,6 +194,7 @@ defined('_JEXEC') or die;
 	<?php if($params->get('feed')): ?>
 	<div class="k2FeedIcon">
 		<a href="<?php echo JRoute::_('index.php?option=com_k2&view=itemlist&format=feed&moduleID='.$module->id); ?>" title="<?php echo JText::_('K2_SUBSCRIBE_TO_THIS_RSS_FEED'); ?>">
+			<i class="k2icon-feed"></i>
 			<span><?php echo JText::_('K2_SUBSCRIBE_TO_THIS_RSS_FEED'); ?></span>
 		</a>
 		<div class="clr"></div>

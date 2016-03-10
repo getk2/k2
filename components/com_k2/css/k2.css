@@ -46,7 +46,7 @@ body.contentpane #k2Container {padding:16px;} /* used in popups */
 /* --- RSS feed icon --- */
 div.k2FeedIcon {padding:4px 8px;}
 div.k2FeedIcon a,
-div.k2FeedIcon a:hover {display:block;float:right;margin:0;padding:0;width:16px;height:16px;background:url(../images/fugue/feed.png) no-repeat 50% 50%;}
+div.k2FeedIcon a:hover {display:block;float:right;margin:0;padding:0;width:16px;height:16px;}
 div.k2FeedIcon a span,
 div.k2FeedIcon a:hover span {display:none;}
 
@@ -176,9 +176,9 @@ div.itemToolbar {padding:2px 0;margin:16px 0 0 0;border-top:1px dotted #ccc;bord
 	div.itemToolbar ul li a img {vertical-align:middle;}
 	div.itemToolbar ul li span.itemTextResizerTitle {}
 	div.itemToolbar ul li a#fontDecrease {margin:0 0 0 2px;}
-	div.itemToolbar ul li a#fontDecrease img {width:13px;height:13px;background:url(../images/system/font_decrease.gif) no-repeat;}
+	div.itemToolbar ul li a#fontDecrease img {width:13px;height:13px;font-size: 13px;}
 	div.itemToolbar ul li a#fontIncrease {margin:0 0 0 2px;}
-	div.itemToolbar ul li a#fontIncrease img {width:13px;height:13px;background:url(../images/system/font_increase.gif) no-repeat;}
+	div.itemToolbar ul li a#fontIncrease img {width:13px;height:13px;font-size: 13px;}
 	div.itemToolbar ul li a#fontDecrease span,
 	div.itemToolbar ul li a#fontIncrease span {display:none;}
 
@@ -1002,14 +1002,14 @@ div.k2UsersBlock ul li a.ubUserName:hover {}
 div.k2UsersBlock ul li div.ubUserDescription {}
 div.k2UsersBlock ul li div.ubUserAdditionalInfo {}
 	a.ubUserFeedIcon,
-	a.ubUserFeedIcon:hover {display:inline-block;margin:0 2px 0 0;padding:0;width:16px;height:16px;background:url(../images/fugue/feed.png) no-repeat 50% 50%;}
+	a.ubUserFeedIcon:hover {display:inline-block;margin:0 2px 0 0;padding:0;}
 	a.ubUserFeedIcon span,
 	a.ubUserFeedIcon:hover span {display:none;}
 	a.ubUserURL,
-	a.ubUserURL:hover {display:inline-block;margin:0 2px 0 0;padding:0;width:16px;height:16px;background:url(../images/fugue/globe.png) no-repeat 50% 50%;}
+	a.ubUserURL:hover {display:inline-block;margin:0 2px 0 0;padding:0;}
 	a.ubUserURL span,
 	a.ubUserURL:hover span {display:none;}
-	span.ubUserEmail {display:inline-block;margin:0 2px 0 0;padding:0;width:16px;height:16px;background:url(../images/fugue/mail.png) no-repeat 50% 50%;overflow:hidden;}
+	span.ubUserEmail {display:inline-block;margin:0 2px 0 0;padding:0;overflow:hidden;}
 	span.ubUserEmail a {display:inline-block;margin:0;padding:0;width:16px;height:16px;text-indent:-9999px;}
 
 div.k2UsersBlock ul li h3 {clear:both;margin:8px 0 0 0;padding:0;}

@@ -26,6 +26,7 @@ defined('_JEXEC') or die;
 	<!-- RSS feed icon -->
 	<div class="k2FeedIcon">
 		<a href="<?php echo $this->feed; ?>" title="<?php echo JText::_('K2_SUBSCRIBE_TO_THIS_RSS_FEED'); ?>">
+			<i class="k2icon-feed"></i>
 			<span><?php echo JText::_('K2_SUBSCRIBE_TO_THIS_RSS_FEED'); ?></span>
 		</a>
 		<div class="clr"></div>
@@ -46,7 +47,7 @@ defined('_JEXEC') or die;
 					<?php echo JHTML::_('date', $item->created , JText::_('K2_DATE_FORMAT_LC2')); ?>
 				</span>
 				<?php endif; ?>
-			
+
 			  <?php if($item->params->get('tagItemTitle',1)): ?>
 			  <!-- Item title -->
 			  <h2 class="tagItemTitle">
@@ -73,7 +74,7 @@ defined('_JEXEC') or die;
 				  <div class="clr"></div>
 			  </div>
 			  <?php endif; ?>
-			  
+
 			  <?php if($item->params->get('tagItemIntroText',1)): ?>
 			  <!-- Item introtext -->
 			  <div class="tagItemIntroText">
@@ -83,11 +84,11 @@ defined('_JEXEC') or die;
 
 			  <div class="clr"></div>
 		  </div>
-		  
+
 		  <div class="clr"></div>
-		  
+
 		  <?php if($item->params->get('tagItemExtraFields',0) && count($item->extra_fields)): ?>
-		  <!-- Item extra fields -->  
+		  <!-- Item extra fields -->
 		  <div class="tagItemExtraFields">
 		  	<h4><?php echo JText::_('K2_ADDITIONAL_INFO'); ?></h4>
 		  	<ul>
@@ -99,7 +100,7 @@ defined('_JEXEC') or die;
 					<?php else: ?>
 					<span class="tagItemExtraFieldsLabel"><?php echo $extraField->name; ?></span>
 					<span class="tagItemExtraFieldsValue"><?php echo $extraField->value; ?></span>
-					<?php endif; ?>		
+					<?php endif; ?>
 				</li>
 				<?php endif; ?>
 				<?php endforeach; ?>
@@ -107,7 +108,7 @@ defined('_JEXEC') or die;
 		    <div class="clr"></div>
 		  </div>
 		  <?php endif; ?>
-		  
+
 			<?php if($item->params->get('tagItemCategory')): ?>
 			<!-- Item category name -->
 			<div class="tagItemCategory">
@@ -115,7 +116,7 @@ defined('_JEXEC') or die;
 				<a href="<?php echo $item->category->link; ?>"><?php echo $item->category->name; ?></a>
 			</div>
 			<?php endif; ?>
-			
+
 			<?php if ($item->params->get('tagItemReadMore')): ?>
 			<!-- Item "read more..." link -->
 			<div class="tagItemReadMore">
@@ -128,7 +129,7 @@ defined('_JEXEC') or die;
 			<div class="clr"></div>
 		</div>
 		<!-- End K2 Item Layout -->
-		
+
 		<?php endforeach; ?>
 	</div>
 
@@ -142,6 +143,6 @@ defined('_JEXEC') or die;
 	<?php endif; ?>
 
 	<?php endif; ?>
-	
+
 </div>
 <!-- End K2 Tag Layout -->

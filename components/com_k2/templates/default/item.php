@@ -102,11 +102,11 @@ defined('_JEXEC') or die;
 				<span class="itemTextResizerTitle"><?php echo JText::_('K2_FONT_SIZE'); ?></span>
 				<a href="#" id="fontDecrease">
 					<span><?php echo JText::_('K2_DECREASE_FONT_SIZE'); ?></span>
-					<img src="<?php echo JURI::root(true); ?>/components/com_k2/images/system/blank.gif" alt="<?php echo JText::_('K2_DECREASE_FONT_SIZE'); ?>" />
+					<i class="k2icon-magnifier-remove"></i>
 				</a>
 				<a href="#" id="fontIncrease">
 					<span><?php echo JText::_('K2_INCREASE_FONT_SIZE'); ?></span>
-					<img src="<?php echo JURI::root(true); ?>/components/com_k2/images/system/blank.gif" alt="<?php echo JText::_('K2_INCREASE_FONT_SIZE'); ?>" />
+					<i class="k2icon-magnifier-add"></i>
 				</a>
 			</li>
 			<?php endif; ?>
