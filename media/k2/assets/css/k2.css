@@ -615,7 +615,7 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 
 		.jw-modal-main { padding-top: 40px; }
 		.jw-modal-header { color: #fff; padding: 25px 20px; font-size: 20px; font-weight: 300; letter-spacing: -1px; background-color: #63696f; box-shadow: 0 1px 0 rgba(0,0,0,.18); overflow: hidden; }
-			.jw-modal-header h3 { margin: 0; }
+			.jw-modal-header h3 { margin: 0; font-size: 20px; }
 		.jw-modal-content { position: absolute; left: 50%; width: 650px; border: 1px solid rgba(0,0,0,.8); background-color: #fdfdfd; box-shadow: 0 0 29px rgba(0,0,0,.16);
 z-index: 100; margin: 25px auto 25px -325px; font-family: 'Open Sans', sans-serif; -webkit-font-smoothing: antialiased; font-smoothing: antialiased; }
 		.jw-modal-footer { padding: 16px 0;  background-color: #eff1f1; box-shadow: 0 1px 0 rgba(0,0,0,.18); clear: both; width: 100%; overflow: hidden; }
@@ -733,7 +733,7 @@ html.isJ25 #k2AdminContainer .k2AdminTableFilters tr td { padding: 10px; }
 .oldJ select { max-width: 300px; }
 .k2ViewIsCategory .oldJ input, .k2ViewIsItem .oldJ input,  .k2ViewIsCategory .oldJ select, .k2ViewIsItem .oldJ select { height: 40px; width: 100%; }
 .oldJ input[type="text"] { width: 100%; }
-
+.oldJ .adminlist input[type="text"] { width: auto; min-width: 0; }
 .oldJ .k2TagsNotice { margin-bottom: 30px;}
 .oldJ #itemAttachments a.k2AttachmentBrowseServer { margin-left: 20px; }
 
@@ -833,5 +833,6 @@ td#k2Comment {}
 	.label-alt { font-weight: 700; color: #636a6f; font-size: 13px; line-height: 1; display: block; }
 		.label-alt.margin { margin-bottom: 10px; }
 		.label-alt .fa { font-size: 18px; display: inline-block; vertical-align: middle; margin-right: 5px; }
+	.oldJ .label-alt { display: block; }
 
 /* End */
