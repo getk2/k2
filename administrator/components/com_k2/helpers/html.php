@@ -1,10 +1,10 @@
 <?php
 /**
- * @version		2.7.x
- * @package		K2
- * @author		JoomlaWorks http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.
- * @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @version    2.7.x
+ * @package    K2
+ * @author     JoomlaWorks http://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2016 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
 // no direct access
@@ -97,12 +97,6 @@ class K2HelperHTML
 				{
 					if ($handling && JString::strpos($handling, 'remote') !== false)
 					{
-						// Remove this if statement in 2.7.0
-						if ($handling == '1.9remote')
-						{
-							$handling = '1remote';
-						}
-
 						$document->addScript('//ajax.googleapis.com/ajax/libs/jquery/'.str_replace('remote', '', $handling).'/jquery.min.js');
 					}
 					else if ($handling && JString::strpos($handling, 'remote') === false)
@@ -118,7 +112,7 @@ class K2HelperHTML
 
 				// No conflict loaded when $ui requested or in the backend.
 				// No need to reload for $mediaManager as the latter is always called with $ui
-				$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.noconflict.js');
+				$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.noconflict.js?v=2.7.0');
 
 				if ($handling == 'local')
 				{
