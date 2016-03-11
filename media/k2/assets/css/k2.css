@@ -140,7 +140,7 @@ div.k2Table {margin:0 0 20px 0;}
 	.k2ViewIsItem div.k2SubTable .k2SubTableLabel:first-child { margin-left:0; width: auto; }
 	.k2ItemTableRightPad { padding-left: 16px; }
 }
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1660px) {
 	div.k2CatTableLeft {float:left;}
 	div.k2CatTableRight {float:right; text-align: right;}
 
