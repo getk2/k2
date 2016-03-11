@@ -39,7 +39,7 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 
 /* Simple grid based on Foundation */
 #k2AdminContainer .row { margin-left: auto; margin-right: auto; width: 100%; max-width: 1200px; }
-	#k2AdminContainer .row .row  { margin-left: -0.625em; margin-right: -0.625em;}
+	#k2AdminContainer .row .row  { margin-left: -0.625em; margin-right: -0.625em; width: auto; }
 	#k2AdminContainer .row.row-nomax { max-width: 100%; }
 .column, .columns { float: left; padding-left: 0.625em; padding-right: 0.625em; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 .small-12 { width: 100%; }
@@ -613,11 +613,17 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 		.jw-modal { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,.3); }
 		.jw-modal.jw-modal-open { display: block;}
 
+		.jw-modal-main { padding-top: 40px; }
 		.jw-modal-header { color: #fff; padding: 25px 20px; font-size: 20px; font-weight: 300; letter-spacing: -1px; background-color: #63696f; box-shadow: 0 1px 0 rgba(0,0,0,.18); overflow: hidden; }
 			.jw-modal-header h3 { margin: 0; }
 		.jw-modal-content { position: absolute; left: 50%; width: 650px; border: 1px solid rgba(0,0,0,.8); background-color: #fdfdfd; box-shadow: 0 0 29px rgba(0,0,0,.16);
 z-index: 100; margin: 25px auto 25px -325px; font-family: 'Open Sans', sans-serif; -webkit-font-smoothing: antialiased; font-smoothing: antialiased; }
 		.jw-modal-footer { padding: 16px 0;  background-color: #eff1f1; box-shadow: 0 1px 0 rgba(0,0,0,.18); }
+		
+		/* button styling */
+		.jw-btn { display: inline-block; vertical-align: middle; white-space: nowrap; color: #fdfdfd; font-size: 13px; line-height: 1; padding: 10px 30px; border-radius: 3px; border: 1px solid #363a3d; font-weight: 700; }
+		.jw-btn-save { border: 1px solid #363a3d; background-color: #3fa700; box-shadow: 0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #54db00; }
+		.jw-btn-close { border-color: #a53222; background-color: #d7412d; box-shadow: 0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #ff4d35; }
 
 /* Information View */
 .k2ViewIsInfo .header, .k2ViewIsInfo .subhead {  position: relative; z-index: 2; }
