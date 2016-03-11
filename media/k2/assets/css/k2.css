@@ -618,7 +618,7 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 			.jw-modal-header h3 { margin: 0; }
 		.jw-modal-content { position: absolute; left: 50%; width: 650px; border: 1px solid rgba(0,0,0,.8); background-color: #fdfdfd; box-shadow: 0 0 29px rgba(0,0,0,.16);
 z-index: 100; margin: 25px auto 25px -325px; font-family: 'Open Sans', sans-serif; -webkit-font-smoothing: antialiased; font-smoothing: antialiased; }
-		.jw-modal-footer { padding: 16px 0;  background-color: #eff1f1; box-shadow: 0 1px 0 rgba(0,0,0,.18); }
+		.jw-modal-footer { padding: 16px 0;  background-color: #eff1f1; box-shadow: 0 1px 0 rgba(0,0,0,.18); clear: both; width: 100%; overflow: hidden; }
 		
 		/* button styling */
 		.jw-btn { display: inline-block; vertical-align: middle; white-space: nowrap; color: #fdfdfd; font-size: 13px; line-height: 1; padding: 10px 30px; border-radius: 3px; border: 1px solid #363a3d; font-weight: 700; }
@@ -680,7 +680,7 @@ padding:0;color:#4a4949;}
 /* Joomla 1.5 */
 html.isJ15 {overflow-y:scroll;}
 html.isJ15 #system-message {margin:-26px 0 16px;}
-html.isJ15 #system-message dd ul {padding:20px 10px;}
+html.isJ15 #system-message dd ul {padding:20px 10px;margin-top:0;}
 html.isJ15 div#element-box div.m {padding:0; border-bottom: 1px solid #ccc; }
 html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs {border-top:1px solid #d4d7d9;}
 html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {content: "\f0d8";font-family:"FontAwesome";font-style:normal;font-weight:normal;text-decoration:inherit;color:#fff;font-size:32px;position:absolute;bottom:-12px;left:50%;margin-left:-16px;width:32px;text-shadow:0px -1px 1px #ccc;}
@@ -755,7 +755,8 @@ html.isJ25 #k2AdminContainer .k2AdminTableFilters tr td { padding: 10px; }
 	.oldJ .xmlParamsFields ul li { padding: 10px 20px 10px 0; }
 
 /* Joomla! 1.5! specific */
-.isJ15 div.header { padding: 12px 0; }
+#system-message dd.message { overflow: hidden; margin-top: 0; }
+.isJ15 div.header { padding: 0; margin: 12px; }
 .isJ15 div.toolbar { margin-top: 10px; }
 .isJ15 #content-box .padding { padding: 0; }
 .isJ15 div#toolbar-box div.t, .isJ15 div#element-box div.section-box div.t { padding: 0; background: none; }
@@ -829,7 +830,7 @@ td#k2Comment {}
 		.action-alt ol { padding-left: 15px; margin: 10px 0 15px 0; font-size: 13px; font-weight: 500; }
 		.action-alt ol li { margin-bottom: 8px; }
 
-	.label-alt { font-weight: 700; color: #636a6f; font-size: 13px; line-height: 1; }
+	.label-alt { font-weight: 700; color: #636a6f; font-size: 13px; line-height: 1; display: block; }
 		.label-alt.margin { margin-bottom: 10px; }
 		.label-alt .fa { font-size: 18px; display: inline-block; vertical-align: middle; margin-right: 5px; }
 
