@@ -623,7 +623,9 @@ z-index: 100; margin: 25px auto 25px -325px; font-family: 'Open Sans', sans-seri
 		/* button styling */
 		.jw-btn { display: inline-block; vertical-align: middle; white-space: nowrap; color: #fdfdfd; font-size: 13px; line-height: 1; padding: 10px 30px; border-radius: 3px; border: 1px solid #363a3d; font-weight: 700; }
 		.jw-btn-save { border: 1px solid #363a3d; background-color: #3fa700; box-shadow: 0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #54db00; }
+			.jw-btn-save:hover { background: #358b01; }
 		.jw-btn-close { border-color: #a53222; background-color: #d7412d; box-shadow: 0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #ff4d35; }
+			.jw-btn-close:hover { background: #a53222; }
 
 /* Information View */
 .k2ViewIsInfo .header, .k2ViewIsInfo .subhead {  position: relative; z-index: 2; }
@@ -731,6 +733,8 @@ html.isJ25 #k2AdminContainer .k2AdminTableFilters tr td { padding: 10px; }
 .oldJ fieldset { padding-left: 0; border: 0; }
 .oldJ select, .oldJ input[type="text"], .oldJ input[type="email"] { height: 30px; min-height: 30px; width: auto; max-width: 100%; }
 .oldJ select { max-width: 300px; }
+.k2ViewIsCategory .oldJ input[type="file"] { margin-bottom: 20px; }
+input#k2ImageBrowseServer { width: auto; height: 30px; line-height: 8px; margin-left: 10px; }
 .k2ViewIsCategory .oldJ input, .k2ViewIsItem .oldJ input,  .k2ViewIsCategory .oldJ select, .k2ViewIsItem .oldJ select { height: 40px; width: 100%; }
 .oldJ input[type="text"] { width: 100%; }
 .oldJ .adminlist input[type="text"] { width: auto; min-width: 0; }
