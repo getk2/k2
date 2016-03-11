@@ -57,7 +57,7 @@ $K2(document).ready(function() {
 		// Bind click handler to menu items so we can get a fancy scroll animation
 		menuItems.click(function(e){
 		  var href = $K2(this).attr("href"),
-		      offsetTop = (href === "#") ? 0 : $K2(href).offset().top-topMenuHeight-60;
+		      offsetTop = (href === "#") ? 0 : $K2(href).offset().top-60;
 		  $K2('html, body').stop().animate({
 		      scrollTop: offsetTop
 		  }, 300);
@@ -67,7 +67,7 @@ $K2(document).ready(function() {
 		// Bind to scroll
 		$K2(window).scroll(function(){
 		   // Get container scroll position
-		   var fromTop = $K2(this).scrollTop()+topMenuHeight;
+		   var fromTop = $K2(this).scrollTop() + 100;
 
 		   // Get id of current scroll item
 		   var cur = scrollItems.map(function(){

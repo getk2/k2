@@ -619,10 +619,10 @@ z-index: 100; margin: 25px auto 25px -325px; font-family: 'Open Sans', sans-seri
 		.jw-modal-footer { padding: 16px 0;  background-color: #eff1f1; box-shadow: 0 1px 0 rgba(0,0,0,.18); }
 
 /* Information View */
-.k2ViewIsInfo .header, .k2ViewIsInfo .subhead { display: none; position: relative; z-index: 2; }
+.k2ViewIsInfo .header, .k2ViewIsInfo .subhead {  position: relative; z-index: 2; }
 
 #k2InfoPage { max-width: 1300px; }
-#k2InfoPage .k2ScrollingContent { margin-top: -41px; margin-bottom: 10px }
+#k2InfoPage .k2ScrollingContent {  margin-bottom: 10px }
 
 	#k2AdminContainer #k2InfoPage h1, #k2AdminContainer #k2InfoPage h2 { margin-bottom:20px; padding: 0; font-weight: 400; font-size: 26px; line-height: 28px; }
 	#k2InfoPage a {color:#00afec;}
@@ -631,10 +631,10 @@ z-index: 100; margin: 25px auto 25px -325px; font-family: 'Open Sans', sans-seri
 
 	.isJ15 #k2InfoPage ul.k2ScrollSpyMenu { top: 175px; }
 	.isJ25 #k2InfoPage ul.k2ScrollSpyMenu { top: 183px; }
-	.isJ30 #k2InfoPage ul.k2ScrollSpyMenu { top: 0; border-left: 1px solid #e3e4e4; }
+	.isJ30 #k2InfoPage ul.k2ScrollSpyMenu { padding-top: 125px; top: 0; border-left: 1px solid #e3e4e4; }
 
 	#k2InfoPage ul.k2ScrollSpyMenu { padding: 0; height: 100%; padding-top: 31px; z-index: 1; }
-		#k2InfoPage ul.k2ScrollSpyMenu li { border-bottom:1px solid #e3e4e4;}
+		#k2InfoPage ul.k2ScrollSpyMenu li { border-bottom:1px solid #e3e4e4; border-right: 1px solid #e3e4e4; }
 		#k2InfoPage ul.k2ScrollSpyMenu > li:first-child { border-top:1px solid #e3e4e4; }
 
 		#k2InfoPage ul.k2ScrollSpyMenu li a {font-size:14px;padding:17px 28px;display:block; color: #636b6e; }
@@ -775,11 +775,6 @@ body#com_k2 {}
 	.k2ItemFormEditor .editor .btn-toolbar.pull-left { float: none; }
 }
 
-/* ====================================================================================================== */
-/* ====================================================================================================== */
-/* ============================ K2 2.6.x CSS - to be removed or merged above ============================ */
-/* ====================================================================================================== */
-/* ====================================================================================================== */
 
 /* -------------- Admin Common -------------- */
 div#k2AdminContainer h1 {padding:0 0 8px 0;margin:0;}
