@@ -141,6 +141,6 @@ $controller->redirect();
 if( $document->getType() != 'raw' &&  JRequest::getWord('task')!='deleteAttachment' && JRequest::getWord('task')!='connector' && JRequest::getWord('task')!='tag' && JRequest::getWord('task')!='extrafields' && JRequest::getWord('task')!='download' && JRequest::getWord('task')!='saveComment'): ?>
 </div>
 <div id="k2AdminFooter">
-	<a target="_blank" href="http://getk2.org/">K2 v2.7.0 (Developer Build)</a> | Copyright &copy; 2006-<?php echo date('Y'); ?> <a target="_blank" href="http://www.joomlaworks.net/">JoomlaWorks Ltd.</a>
+	<a target="_blank" href="http://getk2.org/">K2 v2.7.0</a> | Copyright &copy; 2006-<?php echo date('Y'); ?> <a target="_blank" href="http://www.joomlaworks.net/">JoomlaWorks Ltd.</a>
 </div>
 <?php endif;
