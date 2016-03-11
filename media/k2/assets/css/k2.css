@@ -85,6 +85,7 @@ ul.k2GenericList li {list-style:square;padding:2px 0;}
 .k2Selector:hover {color:#222;text-decoration:none;border-color:rgba(82,168,236,0.8); box-shadow:inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,0.6);-webkit-transition:box-shadow 300ms ease;transition:box-shadow 300ms ease;}
 
 /* Header */
+.subhead .btn-toolbar { padding-right: 10px; }
 .icon-48-k2 { color:#222!important; padding-left:120px!important; font-size:24px!important;}
 .icon-48-k2 h2 {color:#222!important; font-size:24px!important; margin-left:10px!important;}
 
