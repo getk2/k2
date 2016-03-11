@@ -1,10 +1,10 @@
 <?php
 /**
- * @version		2.7.x
- * @package		K2
- * @author		JoomlaWorks http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.
- * @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @version    2.7.x
+ * @package    K2
+ * @author     JoomlaWorks http://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2016 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
 // no direct access
@@ -21,8 +21,8 @@ class K2ElementK2Tags extends K2Element
 		$fieldName = (K2_JVERSION != '15') ? $name.'[]' : $control_name.'['.$name.'][]';
 
 		$document = JFactory::getDocument();
-		$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/select2.min.css');
-		$document->addScript(JURI::root(true).'/media/k2/assets/js/select2.min.js');
+		$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/select2.min.css?v=2.7.0');
+		$document->addScript(JURI::root(true).'/media/k2/assets/js/select2.min.js?v=2.7.0');
 		$document->addScriptDeclaration('
 		$K2(document).ready(function() {
 			if(typeof($K2(".k2TagsElement").chosen) == "function") {

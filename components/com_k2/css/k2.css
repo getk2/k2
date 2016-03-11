@@ -1,9 +1,9 @@
 /**
- * @version		2.7.x
- * @package		K2
- * @author		JoomlaWorks http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.
- * @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @version    2.7.x
+ * @package    K2
+ * @author     JoomlaWorks http://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2016 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
 /*
@@ -90,12 +90,12 @@ div.k2FeedIcon a, div.k2FeedIcon a:hover, div.itemToolbar ul li a#fontDecrease, 
 font-family:'simple-line-icons';speak:none;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale }
 
 /* Font assignments */
-div.catItemIsFeatured:before, 
-div.userItemIsFeatured:before, 
+div.catItemIsFeatured:before,
+div.userItemIsFeatured:before,
 div.itemIsFeatured:before{ content:"\e09b" }
 a#fontIncrease:before {content:"\e091"}
 a#fontDecrease:before {content:"\e092"}
-div.k2FeedIcon a:before, 
+div.k2FeedIcon a:before,
 a.ubUserFeedIcon:before {content:"\e03b"}
 a.ubUserURL:before{content:"\e037"}
 span.ubUserEmail:before {content:"\e086"}
@@ -846,7 +846,7 @@ div.k2ItemsBlock a.moduleCustomLink:hover {}
 
 
 /*----------------------------------------------------------------------
-	Modules: mod_k2_user (mod_k2_login will be removed in v2.6)
+	Modules: mod_k2_user (mod_k2_login is removed since v2.6.x)
 ----------------------------------------------------------------------*/
 
 div.k2LoginBlock {}

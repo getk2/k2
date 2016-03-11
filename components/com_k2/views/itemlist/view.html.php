@@ -1,10 +1,10 @@
 <?php
 /**
- * @version		2.7.x
- * @package		K2
- * @author		JoomlaWorks http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.
- * @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @version    2.7.x
+ * @package    K2
+ * @author     JoomlaWorks http://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2016 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
 // no direct access
@@ -392,7 +392,7 @@ class K2ViewItemlist extends K2View
 		}
 
 		// If a user has no published items, do not display their K2 user page (in the frontend) and redirect to the homepage of the site.
-		if(count($items) == 0) {
+		if(count($items) == 0 && $task == 'user') {
 			$mainframe->redirect(JUri::root());
 		}
 
@@ -724,7 +724,7 @@ class K2ViewItemlist extends K2View
 				$document->setMetaData('og:image', $image);
 				$document->setMetaData('image', $image);
 			}
-			$document->setMetaData('og:description', strip_tags($document->getDescription()));			
+			$document->setMetaData('og:description', strip_tags($document->getDescription()));
 		}
 
 

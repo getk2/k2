@@ -1,10 +1,10 @@
 <?php
 /**
- * @version		2.7.x
- * @package		K2
- * @author		JoomlaWorks http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.
- * @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @version    2.7.x
+ * @package    K2
+ * @author     JoomlaWorks http://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2016 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
 // no direct access
@@ -17,7 +17,9 @@ class K2HelperStats
 	{
 		$data = self::getData();
 		$token = version_compare(JVERSION, '2.5', 'ge') ? JSession::getFormToken() : JUtility::getToken();
-		return "<script src=\"//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.3/jquery.xdomainrequest.min.js\" type=\"text/javascript\"></script>
+		return "
+
+		<script src=\"//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.3/jquery.xdomainrequest.min.js\" type=\"text/javascript\"></script>
 		<script type=\"text/javascript\">
 			function K2LogResult(xhr) {
 				\$K2.ajax({
@@ -36,7 +38,9 @@ class K2HelperStats
 			}).fail(function(xhr, result, response) {
 				K2LogResult(xhr);
 			});
-		</script>";
+		</script>
+
+		";
 	}
 
 	public static function getData()

@@ -1,10 +1,10 @@
 <?php
 /**
- * @version		2.7.x
- * @package		K2
- * @author		JoomlaWorks http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.
- * @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @version    2.7.x
+ * @package    K2
+ * @author     JoomlaWorks http://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2016 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
 // no direct access
@@ -51,12 +51,11 @@ class plgSystemK2 extends JPlugin
 
 		// Joomla! modal trigger
 		if ( !$user->guest || (JRequest::getCmd('option') == 'com_k2' && JRequest::getCmd('view') == 'item') || defined('K2_JOOMLA_MODAL_REQUIRED') ){
-			$document->addScript(JUri::root(true).'/media/k2/assets/js/jquery.magnific-popup.min.js');
-			$document->addStyleSheet(JUri::root(true).'/media/k2/assets/css/magnific-popup.css');
+			$document->addScript(JUri::root(true).'/media/k2/assets/js/jquery.magnific-popup.min.js?v2.7.0');
+			$document->addStyleSheet(JUri::root(true).'/media/k2/assets/css/magnific-popup.css?v2.7.0');
 		}
 
 		$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.frontend.js?v2.7.0&amp;sitepath='.JURI::root(true).'/');
-		//$document->addScriptDeclaration("var K2SitePath = '".JURI::root(true)."/';");
 
 		if (JRequest::getCmd('task') == 'search' && $params->get('googleSearch'))
 		{
@@ -69,9 +68,7 @@ class plgSystemK2 extends JPlugin
 			}
 			$document->addScript('http://www.google.com/jsapi');
 			$js = '
-			//<![CDATA[
 			google.load("search", "1", {"language" : "'.$lang.'"});
-
 			function OnLoad(){
 				var searchControl = new google.search.SearchControl();
 				var siteSearch = new google.search.WebSearch();
@@ -86,9 +83,7 @@ class plgSystemK2 extends JPlugin
 				searchControl.draw(document.getElementById("'.$googleSearchContainerID.'"));
 				searchControl.execute("'.JRequest::getString('searchword').'");
 			}
-
 			google.setOnLoadCallback(OnLoad);
-			//]]>
  			';
 			$document->addScriptDeclaration($js);
 		}
@@ -99,25 +94,25 @@ class plgSystemK2 extends JPlugin
 
 			jimport('joomla.filesystem.file');
 
-			// k2.css
-			if (JFile::exists(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'css'.DS.'k2.css'))
-				$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.css');
-			else
-				$document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.css');
-
 			// k2.fonts.css
 			if (JFile::exists(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'css'.DS.'k2.fonts.css'))
-				$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.fonts.css');
+				$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.fonts.css?v2.7.0');
 			else
-				$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.fonts.css');
+				$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.fonts.css?v2.7.0');
+
+			// k2.css
+			if (JFile::exists(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'css'.DS.'k2.css'))
+				$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.css?v2.7.0');
+			else
+				$document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.css?v2.7.0');
 
 			// k2.print.css
 			if (JRequest::getInt('print') == 1)
 			{
 				if (JFile::exists(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'css'.DS.'k2.print.css'))
-					$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.print.css', 'text/css', 'print');
+					$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.print.css?v2.7.0', 'text/css', 'print');
 				else
-					$document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.print.css', 'text/css', 'print');
+					$document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.print.css?v2.7.0', 'text/css', 'print');
 			}
 
 		}
@@ -481,6 +476,7 @@ class plgSystemK2 extends JPlugin
 				define('K2_JF_ID', 'lang_id');
 			}
 		}
+		
 		/*
 		if(JRequest::getCmd('option')=='com_k2' && JRequest::getCmd('task')=='save' && !$mainframe->isAdmin()){
 			$dispatcher = JDispatcher::getInstance();
@@ -492,8 +488,7 @@ class plgSystemK2 extends JPlugin
 		}
 		*/
 
-		// Use K2 to make Joomla! Varnish-friendly
-		// For more checkout: https://snipt.net/fevangelou/the-perfect-varnish-configuration-for-joomla-websites/
+		// Thank you K2 for making Joomla reverse caching proxy friendly :)
 		$user = JFactory::getUser();
 		if (!$user->guest)
 		{
@@ -503,6 +498,8 @@ class plgSystemK2 extends JPlugin
 		{
 			JResponse::setHeader('X-Logged-In', 'False', true);
 		}
+		
+		JResponse::setHeader('X-Content-Powered-By', 'K2 v2.7.0 (by JoomlaWorks)', true);
 
 		if (!$mainframe->isAdmin())
 		{
@@ -691,7 +688,7 @@ class plgSystemK2 extends JPlugin
 
 			// *** Embedded CSS Snippet ***
 			$document->addCustomTag('
-			<style type="text/css" media="all">
+			<style type="text/css">
 				#K2ExtraFields { color:#000; font-size:11px; padding:6px 2px 4px 4px; text-align:left; }
 				#K2ExtraFields h1 { font-size:16px; height:25px; }
 				#K2ExtraFields h2 { font-size:14px; }
