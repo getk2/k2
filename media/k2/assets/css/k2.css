@@ -209,7 +209,7 @@ ul.k2TabsNavigation {margin:0;padding:0;text-align:left; list-style:none;}
 	}
 
 
-div.k2TabsContent {background:#fff;border:1px solid #d4d7d9;padding:10px;margin-top:-1px;}
+div.k2TabsContent {background:#fff;border:1px solid #d4d7d9;padding:10px;margin-top:-1px; margin-bottom: 10px;}
 	.k2TabsContent.k2TabsContentLower { padding: 25px 30px; }
 div.isJ25 div.k2TabsContent {}
 div.isJ30 div.k2TabsContent {}
@@ -682,7 +682,7 @@ padding:0;color:#4a4949;}
 /* Joomla 1.5 */
 html.isJ15 {overflow-y:scroll;}
 html.isJ15 #system-message {margin:-26px 0 16px;}
-html.isJ15 #system-message dd ul {padding:20px 10px;margin-top:0;}
+html.isJ15 #system-message dd ul {padding:20px 10px;}
 html.isJ15 div#element-box div.m {padding:0; border-bottom: 1px solid #ccc; }
 html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs {border-top:1px solid #d4d7d9;}
 html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {content: "\f0d8";font-family:"FontAwesome";font-style:normal;font-weight:normal;text-decoration:inherit;color:#fff;font-size:32px;position:absolute;bottom:-12px;left:50%;margin-left:-16px;width:32px;text-shadow:0px -1px 1px #ccc;}
@@ -727,15 +727,21 @@ html.isJ25 #submenu-box, html.isJ15 #submenu-box { padding: 0; margin: 0; border
 
 html.isJ25 #k2AdminContainer .k2AdminTableFilters tr td { padding: 10px; }
 
-/* Info page */
 .oldJ h1 { color: #00AFEB; }
 /* Item form */
 .oldJ fieldset { padding-left: 0; border: 0; }
 .oldJ select, .oldJ input[type="text"], .oldJ input[type="email"] { height: 30px; min-height: 30px; width: auto; max-width: 100%; }
-.oldJ select { max-width: 300px; }
+.oldJ select { max-width: 300px; }]
+/* field normalisation */
+.k2ViewIsItem .oldJ input[type="file"],
 .k2ViewIsCategory .oldJ input[type="file"] { margin-bottom: 20px; }
 input#k2ImageBrowseServer { width: auto; height: 30px; line-height: 8px; margin-left: 10px; }
-.k2ViewIsCategory .oldJ input, .k2ViewIsItem .oldJ input,  .k2ViewIsCategory .oldJ select, .k2ViewIsItem .oldJ select { height: 40px; width: 100%; }
+.k2ViewIsCategory .oldJ input, .k2ViewIsCategory .oldJ select, .k2ViewIsItem .oldJ select { height: 40px; width: 100%; }
+/* Proper widths */
+.k2ViewIsItem .oldJ input,
+.k2ViewIsItem .oldJ input[type="text"] { width: auto; min-width: 208px; }
+.k2ViewIsItem .oldJ input.k2TitleBox { min-width: 100%; }
+
 .oldJ input[type="text"] { width: 100%; }
 .oldJ .adminlist input[type="text"] { width: auto; min-width: 0; }
 .oldJ .k2TagsNotice { margin-bottom: 30px;}
