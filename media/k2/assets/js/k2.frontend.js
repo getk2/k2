@@ -12,8 +12,7 @@ $K2(document).ready(function(){
 
 	// Magnific popup
 	if(typeof($K2.magnificPopup) !== 'undefined') {
-
-		// Backwards compatibility for users with overrides - START
+		// --- Backwards compatibility for users with overrides - START ---
 
 		// First remove possible attached events of the core modal in case it is loaded by a third party extension
 		$K2('.itemImage a.modal, .itemEditLink a.modal, .catItemEditLink a.modal, .catItemAddLink a.modal, .userItemAddLink a.modal, .userItemEditLink a.modal, .k2UserBlockActions a.modal, .k2UserBlockRenderedMenu a.modal, .commentToolbar a.modal').unbind('click');
@@ -24,10 +23,10 @@ $K2(document).ready(function(){
 		// Edit links
 		$K2('.itemEditLink a.modal, .catItemEditLink a.modal, .catItemAddLink a.modal, .userItemAddLink a.modal, .userItemEditLink a.modal').magnificPopup({type:'iframe', modal: true});
 
-		// Rest links
+		// Any other link
 		$K2('.k2UserBlockActions a.modal, .k2UserBlockRenderedMenu a.modal, .commentToolbar a.modal').magnificPopup({type:'iframe'});
 
-		// Backwards compatibility for users with overrides - END
+		// --- Backwards compatibility for users with overrides - FINISH ---
 
 		// New layouts
 		// Image
@@ -36,10 +35,9 @@ $K2(document).ready(function(){
 		$K2('[data-k2-modal="edit"]').magnificPopup({type:'iframe', modal: true});
 		// Rest links
 		$K2('[data-k2-modal="iframe"]').magnificPopup({type:'iframe'});
-
 	}
 
-  // Generic function to get URL params passed in .js script include
+	// Generic function to get URL params passed in .js script include
 	function getUrlParams(targetScript, varName) {
 		var scripts = document.getElementsByTagName('script');
 		var scriptCount = scripts.length;
