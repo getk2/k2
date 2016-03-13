@@ -31,7 +31,7 @@ class K2HelperStats
 			\$K2.ajax({
 				crossDomain: true,
 				type : 'POST',
-				url : 'http://metrics.getk2.org/gather.php',
+				url : 'https://metrics.getk2.org/gather.php',
 				data : ".$data."
 			}).done(function(response, result, xhr) {
 				K2LogResult(xhr);

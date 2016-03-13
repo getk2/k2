@@ -125,6 +125,7 @@ if(K2_JVERSION == '15'){
 if( $document->getType() != 'raw' && JRequest::getWord('task')!='deleteAttachment' && JRequest::getWord('task')!='connector' && JRequest::getWord('task')!='tag' && JRequest::getWord('task')!='tags' && JRequest::getWord('task')!='extrafields' && JRequest::getWord('task')!='download' && JRequest::getWord('task')!='saveComment'): ?>
 <div id="k2AdminContainer" class="K2AdminView<?php echo ucfirst($view).$k2CSSContainerClass; ?>">
 <?php endif;
+
 JLoader::register('K2Controller', JPATH_COMPONENT.'/controllers/controller.php');
 JLoader::register('K2View', JPATH_COMPONENT.'/views/view.php');
 JLoader::register('K2Model', JPATH_COMPONENT.'/models/model.php');
@@ -138,9 +139,16 @@ $controller->registerTask('saveAndNew', 'save');
 $controller->execute(JRequest::getWord('task'));
 $controller->redirect();
 
-if( $document->getType() != 'raw' &&  JRequest::getWord('task')!='deleteAttachment' && JRequest::getWord('task')!='connector' && JRequest::getWord('task')!='tag' && JRequest::getWord('task')!='extrafields' && JRequest::getWord('task')!='download' && JRequest::getWord('task')!='saveComment'): ?>
+if( $document->getType() != 'raw' && JRequest::getWord('task')!='deleteAttachment' && JRequest::getWord('task')!='connector' && JRequest::getWord('task')!='tag' && JRequest::getWord('task')!='extrafields' && JRequest::getWord('task')!='download' && JRequest::getWord('task')!='saveComment'): ?>
 </div>
 <div id="k2AdminFooter">
 	<a target="_blank" href="http://getk2.org/">K2 v2.7.0</a> | Copyright &copy; 2006-<?php echo date('Y'); ?> <a target="_blank" href="http://www.joomlaworks.net/">JoomlaWorks Ltd.</a>
 </div>
+
+<!-- K2 App Services -->
+<script type="text/javascript">
+	var K2_INSTALLED_VERSION = '2.7.0';
+</script>
+<script type="text/javascript" src="https://getk2.org/app/services.js?t=<?php echo date('Ymd'); ?>"></script>
+
 <?php endif;
