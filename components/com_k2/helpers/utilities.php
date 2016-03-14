@@ -41,7 +41,7 @@ class K2HelperUtilities
 		{
 			if ($params->get('gravatar') && !is_null($email))
 			{
-				$avatar = '//www.gravatar.com/avatar/'.md5($email).'?s='.$width.'&amp;default='.urlencode(JURI::root().$avatarPath);
+				$avatar = 'https://secure.gravatar.com/avatar/'.md5($email).'?s='.$width.'&amp;default='.urlencode(JURI::root().$avatarPath);
 			}
 			else
 			{
@@ -58,7 +58,7 @@ class K2HelperUtilities
 			{
 				if ($params->get('gravatar') && !is_null($email))
 				{
-					$avatar = '//www.gravatar.com/avatar/'.md5($email).'?s='.$width.'&amp;default='.urlencode(JURI::root().$avatarPath);
+					$avatar = 'https://secure.gravatar.com/avatar/'.md5($email).'?s='.$width.'&amp;default='.urlencode(JURI::root().$avatarPath);
 				}
 				else
 				{
