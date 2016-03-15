@@ -15,12 +15,6 @@ jimport('joomla.plugin.plugin');
 class plgUserK2 extends JPlugin
 {
 
-	function plgUserK2(&$subject, $config)
-	{
-
-		parent::__construct($subject, $config);
-	}
-
 	function onUserAfterSave($user, $isnew, $success, $msg)
 	{
 		return $this->onAfterStoreUser($user, $isnew, $success, $msg);

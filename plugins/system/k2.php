@@ -15,11 +15,6 @@ jimport('joomla.plugin.plugin');
 class plgSystemK2 extends JPlugin
 {
 
-	function plgSystemK2(&$subject, $config)
-	{
-		parent::__construct($subject, $config);
-	}
-
 	function onAfterRoute()
 	{
 
@@ -476,7 +471,7 @@ class plgSystemK2 extends JPlugin
 				define('K2_JF_ID', 'lang_id');
 			}
 		}
-		
+
 		/*
 		if(JRequest::getCmd('option')=='com_k2' && JRequest::getCmd('task')=='save' && !$mainframe->isAdmin()){
 			$dispatcher = JDispatcher::getInstance();
@@ -498,7 +493,7 @@ class plgSystemK2 extends JPlugin
 		{
 			JResponse::setHeader('X-Logged-In', 'False', true);
 		}
-		
+
 		JResponse::setHeader('X-Content-Powered-By', 'K2 v2.7.0 (by JoomlaWorks)', true);
 
 		if (!$mainframe->isAdmin())
