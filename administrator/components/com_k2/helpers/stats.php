@@ -85,7 +85,19 @@ class K2HelperStats
 	public static function getDbType()
 	{
 		$configuration = JFactory::getConfig();
-		return version_compare(JVERSION, '2.5', 'ge') ? $configuration->get('dbtype') : $configuration->getValue('config.dbtype');
+		$type = version_compare(JVERSION, '2.5', 'ge') ? $configuration->get('dbtype') : $configuration->getValue('config.dbtype');
+		if($type == 'mysql' || $type == 'mysqli' || $type == 'pdomysql')
+		{
+			$db = JFactory::getDbo();
+			$query = 'SELECT version();';
+			$db->setQuery($query);
+			$result = $db->loadResult();
+			if(strpos($result, 'mariadb'))
+			{
+				$type = 'mariadb';
+			}
+		}
+		return $type;
 	}
 
 	public static function getDbVersion()
