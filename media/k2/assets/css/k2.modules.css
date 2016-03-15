@@ -34,6 +34,11 @@ body.contentpane div.current select { margin-bottom:0!important; }
 body.contentpane dl.tabs { padding-left:8px!important; }
 body.contentpane dl.tabs dt.open { background:#fff!important; border-bottom:1px solid #fff!important; }
 
+/* Joomla! 2.5 only */
+#minwidth-body .pane-sliders ul.adminformlist li > label { padding: 10px; }
+#minwidth-body .pane-sliders ul.adminformlist li fieldset { padding: 5px; }
+#minwidth-body .pane-sliders ul.adminformlist li .select2-container { max-width: 200px; }
+
 /* Settings - Joomla! 3.x */
 .paramHeaderContent { background: #e5f7fd; border-radius: 3px; line-height: 1; padding: 18px 25px; color: #346b93; font-size: 18px; }
 	.tab-pane > .control-group:first-child .paramHeaderContent { margin-top: 0; }
