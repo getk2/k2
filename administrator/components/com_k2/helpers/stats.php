@@ -92,7 +92,8 @@ class K2HelperStats
 			$query = 'SELECT version();';
 			$db->setQuery($query);
 			$result = $db->loadResult();
-			if(strpos($result, 'mariadb'))
+			$result = strtolower($result);
+			if(strpos($result, 'mariadb') !== false)
 			{
 				$type = 'mariadb';
 			}
