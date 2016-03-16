@@ -9,7 +9,7 @@
 /*
 	### Legend ###
 	Colors used:
-		#f3f3f3 (light grey) used as background on all toolbars, category and user/author boxes
+		#fafafa (light grey) used as background on all toolbars, category and user/author boxes
 */
 
 
@@ -34,8 +34,8 @@ body.contentpane #k2Container {padding:16px;} /* used in popups */
 .clr {clear:both;height:0;line-height:0;display:block;float:none;padding:0;margin:0;border:none;}
 
 /* --- Striped rows (add a different background color enable stripped rows in various listings with K2 content) --- */
-.even {padding:2px;border-bottom:1px dotted #ccc;}
-.odd {padding:2px;border-bottom:1px dotted #ccc;}
+.even {padding:2px;}
+.odd {padding:2px;}
 
 /* --- RSS feed icon --- */
 div.k2FeedIcon {padding:4px 8px;}
@@ -143,7 +143,7 @@ a.k2ReadMore:hover {}
 div.k2Pagination {padding:8px;margin:24px 0 4px 0;text-align:center;}
 div.k2Pagination ul {text-align:center;}
 div.k2Pagination ul li {display:inline-block;padding:4px 8px;margin:0 8px;border:1px solid #ddd;border-radius:4px;vertical-align:middle;}
-div.k2Pagination ul li:hover {background:#f3f3f3;cursor:pointer;}
+div.k2Pagination ul li:hover {background:#fafafa;cursor:pointer;}
 div.k2Pagination ul li a span {vertical-align:middle;}
 
 /* --- Extra fields: CSV data styling --- */
@@ -165,7 +165,7 @@ div.userItemIsFeatured:before {position:absolute;top:10px;right:10px;color:#CF19
 a.itemPrintThisPage {display:block;width:160px;margin:4px auto 16px;padding:4px;border:1px solid #ccc;text-align:center;color:#555;font-size:13px;}
 a.itemPrintThisPage:hover {background:#eee;text-decoration:none;}
 
-div.itemView {padding:8px 0 24px 0;margin:0 0 24px 0;border-bottom:1px dotted #ccc;} /* this is the item container for this view */
+div.itemView {padding:8px 0 24px 0;margin:0 0 24px 0;} /* this is the item container for this view */
 div.itemIsFeatured {} /* Attach a class for each featured item */
 
 span.itemEditLink {float:right;display:block;padding:4px 0;margin:0;width:120px;text-align:right;}
@@ -181,7 +181,7 @@ div.itemHeader {}
 	div.itemHeader span.itemAuthor a {}
 	div.itemHeader span.itemAuthor a:hover {}
 
-div.itemToolbar {padding:2px 0;margin:16px 0 0 0;border-top:1px dotted #ccc;border-bottom:1px dotted #ccc;}
+div.itemToolbar {padding:2px 0;margin:16px 0 0 0;}
 	div.itemToolbar ul {text-align:right;list-style:none;padding:0;margin:0;}
 	div.itemToolbar ul li {display:inline;list-style:none;padding:0 4px 0 8px;margin:0;border-left:1px solid #ccc;text-align:center;background:none;font-size:12px;}
 	div.itemToolbar ul > li:first-child {border:none;} /* remove the first CSS border from the left of the toolbar */
@@ -214,9 +214,13 @@ div.itemBody {padding:8px 0;margin:0;}
 
 div.itemImageBlock {padding:8px;margin:0 0 16px 0;}
 	span.itemImage {display:block;text-align:center;margin:0 0 8px 0;}
-	span.itemImage img {border:1px solid #ccc;padding:8px;}
+	span.itemImage img {max-width:100%;height:auto;}
 	span.itemImageCaption {color:#666;float:left;display:block;font-size:11px;}
 	span.itemImageCredits {color:#999;float:right;display:block;font-style:italic;font-size:11px;}
+	@media screen and ( max-width:600px ){
+		span.itemImageCaption,
+		span.itemImageCredits {float:none;text-align:center;}	
+	}
 
 div.itemIntroText {color:#444;font-size:18px;font-weight:bold;line-height:24px;padding:4px 0 12px 0;}
 	div.itemIntroText img {}
@@ -233,7 +237,7 @@ div.itemExtraFields {margin:16px 0 0 0;padding:8px 0 0 0;border-top:1px dotted #
 	div.itemExtraFields ul li span.itemExtraFieldsLabel {display:block;float:left;font-weight:bold;margin:0 4px 0 0;width:30%;}
 	div.itemExtraFields ul li span.itemExtraFieldsValue {}
 
-div.itemContentFooter {display:block;text-align:right;padding:4px;margin:16px 0 4px 0;border-top:1px solid #ddd;color:#999;}
+div.itemContentFooter {display:block;text-align:right;padding:4px 0;margin:16px 0 4px 0;border-top:1px solid #ddd;color:#999;}
 	span.itemHits {float:left;}
 	span.itemDateModified {}
 
@@ -244,13 +248,14 @@ div.itemSocialSharing {padding:8px 0;}
 
 div.itemLinks {margin:16px 0;padding:0;}
 
-div.itemCategory {padding:4px;border-bottom:1px dotted #ccc;}
+div.itemCategory {}
 	div.itemCategory span {font-weight:bold;color:#555;padding:0 4px 0 0;}
 	div.itemCategory a {}
-div.itemTagsBlock {padding:4px;border-bottom:1px dotted #ccc;}
+div.itemTagsBlock {}
 	div.itemTagsBlock span {font-weight:bold;color:#555;padding:0 4px 0 0;}
 	div.itemTagsBlock ul.itemTags {list-style:none;padding:0;margin:0;display:inline;}
 	div.itemTagsBlock ul.itemTags li {display:inline;list-style:none;padding:0 4px 0 0;margin:0;text-align:center;}
+	div.itemTagsBlock ul.itemTags li a:before {content:"#";}
 	div.itemTagsBlock ul.itemTags li a {}
 	div.itemTagsBlock ul.itemTags li a:hover {}
 
@@ -263,7 +268,7 @@ div.itemAttachmentsBlock {padding:4px;border-bottom:1px dotted #ccc;}
 	div.itemAttachmentsBlock ul.itemAttachments li span {font-size:10px;color:#999;font-weight:normal;}
 
 /* Author block */
-div.itemAuthorBlock {background:#f3f3f3;border:1px solid #ddd;margin:0 0 16px 0;padding:8px;}
+div.itemAuthorBlock {background:#fafafa;border:1px solid #ddd;margin:0 0 16px 0;padding:8px;}
 	div.itemAuthorBlock img.itemAuthorAvatar {float:left;display:block;background:#fff;padding:4px;border:1px solid #ddd;margin:0 8px 0 0;}
 	div.itemAuthorBlock div.itemAuthorDetails {margin:0;padding:4px 0 0 0;}
 	div.itemAuthorBlock div.itemAuthorDetails h3.authorName {margin:0 0 4px 0;padding:0;}
@@ -312,13 +317,13 @@ div.itemVideoBlock {margin:0 0 16px 0;padding:16px;background:#010101 url(../ima
 div.itemImageGallery {margin:0 0 16px 0;padding:0;}
 
 /* Article navigation */
-div.itemNavigation {padding:4px 8px;margin:0 0 24px 0;border-top:1px dotted #ccc;border-bottom:1px dotted #ccc;background:#fffff0;}
+div.itemNavigation {padding:4px 8px;margin:0 0 24px 0;border-top:1px dotted #ddd;border-bottom:1px dotted #ccc;background:#fffff0;}
 	div.itemNavigation span.itemNavigationTitle {color:#999;}
 	div.itemNavigation a.itemPrevious {padding:0 12px;}
 	div.itemNavigation a.itemNext {padding:0 12px;}
 
 /* Comments */
-div.itemComments {background:#f3f3f3;border:1px solid #ddd;padding:16px;}
+div.itemComments {background:#fafafa;border:1px solid #ddd;padding:16px;}
 
 	div.itemComments ul.itemCommentsList {margin:0 0 16px;padding:0;list-style:none;}
 	div.itemComments ul.itemCommentsList li {padding:4px;margin:0;border-bottom:1px dotted #ddd;}
@@ -357,7 +362,7 @@ div.itemCommentsForm h3 {margin:0;padding:0 0 4px 0;}
 
 /* "Report comment" form */
 div.k2ReportCommentFormContainer {padding:8px;width:480px;margin:0 auto;}
-	div.k2ReportCommentFormContainer blockquote {width:462px;background:#f3f3f3;border:1px solid #ddd;padding:8px;margin:0 0 8px 0;}
+	div.k2ReportCommentFormContainer blockquote {width:462px;background:#fafafa;border:1px solid #ddd;padding:8px;margin:0 0 8px 0;}
 	div.k2ReportCommentFormContainer blockquote span.quoteIconLeft {font-style:italic;font-weight:bold;font-size:40px;color:#135CAE;line-height:30px;vertical-align:top;display:block;float:left;}
 	div.k2ReportCommentFormContainer blockquote span.quoteIconRight {font-style:italic;font-weight:bold;font-size:40px;color:#135CAE;line-height:30px;vertical-align:top;display:block;float:right;}
 	div.k2ReportCommentFormContainer blockquote span.theComment {font-style:italic;font-size:12px;font-weight:normal;color:#000;padding:0 4px;}
@@ -382,7 +387,7 @@ div.itemBackToTop {text-align:right;}
 div.itemListCategoriesBlock {}
 
 /* --- Category block --- */
-div.itemListCategory {background:#f3f3f3;border:1px solid #ddd;margin:4px 0;padding:8px;}
+div.itemListCategory {background:#fafafa;border:1px solid #ddd;margin:4px 0;padding:8px;}
 	span.catItemAddLink {display:block;padding:8px 0;margin:0 0 4px 0;border-bottom:1px dotted #ccc;text-align:right;}
 	span.catItemAddLink a {padding:4px 16px;border:1px solid #ccc;background:#eee;text-decoration:none;}
 	span.catItemAddLink a:hover {background:#ffffcc;}
@@ -395,7 +400,7 @@ div.itemListSubCategories {}
 	div.itemListSubCategories h3 {}
 		div.subCategoryContainer {float:left;}
 		div.subCategoryContainerLast {} /* this class is appended to the last container on each row of items (useful when you want to set 0 padding/margin to the last container) */
-			div.subCategory {background:#f3f3f3;border:1px solid #ddd;margin:4px;padding:8px;}
+			div.subCategory {background:#fafafa;border:1px solid #ddd;margin:4px;padding:8px;}
 				div.subCategory a.subCategoryImage,
 				div.subCategory a.subCategoryImage:hover {text-align:center;display:block;}
 				div.subCategory a.subCategoryImage img,
@@ -410,7 +415,7 @@ div.itemList {}
 	div#itemListLeading {}
 	div#itemListPrimary {}
 	div#itemListSecondary {}
-	div#itemListLinks {background:#f3f3f3;border:1px solid #ddd;margin:8px 0;padding:8px;}
+	div#itemListLinks {background:#fafafa;border:1px solid #ddd;margin:8px 0;padding:8px;}
 
 		div.itemContainer {float:left;}
 		div.itemContainerLast {} /* this class is appended to the last container on each row of items (useful when you want to set 0 padding/margin to the last container) */
@@ -516,7 +521,7 @@ span.catItemDateModified {display:block;text-align:right;padding:4px;margin:4px 
 
 /* User info block */
 div.userView {}
-	div.userBlock {background:#f3f3f3;border:1px solid #ddd;margin:0 0 16px 0;padding:8px;clear:both;}
+	div.userBlock {background:#fafafa;border:1px solid #ddd;margin:0 0 16px 0;padding:8px;clear:both;}
 
 		span.userItemAddLink {display:block;padding:8px 0;margin:0 0 4px 0;border-bottom:1px dotted #ccc;text-align:right;}
 		span.userItemAddLink a {padding:4px 16px;border:1px solid #ccc;background:#eee;text-decoration:none;}
@@ -677,14 +682,14 @@ div#genericItemListNothingFound {padding:40px;text-align:center;}
 div.latestItemsContainer {float:left;}
 
 /* Category info block */
-div.latestItemsCategory {background:#f3f3f3;border:1px solid #ddd;margin:0 8px 8px 0;padding:8px;}
+div.latestItemsCategory {background:#fafafa;border:1px solid #ddd;margin:0 8px 8px 0;padding:8px;}
 	div.latestItemsCategoryImage {text-align:center;}
 	div.latestItemsCategoryImage img {background:#fff;padding:4px;border:1px solid #ddd;margin:0 8px 0 0;}
 div.latestItemsCategory h2 {}
 div.latestItemsCategory p {}
 
 /* User info block */
-div.latestItemsUser {background:#f3f3f3;border:1px solid #ddd;margin:0 8px 8px 0;padding:8px;clear:both;}
+div.latestItemsUser {background:#fafafa;border:1px solid #ddd;margin:0 8px 8px 0;padding:8px;clear:both;}
 	div.latestItemsUser img {display:block;float:left;background:#fff;padding:4px;border:1px solid #ddd;margin:0 8px 0 0;}
 	div.latestItemsUser h2 {}
 	div.latestItemsUser p.latestItemsUserDescription {padding:4px 0;}
@@ -753,7 +758,7 @@ h2.latestItemTitleList {padding:2px 0;margin:8px 0 2px 0;border-bottom:1px dotte
 .k2AccountPage table tr td label {white-space:nowrap;}
 img.k2AccountPageImage {border:4px solid #ddd;margin:10px 0;padding:0;display:block;}
 .k2AccountPage div.k2AccountPageNotice {padding:8px;}
-.k2AccountPage div.k2AccountPageUpdate {border-top:1px dotted #ccc;margin:8px 0;padding:8px;text-align:right;}
+.k2AccountPage div.k2AccountPageUpdate {border-top:1px dotted #ddd;margin:8px 0;padding:8px;text-align:right;}
 
 .k2AccountPage th.k2ProfileHeading {text-align:left;font-size:18px;padding:8px;background:#f6f6f6;/*border-bottom:1px solid #e9e9e9;*/}
 .k2AccountPage td#userAdminParams {padding:0;margin:0;}
@@ -894,11 +899,11 @@ div.k2CalendarBlock {height:190px;margin-bottom:8px;} /* use this height value s
 div.k2CalendarLoader {background:#fff url(../images/system/k2CalendarLoader.gif) no-repeat 50% 50%;}
 table.calendar {margin:0 auto;background:#fff;border-collapse:collapse;}
 table.calendar tr td {text-align:center;vertical-align:middle;padding:2px;border:1px solid #f4f4f4;background:#fff;}
-table.calendar tr td.calendarNavMonthPrev {background:#f3f3f3;text-align:left;}
+table.calendar tr td.calendarNavMonthPrev {background:#fafafa;text-align:left;}
 table.calendar tr td.calendarNavMonthPrev a {font-size:20px;text-decoration:none;}
 table.calendar tr td.calendarNavMonthPrev a:hover {font-size:20px;text-decoration:none;}
-table.calendar tr td.calendarCurrentMonth {background:#f3f3f3;}
-table.calendar tr td.calendarNavMonthNext {background:#f3f3f3;text-align:right;}
+table.calendar tr td.calendarCurrentMonth {background:#fafafa;}
+table.calendar tr td.calendarNavMonthNext {background:#fafafa;text-align:right;}
 table.calendar tr td.calendarNavMonthNext a {font-size:20px;text-decoration:none;}
 table.calendar tr td.calendarNavMonthNext a:hover {font-size:20px;text-decoration:none;}
 table.calendar tr td.calendarDayName {background:#e9e9e9;font-size:11px;width:14.2%;}
@@ -958,7 +963,7 @@ div.k2SearchBlock div.k2LiveSearchResults {display:none;background:#fff;position
 	/* Live search results (fetched via ajax) */
 	div.k2SearchBlock div.k2LiveSearchResults ul.liveSearchResults {list-style:none;margin:0;padding:0;}
 	div.k2SearchBlock div.k2LiveSearchResults ul.liveSearchResults li {border:none;margin:0;padding:0;}
-	div.k2SearchBlock div.k2LiveSearchResults ul.liveSearchResults li a {display:block;padding:1px 2px;border-top:1px dotted #eee;}
+	div.k2SearchBlock div.k2LiveSearchResults ul.liveSearchResults li a {display:block;padding:1px 2px;border-top:1px dotted #ddd;}
 	div.k2SearchBlock div.k2LiveSearchResults ul.liveSearchResults li a:hover {background:#fffff0;}
 
 /* --- Tag Cloud --- */
