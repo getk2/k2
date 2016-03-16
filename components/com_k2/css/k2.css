@@ -140,11 +140,11 @@ a.k2ReadMore {}
 a.k2ReadMore:hover {}
 
 /* --- Pagination --- */
-div.k2Pagination {padding:8px;margin:24px 0 4px 0;text-align:center;color:#999;}
-
-/* --- Pagination (additional styling for Joomla! 1.6+) --- */
+div.k2Pagination {padding:8px;margin:24px 0 4px 0;text-align:center;}
 div.k2Pagination ul {text-align:center;}
-div.k2Pagination ul li {display:inline;}
+div.k2Pagination ul li {display:inline-block;padding:4px 8px;margin:0 8px;border:1px solid #ddd;border-radius:4px;vertical-align:middle;}
+div.k2Pagination ul li:hover {background:#f3f3f3;cursor:pointer;}
+div.k2Pagination ul li a span {vertical-align:middle;}
 
 /* --- Extra fields: CSV data styling --- */
 table.csvData {}
@@ -416,7 +416,7 @@ div.itemList {}
 		div.itemContainerLast {} /* this class is appended to the last container on each row of items (useful when you want to set 0 padding/margin to the last container) */
 
 /* --- Item block for each item group --- */
-div.catItemView {padding:4px;} /* this is the item container for this view - we add a generic padding so that items don't get stuck with each other */
+div.catItemView {padding:4px;margin-bottom:48px;} /* this is the container for each K2 item on this view */
 
 	/* Additional class appended to the element above for further styling per group item */
 	div.groupLeading {}
@@ -446,7 +446,7 @@ div.catItemBody {padding:8px 0;margin:0;}
 
 div.catItemImageBlock {padding:8px;margin:0 0 16px 0;}
 	span.catItemImage {display:block;text-align:center;margin:0 0 8px 0;}
-	span.catItemImage img {border:1px solid #ccc;padding:8px;}
+	span.catItemImage img {}
 
 div.catItemIntroText {font-size:inherit;font-weight:normal;line-height:inherit;padding:4px 0 12px 0;}
 	div.catItemIntroText img {}
@@ -465,15 +465,15 @@ div.genericItemExtraFields {margin:16px 0 0 0;padding:8px 0 0 0;border-top:1px d
 
 div.catItemLinks {margin:0 0 16px 0;padding:0;}
 
-div.catItemHitsBlock {padding:4px;border-bottom:1px dotted #ccc;}
+div.catItemHitsBlock {padding:4px 0;}
 	span.catItemHits {}
 
-div.catItemCategory {padding:4px;border-bottom:1px dotted #ccc;}
-	div.catItemCategory span {font-weight:bold;color:#555;padding:0 4px 0 0;}
+div.catItemCategory {padding:4px 0;}
+	div.catItemCategory span {font-weight:bold;padding:0 4px 0 0;}
 	div.catItemCategory a {}
 
-div.catItemTagsBlock {padding:4px;border-bottom:1px dotted #ccc;}
-	div.catItemTagsBlock span {font-weight:bold;color:#555;padding:0 4px 0 0;}
+div.catItemTagsBlock {padding:4px 0;}
+	div.catItemTagsBlock span {font-weight:bold;padding:0 4px 0 0;}
 	div.catItemTagsBlock ul.catItemTags {list-style:none;padding:0;margin:0;display:inline;}
 	div.catItemTagsBlock ul.catItemTags li {display:inline;list-style:none;padding:0 4px 0 0;margin:0;text-align:center;}
 	div.catItemTagsBlock ul.catItemTags li a {}
