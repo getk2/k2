@@ -7,10 +7,9 @@
  */
 
 /*
-### Legend ###
-Colors used:
-	#f7fafe (light blue) used as background on all toolbars, category and user/author boxes
-
+	### Legend ###
+	Colors used:
+		#f3f3f3 (light grey) used as background on all toolbars, category and user/author boxes
 */
 
 
@@ -34,9 +33,9 @@ body.contentpane #k2Container {padding:16px;} /* used in popups */
 /* --- Clearing --- */
 .clr {clear:both;height:0;line-height:0;display:block;float:none;padding:0;margin:0;border:none;}
 
-/* --- Zebra rows --- */
-.even {background:#fffff0;padding:2px;border-bottom:1px dotted #ccc;}
-.odd {background:#fff;padding:2px;border-bottom:1px dotted #ccc;}
+/* --- Striped rows (add a different background color enable stripped rows in various listings with K2 content) --- */
+.even {padding:2px;border-bottom:1px dotted #ccc;}
+.odd {padding:2px;border-bottom:1px dotted #ccc;}
 
 /* --- RSS feed icon --- */
 div.k2FeedIcon {padding:4px 8px;}
@@ -79,10 +78,10 @@ span.siteRoot {display:none;}
 /* --- Icon Font Support --- */
 
 	/* Reset for users with older overrides */
-	div.itemToolbar ul li a#fontDecrease img,
-	div.itemToolbar ul li a#fontIncrease img {background:none;}
 	div.itemToolbar ul li a#fontDecrease,
 	div.itemToolbar ul li a#fontIncrease {font-size:14px;}
+	div.itemToolbar ul li a#fontDecrease img,
+	div.itemToolbar ul li a#fontIncrease img {background:none;}
 	a.ubUserFeedIcon,
 	a.ubUserFeedIcon:hover,
 	a.ubUserURL,
@@ -285,7 +284,7 @@ div.itemAuthorLatest {margin-bottom:16px;padding:0;}
 			div.itemAuthorLatest ul li a:hover {}
 
 /* Related by tag */
-div.itemRelated {margin-bottom:16px;padding:0;} /* Add overflow-x:scroll;if you want to enable the scrolling features, as explained in item.php */
+div.itemRelated {margin-bottom:16px;padding:0;} /* Add overflow-x:scroll; if you want to enable the scrolling features, as explained in item.php */
 	div.itemRelated h3 {}
 	div.itemRelated ul {}
 		div.itemRelated ul li {}
@@ -319,7 +318,7 @@ div.itemNavigation {padding:4px 8px;margin:0 0 24px 0;border-top:1px dotted #ccc
 	div.itemNavigation a.itemNext {padding:0 12px;}
 
 /* Comments */
-div.itemComments {background:#f7fafe;border:1px solid #ddd;padding:16px;}
+div.itemComments {background:#f3f3f3;border:1px solid #ddd;padding:16px;}
 
 	div.itemComments ul.itemCommentsList {margin:0 0 16px;padding:0;list-style:none;}
 	div.itemComments ul.itemCommentsList li {padding:4px;margin:0;border-bottom:1px dotted #ddd;}
@@ -358,7 +357,7 @@ div.itemCommentsForm h3 {margin:0;padding:0 0 4px 0;}
 
 /* "Report comment" form */
 div.k2ReportCommentFormContainer {padding:8px;width:480px;margin:0 auto;}
-	div.k2ReportCommentFormContainer blockquote {width:462px;background:#f7fafe;border:1px solid #ddd;padding:8px;margin:0 0 8px 0;}
+	div.k2ReportCommentFormContainer blockquote {width:462px;background:#f3f3f3;border:1px solid #ddd;padding:8px;margin:0 0 8px 0;}
 	div.k2ReportCommentFormContainer blockquote span.quoteIconLeft {font-style:italic;font-weight:bold;font-size:40px;color:#135CAE;line-height:30px;vertical-align:top;display:block;float:left;}
 	div.k2ReportCommentFormContainer blockquote span.quoteIconRight {font-style:italic;font-weight:bold;font-size:40px;color:#135CAE;line-height:30px;vertical-align:top;display:block;float:right;}
 	div.k2ReportCommentFormContainer blockquote span.theComment {font-style:italic;font-size:12px;font-weight:normal;color:#000;padding:0 4px;}
@@ -383,7 +382,7 @@ div.itemBackToTop {text-align:right;}
 div.itemListCategoriesBlock {}
 
 /* --- Category block --- */
-div.itemListCategory {background:#f7fafe;border:1px solid #ddd;margin:4px 0;padding:8px;}
+div.itemListCategory {background:#f3f3f3;border:1px solid #ddd;margin:4px 0;padding:8px;}
 	span.catItemAddLink {display:block;padding:8px 0;margin:0 0 4px 0;border-bottom:1px dotted #ccc;text-align:right;}
 	span.catItemAddLink a {padding:4px 16px;border:1px solid #ccc;background:#eee;text-decoration:none;}
 	span.catItemAddLink a:hover {background:#ffffcc;}
@@ -396,7 +395,7 @@ div.itemListSubCategories {}
 	div.itemListSubCategories h3 {}
 		div.subCategoryContainer {float:left;}
 		div.subCategoryContainerLast {} /* this class is appended to the last container on each row of items (useful when you want to set 0 padding/margin to the last container) */
-			div.subCategory {background:#f7fafe;border:1px solid #ddd;margin:4px;padding:8px;}
+			div.subCategory {background:#f3f3f3;border:1px solid #ddd;margin:4px;padding:8px;}
 				div.subCategory a.subCategoryImage,
 				div.subCategory a.subCategoryImage:hover {text-align:center;display:block;}
 				div.subCategory a.subCategoryImage img,
@@ -411,7 +410,7 @@ div.itemList {}
 	div#itemListLeading {}
 	div#itemListPrimary {}
 	div#itemListSecondary {}
-	div#itemListLinks {background:#f7fafe;border:1px solid #ddd;margin:8px 0;padding:8px;}
+	div#itemListLinks {background:#f3f3f3;border:1px solid #ddd;margin:8px 0;padding:8px;}
 
 		div.itemContainer {float:left;}
 		div.itemContainerLast {} /* this class is appended to the last container on each row of items (useful when you want to set 0 padding/margin to the last container) */
@@ -517,7 +516,7 @@ span.catItemDateModified {display:block;text-align:right;padding:4px;margin:4px 
 
 /* User info block */
 div.userView {}
-	div.userBlock {background:#f7fafe;border:1px solid #ddd;margin:0 0 16px 0;padding:8px;clear:both;}
+	div.userBlock {background:#f3f3f3;border:1px solid #ddd;margin:0 0 16px 0;padding:8px;clear:both;}
 
 		span.userItemAddLink {display:block;padding:8px 0;margin:0 0 4px 0;border-bottom:1px dotted #ccc;text-align:right;}
 		span.userItemAddLink a {padding:4px 16px;border:1px solid #ccc;background:#eee;text-decoration:none;}
@@ -678,14 +677,14 @@ div#genericItemListNothingFound {padding:40px;text-align:center;}
 div.latestItemsContainer {float:left;}
 
 /* Category info block */
-div.latestItemsCategory {background:#f7fafe;border:1px solid #ddd;margin:0 8px 8px 0;padding:8px;}
+div.latestItemsCategory {background:#f3f3f3;border:1px solid #ddd;margin:0 8px 8px 0;padding:8px;}
 	div.latestItemsCategoryImage {text-align:center;}
 	div.latestItemsCategoryImage img {background:#fff;padding:4px;border:1px solid #ddd;margin:0 8px 0 0;}
 div.latestItemsCategory h2 {}
 div.latestItemsCategory p {}
 
 /* User info block */
-div.latestItemsUser {background:#f7fafe;border:1px solid #ddd;margin:0 8px 8px 0;padding:8px;clear:both;}
+div.latestItemsUser {background:#f3f3f3;border:1px solid #ddd;margin:0 8px 8px 0;padding:8px;clear:both;}
 	div.latestItemsUser img {display:block;float:left;background:#fff;padding:4px;border:1px solid #ddd;margin:0 8px 0 0;}
 	div.latestItemsUser h2 {}
 	div.latestItemsUser p.latestItemsUserDescription {padding:4px 0;}
