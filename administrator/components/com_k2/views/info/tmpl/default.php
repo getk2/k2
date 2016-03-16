@@ -125,7 +125,7 @@ defined('_JEXEC') or die;
 					        </tr>
 					        <tr>
 					          <td><strong><?php echo JText::_('K2_GD_IMAGE_LIBRARY'); ?></strong></td>
-					          <td><?php if ($this->gd_check) {$gdinfo=gd_info(); echo $gdinfo["GD Version"];} else echo JText::_('K2_DISABLED'); ?></td>
+					          <td><?php if ($this->gd_check) { $gdinfo=gd_info(); echo $gdinfo["GD Version"]; } else echo JText::_('K2_DISABLED'); ?></td>
 					        </tr>
 					        <tr>
 					          <td><strong><?php echo JText::_('K2_MULTIBYTE_STRING_SUPPORT'); ?></strong></td>
@@ -141,7 +141,7 @@ defined('_JEXEC') or die;
 					        </tr>
 					        <tr>
 					          <td><strong><?php echo JText::_('K2_OPEN_REMOTE_FILES_ALLOW_URL_FOPEN'); ?></strong></td>
-					          <td><?php echo (ini_get('allow_url_fopen'))? JText::_('K2_YES'):JText::_('K2_NO'); ?></td>
+					          <td><?php echo (ini_get('allow_url_fopen')) ? JText::_('K2_YES') : JText::_('K2_NO'); ?></td>
 					        </tr>
 					      </tbody>
 					    </table>
