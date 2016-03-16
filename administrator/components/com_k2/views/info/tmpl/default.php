@@ -89,6 +89,18 @@ defined('_JEXEC') or die;
 							      <td><?php echo JText::_('K2_INFO_REPLACEMENT_FOR_SELECT_BOXES'); ?></td>
 							      <td><?php echo JText::_('K2_MIT'); ?></td>
 							    </tr>
+							    <tr>
+							      <td><a target="_blank" href="http://dimsemenov.com/plugins/magnific-popup/">Magnific Popup</a></td>
+							      <td>1.1.0</td>
+							      <td><?php echo JText::_('K2_INFO_RESPONSIVE_LIGHTBOX_DIALOG_SCRIPT'); ?></td>
+							      <td><?php echo JText::_('K2_MIT'); ?></td>
+							    </tr>
+							    <tr>
+							      <td><a target="_blank" href="http://nicedit.com/">NicEdit</a></td>
+							      <td></td>
+							      <td><?php echo JText::_('K2_INFO_WYSIWYG_EDITOR'); ?></td>
+							      <td><?php echo JText::_('K2_MIT'); ?></td>
+							    </tr>
 							  </tbody>
 							</table>
 						</fieldset>
