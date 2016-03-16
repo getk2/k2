@@ -125,7 +125,7 @@ defined('_JEXEC') or die;
   </div>
   <div class="icon-wrapper">
     <div class="icon">
-    	<a class="modal" rel="{handler:'iframe', size:{x:(document.documentElement.clientWidth)*0.9, y:(document.documentElement.clientHeight)*0.95}}" target="_blank" href="http://getk2.org/documentation/">
+    	<a class="modal" rel="{handler:'iframe', size:{x:(document.documentElement.clientWidth)*0.9, y:(document.documentElement.clientHeight)*0.95}}" target="_blank" href="https://getk2.org/documentation/">
 				<i class="dashicon documentation"></i>
     		<span><?php echo JText::_('K2_DOCS_AND_TUTORIALS'); ?></span>
     	</a>
@@ -134,7 +134,7 @@ defined('_JEXEC') or die;
   <?php if ($user->gid>23): ?>
   <div class="icon-wrapper">
     <div class="icon">
-    	<a class="modal" rel="{handler:'iframe', size:{x:(document.documentElement.clientWidth)*0.9, y:(document.documentElement.clientHeight)*0.95}}" target="_blank" href="http://getk2.org/extend/">
+    	<a class="modal" rel="{handler:'iframe', size:{x:(document.documentElement.clientWidth)*0.9, y:(document.documentElement.clientHeight)*0.95}}" target="_blank" href="https://getk2.org/extend/">
 				<i class="dashicon extend"></i>
     		<span><?php echo JText::_('K2_EXTEND'); ?></span>
     	</a>
@@ -142,7 +142,7 @@ defined('_JEXEC') or die;
   </div>
   <div class="icon-wrapper">
     <div class="icon">
-    	<a class="modal" rel="{handler:'iframe', size:{x:(document.documentElement.clientWidth)*0.9, y:(document.documentElement.clientHeight)*0.95}}" target="_blank" href="http://getk2.org/community/">
+    	<a class="modal" rel="{handler:'iframe', size:{x:(document.documentElement.clientWidth)*0.9, y:(document.documentElement.clientHeight)*0.95}}" target="_blank" href="https://getk2.org/community/">
 				<i class="dashicon help"></i>
     		<span><?php echo JText::_('K2_COMMUNITY'); ?></span>
     	</a>

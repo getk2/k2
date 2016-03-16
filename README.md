@@ -1,4 +1,4 @@
-![K2](http://getk2.org/assets/files/logo/k2_logo.png)
+![K2](https://getk2.org/assets/files/logo/k2_logo.png)
 
 [![Stories in Ready](https://badge.waffle.io/getk2/k2.png?label=ready&title=Ready)](https://waffle.io/getk2/k2)
 ***
@@ -32,16 +32,16 @@ K2 was actually built on these 4 principles: feature-rich content in Joomla!, ea
 
 ==
 ### Downloading K2
-You can find the latest stable release on: http://getk2.org
+You can find the latest stable release on: https://getk2.org
 
-If you are looking for the latest developer build (a snapshot from this Github repository) please do not use Github's "Download ZIP" button but instead use this link: http://getk2.org/assets/get/ (updated hourly)
+If you are looking for the latest developer build (a snapshot from this Github repository) please do not use Github's "Download ZIP" button but instead use this link: https://getk2.org/assets/get/ (updated hourly)
 
 
 ==
 ### Resources
 The K2 Community is the ultimate destination for everything K2! From discussions in the Community Forum to Extensions & Templates in the "K2 Extensions Directory", as well as a wealth of video tutorials, documentation, tips & a showcase of Joomla! sites built with K2.
 
-More at: http://getk2.org
+More at: https://getk2.org
 
 
 ==
