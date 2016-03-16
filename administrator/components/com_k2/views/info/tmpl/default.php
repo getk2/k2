@@ -11,6 +11,7 @@
 defined('_JEXEC') or die;
 
 ?>
+
 <form action="index.php" method="post" name="adminForm">
 	<div id="k2InfoPage">
 		<ul class="k2ScrollSpyMenu">
@@ -53,24 +54,6 @@ defined('_JEXEC') or die;
 					      </tfoot>
 							  <tbody>
 							    <tr>
-							      <td><a target="_blank" href="http://nuovext.pwsp.net/">NuoveXT</a></td>
-							      <td>2.2</td>
-							      <td><?php echo JText::_('K2_ICONS'); ?></td>
-							      <td><?php echo JText::_('K2_GNUGPL'); ?></td>
-							    </tr>
-							    <tr>
-							      <td><a target="_blank" href="http://p.yusukekamiyamane.com/">Fugue Icons<br />(by Yusuke Kamiyamane)</a></td>
-							      <td>3.5.3</td>
-							      <td><?php echo JText::_('K2_ICONS'); ?></td>
-							      <td><?php echo JText::_('K2_CREATIVE_COMMONS_ATTRIBUTION_30_LICENSE'); ?></td>
-							    </tr>
-							    <tr>
-							      <td><a target="_blank" href="http://www.iconarchive.com/artist/tpdkdesign.net.html">"Choose Your Sport" Icon Pack<br />(by TpdkDesign.net)</a></td>
-							      <td><?php echo JText::_('K2_NA'); ?></td>
-							      <td><?php echo JText::_('K2_ICONS'); ?></td>
-							      <td><?php echo JText::_('K2_INFO_FREE_LICENSE'); ?></td>
-							    </tr>
-							    <tr>
 							      <td><a target="_blank" href="http://pear.php.net/package/Services_JSON/">Services_JSON</a></td>
 							      <td>1.0.1</td>
 							      <td><?php echo JText::_('K2_PHP_CLASS'); ?></td>
@@ -84,7 +67,7 @@ defined('_JEXEC') or die;
 							    </tr>
 							    <tr>
 							      <td><a target="_blank" href="http://jquery.com">jQuery</a></td>
-							      <td>1.3.x - 1.11.x</td>
+							      <td>1.3.x - 1.12.x</td>
 							      <td><?php echo JText::_('K2_JS_LIB'); ?></td>
 							      <td><?php echo JText::_('K2_MIT'); ?></td>
 							    </tr>
@@ -99,6 +82,12 @@ defined('_JEXEC') or die;
 							      <td>2.0 (rc1) [patched by JoomlaWorks]</td>
 							      <td><?php echo JText::_('K2_INFO_FILE_MANAGER'); ?></td>
 							      <td><?php echo JText::_('K2_BSD'); ?></td>
+							    </tr>
+							    <tr>
+							      <td><a target="_blank" href="https://select2.github.io/">Select2</a></td>
+							      <td></td>
+							      <td><?php echo JText::_('K2_INFO_REPLACEMENT_FOR_SELECT_BOXES'); ?></td>
+							      <td><?php echo JText::_('K2_MIT'); ?></td>
 							    </tr>
 							  </tbody>
 							</table>
@@ -179,9 +168,9 @@ defined('_JEXEC') or die;
 					        <tr>
 					          <td><strong>media/k2</strong></td>
 					          <td>
-								<?php if ($this->media_folder_check): ?> 
+								<?php if ($this->media_folder_check): ?>
 									<span class="green"><?php echo JText::_('K2_WRITABLE'); ?></span>
-								<?php else: ?> 
+								<?php else: ?>
 									<span class="red"><?php echo JText::_('K2_NOT_WRITABLE'); ?></span>
 								<?php endif; ?>
 					          </td>
@@ -189,9 +178,9 @@ defined('_JEXEC') or die;
 					        <tr>
 					          <td><strong>media/k2/attachments</strong></td>
 					          <td>
-								<?php if ($this->attachments_folder_check): ?> 
+								<?php if ($this->attachments_folder_check): ?>
 									<span class="green"><?php echo JText::_('K2_WRITABLE'); ?></span>
-								<?php else: ?> 
+								<?php else: ?>
 									<span class="red"><?php echo JText::_('K2_NOT_WRITABLE'); ?></span>
 								<?php endif; ?>
 					          </td>
@@ -199,9 +188,9 @@ defined('_JEXEC') or die;
 					        <tr>
 					          <td><strong>media/k2/categories</strong></td>
 					          <td>
-								<?php if ($this->categories_folder_check): ?> 
+								<?php if ($this->categories_folder_check): ?>
 									<span class="green"><?php echo JText::_('K2_WRITABLE'); ?></span>
-								<?php else: ?> 
+								<?php else: ?>
 									<span class="red"><?php echo JText::_('K2_NOT_WRITABLE'); ?></span>
 								<?php endif; ?>
 					          </td>
@@ -209,9 +198,9 @@ defined('_JEXEC') or die;
 					        <tr>
 					          <td><strong>media/k2/galleries</strong></td>
 					          <td>
-								<?php if ($this->galleries_folder_check): ?> 
+								<?php if ($this->galleries_folder_check): ?>
 									<span class="green"><?php echo JText::_('K2_WRITABLE'); ?></span>
-								<?php else: ?> 
+								<?php else: ?>
 									<span class="red"><?php echo JText::_('K2_NOT_WRITABLE'); ?></span>
 								<?php endif; ?>
 					          </td>
@@ -219,9 +208,9 @@ defined('_JEXEC') or die;
 					        <tr>
 					          <td><strong>media/k2/items</strong></td>
 					          <td>
-								<?php if ($this->items_folder_check): ?> 
+								<?php if ($this->items_folder_check): ?>
 									<span class="green"><?php echo JText::_('K2_WRITABLE'); ?></span>
-								<?php else: ?> 
+								<?php else: ?>
 									<span class="red"><?php echo JText::_('K2_NOT_WRITABLE'); ?></span>
 								<?php endif; ?>
 					          </td>
@@ -229,9 +218,9 @@ defined('_JEXEC') or die;
 					        <tr>
 					          <td><strong>media/k2/users</strong></td>
 					          <td>
-								<?php if ($this->users_folder_check): ?> 
+								<?php if ($this->users_folder_check): ?>
 									<span class="green"><?php echo JText::_('K2_WRITABLE'); ?></span>
-								<?php else: ?> 
+								<?php else: ?>
 									<span class="red"><?php echo JText::_('K2_NOT_WRITABLE'); ?></span>
 								<?php endif; ?>
 					          </td>
@@ -239,9 +228,9 @@ defined('_JEXEC') or die;
 					        <tr>
 					          <td><strong>media/k2/videos</strong></td>
 					          <td>
-								<?php if ($this->videos_folder_check): ?> 
+								<?php if ($this->videos_folder_check): ?>
 									<span class="green"><?php echo JText::_('K2_WRITABLE'); ?></span>
-								<?php else: ?> 
+								<?php else: ?>
 									<span class="red"><?php echo JText::_('K2_NOT_WRITABLE'); ?></span>
 								<?php endif; ?>
 					          </td>
@@ -249,9 +238,9 @@ defined('_JEXEC') or die;
 					        <tr>
 					          <td><strong>cache</strong></td>
 					          <td>
-								<?php if ($this->cache_folder_check): ?> 
+								<?php if ($this->cache_folder_check): ?>
 									<span class="green"><?php echo JText::_('K2_WRITABLE'); ?></span>
-								<?php else: ?> 
+								<?php else: ?>
 									<span class="red"><?php echo JText::_('K2_NOT_WRITABLE'); ?></span>
 								<?php endif; ?>
 					          </td>
@@ -281,9 +270,9 @@ defined('_JEXEC') or die;
 					        <tr>
 					          <td><strong>mod_k2_comments</strong></td>
 					          <td>
-					          	<?php if (is_null(JModuleHelper::getModule('mod_k2_comments'))): ?> 
+					          	<?php if (is_null(JModuleHelper::getModule('mod_k2_comments'))): ?>
 									<span class="red"><?php echo JText::_('K2_NOT_INSTALLED'); ?></span>
-								<?php else: ?> 
+								<?php else: ?>
 									<span class="green"><?php echo JText::_('K2_INSTALLED'); ?></span>
 								<?php endif; ?>
 
@@ -292,9 +281,9 @@ defined('_JEXEC') or die;
 					        <tr>
 					          <td><strong>mod_k2_content</strong></td>
 					          <td>
-					          	<?php if (is_null(JModuleHelper::getModule('mod_k2_content'))): ?> 
+					          	<?php if (is_null(JModuleHelper::getModule('mod_k2_content'))): ?>
 									<span class="red"><?php echo JText::_('K2_NOT_INSTALLED'); ?></span>
-								<?php else: ?> 
+								<?php else: ?>
 									<span class="green"><?php echo JText::_('K2_INSTALLED'); ?></span>
 								<?php endif; ?>
 					          </td>
@@ -302,9 +291,9 @@ defined('_JEXEC') or die;
 					        <tr>
 					          <td><strong>mod_k2_tools</strong></td>
 					          <td>
-					          	<?php if (is_null(JModuleHelper::getModule('mod_k2_tools'))): ?> 
+					          	<?php if (is_null(JModuleHelper::getModule('mod_k2_tools'))): ?>
 									<span class="red"><?php echo JText::_('K2_NOT_INSTALLED'); ?></span>
-								<?php else: ?> 
+								<?php else: ?>
 									<span class="green"><?php echo JText::_('K2_INSTALLED'); ?></span>
 								<?php endif; ?>
 					          	</td>
@@ -312,9 +301,9 @@ defined('_JEXEC') or die;
 					        <tr>
 					          <td><strong>mod_k2_user</strong></td>
 					          <td>
-					          	<?php if (is_null(JModuleHelper::getModule('mod_k2_user'))): ?> 
+					          	<?php if (is_null(JModuleHelper::getModule('mod_k2_user'))): ?>
 									<span class="red"><?php echo JText::_('K2_NOT_INSTALLED'); ?></span>
-								<?php else: ?> 
+								<?php else: ?>
 									<span class="green"><?php echo JText::_('K2_INSTALLED'); ?></span>
 								<?php endif; ?>
 					          	</td>
@@ -322,9 +311,9 @@ defined('_JEXEC') or die;
 					        <tr>
 					          <td><strong>mod_k2_users</strong></td>
 					          <td>
-					          	<?php if (is_null(JModuleHelper::getModule('mod_k2_users'))): ?> 
+					          	<?php if (is_null(JModuleHelper::getModule('mod_k2_users'))): ?>
 									<span class="red"><?php echo JText::_('K2_NOT_INSTALLED'); ?></span>
-								<?php else: ?> 
+								<?php else: ?>
 									<span class="green"><?php echo JText::_('K2_INSTALLED'); ?></span>
 								<?php endif; ?>
 					          	</td>
@@ -332,9 +321,9 @@ defined('_JEXEC') or die;
 					        <tr>
 					          <td><strong>mod_k2_quickicons</strong> (administrator)</td>
 					          <td>
-					          	<?php if (is_null(JModuleHelper::getModule('mod_k2_quickicons'))): ?> 
+					          	<?php if (is_null(JModuleHelper::getModule('mod_k2_quickicons'))): ?>
 									<span class="red"><?php echo JText::_('K2_NOT_INSTALLED'); ?></span>
-								<?php else: ?> 
+								<?php else: ?>
 									<span class="green"><?php echo JText::_('K2_INSTALLED'); ?></span>
 								<?php endif; ?>
 					          	</td>
@@ -342,9 +331,9 @@ defined('_JEXEC') or die;
 					        <tr>
 					          <td><strong>mod_k2_stats</strong> (administrator)</td>
 					          <td>
-					          	<?php if (is_null(JModuleHelper::getModule('mod_k2_stats'))): ?> 
+					          	<?php if (is_null(JModuleHelper::getModule('mod_k2_stats'))): ?>
 									<span class="red"><?php echo JText::_('K2_NOT_INSTALLED'); ?></span>
-								<?php else: ?> 
+								<?php else: ?>
 									<span class="green"><?php echo JText::_('K2_INSTALLED'); ?></span>
 								<?php endif; ?>
 
@@ -376,26 +365,26 @@ defined('_JEXEC') or die;
 					        <tr>
 					          <td><strong>Finder - K2</strong></td>
 					          <td>
-					          	<?php echo (JFile::exists(JPATH_PLUGINS.DS.'finder'.DS.'k2.php') || JFile::exists(JPATH_PLUGINS.DS.'finder'.DS.'k2'.DS.'k2.php'))?'<span class="green">'.JText::_('K2_INSTALLED'):'<span class="red">'.JText::_('K2_NOT_INSTALLED'); ?></span> 
+					          	<?php echo (JFile::exists(JPATH_PLUGINS.DS.'finder'.DS.'k2.php') || JFile::exists(JPATH_PLUGINS.DS.'finder'.DS.'k2'.DS.'k2.php'))?'<span class="green">'.JText::_('K2_INSTALLED'):'<span class="red">'.JText::_('K2_NOT_INSTALLED'); ?></span>
 					          	- <?php echo (JPluginHelper::isEnabled('finder', 'k2'))? '<span class="green">'.JText::_('K2_ENABLED'): '<span class="red">'.JText::_('K2_DISABLED'); ?><span></td>
 					        </tr>
 					        <?php endif; ?>
 					        <tr>
 					          <td><strong>Search - K2</strong></td>
 					          <td>
-					          	<?php echo (JFile::exists(JPATH_PLUGINS.DS.'search'.DS.'k2.php') || JFile::exists(JPATH_PLUGINS.DS.'search'.DS.'k2'.DS.'k2.php'))?'<span class="green">'.JText::_('K2_INSTALLED'):'<span class="red">'.JText::_('K2_NOT_INSTALLED'); ?></span> 
+					          	<?php echo (JFile::exists(JPATH_PLUGINS.DS.'search'.DS.'k2.php') || JFile::exists(JPATH_PLUGINS.DS.'search'.DS.'k2'.DS.'k2.php'))?'<span class="green">'.JText::_('K2_INSTALLED'):'<span class="red">'.JText::_('K2_NOT_INSTALLED'); ?></span>
 					          	- <?php echo (JPluginHelper::isEnabled('search', 'k2'))?'<span class="green">'.JText::_('K2_ENABLED'): '<span class="red">'.JText::_('K2_DISABLED'); ?><span></td>
 					        </tr>
 					        <tr>
 					          <td><strong>System - K2</strong></td>
 					          <td>
-					          	<?php echo (JFile::exists(JPATH_PLUGINS.DS.'system'.DS.'k2.php') || JFile::exists(JPATH_PLUGINS.DS.'system'.DS.'k2'.DS.'k2.php'))?'<span class="green">'.JText::_('K2_INSTALLED'):'<span class="red">'.JText::_('K2_NOT_INSTALLED'); ?></span> 
+					          	<?php echo (JFile::exists(JPATH_PLUGINS.DS.'system'.DS.'k2.php') || JFile::exists(JPATH_PLUGINS.DS.'system'.DS.'k2'.DS.'k2.php'))?'<span class="green">'.JText::_('K2_INSTALLED'):'<span class="red">'.JText::_('K2_NOT_INSTALLED'); ?></span>
 					          - <?php echo (JPluginHelper::isEnabled('system', 'k2'))?'<span class="green">'.JText::_('K2_ENABLED'): '<span class="red">'.JText::_('K2_DISABLED'); ?><span></td>
 					        </tr>
 					        <tr>
 					          <td><strong>User - K2</strong></td>
 					          <td>
-					          	<?php echo (JFile::exists(JPATH_PLUGINS.DS.'user'.DS.'k2.php') || JFile::exists(JPATH_PLUGINS.DS.'user'.DS.'k2'.DS.'k2.php'))?'<span class="green">'.JText::_('K2_INSTALLED'):'<span class="red">'.JText::_('K2_NOT_INSTALLED'); ?></span> 
+					          	<?php echo (JFile::exists(JPATH_PLUGINS.DS.'user'.DS.'k2.php') || JFile::exists(JPATH_PLUGINS.DS.'user'.DS.'k2'.DS.'k2.php'))?'<span class="green">'.JText::_('K2_INSTALLED'):'<span class="red">'.JText::_('K2_NOT_INSTALLED'); ?></span>
 					          	- <?php echo (JPluginHelper::isEnabled('user', 'k2'))?'<span class="green">'.JText::_('K2_ENABLED'): '<span class="red">'.JText::_('K2_DISABLED'); ?><span></td>
 					        </tr>
 					      </tbody>
