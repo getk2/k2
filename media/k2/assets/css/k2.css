@@ -27,6 +27,10 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ30 .btn-subhead,
 .isJ30 .subhead {margin-left:0;margin-right:0;}
 
+
+
+/* -------------- Admin Common -------------- */
+
 .k2Center {text-align:center;}
 .k2Left {text-align:left;}
 .k2Right {text-align:right;}
@@ -69,7 +73,6 @@ body.com_k2 .page-title,
 .k2Inactive,
 span.k2GalleryNotice ,
 .k2Active {display:inline-block;background:url('../images/system/sprite-backend.png') no-repeat;overflow:hidden;text-indent:-9999px;text-align:left;}
-
 span.k2GalleryNotice {background-position:-79px -118px;width:16px;height:16px;}
 #k2ExtraFieldsValidationResults {background-position:-10px -92px;width:59px;height:54px;}
 .icon-48-k2{background-position:-10px -0px;width:95px;height:36px;}
@@ -104,23 +107,14 @@ ul.k2GenericList li {list-style:square;padding:2px 0;}
 .icon-48-k2 {color:#222!important;padding-left:120px!important;font-size:24px!important;}
 .icon-48-k2 h2 {color:#222!important;font-size:24px!important;margin-left:10px!important;}
 
-/* Joomla 3.x Specific */
-body.com_k2 .container-fluid {padding:0!important;}
-body.com_k2 .page-title {padding-left:100px;}
-@media (max-width:767px) {
-	body.com_k2 .page-title {padding-left:0;text-indent:-800px}
-}
-
 /* Normalize all Joomla radio controls?
 div.controls label.radio {}
 div.controls label.radio input[type="radio"] {}
 */
 
-/* Footer */
-#k2AdminFooter {text-align:center;margin:20px auto 4px auto;width:100%;clear:both;float:left;}
-@media screen and (min-width:767px) {
-	#k2AdminFooter {margin-bottom:45px;}
-}
+div#k2AdminContainer h1 {padding:0 0 8px 0;margin:0;}
+span.k2Notice {cursor:pointer;font-weight:bold;}
+.k2LimitBox {float:left;margin:0 10px 0 0;}
 
 /* Common for Joomla 2.5 */
 div.isJ25 table.admintable {}
@@ -128,9 +122,21 @@ div.isJ25 table.admintable td.key {background:#f6f6f6;/*border-bottom:1px solid 
 div.isJ25 table.admintable td.key label {margin:0;padding:0;}
 
 /* Common for Joomla 3.x */
+body.com_k2 .container-fluid {padding:0!important;}
+body.com_k2 .page-title {padding-left:100px;}
+@media (max-width:767px) {
+	body.com_k2 .page-title {padding-left:0;text-indent:-800px}
+}
 div.controls label.radio {display:inline-block;}
+.isJ30 table.adminlist tfoot tr td {text-align:center;}
 
-/* Div Tables */
+/* Footer */
+#k2AdminFooter {text-align:center;margin:20px auto 4px auto;width:100%;clear:both;float:left;}
+@media screen and (min-width:767px) {
+	#k2AdminFooter {margin-bottom:45px;}
+}
+
+/* div tables */
 div.k2Table {margin:0 0 20px 0;}
 div.k2Table .k2TableLabel > label {font-weight:normal;color:#777;}
 div.k2Table .k2TableValue {}
@@ -599,6 +605,7 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 
 /* Lists - Generic styling */
 #k2AdminContainer {position:relative;width:100%;clear:both;margin-bottom:10px;}
+
 .com_k2.view-items,
 .com_k2.view-categories,
 .com_k2.view-tags,
@@ -607,6 +614,7 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 .com_k2.view-users,
 .com_k2.view-extrafields,
 .com_k2.view-extrafieldsgroups {background:#f0f2f2;}
+
 .isJ30 .row-fluid .span10 {margin-left:0;min-width:85%;}
 .isJ30 .row-fluid .span2 {min-width:15%;}
 
@@ -634,7 +642,8 @@ table.adminFormK2 {width:100%;margin-bottom:16px;}
 #k2AdminContainer .adminlist a {text-decoration:none;color:#636b6e;cursor:pointer;}
 #k2AdminContainer .adminlist a:hover {color:#46afff;}
 
-#k2AdminContainer .adminlist tr td {background:#f0f2f2;border-bottom:1px solid #dbdcdc;}
+.isJ15 #k2AdminContainer .adminlist tr td,
+.isJ25 #k2AdminContainer .adminlist tr td {background:#f0f2f2;border-bottom:1px solid #dbdcdc;}
 
 .table-responsive-wrap {position:relative;}
 .table-responsive {width:100%;margin-bottom:15px;overflow-x:scroll;overflow-y:hidden;-webkit-overflow-scrolling:touch;-ms-overflow-style:-ms-autohiding-scrollbar;}
@@ -804,7 +813,7 @@ input#k2ImageBrowseServer {width:auto;height:30px;line-height:8px;margin-left:10
 .oldJ textarea,
 .oldJ input[type="text"],
 .oldJ input[type="password"],
- .oldJ input[type="number"],
+.oldJ input[type="number"],
 .oldJ input[type="email"],
 .oldJ input[type="url"],
 .oldJ .uneditable-input,
@@ -812,7 +821,7 @@ input#k2ImageBrowseServer {width:auto;height:30px;line-height:8px;margin-left:10
 .oldJ .k2ViewIsCategory select,
 .oldJ .k2GenericForm select {background-color:#fff;border:1px solid #ccc;box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);-webkit-transition:border linear .2s,box-shadow linear .2s;-moz-transition:border linear .2s,box-shadow linear .2s;transition:border linear .2s,box-shadow linear .2s;display:inline-block;height:30px;font-size:13px;padding:0 10px;min-width:80px;line-height:18px;color:#555;border-radius:3px;vertical-align:middle;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
 .oldJ .k2GenericForm select {min-width:169px;}
-.oldJ input.k2OrderBox {max-width:30px;min-width:0;}
+.oldJ input.k2OrderBox {} /* don't hard code the width as we never know how large the number can be */
 .oldJ td.order span {display:none;}
 
 /* Forms */
@@ -852,11 +861,6 @@ body#com_k2 {}
 	.k2ItemFormEditor .editor .btn-toolbar.pull-right {float:none;width:100%;padding-top:0;margin-top:-10px;}
 	.k2ItemFormEditor .editor .btn-toolbar.pull-left {float:none;}
 }
-
-/* -------------- Admin Common -------------- */
-div#k2AdminContainer h1 {padding:0 0 8px 0;margin:0;}
-span.k2Notice {cursor:pointer;font-weight:bold;}
-.k2LimitBox {float:left;margin:0 10px 0 0;}
 
 /* -------------- View Styling -------------- */
 
