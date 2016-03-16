@@ -3,16 +3,11 @@
  * @package    K2
  * @author     JoomlaWorks http://www.joomlaworks.net
  * @copyright  Copyright (c) 2006 - 2016 JoomlaWorks Ltd. All rights reserved.
- * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @license    GNU/GPL license:http://www.gnu.org/copyleft/gpl.html
  */
 
 /*
 ### Legend ###
-Font families used:
-	font-family:Georgia, "Times New Roman", Times, serif;
-	font-family:"Trebuchet MS",Trebuchet,Arial,Verdana,Sans-serif;
-	font-family:Arial, Helvetica, sans-serif;
-
 Colors used:
 	#f7fafe (light blue) used as background on all toolbars, category and user/author boxes
 
@@ -20,9 +15,9 @@ Colors used:
 
 
 
-/*----------------------------------------------------------------------
+/*------------------------------------------------------------------------------
 	Common Elements
-----------------------------------------------------------------------*/
+--------------------------------------------------------------------------------*/
 
 /* --- Basic typography --- */
 a:active,
@@ -70,35 +65,47 @@ div.itemRatingForm .formLogLoading {background:url(../images/system/loading.gif)
 .itemRatingList .itemCurrentRating {z-index:1;background-position:0 center;margin:0;padding:0;}
 span.siteRoot {display:none;}
 
-/* --- CSS added with Javascript --- */
+/* --- CSS added with JavaScript --- */
 .smallerFontSize {font-size:100%;line-height:inherit;}
 .largerFontSize {font-size:150%;line-height:140%;}
 
 /* --- ReCaptcha --- */
 .recaptchatable .recaptcha_image_cell,
 #recaptcha_table {background-color:#fff !important;}
-#recaptcha_table {border-color: #ccc !important;}
-#recaptcha_response_field {border-color: #ccc !important;background-color:#fff !important;}
-.k2-recaptcha-v2 { margin-top: 12px;}
+#recaptcha_table {border-color:#ccc !important;}
+#recaptcha_response_field {border-color:#ccc !important;background-color:#fff !important;}
+.k2-recaptcha-v2 {margin-top:12px;}
 
 /* --- Icon Font Support --- */
-/* resets for users with older overrides */
-div.itemToolbar ul li a#fontDecrease img, div.itemToolbar ul li a#fontIncrease img { background: none; }
-div.itemToolbar ul li a#fontDecrease, div.itemToolbar ul li a#fontIncrease { font-size: 14px; }
-a.ubUserFeedIcon, a.ubUserFeedIcon:hover, a.ubUserURL, a.ubUserURL:hover, span.ubUserEmail, div.itemIsFeatured:before, div.catItemIsFeatured:before, div.userItemIsFeatured:before,
-div.k2FeedIcon a, div.k2FeedIcon a:hover, div.itemToolbar ul li a#fontDecrease, div.itemToolbar ul li a#fontIncrease { background: none; text-decoration: none; vertical-align: middle;
-font-family:'simple-line-icons';speak:none;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale }
 
-/* Font assignments */
-div.catItemIsFeatured:before,
-div.userItemIsFeatured:before,
-div.itemIsFeatured:before{ content:"\e09b" }
-a#fontIncrease:before {content:"\e091"}
-a#fontDecrease:before {content:"\e092"}
-div.k2FeedIcon a:before,
-a.ubUserFeedIcon:before {content:"\e03b"}
-a.ubUserURL:before{content:"\e037"}
-span.ubUserEmail:before {content:"\e086"}
+	/* Reset for users with older overrides */
+	div.itemToolbar ul li a#fontDecrease img,
+	div.itemToolbar ul li a#fontIncrease img {background:none;}
+	div.itemToolbar ul li a#fontDecrease,
+	div.itemToolbar ul li a#fontIncrease {font-size:14px;}
+	a.ubUserFeedIcon,
+	a.ubUserFeedIcon:hover,
+	a.ubUserURL,
+	a.ubUserURL:hover,
+	span.ubUserEmail,
+	div.itemIsFeatured:before,
+	div.catItemIsFeatured:before,
+	div.userItemIsFeatured:before,
+	div.k2FeedIcon a,
+	div.k2FeedIcon a:hover,
+	div.itemToolbar ul li a#fontDecrease,
+	div.itemToolbar ul li a#fontIncrease {background:none;text-decoration:none;vertical-align:middle;font-family:'simple-line-icons';speak:none;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+
+	/* Font assignments */
+	div.catItemIsFeatured:before,
+	div.userItemIsFeatured:before,
+	div.itemIsFeatured:before {content:"\e09b";}
+	a#fontIncrease:before {content:"\e091";}
+	a#fontDecrease:before {content:"\e092";}
+	div.k2FeedIcon a:before,
+	a.ubUserFeedIcon:before {content:"\e03b";}
+	a.ubUserURL:before {content:"\e037";}
+	span.ubUserEmail:before {content:"\e086";}
 
 /* --- Primary lists in modules --- */
 div.k2LatestCommentsBlock ul,
@@ -110,7 +117,7 @@ div.k2UserBlock ul.k2UserBlockRenderedMenu,
 div.k2ArchivesBlock ul,
 div.k2AuthorsListBlock ul,
 div.k2CategoriesListBlock ul,
-div.k2UsersBlock ul {} /* Example CSS: padding:0;margin:0;list-style:none;*/
+div.k2UsersBlock ul {} /* Example CSS: padding:0;margin:0;list-style:none; */
 
 div.k2LatestCommentsBlock ul li,
 div.k2TopCommentersBlock ul li,
@@ -121,7 +128,7 @@ div.k2UserBlock ul.k2UserBlockRenderedMenu li,
 div.k2ArchivesBlock ul li,
 div.k2AuthorsListBlock ul li,
 div.k2CategoriesListBlock ul li,
-div.k2UsersBlock ul li {} /* Example CSS: display:block;clear:both;padding:2px 0;border-bottom:1px dotted #ccc;*/
+div.k2UsersBlock ul li {} /* Example CSS: display:block;clear:both;padding:2px 0;border-bottom:1px dotted #ccc; */
 
 .clearList {display:none;float:none;clear:both;} /* this class is used to clear all previous floating list elements */
 .lastItem {border:none;} /* class appended on last list item */
@@ -146,32 +153,36 @@ table.csvData tr th {}
 table.csvData tr td {}
 
 /* --- Featured flags: the classes are repeated further below to indicate placement in the CSS structure --- */
-div.itemIsFeatured, div.catItemIsFeatured, div.userItemIsFeatured { position: relative; }
-div.itemIsFeatured:before, div.catItemIsFeatured:before, div.userItemIsFeatured:before { position: absolute; top: 10px; right: 10px; color: #CF1919; font-size: 20px; }
+div.itemIsFeatured,
+div.catItemIsFeatured,
+div.userItemIsFeatured {position:relative;}
+div.itemIsFeatured:before,
+div.catItemIsFeatured:before,
+div.userItemIsFeatured:before {position:absolute;top:10px;right:10px;color:#CF1919;font-size:20px;}
 
-/*----------------------------------------------------------------------
-	Component: Item view
-----------------------------------------------------------------------*/
-a.itemPrintThisPage {display:block;width:160px;margin:4px auto 16px;padding:4px;background:#F7FAFE;border:1px solid #ccc;text-align:center;color:#555;font-size:13px;}
+/*------------------------------------------------------------------------------
+	Component - Item view
+--------------------------------------------------------------------------------*/
+a.itemPrintThisPage {display:block;width:160px;margin:4px auto 16px;padding:4px;border:1px solid #ccc;text-align:center;color:#555;font-size:13px;}
 a.itemPrintThisPage:hover {background:#eee;text-decoration:none;}
 
 div.itemView {padding:8px 0 24px 0;margin:0 0 24px 0;border-bottom:1px dotted #ccc;} /* this is the item container for this view */
 div.itemIsFeatured {} /* Attach a class for each featured item */
 
 span.itemEditLink {float:right;display:block;padding:4px 0;margin:0;width:120px;text-align:right;}
-span.itemEditLink a {padding:2px 12px;border:1px solid #ccc;background:#eee;text-decoration:none;font-size:11px;font-weight:normal;font-family:Arial, Helvetica, sans-serif;}
+span.itemEditLink a {padding:2px 12px;border:1px solid #ccc;background:#eee;text-decoration:none;font-size:11px;font-weight:normal;}
 span.itemEditLink a:hover {background:#ffffcc;}
 
 div.itemHeader {}
 	div.itemHeader span.itemDateCreated {color:#999;font-size:11px;}
-	div.itemHeader h2.itemTitle {font-family:Georgia, "Times New Roman", Times, serif;font-size:36px;font-weight:normal;line-height:110%;padding:10px 0 4px 0;margin:0;}
+	div.itemHeader h2.itemTitle {padding:10px 0 4px 0;margin:0;}
 	div.itemHeader h2.itemTitle span {}
 	div.itemHeader h2.itemTitle span sup {font-size:12px;color:#CF1919;text-decoration:none;} /* "Featured" presented in superscript */
 	div.itemHeader span.itemAuthor {display:block;padding:0;margin:0;}
 	div.itemHeader span.itemAuthor a {}
 	div.itemHeader span.itemAuthor a:hover {}
 
-div.itemToolbar {padding:2px 0;margin:16px 0 0 0;border-top:1px dotted #ccc;border-bottom:1px dotted #ccc;background:#f7fafe;}
+div.itemToolbar {padding:2px 0;margin:16px 0 0 0;border-top:1px dotted #ccc;border-bottom:1px dotted #ccc;}
 	div.itemToolbar ul {text-align:right;list-style:none;padding:0;margin:0;}
 	div.itemToolbar ul li {display:inline;list-style:none;padding:0 4px 0 8px;margin:0;border-left:1px solid #ccc;text-align:center;background:none;font-size:12px;}
 	div.itemToolbar ul > li:first-child {border:none;} /* remove the first CSS border from the left of the toolbar */
@@ -191,9 +202,9 @@ div.itemToolbar {padding:2px 0;margin:16px 0 0 0;border-top:1px dotted #ccc;bord
 	div.itemToolbar ul li a img {vertical-align:middle;}
 	div.itemToolbar ul li span.itemTextResizerTitle {}
 	div.itemToolbar ul li a#fontDecrease {margin:0 0 0 2px;}
-	div.itemToolbar ul li a#fontDecrease img {width:13px;height:13px;font-size: 13px;}
+	div.itemToolbar ul li a#fontDecrease img {width:13px;height:13px;font-size:13px;}
 	div.itemToolbar ul li a#fontIncrease {margin:0 0 0 2px;}
-	div.itemToolbar ul li a#fontIncrease img {width:13px;height:13px;font-size: 13px;}
+	div.itemToolbar ul li a#fontIncrease img {width:13px;height:13px;font-size:13px;}
 	div.itemToolbar ul li a#fontDecrease span,
 	div.itemToolbar ul li a#fontIncrease span {display:none;}
 
@@ -217,7 +228,7 @@ div.itemFullText {}
 	div.itemFullText img {}
 
 div.itemExtraFields {margin:16px 0 0 0;padding:8px 0 0 0;border-top:1px dotted #ddd;}
-	div.itemExtraFields h3 {margin:0;padding:0 0 8px 0;line-height:normal !important;}
+	div.itemExtraFields h3 {margin:0;padding:0 0 8px 0;}
 	div.itemExtraFields ul {margin:0;padding:0;list-style:none;}
 	div.itemExtraFields ul li {display:block;}
 	div.itemExtraFields ul li span.itemExtraFieldsLabel {display:block;float:left;font-weight:bold;margin:0 4px 0 0;width:30%;}
@@ -253,11 +264,11 @@ div.itemAttachmentsBlock {padding:4px;border-bottom:1px dotted #ccc;}
 	div.itemAttachmentsBlock ul.itemAttachments li span {font-size:10px;color:#999;font-weight:normal;}
 
 /* Author block */
-div.itemAuthorBlock {background:#f7fafe;border:1px solid #ddd;margin:0 0 16px 0;padding:8px;}
+div.itemAuthorBlock {background:#f3f3f3;border:1px solid #ddd;margin:0 0 16px 0;padding:8px;}
 	div.itemAuthorBlock img.itemAuthorAvatar {float:left;display:block;background:#fff;padding:4px;border:1px solid #ddd;margin:0 8px 0 0;}
 	div.itemAuthorBlock div.itemAuthorDetails {margin:0;padding:4px 0 0 0;}
 	div.itemAuthorBlock div.itemAuthorDetails h3.authorName {margin:0 0 4px 0;padding:0;}
-	div.itemAuthorBlock div.itemAuthorDetails h3.authorName a {font-family:Georgia, "Times New Roman", Times, serif;font-size:16px;}
+	div.itemAuthorBlock div.itemAuthorDetails h3.authorName a {font-size:16px;}
 	div.itemAuthorBlock div.itemAuthorDetails h3.authorName a:hover {}
 	div.itemAuthorBlock div.itemAuthorDetails p {}
 	div.itemAuthorBlock div.itemAuthorDetails span.itemAuthorUrl {font-weight:bold;color:#555;border-right:1px solid #ccc;padding:0 8px 0 0;margin:0 4px 0 0;}
@@ -274,7 +285,7 @@ div.itemAuthorLatest {margin-bottom:16px;padding:0;}
 			div.itemAuthorLatest ul li a:hover {}
 
 /* Related by tag */
-div.itemRelated {margin-bottom:16px;padding:0;} /* Add overflow-x:scroll; if you want to enable the scrolling features, as explained in item.php */
+div.itemRelated {margin-bottom:16px;padding:0;} /* Add overflow-x:scroll;if you want to enable the scrolling features, as explained in item.php */
 	div.itemRelated h3 {}
 	div.itemRelated ul {}
 		div.itemRelated ul li {}
@@ -350,7 +361,7 @@ div.k2ReportCommentFormContainer {padding:8px;width:480px;margin:0 auto;}
 	div.k2ReportCommentFormContainer blockquote {width:462px;background:#f7fafe;border:1px solid #ddd;padding:8px;margin:0 0 8px 0;}
 	div.k2ReportCommentFormContainer blockquote span.quoteIconLeft {font-style:italic;font-weight:bold;font-size:40px;color:#135CAE;line-height:30px;vertical-align:top;display:block;float:left;}
 	div.k2ReportCommentFormContainer blockquote span.quoteIconRight {font-style:italic;font-weight:bold;font-size:40px;color:#135CAE;line-height:30px;vertical-align:top;display:block;float:right;}
-	div.k2ReportCommentFormContainer blockquote span.theComment {font-family:Georgia, "Times New Roman", Times, serif;font-style:italic;font-size:12px;font-weight:normal;color:#000;padding:0 4px;}
+	div.k2ReportCommentFormContainer blockquote span.theComment {font-style:italic;font-size:12px;font-weight:normal;color:#000;padding:0 4px;}
 	div.k2ReportCommentFormContainer form label {display:block;font-weight:bold;}
 	div.k2ReportCommentFormContainer form input,
 	div.k2ReportCommentFormContainer form textarea {display:block;border:1px solid #ddd;font-size:12px;padding:2px;margin:0 0 8px 0;width:474px;}
@@ -365,9 +376,9 @@ div.itemBackToTop {text-align:right;}
 
 
 
-/*----------------------------------------------------------------------
-	Component: Itemlist view (category)
-----------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------
+	Component - Itemlist view (category)
+--------------------------------------------------------------------------------*/
 
 div.itemListCategoriesBlock {}
 
@@ -417,12 +428,12 @@ div.catItemView {padding:4px;} /* this is the item container for this view - we 
 	div.catItemIsFeatured {} /* Attach a class for each featured item */
 
 span.catItemEditLink {float:right;display:block;padding:4px 0;margin:0;width:120px;text-align:right;}
-span.catItemEditLink a {padding:2px 12px;border:1px solid #ccc;background:#eee;text-decoration:none;font-size:11px;font-weight:normal;font-family:Arial, Helvetica, sans-serif;}
+span.catItemEditLink a {padding:2px 12px;border:1px solid #ccc;background:#eee;text-decoration:none;font-size:11px;font-weight:normal;}
 span.catItemEditLink a:hover {background:#ffffcc;}
 
 div.catItemHeader {}
 	div.catItemHeader span.catItemDateCreated {color:#999;font-size:11px;}
-	div.catItemHeader h3.catItemTitle {font-family:Georgia, "Times New Roman", Times, serif;font-size:24px;font-weight:normal;line-height:110%;padding:10px 0 4px 0;margin:0;}
+	div.catItemHeader h3.catItemTitle {padding:10px 0 4px 0;margin:0;}
 	div.catItemHeader h3.catItemTitle span {}
 	div.catItemHeader h3.catItemTitle span sup {font-size:12px;color:#CF1919;text-decoration:none;} /* superscript */
 	div.catItemHeader span.catItemAuthor {display:block;padding:0;margin:0;}
@@ -441,11 +452,16 @@ div.catItemImageBlock {padding:8px;margin:0 0 16px 0;}
 div.catItemIntroText {font-size:inherit;font-weight:normal;line-height:inherit;padding:4px 0 12px 0;}
 	div.catItemIntroText img {}
 
-div.catItemExtraFields, div.genericItemExtraFields {margin:16px 0 0 0;padding:8px 0 0 0;border-top:1px dotted #ddd;}
-	div.catItemExtraFields h4, div.genericItemExtraFields h4 {margin:0;padding:0 0 8px 0;line-height:normal !important;}
-	div.catItemExtraFields ul, div.genericItemExtraFields ul {margin:0;padding:0;list-style:none;}
-	div.catItemExtraFields ul li, div.genericItemExtraFields ul li {display:block;}
-	div.catItemExtraFields ul li span.catItemExtraFieldsLabel, div.genericItemExtraFields ul li span.genericItemExtraFieldsLabel {display:block;float:left;font-weight:bold;margin:0 4px 0 0;width:30%;}
+div.catItemExtraFields,
+div.genericItemExtraFields {margin:16px 0 0 0;padding:8px 0 0 0;border-top:1px dotted #ddd;}
+	div.catItemExtraFields h4,
+	div.genericItemExtraFields h4 {margin:0;padding:0 0 8px 0;}
+	div.catItemExtraFields ul,
+	div.genericItemExtraFields ul {margin:0;padding:0;list-style:none;}
+	div.catItemExtraFields ul li,
+	div.genericItemExtraFields ul li {display:block;}
+	div.catItemExtraFields ul li span.catItemExtraFieldsLabel,
+	div.genericItemExtraFields ul li span.genericItemExtraFieldsLabel {display:block;float:left;font-weight:bold;margin:0 4px 0 0;width:30%;}
 	div.catItemExtraFields ul li span.catItemExtraFieldsValue {}
 
 div.catItemLinks {margin:0 0 16px 0;padding:0;}
@@ -495,9 +511,9 @@ span.catItemDateModified {display:block;text-align:right;padding:4px;margin:4px 
 
 
 
-/*----------------------------------------------------------------------
-	Component: Itemlist view (user)
-----------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------
+	Component - Itemlist view (user)
+--------------------------------------------------------------------------------*/
 
 /* User info block */
 div.userView {}
@@ -523,12 +539,12 @@ div.userItemIsFeatured {} /* Attach a class for each featured item */
 div.userItemViewUnpublished {opacity:0.9;border:4px dashed #ccc;background:#fffff2;padding:8px;margin:8px 0;}
 
 span.userItemEditLink {float:right;display:block;padding:4px 0;margin:0;width:120px;text-align:right;}
-	span.userItemEditLink a {padding:2px 12px;border:1px solid #ccc;background:#eee;text-decoration:none;font-size:11px;font-weight:normal;font-family:Arial, Helvetica, sans-serif;}
+	span.userItemEditLink a {padding:2px 12px;border:1px solid #ccc;background:#eee;text-decoration:none;font-size:11px;font-weight:normal;}
 	span.userItemEditLink a:hover {background:#ffffcc;}
 
 div.userItemHeader {}
 	div.userItemHeader span.userItemDateCreated {color:#999;font-size:11px;}
-	div.userItemHeader h3.userItemTitle {font-family:Georgia, "Times New Roman", Times, serif;font-size:24px;font-weight:normal;line-height:110%;padding:10px 0 4px 0;margin:0;}
+	div.userItemHeader h3.userItemTitle {padding:10px 0 4px 0;margin:0;}
 	div.userItemHeader h3.userItemTitle span sup {font-size:12px;color:#CF1919;text-decoration:none;} /* "Unpublished" presented in superscript */
 
 div.userItemBody {padding:8px 0;margin:0;}
@@ -565,9 +581,9 @@ div.userItemReadMore {display:inline;}
 
 
 
-/*----------------------------------------------------------------------
-	Component: Itemlist view (tag)
-----------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------
+	Component - Itemlist view (tag)
+--------------------------------------------------------------------------------*/
 div.tagView {}
 
 div.tagItemList {}
@@ -576,7 +592,7 @@ div.tagItemView {border-bottom:1px dotted #ccc;padding:8px 0;margin:0 0 16px 0;}
 
 div.tagItemHeader {}
 	div.tagItemHeader span.tagItemDateCreated {color:#999;font-size:11px;}
-	div.tagItemHeader h2.tagItemTitle {font-family:Georgia, "Times New Roman", Times, serif;font-size:24px;font-weight:normal;line-height:110%;padding:10px 0 4px 0;margin:0;}
+	div.tagItemHeader h2.tagItemTitle {padding:10px 0 4px 0;margin:0;}
 
 div.tagItemBody {padding:8px 0;margin:0;}
 
@@ -605,9 +621,9 @@ div.tagItemReadMore {display:inline;}
 
 
 
-/*----------------------------------------------------------------------
-	Component: Itemlist view (generic)
-----------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------
+	Component - Itemlist view (generic)
+--------------------------------------------------------------------------------*/
 div.genericView {}
 
 div.genericItemList {}
@@ -616,7 +632,7 @@ div.genericItemView {border-bottom:1px dotted #ccc;padding:8px 0;margin:0 0 16px
 
 div.genericItemHeader {}
 	div.genericItemHeader span.genericItemDateCreated {color:#999;font-size:11px;}
-	div.genericItemHeader h2.genericItemTitle {font-family:Georgia, "Times New Roman", Times, serif;font-size:24px;font-weight:normal;line-height:110%;padding:10px 0 4px 0;margin:0;}
+	div.genericItemHeader h2.genericItemTitle {padding:10px 0 4px 0;margin:0;}
 
 div.genericItemBody {padding:8px 0;margin:0;}
 
@@ -655,9 +671,9 @@ div#genericItemListNothingFound {padding:40px;text-align:center;}
 
 
 
-/*----------------------------------------------------------------------
-	Component: Latest view
-----------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------
+	Component - Latest view
+--------------------------------------------------------------------------------*/
 
 div.latestItemsContainer {float:left;}
 
@@ -683,7 +699,7 @@ div.latestItemList {padding:0 8px 8px 0;}
 div.latestItemView {} /* this is the item container for this view */
 
 div.latestItemHeader {}
-	div.latestItemHeader h3.latestItemTitle {font-family:Georgia, "Times New Roman", Times, serif;font-size:24px;font-weight:normal;line-height:110%;padding:10px 0 4px 0;margin:0;}
+	div.latestItemHeader h3.latestItemTitle {padding:10px 0 4px 0;margin:0;}
 
 span.latestItemDateCreated {color:#999;font-size:11px;}
 
@@ -724,13 +740,13 @@ div.latestItemReadMore {display:inline;}
 	div.latestItemReadMore a:hover {}
 
 /* Items presented in a list */
-h2.latestItemTitleList {font-size:14px;padding:2px 0;margin:8px 0 2px 0;font-family:Arial, Helvetica, sans-serif;border-bottom:1px dotted #ccc;line-height:normal;}
+h2.latestItemTitleList {padding:2px 0;margin:8px 0 2px 0;border-bottom:1px dotted #ccc;}
 
 
 
-/*----------------------------------------------------------------------
-	Component: Register & profile page views (register.php & profile.php)
-----------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------
+	Component - Register & profile page views (register.php & profile.php)
+--------------------------------------------------------------------------------*/
 .k2AccountPage {}
 .k2AccountPage table {}
 .k2AccountPage table tr th {}
@@ -753,9 +769,9 @@ img.k2AccountPageImage {border:4px solid #ddd;margin:10px 0;padding:0;display:bl
 
 
 
-/*----------------------------------------------------------------------
-	Modules: mod_k2_comments
-----------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------
+	Modules - mod_k2_comments
+--------------------------------------------------------------------------------*/
 
 /* Latest Comments */
 div.k2LatestCommentsBlock {}
@@ -787,9 +803,9 @@ div.k2TopCommentersBlock ul li span.tcLatestCommentDate {color:#999;}
 
 
 
-/*----------------------------------------------------------------------
-	Modules: mod_k2_content
-----------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------
+	Modules - mod_k2_content
+--------------------------------------------------------------------------------*/
 
 div.k2ItemsBlock {}
 
@@ -810,7 +826,7 @@ div.k2ItemsBlock ul li div.moduleItemAuthor a:hover {}
 
 div.k2ItemsBlock ul li a.moduleItemAuthorAvatar img {}
 
-div.k2ItemsBlock ul li div.moduleItemIntrotext {display:block;padding:4px 0;line-height:120%;}
+div.k2ItemsBlock ul li div.moduleItemIntrotext {display:block;padding:4px 0;}
 div.k2ItemsBlock ul li div.moduleItemIntrotext a.moduleItemImage img {float:right;margin:2px 0 4px 4px;padding:0;border:2px solid #ddd;}
 
 div.k2ItemsBlock ul li div.moduleItemExtraFields {}
@@ -845,56 +861,9 @@ div.k2ItemsBlock a.moduleCustomLink:hover {}
 
 
 
-/*----------------------------------------------------------------------
-	Modules: mod_k2_user (mod_k2_login is removed since v2.6.x)
-----------------------------------------------------------------------*/
-
-div.k2LoginBlock {}
-	div.k2LoginBlock p.preText {}
-
-	div.k2LoginBlock fieldset.input {margin:0;padding:0 0 8px 0;}
-	div.k2LoginBlock fieldset.input p {margin:0;padding:0 0 4px 0;}
-	div.k2LoginBlock fieldset.input p label {display:block;}
-	div.k2LoginBlock fieldset.input p input {display:block;}
-	div.k2LoginBlock fieldset.input p#form-login-remember label,
-	div.k2LoginBlock fieldset.input p#form-login-remember input {display:inline;}
-	div.k2LoginBlock fieldset.input input.button {}
-
-	div.k2LoginBlock ul {}
-	div.k2LoginBlock ul li {}
-
-	div.k2LoginBlock p.postText {}
-
-div.k2UserBlock {}
-	div.k2UserBlock p.ubGreeting {border-bottom:1px dotted #ccc;}
-	div.k2UserBlock div.k2UserBlockDetails a.ubAvatar img {}
-	div.k2UserBlock div.k2UserBlockDetails span.ubName {display:block;font-weight:bold;font-size:14px;}
-	div.k2UserBlock div.k2UserBlockDetails span.ubCommentsCount {}
-
-	div.k2UserBlock ul.k2UserBlockActions {}
-		div.k2UserBlock ul.k2UserBlockActions li {}
-		div.k2UserBlock ul.k2UserBlockActions li a {}
-		div.k2UserBlock ul.k2UserBlockActions li a:hover {}
-
-	div.k2UserBlock ul.k2UserBlockRenderedMenu {}
-		div.k2UserBlock ul.k2UserBlockRenderedMenu li {}
-		div.k2UserBlock ul.k2UserBlockRenderedMenu li a {}
-		div.k2UserBlock ul.k2UserBlockRenderedMenu li a:hover {}
-		div.k2UserBlock ul.k2UserBlockRenderedMenu li ul {} /* 2nd level ul */
-		div.k2UserBlock ul.k2UserBlockRenderedMenu li ul li {}
-		div.k2UserBlock ul.k2UserBlockRenderedMenu li ul li a {}
-		div.k2UserBlock ul.k2UserBlockRenderedMenu li ul ul {} /* 3rd level ul (and so on...) */
-		div.k2UserBlock ul.k2UserBlockRenderedMenu li ul ul li {}
-		div.k2UserBlock ul.k2UserBlockRenderedMenu li ul ul li a {}
-
-	div.k2UserBlock form {}
-	div.k2UserBlock form input.ubLogout {}
-
-
-
-/*----------------------------------------------------------------------
-	Modules: mod_k2_tools
-----------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------
+	Modules - mod_k2_tools
+--------------------------------------------------------------------------------*/
 
 /* --- Archives --- */
 div.k2ArchivesBlock {}
@@ -1003,9 +972,56 @@ div.k2CustomCodeBlock {}
 
 
 
-/*----------------------------------------------------------------------
-	Modules: mod_k2_users
-----------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------
+	Modules - mod_k2_user (mod_k2_login is removed since v2.6.x)
+--------------------------------------------------------------------------------*/
+
+div.k2LoginBlock {}
+	div.k2LoginBlock p.preText {}
+
+	div.k2LoginBlock fieldset.input {margin:0;padding:0 0 8px 0;}
+	div.k2LoginBlock fieldset.input p {margin:0;padding:0 0 4px 0;}
+	div.k2LoginBlock fieldset.input p label {display:block;}
+	div.k2LoginBlock fieldset.input p input {display:block;}
+	div.k2LoginBlock fieldset.input p#form-login-remember label,
+	div.k2LoginBlock fieldset.input p#form-login-remember input {display:inline;}
+	div.k2LoginBlock fieldset.input input.button {}
+
+	div.k2LoginBlock ul {}
+	div.k2LoginBlock ul li {}
+
+	div.k2LoginBlock p.postText {}
+
+div.k2UserBlock {}
+	div.k2UserBlock p.ubGreeting {border-bottom:1px dotted #ccc;}
+	div.k2UserBlock div.k2UserBlockDetails a.ubAvatar img {}
+	div.k2UserBlock div.k2UserBlockDetails span.ubName {display:block;font-weight:bold;font-size:14px;}
+	div.k2UserBlock div.k2UserBlockDetails span.ubCommentsCount {}
+
+	div.k2UserBlock ul.k2UserBlockActions {}
+		div.k2UserBlock ul.k2UserBlockActions li {}
+		div.k2UserBlock ul.k2UserBlockActions li a {}
+		div.k2UserBlock ul.k2UserBlockActions li a:hover {}
+
+	div.k2UserBlock ul.k2UserBlockRenderedMenu {}
+		div.k2UserBlock ul.k2UserBlockRenderedMenu li {}
+		div.k2UserBlock ul.k2UserBlockRenderedMenu li a {}
+		div.k2UserBlock ul.k2UserBlockRenderedMenu li a:hover {}
+		div.k2UserBlock ul.k2UserBlockRenderedMenu li ul {} /* 2nd level ul */
+		div.k2UserBlock ul.k2UserBlockRenderedMenu li ul li {}
+		div.k2UserBlock ul.k2UserBlockRenderedMenu li ul li a {}
+		div.k2UserBlock ul.k2UserBlockRenderedMenu li ul ul {} /* 3rd level ul (and so on...) */
+		div.k2UserBlock ul.k2UserBlockRenderedMenu li ul ul li {}
+		div.k2UserBlock ul.k2UserBlockRenderedMenu li ul ul li a {}
+
+	div.k2UserBlock form {}
+	div.k2UserBlock form input.ubLogout {}
+
+
+
+/*------------------------------------------------------------------------------
+	Modules - mod_k2_users
+--------------------------------------------------------------------------------*/
 
 div.k2UsersBlock {}
 div.k2UsersBlock ul {}
@@ -1017,14 +1033,14 @@ div.k2UsersBlock ul li a.ubUserName:hover {}
 div.k2UsersBlock ul li div.ubUserDescription {}
 div.k2UsersBlock ul li div.ubUserAdditionalInfo {}
 	a.ubUserFeedIcon,
-	a.ubUserFeedIcon:hover {display:inline-block;margin:0 2px 0 0;padding:0; font-size: 15px; }
+	a.ubUserFeedIcon:hover {display:inline-block;margin:0 2px 0 0;padding:0;font-size:15px;}
 	a.ubUserFeedIcon span,
 	a.ubUserFeedIcon:hover span {display:none;}
 	a.ubUserURL,
-	a.ubUserURL:hover {display:inline-block;margin:0 2px 0 0;padding:0; font-size: 15px;}
+	a.ubUserURL:hover {display:inline-block;margin:0 2px 0 0;padding:0;font-size:15px;}
 	a.ubUserURL span,
 	a.ubUserURL:hover span {display:none;}
-	span.ubUserEmail {display:inline-block;margin:0 2px 0 0;padding:0;overflow:hidden; font-size: 15px;}
+	span.ubUserEmail {display:inline-block;margin:0 2px 0 0;padding:0;overflow:hidden;font-size:15px;}
 	span.ubUserEmail a {display:inline-block;margin:0;padding:0;width:16px;height:16px;text-indent:-9999px;}
 
 div.k2UsersBlock ul li h3 {clear:both;margin:8px 0 0 0;padding:0;}
