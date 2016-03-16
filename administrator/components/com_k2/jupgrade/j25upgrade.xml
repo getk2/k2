@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE jupgrade>
 <jupgrade>
-	<collection>https://getk2.org/app/collection.xml</collection>
+	<collection>http://getk2.org/app/collection.xml</collection>
 	<installer>
 		<file>administrator/components/com_k2/jupgrade/j25upgrade.php</file>
 		<class>jUpgradeComponentK2</class>
