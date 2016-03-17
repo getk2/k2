@@ -163,6 +163,17 @@ div.userItemIsFeatured:before {position:absolute;top:10px;right:10px;color:#CF19
 /* --- Separators --- */
 .k2HorizontalSep {border:0;padding:0;margin:0 8px;}
 
+/* --- Edit Buttons --- */
+span.itemEditLink,
+span.catItemEditLink,
+span.userItemEditLink {float:right;display:block;padding:0;margin:0;width:120px;text-align:right;}
+	span.itemEditLink a,
+	span.catItemEditLink a,
+	span.userItemEditLink a {display:inline-block;padding:4px 8px;margin:0;background:#2d96dd;color:#fff;border:0;border-radius:4px;font-size:11px;line-height:100%;font-weight:bold;text-align:center;text-decoration:none;}
+	span.itemEditLink a:hover,
+	span.catItemEditLink a:hover,
+	span.userItemEditLink a:hover {background:#217dbb;}
+
 
 
 /*------------------------------------------------------------------------------
@@ -174,9 +185,9 @@ a.itemPrintThisPage:hover {background:#fafafa;text-decoration:none;}
 div.itemView {padding:8px 0 24px 0;margin:0 0 24px 0;} /* this is the item container for this view */
 div.itemIsFeatured {} /* Attach a class for each featured item */
 
-span.itemEditLink {float:right;display:block;padding:4px 0;margin:0;width:120px;text-align:right;}
-span.itemEditLink a {padding:2px 12px;border:1px solid #ddd;background:#fafafa;text-decoration:none;font-size:11px;font-weight:normal;}
-span.itemEditLink a:hover {background:#ffffcc;}
+span.itemEditLink {}
+	span.itemEditLink a {}
+	span.itemEditLink a:hover {}
 
 div.itemHeader {}
 	div.itemHeader span.itemDateCreated {color:#999;font-size:11px;}
@@ -458,9 +469,9 @@ div.catItemView {margin-bottom:48px;padding:4px;} /* this is the container for e
 
 	div.catItemIsFeatured {} /* Attach a class for each featured item */
 
-span.catItemEditLink {float:right;display:block;padding:4px 0;margin:0;width:120px;text-align:right;}
-span.catItemEditLink a {padding:2px 12px;border:1px solid #ddd;background:#fafafa;text-decoration:none;font-size:11px;font-weight:normal;}
-span.catItemEditLink a:hover {background:#ffffcc;}
+span.catItemEditLink {}
+	span.catItemEditLink a {}
+	span.catItemEditLink a:hover {}
 
 div.catItemHeader {}
 	div.catItemHeader span.catItemDateCreated {color:#999;font-size:11px;}
@@ -570,9 +581,9 @@ div.userItemIsFeatured {} /* Attach a class for each featured item */
 
 div.userItemViewUnpublished {opacity:0.9;border:4px dashed #ccc;background:#fffff2;padding:8px;margin:8px 0;}
 
-span.userItemEditLink {float:right;display:block;padding:4px 0;margin:0;width:120px;text-align:right;}
-	span.userItemEditLink a {padding:2px 12px;border:1px solid #ddd;background:#fafafa;text-decoration:none;font-size:11px;font-weight:normal;}
-	span.userItemEditLink a:hover {background:#ffffcc;}
+span.userItemEditLink {}
+	span.userItemEditLink a {}
+	span.userItemEditLink a:hover {}
 
 div.userItemHeader {}
 	div.userItemHeader span.userItemDateCreated {color:#999;font-size:11px;}
