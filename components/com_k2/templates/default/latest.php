@@ -24,9 +24,9 @@ defined('_JEXEC') or die;
 
 	<?php foreach($this->blocks as $key=>$block): ?>
 	<div class="latestItemsContainer" style="width:<?php echo number_format(100/$this->params->get('latestItemsCols'), 1); ?>%;">
-	
+
 		<?php if($this->source=='categories'): $category=$block; ?>
-		
+
 		<?php if($this->params->get('categoryFeed') || $this->params->get('categoryImage') || $this->params->get('categoryTitle') || $this->params->get('categoryDescription')): ?>
 		<!-- Start K2 Category block -->
 		<div class="latestItemsCategory">
@@ -34,7 +34,6 @@ defined('_JEXEC') or die;
 			<!-- RSS feed icon -->
 			<div class="k2FeedIcon">
 				<a href="<?php echo $category->feed; ?>" title="<?php echo JText::_('K2_SUBSCRIBE_TO_THIS_RSS_FEED'); ?>">
-					<i class="k2icon-feed"></i>
 					<span><?php echo JText::_('K2_SUBSCRIBE_TO_THIS_RSS_FEED'); ?></span>
 				</a>
 				<div class="clr"></div>
@@ -74,7 +73,6 @@ defined('_JEXEC') or die;
 			<!-- RSS feed icon -->
 			<div class="k2FeedIcon">
 				<a href="<?php echo $user->feed; ?>" title="<?php echo JText::_('K2_SUBSCRIBE_TO_THIS_RSS_FEED'); ?>">
-					<i class="k2icon-feed"></i>
 					<span><?php echo JText::_('K2_SUBSCRIBE_TO_THIS_RSS_FEED'); ?></span>
 				</a>
 				<div class="clr"></div>
@@ -122,31 +120,29 @@ defined('_JEXEC') or die;
 
 		<!-- Start Items list -->
 		<div class="latestItemList">
-		<?php if($this->params->get('latestItemsDisplayEffect')=="first"): ?>
+			<?php if($this->params->get('latestItemsDisplayEffect')=="first"): ?>
 
 			<?php foreach ($block->items as $itemCounter=>$item): K2HelperUtilities::setDefaultImage($item, 'latest', $this->params); ?>
 			<?php if($itemCounter==0): ?>
 			<?php $this->item=$item; echo $this->loadTemplate('item'); ?>
 			<?php else: ?>
-		  <h2 class="latestItemTitleList">
-		  	<?php if ($item->params->get('latestItemTitleLinked')): ?>
-				<a href="<?php echo $item->link; ?>">
-		  		<?php echo $item->title; ?>
-		  	</a>
-		  	<?php else: ?>
-		  	<?php echo $item->title; ?>
-		  	<?php endif; ?>
-		  </h2>
+			<h2 class="latestItemTitleList">
+				<?php if ($item->params->get('latestItemTitleLinked')): ?>
+				<a href="<?php echo $item->link; ?>"><?php echo $item->title; ?></a>
+				<?php else: ?>
+				<?php echo $item->title; ?>
+				<?php endif; ?>
+			</h2>
 			<?php endif; ?>
 			<?php endforeach; ?>
 
-		<?php else: ?>
+			<?php else: ?>
 
 			<?php foreach ($block->items as $item): K2HelperUtilities::setDefaultImage($item, 'latest', $this->params); ?>
 			<?php $this->item=$item; echo $this->loadTemplate('item'); ?>
 			<?php endforeach; ?>
 
-		<?php endif; ?>
+			<?php endif; ?>
 		</div>
 		<!-- End Item list -->
 
@@ -159,4 +155,5 @@ defined('_JEXEC') or die;
 	<?php endforeach; ?>
 	<div class="clr"></div>
 </div>
+
 <!-- End K2 Latest Layout -->
