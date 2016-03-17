@@ -314,11 +314,15 @@ div.itemRelated {margin-bottom:16px;padding:0;} /* Add overflow-x:scroll; if you
 			div.itemRelImageGallery {}
 
 /* Video */
-div.itemVideoBlock {margin:0 0 16px 0;padding:16px;background:#010101 url(../images/system/videoplayer-bg.gif) repeat-x bottom;}
+div.itemVideoBlock {margin:0 0 16px 0;padding:16px;background:#010101 url(../images/system/videoplayer-bg.gif) repeat-x bottom;color:#eee;}
 	div.itemVideoBlock div.itemVideoEmbedded {text-align:center;} /* for embedded videos (not using AllVideos) */
 	div.itemVideoBlock span.itemVideo {display:block;overflow:hidden;}
 	div.itemVideoBlock span.itemVideoCaption {color:#eee;float:left;display:block;font-size:11px;font-weight:bold;width:60%;}
 	div.itemVideoBlock span.itemVideoCredits {color:#eee;float:right;display:block;font-style:italic;font-size:11px;width:35%;text-align:right;}
+	@media screen and ( max-width:600px ){
+		div.itemVideoBlock span.itemVideoCaption,
+		div.itemVideoBlock span.itemVideoCredits {float:none;text-align:center;width:auto;}
+	}
 
 /* Image Gallery */
 div.itemImageGallery {margin:0 0 16px 0;padding:0;}
@@ -439,7 +443,7 @@ div.itemList {}
 
 		div.itemContainer {float:left;}
 		div.itemContainerLast {} /* this class is appended to the last container on each row of items (useful when you want to set 0 padding/margin to the last container) */
-		@media screen and ( max-width:520px ){
+		@media screen and ( max-width:600px ){
 			div.itemContainer {float:none;display:block;width:100%!important;}
 		}
 
@@ -705,6 +709,9 @@ div#genericItemListNothingFound {padding:40px;text-align:center;}
 --------------------------------------------------------------------------------*/
 
 div.latestItemsContainer {float:left;}
+@media screen and ( max-width:600px ){
+	div.latestItemsContainer {float:none;display:block;width:100%!important;}
+}
 
 /* Category info block */
 div.latestItemsCategory {background:#fafafa;border:1px solid #ddd;border-radius:4px;margin:0 8px 24px 0;padding:8px;}
@@ -737,6 +744,9 @@ div.latestItemBody {padding:8px 0;margin:0;}
 div.latestItemImageBlock {padding:0;margin:0;float:left;}
 	span.latestItemImage {display:block;text-align:center;margin:0 8px 8px 0;}
 	span.latestItemImage img {max-width:100%;height:auto;}
+	@media screen and ( max-width:600px ){
+		div.latestItemImageBlock {float:none;display:block;}
+	}
 
 div.latestItemIntroText {font-size:inherit;font-weight:normal;line-height:inherit;padding:4px 0 12px 0;}
 	div.latestItemIntroText img {}
