@@ -235,9 +235,9 @@ defined('_JEXEC') or die;
 
 			<div class="itemContainer<?php echo $lastContainer; ?>"<?php echo (count($this->links)==1) ? '' : ' style="width:'.number_format(100/$this->params->get('num_links_columns'), 1).'%;"'; ?>>
 				<?php
-					// Load category_item_links.php by default
+					// Load category_item.php by default
 					$this->item=$item;
-					echo $this->loadTemplate('item_links');
+					echo $this->loadTemplate('item');
 				?>
 			</div>
 			<?php if(($key+1)%($this->params->get('num_links_columns'))==0): ?>
