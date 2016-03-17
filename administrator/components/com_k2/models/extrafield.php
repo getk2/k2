@@ -381,7 +381,7 @@ class K2ModelExtraField extends K2Model
 
 				if (is_array($active) && count($active))
 				{
-					$output .= '<input type="hidden" name="K2CSV_'.$extraField->id.'" value="'.htmlspecialchars($json->encode($active)).'"/>';
+					$output .= '<input type="hidden" name="K2CSV_'.$extraField->id.'" value="'.htmlspecialchars($json->encode($active)).'" />';
 					$output .= '<table class="csvTable">';
 					foreach ($active as $key => $row)
 					{
@@ -394,7 +394,7 @@ class K2ModelExtraField extends K2Model
 					}
 					$output .= '</table>';
 					$output .= '<label>'.JText::_('K2_DELETE_CSV_DATA').'</label>';
-					$output .= '<input type="checkbox" name="K2ResetCSV_'.$extraField->id.'"/>';
+					$output .= '<input type="checkbox" name="K2ResetCSV_'.$extraField->id.'" />';
 				}
 				break;
 

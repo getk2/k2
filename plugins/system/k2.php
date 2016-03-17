@@ -987,7 +987,7 @@ class plgSystemK2 extends JPlugin
 		switch ($extraField->type)
 		{
 			case 'textfield' :
-				$output = '<div><strong>'.$extraField->name.'</strong><br /><input type="text" disabled="disabled" name="OriginalK2ExtraField_'.$extraField->id.'" value="'.$active.'"/></div><br /><br />';
+				$output = '<div><strong>'.$extraField->name.'</strong><br /><input type="text" disabled="disabled" name="OriginalK2ExtraField_'.$extraField->id.'" value="'.$active.'" /></div><br /><br />';
 				break;
 
 			case 'textarea' :
@@ -995,9 +995,7 @@ class plgSystemK2 extends JPlugin
 				break;
 
 			case 'link' :
-				$output = '<div><strong>'.$extraField->name.'</strong><br />';
-				$output .= '&nbsp;<input disabled="disabled"	type="text" name="OriginalK2ExtraField_'.$extraField->id.'[]" value="'.$active[0].'"/><br />';
-				$output .= '<br /><br /></div>';
+				$output = '<div><strong>'.$extraField->name.'</strong><br /><input disabled="disabled" type="text" name="OriginalK2ExtraField_'.$extraField->id.'[]" value="'.$active[0].'" /></div><br /><br />';
 				break;
 		}
 
@@ -1073,7 +1071,7 @@ class plgSystemK2 extends JPlugin
 		{
 
 			case 'textfield' :
-				$output = '<div><strong>'.$extraField->name.'</strong><br /><input type="text" name="K2ExtraField_'.$extraField->id.'" value="'.$active.'"/></div><br /><br />';
+				$output = '<div><strong>'.$extraField->name.'</strong><br /><input type="text" name="K2ExtraField_'.$extraField->id.'" value="'.$active.'" /></div><br /><br />';
 				break;
 
 			case 'textarea' :
@@ -1081,23 +1079,19 @@ class plgSystemK2 extends JPlugin
 				break;
 
 			case 'select' :
-				$output = '<div style="display:none">'.JHTML::_('select.genericlist', $defaultValues, 'K2ExtraField_'.$extraField->id, '', 'value', 'name', $active).'</div>';
+				$output = '<div style="display:none;">'.JHTML::_('select.genericlist', $defaultValues, 'K2ExtraField_'.$extraField->id, '', 'value', 'name', $active).'</div>';
 				break;
 
 			case 'multipleSelect' :
-				$output = '<div style="display:none">'.JHTML::_('select.genericlist', $defaultValues, 'K2ExtraField_'.$extraField->id.'[]', 'multiple="multiple"', 'value', 'name', $active).'</div>';
+				$output = '<div style="display:none;">'.JHTML::_('select.genericlist', $defaultValues, 'K2ExtraField_'.$extraField->id.'[]', 'multiple="multiple"', 'value', 'name', $active).'</div>';
 				break;
 
 			case 'radio' :
-				$output = '<div style="display:none">'.JHTML::_('select.radiolist', $defaultValues, 'K2ExtraField_'.$extraField->id, '', 'value', 'name', $active).'</div>';
+				$output = '<div style="display:none;">'.JHTML::_('select.radiolist', $defaultValues, 'K2ExtraField_'.$extraField->id, '', 'value', 'name', $active).'</div>';
 				break;
 
 			case 'link' :
-				$output = '<div><strong>'.$extraField->name.'</strong><br />';
-				$output .= '<input type="text" name="K2ExtraField_'.$extraField->id.'[]" value="'.$active[0].'"/><br />';
-				$output .= '<input type="hidden" name="K2ExtraField_'.$extraField->id.'[]" value="'.$active[1].'"/><br />';
-				$output .= '<input type="hidden" name="K2ExtraField_'.$extraField->id.'[]" value="'.$active[2].'"/><br />';
-				$output .= '<br /><br /></div>';
+				$output = '<div><strong>'.$extraField->name.'</strong><br /><input type="text" name="K2ExtraField_'.$extraField->id.'[]" value="'.$active[0].'" /><br /><input type="hidden" name="K2ExtraField_'.$extraField->id.'[]" value="'.$active[1].'" /><br /><input type="hidden" name="K2ExtraField_'.$extraField->id.'[]" value="'.$active[2].'" /></div><br /><br />';
 				break;
 		}
 

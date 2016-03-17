@@ -114,9 +114,9 @@ class K2ElementCategoriesLatest extends K2Element
             $row->load($id);
             $output .= '
 			<li>
-				<img class="remove" src="'.$image.'"/>
+				<img class="remove" src="'.$image.'" />
 				<span class="handle">'.$row->name.'</span>
-				<input type="hidden" value="'.$row->id.'" name="'.$fieldName.'"/>
+				<input type="hidden" value="'.$row->id.'" name="'.$fieldName.'" />
 				<span style="clear:both;"></span>
 			</li>
 			';

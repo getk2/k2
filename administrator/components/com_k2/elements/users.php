@@ -99,7 +99,7 @@ class K2ElementUsers extends K2Element
 			<li>
 				<img class="remove" src="'.$image.'" alt="'.JText::_('K2_REMOVE_ENTRY_FROM_LIST').'" />
 				<span class="handle">'.$row->name.'</span>
-				<input type="hidden" value="'.$row->id.'" name="'.$fieldName.'"/>
+				<input type="hidden" value="'.$row->id.'" name="'.$fieldName.'" />
 				<div style="clear:both;"></div>
 			</li>
 			';
