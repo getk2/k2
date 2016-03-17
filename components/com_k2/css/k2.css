@@ -133,7 +133,7 @@ div.k2UsersBlock ul li {} /* Example CSS: display:block;clear:both;padding:2px 0
 .lastItem {border:none;} /* class appended on last list item */
 
 /* --- Avatars --- */
-.k2Avatar img {display:block;float:left;background:#fff;border:1px solid #ccc;padding:2px;margin:2px 4px 4px 0;}
+.k2Avatar img {display:block;float:left;background:#fff;border:1px solid #ddd;padding:2px;margin:2px 4px 4px 0;}
 
 /* --- Read more --- */
 a.k2ReadMore {}
@@ -142,8 +142,10 @@ a.k2ReadMore:hover {}
 /* --- Pagination --- */
 div.k2Pagination {padding:8px;margin:24px 0 4px 0;text-align:center;}
 div.k2Pagination ul {text-align:center;}
-div.k2Pagination ul li {display:inline-block;padding:4px 8px;margin:0 8px;border:1px solid #ddd;border-radius:4px;vertical-align:middle;}
-div.k2Pagination ul li:hover {background:#fafafa;cursor:pointer;}
+div.k2Pagination ul li {display:inline-block;margin:0;padding:0;}
+div.k2Pagination ul li a {display:inline-block;padding:4px 8px;margin:0 8px;border:1px solid #ddd;border-radius:4px;vertical-align:middle;background:#fff;text-decoration:none;}
+div.k2Pagination ul li a:hover {background:#fafafa;cursor:pointer;}
+div.k2Pagination ul li.active a {background:#fafafa;}
 div.k2Pagination ul li a span {vertical-align:middle;}
 
 /* --- Extra fields: CSV data styling --- */
@@ -162,14 +164,14 @@ div.userItemIsFeatured:before {position:absolute;top:10px;right:10px;color:#CF19
 /*------------------------------------------------------------------------------
 	Component - Item view
 --------------------------------------------------------------------------------*/
-a.itemPrintThisPage {display:block;width:160px;margin:4px auto 16px;padding:4px;border:1px solid #ccc;text-align:center;color:#555;font-size:13px;}
-a.itemPrintThisPage:hover {background:#eee;text-decoration:none;}
+a.itemPrintThisPage {display:block;width:160px;margin:4px auto 16px;padding:4px;border:1px solid #ddd;text-align:center;color:#555;font-size:13px;}
+a.itemPrintThisPage:hover {background:#fafafa;text-decoration:none;}
 
 div.itemView {padding:8px 0 24px 0;margin:0 0 24px 0;} /* this is the item container for this view */
 div.itemIsFeatured {} /* Attach a class for each featured item */
 
 span.itemEditLink {float:right;display:block;padding:4px 0;margin:0;width:120px;text-align:right;}
-span.itemEditLink a {padding:2px 12px;border:1px solid #ccc;background:#eee;text-decoration:none;font-size:11px;font-weight:normal;}
+span.itemEditLink a {padding:2px 12px;border:1px solid #ddd;background:#fafafa;text-decoration:none;font-size:11px;font-weight:normal;}
 span.itemEditLink a:hover {background:#ffffcc;}
 
 div.itemHeader {}
@@ -219,7 +221,7 @@ div.itemImageBlock {padding:8px;margin:0 0 16px 0;}
 	span.itemImageCredits {color:#999;float:right;display:block;font-style:italic;font-size:11px;}
 	@media screen and ( max-width:600px ){
 		span.itemImageCaption,
-		span.itemImageCredits {float:none;text-align:center;}	
+		span.itemImageCredits {float:none;text-align:center;}
 	}
 
 div.itemIntroText {color:#444;font-size:18px;font-weight:bold;line-height:24px;padding:4px 0 12px 0;}
@@ -293,7 +295,7 @@ div.itemRelated {margin-bottom:16px;padding:0;} /* Add overflow-x:scroll; if you
 	div.itemRelated h3 {}
 	div.itemRelated ul {}
 		div.itemRelated ul li {}
-		div.itemRelated ul li.k2ScrollerElement {float:left;overflow:hidden;border:1px solid #ccc;padding:4px;margin:0 4px 4px 0;background:#fff;} /* you need to insert this class in the related li element in item.php for this styling to take effect */
+		div.itemRelated ul li.k2ScrollerElement {float:left;overflow:hidden;border:1px solid #ddd;padding:4px;margin:0 4px 4px 0;background:#fff;} /* you need to insert this class in the related li element in item.php for this styling to take effect */
 		div.itemRelated ul li.clr {clear:both;height:0;line-height:0;display:block;float:none;padding:0;margin:0;border:none;}
 			a.itemRelTitle {}
 			div.itemRelCat {}
@@ -323,13 +325,13 @@ div.itemNavigation {padding:4px 8px;margin:0 0 24px 0;border-top:1px dotted #ddd
 	div.itemNavigation a.itemNext {padding:0 12px;}
 
 /* Comments */
-div.itemComments {background:#fafafa;border:1px solid #ddd;padding:16px;}
+div.itemComments {background:#fafafa;border:1px solid #ddd;border-radius:4px;padding:16px;}
 
 	div.itemComments ul.itemCommentsList {margin:0 0 16px;padding:0;list-style:none;}
-	div.itemComments ul.itemCommentsList li {padding:4px;margin:0;border-bottom:1px dotted #ddd;}
-	div.itemComments ul.itemCommentsList li.authorResponse {background:url(../images/system/stripes.png) repeat;}
+	div.itemComments ul.itemCommentsList li {display:block;padding:4px;margin:0 0 8px 0;border-bottom:1px solid #ddd;background:#fff;}
+	div.itemComments ul.itemCommentsList li.authorResponse {background:#f5fdff;}
 	div.itemComments ul.itemCommentsList li.unpublishedComment {background:#ffeaea;}
-	div.itemComments ul.itemCommentsList li img {float:left;margin:4px 4px 4px 0;padding:4px;background:#fff;border-bottom:1px solid #d7d7d7;border-left:1px solid #f2f2f2;border-right:1px solid #f2f2f2;}
+	div.itemComments ul.itemCommentsList li img {float:left;margin:4px 4px 4px 0;padding:4px;}
 	div.itemComments ul.itemCommentsList li span.commentDate {padding:0 4px 0 0;margin:0 8px 0 0;border-right:1px solid #ccc;font-weight:bold;font-size:14px;}
 	div.itemComments ul.itemCommentsList li span.commentAuthorName {font-weight:bold;font-size:14px;}
 	div.itemComments ul.itemCommentsList li p {padding:4px 0;}
@@ -344,19 +346,28 @@ div.itemComments {background:#fafafa;border:1px solid #ddd;padding:16px;}
 	div.itemComments ul.itemCommentsList li span.commentToolbarLoading {background:url(../images/system/searchLoader.gif) no-repeat 100% 50%;}
 
 div.itemCommentsPagination {padding:4px;margin:0 0 24px 0;}
+	/* Joomla 1.5 - 2.5 */
 	div.itemCommentsPagination span.pagination {display:block;float:right;clear:both;}
+	/* Joomla 3.x */
+	div.itemCommentsPagination ul {text-align:center;}
+	div.itemCommentsPagination ul li {display:inline-block;margin:0;padding:0;}
+	div.itemCommentsPagination ul li a {display:inline-block;padding:4px 8px;margin:0 8px;border:1px solid #ddd;border-radius:4px;vertical-align:middle;background:#fff;text-decoration:none;}
+	div.itemCommentsPagination ul li a:hover {background:#fafafa;cursor:pointer;}
+	div.itemCommentsPagination ul li.active a {background:#fafafa;}
+	div.itemCommentsPagination ul li a span {vertical-align:middle;}
 
 div.itemCommentsForm h3 {margin:0;padding:0 0 4px 0;}
-	div.itemCommentsForm p.itemCommentsFormNotes {border-top:2px solid #ccc;}
-	div.itemCommentsForm form {}
-	div.itemCommentsForm form label.formComment {display:block;margin:12px 0 0 2px;}
-	div.itemCommentsForm form label.formName {display:block;margin:12px 0 0 2px;}
-	div.itemCommentsForm form label.formEmail {display:block;margin:12px 0 0 2px;}
-	div.itemCommentsForm form label.formUrl {display:block;margin:12px 0 0 2px;}
+	div.itemCommentsForm p.itemCommentsFormNotes {border-top:2px solid #ccc;padding:8px 0;}
+	div.itemCommentsForm form {margin:0;padding:0;width:100%;}
+	div.itemCommentsForm form label.formComment,
+	div.itemCommentsForm form label.formName,
+	div.itemCommentsForm form label.formEmail,
+	div.itemCommentsForm form label.formUrl,
 	div.itemCommentsForm form label.formRecaptcha {display:block;margin:12px 0 0 2px;}
-	div.itemCommentsForm form textarea.inputbox {display:block;width:350px;height:160px;margin:0;}
-	div.itemCommentsForm form input.inputbox {display:block;width:350px;margin:0;}
-	div.itemCommentsForm form input#submitCommentButton {display:block;margin:16px 0 0 0;padding:4px;border:1px solid #ccc;background:#eee;font-size:16px;}
+	div.itemCommentsForm form textarea.inputbox {display:block;width:100%;height:200px;margin:0;padding:8px;box-sizing:border-box;}
+	div.itemCommentsForm form input.inputbox {display:block;width:100%;margin:0;padding:8px;line-height:150%;height:auto;box-sizing:border-box;}
+	div.itemCommentsForm form input#submitCommentButton {display:block;margin:16px 0 0 0;padding:8px 16px;background:#2d96dd;color:#fff;border:0;border-radius:4px;font-size:16px;font-weight:bold;}
+	div.itemCommentsForm form input#submitCommentButton:hover {background:#217dbb;}
 	div.itemCommentsForm form span#formLog {margin:24px;padding:8px 12px;border-radius:4px;text-align:center;display:none;}
 		div.itemCommentsForm form span#formLog.k2FormLogError {display:block;background:#f00;color:#fff;}
 		div.itemCommentsForm form span#formLog.k2FormLogSuccess {display:block;background:#18ac00;color:#fff;}
@@ -393,7 +404,7 @@ div.itemListCategoriesBlock {}
 /* --- Category block --- */
 div.itemListCategory {background:#fafafa;border:1px solid #ddd;margin:4px 0;padding:8px;}
 	span.catItemAddLink {display:block;padding:8px 0;margin:0 0 4px 0;border-bottom:1px dotted #ccc;text-align:right;}
-	span.catItemAddLink a {padding:4px 16px;border:1px solid #ccc;background:#eee;text-decoration:none;}
+	span.catItemAddLink a {padding:4px 16px;border:1px solid #ddd;background:#fafafa;text-decoration:none;}
 	span.catItemAddLink a:hover {background:#ffffcc;}
 	div.itemListCategory img {float:left;display:block;background:#fff;padding:4px;border:1px solid #ddd;margin:0 8px 0 0;}
 	div.itemListCategory h2 {}
@@ -436,7 +447,7 @@ div.catItemView {padding:4px;margin-bottom:48px;} /* this is the container for e
 	div.catItemIsFeatured {} /* Attach a class for each featured item */
 
 span.catItemEditLink {float:right;display:block;padding:4px 0;margin:0;width:120px;text-align:right;}
-span.catItemEditLink a {padding:2px 12px;border:1px solid #ccc;background:#eee;text-decoration:none;font-size:11px;font-weight:normal;}
+span.catItemEditLink a {padding:2px 12px;border:1px solid #ddd;background:#fafafa;text-decoration:none;font-size:11px;font-weight:normal;}
 span.catItemEditLink a:hover {background:#ffffcc;}
 
 div.catItemHeader {}
@@ -528,7 +539,7 @@ div.userView {}
 	div.userBlock {background:#fafafa;border:1px solid #ddd;margin:0 0 16px 0;padding:8px;clear:both;}
 
 		span.userItemAddLink {display:block;padding:8px 0;margin:0 0 4px 0;border-bottom:1px dotted #ccc;text-align:right;}
-		span.userItemAddLink a {padding:4px 16px;border:1px solid #ccc;background:#eee;text-decoration:none;}
+		span.userItemAddLink a {padding:4px 16px;border:1px solid #ddd;background:#fafafa;text-decoration:none;}
 		span.userItemAddLink a:hover {background:#ffffcc;}
 
 		div.userBlock img {display:block;float:left;background:#fff;padding:4px;border:1px solid #ddd;margin:0 8px 0 0;}
@@ -547,7 +558,7 @@ div.userItemIsFeatured {} /* Attach a class for each featured item */
 div.userItemViewUnpublished {opacity:0.9;border:4px dashed #ccc;background:#fffff2;padding:8px;margin:8px 0;}
 
 span.userItemEditLink {float:right;display:block;padding:4px 0;margin:0;width:120px;text-align:right;}
-	span.userItemEditLink a {padding:2px 12px;border:1px solid #ccc;background:#eee;text-decoration:none;font-size:11px;font-weight:normal;}
+	span.userItemEditLink a {padding:2px 12px;border:1px solid #ddd;background:#fafafa;text-decoration:none;font-size:11px;font-weight:normal;}
 	span.userItemEditLink a:hover {background:#ffffcc;}
 
 div.userItemHeader {}
@@ -559,7 +570,7 @@ div.userItemBody {padding:8px 0;margin:0;}
 
 div.userItemImageBlock {padding:0;margin:0;float:left;}
 	span.userItemImage {display:block;text-align:center;margin:0 8px 8px 0;}
-	span.userItemImage img {border:1px solid #ccc;padding:8px;}
+	span.userItemImage img {border:1px solid #ddd;padding:8px;}
 
 div.userItemIntroText {font-size:inherit;font-weight:normal;line-height:inherit;padding:4px 0 12px 0;}
 	div.userItemIntroText img {}
@@ -606,7 +617,7 @@ div.tagItemBody {padding:8px 0;margin:0;}
 
 div.tagItemImageBlock {padding:0;margin:0;float:left;}
 	span.tagItemImage {display:block;text-align:center;margin:0 8px 8px 0;}
-	span.tagItemImage img {border:1px solid #ccc;padding:8px;}
+	span.tagItemImage img {border:1px solid #ddd;padding:8px;}
 
 div.tagItemIntroText {font-size:inherit;font-weight:normal;line-height:inherit;padding:4px 0 12px 0;}
 	div.tagItemIntroText img {}
@@ -646,7 +657,7 @@ div.genericItemBody {padding:8px 0;margin:0;}
 
 div.genericItemImageBlock {padding:0;margin:0;float:left;}
 	span.genericItemImage {display:block;text-align:center;margin:0 8px 8px 0;}
-	span.genericItemImage img {border:1px solid #ccc;padding:8px;}
+	span.genericItemImage img {border:1px solid #ddd;padding:8px;}
 
 div.genericItemIntroText {font-size:inherit;font-weight:normal;line-height:inherit;padding:4px 0 12px 0;}
 	div.genericItemIntroText img {}
@@ -715,7 +726,7 @@ div.latestItemBody {padding:8px 0;margin:0;}
 
 div.latestItemImageBlock {padding:0;margin:0;float:left;}
 	span.latestItemImage {display:block;text-align:center;margin:0 8px 8px 0;}
-	span.latestItemImage img {border:1px solid #ccc;padding:8px;}
+	span.latestItemImage img {border:1px solid #ddd;padding:8px;}
 
 div.latestItemIntroText {font-size:inherit;font-weight:normal;line-height:inherit;padding:4px 0 12px 0;}
 	div.latestItemIntroText img {}
@@ -914,7 +925,7 @@ table.calendar tr td.calendarDayName {background:#e9e9e9;font-size:11px;width:14
 table.calendar tr td.calendarDateEmpty {background:#fbfbfb;}
 table.calendar tr td.calendarDate {}
 table.calendar tr td.calendarDateLinked {padding:0;}
-table.calendar tr td.calendarDateLinked a {display:block;padding:2px;text-decoration:none;background:#eee;}
+table.calendar tr td.calendarDateLinked a {display:block;padding:2px;text-decoration:none;background:#fafafa;}
 table.calendar tr td.calendarDateLinked a:hover {display:block;background:#135cae;color:#fff;padding:2px;text-decoration:none;}
 table.calendar tr td.calendarToday {background:#135cae;color:#fff;}
 table.calendar tr td.calendarTodayLinked {background:#135cae;color:#fff;padding:0;}
@@ -963,7 +974,7 @@ div.k2SearchBlock form {}
 div.k2SearchBlock form input.inputbox {}
 div.k2SearchBlock form input.button {}
 div.k2SearchBlock form input.k2SearchLoading {background:url(../images/system/searchLoader.gif) no-repeat 100% 50%;}
-div.k2SearchBlock div.k2LiveSearchResults {display:none;background:#fff;position:absolute;z-index:99;border:1px solid #ccc;margin-top:-1px;}
+div.k2SearchBlock div.k2LiveSearchResults {display:none;background:#fff;position:absolute;z-index:99;border:1px solid #ddd;margin-top:-1px;}
 	/* Live search results (fetched via ajax) */
 	div.k2SearchBlock div.k2LiveSearchResults ul.liveSearchResults {list-style:none;margin:0;padding:0;}
 	div.k2SearchBlock div.k2LiveSearchResults ul.liveSearchResults li {border:none;margin:0;padding:0;}
