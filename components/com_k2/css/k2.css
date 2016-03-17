@@ -168,7 +168,7 @@ div.userItemIsFeatured:before {position:absolute;top:10px;right:10px;color:#CF19
 /*------------------------------------------------------------------------------
 	Component - Item view
 --------------------------------------------------------------------------------*/
-a.itemPrintThisPage {display:block;width:160px;margin:4px auto 16px;padding:4px;border:1px solid #ddd;text-align:center;color:#555;font-size:13px;}
+a.itemPrintThisPage {display:block;width:160px;margin:4px auto 16px;padding:8px;border:1px solid #ddd;border-radius:4px;text-align:center;font-size:14px;}
 a.itemPrintThisPage:hover {background:#fafafa;text-decoration:none;}
 
 div.itemView {padding:8px 0 24px 0;margin:0 0 24px 0;} /* this is the item container for this view */
@@ -188,7 +188,7 @@ div.itemHeader {}
 	div.itemHeader span.itemAuthor a {}
 	div.itemHeader span.itemAuthor a:hover {}
 
-div.itemToolbar {padding:2px 0;margin:16px 0 0 0;}
+div.itemToolbar {padding:8px;margin:16px 0 0 0;background:#fafafa;border-radius:4px;}
 	div.itemToolbar ul {text-align:right;list-style:none;padding:0;margin:0;}
 	div.itemToolbar ul li {display:inline;list-style:none;padding:0 4px 0 8px;margin:0;border-left:1px solid #ccc;text-align:center;background:none;font-size:12px;}
 	div.itemToolbar ul > li:first-child {border:none;} /* remove the first CSS border from the left of the toolbar */
@@ -275,8 +275,8 @@ div.itemAttachmentsBlock {padding:4px;border-bottom:1px dotted #ccc;}
 	div.itemAttachmentsBlock ul.itemAttachments li span {font-size:10px;color:#999;font-weight:normal;}
 
 /* Author block */
-div.itemAuthorBlock {background:#fafafa;border:1px solid #ddd;margin:0 0 16px 0;padding:8px;}
-	div.itemAuthorBlock img.itemAuthorAvatar {float:left;display:block;background:#fff;padding:4px;border:1px solid #ddd;margin:0 8px 0 0;}
+div.itemAuthorBlock {background:#fafafa;border:1px solid #ddd;border-radius:4px;margin:0 0 16px 0;padding:8px;}
+	div.itemAuthorBlock img.itemAuthorAvatar {float:left;display:block;background:#fff;padding:4px;border:1px solid #ddd;margin:0 8px 0 0;border-radius:50%;}
 	div.itemAuthorBlock div.itemAuthorDetails {margin:0;padding:4px 0 0 0;}
 	div.itemAuthorBlock div.itemAuthorDetails h3.authorName {margin:0 0 4px 0;padding:0;}
 	div.itemAuthorBlock div.itemAuthorDetails h3.authorName a {font-size:16px;}
@@ -324,7 +324,7 @@ div.itemVideoBlock {margin:0 0 16px 0;padding:16px;background:#010101 url(../ima
 div.itemImageGallery {margin:0 0 16px 0;padding:0;}
 
 /* Article navigation */
-div.itemNavigation {padding:4px 8px;margin:0 0 24px 0;border-top:1px dotted #ddd;border-bottom:1px dotted #ccc;background:#fffff0;}
+div.itemNavigation {padding:8px;margin:0 0 24px 0;background:#fafafa;border-radius:4px;}
 	div.itemNavigation span.itemNavigationTitle {color:#999;}
 	div.itemNavigation a.itemPrevious {padding:0 12px;}
 	div.itemNavigation a.itemNext {padding:0 12px;}
@@ -407,11 +407,11 @@ div.itemBackToTop {text-align:right;}
 div.itemListCategoriesBlock {}
 
 /* --- Category block --- */
-div.itemListCategory {background:#fafafa;border:1px solid #ddd;margin:4px 0;padding:8px;}
+div.itemListCategory {background:#fafafa;border:1px solid #ddd;border-radius:4px;margin:0 0 24px 0;padding:8px;}
 	span.catItemAddLink {display:block;padding:8px 0;margin:0 0 4px 0;border-bottom:1px dotted #ccc;text-align:right;}
 	span.catItemAddLink a {padding:4px 16px;border:1px solid #ddd;background:#fafafa;text-decoration:none;}
 	span.catItemAddLink a:hover {background:#ffffcc;}
-	div.itemListCategory img {float:left;display:block;background:#fff;padding:4px;border:1px solid #ddd;margin:0 8px 0 0;}
+	div.itemListCategory img {float:left;display:block;margin:0 8px 0 0;}
 	div.itemListCategory h2 {}
 	div.itemListCategory p {}
 
@@ -424,7 +424,7 @@ div.itemListSubCategories {}
 				div.subCategory a.subCategoryImage,
 				div.subCategory a.subCategoryImage:hover {text-align:center;display:block;}
 				div.subCategory a.subCategoryImage img,
-				div.subCategory a.subCategoryImage:hover img {background:#fff;padding:4px;border:1px solid #ddd;margin:0 8px 0 0;}
+				div.subCategory a.subCategoryImage:hover img {margin:0 8px 0 0;}
 				div.subCategory h2 {}
 				div.subCategory h2 a {}
 				div.subCategory h2 a:hover {}
@@ -441,7 +441,7 @@ div.itemList {}
 		div.itemContainerLast {} /* this class is appended to the last container on each row of items (useful when you want to set 0 padding/margin to the last container) */
 
 /* --- Item block for each item group --- */
-div.catItemView {padding:4px;margin-bottom:48px;} /* this is the container for each K2 item on this view */
+div.catItemView {margin-bottom:48px;} /* this is the container for each K2 item on this view */
 
 	/* Additional class appended to the element above for further styling per group item */
 	div.groupLeading {}
@@ -471,7 +471,7 @@ div.catItemBody {padding:8px 0;margin:0;}
 
 div.catItemImageBlock {padding:8px;margin:0 0 16px 0;}
 	span.catItemImage {display:block;text-align:center;margin:0 0 8px 0;}
-	span.catItemImage img {}
+	span.catItemImage img {max-width:100%;height:auto;}
 
 div.catItemIntroText {font-size:inherit;font-weight:normal;line-height:inherit;padding:4px 0 12px 0;}
 	div.catItemIntroText img {}
@@ -501,6 +501,7 @@ div.catItemTagsBlock {padding:4px 0;}
 	div.catItemTagsBlock span {font-weight:bold;padding:0 4px 0 0;}
 	div.catItemTagsBlock ul.catItemTags {list-style:none;padding:0;margin:0;display:inline;}
 	div.catItemTagsBlock ul.catItemTags li {display:inline;list-style:none;padding:0 4px 0 0;margin:0;text-align:center;}
+	div.catItemTagsBlock ul.catItemTags li a:before {content:"#";}
 	div.catItemTagsBlock ul.catItemTags li a {}
 	div.catItemTagsBlock ul.catItemTags li a:hover {}
 
@@ -541,13 +542,13 @@ span.catItemDateModified {display:block;text-align:right;padding:4px;margin:4px 
 
 /* User info block */
 div.userView {}
-	div.userBlock {background:#fafafa;border:1px solid #ddd;margin:0 0 16px 0;padding:8px;clear:both;}
+	div.userBlock {background:#fafafa;border:1px solid #ddd;border-radius:4px;margin:0 0 24px 0;padding:8px;}
 
 		span.userItemAddLink {display:block;padding:8px 0;margin:0 0 4px 0;border-bottom:1px dotted #ccc;text-align:right;}
 		span.userItemAddLink a {padding:4px 16px;border:1px solid #ddd;background:#fafafa;text-decoration:none;}
 		span.userItemAddLink a:hover {background:#ffffcc;}
 
-		div.userBlock img {display:block;float:left;background:#fff;padding:4px;border:1px solid #ddd;margin:0 8px 0 0;}
+		div.userBlock img {display:block;float:left;background:#fff;padding:4px;border:1px solid #ddd;margin:0 8px 0 0;border-radius:50%;}
 		div.userBlock h2 {}
 		div.userBlock div.userDescription {padding:4px 0;}
 		div.userBlock div.userAdditionalInfo {padding:4px 0;margin:8px 0 0 0;}
@@ -557,7 +558,7 @@ div.userView {}
 		div.userItemList {}
 
 /* User items */
-div.userItemView {} /* this is the item container for this view */
+div.userItemView {margin-bottom:48px;} /* this is the item container for this view */
 div.userItemIsFeatured {} /* Attach a class for each featured item */
 
 div.userItemViewUnpublished {opacity:0.9;border:4px dashed #ccc;background:#fffff2;padding:8px;margin:8px 0;}
@@ -575,21 +576,22 @@ div.userItemBody {padding:8px 0;margin:0;}
 
 div.userItemImageBlock {padding:0;margin:0;float:left;}
 	span.userItemImage {display:block;text-align:center;margin:0 8px 8px 0;}
-	span.userItemImage img {border:1px solid #ddd;padding:8px;}
+	span.userItemImage img {max-width:100%;height:auto;}
 
 div.userItemIntroText {font-size:inherit;font-weight:normal;line-height:inherit;padding:4px 0 12px 0;}
 	div.userItemIntroText img {}
 
 div.userItemLinks {margin:0 0 16px 0;padding:0;}
 
-div.userItemCategory {padding:4px;border-bottom:1px dotted #ccc;}
+div.userItemCategory {padding:4px 0;}
 	div.userItemCategory span {font-weight:bold;color:#555;padding:0 4px 0 0;}
 	div.userItemCategory a {}
 
-div.userItemTagsBlock {padding:4px;border-bottom:1px dotted #ccc;}
+div.userItemTagsBlock {padding:4px 0;}
 	div.userItemTagsBlock span {font-weight:bold;color:#555;padding:0 4px 0 0;}
 	div.userItemTagsBlock ul.userItemTags {list-style:none;padding:0;margin:0;display:inline;}
 	div.userItemTagsBlock ul.userItemTags li {display:inline;list-style:none;padding:0 4px 0 0;margin:0;text-align:center;}
+	div.userItemTagsBlock ul.userItemTags li a:before {content:"#";}
 	div.userItemTagsBlock ul.userItemTags li a {}
 	div.userItemTagsBlock ul.userItemTags li a:hover {}
 
@@ -612,7 +614,7 @@ div.tagView {}
 
 div.tagItemList {}
 
-div.tagItemView {border-bottom:1px dotted #ccc;padding:8px 0;margin:0 0 16px 0;} /* this is the item container for this view */
+div.tagItemView {margin-bottom:48px;} /* this is the item container for this view */
 
 div.tagItemHeader {}
 	div.tagItemHeader span.tagItemDateCreated {color:#999;font-size:11px;}
@@ -622,7 +624,7 @@ div.tagItemBody {padding:8px 0;margin:0;}
 
 div.tagItemImageBlock {padding:0;margin:0;float:left;}
 	span.tagItemImage {display:block;text-align:center;margin:0 8px 8px 0;}
-	span.tagItemImage img {border:1px solid #ddd;padding:8px;}
+	span.tagItemImage img {max-width:100%;height:auto;}
 
 div.tagItemIntroText {font-size:inherit;font-weight:normal;line-height:inherit;padding:4px 0 12px 0;}
 	div.tagItemIntroText img {}
@@ -652,7 +654,7 @@ div.genericView {}
 
 div.genericItemList {}
 
-div.genericItemView {border-bottom:1px dotted #ccc;padding:8px 0;margin:0 0 16px 0;} /* this is the item container for this view */
+div.genericItemView {margin-bottom:48px;} /* this is the item container for this view */
 
 div.genericItemHeader {}
 	div.genericItemHeader span.genericItemDateCreated {color:#999;font-size:11px;}
@@ -662,7 +664,7 @@ div.genericItemBody {padding:8px 0;margin:0;}
 
 div.genericItemImageBlock {padding:0;margin:0;float:left;}
 	span.genericItemImage {display:block;text-align:center;margin:0 8px 8px 0;}
-	span.genericItemImage img {border:1px solid #ddd;padding:8px;}
+	span.genericItemImage img {max-width:100%;height:auto;}
 
 div.genericItemIntroText {font-size:inherit;font-weight:normal;line-height:inherit;padding:4px 0 12px 0;}
 	div.genericItemIntroText img {}
@@ -702,15 +704,15 @@ div#genericItemListNothingFound {padding:40px;text-align:center;}
 div.latestItemsContainer {float:left;}
 
 /* Category info block */
-div.latestItemsCategory {background:#fafafa;border:1px solid #ddd;margin:0 8px 8px 0;padding:8px;}
+div.latestItemsCategory {background:#fafafa;border:1px solid #ddd;border-radius:4px;margin:0 8px 24px 0;padding:8px;}
 	div.latestItemsCategoryImage {text-align:center;}
-	div.latestItemsCategoryImage img {background:#fff;padding:4px;border:1px solid #ddd;margin:0 8px 0 0;}
+	div.latestItemsCategoryImage img {margin:0 8px 0 0;}
 div.latestItemsCategory h2 {}
 div.latestItemsCategory p {}
 
 /* User info block */
-div.latestItemsUser {background:#fafafa;border:1px solid #ddd;margin:0 8px 8px 0;padding:8px;clear:both;}
-	div.latestItemsUser img {display:block;float:left;background:#fff;padding:4px;border:1px solid #ddd;margin:0 8px 0 0;}
+div.latestItemsUser {background:#fafafa;border:1px solid #ddd;border-radius:4px;margin:0 8px 24px 0;padding:8px;}
+	div.latestItemsUser img {display:block;float:left;background:#fff;padding:4px;border:1px solid #ddd;margin:0 8px 0 0;border-radius:50%;}
 	div.latestItemsUser h2 {}
 	div.latestItemsUser p.latestItemsUserDescription {padding:4px 0;}
 	div.latestItemsUser p.latestItemsUserAdditionalInfo {padding:4px 0;margin:8px 0 0 0;}
@@ -731,21 +733,22 @@ div.latestItemBody {padding:8px 0;margin:0;}
 
 div.latestItemImageBlock {padding:0;margin:0;float:left;}
 	span.latestItemImage {display:block;text-align:center;margin:0 8px 8px 0;}
-	span.latestItemImage img {border:1px solid #ddd;padding:8px;}
+	span.latestItemImage img {max-width:100%;height:auto;}
 
 div.latestItemIntroText {font-size:inherit;font-weight:normal;line-height:inherit;padding:4px 0 12px 0;}
 	div.latestItemIntroText img {}
 
 div.latestItemLinks {margin:0 0 16px 0;padding:0;}
 
-div.latestItemCategory {padding:4px;border-bottom:1px dotted #ccc;}
+div.latestItemCategory {padding:4px 0;}
 	div.latestItemCategory span {font-weight:bold;color:#555;padding:0 4px 0 0;}
 	div.latestItemCategory a {}
 
-div.latestItemTagsBlock {padding:4px;border-bottom:1px dotted #ccc;}
+div.latestItemTagsBlock {padding:4px 0;}
 	div.latestItemTagsBlock span {font-weight:bold;color:#555;padding:0 4px 0 0;}
 	div.latestItemTagsBlock ul.latestItemTags {list-style:none;padding:0;margin:0;display:inline;}
 	div.latestItemTagsBlock ul.latestItemTags li {display:inline;list-style:none;padding:0 4px 0 0;margin:0;text-align:center;}
+	div.latestItemTagsBlock ul.latestItemTags li a:before {content:"#";}
 	div.latestItemTagsBlock ul.latestItemTags li a {}
 	div.latestItemTagsBlock ul.latestItemTags li a:hover {}
 
@@ -780,7 +783,7 @@ img.k2AccountPageImage {border:4px solid #ddd;margin:10px 0;padding:0;display:bl
 .k2AccountPage div.k2AccountPageNotice {padding:8px;}
 .k2AccountPage div.k2AccountPageUpdate {border-top:1px dotted #ddd;margin:8px 0;padding:8px;text-align:right;}
 
-.k2AccountPage th.k2ProfileHeading {text-align:left;font-size:18px;padding:8px;background:#f6f6f6;/*border-bottom:1px solid #e9e9e9;*/}
+.k2AccountPage th.k2ProfileHeading {text-align:left;font-size:18px;padding:8px;background:#f6f6f6;}
 .k2AccountPage td#userAdminParams {padding:0;margin:0;}
 .k2AccountPage table.admintable td.key,
 .k2AccountPage table.admintable td.paramlist_key {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-right:1px solid #e9e9e9;color:#666;font-weight:bold;text-align:right;font-size:11px;width:140px;}
@@ -851,7 +854,7 @@ div.k2ItemsBlock ul li div.moduleItemAuthor a:hover {}
 div.k2ItemsBlock ul li a.moduleItemAuthorAvatar img {}
 
 div.k2ItemsBlock ul li div.moduleItemIntrotext {display:block;padding:4px 0;}
-div.k2ItemsBlock ul li div.moduleItemIntrotext a.moduleItemImage img {float:right;margin:2px 0 4px 4px;padding:0;border:2px solid #ddd;}
+div.k2ItemsBlock ul li div.moduleItemIntrotext a.moduleItemImage img {float:right;margin:2px 0 4px 4px;padding:0;}
 
 div.k2ItemsBlock ul li div.moduleItemExtraFields {}
 	div.moduleItemExtraFields ul {}
