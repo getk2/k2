@@ -6,8 +6,7 @@
  * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
-/* --- Frontend Editing --- */
-
+/* ============ Frontend Editing ============ */
 
 /* --- component.php overrides --- */
 body.contentpane,
@@ -26,7 +25,12 @@ body div.button2-left a {font-weight:normal;}
 table td.key {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-right:1px solid #e9e9e9;color:#666;font-weight:bold;text-align:right;font-size:11px;width:140px;}
 
 /* --- K2 --- */
-div#k2FrontendContainer {background:#eee;padding:8px;margin:0;}
+div#k2ToggleSidebarContainer {text-align:right;}
+	a#k2ToggleSidebar:before {content:"<>";font-family:monospace;}
+	a#k2ToggleSidebar {background:#95a5a6;display:inline-block;padding:2px 4px;color:#fff;border:0;border-radius:4px;font-size:11px;font-weight:bold;}
+	a#k2ToggleSidebar:hover {background:#798d8f;}
+
+div#k2FrontendContainer {padding:20px;margin:0;}
 
 div#k2Frontend {background:#fff;width:auto;padding:8px;margin:0;}
 div#k2Frontend h3,
@@ -38,17 +42,25 @@ div#k2Frontend div#editor-xtd-buttons .button2-left {display:inline;}
 div#k2Frontend table.k2FrontendToolbar {display:block;margin-top:12px;float:right;border-collapse:separate;}
 div#k2Frontend table.k2FrontendToolbar td {border:none;}
 
-div#k2Frontend table.k2FrontendToolbar td.button {border:1px solid #ccc;background:#eee;padding:4px;font-size:14px;font-weight:bold;}
-div#k2Frontend table.k2FrontendToolbar td.button:hover {background:#fffff2;}
+div#k2Frontend table.k2FrontendToolbar td.button a {display:block;padding:4px 8px;color:#fff;border:0;border-radius:4px;font-size:14px;font-weight:bold;}
+	#toolbar-save a {background:#18bc9c;}
+	#toolbar-save a:hover {background:#128f76;}
+	#toolbar-cancel a {background:#e74c3c;}
+	#toolbar-cancel a:hover {background:#d62c1a;}
 
 #k2FrontendEditToolbar {text-align:left;padding:8px;}
 #k2FrontendEditToolbar h2 {width:auto;margin-top:0;line-height:40px; min-height: 48px;}
 
-#k2FrontendPermissionsNotice {padding:0 8px 8px;margin:0 auto;text-align:center;}
-#k2FrontendPermissionsNotice p {color:red;font-weight:bold;font-size:13px;font-style:italic;font-family:monospace;}
+#k2FrontendPermissionsNotice {text-align:center;}
+#k2FrontendPermissionsNotice p {display:inline-block;color:#fff;font-size:12px;background:#3498db;padding:8px;margin:8px auto;border-radius:4px;}
 
 div#k2Frontend table.adminFormK2 {border-collapse:collapse;}
 div#k2Frontend table.adminFormK2 tr td {border:none;}
+
+#adminFormK2tabs,
+#adminFormK2Sidebar {border:none;}
+#adminFormK2Sidebar table {width:100%;}
+.isJ30 #adminFormK2Sidebar h3 {font-size:18px;}
 
 h3.ui-accordion-header span.ui-icon {margin:-2px 0 0 0;}
 
@@ -57,4 +69,5 @@ div#k2Frontend .k2CommentsPagination .pagination span,
 div#k2Frontend .k2CommentsPagination .pagination a {padding:0 2px;}
 
 /* Tabs in the frontend */
-div#k2Frontend div.k2TabsContent {margin-top:3px;}
+.isJ15 div#k2Frontend div.k2TabsContent,
+.isJ25 div#k2Frontend div.k2TabsContent {margin-top:3px;}
