@@ -662,7 +662,7 @@ $document->addScriptDeclaration("
 										<?php endif; ?>
 									</div>
 									<div id="addAttachment">
-										<input type="button" id="addAttachmentButton" value="<?php echo JText::_('K2_ADD_ATTACHMENT_FIELD'); ?>" />
+										<input type="button" id="addAttachmentButton" class="k2Selector k2Button" value="<?php echo JText::_('K2_ADD_ATTACHMENT_FIELD'); ?>" />
 										<i>(<?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?>)</i> </div>
 									<div id="itemAttachments"></div>
 									<?php if (count($this->K2PluginsItemAttachments)): ?>
