@@ -448,7 +448,7 @@ div.itemList {}
 		}
 
 /* --- Item block for each item group --- */
-div.catItemView {margin-bottom:48px;} /* this is the container for each K2 item on this view */
+div.catItemView {margin-bottom:48px;padding:4px;} /* this is the container for each K2 item on this view */
 
 	/* Additional class appended to the element above for further styling per group item */
 	div.groupLeading {}
