@@ -80,7 +80,7 @@ defined('_JEXEC') or die;
 
 			<?php
 			// Define a CSS class for the last container on each row
-			if( (($key+1)%($this->params->get('subCatColumns'))==0))
+			if((($key+1)%($this->params->get('subCatColumns'))==0))
 				$lastContainer= ' subCategoryContainerLast';
 			else
 				$lastContainer='';
@@ -129,8 +129,6 @@ defined('_JEXEC') or die;
 	</div>
 	<?php endif; ?>
 
-
-
 	<?php if((isset($this->leading) || isset($this->primary) || isset($this->secondary) || isset($this->links)) && (count($this->leading) || count($this->primary) || count($this->secondary) || count($this->links))): ?>
 	<!-- Item list -->
 	<div class="itemList">
@@ -142,7 +140,7 @@ defined('_JEXEC') or die;
 
 			<?php
 			// Define a CSS class for the last container on each row
-			if( (($key+1)%($this->params->get('num_leading_columns'))==0) || count($this->leading)<$this->params->get('num_leading_columns') )
+			if((($key+1)%($this->params->get('num_leading_columns'))==0) || count($this->leading)<$this->params->get('num_leading_columns'))
 				$lastContainer= ' itemContainerLast';
 			else
 				$lastContainer='';
@@ -151,7 +149,7 @@ defined('_JEXEC') or die;
 			<div class="itemContainer<?php echo $lastContainer; ?>"<?php echo (count($this->leading)==1) ? '' : ' style="width:'.number_format(100/$this->params->get('num_leading_columns'), 1).'%;"'; ?>>
 				<?php
 					// Load category_item.php by default
-					$this->item=$item;
+					$this->item = $item;
 					echo $this->loadTemplate('item');
 				?>
 			</div>
@@ -179,7 +177,7 @@ defined('_JEXEC') or die;
 			<div class="itemContainer<?php echo $lastContainer; ?>"<?php echo (count($this->primary)==1) ? '' : ' style="width:'.number_format(100/$this->params->get('num_primary_columns'), 1).'%;"'; ?>>
 				<?php
 					// Load category_item.php by default
-					$this->item=$item;
+					$this->item = $item;
 					echo $this->loadTemplate('item');
 				?>
 			</div>
@@ -207,7 +205,7 @@ defined('_JEXEC') or die;
 			<div class="itemContainer<?php echo $lastContainer; ?>"<?php echo (count($this->secondary)==1) ? '' : ' style="width:'.number_format(100/$this->params->get('num_secondary_columns'), 1).'%;"'; ?>>
 				<?php
 					// Load category_item.php by default
-					$this->item=$item;
+					$this->item = $item;
 					echo $this->loadTemplate('item');
 				?>
 			</div>
@@ -227,7 +225,7 @@ defined('_JEXEC') or die;
 
 			<?php
 			// Define a CSS class for the last container on each row
-			if( (($key+1)%($this->params->get('num_links_columns'))==0) || count($this->links)<$this->params->get('num_links_columns') )
+			if((($key+1)%($this->params->get('num_links_columns'))==0) || count($this->links)<$this->params->get('num_links_columns'))
 				$lastContainer= ' itemContainerLast';
 			else
 				$lastContainer='';
@@ -236,7 +234,7 @@ defined('_JEXEC') or die;
 			<div class="itemContainer<?php echo $lastContainer; ?>"<?php echo (count($this->links)==1) ? '' : ' style="width:'.number_format(100/$this->params->get('num_links_columns'), 1).'%;"'; ?>>
 				<?php
 					// Load category_item.php by default
-					$this->item=$item;
+					$this->item = $item;
 					echo $this->loadTemplate('item');
 				?>
 			</div>
@@ -261,4 +259,5 @@ defined('_JEXEC') or die;
 
 	<?php endif; ?>
 </div>
+
 <!-- End K2 Category Layout -->
