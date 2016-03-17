@@ -357,8 +357,10 @@ div.itemCommentsForm h3 {margin:0;padding:0 0 4px 0;}
 	div.itemCommentsForm form textarea.inputbox {display:block;width:350px;height:160px;margin:0;}
 	div.itemCommentsForm form input.inputbox {display:block;width:350px;margin:0;}
 	div.itemCommentsForm form input#submitCommentButton {display:block;margin:16px 0 0 0;padding:4px;border:1px solid #ccc;background:#eee;font-size:16px;}
-	div.itemCommentsForm form span#formLog {margin:0 0 0 20px;padding:0 0 0 20px;font-weight:bold;color:#CF1919;}
+	div.itemCommentsForm form span#formLog {display:block;margin:24px;padding:8px 12px;background:#f00;color:#fff;border-radius:4px;}
 	div.itemCommentsForm form .formLogLoading {background:url(../images/system/loading.gif) no-repeat left center;}
+
+div.itemCommentsLoginFirst {display:block;margin:24px;padding:8px 12px;background:#f00;color:#fff;border-radius:4px;}
 
 /* "Report comment" form */
 div.k2ReportCommentFormContainer {padding:8px;width:480px;margin:0 auto;}
@@ -370,7 +372,7 @@ div.k2ReportCommentFormContainer {padding:8px;width:480px;margin:0 auto;}
 	div.k2ReportCommentFormContainer form input,
 	div.k2ReportCommentFormContainer form textarea {display:block;border:1px solid #ddd;font-size:12px;padding:2px;margin:0 0 8px 0;width:474px;}
 	div.k2ReportCommentFormContainer form #recaptcha {margin-bottom:24px;}
-	div.k2ReportCommentFormContainer form span#formLog {margin:0 0 0 20px;padding:0 0 0 20px;font-weight:bold;color:#CF1919;}
+	div.k2ReportCommentFormContainer form span#formLog {display:block;margin:24px;padding:8px 12px;background:#f00;color:#fff;border-radius:4px;}
 	div.k2ReportCommentFormContainer form .formLogLoading {background:url(../images/system/loading.gif) no-repeat left center;}
 
 /* Back to top link */

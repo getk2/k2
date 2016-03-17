@@ -1100,15 +1100,15 @@ class K2ModelItem extends K2Model
 		$json = new Services_JSON;
 		$response = new JObject();
 
-		//Get item
+		// Get item
 		$item = JTable::getInstance('K2Item', 'Table');
 		$item->load(JRequest::getInt('itemID'));
 
-		//Get category
+		// Get category
 		$category = JTable::getInstance('K2Category', 'Table');
 		$category->load($item->catid);
 
-		//Access check
+		// Access check
 		if (K2_JVERSION != '15')
 		{
 			if (!in_array($item->access, $user->getAuthorisedViewLevels()) || !in_array($category->access, $user->getAuthorisedViewLevels()))
@@ -1124,7 +1124,7 @@ class K2ModelItem extends K2Model
 			}
 		}
 
-		//Published check
+		// Published check
 		if (!$item->published || $item->trash)
 		{
 			JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
@@ -1134,23 +1134,22 @@ class K2ModelItem extends K2Model
 			JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
 		}
 
-		//Check permissions
+		// Check permissions
 		if ((($params->get('comments') == '2') && ($user->id > 0) && K2HelperPermissions::canAddComment($item->catid)) || ($params->get('comments') == '1'))
 		{
 
 			// If new antispam settings are not saved, show a message to the comments form and stop the comment submission
 			$antispamProtection = $params->get('antispam', null);
 			if(
-			$antispamProtection === null
-			|| (($antispamProtection == 'recaptcha' || $antispamProtection == 'both') && !$params->get('recaptcha_private_key'))
-			|| (($antispamProtection == 'akismet' || $antispamProtection == 'both') && !$params->get('akismetApiKey'))
+				$antispamProtection === null ||
+				(($antispamProtection == 'recaptcha' || $antispamProtection == 'both') && !$params->get('recaptcha_private_key')) ||
+				(($antispamProtection == 'akismet' || $antispamProtection == 'both') && !$params->get('akismetApiKey'))
 			)
 			{
 				$response->message = JText::_('K2_ANTISPAM_SETTINGS_ERROR');
 				echo $json->encode($response);
 				$mainframe->close();
 			}
-
 
 			$row = JTable::getInstance('K2Comment', 'Table');
 
@@ -1163,13 +1162,13 @@ class K2ModelItem extends K2Model
 
 			$row->commentText = JRequest::getString('commentText', '', 'default');
 			$row->commentText = strip_tags($row->commentText);
-			//Strip a tags since all urls will be converted to links automatically on runtime.
-			//Additionaly strip tables to avoid layout issues.
-			//Also strip all attributes except src, alt and title.
-			//$filter	= new JFilterInput(array('a', 'table'), array('src', 'alt', 'title'), 1);
+			// Strip 'a' tags since all urls will be converted to links automatically on runtime.
+			// Additionaly strip tables to avoid layout issues.
+			// Also strip all attributes except src, alt and title.
+			//$filter = new JFilterInput(array('a', 'table'), array('src', 'alt', 'title'), 1);
 			//$row->commentText = $filter->clean( $row->commentText );
 
-			//Clean vars
+			// Clean vars
 			$filter = JFilterInput::getInstance();
 			$row->userName = $filter->clean($row->userName, 'username');
 			if ($row->commentURL && preg_match('/^((http|https|ftp):\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}((:[0-9]{1,5})?\/.*)?$/i', $row->commentURL))
