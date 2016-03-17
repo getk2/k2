@@ -35,35 +35,34 @@ if(K2_JVERSION=='15'){
     	{
     		JError::raiseError( 403, JText::_('K2_ALERTNOTAUTH') );
     	}
-}
-else {
+} else {
 
 	JLoader::register('K2HelperPermissions', JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'permissions.j16.php');
 	K2HelperPermissions::checkPermissions();
 
 	// Compatibility for gid variable
-    if($user->authorise('core.admin', 'com_k2')){
-        $user->gid = 1000;
-    }
-    else {
-    	 $user->gid = 1;
-    }
+	if($user->authorise('core.admin', 'com_k2')){
+		$user->gid = 1000;
+	} else {
+		$user->gid = 1;
+	}
 
-    if(	($params->get('lockTags') && !$user->authorise('core.admin', 'com_k2') && ($view=='tags' || $view=='tag')) ||
-    		(!$user->authorise('core.admin', 'com_k2')) && (
-    		$view=='extrafield' ||
-    		$view=='extrafields' ||
-    		$view=='extrafieldsgroup' ||
-    		$view=='extrafieldsgroups' ||
-    		$view=='user' ||
-    		($view=='users' && $task != 'element') ||
-    		$view=='usergroup' ||
-    		$view=='usergroups'
-    		)
-    	)
-    	{
-    		JError::raiseError( 403, JText::_('K2_ALERTNOTAUTH') );
-    	}
+    if(
+    	($params->get('lockTags') && !$user->authorise('core.admin', 'com_k2') && ($view=='tags' || $view=='tag')) ||
+		(!$user->authorise('core.admin', 'com_k2')) && (
+			$view=='extrafield' ||
+			$view=='extrafields' ||
+			$view=='extrafieldsgroup' ||
+			$view=='extrafieldsgroups' ||
+			$view=='user' ||
+			($view=='users' && $task != 'element') ||
+			$view=='usergroup' ||
+			$view=='usergroups'
+		)
+	)
+	{
+		JError::raiseError( 403, JText::_('K2_ALERTNOTAUTH') );
+	}
 }
 
 $document = JFactory::getDocument();
@@ -122,7 +121,16 @@ if(K2_JVERSION == '15'){
 	$k2CSSContainerClass = '';
 }
 
-if( $document->getType() != 'raw' && JRequest::getWord('task')!='deleteAttachment' && JRequest::getWord('task')!='connector' && JRequest::getWord('task')!='tag' && JRequest::getWord('task')!='tags' && JRequest::getWord('task')!='extrafields' && JRequest::getWord('task')!='download' && JRequest::getWord('task')!='saveComment'): ?>
+if(
+	$document->getType() != 'raw' &&
+	JRequest::getWord('task')!='deleteAttachment' &&
+	JRequest::getWord('task')!='connector' &&
+	JRequest::getWord('task')!='tag' &&
+	JRequest::getWord('task')!='tags' &&
+	JRequest::getWord('task')!='extrafields' &&
+	JRequest::getWord('task')!='download' &&
+	JRequest::getWord('task')!='saveComment'
+): ?>
 <div id="k2AdminContainer" class="K2AdminView<?php echo ucfirst($view).$k2CSSContainerClass; ?>">
 <?php endif;
 
@@ -139,16 +147,36 @@ $controller->registerTask('saveAndNew', 'save');
 $controller->execute(JRequest::getWord('task'));
 $controller->redirect();
 
-if( $document->getType() != 'raw' && JRequest::getWord('task')!='deleteAttachment' && JRequest::getWord('task')!='connector' && JRequest::getWord('task')!='tag' && JRequest::getWord('task')!='extrafields' && JRequest::getWord('task')!='download' && JRequest::getWord('task')!='saveComment'): ?>
+if(
+	$document->getType() != 'raw' &&
+	JRequest::getWord('task')!='deleteAttachment' &&
+	JRequest::getWord('task')!='connector' &&
+	JRequest::getWord('task')!='tag' &&
+	JRequest::getWord('task')!='tags' &&
+	JRequest::getWord('task')!='extrafields' &&
+	JRequest::getWord('task')!='download' &&
+	JRequest::getWord('task')!='saveComment'
+): ?>
 </div>
 <div id="k2AdminFooter">
 	<a target="_blank" href="https://getk2.org/">K2 v2.7.0</a> | Copyright &copy; 2006-<?php echo date('Y'); ?> <a target="_blank" href="http://www.joomlaworks.net/">JoomlaWorks Ltd.</a>
 </div>
 
-<!-- K2 App Services -->
+<?php
+
+$loadUpdateService = false;
+if (K2_JVERSION != '15'){
+	if ($user->authorise('core.admin', 'com_k2')) $loadUpdateService = true;
+} else {
+	if ($user->gid > 24) $loadUpdateService = true;
+}
+
+if($loadUpdateService): ?>
+<!-- K2 Update Service -->
 <script type="text/javascript">
 	var K2_INSTALLED_VERSION = '2.7.0';
 </script>
-<script type="text/javascript" src="https://getk2.org/app/services.js?t=<?php echo date('Ymd'); ?>"></script>
+<script type="text/javascript" src="https://getk2.org/app/update.js?t=<?php echo date('Ymd'); ?>"></script>
+<?php endif; ?>
 
 <?php endif;
