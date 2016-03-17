@@ -115,7 +115,7 @@ div.k2UserBlock ul.k2UserBlockRenderedMenu,
 div.k2ArchivesBlock ul,
 div.k2AuthorsListBlock ul,
 div.k2CategoriesListBlock ul,
-div.k2UsersBlock ul {} /* Example CSS: padding:0;margin:0;list-style:none; */
+div.k2UsersBlock ul {margin:0;padding:0 4px;list-style:none;} /* Example CSS: padding:0;margin:0;list-style:none; */
 
 div.k2LatestCommentsBlock ul li,
 div.k2TopCommentersBlock ul li,
@@ -126,13 +126,13 @@ div.k2UserBlock ul.k2UserBlockRenderedMenu li,
 div.k2ArchivesBlock ul li,
 div.k2AuthorsListBlock ul li,
 div.k2CategoriesListBlock ul li,
-div.k2UsersBlock ul li {} /* Example CSS: display:block;clear:both;padding:2px 0;border-bottom:1px dotted #ccc; */
+div.k2UsersBlock ul li {display:block;padding:0;margin:0 0 24px 0;} /* Example CSS: display:block;clear:both;padding:2px 0;border-bottom:1px dotted #ccc; */
 
 .clearList {display:none;float:none;clear:both;} /* this class is used to clear all previous floating list elements */
 .lastItem {border:none;} /* class appended on last list item */
 
 /* --- Avatars --- */
-.k2Avatar img {display:block;float:left;background:#fff;border:1px solid #ddd;padding:2px;margin:2px 4px 4px 0;}
+.k2Avatar img {display:block;float:left;background:#fff;border:1px solid #ddd;border-radius:50%;padding:2px;margin:2px 4px 4px 0;}
 
 /* --- Read more --- */
 a.k2ReadMore {}
