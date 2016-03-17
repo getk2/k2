@@ -48,7 +48,7 @@ button::-moz-focus-inner {padding:0;border:0;}
 .mfp-arrow-right:after {border-left:17px solid #FFF;margin-left:39px;}
 .mfp-arrow-right:before {border-left:27px solid #3F3F3F;}
 .mfp-iframe-holder {padding-top:40px;padding-bottom:40px;}
-.mfp-iframe-holder .mfp-content {line-height:0;width:100%;max-width:900px;}
+.mfp-iframe-holder .mfp-content {line-height:0;width:100%;max-width:1240px;} /* Incresed iframe dimensions for better editing */
 .mfp-iframe-holder .mfp-close {top:-40px;}
 .mfp-iframe-scaler {width:100%;height:0;overflow:hidden;padding-top:56.25%;}
 .mfp-iframe-scaler iframe {position:absolute;display:block;top:0;left:0;width:100%;height:100%;box-shadow:0 0 8px rgba(0, 0, 0, 0.6);background:#000;}
