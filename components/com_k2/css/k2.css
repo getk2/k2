@@ -358,8 +358,8 @@ div.itemCommentsForm h3 {margin:0;padding:0 0 4px 0;}
 	div.itemCommentsForm form input.inputbox {display:block;width:350px;margin:0;}
 	div.itemCommentsForm form input#submitCommentButton {display:block;margin:16px 0 0 0;padding:4px;border:1px solid #ccc;background:#eee;font-size:16px;}
 	div.itemCommentsForm form span#formLog {margin:24px;padding:8px 12px;border-radius:4px;text-align:center;display:none;}
-		.k2FormLogError {display:block;background:#f00;}
-		.k2FormLogSuccess {display:block;background:#18ac00;}
+		div.itemCommentsForm form span#formLog.k2FormLogError {display:block;background:#f00;color:#fff;}
+		div.itemCommentsForm form span#formLog.k2FormLogSuccess {display:block;background:#18ac00;color:#fff;}
 	div.itemCommentsForm form .formLogLoading {background:url(../images/system/loading.gif) no-repeat left center;}
 
 div.itemCommentsLoginFirst {display:block;margin:24px;padding:8px 12px;background:#f00;color:#fff;border-radius:4px;}
