@@ -219,7 +219,7 @@ div.itemRatingBlock {padding:8px 0;}
 
 div.itemBody {padding:8px 0;margin:0;}
 
-div.itemImageBlock {padding:8px;margin:0 0 16px 0;}
+div.itemImageBlock {padding:8px 0;margin:0 0 16px 0;}
 	span.itemImage {display:block;text-align:center;margin:0 0 8px 0;}
 	span.itemImage img {max-width:100%;height:auto;}
 	span.itemImageCaption {color:#666;float:left;display:block;font-size:11px;}
@@ -476,7 +476,7 @@ div.catItemRatingBlock {padding:8px 0;}
 
 div.catItemBody {padding:8px 0;margin:0;}
 
-div.catItemImageBlock {padding:8px;margin:0 0 16px 0;}
+div.catItemImageBlock {padding:8px 0;margin:0 0 16px 0;}
 	span.catItemImage {display:block;text-align:center;margin:0 0 8px 0;}
 	span.catItemImage img {max-width:100%;height:auto;}
 
