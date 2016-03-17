@@ -33,9 +33,10 @@ defined('_JEXEC') or die;
 		<label class="formRecaptcha"><?php echo JText::_('K2_ENTER_THE_TWO_WORDS_YOU_SEE_BELOW'); ?></label>
 		<?php endif; ?>
 		<div id="recaptcha" class="<?php echo $this->recaptchaClass; ?>"></div>
-
 		<?php endif; ?>
+
 		<button class="button"><?php echo JText::_('K2_SEND_REPORT'); ?></button>
+
 		<span id="formLog"></span>
 
 		<input type="hidden" name="option" value="com_k2" />

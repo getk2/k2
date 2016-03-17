@@ -1147,6 +1147,7 @@ class K2ModelItem extends K2Model
 			)
 			{
 				$response->message = JText::_('K2_ANTISPAM_SETTINGS_ERROR');
+				$response->cssClass = 'k2FormLogError';
 				echo $json->encode($response);
 				$mainframe->close();
 			}
@@ -1156,6 +1157,7 @@ class K2ModelItem extends K2Model
 			if (!$row->bind(JRequest::get('post')))
 			{
 				$response->message = $row->getError();
+				$response->cssClass = 'k2FormLogError';
 				echo $json->encode($response);
 				$mainframe->close();
 			}
@@ -1205,6 +1207,7 @@ class K2ModelItem extends K2Model
 			if (empty($userName) || $userName == JText::_('K2_ENTER_YOUR_NAME') || empty($commentText) || $commentText == JText::_('K2_ENTER_YOUR_MESSAGE_HERE') || empty($commentEmail) || $commentEmail == JText::_('K2_ENTER_YOUR_EMAIL_ADDRESS'))
 			{
 				$response->message = JText::_('K2_YOU_NEED_TO_FILL_IN_ALL_REQUIRED_FIELDS');
+				$response->cssClass = 'k2FormLogError';
 				echo $json->encode($response);
 				$mainframe->close();
 			}
@@ -1212,6 +1215,7 @@ class K2ModelItem extends K2Model
 			if (!JMailHelper::isEmailAddress($commentEmail))
 			{
 				$response->message = JText::_('K2_INVALID_EMAIL_ADDRESS');
+				$response->cssClass = 'k2FormLogError';
 				echo $json->encode($response);
 				$mainframe->close();
 			}
@@ -1225,6 +1229,7 @@ class K2ModelItem extends K2Model
 				if ($result > 0)
 				{
 					$response->message = JText::_('K2_THE_NAME_OR_EMAIL_ADDRESS_YOU_TYPED_IS_ALREADY_IN_USE');
+					$response->cssClass = 'k2FormLogError';
 					echo $json->encode($response);
 					$mainframe->close();
 				}
@@ -1242,6 +1247,7 @@ class K2ModelItem extends K2Model
 						if (!K2HelperUtilities::verifyRecaptcha())
 						{
 							$response->message = JText::_('K2_COULD_NOT_VERIFY_THAT_YOU_ARE_NOT_A_ROBOT');
+							$response->cssClass = 'k2FormLogError';
 							echo $json->encode($response);
 							$mainframe->close();
 						}
@@ -1259,6 +1265,7 @@ class K2ModelItem extends K2Model
 						if (!$resp->is_valid)
 						{
 							$response->message = JText::_('K2_THE_WORDS_YOU_TYPED_DID_NOT_MATCH_THE_ONES_DISPLAYED_PLEASE_TRY_AGAIN');
+							$response->cssClass = 'k2FormLogError';
 							echo $json->encode($response);
 							$mainframe->close();
 						}
@@ -1288,6 +1295,7 @@ class K2ModelItem extends K2Model
 							if ($akismet->isCommentSpam())
 							{
 								$response->message = JText::_('K2_SPAM_ATTEMPT_HAS_BEEN_DETECTED_THE_COMMENT_HAS_BEEN_REJECTED');
+								$response->cssClass = 'k2FormLogError';
 								echo $json->encode($response);
 								$mainframe->close();
 							}
@@ -1295,6 +1303,7 @@ class K2ModelItem extends K2Model
 						catch(Exception $e)
 						{
 							$response->message = $e->getMessage();
+							$response->cssClass = 'k2FormLogSuccess';
 							echo $json->encode($response);
 							$mainframe->close();
 						}
@@ -1343,6 +1352,7 @@ class K2ModelItem extends K2Model
 			if (!$row->store())
 			{
 				$response->message = $row->getError();
+				$response->cssClass = 'k2FormLogError';
 				echo $json->encode($response);
 				$mainframe->close();
 			}
@@ -1353,11 +1363,13 @@ class K2ModelItem extends K2Model
 				if ($caching && $user->guest)
 				{
 					$response->message = JText::_('K2_THANK_YOU_YOUR_COMMENT_WILL_BE_PUBLISHED_SHORTLY');
+					$response->cssClass = 'k2FormLogSuccess';
 					echo $json->encode($response);
 				}
 				else
 				{
 					$response->message = JText::_('K2_COMMENT_ADDED_REFRESHING_PAGE');
+					$response->cssClass = 'k2FormLogSuccess';
 					$response->refresh = 1;
 					echo $json->encode($response);
 				}
@@ -1366,6 +1378,7 @@ class K2ModelItem extends K2Model
 			else
 			{
 				$response->message = JText::_('K2_COMMENT_ADDED_AND_WAITING_FOR_APPROVAL');
+				$response->cssClass = 'k2FormLogSuccess';
 				echo $json->encode($response);
 			}
 

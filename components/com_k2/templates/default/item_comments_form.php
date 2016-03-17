@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 
 ?>
 
+<!-- Comments Form -->
 <h3><?php echo JText::_('K2_LEAVE_A_COMMENT') ?></h3>
 
 <?php if($this->params->get('commentsFormNotes')): ?>

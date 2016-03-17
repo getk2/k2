@@ -67,7 +67,7 @@ $K2(document).ready(function(){
 			dataType: 'json',
 			data: $K2('#comment-form').serialize(),
 			success: function(response){
-				$K2('#formLog').removeClass('formLogLoading').html(response.message);
+				$K2('#formLog').removeClass('formLogLoading').html(response.message).addClass(response.cssClass);
 				if(typeof(Recaptcha) != "undefined"){
 					Recaptcha.reload();
 				}
@@ -131,13 +131,13 @@ $K2(document).ready(function(){
 
 	$K2('#k2ReportCommentForm').submit(function(event){
 		event.preventDefault();
-		$K2('#formLog').empty().addClass('formLogLoading');
+		$K2('#k2ReportCommentFormLog').empty().addClass('formLogLoading');
 		$K2.ajax({
 			url: $K2('#k2ReportCommentForm').attr('action'),
 			type: 'post',
 			data: $K2('#k2ReportCommentForm').serialize(),
 			success: function(response){
-				$K2('#formLog').removeClass('formLogLoading').html(response);
+				$K2('#formLog').removeClass('formLogLoading').html(response).css('display','block');
 				if(typeof(Recaptcha) != "undefined"){
 					Recaptcha.reload();
 				}
