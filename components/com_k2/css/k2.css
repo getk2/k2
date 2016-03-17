@@ -76,35 +76,34 @@ span.siteRoot {display:none;}
 .k2-recaptcha-v2 {margin-top:12px;}
 
 /* --- Icon Font Support --- */
+/* Reset for users with older overrides */
+div.itemToolbar ul li a#fontDecrease,
+div.itemToolbar ul li a#fontIncrease {font-size:14px;}
+div.itemToolbar ul li a#fontDecrease img,
+div.itemToolbar ul li a#fontIncrease img {background:none;}
+a.ubUserFeedIcon,
+a.ubUserFeedIcon:hover,
+a.ubUserURL,
+a.ubUserURL:hover,
+span.ubUserEmail,
+div.itemIsFeatured:before,
+div.catItemIsFeatured:before,
+div.userItemIsFeatured:before,
+div.k2FeedIcon a,
+div.k2FeedIcon a:hover,
+div.itemToolbar ul li a#fontDecrease,
+div.itemToolbar ul li a#fontIncrease {background:none;text-decoration:none;vertical-align:middle;font-family:'simple-line-icons';speak:none;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 
-	/* Reset for users with older overrides */
-	div.itemToolbar ul li a#fontDecrease,
-	div.itemToolbar ul li a#fontIncrease {font-size:14px;}
-	div.itemToolbar ul li a#fontDecrease img,
-	div.itemToolbar ul li a#fontIncrease img {background:none;}
-	a.ubUserFeedIcon,
-	a.ubUserFeedIcon:hover,
-	a.ubUserURL,
-	a.ubUserURL:hover,
-	span.ubUserEmail,
-	div.itemIsFeatured:before,
-	div.catItemIsFeatured:before,
-	div.userItemIsFeatured:before,
-	div.k2FeedIcon a,
-	div.k2FeedIcon a:hover,
-	div.itemToolbar ul li a#fontDecrease,
-	div.itemToolbar ul li a#fontIncrease {background:none;text-decoration:none;vertical-align:middle;font-family:'simple-line-icons';speak:none;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
-
-	/* Font assignments */
-	div.catItemIsFeatured:before,
-	div.userItemIsFeatured:before,
-	div.itemIsFeatured:before {content:"\e09b";}
-	a#fontIncrease:before {content:"\e091";}
-	a#fontDecrease:before {content:"\e092";}
-	div.k2FeedIcon a:before,
-	a.ubUserFeedIcon:before {content:"\e03b";}
-	a.ubUserURL:before {content:"\e037";}
-	span.ubUserEmail:before {content:"\e086";}
+/* Font assignments */
+div.catItemIsFeatured:before,
+div.userItemIsFeatured:before,
+div.itemIsFeatured:before {content:"\e09b";}
+a#fontIncrease:before {content:"\e091";}
+a#fontDecrease:before {content:"\e092";}
+div.k2FeedIcon a:before,
+a.ubUserFeedIcon:before {content:"\e03b";}
+a.ubUserURL:before {content:"\e037";}
+span.ubUserEmail:before {content:"\e086";}
 
 /* --- Primary lists in modules --- */
 div.k2LatestCommentsBlock ul,
@@ -160,6 +159,11 @@ div.userItemIsFeatured {position:relative;}
 div.itemIsFeatured:before,
 div.catItemIsFeatured:before,
 div.userItemIsFeatured:before {position:absolute;top:10px;right:10px;color:#CF1919;font-size:20px;}
+
+/* --- Separators --- */
+.k2HorizontalSep {border:0;padding:0;margin:0 8px;}
+
+
 
 /*------------------------------------------------------------------------------
 	Component - Item view
@@ -240,7 +244,7 @@ div.itemExtraFields {margin:16px 0 0 0;padding:8px 0 0 0;border-top:1px dotted #
 	div.itemExtraFields ul li span.itemExtraFieldsLabel {display:block;float:left;font-weight:bold;margin:0 4px 0 0;width:30%;}
 	div.itemExtraFields ul li span.itemExtraFieldsValue {}
 
-div.itemContentFooter {display:block;text-align:right;padding:4px 0;margin:16px 0 4px 0;border-top:1px solid #ddd;color:#999;}
+div.itemContentFooter {display:block;text-align:right;padding:4px 0;margin:16px 0 4px 0;color:#999;}
 	span.itemHits {float:left;}
 	span.itemDateModified {}
 
@@ -278,7 +282,7 @@ div.itemAuthorBlock {background:#fafafa;border:1px solid #ddd;margin:0 0 16px 0;
 	div.itemAuthorBlock div.itemAuthorDetails h3.authorName a {font-size:16px;}
 	div.itemAuthorBlock div.itemAuthorDetails h3.authorName a:hover {}
 	div.itemAuthorBlock div.itemAuthorDetails p {}
-	div.itemAuthorBlock div.itemAuthorDetails span.itemAuthorUrl {font-weight:bold;color:#555;border-right:1px solid #ccc;padding:0 8px 0 0;margin:0 4px 0 0;}
+	div.itemAuthorBlock div.itemAuthorDetails span.itemAuthorUrl {font-weight:bold;color:#555;}
 	div.itemAuthorBlock div.itemAuthorDetails span.itemAuthorEmail {font-weight:bold;color:#555;}
 	div.itemAuthorBlock div.itemAuthorDetails span.itemAuthorUrl a,
 	div.itemAuthorBlock div.itemAuthorDetails span.itemAuthorEmail a {font-weight:normal;}
