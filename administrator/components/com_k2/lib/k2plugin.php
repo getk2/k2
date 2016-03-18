@@ -12,7 +12,7 @@ defined('_JEXEC') or die ;
 
 jimport('joomla.plugin.plugin');
 
-JLoader::register('K2Parameter', JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'lib'.DS.'k2parameter.php');
+JLoader::register('K2Parameter', JPATH_ADMINISTRATOR.'/components/com_k2/lib/k2parameter.php');
 
 class K2Plugin extends JPlugin
 {
