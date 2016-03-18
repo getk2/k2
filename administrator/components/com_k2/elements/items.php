@@ -78,7 +78,7 @@ class K2ElementItems extends K2Element
 		";
 
         $document->addScriptDeclaration($js);
-        $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.modules.css?v=2.7.0');
+        $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.modules.css?v=2.7.1');
 
         $current = array();
         if (is_string($value) && !empty($value))

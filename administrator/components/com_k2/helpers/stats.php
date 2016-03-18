@@ -124,7 +124,7 @@ class K2HelperStats
 
 	public static function getExtensionVersion()
 	{
-		return '2.7.0';
+		return '2.7.1';
 	}
 
 	public static function getCaching()

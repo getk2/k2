@@ -2,11 +2,11 @@
 <install version="1.5" type="plugin" group="user" method="upgrade">
     <name>User - K2</name>
     <author>JoomlaWorks</author>
-    <creationDate>March 16th, 2016</creationDate>
+    <creationDate>March 18th, 2016</creationDate>
     <copyright>Copyright (c) 2006 - 2016 JoomlaWorks Ltd. All rights reserved.</copyright>
     <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
     <authorUrl>www.joomlaworks.net</authorUrl>
-    <version>2.7.0</version>
+    <version>2.7.1</version>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
     <description>K2_A_USER_SYNCHRONIZATION_PLUGIN_FOR_K2</description>
     <files>

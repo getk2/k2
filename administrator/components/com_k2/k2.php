@@ -74,8 +74,8 @@ if(version_compare(JVERSION,'1.6.0','ge')) {
 }
 
 // CSS
-$document->addStyleSheet('//netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css?v=2.7.0');
-$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v=2.7.0');
+$document->addStyleSheet('//netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css?v=2.7.1');
+$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v=2.7.1');
 
 K2HelperHTML::loadjQuery(true, JRequest::getCmd('view') == 'media');
 
@@ -108,7 +108,7 @@ $document->addScriptDeclaration('
 	})();
 
 ');
-$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v=2.7.0&amp;sitepath='.JURI::root(true).'/');
+$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v=2.7.1&amp;sitepath='.JURI::root(true).'/');
 
 // Container CSS class definition
 if(K2_JVERSION == '15'){
@@ -159,7 +159,7 @@ if(
 ): ?>
 </div>
 <div id="k2AdminFooter">
-	<a target="_blank" href="https://getk2.org/">K2 v2.7.0</a> | Copyright &copy; 2006-<?php echo date('Y'); ?> <a target="_blank" href="http://www.joomlaworks.net/">JoomlaWorks Ltd.</a>
+	<a target="_blank" href="https://getk2.org/">K2 v2.7.1 [Dev Build]</a> | Copyright &copy; 2006-<?php echo date('Y'); ?> <a target="_blank" href="http://www.joomlaworks.net/">JoomlaWorks Ltd.</a>
 </div>
 
 <?php
@@ -174,7 +174,7 @@ if (K2_JVERSION != '15'){
 if($loadUpdateService): ?>
 <!-- K2 Update Service -->
 <script type="text/javascript">
-	var K2_INSTALLED_VERSION = '2.7.0';
+	var K2_INSTALLED_VERSION = '2.7.1';
 </script>
 <script type="text/javascript" src="https://getk2.org/app/update.js?t=<?php echo date('Ymd'); ?>"></script>
 <?php endif; ?>

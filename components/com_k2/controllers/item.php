@@ -100,14 +100,14 @@ class K2ControllerItem extends K2Controller
 		}
 
 		// CSS
-		$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v=2.7.0');
-		$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.frontend.css?v=2.7.0');
+		$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v=2.7.1');
+		$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.frontend.css?v=2.7.1');
 		$document->addStyleSheet(JURI::root(true).'/templates/system/css/general.css');
 		$document->addStyleSheet(JURI::root(true).'/templates/system/css/system.css');
 
 		// JS
 		K2HelperHTML::loadjQuery(true);
-		$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v=2.7.0&amp;sitepath='.JURI::root(true).'/');
+		$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v=2.7.1&amp;sitepath='.JURI::root(true).'/');
 
 		$this->addViewPath(JPATH_COMPONENT_ADMINISTRATOR.DS.'views');
 		$this->addModelPath(JPATH_COMPONENT_ADMINISTRATOR.DS.'models');
@@ -329,11 +329,11 @@ class K2ControllerItem extends K2Controller
 		}
 
 		// CSS
-		$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v=2.7.0');
+		$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v=2.7.1');
 
 		// JS
 		K2HelperHTML::loadjQuery(true);
-		$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v=2.7.0&amp;sitepath='.JURI::root(true).'/');
+		$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v=2.7.1&amp;sitepath='.JURI::root(true).'/');
 		$this->addViewPath(JPATH_COMPONENT_ADMINISTRATOR.DS.'views');
 		$view = $this->getView('media', 'html');
 		$view->addTemplatePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'views'.DS.'media'.DS.'tmpl');
@@ -391,11 +391,11 @@ class K2ControllerItem extends K2Controller
 		}
 
 		// CSS
-		$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v=2.7.0');
+		$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v=2.7.1');
 
 		// JS
 		K2HelperHTML::loadjQuery(true);
-		$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v=2.7.0&amp;sitepath='.JURI::root(true).'/');
+		$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v=2.7.1&amp;sitepath='.JURI::root(true).'/');
 
 		$this->addViewPath(JPATH_COMPONENT_ADMINISTRATOR.DS.'views');
 		$this->addModelPath(JPATH_COMPONENT_ADMINISTRATOR.DS.'models');

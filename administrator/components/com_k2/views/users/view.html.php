@@ -212,7 +212,7 @@ class K2ViewUsers extends K2View
         if ($mainframe->isSite())
         {
             // CSS
-            $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.frontend.css?v=2.7.0');
+            $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.frontend.css?v=2.7.1');
             $document->addStyleSheet(JURI::root(true).'/templates/system/css/general.css');
             $document->addStyleSheet(JURI::root(true).'/templates/system/css/system.css');
             if (K2_JVERSION != '15')

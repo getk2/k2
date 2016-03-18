@@ -27,7 +27,7 @@ class K2ViewItem extends K2View
 		JHTML::_('behavior.modal');
 		JRequest::setVar('hidemainmenu', 1);
 		$document = JFactory::getDocument();
-		$document->addScript(JURI::root(true).'/media/k2/assets/js/nicEdit.js?v=2.7.0');
+		$document->addScript(JURI::root(true).'/media/k2/assets/js/nicEdit.js?v=2.7.1');
 		//var K2SitePath = '".JURI::root(true)."/';
 		$js = "
 			var K2BasePath = '".JURI::base(true)."/';
