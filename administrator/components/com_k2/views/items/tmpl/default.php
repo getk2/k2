@@ -121,7 +121,7 @@ $document->addScriptDeclaration("
 				<td class="order center hidden-phone">
 					<?php if($row->canChange): ?>
 					<span class="sortable-handler<?php echo ($this->ordering) ? '' : ' inactive tip-top' ; ?>" title="<?php echo ($this->ordering) ? '' : JText::_('JORDERINGDISABLED'); ?>" rel="tooltip"><i class="icon-menu"></i></span>
-					<input type="text" style="display:none"  name="order[]" size="5" value="<?php echo $row->ordering; ?>" class="width-20 text-area-order " />
+					<input type="text" style="display:none"  name="order[]" size="5" value="<?php echo ($this->filter_featured!='1') ? $row->ordering : $row->featured_ordering; ?>" class="width-20 text-area-order " />
 					<?php else: ?>
 					<span class="sortable-handler inactive" ><i class="icon-menu"></i></span>
 					<?php endif; ?>
