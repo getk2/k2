@@ -101,7 +101,7 @@ class K2ModelCategories extends K2Model
                 $db->setQuery('SELECT parent FROM #__k2_categories WHERE id = '.$filter_category);
                 $root = $db->loadResult();
             }
-            else if($language)
+            else if($language && count($categories))
             {
             	$root = $categories[0]->parent;
             }
@@ -540,7 +540,7 @@ class K2ModelCategories extends K2Model
         {
             $mainframe->enqueueMessage(JText::_('K2_SOME_OF_THE_CATEGORIES_HAVE_NOT_BEEN_DELETED_BECAUSE_THEY_HAVE_CHILD_CATEGORIES'), 'notice');
         }
-		
+
 		$mainframe->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
         $mainframe->redirect('index.php?option=com_k2&view=categories');
     }
@@ -649,7 +649,7 @@ class K2ModelCategories extends K2Model
         $mainframe = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
         $catid = JRequest::getInt('category');
-        
+
         foreach ($cid as $id)
         {
         	$row = JTable::getInstance('K2Category', 'Table');
