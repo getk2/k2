@@ -472,7 +472,7 @@ defined('_JEXEC') or die;
 				<?php endif; ?>
 
 				<?php if($this->item->params->get('itemRelatedImageSize')): ?>
-				<img style="width:<?php echo $item->imageWidth; ?>px;height:auto;" class="itemRelImg" src="<?php echo $item->image; ?>" alt="<?php K2HelperUtilities::cleanHtml($item->title); ?>" />
+				<img style="width:<?php echo $item->imageWidth; ?>px;height:auto;" class="itemRelImg" src="<?php echo $item->image; ?>" alt="<?php echo K2HelperUtilities::cleanHtml($item->title); ?>" />
 				<?php endif; ?>
 
 				<?php if($this->item->params->get('itemRelatedIntrotext')): ?>
