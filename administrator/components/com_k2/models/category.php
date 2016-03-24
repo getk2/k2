@@ -83,9 +83,9 @@ class K2ModelCategory extends K2Model
         $savepath = JPATH_ROOT.DS.'media'.DS.'k2'.DS.'categories'.DS;
 
         $existingImage = JRequest::getVar('existingImage');
-        if (($files['image']['error'] === 0 || $existingImage) && !JRequest::getBool('del_image'))
+        if (($files['image']['error'] == 0 || $existingImage) && !JRequest::getBool('del_image'))
         {
-            if ($files['image']['error'] === 0)
+            if ($files['image']['error'] == 0)
             {
                 $image = $files['image'];
             }
@@ -105,7 +105,7 @@ class K2ModelCategory extends K2Model
                 $handle->image_ratio_y = true;
                 $handle->image_x = $params->get('catImageWidth', '100');
                 $handle->Process($savepath);
-                if ($files['image']['error'] === 0)
+                if ($files['image']['error'] == 0)
                     $handle->Clean();
             }
             else

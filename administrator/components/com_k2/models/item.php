@@ -273,10 +273,10 @@ class K2ModelItem extends K2Model
 			ini_set('memory_limit', (int)$params->get('imageMemoryLimit').'M');
 		}
 		$existingImage = JRequest::getVar('existingImage');
-		if (($files['image']['error'] === 0 || $existingImage) && !JRequest::getBool('del_image'))
+		if (($files['image']['error'] == 0 || $existingImage) && !JRequest::getBool('del_image'))
 		{
 
-			if ($files['image']['error'] === 0)
+			if ($files['image']['error'] == 0)
 			{
 				$image = $files['image'];
 			}
@@ -426,7 +426,7 @@ class K2ModelItem extends K2Model
 				$handle->image_x = $imageWidth;
 				$handle->Process($savepath);
 
-				if ($files['image']['error'] === 0)
+				if ($files['image']['error'] == 0)
 					$handle->Clean();
 
 			}
