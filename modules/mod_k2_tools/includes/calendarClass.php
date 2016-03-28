@@ -31,12 +31,6 @@ defined('_JEXEC') or die;
 
 class Calendar
 {
-    /*
-        Constructor for the Calendar class
-    */
-    function Calendar()
-    {
-    }
 
 
     /*
