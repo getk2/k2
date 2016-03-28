@@ -1142,7 +1142,7 @@ class K2ModelItem extends K2Model
 			JResponse::setHeader('Content-Transfer-Encoding', 'binary', true);
 			JResponse::setHeader('Content-Length', $len, true);
 			JResponse::sendHeaders();
-			echo JFile::read($file);
+			readfile($file);
 
 		}
 		else
