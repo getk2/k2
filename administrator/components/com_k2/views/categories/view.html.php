@@ -212,7 +212,7 @@ class K2ViewCategories extends K2View
 
 		foreach ($cid as $id)
 		{
-			$row = &JTable::getInstance('K2Category', 'Table');
+			$row = JTable::getInstance('K2Category', 'Table');
 			$row->load($id);
 			$rows[] = $row;
 		}
