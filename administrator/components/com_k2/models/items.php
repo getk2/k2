@@ -1417,7 +1417,7 @@ class K2ModelItems extends K2Model
 		$catid = JRequest::getInt('batchCategory');
 		$access = JRequest::getCmd('batchAccess');
 		$author = JRequest::getInt('batchAuthor');
-		$language = JRequest::getCmd('batchLanguage');
+		$language = JRequest::getVar('batchLanguage');
 		if($batchMode == 'clone'){
 			$cid = $this->copy(true);
 		}
