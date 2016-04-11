@@ -487,7 +487,7 @@ $K2(document).ready(function() {
             });
             $K2('#itemAttachments').on('click', '.k2AttachmentBrowseServer', function(event) {
                 event.preventDefault();
-                var k2ActiveAttachmentField = $K2(this).next();
+                var k2ActiveAttachmentField = $K2(this).next().next();
                 k2ActiveAttachmentField.attr('id', 'k2ActiveAttachment');
                 SqueezeBox.initialize();
                 SqueezeBox.fromElement(this, {
