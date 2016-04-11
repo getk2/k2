@@ -79,6 +79,7 @@ class K2ControllerItem extends K2Controller
 		$extraFields = $extraFieldModel->getExtraFieldsByGroup($category->extraFieldsGroup);
 
 		$counter = 0;
+		$output = '';
 		if (count($extraFields))
 		{
 			foreach ($extraFields as $extraField)
@@ -86,11 +87,11 @@ class K2ControllerItem extends K2Controller
 
 				if ($extraField->type == 'header')
 				{
-					$output = '<div class="itemAdditionalField"><h4 class="k2ExtraFieldHeader">'.$extraField->name.'</h4></div>';
+					$output .= '<div class="itemAdditionalField"><h4 class="k2ExtraFieldHeader">'.$extraField->name.'</h4></div>';
 				}
 				else
 				{
-					$output = '<div class="itemAdditionalField">';
+					$output .= '<div class="itemAdditionalField">';
 					$output .= '<div class="k2Right k2FLeft itemAdditionalValue"><label for="K2ExtraField_'.$extraField->id.'">'.$extraField->name.'</label></div>';
 					$output .= '<div class="itemAdditionalData">'.$extraFieldModel->renderExtraField($extraField, $itemID).'</div>';
 					$output .= '</div>';
