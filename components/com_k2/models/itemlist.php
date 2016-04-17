@@ -12,7 +12,7 @@ defined('_JEXEC') or die ;
 
 jimport('joomla.application.component.model');
 
-JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
+JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'tables');
 
 class K2ModelItemlist extends K2Model
 {
@@ -36,18 +36,18 @@ class K2ModelItemlist extends K2Model
 
 		if (JRequest::getWord('format') == 'feed')
 			$limit = $params->get('feedLimit');
-		
+
 		$query = "SELECT i.*,";
-		
+
 		if($ordering == 'modified')
 		{
 			$query .= " CASE WHEN i.modified = 0 THEN i.created ELSE i.modified END as lastChanged, ";
 		}
 
 		$query .= " c.name as categoryname,c.id as categoryid, c.alias as categoryalias, c.params as categoryparams";
-		
-		
-		
+
+
+
 		if ($ordering == 'best')
 			$query .= ", (r.rating_sum/r.rating_count) AS rating";
 
@@ -79,7 +79,7 @@ class K2ModelItemlist extends K2Model
 			if ($languageFilter)
 			{
 				$languageTag = JFactory::getLanguage()->getTag();
-				$query .= " AND c.language IN (".$db->quote($languageTag).",".$db->quote('*').") 
+				$query .= " AND c.language IN (".$db->quote($languageTag).",".$db->quote('*').")
 						AND i.language IN (".$db->quote($languageTag).",".$db->quote('*').")";
 			}
 		}
@@ -400,7 +400,7 @@ class K2ModelItemlist extends K2Model
 			if ($languageFilter)
 			{
 				$languageTag = JFactory::getLanguage()->getTag();
-				$query .= " AND c.language IN (".$db->quote($languageTag).",".$db->quote('*').") 
+				$query .= " AND c.language IN (".$db->quote($languageTag).",".$db->quote('*').")
 						AND i.language IN (".$db->quote($languageTag).",".$db->quote('*').")";
 			}
 		}
@@ -623,13 +623,13 @@ class K2ModelItemlist extends K2Model
 		while (count($array))
 		{
 			$query = "SELECT id
-						FROM #__k2_categories 
-						WHERE parent IN (".implode(',', $array).") 
+						FROM #__k2_categories
+						WHERE parent IN (".implode(',', $array).")
 						AND id NOT IN (".implode(',', $array).") ";
 			if ($mainframe->isSite())
 			{
 				$query .= "
-								AND published=1 
+								AND published=1
 								AND trash=0";
 				if (K2_JVERSION != '15')
 				{
@@ -826,11 +826,11 @@ class K2ModelItemlist extends K2Model
 		$now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
 		$nullDate = $db->getNullDate();
 
-		$query = "SELECT i.*, c.alias as categoryalias FROM #__k2_items as i 
-				LEFT JOIN #__k2_categories c ON c.id = i.catid 
-				WHERE i.id != {$itemID} 
-				AND i.published = 1 
-				AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." ) 
+		$query = "SELECT i.*, c.alias as categoryalias FROM #__k2_items as i
+				LEFT JOIN #__k2_categories c ON c.id = i.catid
+				WHERE i.id != {$itemID}
+				AND i.published = 1
+				AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
 				AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." ) ";
 
 		if (K2_JVERSION != '15')
@@ -846,9 +846,9 @@ class K2ModelItemlist extends K2Model
 			$query .= " AND i.access <= {$aid} ";
 		}
 
-		$query .= " AND i.trash = 0 
-				AND i.created_by = {$userID} 
-				AND i.created_by_alias='' 
+		$query .= " AND i.trash = 0
+				AND i.created_by = {$userID}
+				AND i.created_by_alias=''
 				AND c.published = 1 ";
 
 		if (K2_JVERSION != '15')
@@ -864,7 +864,7 @@ class K2ModelItemlist extends K2Model
 			$query .= " AND c.access <= {$aid} ";
 		}
 
-		$query .= " AND c.trash = 0 
+		$query .= " AND c.trash = 0
 				ORDER BY i.created DESC";
 
 		$db->setQuery($query, 0, $limit);
@@ -931,10 +931,10 @@ class K2ModelItemlist extends K2Model
 
 		$sql = implode(',', $itemsIDs);
 
-		$query = "SELECT i.*, c.alias as categoryalias FROM #__k2_items as i 
-				LEFT JOIN #__k2_categories c ON c.id = i.catid 
-				WHERE i.published = 1 
-				AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." ) 
+		$query = "SELECT i.*, c.alias as categoryalias FROM #__k2_items as i
+				LEFT JOIN #__k2_categories c ON c.id = i.catid
+				WHERE i.published = 1
+				AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
 				AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." ) ";
 
 		if (K2_JVERSION != '15')
@@ -951,7 +951,7 @@ class K2ModelItemlist extends K2Model
 			$query .= " AND i.access <= {$aid} ";
 		}
 
-		$query .= " AND i.trash = 0 
+		$query .= " AND i.trash = 0
 				AND c.published = 1 ";
 
 		if (K2_JVERSION != '15')
@@ -967,8 +967,8 @@ class K2ModelItemlist extends K2Model
 			$query .= " AND c.access <= {$aid} ";
 		}
 
-		$query .= " AND c.trash = 0 
-				AND (i.id) IN ({$sql}) 
+		$query .= " AND c.trash = 0
+				AND (i.id) IN ({$sql})
 				ORDER BY i.created DESC";
 
 		$db->setQuery($query, 0, $limit);
