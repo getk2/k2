@@ -492,6 +492,7 @@ class K2ViewItem extends K2View
 		else
 		{
 			$metaDescItem = preg_replace("#{(.*?)}(.*?){/(.*?)}#s", '', $item->introtext.' '.$item->fulltext);
+			$metaDescItem = preg_replace("/<script\b[^>]*>(.*?)<\/script>/is", '', $item->introtext.' '.$item->fulltext);
 			$metaDescItem = strip_tags($metaDescItem);
 			$metaDescItem = K2HelperUtilities::characterLimit($metaDescItem, $params->get('metaDescLimit', 150));
 			$document->setDescription(K2_JVERSION == '15' ? $metaDescItem : html_entity_decode($metaDescItem));
