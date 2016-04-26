@@ -1500,8 +1500,11 @@ class K2ModelItem extends K2Model
 						foreach ($labels as $label)
 						{
 							$label = JString::trim($label);
-							$label = str_replace('-', ' ', $label);
-							$value .= '<a href="'.JRoute::_('index.php?option=com_k2&view=itemlist&task=search&searchword='.urlencode($label)).'">'.$label.'</a> ';
+							if($label != '')
+							{
+								$label = str_replace('-', ' ', $label);
+								$value .= '<a href="' . JRoute::_('index.php?option=com_k2&view=itemlist&task=search&searchword=' . urlencode($label)) . '">' . $label . '</a> ';
+							}
 						}
 
 					}
