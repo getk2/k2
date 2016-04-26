@@ -135,6 +135,13 @@ class K2ControllerCategories extends K2Controller
         $view->move();
     }
 
+    function saveBatch()
+    {
+        JRequest::checkToken() or jexit('Invalid Token');
+        $model = $this->getModel('categories');
+        $model->saveBatch();
+    }
+
     function saveMove()
     {
         $model = $this->getModel('categories');

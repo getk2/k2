@@ -261,47 +261,7 @@ $document->addScriptDeclaration("
 		</div>
 	</div>
 	</div>
-
-	<div id="k2MoveOperations" class="jw-modal">
-		<div class="jw-modal-content">
-		<div class="jw-modal-header">
-			<div class="row row-nomax">
-				<h3><?php echo JText::_('K2_MOVE'); ?></h3>
-			</div>
-		</div>
-		<div class="row">
-			<div class="column small-12 large-9 small-centered jw-modal-main">
-				<div class="row">
-					<div class="column small-12 large-6 action-alt">
-						<label class="label-alt margin">
-							<i class="fa fa-folder"></i>
-							<?php echo JText::_('K2_TARGET_CATEGORY'); ?>
-						</label>
-						<?php echo $this->lists['moveCategories']; ?>
-					</div>
-					<div class="column small-12 large-6 clearfix action-alt">
-						<label class="label-alt">
-							<i class="fa fa-arrows"></i>
-							<span id="k2MoveOperationsCounter"></span> <?php echo JText::_('K2_ITEMS_BEING_MOVED'); ?>
-						</label>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="jw-modal-footer text-right">
-			<div class="column large-9 small-centered">
-			<?php if(K2_JVERSION == '15'): ?>
-				<button class="jw-btn jw-btn-save" onclick="javascript:submitbutton('saveMove')"><?php echo JText::_('K2_APPLY'); ?></button>
-			<?php else: ?>
-				<button class="jw-btn jw-btn-save" onclick="Joomla.submitbutton('saveMove')" class="btn btn-small btn-success"><?php echo JText::_('K2_APPLY'); ?></button>
-			<?php endif; ?>
-				<button class="jw-btn jw-btn-close" onclick="$K2('.jw-modal-open').removeClass('jw-modal-open'); return false;"><?php echo JText::_('K2_CANCEL'); ?></button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
+	
 	<input type="hidden" name="option" value="com_k2" />
 	<input type="hidden" name="view" value="<?php echo JRequest::getVar('view'); ?>" />
 	<input type="hidden" name="task" value="<?php echo JRequest::getVar('task'); ?>" />

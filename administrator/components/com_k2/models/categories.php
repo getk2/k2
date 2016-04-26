@@ -612,12 +612,13 @@ class K2ModelCategories extends K2Model
         return $mitems;
     }
 
-    function copy()
+    function copy($batch = false)
     {
         jimport('joomla.filesystem.file');
         $mainframe = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
         JArrayHelper::toInteger($cid);
+        $copies = array();
         foreach ($cid as $id)
         {
             //Load source category
@@ -631,6 +632,7 @@ class K2ModelCategories extends K2Model
             $row->name = JText::_('K2_COPY_OF').' '.$category->name;
             $row->published = 0;
             $row->store();
+            $copies[] = $row->id;
             //Target image
             if ($category->image && JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'categories'.DS.$category->image))
             {
@@ -639,8 +641,16 @@ class K2ModelCategories extends K2Model
                 $row->store();
             }
         }
-		$mainframe->enqueueMessage(JText::_('K2_COPY_COMPLETED'));
-        $mainframe->redirect('index.php?option=com_k2&view=categories');
+        if($batch)
+        {
+            return $copies;
+        }
+        else
+        {
+            $mainframe->enqueueMessage(JText::_('K2_COPY_COMPLETED'));
+            $mainframe->redirect('index.php?option=com_k2&view=categories');
+        }
+
     }
 
     function move()
@@ -648,8 +658,12 @@ class K2ModelCategories extends K2Model
 
         $mainframe = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
-        $catid = JRequest::getInt('category');
-
+        $catid = JRequest::getInt('moveCategories');
+        if(in_array($catid, $cid))
+        {
+            $mainframe->redirect('index.php?option=com_k2&view=categories');
+            return;
+        }
         foreach ($cid as $id)
         {
         	$row = JTable::getInstance('K2Category', 'Table');
@@ -662,6 +676,53 @@ class K2ModelCategories extends K2Model
         $cache->clean();
 		$mainframe->enqueueMessage(JText::_('K2_MOVE_COMPLETED'));
         $mainframe->redirect('index.php?option=com_k2&view=categories');
+
+    }
+
+    function saveBatch()
+    {
+        $application = JFactory::getApplication();
+        $cid = JRequest::getVar('cid');
+        $batchMode = JRequest::getCmd('batchMode');
+        $catid = JRequest::getCmd('batchCategory');
+        $access = JRequest::getCmd('batchAccess');
+        $extraFieldsGroups = JRequest::getCmd('batchExtraFieldsGroups');
+        $language = JRequest::getVar('batchLanguage');
+        if($batchMode == 'clone'){
+            $cid = $this->copy(true);
+        }
+        if(in_array($catid, $cid))
+        {
+            $application->redirect('index.php?option=com_k2&view=categories');
+            return;
+        }
+        foreach ($cid as $id)
+        {
+            $row = JTable::getInstance('K2Category', 'Table');
+            $row->load($id);
+            if(is_numeric($catid) && $catid != '')
+            {
+                $row->parent = $catid;
+                $row->ordering = $row->getNextOrder('parent = '.(int)$catid.' AND published = 1');
+            }
+            if($access)
+            {
+                $row->access = $access;
+            }
+            if(is_numeric($extraFieldsGroups) && $extraFieldsGroups != '')
+            {
+                $row->extraFieldsGroup = intval($extraFieldsGroups);
+            }
+            if($language)
+            {
+                $row->language = $language;
+            }
+            $row->store();
+        }
+        $cache = JFactory::getCache('com_k2');
+        $cache->clean();
+        $application->enqueueMessage(JText::_('K2_BATCH_COMPLETED'));
+        $application->redirect('index.php?option=com_k2&view=categories');
 
     }
 

@@ -217,11 +217,6 @@ class K2ViewItems extends K2View
 			$lists['language'] = JHTML::_('select.genericlist', $languages, 'language', '', 'value', 'text', $language);
 		}
 
-		// Move fields
-		$categoriesModel = K2Model::getInstance('Categories', 'K2Model');
-		$categories = $categoriesModel->categoriesTree(null, true, false);
-		$lists['moveCategories'] = JHTML::_('select.genericlist', $categories, 'moveCategories', 'class="inputbox" size="8"', 'value', 'text');
-
 		// Batch fields
 		$categoriesModel = K2Model::getInstance('Categories', 'K2Model');
 		$categories = $categoriesModel->categoriesTree(null, true, false);
@@ -287,18 +282,15 @@ class K2ViewItems extends K2View
 			JToolBarHelper::unpublishList();
 			JToolBarHelper::custom('copy', 'copy.png', 'copy_f2.png', 'K2_COPY', true);
 
-			// Batch and Move buttons in modal
+			// Batch button in modal
 			if (K2_JVERSION == '30')
 			{
-					$moveButton = '<a id="K2MoveButton" class="btn btn-small" href="#"><i class="icon-move "></i>'.JText::_('K2_MOVE').'</a>';
 					$batchButton = '<a id="K2BatchButton" class="btn btn-small" href="#"><i class="icon-edit "></i>'.JText::_('K2_BATCH').'</a>';
 			}
 			else
 			{
-					$moveButton = '<a id="K2MoveButton" href="#"><span class="icon-32-move" title="'.JText::_('K2_MOVE').'"></span>'.JText::_('K2_MOVE').'</a>';
 					$batchButton = '<a id="K2BatchButton" href="#"><span class="icon-32-edit" title="'.JText::_('K2_BATCH').'"></span>'.JText::_('K2_BATCH').'</a>';
 			}
-			$toolbar->appendButton('Custom', $moveButton);
 			$toolbar->appendButton('Custom', $batchButton);
 			$document = JFactory::getDocument();
 			$document->addScriptDeclaration('var K2SelectItemsError = "'.JText::_('K2_SELECT_SOME_ITEMS_FIRST').'";');
