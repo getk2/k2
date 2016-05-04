@@ -77,7 +77,7 @@ class K2ModelExtraField extends K2Model
 
 			if ($row->type == 'select' || $row->type == 'multipleSelect' || $row->type == 'radio')
 			{
-				$object->set('value', $i + 1);
+				$object->set('value', $values[$i]);
 			}
 			elseif ($row->type == 'link')
 			{
