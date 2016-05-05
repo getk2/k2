@@ -224,48 +224,61 @@ class K2ModelItems extends K2Model
 
 	function publish()
 	{
-
+		JPluginHelper::importPlugin('k2');
+		JPluginHelper::importPlugin('finder');
+		$dispatcher = JDispatcher::getInstance();
 		$mainframe = JFactory::getApplication();
+		$cache = JFactory::getCache('com_k2');
 		$cid = JRequest::getVar('cid');
+
 		foreach ($cid as $id)
 		{
 			$row = JTable::getInstance('K2Item', 'Table');
 			$row->load($id);
 			$row->published = 1;
-			$row->store();
+
+			$dispatcher->trigger('onBeforeK2Save', array(&$row, false));
+			if ($row->store()) {
+				$dispatcher->trigger('onAfterK2Save', array(&$row, false));
+			}
 		}
-		JPluginHelper::importPlugin('finder');
-		$dispatcher = JDispatcher::getInstance();
+
 		$dispatcher->trigger('onFinderChangeState', array(
 			'com_k2.item',
 			$cid,
 			1
 		));
-		$cache = JFactory::getCache('com_k2');
+
 		$cache->clean();
 		$mainframe->redirect('index.php?option=com_k2&view=items');
 	}
 
 	function unpublish()
 	{
-
+		JPluginHelper::importPlugin('k2');
+		JPluginHelper::importPlugin('finder');
+		$dispatcher = JDispatcher::getInstance();
 		$mainframe = JFactory::getApplication();
+		$cache = JFactory::getCache('com_k2');
 		$cid = JRequest::getVar('cid');
+
 		foreach ($cid as $id)
 		{
 			$row = JTable::getInstance('K2Item', 'Table');
 			$row->load($id);
 			$row->published = 0;
-			$row->store();
+
+			$dispatcher->trigger('onBeforeK2Save', array(&$row, false));
+			if ($row->store()) {
+				$dispatcher->trigger('onAfterK2Save', array(&$row, false));
+			}
 		}
-		JPluginHelper::importPlugin('finder');
-		$dispatcher = JDispatcher::getInstance();
 		$dispatcher->trigger('onFinderChangeState', array(
 			'com_k2.item',
 			$cid,
 			0
 		));
-		$cache = JFactory::getCache('com_k2');
+
 		$cache->clean();
 		$mainframe->redirect('index.php?option=com_k2&view=items');
 	}
