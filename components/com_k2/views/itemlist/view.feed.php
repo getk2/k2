@@ -270,7 +270,7 @@ class K2ViewItemlist extends K2View
         {
             $params->set('page_title', $title);
         }
-        if (K2_JVERSION != '15')
+        if (K2_JVERSION == '15')
         {
             if ($mainframe->getCfg('sitename_pagetitles', 0) == 1)
             {
