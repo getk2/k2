@@ -492,9 +492,10 @@ class K2ViewItem extends K2View
 		else
 		{
 			$metaDescItem = preg_replace("#{(.*?)}(.*?){/(.*?)}#s", '', $item->introtext.' '.$item->fulltext);
-			$metaDescItem = strip_tags($metaDescItem);
+			$metaDescItem = K2_JVERSION == '15' ? $metaDescItem : html_entity_decode($metaDescItem);
+			$metaDescItem = trim(strip_tags($metaDescItem));
 			$metaDescItem = K2HelperUtilities::characterLimit($metaDescItem, $params->get('metaDescLimit', 150));
-			$document->setDescription(K2_JVERSION == '15' ? $metaDescItem : html_entity_decode($metaDescItem));
+			$document->setDescription($metaDescItem);
 		}
 		if ($item->metakey)
 		{
