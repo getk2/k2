@@ -309,7 +309,10 @@ class K2ModelItem extends K2Model
 
 				//Original image
 				$savepath = JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'src';
-				$handle->image_convert = 'jpg';
+				if ($handle->image_src_type !== 'jpg') {
+					// Only process the original image if it's not jpg already
+					$handle->image_convert = 'jpg';
+				}
 				$handle->jpeg_quality = 100;
 				$handle->file_auto_rename = false;
 				$handle->file_overwrite = true;
@@ -336,6 +339,11 @@ class K2ModelItem extends K2Model
 					$imageWidth = $params->get('itemImageXL', '800');
 				}
 				$handle->image_x = $imageWidth;
+				if ($handle->image_src_type === 'jpg' && $handle->image_src_x == $imageWidth) {
+					// Preserve the original image if it's jpg already with the size we need
+					$handle->image_resize = false;
+					$handle->image_convert = '';
+				}
 				$handle->Process($savepath);
 
 				//Large image
@@ -355,6 +363,11 @@ class K2ModelItem extends K2Model
 					$imageWidth = $params->get('itemImageL', '600');
 				}
 				$handle->image_x = $imageWidth;
+				if ($handle->image_src_type === 'jpg' && $handle->image_src_x == $imageWidth) {
+					// Preserve the original image if it's jpg already with the size we need
+					$handle->image_resize = false;
+					$handle->image_convert = '';
+				}
 				$handle->Process($savepath);
 
 				//Medium image
@@ -374,6 +387,11 @@ class K2ModelItem extends K2Model
 					$imageWidth = $params->get('itemImageM', '400');
 				}
 				$handle->image_x = $imageWidth;
+				if ($handle->image_src_type === 'jpg' && $handle->image_src_x == $imageWidth) {
+					// Preserve the original image if it's jpg already with the size we need
+					$handle->image_resize = false;
+					$handle->image_convert = '';
+				}
 				$handle->Process($savepath);
 
 				//Small image
@@ -393,6 +411,11 @@ class K2ModelItem extends K2Model
 					$imageWidth = $params->get('itemImageS', '200');
 				}
 				$handle->image_x = $imageWidth;
+				if ($handle->image_src_type === 'jpg' && $handle->image_src_x == $imageWidth) {
+					// Preserve the original image if it's jpg already with the size we need
+					$handle->image_resize = false;
+					$handle->image_convert = '';
+				}
 				$handle->Process($savepath);
 
 				//XSmall image
@@ -412,6 +435,11 @@ class K2ModelItem extends K2Model
 					$imageWidth = $params->get('itemImageXS', '100');
 				}
 				$handle->image_x = $imageWidth;
+				if ($handle->image_src_type === 'jpg' && $handle->image_src_x == $imageWidth) {
+					// Preserve the original image if it's jpg already with the size we need
+					$handle->image_resize = false;
+					$handle->image_convert = '';
+				}
 				$handle->Process($savepath);
 
 				//Generic image
@@ -424,6 +452,11 @@ class K2ModelItem extends K2Model
 				$handle->file_new_name_body = $filename.'_Generic';
 				$imageWidth = $params->get('itemImageGeneric', '300');
 				$handle->image_x = $imageWidth;
+				if ($handle->image_src_type === 'jpg' && $handle->image_src_x == $imageWidth) {
+					// Preserve the original image if it's jpg already with the size we need
+					$handle->image_resize = false;
+					$handle->image_convert = '';
+				}
 				$handle->Process($savepath);
 
 				if ($files['image']['error'] == 0)
