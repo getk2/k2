@@ -317,6 +317,7 @@ class K2ModelItem extends K2Model
 				$handle->file_auto_rename = false;
 				$handle->file_overwrite = true;
 				$handle->file_new_name_body = md5("Image".$row->id);
+				$handle->file_new_name_ext = 'jpg';
 				$handle->Process($savepath);
 
 				$filename = $handle->file_dst_name_body;
@@ -330,6 +331,7 @@ class K2ModelItem extends K2Model
 				$handle->file_auto_rename = false;
 				$handle->file_overwrite = true;
 				$handle->file_new_name_body = $filename.'_XL';
+				$handle->file_new_name_ext = 'jpg';
 				if (JRequest::getInt('itemImageXL'))
 				{
 					$imageWidth = JRequest::getInt('itemImageXL');
@@ -354,6 +356,7 @@ class K2ModelItem extends K2Model
 				$handle->file_auto_rename = false;
 				$handle->file_overwrite = true;
 				$handle->file_new_name_body = $filename.'_L';
+				$handle->file_new_name_ext = 'jpg';
 				if (JRequest::getInt('itemImageL'))
 				{
 					$imageWidth = JRequest::getInt('itemImageL');
@@ -378,6 +381,7 @@ class K2ModelItem extends K2Model
 				$handle->file_auto_rename = false;
 				$handle->file_overwrite = true;
 				$handle->file_new_name_body = $filename.'_M';
+				$handle->file_new_name_ext = 'jpg';
 				if (JRequest::getInt('itemImageM'))
 				{
 					$imageWidth = JRequest::getInt('itemImageM');
@@ -402,6 +406,7 @@ class K2ModelItem extends K2Model
 				$handle->file_auto_rename = false;
 				$handle->file_overwrite = true;
 				$handle->file_new_name_body = $filename.'_S';
+				$handle->file_new_name_ext = 'jpg';
 				if (JRequest::getInt('itemImageS'))
 				{
 					$imageWidth = JRequest::getInt('itemImageS');
@@ -426,6 +431,7 @@ class K2ModelItem extends K2Model
 				$handle->file_auto_rename = false;
 				$handle->file_overwrite = true;
 				$handle->file_new_name_body = $filename.'_XS';
+				$handle->file_new_name_ext = 'jpg';
 				if (JRequest::getInt('itemImageXS'))
 				{
 					$imageWidth = JRequest::getInt('itemImageXS');
