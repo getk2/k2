@@ -280,7 +280,7 @@ class K2ViewItemlist extends K2View
 				$db = JFactory::getDBO();
 				$db->setQuery('SELECT id, name FROM #__k2_tags WHERE name = '.$db->quote($tag));
 				$tag = $db->loadObject();
-				if (!$tag->id)
+				if (!$tag || !$tag->id)
 				{
 					JError::raiseError(404, JText::_('K2_NOT_FOUND'));
 					return false;
