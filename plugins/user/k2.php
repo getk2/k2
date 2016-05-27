@@ -238,7 +238,14 @@ class plgUserK2 extends JPlugin
 				require_once JPATH_SITE.'/components/com_k2/helpers/utilities.php';
 				if (!K2HelperUtilities::verifyRecaptcha())
 				{
-					$url = K2_JVERSION ? 'index.php?option=com_user&view=register' : 'index.php?option=com_users&view=registration';
+					if (K2_JVERSION != '15')
+					{
+						$url = 'index.php?option=com_users&view=registration';
+					}
+					else
+					{
+						$url = 'index.php?option=com_user&view=register';
+					}
 					$mainframe->enqueueMessage(JText::_('K2_COULD_NOT_VERIFY_THAT_YOU_ARE_NOT_A_ROBOT'), 'error');
 					$mainframe->redirect($url);
 				}
