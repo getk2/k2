@@ -23,7 +23,16 @@ class modK2UserHelper
             $application = JFactory::getApplication();
             $menu = $application->getMenu();
             $item = $menu->getItem($itemid);
-            $url = JRoute::_($item->link.'&Itemid='.$itemid, false);
+            if (K2_JVERSION != '15')
+            {
+                $url = 'index.php?Itemid=' . $item->id;
+                
+            }
+            else
+            {
+                $url = JRoute::_($item->link.'&Itemid='.$itemid, false);
+            }
+
         }
         else
         {
