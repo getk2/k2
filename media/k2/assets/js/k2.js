@@ -1021,6 +1021,7 @@ function initExtraFieldsEditor() {
             new nicEditor({
                 fullPanel : true,
                 maxHeight : 180,
+                width : '100%',
                 iconsPath : K2SitePath + 'media/k2/assets/images/system/nicEditorIcons.gif'
             }).panelInstance($K2(this).attr('id'));
         }
