@@ -8,6 +8,7 @@
 
 var K2JVersion;
 var selectsInstance;
+var K2SitePath
 $K2(document).ready(function() {
 
     // Set the selects instance to allow inheritance of jQuery chosen bindings
@@ -35,7 +36,7 @@ $K2(document).ready(function() {
 	}
 
 	// Set the site root path
-	var K2SitePath = getUrlParams('k2.js', 'sitepath');
+	K2SitePath = getUrlParams('k2.js', 'sitepath');
 
     // --- Common functions ---
 
@@ -845,7 +846,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                     var input = $K2('<input/>', {
                         name : 'option_value[]',
                         type : 'hidden',
-                        value : value.value
+                        value : value.name
                     }).appendTo(div);
                     var input = $K2('<input/>', {
                         value : K2Language[0],
