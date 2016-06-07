@@ -109,6 +109,9 @@
                     <option value="1">K2_YES</option>
                 </field>
                 <field name="button_text" type="text" default="" label="K2_SEARCH_BUTTON_TEXT" description="K2_SET_THE_DEFAULT_TEXT_WHICH_WILL_APPEAR_ON_THE_SEARCH_BOX_EG_SEARCH_SITE"/>
+                <field name="searchItemId" type="menuitem" default="" disable="separator" label="K2_SELECT_A_MENU_ITEM" description="K2_SELECT_A_MENU_ITEM_DESCRIPTION">
+                    <option value="">K2_NONE_ONSELECTLISTS</option>
+                </field>
                 <!-- Tag Cloud Settings -->
                 <field name="" type="header" default="K2_TAG_CLOUD_SETTINGS" label="" description=""/>
                 <field name="min_size" type="text" default="75" size="4" label="K2_MIN_FONT_SIZE" description="K2_FONT_SIZE_FOR_LESS_POPULAR_TAGS"/>

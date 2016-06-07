@@ -42,6 +42,9 @@ If you wish to use the live search option, it's important that you maintain the 
 		<input type="hidden" name="t" value="" />
 		<input type="hidden" name="tpl" value="search" />
 		<?php endif; ?>
+		<?php if($searchItemId): ?>
+		<input type="hidden" name="Itemid" value="<?php echo $searchItemId;?>" />
+		<?php endif; ?>
 	</form>
 
 	<?php if($params->get('liveSearch')): ?>

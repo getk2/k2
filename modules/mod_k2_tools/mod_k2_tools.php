@@ -30,6 +30,7 @@ $button_text = $params->get('button_text', JText::_('K2_SEARCH'));
 $width = intval($params->get('width', 20));
 $maxlength = $width > 20 ? $width : 20;
 $text = $params->get('text', JText::_('K2_SEARCH'));
+$searchItemId = $params->get('searchItemId', '');
 
 // API
 $document = JFactory::getDocument();
