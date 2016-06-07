@@ -640,6 +640,7 @@ table.adminFormK2 {width:100%;margin-bottom:16px;}
 #k2AdminContainer .adminlist tbody tr td {padding-top:15px;padding-bottom:15px;}
 #k2AdminContainer .adminlist tfoot tr td {background:#fff;border-bottom:1px solid #dbdcdc;border-top:1px solid #dbdcdc;}
 #k2AdminContainer .adminlist a {text-decoration:none;color:#636b6e;cursor:pointer;}
+#k2AdminContainer .adminlist a.editComment {color:#46afff;}
 #k2AdminContainer .adminlist a:hover {color:#46afff;}
 
 .isJ15 #k2AdminContainer .adminlist tr td,
