@@ -247,6 +247,7 @@
 		<param name="recaptchaOnRegistration" default="0" />
 		<param name="stopForumSpam" default="0" />
 		<param name="stopForumSpamApiKey" default="" />
+		<field name="profilePageDisplay" default="" />
 		<!-- ######################### Performance Settings ######################### -->
 		<param name="showItemsCounterAdmin" default="1" />
 		<param name="showChildCatItems" default="1" />

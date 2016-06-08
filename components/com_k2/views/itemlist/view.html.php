@@ -392,7 +392,21 @@ class K2ViewItemlist extends K2View
 		}
 
 		// If a user has no published items, do not display their K2 user page (in the frontend) and redirect to the homepage of the site.
-		if(count($items) == 0 && $task == 'user') {
+		$user = JFactory::getUser();
+		$userPageDisplay = 0;
+		switch($params->get('profilePageDisplay', 0))
+		{
+			case 1:
+				$userPageDisplay = 1;
+				break;
+			case 2:
+				if($user->id > 0)
+				{
+					$userPageDisplay = 1;
+				}
+				break;
+		}
+		if((count($items) == 0 && $task == 'user') && $userPageDisplay == 0) {
 			$mainframe->redirect(JUri::root());
 		}
 
@@ -402,7 +416,6 @@ class K2ViewItemlist extends K2View
 		$pagination = new JPagination($total, $limitstart, $limit);
 
 		//Prepare items
-		$user = JFactory::getUser();
 		$cache = JFactory::getCache('com_k2_extended');
 		$model = $this->getModel('item');
 

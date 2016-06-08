@@ -253,6 +253,7 @@
 				<field name="recaptchaOnRegistration" default="0" />
 				<field name="stopForumSpam" default="0" />
 				<field name="stopForumSpamApiKey" default="" />
+				<field name="profilePageDisplay" default="" />
 				<!-- ######################### Performance Settings ######################### -->
 				<field name="showItemsCounterAdmin" default="1" />
 				<field name="showChildCatItems" default="1" />

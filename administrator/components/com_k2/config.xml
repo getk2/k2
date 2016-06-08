@@ -490,6 +490,11 @@
 			<option value="1">K2_YES</option>
 		</param>
 		<param menu="hide" name="stopForumSpamApiKey" type="text" default="" label="K2_STOP_FORUM_SPAM_API_KEY" description="K2_STOP_FORUM_SPAM_API_KEY_DESCRIPTION" />
+		<param menu="hide" name="profilePageDisplay" type="radio" default="0" label="K2_USER_PROFILES_FOR_USERS_WITH_NO_ITEMS" description="K2_USER_PROFILES_FOR_USERS_WITH_NO_ITEMS_DESCRIPTION">
+			<option value="0">K2_DISABLED</option>
+			<option value="1">K2_ENABLED</option>
+			<option value="2">K2_ENABLED_FOR_REGISTERED_USERS_ONLY</option>
+		</param>
 		<!-- ######################### Performance Settings ######################### -->
 		<param menu="hide" name="" type="header" default="K2_PERFORMANCE" label="" description="" />
 		<param menu="hide" name="showItemsCounterAdmin" type="radio" default="1" label="K2_ITEM_COUNTER_NEXT_TO_THE_CATEGORY_TITLE_IN_THE_CATEGORY_MANAGER" description="K2_DISABLING_THIS_WILL_REDUCE_THE_NUMBER_OF_QUERIES_IN_THE_BACKEND_AND_OVERALL_IMPROVE_PERFORMANCE_FOR_SITES_WITH_THOUSANDS_OF_ITEMS">
@@ -1040,6 +1045,11 @@
 			<option value="1">K2_YES</option>
 		</field>
 		<field menu="hide" name="stopForumSpamApiKey" type="text" default="" label="K2_STOP_FORUM_SPAM_API_KEY" description="K2_STOP_FORUM_SPAM_API_KEY_DESCRIPTION" />
+		<field menu="hide" name="profilePageDisplay" type="radio" default="0" label="K2_USER_PROFILES_FOR_USERS_WITH_NO_ITEMS" description="K2_USER_PROFILES_FOR_USERS_WITH_NO_ITEMS_DESCRIPTION">
+			<option value="0">K2_DISABLED</option>
+			<option value="1">K2_ENABLED</option>
+			<option value="2">K2_ENABLED_FOR_REGISTERED_USERS_ONLY</option>
+		</field>
 		<!-- ######################### Performance Settings ######################### -->
 		<field menu="hide" name="" type="header" default="K2_PERFORMANCE" label="" description="" />
 		<field menu="hide" name="showItemsCounterAdmin" type="radio" default="1" label="K2_ITEM_COUNTER_NEXT_TO_THE_CATEGORY_TITLE_IN_THE_CATEGORY_MANAGER" description="K2_DISABLING_THIS_WILL_REDUCE_THE_NUMBER_OF_QUERIES_IN_THE_BACKEND_AND_OVERALL_IMPROVE_PERFORMANCE_FOR_SITES_WITH_THOUSANDS_OF_ITEMS">
