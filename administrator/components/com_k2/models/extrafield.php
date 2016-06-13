@@ -69,7 +69,7 @@ class K2ModelExtraField extends K2Model
 		{
 			$alias = '';
 		}
-
+		$lastOptionId = 1;
 		for ($i = 0; $i < sizeof($values); $i++)
 		{
 			$object = new JObject;
@@ -77,7 +77,16 @@ class K2ModelExtraField extends K2Model
 
 			if ($row->type == 'select' || $row->type == 'multipleSelect' || $row->type == 'radio')
 			{
-				$object->set('value', $values[$i]);
+				if(!empty($values[$i]))
+				{
+					$object->set('value', $values[$i]);
+					$lastOptionId = intval($values[$i]);
+				}
+				else
+				{
+					$lastOptionId ++;
+					$object->set('value', $lastOptionId);
+				}
 			}
 			elseif ($row->type == 'link')
 			{

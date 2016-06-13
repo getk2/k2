@@ -846,7 +846,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                     var input = $K2('<input/>', {
                         name : 'option_value[]',
                         type : 'hidden',
-                        value : value.name
+                        value : value.value
                     }).appendTo(div);
                     var input = $K2('<input/>', {
                         value : K2Language[0],
