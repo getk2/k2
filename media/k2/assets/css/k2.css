@@ -49,6 +49,7 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .k2TitleAliasBox {width:60%;font-size:12px;}
 .k2TextBox {background:#fff;padding:4px;}
 .k2ListItemDisabled {cursor:pointer;color:#0B55C4;} /* used in popup lists */
+.visually-hidden { position: absolute; overflow: hidden; clip: rect(0, 0, 0, 0); }
 
 /* Simple grid based on Foundation */
 #k2AdminContainer .row {margin-left:auto;margin-right:auto;width:100%;max-width:1200px;}
@@ -620,15 +621,26 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 
 /* Lists - filters */
 #k2AdminContainer .k2AdminTableFilters {margin-bottom:0;width:100%;border-left:1px solid #dbdcdc;}
-#k2AdminContainer .k2AdminTableFilters tr td {background:#fff;border-bottom:1px solid #dbdcdc;padding-top:15px;}
 #k2AdminContainer .k2AdminTableFilters .chzn-container {margin-bottom:5px;}
+#k2AdminContainer .k2AdminTableFilters tr td {background:#fff; padding-top:15px;}
+
+/* Filters on smaller viewports */
+#k2AdminContainer .k2AdminTableFiltersSelects, 
+#k2AdminContainer .k2AdminTableFiltersSearch { display: block; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+#k2AdminContainer .k2AdminTableFiltersSelects select { max-width: 48%; }
+
+@media screen and (min-width: 920px) {
+	#k2AdminContainer .k2AdminTableFiltersSelects, #k2AdminContainer .k2AdminTableFiltersSearch { display: table-cell; width: auto; }
+	#k2AdminContainer .k2AdminTableFilters tr td {border-bottom:1px solid #dbdcdc;}
+	table.k2AdminTableFilters tr td.k2AdminTableFiltersSelects {text-align:right;}
+	#k2AdminContainer .k2AdminTableFiltersSelects select { max-width: none; }
+}
 
 /* Legacy styling */
 table.k2AdminTableFilters {width:100%;}
 table.k2AdminTableFilters tr td.k2AdminTableFiltersSearch {white-space:nowrap;}
-table.k2AdminTableFilters tr td.k2AdminTableFiltersSelects {text-align:right;}
 table.k2AdminTableFilters tr td.k2AdminTableFiltersSelects .chzn-container {text-align:left;}
-table.k2AdminTableFilters tr td.k2AdminTableFiltersSelects select {margin:1px 0 1px 4px;}
+table.k2AdminTableFilters tr td.k2AdminTableFiltersSelects select {margin: 1px 0 5px 0;}
 
 /* Edit Forms */
 table.adminFormK2 {width:100%;margin-bottom:16px;}

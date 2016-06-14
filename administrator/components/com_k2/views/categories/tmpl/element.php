@@ -15,14 +15,14 @@ defined('_JEXEC') or die;
 	<table class="k2AdminTableFilters">
 		<tr>
 			<td class="k2AdminTableFiltersSearch">
-				<!--<label><?php echo JText::_('K2_FILTER'); ?></label>-->
+				<label class="visually-hidden"><?php echo JText::_('K2_FILTER'); ?></label>
 				<div class="btn-wrapper input-append">
 					<input type="text" name="search" value="<?php echo $this->lists['search'] ?>" class="text_area"	title="<?php echo JText::_('K2_FILTER_BY_TITLE'); ?>" placeholder="<?php echo JText::_('K2_FILTER'); ?>" />
 					<button id="k2SubmitButton" class="btn"><?php echo JText::_('K2_GO'); ?></button>
 					<button id="k2ResetButton" class="btn"><?php echo JText::_('K2_RESET'); ?></button>
 				</div>
 			</td>
-			<td class="k2AdminTableFiltersSelects hidden-phone">
+			<td class="k2AdminTableFiltersSelects">
 				<?php echo $this->lists['state']; ?>
 			</td>
 		</tr>
