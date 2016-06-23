@@ -93,7 +93,7 @@ class modK2ContentHelper
 
 		else
 		{
-			$query = "SELECT i.*,";
+			$query = "SELECT DISTINCT i.*,";
 
 			if ($ordering == 'modified')
 			{
