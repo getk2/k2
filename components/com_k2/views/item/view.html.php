@@ -572,9 +572,25 @@ class K2ViewItem extends K2View
 			if ($item->$facebookImage)
 			{
 				$basename = basename($item->$facebookImage);
+			
+				if ($params->get('imageTimestamp'))
+				{
+					$date = JFactory::getDate($item->modified);
+					$timestamp = '?t='.$date->toUnix();
+
+					// Strip the timestamp from the URL so the file_exist check works.
+					$basename = str_replace($timestamp, '', $basename);
+				}
+
 				if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.$basename))
 				{
-					$image = JURI::root().'media/k2/items/cache/'.$basename;
+					// Readd the timestamp in the URL
+					if ($params->get('imageTimestamp'))
+					{
+						$image = JURI::root().'media/k2/items/cache/'.$basename.$timestamp;
+					} else {
+						$image = JURI::root().'media/k2/items/cache/'.$basename;
+					}
 					$document->setMetaData('og:image', $image);
 					$document->setMetaData('image', $image);
 				}
