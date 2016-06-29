@@ -575,9 +575,13 @@ class K2ViewItem extends K2View
 				if(strpos($basename, '?t=')!==false)
 				{
 					$tmpBasename = explode('?t=', $basename);
-					$fbBasename = $tmpBasename[0];
+					$basenameWithNoTimestamp = $tmpBasename[0];
 				}
-				if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.$fbBasename))
+				else
+				{
+					$basenameWithNoTimestamp = $basename;
+				}
+				if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.$basenameWithNoTimestamp))
 				{
 					$image = JURI::root().'media/k2/items/cache/'.$basename;
 					$document->setMetaData('og:image', $image);
