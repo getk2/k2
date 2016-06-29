@@ -38,7 +38,7 @@
 .elfinder-cwd-view-icons .elfinder-cwd-file .elfinder-cwd-filename.ui-state-hover, .elfinder-cwd table td.ui-state-hover,
 .elfinder-button-menu .ui-state-hover, .elfinder-navbar .ui-state-active { background: #00afec; }
 .elfinder-contextmenu, .elfinder-contextmenu-sub { z-index: 9999; }
-.elfinder-toolbar { overflow: hidden; padding: 10px; }
+.elfinder-toolbar { padding: 10px; }
 
 /* reseting the backgrounds */
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { background: #fff; }
