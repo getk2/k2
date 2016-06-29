@@ -572,6 +572,11 @@ class K2ViewItem extends K2View
 			if ($item->$facebookImage)
 			{
 				$basename = basename($item->$facebookImage);
+				if(strpos($basename, '?t=')!==false)
+				{
+					$tmpBasename = explode('?t=', $basename);
+					$basename = $tmpBasename[0];
+				}
 				if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.$basename))
 				{
 					$image = JURI::root().'media/k2/items/cache/'.$basename;
