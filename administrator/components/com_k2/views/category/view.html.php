@@ -19,6 +19,7 @@ class K2ViewCategory extends K2View
     {
 
         JRequest::setVar('hidemainmenu', 1);
+        JHTML::_('behavior.modal');
         $model = $this->getModel();
         $category = $model->getData();
         if (K2_JVERSION == '15')
