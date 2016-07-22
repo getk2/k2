@@ -117,6 +117,11 @@ div#k2AdminContainer h1 {padding:0 0 8px 0;margin:0;}
 span.k2Notice {cursor:pointer;font-weight:bold;}
 .k2LimitBox {float:left;margin:0 10px 0 0;}
 
+/* Fixes pagination issue for the limitbox */
+.k2LimitBox .chzn-drop { top: auto!important; bottom: 38px!important; }
+.k2LimitBox .chzn-container-active.chzn-with-drop .chzn-single { border-radius: 0 0 5px 5px!important; }
+.k2LimitBox .chzn-container .chzn-drop { padding-top: 10px; border-bottom: 0; border-top: 1px solid #aaa; border-radius: 4px 4px 0 0; }
+
 /* Common for Joomla 2.5 */
 div.isJ25 table.admintable {}
 div.isJ25 table.admintable td.key {background:#f6f6f6;/*border-bottom:1px solid #e9e9e9;border-right:1px solid #e9e9e9;*/color:#666;font-weight:bold;text-align:right;font-size:11px;width:140px;}
