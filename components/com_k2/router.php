@@ -148,7 +148,28 @@ if ($params->get('k2Sef'))
 				// Replace the item with the category slug
 				if ($params->get('k2SefLabelItem') == '1')
 				{
-					$segments[0] = getCategorySlug((int)$ItemId);
+
+					// Remove the id from the slug
+					if ($params->get('k2SefInsertCatId') == '0')
+					{
+						
+						// Try to split the slug
+						$segments[0] = getCategorySlug((int)$ItemId);
+						$temp 	 	 = @explode('-', $segments[0]);
+
+						// If the slug contained an item id do not use it
+						if (count($temp) > 1)
+						{
+							@$segments[0] = $temp[1];
+						}
+
+					}
+					else 
+					{
+						// Apply the link including the id
+						$segments[0] = getCategorySlug((int)$ItemId);
+					}
+
 				}
 				else
 				{
