@@ -777,9 +777,7 @@ class K2ModelItem extends K2Model
 				}
 				else
 				{
-					require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'lib'.DS.'JSON.php');
-					$json = new Services_JSON;
-					$object->set('value', $json->decode(JRequest::getVar('K2CSV_'.$object->id)));
+					$object->set('value', json_decode(JRequest::getVar('K2CSV_'.$object->id)));
 					if (JRequest::getBool('K2ResetCSV_'.$object->id))
 						$object->set('value', null);
 				}
@@ -788,9 +786,7 @@ class K2ModelItem extends K2Model
 			}
 		}
 
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'lib'.DS.'JSON.php');
-		$json = new Services_JSON;
-		$row->extra_fields = $json->encode($objects);
+		$row->extra_fields = json_encode($objects);
 
 		require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'models'.DS.'extrafield.php');
 		$extraFieldModel = K2Model::getInstance('ExtraField', 'K2Model');
