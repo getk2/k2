@@ -1069,8 +1069,6 @@ class K2ModelItem extends K2Model
 		$user = JFactory::getUser();
 		$config = JFactory::getConfig();
 
-		JLoader::register('Services_JSON', JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'lib'.DS.'JSON.php');
-		$json = new Services_JSON;
 		$response = new JObject();
 
 		//Get item
@@ -1120,7 +1118,7 @@ class K2ModelItem extends K2Model
 			)
 			{
 				$response->message = JText::_('K2_ANTISPAM_SETTINGS_ERROR');
-				echo $json->encode($response);
+				echo json_encode($response);
 				$mainframe->close();
 			}
 			
@@ -1130,7 +1128,7 @@ class K2ModelItem extends K2Model
 			if (!$row->bind(JRequest::get('post')))
 			{
 				$response->message = $row->getError();
-				echo $json->encode($response);
+				echo json_encode($response);
 				$mainframe->close();
 			}
 
@@ -1179,14 +1177,14 @@ class K2ModelItem extends K2Model
 			if (empty($userName) || $userName == JText::_('K2_ENTER_YOUR_NAME') || empty($commentText) || $commentText == JText::_('K2_ENTER_YOUR_MESSAGE_HERE') || empty($commentEmail) || $commentEmail == JText::_('K2_ENTER_YOUR_EMAIL_ADDRESS'))
 			{
 				$response->message = JText::_('K2_YOU_NEED_TO_FILL_IN_ALL_REQUIRED_FIELDS');
-				echo $json->encode($response);
+				echo json_encode($response);
 				$mainframe->close();
 			}
 
 			if (!JMailHelper::isEmailAddress($commentEmail))
 			{
 				$response->message = JText::_('K2_INVALID_EMAIL_ADDRESS');
-				echo $json->encode($response);
+				echo json_encode($response);
 				$mainframe->close();
 			}
 
@@ -1199,7 +1197,7 @@ class K2ModelItem extends K2Model
 				if ($result > 0)
 				{
 					$response->message = JText::_('K2_THE_NAME_OR_EMAIL_ADDRESS_YOU_TYPED_IS_ALREADY_IN_USE');
-					echo $json->encode($response);
+					echo json_encode($response);
 					$mainframe->close();
 				}
 
@@ -1222,7 +1220,7 @@ class K2ModelItem extends K2Model
 					if (!$resp->is_valid)
 					{
 						$response->message = JText::_('K2_THE_WORDS_YOU_TYPED_DID_NOT_MATCH_THE_ONES_DISPLAYED_PLEASE_TRY_AGAIN');
-						echo $json->encode($response);
+						echo json_encode($response);
 						$mainframe->close();
 					}
 				}
@@ -1249,14 +1247,14 @@ class K2ModelItem extends K2Model
 							if ($akismet->isCommentSpam())
 							{
 								$response->message = JText::_('K2_SPAM_ATTEMPT_HAS_BEEN_DETECTED_THE_COMMENT_HAS_BEEN_REJECTED');
-								echo $json->encode($response);
+								echo json_encode($response);
 								$mainframe->close();
 							}
 						}
 						catch(Exception $e)
 						{
 							$response->message = $e->getMessage();
-							echo $json->encode($response);
+							echo json_encode($response);
 							$mainframe->close();
 						}
 
@@ -1304,7 +1302,7 @@ class K2ModelItem extends K2Model
 			if (!$row->store())
 			{
 				$response->message = $row->getError();
-				echo $json->encode($response);
+				echo json_encode($response);
 				$mainframe->close();
 			}
 
@@ -1314,20 +1312,20 @@ class K2ModelItem extends K2Model
 				if ($caching && $user->guest)
 				{
 					$response->message = JText::_('K2_THANK_YOU_YOUR_COMMENT_WILL_BE_PUBLISHED_SHORTLY');
-					echo $json->encode($response);
+					echo json_encode($response);
 				}
 				else
 				{
 					$response->message = JText::_('K2_COMMENT_ADDED_REFRESHING_PAGE');
 					$response->refresh = 1;
-					echo $json->encode($response);
+					echo json_encode($response);
 				}
 
 			}
 			else
 			{
 				$response->message = JText::_('K2_COMMENT_ADDED_AND_WAITING_FOR_APPROVAL');
-				echo $json->encode($response);
+				echo json_encode($response);
 			}
 
 		}
@@ -1368,9 +1366,7 @@ class K2ModelItem extends K2Model
 
 		jimport('joomla.filesystem.file');
 		$db = JFactory::getDBO();
-		require_once (JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'lib'.DS.'JSON.php');
-		$json = new Services_JSON;
-		$jsonObjects = $json->decode($itemExtraFields);
+		$jsonObjects = json_decode($itemExtraFields);
 		$imgExtensions = array(
 			'jpg',
 			'jpeg',
@@ -1455,7 +1451,7 @@ class K2ModelItem extends K2Model
 					}
 					else if ($rows[$i]->type == 'select' || $rows[$i]->type == 'radio')
 					{
-						foreach ($json->decode($rows[$i]->value) as $option)
+						foreach (json_decode($rows[$i]->value) as $option)
 						{
 							if ($option->value == $object->value)
 							{
@@ -1466,7 +1462,7 @@ class K2ModelItem extends K2Model
 					}
 					else if ($rows[$i]->type == 'multipleSelect')
 					{
-						foreach ($json->decode($rows[$i]->value) as $option)
+						foreach (json_decode($rows[$i]->value) as $option)
 						{
 							if (@in_array($option->value, $object->value))
 							{
@@ -1569,7 +1565,7 @@ class K2ModelItem extends K2Model
 			}
 
 			// Detect alias
-			$tmpValues = $json->decode($rows[$i]->value);
+			$tmpValues = json_decode($rows[$i]->value);
 			if (isset($tmpValues[0]) && isset($tmpValues[0]->alias) && !empty($tmpValues[0]->alias))
 			{
 				$rows[$i]->alias = $tmpValues[0]->alias;
