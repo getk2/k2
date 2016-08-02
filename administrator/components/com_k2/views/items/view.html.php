@@ -33,6 +33,7 @@ class K2ViewItems extends K2View
 		$filter_state = $mainframe->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
 		$search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
 		$search = JString::strtolower($search);
+		$search = trim(preg_replace('/[^a-zA-Z0-9\s\-_]/', '', $search));
 		$tag = $mainframe->getUserStateFromRequest($option.$view.'tag', 'tag', 0, 'int');
 		$language = $mainframe->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
 		$params = JComponentHelper::getParams('com_k2');
