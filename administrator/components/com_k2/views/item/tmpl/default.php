@@ -353,8 +353,8 @@ $document->addScriptDeclaration("
 					<?php if (count($this->K2PluginsItemImage)): ?>
 					<div class="itemPlugins">
 						<?php foreach($this->K2PluginsItemImage as $K2Plugin): ?>
+						<?php if(!is_null($K2Plugin)): ?>
 						<div class="itemAdditionalField">
-							<?php if(!is_null($K2Plugin)): ?>
 							<fieldset>
 								<div class="k2FLeft k2Right itemAdditionalValue">
 									<label><?php echo $K2Plugin->name; ?></label>
