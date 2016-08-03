@@ -41,12 +41,10 @@ class K2ViewExtraFields extends K2View
             JRequest::setVar('limitstart', $limitstart);
         }
         $extraFields = $model->getData();
-		require_once (JPATH_COMPONENT.DS.'lib'.DS.'JSON.php');
-		$json = new Services_JSON;
         foreach ($extraFields as $key => $extraField)
         {
             $extraField->status = K2_JVERSION == '15' ? JHTML::_('grid.published', $extraField, $key) : JHtml::_('jgrid.published', $extraField->published, $key);
-			$values = $json->decode($extraField->value);
+			$values = json_decode($extraField->value);
 			if (isset($values[0]->alias) && !empty($values[0]->alias))
 			{
 				$extraField->alias = $values[0]->alias;

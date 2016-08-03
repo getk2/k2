@@ -120,9 +120,7 @@ class K2ModelExtraField extends K2Model
 				}
 				else
 				{
-					require_once (JPATH_COMPONENT.DS.'lib'.DS.'JSON.php');
-					$json = new Services_JSON;
-					$object->set('value', $json->decode($values[$i]));
+					$object->set('value', json_decode($values[$i]));
 					if (JRequest::getBool('K2ResetCSV'))
 						$object->set('value', null);
 				}
@@ -157,9 +155,7 @@ class K2ModelExtraField extends K2Model
 			$objects[] = $object;
 		}
 
-		require_once (JPATH_COMPONENT.DS.'lib'.DS.'JSON.php');
-		$json = new Services_JSON;
-		$row->value = $json->encode($objects);
+		$row->value = json_encode($objects);
 
 		if (!$row->check())
 		{
@@ -211,8 +207,6 @@ class K2ModelExtraField extends K2Model
 	{
 
 		$mainframe = JFactory::getApplication();
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'lib'.DS.'JSON.php');
-		$json = new Services_JSON;
 
 		if (!is_null($itemID))
 		{
@@ -220,7 +214,7 @@ class K2ModelExtraField extends K2Model
 			$item->load($itemID);
 		}
 
-		$defaultValues = $json->decode($extraField->value);
+		$defaultValues = json_decode($extraField->value);
 
 		foreach ($defaultValues as $value)
 		{
@@ -259,7 +253,7 @@ class K2ModelExtraField extends K2Model
 
 		if (isset($item))
 		{
-			$currentValues = $json->decode($item->extra_fields);
+			$currentValues = json_decode($item->extra_fields);
 			if (count($currentValues))
 			{
 				foreach ($currentValues as $value)
@@ -390,7 +384,7 @@ class K2ModelExtraField extends K2Model
 
 				if (is_array($active) && count($active))
 				{
-					$output .= '<input type="hidden" name="K2CSV_'.$extraField->id.'" value="'.htmlspecialchars($json->encode($active)).'" />';
+					$output .= '<input type="hidden" name="K2CSV_'.$extraField->id.'" value="'.htmlspecialchars(json_encode($active)).'" />';
 					$output .= '<table class="csvTable">';
 					foreach ($active as $key => $row)
 					{
@@ -451,9 +445,7 @@ class K2ModelExtraField extends K2Model
 		$row = JTable::getInstance('K2ExtraField', 'Table');
 		$row->load($id);
 
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'lib'.DS.'JSON.php');
-		$json = new Services_JSON;
-		$jsonObject = $json->decode($row->value);
+		$jsonObject = json_decode($row->value);
 
 		$value = '';
 		if ($row->type == 'textfield' || $row->type == 'textarea')

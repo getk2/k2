@@ -31,9 +31,7 @@ class K2ViewExtraField extends K2View
 		}
 		else
 		{
-			require_once (JPATH_COMPONENT.DS.'lib'.DS.'JSON.php');
-			$json = new Services_JSON;
-			$values = $json->decode($extraField->value);
+			$values = json_decode($extraField->value);
 			if (isset($values[0]->alias) && !empty($values[0]->alias))
 			{
 				$extraField->alias = $values[0]->alias;

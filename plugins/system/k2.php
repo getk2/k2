@@ -517,15 +517,8 @@ class plgSystemK2 extends JPlugin
 		if ($option != 'com_joomfish')
 			return;
 
-		if (!JFile::exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'lib'.DS.'JSON.php'))
-		{
-			return;
-		}
-
 		JPlugin::loadLanguage('com_k2', JPATH_ADMINISTRATOR);
-
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'tables');
-		require_once (JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'lib'.DS.'JSON.php');
 
 		// Joom!Fish
 		if ($option == 'com_joomfish' && ($task == 'translate.apply' || $task == 'translate.save') && $type == 'k2_items')
@@ -548,9 +541,7 @@ class plgSystemK2 extends JPlugin
 				}
 			}
 
-			$json = new Services_JSON;
-			$extra_fields = $json->encode($objects);
-
+			$extra_fields = json_encode($objects);
 			$extra_fields_search = '';
 
 			foreach ($objects as $object)
@@ -633,7 +624,6 @@ class plgSystemK2 extends JPlugin
 			$db->setQuery($query);
 			$extraFields = $db->loadObjectList();
 
-			$json = new Services_JSON;
 			$output = '';
 			if (count($extraFields))
 			{
@@ -641,7 +631,7 @@ class plgSystemK2 extends JPlugin
 				$output .= '<h2>'.JText::_('K2_ORIGINAL').'</h2>';
 				foreach ($extraFields as $extrafield)
 				{
-					$extraField = $json->decode($extrafield->value);
+					$extraField = json_decode($extrafield->value);
 					$output .= trim($this->renderOriginal($extrafield, $reference_id));
 
 				}
@@ -652,7 +642,7 @@ class plgSystemK2 extends JPlugin
 				$output .= '<h2>'.JText::_('K2_TRANSLATION').'</h2>';
 				foreach ($extraFields as $extrafield)
 				{
-					$extraField = $json->decode($extrafield->value);
+					$extraField = json_decode($extrafield->value);
 					$output .= trim($this->renderTranslated($extrafield, $reference_id));
 				}
 			}
@@ -735,13 +725,11 @@ class plgSystemK2 extends JPlugin
 				$objects[] = $object;
 			}
 
-			$json = new Services_JSON;
-			$value = $json->encode($objects);
+			$value = json_encode($objects);
 
 			$user = JFactory::getUser();
-
 			$db = JFactory::getDBO();
-
+			
 			$query = "SELECT COUNT(*) FROM #__jf_content WHERE reference_field = 'value' AND language_id = {$language_id} AND reference_id = {$reference_id} AND reference_table='k2_extra_fields'";
 			$db->setQuery($query);
 			$result = $db->loadResult();
@@ -792,8 +780,7 @@ class plgSystemK2 extends JPlugin
 				$subheader = '<strong>'.JText::_('K2_DEFAULT_VALUE').'</strong>';
 			}
 
-			$json = new Services_JSON;
-			$objects = $json->decode($extraField->value);
+			$objects = json_decode($extraField->value);
 			$output = '<input type="hidden" value="'.$extraField->type.'" name="extraFieldType" />';
 			if (count($objects))
 			{
@@ -814,7 +801,7 @@ class plgSystemK2 extends JPlugin
 			$db->setQuery($query);
 			$result = $db->loadResult();
 
-			$translatedObjects = $json->decode($result);
+			$translatedObjects = json_decode($result);
 
 			if (count($objects))
 			{
@@ -909,11 +896,7 @@ class plgSystemK2 extends JPlugin
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'tables');
 		$row = JTable::getInstance('K2ExtraField', 'Table');
 		$row->load($id);
-
-		require_once (JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'lib'.DS.'JSON.php');
-		$json = new Services_JSON;
-		$jsonObject = $json->decode($row->value);
-
+		$jsonObject = json_decode($row->value);
 		$value = '';
 		if ($row->type == 'textfield' || $row->type == 'textarea')
 		{
@@ -944,12 +927,10 @@ class plgSystemK2 extends JPlugin
 
 		$mainframe = JFactory::getApplication();
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'tables');
-		require_once (JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'lib'.DS.'JSON.php');
-		$json = new Services_JSON;
 		$item = JTable::getInstance('K2Item', 'Table');
 		$item->load($itemID);
 
-		$defaultValues = $json->decode($extraField->value);
+		$defaultValues = json_decode($extraField->value);
 
 		foreach ($defaultValues as $value)
 		{
@@ -967,7 +948,7 @@ class plgSystemK2 extends JPlugin
 
 		if (isset($item))
 		{
-			$currentValues = $json->decode($item->extra_fields);
+			$currentValues = json_decode($item->extra_fields);
 			if (count($currentValues))
 			{
 				foreach ($currentValues as $value)
@@ -1007,14 +988,11 @@ class plgSystemK2 extends JPlugin
 	{
 
 		$mainframe = JFactory::getApplication();
-		require_once (JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'lib'.DS.'JSON.php');
-		$json = new Services_JSON;
-
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'tables');
 		$item = JTable::getInstance('K2Item', 'Table');
 		$item->load($itemID);
 
-		$defaultValues = $json->decode($extraField->value);
+		$defaultValues = json_decode($extraField->value);
 
 		foreach ($defaultValues as $value)
 		{
@@ -1032,7 +1010,7 @@ class plgSystemK2 extends JPlugin
 
 		if (isset($item))
 		{
-			$currentValues = $json->decode($item->extra_fields);
+			$currentValues = json_decode($item->extra_fields);
 			if (count($currentValues))
 			{
 				foreach ($currentValues as $value)
@@ -1052,7 +1030,7 @@ class plgSystemK2 extends JPlugin
 		$query = "SELECT `value` FROM #__jf_content WHERE reference_field = 'extra_fields' AND language_id = {$language_id} AND reference_id = {$itemID} AND reference_table='k2_items'";
 		$db->setQuery($query);
 		$result = $db->loadResult();
-		$currentValues = $json->decode($result);
+		$currentValues = json_decode($result);
 		if (count($currentValues))
 		{
 			foreach ($currentValues as $value)

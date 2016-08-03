@@ -1095,9 +1095,6 @@ class K2ModelItem extends K2Model
 		$params = K2HelperUtilities::getParams('com_k2');
 		$user = JFactory::getUser();
 		$config = JFactory::getConfig();
-
-		JLoader::register('Services_JSON', JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'lib'.DS.'JSON.php');
-		$json = new Services_JSON;
 		$response = new JObject();
 
 		// Get item
@@ -1148,7 +1145,7 @@ class K2ModelItem extends K2Model
 			{
 				$response->message = JText::_('K2_ANTISPAM_SETTINGS_ERROR');
 				$response->cssClass = 'k2FormLogError';
-				echo $json->encode($response);
+				echo json_encode($response);
 				$mainframe->close();
 			}
 
@@ -1158,7 +1155,7 @@ class K2ModelItem extends K2Model
 			{
 				$response->message = $row->getError();
 				$response->cssClass = 'k2FormLogError';
-				echo $json->encode($response);
+				echo json_encode($response);
 				$mainframe->close();
 			}
 
@@ -1208,7 +1205,7 @@ class K2ModelItem extends K2Model
 			{
 				$response->message = JText::_('K2_YOU_NEED_TO_FILL_IN_ALL_REQUIRED_FIELDS');
 				$response->cssClass = 'k2FormLogError';
-				echo $json->encode($response);
+				echo json_encode($response);
 				$mainframe->close();
 			}
 
@@ -1216,7 +1213,7 @@ class K2ModelItem extends K2Model
 			{
 				$response->message = JText::_('K2_INVALID_EMAIL_ADDRESS');
 				$response->cssClass = 'k2FormLogError';
-				echo $json->encode($response);
+				echo json_encode($response);
 				$mainframe->close();
 			}
 
@@ -1230,7 +1227,7 @@ class K2ModelItem extends K2Model
 				{
 					$response->message = JText::_('K2_THE_NAME_OR_EMAIL_ADDRESS_YOU_TYPED_IS_ALREADY_IN_USE');
 					$response->cssClass = 'k2FormLogError';
-					echo $json->encode($response);
+					echo json_encode($response);
 					$mainframe->close();
 				}
 
@@ -1248,7 +1245,7 @@ class K2ModelItem extends K2Model
 						{
 							$response->message = JText::_('K2_COULD_NOT_VERIFY_THAT_YOU_ARE_NOT_A_ROBOT');
 							$response->cssClass = 'k2FormLogError';
-							echo $json->encode($response);
+							echo json_encode($response);
 							$mainframe->close();
 						}
 					}
@@ -1266,7 +1263,7 @@ class K2ModelItem extends K2Model
 						{
 							$response->message = JText::_('K2_THE_WORDS_YOU_TYPED_DID_NOT_MATCH_THE_ONES_DISPLAYED_PLEASE_TRY_AGAIN');
 							$response->cssClass = 'k2FormLogError';
-							echo $json->encode($response);
+							echo json_encode($response);
 							$mainframe->close();
 						}
 					}
@@ -1296,7 +1293,7 @@ class K2ModelItem extends K2Model
 							{
 								$response->message = JText::_('K2_SPAM_ATTEMPT_HAS_BEEN_DETECTED_THE_COMMENT_HAS_BEEN_REJECTED');
 								$response->cssClass = 'k2FormLogError';
-								echo $json->encode($response);
+								echo json_encode($response);
 								$mainframe->close();
 							}
 						}
@@ -1304,7 +1301,7 @@ class K2ModelItem extends K2Model
 						{
 							$response->message = $e->getMessage();
 							$response->cssClass = 'k2FormLogSuccess';
-							echo $json->encode($response);
+							echo json_encode($response);
 							$mainframe->close();
 						}
 
@@ -1353,7 +1350,7 @@ class K2ModelItem extends K2Model
 			{
 				$response->message = $row->getError();
 				$response->cssClass = 'k2FormLogError';
-				echo $json->encode($response);
+				echo json_encode($response);
 				$mainframe->close();
 			}
 
@@ -1364,14 +1361,14 @@ class K2ModelItem extends K2Model
 				{
 					$response->message = JText::_('K2_THANK_YOU_YOUR_COMMENT_WILL_BE_PUBLISHED_SHORTLY');
 					$response->cssClass = 'k2FormLogSuccess';
-					echo $json->encode($response);
+					echo json_encode($response);
 				}
 				else
 				{
 					$response->message = JText::_('K2_COMMENT_ADDED_REFRESHING_PAGE');
 					$response->cssClass = 'k2FormLogSuccess';
 					$response->refresh = 1;
-					echo $json->encode($response);
+					echo json_encode($response);
 				}
 
 			}
@@ -1379,7 +1376,7 @@ class K2ModelItem extends K2Model
 			{
 				$response->message = JText::_('K2_COMMENT_ADDED_AND_WAITING_FOR_APPROVAL');
 				$response->cssClass = 'k2FormLogSuccess';
-				echo $json->encode($response);
+				echo json_encode($response);
 			}
 
 		}
@@ -1420,9 +1417,7 @@ class K2ModelItem extends K2Model
 
 		jimport('joomla.filesystem.file');
 		$db = JFactory::getDBO();
-		require_once (JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'lib'.DS.'JSON.php');
-		$json = new Services_JSON;
-		$jsonObjects = $json->decode($itemExtraFields);
+		$jsonObjects = json_decode($itemExtraFields);
 		$imgExtensions = array(
 			'jpg',
 			'jpeg',
@@ -1510,7 +1505,7 @@ class K2ModelItem extends K2Model
 					}
 					else if ($rows[$i]->type == 'select' || $rows[$i]->type == 'radio')
 					{
-						foreach ($json->decode($rows[$i]->value) as $option)
+						foreach (json_decode($rows[$i]->value) as $option)
 						{
 							if ($option->value == $object->value)
 							{
@@ -1521,7 +1516,7 @@ class K2ModelItem extends K2Model
 					}
 					else if ($rows[$i]->type == 'multipleSelect')
 					{
-						foreach ($json->decode($rows[$i]->value) as $option)
+						foreach (json_decode($rows[$i]->value) as $option)
 						{
 							if (@in_array($option->value, $object->value))
 							{
@@ -1624,7 +1619,7 @@ class K2ModelItem extends K2Model
 			}
 
 			// Detect alias
-			$tmpValues = $json->decode($rows[$i]->value);
+			$tmpValues = json_decode($rows[$i]->value);
 			if (isset($tmpValues[0]) && isset($tmpValues[0]->alias) && !empty($tmpValues[0]->alias))
 			{
 				$rows[$i]->alias = $tmpValues[0]->alias;

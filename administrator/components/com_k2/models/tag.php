@@ -86,13 +86,10 @@ class K2ModelTag extends K2Model
         $response = new JObject;
         $response->set('name', $tag);
 
-        require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'lib'.DS.'JSON.php');
-        $json = new Services_JSON;
-
         if (empty($tag))
         {
             $response->set('msg', JText::_('K2_YOU_NEED_TO_ENTER_A_TAG', true));
-            echo $json->encode($response);
+            echo json_encode($response);
             $mainframe->close();
         }
 
@@ -104,7 +101,7 @@ class K2ModelTag extends K2Model
         if ($result > 0)
         {
             $response->set('msg', JText::_('K2_TAG_ALREADY_EXISTS', true));
-            echo $json->encode($response);
+            echo json_encode($response);
             $mainframe->close();
         }
 
@@ -119,7 +116,7 @@ class K2ModelTag extends K2Model
         $response->set('id', $row->id);
         $response->set('status', 'success');
         $response->set('msg', JText::_('K2_TAG_ADDED_TO_AVAILABLE_TAGS_LIST', true));
-        echo $json->encode($response);
+        echo json_encode($response);
 
         $mainframe->close();
 
@@ -152,10 +149,8 @@ class K2ModelTag extends K2Model
         	$db->setQuery($query);
         	$result = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
 		}
-		
-        require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'lib'.DS.'JSON.php');
-        $json = new Services_JSON;
-        echo $json->encode($result);
+
+        echo json_encode($result);
         $mainframe->close();
     }
 

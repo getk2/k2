@@ -102,10 +102,7 @@ class K2ControllerUsers extends K2Controller
 		$query = "SELECT id,name FROM #__users WHERE name LIKE ".$word." OR username LIKE ".$word." OR email LIKE ".$word;
         $db->setQuery($query);
         $result = $db->loadObjectList();
-		
-        require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'lib'.DS.'JSON.php');
-        $json = new Services_JSON;
-        echo $json->encode($result);
+        echo json_encode($result);
         $mainframe->close();
 	}
 

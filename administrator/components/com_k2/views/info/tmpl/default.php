@@ -54,12 +54,6 @@ defined('_JEXEC') or die;
 					      </tfoot>
 							  <tbody>
 							    <tr>
-							      <td><a target="_blank" href="http://pear.php.net/package/Services_JSON/">Services_JSON</a></td>
-							      <td>1.0.1</td>
-							      <td><?php echo JText::_('K2_PHP_CLASS'); ?></td>
-							      <td><?php echo JText::_('K2_BSD'); ?></td>
-							    </tr>
-							    <tr>
 							      <td><a target="_blank" href="http://www.verot.net/php_class_upload.htm">class.upload.php</a></td>
 							      <td>0.33dev</td>
 							      <td><?php echo JText::_('K2_PHP_CLASS'); ?></td>

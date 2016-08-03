@@ -57,17 +57,7 @@ class K2HelperStats
 		$data->extensionVersion = self::getExtensionVersion();
 		$data->caching = self::getCaching();
 		$data->cachingDriver = self::getCachingDriver();
-		if (function_exists('json_encode'))
-		{
-			return json_encode($data);
-		}
-		else
-		{
-			require_once JPATH_COMPONENT_ADMINISTRATOR.DS.'lib'.DS.'JSON.php';
-			$json = new Services_JSON;
-			return $json->encode($data);
-		}
-
+		return json_encode($data);
 	}
 
 	public static function getIdentifier()

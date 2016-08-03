@@ -242,9 +242,7 @@ class K2ModelComments extends K2Model {
 		$response->comment = $row->commentText;
 		$response->message = JText::_('K2_COMMENT_SAVED');
 		unset($response->_errors);
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'lib'.DS.'JSON.php');
-		$json = new Services_JSON;
-		echo $json->encode($response);
+		echo json_encode($response);
 		$mainframe->close();
 	}
 
