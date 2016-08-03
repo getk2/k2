@@ -627,6 +627,19 @@ class K2ModelItem extends K2Model
 				}
 				else
 				{
+					$imageDir	= $savepath.DS.$row->id;
+					$galleryDir 	= opendir($imageDir);
+					$specialCharacters = array( ")" , "(" , " ");
+					while ($filename = readdir($galleryDir))
+					{
+						if ($filename != "." && $filename != "..")
+						{
+							$file 		= str_replace($specialCharacters, "_", $filename);
+							$safefilename 	= JFile::makeSafe($file);
+							rename($imageDir.DS.$filename, $imageDir.DS.$safefilename); 
+						}
+					}
+					closedir($galleryDir);
 					$row->gallery = '{gallery}'.$row->id.'{/gallery}';
 				}
 				JFile::delete($savepath.DS.$handle->file_dst_name);
