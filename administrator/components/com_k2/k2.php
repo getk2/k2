@@ -159,7 +159,7 @@ if(
 ): ?>
 </div>
 <div id="k2AdminFooter">
-	<a target="_blank" href="https://getk2.org/">K2 v2.7.1 [Dev Build]</a> | Copyright &copy; 2006-<?php echo date('Y'); ?> <a target="_blank" href="http://www.joomlaworks.net/">JoomlaWorks Ltd.</a>
+	<a target="_blank" href="https://getk2.org/">K2 v2.7.1</a> | Copyright &copy; 2006-<?php echo date('Y'); ?> <a target="_blank" href="http://www.joomlaworks.net/">JoomlaWorks Ltd.</a>
 </div>
 
 <?php
