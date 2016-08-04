@@ -419,7 +419,7 @@ $document->addScriptDeclaration("
 						<!-- Preview -->
 						<div id="itemGallery" class="itemGalleryBlock">
 							<?php echo $this->row->gallery; ?>
-
+							<br />
 							<input type="checkbox" name="del_gallery" id="del_gallery" />
 							<label for="del_gallery"><?php echo JText::_('K2_CHECK_THIS_BOX_TO_DELETE_CURRENT_IMAGE_GALLERY_OR_JUST_UPLOAD_A_NEW_IMAGE_GALLERY_TO_REPLACE_THE_EXISTING_ONE'); ?></label>
 						</div>
