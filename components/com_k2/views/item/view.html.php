@@ -110,6 +110,7 @@ class K2ViewItem extends K2View
 				}
 			}
 		}
+
 		// Published check
 		if (!$item->published || $item->trash)
 		{
@@ -591,6 +592,12 @@ class K2ViewItem extends K2View
 			$document->setMetaData('og:description', strip_tags($document->getDescription()));
 		}
 
+		// Get the frontend's language for use in social media buttons - use explicit variable references for future update flexibility
+		$getSiteLanguage = $mainframe->getLanguage();
+		$languageTag = $getSiteLanguage->getTag();
+		$langTagForFB = str_replace('-', '_', $languageTag);
+		$langTagForTW = strtolower($languageTag);
+		$langTagForGP = $languageTag;
 
 		// Look for template files in component folders
 		$this->_addPath('template', JPATH_COMPONENT.DS.'templates');
