@@ -593,7 +593,7 @@ class K2ViewItem extends K2View
 		}
 
 		// Get the frontend's language for use in social media buttons - use explicit variable references for future update flexibility
-		$getSiteLanguage = $mainframe->getLanguage();
+		$getSiteLanguage = JFactory::getLanguage();
 		$languageTag = $getSiteLanguage->getTag();
 		$item->langTagForFB = str_replace('-', '_', $languageTag);
 		$item->langTagForTW = strtolower($languageTag);
