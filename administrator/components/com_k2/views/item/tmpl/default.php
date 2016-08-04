@@ -380,11 +380,11 @@ $document->addScriptDeclaration("
 
 						<?php if($this->sigPro): ?>
 						<div class="itemGalleryBlock">
+							<label><?php echo JText::_('K2_COM_BE_ITEM_SIGPRO_UPLOAD_NOTE'); ?></label>
 							<a class="k2Button modal" rel="{handler: 'iframe', size: {x: 940, y: 560}}" href="index.php?option=com_sigpro&view=galleries&task=create&newFolder=<?php echo $this->sigProFolder; ?>&type=k2&tmpl=component">
 								<?php echo JText::_('K2_COM_BE_ITEM_SIGPRO_UPLOAD'); ?>
 							</a>
 							<br />
-							<label><?php echo JText::_('K2_COM_BE_ITEM_SIGPRO_UPLOAD_NOTE'); ?>)</label>
 							<input name="sigProFolder" type="hidden" value="<?php echo $this->sigProFolder; ?>" />
 						</div>
 
