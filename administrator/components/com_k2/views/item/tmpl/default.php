@@ -428,7 +428,7 @@ $document->addScriptDeclaration("
 					</div>
 
 					<?php
-					// SigPro is not present
+					// SIGPro is not present
 					else: ?>
 						<?php if (K2_JVERSION == '15'): ?>
 						<dl id="system-message">

@@ -588,8 +588,6 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 .k2DocLink a {}
 .k2DocLink span {}
 
-/* Item - Image (inherits from above) */
-
 /* Item - Gallery */
 .itemGalleryBlock {margin-bottom:20px;}
 .itemGalleryBlock label {display:block;margin-bottom:10px;}
@@ -597,9 +595,6 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 .itemGalleryBlock input[type="text"] {max-width:300px;}
 .itemGalleryBlock.separator {text-transform:uppercase;font-weight:700;color:#46afff;}
 span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;line-height:16px;padding:0;margin:0 0 -4px 0;display:inline-block;overflow-x:hidden;}
-
-/* Item - Video - inherits from above */
-.avPlayerWrapper .avPlayerContainer {float:left;}
 
 /* Admin - Item */
 .itemPlugins {margin-top:20px;clear:both;}
