@@ -68,7 +68,7 @@ JHTML::_('behavior.modal');
 
 // Append CSS to the document's head
 if ($modCSSStyling)
-	$document->addStyleSheet(JURI::base(true).'/modules/'.$mod_name.'/tmpl/css/style.css?v=2.7.1');
+	$document->addStyleSheet(JURI::base(true).'/modules/'.$mod_name.'/tmpl/css/style.css?v=2.7.2');
 
 // Output content with template
 echo $mod_copyrights_start;

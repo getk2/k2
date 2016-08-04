@@ -46,11 +46,11 @@ class plgSystemK2 extends JPlugin
 
 		// Joomla! modal trigger
 		if ( !$user->guest || (JRequest::getCmd('option') == 'com_k2' && JRequest::getCmd('view') == 'item') || defined('K2_JOOMLA_MODAL_REQUIRED') ){
-			$document->addScript(JUri::root(true).'/media/k2/assets/js/jquery.magnific-popup.min.js?v2.7.1');
-			$document->addStyleSheet(JUri::root(true).'/media/k2/assets/css/magnific-popup.css?v2.7.1');
+			$document->addScript(JUri::root(true).'/media/k2/assets/js/jquery.magnific-popup.min.js?v2.7.2');
+			$document->addStyleSheet(JUri::root(true).'/media/k2/assets/css/magnific-popup.css?v2.7.2');
 		}
 
-		$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.frontend.js?v2.7.1&amp;sitepath='.JURI::root(true).'/');
+		$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.frontend.js?v2.7.2&amp;sitepath='.JURI::root(true).'/');
 
 		if (JRequest::getCmd('task') == 'search' && $params->get('googleSearch'))
 		{
@@ -91,23 +91,23 @@ class plgSystemK2 extends JPlugin
 
 			// k2.fonts.css
 			if (JFile::exists(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'css'.DS.'k2.fonts.css'))
-				$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.fonts.css?v2.7.1');
+				$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.fonts.css?v2.7.2');
 			else
-				$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.fonts.css?v2.7.1');
+				$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.fonts.css?v2.7.2');
 
 			// k2.css
 			if (JFile::exists(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'css'.DS.'k2.css'))
-				$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.css?v2.7.1');
+				$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.css?v2.7.2');
 			else
-				$document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.css?v2.7.1');
+				$document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.css?v2.7.2');
 
 			// k2.print.css
 			if (JRequest::getInt('print') == 1)
 			{
 				if (JFile::exists(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'css'.DS.'k2.print.css'))
-					$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.print.css?v2.7.1', 'text/css', 'print');
+					$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.print.css?v2.7.2', 'text/css', 'print');
 				else
-					$document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.print.css?v2.7.1', 'text/css', 'print');
+					$document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.print.css?v2.7.2', 'text/css', 'print');
 			}
 
 		}
@@ -288,7 +288,7 @@ class plgSystemK2 extends JPlugin
 			/*
 			// TO DO - We open the profile editing page in a modal, so let's define some CSS
 			$document = JFactory::getDocument();
-			$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.frontend.css?v=2.7.1');
+			$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.frontend.css?v=2.7.2');
 			$document->addStyleSheet(JURI::root(true).'/templates/system/css/general.css');
 			$document->addStyleSheet(JURI::root(true).'/templates/system/css/system.css');
 			if(K2_JVERSION != '15') {
@@ -494,7 +494,7 @@ class plgSystemK2 extends JPlugin
 			JResponse::setHeader('X-Logged-In', 'False', true);
 		}
 
-		JResponse::setHeader('X-Content-Powered-By', 'K2 v2.7.1 (by JoomlaWorks)', true);
+		JResponse::setHeader('X-Content-Powered-By', 'K2 v2.7.2 (by JoomlaWorks)', true);
 
 		if (!$mainframe->isAdmin())
 		{

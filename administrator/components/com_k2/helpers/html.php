@@ -112,7 +112,7 @@ class K2HelperHTML
 
 				// No conflict loaded when $ui requested or in the backend.
 				// No need to reload for $mediaManager as the latter is always called with $ui
-				$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.noconflict.js?v=2.7.1');
+				$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.noconflict.js?v=2.7.2');
 
 				if ($handling == 'local')
 				{
@@ -126,7 +126,7 @@ class K2HelperHTML
 
 			if ($mediaManager)
 			{
-				$document->addScript(JURI::root(true).'/media/k2/assets/js/elfinder.min.js?v=2.7.1');
+				$document->addScript(JURI::root(true).'/media/k2/assets/js/elfinder.min.js?v=2.7.2');
 			}
 		}
 	}
