@@ -128,7 +128,12 @@ class K2ModelItem extends K2Model
 		}
 
 		$config = JFactory::getConfig();
-		$tzoffset = K2_JVERSION == '30' ? $config->get('offset') : $config->getValue('config.offset');
+		if ($userTimezone = $user->getParam('timezone')) {
+            		$tzoffset = new DateTimeZone($userTimezone);
+        	} else {
+        		$tzoffset = K2_JVERSION == '30' ? $config->get('offset') : $config->getValue('config.offset');
+        	}
+
 		$date = JFactory::getDate($row->created, $tzoffset);
 		$row->created = K2_JVERSION == '15' ? $date->toMySQL() : $date->toSql();
 
