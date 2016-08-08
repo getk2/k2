@@ -173,7 +173,8 @@ if (version_compare(JVERSION, '1.6.0', '<'))
         $db->query();
     }
 
-   /* $query = "SHOW INDEX FROM #__k2_items";
+	/*
+	$query = "SHOW INDEX FROM #__k2_items";
     $db->setQuery($query);
     $indexes = $db->loadObjectList();
     $indexExists = false;
@@ -209,7 +210,8 @@ if (version_compare(JVERSION, '1.6.0', '<'))
         $query = "ALTER TABLE #__k2_tags ADD FULLTEXT (`name`)";
         $db->setQuery($query);
         $db->query();
-    }*/
+    }
+    */
 
     // Add index for comments count
     $query = "SHOW INDEX FROM #__k2_comments";

@@ -28,7 +28,7 @@ class K2ModelCategories extends K2Model
         $limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
         $search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
-        $search = trim(preg_replace('/[^a-zA-Z0-9\s\-_]/', '', $search));
+        $search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
         $filter_order = $mainframe->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'c.ordering', 'cmd');
         $filter_order_Dir = $mainframe->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', '', 'word');
         $filter_trash = $mainframe->getUserStateFromRequest($option.$view.'filter_trash', 'filter_trash', 0, 'int');
@@ -150,7 +150,7 @@ class K2ModelCategories extends K2Model
         $limitstart = $mainframe->getUserStateFromRequest($option.'.limitstart', 'limitstart', 0, 'int');
         $search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
-        $search = trim(preg_replace('/[^a-zA-Z0-9\s\-_]/', '', $search));
+        $search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
         $filter_trash = $mainframe->getUserStateFromRequest($option.$view.'filter_trash', 'filter_trash', 0, 'int');
         $filter_state = $mainframe->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', 1, 'int');
         $language = $mainframe->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');

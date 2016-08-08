@@ -33,7 +33,7 @@ class K2ModelUsers extends K2Model
         $filter_group_k2 = $mainframe->getUserStateFromRequest($option.$view.'filter_group_k2', 'filter_group_k2', '', 'string');
         $search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
-        $search = trim(preg_replace('/[^a-zA-Z0-9\s\-_]/', '', $search));
+        $search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
 
         $query = "SELECT juser.*, k2user.group, k2group.name as groupname FROM #__users as juser "."LEFT JOIN #__k2_users as k2user ON juser.id=k2user.userID "."LEFT JOIN #__k2_user_groups as k2group ON k2user.group=k2group.id ";
 
@@ -139,7 +139,7 @@ class K2ModelUsers extends K2Model
         $filter_group_k2 = $mainframe->getUserStateFromRequest($option.$view.'filter_group_k2', 'filter_group_k2', '', 'string');
         $search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
-        $search = trim(preg_replace('/[^a-zA-Z0-9\s\-_]/', '', $search));
+        $search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
 
         $query = "SELECT COUNT(DISTINCT juser.id) FROM #__users as juser "."LEFT JOIN #__k2_users as k2user ON juser.id=k2user.userID "."LEFT JOIN #__k2_user_groups as k2group ON k2user.group=k2group.id ";
 
