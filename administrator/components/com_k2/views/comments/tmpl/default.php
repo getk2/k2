@@ -19,11 +19,11 @@ defined('_JEXEC') or die;
 			}
 			if (confirm('<?php echo JText::_('K2_ARE_YOU_SURE_YOU_WANT_TO_DELETE_SELECTED_COMMENTS', true); ?>')){
 				submitform( pressbutton );
-			} 
+			}
 		} else if (pressbutton == 'deleteUnpublished') {
 			if (confirm('<?php echo JText::_('K2_THIS_WILL_PERMANENTLY_DELETE_ALL_UNPUBLISHED_COMMENTS_ARE_YOU_SURE', true); ?>')){
 				submitform( pressbutton );
-			} 
+			}
 		} else if (pressbutton == 'publish') {
 			if (document.adminForm.boxchecked.value==0){
 				alert('<?php echo JText::_('K2_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST_TO_PUBLISH', true); ?>');
@@ -36,7 +36,7 @@ defined('_JEXEC') or die;
 				return false;
 			}
 			submitform( pressbutton );
-		}  else { 
+		}  else {
 			submitform( pressbutton );
 		}
 	};
@@ -181,7 +181,7 @@ defined('_JEXEC') or die;
 						</td>
 						<td class="k2Center center hidden-phone">
 							<?php if($row->commenterLastVisitIP): ?>
-							<a target="_blank" href="http://www.ipchecking.com/?ip=<?php echo $row->commenterLastVisitIP; ?>&check=Lookup">
+							<a target="_blank" href="https://ipalyzer.com/<?php echo $row->commenterLastVisitIP; ?>">
 								<?php echo $row->commenterLastVisitIP; ?>
 							</a>
 							<?php endif; ?>
@@ -198,7 +198,7 @@ defined('_JEXEC') or die;
 							<?php echo $row->catName; ?>
 						</td>
 						<td class="hidden-phone">
-							<?php $user = JFactory::getUser($row->created_by); echo $user->name; ?> 
+							<?php $user = JFactory::getUser($row->created_by); echo $user->name; ?>
 						</td>
 						<td class="k2Date hidden-phone">
 							<?php echo JHTML::_('date', $row->commentDate , $this->dateFormat); ?>

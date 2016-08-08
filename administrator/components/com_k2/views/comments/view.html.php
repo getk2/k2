@@ -19,6 +19,7 @@ class K2ViewComments extends K2View
 	{
 
 		$mainframe = JFactory::getApplication();
+		$params = JComponentHelper::getParams('com_k2');
 		$user = JFactory::getUser();
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
@@ -31,7 +32,7 @@ class K2ViewComments extends K2View
 		$filter_author = $mainframe->getUserStateFromRequest($option.$view.'filter_author', 'filter_author', 0, 'int');
 		$search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
 		$search = JString::strtolower($search);
-		$search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
+		$search = trim(preg_replace('/[^\p{L}\p{N}\s\"\.\@\-_]/u', '', $search));
 		if ($mainframe->isSite())
 		{
 			$filter_author = $user->id;
@@ -40,7 +41,6 @@ class K2ViewComments extends K2View
 		$this->loadHelper('html');
 		K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'models');
 		$model = K2Model::getInstance('Comments', 'K2Model');
-		$params = JComponentHelper::getParams('com_k2');
 		$total = $model->getTotal();
 		if ($limitstart > $total - $limit)
 		{
@@ -107,7 +107,17 @@ class K2ViewComments extends K2View
 		$this->assignRef('page', $pageNav);
 
 		$lists = array();
-		$lists['search'] = $search;
+
+		// Detect exact search phrase using double quotes in search string
+		if(substr($search, 0, 1)=='"' && substr($search, -1)=='"')
+		{
+			$lists['search'] = "&quot;".trim(str_replace('"', '', $search))."&quot;";
+		}
+		else
+		{
+			$lists['search'] = trim(str_replace('"', '', $search));
+		}
+
 		$lists['order_Dir'] = $filter_order_Dir;
 		$lists['order'] = $filter_order;
 

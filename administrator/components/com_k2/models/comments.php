@@ -19,6 +19,7 @@ class K2ModelComments extends K2Model {
 	function getData() {
 
 		$mainframe = JFactory::getApplication();
+		$params = JComponentHelper::getParams('com_k2');
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
 		$db = JFactory::getDBO();
@@ -31,9 +32,9 @@ class K2ModelComments extends K2Model {
 		$filter_author = $mainframe->getUserStateFromRequest($option.$view.'filter_author', 'filter_author', 0, 'int');
 		$search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
 		$search = JString::strtolower($search);
-		$search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
+		$search = trim(preg_replace('/[^\p{L}\p{N}\s\"\.\@\-_]/u', '', $search));
 
-		$query = "SELECT c.*, i.title , i.catid,  i.alias AS itemAlias, i.created_by,  cat.alias AS catAlias, cat.name as catName FROM #__k2_comments AS c LEFT JOIN #__k2_items AS i ON c.itemID=i.id LEFT JOIN #__k2_categories AS cat ON cat.id=i.catid WHERE c.id>0";
+		$query = "SELECT c.*, i.title , i.catid,  i.alias AS itemAlias, i.created_by,  cat.alias AS catAlias, cat.name as catName FROM #__k2_comments AS c LEFT JOIN #__k2_items AS i ON c.itemID=i.id LEFT JOIN #__k2_categories AS cat ON cat.id=i.catid LEFT JOIN #__k2_users AS u ON c.userID=u.userID WHERE c.id>0";
 
 		if ($filter_state > - 1) {
 			$query .= " AND c.published={$filter_state}";
@@ -47,9 +48,79 @@ class K2ModelComments extends K2Model {
 			$query .= " AND i.created_by={$filter_author}";
 		}
 
-		if ($search) {
-		    $escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
-			$query .= " AND LOWER( c.commentText ) LIKE ".$db->Quote('%'.$escaped.'%', false);
+		if ($search)
+		{
+
+			// Detect exact search phrase using double quotes in search string
+			if(substr($search, 0, 1)=='"' && substr($search, -1)=='"')
+			{
+				$exact = true;
+			}
+			else
+			{
+				$exact = false;
+			}
+
+			// Now completely strip double quotes
+			$search = trim(str_replace('"', '', $search));
+
+			// Escape remaining string
+			$escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
+
+			// Full phrase or set of words
+			if(strpos($escaped, ' ')!==false && !$exact)
+			{
+				$escaped=explode(' ', $escaped);
+				$quoted = array();
+				foreach($escaped as $key=>$escapedWord)
+				{
+					$quoted[] = $db->Quote('%'.$escapedWord.'%', false);
+				}
+				if ($params->get('adminSearch') == 'full')
+				{
+					foreach($quoted as $quotedWord)
+					{
+						$query .= " AND ( ".
+							"LOWER(c.commentText) LIKE ".$quotedWord." ".
+							"OR LOWER(c.userName) LIKE ".$quotedWord." ".
+							"OR LOWER(c.commentEmail) LIKE ".$quotedWord." ".
+							"OR LOWER(c.commentURL) LIKE ".$quotedWord." ".
+							"OR LOWER(i.title) LIKE ".$quotedWord." ".
+							"OR LOWER(u.userName) LIKE ".$quotedWord." ".
+							"OR LOWER(u.ip) LIKE ".$quotedWord." ".
+							" )";
+					}
+				}
+				else
+				{
+					foreach($quoted as $quotedWord)
+					{
+						$query .= " AND LOWER(c.commentText) LIKE ".$quotedWord;
+					}
+				}
+			}
+			// Single word or exact phrase to search for (wrapped in double quotes in the search block)
+			else
+			{
+				$quoted = $db->Quote('%'.$escaped.'%', false);
+
+				if ($params->get('adminSearch') == 'full')
+				{
+					$query .= " AND ( ".
+						"LOWER(c.commentText) LIKE ".$quoted." ".
+						"OR LOWER(c.userName) LIKE ".$quoted." ".
+						"OR LOWER(c.commentEmail) LIKE ".$quoted." ".
+						"OR LOWER(c.commentURL) LIKE ".$quoted." ".
+						"OR LOWER(i.title) LIKE ".$quoted." ".
+						"OR LOWER(u.userName) LIKE ".$quoted." ".
+						"OR LOWER(u.ip) LIKE ".$quoted." ".
+						" )";
+				}
+				else
+				{
+					$query .= " AND LOWER(c.commentText) LIKE ".$quoted;
+				}
+			}
 		}
 
 		if (!$filter_order) {
@@ -65,6 +136,7 @@ class K2ModelComments extends K2Model {
 	function getTotal() {
 
 		$mainframe = JFactory::getApplication();
+		$params = JComponentHelper::getParams('com_k2');
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
 		$db = JFactory::getDBO();
@@ -75,9 +147,9 @@ class K2ModelComments extends K2Model {
 		$filter_author = $mainframe->getUserStateFromRequest($option.$view.'filter_author', 'filter_author', 0, 'int');
 		$search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
 		$search = JString::strtolower($search);
-		$search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
+		$search = trim(preg_replace('/[^\p{L}\p{N}\s\"\.\@\-_]/u', '', $search));
 
-		$query = "SELECT COUNT(*) FROM #__k2_comments AS c LEFT JOIN #__k2_items AS i ON c.itemID=i.id WHERE c.id>0";
+		$query = "SELECT COUNT(*) FROM #__k2_comments AS c LEFT JOIN #__k2_items AS i ON c.itemID=i.id LEFT JOIN #__k2_users AS u ON c.userID=u.userID WHERE c.id>0";
 
 		if ($filter_state > - 1) {
 			$query .= " AND c.published={$filter_state}";
@@ -91,9 +163,79 @@ class K2ModelComments extends K2Model {
 			$query .= " AND i.created_by={$filter_author}";
 		}
 
-		if ($search) {
-		    $escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
-			$query .= " AND LOWER( c.commentText ) LIKE ".$db->Quote('%'.$escaped.'%', false);
+		if ($search)
+		{
+
+			// Detect exact search phrase using double quotes in search string
+			if(substr($search, 0, 1)=='"' && substr($search, -1)=='"')
+			{
+				$exact = true;
+			}
+			else
+			{
+				$exact = false;
+			}
+
+			// Now completely strip double quotes
+			$search = trim(str_replace('"', '', $search));
+
+			// Escape remaining string
+			$escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
+
+			// Full phrase or set of words
+			if(strpos($escaped, ' ')!==false && !$exact)
+			{
+				$escaped=explode(' ', $escaped);
+				$quoted = array();
+				foreach($escaped as $key=>$escapedWord)
+				{
+					$quoted[] = $db->Quote('%'.$escapedWord.'%', false);
+				}
+				if ($params->get('adminSearch') == 'full')
+				{
+					foreach($quoted as $quotedWord)
+					{
+						$query .= " AND ( ".
+							"LOWER(c.commentText) LIKE ".$quotedWord." ".
+							"OR LOWER(c.userName) LIKE ".$quotedWord." ".
+							"OR LOWER(c.commentEmail) LIKE ".$quotedWord." ".
+							"OR LOWER(c.commentURL) LIKE ".$quotedWord." ".
+							"OR LOWER(i.title) LIKE ".$quotedWord." ".
+							"OR LOWER(u.userName) LIKE ".$quotedWord." ".
+							"OR LOWER(u.ip) LIKE ".$quotedWord." ".
+							" )";
+					}
+				}
+				else
+				{
+					foreach($quoted as $quotedWord)
+					{
+						$query .= " AND LOWER(c.commentText) LIKE ".$quotedWord;
+					}
+				}
+			}
+			// Single word or exact phrase to search for (wrapped in double quotes in the search block)
+			else
+			{
+				$quoted = $db->Quote('%'.$escaped.'%', false);
+
+				if ($params->get('adminSearch') == 'full')
+				{
+					$query .= " AND ( ".
+						"LOWER(c.commentText) LIKE ".$quoted." ".
+						"OR LOWER(c.userName) LIKE ".$quoted." ".
+						"OR LOWER(c.commentEmail) LIKE ".$quoted." ".
+						"OR LOWER(c.commentURL) LIKE ".$quoted." ".
+						"OR LOWER(i.title) LIKE ".$quoted." ".
+						"OR LOWER(u.userName) LIKE ".$quoted." ".
+						"OR LOWER(u.ip) LIKE ".$quoted." ".
+						" )";
+				}
+				else
+				{
+					$query .= " AND LOWER(c.commentText) LIKE ".$quoted;
+				}
+			}
 		}
 
 		$db->setQuery($query);
@@ -313,6 +455,7 @@ class K2ModelComments extends K2Model {
                 break;
         }
 
+		// K2 embedded email template (to do: move to separate HTML template/override)
         $body = "
         <strong>".JText::_('K2_NAME')."</strong>: ".$name." <br/>
         <strong>".JText::_('K2_REPORT_REASON')."</strong>: ".$reportReason." <br/>
