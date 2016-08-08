@@ -19,6 +19,7 @@ class K2ViewItems extends K2View
 		JHTML::_('behavior.modal');
 		jimport('joomla.filesystem.file');
 		$mainframe = JFactory::getApplication();
+		$params = JComponentHelper::getParams('com_k2');
 		$user = JFactory::getUser();
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
@@ -36,12 +37,11 @@ class K2ViewItems extends K2View
 		$search = trim(preg_replace('/[^\p{L}\p{N}\s\"\-_]/u', '', $search));
 		$tag = $mainframe->getUserStateFromRequest($option.$view.'tag', 'tag', 0, 'int');
 		$language = $mainframe->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
-		$params = JComponentHelper::getParams('com_k2');
 
 		$db = JFactory::getDBO();
 		$nullDate = $db->getNullDate();
-		$this->assignRef('nullDate', $nullDate);
 
+		$this->assignRef('nullDate', $nullDate);
 
 		if(K2_JVERSION == '30' && $filter_featured == 1 && $filter_order == 'i.ordering')
 		{
@@ -283,8 +283,6 @@ class K2ViewItems extends K2View
 		}
 		else
 		{
-
-			$params = JComponentHelper::getParams('com_k2');
 			$toolbar = JToolBar::getInstance('toolbar');
 
 			K2_JVERSION == '30' ? JToolBarHelper::custom('featured', 'featured.png', 'featured_f2.png', 'K2_TOGGLE_FEATURED_STATE', true) : JToolBarHelper::custom('featured', 'default.png', 'default_f2.png', 'K2_TOGGLE_FEATURED_STATE', true);
@@ -323,7 +321,7 @@ class K2ViewItems extends K2View
 			$toolbar->appendButton('Popup', 'config', 'K2_PARAMETERS', 'index.php?option=com_k2&view=settings');
 		}
 
-		// Import Joomla! content button
+		// Display import button for Joomla content
 		if ($user->gid > 23 && !$params->get('hideImportButton'))
 		{
 			$buttonUrl = JURI::base().'index.php?option=com_k2&amp;view=items&amp;task=import';

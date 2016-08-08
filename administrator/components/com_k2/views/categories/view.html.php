@@ -19,6 +19,7 @@ class K2ViewCategories extends K2View
 	{
 
 		$mainframe = JFactory::getApplication();
+		$params = JComponentHelper::getParams('com_k2');
 		$user = JFactory::getUser();
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
@@ -32,7 +33,7 @@ class K2ViewCategories extends K2View
 		$language = $mainframe->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
 		$search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
 		$search = JString::strtolower($search);
-		$search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
+		$search = trim(preg_replace('/[^\p{L}\p{N}\s\"\-_]/u', '', $search));
 		$model = $this->getModel();
 		$total = $model->getTotal();
 		$task = JRequest::getCmd('task');
@@ -45,7 +46,6 @@ class K2ViewCategories extends K2View
 		$categories = $model->getData();
 		$categoryModel = K2Model::getInstance('Category', 'K2Model');
 
-		$params = JComponentHelper::getParams('com_k2');
 		$this->assignRef('params', $params);
 
 		if (K2_JVERSION != '15')
@@ -112,7 +112,17 @@ class K2ViewCategories extends K2View
 		$this->assignRef('page', $pageNav);
 
 		$lists = array();
-		$lists['search'] = $search;
+
+		// Detect exact search phrase using double quotes in search string
+		if(substr($search, 0, 1)=='"' && substr($search, -1)=='"')
+		{
+			$lists['search'] = "&quot;".trim(str_replace('"', '', $search))."&quot;";
+		}
+		else
+		{
+			$lists['search'] = trim(str_replace('"', '', $search));
+		}
+
 		$lists['order_Dir'] = $filter_order_Dir;
 		$lists['order'] = $filter_order;
 

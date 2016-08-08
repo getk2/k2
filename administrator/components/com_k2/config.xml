@@ -433,7 +433,7 @@
 		</param>
 		<param menu="hide" name="K2UserGroup" type="sql" default="" description="K2_SELECT_THE_DEFAULT_K2_USER_GROUP_FOR_NEW_REGISTRATIONS" label="K2_SELECT_DEFAULT_K2_USER_GROUP" query="SELECT id AS value, name AS K2UserGroup FROM #__k2_user_groups" />
 		<param menu="hide" name="redirect" type="menuitem" default="" label="K2_PROFILE_EDIT_REDIRECT" description="K2_SELECT_A_MENU_ITEM_TO_REDIRECT_AFTER_USER_PROFILE_EDIT_PLEASE_NOTE_THAT_THE_PLUGIN_MUST_BE_THE_LAST_ONE_IN_USER_GROUP_OR_IT_WILL_BREAK_THE_EXECUTION_OF_OTHER_USER_PLUGINS" />
-		<param menu="hide" name="adminSearch" type="list" default="simple" label="K2_ADMINISTRATION_ITEM_SEARCH" description="">
+		<param menu="hide" name="adminSearch" type="list" default="simple" label="K2_ADMINISTRATION_SEARCH_CONTEXT" description="">
 			<option value="simple">K2_SIMPLE_TITLE_ONLY</option>
 			<option value="full">K2_FULL_EVERYTHING</option>
 		</param>
@@ -988,7 +988,7 @@
 		</field>
 		<field menu="hide" name="K2UserGroup" type="sql" default="" description="K2_SELECT_THE_DEFAULT_K2_USER_GROUP_FOR_NEW_REGISTRATIONS" label="K2_SELECT_DEFAULT_K2_USER_GROUP" query="SELECT id AS value, name AS K2UserGroup FROM #__k2_user_groups" />
 		<field menu="hide" name="redirect" type="menuitem" disable="separator" default="" label="K2_PROFILE_EDIT_REDIRECT" description="K2_SELECT_A_MENU_ITEM_TO_REDIRECT_AFTER_USER_PROFILE_EDIT_PLEASE_NOTE_THAT_THE_PLUGIN_MUST_BE_THE_LAST_ONE_IN_USER_GROUP_OR_IT_WILL_BREAK_THE_EXECUTION_OF_OTHER_USER_PLUGINS" />
-		<field menu="hide" name="adminSearch" type="list" default="simple" label="K2_ADMINISTRATION_ITEM_SEARCH" description="">
+		<field menu="hide" name="adminSearch" type="list" default="simple" label="K2_ADMINISTRATION_SEARCH_CONTEXT" description="">
 			<option value="simple">K2_SIMPLE_TITLE_ONLY</option>
 			<option value="full">K2_FULL_EVERYTHING</option>
 		</field>

@@ -408,6 +408,7 @@ class K2ModelItems extends K2Model
 	{
 
 		$mainframe = JFactory::getApplication();
+		$params = JComponentHelper::getParams('com_k2');
 		$db = JFactory::getDBO();
 		$cid = JRequest::getVar('cid', array(0), 'post', 'array');
 		$total = count($cid);
@@ -428,7 +429,6 @@ class K2ModelItems extends K2Model
 				}
 			}
 		}
-		$params = JComponentHelper::getParams('com_k2');
 		if (!$params->get('disableCompactOrdering'))
 		{
 			$groupings = array_unique($groupings);
@@ -447,11 +447,11 @@ class K2ModelItems extends K2Model
 	{
 
 		$mainframe = JFactory::getApplication();
+		$params = JComponentHelper::getParams('com_k2');
 		$cid = JRequest::getVar('cid');
 		$row = JTable::getInstance('K2Item', 'Table');
 		$row->load($cid[0]);
 		$row->move(-1, 'catid = '.(int)$row->catid.' AND trash=0');
-		$params = JComponentHelper::getParams('com_k2');
 		if (!$params->get('disableCompactOrdering'))
 			$row->reorder('catid = '.(int)$row->catid.' AND trash=0');
 		$cache = JFactory::getCache('com_k2');
@@ -465,11 +465,11 @@ class K2ModelItems extends K2Model
 	{
 
 		$mainframe = JFactory::getApplication();
+		$params = JComponentHelper::getParams('com_k2');
 		$cid = JRequest::getVar('cid');
 		$row = JTable::getInstance('K2Item', 'Table');
 		$row->load($cid[0]);
 		$row->move(1, 'catid = '.(int)$row->catid.' AND trash=0');
-		$params = JComponentHelper::getParams('com_k2');
 		if (!$params->get('disableCompactOrdering'))
 			$row->reorder('catid = '.(int)$row->catid.' AND trash=0');
 		$cache = JFactory::getCache('com_k2');
@@ -483,6 +483,7 @@ class K2ModelItems extends K2Model
 	{
 
 		$mainframe = JFactory::getApplication();
+		$params = JComponentHelper::getParams('com_k2');
 		$db = JFactory::getDBO();
 		$cid = JRequest::getVar('cid', array(0), 'post', 'array');
 		$total = count($cid);
@@ -503,7 +504,6 @@ class K2ModelItems extends K2Model
 				}
 			}
 		}
-		$params = JComponentHelper::getParams('com_k2');
 		if (!$params->get('disableCompactOrdering'))
 		{
 			$groupings = array_unique($groupings);
@@ -522,11 +522,11 @@ class K2ModelItems extends K2Model
 	{
 
 		$mainframe = JFactory::getApplication();
+		$params = JComponentHelper::getParams('com_k2');
 		$cid = JRequest::getVar('cid');
 		$row = JTable::getInstance('K2Item', 'Table');
 		$row->load($cid[0]);
 		$row->move(-1, 'featured=1 AND trash=0', 'featured_ordering');
-		$params = JComponentHelper::getParams('com_k2');
 		if (!$params->get('disableCompactOrdering'))
 			$row->reorder('featured=1 AND trash=0', 'featured_ordering');
 		$cache = JFactory::getCache('com_k2');
@@ -540,11 +540,11 @@ class K2ModelItems extends K2Model
 	{
 
 		$mainframe = JFactory::getApplication();
+		$params = JComponentHelper::getParams('com_k2');
 		$cid = JRequest::getVar('cid');
 		$row = JTable::getInstance('K2Item', 'Table');
 		$row->load($cid[0]);
 		$row->move(1, 'featured=1 AND trash=0', 'featured_ordering');
-		$params = JComponentHelper::getParams('com_k2');
 		if (!$params->get('disableCompactOrdering'))
 			$row->reorder('featured=1 AND trash=0', 'featured_ordering');
 		$cache = JFactory::getCache('com_k2');
@@ -628,10 +628,9 @@ class K2ModelItems extends K2Model
 
 	function copy($batch = false)
 	{
-
-		$mainframe = JFactory::getApplication();
 		jimport('joomla.filesystem.file');
 		jimport('joomla.filesystem.folder');
+		$mainframe = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
 		$itemModel = K2Model::getInstance('Item', 'K2Model');
 		$db = JFactory::getDBO();

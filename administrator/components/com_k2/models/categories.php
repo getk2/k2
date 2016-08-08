@@ -21,6 +21,7 @@ class K2ModelCategories extends K2Model
     {
 
         $mainframe = JFactory::getApplication();
+        $params = JComponentHelper::getParams('com_k2');
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
         $db = JFactory::getDBO();
@@ -28,7 +29,7 @@ class K2ModelCategories extends K2Model
         $limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
         $search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
-        $search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
+        $search = trim(preg_replace('/[^\p{L}\p{N}\s\"\-_]/u', '', $search));
         $filter_order = $mainframe->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'c.ordering', 'cmd');
         $filter_order_Dir = $mainframe->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', '', 'word');
         $filter_trash = $mainframe->getUserStateFromRequest($option.$view.'filter_trash', 'filter_trash', 0, 'int');
@@ -43,11 +44,70 @@ class K2ModelCategories extends K2Model
             $query .= " AND c.trash=0";
         }
 
-        if ($search)
-        {
-            $escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
-            $query .= " AND LOWER( c.name ) LIKE ".$db->Quote('%'.$escaped.'%', false);
-        }
+		if ($search)
+		{
+
+			// Detect exact search phrase using double quotes in search string
+			if(substr($search, 0, 1)=='"' && substr($search, -1)=='"')
+			{
+				$exact = true;
+			}
+			else
+			{
+				$exact = false;
+			}
+
+			// Now completely strip double quotes
+			$search = trim(str_replace('"', '', $search));
+
+			// Escape remaining string
+			$escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
+
+			// Full phrase or set of words
+			if(strpos($escaped, ' ')!==false && !$exact)
+			{
+				$escaped=explode(' ', $escaped);
+				$quoted = array();
+				foreach($escaped as $key=>$escapedWord)
+				{
+					$quoted[] = $db->Quote('%'.$escapedWord.'%', false);
+				}
+				if ($params->get('adminSearch') == 'full')
+				{
+					foreach($quoted as $quotedWord)
+					{
+						$query .= " AND ( ".
+							"LOWER(c.name) LIKE ".$quotedWord." ".
+							"OR LOWER(c.description) LIKE ".$quotedWord." ".
+							" )";
+					}
+				}
+				else
+				{
+					foreach($quoted as $quotedWord)
+					{
+						$query .= " AND LOWER(c.name) LIKE ".$quotedWord;
+					}
+				}
+			}
+			// Single word or exact phrase to search for (wrapped in double quotes in the search block)
+			else
+			{
+				$quoted = $db->Quote('%'.$escaped.'%', false);
+
+				if ($params->get('adminSearch') == 'full')
+				{
+					$query .= " AND ( ".
+						"LOWER(c.name) LIKE ".$quoted." ".
+						"OR LOWER(c.description) LIKE ".$quoted." ".
+						" )";
+				}
+				else
+				{
+					$query .= " AND LOWER(c.name) LIKE ".$quoted;
+				}
+			}
+		}
 
         if ($filter_state > -1)
         {
@@ -143,6 +203,7 @@ class K2ModelCategories extends K2Model
     {
 
         $mainframe = JFactory::getApplication();
+        $params = JComponentHelper::getParams('com_k2');
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
         $db = JFactory::getDBO();
@@ -150,7 +211,7 @@ class K2ModelCategories extends K2Model
         $limitstart = $mainframe->getUserStateFromRequest($option.'.limitstart', 'limitstart', 0, 'int');
         $search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
-        $search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
+        $search = trim(preg_replace('/[^\p{L}\p{N}\s\"\-_]/u', '', $search));
         $filter_trash = $mainframe->getUserStateFromRequest($option.$view.'filter_trash', 'filter_trash', 0, 'int');
         $filter_state = $mainframe->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', 1, 'int');
         $language = $mainframe->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
@@ -163,11 +224,70 @@ class K2ModelCategories extends K2Model
             $query .= " AND trash=0";
         }
 
-        if ($search)
-        {
-            $escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
-            $query .= " AND LOWER( name ) LIKE ".$db->Quote('%'.$escaped.'%', false);
-        }
+		if ($search)
+		{
+
+			// Detect exact search phrase using double quotes in search string
+			if(substr($search, 0, 1)=='"' && substr($search, -1)=='"')
+			{
+				$exact = true;
+			}
+			else
+			{
+				$exact = false;
+			}
+
+			// Now completely strip double quotes
+			$search = trim(str_replace('"', '', $search));
+
+			// Escape remaining string
+			$escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
+
+			// Full phrase or set of words
+			if(strpos($escaped, ' ')!==false && !$exact)
+			{
+				$escaped=explode(' ', $escaped);
+				$quoted = array();
+				foreach($escaped as $key=>$escapedWord)
+				{
+					$quoted[] = $db->Quote('%'.$escapedWord.'%', false);
+				}
+				if ($params->get('adminSearch') == 'full')
+				{
+					foreach($quoted as $quotedWord)
+					{
+						$query .= " AND ( ".
+							"LOWER(name) LIKE ".$quotedWord." ".
+							"OR LOWER(description) LIKE ".$quotedWord." ".
+							" )";
+					}
+				}
+				else
+				{
+					foreach($quoted as $quotedWord)
+					{
+						$query .= " AND LOWER(name) LIKE ".$quotedWord;
+					}
+				}
+			}
+			// Single word or exact phrase to search for (wrapped in double quotes in the search block)
+			else
+			{
+				$quoted = $db->Quote('%'.$escaped.'%', false);
+
+				if ($params->get('adminSearch') == 'full')
+				{
+					$query .= " AND ( ".
+						"LOWER(name) LIKE ".$quoted." ".
+						"OR LOWER(description) LIKE ".$quoted." ".
+						" )";
+				}
+				else
+				{
+					$query .= " AND LOWER(name) LIKE ".$quoted;
+				}
+			}
+		}
 
         if ($filter_state > -1)
         {
@@ -254,6 +374,7 @@ class K2ModelCategories extends K2Model
     {
 
         $mainframe = JFactory::getApplication();
+        $params = JComponentHelper::getParams('com_k2');
         $db = JFactory::getDBO();
         $cid = JRequest::getVar('cid', array(0), 'post', 'array');
         $total = count($cid);
@@ -274,7 +395,6 @@ class K2ModelCategories extends K2Model
                 }
             }
         }
-        $params = JComponentHelper::getParams('com_k2');
         if (!$params->get('disableCompactOrdering'))
         {
             $groupings = array_unique($groupings);
@@ -293,11 +413,11 @@ class K2ModelCategories extends K2Model
     {
 
         $mainframe = JFactory::getApplication();
+        $params = JComponentHelper::getParams('com_k2');
         $cid = JRequest::getVar('cid');
         $row = JTable::getInstance('K2Category', 'Table');
         $row->load($cid[0]);
         $row->move(-1, 'parent = '.$row->parent.' AND trash=0');
-        $params = JComponentHelper::getParams('com_k2');
         if (!$params->get('disableCompactOrdering'))
             $row->reorder('parent = '.(int)$row->parent.' AND trash=0');
         $cache = JFactory::getCache('com_k2');
@@ -311,11 +431,11 @@ class K2ModelCategories extends K2Model
     {
 
         $mainframe = JFactory::getApplication();
+        $params = JComponentHelper::getParams('com_k2');
         $cid = JRequest::getVar('cid');
         $row = JTable::getInstance('K2Category', 'Table');
         $row->load($cid[0]);
         $row->move(1, 'parent = '.$row->parent.' AND trash=0');
-        $params = JComponentHelper::getParams('com_k2');
         if (!$params->get('disableCompactOrdering'))
             $row->reorder('parent = '.(int)$row->parent.' AND trash=0');
         $cache = JFactory::getCache('com_k2');
