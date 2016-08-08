@@ -59,7 +59,6 @@ class K2ViewCategories extends K2View
 			}
 		}
 
-
 		for ($i = 0; $i < sizeof($categories); $i++)
 		{
 			$categories[$i]->status = K2_JVERSION == '15' ? JHTML::_('grid.published', $categories[$i], $i) : JHtml::_('jgrid.published', $categories[$i]->published, $i, '', $filter_trash == 0 && $task != 'element');
@@ -133,7 +132,7 @@ class K2ViewCategories extends K2View
 		$categoriesTree = $categoriesFilter;
 		$categories_options = @array_merge($categories_option, $categoriesFilter);
 		$lists['categories'] = JHTML::_('select.genericlist', $categories_options, 'filter_category', '', 'value', 'text', $filter_category);
-		
+
 		//Batch fields
 		$extraFieldsModel = K2Model::getInstance('ExtraFields', 'K2Model');
 		$extraFieldsGroups = $extraFieldsModel->getGroups();

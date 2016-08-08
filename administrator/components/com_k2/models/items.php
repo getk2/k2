@@ -36,7 +36,7 @@ class K2ModelItems extends K2Model
 		$filter_state = $mainframe->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
 		$search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
 		$search = JString::strtolower($search);
-		$search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
+		$search = trim(preg_replace('/[^\p{L}\p{N}\s\"\-_]/u', '', $search));
 		$tag = $mainframe->getUserStateFromRequest($option.$view.'tag', 'tag', 0, 'int');
 		$language = $mainframe->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
 
@@ -212,7 +212,7 @@ class K2ModelItems extends K2Model
 		$filter_state = $mainframe->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
 		$search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
 		$search = JString::strtolower($search);
-		$search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
+		$search = trim(preg_replace('/[^\p{L}\p{N}\s\"\-_]/u', '', $search));
 		$tag = $mainframe->getUserStateFromRequest($option.$view.'tag', 'tag', 0, 'int');
 		$language = $mainframe->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
 
@@ -227,16 +227,82 @@ class K2ModelItems extends K2Model
 
 		if ($search)
 		{
-			$escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
-			$quoted = $db->Quote('%'.$escaped.'%', false);
 
-			if ($params->get('adminSearch') == 'full')
+			// Detect exact search phrase using double quotes in search string
+			if(substr($search, 0, 1)=='"' && substr($search, -1)=='"')
 			{
-				$query .= " AND ( LOWER(i.title) LIKE ".$quoted." OR LOWER(i.introtext) LIKE ".$quoted." OR LOWER(i.`fulltext`) LIKE ".$quoted." OR LOWER(i.extra_fields_search) LIKE ".$quoted." OR LOWER(i.image_caption) LIKE ".$quoted." OR LOWER(i.image_credits) LIKE ".$quoted." OR LOWER(i.video_caption) LIKE ".$quoted." OR LOWER(i.video_credits) LIKE ".$quoted." OR LOWER(i.metadesc) LIKE ".$quoted." OR LOWER(i.metakey) LIKE ".$quoted.") ";
+				$exact = true;
 			}
 			else
 			{
-				$query .= " AND LOWER(i.title) LIKE ".$quoted;
+				$exact = false;
+			}
+
+			// Now completely strip double quotes
+			$search = trim(str_replace('"', '', $search));
+
+			// Escape remaining string
+			$escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
+
+			// Full phrase or set of words
+			if(strpos($escaped, ' ')!==false && !$exact)
+			{
+				$escaped=explode(' ', $escaped);
+				$quoted = array();
+				foreach($escaped as $key=>$escapedWord)
+				{
+					$quoted[] = $db->Quote('%'.$escapedWord.'%', false);
+				}
+				if ($params->get('adminSearch') == 'full')
+				{
+					foreach($quoted as $quotedWord)
+					{
+						$query .= " AND ( ".
+							"LOWER(i.title) LIKE ".$quotedWord." ".
+							"OR LOWER(i.introtext) LIKE ".$quotedWord." ".
+							"OR LOWER(i.`fulltext`) LIKE ".$quotedWord." ".
+							"OR LOWER(i.extra_fields_search) LIKE ".$quotedWord." ".
+							"OR LOWER(i.image_caption) LIKE ".$quotedWord." ".
+							"OR LOWER(i.image_credits) LIKE ".$quotedWord." ".
+							"OR LOWER(i.video_caption) LIKE ".$quotedWord." ".
+							"OR LOWER(i.video_credits) LIKE ".$quotedWord." ".
+							"OR LOWER(i.metadesc) LIKE ".$quotedWord." ".
+							"OR LOWER(i.metakey) LIKE ".$quotedWord." ".
+							" )";
+					}
+				}
+				else
+				{
+					foreach($quoted as $quotedWord)
+					{
+						$query .= " AND LOWER(i.title) LIKE ".$quotedWord;
+					}
+				}
+			}
+			// Single word or exact phrase to search for (wrapped in double quotes in the search block)
+			else
+			{
+				$quoted = $db->Quote('%'.$escaped.'%', false);
+
+				if ($params->get('adminSearch') == 'full')
+				{
+					$query .= " AND ( ".
+						"LOWER(i.title) LIKE ".$quoted." ".
+						"OR LOWER(i.introtext) LIKE ".$quoted." ".
+						"OR LOWER(i.`fulltext`) LIKE ".$quoted." ".
+						"OR LOWER(i.extra_fields_search) LIKE ".$quoted." ".
+						"OR LOWER(i.image_caption) LIKE ".$quoted." ".
+						"OR LOWER(i.image_credits) LIKE ".$quoted." ".
+						"OR LOWER(i.video_caption) LIKE ".$quoted." ".
+						"OR LOWER(i.video_credits) LIKE ".$quoted." ".
+						"OR LOWER(i.metadesc) LIKE ".$quoted." ".
+						"OR LOWER(i.metakey) LIKE ".$quoted." ".
+						" )";
+				}
+				else
+				{
+					$query .= " AND LOWER(i.title) LIKE ".$quoted;
+				}
 			}
 		}
 
