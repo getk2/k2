@@ -156,7 +156,16 @@ class K2ViewItems extends K2View
 		$this->assignRef('rows', $items);
 
 		$lists = array();
-		$lists['search'] = $search;
+
+		// Detect exact search phrase using double quotes in search string
+		if(substr($search, 0, 1)=='"' && substr($search, -1)=='"')
+		{
+			$lists['search'] = "&quot;".trim(str_replace('"', '', $search))."&quot;";
+		}
+		else
+		{
+			$lists['search'] = trim(str_replace('"', '', $search));
+		}
 
 		if (!$filter_order)
 		{
