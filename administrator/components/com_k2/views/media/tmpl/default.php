@@ -39,4 +39,6 @@ defined('_JEXEC') or die;
 		});
 	});
 </script>
-<div id="elfinder"></div>
+<div id="elfinderContainer">
+	<div id="elfinder"></div>
+</div>
