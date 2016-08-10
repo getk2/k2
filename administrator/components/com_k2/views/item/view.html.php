@@ -40,7 +40,7 @@ class K2ViewItem extends K2View
 			]
 		";
 		$document->addScriptDeclaration($js);
-		K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'models');
+		K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'models', 'K2Model');
 		$model = K2Model::getInstance('Item', 'K2Model', array('table_path' => JPATH_COMPONENT_ADMINISTRATOR.DS.'tables'));
 		$item = $model->getData();
 		JFilterOutput::objectHTMLSafe($item, ENT_QUOTES, array(
