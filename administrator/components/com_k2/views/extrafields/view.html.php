@@ -105,20 +105,20 @@ class K2ViewExtraFields extends K2View
 
         if (K2_JVERSION != '15')
         {
-            JToolBarHelper::preferences('com_k2', 550, 875, 'K2_PARAMETERS');
+            JToolBarHelper::preferences('com_k2', 580, 800, 'K2_PARAMETERS');
         }
         else
         {
             $toolbar = JToolBar::getInstance('toolbar');
-            $toolbar->appendButton('Popup', 'config', 'Parameters', 'index.php?option=com_k2&view=settings');
+            $toolbar->appendButton('Popup', 'config', 'K2_PARAMETERS', 'index.php?option=com_k2&view=settings', 800, 580);
         }
 
         $this->loadHelper('html');
         K2HelperHTML::subMenu();
-        
+
         $ordering = ($this->lists['order'] == 'ordering');
         $this->assignRef('ordering', $ordering);
-        
+
         // Joomla 3.0 drag-n-drop sorting variables
         if (K2_JVERSION == '30')
         {

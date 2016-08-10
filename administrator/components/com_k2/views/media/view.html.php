@@ -42,11 +42,11 @@ class K2ViewMedia extends K2View
             $toolbar = JToolBar::getInstance('toolbar');
             if (K2_JVERSION != '15')
             {
-                JToolBarHelper::preferences('com_k2', 550, 875, 'K2_PARAMETERS');
+                JToolBarHelper::preferences('com_k2', 580, 800, 'K2_PARAMETERS');
             }
             else
             {
-                $toolbar->appendButton('Popup', 'config', 'K2_PARAMETERS', 'index.php?option=com_k2&view=settings');
+                $toolbar->appendButton('Popup', 'config', 'K2_PARAMETERS', 'index.php?option=com_k2&view=settings', 800, 580);
             }
             JToolBarHelper::title(JText::_('K2_MEDIA_MANAGER'), 'k2.png');
             $this->loadHelper('html');

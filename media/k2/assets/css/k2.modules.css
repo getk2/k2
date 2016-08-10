@@ -7,54 +7,54 @@
  */
 
 /* categorieslatest.php, userslatest.php, users.php, items.php */
-.ui-sortable { padding:4px 0; position:relative; }
-#categoriesList li,#usersList li,#itemsList li { list-style:none; margin:4px 0; line-height:16px; height:16px; }
-.ui-sortable span { height:16px; line-height:16px; }
-.ui-sortable span.handle { cursor:move; }
-.ui-sortable img.remove { width:16px; height:16px; margin:0; margin-right:4px; cursor:pointer; float:left; }
+.ui-sortable {padding:4px 0;position:relative;}
+#categoriesList li,
+#usersList li,
+#itemsList li {list-style:none;margin:4px 0;line-height:16px;height:16px;}
+.ui-sortable span {height:16px;line-height:16px;}
+.ui-sortable span.handle {cursor:move;}
+.ui-sortable img.remove {width:16px;height:16px;margin:0;margin-right:4px;cursor:pointer;float:left;}
 
 /* header.php */
-.k2clr { clear:both; height:0; line-height:0; border:none; float:none; background:none; padding:0; margin:0; }
-.paramHeaderContainer15 { clear:both; font-weight:bold; font-size:12px; color:#369; margin:0; padding:0; float:left; width:100%; }
-#minwidth-body .paramHeaderContent { font-size:12px; color:#369; border-radius: 0; float: none; width: auto; margin: 0 -4px 5px; }
+.k2clr {clear:both;height:0;line-height:0;border:none;float:none;background:none;padding:0;margin:0;}
+.paramHeaderContainer15 {clear:both;font-weight:bold;font-size:12px;color:#369;margin:0;padding:0;float:left;width:100%;}
+#minwidth-body .paramHeaderContent {font-size:12px;color:#369;border-radius:0;float:none;width:auto;margin:0 -4px 5px;}
 
 /* Normalize module param width in Joomla 1.6+ */
-.pane-sliders ul.adminformlist { margin:0; padding:0; list-style:none; }
-.pane-sliders ul.adminformlist li { margin:0; padding:0; list-style:none; clear:both; }
-.pane-sliders ul.adminformlist li label { clear:left; background:#f6f6f6; border-bottom:1px solid #e9e9e9; border-right:1px solid #e9e9e9; margin:0 4px 1px 0; padding:4px; color:#666; font-weight:bold; text-align:right; font-size:11px; width:140px; }
+.pane-sliders ul.adminformlist {margin:0;padding:0;list-style:none;}
+.pane-sliders ul.adminformlist li {margin:0;padding:0;list-style:none;clear:both;}
+.pane-sliders ul.adminformlist li label {clear:left;background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-right:1px solid #e9e9e9;margin:0 4px 1px 0;padding:4px;color:#666;font-weight:bold;text-align:right;font-size:11px;width:140px;}
 .pane-sliders ul.adminformlist li fieldset {margin:0;}
-.pane-sliders ul.adminformlist li fieldset label { clear:none; width:auto; background:none; font-weight:normal; border:none; padding:0; text-align:left; margin:5px 0; width:auto; }
+.pane-sliders ul.adminformlist li fieldset label {clear:none;width:auto;background:none;font-weight:normal;border:none;padding:0;text-align:left;margin:5px 0;width:auto;}
 .pane-sliders ul.adminformlist li select,
 .pane-sliders ul.adminformlist li textarea,
-.pane-sliders ul.adminformlist li input[type="text"] { margin:0; }
+.pane-sliders ul.adminformlist li input[type="text"] {margin:0;}
 
 /* Joomla 1.6-1.7 configuration settings */
-body.contentpane ul.config-option-list li>label { background:#f6f6f6; border-bottom:1px solid #e9e9e9; border-right:1px solid #e9e9e9; color:#666; font-weight:bold; text-align:right; font-size:11px; width:150px; margin:0 0 1px; padding:4px; }
-body.contentpane div.current select { margin-bottom:0!important; }
-body.contentpane dl.tabs { padding-left:8px!important; }
-body.contentpane dl.tabs dt.open { background:#fff!important; border-bottom:1px solid #fff!important; }
+body.contentpane ul.config-option-list li>label {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-right:1px solid #e9e9e9;color:#666;font-weight:bold;text-align:right;font-size:11px;width:150px;margin:0 0 1px;padding:4px;}
+body.contentpane div.current select {margin-bottom:0!important;}
+body.contentpane dl.tabs {padding-left:8px!important;}
+body.contentpane dl.tabs dt.open {background:#fff!important;border-bottom:1px solid #fff!important;}
 
 /* Joomla 2.5 only */
-#minwidth-body .pane-sliders ul.adminformlist li > label { padding: 10px; }
-#minwidth-body .pane-sliders ul.adminformlist li fieldset { padding: 5px; }
-#minwidth-body .pane-sliders ul.adminformlist li .select2-container { max-width: 200px; }
+#minwidth-body .pane-sliders ul.adminformlist li > label {padding:10px;}
+#minwidth-body .pane-sliders ul.adminformlist li fieldset {padding:5px;}
+#minwidth-body .pane-sliders ul.adminformlist li .select2-container {max-width:200px;}
 
 /* Settings - Joomla 3.x */
-.paramHeaderContent { background: #e5f7fd; border-radius: 3px; line-height: 1; padding: 18px 25px; color: #346b93; font-size: 18px; }
-	.tab-pane > .control-group:first-child .paramHeaderContent { margin-top: 0; }
+.paramHeaderContent {background:#e5f7fd;border-radius:3px;line-height:1;padding:18px 25px;color:#346b93;font-size:18px;}
+	.tab-pane > .control-group:first-child .paramHeaderContent {margin-top:0;}
 
 .com_modules .form-horizontal .controls:not(#jform_menuselect) label,
 .com_modules .controls:not(#jform_menuselect) label,
-.com_menus .controls label, .com_config .controls label { min-width:85px;width:auto; text-align:center; border:1px solid #d4d6d8;line-height:33px;vertical-align:top;height:33px;font-size:12px;margin:0 -2px;padding:0 13px;
-color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background-color:#eff1f1;
-box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff; }
+.com_menus .controls label,
+.com_config .controls label {min-width:85px;width:auto;text-align:center;border:1px solid #d4d6d8;line-height:33px;vertical-align:top;height:33px;font-size:12px;margin:0 -2px;padding:0 13px;color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background-color:#eff1f1;box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff;}
 
-	.controls label:hover {cursor:pointer; box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 0 10px rgba(0,0,0,.15);}
-	.controls input[type="radio"] { opacity: 0; position: absolute; clip: rect(0,0,0,0); }
+	.controls label:hover {cursor:pointer;box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 0 10px rgba(0,0,0,.15);}
+	.controls input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);}
 
-	.controls label:first-of-type { border-radius: 3px 0 0 3px; }
-	.controls label:last-of-type { border-radius:  0 3px 3px 0; }
-
+	.controls label:first-of-type {border-radius:3px 0 0 3px;}
+	.controls label:last-of-type {border-radius: 0 3px 3px 0;}
 
 	/* Checked boxes - show/ Yes */
 	.com_modules .form-horizontal .controls:not(#jform_menuselect) input[value="1"]:checked + label,
@@ -62,7 +62,7 @@ box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff; }
 	.com_menus .controls input[value="1"]:checked + label,
 	.com_config .controls input[value="1"]:checked + label,
 	.controls input[value="1"]:checked + label,
-	label[id*="1-"].radio.isChecked  { background: #3fa800; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
+	label[id*="1-"].radio.isChecked {background:#3fa800;color:#fff;box-shadow:0 1px 1px rgba(65,64,66,.14);}
 
 	/* Checked boxes - hide/ No */
 	.com_modules .form-horizontal .controls:not(#jform_menuselect) input[value="0"]:checked + label,
@@ -70,35 +70,37 @@ box-shadow:0 1px 1px rgba(65,64,66,.14), inset 0 1px 0 #fff; }
 	.com_menus .controls input[value="0"]:checked + label,
 	.com_config .controls input[value="0"]:checked + label,
 	.controls input[value="0"]:checked + label,
-	label[id*="0-"].radio.isChecked { background: #bd362f; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
+	label[id*="0-"].radio.isChecked {background:#bd362f;color:#fff;box-shadow:0 1px 1px rgba(65,64,66,.14);}
 
 	/* Checked boxes - Generic */
-	label.isChecked { background: #63696f; color: #fff; box-shadow: 0 1px 1px rgba(65,64,66,.14); }
+	label.isChecked {background:#63696f;color:#fff;box-shadow:0 1px 1px rgba(65,64,66,.14);}
 
 
 /* Redefining the form */
-.form-horizontal .control-label:empty { display: none; }
-.form-horizontal .controls { margin-left: 0!important;  }
+.form-horizontal .control-label:empty {display:none;}
+.form-horizontal .controls {margin-left:0!important; }
 
-.form-horizontal .control-label {  min-width: 200px; max-width: 200px; }
-.form-horizontal .control-label label { font-size: 13px; font-weight: 700; color: #777778;  padding: 15px 10px 10px; line-height: 1; margin: 0; }
-.controls .radio, .controls .checkbox { padding-left: 0; }
+.form-horizontal .control-label { min-width:200px;max-width:200px;}
+.form-horizontal .control-label label {font-size:13px;font-weight:700;color:#777778; padding:15px 10px 10px;line-height:1;margin:0;}
+.controls .radio, .controls .checkbox {padding-left:0;}
 
 /* BS resets */
-.form-horizontal .control-group {margin-bottom: 15px; border-radius: 3px; }
-.form-horizontal .control-group:nth-child(2n-2) { background: #f7f7f7; }
+.form-horizontal .control-group {margin-bottom:15px;border-radius:3px;}
+.form-horizontal .control-group:nth-child(2n-2) {background:#f7f7f7;}
 
-.form-horizontal .controls > .radio:first-child, .form-horizontal .controls > .checkbox:first-child { padding-top: 10px; }
+.form-horizontal .controls > .radio:first-child, .form-horizontal .controls > .checkbox:first-child {padding-top:10px;}
 .k2Table .controls > .radio:first-child, .k2Table .controls > .checkbox:first-child,
-.k2GenericForm .controls > .radio:first-child, .k2GenericForm .controls > .checkbox:first-child { padding-top: 0px; }
+.k2GenericForm .controls > .radio:first-child, .k2GenericForm .controls > .checkbox:first-child {padding-top:0px;}
 
-.form-horizontal .controls fieldset { padding: 10px 0; }
-.form-horizontal .controls .chzn-container { margin: 15px 0; }
-.form-horizontal .controls input[type="text"], .form-horizontal .controls textarea, .form-horizontal .controls input[type="text"] + .btn { margin: 10px 0 15px 0; }
+.form-horizontal .controls fieldset {padding:10px 0;}
+.form-horizontal .controls .chzn-container {margin:15px 0;}
+.form-horizontal .controls input[type="text"],
+.form-horizontal .controls textarea,
+.form-horizontal .controls input[type="text"] + .btn {margin:10px 0 15px 0;}
 
 /* Tabs */
 ul#configTabs {margin:0 0 18px;padding:0;text-align:left;white-space:nowrap;list-style:none;}
-	ul#configTabs li { display:inline-block; margin:0 1px -1px; padding:0; }
+	ul#configTabs li {display:inline-block;margin:0 1px -1px;padding:0;}
 	ul#configTabs li a {display:block;padding:10px 21px;margin:0;background:#f0f2f2;font-size:14px;text-decoration:none;font-weight:normal;outline:0;border-radius:3px 3px 0 0;color:#6d6f71;border-bottom:1px solid #d4d7d9;}
 	ul#configTabs li a:hover {text-decoration:none;background-color:#f6f6f6;}
 	ul#configTabs li a i {margin-right:8px;color:#6d6f71;}
