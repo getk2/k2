@@ -76,7 +76,7 @@ span.k2GalleryNotice ,
 #k2ExtraFieldsValidationResults:before {background:url('../images/system/sprite-backend.png') no-repeat;overflow:hidden;text-align:left;}
 span.k2GalleryNotice {background-position:-79px -118px;width:16px;height:16px;}
 #k2ExtraFieldsValidationResults:before {content: '';float:left;margin-right:10px;background-position:-10px -92px;width:59px;height:54px;}
-.icon-48-k2{background-position:-10px -0px;width:95px;height:36px;}
+.icon-48-k2 {background-position:-10px -0px;height:36px;}
 body.com_k2 .page-title {background-position:-10px -46px;width:85px;height:36px;}
 .k2Inactive {background-position:-79px -92px;width:16px;height:16px;}
 .k2Active {background-position:-79px -144px;width:16px;height:16px;}
@@ -84,7 +84,7 @@ body.com_k2 .page-title {background-position:-10px -46px;width:85px;height:36px;
 
 .k2Toggler {display:block;width:16px;height:16px;margin:0 auto;padding:0;background-repeat:no-repeat;background-position:0 0;text-indent:-500px;overflow:hidden;}
 .k2Active {background-image:url(../images/system/tick.png);}
-.k2Inactive{background-image:url(../images/system/cross.png);}
+.k2Inactive {background-image:url(../images/system/cross.png);}
 
 .k2clr {clear:both;height:0;line-height:0;border:none;float:none;background:none;padding:0;margin:0;}
 
@@ -146,7 +146,7 @@ div.controls label.radio {display:inline-block;}
 div.k2Table {margin:0 0 20px 0;}
 div.k2Table .k2TableLabel > label {font-weight:normal;color:#777;}
 div.k2Table .k2TableValue {}
-div.k2Table .k2TableValue input[type="text"]{min-height:40px;line-height:40px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+div.k2Table .k2TableValue input[type="text"] {min-height:40px;line-height:40px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
 div.k2Table .k2TableValue:after {content:" ";display:block;margin-bottom:8px;}
 div.k2SubTable {margin-bottom:15px;}
 div.k2SubTable .k2SubTableLabel {display:inline-block;text-align:right;vertical-align:top;}
@@ -782,7 +782,7 @@ html.isJ15 #submenu li a {display:block;color:#777;font-size:14px;text-decoratio
 html.isJ25 #submenu li a.active,
 html.isJ15 #submenu li a.active {color:#0091ff;background:#f0f2f2;}
 html.isJ25 #submenu li a.active:before,
-html.isJ15 #submenu li a.active:before	{text-align:center;content:"\f0d8";font-family:"FontAwesome";color:#fff;position:absolute;font-size:32px;bottom:-2px;left:50%;margin-left:-16px;width:32px;text-shadow:0px -1px 1px #ccc;}
+html.isJ15 #submenu li a.active:before	 {text-align:center;content:"\f0d8";font-family:"FontAwesome";color:#fff;position:absolute;font-size:32px;bottom:-2px;left:50%;margin-left:-16px;width:32px;text-shadow:0px -1px 1px #ccc;}
 
 /* The list */
 .oldJ table.adminlist {border-spacing:0;}
