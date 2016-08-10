@@ -77,6 +77,8 @@ span.k2GalleryNotice ,
 span.k2GalleryNotice {background-position:-79px -118px;width:16px;height:16px;}
 #k2ExtraFieldsValidationResults:before {content: '';float:left;margin-right:10px;background-position:-10px -92px;width:59px;height:54px;}
 .icon-48-k2 {background-position:-10px -0px;height:36px;}
+.isJ15 .icon-48-k2,
+.isJ25 .icon-48-k2 {height:48px;}
 body.com_k2 .page-title {background-position:-10px -46px;width:85px;height:36px;}
 .k2Inactive {background-position:-79px -92px;width:16px;height:16px;}
 .k2Active {background-position:-79px -144px;width:16px;height:16px;}
