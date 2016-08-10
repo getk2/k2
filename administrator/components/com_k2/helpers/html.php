@@ -189,13 +189,15 @@ class K2HelperHTML
 				if ($view == 'media')
 				{
 					// Load latest version for the "media" view only
-			        $document->addStyleSheet('//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css?v='.K2_CURRENT_VERSION);
+
 					if ($handling == 'remote')
 					{
+						$document->addStyleSheet('//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css');
 						$document->addScript('//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js');
 					}
 					else if ($handling == 'local')
 					{
+						$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/jquery-ui-1.11.4.min.css');
 						$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-ui-1.11.4.min.js');
 					}
 				}
