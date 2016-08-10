@@ -133,7 +133,7 @@ class K2HelperHTML
 						$document->addStyleSheet('//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css');
 						$document->addScript('//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js');
 					}
-					else if ($backendJQueryHandling == 'local')
+					else
 					{
 						$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/jquery-ui-1.11.4.min.css');
 						$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-ui-1.11.4.min.js');
@@ -146,7 +146,7 @@ class K2HelperHTML
 					{
 						$document->addScript('//ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js');
 					}
-					else if ($backendJQueryHandling == 'local')
+					else
 					{
 						$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-ui-1.8.24.min.js');
 					}
