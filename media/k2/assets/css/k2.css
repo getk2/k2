@@ -302,7 +302,8 @@ box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
 .xmlParamsFields .paramValue input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);}
 .xmlParamsFields .paramValue input[type="text"],
 .xmlParamsFields .paramValue textarea,
-.xmlParamsFields .paramValue select {margin-left:20px;}
+.xmlParamsFields .paramValue select,
+.xmlParamsFields .paramValue div.chzn-container {margin-left:20px;}
 
 /* Check boxes - generic */
 .xmlParamsFields .paramValue input:checked + label {background:#63696f;color:#fff;box-shadow:0 1px 1px rgba(65,64,66,.14);}
@@ -319,18 +320,18 @@ box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
 .xmlParamsFields .paramLabel label {font-size:13px;font-weight:700;color:#777778;padding:10px 10px 10px 20px;line-height:1;margin:0;display:inline-block;vertical-align:middle;}
 .xmlParamsFields .paramValue,
 .xmlParamsFields .paramLabel {display:inline-block;vertical-align:middle;}
+.xmlParamsFields .paramLabel {width:30%;}
 .xmlParamsFields .paramLabel input[type="checkbox"] {margin-left:20px;display:inline-block;vertical-align:middle;position:relative;top:-2px;}
 .xmlParamsFields .paramLabel input[type="checkbox"] + label {padding-left:5px;}
-.xmlParamsFields .paramValue {width:100%;}
 
 .k2ScrollingContent > h3,
 .k2NavTabContent h3 {font-size:16px;font-weight:300;padding-bottom:16px;margin-top:25px;margin-bottom:15px;border-bottom:2px solid #dddedf;color:#00afec;}
 @media screen and (min-width:767px) {
-	.xmlParamsFields .paramValue {float:right;width:auto;}
+	.xmlParamsFields .paramValue {width:auto;}
 	.k2ScrollingContent > h3,
 	.k2NavTabContent h3 {font-size:24px;}
 	.xmlParamsFields .paramValue input[type="text"],
-	.xmlParamsFields .paramValue textarea {float:right;}
+	.xmlParamsFields .paramValue textarea {/*float:right;*/}
 }
 
 div#k2AdminContainer.isJ25 form#adminForm div.xmlParamsFields fieldset input {float:none!important;}

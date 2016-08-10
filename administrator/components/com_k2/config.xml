@@ -512,7 +512,7 @@
 		<param menu="hide" name="k2SefLabelUser" type="text" default="author" label="K2_SEF_URL_PREFIX_FOR_USERSAUTHORS" description="K2_SEF_URL_PREFIX_FOR_USERSAUTHORS_DESC" />
 		<param menu="hide" name="k2SefLabelSearch" type="text" default="search" label="K2_SEF_URL_PREFIX_FOR_SEARCH_RESULTS" description="K2_SEF_URL_PREFIX_FOR_SEARCH_RESULTS_DESC" />
 		<param menu="hide" name="k2SefLabelDate" type="text" default="date" label="K2_SEF_URL_PREFIX_FOR_DATE_LISTINGS" description="K2_SEF_URL_PREFIX_FOR_DATE_LISTINGS_DESC" />
-		<param menu="hide" name="k2SefLabelItem" type="radio" default="0" label="K2_SEF_URL_CATEGORY_PREFIX_FOR_ITEMS" description="K2_SEF_URL_CATEGORY_PREFIX_FOR_ITEMS_DESC">
+		<param menu="hide" name="k2SefLabelItem" type="list" default="0" label="K2_SEF_URL_CATEGORY_PREFIX_FOR_ITEMS" description="K2_SEF_URL_CATEGORY_PREFIX_FOR_ITEMS_DESC">
 			<option value="0">K2_NONE</option>
 			<option value="1">K2_SEF_USE_CATEGORY_NAME_WITH_ID</option>
 			<option value="2">K2_SEF_USE_CUSTOM_PREFIX</option>
@@ -522,7 +522,7 @@
 			<option value="0">K2_NO</option>
 			<option value="1">K2_YES</option>
 		</param>
-		<param menu="hide" name="k2SefItemIdTitleAliasSep" type="radio" default="dash" label="K2_SEF_ITEM_ID_TITLE_ALIAS_SEPARATOR" description="K2_SEF_ITEM_ID_TITLE_ALIAS_SEPARATOR_DESC">
+		<param menu="hide" name="k2SefItemIdTitleAliasSep" type="list" default="dash" label="K2_SEF_ITEM_ID_TITLE_ALIAS_SEPARATOR" description="K2_SEF_ITEM_ID_TITLE_ALIAS_SEPARATOR_DESC">
 			<option value="dash">K2_USE_A_DASH</option>
 			<option value="slash">K2_USE_A_FORWARD_SLASH</option>
 		</param>
@@ -534,7 +534,7 @@
 			<option value="0">K2_NO</option>
 			<option value="1">K2_YES</option>
 		</param>
-		<param menu="hide" name="k2SefCatIdTitleAliasSep" type="radio" default="dash" label="K2_SEF_CAT_ID_TITLE_ALIAS_SEPARATOR" description="K2_SEF_CAT_ID_TITLE_ALIAS_SEPARATOR_DESC">
+		<param menu="hide" name="k2SefCatIdTitleAliasSep" type="list" default="dash" label="K2_SEF_CAT_ID_TITLE_ALIAS_SEPARATOR" description="K2_SEF_CAT_ID_TITLE_ALIAS_SEPARATOR_DESC">
 			<option value="dash">K2_USE_A_DASH</option>
 			<option value="slash">K2_USE_A_FORWARD_SLASH</option>
 		</param>
@@ -1021,7 +1021,7 @@
 			<option value="1">K2_YES</option>
 		</field>
 		<field menu="hide" name="stopForumSpamApiKey" type="text" default="" label="K2_STOP_FORUM_SPAM_API_KEY" description="K2_STOP_FORUM_SPAM_API_KEY_DESCRIPTION" />
-		<field menu="hide" name="profilePageDisplay" type="radio" default="0" label="K2_USER_PROFILES_FOR_USERS_WITH_NO_ITEMS" description="K2_USER_PROFILES_FOR_USERS_WITH_NO_ITEMS_DESCRIPTION">
+		<field menu="hide" name="profilePageDisplay" type="list" default="0" label="K2_USER_PROFILES_FOR_USERS_WITH_NO_ITEMS" description="K2_USER_PROFILES_FOR_USERS_WITH_NO_ITEMS_DESCRIPTION">
 			<option value="0">K2_DISABLED</option>
 			<option value="1">K2_ENABLED</option>
 			<option value="2">K2_ENABLED_FOR_REGISTERED_USERS_ONLY</option>
@@ -1059,7 +1059,7 @@
 		<field menu="hide" name="k2SefLabelUser" type="text" default="author" label="K2_SEF_URL_PREFIX_FOR_USERSAUTHORS" description="K2_SEF_URL_PREFIX_FOR_USERSAUTHORS_DESC" />
 		<field menu="hide" name="k2SefLabelSearch" type="text" default="search" label="K2_SEF_URL_PREFIX_FOR_SEARCH_RESULTS" description="K2_SEF_URL_PREFIX_FOR_SEARCH_RESULTS_DESC" />
 		<field menu="hide" name="k2SefLabelDate" type="text" default="date" label="K2_SEF_URL_PREFIX_FOR_DATE_LISTINGS" description="K2_SEF_URL_PREFIX_FOR_DATE_LISTINGS_DESC" />
-		<field menu="hide" name="k2SefLabelItem" type="radio" default="0" label="K2_SEF_URL_CATEGORY_PREFIX_FOR_ITEMS" description="K2_SEF_URL_CATEGORY_PREFIX_FOR_ITEMS_DESC">
+		<field menu="hide" name="k2SefLabelItem" type="list" default="0" label="K2_SEF_URL_CATEGORY_PREFIX_FOR_ITEMS" description="K2_SEF_URL_CATEGORY_PREFIX_FOR_ITEMS_DESC">
 			<option value="0">K2_NONE</option>
 			<option value="1">K2_SEF_USE_CATEGORY_NAME_WITH_ID</option>
 			<option value="2">K2_SEF_USE_CUSTOM_PREFIX</option>
@@ -1069,7 +1069,7 @@
 			<option value="0">K2_NO</option>
 			<option value="1">K2_YES</option>
 		</field>
-		<field menu="hide" name="k2SefItemIdTitleAliasSep" type="radio" default="dash" label="K2_SEF_ITEM_ID_TITLE_ALIAS_SEPARATOR" description="K2_SEF_ITEM_ID_TITLE_ALIAS_SEPARATOR_DESC">
+		<field menu="hide" name="k2SefItemIdTitleAliasSep" type="list" default="dash" label="K2_SEF_ITEM_ID_TITLE_ALIAS_SEPARATOR" description="K2_SEF_ITEM_ID_TITLE_ALIAS_SEPARATOR_DESC">
 			<option value="dash">K2_USE_A_DASH</option>
 			<option value="slash">K2_USE_A_FORWARD_SLASH</option>
 		</field>
@@ -1081,7 +1081,7 @@
 			<option value="0">K2_NO</option>
 			<option value="1">K2_YES</option>
 		</field>
-		<field menu="hide" name="k2SefCatIdTitleAliasSep" type="radio" default="dash" label="K2_SEF_CAT_ID_TITLE_ALIAS_SEPARATOR" description="K2_SEF_CAT_ID_TITLE_ALIAS_SEPARATOR_DESC">
+		<field menu="hide" name="k2SefCatIdTitleAliasSep" type="list" default="dash" label="K2_SEF_CAT_ID_TITLE_ALIAS_SEPARATOR" description="K2_SEF_CAT_ID_TITLE_ALIAS_SEPARATOR_DESC">
 			<option value="dash">K2_USE_A_DASH</option>
 			<option value="slash">K2_USE_A_FORWARD_SLASH</option>
 		</field>
