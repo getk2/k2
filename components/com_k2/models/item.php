@@ -99,11 +99,11 @@ class K2ModelItem extends K2Model
 		$item->params->merge($cparams);
 		$item->params->merge($iparams);
 
-		//Edit link
+		// Edit link
 		if (K2HelperPermissions::canEditItem($item->created_by, $item->catid))
 			$item->editLink = JRoute::_('index.php?option=com_k2&view=item&task=edit&cid='.$item->id.'&tmpl=component');
 
-		//Tags
+		// Tags
 		if (($view == 'item' && ($item->params->get('itemTags') || $item->params->get('itemRelated'))) || ($view == 'itemlist' && ($task == '' || $task == 'category') && $item->params->get('catItemTags')) || ($view == 'itemlist' && $task == 'user' && $item->params->get('userItemTags')) || ($view == 'latest' && $params->get('latestItemTags')))
 		{
 			$tags = $this->getItemTags($item->id);
@@ -114,7 +114,7 @@ class K2ModelItem extends K2Model
 			$item->tags = $tags;
 		}
 
-		//Image
+		// Image
 		$item->imageXSmall = '';
 		$item->imageSmall = '';
 		$item->imageMedium = '';
@@ -178,19 +178,19 @@ class K2ModelItem extends K2Model
 			}
 		}
 
-		//Extra fields
+		// Extra fields
 		if ((($view == 'item' || $view == 'relatedByTag') && $item->params->get('itemExtraFields')) || ($view == 'itemlist' && ($task == '' || $task == 'category') && $item->params->get('catItemExtraFields')) || ($view == 'itemlist' && $task == 'tag' && $item->params->get('tagItemExtraFields')) || ($view == 'itemlist' && ($task == 'search' || $task == 'date') && $item->params->get('genericItemExtraFields')))
 		{
 			$item->extra_fields = $this->getItemExtraFields($item->extra_fields, $item);
 		}
 
-		//Attachments
+		// Attachments
 		if (($view == 'item' && $item->params->get('itemAttachments')) || ($view == 'itemlist' && ($task == '' || $task == 'category') && $item->params->get('catItemAttachments')))
 		{
 			$item->attachments = $this->getItemAttachments($item->id);
 		}
 
-		//Rating
+		// Rating
 		if (($view == 'item' && $item->params->get('itemRating')) || ($view == 'itemlist' && ($task == '' || $task == 'category') && $item->params->get('catItemRating')))
 		{
 			$item->votingPercentage = $this->getVotesPercentage($item->id);
@@ -198,7 +198,7 @@ class K2ModelItem extends K2Model
 
 		}
 
-		//Filtering
+		// Filtering
 		if ($params->get('introTextCleanup'))
 		{
 			$filterTags = preg_split('#[,\s]+#', trim($params->get('introTextCleanupExcludeTags')));
@@ -232,7 +232,7 @@ class K2ModelItem extends K2Model
 		$item->title = htmlspecialchars($item->title, ENT_QUOTES);
 		$item->image_caption = htmlspecialchars($item->image_caption, ENT_QUOTES);
 
-		//Author
+		// Author
 		$metaAuthor = K2_JVERSION != '15' && $application->getCfg('MetaAuthor');
 		if ($metaAuthor || ($view == 'item' && ($item->params->get('itemAuthorBlock') || $item->params->get('itemAuthor'))) ||  ($view == 'itemlist' && ($task == '' || $task == 'category') && ($item->params->get('catItemAuthorBlock') || $item->params->get('catItemAuthor'))) || ($view == 'itemlist' && $task == 'user') || ($view == 'relatedByTag'))
 		{
@@ -262,7 +262,7 @@ class K2ModelItem extends K2Model
 
 		}
 
-		//Num of comments
+		// Num of comments
 		if ($params->get('comments', 0) > 0)
 		{
 			$user = JFactory::getUser();
@@ -287,15 +287,15 @@ class K2ModelItem extends K2Model
 		$params = K2HelperUtilities::getParams('com_k2');
 		$limitstart = 0;
 		$view = JRequest::getCmd('view');
-		//Category
+		// Category
 		$category = JTable::getInstance('K2Category', 'Table');
 		$category->load($item->catid);
 		$item->category = $category;
 
-		//Read more link
+		// Read more link
 		$item->link = urldecode(JRoute::_(K2HelperRoute::getItemRoute($item->id.':'.$item->alias, $item->catid.':'.urlencode($item->category->alias))));
 
-		//Filtering
+		// Filtering
 		if ($params->get('introTextCleanup'))
 		{
 			$filterTags = preg_split('#[,\s]+#', trim($params->get('introTextCleanupExcludeTags')));
@@ -312,20 +312,20 @@ class K2ModelItem extends K2Model
 			$item->fulltext = $filter->clean($item->fulltext);
 		}
 
-		//Description
+		// Description
 		$item->description = '';
 
-		//Item image
+		// Item image
 		if ($params->get('feedItemImage') && JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_'.$params->get('feedImgSize').'.jpg'))
 		{
 			$altText = $item->image_caption ? $item->image_caption : $item->title;
 			$item->description .= '<div class="K2FeedImage"><img src="'.JURI::root().'media/k2/items/cache/'.md5('Image'.$item->id).'_'.$params->get('feedImgSize').'.jpg" alt="'.$altText.'" /></div>';
 		}
 
-		//Item Introtext
+		// Item Introtext
 		if ($params->get('feedItemIntroText'))
 		{
-			//Introtext word limit
+			// Introtext word limit
 			if ($params->get('feedTextWordLimit') && $item->introtext)
 			{
 				$item->introtext = K2HelperUtilities::wordLimit($item->introtext, $params->get('feedTextWordLimit'));
@@ -333,13 +333,13 @@ class K2ModelItem extends K2Model
 			$item->description .= '<div class="K2FeedIntroText">'.$item->introtext.'</div>';
 		}
 
-		//Item Fulltext
+		// Item Fulltext
 		if ($params->get('feedItemFullText') && $item->fulltext)
 		{
 			$item->description .= '<div class="K2FeedFullText">'.$item->fulltext.'</div>';
 		}
 
-		//Item Tags
+		// Item Tags
 		if ($params->get('feedItemTags'))
 		{
 			$tags = $this->getItemTags($item->id);
@@ -354,7 +354,7 @@ class K2ModelItem extends K2Model
 			}
 		}
 
-		//Item Video
+		// Item Video
 		if ($params->get('feedItemVideo') && $item->video)
 		{
 			if (!empty($item->video) && JString::substr($item->video, 0, 1) !== '{')
@@ -394,7 +394,7 @@ class K2ModelItem extends K2Model
 			}
 		}
 
-		//Item gallery
+		// Item gallery
 		if ($params->get('feedItemGallery') && $item->gallery)
 		{
 			$params->set('galleries_rootfolder', 'media/k2/galleries');
@@ -422,7 +422,7 @@ class K2ModelItem extends K2Model
 			$item->description .= '<div class="K2FeedGallery">'.$item->text.'</div>';
 		}
 
-		//Item attachments
+		// Item attachments
 		if ($params->get('feedItemAttachments'))
 		{
 			$attachments = $this->getItemAttachments($item->id);
@@ -437,7 +437,7 @@ class K2ModelItem extends K2Model
 			}
 		}
 
-		//Author
+		// Author
 		if (!empty($item->created_by_alias))
 		{
 			if(!isset($item->author))
@@ -536,7 +536,7 @@ class K2ModelItem extends K2Model
 		jimport('joomla.filesystem.folder');
 		$params = K2HelperUtilities::getParams('com_k2');
 		$limitstart = JRequest::getInt('limitstart');
-		//Import plugins
+		// Import plugins
 		$dispatcher = JDispatcher::getInstance();
 		JPluginHelper::importPlugin('content');
 
@@ -554,7 +554,7 @@ class K2ModelItem extends K2Model
 			$item->gallery = null;
 		}
 
-		//Gallery
+		// Gallery
 		if (($view == 'item' && $item->params->get('itemImageGallery')) || ($view == 'itemlist' && ($task == '' || $task == 'category') && $item->params->get('catItemImageGallery')) || ($view == 'relatedByTag'))
 		{
 			if ($item->gallery)
@@ -614,7 +614,7 @@ class K2ModelItem extends K2Model
 			}
 		}
 
-		//Video
+		// Video
 		if (($view == 'item' && $item->params->get('itemVideo')) || ($view == 'itemlist' && ($task == '' || $task == 'category') && $item->params->get('catItemVideo')) || ($view == 'latest' && $item->params->get('latestItemVideo')) || ($view == 'relatedByTag'))
 		{
 			if (!empty($item->video) && JString::substr($item->video, 0, 1) !== '{')
@@ -677,7 +677,7 @@ class K2ModelItem extends K2Model
 
 		}
 
-		//Plugins
+		// Plugins
 		$item->text = '';
 		$params->set('vfolder', NULL);
 		$params->set('afolder', NULL);
@@ -811,7 +811,7 @@ class K2ModelItem extends K2Model
 
 		}
 
-		//K2 plugins
+		// K2 plugins
 		$item->event->K2BeforeDisplay = '';
 		$item->event->K2AfterDisplay = '';
 		$item->event->K2AfterDisplayTitle = '';
@@ -930,15 +930,15 @@ class K2ModelItem extends K2Model
 		$mainframe = JFactory::getApplication();
 		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
 
-		//Get item
+		// Get item
 		$item = JTable::getInstance('K2Item', 'Table');
 		$item->load(JRequest::getInt('itemID'));
 
-		//Get category
+		// Get category
 		$category = JTable::getInstance('K2Category', 'Table');
 		$category->load($item->catid);
 
-		//Access check
+		// Access check
 		$user = JFactory::getUser();
 		if (K2_JVERSION != '15')
 		{
@@ -955,7 +955,7 @@ class K2ModelItem extends K2Model
 			}
 		}
 
-		//Published check
+		// Published check
 		if (!$item->published || $item->trash)
 		{
 			JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
@@ -1161,11 +1161,6 @@ class K2ModelItem extends K2Model
 
 			$row->commentText = JRequest::getString('commentText', '', 'default');
 			$row->commentText = strip_tags($row->commentText);
-			// Strip 'a' tags since all urls will be converted to links automatically on runtime.
-			// Additionaly strip tables to avoid layout issues.
-			// Also strip all attributes except src, alt and title.
-			//$filter = new JFilterInput(array('a', 'table'), array('src', 'alt', 'title'), 1);
-			//$row->commentText = $filter->clean( $row->commentText );
 
 			// Clean vars
 			$filter = JFilterInput::getInstance();
@@ -1755,7 +1750,7 @@ class K2ModelItem extends K2Model
     }
     else
     {
-      // Clean up SigPro
+      // Clean up SIGPro
       $sigProFolder = JRequest::getCmd('sigProFolder');
       if($sigProFolder && !is_numeric($sigProFolder) && JFolder::exists(JPATH_SITE.'/media/k2/galleries/'.$sigProFolder))
       {
