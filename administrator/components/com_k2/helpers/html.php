@@ -196,6 +196,9 @@ class K2HelperHTML
 					}
 				}
 
+				$isBackend = ($application->isAdmin()) ? ' k2IsBackend' : '';
+				$isTask = ($task) ? ' k2TaskIs'.ucfirst($task) : '';
+				$cssClass = 'isJ'.K2_JVERSION.' k2ViewIs'.ucfirst($view).''.$isTask.''.$isBackend;
 				$document->addScriptDeclaration('
 
 					// Set K2 version as global JS variable
@@ -203,7 +206,7 @@ class K2HelperHTML
 
 					// Set Joomla version as body tag
 					(function(){
-						var addedClass = "isJ'.K2_JVERSION.' k2ViewIs'.ucfirst($view).' k2TaskIs'.ucfirst(JRequest::getCmd('task')).'";
+						var addedClass = "'.$cssClass.'";
 						if (document.getElementsByTagName("html")[0].className !== "") {
 							document.getElementsByTagName("html")[0].className += " "+addedClass;
 						} else {
