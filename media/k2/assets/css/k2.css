@@ -607,7 +607,7 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 /* Admin - Media Manager */
 .K2AdminViewMedia {border-left:1px solid #d3d3d3;border-bottom:1px solid #d3d3d3;}
 	#elfinderContainer {width:auto;padding:4px;margin:0;}
-		.isJ30 #elfinder input {width:95%;} /* Fix for Joomla 3.2 CSS... */
+		.isJ30 #elfinder input {width:95%;} /* Fix for Joomla 3.2+ */
 
 /* Lists - Generic styling */
 #k2AdminContainer {position:relative;width:auto;clear:both;margin-bottom:10px;}

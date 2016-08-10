@@ -198,7 +198,7 @@ class K2HelperHTML
 
 				$document->addScriptDeclaration('
 
-					// Set K2 version as global JS var
+					// Set K2 version as global JS variable
 					K2JVersion = "'.K2_JVERSION.'";
 
 					// Set Joomla version as body tag
