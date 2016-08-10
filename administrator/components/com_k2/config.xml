@@ -405,10 +405,6 @@
 			<option value="0">K2_NO</option>
 			<option value="1">K2_YES</option>
 		</param>
-		<param menu="hide" name="sideBarDisplay" type="radio" default="1" label="K2_DEFAULT_STATE_FOR_THE_ITEM_FORM_SIDEBAR" description="">
-			<option value="0">K2_HIDDEN</option>
-			<option value="1">K2_SHOWN</option>
-		</param>
 		<param menu="hide" name="attachmentsFolder" type="text" default="" size="40" label="K2_CHANGE_ROOT_ATTACHMENTS_FOLDER" description="K2_ENTER_THE_RELATIVE_PATH_TO_THE_FOLDER_FOR_STORING_ATTACHMENTS_LEAVE_THIS_BLANK_TO_USE_THE_DEFAULT_K2_ATTACHMENTS_FOLDER_MEDIAK2ATTACHMENTS_IF_YOU_CHANGE_THIS_SETTING_AT_ANY_POINT_REMEMBER_TO_MOVE_YOUR_FILES_FROM_THE_OLD_FOLDER_TO_THE_NEWLY_CREATED_ONE" />
 		<param menu="hide" name="hideImportButton" type="radio" default="0" label="K2_HIDE_IMPORT_BUTTONS" description="K2_HIDE_IMPORT_JOOMLA_CONTENT_AND_IMPORT_JOOMLA_USERS_BUTTONS">
 			<option value="0">K2_NO</option>
@@ -951,10 +947,6 @@
 		<field menu="hide" name="mergeEditors" type="radio" default="1" label="K2_USE_ONE_EDITOR_WINDOW_FOR_INTROTEXT_FULLTEXT" description="">
 			<option value="0">K2_NO</option>
 			<option value="1">K2_YES</option>
-		</field>
-		<field menu="hide" name="sideBarDisplay" type="radio" default="1" label="K2_DEFAULT_STATE_FOR_THE_ITEM_FORM_SIDEBAR" description="">
-			<option value="0">K2_HIDDEN</option>
-			<option value="1">K2_SHOWN</option>
 		</field>
 		<field menu="hide" name="attachmentsFolder" type="text" default="" size="40" label="K2_CHANGE_ROOT_ATTACHMENTS_FOLDER" description="K2_ENTER_THE_RELATIVE_PATH_TO_THE_FOLDER_FOR_STORING_ATTACHMENTS_LEAVE_THIS_BLANK_TO_USE_THE_DEFAULT_K2_ATTACHMENTS_FOLDER_MEDIAK2ATTACHMENTS_IF_YOU_CHANGE_THIS_SETTING_AT_ANY_POINT_REMEMBER_TO_MOVE_YOUR_FILES_FROM_THE_OLD_FOLDER_TO_THE_NEWLY_CREATED_ONE" />
 		<field menu="hide" name="hideImportButton" type="radio" default="0" label="K2_HIDE_IMPORT_BUTTONS" description="K2_HIDE_IMPORT_JOOMLA_CONTENT_AND_IMPORT_JOOMLA_USERS_BUTTONS">

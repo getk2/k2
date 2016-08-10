@@ -222,7 +222,6 @@
 		<param name="sideBarDisplayFrontend" default="0" />
 		<!-- ######################### Advanced Settings ######################### -->
 		<param name="mergeEditors" default="1" />
-		<param name="sideBarDisplay" default="1" />
 		<param name="attachmentsFolder" default="" />
 		<param name="hideImportButton" default="0" />
 		<param name="googleSearch" default="0" />
