@@ -31,7 +31,7 @@ div#k2QuickIconsTitle a span { display:none; }
 	.tags { background-position: -10px -870px; width: 48px; height: 48px; }
 	.k2logo { background-position: -4px -924px; }
 
-/* Joomla! 1.5 */
+/* Joomla 1.5 */
 #k2QuickIcons15 {clear:both;margin:-1px 0 8px 0;padding:8px 0;border-top:1px solid #d5d5d5;position:relative;z-index:8;}
 #k2QuickIcons15.k2NoLogo {margin:0 0 8px 0;padding:0;border:none;}
 	#k2QuickIcons15 div.icon-wrapper {float:left;}
@@ -41,7 +41,7 @@ div#k2QuickIconsTitle a span { display:none; }
 				#k2QuickIcons15 div.icon a img { padding:10px 0; margin:0 auto; }
 				#k2QuickIcons15 div.icon a span { display:block; text-align:center; }
 
-/* Joomla! 1.6+ */
+/* Joomla 1.6+ */
 #k2QuickIcons { clear:both; margin:-1px 0 8px; padding:8px 0; border-top:1px solid #d5d5d5; position:relative; z-index:8; }
 #k2QuickIcons.k2NoLogo { margin:0 0 8px; padding:0; border:none; }
 	#k2QuickIcons div.icon-wrapper { float:left; display: block !important; width: auto !important; height :auto!important; line-height:12px !important; background: none; }

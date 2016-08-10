@@ -66,7 +66,7 @@ if ($user->guest)
     // Get user stuff (do not edit)
     $usersConfig = JComponentHelper::getParams('com_users');
 
-    // Define some variables depending on Joomla! version
+    // Define some variables depending on Joomla version
     $passwordFieldName = K2_JVERSION != '15' ? 'password' : 'passwd';
     $resetLink = JRoute::_((K2_JVERSION != '15') ? 'index.php?option=com_users&view=reset&Itemid='.UsersHelperRoute::getResetRoute() : 'index.php?option=com_user&view=reset');
     $remindLink = JRoute::_((K2_JVERSION != '15') ? 'index.php?option=com_users&view=remind&Itemid='.UsersHelperRoute::getRemindRoute() : 'index.php?option=com_user&view=remind');

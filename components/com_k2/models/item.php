@@ -1565,7 +1565,7 @@ class K2ModelItem extends K2Model
 
 							case 'lightbox' :
 
-								// Joomla! modal required
+								// Joomla modal required
 								if (!defined('K2_JOOMLA_MODAL_REQUIRED'))
 									define('K2_JOOMLA_MODAL_REQUIRED', true);
 

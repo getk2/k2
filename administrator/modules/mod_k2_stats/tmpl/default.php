@@ -10,8 +10,8 @@
 // no direct access
 defined('_JEXEC') or die;
 
-// Quick and dirty fix for Joomla! 3.0 missing CSS tabs when creating tabs using the API.
-// Should be removed when Joomla! fixes that...
+// Quick and dirty fix for Joomla 3.0 missing CSS tabs when creating tabs using the API.
+// Should be removed when Joomla fixes that...
 if (K2_JVERSION == '30')
 {
 	$document = JFactory::getDocument();
@@ -24,7 +24,7 @@ if (K2_JVERSION == '30')
 ');
 }
 
-// Import Joomla! tabs
+// Import Joomla tabs
 jimport('joomla.html.pane');
 
 ?>

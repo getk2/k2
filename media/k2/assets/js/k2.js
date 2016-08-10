@@ -699,7 +699,7 @@ function extraFieldsImage() {
     });
 }
 
-// If we are in Joomla! 1.5 define the functions for validation
+// If we are in Joomla 1.5 define the functions for validation
 if ( typeof (Joomla) === 'undefined') {
     var Joomla = {};
     Joomla.submitbutton = function(pressbutton) {

@@ -145,7 +145,7 @@ defined('_JEXEC') or die;
 			<?php endforeach; ?>
 			<?php endif; ?>
 
-			<!-- Joomla! 1.6+ JForm implementation -->
+			<!-- Joomla 1.6+ JForm implementation -->
 			<?php if(isset($this->form)): ?>
 			<?php foreach ($this->form->getFieldsets() as $fieldset): // Iterate through the form fieldsets and display each one.?>
 				<?php if($fieldset->name != 'default'): ?>

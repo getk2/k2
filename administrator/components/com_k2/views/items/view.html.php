@@ -362,7 +362,7 @@ class K2ViewItems extends K2View
 		$table = JTable::getInstance('K2Item', 'Table');
 		$this->assignRef('table', $table);
 
-		// Joomla! 3.0 drag-n-drop sorting variables
+		// Joomla 3.0 drag-n-drop sorting variables
 		if (K2_JVERSION == '30')
 		{
 			if ($ordering)

@@ -18,7 +18,7 @@
         <fields name="params">
             <fieldset name="basic" addfieldpath="/administrator/components/com_k2/elements/">
                 <field name="moduleclass_sfx" type="text" default="" label="K2_MODULE_CLASS_SUFFIX" description="K2_MODULE_CLASS_SUFFIX_DESCRIPTION"/>
-                <field name="getTemplate" type="moduletemplate" modulename="mod_k2_users" default="Default" label="K2_SELECT_SUBTEMPLATE" description="This module utilizes on-the-fly MVC template overrides. What this means is that you can create a new sub-template folder for this module within your Joomla! template's /html/mod_k2_users/ folder. The module will then pickup the new sub-template auto-magically, without you editing any XML file or doing any other non-designer work!"/>
+                <field name="getTemplate" type="moduletemplate" modulename="mod_k2_users" default="Default" label="K2_SELECT_SUBTEMPLATE" description="This module utilizes on-the-fly MVC template overrides. What this means is that you can create a new sub-template folder for this module within your Joomla template's /html/mod_k2_users/ folder. The module will then pickup the new sub-template auto-magically, without you editing any XML file or doing any other non-designer work!"/>
                 <field name="source" type="list" default="0" label="K2_SOURCE" description="">
                     <option value="filter">K2_RETRIEVE_USERS_USING_FILTERS</option>
                     <option value="specific">K2_RETRIEVE_SPECIFIC_USERS</option>

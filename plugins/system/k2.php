@@ -17,7 +17,7 @@ class plgSystemK2 extends JPlugin
 
 	function onAfterInitialise()
 	{
-		// Determine Joomla! version
+		// Determine Joomla version
 		if (version_compare(JVERSION, '3.0', 'ge'))
 		{
 			define('K2_JVERSION', '30');
@@ -41,7 +41,7 @@ class plgSystemK2 extends JPlugin
 			define('DS', DIRECTORY_SEPARATOR);
 		}
 
-		// Import Joomla! classes
+		// Import Joomla classes
 		jimport('joomla.filesystem.file');
 		jimport('joomla.filesystem.folder');
 		jimport('joomla.application.component.controller');
@@ -61,7 +61,7 @@ class plgSystemK2 extends JPlugin
 		}
 		else
 		{
-			// Fix warning under Joomla! 1.5 caused by conflict in model names
+			// Fix warning under Joomla 1.5 caused by conflict in model names
 			if (K2_JVERSION != '15' || (K2_JVERSION == '15' && JRequest::getCmd('option') != 'com_users'))
 			{
 				K2Model::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'models');
@@ -487,7 +487,7 @@ class plgSystemK2 extends JPlugin
 		// jQuery and K2 JS loading
 		K2HelperHTML::loadHeadIncludes();
 
-		// Joomla! modal trigger
+		// Joomla modal trigger
 		if ( !$user->guest || (JRequest::getCmd('option') == 'com_k2' && JRequest::getCmd('view') == 'item') || defined('K2_JOOMLA_MODAL_REQUIRED') ){
 			$document->addScript(JUri::root(true).'/media/k2/assets/js/jquery.magnific-popup.min.js?v='.K2_CURRENT_VERSION);
 			$document->addStyleSheet(JUri::root(true).'/media/k2/assets/css/magnific-popup.css?v='.K2_CURRENT_VERSION);
@@ -772,7 +772,7 @@ class plgSystemK2 extends JPlugin
 
 			$view->assignRef('K2User', $K2User);
 
-			// Asssign some variables depending on Joomla! version
+			// Asssign some variables depending on Joomla version
 			$nameFieldName = K2_JVERSION != '15' ? 'jform[name]' : 'name';
 			$view->assignRef('nameFieldName', $nameFieldName);
 			$emailFieldName = K2_JVERSION != '15' ? 'jform[email1]' : 'email';

@@ -514,7 +514,7 @@ class K2ViewItem extends K2View
 			}
 		}
 
-		// Menu metadata for Joomla! 2.5+ (overrides the current metadata if set)
+		// Menu metadata for Joomla 2.5+ (overrides the current metadata if set)
 		if (K2_JVERSION != '15')
 		{
 
@@ -607,7 +607,7 @@ class K2ViewItem extends K2View
 		$this->_addPath('template', JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2'.DS.'templates');
 		$this->_addPath('template', JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2'.DS.'templates'.DS.'default');
 
-		// Look for overrides in template folder (Joomla! template structure)
+		// Look for overrides in template folder (Joomla template structure)
 		$this->_addPath('template', JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2'.DS.'default');
 		$this->_addPath('template', JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2');
 

@@ -229,7 +229,7 @@ class K2ViewCategories extends K2View
 		$ordering = (($this->lists['order'] == 'c.ordering' || $this->lists['order'] == 'c.parent, c.ordering') && (!$this->filter_trash));
 		$this->assignRef('ordering', $ordering);
 
-		// Joomla! 3.0 drag-n-drop sorting variables
+		// Joomla 3.0 drag-n-drop sorting variables
 		if (K2_JVERSION == '30')
 		{
 			if ($ordering)

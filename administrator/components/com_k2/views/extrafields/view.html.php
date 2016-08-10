@@ -119,7 +119,7 @@ class K2ViewExtraFields extends K2View
         $ordering = ($this->lists['order'] == 'ordering');
         $this->assignRef('ordering', $ordering);
         
-        // Joomla! 3.0 drag-n-drop sorting variables
+        // Joomla 3.0 drag-n-drop sorting variables
         if (K2_JVERSION == '30')
         {
             if ($ordering)

@@ -522,7 +522,7 @@ class K2ModelUsers extends K2Model
         foreach ($usergroups as $usergroup)
         {
             $K2UserGroup = JTable::getInstance('K2UserGroup', 'Table');
-            $K2UserGroup->name = JString::trim($usergroup->name)." (Imported from Joomla!)";
+            $K2UserGroup->name = JString::trim($usergroup->name)." (Imported from Joomla)";
             $K2UserGroup->permissions = $permissions;
             $K2UserGroup->store();
 
