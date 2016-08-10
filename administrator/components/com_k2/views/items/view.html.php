@@ -160,7 +160,7 @@ class K2ViewItems extends K2View
 		// Detect exact search phrase using double quotes in search string
 		if(substr($search, 0, 1)=='"' && substr($search, -1)=='"')
 		{
-			$lists['search'] = "&quot;".trim(str_replace('"', '', $search))."&quot;";
+			$lists['search'] = "\"".trim(str_replace('"', '', $search))."\"";
 		}
 		else
 		{
