@@ -49,7 +49,10 @@ div#k2Frontend table.k2FrontendToolbar td.button a {display:block;padding:4px 8p
 	#toolbar-cancel a:hover {background:#d62c1a;}
 
 #k2FrontendEditToolbar {text-align:left;padding:8px;}
-#k2FrontendEditToolbar h2 {width:auto;margin-top:0;line-height:40px; min-height: 48px;}
+#k2FrontendEditToolbar h2 {background-color:transparent;width:auto;margin-top:0;line-height:40px;min-height:48px;}
+.isJ30 #k2FrontendEditToolbar h2.header {line-height:40px;min-height:40px;padding:0;}
+
+.isJ30 div#k2Frontend hr.sep {display:none;}
 
 #k2FrontendPermissionsNotice {text-align:center;}
 #k2FrontendPermissionsNotice p {display:inline-block;color:#fff;font-size:12px;background:#3498db;padding:8px;margin:8px auto;border-radius:4px;}

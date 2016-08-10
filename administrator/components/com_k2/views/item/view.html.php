@@ -467,9 +467,9 @@ class K2ViewItem extends K2View
 		$date = JFactory::getDate($item->modified);
 		$timestamp = '?t='.$date->toUnix();
 
-		if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_L.jpg'))
+		if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_XL.jpg'))
 		{
-			$item->image = JURI::root().'media/k2/items/cache/'.md5("Image".$item->id).'_L.jpg'.$timestamp;
+			$item->image = JURI::root().'media/k2/items/cache/'.md5("Image".$item->id).'_XL.jpg'.$timestamp;
 		}
 
 		if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_S.jpg'))
