@@ -121,6 +121,38 @@ class K2HelperHTML
 				}
 			}
 
+			// jQueryUI
+			if ($jQueryUI)
+			{
+				if ($view == 'media')
+				{
+					// Load latest version for the "media" view only
+
+					if ($handling == 'remote')
+					{
+						$document->addStyleSheet('//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css');
+						$document->addScript('//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js');
+					}
+					else if ($handling == 'local')
+					{
+						$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/jquery-ui-1.11.4.min.css');
+						$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-ui-1.11.4.min.js');
+					}
+				}
+				else
+				{
+					// Load version 1.8.24 for any other view (until we kill it as a dependency there, for good)...
+					if ($handling == 'remote')
+					{
+						$document->addScript('//ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js');
+					}
+					else if ($handling == 'local')
+					{
+						$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-ui-1.8.24.min.js');
+					}
+				}
+			}
+
 			// Everything else...
 			if ($application->isAdmin() || $adminHeadIncludes)
 			{
@@ -181,38 +213,6 @@ class K2HelperHTML
 
 				');
 
-			}
-
-			// jQueryUI
-			if ($jQueryUI)
-			{
-				if ($view == 'media')
-				{
-					// Load latest version for the "media" view only
-
-					if ($handling == 'remote')
-					{
-						$document->addStyleSheet('//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css');
-						$document->addScript('//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js');
-					}
-					else if ($handling == 'local')
-					{
-						$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/jquery-ui-1.11.4.min.css');
-						$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-ui-1.11.4.min.js');
-					}
-				}
-				else
-				{
-					// Load version 1.8.24 for any other view (until we kill it as a dependency there, for good)...
-					if ($handling == 'remote')
-					{
-						$document->addScript('//ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js');
-					}
-					else if ($handling == 'local')
-					{
-						$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-ui-1.8.24.min.js');
-					}
-				}
 			}
 		}
 	}
