@@ -8,7 +8,7 @@
  */
 
 // no direct access
-defined('_JEXEC') or die ;
+defined('_JEXEC') or die;
 
 class K2HelperHTML
 {
@@ -47,51 +47,66 @@ class K2HelperHTML
 		return $href;
 	}
 
-	public static function loadjQuery($ui = false, $mediaManager = false)
+	public static function loadHeadIncludes($loadFramework = false, $jQueryUI = false, $adminHeadIncludes = false, $adminModuleIncludes = false)
 	{
 		JLoader::register('K2HelperUtilities', JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'utilities.php');
 
 		$application = JFactory::getApplication();
 		$document = JFactory::getDocument();
+		$option = JRequest::getCmd('option');
+		$view = JRequest::getWord('view', 'items');
+		$view = JString::strtolower($view);
+		$task = JRequest::getCmd('task');
 		$params = K2HelperUtilities::getParams('com_k2');
+		$handling = $application->isAdmin() ? $params->get('backendJQueryHandling', 'remote') : $params->get('jQueryHandling', '1.8remote');
 
 		if ($document->getType() == 'html')
 		{
-			if (K2_JVERSION == '15')
+
+			if ($loadFramework && $view != 'media')
 			{
-				//JHtml::_('behavior.mootools');
-			}
-			else if (K2_JVERSION == '25')
-			{
-				//JHtml::_('behavior.framework');
-			}
-			else
-			{
-				if($mediaManager)
+				if (version_compare(JVERSION, '1.6.0', 'ge'))
 				{
-					$document->addScript('//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
+					JHtml::_('behavior.framework');
 				}
 				else
 				{
-					//JHtml::_('behavior.framework');
-					if ($application->isAdmin() || ($application->isSite() && $params->get('jQueryHandling')))
-					{
-						JHtml::_('jquery.framework');
-					}
+					JHTML::_('behavior.mootools');
 				}
 			}
 
-			$handling = $application->isAdmin() ? $params->get('backendJQueryHandling', 'remote') : $params->get('jQueryHandling', '1.8remote');
+			if (version_compare(JVERSION, '3.0.0', 'ge'))
+			{
+				if ($application->isAdmin() || ($application->isSite() && $params->get('jQueryHandling')))
+				{
+					JHtml::_('jquery.framework');
+				}
+			}
+
 			// jQuery
-			if (K2_JVERSION != '30')
+			if (version_compare(JVERSION, '3.0.0', 'lt'))
 			{
 				if ($handling == 'remote')
 				{
-					$document->addScript('//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
+					if ($view == 'media')
+					{
+						$document->addScript('//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js');
+					}
+					else
+					{
+						$document->addScript('//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
+					}
 				}
 				else if ($handling == 'local')
 				{
-					$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-1.8.3.min.js');
+					if ($view == 'media')
+					{
+						$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-1.12.4.min.js');
+					}
+					else
+					{
+						$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-1.8.3.min.js');
+					}
 				}
 				else
 				{
@@ -106,27 +121,96 @@ class K2HelperHTML
 				}
 			}
 
-			// jQuery UI
-			if ($application->isAdmin() || $ui)
+			// Everything else...
+			if ($application->isAdmin() || $adminHeadIncludes)
 			{
 
-				// No conflict loaded when $ui requested or in the backend.
-				// No need to reload for $mediaManager as the latter is always called with $ui
-				$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.noconflict.js?v=2.7.2');
-
-				if ($handling == 'local')
+				// CSS
+				$document->addStyleSheet('//netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css?v='.K2_CURRENT_VERSION);
+				$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v='.K2_CURRENT_VERSION);
+				if($adminModuleIncludes)
 				{
-					$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-ui-1.8.24.custom.min.js');
+					$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.modules.css?v='.K2_CURRENT_VERSION);
+				}
+
+				// JS
+				$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.noconflict.js?v='.K2_CURRENT_VERSION);
+				$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v='.K2_CURRENT_VERSION.'&amp;sitepath='.JURI::root(true).'/');
+				if ($option="com_k2" && $view == 'item')
+				{
+					$document->addScript(JURI::root(true).'/media/k2/assets/js/nicEdit.js?v='.K2_CURRENT_VERSION);
+				}
+
+				// Media (elFinder)
+				if ($view == 'media')
+				{
+					$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/elfinder.min.css?v='.K2_CURRENT_VERSION);
+			        $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/theme.css?v='.K2_CURRENT_VERSION);
+					$document->addScript(JURI::root(true).'/media/k2/assets/js/elfinder.min.js?v='.K2_CURRENT_VERSION);
 				}
 				else
 				{
-					$document->addScript('//ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js');
+					JHTML::_('behavior.tooltip');
+					if (version_compare(JVERSION, '3.0.0', 'ge'))
+					{
+						if ($view == 'item' && !$params->get('taggingSystem'))
+						{
+							JHtml::_('formbehavior.chosen', 'select:not(#selectedTags, #tags)');
+						}
+						else
+						{
+							JHtml::_('formbehavior.chosen', 'select');
+						}
+					}
 				}
+
+				$document->addScriptDeclaration('
+
+					// Set K2 version as global JS var
+					K2JVersion = "'.K2_JVERSION.'";
+
+					// Set Joomla version as body tag
+					(function(){
+						var addedClass = "isJ'.K2_JVERSION.' k2ViewIs'.ucfirst($view).' k2TaskIs'.ucfirst(JRequest::getCmd('task')).'";
+						if (document.getElementsByTagName("html")[0].className !== "") {
+							document.getElementsByTagName("html")[0].className += " "+addedClass;
+						} else {
+							document.getElementsByTagName("html")[0].className = addedClass;
+						}
+					})();
+
+				');
+
 			}
 
-			if ($mediaManager)
+			// jQueryUI
+			if ($jQueryUI)
 			{
-				$document->addScript(JURI::root(true).'/media/k2/assets/js/elfinder.min.js?v=2.7.2');
+				if ($view == 'media')
+				{
+					// Load latest version for the "media" view only
+			        $document->addStyleSheet('//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css?v='.K2_CURRENT_VERSION);
+					if ($handling == 'remote')
+					{
+						$document->addScript('//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js');
+					}
+					else if ($handling == 'local')
+					{
+						$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-ui-1.11.4.min.js');
+					}
+				}
+				else
+				{
+					// Load version 1.8.24 for any other view (until we kill it as a dependency there, for good)...
+					if ($handling == 'remote')
+					{
+						$document->addScript('//ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js');
+					}
+					else if ($handling == 'local')
+					{
+						$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-ui-1.8.24.min.js');
+					}
+				}
 			}
 		}
 	}

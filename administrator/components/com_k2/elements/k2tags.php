@@ -8,7 +8,7 @@
  */
 
 // no direct access
-defined('_JEXEC') or die ;
+defined('_JEXEC') or die;
 
 require_once (JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
@@ -21,8 +21,8 @@ class K2ElementK2Tags extends K2Element
 		$fieldName = (K2_JVERSION != '15') ? $name.'[]' : $control_name.'['.$name.'][]';
 
 		$document = JFactory::getDocument();
-		$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/select2.min.css?v=2.7.2');
-		$document->addScript(JURI::root(true).'/media/k2/assets/js/select2.min.js?v=2.7.2');
+		$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/select2.min.css?v='.K2_CURRENT_VERSION);
+		$document->addScript(JURI::root(true).'/media/k2/assets/js/select2.min.js?v='.K2_CURRENT_VERSION);
 		$document->addScriptDeclaration('
 		$K2(document).ready(function() {
 			if(typeof($K2(".k2TagsElement").chosen) == "function") {
@@ -50,7 +50,7 @@ class K2ElementK2Tags extends K2Element
 					 	});
 					 	return {results: results};
 					 }
-					 
+
 				}
 			});
 		});

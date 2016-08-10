@@ -8,7 +8,7 @@
  */
 
 // no direct access
-defined('_JEXEC') or die ;
+defined('_JEXEC') or die;
 
 jimport('joomla.application.component.controller');
 
@@ -90,24 +90,12 @@ class K2ControllerItem extends K2Controller
 
 		$document = JFactory::getDocument();
 
-		if (version_compare(JVERSION, '1.6.0', 'ge'))
-		{
-			JHtml::_('behavior.framework');
-		}
-		else
-		{
-			JHTML::_('behavior.mootools');
-		}
+		K2HelperHTML::loadHeadIncludes(true, true, true);
 
 		// CSS
-		$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v=2.7.2');
-		$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.frontend.css?v=2.7.2');
+		$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.frontend.css?v='.K2_CURRENT_VERSION);
 		$document->addStyleSheet(JURI::root(true).'/templates/system/css/general.css');
 		$document->addStyleSheet(JURI::root(true).'/templates/system/css/system.css');
-
-		// JS
-		K2HelperHTML::loadjQuery(true);
-		$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v=2.7.2&amp;sitepath='.JURI::root(true).'/');
 
 		$this->addViewPath(JPATH_COMPONENT_ADMINISTRATOR.DS.'views');
 		$this->addModelPath(JPATH_COMPONENT_ADMINISTRATOR.DS.'models');
@@ -305,7 +293,6 @@ class K2ControllerItem extends K2Controller
 
 	function media()
 	{
-		K2HelperHTML::loadjQuery(true, true);
 		JRequest::setVar('tmpl', 'component');
 		$params = K2HelperUtilities::getParams('com_k2');
 		$document = JFactory::getDocument();
@@ -328,12 +315,8 @@ class K2ControllerItem extends K2Controller
 			$mainframe->redirect(JRoute::_($url, false));
 		}
 
-		// CSS
-		$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v=2.7.2');
+		K2HelperHTML::loadHeadIncludes(false, true, true);
 
-		// JS
-		K2HelperHTML::loadjQuery(true);
-		$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v=2.7.2&amp;sitepath='.JURI::root(true).'/');
 		$this->addViewPath(JPATH_COMPONENT_ADMINISTRATOR.DS.'views');
 		$view = $this->getView('media', 'html');
 		$view->addTemplatePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'views'.DS.'media'.DS.'tmpl');
@@ -381,21 +364,7 @@ class K2ControllerItem extends K2Controller
 
 		$document = JFactory::getDocument();
 
-		if (version_compare(JVERSION, '1.6.0', 'ge'))
-		{
-			JHtml::_('behavior.framework');
-		}
-		else
-		{
-			JHTML::_('behavior.mootools');
-		}
-
-		// CSS
-		$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v=2.7.2');
-
-		// JS
-		K2HelperHTML::loadjQuery(true);
-		$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v=2.7.2&amp;sitepath='.JURI::root(true).'/');
+		K2HelperHTML::loadHeadIncludes(true, true, true);
 
 		$this->addViewPath(JPATH_COMPONENT_ADMINISTRATOR.DS.'views');
 		$this->addModelPath(JPATH_COMPONENT_ADMINISTRATOR.DS.'models');

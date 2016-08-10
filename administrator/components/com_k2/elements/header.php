@@ -7,7 +7,7 @@
  * @license     GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
-defined('_JEXEC') or die ;
+defined('_JEXEC') or die;
 
 require_once (JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
@@ -17,7 +17,8 @@ class K2ElementHeader extends K2Element
     {
 
         $document = JFactory::getDocument();
-        $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.modules.css?v=2.7.2');
+        $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.modules.css?v='.K2_CURRENT_VERSION);
+
         if (K2_JVERSION == '15')
         {
             return '<div class="paramHeaderContainer15"><div class="paramHeaderContent">'.JText::_($value).'</div><div class="k2clr"></div></div>';

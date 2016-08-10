@@ -1016,13 +1016,12 @@ function initExtraFieldsEditor() {
             } else {
             	tinyMCE.execCommand('mceAddControl', false, id);
             }
-
         } else {
             new nicEditor({
                 fullPanel : true,
                 maxHeight : 180,
                 width : '100%',
-                iconsPath : K2SitePath + 'media/k2/assets/images/system/nicEditorIcons.gif'
+                iconsPath : K2SitePath + 'media/k2/assets/images/nicedit/nicEditorIcons.gif'
             }).panelInstance($K2(this).attr('id'));
         }
     });

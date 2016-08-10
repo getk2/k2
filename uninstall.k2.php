@@ -8,7 +8,7 @@
  */
 
 // no direct access
-defined('_JEXEC') or die ;
+defined('_JEXEC') or die;
 
 if (version_compare(JVERSION, '1.6.0', '<'))
 {

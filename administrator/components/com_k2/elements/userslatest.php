@@ -8,7 +8,7 @@
  */
 
 // no direct access
-defined('_JEXEC') or die ;
+defined('_JEXEC') or die;
 
 require_once (JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
@@ -20,17 +20,9 @@ class K2ElementUsersLatest extends K2Element
         JHTML::_('behavior.modal');
         $params = JComponentHelper::getParams('com_k2');
         $document = JFactory::getDocument();
-        if (version_compare(JVERSION, '1.6.0', 'ge'))
-        {
-            JHtml::_('behavior.framework');
-        }
-        else
-        {
-            JHTML::_('behavior.mootools');
-        }
 
-        K2HelperHTML::loadjQuery();
-        
+        K2HelperHTML::loadHeadIncludes(true, false, false, true);
+
         $mainframe = JFactory::getApplication();
         if (K2_JVERSION != '15')
         {
@@ -81,7 +73,6 @@ class K2ElementUsersLatest extends K2Element
 		";
 
         $document->addScriptDeclaration($js);
-        $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.modules.css?v=2.7.2');
 
         $current = array();
         if (is_string($value) && !empty($value))

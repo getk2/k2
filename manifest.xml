@@ -57,7 +57,7 @@
 		<language tag="en-GB">en-GB.mod_k2_user.sys.ini</language>
 	</languages>
 	<administration>
-		<menu img="../media/k2/assets/images/system/k2_16x16.png" view="items">COM_K2</menu>
+		<menu img="../media/k2/assets/images/system/k2_logo_16x16_8.png" view="items">COM_K2</menu>
 		<submenu>
 			<menu view="items" link="option=com_k2&amp;view=items">K2_ITEMS</menu>
 			<menu view="categories" link="option=com_k2&amp;view=categories">K2_CATEGORIES</menu>

@@ -70,5 +70,5 @@ else
 
 if (JRequest::getCmd('format') != 'json')
 {
-    echo "\n<!-- JoomlaWorks \"K2\" (v2.7.2) | Learn more about K2 at http://getk2.org -->\n\n";
+    echo "\n<!-- JoomlaWorks \"K2\" (v".K2_CURRENT_VERSION.") | Learn more about K2 at http://getk2.org -->\n\n";
 }

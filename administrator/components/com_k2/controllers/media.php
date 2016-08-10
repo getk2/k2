@@ -8,7 +8,7 @@
  */
 
 // no direct access
-defined('_JEXEC') or die ;
+defined('_JEXEC') or die;
 
 jimport('joomla.application.component.controller');
 jimport('joomla.filesystem.file');
@@ -49,10 +49,9 @@ class K2ControllerMedia extends K2Controller
 		$path = JPATH_SITE.DS.JPath::clean($folder);
 
 		JPath::check($path);
-		include_once JPATH_COMPONENT_ADMINISTRATOR.DS.'lib'.DS.'elfinder'.DS.'elFinderConnector.class.php';
-		include_once JPATH_COMPONENT_ADMINISTRATOR.DS.'lib'.DS.'elfinder'.DS.'elFinder.class.php';
-		include_once JPATH_COMPONENT_ADMINISTRATOR.DS.'lib'.DS.'elfinder'.DS.'elFinderVolumeDriver.class.php';
-		include_once JPATH_COMPONENT_ADMINISTRATOR.DS.'lib'.DS.'elfinder'.DS.'elFinderVolumeLocalFileSystem.class.php';
+
+		require_once JPATH_COMPONENT_ADMINISTRATOR.DS.'lib'.DS.'elfinder'.DS.'autoload.php';
+
 		function access($attr, $path, $data, $volume)
 		{
 			$mainframe = JFactory::getApplication();
@@ -87,6 +86,14 @@ class K2ControllerMedia extends K2Controller
 
 		}
 
+		function setToken($cmd, &$result, $args, $elfinder)
+		{
+		    if (isset($result['added']) && $result['added'])
+		    {
+		        $result['csrftoken'] = JSession::getFormToken();
+		    }
+		}
+
 		if ($mainframe->isAdmin())
 		{
 			$permissions = array('read' => true, 'write' => true);
@@ -97,6 +104,7 @@ class K2ControllerMedia extends K2Controller
 		}
 		$options = array(
 			'debug' => false,
+		    'bind' => array('upload' => 'setToken'),
 			'roots' => array(
 				array(
 					'driver' => 'LocalFileSystem',

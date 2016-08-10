@@ -7,7 +7,7 @@
  * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 // no direct access
-defined('_JEXEC') or die ;
+defined('_JEXEC') or die;
 
 jimport('joomla.application.component.controller');
 

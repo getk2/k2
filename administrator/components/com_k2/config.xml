@@ -9,14 +9,6 @@
 		</param>
 		<param menu="hide" name="jQueryHandling" type="list" default="1.8remote" label="K2_COM_JQUERY_HANDLING" description="">
 			<option value="0">K2_COM_DO_NOT_LOAD_THE_JQUERY_LIBRARY</option>
-			<option value="1.3.2">K2_COM_LOAD_V1_3_2_LOCAL_COPY</option>
-			<option value="1.3remote">K2_COM_LOAD_V1_3_2_REMOTE_COPY</option>
-			<option value="1.4.4">K2_COM_LOAD_V1_4_4_LOCAL_COPY</option>
-			<option value="1.4remote">K2_COM_LOAD_V1_4_4_REMOTE_COPY</option>
-			<option value="1.5.2">K2_COM_LOAD_V1_5_2_LOCAL_COPY</option>
-			<option value="1.5remote">K2_COM_LOAD_V1_5_2_REMOTE_COPY</option>
-			<option value="1.6.4">K2_COM_LOAD_V1_6_LOCAL_COPY</option>
-			<option value="1.6remote">K2_COM_LOAD_V1_6_X_LATEST_REMOTE_COPY</option>
 			<option value="1.7.2">K2_COM_LOAD_V1_7_LOCAL_COPY</option>
 			<option value="1.7remote">K2_COM_LOAD_V1_7_X_LATEST_REMOTE_COPY</option>
 			<option value="1.8.3">K2_COM_LOAD_V1_8_LOCAL_COPY</option>
@@ -27,8 +19,8 @@
 			<option value="1.10.2remote">K2_COM_LOAD_V1_10_X_LATEST_REMOTE_COPY</option>
 			<option value="1.11.3">K2_COM_LOAD_V1_11_LOCAL_COPY</option>
 			<option value="1.11.3remote">K2_COM_LOAD_V1_11_X_LATEST_REMOTE_COPY</option>
-			<option value="1.12.1">K2_COM_LOAD_V1_12_LOCAL_COPY</option>
-			<option value="1.12.1remote">K2_COM_LOAD_V1_12_X_LATEST_REMOTE_COPY</option>
+			<option value="1.12.4">K2_COM_LOAD_V1_12_LOCAL_COPY</option>
+			<option value="1.12.4remote">K2_COM_LOAD_V1_12_X_LATEST_REMOTE_COPY</option>
 		</param>
 		<param menu="hide" name="backendJQueryHandling" type="list" default="remote" label="K2_COM_BACKEND_JQUERY_HANDLING" description="K2_COM_BACKEND_JQUERY_HANDLING_DESC">
 			<option value="local">K2_COM_LOAD_A_LOCAL_COPY</option>
@@ -564,14 +556,6 @@
 		</field>
 		<field menu="hide" name="jQueryHandling" type="list" default="1.8remote" label="K2_COM_JQUERY_HANDLING" description="">
 			<option value="0">K2_COM_DO_NOT_LOAD_THE_JQUERY_LIBRARY</option>
-			<option value="1.3.2">K2_COM_LOAD_V1_3_2_LOCAL_COPY</option>
-			<option value="1.3remote">K2_COM_LOAD_V1_3_2_REMOTE_COPY</option>
-			<option value="1.4.4">K2_COM_LOAD_V1_4_4_LOCAL_COPY</option>
-			<option value="1.4remote">K2_COM_LOAD_V1_4_4_REMOTE_COPY</option>
-			<option value="1.5.2">K2_COM_LOAD_V1_5_2_LOCAL_COPY</option>
-			<option value="1.5remote">K2_COM_LOAD_V1_5_2_REMOTE_COPY</option>
-			<option value="1.6.4">K2_COM_LOAD_V1_6_LOCAL_COPY</option>
-			<option value="1.6remote">K2_COM_LOAD_V1_6_X_LATEST_REMOTE_COPY</option>
 			<option value="1.7.2">K2_COM_LOAD_V1_7_LOCAL_COPY</option>
 			<option value="1.7remote">K2_COM_LOAD_V1_7_X_LATEST_REMOTE_COPY</option>
 			<option value="1.8.3">K2_COM_LOAD_V1_8_LOCAL_COPY</option>
@@ -582,8 +566,8 @@
 			<option value="1.10.2remote">K2_COM_LOAD_V1_10_X_LATEST_REMOTE_COPY</option>
 			<option value="1.11.3">K2_COM_LOAD_V1_11_LOCAL_COPY</option>
 			<option value="1.11.3remote">K2_COM_LOAD_V1_11_X_LATEST_REMOTE_COPY</option>
-			<option value="1.12.1">K2_COM_LOAD_V1_12_LOCAL_COPY</option>
-			<option value="1.12.1remote">K2_COM_LOAD_V1_12_X_LATEST_REMOTE_COPY</option>
+			<option value="1.12.4">K2_COM_LOAD_V1_12_LOCAL_COPY</option>
+			<option value="1.12.4remote">K2_COM_LOAD_V1_12_X_LATEST_REMOTE_COPY</option>
 		</field>
 		<field menu="hide" name="backendJQueryHandling" type="list" default="remote" label="K2_COM_BACKEND_JQUERY_HANDLING" description="K2_COM_BACKEND_JQUERY_HANDLING_DESC">
 			<option value="local">K2_COM_LOAD_A_LOCAL_COPY</option>

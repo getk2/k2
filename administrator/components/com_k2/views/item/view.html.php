@@ -8,7 +8,7 @@
  */
 
 // no direct access
-defined('_JEXEC') or die ;
+defined('_JEXEC') or die;
 
 jimport('joomla.application.component.view');
 
@@ -27,8 +27,7 @@ class K2ViewItem extends K2View
 		JHTML::_('behavior.modal');
 		JRequest::setVar('hidemainmenu', 1);
 		$document = JFactory::getDocument();
-		$document->addScript(JURI::root(true).'/media/k2/assets/js/nicEdit.js?v=2.7.2');
-		//var K2SitePath = '".JURI::root(true)."/';
+
 		$js = "
 			var K2BasePath = '".JURI::base(true)."/';
 			var K2Language = [
@@ -571,7 +570,7 @@ class K2ViewItem extends K2View
 			JToolBarHelper::apply();
 			JToolBarHelper::cancel();
 		}
-		// ACE ACL integration has been removed. We keep this flag to avoid php notices for users who have overrides 
+		// ACE ACL integration has been removed. We keep this flag to avoid php notices for users who have overrides
 		$aceAclFlag = false;
 		$this->assignRef('aceAclFlag', $aceAclFlag);
 

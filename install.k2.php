@@ -8,7 +8,7 @@
  */
 
 // no direct access
-defined('_JEXEC') or die ;
+defined('_JEXEC') or die;
 
 
 if (version_compare(JVERSION, '1.6.0', '<'))
@@ -259,7 +259,7 @@ if (version_compare(JVERSION, '1.6.0', '<'))
 ?>
 <?php if (version_compare(JVERSION, '1.6.0', '<')): ?>
 <?php $rows = 0; ?>
-<img src="<?php echo JURI::root(true); ?>/media/k2/assets/images/system/K2_Logo_126x48_24.png" alt="K2" align="right" />
+<img src="<?php echo JURI::root(true); ?>/media/k2/assets/images/system/k2_logo_126x48_24.png" alt="K2" align="right" />
 <h2><?php echo JText::_('K2_INSTALLATION_STATUS'); ?></h2>
 <table class="adminlist">
 	<thead>

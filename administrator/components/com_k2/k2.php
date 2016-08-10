@@ -67,48 +67,7 @@ if(K2_JVERSION=='15'){
 
 $document = JFactory::getDocument();
 
-if(version_compare(JVERSION,'1.6.0','ge')) {
-	JHtml::_('behavior.framework');
-} else {
-	JHTML::_('behavior.mootools');
-}
-
-// CSS
-$document->addStyleSheet('//netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css?v=2.7.2');
-$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v=2.7.2');
-
-K2HelperHTML::loadjQuery(true, JRequest::getCmd('view') == 'media');
-
-// JS
-if(K2_JVERSION == '30')
-{
-	if($view == 'item' && !$params->get('taggingSystem'))
-	{
-		JHtml::_('formbehavior.chosen', 'select:not(#selectedTags, #tags)');
-	}
-	else
-	{
-		JHtml::_('formbehavior.chosen', 'select');
-	}
-
-}
-$document->addScriptDeclaration('
-
-	// Set K2 version as global JS var
-	K2JVersion = "'.K2_JVERSION.'";
-
-	// Set Joomla version as body tag
-	(function(){
-		var addedClass = "isJ'.K2_JVERSION.' k2ViewIs'.ucfirst(JRequest::getCmd('view')).' k2TaskIs'.ucfirst(JRequest::getCmd('task')).'";
-		if(document.getElementsByTagName("html")[0].className !== ""){
-			document.getElementsByTagName("html")[0].className += " "+addedClass;
-		} else {
-			document.getElementsByTagName("html")[0].className = addedClass;
-		}
-	})();
-
-');
-$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v=2.7.2&amp;sitepath='.JURI::root(true).'/');
+K2HelperHTML::loadHeadIncludes(true, true);
 
 // Container CSS class definition
 if(K2_JVERSION == '15'){
@@ -159,7 +118,7 @@ if(
 ): ?>
 </div>
 <div id="k2AdminFooter">
-	<a target="_blank" href="https://getk2.org/">K2 v2.7.2 [Dev Build]</a> | Copyright &copy; 2006-<?php echo date('Y'); ?> <a target="_blank" href="http://www.joomlaworks.net/">JoomlaWorks Ltd.</a>
+	<a target="_blank" href="https://getk2.org/">K2 v<?php echo K2_CURRENT_VERSION; ?><?php echo K2_BUILD; ?></a> | Copyright &copy; 2006-<?php echo date('Y'); ?> <a target="_blank" href="http://www.joomlaworks.net/">JoomlaWorks Ltd.</a>
 </div>
 
 <?php
@@ -174,7 +133,7 @@ if (K2_JVERSION != '15'){
 if($loadUpdateService): ?>
 <!-- K2 Update Service -->
 <script type="text/javascript">
-	var K2_INSTALLED_VERSION = '2.7.2';
+	var K2_INSTALLED_VERSION = <?php echo K2_CURRENT_VERSION; ?>;
 </script>
 <script type="text/javascript" src="https://getk2.org/app/update.js?t=<?php echo date('Ymd'); ?>"></script>
 <?php endif; ?>

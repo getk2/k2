@@ -7,7 +7,7 @@
  * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 // no direct access
-defined('_JEXEC') or die ;
+defined('_JEXEC') or die;
 
 JLoader::register('K2HelperRoute', JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'route.php');
 JLoader::register('K2HelperUtilities', JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'utilities.php');

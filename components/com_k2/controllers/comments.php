@@ -7,7 +7,7 @@
  * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 // no direct access
-defined('_JEXEC') or die ;
+defined('_JEXEC') or die;
 
 jimport('joomla.application.component.controller');
 
@@ -38,25 +38,11 @@ class K2ControllerComments extends K2Controller
 
         $document = JFactory::getDocument();
 
-        if (version_compare(JVERSION, '1.6.0', 'ge'))
-        {
-            JHtml::_('behavior.framework');
-        }
-        else
-        {
-            JHTML::_('behavior.mootools');
-        }
-
         // Language
         $language = JFactory::getLanguage();
         $language->load('com_k2', JPATH_ADMINISTRATOR);
 
-        // CSS
-        $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v=2.7.2');
-
-        // JS
-        K2HelperHTML::loadjQuery(true);
-        $document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v=2.7.2&amp;sitepath='.JURI::root(true).'/');
+        K2HelperHTML::loadHeadIncludes(true, true, true);
 
         $this->addViewPath(JPATH_COMPONENT_ADMINISTRATOR.DS.'views');
         $this->addModelPath(JPATH_COMPONENT_ADMINISTRATOR.DS.'models');

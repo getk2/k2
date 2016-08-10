@@ -8,386 +8,12 @@
  */
 
 // no direct access
-defined('_JEXEC') or die ;
+defined('_JEXEC') or die;
 
 jimport('joomla.plugin.plugin');
 
 class plgSystemK2 extends JPlugin
 {
-
-	function onAfterRoute()
-	{
-
-		$mainframe = JFactory::getApplication();
-		$user = JFactory::getUser();
-		$basepath = ($mainframe->isSite()) ? JPATH_SITE : JPATH_ADMINISTRATOR;
-
-		JPlugin::loadLanguage('com_k2', $basepath);
-
-		if (K2_JVERSION != '15')
-		{
-			JPlugin::loadLanguage('com_k2.j16', JPATH_ADMINISTRATOR, null, true);
-		}
-		if ($mainframe->isAdmin())
-		{
-			return;
-		}
-		if ((JRequest::getCmd('task') == 'add' || JRequest::getCmd('task') == 'edit') && JRequest::getCmd('option') == 'com_k2')
-		{
-			return;
-		}
-
-		$document = JFactory::getDocument();
-
-		$params = JComponentHelper::getParams('com_k2');
-
-		// jQuery and K2 JS loading
-		K2HelperHTML::loadjQuery();
-
-		// Joomla! modal trigger
-		if ( !$user->guest || (JRequest::getCmd('option') == 'com_k2' && JRequest::getCmd('view') == 'item') || defined('K2_JOOMLA_MODAL_REQUIRED') ){
-			$document->addScript(JUri::root(true).'/media/k2/assets/js/jquery.magnific-popup.min.js?v2.7.2');
-			$document->addStyleSheet(JUri::root(true).'/media/k2/assets/css/magnific-popup.css?v2.7.2');
-		}
-
-		$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.frontend.js?v2.7.2&amp;sitepath='.JURI::root(true).'/');
-
-		if (JRequest::getCmd('task') == 'search' && $params->get('googleSearch'))
-		{
-			$language = JFactory::getLanguage();
-			$lang = $language->getTag();
-			// Fallback to the new container ID without breaking things
-			$googleSearchContainerID = trim($params->get('googleSearchContainer', 'k2GoogleSearchContainer'));
-			if($googleSearchContainerID=='k2Container'){
-				$googleSearchContainerID = 'k2GoogleSearchContainer';
-			}
-			$document->addScript('http://www.google.com/jsapi');
-			$js = '
-			google.load("search", "1", {"language" : "'.$lang.'"});
-			function OnLoad(){
-				var searchControl = new google.search.SearchControl();
-				var siteSearch = new google.search.WebSearch();
-				siteSearch.setUserDefinedLabel("'.$mainframe->getCfg('sitename').'");
-				siteSearch.setUserDefinedClassSuffix("k2");
-				options = new google.search.SearcherOptions();
-				options.setExpandMode(google.search.SearchControl.EXPAND_MODE_OPEN);
-				siteSearch.setSiteRestriction("'.JURI::root().'");
-				searchControl.addSearcher(siteSearch, options);
-				searchControl.setResultSetSize(google.search.Search.LARGE_RESULTSET);
-				searchControl.setLinkTarget(google.search.Search.LINK_TARGET_SELF);
-				searchControl.draw(document.getElementById("'.$googleSearchContainerID.'"));
-				searchControl.execute("'.JRequest::getString('searchword').'");
-			}
-			google.setOnLoadCallback(OnLoad);
- 			';
-			$document->addScriptDeclaration($js);
-		}
-
-		// Add related CSS to the <head>
-		if ($document->getType() == 'html' && $params->get('enable_css'))
-		{
-
-			jimport('joomla.filesystem.file');
-
-			// k2.fonts.css
-			if (JFile::exists(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'css'.DS.'k2.fonts.css'))
-				$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.fonts.css?v2.7.2');
-			else
-				$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.fonts.css?v2.7.2');
-
-			// k2.css
-			if (JFile::exists(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'css'.DS.'k2.css'))
-				$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.css?v2.7.2');
-			else
-				$document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.css?v2.7.2');
-
-			// k2.print.css
-			if (JRequest::getInt('print') == 1)
-			{
-				if (JFile::exists(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'css'.DS.'k2.print.css'))
-					$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.print.css?v2.7.2', 'text/css', 'print');
-				else
-					$document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.print.css?v2.7.2', 'text/css', 'print');
-			}
-
-		}
-
-	}
-
-	// Extend user forms with K2 fields
-	function onAfterDispatch()
-	{
-
-		$mainframe = JFactory::getApplication();
-
-		if ($mainframe->isAdmin())
-			return;
-
-		$params = JComponentHelper::getParams('com_k2');
-		if (!$params->get('K2UserProfile'))
-			return;
-		$option = JRequest::getCmd('option');
-		$view = JRequest::getCmd('view');
-		$task = JRequest::getCmd('task');
-		$layout = JRequest::getCmd('layout');
-		$user = JFactory::getUser();
-
-		if (K2_JVERSION != '15')
-		{
-			$active = JFactory::getApplication()->getMenu()->getActive();
-			if (isset($active->query['layout']))
-			{
-				$layout = $active->query['layout'];
-			}
-		}
-
-		if (($option == 'com_user' && $view == 'register') || ($option == 'com_users' && $view == 'registration'))
-		{
-
-			if ($params->get('recaptchaOnRegistration') && $params->get('recaptcha_public_key'))
-			{
-				$document = JFactory::getDocument();
-				if($params->get('recaptchaV2')) {
-					$document->addScript('https://www.google.com/recaptcha/api.js?onload=onK2RecaptchaLoaded&render=explicit');
-					$js = 'function onK2RecaptchaLoaded(){grecaptcha.render("recaptcha", {"sitekey" : "'.$params->get('recaptcha_public_key').'"});}';
-					$document->addScriptDeclaration($js);
-					$recaptchaClass = 'k2-recaptcha-v2';
-				}
-				else
-				{
-					$document->addScript('https://www.google.com/recaptcha/api/js/recaptcha_ajax.js');
-					$js = '
-					function showRecaptcha(){
-						Recaptcha.create("'.$params->get('recaptcha_public_key').'", "recaptcha", {
-							theme: "'.$params->get('recaptcha_theme', 'clean').'"
-						});
-					}
-					$K2(document).ready(function() {
-						showRecaptcha();
-					});
-					';
-					$document->addScriptDeclaration($js);
-					$recaptchaClass = 'k2-recaptcha-v1';
-				}
-
-			}
-
-			if (!$user->guest)
-			{
-				$mainframe->enqueueMessage(JText::_('K2_YOU_ARE_ALREADY_REGISTERED_AS_A_MEMBER'), 'notice');
-				$mainframe->redirect(JURI::root());
-				$mainframe->close();
-			}
-			if (K2_JVERSION != '15')
-			{
-				require_once (JPATH_SITE.DS.'components'.DS.'com_users'.DS.'controller.php');
-				$controller = new UsersController;
-
-			}
-			else
-			{
-				require_once (JPATH_SITE.DS.'components'.DS.'com_user'.DS.'controller.php');
-				$controller = new UserController;
-			}
-			$view = $controller->getView($view, 'html');
-			$view->addTemplatePath(JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'templates');
-			$view->addTemplatePath(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2'.DS.'templates');
-			$view->addTemplatePath(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2');
-			$view->setLayout('register');
-
-			$K2User = new JObject;
-
-			$K2User->description = '';
-			$K2User->gender = 'm';
-			$K2User->image = '';
-			$K2User->url = '';
-			$K2User->plugins = '';
-
-			$wysiwyg = JFactory::getEditor();
-			$editor = $wysiwyg->display('description', $K2User->description, '100%', '250px', '', '', false);
-			$view->assignRef('editor', $editor);
-
-			$lists = array();
-			$genderOptions[] = JHTML::_('select.option', 'm', JText::_('K2_MALE'));
-			$genderOptions[] = JHTML::_('select.option', 'f', JText::_('K2_FEMALE'));
-			$lists['gender'] = JHTML::_('select.radiolist', $genderOptions, 'gender', '', 'value', 'text', $K2User->gender);
-
-			$view->assignRef('lists', $lists);
-			$view->assignRef('K2Params', $params);
-			$view->assignRef('recaptchaClass', $recaptchaClass);
-
-			JPluginHelper::importPlugin('k2');
-			$dispatcher = JDispatcher::getInstance();
-			$K2Plugins = $dispatcher->trigger('onRenderAdminForm', array(
-				&$K2User,
-				'user'
-			));
-			$view->assignRef('K2Plugins', $K2Plugins);
-
-			$view->assignRef('K2User', $K2User);
-			if (K2_JVERSION != '15')
-			{
-				$view->assignRef('user', $user);
-			}
-			$pathway = $mainframe->getPathway();
-			$pathway->setPathway(NULL);
-
-			$nameFieldName = K2_JVERSION != '15' ? 'jform[name]' : 'name';
-			$view->assignRef('nameFieldName', $nameFieldName);
-			$usernameFieldName = K2_JVERSION != '15' ? 'jform[username]' : 'username';
-			$view->assignRef('usernameFieldName', $usernameFieldName);
-			$emailFieldName = K2_JVERSION != '15' ? 'jform[email1]' : 'email';
-			$view->assignRef('emailFieldName', $emailFieldName);
-			$passwordFieldName = K2_JVERSION != '15' ? 'jform[password1]' : 'password';
-			$view->assignRef('passwordFieldName', $passwordFieldName);
-			$passwordVerifyFieldName = K2_JVERSION != '15' ? 'jform[password2]' : 'password2';
-			$view->assignRef('passwordVerifyFieldName', $passwordVerifyFieldName);
-			$optionValue = K2_JVERSION != '15' ? 'com_users' : 'com_user';
-			$view->assignRef('optionValue', $optionValue);
-			$taskValue = K2_JVERSION != '15' ? 'registration.register' : 'register_save';
-			$view->assignRef('taskValue', $taskValue);
-			ob_start();
-			$view->display();
-			$contents = ob_get_clean();
-			$document = JFactory::getDocument();
-			$document->setBuffer($contents, 'component');
-
-		}
-
-		if (($option == 'com_user' && $view == 'user' && ($task == 'edit' || $layout == 'form')) || ($option == 'com_users' && $view == 'profile' && ($layout == 'edit' || $task == 'profile.edit')))
-		{
-
-			if ($user->guest)
-			{
-				$uri = JFactory::getURI();
-
-				if (K2_JVERSION != '15')
-				{
-					$url = 'index.php?option=com_users&view=login&return='.base64_encode($uri->toString());
-
-				}
-				else
-				{
-					$url = 'index.php?option=com_user&view=login&return='.base64_encode($uri->toString());
-				}
-				$mainframe->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
-				$mainframe->redirect(JRoute::_($url, false));
-			}
-
-			if (K2_JVERSION != '15')
-			{
-				require_once (JPATH_SITE.DS.'components'.DS.'com_users'.DS.'controller.php');
-				$controller = new UsersController;
-			}
-			else
-			{
-				require_once (JPATH_SITE.DS.'components'.DS.'com_user'.DS.'controller.php');
-				$controller = new UserController;
-			}
-
-			/*
-			// TO DO - We open the profile editing page in a modal, so let's define some CSS
-			$document = JFactory::getDocument();
-			$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.frontend.css?v=2.7.2');
-			$document->addStyleSheet(JURI::root(true).'/templates/system/css/general.css');
-			$document->addStyleSheet(JURI::root(true).'/templates/system/css/system.css');
-			if(K2_JVERSION != '15') {
-			$document->addStyleSheet(JURI::root(true).'/administrator/templates/bluestork/css/template.css');
-			$document->addStyleSheet(JURI::root(true).'/media/system/css/system.css');
-			} else {
-			$document->addStyleSheet(JURI::root(true).'/administrator/templates/khepri/css/general.css');
-			}
-			*/
-
-			$view = $controller->getView($view, 'html');
-			$view->addTemplatePath(JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'templates');
-			$view->addTemplatePath(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2'.DS.'templates');
-			$view->addTemplatePath(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2');
-			$view->setLayout('profile');
-
-			$model = K2Model::getInstance('Itemlist', 'K2Model');
-			$K2User = $model->getUserProfile($user->id);
-			if (!is_object($K2User))
-			{
-				$K2User = new Jobject;
-				$K2User->description = '';
-				$K2User->gender = 'm';
-				$K2User->url = '';
-				$K2User->image = NULL;
-			}
-			if (K2_JVERSION == '15')
-			{
-				JFilterOutput::objectHTMLSafe($K2User);
-			}
-			else
-			{
-				JFilterOutput::objectHTMLSafe($K2User, ENT_QUOTES, array(
-					'params',
-					'plugins'
-				));
-			}
-			$wysiwyg = JFactory::getEditor();
-			$editor = $wysiwyg->display('description', $K2User->description, '100%', '250px', '', '', false);
-			$view->assignRef('editor', $editor);
-
-			$lists = array();
-			$genderOptions[] = JHTML::_('select.option', 'm', JText::_('K2_MALE'));
-			$genderOptions[] = JHTML::_('select.option', 'f', JText::_('K2_FEMALE'));
-			$lists['gender'] = JHTML::_('select.radiolist', $genderOptions, 'gender', '', 'value', 'text', $K2User->gender);
-
-			$view->assignRef('lists', $lists);
-
-			JPluginHelper::importPlugin('k2');
-			$dispatcher = JDispatcher::getInstance();
-			$K2Plugins = $dispatcher->trigger('onRenderAdminForm', array(
-				&$K2User,
-				'user'
-			));
-			$view->assignRef('K2Plugins', $K2Plugins);
-
-			$view->assignRef('K2User', $K2User);
-
-			// Asssign some variables depending on Joomla! version
-			$nameFieldName = K2_JVERSION != '15' ? 'jform[name]' : 'name';
-			$view->assignRef('nameFieldName', $nameFieldName);
-			$emailFieldName = K2_JVERSION != '15' ? 'jform[email1]' : 'email';
-			$view->assignRef('emailFieldName', $emailFieldName);
-			$passwordFieldName = K2_JVERSION != '15' ? 'jform[password1]' : 'password';
-			$view->assignRef('passwordFieldName', $passwordFieldName);
-			$passwordVerifyFieldName = K2_JVERSION != '15' ? 'jform[password2]' : 'password2';
-			$view->assignRef('passwordVerifyFieldName', $passwordVerifyFieldName);
-			$usernameFieldName = K2_JVERSION != '15' ? 'jform[username]' : 'username';
-			$view->assignRef('usernameFieldName', $usernameFieldName);
-			$idFieldName = K2_JVERSION != '15' ? 'jform[id]' : 'id';
-			$view->assignRef('idFieldName', $idFieldName);
-			$optionValue = K2_JVERSION != '15' ? 'com_users' : 'com_user';
-			$view->assignRef('optionValue', $optionValue);
-			$taskValue = K2_JVERSION != '15' ? 'profile.save' : 'save';
-			$view->assignRef('taskValue', $taskValue);
-
-			ob_start();
-			if (K2_JVERSION != '15')
-			{
-				$active = JFactory::getApplication()->getMenu()->getActive();
-				if (isset($active->query['layout']) && $active->query['layout'] != 'profile')
-				{
-					$active->query['layout'] = 'profile';
-				}
-				$view->assignRef('user', $user);
-				$view->display();
-			}
-			else
-			{
-				$view->_displayForm();
-			}
-
-			$contents = ob_get_clean();
-			$document = JFactory::getDocument();
-			$document->setBuffer($contents, 'component');
-
-		}
-
-	}
 
 	function onAfterInitialise()
 	{
@@ -405,7 +31,11 @@ class plgSystemK2 extends JPlugin
 			define('K2_JVERSION', '15');
 		}
 
-		// Define the DS constant under Joomla! 3.0
+		// Define K2 version & build here
+		define('K2_CURRENT_VERSION', '2.7.2');
+		define('K2_BUILD', ' [Dev Build]'); // Use '' for stable or ' [Dev Build]' for the developer build
+
+		// Define the DS constant under Joomla 3.0
 		if (!defined('DS'))
 		{
 			define('DS', DIRECTORY_SEPARATOR);
@@ -472,17 +102,6 @@ class plgSystemK2 extends JPlugin
 			}
 		}
 
-		/*
-		if(JRequest::getCmd('option')=='com_k2' && JRequest::getCmd('task')=='save' && !$mainframe->isAdmin()){
-			$dispatcher = JDispatcher::getInstance();
-			foreach($dispatcher->_observers as $observer){
-				if($observer->_name=='jfdatabase' || $observer->_name=='jfrouter' || $observer->_name=='missing_translation'){
-					$dispatcher->detach($observer);
-				}
-			}
-		}
-		*/
-
 		// Thank you K2 for making Joomla reverse caching proxy friendly :)
 		$user = JFactory::getUser();
 		if (!$user->guest)
@@ -494,7 +113,7 @@ class plgSystemK2 extends JPlugin
 			JResponse::setHeader('X-Logged-In', 'False', true);
 		}
 
-		JResponse::setHeader('X-Content-Powered-By', 'K2 v2.7.2 (by JoomlaWorks)', true);
+		JResponse::setHeader('X-Content-Powered-By', 'K2 v'.K2_CURRENT_VERSION.' (by JoomlaWorks)', true);
 
 		if (!$mainframe->isAdmin())
 		{
@@ -729,7 +348,7 @@ class plgSystemK2 extends JPlugin
 
 			$user = JFactory::getUser();
 			$db = JFactory::getDBO();
-			
+
 			$query = "SELECT COUNT(*) FROM #__jf_content WHERE reference_field = 'value' AND language_id = {$language_id} AND reference_id = {$reference_id} AND reference_table='k2_extra_fields'";
 			$db->setQuery($query);
 			$result = $db->loadResult();
@@ -839,6 +458,362 @@ class plgSystemK2 extends JPlugin
 		return;
 	}
 
+	function onAfterRoute()
+	{
+
+		$mainframe = JFactory::getApplication();
+		$user = JFactory::getUser();
+		$basepath = ($mainframe->isSite()) ? JPATH_SITE : JPATH_ADMINISTRATOR;
+
+		JPlugin::loadLanguage('com_k2', $basepath);
+
+		if (K2_JVERSION != '15')
+		{
+			JPlugin::loadLanguage('com_k2.j16', JPATH_ADMINISTRATOR, null, true);
+		}
+		if ($mainframe->isAdmin())
+		{
+			return;
+		}
+		if ((JRequest::getCmd('task') == 'add' || JRequest::getCmd('task') == 'edit') && JRequest::getCmd('option') == 'com_k2')
+		{
+			return;
+		}
+
+		$document = JFactory::getDocument();
+
+		$params = JComponentHelper::getParams('com_k2');
+
+		// jQuery and K2 JS loading
+		K2HelperHTML::loadHeadIncludes();
+
+		// Joomla! modal trigger
+		if ( !$user->guest || (JRequest::getCmd('option') == 'com_k2' && JRequest::getCmd('view') == 'item') || defined('K2_JOOMLA_MODAL_REQUIRED') ){
+			$document->addScript(JUri::root(true).'/media/k2/assets/js/jquery.magnific-popup.min.js?v='.K2_CURRENT_VERSION);
+			$document->addStyleSheet(JUri::root(true).'/media/k2/assets/css/magnific-popup.css?v='.K2_CURRENT_VERSION);
+		}
+
+		$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.frontend.js?v='.K2_CURRENT_VERSION.'&amp;sitepath='.JURI::root(true).'/');
+
+		if (JRequest::getCmd('task') == 'search' && $params->get('googleSearch'))
+		{
+			$language = JFactory::getLanguage();
+			$lang = $language->getTag();
+			// Fallback to the new container ID without breaking things
+			$googleSearchContainerID = trim($params->get('googleSearchContainer', 'k2GoogleSearchContainer'));
+			if($googleSearchContainerID=='k2Container'){
+				$googleSearchContainerID = 'k2GoogleSearchContainer';
+			}
+			$document->addScript('http://www.google.com/jsapi');
+			$js = '
+			google.load("search", "1", {"language" : "'.$lang.'"});
+			function OnLoad(){
+				var searchControl = new google.search.SearchControl();
+				var siteSearch = new google.search.WebSearch();
+				siteSearch.setUserDefinedLabel("'.$mainframe->getCfg('sitename').'");
+				siteSearch.setUserDefinedClassSuffix("k2");
+				options = new google.search.SearcherOptions();
+				options.setExpandMode(google.search.SearchControl.EXPAND_MODE_OPEN);
+				siteSearch.setSiteRestriction("'.JURI::root().'");
+				searchControl.addSearcher(siteSearch, options);
+				searchControl.setResultSetSize(google.search.Search.LARGE_RESULTSET);
+				searchControl.setLinkTarget(google.search.Search.LINK_TARGET_SELF);
+				searchControl.draw(document.getElementById("'.$googleSearchContainerID.'"));
+				searchControl.execute("'.JRequest::getString('searchword').'");
+			}
+			google.setOnLoadCallback(OnLoad);
+ 			';
+			$document->addScriptDeclaration($js);
+		}
+
+		// Add related CSS to the <head>
+		if ($document->getType() == 'html' && $params->get('enable_css'))
+		{
+
+			jimport('joomla.filesystem.file');
+
+			// k2.fonts.css
+			if (JFile::exists(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'css'.DS.'k2.fonts.css'))
+				$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.fonts.css?v='.K2_CURRENT_VERSION);
+			else
+				$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.fonts.css?v='.K2_CURRENT_VERSION);
+
+			// k2.css
+			if (JFile::exists(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'css'.DS.'k2.css'))
+				$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.css?v='.K2_CURRENT_VERSION);
+			else
+				$document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.css?v='.K2_CURRENT_VERSION);
+
+			// k2.print.css
+			if (JRequest::getInt('print') == 1)
+			{
+				if (JFile::exists(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'css'.DS.'k2.print.css'))
+					$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.print.css?v='.K2_CURRENT_VERSION, 'text/css', 'print');
+				else
+					$document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.print.css?v='.K2_CURRENT_VERSION, 'text/css', 'print');
+			}
+
+		}
+
+	}
+
+	function onAfterDispatch()
+	{
+
+		$mainframe = JFactory::getApplication();
+		if ($mainframe->isAdmin()) return;
+		$params = JComponentHelper::getParams('com_k2');
+		if (!$params->get('K2UserProfile')) return;
+		$option = JRequest::getCmd('option');
+		$view = JRequest::getCmd('view');
+		$task = JRequest::getCmd('task');
+		$layout = JRequest::getCmd('layout');
+		$user = JFactory::getUser();
+
+		if (K2_JVERSION != '15')
+		{
+			$active = JFactory::getApplication()->getMenu()->getActive();
+			if (isset($active->query['layout']))
+			{
+				$layout = $active->query['layout'];
+			}
+		}
+
+		// Extend user forms with K2 fields
+		if (($option == 'com_user' && $view == 'register') || ($option == 'com_users' && $view == 'registration'))
+		{
+
+			if ($params->get('recaptchaOnRegistration') && $params->get('recaptcha_public_key'))
+			{
+				$document = JFactory::getDocument();
+				if($params->get('recaptchaV2')) {
+					$document->addScript('https://www.google.com/recaptcha/api.js?onload=onK2RecaptchaLoaded&render=explicit');
+					$js = 'function onK2RecaptchaLoaded(){grecaptcha.render("recaptcha", {"sitekey" : "'.$params->get('recaptcha_public_key').'"});}';
+					$document->addScriptDeclaration($js);
+					$recaptchaClass = 'k2-recaptcha-v2';
+				}
+				else
+				{
+					$document->addScript('https://www.google.com/recaptcha/api/js/recaptcha_ajax.js');
+					$js = '
+					function showRecaptcha(){
+						Recaptcha.create("'.$params->get('recaptcha_public_key').'", "recaptcha", {
+							theme: "'.$params->get('recaptcha_theme', 'clean').'"
+						});
+					}
+					$K2(document).ready(function() {
+						showRecaptcha();
+					});
+					';
+					$document->addScriptDeclaration($js);
+					$recaptchaClass = 'k2-recaptcha-v1';
+				}
+
+			}
+
+			if (!$user->guest)
+			{
+				$mainframe->enqueueMessage(JText::_('K2_YOU_ARE_ALREADY_REGISTERED_AS_A_MEMBER'), 'notice');
+				$mainframe->redirect(JURI::root());
+				$mainframe->close();
+			}
+			if (K2_JVERSION != '15')
+			{
+				require_once (JPATH_SITE.DS.'components'.DS.'com_users'.DS.'controller.php');
+				$controller = new UsersController;
+
+			}
+			else
+			{
+				require_once (JPATH_SITE.DS.'components'.DS.'com_user'.DS.'controller.php');
+				$controller = new UserController;
+			}
+			$view = $controller->getView($view, 'html');
+			$view->addTemplatePath(JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'templates');
+			$view->addTemplatePath(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2'.DS.'templates');
+			$view->addTemplatePath(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2');
+			$view->setLayout('register');
+
+			$K2User = new JObject;
+
+			$K2User->description = '';
+			$K2User->gender = 'm';
+			$K2User->image = '';
+			$K2User->url = '';
+			$K2User->plugins = '';
+
+			$wysiwyg = JFactory::getEditor();
+			$editor = $wysiwyg->display('description', $K2User->description, '100%', '250px', '', '', false);
+			$view->assignRef('editor', $editor);
+
+			$lists = array();
+			$genderOptions[] = JHTML::_('select.option', 'm', JText::_('K2_MALE'));
+			$genderOptions[] = JHTML::_('select.option', 'f', JText::_('K2_FEMALE'));
+			$lists['gender'] = JHTML::_('select.radiolist', $genderOptions, 'gender', '', 'value', 'text', $K2User->gender);
+
+			$view->assignRef('lists', $lists);
+			$view->assignRef('K2Params', $params);
+			$view->assignRef('recaptchaClass', $recaptchaClass);
+
+			JPluginHelper::importPlugin('k2');
+			$dispatcher = JDispatcher::getInstance();
+			$K2Plugins = $dispatcher->trigger('onRenderAdminForm', array(
+				&$K2User,
+				'user'
+			));
+			$view->assignRef('K2Plugins', $K2Plugins);
+
+			$view->assignRef('K2User', $K2User);
+			if (K2_JVERSION != '15')
+			{
+				$view->assignRef('user', $user);
+			}
+			$pathway = $mainframe->getPathway();
+			$pathway->setPathway(NULL);
+
+			$nameFieldName = K2_JVERSION != '15' ? 'jform[name]' : 'name';
+			$view->assignRef('nameFieldName', $nameFieldName);
+			$usernameFieldName = K2_JVERSION != '15' ? 'jform[username]' : 'username';
+			$view->assignRef('usernameFieldName', $usernameFieldName);
+			$emailFieldName = K2_JVERSION != '15' ? 'jform[email1]' : 'email';
+			$view->assignRef('emailFieldName', $emailFieldName);
+			$passwordFieldName = K2_JVERSION != '15' ? 'jform[password1]' : 'password';
+			$view->assignRef('passwordFieldName', $passwordFieldName);
+			$passwordVerifyFieldName = K2_JVERSION != '15' ? 'jform[password2]' : 'password2';
+			$view->assignRef('passwordVerifyFieldName', $passwordVerifyFieldName);
+			$optionValue = K2_JVERSION != '15' ? 'com_users' : 'com_user';
+			$view->assignRef('optionValue', $optionValue);
+			$taskValue = K2_JVERSION != '15' ? 'registration.register' : 'register_save';
+			$view->assignRef('taskValue', $taskValue);
+			ob_start();
+			$view->display();
+			$contents = ob_get_clean();
+			$document = JFactory::getDocument();
+			$document->setBuffer($contents, 'component');
+
+		}
+
+		if (($option == 'com_user' && $view == 'user' && ($task == 'edit' || $layout == 'form')) || ($option == 'com_users' && $view == 'profile' && ($layout == 'edit' || $task == 'profile.edit')))
+		{
+
+			if ($user->guest)
+			{
+				$uri = JFactory::getURI();
+
+				if (K2_JVERSION != '15')
+				{
+					$url = 'index.php?option=com_users&view=login&return='.base64_encode($uri->toString());
+
+				}
+				else
+				{
+					$url = 'index.php?option=com_user&view=login&return='.base64_encode($uri->toString());
+				}
+				$mainframe->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
+				$mainframe->redirect(JRoute::_($url, false));
+			}
+
+			if (K2_JVERSION != '15')
+			{
+				require_once (JPATH_SITE.DS.'components'.DS.'com_users'.DS.'controller.php');
+				$controller = new UsersController;
+			}
+			else
+			{
+				require_once (JPATH_SITE.DS.'components'.DS.'com_user'.DS.'controller.php');
+				$controller = new UserController;
+			}
+
+			$view = $controller->getView($view, 'html');
+			$view->addTemplatePath(JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'templates');
+			$view->addTemplatePath(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2'.DS.'templates');
+			$view->addTemplatePath(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2');
+			$view->setLayout('profile');
+
+			$model = K2Model::getInstance('Itemlist', 'K2Model');
+			$K2User = $model->getUserProfile($user->id);
+			if (!is_object($K2User))
+			{
+				$K2User = new Jobject;
+				$K2User->description = '';
+				$K2User->gender = 'm';
+				$K2User->url = '';
+				$K2User->image = NULL;
+			}
+			if (K2_JVERSION == '15')
+			{
+				JFilterOutput::objectHTMLSafe($K2User);
+			}
+			else
+			{
+				JFilterOutput::objectHTMLSafe($K2User, ENT_QUOTES, array(
+					'params',
+					'plugins'
+				));
+			}
+			$wysiwyg = JFactory::getEditor();
+			$editor = $wysiwyg->display('description', $K2User->description, '100%', '250px', '', '', false);
+			$view->assignRef('editor', $editor);
+
+			$lists = array();
+			$genderOptions[] = JHTML::_('select.option', 'm', JText::_('K2_MALE'));
+			$genderOptions[] = JHTML::_('select.option', 'f', JText::_('K2_FEMALE'));
+			$lists['gender'] = JHTML::_('select.radiolist', $genderOptions, 'gender', '', 'value', 'text', $K2User->gender);
+
+			$view->assignRef('lists', $lists);
+
+			JPluginHelper::importPlugin('k2');
+			$dispatcher = JDispatcher::getInstance();
+			$K2Plugins = $dispatcher->trigger('onRenderAdminForm', array(
+				&$K2User,
+				'user'
+			));
+			$view->assignRef('K2Plugins', $K2Plugins);
+
+			$view->assignRef('K2User', $K2User);
+
+			// Asssign some variables depending on Joomla! version
+			$nameFieldName = K2_JVERSION != '15' ? 'jform[name]' : 'name';
+			$view->assignRef('nameFieldName', $nameFieldName);
+			$emailFieldName = K2_JVERSION != '15' ? 'jform[email1]' : 'email';
+			$view->assignRef('emailFieldName', $emailFieldName);
+			$passwordFieldName = K2_JVERSION != '15' ? 'jform[password1]' : 'password';
+			$view->assignRef('passwordFieldName', $passwordFieldName);
+			$passwordVerifyFieldName = K2_JVERSION != '15' ? 'jform[password2]' : 'password2';
+			$view->assignRef('passwordVerifyFieldName', $passwordVerifyFieldName);
+			$usernameFieldName = K2_JVERSION != '15' ? 'jform[username]' : 'username';
+			$view->assignRef('usernameFieldName', $usernameFieldName);
+			$idFieldName = K2_JVERSION != '15' ? 'jform[id]' : 'id';
+			$view->assignRef('idFieldName', $idFieldName);
+			$optionValue = K2_JVERSION != '15' ? 'com_users' : 'com_user';
+			$view->assignRef('optionValue', $optionValue);
+			$taskValue = K2_JVERSION != '15' ? 'profile.save' : 'save';
+			$view->assignRef('taskValue', $taskValue);
+
+			ob_start();
+			if (K2_JVERSION != '15')
+			{
+				$active = JFactory::getApplication()->getMenu()->getActive();
+				if (isset($active->query['layout']) && $active->query['layout'] != 'profile')
+				{
+					$active->query['layout'] = 'profile';
+				}
+				$view->assignRef('user', $user);
+				$view->display();
+			}
+			else
+			{
+				$view->_displayForm();
+			}
+
+			$contents = ob_get_clean();
+			$document = JFactory::getDocument();
+			$document->setBuffer($contents, 'component');
+
+		}
+
+	}
+
 	function onAfterRender()
 	{
 		$application = JFactory::getApplication();
@@ -890,6 +865,9 @@ class plgSystemK2 extends JPlugin
 
 	}
 
+	/* ============================================ */
+	/* ============= Helper Functions ============= */
+	/* ============================================ */
 	function getSearchValue($id, $currentValue)
 	{
 

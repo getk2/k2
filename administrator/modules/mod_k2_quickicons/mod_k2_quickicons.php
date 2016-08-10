@@ -8,7 +8,7 @@
  */
 
 // no direct access
-defined('_JEXEC') or die ;
+defined('_JEXEC') or die;
 
 $user = JFactory::getUser();
 
@@ -68,7 +68,9 @@ JHTML::_('behavior.modal');
 
 // Append CSS to the document's head
 if ($modCSSStyling)
-	$document->addStyleSheet(JURI::base(true).'/modules/'.$mod_name.'/tmpl/css/style.css?v=2.7.2');
+{
+	$document->addStyleSheet(JURI::base(true).'/modules/'.$mod_name.'/tmpl/css/style.css?v='.K2_CURRENT_VERSION);
+}
 
 // Output content with template
 echo $mod_copyrights_start;

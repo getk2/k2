@@ -8,7 +8,7 @@
  */
 
 // no direct access
-defined('_JEXEC') or die ;
+defined('_JEXEC') or die;
 
 class K2HelperStats
 {
@@ -114,7 +114,7 @@ class K2HelperStats
 
 	public static function getExtensionVersion()
 	{
-		return '2.7.2';
+		return K2_CURRENT_VERSION;
 	}
 
 	public static function getCaching()
