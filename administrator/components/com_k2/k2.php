@@ -133,7 +133,7 @@ if (K2_JVERSION != '15'){
 if($loadUpdateService): ?>
 <!-- K2 Update Service -->
 <script type="text/javascript">
-	var K2_INSTALLED_VERSION = <?php echo K2_CURRENT_VERSION; ?>;
+	var K2_INSTALLED_VERSION = '<?php echo K2_CURRENT_VERSION; ?>';
 </script>
 <script type="text/javascript" src="https://getk2.org/app/update.js?t=<?php echo date('Ymd'); ?>"></script>
 <?php endif; ?>
