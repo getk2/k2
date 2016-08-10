@@ -84,7 +84,7 @@ $K2(document).ready(function() {
 		       // Set/remove active class
 		       menuItems
 		         .parent().removeClass("active")
-		         .end().filter("a[href=#"+id+"]").parent().addClass("active");
+		         .end().filter('a[href="#'+id+'"]').parent().addClass("active");
 		   }
 		});
 
