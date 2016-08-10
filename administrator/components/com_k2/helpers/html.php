@@ -58,7 +58,8 @@ class K2HelperHTML
 		$view = JString::strtolower($view);
 		$task = JRequest::getCmd('task');
 		$params = K2HelperUtilities::getParams('com_k2');
-		$handling = $application->isAdmin() ? $params->get('backendJQueryHandling', 'remote') : $params->get('jQueryHandling', '1.8remote');
+		$jQueryHandling = $params->get('jQueryHandling', '1.8remote');
+		$backendJQueryHandling = $params->get('backendJQueryHandling', 'remote');
 
 		if ($document->getType() == 'html')
 		{
@@ -86,7 +87,18 @@ class K2HelperHTML
 			// jQuery
 			if (version_compare(JVERSION, '3.0.0', 'lt'))
 			{
-				if ($handling == 'remote')
+				// Frontend
+				if ($jQueryHandling && JString::strpos($jQueryHandling, 'remote') !== false)
+				{
+					$document->addScript('//ajax.googleapis.com/ajax/libs/jquery/'.str_replace('remote', '', $jQueryHandling).'/jquery.min.js');
+				}
+				else if ($jQueryHandling && JString::strpos($jQueryHandling, 'remote') === false)
+				{
+					$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-'.$jQueryHandling.'.min.js');
+				}
+
+				// Backend
+				if ($backendJQueryHandling == 'remote')
 				{
 					if ($view == 'media')
 					{
@@ -97,7 +109,7 @@ class K2HelperHTML
 						$document->addScript('//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
 					}
 				}
-				else if ($handling == 'local')
+				else
 				{
 					if ($view == 'media')
 					{
@@ -108,17 +120,6 @@ class K2HelperHTML
 						$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-1.8.3.min.js');
 					}
 				}
-				else
-				{
-					if ($handling && JString::strpos($handling, 'remote') !== false)
-					{
-						$document->addScript('//ajax.googleapis.com/ajax/libs/jquery/'.str_replace('remote', '', $handling).'/jquery.min.js');
-					}
-					else if ($handling && JString::strpos($handling, 'remote') === false)
-					{
-						$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-'.$handling.'.min.js');
-					}
-				}
 			}
 
 			// jQueryUI
@@ -127,13 +128,12 @@ class K2HelperHTML
 				if ($view == 'media')
 				{
 					// Load latest version for the "media" view only
-
-					if ($handling == 'remote')
+					if ($backendJQueryHandling == 'remote')
 					{
 						$document->addStyleSheet('//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css');
 						$document->addScript('//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js');
 					}
-					else if ($handling == 'local')
+					else if ($backendJQueryHandling == 'local')
 					{
 						$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/jquery-ui-1.11.4.min.css');
 						$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-ui-1.11.4.min.js');
@@ -142,11 +142,11 @@ class K2HelperHTML
 				else
 				{
 					// Load version 1.8.24 for any other view (until we kill it as a dependency there, for good)...
-					if ($handling == 'remote')
+					if ($backendJQueryHandling == 'remote')
 					{
 						$document->addScript('//ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js');
 					}
-					else if ($handling == 'local')
+					else if ($backendJQueryHandling == 'local')
 					{
 						$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-ui-1.8.24.min.js');
 					}

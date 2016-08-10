@@ -7,7 +7,7 @@
 			<option value="0">K2_DISABLE</option>
 			<option value="1">K2_ENABLE</option>
 		</param>
-		<param menu="hide" name="jQueryHandling" type="list" default="1.8remote" label="K2_COM_JQUERY_HANDLING" description="">
+		<param menu="hide" name="jQueryHandling" type="list" default="1.8remote" label="K2_COM_JQUERY_HANDLING" description="K2_COM_JQUERY_HANDLING_DESC">
 			<option value="0">K2_COM_DO_NOT_LOAD_THE_JQUERY_LIBRARY</option>
 			<option value="1.7.2">K2_COM_LOAD_V1_7_LOCAL_COPY</option>
 			<option value="1.7remote">K2_COM_LOAD_V1_7_X_LATEST_REMOTE_COPY</option>
@@ -550,7 +550,7 @@
 			<option value="0">K2_DISABLE</option>
 			<option value="1">K2_ENABLE</option>
 		</field>
-		<field menu="hide" name="jQueryHandling" type="list" default="1.8remote" label="K2_COM_JQUERY_HANDLING" description="">
+		<field menu="hide" name="jQueryHandling" type="list" default="1.8remote" label="K2_COM_JQUERY_HANDLING" description="K2_COM_JQUERY_HANDLING_DESC">
 			<option value="0">K2_COM_DO_NOT_LOAD_THE_JQUERY_LIBRARY</option>
 			<option value="1.7.2">K2_COM_LOAD_V1_7_LOCAL_COPY</option>
 			<option value="1.7remote">K2_COM_LOAD_V1_7_X_LATEST_REMOTE_COPY</option>

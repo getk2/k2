@@ -58,14 +58,19 @@ class K2ControllerItem extends K2Controller
 				$itemListModel = K2Model::getInstance('Itemlist', 'K2Model');
 				$profile = $itemListModel->getUserProfile($user->id);
 				$script = "
-\$K2(document).ready(function() {
-\$K2('#userName').val(".json_encode($user->name).").attr('disabled', 'disabled');
-\$K2('#commentEmail').val('".$user->email."').attr('disabled', 'disabled');";
+					\$K2(document).ready(function() {
+						\$K2('#userName').val(".json_encode($user->name).").attr('disabled', 'disabled');
+						\$K2('#commentEmail').val('".$user->email."').attr('disabled', 'disabled');
+				";
 				if (is_object($profile) && $profile->url)
 				{
-					$script .= " \$K2('#commentURL').val('".htmlspecialchars($profile->url, ENT_QUOTES, 'UTF-8')."').attr('disabled', 'disabled');";
+					$script .= "
+						\$K2('#commentURL').val('".htmlspecialchars($profile->url, ENT_QUOTES, 'UTF-8')."').attr('disabled', 'disabled');
+					";
 				}
-				$script .= " });";
+				$script .= "
+					});
+				";
 				$document->addScriptDeclaration($script);
 			}
 		}
