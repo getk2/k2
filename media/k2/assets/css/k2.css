@@ -661,7 +661,7 @@ table.adminFormK2 {width:100%;margin-bottom:16px;}
 .isJ25 #k2AdminContainer .adminlist tr td {background:#f0f2f2;border-bottom:1px solid #dbdcdc;}
 
 .table-responsive-wrap {position:relative;}
-.table-responsive {width:100%;margin-bottom:15px;overflow-x:scroll;overflow-y:hidden;-webkit-overflow-scrolling:touch;-ms-overflow-style:-ms-autohiding-scrollbar;}
+.table-responsive {width:100%;margin-bottom:15px;overflow-y:hidden;-webkit-overflow-scrolling:touch;-ms-overflow-style:-ms-autohiding-scrollbar;}
 
 /* minimal modal */
 .jw-modal {display:none;position:fixed;z-index:9999;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.3);}
