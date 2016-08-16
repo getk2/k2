@@ -23,7 +23,7 @@ class K2ElementCategoriesLatest extends K2Element
 
         $document = JFactory::getDocument();
 
-        K2HelperHTML::loadHeadIncludes(true, false, false, true);
+        K2HelperHTML::loadHeadIncludes(true, true, false, true);
 
         $mainframe = JFactory::getApplication();
 
