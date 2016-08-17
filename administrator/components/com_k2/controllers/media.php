@@ -24,11 +24,22 @@ class K2ControllerMedia extends K2Controller
 
 	function connector()
 	{
+
+		if ($_POST)
+		{
+			JSession::checkToken('post') or jexit(JText::_('JINVALID_TOKEN'));
+		}
+		else
+		{
+			JSession::checkToken('get') or jexit(JText::_('JINVALID_TOKEN'));
+		}
+
 		$mainframe = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_media');
 		$root = $params->get('file_path', 'media');
 		$folder = JRequest::getVar('folder', $root, 'default', 'path');
 		$type = JRequest::getCmd('type', 'video');
+
 		if (JString::trim($folder) == "")
 		{
 			$folder = $root;
@@ -55,8 +66,10 @@ class K2ControllerMedia extends K2Controller
 		function access($attr, $path, $data, $volume)
 		{
 			$mainframe = JFactory::getApplication();
-			// Hide PHP files.
+
+			// Hide PHP files
 			$ext = strtolower(JFile::getExt(basename($path)));
+
 			if ($ext == 'php')
 			{
 				return true;
@@ -67,6 +80,7 @@ class K2ControllerMedia extends K2Controller
 			{
 				return true;
 			}
+
 			// Read only access for front-end. Full access for administration section.
 			switch($attr)
 			{
@@ -86,14 +100,6 @@ class K2ControllerMedia extends K2Controller
 
 		}
 
-		function setToken($cmd, &$result, $args, $elfinder)
-		{
-		    if (isset($result['added']) && $result['added'])
-		    {
-		        $result['csrftoken'] = JSession::getFormToken();
-		    }
-		}
-
 		if ($mainframe->isAdmin())
 		{
 			$permissions = array('read' => true, 'write' => true);
@@ -102,9 +108,9 @@ class K2ControllerMedia extends K2Controller
 		{
 			$permissions = array('read' => true, 'write' => false);
 		}
+
 		$options = array(
 			'debug' => false,
-		    'bind' => array('upload' => 'setToken'),
 			'roots' => array(
 				array(
 					'driver' => 'LocalFileSystem',

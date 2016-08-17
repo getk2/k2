@@ -34,9 +34,13 @@ class K2ViewMedia extends K2View
         {
             $mimes = '';
         }
+        $token = version_compare(JVERSION, '2.5', 'ge') ? JSession::getFormToken() : JUtility::getToken();
+
         $this->assignRef('mimes', $mimes);
         $this->assignRef('type', $type);
         $this->assignRef('fieldID', $fieldID);
+        $this->assignRef('token', $token);
+
         if ($mainframe->isAdmin())
         {
             $toolbar = JToolBar::getInstance('toolbar');
