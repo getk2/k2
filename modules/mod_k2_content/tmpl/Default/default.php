@@ -41,17 +41,17 @@ defined('_JEXEC') or die;
       <?php if($params->get('itemAuthor')): ?>
       <div class="moduleItemAuthor">
 	      <?php echo K2HelperUtilities::writtenBy($item->authorGender); ?>
-	
+
 				<?php if(isset($item->authorLink)): ?>
 				<a rel="author" title="<?php echo K2HelperUtilities::cleanHtml($item->author); ?>" href="<?php echo $item->authorLink; ?>"><?php echo $item->author; ?></a>
 				<?php else: ?>
 				<?php echo $item->author; ?>
 				<?php endif; ?>
-				
+
 				<?php if($params->get('userDescription')): ?>
 				<?php echo $item->authorDescription; ?>
 				<?php endif; ?>
-				
+
 			</div>
 			<?php endif; ?>
 
@@ -188,7 +188,7 @@ defined('_JEXEC') or die;
   <?php endif; ?>
 
 	<?php if($params->get('itemCustomLink')): ?>
-	<a class="moduleCustomLink" href="<?php echo $params->get('itemCustomLinkURL'); ?>" title="<?php echo K2HelperUtilities::cleanHtml($itemCustomLinkTitle); ?>"><?php echo $itemCustomLinkTitle; ?></a>
+	<a class="moduleCustomLink" href="<?php echo $itemCustomLinkURL; ?>" title="<?php echo K2HelperUtilities::cleanHtml($itemCustomLinkTitle); ?>"><?php echo $itemCustomLinkTitle; ?></a>
 	<?php endif; ?>
 
 	<?php if($params->get('feed')): ?>

@@ -24,15 +24,18 @@ $getTemplate = $params->get('getTemplate', 'Default');
 $itemAuthorAvatarWidthSelect = $params->get('itemAuthorAvatarWidthSelect', 'custom');
 $itemAuthorAvatarWidth = $params->get('itemAuthorAvatarWidth', 50);
 $itemCustomLinkTitle = $params->get('itemCustomLinkTitle', '');
-if ($params->get('itemCustomLinkMenuItem'))
+$itemCustomLinkURL = trim($params->get('itemCustomLinkURL'));
+$itemCustomLinkMenuItem = $params->get('itemCustomLinkMenuItem');
+
+if ($itemCustomLinkMenuItem && !($itemCustomLinkURL && ($itemCustomLinkURL!='http://' || $itemCustomLinkURL!=''))
 {
     $menu = JMenu::getInstance('site');
-    $menuLink = $menu->getItem($params->get('itemCustomLinkMenuItem'));
+    $menuLink = $menu->getItem($itemCustomLinkMenuItem);
     if (!$itemCustomLinkTitle)
     {
         $itemCustomLinkTitle = (K2_JVERSION != '15') ? $menuLink->title : $menuLink->name;
     }
-    $params->set('itemCustomLinkURL', JRoute::_('index.php?&Itemid='.$menuLink->id));
+    $itemCustomLinkURL = JRoute::_('index.php?&Itemid='.$menuLink->id);
 }
 
 // Get component params
