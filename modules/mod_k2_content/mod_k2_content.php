@@ -27,7 +27,7 @@ $itemCustomLinkTitle = $params->get('itemCustomLinkTitle', '');
 $itemCustomLinkURL = trim($params->get('itemCustomLinkURL'));
 $itemCustomLinkMenuItem = $params->get('itemCustomLinkMenuItem');
 
-if ($itemCustomLinkURL && ($itemCustomLinkURL!='http://' || $itemCustomLinkURL!=''))
+if ($itemCustomLinkURL && $itemCustomLinkURL!='http://')
 {
 	if ($itemCustomLinkTitle=='')
 	{
@@ -49,6 +49,10 @@ else if ($itemCustomLinkMenuItem)
     }
     $itemCustomLinkURL = JRoute::_('index.php?&Itemid='.$menuLink->id);
 }
+
+// Make params backwards compatible
+$params->set('itemCustomLinkTitle', $itemCustomLinkTitle);
+$params->set('itemCustomLinkURL', $itemCustomLinkURL);
 
 // Get component params
 $componentParams = JComponentHelper::getParams('com_k2');
