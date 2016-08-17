@@ -27,7 +27,19 @@ $itemCustomLinkTitle = $params->get('itemCustomLinkTitle', '');
 $itemCustomLinkURL = trim($params->get('itemCustomLinkURL'));
 $itemCustomLinkMenuItem = $params->get('itemCustomLinkMenuItem');
 
-if ($itemCustomLinkMenuItem && !($itemCustomLinkURL && ($itemCustomLinkURL!='http://' || $itemCustomLinkURL!=''))
+if ($itemCustomLinkURL && ($itemCustomLinkURL!='http://' || $itemCustomLinkURL!=''))
+{
+	if ($itemCustomLinkTitle=='')
+	{
+		if (strpos($itemCustomLinkURL, '://')!==false)
+		{
+			$linkParts = explode('://', $itemCustomLinkURL);
+			$itemCustomLinkURL = $linkParts[1];
+		}
+		$itemCustomLinkTitle = $itemCustomLinkURL;
+	}
+}
+else if ($itemCustomLinkMenuItem)
 {
     $menu = JMenu::getInstance('site');
     $menuLink = $menu->getItem($itemCustomLinkMenuItem);
