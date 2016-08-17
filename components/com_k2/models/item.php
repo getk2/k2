@@ -524,7 +524,7 @@ class K2ModelItem extends K2Model
 				$row->author->profile->url = htmlspecialchars($row->author->profile->url, ENT_QUOTES, 'UTF-8');
 			}
 		}
-		$row->numOfComments = $item->numOfComments;
+		if (isset($item->numOfComments)) $row->numOfComments = $item->numOfComments;
 		$row->events = $item->event;
 		$row->language = $item->language;
 		return $row;
