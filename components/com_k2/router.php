@@ -152,7 +152,7 @@ if ($params->get('k2Sef'))
 					// Remove the id from the slug
 					if ($params->get('k2SefInsertCatId') == '0')
 					{
-						
+
 						// Try to split the slug
 						$segments[0] = getCategorySlug((int)$ItemId);
 						$temp 	 	 = @explode('-', $segments[0]);
@@ -164,7 +164,7 @@ if ($params->get('k2Sef'))
 						}
 
 					}
-					else 
+					else
 					{
 						// Apply the link including the id
 						$segments[0] = getCategorySlug((int)$ItemId);
@@ -346,7 +346,6 @@ if ($params->get('k2Sef'))
 				{
 					array_splice($segments, 0, 0, 'item');
 				}
-
 				// Reinsert item id to the item alias
 				if (!$params->get('k2SefInsertItemId') && @$segments[1] != 'download' && @$segments[1] != 'edit')
 				{
@@ -466,10 +465,7 @@ if ($params->get('k2Sef'))
 		$slug = null;
 
 		$db = JFactory::getDBO();
-		$query = "SELECT items.id, categories.id AS catid, CASE WHEN CHAR_LENGTH(categories.alias) THEN CONCAT_WS('-', categories.id, categories.alias) ELSE categories.id END AS catslug 
-		FROM #__k2_items AS items 
-		INNER JOIN #__k2_categories AS categories ON items.catid = categories.id 
-		WHERE items.id = ".(int)$ItemId;
+		$query = "SELECT items.id, categories.id AS catid, CASE WHEN CHAR_LENGTH(categories.alias) THEN CONCAT_WS('-', categories.id, categories.alias) ELSE categories.id END AS catslug FROM #__k2_items AS items INNER JOIN #__k2_categories AS categories ON items.catid = categories.id WHERE items.id = ".(int)$ItemId;
 		$db->setQuery($query);
 
 		try
@@ -492,7 +488,7 @@ if ($params->get('k2Sef'))
 	/**
 	 * Get id K2.
 	 *
-	 * @param   string  $alias  The k2 item alias
+	 * @param   string  $alias  The K2 item alias
 	 *
 	 * @return  integer
 	 */
@@ -517,7 +513,7 @@ if ($params->get('k2Sef'))
 	/**
 	 * Get id K2.
 	 *
-	 * @param   string  $alias  The k2 category alias
+	 * @param   string  $alias  The K2 category alias
 	 *
 	 * @return  integer
 	 */
