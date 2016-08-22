@@ -88,36 +88,42 @@ class K2HelperHTML
 			if (version_compare(JVERSION, '3.0.0', 'lt'))
 			{
 				// Frontend
-				if ($jQueryHandling && JString::strpos($jQueryHandling, 'remote') !== false)
+				if ($application->isSite())
 				{
-					$document->addScript('//ajax.googleapis.com/ajax/libs/jquery/'.str_replace('remote', '', $jQueryHandling).'/jquery.min.js');
-				}
-				else if ($jQueryHandling && JString::strpos($jQueryHandling, 'remote') === false)
-				{
-					$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-'.$jQueryHandling.'.min.js');
+					if ($jQueryHandling && JString::strpos($jQueryHandling, 'remote') !== false)
+					{
+						$document->addScript('//ajax.googleapis.com/ajax/libs/jquery/'.str_replace('remote', '', $jQueryHandling).'/jquery.min.js');
+					}
+					else if ($jQueryHandling && JString::strpos($jQueryHandling, 'remote') === false)
+					{
+						$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-'.$jQueryHandling.'.min.js');
+					}
 				}
 
 				// Backend
-				if ($backendJQueryHandling == 'remote')
+				if ($application->isAdmin())
 				{
-					if ($view == 'media')
+					if ($backendJQueryHandling == 'remote')
 					{
-						$document->addScript('//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js');
+						if ($view == 'media')
+						{
+							$document->addScript('//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js');
+						}
+						else
+						{
+							$document->addScript('//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
+						}
 					}
 					else
 					{
-						$document->addScript('//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
-					}
-				}
-				else
-				{
-					if ($view == 'media')
-					{
-						$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-1.12.4.min.js');
-					}
-					else
-					{
-						$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-1.8.3.min.js');
+						if ($view == 'media')
+						{
+							$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-1.12.4.min.js');
+						}
+						else
+						{
+							$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-1.8.3.min.js');
+						}
 					}
 				}
 			}
