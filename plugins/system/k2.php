@@ -504,7 +504,7 @@ class plgSystemK2 extends JPlugin
 			if($googleSearchContainerID=='k2Container'){
 				$googleSearchContainerID = 'k2GoogleSearchContainer';
 			}
-			$document->addScript('http://www.google.com/jsapi');
+			$document->addScript('//www.google.com/jsapi');
 			$js = '
 			google.load("search", "1", {"language" : "'.$lang.'"});
 			function OnLoad(){
