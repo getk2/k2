@@ -38,7 +38,12 @@ class modK2ContentHelper
 		if ($params->get('source') == 'specific')
 		{
 
-			$value = $params->get('items');
+			$jinput = JFactory::getApplication()->input;
+                        if($params->get('K2AutoDetectItem') && $jinput->get('view')=='item'){
+                                $value = strval(intval($jinput->get('id')));				
+                        } else {
+				$value = $params->get('items');
+                        }
 			$current = array();
 			if (is_string($value) && !empty($value))
 				$current[] = $value;
