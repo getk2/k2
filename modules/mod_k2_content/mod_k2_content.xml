@@ -70,6 +70,10 @@
             <option value="1">K2_YES</option>
         </param>
         <param name="" type="header" default="K2_SELECT_SPECIFIC_ITEMS" label="" description=""/>
+        <param name="K2AutoDetectItem" type="radio" default="0" label="K2_AUTO_DETECT_CURRENT_ITEM" description="K2_AUTO_DETECT_CURRENT_ITEM_DESC">
+            <option value="0">K2_NO</option>
+            <option value="1">K2_YES</option>
+        </param>
         <param name="item" type="item" default="" label="K2_ADD_ITEMS" description="K2_USE_THIS_TO_ADD_ITEMS_TO_THE_LIST_BELOW"/>
         <param name="items" type="items" default="" label="K2_DRAG_AND_DROP_TO_REORDER_ITEMS" description="K2_DRAG_AND_DROP_TO_REORDER_ITEMS_CLICK_THE_REMOVE_ICON_TO_REMOVE_AN_ITEM_FROM_THE_LIST"/>
         <param name="" type="header" default="K2_ITEM_VIEW_OPTIONS_COMMON_FOR_EITHER_SOURCE" label="" description=""/>
