@@ -666,7 +666,7 @@ class K2ModelItem extends K2Model
 				else
 				{
 					$dispatcher->trigger('onContentPrepare', array(
-						'com_k2.'.$view.'-video',
+						'com_k2.'.$view.'-media',
 						&$item,
 						&$params,
 						$limitstart
