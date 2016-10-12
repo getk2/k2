@@ -604,7 +604,7 @@ class K2ModelItem extends K2Model
 				else
 				{
 					$dispatcher->trigger('onContentPrepare', array(
-						'com_k2.'.$view,
+						'com_k2.'.$view.'-gallery',
 						&$item,
 						&$params,
 						$limitstart
@@ -666,7 +666,7 @@ class K2ModelItem extends K2Model
 				else
 				{
 					$dispatcher->trigger('onContentPrepare', array(
-						'com_k2.'.$view,
+						'com_k2.'.$view.'-media',
 						&$item,
 						&$params,
 						$limitstart
