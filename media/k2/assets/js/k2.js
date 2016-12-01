@@ -464,6 +464,12 @@ $K2(document).ready(function() {
                     $K2(this).appendTo($K2('#tags'));
                 });
             });
+	    $K2('#k2AdminContainer').on('click', 'input[type="radio"]', function(e){
+            	$K2(this).parents('.controls').children('label.radio').each(function(){
+            		$K2(this).removeClass('isChecked');
+            	});
+            	$K2(this).parent().addClass('isChecked');
+            });
             selectsInstance('#catid').change(function() {
                 if (selectsInstance(this).find('option:selected').attr('disabled')) {
                     alert(K2Language[4]);
