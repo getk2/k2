@@ -209,7 +209,7 @@ class K2ViewItemlist extends K2View
                     $row->ordering = $category->ordering;
                     //$row->plugins = $category->plugins;
                     $row->events = $category->event;
-                    $row->chidlren = $subCategories;
+                    $row->children = $subCategories;
                     $response->category = $row;
                     break;
 
@@ -441,7 +441,7 @@ class K2ViewItemlist extends K2View
         }
 
         $response->items = $rows;
-        
+
         // Prevent spammers from using the tag view
         if ($task == 'tag' && !count($response->items))
         {
