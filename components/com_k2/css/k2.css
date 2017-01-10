@@ -455,7 +455,7 @@ div.itemList {}
 		div.itemContainer {float:left;}
 		div.itemContainerLast {} /* this class is appended to the last container on each row of items (useful when you want to set 0 padding/margin to the last container) */
 		@media screen and ( max-width:600px ){
-			div.itemContainer {float:none;display:block;width:100%!important;}
+			div.itemContainer, div.subCategoryContainer {float:none;display:block;width:100%!important;}
 		}
 
 /* --- Item block for each item group --- */
