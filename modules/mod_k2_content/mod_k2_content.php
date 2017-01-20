@@ -71,5 +71,7 @@ $items = modK2ContentHelper::getItems($params);
 
 if (count($items))
 {
-    require (JModuleHelper::getLayoutPath('mod_k2_content', $getTemplate.DS.'default'));
+    $file = JModuleHelper::getLayoutPath('mod_k2_content', $getTemplate.DS.'default');
+    if(file_exists($file))
+        require ($file);
 }
