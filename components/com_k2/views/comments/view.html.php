@@ -17,7 +17,7 @@ class K2ViewComments extends K2View
 
 	function report($tpl = null)
 	{
-		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
+		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
 		$row = JTable::getInstance('K2Comment', 'Table');
 		$row->load(JRequest::getInt('commentID'));
 		if (!$row->published)

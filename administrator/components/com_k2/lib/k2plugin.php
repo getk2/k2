@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.plugin.plugin');
 
-JLoader::register('K2Parameter', JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'lib'.DS.'k2parameter.php');
+JLoader::register('K2Parameter', JPATH_ADMINISTRATOR.'/components/com_k2/lib/k2parameter.php');
 
 class K2Plugin extends JPlugin
 {
@@ -26,7 +26,7 @@ class K2Plugin extends JPlugin
 	{
 
 		$mainframe = JFactory::getApplication();
-		$manifest = (K2_JVERSION == '15') ? JPATH_SITE.DS.'plugins'.DS.'k2'.DS.$this->pluginName.'.xml' : JPATH_SITE.DS.'plugins'.DS.'k2'.DS.$this->pluginName.DS.$this->pluginName.'.xml';
+		$manifest = (K2_JVERSION == '15') ? JPATH_SITE.'/plugins/k2/'.$this->pluginName.'.xml' : JPATH_SITE.'/plugins/k2/'.$this->pluginName.'/'.$this->pluginName.'.xml';
 		if (!empty($tab))
 		{
 			$path = $type.'-'.$tab;

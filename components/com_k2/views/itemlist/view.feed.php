@@ -44,7 +44,7 @@ class K2ViewItemlist extends K2View
                 case 'category' :
                     //Get category
                     $id = JRequest::getInt('id');
-                    JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
+                    JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
                     $category = JTable::getInstance('K2Category', 'Table');
                     $category->load($id);
 

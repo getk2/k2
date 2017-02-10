@@ -40,8 +40,8 @@ class K2ViewItem extends K2View
 			]
 		";
 		$document->addScriptDeclaration($js);
-		K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'models');
-		$model = K2Model::getInstance('Item', 'K2Model', array('table_path' => JPATH_COMPONENT_ADMINISTRATOR.DS.'tables'));
+		K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
+		$model = K2Model::getInstance('Item', 'K2Model', array('table_path' => JPATH_COMPONENT_ADMINISTRATOR.'/tables'));
 		$item = $model->getData();
 		JFilterOutput::objectHTMLSafe($item, ENT_QUOTES, array(
 			'video',
@@ -53,7 +53,7 @@ class K2ViewItem extends K2View
 		// Permissions check on frontend
 		if ($mainframe->isSite())
 		{
-			JLoader::register('K2HelperPermissions', JPATH_COMPONENT.DS.'helpers'.DS.'permissions.php');
+			JLoader::register('K2HelperPermissions', JPATH_COMPONENT.'/helpers/permissions.php');
 			$task = JRequest::getCmd('task');
 			if ($task == 'edit' && !K2HelperPermissions::canEditItem($item->created_by, $item->catid))
 			{
@@ -384,7 +384,7 @@ class K2ViewItem extends K2View
 		$categories = $categoriesModel->categoriesTree(NUll, true, false);
 		if ($mainframe->isSite())
 		{
-			JLoader::register('K2HelperPermissions', JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'permissions.php');
+			JLoader::register('K2HelperPermissions', JPATH_SITE.'/components/com_k2/helpers/permissions.php');
 			if (($task == 'add' || $task == 'edit') && !K2HelperPermissions::canAddToAll())
 			{
 				for ($i = 0; $i < sizeof($categories); $i++)
@@ -403,7 +403,7 @@ class K2ViewItem extends K2View
 		$categories_options = @array_merge($categories_option, $categories);
 		$lists['categories'] = JHTML::_('select.genericlist', $categories_options, 'catid', '', 'value', 'text', $item->catid);
 
-		JTable::addIncludePath(JPATH_COMPONENT.DS.'tables');
+		JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 		$category = JTable::getInstance('K2Category', 'Table');
 		$category->load($item->catid);
 
@@ -467,12 +467,12 @@ class K2ViewItem extends K2View
 		$date = JFactory::getDate($item->modified);
 		$timestamp = '?t='.$date->toUnix();
 
-		if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_XL.jpg'))
+		if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_XL.jpg'))
 		{
 			$item->image = JURI::root().'media/k2/items/cache/'.md5("Image".$item->id).'_XL.jpg'.$timestamp;
 		}
 
-		if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_S.jpg'))
+		if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_S.jpg'))
 		{
 			$item->thumb = JURI::root().'media/k2/items/cache/'.md5("Image".$item->id).'_S.jpg'.$timestamp;
 		}
@@ -532,13 +532,13 @@ class K2ViewItem extends K2View
 		if (version_compare(JVERSION, '1.6.0', 'ge'))
 		{
 			jimport('joomla.form.form');
-			$form = JForm::getInstance('itemForm', JPATH_COMPONENT_ADMINISTRATOR.DS.'models'.DS.'item.xml');
+			$form = JForm::getInstance('itemForm', JPATH_COMPONENT_ADMINISTRATOR.'/models/item.xml');
 			$values = array('params' => json_decode($item->params));
 			$form->bind($values);
 		}
 		else
 		{
-			$form = new JParameter('', JPATH_COMPONENT_ADMINISTRATOR.DS.'models'.DS.'item.xml');
+			$form = new JParameter('', JPATH_COMPONENT_ADMINISTRATOR.'/models/item.xml');
 			$form->loadINI($item->params);
 		}
 		$this->assignRef('form', $form);

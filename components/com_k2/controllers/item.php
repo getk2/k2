@@ -31,7 +31,7 @@ class K2ControllerItem extends K2Controller
 		else
 		{
 			$cache = true;
-			JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
+			JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
 			$row = JTable::getInstance('K2Item', 'Table');
 			$row->load(JRequest::getInt('id'));
 			if (K2HelperPermissions::canEditItem($row->created_by, $row->catid))
@@ -102,8 +102,8 @@ class K2ControllerItem extends K2Controller
 		$document->addStyleSheet(JURI::root(true).'/templates/system/css/general.css');
 		$document->addStyleSheet(JURI::root(true).'/templates/system/css/system.css');
 
-		$this->addViewPath(JPATH_COMPONENT_ADMINISTRATOR.DS.'views');
-		$this->addModelPath(JPATH_COMPONENT_ADMINISTRATOR.DS.'models');
+		$this->addViewPath(JPATH_COMPONENT_ADMINISTRATOR.'/views');
+		$this->addModelPath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
 		$view = $this->getView('item', 'html');
 		$view->setLayout('itemform');
 
@@ -113,23 +113,23 @@ class K2ControllerItem extends K2Controller
 		}
 
 		// Look for template files in component folders
-		$view->addTemplatePath(JPATH_COMPONENT.DS.'templates');
-		$view->addTemplatePath(JPATH_COMPONENT.DS.'templates'.DS.'default');
+		$view->addTemplatePath(JPATH_COMPONENT.'/templates');
+		$view->addTemplatePath(JPATH_COMPONENT.'/templates/default');
 
 		// Look for overrides in template folder (K2 template structure)
-		$view->addTemplatePath(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2'.DS.'templates');
-		$view->addTemplatePath(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2'.DS.'templates'.DS.'default');
+		$view->addTemplatePath(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2/templates');
+		$view->addTemplatePath(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2/templates/default');
 
 		// Look for overrides in template folder (Joomla template structure)
-		$view->addTemplatePath(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2'.DS.'default');
-		$view->addTemplatePath(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2');
+		$view->addTemplatePath(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2/default');
+		$view->addTemplatePath(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2');
 
 		// Look for specific K2 theme files
 		if ($params->get('theme'))
 		{
-			$view->addTemplatePath(JPATH_COMPONENT.DS.'templates'.DS.$params->get('theme'));
-			$view->addTemplatePath(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2'.DS.'templates'.DS.$params->get('theme'));
-			$view->addTemplatePath(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2'.DS.$params->get('theme'));
+			$view->addTemplatePath(JPATH_COMPONENT.'/templates/'.$params->get('theme'));
+			$view->addTemplatePath(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2/templates/'.$params->get('theme'));
+			$view->addTemplatePath(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2/'.$params->get('theme'));
 		}
 		$view->display();
 	}
@@ -152,7 +152,7 @@ class K2ControllerItem extends K2Controller
 		JRequest::setVar('tmpl', 'component');
 		$language = JFactory::getLanguage();
 		$language->load('com_k2', JPATH_ADMINISTRATOR);
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'models'.DS.'item.php');
+		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/item.php');
 		$model = new K2ModelItem;
 		$model->save(true);
 		$mainframe->close();
@@ -162,7 +162,7 @@ class K2ControllerItem extends K2Controller
 	function deleteAttachment()
 	{
 
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'models'.DS.'item.php');
+		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/item.php');
 		$model = new K2ModelItem;
 		$model->deleteAttachment();
 	}
@@ -170,7 +170,7 @@ class K2ControllerItem extends K2Controller
 	function tag()
 	{
 
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'models'.DS.'tag.php');
+		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/tag.php');
 		$model = new K2ModelTag;
 		$model->addTag();
 	}
@@ -182,7 +182,7 @@ class K2ControllerItem extends K2Controller
 		{
 			JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
 		}
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'models'.DS.'tag.php');
+		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/tag.php');
 		$model = new K2ModelTag;
 		$model->tags();
 	}
@@ -190,7 +190,7 @@ class K2ControllerItem extends K2Controller
 	function download()
 	{
 
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'models'.DS.'item.php');
+		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/item.php');
 		$model = new K2ModelItem;
 		$model->download();
 	}
@@ -202,12 +202,12 @@ class K2ControllerItem extends K2Controller
 		$language->load('com_k2', JPATH_ADMINISTRATOR);
 		$itemID = JRequest::getInt('id', NULL);
 
-		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
+		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
 		$catid = JRequest::getInt('cid');
 		$category = JTable::getInstance('K2Category', 'Table');
 		$category->load($catid);
 
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'models'.DS.'extrafield.php');
+		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/extrafield.php');
 		$extraFieldModel = new K2ModelExtraField;
 
 		$extraFields = $extraFieldModel->getExtraFieldsByGroup($category->extraFieldsGroup);
@@ -280,7 +280,7 @@ class K2ControllerItem extends K2Controller
 	{
 		JRequest::checkToken() or jexit('Invalid Token');
 		JRequest::setVar('tmpl', 'component');
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'models'.DS.'item.php');
+		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/item.php');
 		$model = new K2ModelItem;
 		$model->resetHits();
 
@@ -290,7 +290,7 @@ class K2ControllerItem extends K2Controller
 	{
 		JRequest::checkToken() or jexit('Invalid Token');
 		JRequest::setVar('tmpl', 'component');
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'models'.DS.'item.php');
+		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/item.php');
 		$model = new K2ModelItem;
 		$model->resetRating();
 
@@ -322,9 +322,9 @@ class K2ControllerItem extends K2Controller
 
 		K2HelperHTML::loadHeadIncludes(false, true, true);
 
-		$this->addViewPath(JPATH_COMPONENT_ADMINISTRATOR.DS.'views');
+		$this->addViewPath(JPATH_COMPONENT_ADMINISTRATOR.'/views');
 		$view = $this->getView('media', 'html');
-		$view->addTemplatePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'views'.DS.'media'.DS.'tmpl');
+		$view->addTemplatePath(JPATH_COMPONENT_ADMINISTRATOR.'/views/media/tmpl');
 		$view->setLayout('default');
 		$view->display();
 
@@ -339,7 +339,7 @@ class K2ControllerItem extends K2Controller
 			JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
 		}
 
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'controllers'.DS.'media.php');
+		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/controllers/media.php');
 		$controller = new K2ControllerMedia();
 		$controller->connector();
 
@@ -349,7 +349,7 @@ class K2ControllerItem extends K2Controller
 	{
 
 		$itemID = JRequest::getInt('itemID');
-		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
+		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
 		$item = JTable::getInstance('K2Item', 'Table');
 		$item->load($itemID);
 		if (!K2HelperPermissions::canAddItem() && !K2HelperPermissions::canEditItem($item->created_by, $item->catid))
@@ -371,10 +371,10 @@ class K2ControllerItem extends K2Controller
 
 		K2HelperHTML::loadHeadIncludes(true, true, true);
 
-		$this->addViewPath(JPATH_COMPONENT_ADMINISTRATOR.DS.'views');
-		$this->addModelPath(JPATH_COMPONENT_ADMINISTRATOR.DS.'models');
+		$this->addViewPath(JPATH_COMPONENT_ADMINISTRATOR.'/views');
+		$this->addModelPath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
 		$view = $this->getView('users', 'html');
-		$view->addTemplatePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'views'.DS.'users'.DS.'tmpl');
+		$view->addTemplatePath(JPATH_COMPONENT_ADMINISTRATOR.'/views/users/tmpl');
 		$view->setLayout('element');
 		$view->display();
 

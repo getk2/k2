@@ -44,11 +44,11 @@ class K2ControllerComments extends K2Controller
 
         K2HelperHTML::loadHeadIncludes(true, true, true);
 
-        $this->addViewPath(JPATH_COMPONENT_ADMINISTRATOR.DS.'views');
-        $this->addModelPath(JPATH_COMPONENT_ADMINISTRATOR.DS.'models');
+        $this->addViewPath(JPATH_COMPONENT_ADMINISTRATOR.'/views');
+        $this->addModelPath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
         $view = $this->getView('comments', 'html');
-        $view->addTemplatePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'views'.DS.'comments'.DS.'tmpl');
-        $view->addHelperPath(JPATH_COMPONENT_ADMINISTRATOR.DS.'helpers');
+        $view->addTemplatePath(JPATH_COMPONENT_ADMINISTRATOR.'/views/comments/tmpl');
+        $view->addHelperPath(JPATH_COMPONENT_ADMINISTRATOR.'/helpers');
         $view->display();
     }
 
@@ -62,7 +62,7 @@ class K2ControllerComments extends K2Controller
         {
             JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
         }
-        K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'models');
+        K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
         $model = K2Model::getInstance('Comments', 'K2Model');
         $model->publish();
     }
@@ -77,7 +77,7 @@ class K2ControllerComments extends K2Controller
         {
             JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
         }
-        K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'models');
+        K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
         $model = K2Model::getInstance('Comments', 'K2Model');
         $model->unpublish();
     }
@@ -92,7 +92,7 @@ class K2ControllerComments extends K2Controller
         {
             JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
         }
-        K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'models');
+        K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
         $model = K2Model::getInstance('Comments', 'K2Model');
         $model->remove();
     }
@@ -107,7 +107,7 @@ class K2ControllerComments extends K2Controller
         {
             JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
         }
-        K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'models');
+        K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
         $model = K2Model::getInstance('Comments', 'K2Model');
         $model->deleteUnpublished();
     }
@@ -122,7 +122,7 @@ class K2ControllerComments extends K2Controller
         {
             JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
         }
-        K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'models');
+        K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
         $model = K2Model::getInstance('Comments', 'K2Model');
         $model->save();
         $mainframe->close();
@@ -145,7 +145,7 @@ class K2ControllerComments extends K2Controller
         {
             JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
         }
-        K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'models');
+        K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
         $model = K2Model::getInstance('Comments', 'K2Model');
         $model->setState('id', JRequest::getInt('id'));
         $model->setState('name', JRequest::getString('name'));
@@ -182,7 +182,7 @@ class K2ControllerComments extends K2Controller
                 $format == 'raw' ? die(JText::_('K2_ALERTNOTAUTH')) : JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
             }
         }
-        K2Model::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'models');
+        K2Model::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/models');
         $model = K2Model::getInstance('User', 'K2Model');
         $model->setState('id', JRequest::getInt('id'));
         $model->reportSpammer();

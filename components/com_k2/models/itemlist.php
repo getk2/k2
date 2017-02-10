@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.model');
 
-JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'tables');
+JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
 
 class K2ModelItemlist extends K2Model
 {
@@ -189,7 +189,7 @@ class K2ModelItemlist extends K2Model
 			case 'tag' :
 				$tag = JRequest::getString('tag');
 				jimport('joomla.filesystem.file');
-				if (JFile::exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomfish'.DS.'joomfish.php') && $task == 'tag')
+				if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/joomfish.php') && $task == 'tag')
 				{
 
 					$registry = JFactory::getConfig();
@@ -205,7 +205,7 @@ class K2ModelItemlist extends K2Model
 
 				}
 
-				if (JFile::exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_falang'.DS.'falang.php') && $task == 'tag')
+				if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_falang/falang.php') && $task == 'tag')
 				{
 
 					$registry = JFactory::getConfig();
@@ -507,7 +507,7 @@ class K2ModelItemlist extends K2Model
 			case 'tag' :
 				$tag = JRequest::getString('tag');
 				jimport('joomla.filesystem.file');
-				if (JFile::exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomfish'.DS.'joomfish.php') && $task == 'tag')
+				if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/joomfish.php') && $task == 'tag')
 				{
 
 					$registry = JFactory::getConfig();
@@ -523,7 +523,7 @@ class K2ModelItemlist extends K2Model
 
 				}
 
-				if (JFile::exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_falang'.DS.'falang.php') && $task == 'tag')
+				if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_falang/falang.php') && $task == 'tag')
 				{
 
 					$registry = JFactory::getConfig();
@@ -879,22 +879,22 @@ class K2ModelItemlist extends K2Model
 			$item->imageLarge = '';
 			$item->imageXLarge = '';
 
-			if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_XS.jpg'))
+			if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_XS.jpg'))
 				$item->imageXSmall = JURI::root(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_XS.jpg';
 
-			if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_S.jpg'))
+			if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_S.jpg'))
 				$item->imageSmall = JURI::root(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_S.jpg';
 
-			if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_M.jpg'))
+			if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_M.jpg'))
 				$item->imageMedium = JURI::root(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_M.jpg';
 
-			if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_L.jpg'))
+			if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_L.jpg'))
 				$item->imageLarge = JURI::root(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_L.jpg';
 
-			if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_XL.jpg'))
+			if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_XL.jpg'))
 				$item->imageXLarge = JURI::root(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_XL.jpg';
 
-			if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_Generic.jpg'))
+			if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_Generic.jpg'))
 				$item->imageGeneric = JURI::root(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_Generic.jpg';
 		}
 
@@ -973,7 +973,7 @@ class K2ModelItemlist extends K2Model
 
 		$db->setQuery($query, 0, $limit);
 		$rows = $db->loadObjectList();
-		K2Model::addIncludePath(JPATH_COMPONENT.DS.'models');
+		K2Model::addIncludePath(JPATH_COMPONENT.'/models');
 		$model = K2Model::getInstance('Item', 'K2Model');
 		for ($key = 0; $key < sizeof($rows); $key++)
 		{
@@ -1024,13 +1024,13 @@ class K2ModelItemlist extends K2Model
 			$type = 'any';
 		}
 
-		if (JFile::exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomfish'.DS.'joomfish.php') && $currentLang != $defaultLang)
+		if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/joomfish.php') && $currentLang != $defaultLang)
 		{
 
 			$conditions = array();
 			$search_ignore = array();
 
-			$ignoreFile = $language->getLanguagePath().DS.$currentLang.DS.$currentLang.'.ignore.php';
+			$ignoreFile = $language->getLanguagePath().'/'.$currentLang.'/'.$currentLang.'.ignore.php';
 
 			if (JFile::exists($ignoreFile))
 			{
@@ -1113,7 +1113,7 @@ class K2ModelItemlist extends K2Model
 							$allIDs[] = $id;
 						}
 
-						if (JFile::exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomfish'.DS.'joomfish.php') && $currentLang != $defaultLang)
+						if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/joomfish.php') && $currentLang != $defaultLang)
 						{
 
 							if (isset($allIDs) && count($allIDs))
@@ -1178,7 +1178,7 @@ class K2ModelItemlist extends K2Model
 			{
 
 				case 'mod_k2_content' :
-					require_once (JPATH_SITE.DS.'modules'.DS.'mod_k2_content'.DS.'helper.php');
+					require_once (JPATH_SITE.'/modules/mod_k2_content/helper.php');
 					$helper = new modK2ContentHelper;
 					$items = $helper->getItems($params, $format);
 					break;
@@ -1187,7 +1187,7 @@ class K2ModelItemlist extends K2Model
 					if ($params->get('module_usage') == 1)
 						JError::raiseError(404, JText::_('K2_NOT_FOUND'));
 
-					require_once (JPATH_SITE.DS.'modules'.DS.'mod_k2_comments'.DS.'helper.php');
+					require_once (JPATH_SITE.'/modules/mod_k2_comments/helper.php');
 					$helper = new modK2CommentsHelper;
 					$items = $helper->getLatestComments($params);
 

@@ -10,8 +10,8 @@
 // no direct access
 defined('_JEXEC') or die;
 
-require_once (JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'route.php');
-require_once (JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'utilities.php');
+require_once (JPATH_SITE.'/components/com_k2/helpers/route.php');
+require_once (JPATH_SITE.'/components/com_k2/helpers/utilities.php');
 
 class modK2ContentHelper
 {
@@ -305,7 +305,7 @@ class modK2ContentHelper
 					$date = JFactory::getDate($item->modified);
 					$timestamp = '?t='.$date->toUnix();
 
-					if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_XS.jpg'))
+					if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_XS.jpg'))
 					{
 						$item->imageXSmall = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_XS.jpg';
 						if ($componentParams->get('imageTimestamp'))
@@ -314,7 +314,7 @@ class modK2ContentHelper
 						}
 					}
 
-					if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_S.jpg'))
+					if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_S.jpg'))
 					{
 						$item->imageSmall = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_S.jpg';
 						if ($componentParams->get('imageTimestamp'))
@@ -323,7 +323,7 @@ class modK2ContentHelper
 						}
 					}
 
-					if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_M.jpg'))
+					if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_M.jpg'))
 					{
 						$item->imageMedium = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_M.jpg';
 						if ($componentParams->get('imageTimestamp'))
@@ -332,7 +332,7 @@ class modK2ContentHelper
 						}
 					}
 
-					if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_L.jpg'))
+					if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_L.jpg'))
 					{
 						$item->imageLarge = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_L.jpg';
 						if ($componentParams->get('imageTimestamp'))
@@ -341,7 +341,7 @@ class modK2ContentHelper
 						}
 					}
 
-					if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_XL.jpg'))
+					if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_XL.jpg'))
 					{
 						$item->imageXLarge = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_XL.jpg';
 						if ($componentParams->get('imageTimestamp'))
@@ -350,7 +350,7 @@ class modK2ContentHelper
 						}
 					}
 
-					if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_Generic.jpg'))
+					if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_Generic.jpg'))
 					{
 						$item->imageGeneric = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_Generic.jpg';
 						if ($componentParams->get('imageTimestamp'))

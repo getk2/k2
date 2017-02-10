@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.model');
 
-JTable::addIncludePath(JPATH_COMPONENT.DS.'tables');
+JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 
 class K2ModelComments extends K2Model {
 
@@ -423,7 +423,7 @@ class K2ModelComments extends K2Model {
 				{
 					if(!function_exists('_recaptcha_qsencode'))
 						{
-								require_once (JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'lib'.DS.'recaptchalib.php');
+								require_once (JPATH_ADMINISTRATOR.'/components/com_k2/lib/recaptchalib.php');
 						}
 						$privatekey = $params->get('recaptcha_private_key');
 						$resp = recaptcha_check_answer($privatekey, $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);

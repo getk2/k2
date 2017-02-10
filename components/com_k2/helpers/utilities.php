@@ -23,7 +23,7 @@ class K2HelperUtilities
 		$params = K2HelperUtilities::getParams('com_k2');
 
 		// Check for placeholder overrides
-		if (JFile::exists(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'images'.DS.'placeholder'.DS.'user.png'))
+		if (JFile::exists(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/images/placeholder/user.png'))
 		{
 			$avatarPath = 'templates/'.$mainframe->getTemplate().'/images/placeholder/user.png';
 		}
@@ -50,7 +50,7 @@ class K2HelperUtilities
 		}
 		else if (is_numeric($userID) && $userID > 0)
 		{
-			K2Model::addIncludePath(JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'models');
+			K2Model::addIncludePath(JPATH_SITE.'/components/com_k2/models');
 			$model = K2Model::getInstance('Item', 'K2Model');
 			$profile = $model->getUserProfile($userID);
 			$avatar = (is_null($profile)) ? '' : $profile->image;
@@ -94,7 +94,7 @@ class K2HelperUtilities
 		{
 			if ($params->get('catImageDefault'))
 			{
-				if (JFile::exists(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'images'.DS.'placeholder'.DS.'category.png'))
+				if (JFile::exists(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/images/placeholder/category.png'))
 				{
 					$categoryImage = JURI::root(true).'/templates/'.$mainframe->getTemplate().'/images/placeholder/category.png';
 				}

@@ -21,7 +21,7 @@ class K2ElementItem extends K2Element
         $db = JFactory::getDBO();
         $doc = JFactory::getDocument();
         $fieldName = (K2_JVERSION != '15') ? $name : $control_name.'['.$name.']';
-        JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'tables');
+        JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
         $item = JTable::getInstance('K2Item', 'Table');
         if ($value)
         {

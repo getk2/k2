@@ -83,7 +83,7 @@ class K2ElementItems extends K2Element
             $current = $value;
         }
 
-        JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'tables');
+        JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
         $output = '<div style="clear:both"></div><ul id="itemsList">';
         foreach ($current as $id)
         {

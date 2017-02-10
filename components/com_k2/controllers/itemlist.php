@@ -52,8 +52,8 @@ class K2ControllerItemlist extends K2Controller
 
 	function calendar()
 	{
-		require_once (JPATH_SITE.DS.'modules'.DS.'mod_k2_tools'.DS.'includes'.DS.'calendarClass.php');
-		require_once (JPATH_SITE.DS.'modules'.DS.'mod_k2_tools'.DS.'helper.php');
+		require_once (JPATH_SITE.'/modules/mod_k2_tools/includes/calendarClass.php');
+		require_once (JPATH_SITE.'/modules/mod_k2_tools/helper.php');
 		$mainframe = JFactory::getApplication();
 		$month = JRequest::getInt('month');
 		$year = JRequest::getInt('year');

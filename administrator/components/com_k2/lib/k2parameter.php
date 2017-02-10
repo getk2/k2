@@ -66,7 +66,7 @@ else
             parent::__construct('_default');
 
             // Set base path
-            $this->_elementPath[] = JPATH_COMPONENT_ADMINISTRATOR.DS.'elements';
+            $this->_elementPath[] = JPATH_COMPONENT_ADMINISTRATOR.'/elements';
 
             if (trim($data))
             {

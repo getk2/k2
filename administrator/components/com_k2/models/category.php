@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.model');
 
-JTable::addIncludePath(JPATH_COMPONENT.DS.'tables');
+JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 
 class K2ModelCategory extends K2Model
 {
@@ -29,7 +29,7 @@ class K2ModelCategory extends K2Model
     {
         $mainframe = JFactory::getApplication();
         jimport('joomla.filesystem.file');
-        require_once (JPATH_COMPONENT.DS.'lib'.DS.'class.upload.php');
+        require_once (JPATH_COMPONENT.'/lib/class.upload.php');
         $row = JTable::getInstance('K2Category', 'Table');
         $params = JComponentHelper::getParams('com_k2');
 
@@ -80,7 +80,7 @@ class K2ModelCategory extends K2Model
 
         $files = JRequest::get('files');
 
-        $savepath = JPATH_ROOT.DS.'media'.DS.'k2'.DS.'categories'.DS;
+        $savepath = JPATH_ROOT.'/media/k2/categories/';
 
         $existingImage = JRequest::getVar('existingImage');
         if (($files['image']['error'] == 0 || $existingImage) && !JRequest::getBool('del_image'))
@@ -91,7 +91,7 @@ class K2ModelCategory extends K2Model
             }
             else
             {
-                $image = JPATH_SITE.DS.JPath::clean($existingImage);
+                $image = JPATH_SITE.'/'.JPath::clean($existingImage);
             }
 
             $handle = new Upload($image);
@@ -120,9 +120,9 @@ class K2ModelCategory extends K2Model
         {
             $currentRow = JTable::getInstance('K2Category', 'Table');
             $currentRow->load($row->id);
-            if (JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'categories'.DS.$currentRow->image))
+            if (JFile::exists(JPATH_ROOT.'/media/k2/categories/'.$currentRow->image))
             {
-                JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'categories'.DS.$currentRow->image);
+                JFile::delete(JPATH_ROOT.'/media/k2/categories/'.$currentRow->image);
             }
             $row->image = '';
         }

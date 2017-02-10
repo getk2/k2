@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.model');
 
-JTable::addIncludePath(JPATH_COMPONENT.DS.'tables');
+JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 
 class K2ModelUsers extends K2Model
 {
@@ -471,7 +471,7 @@ class K2ModelUsers extends K2Model
         {
             $db->setQuery("SELECT id, title AS name FROM #__usergroups");
             $usergroups = $db->loadObjectList();
-            $xml = new JXMLElement(JFile::read(JPATH_COMPONENT.DS.'models'.DS.'usergroup.xml'));
+            $xml = new JXMLElement(JFile::read(JPATH_COMPONENT.'/models/usergroup.xml'));
             $permissions = class_exists('JParameter') ? new JParameter('') : new JRegistry('');
             foreach ($xml->params as $paramGroup)
             {
@@ -501,7 +501,7 @@ class K2ModelUsers extends K2Model
             $usergroups = array_merge($frontEndGroups, $backEndGroups);
 
             $xml = new JSimpleXML;
-            $xml->loadFile(JPATH_COMPONENT.DS.'models'.DS.'usergroup.xml');
+            $xml->loadFile(JPATH_COMPONENT.'/models/usergroup.xml');
             $permissions = class_exists('JParameter') ? new JParameter('') : new JRegistry('');
             foreach ($xml->document->params as $paramGroup)
             {

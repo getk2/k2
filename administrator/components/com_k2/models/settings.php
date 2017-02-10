@@ -42,7 +42,7 @@ class K2ModelSettings extends K2Model
         {
             $component = JTable::getInstance('component');
             $component->loadByOption('com_k2');
-            $instance = new JParameter($component->params, JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'config.xml');
+            $instance = new JParameter($component->params, JPATH_ADMINISTRATOR.'/components/com_k2/config.xml');
         }
         return $instance;
     }

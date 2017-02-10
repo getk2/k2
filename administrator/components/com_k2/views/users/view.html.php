@@ -34,7 +34,7 @@ class K2ViewUsers extends K2View
         $search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
         $search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
-        K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'models');
+        K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
         $model = K2Model::getInstance('Users', 'K2Model');
         $total = $model->getTotal();
         if ($limitstart > $total - $limit)
@@ -240,7 +240,7 @@ class K2ViewUsers extends K2View
     {
 
         $mainframe = JFactory::getApplication();
-        JTable::addIncludePath(JPATH_COMPONENT.DS.'tables');
+        JTable::addIncludePath(JPATH_COMPONENT.'/tables');
         $cid = JRequest::getVar('cid');
         JArrayHelper::toInteger($cid);
 

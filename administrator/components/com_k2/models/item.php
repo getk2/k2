@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.model');
 
-JTable::addIncludePath(JPATH_COMPONENT.DS.'tables');
+JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 
 class K2ModelItem extends K2Model
 {
@@ -33,7 +33,7 @@ class K2ModelItem extends K2Model
 		jimport('joomla.filesystem.file');
 		jimport('joomla.filesystem.folder');
 		jimport('joomla.filesystem.archive');
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'lib'.DS.'class.upload.php');
+		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/lib/class.upload.php');
 		$db = JFactory::getDBO();
 		$user = JFactory::getUser();
 		$row = JTable::getInstance('K2Item', 'Table');
@@ -48,7 +48,7 @@ class K2ModelItem extends K2Model
 
 		if ($front && $row->id == NULL)
 		{
-			JLoader::register('K2HelperPermissions', JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'permissions.php');
+			JLoader::register('K2HelperPermissions', JPATH_SITE.'/components/com_k2/helpers/permissions.php');
 			if (!K2HelperPermissions::canAddItem($row->catid))
 			{
 				$mainframe->enqueueMessage(JText::_('K2_YOU_ARE_NOT_ALLOWED_TO_POST_TO_THIS_CATEGORY_SAVE_FAILED'), 'error');
@@ -231,7 +231,7 @@ class K2ModelItem extends K2Model
 		}
 
 		// JoomFish! Front-end editing compatibility
-		if ($mainframe->isSite() && JFile::exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomfish'.DS.'joomfish.php'))
+		if ($mainframe->isSite() && JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/joomfish.php'))
 		{
 			if (version_compare(phpversion(), '5.0') < 0)
 			{
@@ -250,7 +250,7 @@ class K2ModelItem extends K2Model
 		}
 
 		// JoomFish! Front-end editing compatibility
-		if ($mainframe->isSite() && JFile::exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomfish'.DS.'joomfish.php'))
+		if ($mainframe->isSite() && JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/joomfish.php'))
 		{
 			$itemID = $row->id;
 			$row = $tmpRow;
@@ -282,7 +282,7 @@ class K2ModelItem extends K2Model
 			}
 			else
 			{
-				$image = JPATH_SITE.DS.JPath::clean($existingImage);
+				$image = JPATH_SITE.'/'.JPath::clean($existingImage);
 			}
 
 			$handle = new Upload($image);
@@ -308,7 +308,7 @@ class K2ModelItem extends K2Model
 				$params->merge($cparams);
 
 				//Original image
-				$savepath = JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'src';
+				$savepath = JPATH_SITE.'/media/k2/items/src';
 				$handle->image_convert = 'jpg';
 				$handle->jpeg_quality = 100;
 				$handle->file_auto_rename = false;
@@ -317,7 +317,7 @@ class K2ModelItem extends K2Model
 				$handle->Process($savepath);
 
 				$filename = $handle->file_dst_name_body;
-				$savepath = JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache';
+				$savepath = JPATH_SITE.'/media/k2/items/cache';
 
 				//XLarge image
 				$handle->image_resize = true;
@@ -444,39 +444,39 @@ class K2ModelItem extends K2Model
 			$current->load($row->id);
 			$filename = md5("Image".$current->id);
 
-			if (JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'src'.DS.$filename.'.jpg'))
+			if (JFile::exists(JPATH_ROOT.'/media/k2/items/src/'.$filename.'.jpg'))
 			{
-				JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'src'.DS.$filename.'.jpg');
+				JFile::delete(JPATH_ROOT.'/media/k2/items/src/'.$filename.'.jpg');
 			}
 
-			if (JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.$filename.'_XS.jpg'))
+			if (JFile::exists(JPATH_ROOT.'/media/k2/items/cache/'.$filename.'_XS.jpg'))
 			{
-				JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.$filename.'_XS.jpg');
+				JFile::delete(JPATH_ROOT.'/media/k2/items/cache/'.$filename.'_XS.jpg');
 			}
 
-			if (JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.$filename.'_S.jpg'))
+			if (JFile::exists(JPATH_ROOT.'/media/k2/items/cache/'.$filename.'_S.jpg'))
 			{
-				JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.$filename.'_S.jpg');
+				JFile::delete(JPATH_ROOT.'/media/k2/items/cache/'.$filename.'_S.jpg');
 			}
 
-			if (JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.$filename.'_M.jpg'))
+			if (JFile::exists(JPATH_ROOT.'/media/k2/items/cache/'.$filename.'_M.jpg'))
 			{
-				JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.$filename.'_M.jpg');
+				JFile::delete(JPATH_ROOT.'/media/k2/items/cache/'.$filename.'_M.jpg');
 			}
 
-			if (JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.$filename.'_L.jpg'))
+			if (JFile::exists(JPATH_ROOT.'/media/k2/items/cache/'.$filename.'_L.jpg'))
 			{
-				JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.$filename.'_L.jpg');
+				JFile::delete(JPATH_ROOT.'/media/k2/items/cache/'.$filename.'_L.jpg');
 			}
 
-			if (JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.$filename.'_XL.jpg'))
+			if (JFile::exists(JPATH_ROOT.'/media/k2/items/cache/'.$filename.'_XL.jpg'))
 			{
-				JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.$filename.'_XL.jpg');
+				JFile::delete(JPATH_ROOT.'/media/k2/items/cache/'.$filename.'_XL.jpg');
 			}
 
-			if (JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.$filename.'_Generic.jpg'))
+			if (JFile::exists(JPATH_ROOT.'/media/k2/items/cache/'.$filename.'_Generic.jpg'))
 			{
-				JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.$filename.'_Generic.jpg');
+				JFile::delete(JPATH_ROOT.'/media/k2/items/cache/'.$filename.'_Generic.jpg');
 			}
 
 			$row->image_caption = '';
@@ -510,7 +510,7 @@ class K2ModelItem extends K2Model
 			$path = $params->get('attachmentsFolder', NULL);
 			if (is_null($path))
 			{
-				$savepath = JPATH_ROOT.DS.'media'.DS.'k2'.DS.'attachments';
+				$savepath = JPATH_ROOT.'/media/k2/attachments';
 			}
 			else
 			{
@@ -526,9 +526,9 @@ class K2ModelItem extends K2Model
 				{
 					if ($attachments_existing_files[$key])
 					{
-						$src = JPATH_SITE.DS.JPath::clean($attachments_existing_files[$key]);
+						$src = JPATH_SITE.'/'.JPath::clean($attachments_existing_files[$key]);
 						$copyName = basename($src);
-						$dest = $savepath.DS.$copyName;
+						$dest = $savepath.'/'.$copyName;
 						if (JFile::exists($dest))
 						{
 							$existingFileName = JFile::getName($dest);
@@ -536,7 +536,7 @@ class K2ModelItem extends K2Model
 							$basename = JFile::stripExt($existingFileName);
 							$newFilename = $basename.'_'.time().'.'.$ext;
 							$copyName = $newFilename;
-							$dest = $savepath.DS.$newFilename;
+							$dest = $savepath.'/'.$newFilename;
 						}
 						JFile::copy($src, $dest);
 						$attachment = JTable::getInstance('K2Attachment', 'Table');
@@ -590,7 +590,7 @@ class K2ModelItem extends K2Model
 		{
 			$handle = new Upload($files['gallery']);
 			$handle->file_auto_rename = true;
-			$savepath = JPATH_ROOT.DS.'media'.DS.'k2'.DS.'galleries';
+			$savepath = JPATH_ROOT.'/media/k2/galleries';
 			$handle->allowed = array(
 				"application/download",
 				"application/rar",
@@ -615,19 +615,19 @@ class K2ModelItem extends K2Model
 				$handle->Process($savepath);
 				$handle->Clean();
 
-				if (JFolder::exists($savepath.DS.$row->id))
+				if (JFolder::exists($savepath.'/'.$row->id))
 				{
-					JFolder::delete($savepath.DS.$row->id);
+					JFolder::delete($savepath.'/'.$row->id);
 				}
 
-				if (!JArchive::extract($savepath.DS.$handle->file_dst_name, $savepath.DS.$row->id))
+				if (!JArchive::extract($savepath.'/'.$handle->file_dst_name, $savepath.'/'.$row->id))
 				{
 					$mainframe->enqueueMessage(JText::_('K2_GALLERY_UPLOAD_ERROR_CANNOT_EXTRACT_ARCHIVE'), 'error');
 					$mainframe->redirect('index.php?option=com_k2&view=items');
 				}
 				else
 				{
-					$imageDir = $savepath.DS.$row->id;
+					$imageDir = $savepath.'/'.$row->id;
 					$galleryDir = opendir($imageDir);
 					while ($filename = readdir($galleryDir))
 					{
@@ -635,13 +635,13 @@ class K2ModelItem extends K2Model
 						{
 							$file = str_replace(" ", "_", $filename);
 							$safefilename = JFile::makeSafe($file);
-							rename($imageDir.DS.$filename, $imageDir.DS.$safefilename);
+							rename($imageDir.'/'.$filename, $imageDir.'/'.$safefilename);
 						}
 					}
 					closedir($galleryDir);
 					$row->gallery = '{gallery}'.$row->id.'{/gallery}';
 				}
-				JFile::delete($savepath.DS.$handle->file_dst_name);
+				JFile::delete($savepath.'/'.$handle->file_dst_name);
 				$handle->Clean();
 
 			}
@@ -658,9 +658,9 @@ class K2ModelItem extends K2Model
 			$current = JTable::getInstance('K2Item', 'Table');
 			$current->load($row->id);
 
-			if (JFolder::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'galleries'.DS.$current->id))
+			if (JFolder::exists(JPATH_ROOT.'/media/k2/galleries/'.$current->id))
 			{
-				JFolder::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'galleries'.DS.$current->id);
+				JFolder::delete(JPATH_ROOT.'/media/k2/galleries/'.$current->id);
 			}
 			$row->gallery = '';
 		}
@@ -705,16 +705,16 @@ class K2ModelItem extends K2Model
 
 				if (in_array($filetype, $videoExtensions))
 				{
-					$savepath = JPATH_ROOT.DS.'media'.DS.'k2'.DS.'videos';
+					$savepath = JPATH_ROOT.'/media/k2/videos';
 				}
 				else
 				{
-					$savepath = JPATH_ROOT.DS.'media'.DS.'k2'.DS.'audio';
+					$savepath = JPATH_ROOT.'/media/k2/audio';
 				}
 
 				$filename = JFile::stripExt($files['video']['name']);
 
-				JFile::upload($files['video']['tmp_name'], $savepath.DS.$row->id.'.'.$filetype);
+				JFile::upload($files['video']['tmp_name'], $savepath.'/'.$row->id.'.'.$filetype);
 				$filetype = JFile::getExt($files['video']['name']);
 				$row->video = '{'.$filetype.'}'.$row->id.'{/'.$filetype.'}';
 
@@ -733,14 +733,14 @@ class K2ModelItem extends K2Model
 
 			if (in_array($videotype, $videoExtensions))
 			{
-				if (JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'videos'.DS.$videofile.'.'.$videotype))
-					JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'videos'.DS.$videofile.'.'.$videotype);
+				if (JFile::exists(JPATH_ROOT.'/media/k2/videos/'.$videofile.'.'.$videotype))
+					JFile::delete(JPATH_ROOT.'/media/k2/videos/'.$videofile.'.'.$videotype);
 			}
 
 			if (in_array($videotype, $audioExtensions))
 			{
-				if (JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'audio'.DS.$videofile.'.'.$videotype))
-					JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'audio'.DS.$videofile.'.'.$videotype);
+				if (JFile::exists(JPATH_ROOT.'/media/k2/audio/'.$videofile.'.'.$videotype))
+					JFile::delete(JPATH_ROOT.'/media/k2/audio/'.$videofile.'.'.$videotype);
 			}
 
 			$row->video = '';
@@ -799,7 +799,7 @@ class K2ModelItem extends K2Model
 
 		$row->extra_fields = json_encode($objects);
 
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'models'.DS.'extrafield.php');
+		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/extrafield.php');
 		$extraFieldModel = K2Model::getInstance('ExtraField', 'K2Model');
 		$row->extra_fields_search = '';
 
@@ -1021,11 +1021,11 @@ class K2ModelItem extends K2Model
 
 		if (K2_JVERSION != '15')
 		{
-			$file = JPATH_PLUGINS.DS.'content'.DS.'jw_allvideos'.DS.'jw_allvideos'.DS.'includes'.DS.'sources.php';
+			$file = JPATH_PLUGINS.'/content/jw_allvideos/jw_allvideos/includes/sources.php';
 		}
 		else
 		{
-			$file = JPATH_PLUGINS.DS.'content'.DS.'jw_allvideos'.DS.'includes'.DS.'sources.php';
+			$file = JPATH_PLUGINS.'/content/jw_allvideos/includes/sources.php';
 		}
 
 		jimport('joomla.filesystem.file');
@@ -1118,17 +1118,17 @@ class K2ModelItem extends K2Model
 		$path = $params->get('attachmentsFolder', NULL);
 		if (is_null($path))
 		{
-			$savepath = JPATH_ROOT.DS.'media'.DS.'k2'.DS.'attachments';
+			$savepath = JPATH_ROOT.'/media/k2/attachments';
 		}
 		else
 		{
 			$savepath = $path;
 		}
-		$file = $savepath.DS.$attachment->filename;
+		$file = $savepath.'/'.$attachment->filename;
 
 		if (JFile::exists($file))
 		{
-			require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'lib'.DS.'class.upload.php');
+			require_once (JPATH_COMPONENT_ADMINISTRATOR.'/lib/class.upload.php');
 			$handle = new Upload($file);
 			$dispatcher->trigger('onK2AfterDownload', array(
 				&$attachment,
@@ -1201,16 +1201,16 @@ class K2ModelItem extends K2Model
 		$path = $params->get('attachmentsFolder', NULL);
 		if (is_null($path))
 		{
-			$savepath = JPATH_ROOT.DS.'media'.DS.'k2'.DS.'attachments';
+			$savepath = JPATH_ROOT.'/media/k2/attachments';
 		}
 		else
 		{
 			$savepath = $path;
 		}
 
-		if (JFile::exists($savepath.DS.$row->filename))
+		if (JFile::exists($savepath.'/'.$row->filename))
 		{
-			JFile::delete($savepath.DS.$row->filename);
+			JFile::delete($savepath.'/'.$row->filename);
 		}
 
 		$row->delete($id);
@@ -1287,11 +1287,11 @@ class K2ModelItem extends K2Model
 		$mainframe = JFactory::getApplication();
 		if (K2_JVERSION != '15')
 		{
-			$check = JPATH_PLUGINS.DS.'content'.DS.'jw_sigpro'.DS.'jw_sigpro.php';
+			$check = JPATH_PLUGINS.'/content/jw_sigpro/jw_sigpro.php';
 		}
 		else
 		{
-			$check = JPATH_PLUGINS.DS.'content'.DS.'jw_sigpro.php';
+			$check = JPATH_PLUGINS.'/content/jw_sigpro.php';
 		}
 		if (JFile::exists($check))
 		{
@@ -1308,11 +1308,11 @@ class K2ModelItem extends K2Model
 		$mainframe = JFactory::getApplication();
 		if (K2_JVERSION != '15')
 		{
-			$check = JPATH_PLUGINS.DS.'content'.DS.'jw_allvideos'.DS.'jw_allvideos.php';
+			$check = JPATH_PLUGINS.'/content/jw_allvideos/jw_allvideos.php';
 		}
 		else
 		{
-			$check = JPATH_PLUGINS.DS.'content'.DS.'jw_allvideos.php';
+			$check = JPATH_PLUGINS.'/content/jw_allvideos.php';
 		}
 		if (JFile::exists($check))
 		{
@@ -1332,7 +1332,7 @@ class K2ModelItem extends K2Model
 		}
 		else if (version_compare(JVERSION, '2.5.0', 'lt') && version_compare(JVERSION, '1.6.0', 'ge'))
 		{
-			JLoader::register('ContentHelper', JPATH_ADMINISTRATOR.DS.'components'.DS.'com_content'.DS.'helpers'.DS.'content.php');
+			JLoader::register('ContentHelper', JPATH_ADMINISTRATOR.'/components/com_content/helpers/content.php');
 			$text = ContentHelper::filterText($text);
 		}
 		else

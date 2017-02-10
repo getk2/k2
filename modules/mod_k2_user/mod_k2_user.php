@@ -17,7 +17,7 @@ if (K2_JVERSION != '15')
 	require_once JPATH_SITE.'/components/com_users/helpers/route.php';
 }
 
-require_once (dirname(__FILE__).DS.'helper.php');
+require_once (dirname(__FILE__).'/helper.php');
 
 $moduleclass_sfx = $params->get('moduleclass_sfx', '');
 $userGreetingText = $params->get('userGreetingText', '');

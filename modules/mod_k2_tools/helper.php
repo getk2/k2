@@ -10,9 +10,9 @@
 // no direct access
 defined('_JEXEC') or die;
 
-require_once (JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'route.php');
-require_once (JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'utilities.php');
-require_once (dirname(__FILE__).DS.'includes'.DS.'calendarClass.php');
+require_once (JPATH_SITE.'/components/com_k2/helpers/route.php');
+require_once (JPATH_SITE.'/components/com_k2/helpers/utilities.php');
+require_once (dirname(__FILE__).'/includes/calendarClass.php');
 
 class modK2ToolsHelper
 {
@@ -1055,7 +1055,7 @@ class modK2ToolsHelper
 		$document = JFactory::getDocument();
 		if ($params->get('parsePhp'))
 		{
-			$filename = tempnam(JPATH_SITE.DS.'cache'.DS.'mod_k2_tools', 'tmp');
+			$filename = tempnam(JPATH_SITE.'/cache/mod_k2_tools', 'tmp');
 			$customCode = $params->get('customCode');
 			JFile::write($filename, $customCode);
 			ob_start();

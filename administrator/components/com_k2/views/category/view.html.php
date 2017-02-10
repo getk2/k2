@@ -88,14 +88,14 @@ class K2ViewCategory extends K2View
         if (version_compare(JVERSION, '1.6.0', 'ge'))
         {
             jimport('joomla.form.form');
-            $form = JForm::getInstance('categoryForm', JPATH_COMPONENT_ADMINISTRATOR.DS.'models'.DS.'category.xml');
+            $form = JForm::getInstance('categoryForm', JPATH_COMPONENT_ADMINISTRATOR.'/models/category.xml');
             $values = array('params' => json_decode($category->params));
             $form->bind($values);
             $inheritFrom = (isset($values['params']->inheritFrom)) ? $values['params']->inheritFrom : 0;
         }
         else
         {
-            $form = new JParameter('', JPATH_COMPONENT_ADMINISTRATOR.DS.'models'.DS.'category.xml');
+            $form = new JParameter('', JPATH_COMPONENT_ADMINISTRATOR.'/models/category.xml');
             $form->loadINI($category->params);
             $inheritFrom = $form->get('inheritFrom');
         }

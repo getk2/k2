@@ -26,7 +26,7 @@ if (K2_JVERSION != '15')
 	$language->load('mod_k2.j16', JPATH_ADMINISTRATOR);
 }
 
-require_once (dirname(__FILE__).DS.'helper.php');
+require_once (dirname(__FILE__).'/helper.php');
 
 if ($params->get('latestItems', 1))
 {

@@ -71,16 +71,16 @@ if (version_compare(JVERSION, '1.6.0', '<'))
             $status->plugins[] = array('name' => $pname, 'group' => $pgroup, 'result' => $result);
         }
     }
-    if (JFolder::exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomfish'.DS.'contentelements'))
+    if (JFolder::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/contentelements'))
     {
         $elements = $this->manifest->getElementByPath('joomfish/files');
         if(is_array($elements))
         {
             foreach ($elements as $element)
             {
-                if (JFile::exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomfish'.DS.'contentelements'.DS.$element->data()))
+                if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/contentelements/'.$element->data()))
                 {
-                    JFile::delete(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomfish'.DS.'contentelements'.DS.$element->data());
+                    JFile::delete(JPATH_ADMINISTRATOR.'/components/com_joomfish/contentelements/'.$element->data());
                 }
             }
         }

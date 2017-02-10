@@ -242,7 +242,7 @@ class K2ViewItem extends K2View
         }
         else
         {
-            require_once (JPATH_SITE.DS.'components'.DS.'com_mailto'.DS.'helpers'.DS.'mailto.php');
+            require_once (JPATH_SITE.'/components/com_mailto/helpers/mailto.php');
             $item->emailLink = JRoute::_('index.php?option=com_mailto&tmpl=component&link='.MailToHelper::addLink($item->absoluteURL));
         }
 
@@ -260,23 +260,23 @@ class K2ViewItem extends K2View
         $item->socialLink = urlencode($item->absoluteURL);
 
         // Look for template files in component folders
-        $this->_addPath('template', JPATH_COMPONENT.DS.'templates');
-        $this->_addPath('template', JPATH_COMPONENT.DS.'templates'.DS.'default');
+        $this->_addPath('template', JPATH_COMPONENT.'/templates');
+        $this->_addPath('template', JPATH_COMPONENT.'/templates/default');
 
         // Look for overrides in template folder (K2 template structure)
-        $this->_addPath('template', JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2'.DS.'templates');
-        $this->_addPath('template', JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2'.DS.'templates'.DS.'default');
+        $this->_addPath('template', JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2/templates');
+        $this->_addPath('template', JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2/templates/default');
 
         // Look for overrides in template folder (Joomla template structure)
-        $this->_addPath('template', JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2'.DS.'default');
-        $this->_addPath('template', JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2');
+        $this->_addPath('template', JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2/default');
+        $this->_addPath('template', JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2');
 
         // Look for specific K2 theme files
         if ($item->params->get('theme'))
         {
-            $this->_addPath('template', JPATH_COMPONENT.DS.'templates'.DS.$item->params->get('theme'));
-            $this->_addPath('template', JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2'.DS.'templates'.DS.$item->params->get('theme'));
-            $this->_addPath('template', JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2'.DS.$item->params->get('theme'));
+            $this->_addPath('template', JPATH_COMPONENT.'/templates/'.$item->params->get('theme'));
+            $this->_addPath('template', JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2/templates/'.$item->params->get('theme'));
+            $this->_addPath('template', JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2/'.$item->params->get('theme'));
         }
 
         // Assign data

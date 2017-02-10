@@ -371,26 +371,26 @@ defined('_JEXEC') or die;
 					        <tr>
 					          <td><strong>Finder - K2</strong></td>
 					          <td>
-					          	<?php echo (JFile::exists(JPATH_PLUGINS.DS.'finder'.DS.'k2.php') || JFile::exists(JPATH_PLUGINS.DS.'finder'.DS.'k2'.DS.'k2.php'))?'<span class="green">'.JText::_('K2_INSTALLED'):'<span class="red">'.JText::_('K2_NOT_INSTALLED'); ?></span>
+					          	<?php echo (JFile::exists(JPATH_PLUGINS.'/finder/k2.php') || JFile::exists(JPATH_PLUGINS.'/finder/k2/k2.php'))?'<span class="green">'.JText::_('K2_INSTALLED'):'<span class="red">'.JText::_('K2_NOT_INSTALLED'); ?></span>
 					          	- <?php echo (JPluginHelper::isEnabled('finder', 'k2'))? '<span class="green">'.JText::_('K2_ENABLED'): '<span class="red">'.JText::_('K2_DISABLED'); ?><span></td>
 					        </tr>
 					        <?php endif; ?>
 					        <tr>
 					          <td><strong>Search - K2</strong></td>
 					          <td>
-					          	<?php echo (JFile::exists(JPATH_PLUGINS.DS.'search'.DS.'k2.php') || JFile::exists(JPATH_PLUGINS.DS.'search'.DS.'k2'.DS.'k2.php'))?'<span class="green">'.JText::_('K2_INSTALLED'):'<span class="red">'.JText::_('K2_NOT_INSTALLED'); ?></span>
+					          	<?php echo (JFile::exists(JPATH_PLUGINS.'/search/k2.php') || JFile::exists(JPATH_PLUGINS.'/search/k2/k2.php'))?'<span class="green">'.JText::_('K2_INSTALLED'):'<span class="red">'.JText::_('K2_NOT_INSTALLED'); ?></span>
 					          	- <?php echo (JPluginHelper::isEnabled('search', 'k2'))?'<span class="green">'.JText::_('K2_ENABLED'): '<span class="red">'.JText::_('K2_DISABLED'); ?><span></td>
 					        </tr>
 					        <tr>
 					          <td><strong>System - K2</strong></td>
 					          <td>
-					          	<?php echo (JFile::exists(JPATH_PLUGINS.DS.'system'.DS.'k2.php') || JFile::exists(JPATH_PLUGINS.DS.'system'.DS.'k2'.DS.'k2.php'))?'<span class="green">'.JText::_('K2_INSTALLED'):'<span class="red">'.JText::_('K2_NOT_INSTALLED'); ?></span>
+					          	<?php echo (JFile::exists(JPATH_PLUGINS.'/system/k2.php') || JFile::exists(JPATH_PLUGINS.'/system/k2/k2.php'))?'<span class="green">'.JText::_('K2_INSTALLED'):'<span class="red">'.JText::_('K2_NOT_INSTALLED'); ?></span>
 					          - <?php echo (JPluginHelper::isEnabled('system', 'k2'))?'<span class="green">'.JText::_('K2_ENABLED'): '<span class="red">'.JText::_('K2_DISABLED'); ?><span></td>
 					        </tr>
 					        <tr>
 					          <td><strong>User - K2</strong></td>
 					          <td>
-					          	<?php echo (JFile::exists(JPATH_PLUGINS.DS.'user'.DS.'k2.php') || JFile::exists(JPATH_PLUGINS.DS.'user'.DS.'k2'.DS.'k2.php'))?'<span class="green">'.JText::_('K2_INSTALLED'):'<span class="red">'.JText::_('K2_NOT_INSTALLED'); ?></span>
+					          	<?php echo (JFile::exists(JPATH_PLUGINS.'/user/k2.php') || JFile::exists(JPATH_PLUGINS.'/user/k2/k2.php'))?'<span class="green">'.JText::_('K2_INSTALLED'):'<span class="red">'.JText::_('K2_NOT_INSTALLED'); ?></span>
 					          	- <?php echo (JPluginHelper::isEnabled('user', 'k2'))?'<span class="green">'.JText::_('K2_ENABLED'): '<span class="red">'.JText::_('K2_DISABLED'); ?><span></td>
 					        </tr>
 					      </tbody>
@@ -418,7 +418,7 @@ defined('_JEXEC') or die;
 					        <tr>
 					          <td><strong><?php echo JText::_('K2_ALLVIDEOS_PLUGIN'); ?></strong></td>
 					          <td><?php
-									if (JFile::exists(JPATH_PLUGINS.DS.'content'.DS.'jw_allvideos.php') || JFile::exists(JPATH_PLUGINS.DS.'content'.DS.'jw_allvideos'.DS.'jw_allvideos.php')) :?>
+									if (JFile::exists(JPATH_PLUGINS.'/content/jw_allvideos.php') || JFile::exists(JPATH_PLUGINS.'/content/jw_allvideos/jw_allvideos.php')) :?>
 									<span class="green"><?php echo JText::_('K2_INSTALLED'); ?></span>
 									<?php else: ?>
 									<span class="red"><?php echo JText::_('K2_NOT_INSTALLED'); ?></span>
@@ -428,7 +428,7 @@ defined('_JEXEC') or die;
 					        <tr>
 					          <td><strong><?php echo JText::_('K2_SIMPLE_IMAGE_GALLERY_PRO_PLUGIN'); ?></strong></td>
 					          <td><?php
-									if (JFile::exists(JPATH_PLUGINS.DS.'content'.DS.'jw_sigpro.php') || JFile::exists(JPATH_PLUGINS.DS.'content'.DS.'jw_sigpro'.DS.'jw_sigpro.php')): ?>
+									if (JFile::exists(JPATH_PLUGINS.'/content/jw_sigpro.php') || JFile::exists(JPATH_PLUGINS.'/content/jw_sigpro/jw_sigpro.php')): ?>
 									<span class="green"><?php echo JText::_('K2_INSTALLED'); ?></span>
 									<?php else: ?>
 									<span class="red"><?php echo JText::_('K2_NOT_INSTALLED'); ?></span>

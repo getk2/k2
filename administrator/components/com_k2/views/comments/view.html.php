@@ -39,7 +39,7 @@ class K2ViewComments extends K2View
 			JRequest::setVar('filter_author', $user->id);
 		}
 		$this->loadHelper('html');
-		K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'models');
+		K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
 		$model = K2Model::getInstance('Comments', 'K2Model');
 		$total = $model->getTotal();
 		if ($limitstart > $total - $limit)

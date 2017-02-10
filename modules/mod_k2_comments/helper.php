@@ -10,8 +10,8 @@
 // no direct access
 defined('_JEXEC') or die;
 
-require_once (JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'route.php');
-require_once (JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'utilities.php');
+require_once (JPATH_SITE.'/components/com_k2/helpers/route.php');
+require_once (JPATH_SITE.'/components/com_k2/helpers/utilities.php');
 
 class modK2CommentsHelper
 {
@@ -184,7 +184,7 @@ class modK2CommentsHelper
 	public static function getTopCommenters(&$params)
 	{
 
-		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'tables');
+		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
 		$limit = $params->get('commenters_limit', '5');
 		$user = JFactory::getUser();
 		$aid = $user->get('aid');

@@ -34,7 +34,7 @@ class K2ViewUserGroup extends K2View
 
         if (K2_JVERSION == '15')
         {
-            $form = new JParameter('', JPATH_COMPONENT.DS.'models'.DS.'usergroup.xml');
+            $form = new JParameter('', JPATH_COMPONENT.'/models/usergroup.xml');
             $form->loadINI($userGroup->permissions);
             $appliedCategories = $form->get('categories');
             $inheritance = $form->get('inheritance');
@@ -42,7 +42,7 @@ class K2ViewUserGroup extends K2View
         else
         {
             jimport('joomla.form.form');
-            $form = JForm::getInstance('permissions', JPATH_COMPONENT_ADMINISTRATOR.DS.'models'.DS.'usergroup.xml');
+            $form = JForm::getInstance('permissions', JPATH_COMPONENT_ADMINISTRATOR.'/models/usergroup.xml');
             $values = array('params' => json_decode($userGroup->permissions));
             $form->bind($values);
             $inheritance = isset($values['params']->inheritance) ? $values['params']->inheritance : 0;

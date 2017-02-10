@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.model');
 
-JTable::addIncludePath(JPATH_COMPONENT.DS.'tables');
+JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 
 class K2ModelItems extends K2Model
 {
@@ -146,7 +146,7 @@ class K2ModelItems extends K2Model
 		{
 			if ($params->get('showChildCatItems'))
 			{
-				K2Model::addIncludePath(JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'models');
+				K2Model::addIncludePath(JPATH_SITE.'/components/com_k2/models');
 				$itemListModel = K2Model::getInstance('Itemlist', 'K2Model');
 				$categories = $itemListModel->getCategoryTree($filter_category);
 				$sql = @implode(',', $categories);
@@ -320,7 +320,7 @@ class K2ModelItems extends K2Model
 		{
 			if ($params->get('showChildCatItems'))
 			{
-				K2Model::addIncludePath(JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'models');
+				K2Model::addIncludePath(JPATH_SITE.'/components/com_k2/models');
 				$itemListModel = K2Model::getInstance('Itemlist', 'K2Model');
 				$categories = $itemListModel->getCategoryTree($filter_category);
 				$sql = @implode(',', $categories);
@@ -649,16 +649,16 @@ class K2ModelItems extends K2Model
 			$item->id = (int)$item->id;
 
 			//Source images
-			$sourceImage = JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'src'.DS.md5("Image".$item->id).'.jpg';
-			$sourceImageXS = JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_XS.jpg';
-			$sourceImageS = JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_S.jpg';
-			$sourceImageM = JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_M.jpg';
-			$sourceImageL = JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_L.jpg';
-			$sourceImageXL = JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_XL.jpg';
-			$sourceImageGeneric = JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_Generic.jpg';
+			$sourceImage = JPATH_ROOT.'/media/k2/items/src/'.md5("Image".$item->id).'.jpg';
+			$sourceImageXS = JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$item->id).'_XS.jpg';
+			$sourceImageS = JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$item->id).'_S.jpg';
+			$sourceImageM = JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$item->id).'_M.jpg';
+			$sourceImageL = JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$item->id).'_L.jpg';
+			$sourceImageXL = JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$item->id).'_XL.jpg';
+			$sourceImageGeneric = JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$item->id).'_Generic.jpg';
 
 			//Source gallery
-			$sourceGallery = JPATH_ROOT.DS.'media'.DS.'k2'.DS.'galleries'.DS.$item->id;
+			$sourceGallery = JPATH_ROOT.'/media/k2/galleries/'.$item->id;
 			$sourceGalleryTag = $item->gallery;
 
 			//Source video
@@ -668,7 +668,7 @@ class K2ModelItems extends K2Model
 
 			if ($videotype == 'flv' || $videotype == 'swf' || $videotype == 'wmv' || $videotype == 'mov' || $videotype == 'mp4' || $videotype == '3gp' || $videotype == 'divx')
 			{
-				if (JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'videos'.DS.$videofile.'.'.$videotype))
+				if (JFile::exists(JPATH_ROOT.'/media/k2/videos/'.$videofile.'.'.$videotype))
 				{
 					$sourceVideo = $videofile.'.'.$videotype;
 					//$row->video='{'.$videotype.'}'.$row->id.'{/'.$videotype.'}';
@@ -698,19 +698,19 @@ class K2ModelItems extends K2Model
 
 			//Target images
 			if (JFile::exists($sourceImage))
-				JFile::copy($sourceImage, JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'src'.DS.md5("Image".$row->id).'.jpg');
+				JFile::copy($sourceImage, JPATH_ROOT.'/media/k2/items/src/'.md5("Image".$row->id).'.jpg');
 			if (JFile::exists($sourceImageXS))
-				JFile::copy($sourceImageXS, JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$row->id).'_XS.jpg');
+				JFile::copy($sourceImageXS, JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$row->id).'_XS.jpg');
 			if (JFile::exists($sourceImageS))
-				JFile::copy($sourceImageS, JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$row->id).'_S.jpg');
+				JFile::copy($sourceImageS, JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$row->id).'_S.jpg');
 			if (JFile::exists($sourceImageM))
-				JFile::copy($sourceImageM, JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$row->id).'_M.jpg');
+				JFile::copy($sourceImageM, JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$row->id).'_M.jpg');
 			if (JFile::exists($sourceImageL))
-				JFile::copy($sourceImageL, JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$row->id).'_L.jpg');
+				JFile::copy($sourceImageL, JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$row->id).'_L.jpg');
 			if (JFile::exists($sourceImageXL))
-				JFile::copy($sourceImageXL, JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$row->id).'_XL.jpg');
+				JFile::copy($sourceImageXL, JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$row->id).'_XL.jpg');
 			if (JFile::exists($sourceImageGeneric))
-				JFile::copy($sourceImageGeneric, JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$row->id).'_Generic.jpg');
+				JFile::copy($sourceImageGeneric, JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$row->id).'_Generic.jpg');
 
 			//Target gallery
 			if ($sourceGalleryTag)
@@ -724,30 +724,30 @@ class K2ModelItems extends K2Model
 					$row->gallery = '{gallery}'.$row->id.'{/gallery}';
 					if (JFolder::exists($sourceGallery))
 					{
-						JFolder::copy($sourceGallery, JPATH_ROOT.DS.'media'.DS.'k2'.DS.'galleries'.DS.$row->id);
+						JFolder::copy($sourceGallery, JPATH_ROOT.'/media/k2/galleries/'.$row->id);
 					}
 				}
 			}
 
 			//Target video
-			if (isset($sourceVideo) && JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'videos'.DS.$sourceVideo))
+			if (isset($sourceVideo) && JFile::exists(JPATH_ROOT.'/media/k2/videos/'.$sourceVideo))
 			{
-				JFile::copy(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'videos'.DS.$sourceVideo, JPATH_ROOT.DS.'media'.DS.'k2'.DS.'videos'.DS.$row->id.'.'.$videotype);
+				JFile::copy(JPATH_ROOT.'/media/k2/videos/'.$sourceVideo, JPATH_ROOT.'/media/k2/videos/'.$row->id.'.'.$videotype);
 				$row->video = '{'.$videotype.'}'.$row->id.'{/'.$videotype.'}';
 			}
 
 			//Target attachments
 			$path = $params->get('attachmentsFolder', NULL);
 			if (is_null($path))
-				$savepath = JPATH_ROOT.DS.'media'.DS.'k2'.DS.'attachments';
+				$savepath = JPATH_ROOT.'/media/k2/attachments';
 			else
 				$savepath = $path;
 
 			foreach ($sourceAttachments as $attachment)
 			{
-				if (JFile::exists($savepath.DS.$attachment->filename))
+				if (JFile::exists($savepath.'/'.$attachment->filename))
 				{
-					JFile::copy($savepath.DS.$attachment->filename, $savepath.DS.$row->id.'_'.$attachment->filename);
+					JFile::copy($savepath.'/'.$attachment->filename, $savepath.'/'.$row->id.'_'.$attachment->filename);
 					$attachmentRow = JTable::getInstance('K2Attachment', 'Table');
 					$attachmentRow->itemID = $row->id;
 					$attachmentRow->title = $attachment->title;
@@ -888,38 +888,38 @@ class K2ModelItems extends K2Model
 			$row->load($id);
 			$row->id = (int)$row->id;
 			//Delete images
-			if (JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'src'.DS.md5("Image".$row->id).'.jpg'))
+			if (JFile::exists(JPATH_ROOT.'/media/k2/items/src/'.md5("Image".$row->id).'.jpg'))
 			{
-				JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'src'.DS.md5("Image".$row->id).'.jpg');
+				JFile::delete(JPATH_ROOT.'/media/k2/items/src/'.md5("Image".$row->id).'.jpg');
 			}
-			if (JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$row->id).'_XS.jpg'))
+			if (JFile::exists(JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$row->id).'_XS.jpg'))
 			{
-				JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$row->id).'_XS.jpg');
+				JFile::delete(JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$row->id).'_XS.jpg');
 			}
-			if (JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$row->id).'_S.jpg'))
+			if (JFile::exists(JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$row->id).'_S.jpg'))
 			{
-				JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$row->id).'_S.jpg');
+				JFile::delete(JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$row->id).'_S.jpg');
 			}
-			if (JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$row->id).'_M.jpg'))
+			if (JFile::exists(JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$row->id).'_M.jpg'))
 			{
-				JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$row->id).'_M.jpg');
+				JFile::delete(JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$row->id).'_M.jpg');
 			}
-			if (JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$row->id).'_L.jpg'))
+			if (JFile::exists(JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$row->id).'_L.jpg'))
 			{
-				JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$row->id).'_L.jpg');
+				JFile::delete(JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$row->id).'_L.jpg');
 			}
-			if (JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$row->id).'_XL.jpg'))
+			if (JFile::exists(JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$row->id).'_XL.jpg'))
 			{
-				JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$row->id).'_XL.jpg');
+				JFile::delete(JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$row->id).'_XL.jpg');
 			}
-			if (JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$row->id).'_Generic.jpg'))
+			if (JFile::exists(JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$row->id).'_Generic.jpg'))
 			{
-				JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$row->id).'_Generic.jpg');
+				JFile::delete(JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$row->id).'_Generic.jpg');
 			}
 
 			//Delete gallery
-			if (JFolder::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'galleries'.DS.$row->id))
-				JFolder::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'galleries'.DS.$row->id);
+			if (JFolder::exists(JPATH_ROOT.'/media/k2/galleries/'.$row->id))
+				JFolder::delete(JPATH_ROOT.'/media/k2/galleries/'.$row->id);
 
 			//Delete video
 			preg_match_all("#^{(.*?)}(.*?){#", $row->video, $matches, PREG_PATTERN_ORDER);
@@ -954,17 +954,17 @@ class K2ModelItems extends K2Model
 			if (in_array($videotype, $videoExtensions) || in_array($videotype, $audioExtensions))
 			{
 
-				if (JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'videos'.DS.$videofile.'.'.$videotype))
-					JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'videos'.DS.$videofile.'.'.$videotype);
+				if (JFile::exists(JPATH_ROOT.'/media/k2/videos/'.$videofile.'.'.$videotype))
+					JFile::delete(JPATH_ROOT.'/media/k2/videos/'.$videofile.'.'.$videotype);
 
-				if (JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'audio'.DS.$videofile.'.'.$videotype))
-					JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'audio'.DS.$videofile.'.'.$videotype);
+				if (JFile::exists(JPATH_ROOT.'/media/k2/audio/'.$videofile.'.'.$videotype))
+					JFile::delete(JPATH_ROOT.'/media/k2/audio/'.$videofile.'.'.$videotype);
 			}
 
 			//Delete attachments
 			$path = $params->get('attachmentsFolder', NULL);
 			if (is_null($path))
-				$savepath = JPATH_ROOT.DS.'media'.DS.'k2'.DS.'attachments';
+				$savepath = JPATH_ROOT.'/media/k2/attachments';
 			else
 				$savepath = $path;
 
@@ -972,8 +972,8 @@ class K2ModelItems extends K2Model
 
 			foreach ($attachments as $attachment)
 			{
-				if (JFile::exists($savepath.DS.$attachment->filename))
-					JFile::delete($savepath.DS.$attachment->filename);
+				if (JFile::exists($savepath.'/'.$attachment->filename))
+					JFile::delete($savepath.'/'.$attachment->filename);
 			}
 
 			$query = "DELETE FROM #__k2_attachments WHERE itemID={$row->id}";
@@ -1022,7 +1022,7 @@ class K2ModelItems extends K2Model
 			$preserveItemIDs = true;
 
 		$xml = new JSimpleXML;
-		$xml->loadFile(JPATH_COMPONENT.DS.'models'.DS.'category.xml');
+		$xml->loadFile(JPATH_COMPONENT.'/models/category.xml');
 		$categoryParams = class_exists('JParameter') ? new JParameter('') : new JRegistry('');
 
 		foreach ($xml->document->params as $paramGroup)
@@ -1038,7 +1038,7 @@ class K2ModelItems extends K2Model
 		$categoryParams = $categoryParams->toString();
 
 		$xml = new JSimpleXML;
-		$xml->loadFile(JPATH_COMPONENT.DS.'models'.DS.'item.xml');
+		$xml->loadFile(JPATH_COMPONENT.'/models/item.xml');
 		$itemParams = class_exists('JParameter') ? new JParameter('') : new JRegistry('');
 
 		foreach ($xml->document->params as $paramGroup)
@@ -1075,9 +1075,9 @@ class K2ModelItems extends K2Model
 			$K2Category->params = $categoryParams;
 			$K2Category->check();
 			$K2Category->store();
-			if (JFile::exists(JPATH_SITE.DS.'images'.DS.'stories'.DS.$section->image))
+			if (JFile::exists(JPATH_SITE.'/images/stories/'.$section->image))
 			{
-				JFile::copy(JPATH_SITE.DS.'images'.DS.'stories'.DS.$section->image, JPATH_SITE.DS.'media'.DS.'k2'.DS.'categories'.DS.$K2Category->image);
+				JFile::copy(JPATH_SITE.'/images/stories/'.$section->image, JPATH_SITE.'/media/k2/categories/'.$K2Category->image);
 			}
 			$query = "SELECT * FROM #__categories WHERE section = ".(int)$section->id;
 			$db->setQuery($query);
@@ -1098,9 +1098,9 @@ class K2ModelItems extends K2Model
 				$K2Subcategory->params = $categoryParams;
 				$K2Subcategory->check();
 				$K2Subcategory->store();
-				if (JFile::exists(JPATH_SITE.DS.'images'.DS.'stories'.DS.$category->image))
+				if (JFile::exists(JPATH_SITE.'/images/stories/'.$category->image))
 				{
-					JFile::copy(JPATH_SITE.DS.'images'.DS.'stories'.DS.$category->image, JPATH_SITE.DS.'media'.DS.'k2'.DS.'categories'.DS.$K2Subcategory->image);
+					JFile::copy(JPATH_SITE.'/images/stories/'.$category->image, JPATH_SITE.'/media/k2/categories/'.$K2Subcategory->image);
 				}
 
 				$query = "SELECT article.*, xref.content_id
@@ -1318,7 +1318,7 @@ class K2ModelItems extends K2Model
 		{
 			$preserveItemIDs = true;
 		}
-		$xml = new JXMLElement(JFile::read(JPATH_COMPONENT.DS.'models'.DS.'category.xml'));
+		$xml = new JXMLElement(JFile::read(JPATH_COMPONENT.'/models/category.xml'));
 		$categoryParams = class_exists('JParameter') ? new JParameter('') : new JRegistry('');
 		foreach ($xml->params as $paramGroup)
 		{
@@ -1332,7 +1332,7 @@ class K2ModelItems extends K2Model
 		}
 		$categoryParams = $categoryParams->toString();
 
-		$xml = new JXMLElement(JFile::read(JPATH_COMPONENT.DS.'models'.DS.'item.xml'));
+		$xml = new JXMLElement(JFile::read(JPATH_COMPONENT.'/models/item.xml'));
 		$itemParams = class_exists('JParameter') ? new JParameter('') : new JRegistry('');
 		foreach ($xml->params as $paramGroup)
 		{
@@ -1390,9 +1390,9 @@ class K2ModelItems extends K2Model
 
 			}
 
-			if ($K2Category->image && JFile::exists(realpath(JPATH_SITE.DS.$category->image)))
+			if ($K2Category->image && JFile::exists(realpath(JPATH_SITE.'/'.$category->image)))
 			{
-				JFile::copy(realpath(JPATH_SITE.DS.$category->image), JPATH_SITE.DS.'media'.DS.'k2'.DS.'categories'.DS.$K2Category->image);
+				JFile::copy(realpath(JPATH_SITE.'/'.$category->image), JPATH_SITE.'/media/k2/categories/'.$K2Category->image);
 			}
 			$query = "SELECT article.*, xref.content_id
 				FROM #__content AS article

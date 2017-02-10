@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.model');
 
-JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'tables');
+JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
 
 class K2ModelItem extends K2Model
 {
@@ -41,7 +41,7 @@ class K2ModelItem extends K2Model
 	{
 
 		jimport('joomla.filesystem.file');
-		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
+		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
 		$limitstart = JRequest::getInt('limitstart');
 		$application = JFactory::getApplication();
 		//Initialize params
@@ -124,7 +124,7 @@ class K2ModelItem extends K2Model
 		$date = JFactory::getDate($item->modified);
 		$timestamp = '?t='.$date->toUnix();
 
-		if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_XS.jpg'))
+		if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_XS.jpg'))
 		{
 			$item->imageXSmall = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_XS.jpg';
 			if ($params->get('imageTimestamp'))
@@ -133,7 +133,7 @@ class K2ModelItem extends K2Model
 			}
 		}
 
-		if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_S.jpg'))
+		if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_S.jpg'))
 		{
 			$item->imageSmall = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_S.jpg';
 			if ($params->get('imageTimestamp'))
@@ -142,7 +142,7 @@ class K2ModelItem extends K2Model
 			}
 		}
 
-		if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_M.jpg'))
+		if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_M.jpg'))
 		{
 			$item->imageMedium = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_M.jpg';
 			if ($params->get('imageTimestamp'))
@@ -151,7 +151,7 @@ class K2ModelItem extends K2Model
 			}
 		}
 
-		if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_L.jpg'))
+		if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_L.jpg'))
 		{
 			$item->imageLarge = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_L.jpg';
 			if ($params->get('imageTimestamp'))
@@ -160,7 +160,7 @@ class K2ModelItem extends K2Model
 			}
 		}
 
-		if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_XL.jpg'))
+		if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_XL.jpg'))
 		{
 			$item->imageXLarge = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_XL.jpg';
 			if ($params->get('imageTimestamp'))
@@ -169,7 +169,7 @@ class K2ModelItem extends K2Model
 			}
 		}
 
-		if (JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_Generic.jpg'))
+		if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_Generic.jpg'))
 		{
 			$item->imageGeneric = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_Generic.jpg';
 			if ($params->get('imageTimestamp'))
@@ -283,7 +283,7 @@ class K2ModelItem extends K2Model
 	function prepareFeedItem(&$item)
 	{
 
-		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
+		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
 		$params = K2HelperUtilities::getParams('com_k2');
 		$limitstart = 0;
 		$view = JRequest::getCmd('view');
@@ -316,7 +316,7 @@ class K2ModelItem extends K2Model
 		$item->description = '';
 
 		// Item image
-		if ($params->get('feedItemImage') && JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache'.DS.md5("Image".$item->id).'_'.$params->get('feedImgSize').'.jpg'))
+		if ($params->get('feedItemImage') && JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_'.$params->get('feedImgSize').'.jpg'))
 		{
 			$altText = $item->image_caption ? $item->image_caption : $item->title;
 			$item->description .= '<div class="K2FeedImage"><img src="'.JURI::root().'media/k2/items/cache/'.md5('Image'.$item->id).'_'.$params->get('feedImgSize').'.jpg" alt="'.$altText.'" /></div>';
@@ -562,7 +562,7 @@ class K2ModelItem extends K2Model
 				if (JString::strpos($item->gallery, 'flickr.com') === false)
 				{
 					$item->gallery = "{gallery}{$item->id}{/gallery}";
-					if (!JFolder::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'galleries'.DS.$item->id))
+					if (!JFolder::exists(JPATH_SITE.'/media/k2/galleries/'.$item->id))
 					{
 						$item->gallery = null;
 					}
@@ -928,7 +928,7 @@ class K2ModelItem extends K2Model
 	{
 
 		$mainframe = JFactory::getApplication();
-		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
+		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
 
 		// Get item
 		$item = JTable::getInstance('K2Item', 'Table');
@@ -1091,7 +1091,7 @@ class K2ModelItem extends K2Model
 
 		$mainframe = JFactory::getApplication();
 		jimport('joomla.mail.helper');
-		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
+		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
 		$params = K2HelperUtilities::getParams('com_k2');
 		$user = JFactory::getUser();
 		$config = JFactory::getConfig();
@@ -1248,7 +1248,7 @@ class K2ModelItem extends K2Model
 					{
 						if (!function_exists('_recaptcha_qsencode'))
 						{
-							require_once (JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'lib'.DS.'recaptchalib.php');
+							require_once (JPATH_ADMINISTRATOR.'/components/com_k2/lib/recaptchalib.php');
 						}
 						$privatekey = trim($params->get('recaptcha_private_key'));
 						$recaptcha_challenge_field = isset($_POST["recaptcha_challenge_field"]) ? $_POST["recaptcha_challenge_field"] : '';
@@ -1274,7 +1274,7 @@ class K2ModelItem extends K2Model
 				{
 					if ($params->get('akismetApiKey'))
 					{
-						require_once (JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'lib'.DS.'akismet.class.php');
+						require_once (JPATH_ADMINISTRATOR.'/components/com_k2/lib/akismet.class.php');
 						$akismetApiKey = trim($params->get('akismetApiKey'));
 						$akismet = new Akismet(JURI::root(false), $akismetApiKey);
 						$akismet->setCommentAuthor($userName);

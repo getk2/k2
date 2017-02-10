@@ -358,7 +358,7 @@ class K2ViewItems extends K2View
 		$ordering = (($this->lists['order'] == 'i.ordering' || $this->lists['order'] == 'category' || ($this->filter_featured > 0 && $this->lists['order'] == 'i.featured_ordering')) && (!$this->filter_trash));
 		$this->assignRef('ordering', $ordering);
 
-		JTable::addIncludePath(JPATH_COMPONENT.DS.'tables');
+		JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 		$table = JTable::getInstance('K2Item', 'Table');
 		$this->assignRef('table', $table);
 
@@ -392,7 +392,7 @@ class K2ViewItems extends K2View
 	{
 
 		$mainframe = JFactory::getApplication();
-		JTable::addIncludePath(JPATH_COMPONENT.DS.'tables');
+		JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 		$cid = JRequest::getVar('cid');
 
 		foreach ($cid as $id)

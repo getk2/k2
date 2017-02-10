@@ -57,11 +57,11 @@ class K2ControllerMedia extends K2Controller
 		JRequest::setVar('debug', false);
 
 		$url = JURI::root(true).'/'.$folder;
-		$path = JPATH_SITE.DS.JPath::clean($folder);
+		$path = JPATH_SITE.'/'.JPath::clean($folder);
 
 		JPath::check($path);
 
-		require_once JPATH_COMPONENT_ADMINISTRATOR.DS.'lib'.DS.'elfinder'.DS.'autoload.php';
+		require_once JPATH_COMPONENT_ADMINISTRATOR.'/lib/elfinder/autoload.php';
 
 		function access($attr, $path, $data, $volume)
 		{

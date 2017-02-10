@@ -172,7 +172,7 @@ class K2HelperPermissions
                 $cid = JRequest::getInt('cid');
                 if($cid)
                 {
-                  JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
+                  JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
                   $item = JTable::getInstance('K2Item', 'Table');
                   $item->load($cid);
 
@@ -199,7 +199,7 @@ class K2HelperPermissions
                 if ($cid)
                 {
 
-                    JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
+                    JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
                     $item = JTable::getInstance('K2Item', 'Table');
                     $item->load($cid);
 

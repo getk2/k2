@@ -26,14 +26,14 @@ class K2ViewInfo extends K2View
         $gd_check = extension_loaded('gd');
         $mb_check = extension_loaded('mbstring');
 
-        $media_folder_check = is_writable(JPATH_ROOT.DS.'media'.DS.'k2');
-        $attachments_folder_check = is_writable(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'attachments');
-        $categories_folder_check = is_writable(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'categories');
-        $galleries_folder_check = is_writable(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'galleries');
-        $items_folder_check = is_writable(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'items');
-        $users_folder_check = is_writable(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'users');
-        $videos_folder_check = is_writable(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'videos');
-        $cache_folder_check = is_writable(JPATH_ROOT.DS.'cache');
+        $media_folder_check = is_writable(JPATH_ROOT.'/media/k2');
+        $attachments_folder_check = is_writable(JPATH_ROOT.'/media/k2/attachments');
+        $categories_folder_check = is_writable(JPATH_ROOT.'/media/k2/categories');
+        $galleries_folder_check = is_writable(JPATH_ROOT.'/media/k2/galleries');
+        $items_folder_check = is_writable(JPATH_ROOT.'/media/k2/items');
+        $users_folder_check = is_writable(JPATH_ROOT.'/media/k2/users');
+        $videos_folder_check = is_writable(JPATH_ROOT.'/media/k2/videos');
+        $cache_folder_check = is_writable(JPATH_ROOT.'/cache');
 
         $this->assignRef('server', $server);
         $this->assignRef('php_version', $php_version);

@@ -23,12 +23,12 @@ if (K2_JVERSION != '15')
     }
 }
 
-JLoader::register('K2Controller', JPATH_COMPONENT.DS.'controllers'.DS.'controller.php');
-JLoader::register('K2Model', JPATH_COMPONENT_ADMINISTRATOR.DS.'models'.DS.'model.php');
-JLoader::register('K2View', JPATH_COMPONENT_ADMINISTRATOR.DS.'views'.DS.'view.php');
-JLoader::register('K2HelperRoute', JPATH_COMPONENT.DS.'helpers'.DS.'route.php');
-JLoader::register('K2HelperPermissions', JPATH_COMPONENT.DS.'helpers'.DS.'permissions.php');
-JLoader::register('K2HelperUtilities', JPATH_COMPONENT.DS.'helpers'.DS.'utilities.php');
+JLoader::register('K2Controller', JPATH_COMPONENT.'/controllers/controller.php');
+JLoader::register('K2Model', JPATH_COMPONENT_ADMINISTRATOR.'/models/model.php');
+JLoader::register('K2View', JPATH_COMPONENT_ADMINISTRATOR.'/views/view.php');
+JLoader::register('K2HelperRoute', JPATH_COMPONENT.'/helpers/route.php');
+JLoader::register('K2HelperPermissions', JPATH_COMPONENT.'/helpers/permissions.php');
+JLoader::register('K2HelperUtilities', JPATH_COMPONENT.'/helpers/utilities.php');
 
 K2HelperPermissions::setPermissions();
 K2HelperPermissions::checkPermissions();
@@ -54,11 +54,11 @@ if ($controller == 'users')
 jimport('joomla.filesystem.file');
 jimport('joomla.html.parameter');
 
-if (JFile::exists(JPATH_COMPONENT.DS.'controllers'.DS.$controller.'.php'))
+if (JFile::exists(JPATH_COMPONENT.'/controllers/'.$controller.'.php'))
 {
     $classname = 'K2Controller'.$controller;
     if(!class_exists($classname))
-        require_once (JPATH_COMPONENT.DS.'controllers'.DS.$controller.'.php');
+        require_once (JPATH_COMPONENT.'/controllers/'.$controller.'.php');
     $controller = new $classname();
     $controller->execute($task);
     $controller->redirect();

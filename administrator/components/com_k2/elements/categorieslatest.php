@@ -96,7 +96,7 @@ class K2ElementCategoriesLatest extends K2Element
 		<div style="clear:both;"></div>
 		';
 
-        JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'tables');
+        JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
 
         $output .= '<ul id="categoriesList">';
         foreach ($current as $id)

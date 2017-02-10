@@ -33,9 +33,9 @@ class plgSystemK2 extends JPlugin
 
 		// Define K2 version & build here
 		define('K2_CURRENT_VERSION', '2.7.2');
-		define('K2_BUILD', ' [Dev Build]'); // Use '' for stable or ' [Dev Build]' for the developer build
+		define('K2_BUILD', ''); // Use '' for stable or ' [Dev Build]' for the developer build
 
-		// Define the DS constant under Joomla 3.0
+		// Define the DS constant (for backwards compatibility with old template overrides & 3rd party K2 extensions)
 		if (!defined('DS'))
 		{
 			define('DS', DIRECTORY_SEPARATOR);
@@ -57,14 +57,14 @@ class plgSystemK2 extends JPlugin
 		JLoader::register('K2Model', JPATH_ADMINISTRATOR.'/components/com_k2/models/model.php');
 		if ($mainframe->isSite())
 		{
-			K2Model::addIncludePath(JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'models');
+			K2Model::addIncludePath(JPATH_SITE.'/components/com_k2/models');
 		}
 		else
 		{
 			// Fix warning under Joomla 1.5 caused by conflict in model names
 			if (K2_JVERSION != '15' || (K2_JVERSION == '15' && JRequest::getCmd('option') != 'com_users'))
 			{
-				K2Model::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'models');
+				K2Model::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/models');
 			}
 		}
 		JLoader::register('K2View', JPATH_ADMINISTRATOR.'/components/com_k2/views/view.php');
@@ -79,7 +79,7 @@ class plgSystemK2 extends JPlugin
 		// define('K2_TAGS_ITEMID', $componentParams->get('defaultTagsItemid'));
 
 		// Define JoomFish compatibility version.
-		if (JFile::exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomfish'.DS.'joomfish.php'))
+		if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/joomfish.php'))
 		{
 			if (K2_JVERSION == '15')
 			{
@@ -137,7 +137,7 @@ class plgSystemK2 extends JPlugin
 			return;
 
 		JPlugin::loadLanguage('com_k2', JPATH_ADMINISTRATOR);
-		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'tables');
+		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
 
 		// Joom!Fish
 		if ($option == 'com_joomfish' && ($task == 'translate.apply' || $task == 'translate.save') && $type == 'k2_items')
@@ -533,13 +533,13 @@ class plgSystemK2 extends JPlugin
 			jimport('joomla.filesystem.file');
 
 			// k2.fonts.css
-			if (JFile::exists(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'css'.DS.'k2.fonts.css'))
+			if (JFile::exists(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/css/k2.fonts.css'))
 				$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.fonts.css?v='.K2_CURRENT_VERSION);
 			else
 				$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.fonts.css?v='.K2_CURRENT_VERSION);
 
 			// k2.css
-			if (JFile::exists(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'css'.DS.'k2.css'))
+			if (JFile::exists(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/css/k2.css'))
 				$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.css?v='.K2_CURRENT_VERSION);
 			else
 				$document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.css?v='.K2_CURRENT_VERSION);
@@ -547,7 +547,7 @@ class plgSystemK2 extends JPlugin
 			// k2.print.css
 			if (JRequest::getInt('print') == 1)
 			{
-				if (JFile::exists(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'css'.DS.'k2.print.css'))
+				if (JFile::exists(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/css/k2.print.css'))
 					$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.print.css?v='.K2_CURRENT_VERSION, 'text/css', 'print');
 				else
 					$document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.print.css?v='.K2_CURRENT_VERSION, 'text/css', 'print');
@@ -619,19 +619,19 @@ class plgSystemK2 extends JPlugin
 			}
 			if (K2_JVERSION != '15')
 			{
-				require_once (JPATH_SITE.DS.'components'.DS.'com_users'.DS.'controller.php');
+				require_once (JPATH_SITE.'/components/com_users/controller.php');
 				$controller = new UsersController;
 
 			}
 			else
 			{
-				require_once (JPATH_SITE.DS.'components'.DS.'com_user'.DS.'controller.php');
+				require_once (JPATH_SITE.'/components/com_user/controller.php');
 				$controller = new UserController;
 			}
 			$view = $controller->getView($view, 'html');
-			$view->addTemplatePath(JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'templates');
-			$view->addTemplatePath(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2'.DS.'templates');
-			$view->addTemplatePath(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2');
+			$view->addTemplatePath(JPATH_SITE.'/components/com_k2/templates');
+			$view->addTemplatePath(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2/templates');
+			$view->addTemplatePath(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2');
 			$view->setLayout('register');
 
 			$K2User = new JObject;
@@ -715,19 +715,19 @@ class plgSystemK2 extends JPlugin
 
 			if (K2_JVERSION != '15')
 			{
-				require_once (JPATH_SITE.DS.'components'.DS.'com_users'.DS.'controller.php');
+				require_once (JPATH_SITE.'/components/com_users/controller.php');
 				$controller = new UsersController;
 			}
 			else
 			{
-				require_once (JPATH_SITE.DS.'components'.DS.'com_user'.DS.'controller.php');
+				require_once (JPATH_SITE.'/components/com_user/controller.php');
 				$controller = new UserController;
 			}
 
 			$view = $controller->getView($view, 'html');
-			$view->addTemplatePath(JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'templates');
-			$view->addTemplatePath(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2'.DS.'templates');
-			$view->addTemplatePath(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2');
+			$view->addTemplatePath(JPATH_SITE.'/components/com_k2/templates');
+			$view->addTemplatePath(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2/templates');
+			$view->addTemplatePath(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2');
 			$view->setLayout('profile');
 
 			$model = K2Model::getInstance('Itemlist', 'K2Model');
@@ -871,7 +871,7 @@ class plgSystemK2 extends JPlugin
 	function getSearchValue($id, $currentValue)
 	{
 
-		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'tables');
+		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
 		$row = JTable::getInstance('K2ExtraField', 'Table');
 		$row->load($id);
 		$jsonObject = json_decode($row->value);
@@ -904,7 +904,7 @@ class plgSystemK2 extends JPlugin
 	{
 
 		$mainframe = JFactory::getApplication();
-		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'tables');
+		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
 		$item = JTable::getInstance('K2Item', 'Table');
 		$item->load($itemID);
 
@@ -966,7 +966,7 @@ class plgSystemK2 extends JPlugin
 	{
 
 		$mainframe = JFactory::getApplication();
-		JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'tables');
+		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
 		$item = JTable::getInstance('K2Item', 'Table');
 		$item->load($itemID);
 

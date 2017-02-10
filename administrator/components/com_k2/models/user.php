@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.model');
 
-JTable::addIncludePath(JPATH_COMPONENT.DS.'tables');
+JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 
 class K2ModelUser extends K2Model
 {
@@ -36,7 +36,7 @@ class K2ModelUser extends K2Model
 
         $mainframe = JFactory::getApplication();
         jimport('joomla.filesystem.file');
-        require_once (JPATH_COMPONENT.DS.'lib'.DS.'class.upload.php');
+        require_once (JPATH_COMPONENT.'/lib/class.upload.php');
         $row = JTable::getInstance('K2User', 'Table');
         $params = JComponentHelper::getParams('com_k2');
 
@@ -69,7 +69,7 @@ class K2ModelUser extends K2Model
 
         $file = JRequest::get('files');
 
-        $savepath = JPATH_ROOT.DS.'media'.DS.'k2'.DS.'users'.DS;
+        $savepath = JPATH_ROOT.'/media/k2/users/';
 
         if ($file['image']['error'] == 0 && !JRequest::getBool('del_image'))
         {
@@ -98,9 +98,9 @@ class K2ModelUser extends K2Model
 
             $current = JTable::getInstance('K2User', 'Table');
             $current->load($row->id);
-            if (JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'users'.DS.$current->image))
+            if (JFile::exists(JPATH_ROOT.'/media/k2/users/'.$current->image))
             {
-                JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'users'.DS.$current->image);
+                JFile::delete(JPATH_ROOT.'/media/k2/users/'.$current->image);
             }
             $row->image = '';
         }

@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.model');
 
-JTable::addIncludePath(JPATH_COMPONENT.DS.'tables');
+JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 
 class K2ModelCategories extends K2Model
 {
@@ -120,7 +120,7 @@ class K2ModelCategories extends K2Model
 
         if ($filter_category)
         {
-            K2Model::addIncludePath(JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'models');
+            K2Model::addIncludePath(JPATH_SITE.'/components/com_k2/models');
             $ItemlistModel = K2Model::getInstance('Itemlist', 'K2Model');
             $tree = $ItemlistModel->getCategoryTree($filter_category);
             $query .= " AND c.id IN (".implode(',', $tree).")";
@@ -301,7 +301,7 @@ class K2ModelCategories extends K2Model
 
         if ($filter_category)
         {
-            K2Model::addIncludePath(JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'models');
+            K2Model::addIncludePath(JPATH_SITE.'/components/com_k2/models');
             $ItemlistModel = K2Model::getInstance('Itemlist', 'K2Model');
             $tree = $ItemlistModel->getCategoryTree($filter_category);
             $query .= " AND id IN (".implode(',', $tree).")";
@@ -525,7 +525,7 @@ class K2ModelCategories extends K2Model
         $cid = JRequest::getVar('cid');
         $row = JTable::getInstance('K2Category', 'Table');
         JArrayHelper::toInteger($cid);
-        K2Model::addIncludePath(JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'models');
+        K2Model::addIncludePath(JPATH_SITE.'/components/com_k2/models');
         $model = K2Model::getInstance('Itemlist', 'K2Model');
         $categories = $model->getCategoryTree($cid);
         $sql = @implode(',', $categories);
@@ -644,7 +644,7 @@ class K2ModelCategories extends K2Model
 
                 if ($row->image)
                 {
-                    JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'categories'.DS.$row->image);
+                    JFile::delete(JPATH_ROOT.'/media/k2/categories/'.$row->image);
                 }
                 $row->delete($cid[$i]);
                 $dispatcher->trigger('onFinderAfterDelete', array('com_k2.category', $row));
@@ -756,9 +756,9 @@ class K2ModelCategories extends K2Model
             $row->store();
             $copies[] = $row->id;
             //Target image
-            if ($category->image && JFile::exists(JPATH_SITE.DS.'media'.DS.'k2'.DS.'categories'.DS.$category->image))
+            if ($category->image && JFile::exists(JPATH_SITE.'/media/k2/categories/'.$category->image))
             {
-                JFile::copy(JPATH_SITE.DS.'media'.DS.'k2'.DS.'categories'.DS.$category->image, JPATH_SITE.DS.'media'.DS.'k2'.DS.'categories'.DS.$row->id.'.jpg');
+                JFile::copy(JPATH_SITE.'/media/k2/categories/'.$category->image, JPATH_SITE.'/media/k2/categories/'.$row->id.'.jpg');
                 $row->image = $row->id.'.jpg';
                 $row->store();
             }

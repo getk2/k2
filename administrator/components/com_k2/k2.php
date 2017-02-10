@@ -37,7 +37,7 @@ if(K2_JVERSION=='15'){
     	}
 } else {
 
-	JLoader::register('K2HelperPermissions', JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'permissions.j16.php');
+	JLoader::register('K2HelperPermissions', JPATH_SITE.'/components/com_k2/helpers/permissions.j16.php');
 	K2HelperPermissions::checkPermissions();
 
 	// Compatibility for gid variable
@@ -99,7 +99,7 @@ JLoader::register('K2Model', JPATH_COMPONENT.'/models/model.php');
 
 $controller = JRequest::getWord('view', 'items');
 $controller = JString::strtolower($controller);
-require_once (JPATH_COMPONENT.DS.'controllers'.DS.$controller.'.php');
+require_once (JPATH_COMPONENT.'/controllers/'.$controller.'.php');
 $classname = 'K2Controller'.$controller;
 $controller = new $classname();
 $controller->registerTask('saveAndNew', 'save');

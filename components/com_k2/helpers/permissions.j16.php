@@ -63,7 +63,7 @@ class K2HelperPermissions
             // Edit or Edit own action
             if ($action == 'core.edit' && $view == 'item' && $id)
             {
-                JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
+                JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
                 $item = JTable::getInstance('K2Item', 'Table');
                 $item->load($id);
                 if ($item->created_by == $user->id)

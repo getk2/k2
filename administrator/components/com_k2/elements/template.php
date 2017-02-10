@@ -21,7 +21,7 @@ class K2ElementTemplate extends K2Element
         jimport('joomla.filesystem.folder');
         $mainframe = JFactory::getApplication();
         $fieldName = (K2_JVERSION != '15') ? $name : $control_name.'['.$name.']';
-        $componentPath = JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'templates';
+        $componentPath = JPATH_SITE.'/components/com_k2/templates';
         $componentFolders = JFolder::folders($componentPath);
         $db = JFactory::getDBO();
         if (K2_JVERSION != '15')
@@ -35,13 +35,13 @@ class K2ElementTemplate extends K2Element
         $db->setQuery($query);
         $defaultemplate = $db->loadResult();
 
-        if (JFolder::exists(JPATH_SITE.DS.'templates'.DS.$defaultemplate.DS.'html'.DS.'com_k2'.DS.'templates'))
+        if (JFolder::exists(JPATH_SITE.'/templates/'.$defaultemplate.'/html/com_k2/templates'))
         {
-            $templatePath = JPATH_SITE.DS.'templates'.DS.$defaultemplate.DS.'html'.DS.'com_k2'.DS.'templates';
+            $templatePath = JPATH_SITE.'/templates/'.$defaultemplate.'/html/com_k2/templates';
         }
         else
         {
-            $templatePath = JPATH_SITE.DS.'templates'.DS.$defaultemplate.DS.'html'.DS.'com_k2';
+            $templatePath = JPATH_SITE.'/templates/'.$defaultemplate.'/html/com_k2';
         }
 
         if (JFolder::exists($templatePath))

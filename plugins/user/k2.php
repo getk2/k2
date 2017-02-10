@@ -57,7 +57,7 @@ class plgUserK2 extends JPlugin
 		if ($mainframe->isSite() && $task != 'activate' && JRequest::getInt('K2UserForm'))
 		{
 			JPlugin::loadLanguage('com_k2');
-			JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'tables');
+			JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
 			$row = JTable::getInstance('K2User', 'Table');
 			$k2id = $this->getK2UserID($user['id']);
 			JRequest::setVar('id', $k2id, 'post');
@@ -99,8 +99,8 @@ class plgUserK2 extends JPlugin
 
 			$file = JRequest::get('files');
 
-			require_once (JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'lib'.DS.'class.upload.php');
-			$savepath = JPATH_ROOT.DS.'media'.DS.'k2'.DS.'users'.DS;
+			require_once (JPATH_ADMINISTRATOR.'/components/com_k2/lib/class.upload.php');
+			$savepath = JPATH_ROOT.'/media/k2/users/';
 
 			if (isset($file['image']) && $file['image']['error'] == 0 && !JRequest::getBool('del_image'))
 			{
@@ -127,9 +127,9 @@ class plgUserK2 extends JPlugin
 			if (JRequest::getBool('del_image'))
 			{
 
-				if (JFile::exists(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'users'.DS.$row->image))
+				if (JFile::exists(JPATH_ROOT.'/media/k2/users/'.$row->image))
 				{
-					JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'users'.DS.$row->image);
+					JFile::delete(JPATH_ROOT.'/media/k2/users/'.$row->image);
 				}
 				$image = '';
 			}
@@ -179,7 +179,7 @@ class plgUserK2 extends JPlugin
 			if ($params->get('K2UserProfile') && $id)
 			{
 				$k2id = $this->getK2UserID($id);
-				JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'tables');
+				JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
 				$row = JTable::getInstance('K2User', 'Table');
 				if ($k2id)
 				{
@@ -254,7 +254,7 @@ class plgUserK2 extends JPlugin
 			{
 				if (!function_exists('_recaptcha_qsencode'))
 				{
-					require_once (JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'lib'.DS.'recaptchalib.php');
+					require_once (JPATH_ADMINISTRATOR.'/components/com_k2/lib/recaptchalib.php');
 				}
 				$privatekey = $params->get('recaptcha_private_key');
 				$recaptcha_challenge_field = isset($_POST["recaptcha_challenge_field"]) ? $_POST["recaptcha_challenge_field"] : '';

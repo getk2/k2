@@ -259,7 +259,7 @@ class K2ViewCategories extends K2View
 	{
 
 		$mainframe = JFactory::getApplication();
-		JTable::addIncludePath(JPATH_COMPONENT.DS.'tables');
+		JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 		$cid = JRequest::getVar('cid');
 
 		foreach ($cid as $id)

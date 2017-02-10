@@ -23,7 +23,7 @@ if (version_compare(JVERSION, '1.6.0', '<'))
     $status->modules = array();
     $status->plugins = array();
     $src = $this->parent->getPath('source');
-    $isUpdate = JFile::exists(JPATH_SITE.DS.'modules'.DS.'mod_k2_content'.DS.'mod_k2_content.php');
+    $isUpdate = JFile::exists(JPATH_SITE.'/modules/mod_k2_content/mod_k2_content.php');
 
     $modules = $this->manifest->getElementByPath('modules');
     if (is_a($modules, 'JSimpleXMLElement') && count($modules->children()))
@@ -36,7 +36,7 @@ if (version_compare(JVERSION, '1.6.0', '<'))
             {
                 $client = 'site';
             }
-            $path = $client == 'administrator' ? $src.DS.'administrator'.DS.'modules'.DS.$mname : $src.DS.'modules'.DS.$mname;
+            $path = $client == 'administrator' ? $src.'/administrator/modules/'.$mname : $src.'/modules/'.$mname;
             $installer = new JInstaller;
             $result = $installer->install($path);
             $status->modules[] = array('name' => $mname, 'client' => $client, 'result' => $result);
@@ -66,7 +66,7 @@ if (version_compare(JVERSION, '1.6.0', '<'))
             {
                 continue;
             }
-            $path = $src.DS.'plugins'.DS.$pgroup;
+            $path = $src.'/plugins/'.$pgroup;
             $installer = new JInstaller;
             $result = $installer->install($path);
             $query = "UPDATE #__plugins SET published=1 WHERE element=".$db->Quote($pname)." AND folder=".$db->Quote($pgroup);
@@ -76,7 +76,7 @@ if (version_compare(JVERSION, '1.6.0', '<'))
         }
     }
 
-    if (JFolder::exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomfish'.DS.'contentelements'))
+    if (JFolder::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/contentelements'))
     {
 
         $elements = $this->manifest->getElementByPath('joomfish');
@@ -84,7 +84,7 @@ if (version_compare(JVERSION, '1.6.0', '<'))
         {
             foreach ($elements->children() as $element)
             {
-                JFile::copy($src.DS.'administrator'.DS.'components'.DS.'com_joomfish'.DS.'contentelements'.DS.$element->data(), JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomfish'.DS.'contentelements'.DS.$element->data());
+                JFile::copy($src.'/administrator/components/com_joomfish/contentelements/'.$element->data(), JPATH_ADMINISTRATOR.'/components/com_joomfish/contentelements/'.$element->data());
             }
         }
 
@@ -95,14 +95,14 @@ if (version_compare(JVERSION, '1.6.0', '<'))
         $mainframe->enqueueMessage(JText::_('K2_NOTICE_K2_CONTENT_ELEMENTS_FOR_JOOMFISH_WERE_NOT_COPIED_TO_THE_RELATED_FOLDER_BECAUSE_JOOMFISH_WAS_NOT_FOUND_ON_YOUR_SYSTEM'));
     }
 
-    if (JFile::exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'admin.k2.php'))
+    if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_k2/admin.k2.php'))
     {
-        JFile::delete(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'admin.k2.php');
+        JFile::delete(JPATH_ADMINISTRATOR.'/components/com_k2/admin.k2.php');
     }
 
-    if (JFile::exists(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'models'.DS.'cpanel.php'))
+    if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_k2/models/cpanel.php'))
     {
-        JFile::delete(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'models'.DS.'cpanel.php');
+        JFile::delete(JPATH_ADMINISTRATOR.'/components/com_k2/models/cpanel.php');
     }
 
     $db = JFactory::getDBO();

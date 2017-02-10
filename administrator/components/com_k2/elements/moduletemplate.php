@@ -26,9 +26,9 @@ class K2ElementModuleTemplate extends K2Element
         {
             $moduleName = $node->_attributes['modulename'];
         }
-        $moduleTemplatesPath = JPATH_SITE.DS.'modules'.DS.$moduleName.DS.'tmpl';
+        $moduleTemplatesPath = JPATH_SITE.'/modules/'.$moduleName.'/tmpl';
         $moduleTemplatesFolders = JFolder::folders($moduleTemplatesPath);
-        
+
         $db = JFactory::getDBO();
         if (K2_JVERSION != '15')
         {
@@ -40,7 +40,7 @@ class K2ElementModuleTemplate extends K2Element
         }
         $db->setQuery($query);
         $defaultemplate = $db->loadResult();
-        $templatePath = JPATH_SITE.DS.'templates'.DS.$defaultemplate.DS.'html'.DS.$moduleName;
+        $templatePath = JPATH_SITE.'/templates/'.$defaultemplate.'/html/'.$moduleName;
 
         if (JFolder::exists($templatePath))
         {

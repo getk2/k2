@@ -9,8 +9,8 @@
 // no direct access
 defined('_JEXEC') or die;
 
-JLoader::register('K2HelperRoute', JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'route.php');
-JLoader::register('K2HelperUtilities', JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'utilities.php');
+JLoader::register('K2HelperRoute', JPATH_SITE.'/components/com_k2/helpers/route.php');
+JLoader::register('K2HelperUtilities', JPATH_SITE.'/components/com_k2/helpers/utilities.php');
 
 class modK2UserHelper
 {
@@ -65,7 +65,7 @@ class modK2UserHelper
             if ($profile->image != '')
                 $profile->avatar = JURI::root().'media/k2/users/'.$profile->image;
 
-            require_once (JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'permissions'.'.php');
+            require_once (JPATH_SITE.'/components/com_k2/helpers/permissions'.'.php');
 
             if (JRequest::getCmd('option') != 'com_k2')
                 K2HelperPermissions::setPermissions();
