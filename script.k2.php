@@ -247,7 +247,7 @@ class Com_K2InstallerScript
         }
 
         /*
-	    // TO DO: Measure time impact on large datasets
+	    // TO DO: Use the following info to remove FULLTEXT attributes from the items & tags tables
         $query = "SHOW INDEX FROM #__k2_items";
         $db->setQuery($query);
         $indexes = $db->loadObjectList();
