@@ -116,6 +116,7 @@ class Com_K2InstallerScript
         $db->query();
 
         /*
+	    // TO DO: Check main folders for 0755 first and then apply this fix
         // Fix media manager folder permissions
         set_time_limit(0);
         jimport('joomla.filesystem.folder');
@@ -246,6 +247,7 @@ class Com_K2InstallerScript
         }
 
         /*
+	    // TO DO: Measure time impact on large datasets
         $query = "SHOW INDEX FROM #__k2_items";
         $db->setQuery($query);
         $indexes = $db->loadObjectList();
