@@ -130,7 +130,7 @@ div.isJ25 table.admintable td.key {background:#f6f6f6;/*border-bottom:1px solid 
 div.isJ25 table.admintable td.key label {margin:0;padding:0;}
 
 /* Common for Joomla 3.x */
-body.com_k2 .container-fluid {padding:0!important;}
+body.com_k2 .container-fluid.container-main {padding:0!important;}
 body.com_k2 .page-title {padding-left:100px;}
 @media (max-width:767px) {
 	body.com_k2 .page-title {padding-left:0;text-indent:-800px}
