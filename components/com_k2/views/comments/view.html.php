@@ -47,7 +47,7 @@ class K2ViewComments extends K2View
 		{
 			$document = JFactory::getDocument();
 			if($params->get('recaptchaV2')) {
-				$document->addScript('https://www.google.com/recaptcha/api.js?onload=onK2RecaptchaLoaded&render=explicit');
+				$document->addScript('https://www.google.com/recaptcha/api.js?onload=onK2RecaptchaLoaded&render=explicit&hl='.JFactory::getLanguage()->getTag());
 				$js = 'function onK2RecaptchaLoaded(){grecaptcha.render("recaptcha", {"sitekey" : "'.$params->get('recaptcha_public_key').'"});}';
 				$document->addScriptDeclaration($js);
 				$this->recaptchaClass = 'k2-recaptcha-v2';
