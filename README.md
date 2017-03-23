@@ -38,4 +38,6 @@ The K2 Community is the ultimate destination for everything K2! From discussions
 
 More at: https://getk2.org
 
-*Copyright &copy; 2009-2016 [JoomlaWorks Ltd.](http://www.joomlaworks.net) & [Nuevvo Webware P.C.](http://nuevvo.com)*
+***
+
+Copyright &copy; 2009-2017 [JoomlaWorks Ltd.](http://www.joomlaworks.net) & [Nuevvo Webware P.C.](http://nuevvo.com)
