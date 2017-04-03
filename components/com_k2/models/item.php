@@ -1446,6 +1446,7 @@ class K2ModelItem extends K2Model
 		{
 
 			$value = '';
+			$rawValue = '';
 			$values = array();
 			foreach ($jsonObjects as $object)
 			{
@@ -1456,6 +1457,7 @@ class K2ModelItem extends K2Model
 						$value = $object->value;
 						if ($rows[$i]->type == 'date' && $value)
 						{
+							$rawValue = $value;
 							$offset = (K2_JVERSION != '15') ? null : 0;
 							$value = JHTML::_('date', $value, JText::_('K2_DATE_FORMAT_LC'), $offset);
 						}
@@ -1631,6 +1633,10 @@ class K2ModelItem extends K2Model
 
 			if (JString::trim($value) != '')
 			{
+				if (JString::trim($rawValue) != '')
+				{
+					$rows[$i]->rawValue = $rawValue;
+				}
 				$rows[$i]->value = $value;
 				if (!is_null($item))
 				{
