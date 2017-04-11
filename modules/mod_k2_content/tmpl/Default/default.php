@@ -104,7 +104,7 @@ defined('_JEXEC') or die;
 
       <div class="clr"></div>
 
-      <?php if($params->get('itemVideo')): ?>
+      <?php if($params->get('itemVideo') && !empty($item->video)): ?>
       <div class="moduleItemVideo">
       	<?php echo $item->video ; ?>
       	<span class="moduleItemVideoCaption"><?php echo $item->video_caption ; ?></span>
