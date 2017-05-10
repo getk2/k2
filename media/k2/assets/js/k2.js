@@ -657,16 +657,18 @@ $K2(document).ready(function() {
 
 
 
-// Ditch $K2
+// New JS to encapsulate behind a "jQuery" object
 (function($){
 	$(document).ready(function(){
 
 		// flatpickr
-		$('input[data-k2-datetimepicker]').flatpickr({
-			enableTime: true,
-			enableSeconds: true,
-			allowInput: true
-		});
+		if($('input[data-k2-datetimepicker]').length){
+			$('input[data-k2-datetimepicker]').flatpickr({
+				enableTime: true,
+				enableSeconds: true,
+				allowInput: true
+			});
+		}
 
 	});
 })(jQuery);
