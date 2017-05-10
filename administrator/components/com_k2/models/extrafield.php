@@ -288,7 +288,7 @@ class K2ModelExtraField extends K2Model
 			$arrayAttributes['class'] = "k2Required";
 			$attributes .= 'class="k2Required"';
 		}
-		
+
 
 		if ($showNull && in_array($extraField->type, array(
 			'select',
@@ -345,7 +345,7 @@ class K2ModelExtraField extends K2Model
 				break;
 
 			case 'multipleSelect' :
-				
+
 				$attributes .= ' id="K2ExtraField_'.$extraField->id.'" multiple="multiple"';
 				$arrayAttributes['id'] = 'K2ExtraField_'.$extraField->id;
 				$arrayAttributes['multiple'] = "multiple";
@@ -404,16 +404,13 @@ class K2ModelExtraField extends K2Model
 			case 'date' :
 				if ($required)
 				{
-					$attributes = 'class="k2Calendar k2Required"';
-					$arrayAttributes['class'] = "k2Calendar k2Required";
+					$cssClass = 'k2Calendar k2Required';
 				}
 				else
 				{
-					$attributes = 'class="k2Calendar"';
-					$arrayAttributes['class'] = "k2Calendar";
+					$cssClass = 'k2Calendar';
 				}
-				$attrs = version_compare(JVERSION, '3.2', 'ge') ? $arrayAttributes : $attributes;
-				$output = JHTML::_('calendar', $active, 'K2ExtraField_'.$extraField->id, 'K2ExtraField_'.$extraField->id, '%Y-%m-%d', $attrs);
+				$output = '<input class="'.$cssClass.'" type="text" data-k2-datetimepicker="{allowInput:true}" name="K2ExtraField_'.$extraField->id.'" id="K2ExtraField_'.$extraField->id.'" value="'.$active.'" />';
 				break;
 			case 'image' :
 				$output = '<input type="text" name="K2ExtraField_'.$extraField->id.'" id="K2ExtraField_'.$extraField->id.'" value="'.$active.'" '.$attributes.' />

@@ -486,17 +486,15 @@ $K2(document).ready(function() {
                         success : function(response) {
                             $K2('#extraFieldsContainer').html(response);
                             initExtraFieldsEditor();
+
+                            // Load Flatpickr
                             $K2('.k2Calendar').each(function() {
+                                $K2(this).flatpickr({
+									allowInput: true
+								});
                                 inputFieldID = $K2(this).attr('id');
-                                imgFieldID = $K2(this).next().attr('id');
-                                Calendar.setup({
-                                    inputField : inputFieldID,
-                                    ifFormat : "%Y-%m-%d",
-                                    button : imgFieldID,
-                                    align : "Tl",
-                                    singleClick : true
-                                });
                             });
+
                             $K2('#extraFieldsContainer').fadeIn('slow');
                         }
                     });
@@ -657,16 +655,25 @@ $K2(document).ready(function() {
 
 
 
-// New JS to encapsulate behind a "jQuery" object
+/*
+ * JS encapsulated behind the "jQuery" object - added in K2 v2.7.2+
+ */
 (function($){
 	$(document).ready(function(){
 
-		// flatpickr
+		// Flatpickr
 		if($('input[data-k2-datetimepicker]').length){
-			$('input[data-k2-datetimepicker]').flatpickr({
-				enableTime: true,
-				enableSeconds: true,
-				allowInput: true
+			$('input[data-k2-datetimepicker]').each(function(){
+				var options = $(this).data('k2Datetimepicker');
+				if(options){
+					$(this).flatpickr(options);
+				} else {
+					$(this).flatpickr({
+						enableTime: true,
+						enableSeconds: true,
+						allowInput: true
+					});
+				}
 			});
 		}
 
@@ -893,7 +900,6 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             break;
 
         case 'link':
-
             var label = $K2('<label/>').html(K2Language[6]).appendTo(target);
             var inputName = $K2('<input/>', {
                 name : 'option_name[]',
@@ -934,7 +940,6 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                     }
                 });
             }
-
             break;
 
         case 'csv':
@@ -979,23 +984,15 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                 name : 'option_value[]',
                 type : 'text',
                 id : id,
-                value : fieldValues[0].value,
-                readonly : 'readonly'
+                value : fieldValues[0].value
             }).appendTo(target);
-            var img = $K2('<img/>', {
-                id : id + '_img',
-                'class' : 'calendar',
-                src : 'templates/system/images/calendar.png',
-                alt : K2Language[14]
-            }).appendTo(target);
-            Calendar.setup({
-                inputField : id,
-                ifFormat : "%Y-%m-%d",
-                button : id + '_img',
-                align : "Tl",
-                singleClick : true
-            });
-            var notice = $K2('<span/>').html('(' + K2Language[1] + ')').appendTo(target);
+
+			// Load Flatpickr
+            $K2(input).flatpickr({
+				allowInput: true
+			});
+
+            var notice = $K2('<span/>').attr('class', 'k2ExtraFieldNotice').html('(' + K2Language[1] + ')').appendTo(target);
             break;
 
         case 'image':

@@ -14,7 +14,6 @@ jimport('joomla.application.component.view');
 
 class K2ViewExtraField extends K2View
 {
-
 	function display($tpl = null)
 	{
 		JRequest::setVar('hidemainmenu', 1);
@@ -108,7 +107,6 @@ class K2ViewExtraField extends K2View
 		JToolBarHelper::save();
 		JToolBarHelper::apply();
 		JToolBarHelper::cancel();
-		JHTML::_('behavior.calendar');
 
 		$document = JFactory::getDocument();
 		$document->addScriptDeclaration('
@@ -136,5 +134,4 @@ class K2ViewExtraField extends K2View
 		JHTML::_('behavior.modal');
 		parent::display($tpl);
 	}
-
 }

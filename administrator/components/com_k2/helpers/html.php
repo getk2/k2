@@ -203,7 +203,7 @@ class K2HelperHTML
 				}
 
 				// Flatpickr
-				if ($view == 'item')
+				if ($view == 'item' || $view == 'extrafield')
 				{
 					$document->addStyleSheet('https://unpkg.com/flatpickr/dist/flatpickr.min.css');
 					$document->addScript('https://unpkg.com/flatpickr');

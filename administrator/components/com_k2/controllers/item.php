@@ -91,10 +91,14 @@ class K2ControllerItem extends K2Controller
 				}
 				else
 				{
-					$output .= '<div class="itemAdditionalField">';
-					$output .= '<div class="k2Right k2FLeft itemAdditionalValue"><label for="K2ExtraField_'.$extraField->id.'">'.$extraField->name.'</label></div>';
-					$output .= '<div class="itemAdditionalData">'.$extraFieldModel->renderExtraField($extraField, $itemID).'</div>';
-					$output .= '</div>';
+					$output .= '
+					<div class="itemAdditionalField">
+						<div class="k2Right k2FLeft itemAdditionalValue">
+							<label for="K2ExtraField_'.$extraField->id.'">'.$extraField->name.'</label>
+						</div>
+						<div class="itemAdditionalData">'.$extraFieldModel->renderExtraField($extraField, $itemID).'</div>
+					</div>
+					';
 				}
 				$counter++;
 			}

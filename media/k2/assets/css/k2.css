@@ -207,7 +207,7 @@ div.k2SubTable .k2SubTableValue input[type="radio"] {margin:2px 8px 0 0!importan
 .com_k2 .chzn-container-single .chzn-single,
 .com_k2 .chzn-container-single .chzn-single span {min-height:35px;}
 .com_k2 .chzn-container-single .chzn-single span {line-height:35px;}
-.com_k2 .chzn-container-single .chzn-single div b {background-position:2px 8px;}
+.com_k2 .chzn-container-single .chzn-single div b {background-position:2px 8px;margin-top:6px;}
 .com_k2 .chzn-container-active.chzn-with-drop .chzn-single div b {background-position:-14px 8px;}
 
 /* Generic Tabs Layout */
@@ -309,7 +309,7 @@ box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
 .xmlParamsFields .paramValue input[type="text"],
 .xmlParamsFields .paramValue textarea,
 .xmlParamsFields .paramValue select,
-.xmlParamsFields .paramValue div.chzn-container {margin-left:20px;}
+.xmlParamsFields .paramValue div.chzn-container {/*margin-left:20px;*/}
 
 /* Check boxes - generic */
 .xmlParamsFields .paramValue input:checked + label {background:#63696f;color:#fff;box-shadow:0 1px 1px rgba(65,64,66,.14);}
@@ -379,11 +379,13 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
 
 /* Extrafields - newly generated elements */
 #exFieldsTypesDiv {padding-top:15px;}
-#exFieldsTypesDiv input[type="text"] {margin-bottom:20px;min-height:30px;line-height:40px;}
+#exFieldsTypesDiv input[type="text"] {min-height:30px;line-height:40px;}
 #exFieldsTypesDiv input[type="button"],
 #exFieldsTypesDiv button {margin-bottom:20px;display:inline-block;vertical-align:top;margin-right:10px;color:#414042;min-width:100px;padding:10px 15px;border-radius:3px;border:1px solid #dedede;border-bottom-color:#cacaca;background:#fdfdfd;white-space:normal;position:relative;font-weight:700;background:-moz-linear-gradient(top,#fdfdfd 0%,#f5f5f5 100%);background:-webkit-linear-gradient(top,#fdfdfd 0%,#f5f5f5 100%);background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd',endColorstr='#f5f5f5',GradientType=0);box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
 #exFieldsTypesDiv input[type="button"]:hover,
 #exFieldsTypesDiv button:hover {background:#d4d7d9;}
+#exFieldsTypesDiv .k2ExtraFieldNotice {color:#999;margin-left:10px;}
+
 #groupContainer {text-align:right;width:100%;clear:both;float:left;margin:20px 0 0;}
 #groupContainer > span,
 #groupContainer > label {font-weight:700;color:#777;padding-right:10px;}

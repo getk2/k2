@@ -30,17 +30,17 @@ $document->addScriptDeclaration("
 			submitform( pressbutton );
 		}
 	};
-    ");
+");
 
-    ?>
+?>
 
 <form action="index.php" method="post" enctype="multipart/form-data" name="adminForm" id="adminForm">
     <div class="xmlParamsFields k2GenericForm">
         <h3>
           <?php if($this->row->id): ?>
-              <?php echo JText::_('K2_EDIT_EXTRAFIELD'); ?>
+          <?php echo JText::_('K2_EDIT_EXTRAFIELD'); ?>
           <?php else: ?>
-              <?php echo JText::_('K2_ADD_NEW_EXTRAFIELD'); ?>
+          <?php echo JText::_('K2_ADD_NEW_EXTRAFIELD'); ?>
           <?php endif; ?>
         </h3>
         <ul class="adminformlist">
@@ -69,7 +69,7 @@ $document->addScriptDeclaration("
                 </div>
             </li>
             <li>
-                <div class="paramLabel">  
+                <div class="paramLabel">
                     <?php echo JText::_('K2_GROUP'); ?>
                 </div>
                 <div class="paramValue">
@@ -88,37 +88,43 @@ $document->addScriptDeclaration("
                     <?php echo $this->lists['type']; ?>
                 </div>
             </li>
-            <li id="k2ExtraFieldsRequiredFlag" <?php if($this->row->type == 'header') { echo 'style="display: none;"'; } ?>>
+            <li id="k2ExtraFieldsRequiredFlag"<?php if($this->row->type == 'header') echo ' style="display:none;"'; ?>>
                 <div class="paramLabel">
                     <?php echo JText::_('K2_REQUIRED'); ?>
                 </div>
                 <div class="paramValue">
-                    <input id="required-yes" type="radio" name="required" value="1" <?php if($this->row->required) { echo 'checked="checked"';} ?>/><label for="required-yes"><?php echo JText::_('K2_YES'); ?></label>
-                    <input id="required-no" type="radio" name="required" value="0"<?php if(!$this->row->required) { echo 'checked="checked"';} ?>/><label for="required-no"><?php echo JText::_('K2_NO'); ?></label>
+                    <input id="required-yes" type="radio" name="required" value="1"<?php if($this->row->required) echo ' checked="checked"'; ?> />
+                    <label for="required-yes"><?php echo JText::_('K2_YES'); ?></label>
+                    <input id="required-no" type="radio" name="required" value="0"<?php if(!$this->row->required) echo ' checked="checked"'; ?> />
+                    <label for="required-no"><?php echo JText::_('K2_NO'); ?></label>
                 </div>
             </li>
-            <li id="k2ExtraFieldsShowNullFlag" <?php if($this->row->type != 'select' && $this->row->type != 'multipleSelect') { echo 'style="display: none;"'; } ?>>      
+            <li id="k2ExtraFieldsShowNullFlag"<?php if($this->row->type != 'select' && $this->row->type != 'multipleSelect') echo ' style="display: none;"'; ?>>
                 <div class="paramLabel">
                     <?php echo JText::_('K2_SHOW_NULL'); ?>
                 </div>
-                
+
                  <div class="paramValue">
-                    <input id="showNull-yes" type="radio" name="showNull" value="1" <?php if($this->row->showNull) { echo 'checked="checked"';} ?>/><label for="showNull-yes"><?php echo JText::_('K2_YES'); ?></label>
-                    <input id="showNull-no" type="radio" name="showNull" value="0"<?php if(!$this->row->showNull) { echo 'checked="checked"';} ?>/><label for="showNull-no"><?php echo JText::_('K2_NO'); ?></label>
+                    <input id="showNull-yes" type="radio" name="showNull" value="1"<?php if($this->row->showNull) echo ' checked="checked"'; ?> />
+                    <label for="showNull-yes"><?php echo JText::_('K2_YES'); ?></label>
+                    <input id="showNull-no" type="radio" name="showNull" value="0"<?php if(!$this->row->showNull) echo ' checked="checked"'; ?> />
+                    <label for="showNull-no"><?php echo JText::_('K2_NO'); ?></label>
                 </div>
             </li>
-            <li id="k2ExtraFieldsDisplayInFrontEndFlag" <?php if($this->row->type != 'header') { echo 'style="display: none;"'; } ?>>     
+            <li id="k2ExtraFieldsDisplayInFrontEndFlag"<?php if($this->row->type != 'header') echo ' style="display:none;"'; ?>>
                 <div class="paramLabel">
                     <?php echo JText::_('K2_DISPLAY_IN_THE_FRONTEND'); ?>
                 </div>
 
                 <div class="paramValue">
-                    <input id="displayInFrontEnd-yes" type="radio" name="displayInFrontEnd" value="1" <?php if($this->row->displayInFrontEnd) { echo 'checked="checked"';} ?>/><label for="displayInFrontEnd-yes"><?php echo JText::_('K2_YES'); ?></label>
-                    <input id="displayInFrontEnd-no" type="radio" name="displayInFrontEnd" value="0"<?php if(!$this->row->displayInFrontEnd) { echo 'checked="checked"';} ?>/><label for="displayInFrontEnd-no"><?php echo JText::_('K2_NO'); ?></label>
+                    <input id="displayInFrontEnd-yes" type="radio" name="displayInFrontEnd" value="1"<?php if($this->row->displayInFrontEnd) echo ' checked="checked"'; ?> />
+                    <label for="displayInFrontEnd-yes"><?php echo JText::_('K2_YES'); ?></label>
+                    <input id="displayInFrontEnd-no" type="radio" name="displayInFrontEnd" value="0"<?php if(!$this->row->displayInFrontEnd) echo ' checked="checked"'; ?> />
+                    <label for="displayInFrontEnd-no"><?php echo JText::_('K2_NO'); ?></label>
                 </div>
             </li>
             <li>
-                <div class="paramLabel"> 
+                <div class="paramLabel">
                     <?php echo JText::_('K2_DEFAULT_VALUES'); ?>
                 </div>
                 <div class="paramValue">
@@ -129,7 +135,7 @@ $document->addScriptDeclaration("
     </div>
 
     <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
-    <input type="hidden" name="isNew" id="isNew" value="<?php echo ($this->row->group)?'0':'1'; ?>" />
+    <input type="hidden" name="isNew" id="isNew" value="<?php echo ($this->row->group) ? '0':'1'; ?>" />
     <input type="hidden" name="option" value="com_k2" />
     <input type="hidden" name="view" value="<?php echo JRequest::getVar('view'); ?>" />
     <input type="hidden" name="task" value="<?php echo JRequest::getVar('task'); ?>" />
