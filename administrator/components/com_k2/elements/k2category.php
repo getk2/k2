@@ -14,7 +14,6 @@ require_once (JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
 class K2ElementK2Category extends K2Element
 {
-
     function fetchElement($name, $value, &$node, $control_name)
     {
         $db = JFactory::getDBO();
@@ -242,9 +241,7 @@ class K2ElementK2Category extends K2Element
         }
 
         return JHTML::_('select.genericlist', $mitems, $fieldName, $onChange.' class="inputbox" multiple="multiple" size="15"', 'value', 'text', $value);
-
     }
-
 }
 
 class JFormFieldK2Category extends K2ElementK2Category

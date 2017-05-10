@@ -18,14 +18,10 @@ class K2ElementCategoriesLatest extends K2Element
     function fetchElement($name, $value, &$node, $control_name)
     {
         JHTML::_('behavior.modal');
-
-        $params = JComponentHelper::getParams('com_k2');
-
+        $mainframe = JFactory::getApplication();
         $document = JFactory::getDocument();
 
         K2HelperHTML::loadHeadIncludes(true, true, false, true);
-
-        $mainframe = JFactory::getApplication();
 
         if (K2_JVERSION != '15')
         {
@@ -115,7 +111,6 @@ class K2ElementCategoriesLatest extends K2Element
         $output .= '</ul>';
         return $output;
     }
-
 }
 
 class JFormFieldCategoriesLatest extends K2ElementCategoriesLatest

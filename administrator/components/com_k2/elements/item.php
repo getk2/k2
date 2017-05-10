@@ -79,7 +79,6 @@ class K2ElementItem extends K2Element
 
         return $html;
     }
-
 }
 
 class JFormFieldItem extends K2ElementItem

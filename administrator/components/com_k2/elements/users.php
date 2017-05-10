@@ -14,7 +14,6 @@ require_once (JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
 class K2ElementUsers extends K2Element
 {
-
     function fetchElement($name, $value, &$node, $control_name)
     {
         JHTML::_('behavior.modal');
@@ -100,7 +99,6 @@ class K2ElementUsers extends K2Element
         $output .= '</ul>';
         return $output;
     }
-
 }
 
 class JFormFieldUsers extends K2ElementUsers

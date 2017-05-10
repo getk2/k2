@@ -14,7 +14,6 @@ require_once (JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
 class K2ElementK2Tag extends K2Element
 {
-
     function fetchElement($name, $value, &$node, $control_name)
     {
         $mainframe = JFactory::getApplication();
@@ -75,7 +74,6 @@ class K2ElementK2Tag extends K2Element
         }
         return $html;
     }
-
 }
 
 class JFormFieldK2Tag extends K2ElementK2Tag

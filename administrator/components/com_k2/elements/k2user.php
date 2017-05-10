@@ -14,12 +14,14 @@ require_once (JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
 class K2ElementK2User extends K2Element
 {
-
     function fetchElement($name, $value, &$node, $control_name)
     {
         $mainframe = JFactory::getApplication();
+        $document = JFactory::getDocument();
+        
+        JHTML::_('behavior.modal', 'a.modal');
+        
         $db = JFactory::getDBO();
-        $doc = JFactory::getDocument();
         $fieldName = (K2_JVERSION != '15') ? $name : $control_name.'['.$name.']';
         if ($value)
         {
@@ -30,6 +32,7 @@ class K2ElementK2User extends K2Element
             $user = new stdClass;
             $user->name = JText::_('K2_SELECT_A_USER');
         }
+        
         // Move this to main JS file
         $js = "
 		function jSelectUser(id, title, object) {
@@ -43,9 +46,10 @@ class K2ElementK2User extends K2Element
 			}
 		}
 		";
-        $doc->addScriptDeclaration($js);
+        $document->addScriptDeclaration($js);
+        
         $link = 'index.php?option=com_k2&amp;view=users&amp;task=element&amp;tmpl=component&amp;object='.$name;
-        JHTML::_('behavior.modal', 'a.modal');
+        
         if (K2_JVERSION == '30')
         {
             $html = '<span class="input-append">
@@ -70,7 +74,6 @@ class K2ElementK2User extends K2Element
         }
         return $html;
     }
-
 }
 
 class JFormFieldK2User extends K2ElementK2User

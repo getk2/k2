@@ -15,26 +15,24 @@ class K2ElementHeader extends K2Element
 {
     public function fetchElement($name, $value, &$node, $control_name)
     {
-
         $document = JFactory::getDocument();
-        $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.modules.css?v='.K2_CURRENT_VERSION);
+        
+        K2HelperHTML::loadHeadIncludes(true);
 
-        if (K2_JVERSION == '15')
-        {
-            return '<div class="paramHeaderContainer15"><div class="paramHeaderContent">'.JText::_($value).'</div><div class="k2clr"></div></div>';
-        }
-        else
-        {
-            return '<div class="paramHeaderContainer"><div class="paramHeaderContent">'.JText::_($value).'</div><div class="k2clr"></div></div>';
-
-        }
+		if (version_compare(JVERSION, '2.5.0', 'ge'))
+		{
+			return '<div class="jwHeaderContainer"><div class="jwHeaderContent">'.JText::_($value).'</div><div class="jwHeaderClr"></div></div>';
+		}
+		else
+		{
+			return '<div class="jwHeaderContainer15"><div class="jwHeaderContent">'.JText::_($value).'</div><div class="jwHeaderClr"></div></div>';
+		}
     }
 
     public function fetchTooltip($label, $description, &$node, $control_name, $name)
     {
         return NULL;
     }
-
 }
 
 class JFormFieldHeader extends K2ElementHeader

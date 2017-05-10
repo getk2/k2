@@ -14,7 +14,6 @@ require_once (JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
 class K2ElementMenuItem extends K2Element
 {
-
     function fetchElement($name, $value, &$node, $control_name)
     {
         $db = JFactory::getDBO();
@@ -138,7 +137,6 @@ class K2ElementMenuItem extends K2Element
 
         return JHTML::_('select.genericlist', $options, $fieldName, 'class="inputbox"', 'value', 'text', $value, $control_name.$name);
     }
-
 }
 
 class JFormFieldMenuItem extends K2ElementMenuItem

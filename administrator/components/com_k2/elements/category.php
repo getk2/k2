@@ -244,7 +244,6 @@ class K2ElementCategory extends K2Element
         return JHTML::_('select.genericlist', $mitems, $fieldName, $onChange.' class="inputbox" style="width:90%;" multiple="multiple" size="15"', 'value', 'text', $value);
 
     }
-
 }
 
 class JFormFieldCategory extends K2ElementCategory

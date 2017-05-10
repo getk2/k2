@@ -18,7 +18,6 @@ class K2ElementCategories extends K2Element
     function fetchElement($name, $value, &$node, $control_name)
     {
         $db = JFactory::getDBO();
-
         $query = 'SELECT m.* FROM #__k2_categories m WHERE trash = 0 ORDER BY parent, ordering';
         $db->setQuery($query);
         $mitems = $db->loadObjectList();
@@ -80,7 +79,6 @@ class K2ElementCategories extends K2Element
 
         return JHTML::_('select.genericlist', $mitems, $fieldName, $attributes, 'value', 'text', $value);
     }
-
 }
 
 class JFormFieldCategories extends K2ElementCategories

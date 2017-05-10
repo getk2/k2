@@ -16,7 +16,6 @@ class K2ElementModuleTemplate extends K2Element
 {
     function fetchElement($name, $value, &$node, $control_name)
     {
-
         jimport('joomla.filesystem.folder');
         if (K2_JVERSION != '15')
         {
@@ -77,9 +76,7 @@ class K2ElementModuleTemplate extends K2Element
         }
 
         return JHTML::_('select.genericlist', $options, $fieldName, 'class="inputbox"', 'value', 'text', $value, $control_name.$name);
-
     }
-
 }
 
 class JFormFieldModuleTemplate extends K2ElementModuleTemplate

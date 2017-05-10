@@ -21,6 +21,7 @@ class K2ElementItemForm extends K2Element
       }
         $document = JFactory::getDocument();
         $document->addScriptDeclaration("
+        	/* Mootools Snippet */
 			window.addEvent('domready', function() {
 				if($('request-options')) {
 					$$('.panel')[0].setStyle('display', 'none');
@@ -45,7 +46,6 @@ class K2ElementItemForm extends K2Element
     {
         return '';
     }
-
 }
 
 class JFormFielditemform extends K2ElementItemForm

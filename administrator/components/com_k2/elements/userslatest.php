@@ -14,7 +14,6 @@ require_once (JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
 class K2ElementUsersLatest extends K2Element
 {
-
     function fetchElement($name, $value, &$node, $control_name)
     {
         JHTML::_('behavior.modal');
@@ -40,38 +39,37 @@ class K2ElementUsersLatest extends K2Element
         }
 
         $js = "
-		function jSelectUser(id, title, object) {
-			var exists = false;
-			\$K2('#usersList input').each(function(){
+			function jSelectUser(id, title, object) {
+				var exists = false;
+				\$K2('#usersList input').each(function(){
 					if(\$K2(this).val()==id){
 						alert('".JText::_('K2_THE_SELECTED_USER_IS_ALREADY_IN_THE_LIST', true)."');
 						exists = true;
 					}
-			});
-			if(!exists){
-				var container = \$K2('<li/>').appendTo(\$K2('#usersList'));
-				var img = \$K2('<img/>',{'class':'remove', src:'".$image."'}).appendTo(container);
-				img.click(function(){\$K2(this).parent().remove();});
-				var span = \$K2('<span/>',{'class':'handle'}).html(title).appendTo(container);
-				var input = \$K2('<input/>',{value:id, type:'hidden', name:'".$fieldName."'}).appendTo(container);
-				var div = \$K2('<div/>',{style:'clear:both;'}).appendTo(container);
-				\$K2('#usersList').sortable('refresh');
-				alert('".JText::_('K2_USER_ADDED_IN_THE_LIST', true)."');
+				});
+				if(!exists){
+					var container = \$K2('<li/>').appendTo(\$K2('#usersList'));
+					var img = \$K2('<img/>',{'class':'remove', src:'".$image."'}).appendTo(container);
+					img.click(function(){\$K2(this).parent().remove();});
+					var span = \$K2('<span/>',{'class':'handle'}).html(title).appendTo(container);
+					var input = \$K2('<input/>',{value:id, type:'hidden', name:'".$fieldName."'}).appendTo(container);
+					var div = \$K2('<div/>',{style:'clear:both;'}).appendTo(container);
+					\$K2('#usersList').sortable('refresh');
+					alert('".JText::_('K2_USER_ADDED_IN_THE_LIST', true)."');
+				}
 			}
-		}
 
-		\$K2(document).ready(function(){
-			\$K2('#usersList').sortable({
-				containment: '#usersList',
-				items: 'li',
-				handle: 'span.handle'
+			\$K2(document).ready(function(){
+				\$K2('#usersList').sortable({
+					containment: '#usersList',
+					items: 'li',
+					handle: 'span.handle'
+				});
+				\$K2('#usersList .remove').click(function(){
+					\$K2(this).parent().remove();
+				});
 			});
-			\$K2('#usersList .remove').click(function(){
-				\$K2(this).parent().remove();
-			});
-		});
 		";
-
         $document->addScriptDeclaration($js);
 
         $current = array();
@@ -85,12 +83,12 @@ class K2ElementUsersLatest extends K2Element
         }
 
         $output = '
-		<div class="button2-left">
-			<div class="blank">
-				<a class="modal btn" title="'.JText::_('K2_CLICK_TO_SELECT_ONE_OR_MORE_USERS').'" href="index.php?option=com_k2&view=users&task=element&tmpl=component" rel="{handler: \'iframe\', size: {x: 700, y: 450}}">'.JText::_('K2_CLICK_TO_SELECT_ONE_OR_MORE_USERS').'</a>
+			<div class="button2-left">
+				<div class="blank">
+					<a class="modal btn" title="'.JText::_('K2_CLICK_TO_SELECT_ONE_OR_MORE_USERS').'" href="index.php?option=com_k2&view=users&task=element&tmpl=component" rel="{handler: \'iframe\', size: {x: 700, y: 450}}">'.JText::_('K2_CLICK_TO_SELECT_ONE_OR_MORE_USERS').'</a>
+				</div>
 			</div>
-		</div>
-		<div style="clear:both;"></div>
+			<div style="clear:both;"></div>
 		';
 
         $output .= '<ul id="usersList">';
@@ -109,7 +107,6 @@ class K2ElementUsersLatest extends K2Element
         $output .= '</ul>';
         return $output;
     }
-
 }
 
 class JFormFieldUsersLatest extends K2ElementUsersLatest

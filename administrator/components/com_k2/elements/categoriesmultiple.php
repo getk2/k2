@@ -17,7 +17,6 @@ class K2ElementCategoriesMultiple extends K2Element
 
     function fetchElement($name, $value, &$node, $control_name)
     {
-        $params = JComponentHelper::getParams('com_k2');
         $document = JFactory::getDocument();
 
         K2HelperHTML::loadHeadIncludes(true);
@@ -137,7 +136,6 @@ class K2ElementCategoriesMultiple extends K2Element
         $output = JHTML::_('select.genericlist', $mitems, $fieldName, 'class="inputbox" multiple="multiple" size="10"', 'value', 'text', $value);
         return $output;
     }
-
 }
 
 class JFormFieldCategoriesMultiple extends K2ElementCategoriesMultiple

@@ -14,10 +14,8 @@ require_once (JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
 class K2ElementTemplate extends K2Element
 {
-
     public function fetchElement($name, $value, &$node, $control_name)
     {
-
         jimport('joomla.filesystem.folder');
         $mainframe = JFactory::getApplication();
         $fieldName = (K2_JVERSION != '15') ? $name : $control_name.'['.$name.']';
@@ -69,9 +67,7 @@ class K2ElementTemplate extends K2Element
         array_unshift($options, JHTML::_('select.option', '', '-- '.JText::_('K2_USE_DEFAULT').' --'));
 
         return JHTML::_('select.genericlist', $options, $fieldName, 'class="inputbox"', 'value', 'text', $value, $control_name.$name);
-
     }
-
 }
 
 class JFormFieldTemplate extends K2ElementTemplate

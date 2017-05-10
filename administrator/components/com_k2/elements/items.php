@@ -16,12 +16,11 @@ class K2ElementItems extends K2Element
 {
     function fetchElement($name, $value, &$node, $control_name)
     {
-        $params = JComponentHelper::getParams('com_k2');
+        $mainframe = JFactory::getApplication();
         $document = JFactory::getDocument();
 
         K2HelperHTML::loadHeadIncludes(true, true, false, true);
 
-        $mainframe = JFactory::getApplication();
         if (K2_JVERSION != '15')
         {
             $fieldName = $name;
@@ -101,7 +100,6 @@ class K2ElementItems extends K2Element
         $output .= '</ul>';
         return $output;
     }
-
 }
 
 class JFormFieldItems extends K2ElementItems
