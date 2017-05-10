@@ -106,9 +106,9 @@ defined('_JEXEC') or die;
 
       <?php if($params->get('itemVideo') && !empty($item->video)): ?>
       <div class="moduleItemVideo">
-      	<?php echo $item->video ; ?>
-      	<span class="moduleItemVideoCaption"><?php echo $item->video_caption ; ?></span>
-      	<span class="moduleItemVideoCredits"><?php echo $item->video_credits ; ?></span>
+      	<?php echo $item->video; ?>
+      	<span class="moduleItemVideoCaption"><?php echo $item->video_caption; ?></span>
+      	<span class="moduleItemVideoCredits"><?php echo $item->video_credits; ?></span>
       </div>
       <?php endif; ?>
 
@@ -121,11 +121,11 @@ defined('_JEXEC') or die;
       <?php echo $item->event->K2AfterDisplayContent; ?>
 
       <?php if($params->get('itemDateCreated')): ?>
-      <span class="moduleItemDateCreated"><?php echo JText::_('K2_WRITTEN_ON') ; ?> <?php echo JHTML::_('date', $item->created, JText::_('K2_DATE_FORMAT_LC2')); ?></span>
+      <span class="moduleItemDateCreated"><?php echo JText::_('K2_WRITTEN_ON'); ?> <?php echo JHTML::_('date', $item->created, JText::_('K2_DATE_FORMAT_LC2')); ?></span>
       <?php endif; ?>
 
       <?php if($params->get('itemCategory')): ?>
-      <?php echo JText::_('K2_IN') ; ?> <a class="moduleItemCategory" href="<?php echo $item->categoryLink; ?>"><?php echo $item->categoryname; ?></a>
+      <?php echo JText::_('K2_IN'); ?> <a class="moduleItemCategory" href="<?php echo $item->categoryLink; ?>"><?php echo $item->categoryname; ?></a>
       <?php endif; ?>
 
       <?php if($params->get('itemTags') && count($item->tags)>0): ?>
