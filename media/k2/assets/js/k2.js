@@ -8,7 +8,8 @@
 
 var K2JVersion;
 var selectsInstance;
-var K2SitePath
+var K2SitePath;
+
 $K2(document).ready(function() {
 
     // Set the selects instance to allow inheritance of jQuery chosen bindings
@@ -464,7 +465,7 @@ $K2(document).ready(function() {
                     $K2(this).appendTo($K2('#tags'));
                 });
             });
-	    $K2('#k2AdminContainer').on('click', 'input[type="radio"]', function(e){
+            $K2('#k2AdminContainer').on('click', 'input[type="radio"]', function(e){
             	$K2(this).parents('.controls').children('label.radio').each(function(){
             		$K2(this).removeClass('isChecked');
             	});
@@ -588,14 +589,16 @@ $K2(document).ready(function() {
                 }
             });
             if ($K2('input[name=isSite]').val() == 1) {
-              if(typeof(parent.$) !== 'undefined') {
-                if(parent.$('sbox-overlay') != undefined) {
-                   parent.$('sbox-overlay').removeEvents('click');
-                }
-                if(parent.$('sbox-btn-close') != undefined) {
-                   parent.$('sbox-btn-close').removeEvents('click');
-                }
-              }
+
+				if(typeof(parent.$) !== 'undefined') {
+					if(parent.$('sbox-overlay') != undefined) {
+						parent.$('sbox-overlay').removeEvents('click');
+					}
+					if(parent.$('sbox-btn-close') != undefined) {
+						parent.$('sbox-btn-close').removeEvents('click');
+					}
+				}
+
                 var elements = [parent.$K2('#sbox-btn-close'), $K2('#toolbar-cancel a')];
                 $K2.each(elements, function(index, element) {
                     element.unbind();
@@ -652,6 +655,28 @@ $K2(document).ready(function() {
     });
 });
 
+
+
+// Ditch $K2
+(function($){
+	$(document).ready(function(){
+
+		// flatpickr
+		$('.k2DateTimePicker').flatpickr({
+			enableTime: true,
+			enableSeconds: true,
+			allowInput: true
+		});
+
+	});
+})(jQuery);
+
+
+
+/*
+ * Utility functions
+ */
+
 // Extra fields validation
 function validateExtraFields() {
 	$K2('.k2Required').removeClass('k2Invalid');
@@ -706,7 +731,7 @@ function extraFieldsImage() {
 }
 
 // If we are in Joomla 1.5 define the functions for validation
-if ( typeof (Joomla) === 'undefined') {
+if (typeof (Joomla) === 'undefined') {
     var Joomla = {};
     Joomla.submitbutton = function(pressbutton) {
         submitform(pressbutton);

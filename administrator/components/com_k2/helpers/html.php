@@ -92,7 +92,7 @@ class K2HelperHTML
 				{
 					if ($jQueryHandling && JString::strpos($jQueryHandling, 'remote') !== false)
 					{
-						$document->addScript('//ajax.googleapis.com/ajax/libs/jquery/'.str_replace('remote', '', $jQueryHandling).'/jquery.min.js');
+						$document->addScript('https://ajax.googleapis.com/ajax/libs/jquery/'.str_replace('remote', '', $jQueryHandling).'/jquery.min.js');
 					}
 					else if ($jQueryHandling && JString::strpos($jQueryHandling, 'remote') === false)
 					{
@@ -107,11 +107,11 @@ class K2HelperHTML
 					{
 						if ($view == 'media')
 						{
-							$document->addScript('//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js');
+							$document->addScript('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js');
 						}
 						else
 						{
-							$document->addScript('//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
+							$document->addScript('https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
 						}
 					}
 					else
@@ -136,8 +136,8 @@ class K2HelperHTML
 					// Load latest version for the "media" view only
 					if ($backendJQueryHandling == 'remote')
 					{
-						$document->addStyleSheet('//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css');
-						$document->addScript('//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js');
+						$document->addStyleSheet('https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css');
+						$document->addScript('https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js');
 					}
 					else
 					{
@@ -150,7 +150,7 @@ class K2HelperHTML
 					// Load version 1.8.24 for any other view (until we kill it as a dependency there, for good)...
 					if ($backendJQueryHandling == 'remote')
 					{
-						$document->addScript('//ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js');
+						$document->addScript('https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js');
 					}
 					else
 					{
@@ -164,7 +164,7 @@ class K2HelperHTML
 			{
 
 				// CSS
-				$document->addStyleSheet('//netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css?v='.K2_CURRENT_VERSION);
+				$document->addStyleSheet('https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css?v='.K2_CURRENT_VERSION);
 				$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v='.K2_CURRENT_VERSION);
 				if($adminModuleIncludes)
 				{
@@ -200,6 +200,13 @@ class K2HelperHTML
 							JHtml::_('formbehavior.chosen', 'select');
 						}
 					}
+				}
+
+				// Flatpickr
+				if ($view == 'item')
+				{
+					$document->addStyleSheet("https://unpkg.com/flatpickr/dist/flatpickr.min.css");
+					$document->addScript("https://unpkg.com/flatpickr");
 				}
 
 				$isBackend = ($application->isAdmin()) ? ' k2IsBackend' : '';

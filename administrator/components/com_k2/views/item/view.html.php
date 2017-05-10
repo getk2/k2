@@ -144,10 +144,10 @@ class K2ViewItem extends K2View
 			$publishDown = '';
 		}
 
-		// Set up calendars
-		$lists['createdCalendar'] = JHTML::_('calendar', $created, 'created', 'created', '%Y-%m-%d %H:%M:%S');
-		$lists['publish_up'] = JHTML::_('calendar', $publishUp, 'publish_up', 'publish_up', '%Y-%m-%d %H:%M:%S');
-		$lists['publish_down'] = JHTML::_('calendar', $publishDown, 'publish_down', 'publish_down', '%Y-%m-%d %H:%M:%S');
+		// Set up calendar values
+		$lists['createdCalendar'] = $created;
+		$lists['publish_up'] = $publishUp;
+		$lists['publish_down'] = $publishDown;
 
 		if ($item->id)
 		{

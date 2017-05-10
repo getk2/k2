@@ -105,6 +105,10 @@ ul.k2GenericList li {list-style:square;padding:2px 0;}
 .k2Selector {background:#f0f2f2;border:1px solid #d4d7d9;border-radius:3px;display:inline-block;margin:0;padding:4px 8px;color:#555;font-weight:bold;font-size:12px;cursor:pointer;text-decoration:none;box-shadow:0 0 1px 0 rgba(41,40,42,0.2);}
 .k2Selector:hover {color:#222;text-decoration:none;border-color:rgba(82,168,236,0.8);box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,0.6);-webkit-transition:box-shadow 300ms ease;transition:box-shadow 300ms ease;}
 
+/* Date/time picker */
+.k2DateTimePickerControl {position:relative;}
+.k2DateTimePickerControl .fa-calendar {position:absolute;top:8px;right:8px;}
+
 /* Header */
 .subhead .btn-toolbar {padding-right:10px;}
 .icon-48-k2 {color:#222!important;padding-left:120px!important;font-size:24px!important;}
