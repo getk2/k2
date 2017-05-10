@@ -30,16 +30,18 @@ div#k2ToggleSidebarContainer {text-align:right;}
 	a#k2ToggleSidebar {background:#95a5a6;display:inline-block;padding:2px 4px;color:#fff;border:0;border-radius:4px;font-size:11px;font-weight:bold;}
 	a#k2ToggleSidebar:hover {background:#798d8f;}
 
-div#k2FrontendContainer {padding:20px;margin:0;}
+div#k2FrontendContainer {padding:0;margin:0;}
 
-div#k2Frontend {background:#fff;width:auto;padding:8px;margin:0;}
+div#k2Frontend {position:relative;background:#fff;width:auto;padding:0;margin:0;}
 div#k2Frontend h3,
 div#k2Frontend legend {font-size:11px;font-family:Arial, Helvetica, sans-serif;}
 div#k2Frontend fieldset {border:1px solid #ccc;}
 
+div#k2Frontend div#k2ID {top:0;right:160px;} /* Overrides backend position */
+
 div#k2Frontend div#editor-xtd-buttons .button2-left {display:inline;}
 
-div#k2Frontend table.k2FrontendToolbar {display:block;margin-top:12px;float:right;border-collapse:separate;}
+div#k2Frontend table.k2FrontendToolbar {display:block;margin:12px 12px 0 0;float:right;border-collapse:separate;}
 div#k2Frontend table.k2FrontendToolbar td {border:none;}
 
 div#k2Frontend table.k2FrontendToolbar td.button a {display:block;padding:4px 8px;color:#fff;border:0;border-radius:4px;font-size:14px;font-weight:bold;}

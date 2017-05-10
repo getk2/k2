@@ -40,32 +40,36 @@ $document->addScriptDeclaration("
 
 	<?php if($this->mainframe->isSite()): ?>
 	<!-- Frontend Editing -->
-	<div id="k2FrontendContainer">
+	<div id="k2FrontendContainer" class="isJ<?php echo K2_JVERSION; ?>">
 		<div id="k2Frontend">
-
 			<table class="k2FrontendToolbar" cellpadding="2" cellspacing="4">
 				<tr>
 					<td id="toolbar-save" class="button">
-						<a class="toolbar" href="#" onclick="Joomla.submitbutton('save'); return false;"> <span title="<?php echo JText::_('K2_SAVE'); ?>" class="icon-32-save icon-save"></span> <?php echo JText::_('K2_SAVE'); ?> </a>
+						<a class="toolbar" href="#" onclick="Joomla.submitbutton('save'); return false;">
+							<span title="<?php echo JText::_('K2_SAVE'); ?>" class="icon-32-save icon-save"></span> <?php echo JText::_('K2_SAVE'); ?>
+						</a>
 					</td>
 					<td id="toolbar-cancel" class="button">
-						<a class="toolbar" href="#"> <span title="<?php echo JText::_('K2_CANCEL'); ?>" class="icon-32-cancel icon-cancel"></span> <?php echo JText::_('K2_CLOSE'); ?> </a>
+						<a class="toolbar" href="#">
+							<span title="<?php echo JText::_('K2_CANCEL'); ?>" class="icon-32-cancel icon-cancel"></span> <?php echo JText::_('K2_CLOSE'); ?>
+						</a>
 					</td>
 				</tr>
 			</table>
+
 			<div id="k2FrontendEditToolbar">
 				<h2 class="header icon-48-k2">
 					<?php echo (JRequest::getInt('cid')) ? JText::_('K2_EDIT_ITEM') : JText::_('K2_ADD_ITEM'); ?>
 				</h2>
 			</div>
+
 			<div class="clr"></div>
-			<hr class="sep" />
+
 			<?php if(!$this->permissions->get('publish')): ?>
 			<div id="k2FrontendPermissionsNotice">
 				<p><?php echo JText::_('K2_FRONTEND_PERMISSIONS_NOTICE'); ?></p>
 			</div>
 			<?php endif; ?>
-
 	<?php endif; ?>
 
 
@@ -312,7 +316,7 @@ $document->addScriptDeclaration("
 							<span class="sep"><?php echo JText::_('K2_OR'); ?></span>
 
 							<input type="text" name="existingImage" id="existingImageValue" class="text_area" readonly />
-							<input type="button" value="<?php echo JText::_('K2_BROWSE_SERVER'); ?>" id="k2ImageBrowseServer"  />
+							<input type="button" value="<?php echo JText::_('K2_BROWSE_SERVER'); ?>" id="k2ImageBrowseServer" />
 						</div>
 					</div>
 
@@ -854,7 +858,7 @@ $document->addScriptDeclaration("
 			</div>
 			<!-- Lower Tabs end here -->
 
-			<input type="hidden" name="isSite" value="<?php echo (int)$this->mainframe->isSite(); ?>" />
+			<input type="hidden" name="isSite" value="<?php echo (int) $this->mainframe->isSite(); ?>" />
 			<?php if($this->mainframe->isSite()): ?>
 			<input type="hidden" name="lang" value="<?php echo JRequest::getCmd('lang'); ?>" />
 			<?php endif; ?>
@@ -1120,5 +1124,4 @@ $document->addScriptDeclaration("
 		</div>
 	</div>
 	<?php endif; ?>
-
 </form>
