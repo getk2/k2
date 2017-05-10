@@ -281,6 +281,8 @@ class K2ControllerItem extends K2Controller
 		JRequest::checkToken() or jexit('Invalid Token');
 		JRequest::setVar('tmpl', 'component');
 		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/item.php');
+		$language = JFactory::getLanguage();
+		$language->load('com_k2', JPATH_ADMINISTRATOR);
 		$model = new K2ModelItem;
 		$model->resetHits();
 
@@ -291,6 +293,8 @@ class K2ControllerItem extends K2Controller
 		JRequest::checkToken() or jexit('Invalid Token');
 		JRequest::setVar('tmpl', 'component');
 		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/item.php');
+		$language = JFactory::getLanguage();
+		$language->load('com_k2', JPATH_ADMINISTRATOR);
 		$model = new K2ModelItem;
 		$model->resetRating();
 
