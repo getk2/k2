@@ -17,7 +17,6 @@ class K2ViewCategories extends K2View
 
 	function display($tpl = null)
 	{
-		JHTML::_('behavior.modal');
 		$mainframe = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
 		$user = JFactory::getUser();

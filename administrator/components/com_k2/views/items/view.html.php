@@ -16,7 +16,6 @@ class K2ViewItems extends K2View
 {
 	function display($tpl = null)
 	{
-		JHTML::_('behavior.modal');
 		jimport('joomla.filesystem.file');
 		$mainframe = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');

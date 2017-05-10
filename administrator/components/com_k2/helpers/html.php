@@ -105,24 +105,24 @@ class K2HelperHTML
 				{
 					if ($backendJQueryHandling == 'remote')
 					{
-						if ($view == 'media')
+						if ($view == 'item' || $view == 'category')
 						{
-							$document->addScript('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js');
+							$document->addScript('https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
 						}
 						else
 						{
-							$document->addScript('https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
+							$document->addScript('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js');
 						}
 					}
 					else
 					{
-						if ($view == 'media')
+						if ($view == 'item' || $view == 'category')
 						{
-							$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-1.12.4.min.js');
+							$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-1.8.3.min.js');
 						}
 						else
 						{
-							$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-1.8.3.min.js');
+							$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-1.12.4.min.js');
 						}
 					}
 				}
@@ -145,7 +145,8 @@ class K2HelperHTML
 						$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-ui-1.11.4.min.js');
 					}
 				}
-				else
+				
+				if ($view == 'item' || $view == 'category')
 				{
 					// Load version 1.8.24 for any other view (until we kill it as a dependency there, for good)...
 					if ($backendJQueryHandling == 'remote')
@@ -205,9 +206,16 @@ class K2HelperHTML
 				// Flatpickr
 				if ($view == 'item' || $view == 'extrafield')
 				{
-					$document->addStyleSheet('https://unpkg.com/flatpickr/dist/flatpickr.min.css');
-					$document->addScript('https://unpkg.com/flatpickr');
-					$document->addCustomTag('<!--[if IE 9]><link rel="stylesheet" type="text/css" href="https://unpkg.com/flatpickr/dist/ie.css" /><![endif]-->');
+					$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/flatpickr/2.6.1/flatpickr.min.css');
+					$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/flatpickr/2.6.1/flatpickr.min.js');
+					$document->addCustomTag('<!--[if IE 9]><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/2.6.1/ie.css" /><![endif]-->');
+				}
+				
+				// Fancybox
+				if ($view == 'items' || $view == 'categories')
+				{
+					$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.css');
+					$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js');
 				}
 
 				$isBackend = ($application->isAdmin()) ? ' k2IsBackend' : '';

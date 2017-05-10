@@ -195,7 +195,7 @@
 				<field name="userImageWidth" default="100" />
 				<field name="userImageDefault" default="1" />
 				<field name="commenterImgWidth" default="48" />
-				<field name="onlineImageEditor" default="sumopaint" />
+				<field name="onlineImageEditor" default="picozu" />
 				<field name="imageTimestamp" default="0" />
 				<field name="imageMemoryLimit" default="" />
 				<!-- ######################### Social Settings ######################### -->

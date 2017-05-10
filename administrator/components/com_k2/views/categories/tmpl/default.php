@@ -170,7 +170,7 @@ $document->addScriptDeclaration("
 						</td>
 						<td class="k2Center center hidden-phone">
 							<?php if($row->image): ?>
-							<a href="<?php echo JURI::root(true).'/media/k2/categories/'.$row->image; ?>" title="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>" class="modal">
+							<a href="<?php echo JURI::root(true).'/media/k2/categories/'.$row->image; ?>" title="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>" data-fancybox="gallery" data-caption="<?php echo $row->title; ?>">
 								<?php if (K2_JVERSION == '30') : ?>
 								<i class="icon-picture" title="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>"></i>
 								<?php else: ?>

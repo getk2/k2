@@ -176,11 +176,11 @@ $document->addScriptDeclaration("
 						<td class="center hidden-phone"><?php echo $row->hits ?></td>
 						<td class="k2Center center hidden-phone">
 							<?php if(JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$row->id).'_XL.jpg')): ?>
-							<a href="<?php echo JURI::root(true).'/media/k2/items/cache/'.md5("Image".$row->id).'_XL.jpg'; ?>" title="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>" class="modal">
-							<?php if(K2_JVERSION == '30'): ?>
-							<i class="icon-picture" title="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>"></i>
-							<?php else: ?>
-							<img src="templates/<?php echo $this->template; ?>/images/menu/icon-16-media.png" alt="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>" />
+							<a href="<?php echo JURI::root(true).'/media/k2/items/cache/'.md5("Image".$row->id).'_XL.jpg'; ?>" title="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>" data-fancybox="gallery" data-caption="<?php echo $row->title; ?>">
+								<?php if(K2_JVERSION == '30'): ?>
+								<i class="icon-picture" title="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>"></i>
+								<?php else: ?>
+								<img src="templates/<?php echo $this->template; ?>/images/menu/icon-16-media.png" alt="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>" />
 							<?php endif; ?>
 							</a>
 							<?php endif; ?>
@@ -201,14 +201,15 @@ $document->addScriptDeclaration("
 		</div>
 	</div>
 
+	<!-- Batch Operations Modal -->
 	<div id="k2BatchOperations" class="jw-modal">
 		<div class="jw-modal-content">
 		<div class="jw-modal-header">
 			<div class="row row-nomax">
 				<h3 class="k2FLeft"><?php echo JText::_('K2_BATCH_OPERATIONS'); ?></h3>
 				<span class="k2FRight">
-						<strong><span id="k2BatchOperationsCounter">0</span></strong>
-						<?php echo JText::_('K2_SELECTED_ITEMS'); ?>
+					<strong><span id="k2BatchOperationsCounter">0</span></strong>
+					<?php echo JText::_('K2_SELECTED_ITEMS'); ?>
 				</span>
 			</div>
 		</div>
@@ -254,17 +255,17 @@ $document->addScriptDeclaration("
 		</div>
 		<div class="jw-modal-footer text-right">
 			<div class="column large-9 small-centered">
-			<?php if(K2_JVERSION == '15'): ?>
+				<?php if(K2_JVERSION == '15'): ?>
 				<button class="jw-btn jw-btn-save" onclick="javascript:submitbutton('saveBatch')"><?php echo JText::_('K2_APPLY'); ?></button>
-			<?php else: ?>
+				<?php else: ?>
 				<button class="jw-btn jw-btn-save" onclick="Joomla.submitbutton('saveBatch')" class="btn btn-small"><?php echo JText::_('K2_APPLY'); ?></button>
-			<?php endif; ?>
+				<?php endif; ?>
 				<button class="jw-btn jw-btn-close" onclick="$K2('.jw-modal-open').removeClass('jw-modal-open'); return false;"><?php echo JText::_('K2_CANCEL'); ?></button>
 			</div>
 		</div>
 	</div>
 	</div>
-	
+
 	<input type="hidden" name="option" value="com_k2" />
 	<input type="hidden" name="view" value="<?php echo JRequest::getVar('view'); ?>" />
 	<input type="hidden" name="task" value="<?php echo JRequest::getVar('task'); ?>" />

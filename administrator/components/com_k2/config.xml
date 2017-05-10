@@ -283,9 +283,8 @@
 		</param>
 		<param menu="hide" name="commenterImgWidth" type="text" default="48" size="4" label="K2_COMMENTER_IMAGE_AVATAR_WIDTH_IN_PX" description="" />
 		<param menu="hide" name="" type="header" default="K2_ONLINE_IMAGE_EDITOR" label="" description="" />
-		<param menu="hide" name="onlineImageEditor" type="list" default="sumopaint" label="K2_SELECT_ONLINE_IMAGE_EDITOR" description="">
-			<option value="sumopaint">K2_IMG_EDITOR_SUMOPAINT</option>
-			<option value="pixlr">K2_IMG_EDITOR_PIXLR</option>
+		<param menu="hide" name="onlineImageEditor" type="list" default="picozu" label="K2_SELECT_ONLINE_IMAGE_EDITOR" description="">
+			<option value="picozu">K2_IMG_EDITOR_PICOZU</option>
 		</param>
 		<param menu="hide" name="" type="header" default="K2_ADVANCED_IMAGE_SETTINGS" label="" description="" />
 		<param menu="hide" name="imageTimestamp" type="radio" default="0" label="K2_FORCE_ITEM_MODIFIED_DATE_AS_URL_TIMESTAMP_ON_IMAGE_PATHS" description="K2_IF_YOU_ENABLE_THIS_OPTION_THE_ITEM_MODIFIED_DATE_IS_APPENDED_AS_A_URL_TIMESTAMP_IN_UNIX_TIME_FORMAT_AN_ALL_ITEM_IMAGE_PATHS_USE_THIS_OPTION_IF_YOUR_SITE_IS_UTILIZING_A_CONTENT_DISTRIBUTION_NETWORK_CDN_AND_YOU_WANT_NEWLY_UPLOADED_IMAGES_IN_THE_SAME_ITEM_TO_BE_INSTANTLY_RECACHED_BY_THE_CDN_AND_USERS_BROWSERS">
@@ -826,9 +825,8 @@
 		</field>
 		<field menu="hide" name="commenterImgWidth" type="text" default="48" size="4" label="K2_COMMENTER_IMAGE_AVATAR_WIDTH_IN_PX" description="" />
 		<field menu="hide" name="" type="header" default="K2_ONLINE_IMAGE_EDITOR" label="" description="" />
-		<field menu="hide" name="onlineImageEditor" type="list" default="sumopaint" label="K2_SELECT_ONLINE_IMAGE_EDITOR" description="">
-			<option value="sumopaint">K2_IMG_EDITOR_SUMOPAINT</option>
-			<option value="pixlr">K2_IMG_EDITOR_PIXLR</option>
+		<field menu="hide" name="onlineImageEditor" type="list" default="picozu" label="K2_SELECT_ONLINE_IMAGE_EDITOR" description="">
+			<option value="picozu">K2_IMG_EDITOR_PICOZU</option>
 		</field>
 		<field menu="hide" name="" type="header" default="K2_ADVANCED_IMAGE_SETTINGS" label="" description="" />
 		<field menu="hide" name="imageTimestamp" type="radio" default="0" label="K2_FORCE_ITEM_MODIFIED_DATE_AS_URL_TIMESTAMP_ON_IMAGE_PATHS" description="K2_IF_YOU_ENABLE_THIS_OPTION_THE_ITEM_MODIFIED_DATE_IS_APPENDED_AS_A_URL_TIMESTAMP_IN_UNIX_TIME_FORMAT_AN_ALL_ITEM_IMAGE_PATHS_USE_THIS_OPTION_IF_YOUR_SITE_IS_UTILIZING_A_CONTENT_DISTRIBUTION_NETWORK_CDN_AND_YOU_WANT_NEWLY_UPLOADED_IMAGES_IN_THE_SAME_ITEM_TO_BE_INSTANTLY_RECACHED_BY_THE_CDN_AND_USERS_BROWSERS">

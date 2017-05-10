@@ -50,16 +50,13 @@ $modLogo = (int)$params->get('modLogo', 1);
 // Component parameters
 $componentParams = JComponentHelper::getParams('com_k2');
 
-$onlineImageEditor = $componentParams->get('onlineImageEditor', 'sumopaint');
+$onlineImageEditor = $componentParams->get('onlineImageEditor', 'picozu');
 
 switch($onlineImageEditor)
 {
 	default:
-	case 'sumopaint' :
-		$onlineImageEditorLink = 'http://www.sumopaint.com/app/';
-		break;
-	case 'pixlr' :
-		$onlineImageEditorLink = 'http://pixlr.com/editor/';
+	case 'picozu' :
+		$onlineImageEditorLink = 'https://www.picozu.com/editor/';
 		break;
 }
 
