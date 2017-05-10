@@ -18,10 +18,10 @@ if (K2_JVERSION == '30')
 	$document->addStyleDeclaration('
 		dl.tabs {float:left;margin:10px 0 -1px 0;z-index:50;}
 		dl.tabs dt {float:left;padding:4px 10px;border:1px solid #ccc;margin-left:3px;background:#e9e9e9;color:#666;}
-		dl.tabs dt.open {background:#F9F9F9;border-bottom:1px solid #f9f9f9;z-index:100;color:#000;}
-		div.current {clear:both;border:1px solid #ccc;padding:10px 10px;}
+		dl.tabs dt.open {background:#f9f9f9;border-bottom:1px solid #f9f9f9;z-index:100;color:#000;}
+		div.current {clear:both;border:1px solid #ccc;padding:10px 10px;background:#f9f9f9;}
 		dl.tabs h3 {font-size:12px;line-height:12px;margin:4px;}
-');
+	');
 }
 
 // Import Joomla tabs
@@ -37,9 +37,6 @@ jimport('joomla.html.pane');
 
 <?php if($params->get('latestItems', 1)): ?>
 <?php echo (K2_JVERSION == '30') ? JHtml::_('tabs.panel', JText::_('K2_LATEST_ITEMS'), 'latestItemsTab') : $pane->startPanel(JText::_('K2_LATEST_ITEMS'), 'latestItemsTab'); ?>
-<!--[if lte IE 7]>
-<br class="ie7fix" />
-<![endif]-->
 <table class="adminlist table table-striped">
 	<thead>
 		<tr>
@@ -63,9 +60,6 @@ jimport('joomla.html.pane');
 
 <?php if($params->get('popularItems', 1)): ?>
 <?php echo (K2_JVERSION == '30') ? JHtml::_('tabs.panel', JText::_('K2_POPULAR_ITEMS'), 'popularItemsTab') : $pane->startPanel(JText::_('K2_POPULAR_ITEMS'), 'popularItemsTab'); ?>
-<!--[if lte IE 7]>
-<br class="ie7fix" />
-<![endif]-->
 <table class="adminlist table table-striped">
 	<thead>
 		<tr>
@@ -91,9 +85,6 @@ jimport('joomla.html.pane');
 
 <?php if($params->get('mostCommentedItems', 1)): ?>
 <?php echo (K2_JVERSION == '30') ? JHtml::_('tabs.panel', JText::_('K2_MOST_COMMENTED_ITEMS'), 'mostCommentedItemsTab') : $pane->startPanel(JText::_('K2_MOST_COMMENTED_ITEMS'), 'mostCommentedItemsTab'); ?>
-<!--[if lte IE 7]>
-<br class="ie7fix" />
-<![endif]-->
 <table class="adminlist table table-striped">
 	<thead>
 		<tr>
@@ -119,9 +110,6 @@ jimport('joomla.html.pane');
 
 <?php if($params->get('latestComments', 1)): ?>
 <?php echo (K2_JVERSION == '30') ? JHtml::_('tabs.panel', JText::_('K2_LATEST_COMMENTS'), 'latestCommentsTab') : $pane->startPanel(JText::_('K2_LATEST_COMMENTS'), 'latestCommentsTab'); ?>
-<!--[if lte IE 7]>
-<br class="ie7fix" />
-<![endif]-->
 <table class="adminlist table table-striped">
 	<thead>
 		<tr>
@@ -145,9 +133,6 @@ jimport('joomla.html.pane');
 
 <?php if($params->get('statistics', 1)): ?>
 <?php echo (K2_JVERSION == '30') ? JHtml::_('tabs.panel', JText::_('K2_STATISTICS'), 'statsTab') : $pane->startPanel(JText::_('K2_STATISTICS'), 'statsTab'); ?>
-<!--[if lte IE 7]>
-<br class="ie7fix" />
-<![endif]-->
 <table class="adminlist table table-striped">
 	<thead>
 		<tr>
