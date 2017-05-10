@@ -119,7 +119,7 @@ defined('_JEXEC') or die;
     <div class="icon">
     	<a id="k2OnlineImageEditor" target="_blank" href="<?php echo $onlineImageEditorLink; ?>">
 			<i class="dashicon image-editing"></i>
-			<span><?php echo JText::_('K2_ONLINE_IMAGE_EDITOR'); ?> (<?php echo $onlineImageEditorName; ?>)</span>
+			<span><?php echo JText::_('K2_IMAGE_EDITOR'); ?> (<?php echo $onlineImageEditorName; ?>)</span>
 	    </a>
     </div>
   </div>
