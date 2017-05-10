@@ -942,10 +942,10 @@ $document->addScriptDeclaration("
 							<?php echo JText::_('K2_RATING'); ?>
 
 							<?php if($this->row->ratingCount): ?>
-							<span><?php echo number_format(($this->row->ratingSum/$this->row->ratingCount),2); ?>/5.00</span>
+							<span><?php echo number_format(($this->row->ratingSum/$this->row->ratingCount), 2); ?>/5.00</span>
 							<?php endif; ?>
 
-							<?php echo $this->row->ratingCount; ?> <?php echo JText::_('K2_VOTES'); ?>
+							<?php echo $this->row->ratingCount; ?> <?php echo ($this->row->ratingCount == 1) ? JText::_('K2_VOTE') : JText::_('K2_VOTES'); ?>
 
 							<div class="itemRatingReset">
 								<input id="resetRatingButton" type="button" value="<?php echo JText::_('K2_RESET'); ?>" class="button" name="resetRating" />
