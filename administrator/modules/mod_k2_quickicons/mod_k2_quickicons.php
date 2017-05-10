@@ -55,10 +55,12 @@ $onlineImageEditor = $componentParams->get('onlineImageEditor', 'picozu');
 switch($onlineImageEditor)
 {
 	default:
-	case 'picozu' :
+	case 'picozu':
+		$onlineImageEditorName = JText::_('K2_IMG_EDITOR_PICOZU');
 		$onlineImageEditorLink = 'https://www.picozu.com/editor/';
 		break;
-	case 'gravit' :
+	case 'gravit':
+		$onlineImageEditorName = JText::_('K2_IMG_EDITOR_GRAVIT');
 		$onlineImageEditorLink = 'https://app.designer.io/';
 		break;
 }
