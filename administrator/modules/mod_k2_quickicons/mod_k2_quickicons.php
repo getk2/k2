@@ -58,6 +58,9 @@ switch($onlineImageEditor)
 	case 'picozu' :
 		$onlineImageEditorLink = 'https://www.picozu.com/editor/';
 		break;
+	case 'gravit' :
+		$onlineImageEditorLink = 'https://app.designer.io/';
+		break;
 }
 
 // Call the modal and add some needed JS
