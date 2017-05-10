@@ -16,11 +16,11 @@
     <config>
         <fields name="params">
             <fieldset name="basic">
-                <field name="modCSSStyling" type="list" default="1" label="K2_MODULE_DEFAULT_CSS" description="">
+                <field name="modCSSStyling" type="radio" default="1" label="K2_MODULE_DEFAULT_CSS" description="" class="btn-group btn-group-yesno">
                     <option value="1">K2_ENABLED</option>
                     <option value="0">K2_DISABLED</option>
                 </field>
-                <field name="modLogo" type="list" default="1" label="K2_MODULE_LOGO" description="">
+                <field name="modLogo" type="radio" default="1" label="K2_MODULE_LOGO" description="" class="btn-group btn-group-yesno">
                     <option value="1">K2_SHOW</option>
                     <option value="0">K2_HIDE</option>
                 </field>

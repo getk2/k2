@@ -16,23 +16,23 @@
     <config>
         <fields name="params">
             <fieldset name="basic">
-                <field name="latestItems" type="list" default="1" label="K2_LATEST_ITEMS_TAB">
+                <field name="latestItems" type="radio" default="1" label="K2_LATEST_ITEMS_TAB" class="btn-group btn-group-yesno">
                     <option value="0">K2_DISABLE</option>
                     <option value="1">K2_ENABLE</option>
                 </field>
-                <field name="popularItems" type="list" default="1" label="K2_POPULAR_ITEMS_TAB">
+                <field name="popularItems" type="radio" default="1" label="K2_POPULAR_ITEMS_TAB" class="btn-group btn-group-yesno">
                     <option value="0">K2_DISABLE</option>
                     <option value="1">K2_ENABLE</option>
                 </field>
-                <field name="mostCommentedItems" type="list" default="1" label="K2_MOST_COMMENTED_ITEMS_TAB">
+                <field name="mostCommentedItems" type="radio" default="1" label="K2_MOST_COMMENTED_ITEMS_TAB" class="btn-group btn-group-yesno">
                     <option value="0">K2_DISABLE</option>
                     <option value="1">K2_ENABLE</option>
                 </field>
-                <field name="latestComments" type="list" default="1" label="K2_LATEST_COMMENTS_TAB">
+                <field name="latestComments" type="radio" default="1" label="K2_LATEST_COMMENTS_TAB" class="btn-group btn-group-yesno">
                     <option value="0">K2_DISABLE</option>
                     <option value="1">K2_ENABLE</option>
                 </field>
-                <field name="statistics" type="list" default="1" label="K2_STATISTICS_TAB">
+                <field name="statistics" type="radio" default="1" label="K2_STATISTICS_TAB" class="btn-group btn-group-yesno">
                     <option value="0">K2_DISABLE</option>
                     <option value="1">K2_ENABLE</option>
                 </field>
