@@ -960,7 +960,7 @@ $document->addScriptDeclaration("
 								<label><?php echo JText::_('K2_CREATION_DATE'); ?></label>
 							</div>
 							<div class="paramValue k2DateTimePickerControl">
-								<input type="text" class="k2DateTimePicker" id="created" name="created" value="<?php echo $this->lists['createdCalendar']; ?>" autocomplete="off" />
+								<input type="text" data-k2-datetimepicker id="created" name="created" value="<?php echo $this->lists['createdCalendar']; ?>" autocomplete="off" />
 								<i class="fa fa-calendar" aria-hidden="true"></i>
 							</div>
 						<li>
@@ -968,7 +968,7 @@ $document->addScriptDeclaration("
 								<label><?php echo JText::_('K2_START_PUBLISHING'); ?></label>
 							</div>
 							<div class="paramValue k2DateTimePickerControl">
-								<input type="text" class="k2DateTimePicker" id="publish_up" name="publish_up" value="<?php echo $this->lists['publish_up']; ?>" autocomplete="off" />
+								<input type="text" data-k2-datetimepicker id="publish_up" name="publish_up" value="<?php echo $this->lists['publish_up']; ?>" autocomplete="off" />
 								<i class="fa fa-calendar" aria-hidden="true"></i>
 							</div>
 						</li>
@@ -977,7 +977,7 @@ $document->addScriptDeclaration("
 								<label><?php echo JText::_('K2_FINISH_PUBLISHING'); ?></label>
 							</div>
 							<div class="paramValue k2DateTimePickerControl">
-								<input type="text" class="k2DateTimePicker" id="publish_down" name="publish_down" value="<?php echo $this->lists['publish_down']; ?>" autocomplete="off" />
+								<input type="text" data-k2-datetimepicker id="publish_down" name="publish_down" value="<?php echo $this->lists['publish_down']; ?>" autocomplete="off" />
 								<i class="fa fa-calendar" aria-hidden="true"></i>
 							</div>
 						</li>

@@ -662,7 +662,7 @@ $K2(document).ready(function() {
 	$(document).ready(function(){
 
 		// flatpickr
-		$('.k2DateTimePicker').flatpickr({
+		$('input[data-k2-datetimepicker]').flatpickr({
 			enableTime: true,
 			enableSeconds: true,
 			allowInput: true
