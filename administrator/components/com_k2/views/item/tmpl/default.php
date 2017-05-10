@@ -943,6 +943,8 @@ $document->addScriptDeclaration("
 
 							<?php if($this->row->ratingCount): ?>
 							<span><?php echo number_format(($this->row->ratingSum/$this->row->ratingCount), 2); ?>/5.00</span>
+							<?php else: ?>
+							<span>0.00/5.00</span>
 							<?php endif; ?>
 
 							<?php echo $this->row->ratingCount; ?> <?php echo ($this->row->ratingCount == 1) ? JText::_('K2_VOTE') : JText::_('K2_VOTES'); ?>
