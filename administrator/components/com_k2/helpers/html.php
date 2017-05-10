@@ -205,8 +205,9 @@ class K2HelperHTML
 				// Flatpickr
 				if ($view == 'item')
 				{
-					$document->addStyleSheet("https://unpkg.com/flatpickr/dist/flatpickr.min.css");
-					$document->addScript("https://unpkg.com/flatpickr");
+					$document->addStyleSheet('https://unpkg.com/flatpickr/dist/flatpickr.min.css');
+					$document->addScript('https://unpkg.com/flatpickr');
+					$document->addCustomTag('<!--[if IE 9]><link rel="stylesheet" type="text/css" href="https://unpkg.com/flatpickr/dist/ie.css" /><![endif]-->');
 				}
 
 				$isBackend = ($application->isAdmin()) ? ' k2IsBackend' : '';
