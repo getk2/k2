@@ -148,7 +148,7 @@ class K2HelperHTML
 
 				if ($view == 'item' || $view == 'category' || $option == 'com_menus' || $option == 'com_modules')
 				{
-					// Load version 1.8.24 for any other view (until we kill it as a dependency there, for good)...
+					// Load version 1.8.24 for tabs & sortables (until we kill it as a dependency there, for good)...
 					if ($backendJQueryHandling == 'remote')
 					{
 						$document->addScript('https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js');
@@ -165,8 +165,11 @@ class K2HelperHTML
 			{
 
 				// CSS
-				$document->addStyleSheet('https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css?v='.K2_CURRENT_VERSION);
-				$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v='.K2_CURRENT_VERSION);
+				if ($option == 'com_k2')
+				{
+					$document->addStyleSheet('https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css?v='.K2_CURRENT_VERSION);
+					$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v='.K2_CURRENT_VERSION);
+				}
 				if($adminModuleIncludes)
 				{
 					$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.modules.css?v='.K2_CURRENT_VERSION);
