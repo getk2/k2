@@ -64,11 +64,11 @@
 					<option value="best">K2_HIGHEST_RATED</option>
 					<option value="rand">K2_RANDOM_ORDERING</option>
 				</field>
-				<field name="tagFeedLink" type="radio" default="1" label="K2_RSS_FEED_LINK" description="">
+				<field name="tagFeedLink" type="radio" default="1" label="K2_RSS_FEED_LINK" description="" class="btn-group btn-group-yesno">
 					<option value="0">K2_DISABLE</option>
 					<option value="1">K2_ENABLE</option>
 				</field>
-				<field name="tagFeedIcon" type="radio" default="1" label="K2_RSS_FEED_ICON" description="">
+				<field name="tagFeedIcon" type="radio" default="1" label="K2_RSS_FEED_ICON" description="" class="btn-group btn-group-yesno">
 					<option value="0">K2_DISABLE</option>
 					<option value="1">K2_ENABLE</option>
 				</field>

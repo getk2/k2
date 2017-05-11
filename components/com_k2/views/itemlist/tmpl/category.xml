@@ -11,7 +11,7 @@
 		<params addpath="/administrator/components/com_k2/elements">
 			<param name="" type="header" default="K2_SELECT_ONE_OR_MORE_CATEGORIES" label="" description=""/>
 			<param name="categories" type="category" default="" label="K2_SELECT_CATEGORIES" description="K2_IF_YOU_SELECT_MULTIPLE_CATEGORIES_YOU_CAN_ADJUST_ADDITIONAL_PARAMETERS_BELOW_IF_YOU_SELECT_ONLY_ONE_CATEGORY_THEN_K2_WILL_FETCH_THE_OPTIONS_AS_DEFINED_IN_THAT_SPECIFIC_CATEGORYS_OPTIONS_IN_K2_CATEGORIES"/>
-			<param name="catCatalogMode" type="list" default="0" label="K2_FETCH_ITEMS_FROM_CHILDREN_CATEGORIES" description="K2_IF_YOU_SELECT_NO_THEN_ONLY_THE_ITEMS_DIRECTLY_BELONGING_TO_THIS_CATEGORY_WILL_BE_RETRIEVED_IF_YOU_SELECT_YES_THEN_ITEMS_FROM_ALL_SUBCATEGORIES_WILL_BE_RETRIEVED_SETTING_THIS_OPTION_TO_YES_IS_IDEAL_FOR_NEWSPORTALMAGAZINEBLOG_LAYOUTS">
+			<param name="catCatalogMode" type="radio" default="0" label="K2_FETCH_ITEMS_FROM_CHILDREN_CATEGORIES" description="K2_IF_YOU_SELECT_NO_THEN_ONLY_THE_ITEMS_DIRECTLY_BELONGING_TO_THIS_CATEGORY_WILL_BE_RETRIEVED_IF_YOU_SELECT_YES_THEN_ITEMS_FROM_ALL_SUBCATEGORIES_WILL_BE_RETRIEVED_SETTING_THIS_OPTION_TO_YES_IS_IDEAL_FOR_NEWSPORTALMAGAZINEBLOG_LAYOUTS">
 				<option value="1">K2_NO</option>
 				<option value="0">K2_YES</option>
 			</param>
@@ -131,7 +131,7 @@
 			<fieldset name="basic" addfieldpath="/administrator/components/com_k2/elements">
 				<field name="" type="header" default="K2_SELECT_ONE_OR_MORE_CATEGORIES" label="" description=""/>
 				<field name="categories" type="k2category" default="" label="K2_SELECT_CATEGORIES" description="K2_IF_YOU_SELECT_MULTIPLE_CATEGORIES_YOU_CAN_ADJUST_ADDITIONAL_PARAMETERS_BELOW_IF_YOU_SELECT_ONLY_ONE_CATEGORY_THEN_K2_WILL_FETCH_THE_OPTIONS_AS_DEFINED_IN_THAT_SPECIFIC_CATEGORYS_OPTIONS_IN_K2_CATEGORIES"/>
-				<field name="catCatalogMode" type="list" default="0" label="K2_FETCH_ITEMS_FROM_CHILDREN_CATEGORIES" description="K2_IF_YOU_SELECT_NO_THEN_ONLY_THE_ITEMS_DIRECTLY_BELONGING_TO_THIS_CATEGORY_WILL_BE_RETRIEVED_IF_YOU_SELECT_YES_THEN_ITEMS_FROM_ALL_SUBCATEGORIES_WILL_BE_RETRIEVED_SETTING_THIS_OPTION_TO_YES_IS_IDEAL_FOR_NEWSPORTALMAGAZINEBLOG_LAYOUTS">
+				<field name="catCatalogMode" type="radio" default="0" label="K2_FETCH_ITEMS_FROM_CHILDREN_CATEGORIES" description="K2_IF_YOU_SELECT_NO_THEN_ONLY_THE_ITEMS_DIRECTLY_BELONGING_TO_THIS_CATEGORY_WILL_BE_RETRIEVED_IF_YOU_SELECT_YES_THEN_ITEMS_FROM_ALL_SUBCATEGORIES_WILL_BE_RETRIEVED_SETTING_THIS_OPTION_TO_YES_IS_IDEAL_FOR_NEWSPORTALMAGAZINEBLOG_LAYOUTS" class="btn-group btn-group-yesno-reverse">
 					<option value="1">K2_NO</option>
 					<option value="0">K2_YES</option>
 				</field>
@@ -223,16 +223,16 @@
 					<option value="1">K2_SHOW</option>
 					<option value="2">K2_AUTO</option>
 				</field>
-				<field name="catPaginationResults" type="radio" default="1" label="K2_PAGINATION_RESULTS" description="">
+				<field name="catPaginationResults" type="radio" default="1" label="K2_PAGINATION_RESULTS" description="" class="btn-group btn-group-yesno">
 					<option value="0">K2_HIDE</option>
 					<option value="1">K2_SHOW</option>
 				</field>
 				<field name="@spacer" type="spacer" default="" label="" description=""/>
-				<field name="catFeedLink" type="radio" default="1" label="K2_RSS_FEED_LINK" description="">
+				<field name="catFeedLink" type="radio" default="1" label="K2_RSS_FEED_LINK" description="" class="btn-group btn-group-yesno">
 					<option value="0">K2_DISABLE</option>
 					<option value="1">K2_ENABLE</option>
 				</field>
-				<field name="catFeedIcon" type="radio" default="1" label="K2_RSS_FEED_ICON" description="">
+				<field name="catFeedIcon" type="radio" default="1" label="K2_RSS_FEED_ICON" description="" class="btn-group btn-group-yesno">
 					<option value="0">K2_HIDE</option>
 					<option value="1">K2_SHOW</option>
 				</field>
