@@ -14,11 +14,8 @@ jimport('joomla.application.component.view');
 
 class K2ViewTag extends K2View
 {
-
     function display($tpl = null)
     {
-
-        JRequest::setVar('hidemainmenu', 1);
         $model = $this->getModel();
         $tag = $model->getData();
         JFilterOutput::objectHTMLSafe($tag);
@@ -29,13 +26,18 @@ class K2ViewTag extends K2View
         $lists = array();
         $lists['published'] = JHTML::_('select.booleanlist', 'published', 'class="inputbox"', $tag->published);
         $this->assignRef('lists', $lists);
+
+        // Disable Joomla menu
+        JRequest::setVar('hidemainmenu', 1);
+
+        // Toolbar
         (JRequest::getInt('cid')) ? $title = JText::_('K2_EDIT_TAG') : $title = JText::_('K2_ADD_TAG');
         JToolBarHelper::title($title, 'k2.png');
-        JToolBarHelper::save();
+
         JToolBarHelper::apply();
+        JToolBarHelper::save();
         JToolBarHelper::cancel();
 
         parent::display($tpl);
     }
-
 }

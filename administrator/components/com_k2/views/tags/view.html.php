@@ -14,13 +14,15 @@ jimport('joomla.application.component.view');
 
 class K2ViewTags extends K2View
 {
-
 	function display($tpl = null)
 	{
 		$mainframe = JFactory::getApplication();
 		$user = JFactory::getUser();
+
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
+		$task = JRequest::getCmd('task');
+
 		$limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
 		$limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
 		$filter_order = $mainframe->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'id', 'cmd');
@@ -29,16 +31,17 @@ class K2ViewTags extends K2View
 		$search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
 		$search = JString::strtolower($search);
 		$search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
+
 		$model = $this->getModel();
 		$total = $model->getTotal();
-		$task = JRequest::getCmd('task');
+		$tags = $model->getData();
 
 		if ($limitstart > $total - $limit)
 		{
 			$limitstart = max(0, (int)(ceil($total / $limit) - 1) * $limit);
 			JRequest::setVar('limitstart', $limitstart);
 		}
-		$tags = $model->getData();
+
 		foreach ($tags as $key => $tag)
 		{
 			$tag->status = K2_JVERSION == '15' ? JHTML::_('grid.published', $tag, $key) : JHtml::_('jgrid.published', $tag->published, $key, '', $task != 'element');
@@ -61,15 +64,17 @@ class K2ViewTags extends K2View
 
 		$this->assignRef('lists', $lists);
 
+		// Toolbar
 		JToolBarHelper::title(JText::_('K2_TAGS'), 'k2.png');
 
+		JToolBarHelper::addNew();
+		JToolBarHelper::editList();
 		JToolBarHelper::publishList();
 		JToolBarHelper::unpublishList();
 		JToolBarHelper::deleteList('', 'remove', 'K2_DELETE');
 		JToolBarHelper::custom('removeOrphans', 'delete', 'delete', 'K2_DELETE_ORPHAN_TAGS', false);
-		JToolBarHelper::editList();
-		JToolBarHelper::addNew();
 
+		// Preferences (Parameters/Settings)
 		if (K2_JVERSION != '15')
 		{
 			JToolBarHelper::preferences('com_k2', 580, 800, 'K2_PARAMETERS');
@@ -85,5 +90,4 @@ class K2ViewTags extends K2View
 
 		parent::display($tpl);
 	}
-
 }
