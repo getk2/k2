@@ -227,13 +227,11 @@ class K2ViewItems extends K2View
 			$lists['language'] = JHTML::_('select.genericlist', $languages, 'language', '', 'value', 'text', $language);
 		}
 
-		// Batch fields
+		// Batch Operations
 		$categoriesModel = K2Model::getInstance('Categories', 'K2Model');
 		$categories = $categoriesModel->categoriesTree(null, true, false);
 		array_unshift($categories, JHtml::_('select.option', '', JText::_('K2_LEAVE_UNCHANGED')));
 		$lists['batchCategories'] = JHTML::_('select.genericlist', $categories, 'batchCategory', 'class="inputbox" size="8"', 'value', 'text');
-
-
 		$lists['batchAccess'] = version_compare(JVERSION, '2.5', 'ge') ? JHTML::_('access.level', 'batchAccess', null, '', array(JHtml::_('select.option', '', JText::_('K2_LEAVE_UNCHANGED')))) : str_replace('size="3"', "", JHTML::_('list.accesslevel', $item));
 
 		if (version_compare(JVERSION, '2.5.0', 'ge'))
@@ -262,10 +260,10 @@ class K2ViewItems extends K2View
 		$this->assignRef('lists', $lists);
 
 		jimport('joomla.html.pagination');
-
 		$pageNav = new JPagination($total, $limitstart, $limit);
 		$this->assignRef('page', $pageNav);
 
+		// Augment with plugin events
 		$filters = array();
 		$columns = array();
 		$dispatcher = JDispatcher::getInstance();
@@ -363,7 +361,7 @@ class K2ViewItems extends K2View
 		$table = JTable::getInstance('K2Item', 'Table');
 		$this->assignRef('table', $table);
 
-		// Joomla 3.0 drag-n-drop sorting variables
+		// Joomla 3.x drag-n-drop sorting variables
 		if (K2_JVERSION == '30')
 		{
 			if ($ordering)
@@ -372,6 +370,7 @@ class K2ViewItems extends K2View
 				JHtml::_('sortablelist.sortable', 'k2ItemsList', 'adminForm', strtolower($this->lists['order_Dir']), 'index.php?option=com_k2&view=items&task='.$action.'&format=raw');
 			}
 			$document->addScriptDeclaration('
+				/* K2 */
 	            Joomla.orderTable = function() {
 	                table = document.getElementById("sortTable");
 	                direction = document.getElementById("directionTable");
@@ -388,34 +387,4 @@ class K2ViewItems extends K2View
 
 		parent::display($tpl);
 	}
-
-	function move()
-	{
-		$mainframe = JFactory::getApplication();
-		JTable::addIncludePath(JPATH_COMPONENT.'/tables');
-		$cid = JRequest::getVar('cid');
-
-		foreach ($cid as $id)
-		{
-			$row = JTable::getInstance('K2Item', 'Table');
-			$row->load($id);
-			$rows[] = $row;
-		}
-
-		$categoriesModel = K2Model::getInstance('Categories', 'K2Model');
-		$categories = $categoriesModel->categoriesTree(null, true, false);
-		$lists['categories'] = JHTML::_('select.genericlist', $categories, 'category', 'class="inputbox" size="8"', 'value', 'text');
-
-		$this->assignRef('rows', $rows);
-		$this->assignRef('lists', $lists);
-
-		// Toolbar
-		JToolBarHelper::title(JText::_('K2_MOVE_ITEMS'), 'k2.png');
-
-		JToolBarHelper::custom('saveMove', 'save.png', 'save_f2.png', 'K2_SAVE', false);
-		JToolBarHelper::cancel();
-
-		parent::display();
-	}
-
 }
