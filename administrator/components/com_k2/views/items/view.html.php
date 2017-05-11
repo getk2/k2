@@ -18,6 +18,7 @@ class K2ViewItems extends K2View
 	{
 		jimport('joomla.filesystem.file');
 		$mainframe = JFactory::getApplication();
+		$document = JFactory::getDocument();
 		$params = JComponentHelper::getParams('com_k2');
 		$user = JFactory::getUser();
 		$option = JRequest::getCmd('option');
@@ -274,21 +275,31 @@ class K2ViewItems extends K2View
 		$dispatcher->trigger('onK2BeforeAssignColumns', array(&$columns));
 		$this->assignRef('columns', $columns);
 
+		// Toolbar
+		$toolbar = JToolBar::getInstance('toolbar');
 		JToolBarHelper::title(JText::_('K2_ITEMS'), 'k2.png');
+
 		if ($filter_trash == 1)
 		{
-			JToolBarHelper::custom('restore', 'publish.png', 'publish_f2.png', 'K2_RESTORE', true);
 			JToolBarHelper::deleteList('K2_ARE_YOU_SURE_YOU_WANT_TO_DELETE_SELECTED_ITEMS', 'remove', 'K2_DELETE');
+			JToolBarHelper::custom('restore', 'publish.png', 'publish_f2.png', 'K2_RESTORE', true);
 		}
 		else
 		{
-			$toolbar = JToolBar::getInstance('toolbar');
-
-			K2_JVERSION == '30' ? JToolBarHelper::custom('featured', 'featured.png', 'featured_f2.png', 'K2_TOGGLE_FEATURED_STATE', true) : JToolBarHelper::custom('featured', 'default.png', 'default_f2.png', 'K2_TOGGLE_FEATURED_STATE', true);
+			JToolBarHelper::addNew();
+			JToolBarHelper::editList();
+			if(K2_JVERSION == '30')
+			{
+				JToolBarHelper::custom('featured', 'featured.png', 'featured_f2.png', 'K2_TOGGLE_FEATURED_STATE', true);
+			}
+			else
+			{
+				JToolBarHelper::custom('featured', 'default.png', 'default_f2.png', 'K2_TOGGLE_FEATURED_STATE', true);
+			}
 			JToolBarHelper::publishList();
 			JToolBarHelper::unpublishList();
+			JToolBarHelper::trash('trash');
 			JToolBarHelper::custom('copy', 'copy.png', 'copy_f2.png', 'K2_COPY', true);
-
 			// Batch button in modal
 			if (K2_JVERSION == '30')
 			{
@@ -299,18 +310,25 @@ class K2ViewItems extends K2View
 					$batchButton = '<a id="K2BatchButton" href="#"><span class="icon-32-edit" title="'.JText::_('K2_BATCH').'"></span>'.JText::_('K2_BATCH').'</a>';
 			}
 			$toolbar->appendButton('Custom', $batchButton);
-			$document = JFactory::getDocument();
-			$document->addScriptDeclaration('var K2SelectItemsError = "'.JText::_('K2_SELECT_SOME_ITEMS_FIRST').'";');
 
-
-
-			JToolBarHelper::editList();
-			JToolBarHelper::addNew();
-			JToolBarHelper::trash('trash');
-
+			// Display import button for Joomla content
+			if ($user->gid > 23 && !$params->get('hideImportButton'))
+			{
+				$buttonUrl = JURI::base().'index.php?option=com_k2&amp;view=items&amp;task=import';
+				$buttonText = JText::_('K2_IMPORT_JOOMLA_CONTENT');
+				if (K2_JVERSION == '30')
+				{
+					$button = '<a id="K2ImportContentButton" class="btn btn-small" href="'.$buttonUrl.'"><i class="icon-archive "></i>'.$buttonText.'</a>';
+				}
+				else
+				{
+					$button = '<a id="K2ImportContentButton" href="'.$buttonUrl.'"><span class="icon-32-archive" title="'.$buttonText.'"></span>'.$buttonText.'</a>';
+				}
+				$toolbar->appendButton('Custom', $button);
+			}
 		}
 
-		$toolbar = JToolBar::getInstance('toolbar');
+		// Preferences (Parameters/Settings)
 		if (K2_JVERSION != '15')
 		{
 			JToolBarHelper::preferences('com_k2', 580, 800, 'K2_PARAMETERS');
@@ -318,22 +336,6 @@ class K2ViewItems extends K2View
 		else
 		{
 			$toolbar->appendButton('Popup', 'config', 'K2_PARAMETERS', 'index.php?option=com_k2&view=settings', 800, 580);
-		}
-
-		// Display import button for Joomla content
-		if ($user->gid > 23 && !$params->get('hideImportButton'))
-		{
-			$buttonUrl = JURI::base().'index.php?option=com_k2&amp;view=items&amp;task=import';
-			$buttonText = JText::_('K2_IMPORT_JOOMLA_CONTENT');
-			if (K2_JVERSION == '30')
-			{
-				$button = '<a id="K2ImportContentButton" class="btn btn-small" href="'.$buttonUrl.'"><i class="icon-archive "></i>'.$buttonText.'</a>';
-			}
-			else
-			{
-				$button = '<a id="K2ImportContentButton" href="'.$buttonUrl.'"><span class="icon-32-archive" title="'.$buttonText.'"></span>'.$buttonText.'</a>';
-			}
-			$toolbar->appendButton('Custom', $button);
 		}
 
 		$this->loadHelper('html');
@@ -369,19 +371,19 @@ class K2ViewItems extends K2View
 				$action = $this->filter_featured == 1 ? 'savefeaturedorder' : 'saveorder';
 				JHtml::_('sortablelist.sortable', 'k2ItemsList', 'adminForm', strtolower($this->lists['order_Dir']), 'index.php?option=com_k2&view=items&task='.$action.'&format=raw');
 			}
-			$document = JFactory::getDocument();
 			$document->addScriptDeclaration('
-            Joomla.orderTable = function() {
-                table = document.getElementById("sortTable");
-                direction = document.getElementById("directionTable");
-                order = table.options[table.selectedIndex].value;
-                if (order != \''.$this->lists['order'].'\') {
-                    dirn = \'asc\';
-            } else {
-                dirn = direction.options[direction.selectedIndex].value;
-            }
-            Joomla.tableOrdering(order, dirn, "");
-            }');
+	            Joomla.orderTable = function() {
+	                table = document.getElementById("sortTable");
+	                direction = document.getElementById("directionTable");
+	                order = table.options[table.selectedIndex].value;
+	                if (order != \''.$this->lists['order'].'\') {
+	                    dirn = \'asc\';
+		            } else {
+		                dirn = direction.options[direction.selectedIndex].value;
+		            }
+					Joomla.tableOrdering(order, dirn, "");
+				}
+			');
 		}
 
 		parent::display($tpl);
@@ -389,7 +391,6 @@ class K2ViewItems extends K2View
 
 	function move()
 	{
-
 		$mainframe = JFactory::getApplication();
 		JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 		$cid = JRequest::getVar('cid');
@@ -408,6 +409,7 @@ class K2ViewItems extends K2View
 		$this->assignRef('rows', $rows);
 		$this->assignRef('lists', $lists);
 
+		// Toolbar
 		JToolBarHelper::title(JText::_('K2_MOVE_ITEMS'), 'k2.png');
 
 		JToolBarHelper::custom('saveMove', 'save.png', 'save_f2.png', 'K2_SAVE', false);
@@ -415,6 +417,5 @@ class K2ViewItems extends K2View
 
 		parent::display();
 	}
-
 
 }
