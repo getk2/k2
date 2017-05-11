@@ -77,3 +77,37 @@
 /* Textarea & Chosen (multi-container) blocks */
 .com_menus .form-horizontal #attrib-basic .controls .chzn-container-multi {width:90% !important;}
 .com_menus .form-horizontal #attrib-basic .controls textarea {width:90%;}
+
+/* --- Style component parameters --- */
+.com_config .form-horizontal .span10 .control-group {border-radius:4px;padding:0;margin:0 0 4px 0 !important;}
+.com_config .form-horizontal .span10 .control-group:nth-child(2n-1) {background:#f7f7f7;}
+.com_config .form-horizontal .span10 .control-group:last-child {margin-bottom:100px !important;}
+.com_config .form-horizontal .span10 .control-group .control-label,
+.com_config .form-horizontal .span10 .control-group .controls {padding:16px;margin:0;}
+.com_config .form-horizontal .span10 .control-group .control-label label {padding:0;margin:0;}
+.com_config .form-horizontal .span10 .control-group .controls label {}
+.com_config .form-horizontal .span10 .control-group .control-label label {font-size:14px;margin-top:4px;}
+
+/* Resize parameter columns */
+@media all and (min-width:771px) {
+	.com_config .form-horizontal .span10 .control-group .control-label {width:30% !important;}
+	.com_config .form-horizontal .span10 .control-group .controls {margin-left:32% !important;}
+}
+@media all and (min-width:481px) and (max-width:770px){
+	.com_config .form-horizontal .span10 .control-group .control-label {width:45% !important;}
+	.com_config .form-horizontal .span10 .control-group .controls {margin-left:47% !important;}
+}
+.com_config .form-horizontal .span10 .control-group-header {background:#e5f7fd;margin-top:32px !important;}
+.com_config .form-horizontal .span10 .control-group-header .control-label,
+.com_config .form-horizontal .span10 .control-group-header .controls {padding:0 !important;margin:0 !important;}
+
+/* Textarea & Chosen (multi-container) blocks */
+.com_config .form-horizontal .span10 .controls .chzn-container-multi {width:90% !important;}
+.com_config .form-horizontal .span10 .controls textarea {width:90%;}
+
+/* Radio/Checkbox Buttons */
+.com_config .form-horizontal .span10 .controls fieldset.radio label {display:inline-block !important;margin:0 !important;padding:0 16px 0 2px !important;}
+.com_config .form-horizontal .span10 .controls fieldset.radio,
+.com_config .form-horizontal .span10 .controls fieldset.checkbox {padding:0 !important;margin:4px 0 0 0 !important;}
+.com_config .form-horizontal .span10 .controls fieldset.radio input[type="radio"],
+.com_config .form-horizontal .span10 .controls fieldset.radio .checkbox input[type="checkbox"] {display:inline-block !important;float:none !important;margin:-2px 0 0 0 !important;}

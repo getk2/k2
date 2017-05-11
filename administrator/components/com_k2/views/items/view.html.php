@@ -19,10 +19,13 @@ class K2ViewItems extends K2View
 		jimport('joomla.filesystem.file');
 		$mainframe = JFactory::getApplication();
 		$document = JFactory::getDocument();
-		$params = JComponentHelper::getParams('com_k2');
+
 		$user = JFactory::getUser();
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
+
+		$params = JComponentHelper::getParams('com_k2');
+
 		$limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
 		$limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
 		$filter_order = $mainframe->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'i.id', 'cmd');

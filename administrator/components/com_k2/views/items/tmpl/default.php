@@ -22,10 +22,15 @@ $document->addScriptDeclaration("
 	});
 ");
 
+$context = JRequest::getCmd('context');
+
 ?>
 
-<form action="index.php" method="post" name="adminForm" id="adminForm">
+<?php if($context == "modalselector"): ?>
+<h2 id="k2ModalSelectorHeader"><?php echo JText::_('K2_ITEMS'); ?></h2>
+<?php endif; ?>
 
+<form action="index.php" method="post" name="adminForm" id="adminForm">
 	<table class="k2AdminTableFilters table">
 		<tr>
 			<td class="k2AdminTableFiltersSearch">
@@ -132,13 +137,19 @@ $document->addScriptDeclaration("
 						<?php endif; ?>
 						<td class="center"><?php echo @JHTML::_('grid.checkedout', $row, $key); ?></td>
 						<td>
+							<?php if($context == "modalselector"): ?>
+							<a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ITEM'); ?>" onclick="window.parent.jSelectItem('<?php echo $row->id; ?>', '<?php echo str_replace(array("'", "\""), array("\\'", ""),$row->title); ?>', '<?php echo JRequest::getCmd('object', 'id'); ?>');">
+								<?php echo $row->title; ?>
+							</a>
+							<?php else: ?>
 							<?php if($this->table->isCheckedOut($this->user->get('id'), $row->checked_out)): ?>
-							<?php echo $row->title; ?>
+							<i class="fa fa-lock" aria-hidden="true"></i> <?php echo $row->title; ?>
 							<?php else: ?>
 							<?php if(!$this->filter_trash): ?>
 							<a href="<?php echo JRoute::_('index.php?option=com_k2&view=item&cid='.$row->id); ?>"><?php echo $row->title; ?></a>
 							<?php else: ?>
 							<?php echo $row->title; ?>
+							<?php endif; ?>
 							<?php endif; ?>
 							<?php endif; ?>
 						</td>
@@ -155,16 +166,22 @@ $document->addScriptDeclaration("
 							<?php endif; ?>
 						</td>
 						<?php endif; ?>
-						<td class="hidden-phone"><a href="<?php echo JRoute::_('index.php?option=com_k2&view=category&cid='.$row->catid); ?>"><?php echo $row->category; ?></a></td>
 						<td class="hidden-phone">
-							<?php if($this->user->gid>23): ?>
+							<?php if($context == "modalselector"): ?>
+							<?php echo $row->category; ?>
+							<?php else: ?>
+							<a href="<?php echo JRoute::_('index.php?option=com_k2&view=category&cid='.$row->catid); ?>"><?php echo $row->category; ?></a>
+							<?php endif; ?>
+						</td>
+						<td class="hidden-phone">
+							<?php if($this->user->gid>23 && $context != "modalselector"): ?>
 							<a href="<?php echo JRoute::_('index.php?option=com_k2&view=user&cid='.$row->created_by); ?>"><?php echo $row->author; ?></a>
 							<?php else: ?>
 							<?php echo $row->author; ?>
 							<?php endif; ?>
 						</td>
 						<td class="hidden-phone">
-							<?php if($this->user->gid>23): ?>
+							<?php if($this->user->gid>23 && $context != "modalselector"): ?>
 							<a href="<?php echo JRoute::_('index.php?option=com_k2&view=user&cid='.$row->modified_by); ?>"><?php echo $row->moderator; ?></a>
 							<?php else: ?>
 							<?php echo $row->moderator; ?>
@@ -176,7 +193,7 @@ $document->addScriptDeclaration("
 						<td class="center hidden-phone"><?php echo $row->hits ?></td>
 						<td class="k2Center center hidden-phone">
 							<?php if(JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$row->id).'_XL.jpg')): ?>
-							<a href="<?php echo JURI::root(true).'/media/k2/items/cache/'.md5("Image".$row->id).'_XL.jpg'; ?>" title="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>" data-fancybox="gallery" data-caption="<?php echo $row->title; ?>">
+							<a href="<?php echo JURI::root(true).'/media/k2/items/cache/'.md5("Image".$row->id).'_XL.jpg'; ?>" title="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>" data-fancybox="gallery" data-caption="&lt;b&gt;<?php echo $row->title; ?>&lt;/b&gt; - <?php echo JText::_('K2_PUBLISHED_IN'); ?> &lt;b&gt;<?php echo $row->category; ?>&lt;/b&gt; <?php echo JText::_('K2_BY'); ?> &lt;b&gt;<?php echo $row->author; ?>&lt;/b&gt;">
 								<?php if(K2_JVERSION == '30'): ?>
 								<i class="icon-picture" title="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>"></i>
 								<?php else: ?>
@@ -190,7 +207,7 @@ $document->addScriptDeclaration("
 						<?php endif; ?>
 						<td class="center hidden-phone"><?php echo $row->id; ?></td>
 						<?php foreach($this->columns as $column):?>
-						<td <?php if($column->class){ echo 'class="'.$column->class.'"';}?>>
+						<td<?php if($column->class) echo ' class="'.$column->class.'"'; ?>>
 							<?php $property = $column->property; echo $row->$property; ?>
 						</td>
 						<?php endforeach; ?>
@@ -272,5 +289,9 @@ $document->addScriptDeclaration("
 	<input type="hidden" name="filter_order" value="<?php echo $this->lists['order']; ?>" />
 	<input type="hidden" name="filter_order_Dir" value="<?php echo $this->lists['order_Dir']; ?>" />
 	<input type="hidden" name="boxchecked" value="0" />
+	<?php if($context == "modalselector"): ?>
+	<input type="hidden" name="context" value="modalselector" />
+	<input type="hidden" name="tmpl" value="component" />
+	<?php endif; ?>
 	<?php echo JHTML::_('form.token'); ?>
 </form>

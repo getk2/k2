@@ -45,7 +45,7 @@ class K2ElementItem extends K2Element
 		}
 		";
         $doc->addScriptDeclaration($js);
-        $link = 'index.php?option=com_k2&amp;view=items&amp;task=element&amp;tmpl=component&amp;object='.$name;
+        $link = 'index.php?option=com_k2&amp;view=items&amp;tmpl=component&amp;context=modalselector&amp;object='.$name;
         JHTML::_('behavior.modal', 'a.modal');
         if (K2_JVERSION == '30')
         {
@@ -59,7 +59,7 @@ class K2ElementItem extends K2Element
             }
             $html = '<span class="input-append">
             <input type="text" id="'.$name.'_name" value="'.htmlspecialchars($item->title, ENT_QUOTES, 'UTF-8').'" disabled="disabled" />
-            <a class="modal btn" title="'.JText::_('K2_SELECT_AN_ITEM').'"  href="'.$link.'" rel="{handler: \'iframe\', size: {x: 700, y: 450}}"><i class="icon-file"></i>'.JText::_('K2_SELECT').'</a>
+            <a class="modal btn" title="'.JText::_('K2_SELECT_AN_ITEM').'"  href="'.$link.'" rel="{handler:\'iframe\', size:{x:(document.documentElement.clientWidth)*0.96, y:(document.documentElement.clientHeight)*0.96}}"><i class="icon-file"></i>'.JText::_('K2_SELECT').'</a>
             <input type="hidden" class="'.$class.'modal-value" id="'.$name.'_id" name="'.$fieldName.'" value="'.$value.'" />
             </span>';
         }
@@ -71,7 +71,7 @@ class K2ElementItem extends K2Element
             </div>
             <div class="button2-left">
                 <div class="blank">
-                    <a class="modal btn" title="'.JText::_('K2_SELECT_AN_ITEM').'"  href="'.$link.'" rel="{handler: \'iframe\', size: {x: 700, y: 450}}">'.JText::_('K2_SELECT').'</a>
+                    <a class="modal btn" title="'.JText::_('K2_SELECT_AN_ITEM').'"  href="'.$link.'" rel="{handler:\'iframe\', size:{x:(document.documentElement.clientWidth)*0.96, y:(document.documentElement.clientHeight)*0.96}}">'.JText::_('K2_SELECT').'</a>
                 </div>
             </div>
             <input type="hidden" id="'.$name.'_id" name="'.$fieldName.'" value="'.( int )$value.'" />';

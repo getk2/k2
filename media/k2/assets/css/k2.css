@@ -140,7 +140,7 @@ body.com_k2 .page-title {padding-left:100px;}
 	body.com_k2 .page-title {padding-left:0;text-indent:-800px}
 }
 div.controls label.radio {display:inline-block;}
-.isJ30 table.adminlist tfoot tr td {text-align:center;}
+.isJ30 table.adminlist tfoot tr td .pagination {text-align:center;}
 
 /* Footer */
 #k2AdminFooter {text-align:center;margin:20px auto 4px auto;width:100%;clear:both;float:left;}
@@ -199,17 +199,6 @@ div.k2SubTable .k2SubTableValue input[type="radio"] {margin:2px 8px 0 0!importan
 	label[for="title"] {font-size:18px;}
 	label[for="tags"] {padding:20px 0 0 0;}
 }
-
-/* Chosen.js */
-.com_k2 .chzn-container,
-.com_k2 .chzn-drop,
-.com_k2 .chzn-container-active.chzn-with-drop .chzn-single,
-.com_k2 .chzn-container-single .chzn-single,
-.com_k2 .chzn-container-single .chzn-single span {min-height:35px;}
-.com_k2 .chzn-container-single .chzn-single {padding:0;}
-.com_k2 .chzn-container-single .chzn-single span {line-height:35px;}
-.com_k2 .chzn-container-single .chzn-single div b {background-position:2px 8px;margin-top:6px;}
-.com_k2 .chzn-container-active.chzn-with-drop .chzn-single div b {background-position:-14px 8px;}
 
 /* Generic Tabs Layout */
 .ui-tabs-hide {display:none;}
@@ -934,5 +923,23 @@ div.commentToolbar span.k2CommentsLoader {background:url(../images/system/loader
 .label-alt.margin {margin-bottom:10px;}
 .label-alt .fa {font-size:18px;display:inline-block;vertical-align:middle;margin-right:5px;}
 .oldJ .label-alt {display:block;}
+
+
+
+/* ====================================================================================== */
+/* ====================================================================================== */
+/* ====================================== Overrides ===================================== */
+/* ====================================================================================== */
+/* ====================================================================================== */
+
+/* Modal Selector */
+#k2AdminContainer.inModalSelector #adminForm {margin-top:56px;position:relative;z-index:9;}
+#k2AdminContainer.inModalSelector .k2AdminTableFilters {border:0;border-bottom:1px solid #dbdcdc;}
+#k2AdminContainer.inModalSelector .k2AdminTableFilters tr,
+#k2AdminContainer.inModalSelector .k2AdminTableFilters td {border:0 !important;}
+#k2AdminFooter.inModalSelector {margin:8px auto;}
+#k2ModalSelectorHeader {background:#fff url(../images/system/k2_logo_126x48.png) no-repeat 8px 50%;background-size:80px;padding:16px 0 16px 108px;margin:0;position:fixed;top:0;left:0;right:0;z-index:10;border-bottom:4px solid #eee;}
+
+
 
 /* End */

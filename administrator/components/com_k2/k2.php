@@ -70,14 +70,31 @@ $document = JFactory::getDocument();
 K2HelperHTML::loadHeadIncludes(true, true);
 
 // Container CSS class definition
-if(K2_JVERSION == '15'){
+if(K2_JVERSION == '15')
+{
 	$k2CSSContainerClass = ' oldJ isJ15';
-} elseif(K2_JVERSION == '25'){
+}
+elseif (K2_JVERSION == '25')
+{
 	$k2CSSContainerClass = ' oldJ isJ25';
-} elseif(K2_JVERSION == '30'){
+}
+elseif (K2_JVERSION == '30')
+{
 	$k2CSSContainerClass = ' isJ25 isJ30';
-} else {
+}
+else
+{
 	$k2CSSContainerClass = '';
+}
+
+if(JRequest::getCmd('context') == "modalselector")
+{
+	$k2CSSContainerClass .= ' inModalSelector';
+	$k2FooterClass = 'inModalSelector';
+}
+else
+{
+	$k2FooterClass = '';
 }
 
 if(
@@ -89,9 +106,29 @@ if(
 	JRequest::getWord('task')!='extrafields' &&
 	JRequest::getWord('task')!='download' &&
 	JRequest::getWord('task')!='saveComment'
-): ?>
-<div id="k2AdminContainer" class="K2AdminView<?php echo ucfirst($view).$k2CSSContainerClass; ?>">
-<?php endif;
+)
+{
+	$k2ComponentHeader = '<div id="k2AdminContainer" class="K2AdminView'.ucfirst($view).$k2CSSContainerClass.'">';
+	$k2ComponentFooter = '
+	</div>
+
+	<div id="k2AdminFooter" class="'.$k2FooterClass.'">
+		<a target="_blank" href="https://getk2.org/">K2 v'.K2_CURRENT_VERSION.K2_BUILD.'</a> | Copyright &copy; 2006-'.date('Y').' <a target="_blank" href="http://www.joomlaworks.net/">JoomlaWorks Ltd.</a>
+	</div>
+
+	<!-- K2 Update Service -->
+	<script type="text/javascript">var K2_INSTALLED_VERSION = \''.K2_CURRENT_VERSION.'\';</script>
+	<script type="text/javascript" src="https://getk2.org/app/update.js?t='.date('Ymd').'"></script>
+	';
+}
+else
+{
+	$k2ComponentHeader = '';
+	$k2ComponentFooter = '';
+}
+
+// Output
+echo $k2ComponentHeader;
 
 JLoader::register('K2Controller', JPATH_COMPONENT.'/controllers/controller.php');
 JLoader::register('K2View', JPATH_COMPONENT.'/views/view.php');
@@ -106,36 +143,4 @@ $controller->registerTask('saveAndNew', 'save');
 $controller->execute(JRequest::getWord('task'));
 $controller->redirect();
 
-if(
-	$document->getType() != 'raw' &&
-	JRequest::getWord('task')!='deleteAttachment' &&
-	JRequest::getWord('task')!='connector' &&
-	JRequest::getWord('task')!='tag' &&
-	JRequest::getWord('task')!='tags' &&
-	JRequest::getWord('task')!='extrafields' &&
-	JRequest::getWord('task')!='download' &&
-	JRequest::getWord('task')!='saveComment'
-): ?>
-</div>
-<div id="k2AdminFooter">
-	<a target="_blank" href="https://getk2.org/">K2 v<?php echo K2_CURRENT_VERSION; ?><?php echo K2_BUILD; ?></a> | Copyright &copy; 2006-<?php echo date('Y'); ?> <a target="_blank" href="http://www.joomlaworks.net/">JoomlaWorks Ltd.</a>
-</div>
-
-<?php
-
-$loadUpdateService = false;
-if (K2_JVERSION != '15'){
-	if ($user->authorise('core.admin', 'com_k2')) $loadUpdateService = true;
-} else {
-	if ($user->gid > 24) $loadUpdateService = true;
-}
-
-if($loadUpdateService): ?>
-<!-- K2 Update Service -->
-<script type="text/javascript">
-	var K2_INSTALLED_VERSION = '<?php echo K2_CURRENT_VERSION; ?>';
-</script>
-<script type="text/javascript" src="https://getk2.org/app/update.js?t=<?php echo date('Ymd'); ?>"></script>
-<?php endif; ?>
-
-<?php endif;
+echo $k2ComponentFooter;
