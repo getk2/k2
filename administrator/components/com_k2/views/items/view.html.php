@@ -41,6 +41,9 @@ class K2ViewItems extends K2View
 		$db = JFactory::getDBO();
 		$nullDate = $db->getNullDate();
 
+		// JS
+		$document->addScriptDeclaration('var K2SelectItemsError = "'.JText::_('K2_SELECT_SOME_ITEMS_FIRST').'";');
+
 		$this->assignRef('nullDate', $nullDate);
 
 		if(K2_JVERSION == '30' && $filter_featured == 1 && $filter_order == 'i.ordering')
