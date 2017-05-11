@@ -15,9 +15,14 @@ class K2ControllerComments extends K2Controller
 {
     public function display($cachable = false, $urlparams = array())
     {
-	    $params = JComponentHelper::getParams('com_k2');
 		$document = JFactory::getDocument();
         $user = JFactory::getUser();
+
+        $params = JComponentHelper::getParams('com_k2');
+
+        K2HelperHTML::loadHeadIncludes(true, true, true);
+
+        // Message for guests
         if ($user->guest)
         {
             $uri = JFactory::getURI();
@@ -33,16 +38,16 @@ class K2ControllerComments extends K2Controller
 			$application->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
             $application->redirect(JRoute::_($url, false));
         }
+
         JRequest::setVar('tmpl', 'component');
-        
+
         // Language
         $language = JFactory::getLanguage();
         $language->load('com_k2', JPATH_ADMINISTRATOR);
 
-        K2HelperHTML::loadHeadIncludes(true, true, true);
-
         $this->addViewPath(JPATH_COMPONENT_ADMINISTRATOR.'/views');
         $this->addModelPath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
+
         $view = $this->getView('comments', 'html');
         $view->addTemplatePath(JPATH_COMPONENT_ADMINISTRATOR.'/views/comments/tmpl');
         $view->addHelperPath(JPATH_COMPONENT_ADMINISTRATOR.'/helpers');
@@ -196,5 +201,4 @@ class K2ControllerComments extends K2Controller
         }
         $this->setRedirect('index.php?option=com_k2&view=comments&tmpl=component');
     }
-
 }

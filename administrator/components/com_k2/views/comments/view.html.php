@@ -19,10 +19,14 @@ class K2ViewComments extends K2View
 	{
 
 		$mainframe = JFactory::getApplication();
-		$params = JComponentHelper::getParams('com_k2');
+		$document = JFactory::getDocument();
 		$user = JFactory::getUser();
+
+		$params = JComponentHelper::getParams('com_k2');
+
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
+
 		$limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
 		$limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
 		$filter_order = $mainframe->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'c.id', 'cmd');
@@ -39,15 +43,26 @@ class K2ViewComments extends K2View
 			JRequest::setVar('filter_author', $user->id);
 		}
 		$this->loadHelper('html');
+
+		// JS
+		$document->addScriptDeclaration('
+			var K2Language = [
+				"'.JText::_('K2_YOU_CANNOT_EDIT_TWO_COMMENTS_AT_THE_SAME_TIME', true).'",
+				"'.JText::_('K2_THIS_WILL_PERMANENTLY_DELETE_ALL_UNPUBLISHED_COMMENTS_ARE_YOU_SURE', true).'",
+				"'.JText::_('K2_REPORT_USER_WARNING', true).'"
+			];
+		');
+
 		K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
 		$model = K2Model::getInstance('Comments', 'K2Model');
 		$total = $model->getTotal();
+		$comments = $model->getData();
+
 		if ($limitstart > $total - $limit)
 		{
 			$limitstart = max(0, (int)(ceil($total / $limit) - 1) * $limit);
 			JRequest::setVar('limitstart', $limitstart);
 		}
-		$comments = $model->getData();
 
 		$reportLink = $mainframe->isAdmin() ? 'index.php?option=com_k2&view=user&task=report&id=' : 'index.php?option=com_k2&view=comments&task=reportSpammer&id=';
 		foreach ($comments as $key => $comment)
@@ -56,7 +71,6 @@ class K2ViewComments extends K2View
 			$comment->commenterLastVisitIP = NULL;
 			if ($comment->userID)
 			{
-
 				$db = JFactory::getDBO();
 				$db->setQuery("SELECT ip FROM #__k2_users WHERE userID = ".$comment->userID);
 				$comment->commenterLastVisitIP = $db->loadResult();
@@ -99,9 +113,9 @@ class K2ViewComments extends K2View
 			}
 
 		}
-
 		$this->assignRef('rows', $comments);
 
+		// Pagination
 		jimport('joomla.html.pagination');
 		$pageNav = new JPagination($total, $limitstart, $limit);
 		$this->assignRef('page', $pageNav);
@@ -163,13 +177,16 @@ class K2ViewComments extends K2View
 
 		if ($mainframe->isAdmin())
 		{
+			// Toolbar
+			$toolbar = JToolBar::getInstance('toolbar');
 			JToolBarHelper::title(JText::_('K2_COMMENTS'), 'k2.png');
+
 			JToolBarHelper::publishList();
 			JToolBarHelper::unpublishList();
 			JToolBarHelper::deleteList('', 'remove', 'K2_DELETE');
 			JToolBarHelper::custom('deleteUnpublished', 'delete', 'delete', 'K2_DELETE_ALL_UNPUBLISHED', false);
-			$toolbar = JToolBar::getInstance('toolbar');
 
+			// Preferences (Parameters/Settings)
 			if (K2_JVERSION != '15')
 			{
 				JToolBarHelper::preferences('com_k2', 580, 800, 'K2_PARAMETERS');
@@ -181,14 +198,11 @@ class K2ViewComments extends K2View
 			K2HelperHTML::subMenu();
 
 			$userEditLink = JURI::base().'index.php?option=com_k2&view=user&cid=';
-
 			$this->assignRef('userEditLink', $userEditLink);
-
 		}
 
-		$document = JFactory::getDocument();
-		$document->addScriptDeclaration('var K2Language = ["'.JText::_('K2_YOU_CANNOT_EDIT_TWO_COMMENTS_AT_THE_SAME_TIME', true).'", "'.JText::_('K2_THIS_WILL_PERMANENTLY_DELETE_ALL_UNPUBLISHED_COMMENTS_ARE_YOU_SURE', true).'", "'.JText::_('K2_REPORT_USER_WARNING', true).'"];');
-
+		K2HelperHTML::loadHeadIncludes(true, false, true, true);
+		/*
 		if ($mainframe->isSite())
 		{
 			// CSS
@@ -211,8 +225,8 @@ class K2ViewComments extends K2View
 				$document->addStyleSheet(JURI::root(true).'/media/system/css/system.css');
 			}
 		}
+		*/
 
 		parent::display($tpl);
 	}
-
 }
