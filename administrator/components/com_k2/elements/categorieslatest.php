@@ -15,7 +15,7 @@ require_once (JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 class K2ElementCategoriesLatest extends K2Element
 {
 
-    function fetchElement($name, $value, &$node, $control_name)
+    function fetchElementValue($name, $value, &$node, $control_name)
     {
         JHTML::_('behavior.modal');
         $mainframe = JFactory::getApplication();

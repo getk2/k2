@@ -13,10 +13,10 @@ require_once (JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
 class K2ElementHeader extends K2Element
 {
-    public function fetchElement($name, $value, &$node, $control_name)
+    public function fetchElementValue($name, $value, &$node, $control_name)
     {
         $document = JFactory::getDocument();
-        
+
         K2HelperHTML::loadHeadIncludes(true, false, false, true);
 
 		if (version_compare(JVERSION, '2.5.0', 'ge'))
@@ -29,7 +29,7 @@ class K2ElementHeader extends K2Element
 		}
     }
 
-    public function fetchTooltip($label, $description, &$node, $control_name, $name)
+    public function fetchElementName($label, $description, &$node, $control_name, $name)
     {
         return NULL;
     }

@@ -14,11 +14,11 @@ require_once (JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
 class K2ElementUser extends K2Element
 {
-    function fetchElement($name, $value, &$node, $control_name)
+    function fetchElementValue($name, $value, &$node, $control_name)
     {
         $mainframe = JFactory::getApplication();
         $db = JFactory::getDBO();
-        $doc = JFactory::getDocument();
+        $document = JFactory::getDocument();
         $fieldName = (K2_JVERSION != '15') ? $name : $control_name.'['.$name.']';
         if ($value)
         {
@@ -42,16 +42,18 @@ class K2ElementUser extends K2Element
 			}
 		}
 		";
-        $doc->addScriptDeclaration($js);
+        $document->addScriptDeclaration($js);
         $link = 'index.php?option=com_k2&amp;view=users&amp;task=element&amp;tmpl=component&amp;object='.$name;
         JHTML::_('behavior.modal', 'a.modal');
         if (K2_JVERSION == '30')
         {
-            $html = '<span class="input-append">
-            <input type="text" id="'.$name.'_name" value="'.htmlspecialchars($user->name, ENT_QUOTES, 'UTF-8').'" disabled="disabled" />
-            <a class="modal btn" title="'.JText::_('K2_SELECT_A_USER').'"  href="'.$link.'" rel="{handler: \'iframe\', size: {x: 700, y: 450}}"><i class="icon-file"></i>'.JText::_('K2_SELECT').'</a>
-            <input type="hidden" class="required modal-value" id="'.$name.'_id" name="'.$fieldName.'" value="'.(int)$value.'" />
-            </span>';
+            $html = '
+            <span class="input-append">
+            	<input type="text" id="'.$name.'_name" value="'.htmlspecialchars($user->name, ENT_QUOTES, 'UTF-8').'" disabled="disabled" />
+				<a class="modal btn" title="'.JText::_('K2_SELECT_A_USER').'"  href="'.$link.'" rel="{handler: \'iframe\', size: {x: 700, y: 450}}"><i class="icon-file"></i>'.JText::_('K2_SELECT').'</a>
+				<input type="hidden" class="required modal-value" id="'.$name.'_id" name="'.$fieldName.'" value="'.(int)$value.'" />
+            </span>
+            ';
         }
         else
         {

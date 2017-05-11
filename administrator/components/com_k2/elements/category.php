@@ -15,7 +15,7 @@ require_once (JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 class K2ElementCategory extends K2Element
 {
 
-    function fetchElement($name, $value, &$node, $control_name)
+    function fetchElementValue($name, $value, &$node, $control_name)
     {
         $db = JFactory::getDBO();
         $query = 'SELECT m.* FROM #__k2_categories m WHERE trash = 0 ORDER BY parent, ordering';
