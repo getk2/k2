@@ -91,11 +91,11 @@
 .com_menus .form-horizontal #attrib-basic .controls textarea {width:90%;}
 
 /* Radio/Checkbox Buttons */
-.com_menus .form-horizontal #attrib-basic .controls fieldset.radio label {display:inline-block !important;margin:0 !important;padding:0 16px 0 2px !important;}
-.com_menus .form-horizontal #attrib-basic .controls fieldset.radio,
-.com_menus .form-horizontal #attrib-basic .controls fieldset.checkbox {padding:0 !important;margin:4px 0 0 0 !important;}
-.com_menus .form-horizontal #attrib-basic .controls fieldset.radio input[type="radio"],
-.com_menus .form-horizontal #attrib-basic .controls fieldset.radio .checkbox input[type="checkbox"] {display:inline-block !important;float:none !important;margin:-2px 0 0 0 !important;}
+.com_menus .form-horizontal #attrib-basic .controls fieldset.radio:not(.btn-group) label {display:inline-block !important;margin:0 !important;padding:0 16px 0 2px !important;}
+.com_menus .form-horizontal #attrib-basic .controls fieldset.radio:not(.btn-group),
+.com_menus .form-horizontal #attrib-basic .controls fieldset.checkbox:not(.btn-group) {padding:0 !important;margin:4px 0 0 0 !important;}
+.com_menus .form-horizontal #attrib-basic .controls fieldset.radio:not(.btn-group) input[type="radio"],
+.com_menus .form-horizontal #attrib-basic .controls fieldset.radio:not(.btn-group) .checkbox input[type="checkbox"] {display:inline-block !important;float:none !important;margin:-2px 0 0 0 !important;}
 
 
 
