@@ -200,12 +200,13 @@ div.k2SubTable .k2SubTableValue input[type="radio"] {margin:2px 8px 0 0!importan
 	label[for="tags"] {padding:20px 0 0 0;}
 }
 
-/* Chozen plugin */
+/* Chosen.js */
 .com_k2 .chzn-container,
 .com_k2 .chzn-drop,
 .com_k2 .chzn-container-active.chzn-with-drop .chzn-single,
 .com_k2 .chzn-container-single .chzn-single,
 .com_k2 .chzn-container-single .chzn-single span {min-height:35px;}
+.com_k2 .chzn-container-single .chzn-single {padding:0;}
 .com_k2 .chzn-container-single .chzn-single span {line-height:35px;}
 .com_k2 .chzn-container-single .chzn-single div b {background-position:2px 8px;margin-top:6px;}
 .com_k2 .chzn-container-active.chzn-with-drop .chzn-single div b {background-position:-14px 8px;}
