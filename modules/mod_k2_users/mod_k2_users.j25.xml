@@ -40,11 +40,11 @@
                 <field name="" type="header" default="K2_RETRIEVE_SPECIFIC_USERS" label="" description=""/>
                 <field name="userIDs" type="userslatest" default="" label="K2_SELECTED_USERS_SORT_WITH_DRAG_DROP" description="K2_DRAG_USERS_ONE_BY_ONE_TO_REORDER_THE_LIST_CLICK_THE_REMOVE_ICON_TO_REMOVE_A_USER_FROM_THE_LIST"/>
                 <field name="" type="header" default="K2_DISPLAY_OPTIONS" label="" description=""/>
-                <field name="userName" type="radio" default="1" label="K2_NAME" description="">
+                <field name="userName" type="radio" default="1" label="K2_NAME" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>
-                <field name="userAvatar" type="radio" default="1" label="K2_USER_AVATAR" description="">
+                <field name="userAvatar" type="radio" default="1" label="K2_USER_AVATAR" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>
@@ -53,20 +53,20 @@
                     <option value="custom">K2_USE_CUSTOM_WIDTH</option>
                 </field>
                 <field name="userAvatarWidth" type="text" default="50" size="4" label="K2_CUSTOM_WIDTH_FOR_USER_AVATAR_IN_PX" description=""/>
-                <field name="userDescription" type="radio" default="1" label="K2_USER_DESCRIPTION" description="">
+                <field name="userDescription" type="radio" default="1" label="K2_USER_DESCRIPTION" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>
                 <field name="userDescriptionWordLimit" type="text" default="" size="4" label="K2_WORD_LIMIT_FOR_USER_DESCRIPTION" description=""/>
-                <field name="userURL" type="radio" default="1" label="K2_URL" description="">
+                <field name="userURL" type="radio" default="1" label="K2_URL" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>
-                <field name="userEmail" type="radio" default="0" label="K2_EMAIL" description="">
+                <field name="userEmail" type="radio" default="0" label="K2_EMAIL" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>
-                <field name="userFeed" type="radio" default="1" label="K2_RSS_FEED_ICON" description="">
+                <field name="userFeed" type="radio" default="1" label="K2_RSS_FEED_ICON" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>

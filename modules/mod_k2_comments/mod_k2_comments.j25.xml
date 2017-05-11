@@ -25,7 +25,7 @@
                 </field>
                 <!-- Latest Comments -->
                 <field name="" type="header" default="K2_LATEST_COMMENTS" label="" description=""/>
-                <field name="catfilter" type="radio" default="0" label="K2_CATEGORY_FILTER">
+                <field name="catfilter" type="radio" default="0" label="K2_CATEGORY_FILTER" class="btn-group btn-group-yesno-reverse">
                     <option value="0">K2_ALL</option>
                     <option value="1">K2_SELECT</option>
                 </field>
@@ -37,7 +37,7 @@
                     <option value="1">K2_SHOW_NAME</option>
                     <option value="2">K2_SHOW_USERNAME_IFEXISTS</option>
                 </field>
-                <field name="commentAvatar" type="radio" default="1" label="K2_COMMENTER_AVATAR" description="">
+                <field name="commentAvatar" type="radio" default="1" label="K2_COMMENTER_AVATAR" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>
@@ -46,7 +46,7 @@
                     <option value="custom">K2_USE_CUSTOM_WIDTH</option>
                 </field>
                 <field name="commentAvatarWidth" type="text" default="50" size="4" label="K2_CUSTOM_WIDTH_FOR_COMMENTER_AVATAR_IN_PX" description=""/>
-                <field name="commentDate" type="radio" default="1" label="K2_COMMENT_DATE" description="">
+                <field name="commentDate" type="radio" default="1" label="K2_COMMENT_DATE" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>
@@ -54,19 +54,19 @@
                     <option value="absolute">K2_ABSOLUTE_EG_POSTED_1225_THU_JULY_30TH</option>
                     <option value="relative">K2_RELATIVE_EG_POSTED_2_HOURS_AGO</option>
                 </field>
-                <field name="commentLink" type="radio" default="1" label="K2_COMMENT_LINK" description="">
+                <field name="commentLink" type="radio" default="1" label="K2_COMMENT_LINK" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>
-                <field name="itemTitle" type="radio" default="1" label="K2_ITEM_TITLE" description="">
+                <field name="itemTitle" type="radio" default="1" label="K2_ITEM_TITLE" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>
-                <field name="itemCategory" type="radio" default="1" label="K2_ITEM_CATEGORY" description="">
+                <field name="itemCategory" type="radio" default="1" label="K2_ITEM_CATEGORY" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>
-                <field name="feed" type="radio" default="1" label="K2_FEED_LINK" description="">
+                <field name="feed" type="radio" default="1" label="K2_FEED_LINK" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>
@@ -77,7 +77,7 @@
                     <option value="1">K2_SHOW_NAME</option>
                     <option value="2">K2_SHOW_USERNAME</option>
                 </field>
-                <field name="commenterAvatar" type="radio" default="1" label="K2_COMMENTER_AVATAR" description="">
+                <field name="commenterAvatar" type="radio" default="1" label="K2_COMMENTER_AVATAR" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>
@@ -86,15 +86,15 @@
                     <option value="custom">K2_USE_CUSTOM_WIDTH</option>
                 </field>
                 <field name="commenterAvatarWidth" type="text" default="50" size="4" label="K2_CUSTOM_WIDTH_FOR_COMMENTER_AVATAR_IN_PX" description=""/>
-                <field name="commenterLink" type="radio" default="1" label="K2_COMMENTER_LINK_TO_USER_PAGE" description="">
+                <field name="commenterLink" type="radio" default="1" label="K2_COMMENTER_LINK_TO_USER_PAGE" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>
-                <field name="commenterCommentsCounter" type="radio" default="1" label="K2_COMMENTS_COUNTER" description="">
+                <field name="commenterCommentsCounter" type="radio" default="1" label="K2_COMMENTS_COUNTER" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>
-                <field name="commenterLatestComment" type="radio" default="1" label="K2_LATEST_COMMENT_FROM_EACH_COMMENTER" description="">
+                <field name="commenterLatestComment" type="radio" default="1" label="K2_LATEST_COMMENT_FROM_EACH_COMMENTER" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>

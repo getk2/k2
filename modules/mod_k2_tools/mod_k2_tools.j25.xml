@@ -33,7 +33,7 @@
                 </field>
                 <!-- K2_ARCHIVE_SETTINGS -->
                 <field name="" type="header" default="K2_ARCHIVE_SETTINGS" label="" description=""/>
-                <field name="archiveItemsCounter" type="radio" default="1" label="K2_ITEMS_COUNTER" description="">
+                <field name="archiveItemsCounter" type="radio" default="1" label="K2_ITEMS_COUNTER" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>
@@ -41,11 +41,11 @@
                 <!-- Authors List Settings -->
                 <field name="" type="header" default="K2_AUTHORS_LIST_SETTINGS" label="" description=""/>
                 <field name="authors_module_category" type="categories" default="" label="K2_FILTER_AUTHORS_BY_ROOT_CATEGORY" description="K2_SELECT_THE_ROOT_CATEGORY_FOR_WHICH_YOU_WANT_TO_FILTER_AN_AUTHOR_LIST_SELECT_NONE_TO_FETCH_AUTHORS_FROM_ALL_CATEGORIES"/>
-                <field name="authorItemsCounter" type="radio" default="1" label="K2_ITEMS_COUNTER" description="">
+                <field name="authorItemsCounter" type="radio" default="1" label="K2_ITEMS_COUNTER" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>
-                <field name="authorAvatar" type="radio" default="1" label="K2_AUTHOR_AVATAR" description="">
+                <field name="authorAvatar" type="radio" default="1" label="K2_AUTHOR_AVATAR" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>
@@ -54,7 +54,7 @@
                     <option value="custom">K2_USE_CUSTOM_WIDTH</option>
                 </field>
                 <field name="authorAvatarWidth" type="text" default="50" size="4" label="K2_CUSTOM_WIDTH_FOR_AUTHOR_AVATAR_IN_PX" description=""/>
-                <field name="authorLatestItem" type="radio" default="1" label="K2_LATEST_ITEM_WRITTEN_BY_AUTHOR" description="">
+                <field name="authorLatestItem" type="radio" default="1" label="K2_LATEST_ITEM_WRITTEN_BY_AUTHOR" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>
@@ -76,7 +76,7 @@
                     <option value="ralpha">K2_NAME_REVERSE_ALPHABETICAL</option>
                     <option value="order">K2_ORDERING</option>
                 </field>
-                <field name="categoriesListItemsCounter" type="radio" default="1" label="K2_ITEMS_COUNTER" description="">
+                <field name="categoriesListItemsCounter" type="radio" default="1" label="K2_ITEMS_COUNTER" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>
@@ -85,26 +85,26 @@
                 <field name="root_id2" type="categories" default="" label="K2_SELECT_ROOT_CATEGORY" description="K2_SELECT_THE_ROOT_CATEGORY_FOR_WHICH_YOU_WANT_TO_CREATE_A_CATEGORY_DROPDOWN_LIST_SELECT_NONE_TO_CREATE_A_DROPDOWN_LIST_FROM_ALL_CATEGORIES"/>
                 <!-- Search Box Settings -->
                 <field name="" type="header" default="K2_SEARCH_BOX_SETTINGS" label="" description=""/>
-                <field name="catfilter" type="radio" default="0" label="K2_CATEGORY_FILTER" description="">
+                <field name="catfilter" type="radio" default="0" label="K2_CATEGORY_FILTER" description="" class="btn-group btn-group-yesno-reverse">
                     <option value="0">K2_ALL</option>
                     <option value="1">K2_SELECT</option>
                 </field>
                 <field name="category_id" type="categoriesmultiple" default="" label="K2_RESTRICT_SEARCH_RESULTS_TO_ONE_OR_MORE_CATEGORIES" description="K2_BY_CHOOSING_SPECIFIC_CATEGORIES_HERE_YOU_CAN_NARROW_DOWN_SEARCH_RESULTS_TO_ITEMS_BELONGING_IN_THE_SELECTED_CATEGORIES_THIS_OPTION_IS_VERY_HANDY_IF_YOU_ARE_DEVELOPING_A_WEBSITE_FOR_BOTH_GUEST_VISITORS_AND_REGISTERED_MEMBERS_EG_INTRANET_AND_YOU_WANT_TO_RESTRICT_SEARCH_RESULTS_FOR_GUEST_VISITORS_ONLY_TO_CATEGORIES_THAT_THEY_ARE_ALLOWED_TO_VIEW"/>
-                <field name="getChildren" type="radio" default="0" label="K2_FETCH_ITEMS_FROM_CHILDREN_CATEGORIES" description="">
+                <field name="getChildren" type="radio" default="0" label="K2_FETCH_ITEMS_FROM_CHILDREN_CATEGORIES" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_NO</option>
                     <option value="1">K2_YES</option>
                 </field>
-                <field name="liveSearch" type="radio" default="" label="K2_ENABLE_LIVE_SEARCH" description="K2_IF_YOU_ENABLE_THIS_OPTION_SEARCH_RESULTS_WILL_BE_DISPLAYED_RIGHT_BELOW_THE_SEARCH_BOX_AS_YOU_TYPE_YOUR_SEARCH_QUERY">
+                <field name="liveSearch" type="radio" default="" label="K2_ENABLE_LIVE_SEARCH" description="K2_IF_YOU_ENABLE_THIS_OPTION_SEARCH_RESULTS_WILL_BE_DISPLAYED_RIGHT_BELOW_THE_SEARCH_BOX_AS_YOU_TYPE_YOUR_SEARCH_QUERY" class="btn-group btn-group-yesno">
                     <option value="">K2_NO</option>
                     <option value="1">K2_YES</option>
                 </field>
                 <field name="width" type="text" default="20" size="4" label="K2_SEARCH_BOX_MAXIMUM_CHARACTER_LENGTH" description="K2_THE_NUMBER_OF_ALLOWED_CHARACTERS_TO_BE_INPUT_IN_THE_SEARCH_BOX"/>
                 <field name="text" type="text" default="" label="K2_SEARCH_BOX_DEFAULT_TEXT" description="K2_THE_TEXT_TO_DISPLAY_BY_DEFAULT_IN_THE_SEARCH_BOX"/>
-                <field name="button" type="radio" default="" label="K2_SHOW_SEARCH_BUTTON" description="">
+                <field name="button" type="radio" default="" label="K2_SHOW_SEARCH_BUTTON" description="" class="btn-group btn-group-yesno">
                     <option value="">K2_NO</option>
                     <option value="1">K2_YES</option>
                 </field>
-                <field name="imagebutton" type="radio" default="" label="K2_SEARCH_BUTTON_AS_IMAGE" description="K2_USE_AN_IMAGE_AS_THE_SEARCH_BUTTON">
+                <field name="imagebutton" type="radio" default="" label="K2_SEARCH_BUTTON_AS_IMAGE" description="K2_USE_AN_IMAGE_AS_THE_SEARCH_BUTTON" class="btn-group btn-group-yesno">
                     <option value="">K2_NO</option>
                     <option value="1">K2_YES</option>
                 </field>
@@ -118,22 +118,22 @@
                 <field name="max_size" type="text" default="300" size="4" label="K2_MAX_FONT_SIZE" description="K2_FONT_SIZE_FOR_MOST_POPULAR_TAGS"/>
                 <field name="cloud_limit" type="text" default="30" size="4" label="K2_TAG_LIMIT_X_MOST_POPULAR" description="K2_SELECT_THE_X_MOST_POPULAR_TAGS_TO_DISPLAY"/>
                 <field name="cloud_category" type="categories" multiple="multiple" default="0" label="K2_FILTER_TAGS_FROM_ONE_OR_MORE_CATEGORIES" description="K2_TO_SELECT_MULTIPLE_CATEGORIES_PRESS_AND_KEEP_CTRLCMD_AND_THEN_CLICK_ON_THE_DESIRED_CATEGORIES"/>
-                <field name="cloud_category_recursive" type="radio" default="0" label="K2_APPLY_TAG_CATEGORY_FILTER_RECURSIVELY_TO_ALL_SUBCATEGORIES" description="">
+                <field name="cloud_category_recursive" type="radio" default="0" label="K2_APPLY_TAG_CATEGORY_FILTER_RECURSIVELY_TO_ALL_SUBCATEGORIES" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_NO</option>
                     <option value="1">K2_YES</option>
                 </field>
                 <!-- Custom code settings -->
                 <field name="" type="header" default="K2_CUSTOM_CODE_SETTINGS" label="" description=""/>
                 <field name="customCode" type="textarea" filter="raw" default="" label="K2_ADD_CUSTOM_HTML_CSS_JS_OR_PHP_CODE" description="" cols="60" rows="20" />
-                <field name="parsePhp" type="radio" default="0" label="K2_PARSE_PHP_CODE" description="">
+                <field name="parsePhp" type="radio" default="0" label="K2_PARSE_PHP_CODE" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_NO</option>
                     <option value="1">K2_YES</option>
                 </field>
-                <field name="K2Plugins" type="radio" default="0" label="K2_ENABLE_K2_PLUGINS" description="">
+                <field name="K2Plugins" type="radio" default="0" label="K2_ENABLE_K2_PLUGINS" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_NO</option>
                     <option value="1">K2_YES</option>
                 </field>
-                <field name="JPlugins" type="radio" default="0" label="K2_ENABLE_JOOMLA_CONTENT_PLUGINS" description="">
+                <field name="JPlugins" type="radio" default="0" label="K2_ENABLE_JOOMLA_CONTENT_PLUGINS" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_NO</option>
                     <option value="1">K2_YES</option>
                 </field>
