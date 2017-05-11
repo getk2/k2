@@ -42,7 +42,7 @@ class K2ElementItems extends K2Element
 			var exists = false;
 			\$K2('#itemsList input').each(function(){
 					if(\$K2(this).val()==id){
-						alert('".JText::_('K2_THE_SELECTED_ITEM_IS_ALREADY_IN_THE_LIST')."');
+						\$K2().k2Alert('".JText::_('K2_THE_SELECTED_ITEM_IS_ALREADY_IN_THE_LIST')."', 3000);
 						exists = true;
 					}
 			});
@@ -54,7 +54,7 @@ class K2ElementItems extends K2Element
 				var input = \$K2('<input/>',{value:id, type:'hidden', name:'".$fieldName."'}).appendTo(container);
 				var div = \$K2('<div/>',{style:'clear:both;'}).appendTo(container);
 				\$K2('#itemsList').sortable('refresh');
-				alert('".JText::_('K2_ITEM_ADDED_IN_THE_LIST', true)."');
+				\$K2().k2Alert('".JText::_('K2_ITEM_ADDED_IN_THE_LIST')."', 1000);
 			}
 		}
 

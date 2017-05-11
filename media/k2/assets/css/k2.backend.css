@@ -8,6 +8,10 @@
 
 /* --- Common --- */
 .k2clr {clear:both;height:0;line-height:0;border:none;float:none;background:none;padding:0;margin:0;}
+#k2AlertContainer {position:fixed;top:0;left:0;right:0;z-index:99999;}
+	#k2AlertMessage {width:40%;background:#42a640;color:#fff;font-size:18px;text-align:center;margin:0 auto;padding:20px;box-sizing:border-box;border-bottom:4px solid #358534;}
+		a#k2AlertClose {color:#358534;font-family:monospace;font-size:24px;font-weight:bold;display:block;width:16px;height:16px;margin:0 0 10px 10px;float:right;text-decoration:none;}
+		#k2AlertMessage span {}
 
 
 
@@ -85,6 +89,13 @@
 /* Textarea & Chosen (multi-container) blocks */
 .com_menus .form-horizontal #attrib-basic .controls .chzn-container-multi {width:90% !important;}
 .com_menus .form-horizontal #attrib-basic .controls textarea {width:90%;}
+
+/* Radio/Checkbox Buttons */
+.com_menus .form-horizontal #attrib-basic .controls fieldset.radio label {display:inline-block !important;margin:0 !important;padding:0 16px 0 2px !important;}
+.com_menus .form-horizontal #attrib-basic .controls fieldset.radio,
+.com_menus .form-horizontal #attrib-basic .controls fieldset.checkbox {padding:0 !important;margin:4px 0 0 0 !important;}
+.com_menus .form-horizontal #attrib-basic .controls fieldset.radio input[type="radio"],
+.com_menus .form-horizontal #attrib-basic .controls fieldset.radio .checkbox input[type="checkbox"] {display:inline-block !important;float:none !important;margin:-2px 0 0 0 !important;}
 
 
 

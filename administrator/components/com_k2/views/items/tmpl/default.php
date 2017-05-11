@@ -138,7 +138,7 @@ $context = JRequest::getCmd('context');
 						<td class="center"><?php echo @JHTML::_('grid.checkedout', $row, $key); ?></td>
 						<td>
 							<?php if($context == "modalselector"): ?>
-							<a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ITEM'); ?>" onclick="window.parent.jSelectItem('<?php echo $row->id; ?>', '<?php echo str_replace(array("'", "\""), array("\\'", ""),$row->title); ?>', '<?php echo JRequest::getCmd('object', 'id'); ?>');">
+							<a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ITEM'); ?>" onclick="window.parent.jSelectItem('<?php echo $row->id; ?>', '<?php echo str_replace(array("'", "\""), array("\\'", ""), $row->title); ?>', '<?php echo JRequest::getCmd('object', 'id'); ?>');">
 								<?php echo $row->title; ?>
 							</a>
 							<?php else: ?>

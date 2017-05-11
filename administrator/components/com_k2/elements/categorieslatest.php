@@ -44,10 +44,10 @@ class K2ElementCategoriesLatest extends K2Element
 			function jSelectCategory(id, title, object) {
 				var exists = false;
 				\$K2('#categoriesList input').each(function(){
-						if(\$K2(this).val()==id){
-							alert('".JText::_('K2_THE_SELECTED_CATEGORY_IS_ALREADY_IN_THE_LIST', true)."');
-							exists = true;
-						}
+					if(\$K2(this).val()==id){
+						\$K2().k2Alert('".JText::_('K2_THE_SELECTED_CATEGORY_IS_ALREADY_IN_THE_LIST')."', 3000);
+						exists = true;
+					}
 				});
 				if(!exists){
 					var container = \$K2('<li/>').appendTo(\$K2('#categoriesList'));
@@ -57,7 +57,7 @@ class K2ElementCategoriesLatest extends K2Element
 					var input = \$K2('<input/>',{value:id, type:'hidden', name:'".$fieldName."'}).appendTo(container);
 					var div = \$K2('<div/>',{style:'clear:both;'}).appendTo(container);
 					\$K2('#categoriesList').sortable('refresh');
-					alert('".JText::_('K2_CATEGORY_ADDED_IN_THE_LIST', true)."');
+					\$K2().k2Alert('".JText::_('K2_CATEGORY_ADDED_IN_THE_LIST')."', 1000);
 				}
 			}
 

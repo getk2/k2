@@ -109,6 +109,7 @@ class K2ViewCategories extends K2View
 
 		$this->assignRef('rows', $categories);
 
+		// Show message for trash entries in Categories
 		if(count($categories) && $filter_trash) {
 			$mainframe->enqueueMessage(JText::_('K2_ALL_TRASHED_ITEMS_IN_A_CATEGORY_MUST_BE_DELETED_FIRST'));
 		}

@@ -659,6 +659,22 @@ $K2(document).ready(function() {
  * JS encapsulated behind the "jQuery" object - added in K2 v2.8.0+
  */
 (function($){
+
+	// Pseudo-alert
+	$.fn.k2Alert = function(msg, duration){
+		if($('#k2AlertContainer').length){
+			$('#k2AlertContainer').remove();
+		}
+		$('body').append('<div id="k2AlertContainer"><div id="k2AlertMessage"><a href="#" id="k2AlertClose">&times;</a><span>' + msg + '</span></div></div>');
+		$('#k2AlertClose').on('click', function(e){
+			e.preventDefault();
+			$('#k2AlertContainer').remove();
+		});
+		$('#k2AlertContainer').delay(duration).fadeOut('fast', function() {
+			$(this).remove();
+		});
+	}
+
 	$(document).ready(function(){
 
 		// Flatpickr
@@ -685,6 +701,7 @@ $K2(document).ready(function() {
 		}
 
 	});
+
 })(jQuery);
 
 

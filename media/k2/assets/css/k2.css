@@ -931,6 +931,10 @@ div.commentToolbar span.k2CommentsLoader {background:url(../images/system/loader
 /* ====================================================================================== */
 /* ====================================================================================== */
 
+/* Joomla System Messages */
+#system-message-container {position:relative;z-index:11;width:60%;margin:0 auto !important;padding:0 !important;}
+#system-message-container .alert {margin:8px 0;}
+
 /* Modal Selector */
 #k2AdminContainer.inModalSelector #adminForm {margin-top:56px;position:relative;z-index:9;}
 #k2AdminContainer.inModalSelector .k2AdminTableFilters {border:0;border-bottom:1px solid #dbdcdc;}
