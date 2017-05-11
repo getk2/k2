@@ -19,7 +19,7 @@ class K2ElementItem extends K2Element
     {
         $mainframe = JFactory::getApplication();
         $db = JFactory::getDBO();
-        $doc = JFactory::getDocument();
+        $document = JFactory::getDocument();
         $fieldName = (K2_JVERSION != '15') ? $name : $control_name.'['.$name.']';
         JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
         $item = JTable::getInstance('K2Item', 'Table');
@@ -32,19 +32,19 @@ class K2ElementItem extends K2Element
             $item->title = JText::_('K2_SELECT_AN_ITEM');
         }
 
-        $js = "
-		function jSelectItem(id, title, object) {
-			document.getElementById('".$name."' + '_id').value = id;
-			document.getElementById('".$name."' + '_name').value = title;
-			if(typeof(window.parent.SqueezeBox.close=='function')){
-				window.parent.SqueezeBox.close();
+        $document->addScriptDeclaration("
+			function jSelectItem(id, title, object) {
+				document.getElementById('".$name."' + '_id').value = id;
+				document.getElementById('".$name."' + '_name').value = title;
+				if(typeof(window.parent.SqueezeBox.close=='function')){
+					window.parent.SqueezeBox.close();
+				}
+				else {
+					document.getElementById('sbox-window').close();
+				}
 			}
-			else {
-				document.getElementById('sbox-window').close();
-			}
-		}
-		";
-        $doc->addScriptDeclaration($js);
+        ");
+
         $link = 'index.php?option=com_k2&amp;view=items&amp;tmpl=component&amp;context=modalselector&amp;object='.$name;
         JHTML::_('behavior.modal', 'a.modal');
         if (K2_JVERSION == '30')

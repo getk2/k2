@@ -11,7 +11,8 @@
 #k2AlertContainer {position:fixed;top:0;left:0;right:0;z-index:99999;}
 	#k2AlertMessage {width:40%;background:#42a640;color:#fff;font-size:18px;text-align:center;margin:0 auto;padding:20px;box-sizing:border-box;border-bottom:4px solid #358534;}
 		a#k2AlertClose {color:#358534;font-family:monospace;font-size:24px;font-weight:bold;display:block;width:16px;height:16px;margin:0 0 10px 10px;float:right;text-decoration:none;}
-		#k2AlertMessage span {}
+		a#k2AlertClose:hover {color:#2b752a;}
+		#k2AlertMessage span {display:block;width:92%;margin:auto;}
 
 
 

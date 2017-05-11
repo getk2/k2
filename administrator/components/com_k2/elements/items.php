@@ -37,40 +37,38 @@ class K2ElementItems extends K2Element
             $image = JURI::root(true).'/administrator/images/publish_x.png';
         }
 
-        $js = "
-		function jSelectItem(id, title, object) {
-			var exists = false;
-			\$K2('#itemsList input').each(function(){
+        $document->addScriptDeclaration("
+			function jSelectItem(id, title, object) {
+				var exists = false;
+				\$K2('#itemsList input').each(function(){
 					if(\$K2(this).val()==id){
-						\$K2().k2Alert('".JText::_('K2_THE_SELECTED_ITEM_IS_ALREADY_IN_THE_LIST')."', 3000);
+						\$K2().k2Alert('".JText::_('K2_THE_SELECTED_ITEM_IS_ALREADY_IN_THE_LIST')."'.replace('ITEM_NAME_HERE', title), 3000);
 						exists = true;
 					}
-			});
-			if(!exists){
-				var container = \$K2('<li/>').appendTo(\$K2('#itemsList'));
-				var img = \$K2('<img/>',{'class':'remove', src:'".$image."'}).appendTo(container);
-				img.click(function(){\$K2(this).parent().remove();});
-				var span = \$K2('<span/>',{'class':'handle'}).html(title).appendTo(container);
-				var input = \$K2('<input/>',{value:id, type:'hidden', name:'".$fieldName."'}).appendTo(container);
-				var div = \$K2('<div/>',{style:'clear:both;'}).appendTo(container);
-				\$K2('#itemsList').sortable('refresh');
-				\$K2().k2Alert('".JText::_('K2_ITEM_ADDED_IN_THE_LIST')."', 1000);
+				});
+				if(!exists){
+					var container = \$K2('<li/>').appendTo(\$K2('#itemsList'));
+					var img = \$K2('<img/>',{'class':'remove', src:'".$image."'}).appendTo(container);
+					img.click(function(){\$K2(this).parent().remove();});
+					var span = \$K2('<span/>',{'class':'handle'}).html(title).appendTo(container);
+					var input = \$K2('<input/>',{value:id, type:'hidden', name:'".$fieldName."'}).appendTo(container);
+					var div = \$K2('<div/>',{style:'clear:both;'}).appendTo(container);
+					\$K2('#itemsList').sortable('refresh');
+					\$K2().k2Alert('".JText::_('K2_ITEM_ADDED_IN_THE_LIST')."'.replace('ITEM_NAME_HERE', title), 1000);
+				}
 			}
-		}
 
-		\$K2(document).ready(function(){
-			\$K2('#itemsList').sortable({
-				containment: '#itemsList',
-				items: 'li',
-				handle: 'span.handle'
+			\$K2(document).ready(function(){
+				\$K2('#itemsList').sortable({
+					containment: '#itemsList',
+					items: 'li',
+					handle: 'span.handle'
+				});
+				\$K2('#itemsList .remove').click(function(){
+					\$K2(this).parent().remove();
+				});
 			});
-			\$K2('#itemsList .remove').click(function(){
-				\$K2(this).parent().remove();
-			});
-		});
-		";
-
-        $document->addScriptDeclaration($js);
+        ");
 
         $current = array();
         if (is_string($value) && !empty($value))
