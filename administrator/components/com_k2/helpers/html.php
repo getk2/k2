@@ -172,7 +172,7 @@ class K2HelperHTML
 				}
 				if($adminModuleIncludes)
 				{
-					$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.modules.css?v='.K2_CURRENT_VERSION);
+					$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.backend.css?v='.K2_CURRENT_VERSION);
 				}
 
 				// JS

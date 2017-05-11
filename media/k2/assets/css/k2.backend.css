@@ -1,0 +1,79 @@
+/**
+ * @version    2.7.x
+ * @package    K2
+ * @author     JoomlaWorks http://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2016 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ */
+
+/* categorieslatest.php, userslatest.php, users.php, items.php */
+.ui-sortable {padding:4px 0;position:relative;}
+#categoriesList li,
+#usersList li,
+#itemsList li {list-style:none;margin:4px 0;line-height:16px;height:16px;}
+.ui-sortable span {height:16px;line-height:16px;}
+.ui-sortable span.handle {cursor:move;}
+.ui-sortable img.remove {width:16px;height:16px;margin:0;margin-right:4px;cursor:pointer;float:left;}
+
+
+/* Header Element */
+.jwHeaderContainer {background:#e5f7fd;color:#346b93;font-size:20px;padding:24px 16px;margin:0;border-radius:4px;}
+.jwHeaderContainer15 {clear:both;font-weight:bold;font-size:12px;color:#369;margin:0;padding:0;background:#d5e7fa;border-bottom:2px solid #96b0cb;float:left;width:100%;}
+	.jwHeaderContent {}
+	.jwHeaderClr {clear:both;height:0;line-height:0;border:none;float:none;background:none;padding:0;margin:0;}
+
+
+/* --- Style parameters for modules --- */
+.com_modules .form-horizontal .span9 .control-group {border-radius:4px;padding:0;margin:0 0 4px 0 !important;}
+.com_modules .form-horizontal .span9 .control-group:nth-child(2n-1) {background:#f7f7f7;}
+.com_modules .form-horizontal .span9 .control-group:last-child {margin-bottom:100px !important;}
+.com_modules .form-horizontal .span9 .control-group .control-label,
+.com_modules .form-horizontal .span9 .control-group .controls {padding:16px;margin:0;}
+.com_modules .form-horizontal .span9 .control-group .control-label label {padding:0;margin:0;}
+.com_modules .form-horizontal .span9 .control-group .controls label {}
+.com_modules .form-horizontal .span9 .control-group .control-label label {font-size:14px;margin-top:4px;}
+
+/* Resize parameter columns */
+@media all and (min-width:771px) {
+	.com_modules .form-horizontal .span9 .control-group .control-label {width:30% !important;}
+	.com_modules .form-horizontal .span9 .control-group .controls {margin-left:32% !important;}
+}
+@media all and (min-width:481px) and (max-width:770px){
+	.com_modules .form-horizontal .span9 .control-group .control-label {width:45% !important;}
+	.com_modules .form-horizontal .span9 .control-group .controls {margin-left:47% !important;}
+}
+.com_modules .form-horizontal .span9 .control-group-header {background:#e5f7fd;margin-top:32px !important;}
+.com_modules .form-horizontal .span9 .control-group-header .control-label,
+.com_modules .form-horizontal .span9 .control-group-header .controls {padding:0 !important;margin:0 !important;}
+
+/* Textarea & Chosen (multi-container) blocks */
+.com_modules .form-horizontal .span9 .controls .chzn-container-multi {width:90% !important;}
+.com_modules .form-horizontal .span9 .controls textarea {width:90%;}
+
+
+/* --- Style parameters for menus --- */
+.com_menus .form-horizontal #attrib-basic .control-group {border-radius:4px;padding:0;margin:0 0 4px 0 !important;}
+.com_menus .form-horizontal #attrib-basic .control-group:nth-child(2n-1) {background:#f7f7f7;}
+.com_menus .form-horizontal #attrib-basic .control-group:last-child {margin-bottom:100px !important;}
+.com_menus .form-horizontal #attrib-basic .control-group .control-label,
+.com_menus .form-horizontal #attrib-basic .control-group .controls {padding:16px;margin:0;}
+.com_menus .form-horizontal #attrib-basic .control-group .control-label label {padding:0;margin:0;}
+.com_menus .form-horizontal #attrib-basic .control-group .controls label {}
+.com_menus .form-horizontal #attrib-basic .control-group .control-label label {font-size:14px;margin-top:4px;}
+
+/* Resize parameter columns */
+@media all and (min-width:771px) {
+	.com_menus .form-horizontal #attrib-basic .control-group .control-label {width:30% !important;}
+	.com_menus .form-horizontal #attrib-basic .control-group .controls {margin-left:32% !important;}
+}
+@media all and (min-width:481px) and (max-width:770px){
+	.com_menus .form-horizontal #attrib-basic .control-group .control-label {width:45% !important;}
+	.com_menus .form-horizontal #attrib-basic .control-group .controls {margin-left:47% !important;}
+}
+.com_menus .form-horizontal #attrib-basic .control-group-header {background:#e5f7fd;margin-top:32px !important;}
+.com_menus .form-horizontal #attrib-basic .control-group-header .control-label,
+.com_menus .form-horizontal #attrib-basic .control-group-header .controls {padding:0 !important;margin:0 !important;}
+
+/* Textarea & Chosen (multi-container) blocks */
+.com_menus .form-horizontal #attrib-basic .controls .chzn-container-multi {width:90% !important;}
+.com_menus .form-horizontal #attrib-basic .controls textarea {width:90%;}

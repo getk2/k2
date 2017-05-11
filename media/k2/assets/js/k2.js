@@ -677,6 +677,13 @@ $K2(document).ready(function() {
 			});
 		}
 
+		// Assist parameter styling
+		if($('.jwHeaderContainer').length){
+			$('.jwHeaderContainer').each(function(){
+				$(this).parents('.control-group').addClass('control-group-header');
+			});
+		}
+
 	});
 })(jQuery);
 
