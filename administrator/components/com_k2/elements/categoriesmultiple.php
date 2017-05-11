@@ -18,7 +18,7 @@ class K2ElementCategoriesMultiple extends K2Element
     {
         $document = JFactory::getDocument();
 
-        K2HelperHTML::loadHeadIncludes(true);
+        K2HelperHTML::loadHeadIncludes(true, false, false, true);
 
         $db = JFactory::getDBO();
         $query = 'SELECT m.* FROM #__k2_categories m WHERE trash = 0 ORDER BY parent, ordering';
