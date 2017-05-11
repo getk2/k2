@@ -17,7 +17,7 @@ class K2ElementHeader extends K2Element
     {
         $document = JFactory::getDocument();
         
-        K2HelperHTML::loadHeadIncludes(true);
+        K2HelperHTML::loadHeadIncludes(true, false, false, true);
 
 		if (version_compare(JVERSION, '2.5.0', 'ge'))
 		{
