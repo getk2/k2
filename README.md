@@ -18,14 +18,13 @@ K2 was actually built on these 4 principles: feature-rich content in Joomla, eas
 **And best of all? K2 is totally free to use!**
 
 ### Some facts about K2
-* It has been downloaded more than 2.5 million times since March 2009
-* Almost all template clubs provide K2 specific styling and display K2 as part of their demo sites (thank you template folks!)
-* There are almost 500 extensions supporting or integrating K2 in the Joomla Extensions Directory - see http://extensions.joomla.org/search?q=k2
-* There are more than 150 K2 specific extensions in the Joomla Extensions Directory - see the "K2 Extensions" category at http://extensions.joomla.org/extensions/extension-specific/k2-extensions
+* Actively powers more than 300,000 websites worldwide ([metrics](https://metrics.getk2.org) are gathered since v2.7.0).
+* It has been downloaded more than 3 million times since March 2009.
+* Almost all template clubs provide K2 specific styling and display K2 as part of their demo sites.
+* There are hundreds of extensions supporting or integrating K2 in the Joomla Extensions Directory - see: http://extensions.joomla.org/search?q=k2
 * The Joomla Magazine and JoomlaGov.info (the directory for government websites built with Joomla) are powered by K2
-* K2 is used in some of the top Joomla websites worldwide by organizations like the Harvard Unibersity, The National Institute of Technology in Brazil, the UK's NHS, Top Gear, Nickelodeon, Groupama, Amnesty International, ActionAid, The High Court of Australia, DPG, OPAP, Avin Oil and many, many more.
-* The Gorillaz, one of the coolest music bands in the world (by Blur frontman Damon Albarn), use K2 for their website.
-* K2 is designed and developed by JoomlaWorks (established in 2006) and Nuevvo (established in 2010), both award winning & acclaimed Joomla-centric companies.
+* K2 is used in some of the top Joomla websites worldwide by organizations like the Harvard University, The National Institute of Technology in Brazil, the UK's NHS, Top Gear, Groupama, Amnesty International, ActionAid, The High Court of Australia, Arturia, Cyrus Audio and many, many more.
+* K2 is co-designed and co-developed by JoomlaWorks (established in 2006) and Nuevvo (established in 2010), both award winning & acclaimed Joomla-centric companies.
 * K2 is compatible with Joomla 1.5, 2.5 and the latest 3.x releases.
 
 ### Downloading K2
@@ -40,4 +39,4 @@ More at: https://getk2.org
 
 ***
 
-Copyright &copy; 2009-2017 [JoomlaWorks Ltd.](http://www.joomlaworks.net) & [Nuevvo Webware P.C.](http://nuevvo.com)
+Copyright &copy; 2006-2017 [JoomlaWorks Ltd.](http://www.joomlaworks.net) & [Nuevvo Webware P.C.](http://nuevvo.com)

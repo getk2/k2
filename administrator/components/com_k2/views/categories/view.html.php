@@ -14,14 +14,17 @@ jimport('joomla.application.component.view');
 
 class K2ViewCategories extends K2View
 {
-
 	function display($tpl = null)
 	{
 		$mainframe = JFactory::getApplication();
-		$params = JComponentHelper::getParams('com_k2');
+		$document = JFactory::getDocument();
 		$user = JFactory::getUser();
+
+		$params = JComponentHelper::getParams('com_k2');
+
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
+
 		$limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
 		$limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
 		$filter_order = $mainframe->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'c.ordering', 'cmd');
@@ -44,6 +47,9 @@ class K2ViewCategories extends K2View
 
 		$categories = $model->getData();
 		$categoryModel = K2Model::getInstance('Category', 'K2Model');
+
+		// JS
+		$document->addScriptDeclaration('var K2SelectItemsError = "'.JText::_('K2_SELECT_SOME_ITEMS_FIRST').'";');
 
 		$this->assignRef('params', $params);
 
@@ -70,6 +76,7 @@ class K2ViewCategories extends K2View
 			{
 				$categories[$i]->canChange = $user->authorise('core.edit.state', 'com_k2.category.'.$categories[$i]->id);
 			}
+
 			// Detect the category template
 			if (K2_JVERSION != '15')
 			{
@@ -142,7 +149,7 @@ class K2ViewCategories extends K2View
 		$categories_options = @array_merge($categories_option, $categoriesFilter);
 		$lists['categories'] = JHTML::_('select.genericlist', $categories_options, 'filter_category', '', 'value', 'text', $filter_category);
 
-		//Batch fields
+		// Batch Operations
 		$extraFieldsModel = K2Model::getInstance('ExtraFields', 'K2Model');
 		$extraFieldsGroups = $extraFieldsModel->getGroups();
 		$options = array();
@@ -177,20 +184,23 @@ class K2ViewCategories extends K2View
 		}
 		$this->assignRef('lists', $lists);
 
+		// Toolbar
 		JToolBarHelper::title(JText::_('K2_CATEGORIES'), 'k2.png');
 		$toolbar = JToolBar::getInstance('toolbar');
 
 		if ($filter_trash == 1)
 		{
-			JToolBarHelper::custom('restore', 'publish.png', 'publish_f2.png', 'K2_RESTORE', true);
 			JToolBarHelper::deleteList('K2_ARE_YOU_SURE_YOU_WANT_TO_DELETE_SELECTED_CATEGORIES', 'remove', 'K2_DELETE');
+			JToolBarHelper::custom('restore', 'publish.png', 'publish_f2.png', 'K2_RESTORE', true);
 		}
 		else
 		{
+			JToolBarHelper::addNew();
+			JToolBarHelper::editList();
 			JToolBarHelper::publishList();
 			JToolBarHelper::unpublishList();
-
-			// Batch button in modal
+			JToolBarHelper::trash('trash');
+			JToolBarHelper::custom('copy', 'copy.png', 'copy_f2.png', 'K2_COPY', true);
 			if (K2_JVERSION == '30')
 			{
 				$batchButton = '<a id="K2BatchButton" class="btn btn-small" href="#"><i class="icon-edit "></i>'.JText::_('K2_BATCH').'</a>';
@@ -199,17 +209,10 @@ class K2ViewCategories extends K2View
 			{
 				$batchButton = '<a id="K2BatchButton" href="#"><span class="icon-32-edit" title="'.JText::_('K2_BATCH').'"></span>'.JText::_('K2_BATCH').'</a>';
 			}
-
 			$toolbar->appendButton('Custom', $batchButton);
-			$document = JFactory::getDocument();
-			$document->addScriptDeclaration('var K2SelectItemsError = "'.JText::_('K2_SELECT_SOME_ITEMS_FIRST').'";');
-
-			JToolBarHelper::custom('copy', 'copy.png', 'copy_f2.png', 'K2_COPY', true);
-			JToolBarHelper::editList();
-			JToolBarHelper::addNew();
-			JToolBarHelper::trash('trash');
 		}
 
+		// Preferences (Parameters/Settings)
 		if (K2_JVERSION != '15')
 		{
 			JToolBarHelper::preferences('com_k2', 580, 800, 'K2_PARAMETERS');
@@ -237,57 +240,20 @@ class K2ViewCategories extends K2View
 			}
 			$document = JFactory::getDocument();
 			$document->addScriptDeclaration('
-            Joomla.orderTable = function() {
-                table = document.getElementById("sortTable");
-                direction = document.getElementById("directionTable");
-                order = table.options[table.selectedIndex].value;
-                if (order != \''.$this->lists['order'].'\') {
-                    dirn = \'asc\';
-            } else {
-                dirn = direction.options[direction.selectedIndex].value;
-            }
-            Joomla.tableOrdering(order, dirn, "");
-            }');
+	            Joomla.orderTable = function() {
+	                table = document.getElementById("sortTable");
+	                direction = document.getElementById("directionTable");
+	                order = table.options[table.selectedIndex].value;
+	                if (order != \''.$this->lists['order'].'\') {
+						dirn = \'asc\';
+		            } else {
+		                dirn = direction.options[direction.selectedIndex].value;
+		            }
+					Joomla.tableOrdering(order, dirn, "");
+	            }
+            ');
 		}
 
 		parent::display($tpl);
-
 	}
-
-	function move()
-	{
-
-		$mainframe = JFactory::getApplication();
-		JTable::addIncludePath(JPATH_COMPONENT.'/tables');
-		$cid = JRequest::getVar('cid');
-
-		foreach ($cid as $id)
-		{
-			$row = JTable::getInstance('K2Category', 'Table');
-			$row->load($id);
-			$rows[] = $row;
-		}
-
-		$categoriesModel = K2Model::getInstance('Categories', 'K2Model');
-		$categories_option[] = JHTML::_('select.option', 0, JText::_('K2_NONE_ONSELECTLISTS'));
-		$categories = $categoriesModel->categoriesTree(NULL, true, false);
-		$categories_options = @array_merge($categories_option, $categories);
-		foreach ($categories_options as $option)
-		{
-			if (in_array($option->value, $cid))
-				$option->disable = true;
-		}
-		$lists['categories'] = JHTML::_('select.genericlist', $categories_options, 'category', 'class="inputbox" size="8"', 'value', 'text');
-
-		$this->assignRef('rows', $rows);
-		$this->assignRef('lists', $lists);
-
-		JToolBarHelper::title(JText::_('K2_MOVE_CATEGORIES'), 'k2.png');
-
-		JToolBarHelper::custom('saveMove', 'save.png', 'save_f2.png', 'K2_SAVE', false);
-		JToolBarHelper::cancel();
-
-		parent::display();
-	}
-
 }
