@@ -14,10 +14,8 @@ jimport('joomla.application.component.view');
 
 class K2ViewItem extends K2View
 {
-
 	function display($tpl = null)
 	{
-
 		$mainframe = JFactory::getApplication();
 		$db = JFactory::getDBO();
 		$view = JRequest::getCmd('view');
@@ -28,7 +26,8 @@ class K2ViewItem extends K2View
 		JRequest::setVar('hidemainmenu', 1);
 		$document = JFactory::getDocument();
 
-		$js = "
+		// JS
+		$document->addScriptDeclaration("
 			var K2BasePath = '".JURI::base(true)."/';
 			var K2Language = [
 				'".JText::_('K2_REMOVE', true)."',
@@ -37,9 +36,9 @@ class K2ViewItem extends K2View
 				'".JText::_('K2_ARE_YOU_SURE', true)."',
 				'".JText::_('K2_YOU_ARE_NOT_ALLOWED_TO_POST_TO_THIS_CATEGORY', true)."',
 				'".JText::_('K2_OR_SELECT_A_FILE_ON_THE_SERVER', true)."'
-			]
-		";
-		$document->addScriptDeclaration($js);
+			];
+		");
+
 		K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
 		$model = K2Model::getInstance('Item', 'K2Model', array('table_path' => JPATH_COMPONENT_ADMINISTRATOR.'/tables'));
 		$item = $model->getData();
@@ -144,7 +143,7 @@ class K2ViewItem extends K2View
 			$publishDown = '';
 		}
 
-		// Set up calendar values
+		// Set up date/time values
 		$lists['createdCalendar'] = $created;
 		$lists['publish_up'] = $publishUp;
 		$lists['publish_down'] = $publishDown;
@@ -326,8 +325,10 @@ class K2ViewItem extends K2View
 			if (JString::strpos($item->video, 'remote}'))
 			{
 				preg_match("#}(.*?){/#s", $item->video, $matches);
-				if (JString::substr($matches[1], 0, 7) != 'http://')
+				if (JString::substr($matches[1], 0, 7) != 'http://' || JString::substr($matches[1], 0, 8) != 'https://')
+				{
 					$item->video = str_replace($matches[1], JURI::root().$matches[1], $item->video);
+				}
 			}
 			$item->text = $item->video;
 
@@ -353,7 +354,7 @@ class K2ViewItem extends K2View
 		}
 		else
 		{
-			// no nothing
+			// do nothing
 		}
 
 		if (isset($item->created_by))
@@ -477,6 +478,7 @@ class K2ViewItem extends K2View
 			$item->thumb = JURI::root().'media/k2/items/cache/'.md5("Image".$item->id).'_S.jpg'.$timestamp;
 		}
 
+		// Plugin Events
 		JPluginHelper::importPlugin('k2');
 		$dispatcher = JDispatcher::getInstance();
 
@@ -563,19 +565,17 @@ class K2ViewItem extends K2View
 			$this->params->set('showExtraFieldsTab', true);
 			$this->params->set('showAttachmentsTab', true);
 			$this->params->set('showK2Plugins', true);
+
+			// Toolbar
 			JToolBarHelper::title($title, 'k2.png');
+			JToolBarHelper::apply();
 			JToolBarHelper::save();
 			$saveNewIcon = version_compare(JVERSION, '2.5.0', 'ge') ? 'save-new.png' : 'save.png';
 			JToolBarHelper::custom('saveAndNew', $saveNewIcon, 'save_f2.png', 'K2_SAVE_AND_NEW', false);
-			JToolBarHelper::apply();
 			JToolBarHelper::cancel();
 		}
 
-		// ACE ACL integration has been removed. We keep this flag to avoid php notices for users who have overrides
-		$aceAclFlag = false;
-		$this->assignRef('aceAclFlag', $aceAclFlag);
-
-		// SIG PRO v3 integration
+		// For SIGPro
 		if (JPluginHelper::isEnabled('k2', 'jw_sigpro'))
 		{
 			$sigPro = true;
@@ -587,7 +587,7 @@ class K2ViewItem extends K2View
 			$sigPro = false;
 		}
 		$this->assignRef('sigPro', $sigPro);
+
 		parent::display($tpl);
 	}
-
 }
