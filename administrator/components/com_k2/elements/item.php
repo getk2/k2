@@ -57,11 +57,15 @@ class K2ElementItem extends K2Element
             if($node->attributes()->required) {
               $class = 'required ';
             }
-            $html = '<span class="input-append">
-            <input type="text" id="'.$name.'_name" value="'.htmlspecialchars($item->title, ENT_QUOTES, 'UTF-8').'" disabled="disabled" />
-            <a class="modal btn" title="'.JText::_('K2_SELECT_AN_ITEM').'"  href="'.$link.'" rel="{handler:\'iframe\', size:{x:(document.documentElement.clientWidth)*0.96, y:(document.documentElement.clientHeight)*0.96}}"><i class="icon-file"></i>'.JText::_('K2_SELECT').'</a>
-            <input type="hidden" class="'.$class.'modal-value" id="'.$name.'_id" name="'.$fieldName.'" value="'.$value.'" />
-            </span>';
+            $html = '
+            <span class="input-append">
+	            <input type="text" id="'.$name.'_name" value="'.htmlspecialchars($item->title, ENT_QUOTES, 'UTF-8').'" disabled="disabled" />
+	            <a class="modal btn" title="'.JText::_('K2_SELECT_AN_ITEM').'"  href="'.$link.'" rel="{handler:\'iframe\', size:{x:(document.documentElement.clientWidth)*0.96, y:(document.documentElement.clientHeight)*0.96}}">
+	            	<i class="icon-file"></i>'.JText::_('K2_SELECT').'
+	            </a>
+	            <input type="hidden" class="'.$class.'modal-value" id="'.$name.'_id" name="'.$fieldName.'" value="'.$value.'" />
+            </span>
+            ';
         }
         else
         {
@@ -71,10 +75,13 @@ class K2ElementItem extends K2Element
             </div>
             <div class="button2-left">
                 <div class="blank">
-                    <a class="modal btn" title="'.JText::_('K2_SELECT_AN_ITEM').'"  href="'.$link.'" rel="{handler:\'iframe\', size:{x:(document.documentElement.clientWidth)*0.96, y:(document.documentElement.clientHeight)*0.96}}">'.JText::_('K2_SELECT').'</a>
+                    <a class="modal btn" title="'.JText::_('K2_SELECT_AN_ITEM').'"  href="'.$link.'" rel="{handler:\'iframe\', size:{x:(document.documentElement.clientWidth)*0.96, y:(document.documentElement.clientHeight)*0.96}}">
+                    	'.JText::_('K2_SELECT').'
+                    </a>
                 </div>
             </div>
-            <input type="hidden" id="'.$name.'_id" name="'.$fieldName.'" value="'.( int )$value.'" />';
+            <input type="hidden" id="'.$name.'_id" name="'.$fieldName.'" value="'.( int )$value.'" />
+            ';
         }
 
         return $html;

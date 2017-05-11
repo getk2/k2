@@ -26,7 +26,13 @@ $document->addScriptDeclaration("
 	};
 ");
 
+$context = JRequest::getCmd('context');
+
 ?>
+
+<?php if($context == "modalselector"): ?>
+<h2 id="k2ModalSelectorHeader"><?php echo JText::_('K2_CATEGORIES'); ?></h2>
+<?php endif; ?>
 
 <form action="index.php" method="post" name="adminForm" id="adminForm">
 	<table class="k2AdminTableFilters table">
@@ -58,9 +64,7 @@ $document->addScriptDeclaration("
 		                    <?php echo JHtml::_('grid.sort', '<i class="icon-menu-2"></i>', 'c.ordering', @$this->lists['order_Dir'], @$this->lists['order'], null, 'asc', 'K2_ORDER'); ?>
 		                </th>
 		                <?php else: ?>
-		                <th>
-		                    #
-		                </th>
+		                <th>#</th>
 		                <?php endif; ?>
 						<th>
 							<input id="jToggler" type="checkbox" name="toggle" value="" />
@@ -114,7 +118,7 @@ $document->addScriptDeclaration("
 				<tbody>
 					<?php foreach ($this->rows as $key => $row) :	?>
 					<tr class="row<?php echo ($key%2); ?>" sortable-group-id="<?php echo $row->parent; ?>">
-		               
+
 		                <?php if(K2_JVERSION == '30'): ?>
 		                <td class="order center hidden-phone">
 		                <?php if($row->canChange): ?>
@@ -138,13 +142,21 @@ $document->addScriptDeclaration("
 							<?php echo $row->treename; ?> (<?php echo $row->numOfItems.' '.JText::_('K2_ACTIVE'); ?> / <?php echo $row->numOfTrashedItems.' '.JText::_('K2_TRASHED'); ?>)
 							<?php endif; ?>
 							<?php else: ?>
-							<a href="<?php echo JRoute::_('index.php?option=com_k2&view=category&cid='.$row->id); ?>"><?php echo $row->treename; ?>
-							<?php if($this->params->get('showItemsCounterAdmin')): ?>
-							<span class="small">
-							(<?php echo $row->numOfItems.' '.JText::_('K2_ACTIVE'); ?> / <?php echo $row->numOfTrashedItems.' '.JText::_('K2_TRASHED'); ?>)
-							</span>
-							<?php endif; ?>
+							<?php if($context == "modalselector"): ?>
+							<a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ITEM'); ?>" onclick="window.parent.jSelectCategory('<?php echo $row->id; ?>', '<?php echo str_replace(array("'", "\""), array("\\'", ""),$row->name); ?>', 'id');">
+								<?php echo $row->treename; ?>
+								<?php if($this->params->get('showItemsCounterAdmin')): ?>
+								<span class="small">(<?php echo $row->numOfItems.' '.JText::_('K2_ACTIVE'); ?> / <?php echo $row->numOfTrashedItems.' '.JText::_('K2_TRASHED'); ?>)</span>
+								<?php endif; ?>
 							</a>
+							<?php else: ?>
+							<a href="<?php echo JRoute::_('index.php?option=com_k2&view=category&cid='.$row->id); ?>">
+								<?php echo $row->treename; ?>
+								<?php if($this->params->get('showItemsCounterAdmin')): ?>
+								<span class="small">(<?php echo $row->numOfItems.' '.JText::_('K2_ACTIVE'); ?> / <?php echo $row->numOfTrashedItems.' '.JText::_('K2_TRASHED'); ?>)</span>
+								<?php endif; ?>
+							</a>
+							<?php endif; ?>
 							<?php endif; ?>
 						</td>
 						<?php if(K2_JVERSION != '30'): ?>
@@ -191,16 +203,17 @@ $document->addScriptDeclaration("
 			</table>
 		</div>
 	</div>
-	
+
+	<!-- Batch Operations Modal -->
 	<div id="k2BatchOperations" class="jw-modal">
 		<div class="jw-modal-content">
 			<div class="jw-modal-header">
 				<div class="row row-nomax">
 					<h3 class="k2FLeft"><?php echo JText::_('K2_BATCH_OPERATIONS'); ?></h3>
-				<span class="k2FRight">
+					<span class="k2FRight">
 						<strong><span id="k2BatchOperationsCounter">0</span></strong>
-					<?php echo JText::_('K2_SELECTED_ITEMS'); ?>
-				</span>
+						<?php echo JText::_('K2_SELECTED_ITEMS'); ?>
+					</span>
 				</div>
 			</div>
 			<div class="subheader-alt">
@@ -236,8 +249,8 @@ $document->addScriptDeclaration("
 						</div>
 						<div class="column small-12 large-6 clearfix action-alt">
 							<?php if(isset($this->lists['language'])): ?>
-								<label class="label-alt"><i class="fa fa-globe"></i> <?php echo JText::_('K2_LANGUAGE'); ?></label>
-								<?php echo $this->lists['batchLanguage']; ?>
+							<label class="label-alt"><i class="fa fa-globe"></i> <?php echo JText::_('K2_LANGUAGE'); ?></label>
+							<?php echo $this->lists['batchLanguage']; ?>
 							<?php endif; ?>
 						</div>
 					</div>
@@ -262,5 +275,9 @@ $document->addScriptDeclaration("
 	<input type="hidden" name="filter_order" value="<?php echo $this->lists['order']; ?>" />
 	<input type="hidden" name="filter_order_Dir" value="<?php echo $this->lists['order_Dir']; ?>" />
 	<input type="hidden" name="boxchecked" value="0" />
+	<?php if($context == "modalselector"): ?>
+	<input type="hidden" name="context" value="modalselector" />
+	<input type="hidden" name="tmpl" value="component" />
+	<?php endif; ?>
 	<?php echo JHTML::_( 'form.token' ); ?>
 </form>

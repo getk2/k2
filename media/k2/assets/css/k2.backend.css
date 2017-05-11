@@ -6,7 +6,12 @@
  * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
-/* categorieslatest.php, userslatest.php, users.php, items.php */
+/* --- Common --- */
+.k2clr {clear:both;height:0;line-height:0;border:none;float:none;background:none;padding:0;margin:0;}
+
+
+
+/* --- jQueryUI Sortables for categorieslatest.php, userslatest.php, users.php, items.php --- */
 .ui-sortable {padding:4px 0;position:relative;}
 #categoriesList li,
 #usersList li,
@@ -16,11 +21,13 @@
 .ui-sortable img.remove {width:16px;height:16px;margin:0;margin-right:4px;cursor:pointer;float:left;}
 
 
-/* Header Element */
+
+/* --- Header Element --- */
 .jwHeaderContainer {background:#e5f7fd;color:#346b93;font-size:20px;padding:24px 16px;margin:0;border-radius:4px;}
 .jwHeaderContainer15 {clear:both;font-weight:bold;font-size:12px;color:#369;margin:0;padding:0;background:#d5e7fa;border-bottom:2px solid #96b0cb;float:left;width:100%;}
-	.jwHeaderContent {}
-	.jwHeaderClr {clear:both;height:0;line-height:0;border:none;float:none;background:none;padding:0;margin:0;}
+.jwHeaderContent {}
+.jwHeaderClr {clear:both;height:0;line-height:0;border:none;float:none;background:none;padding:0;margin:0;}
+
 
 
 /* --- Style parameters for modules --- */
@@ -51,6 +58,7 @@
 .com_modules .form-horizontal .span9 .controls textarea {width:90%;}
 
 
+
 /* --- Style parameters for menus --- */
 .com_menus .form-horizontal #attrib-basic .control-group {border-radius:4px;padding:0;margin:0 0 4px 0 !important;}
 .com_menus .form-horizontal #attrib-basic .control-group:nth-child(2n-1) {background:#f7f7f7;}
@@ -77,6 +85,8 @@
 /* Textarea & Chosen (multi-container) blocks */
 .com_menus .form-horizontal #attrib-basic .controls .chzn-container-multi {width:90% !important;}
 .com_menus .form-horizontal #attrib-basic .controls textarea {width:90%;}
+
+
 
 /* --- Style component parameters --- */
 .com_config .form-horizontal .span10 .control-group {border-radius:4px;padding:0;margin:0 0 4px 0 !important;}
@@ -111,3 +121,5 @@
 .com_config .form-horizontal .span10 .controls fieldset.checkbox {padding:0 !important;margin:4px 0 0 0 !important;}
 .com_config .form-horizontal .span10 .controls fieldset.radio input[type="radio"],
 .com_config .form-horizontal .span10 .controls fieldset.radio .checkbox input[type="checkbox"] {display:inline-block !important;float:none !important;margin:-2px 0 0 0 !important;}
+
+/* END */
