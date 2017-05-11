@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		2.7.x
+ * @version		2.8.x
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2017 JoomlaWorks Ltd. All rights reserved.

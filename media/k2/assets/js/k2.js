@@ -1,14 +1,14 @@
 /**
- * @version 	2.7.x
- * @package 	K2
- * @author 		JoomlaWorks http://www.joomlaworks.net
- * @copyright 	Copyright (c) 2006 - 2017 JoomlaWorks Ltd. All rights reserved.
- * @license 	GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @version    2.8.x
+ * @package    K2
+ * @author     JoomlaWorks http://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2017 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
 var K2JVersion;
-var selectsInstance;
 var K2SitePath;
+var selectsInstance;
 
 $K2(document).ready(function() {
 
@@ -656,7 +656,7 @@ $K2(document).ready(function() {
 
 
 /*
- * JS encapsulated behind the "jQuery" object - added in K2 v2.7.2+
+ * JS encapsulated behind the "jQuery" object - added in K2 v2.8.0+
  */
 (function($){
 	$(document).ready(function(){
