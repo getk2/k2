@@ -268,7 +268,7 @@ class plgSystemK2 extends JPlugin
 
 			$pattern = '/\r\n|\r|\n/';
 
-			// *** Mootools Snippet ***
+			/* Mootools Snippet */
 			$js = "
 			window.addEvent('domready', function(){
 				var target = $$('table.adminform');
@@ -442,7 +442,7 @@ class plgSystemK2 extends JPlugin
 
 			$pattern = '/\r\n|\r|\n/';
 
-			// *** Mootools Snippet ***
+			/* Mootools Snippet */
 			$js = "
 			window.addEvent('domready', function(){
 				var target = $$('table.adminform');
@@ -460,8 +460,9 @@ class plgSystemK2 extends JPlugin
 
 	function onAfterRoute()
 	{
-
+		$params = JComponentHelper::getParams('com_k2');
 		$mainframe = JFactory::getApplication();
+		$document = JFactory::getDocument();
 		$user = JFactory::getUser();
 		$basepath = ($mainframe->isSite()) ? JPATH_SITE : JPATH_ADMINISTRATOR;
 
@@ -479,10 +480,6 @@ class plgSystemK2 extends JPlugin
 		{
 			return;
 		}
-
-		$document = JFactory::getDocument();
-
-		$params = JComponentHelper::getParams('com_k2');
 
 		// jQuery and K2 JS loading
 		K2HelperHTML::loadHeadIncludes();
@@ -529,7 +526,6 @@ class plgSystemK2 extends JPlugin
 		// Add related CSS to the <head>
 		if ($document->getType() == 'html' && $params->get('enable_css'))
 		{
-
 			jimport('joomla.filesystem.file');
 
 			// k2.fonts.css
@@ -552,9 +548,7 @@ class plgSystemK2 extends JPlugin
 				else
 					$document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.print.css?v='.K2_CURRENT_VERSION, 'text/css', 'print');
 			}
-
 		}
-
 	}
 
 	function onAfterDispatch()

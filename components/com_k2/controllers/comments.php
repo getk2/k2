@@ -15,7 +15,8 @@ class K2ControllerComments extends K2Controller
 {
     public function display($cachable = false, $urlparams = array())
     {
-
+	    $params = JComponentHelper::getParams('com_k2');
+		$document = JFactory::getDocument();
         $user = JFactory::getUser();
         if ($user->guest)
         {
@@ -33,11 +34,7 @@ class K2ControllerComments extends K2Controller
             $application->redirect(JRoute::_($url, false));
         }
         JRequest::setVar('tmpl', 'component');
-
-        $params = JComponentHelper::getParams('com_k2');
-
-        $document = JFactory::getDocument();
-
+        
         // Language
         $language = JFactory::getLanguage();
         $language->load('com_k2', JPATH_ADMINISTRATOR);
