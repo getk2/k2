@@ -9,64 +9,91 @@
 
 // no direct access
 defined('_JEXEC') or die;
-?>
-<script type="text/javascript">
+
+/* TO DO:
+   - Remove inline JS, append to head JS
+   - Move head JS to view.html.php
+*/
+
+$document = JFactory::getDocument();
+$document->addScriptDeclaration("
 	Joomla.submitbutton = function(pressbutton) {
 		if (pressbutton == 'remove') {
 			if (document.adminForm.boxchecked.value==0){
-				alert('<?php echo JText::_('K2_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST_TO_DELETE', true); ?>');
+				alert('".JText::_('K2_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST_TO_DELETE', true)."');
 				return false;
 			}
-			if (confirm('<?php echo JText::_('K2_ARE_YOU_SURE_YOU_WANT_TO_DELETE_SELECTED_COMMENTS', true); ?>')){
-				submitform( pressbutton );
+			if (confirm('".JText::_('K2_ARE_YOU_SURE_YOU_WANT_TO_DELETE_SELECTED_COMMENTS', true)."')){
+				submitform(pressbutton);
 			}
 		} else if (pressbutton == 'deleteUnpublished') {
-			if (confirm('<?php echo JText::_('K2_THIS_WILL_PERMANENTLY_DELETE_ALL_UNPUBLISHED_COMMENTS_ARE_YOU_SURE', true); ?>')){
-				submitform( pressbutton );
+			if (confirm('".JText::_('K2_THIS_WILL_PERMANENTLY_DELETE_ALL_UNPUBLISHED_COMMENTS_ARE_YOU_SURE', true)."')){
+				submitform(pressbutton);
 			}
 		} else if (pressbutton == 'publish') {
 			if (document.adminForm.boxchecked.value==0){
-				alert('<?php echo JText::_('K2_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST_TO_PUBLISH', true); ?>');
+				alert('".JText::_('K2_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST_TO_PUBLISH', true)."');
 				return false;
 			}
-			submitform( pressbutton );
+			submitform(pressbutton);
 		} else if (pressbutton == 'unpublish') {
 			if (document.adminForm.boxchecked.value==0){
-				alert('<?php echo JText::_('K2_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST_TO_UNPUBLISH', true); ?>');
+				alert('".JText::_('K2_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST_TO_UNPUBLISH', true)."');
 				return false;
 			}
-			submitform( pressbutton );
+			submitform(pressbutton);
 		}  else {
-			submitform( pressbutton );
+			submitform(pressbutton);
 		}
 	};
-</script>
+");
+
+?>
+
 <form action="<?php echo JRoute::_('index.php'); ?>" method="post" name="adminForm" id="adminForm">
 	<?php if($this->mainframe->isSite()): ?>
-	<div id="k2FrontendContainer">
+	<!-- Frontend Comments Moderation -->
+	<div id="k2FrontendContainer" class="isJ<?php echo K2_JVERSION; ?>">
 		<div id="k2Frontend">
 			<table class="k2FrontendToolbar" cellpadding="2" cellspacing="4">
 				<tr>
 					<td id="toolbar-publish" class="button">
-						<a class="toolbar" onclick="Joomla.submitbutton('publish'); return false;" href="#"><?php echo JText::_('K2_PUBLISH'); ?></a>
+						<a class="toolbar" onclick="Joomla.submitbutton('publish'); return false;" href="#">
+							<?php echo JText::_('K2_PUBLISH'); ?>
+						</a>
 					</td>
 					<td id="toolbar-unpublish" class="button">
-						<a class="toolbar" onclick="Joomla.submitbutton('unpublish'); return false;" href="#"><?php echo JText::_('K2_UNPUBLISH'); ?></a>
+						<a class="toolbar" onclick="Joomla.submitbutton('unpublish'); return false;" href="#">
+							<?php echo JText::_('K2_UNPUBLISH'); ?>
+						</a>
 					</td>
 					<td id="toolbar-delete" class="button">
-						<a class="toolbar" onclick="Joomla.submitbutton('remove'); return false;" href="#"><?php echo JText::_('K2_DELETE'); ?></a>
+						<a class="toolbar" onclick="Joomla.submitbutton('remove'); return false;" href="#">
+							<?php echo JText::_('K2_DELETE'); ?>
+						</a>
 					</td>
 					<td id="toolbar-Link" class="button">
-						<a onclick="Joomla.submitbutton('deleteUnpublished'); return false;" href="#"><?php echo JText::_('K2_DELETE_ALL_UNPUBLISHED'); ?></a>
+						<a onclick="Joomla.submitbutton('deleteUnpublished'); return false;" href="#">
+							<?php echo JText::_('K2_DELETE_ALL_UNPUBLISHED'); ?>
+						</a>
+					</td>
+					<td id="toolbar-cancel" class="button">
+						<a class="toolbar" href="#">
+							<span title="<?php echo JText::_('K2_CANCEL'); ?>" class="icon-32-cancel icon-cancel"></span> <?php echo JText::_('K2_CLOSE'); ?>
+						</a>
 					</td>
 				</tr>
 			</table>
+
 			<div id="k2FrontendEditToolbar">
-				<h2 class="header icon-48-k2"><?php echo JText::_('K2_MODERATE_COMMENTS_TO_MY_ITEMS'); ?></h2>
+				<h2 class="header icon-48-k2">
+					<?php echo JText::_('K2_MODERATE_COMMENTS_TO_MY_ITEMS'); ?>
+				</h2>
 			</div>
+
 			<div class="clr"></div>
-			<hr class="sep" />
-			<?php endif; ?>
+	<?php endif; ?>
+
 			<table class="k2AdminTableFilters table">
 				<tr>
 					<td class="k2AdminTableFiltersSearch">
@@ -86,6 +113,7 @@ defined('_JEXEC') or die;
 					</td>
 				</tr>
 			</table>
+
 			<table class="adminlist table table-striped">
 				<thead>
 					<tr>
@@ -186,11 +214,11 @@ defined('_JEXEC') or die;
 							</a>
 							<?php endif; ?>
 						</td>
-		        <td class="k2Center center">
-		        	<?php if($row->reportUserLink): ?>
-		        	<a class="k2ReportUserButton k2IsIcon" href="<?php echo $row->reportUserLink; ?>">&times;</a>
-		        	<?php endif; ?>
-		        </td>
+						<td class="k2Center center">
+							<?php if($row->reportUserLink): ?>
+							<a class="k2ReportUserButton k2IsIcon" href="<?php echo $row->reportUserLink; ?>">&times;</a>
+							<?php endif; ?>
+						</td>
 						<td class="hidden-phone">
 							<a class="modal" rel="{handler: 'iframe', size: {x: 1000, y: 600}}"	href="<?php echo JURI::root().K2HelperRoute::getItemRoute($row->itemID.':'.urlencode($row->itemAlias),$row->catid.':'.urlencode($row->catAlias)); ?>"><?php echo $row->title; ?></a>
 						</td>
@@ -210,6 +238,7 @@ defined('_JEXEC') or die;
 					<?php endforeach; ?>
 				</tbody>
 			</table>
+
 			<input type="hidden" name="isSite" value="<?php echo (int)$this->mainframe->isSite(); ?>" />
 			<input type="hidden" name="option" value="com_k2" />
 			<input type="hidden" name="view" value="<?php echo JRequest::getCmd('view'); ?>" />
@@ -219,8 +248,9 @@ defined('_JEXEC') or die;
 			<input type="hidden" name="boxchecked" value="0" />
 			<input type="hidden" id="commentID" name="commentID" value="" />
 			<input type="hidden" id="commentText" name="commentText" value="" />
-			<?php echo JHTML::_( 'form.token' ); ?>
-			<?php if($this->mainframe->isSite()): ?>
+			<?php echo JHTML::_('form.token'); ?>
+
+	<?php if($this->mainframe->isSite()): ?>
 		</div>
 	</div>
 	<?php endif; ?>

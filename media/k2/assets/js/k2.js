@@ -586,6 +586,7 @@ $K2(document).ready(function() {
                     $K2('#search-field').addClass('tagsLoading');
                 }
             });
+            
             if ($K2('input[name=isSite]').val() == 1) {
 
 				if(typeof(parent.$) !== 'undefined') {
@@ -598,6 +599,7 @@ $K2(document).ready(function() {
 				}
 
                 var elements = [parent.$K2('#sbox-btn-close'), $K2('#toolbar-cancel a')];
+                
                 $K2.each(elements, function(index, element) {
                     element.unbind();
                     element.click(function(event) {
