@@ -17,9 +17,11 @@ class K2ViewCategory extends K2View
 
     function display($tpl = null)
     {
-        JHTML::_('behavior.modal');
-
 		$document = JFactory::getDocument();
+
+		JHTML::_('behavior.modal');
+
+		// JS
         $document->addScriptDeclaration("var K2BasePath = '".JURI::base(true)."/';");
 
         $model = $this->getModel();
@@ -102,9 +104,10 @@ class K2ViewCategory extends K2View
 
         $this->assignRef('lists', $lists);
 
-        // Toolbar
-        JRequest::setVar('hidemainmenu', 1);
+		// Disable Joomla menu
+		JRequest::setVar('hidemainmenu', 1);
 
+        // Toolbar
         (JRequest::getInt('cid')) ? $title = JText::_('K2_EDIT_CATEGORY') : $title = JText::_('K2_ADD_CATEGORY');
         JToolBarHelper::title($title, 'k2.png');
 

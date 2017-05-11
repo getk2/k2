@@ -17,14 +17,20 @@ class K2ViewItem extends K2View
 	function display($tpl = null)
 	{
 		$mainframe = JFactory::getApplication();
+		$document = JFactory::getDocument();
+		$user = JFactory::getUser();
+
 		$db = JFactory::getDBO();
 		$view = JRequest::getCmd('view');
+		$task = JRequest::getCmd('task');
+
+		$params = JComponentHelper::getParams('com_k2');
+
 		jimport('joomla.filesystem.file');
 		jimport('joomla.html.pane');
+
 		JHTML::_('behavior.keepalive');
 		JHTML::_('behavior.modal');
-		JRequest::setVar('hidemainmenu', 1);
-		$document = JFactory::getDocument();
 
 		// JS
 		$document->addScriptDeclaration("
@@ -47,13 +53,11 @@ class K2ViewItem extends K2View
 			'params',
 			'plugins'
 		));
-		$user = JFactory::getUser();
 
-		// Permissions check on frontend
+		// Permissions check for frontend editing
 		if ($mainframe->isSite())
 		{
 			JLoader::register('K2HelperPermissions', JPATH_COMPONENT.'/helpers/permissions.php');
-			$task = JRequest::getCmd('task');
 			if ($task == 'edit' && !K2HelperPermissions::canEditItem($item->created_by, $item->catid))
 			{
 				JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
@@ -62,13 +66,13 @@ class K2ViewItem extends K2View
 			{
 				JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
 			}
-			// Get permissions
+
+			// Get user permissions
 			$K2Permissions = K2Permissions::getInstance();
 			$this->assignRef('permissions', $K2Permissions->permissions);
 
 			// Build permissions message
 			$permissionsLabels = array();
-
 			if ($this->permissions->get('add'))
 			{
 				$permissionsLabels[] = JText::_('K2_ADD_ITEMS');
@@ -91,8 +95,8 @@ class K2ViewItem extends K2View
 			}
 
 			$permissionsMessage = JText::_('K2_YOU_ARE_ALLOWED_TO').' '.implode(', ', $permissionsLabels);
-			$this->assignRef('permissionsMessage', $permissionsMessage);
 
+			$this->assignRef('permissionsMessage', $permissionsMessage);
 		}
 
 		if ($item->isCheckedOut($user->get('id'), $item->checked_out))
@@ -128,6 +132,7 @@ class K2ViewItem extends K2View
 			$dateFormat = '%Y-%m-%d %H:%M:%S';
 		}
 
+		// Date/time
 		$created = $item->created;
 		$publishUp = $item->publish_up;
 		$publishDown = $item->publish_down;
@@ -143,7 +148,6 @@ class K2ViewItem extends K2View
 			$publishDown = '';
 		}
 
-		// Set up date/time values
 		$lists['createdCalendar'] = $created;
 		$lists['publish_up'] = $publishUp;
 		$lists['publish_down'] = $publishDown;
@@ -166,7 +170,7 @@ class K2ViewItem extends K2View
 			$lists['modified'] = JHTML::_('date', $item->modified, JText::_('DATE_FORMAT_LC2'));
 		}
 
-		$params = JComponentHelper::getParams('com_k2');
+		// Editors
 		$wysiwyg = JFactory::getEditor();
 		$onSave = '';
 		if ($params->get("mergeEditors"))
@@ -199,9 +203,9 @@ class K2ViewItem extends K2View
 				$onSave .= $wysiwyg->save('fulltext');
 			}
 		}
-
 		$document->addScriptDeclaration("function onK2EditorSave(){ ".$onSave." }");
 
+		// Publishing
 		$lists['published'] = JHTML::_('select.booleanlist', 'published', 'class="inputbox"', $item->published);
 		$lists['featured'] = JHTML::_('select.booleanlist', 'featured', 'class="inputbox"', $item->featured);
 		$lists['access'] = version_compare(JVERSION, '2.5', 'ge') ? JHTML::_('access.level', 'access', $item->access, '', false) : str_replace('size="3"', "", JHTML::_('list.accesslevel', $item));
@@ -260,12 +264,10 @@ class K2ViewItem extends K2View
 		}
 
 		$lists['uploadedVideo'] = (!$remoteVideo && !$providerVideo && !$embedVideo) ? true : false;
-
 		if ($lists['uploadedVideo'] || $item->video == '')
 		{
 			$options['startOffset'] = 0;
 		}
-
 		$document->addScriptDeclaration("var K2ActiveMediaTab = ".$options['startOffset']);
 
 		$lists['remoteVideo'] = ($remoteVideo) ? preg_replace('%\{[a-z0-9-_]*\}(.*)\{/[a-z0-9-_]*\}%i', '\1', $item->video) : '';
@@ -352,10 +354,6 @@ class K2ViewItem extends K2View
 
 			$item->video = $item->text;
 		}
-		else
-		{
-			// do nothing
-		}
 
 		if (isset($item->created_by))
 		{
@@ -408,6 +406,7 @@ class K2ViewItem extends K2View
 		$category = JTable::getInstance('K2Category', 'Table');
 		$category->load($item->catid);
 
+		// Extra fields
 		$extraFieldModel = K2Model::getInstance('ExtraField', 'K2Model');
 		if ($category->id)
 		{
@@ -423,6 +422,7 @@ class K2ViewItem extends K2View
 			$extraFields[$i]->element = $extraFieldModel->renderExtraField($extraFields[$i], $item->id);
 		}
 
+		// Attachments
 		if ($item->id)
 		{
 			$item->attachments = $model->getAttachments($item->id);
@@ -445,6 +445,7 @@ class K2ViewItem extends K2View
 			$item->ratingCount = 0;
 		}
 
+		// Tags
 		if ($user->gid < 24 && $params->get('lockTags'))
 		{
 			$params->set('taggingSystem', 0);
@@ -463,19 +464,20 @@ class K2ViewItem extends K2View
 			$lists['selectedTags'] = '<select size="10" multiple="multiple" id="selectedTags" name="selectedTags[]"></select>';
 		}
 
+		// Metadata
 		$lists['metadata'] = class_exists('JParameter') ? new JParameter($item->metadata) : new JRegistry($item->metadata);
 
+		// Image
 		$date = JFactory::getDate($item->modified);
 		$timestamp = '?t='.$date->toUnix();
-
-		if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_XL.jpg'))
-		{
-			$item->image = JURI::root().'media/k2/items/cache/'.md5("Image".$item->id).'_XL.jpg'.$timestamp;
-		}
 
 		if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_S.jpg'))
 		{
 			$item->thumb = JURI::root().'media/k2/items/cache/'.md5("Image".$item->id).'_S.jpg'.$timestamp;
+		}
+		if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_XL.jpg'))
+		{
+			$item->image = JURI::root().'media/k2/items/cache/'.md5("Image".$item->id).'_XL.jpg'.$timestamp;
 		}
 
 		// Plugin Events
@@ -531,6 +533,7 @@ class K2ViewItem extends K2View
 		));
 		$this->assignRef('K2PluginsItemOther', $K2PluginsItemOther);
 
+		// Parameters
 		if (version_compare(JVERSION, '1.6.0', 'ge'))
 		{
 			jimport('joomla.form.form');
@@ -557,15 +560,12 @@ class K2ViewItem extends K2View
 		(JRequest::getInt('cid')) ? $title = JText::_('K2_EDIT_ITEM') : $title = JText::_('K2_ADD_ITEM');
 		$this->assignRef('title', $title);
 		$this->assignRef('mainframe', $mainframe);
+
+		// Disable Joomla menu
+		JRequest::setVar('hidemainmenu', 1);
+
 		if ($mainframe->isAdmin())
 		{
-			$this->params->set('showImageTab', true);
-			$this->params->set('showImageGalleryTab', true);
-			$this->params->set('showVideoTab', true);
-			$this->params->set('showExtraFieldsTab', true);
-			$this->params->set('showAttachmentsTab', true);
-			$this->params->set('showK2Plugins', true);
-
 			// Toolbar
 			JToolBarHelper::title($title, 'k2.png');
 			JToolBarHelper::apply();
@@ -573,6 +573,14 @@ class K2ViewItem extends K2View
 			$saveNewIcon = version_compare(JVERSION, '2.5.0', 'ge') ? 'save-new.png' : 'save.png';
 			JToolBarHelper::custom('saveAndNew', $saveNewIcon, 'save_f2.png', 'K2_SAVE_AND_NEW', false);
 			JToolBarHelper::cancel();
+
+			// Tabs
+			$this->params->set('showImageTab', true);
+			$this->params->set('showImageGalleryTab', true);
+			$this->params->set('showVideoTab', true);
+			$this->params->set('showExtraFieldsTab', true);
+			$this->params->set('showAttachmentsTab', true);
+			$this->params->set('showK2Plugins', true);
 		}
 
 		// For SIGPro
