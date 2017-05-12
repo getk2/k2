@@ -10,22 +10,6 @@
 // no direct access
 defined('_JEXEC') or die;
 
-$document = JFactory::getDocument();
-$document->addScriptDeclaration("
-	Joomla.submitbutton = function(pressbutton){
-		if (pressbutton == 'cancel') {
-			submitform( pressbutton );
-			return;
-		}
-		if (\$K2.trim(\$K2('#name').val()) == '') {
-			alert( '".JText::_('K2_A_CATEGORY_MUST_AT_LEAST_HAVE_A_TITLE', true)."' );
-		} else {
-			".$this->onSave."
-			submitform( pressbutton );
-		}
-	};
-");
-
 ?>
 
 <form action="index.php" enctype="multipart/form-data" method="post" name="adminForm" id="adminForm" class="k2CategoryForm">

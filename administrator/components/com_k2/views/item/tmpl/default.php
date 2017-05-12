@@ -10,30 +10,6 @@
 // no direct access
 defined('_JEXEC') or die;
 
-$document = JFactory::getDocument();
-$document->addScriptDeclaration("
-	Joomla.submitbutton = function(pressbutton){
-		if (pressbutton == 'cancel') {
-			submitform( pressbutton );
-			return;
-		}
-		if (\$K2.trim(\$K2('#title').val()) == '') {
-			alert( '".JText::_('K2_ITEM_MUST_HAVE_A_TITLE', true)."' );
-		}
-		else if (\$K2.trim(\$K2('#catid').val()) == '0') {
-			alert( '".JText::_('K2_PLEASE_SELECT_A_CATEGORY', true)."' );
-		}
-		else {
-			syncExtraFieldsEditor();
-			var validation = validateExtraFields();
-			if(validation === true) {
-				\$K2('#selectedTags option').attr('selected', 'selected');
-				submitform( pressbutton );
-			}
-		}
-	};
-");
-
 ?>
 
 <form action="index.php" enctype="multipart/form-data" method="post" name="adminForm" id="adminForm">

@@ -49,7 +49,22 @@ class K2ViewCategories extends K2View
 		$categoryModel = K2Model::getInstance('Category', 'K2Model');
 
 		// JS
-		$document->addScriptDeclaration('var K2SelectItemsError = "'.JText::_('K2_SELECT_SOME_ITEMS_FIRST').'";');
+		$document->addScriptDeclaration("
+			var K2SelectItemsError = '".JText::_('K2_SELECT_SOME_ITEMS_FIRST')."';
+
+			Joomla.submitbutton = function(pressbutton) {
+				if (pressbutton == 'trash') {
+					var answer = confirm('".JText::_('K2_WARNING_YOU_ARE_ABOUT_TO_TRASH_THE_SELECTED_CATEGORIES_THEIR_CHILDREN_CATEGORIES_AND_ALL_THEIR_INCLUDED_ITEMS', true)."')
+					if (answer){
+						submitform( pressbutton );
+					} else {
+						return;
+					}
+				} else {
+					submitform( pressbutton );
+				}
+			};
+		");
 
 		$this->assignRef('params', $params);
 
@@ -239,7 +254,6 @@ class K2ViewCategories extends K2View
 			{
 				JHtml::_('sortablelist.sortable', 'k2CategoriesList', 'adminForm', strtolower($this->lists['order_Dir']), 'index.php?option=com_k2&view=categories&task=saveorder&format=raw');
 			}
-			$document = JFactory::getDocument();
 			$document->addScriptDeclaration('
 	            Joomla.orderTable = function() {
 	                table = document.getElementById("sortTable");

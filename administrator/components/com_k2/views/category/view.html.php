@@ -21,9 +21,6 @@ class K2ViewCategory extends K2View
 
 		JHTML::_('behavior.modal');
 
-		// JS
-        $document->addScriptDeclaration("var K2BasePath = '".JURI::base(true)."/';");
-
         $model = $this->getModel();
         $category = $model->getData();
         if (K2_JVERSION == '15')
@@ -38,6 +35,7 @@ class K2ViewCategory extends K2View
             $category->published = 1;
         $this->assignRef('row', $category);
 
+		// Editor
         $wysiwyg = JFactory::getEditor();
         $editor = $wysiwyg->display('description', $category->description, '100%', '250px', '', '', array('pagebreak', 'readmore'));
         $this->assignRef('editor', $editor);
@@ -47,6 +45,24 @@ class K2ViewCategory extends K2View
 			$onSave = $wysiwyg->save('description');
 		}
 		$this->assignRef('onSave', $onSave);
+		
+		// JS
+        $document->addScriptDeclaration("
+        	var K2BasePath = '".JURI::base(true)."/';
+        	
+			Joomla.submitbutton = function(pressbutton){
+				if (pressbutton == 'cancel') {
+					submitform(pressbutton);
+					return;
+				}
+				if (\$K2.trim(\$K2('#name').val()) == '') {
+					alert( '".JText::_('K2_A_CATEGORY_MUST_AT_LEAST_HAVE_A_TITLE', true)."' );
+				} else {
+					".$onSave."
+					submitform(pressbutton);
+				}
+			};
+        ");
 
         $lists = array();
         $lists['published'] = JHTML::_('select.booleanlist', 'published', 'class="inputbox"', $category->published);

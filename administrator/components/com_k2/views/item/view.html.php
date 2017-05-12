@@ -43,6 +43,27 @@ class K2ViewItem extends K2View
 				'".JText::_('K2_YOU_ARE_NOT_ALLOWED_TO_POST_TO_THIS_CATEGORY', true)."',
 				'".JText::_('K2_OR_SELECT_A_FILE_ON_THE_SERVER', true)."'
 			];
+
+			Joomla.submitbutton = function(pressbutton){
+				if (pressbutton == 'cancel') {
+					submitform( pressbutton );
+					return;
+				}
+				if (\$K2.trim(\$K2('#title').val()) == '') {
+					alert( '".JText::_('K2_ITEM_MUST_HAVE_A_TITLE', true)."' );
+				}
+				else if (\$K2.trim(\$K2('#catid').val()) == '0') {
+					alert( '".JText::_('K2_PLEASE_SELECT_A_CATEGORY', true)."' );
+				}
+				else {
+					syncExtraFieldsEditor();
+					var validation = validateExtraFields();
+					if(validation === true) {
+						\$K2('#selectedTags option').attr('selected', 'selected');
+						submitform( pressbutton );
+					}
+				}
+			};
 		");
 
 		K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/models');

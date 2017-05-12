@@ -10,22 +10,6 @@
 // no direct access
 defined('_JEXEC') or die;
 
-$document = JFactory::getDocument();
-$document->addScriptDeclaration("
-	Joomla.submitbutton = function(pressbutton) {
-		if (pressbutton == 'trash') {
-			var answer = confirm('".JText::_('K2_WARNING_YOU_ARE_ABOUT_TO_TRASH_THE_SELECTED_CATEGORIES_THEIR_CHILDREN_CATEGORIES_AND_ALL_THEIR_INCLUDED_ITEMS', true)."')
-			if (answer){
-				submitform( pressbutton );
-			} else {
-				return;
-			}
-		} else {
-			submitform( pressbutton );
-		}
-	};
-");
-
 $context = JRequest::getCmd('context');
 
 ?>
