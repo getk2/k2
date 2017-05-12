@@ -163,7 +163,7 @@ $K2(document).ready(function() {
                 });
                 textarea.html(value).appendTo(target);
                 textarea.focus();
-                $K2('#k2Comment' + commentID + ' .commentToolbar a').css('display', 'inline');
+                $K2('#k2Comment' + commentID + ' .commentToolbar .k2CommentControls').css('display', 'inline');
                 $K2(this).css('display', 'none');
             });
             $K2('.closeComment').click(function(event) {
@@ -173,7 +173,7 @@ $K2(document).ready(function() {
                 var target = $K2('#k2Comment' + commentID + ' .commentText');
                 var value = $K2('#k2Comment' + commentID + ' input').val();
                 target.html(value);
-                $K2('#k2Comment' + commentID + ' .commentToolbar a').css('display', 'none');
+                $K2('#k2Comment' + commentID + ' .commentToolbar .k2CommentControls').css('display', 'none');
                 $K2('#k2Comment' + commentID + ' .commentToolbar a.editComment').css('display', 'inline');
 
             });
@@ -200,7 +200,7 @@ $K2(document).ready(function() {
                         log.removeClass('k2CommentsLoader').html(result.message).delay(3000).fadeOut();
                     }
                 });
-                $K2('#k2Comment' + commentID + ' .commentToolbar a').css('display', 'none');
+                $K2('#k2Comment' + commentID + ' .commentToolbar .k2CommentControls').css('display', 'none');
                 $K2('#k2Comment' + commentID + ' .commentToolbar a.editComment').css('display', 'inline');
             });
             if ($K2('input[name=isSite]').val() == 1) {

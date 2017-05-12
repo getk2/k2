@@ -38,11 +38,12 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .k2FLeft {float:left;}
 .k2FRight {float:right;}
 .k2ForceWrap {white-space:normal!important;max-width:120px;overflow:hidden;}
+.k2NoWrap {white-space:nowrap;}
 .k2Date {white-space:nowrap;text-align:center;}
 .k2Order {white-space:nowrap!important;text-align:right;width:auto!important;min-width:80px;}
 .k2Order span {}
 .k2OrderBox {text-align:center;}
-.k2NoWrap {white-space:nowrap;}
+.k2OptionSep {color:#999;font-style:normal;}
 .k2IsIcon {font-family:Arial,Helvetica,sans-serif!important;font-size:16px!important;}
 .k2IsIcon:hover {color:#BB3A00;text-decoration:none;}
 /*.k2TitleBox {box-sizing:border-box;width:100%;font-size:20px!important;padding:14px 6px!important;}*/
@@ -900,8 +901,9 @@ td#k2Comment {}
 div.commentText {}
 div.commentToolbar {padding-top:4px;}
 a.editComment {}
-a.saveComment {display:none;}
-a.closeComment {display:none;padding-left:4px;margin-left:4px;border-left:1px solid #aaa;}
+div.k2CommentControls {}
+	a.saveComment {}
+	a.closeComment {}
 div.commentToolbar span.k2CommentsLog {display:block;float:right;font-weight:bold;}
 div.commentToolbar span.k2CommentsLoader {background:url(../images/system/loader.gif) no-repeat 0 50%;padding-left:24px;}
 

@@ -94,14 +94,14 @@ defined('_JEXEC') or die;
 						<th class="hidden-phone">
 							<?php echo JHTML::_('grid.sort', 'K2_NAME', 'c.userName', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
 						</th>
-						<th>
+						<th class="center k2NoWrap">
 							<?php echo JHTML::_('grid.sort', 'K2_EMAIL', 'c.commentEmail', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
 						</th>
 						<th class="hidden-phone">
 							<?php echo JHTML::_('grid.sort', 'K2_URL', 'c.commentURL', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
 						</th>
 						<th class="center hidden-phone">
-							<?php echo JText::_('K2_LAST_RECORDED_IP'); ?>
+							IP
 						</th>
 						<th class="center">
 							<?php echo JText::_('K2_FLAG_AS_SPAMMER'); ?>
@@ -148,7 +148,12 @@ defined('_JEXEC') or die;
 						</td>
 						<td id="k2Comment<?php echo $row->id; ?>">
 							<div class="commentText"><?php echo $row->commentText; ?></div>
-							<div class="commentToolbar"><span class="k2CommentsLog"></span> <a href="#" rel="<?php echo $row->id; ?>" class="editComment"><?php echo JText::_('K2_EDIT'); ?></a> <a href="#" rel="<?php echo $row->id; ?>" class="saveComment"><?php echo JText::_('K2_SAVE'); ?></a> <a href="#" rel="<?php echo $row->id; ?>" class="closeComment"><?php echo JText::_('K2_CANCEL'); ?></a>
+							<div class="commentToolbar">
+								<span class="k2CommentsLog"></span>
+								<a href="#" rel="<?php echo $row->id; ?>" class="editComment"><?php echo JText::_('K2_EDIT'); ?></a>
+								<div class="k2CommentControls">
+								<a href="#" rel="<?php echo $row->id; ?>" class="saveComment"><?php echo JText::_('K2_SAVE'); ?></a> <span class="k2OptionSep"><?php echo JText::_('K2_OR'); ?></span> <a href="#" rel="<?php echo $row->id; ?>" class="closeComment"><?php echo JText::_('K2_CANCEL'); ?></a>
+								</div>
 								<div class="clr"></div>
 							</div>
 							<input type="hidden" name="currentValue[]" value="<?php echo $row->commentText; ?>" />
@@ -163,7 +168,7 @@ defined('_JEXEC') or die;
 							<?php echo $row->userName; ?>
 							<?php endif; ?>
 						</td>
-						<td class="k2ForceWrap">
+						<td class="center">
 							<a href="mailto:<?php echo JFilterOutput::cleanText($row->commentEmail); ?>" title="<?php echo JFilterOutput::cleanText($row->commentEmail); ?>"><i class="fa fa-envelope-o" aria-hidden="true"></i></a> <a target="_blank" href="https://hunter.io/email-verifier/<?php echo JFilterOutput::cleanText($row->commentEmail); ?>" title="<?php echo JText::_('K2_TEST_EMAIL_ADRESS_VALID'); ?>: <?php echo JFilterOutput::cleanText($row->commentEmail); ?>"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
 						</td>
 						<td class="k2ForceWrap hidden-phone">
