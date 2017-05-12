@@ -10,11 +10,6 @@
 // no direct access
 defined('_JEXEC') or die;
 
-/* TO DO:
-   - Remove inline JS & append to head JS in view.html.php
-   - Move head JS to view.html.php
-*/
-
 ?>
 
 <form action="<?php echo JRoute::_('index.php'); ?>" method="post" name="adminForm" id="adminForm">
@@ -169,10 +164,14 @@ defined('_JEXEC') or die;
 							<?php endif; ?>
 						</td>
 						<td class="k2ForceWrap">
-							<?php echo $row->commentEmail; ?>
+							<a href="mailto:<?php echo JFilterOutput::cleanText($row->commentEmail); ?>" title="<?php echo JFilterOutput::cleanText($row->commentEmail); ?>"><i class="fa fa-envelope-o" aria-hidden="true"></i></a> <a target="_blank" href="https://hunter.io/email-verifier/<?php echo JFilterOutput::cleanText($row->commentEmail); ?>" title="<?php echo JText::_('K2_TEST_EMAIL_ADRESS_VALID'); ?>: <?php echo JFilterOutput::cleanText($row->commentEmail); ?>"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
 						</td>
 						<td class="k2ForceWrap hidden-phone">
-							<a target="_blank" href="<?php echo JFilterOutput::cleanText($row->commentURL); ?>"><?php echo str_replace(array('http://www.','https://www.','http://','https://'),array('','','',''),$row->commentURL); ?></a>
+							<?php if($row->commentURL): ?>
+							<a target="_blank" href="<?php echo JFilterOutput::cleanText($row->commentURL); ?>" title="<?php echo JFilterOutput::cleanText($row->commentURL); ?>">
+								<i class="fa fa-globe" aria-hidden="true"></i>
+							</a>
+							<?php endif; ?>
 						</td>
 						<td class="k2Center center hidden-phone">
 							<?php if($row->commenterLastVisitIP): ?>
@@ -183,11 +182,11 @@ defined('_JEXEC') or die;
 						</td>
 						<td class="k2Center center">
 							<?php if($row->reportUserLink): ?>
-							<a class="k2ReportUserButton k2IsIcon" href="<?php echo $row->reportUserLink; ?>">&times;</a>
+							<a class="k2ReportUserButton k2IsIcon" href="<?php echo $row->reportUserLink; ?>"><i class="fa fa-ban" aria-hidden="true"></i></a>
 							<?php endif; ?>
 						</td>
 						<td class="hidden-phone">
-							<a class="modal" rel="{handler: 'iframe', size: {x: 1000, y: 600}}"	href="<?php echo JURI::root().K2HelperRoute::getItemRoute($row->itemID.':'.urlencode($row->itemAlias),$row->catid.':'.urlencode($row->catAlias)); ?>"><?php echo $row->title; ?></a>
+							<a target="_blank" href="<?php echo JURI::root().K2HelperRoute::getItemRoute($row->itemID.':'.urlencode($row->itemAlias),$row->catid.':'.urlencode($row->catAlias)); ?>"><?php echo $row->title; ?></a>
 						</td>
 						<td class="hidden-phone">
 							<?php echo $row->catName; ?>
