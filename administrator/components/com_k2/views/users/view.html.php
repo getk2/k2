@@ -14,16 +14,19 @@ jimport('joomla.application.component.view');
 
 class K2ViewUsers extends K2View
 {
-
     function display($tpl = null)
     {
-
         $mainframe = JFactory::getApplication();
         $document = JFactory::getDocument();
+        $user = JFactory::getUser();
         $db = JFactory::getDBO();
+
         $params = JComponentHelper::getParams('com_k2');
+
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
+        $task = JRequest::getCmd('task');
+
         $limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
         $limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
         $filter_order = $mainframe->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'juser.name', 'cmd');
@@ -34,6 +37,7 @@ class K2ViewUsers extends K2View
         $search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
         $search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
+
         K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
         $model = K2Model::getInstance('Users', 'K2Model');
         $total = $model->getTotal();
@@ -43,7 +47,6 @@ class K2ViewUsers extends K2View
             JRequest::setVar('limitstart', $limitstart);
         }
         $users = $model->getData();
-        $task = JRequest::getCmd('task');
         for ($i = 0; $i < sizeof($users); $i++)
         {
 
@@ -152,29 +155,31 @@ class K2ViewUsers extends K2View
 
         if ($mainframe->isAdmin())
         {
+			// JS
+            $document->addScriptDeclaration("
+            	var K2Language = ['".JText::_('K2_REPORT_USER_WARNING', true)."'];
+
+				\$K2(document).ready(function(){
+					\$K2('#K2ImportUsersButton').click(function(event){
+						var answer = confirm('".JText::_('K2_WARNING_YOU_ARE_ABOUT_TO_IMPORT_JOOMLA_USERS_TO_K2_GENERATING_CORRESPONDING_K2_USER_GROUPS_IF_YOU_HAVE_EXECUTED_THIS_OPERATION_BEFORE_DUPLICATE_CONTENT_MAY_BE_PRODUCED', true)."');
+						if (!answer){
+							event.preventDefault();
+						}
+					});
+				});
+            ");
+
+            // Toolbar
+            $toolbar = JToolBar::getInstance('toolbar');
             JToolBarHelper::title(JText::_('K2_USERS'), 'k2.png');
-            JToolBarHelper::custom('move', 'move.png', 'move_f2.png', 'K2_MOVE', true);
-            JToolBarHelper::deleteList('K2_WARNING_YOU_ARE_ABOUT_TO_DELETE_THE_SELECTED_USERS_PERMANENTLY_FROM_THE_SYSTEM', 'delete', 'K2_DELETE');
+
+            JToolBarHelper::editList();
             JToolBarHelper::publishList('enable', 'K2_ENABLE');
             JToolBarHelper::unpublishList('disable', 'K2_DISABLE');
-            JToolBarHelper::editList();
+            JToolBarHelper::deleteList('K2_WARNING_YOU_ARE_ABOUT_TO_DELETE_THE_SELECTED_USERS_PERMANENTLY_FROM_THE_SYSTEM', 'delete', 'K2_DELETE');
             JToolBarHelper::deleteList('K2_ARE_YOU_SURE_YOU_WANT_TO_RESET_SELECTED_USERS', 'remove', 'K2_RESET_USER_DETAILS');
+            JToolBarHelper::custom('move', 'move.png', 'move_f2.png', 'K2_MOVE', true);
 
-            $toolbar = JToolBar::getInstance('toolbar');
-
-            if (K2_JVERSION != '15')
-            {
-                JToolBarHelper::preferences('com_k2', 580, 800, 'K2_PARAMETERS');
-            }
-            else
-            {
-                $toolbar->appendButton('Popup', 'config', 'K2_PARAMETERS', 'index.php?option=com_k2&view=settings', 800, 580);
-            }
-
-            $this->loadHelper('html');
-            K2HelperHTML::subMenu();
-
-            $user = JFactory::getUser();
             $canImport = false;
             if (K2_JVERSION == '15')
             {
@@ -203,9 +208,18 @@ class K2ViewUsers extends K2View
                 }
             }
 
-            $document = JFactory::getDocument();
-            $document->addScriptDeclaration('var K2Language = ["'.JText::_('K2_REPORT_USER_WARNING', true).'"];');
+            $this->loadHelper('html');
+            K2HelperHTML::subMenu();
 
+			// Preferences (Parameters/Settings)
+            if (K2_JVERSION != '15')
+            {
+                JToolBarHelper::preferences('com_k2', 580, 800, 'K2_PARAMETERS');
+            }
+            else
+            {
+                $toolbar->appendButton('Popup', 'config', 'K2_PARAMETERS', 'index.php?option=com_k2&view=settings', 800, 580);
+            }
         }
         $isAdmin = $mainframe->isAdmin();
         $this->assignRef('isAdmin', $isAdmin);
@@ -223,11 +237,11 @@ class K2ViewUsers extends K2View
 
     function move()
     {
-
         $mainframe = JFactory::getApplication();
-        JTable::addIncludePath(JPATH_COMPONENT.'/tables');
+
         $cid = JRequest::getVar('cid');
         JArrayHelper::toInteger($cid);
+        JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 
         foreach ($cid as $id)
         {
@@ -264,11 +278,12 @@ class K2ViewUsers extends K2View
 
         $this->assignRef('lists', $lists);
 
+		// Toolbar
         JToolBarHelper::title(JText::_('K2_MOVE_USERS'), 'k2.png');
+
         JToolBarHelper::custom('saveMove', 'save.png', 'save_f2.png', 'K2_SAVE', false);
         JToolBarHelper::cancel();
 
         parent::display();
     }
-
 }
