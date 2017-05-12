@@ -204,6 +204,24 @@ $K2(document).ready(function() {
                 $K2('#k2Comment' + commentID + ' .commentToolbar a.editComment').css('display', 'inline');
             });
             if ($K2('input[name=isSite]').val() == 1) {
+	            // Close comments moderation modal
+	            $K2('#toolbar-cancel a').click(function(event) {
+					event.preventDefault();
+					// Refresh parent
+					if (window.opener) {
+					    window.opener.location.reload();
+					} else {
+					    parent.window.location.reload();
+					}
+					// Close modal
+					if (typeof(parent.$K2.magnificPopup) !== 'undefined') {
+					  parent.$K2.magnificPopup.close();
+					}
+					if (window.opener) {
+					    window.close();
+					}
+	            });
+	            // Pagination
                 $K2('.k2CommentsPagination a').click(function(event) {
                     var url = $K2(this).attr('href').split('limitstart=');
                     event.preventDefault();
@@ -586,7 +604,7 @@ $K2(document).ready(function() {
                     $K2('#search-field').addClass('tagsLoading');
                 }
             });
-            
+
             if ($K2('input[name=isSite]').val() == 1) {
 
 				if(typeof(parent.$) !== 'undefined') {
@@ -598,8 +616,11 @@ $K2(document).ready(function() {
 					}
 				}
 
-                var elements = [parent.$K2('#sbox-btn-close'), $K2('#toolbar-cancel a')];
-                
+                var elements = [
+                	parent.$K2('#sbox-btn-close'),
+                	$K2('#toolbar-cancel a')
+                ];
+
                 $K2.each(elements, function(index, element) {
                     element.unbind();
                     element.click(function(event) {
@@ -617,7 +638,6 @@ $K2(document).ready(function() {
                                 } else {
                                     parent.window.location.reload();
                                 }
-
                                 // Close modal
                                 if (typeof(parent.$K2.magnificPopup) !== 'undefined') {
                                   parent.$K2.magnificPopup.close();
@@ -627,7 +647,6 @@ $K2(document).ready(function() {
                                 } else {
                                     parent.$K2('#sbox-window').close();
                                 }
-
                                 if (window.opener) {
                                     window.close();
                                 }

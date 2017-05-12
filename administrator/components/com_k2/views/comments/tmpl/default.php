@@ -11,42 +11,9 @@
 defined('_JEXEC') or die;
 
 /* TO DO:
-   - Remove inline JS, append to head JS
+   - Remove inline JS & append to head JS in view.html.php
    - Move head JS to view.html.php
 */
-
-$document = JFactory::getDocument();
-$document->addScriptDeclaration("
-	Joomla.submitbutton = function(pressbutton) {
-		if (pressbutton == 'remove') {
-			if (document.adminForm.boxchecked.value==0){
-				alert('".JText::_('K2_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST_TO_DELETE', true)."');
-				return false;
-			}
-			if (confirm('".JText::_('K2_ARE_YOU_SURE_YOU_WANT_TO_DELETE_SELECTED_COMMENTS', true)."')){
-				submitform(pressbutton);
-			}
-		} else if (pressbutton == 'deleteUnpublished') {
-			if (confirm('".JText::_('K2_THIS_WILL_PERMANENTLY_DELETE_ALL_UNPUBLISHED_COMMENTS_ARE_YOU_SURE', true)."')){
-				submitform(pressbutton);
-			}
-		} else if (pressbutton == 'publish') {
-			if (document.adminForm.boxchecked.value==0){
-				alert('".JText::_('K2_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST_TO_PUBLISH', true)."');
-				return false;
-			}
-			submitform(pressbutton);
-		} else if (pressbutton == 'unpublish') {
-			if (document.adminForm.boxchecked.value==0){
-				alert('".JText::_('K2_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST_TO_UNPUBLISH', true)."');
-				return false;
-			}
-			submitform(pressbutton);
-		}  else {
-			submitform(pressbutton);
-		}
-	};
-");
 
 ?>
 
@@ -239,7 +206,7 @@ $document->addScriptDeclaration("
 				</tbody>
 			</table>
 
-			<input type="hidden" name="isSite" value="<?php echo (int)$this->mainframe->isSite(); ?>" />
+			<input type="hidden" name="isSite" value="<?php echo (int) $this->mainframe->isSite(); ?>" />
 			<input type="hidden" name="option" value="com_k2" />
 			<input type="hidden" name="view" value="<?php echo JRequest::getCmd('view'); ?>" />
 			<input type="hidden" id="task" name="task" value="" />

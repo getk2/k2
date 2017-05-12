@@ -6,7 +6,7 @@
  * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
-/* ============ Frontend Editing ============ */
+/* === Frontend Editing === */
 
 div#k2FrontendContainer {padding:0;margin:0;}
 
@@ -14,11 +14,11 @@ div#k2Frontend {position:relative;background:#fff;width:auto;padding:0;margin:0;
 
 div#k2Frontend table.k2FrontendToolbar {display:block;margin:12px 12px 0 0;float:right;border-collapse:separate;}
 div#k2Frontend table.k2FrontendToolbar td {border:none;}
-div#k2Frontend table.k2FrontendToolbar td.button a {display:block;padding:4px 8px;color:#fff;border:0;border-radius:4px;font-size:14px;font-weight:bold;text-decoration:none;}
-	#toolbar-save a {background:#18bc9c;}
-	#toolbar-save a:hover {background:#128f76;}
-	#toolbar-cancel a {background:#e74c3c;}
-	#toolbar-cancel a:hover {background:#d62c1a;}
+div#k2Frontend table.k2FrontendToolbar td.button a {display:block;padding:4px 8px;color:#fff;border:0;border-radius:4px;font-size:14px;font-weight:bold;text-decoration:none;background:#222;}
+	div#k2Frontend table.k2FrontendToolbar #toolbar-save a {background:#18bc9c;}
+	div#k2Frontend table.k2FrontendToolbar #toolbar-save a:hover {background:#128f76;}
+	div#k2Frontend table.k2FrontendToolbar #toolbar-cancel a {background:#e74c3c;}
+	div#k2Frontend table.k2FrontendToolbar #toolbar-cancel a:hover {background:#d62c1a;}
 
 #k2FrontendEditToolbar {text-align:left;padding:8px;}
 #k2FrontendEditToolbar h2 {background-color:transparent;width:auto;margin-top:0;line-height:40px;min-height:48px;}

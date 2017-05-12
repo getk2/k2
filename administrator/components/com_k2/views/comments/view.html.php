@@ -44,14 +44,47 @@ class K2ViewComments extends K2View
 		}
 		$this->loadHelper('html');
 
+		// Head includes
+		K2HelperHTML::loadHeadIncludes(true, false, true, true);
+
 		// JS
-		$document->addScriptDeclaration('
+		$document->addScriptDeclaration("
 			var K2Language = [
-				"'.JText::_('K2_YOU_CANNOT_EDIT_TWO_COMMENTS_AT_THE_SAME_TIME', true).'",
-				"'.JText::_('K2_THIS_WILL_PERMANENTLY_DELETE_ALL_UNPUBLISHED_COMMENTS_ARE_YOU_SURE', true).'",
-				"'.JText::_('K2_REPORT_USER_WARNING', true).'"
+				'".JText::_('K2_YOU_CANNOT_EDIT_TWO_COMMENTS_AT_THE_SAME_TIME', true)."',
+				'".JText::_('K2_THIS_WILL_PERMANENTLY_DELETE_ALL_UNPUBLISHED_COMMENTS_ARE_YOU_SURE', true)."',
+				'".JText::_('K2_REPORT_USER_WARNING', true)."'
 			];
-		');
+
+			Joomla.submitbutton = function(pressbutton) {
+				if (pressbutton == 'remove') {
+					if (document.adminForm.boxchecked.value==0){
+						alert('".JText::_('K2_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST_TO_DELETE', true)."');
+						return false;
+					}
+					if (confirm('".JText::_('K2_ARE_YOU_SURE_YOU_WANT_TO_DELETE_SELECTED_COMMENTS', true)."')){
+						submitform(pressbutton);
+					}
+				} else if (pressbutton == 'deleteUnpublished') {
+					if (confirm('".JText::_('K2_THIS_WILL_PERMANENTLY_DELETE_ALL_UNPUBLISHED_COMMENTS_ARE_YOU_SURE', true)."')){
+						submitform(pressbutton);
+					}
+				} else if (pressbutton == 'publish') {
+					if (document.adminForm.boxchecked.value==0){
+						alert('".JText::_('K2_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST_TO_PUBLISH', true)."');
+						return false;
+					}
+					submitform(pressbutton);
+				} else if (pressbutton == 'unpublish') {
+					if (document.adminForm.boxchecked.value==0){
+						alert('".JText::_('K2_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST_TO_UNPUBLISH', true)."');
+						return false;
+					}
+					submitform(pressbutton);
+				}  else {
+					submitform(pressbutton);
+				}
+			};
+		");
 
 		K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
 		$model = K2Model::getInstance('Comments', 'K2Model');
@@ -201,31 +234,13 @@ class K2ViewComments extends K2View
 			$this->assignRef('userEditLink', $userEditLink);
 		}
 
-		K2HelperHTML::loadHeadIncludes(true, false, true, true);
-		/*
-		if ($mainframe->isSite())
-		{
+        if ($mainframe->isSite())
+        {
 			// CSS
 			$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.frontend.css?v='.K2_CURRENT_VERSION);
 			$document->addStyleSheet(JURI::root(true).'/templates/system/css/general.css');
 			$document->addStyleSheet(JURI::root(true).'/templates/system/css/system.css');
-			if (K2_JVERSION == '15')
-			{
-				$document->addStyleSheet(JURI::root(true).'/administrator/templates/khepri/css/general.css');
-
-			}
-			else if (K2_JVERSION == '25')
-			{
-				$document->addStyleSheet(JURI::root(true).'/administrator/templates/bluestork/css/template.css');
-				$document->addStyleSheet(JURI::root(true).'/media/system/css/system.css');
-			}
-			else
-			{
-				$document->addStyleSheet(JURI::root(true).'/administrator/templates/isis/css/template.css');
-				$document->addStyleSheet(JURI::root(true).'/media/system/css/system.css');
-			}
-		}
-		*/
+        }
 
 		parent::display($tpl);
 	}

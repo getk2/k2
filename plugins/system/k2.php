@@ -121,13 +121,10 @@ class plgSystemK2 extends JPlugin
 		}
 
 		if ((int)K2_JVERSION < 25) {
-
 			$option = JRequest::getCmd('option');
 			$task = JRequest::getCmd('task');
 			$type = JRequest::getCmd('catid');
-
 		} else {
-
 			$option = JFactory::getApplication()->input->get('option');
 			$task = JFactory::getApplication()->input->get('task');
 			$type =  JRequest::getCmd('catid');
@@ -481,7 +478,7 @@ class plgSystemK2 extends JPlugin
 			return;
 		}
 
-		// jQuery and K2 JS loading
+		// jQuery & K2 JS loading
 		K2HelperHTML::loadHeadIncludes();
 
 		// Joomla modal trigger
