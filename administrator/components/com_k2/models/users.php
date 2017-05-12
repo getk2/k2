@@ -102,11 +102,11 @@ class K2ModelUsers extends K2Model
             {
                 $IDs[] = $row->id;
             }
-            $query = "SELECT map.user_id, COUNT(map.group_id) AS group_count,GROUP_CONCAT(g2.title SEPARATOR '\n') AS group_names 
-		    FROM #__user_usergroup_map AS map 
-		    LEFT JOIN #__usergroups AS g2 
-		    ON g2.id = map.group_id 
-		    WHERE map.user_id IN (".implode(',', $IDs).") 
+            $query = "SELECT map.user_id, COUNT(map.group_id) AS group_count,GROUP_CONCAT(g2.title SEPARATOR '\n') AS group_names
+		    FROM #__user_usergroup_map AS map
+		    LEFT JOIN #__usergroups AS g2
+		    ON g2.id = map.group_id
+		    WHERE map.user_id IN (".implode(',', $IDs).")
 		    GROUP BY map.user_id";
             $db->setQuery($query);
             $groups = $db->loadObjectList();
@@ -225,12 +225,12 @@ class K2ModelUsers extends K2Model
 
             if (K2_JVERSION != '15')
             {
-                $query = "SELECT a.lft AS lft, a.id AS value, a.title AS text, COUNT(DISTINCT b.id) AS level 
-			    FROM #__usergroups AS a 
-			    LEFT JOIN #__usergroups AS b 
-			    ON a.lft > b.lft 
-			    AND a.rgt < b.rgt 
-			    GROUP BY a.id 
+                $query = "SELECT a.lft AS lft, a.id AS value, a.title AS text, COUNT(DISTINCT b.id) AS level
+			    FROM #__usergroups AS a
+			    LEFT JOIN #__usergroups AS b
+			    ON a.lft > b.lft
+			    AND a.rgt < b.rgt
+			    GROUP BY a.id
 			    ORDER BY a.lft ASC";
             }
 
@@ -305,7 +305,11 @@ class K2ModelUsers extends K2Model
         $db->setQuery($query);
         $db->query();
 		$mainframe->enqueueMessage(JText::_('K2_USERS_ENABLED'));
-        $mainframe->redirect('index.php?option=com_k2&view=users');
+		if(JRequest::getCmd('context') == "modalselector"){
+			$mainframe->redirect('index.php?option=com_k2&view=users&tmpl=component&context=modalselector');
+		} else {
+			$mainframe->redirect('index.php?option=com_k2&view=users');
+		}
     }
 
     function disable()
@@ -318,7 +322,11 @@ class K2ModelUsers extends K2Model
         $db->setQuery($query);
         $db->query();
 		$mainframe->enqueueMessage(JText::_('K2_USERS_DISABLED'));
-        $mainframe->redirect('index.php?option=com_k2&view=users');
+		if(JRequest::getCmd('context') == "modalselector"){
+			$mainframe->redirect('index.php?option=com_k2&view=users&tmpl=component&context=modalselector');
+		} else {
+			$mainframe->redirect('index.php?option=com_k2&view=users');
+		}
     }
 
     function delete()

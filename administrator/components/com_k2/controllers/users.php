@@ -14,7 +14,6 @@ jimport('joomla.application.component.controller');
 
 class K2ControllerUsers extends K2Controller
 {
-
     public function display($cachable = false, $urlparams = array())
     {
         JRequest::setVar('view', 'users');
@@ -84,7 +83,7 @@ class K2ControllerUsers extends K2Controller
         $model = $this->getModel('users');
         $model->import();
     }
-	
+
 	function search()
 	{
 		$mainframe = JFactory::getApplication();
@@ -98,12 +97,10 @@ class K2ControllerUsers extends K2Controller
         {
             $word = $db->Quote($db->escape($word, true).'%', false);
         }
-		
 		$query = "SELECT id,name FROM #__users WHERE name LIKE ".$word." OR username LIKE ".$word." OR email LIKE ".$word;
         $db->setQuery($query);
         $result = $db->loadObjectList();
         echo json_encode($result);
         $mainframe->close();
 	}
-
 }

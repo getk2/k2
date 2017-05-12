@@ -214,6 +214,11 @@ class K2HelperHTML
 					$document->addCustomTag('<!--[if IE 9]><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/2.6.1/ie.css" /><![endif]-->');
 				}
 
+				// Magnific Popup
+				$document->addStyleSheet(JUri::root(true).'/media/k2/assets/css/magnific-popup.css?v='.K2_CURRENT_VERSION);
+				//$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css');
+				$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js');
+
 				// Fancybox
 				if ($view == 'items' || $view == 'categories')
 				{

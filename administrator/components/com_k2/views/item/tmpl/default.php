@@ -164,7 +164,7 @@ defined('_JEXEC') or die;
 							<div class="k2SubTableValue">
 								<span id="k2Author"><?php echo $this->row->author; ?></span>
 								<?php if($this->mainframe->isAdmin() || ($this->mainframe->isSite() && $this->permissions->get('editAll'))): ?>
-								<a class="modal k2Selector" rel="{handler:'iframe', size: {x: 800, y: 460}}" href="index.php?option=com_k2&amp;view=users&amp;task=element&amp;tmpl=component">
+								<a data-k2-modal="iframe" class="k2Selector" href="index.php?option=com_k2&amp;view=users&amp;task=element&amp;tmpl=component">
 									<i class="fa fa-pencil"></i>
 								</a>
 								<input type="hidden" name="created_by" value="<?php echo $this->row->created_by; ?>" />

@@ -14,7 +14,6 @@ jimport('joomla.application.component.controller');
 
 class K2ControllerItem extends K2Controller
 {
-
 	public function display($cachable = false, $urlparams = array())
 	{
 		$model = $this->getModel('itemlist');
@@ -161,7 +160,6 @@ class K2ControllerItem extends K2Controller
 
 	function deleteAttachment()
 	{
-
 		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/item.php');
 		$model = new K2ModelItem;
 		$model->deleteAttachment();
@@ -169,7 +167,6 @@ class K2ControllerItem extends K2Controller
 
 	function tag()
 	{
-
 		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/tag.php');
 		$model = new K2ModelTag;
 		$model->addTag();
@@ -189,7 +186,6 @@ class K2ControllerItem extends K2Controller
 
 	function download()
 	{
-
 		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/item.php');
 		$model = new K2ModelItem;
 		$model->download();
@@ -243,35 +239,30 @@ class K2ControllerItem extends K2Controller
 
 	function checkin()
 	{
-
 		$model = $this->getModel('item');
 		$model->checkin();
 	}
 
 	function vote()
 	{
-
 		$model = $this->getModel('item');
 		$model->vote();
 	}
 
 	function getVotesNum()
 	{
-
 		$model = $this->getModel('item');
 		$model->getVotesNum();
 	}
 
 	function getVotesPercentage()
 	{
-
 		$model = $this->getModel('item');
 		$model->getVotesPercentage();
 	}
 
 	function comment()
 	{
-
 		$model = $this->getModel('item');
 		$model->comment();
 	}
@@ -285,7 +276,6 @@ class K2ControllerItem extends K2Controller
 		$language->load('com_k2', JPATH_ADMINISTRATOR);
 		$model = new K2ModelItem;
 		$model->resetHits();
-
 	}
 
 	function resetRating()
@@ -297,7 +287,6 @@ class K2ControllerItem extends K2Controller
 		$language->load('com_k2', JPATH_ADMINISTRATOR);
 		$model = new K2ModelItem;
 		$model->resetRating();
-
 	}
 
 	function media()
@@ -331,7 +320,6 @@ class K2ControllerItem extends K2Controller
 		$view->addTemplatePath(JPATH_COMPONENT_ADMINISTRATOR.'/views/media/tmpl');
 		$view->setLayout('default');
 		$view->display();
-
 	}
 
 	function connector()
@@ -342,16 +330,13 @@ class K2ControllerItem extends K2Controller
 		{
 			JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
 		}
-
 		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/controllers/media.php');
 		$controller = new K2ControllerMedia();
 		$controller->connector();
-
 	}
 
 	function users()
 	{
-
 		$itemID = JRequest::getInt('itemID');
 		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
 		$item = JTable::getInstance('K2Item', 'Table');
@@ -379,9 +364,6 @@ class K2ControllerItem extends K2Controller
 		$this->addModelPath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
 		$view = $this->getView('users', 'html');
 		$view->addTemplatePath(JPATH_COMPONENT_ADMINISTRATOR.'/views/users/tmpl');
-		$view->setLayout('element');
 		$view->display();
-
 	}
-
 }

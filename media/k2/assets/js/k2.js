@@ -699,6 +699,21 @@ $K2(document).ready(function() {
 			});
 		}
 
+		// Magnific Popup
+		if(typeof($.magnificPopup) !== 'undefined') {
+			$('[data-k2-modal="image"]').magnificPopup({
+				type:'image',
+				image: {
+					titleSrc: function(){
+						return '';
+					}
+				}
+			});
+			$('[data-k2-modal="edit"]').magnificPopup({type:'iframe', modal:true});
+			$('[data-k2-modal="iframe"]').magnificPopup({type:'iframe'});
+			$('[data-k2-modal="singleSelect"]').magnificPopup({type:'iframe', modal:true, closeOnContentClick:true});
+		}
+
 	});
 
 })(jQuery);
@@ -772,16 +787,6 @@ if (typeof (Joomla) === 'undefined') {
         Joomla.submitbutton(pressbutton);
     }
 
-}
-
-// Media manager
-function elFinderUpdate(fieldID, value) {
-    $K2('#' + fieldID).val(value);
-    if ( typeof (window.parent.SqueezeBox.close == 'function')) {
-        SqueezeBox.close();
-    } else {
-        parent.$K2('#sbox-window').close();
-    }
 }
 
 // Extra fields
@@ -1137,10 +1142,31 @@ function addAttachment() {
     }).appendTo(div);
 }
 
+// User select modals
 function jSelectUser(id, name) {
     $K2('#k2Author').html(name);
     $K2('input[name=created_by]').val(id);
-    if ( typeof (window.parent.SqueezeBox.close == 'function')) {
+    if (typeof window.parent.SqueezeBox.close === 'function') {
+        SqueezeBox.close();
+    } else {
+        parent.$K2('#sbox-window').close();
+	}
+}
+function k2SelectUser(id, name) {
+    $K2('#k2Author').html(name);
+    $K2('input[name=created_by]').val(id);
+	$K2(parent.document).magnificPopup('close');
+}
+
+// MFP modal close
+function k2CloseMFP() {
+	$K2(parent.document).magnificPopup('close');
+}
+
+// Media manager
+function elFinderUpdate(fieldID, value) {
+    $K2('#' + fieldID).val(value);
+    if (typeof window.parent.SqueezeBox.close === 'function') {
         SqueezeBox.close();
     } else {
         parent.$K2('#sbox-window').close();

@@ -16,7 +16,6 @@ JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 
 class K2ModelUser extends K2Model
 {
-
     function getData()
     {
         $cid = JRequest::getInt('cid');
@@ -33,7 +32,6 @@ class K2ModelUser extends K2Model
 
     function save()
     {
-
         $mainframe = JFactory::getApplication();
         jimport('joomla.filesystem.file');
         require_once (JPATH_COMPONENT.'/lib/class.upload.php');
@@ -61,7 +59,7 @@ class K2ModelUser extends K2Model
             $mainframe->redirect('index.php?option=com_k2&view=users');
         }
 
-        //Image
+        // Image
         if ((int)$params->get('imageMemoryLimit'))
         {
             ini_set('memory_limit', (int)$params->get('imageMemoryLimit').'M');
@@ -138,7 +136,6 @@ class K2ModelUser extends K2Model
 
     function getUserGroups()
     {
-
         $db = JFactory::getDBO();
         $query = "SELECT * FROM #__k2_user_groups";
         $db->setQuery($query);
@@ -173,7 +170,7 @@ class K2ModelUser extends K2Model
         $db->query();
         $mainframe->enqueueMessage(JText::_('K2_USER_ITEMS_UNPUBLISHED'));
 
-        // Report the user to http://www.stopforumspam.com/
+        // Report the user to stopforumspam.com
         // We need the IP for this, so the user has to be a registered K2 user
         $spammer = JFactory::getUser($id);
         $db->setQuery("SELECT ip FROM #__k2_users WHERE userID=".$id, 0, 1);
@@ -199,5 +196,4 @@ class K2ModelUser extends K2Model
         $mainframe->enqueueMessage(JText::_('K2_USER_BLOCKED'));
         return true;
     }
-
 }

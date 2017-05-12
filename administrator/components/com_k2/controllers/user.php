@@ -14,7 +14,6 @@ jimport('joomla.application.component.controller');
 
 class K2ControllerUser extends K2Controller
 {
-
     public function display($cachable = false, $urlparams = array())
     {
         JRequest::setVar('view', 'user');
@@ -41,10 +40,16 @@ class K2ControllerUser extends K2Controller
 
     function report()
     {
+	    $app = JFactory::getApplication();
         $model = K2Model::getInstance('User', 'K2Model');
         $model->setState('id', JRequest::getInt('id'));
         $model->reportSpammer();
-        $this->setRedirect('index.php?option=com_k2&view=users');
-    }
+		if(JRequest::getCmd('context') == "modalselector"){
+			$app->redirect('index.php?option=com_k2&view=users&tmpl=component&context=modalselector');
 
+		} else {
+			//$this->setRedirect('index.php?option=com_k2&view=users');
+			$app->redirect('index.php?option=com_k2&view=users');
+		}
+    }
 }

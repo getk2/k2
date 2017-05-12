@@ -224,6 +224,8 @@ class K2ViewUsers extends K2View
         $isAdmin = $mainframe->isAdmin();
         $this->assignRef('isAdmin', $isAdmin);
 
+        // Head includes
+		K2HelperHTML::loadHeadIncludes(true, false, true, true);
         if ($mainframe->isSite())
         {
 			// CSS
