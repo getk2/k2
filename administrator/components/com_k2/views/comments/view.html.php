@@ -184,7 +184,7 @@ class K2ViewComments extends K2View
 		$itemsModel = K2Model::getInstance('Items', 'K2Model');
 		$authors = $itemsModel->getItemsAuthors();
 		$options = array();
-		$options[] = JHTML::_('select.option', 0, '- '.JText::_('K2_NO_USER').' -');
+		$options[] = JHTML::_('select.option', 0, JText::_('K2_NO_USER'));
 		foreach ($authors as $author)
 		{
 			$name = $author->name;

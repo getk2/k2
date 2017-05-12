@@ -193,7 +193,7 @@ class K2ViewItems extends K2View
 
 		$authors = $model->getItemsAuthors();
 		$options = array();
-		$options[] = JHTML::_('select.option', 0, '- '.JText::_('K2_NO_USER').' -');
+		$options[] = JHTML::_('select.option', 0, JText::_('K2_NO_USER'));
 		foreach ($authors as $author)
 		{
 			$name = $author->name;

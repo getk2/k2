@@ -72,11 +72,11 @@ defined('_JEXEC') or die;
 						</div>
 					</td>
 					<td class="k2AdminTableFiltersSelects hidden-phone">
+						<?php echo $this->lists['state']; ?>
 						<?php echo $this->lists['categories']; ?>
 						<?php if($this->mainframe->isAdmin()): ?>
 						<?php echo $this->lists['authors']; ?>
 						<?php endif; ?>
-						<?php echo $this->lists['state']; ?>
 					</td>
 				</tr>
 			</table>
