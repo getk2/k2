@@ -1,3 +1,11 @@
+/**
+ * @version    2.8.x
+ * @package    K2
+ * @author     JoomlaWorks http://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2017 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license:http://www.gnu.org/copyleft/gpl.html
+ */
+
 @font-face {
   font-family: 'simple-line-icons';
   src: url('../fonts/Simple-Line-Icons.eot?v=2.2.2');
@@ -13,8 +21,7 @@
  Use the following CSS code if you want to have a class per icon.
  Instead of a list of all class selectors, you can use the generic [class*="k2icon-"] selector, but it's slower:
 */
-.k2icon-user,.k2icon-people,.k2icon-user-female,.k2icon-user-follow,.k2icon-user-following,.k2icon-user-unfollow,.k2icon-login,.k2icon-logout,.k2icon-emotsmile,.k2icon-phone,.k2icon-call-end,.k2icon-call-in,
-a#fontIncrease:before, a#fontDecrease:before,.k2icon-call-out,.k2icon-map,.k2icon-location-pin,.k2icon-direction,.k2icon-directions,.k2icon-compass,.k2icon-layers,.k2icon-menu,.k2icon-list,.k2icon-options-vertical,.k2icon-options,.k2icon-arrow-down,.k2icon-arrow-left,.k2icon-arrow-right,.k2icon-arrow-up,.k2icon-arrow-up-circle,.k2icon-arrow-left-circle,.k2icon-arrow-right-circle,.k2icon-arrow-down-circle,.k2icon-check,.k2icon-clock,.k2icon-plus,.k2icon-close,.k2icon-trophy,.k2icon-screen-smartphone,.k2icon-screen-desktop,.k2icon-plane,.k2icon-notebook,.k2icon-mustache,.k2icon-mouse,.k2icon-magnet,.k2icon-energy,.k2icon-disc,.k2icon-cursor,.k2icon-cursor-move,.k2icon-crop,.k2icon-chemistry,.k2icon-speedometer,.k2icon-shield,.k2icon-screen-tablet,.k2icon-magic-wand,.k2icon-hourglass,.k2icon-graduation,.k2icon-ghost,.k2icon-game-controller,.k2icon-fire,.k2icon-eyeglass,.k2icon-envelope-open,.k2icon-envelope-letter,.k2icon-bell,.k2icon-badge,.k2icon-anchor,.k2icon-wallet,.k2icon-vector,.k2icon-speech,.k2icon-puzzle,.k2icon-printer,.k2icon-present,.k2icon-playlist,.k2icon-pin,.k2icon-picture,.k2icon-handbag,.k2icon-globe-alt,.k2icon-globe,.k2icon-folder-alt,.k2icon-folder,.k2icon-film,.k2icon-feed,.k2icon-drop,.k2icon-drawer,.k2icon-docs,.k2icon-doc,.k2icon-diamond,.k2icon-cup,.k2icon-calculator,.k2icon-bubbles,.k2icon-briefcase,.k2icon-book-open,.k2icon-basket-loaded,.k2icon-basket,.k2icon-bag,.k2icon-action-undo,.k2icon-action-redo,.k2icon-wrench,.k2icon-umbrella,.k2icon-trash,.k2icon-tag,.k2icon-support,.k2icon-frame,.k2icon-size-fullscreen,.k2icon-size-actual,.k2icon-shuffle,.k2icon-share-alt,.k2icon-share,.k2icon-rocket,.k2icon-question,.k2icon-pie-chart,.k2icon-pencil,.k2icon-note,.k2icon-loop,.k2icon-home,.k2icon-grid,.k2icon-graph,.k2icon-microphone,.k2icon-music-tone-alt,.k2icon-music-tone,.k2icon-earphones-alt,.k2icon-earphones,.k2icon-equalizer,.k2icon-like,.k2icon-dislike,.k2icon-control-start,.k2icon-control-rewind,.k2icon-control-play,.k2icon-control-pause,.k2icon-control-forward,.k2icon-control-end,.k2icon-volume-1,.k2icon-volume-2,.k2icon-volume-off,.k2icon-calendar,.k2icon-bulb,.k2icon-chart,.k2icon-ban,.k2icon-bubble,.k2icon-camrecorder,.k2icon-camera,.k2icon-cloud-download,.k2icon-cloud-upload,.k2icon-envelope,.k2icon-eye,.k2icon-flag,.k2icon-heart,.k2icon-info,.k2icon-key,.k2icon-link,.k2icon-lock,.k2icon-lock-open,.k2icon-magnifier,.k2icon-magnifier-add,.k2icon-magnifier-remove,.k2icon-paper-clip,.k2icon-paper-plane,.k2icon-power,.k2icon-refresh,.k2icon-reload,.k2icon-settings,.k2icon-star,.k2icon-symbol-female,.k2icon-symbol-male,.k2icon-target,.k2icon-credit-card,.k2icon-paypal,.k2icon-social-tumblr,.k2icon-social-twitter,.k2icon-social-facebook,.k2icon-social-instagram,.k2icon-social-linkedin,.k2icon-social-pinterest,.k2icon-social-github,.k2icon-social-gplus,.k2icon-social-reddit,.k2icon-social-skype,.k2icon-social-dribbble,.k2icon-social-behance,.k2icon-social-foursqare,.k2icon-social-soundcloud,.k2icon-social-spotify,.k2icon-social-stumbleupon,.k2icon-social-youtube,.k2icon-social-dropbox{font-family:'simple-line-icons';speak:none;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.k2icon-user,.k2icon-people,.k2icon-user-female,.k2icon-user-follow,.k2icon-user-following,.k2icon-user-unfollow,.k2icon-login,.k2icon-logout,.k2icon-emotsmile,.k2icon-phone,.k2icon-call-end,.k2icon-call-in,a#fontIncrease:before,a#fontDecrease:before,.k2icon-call-out,.k2icon-map,.k2icon-location-pin,.k2icon-direction,.k2icon-directions,.k2icon-compass,.k2icon-layers,.k2icon-menu,.k2icon-list,.k2icon-options-vertical,.k2icon-options,.k2icon-arrow-down,.k2icon-arrow-left,.k2icon-arrow-right,.k2icon-arrow-up,.k2icon-arrow-up-circle,.k2icon-arrow-left-circle,.k2icon-arrow-right-circle,.k2icon-arrow-down-circle,.k2icon-check,.k2icon-clock,.k2icon-plus,.k2icon-close,.k2icon-trophy,.k2icon-screen-smartphone,.k2icon-screen-desktop,.k2icon-plane,.k2icon-notebook,.k2icon-mustache,.k2icon-mouse,.k2icon-magnet,.k2icon-energy,.k2icon-disc,.k2icon-cursor,.k2icon-cursor-move,.k2icon-crop,.k2icon-chemistry,.k2icon-speedometer,.k2icon-shield,.k2icon-screen-tablet,.k2icon-magic-wand,.k2icon-hourglass,.k2icon-graduation,.k2icon-ghost,.k2icon-game-controller,.k2icon-fire,.k2icon-eyeglass,.k2icon-envelope-open,.k2icon-envelope-letter,.k2icon-bell,.k2icon-badge,.k2icon-anchor,.k2icon-wallet,.k2icon-vector,.k2icon-speech,.k2icon-puzzle,.k2icon-printer,.k2icon-present,.k2icon-playlist,.k2icon-pin,.k2icon-picture,.k2icon-handbag,.k2icon-globe-alt,.k2icon-globe,.k2icon-folder-alt,.k2icon-folder,.k2icon-film,.k2icon-feed,.k2icon-drop,.k2icon-drawer,.k2icon-docs,.k2icon-doc,.k2icon-diamond,.k2icon-cup,.k2icon-calculator,.k2icon-bubbles,.k2icon-briefcase,.k2icon-book-open,.k2icon-basket-loaded,.k2icon-basket,.k2icon-bag,.k2icon-action-undo,.k2icon-action-redo,.k2icon-wrench,.k2icon-umbrella,.k2icon-trash,.k2icon-tag,.k2icon-support,.k2icon-frame,.k2icon-size-fullscreen,.k2icon-size-actual,.k2icon-shuffle,.k2icon-share-alt,.k2icon-share,.k2icon-rocket,.k2icon-question,.k2icon-pie-chart,.k2icon-pencil,.k2icon-note,.k2icon-loop,.k2icon-home,.k2icon-grid,.k2icon-graph,.k2icon-microphone,.k2icon-music-tone-alt,.k2icon-music-tone,.k2icon-earphones-alt,.k2icon-earphones,.k2icon-equalizer,.k2icon-like,.k2icon-dislike,.k2icon-control-start,.k2icon-control-rewind,.k2icon-control-play,.k2icon-control-pause,.k2icon-control-forward,.k2icon-control-end,.k2icon-volume-1,.k2icon-volume-2,.k2icon-volume-off,.k2icon-calendar,.k2icon-bulb,.k2icon-chart,.k2icon-ban,.k2icon-bubble,.k2icon-camrecorder,.k2icon-camera,.k2icon-cloud-download,.k2icon-cloud-upload,.k2icon-envelope,.k2icon-eye,.k2icon-flag,.k2icon-heart,.k2icon-info,.k2icon-key,.k2icon-link,.k2icon-lock,.k2icon-lock-open,.k2icon-magnifier,.k2icon-magnifier-add,.k2icon-magnifier-remove,.k2icon-paper-clip,.k2icon-paper-plane,.k2icon-power,.k2icon-refresh,.k2icon-reload,.k2icon-settings,.k2icon-star,.k2icon-symbol-female,.k2icon-symbol-male,.k2icon-target,.k2icon-credit-card,.k2icon-paypal,.k2icon-social-tumblr,.k2icon-social-twitter,.k2icon-social-facebook,.k2icon-social-instagram,.k2icon-social-linkedin,.k2icon-social-pinterest,.k2icon-social-github,.k2icon-social-gplus,.k2icon-social-reddit,.k2icon-social-skype,.k2icon-social-dribbble,.k2icon-social-behance,.k2icon-social-foursqare,.k2icon-social-soundcloud,.k2icon-social-spotify,.k2icon-social-stumbleupon,.k2icon-social-youtube,.k2icon-social-dropbox{font-family:'simple-line-icons';speak:none;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .k2icon-user:before{content:"\e005"}
 .k2icon-people:before{content:"\e001"}
 .k2icon-user-female:before{content:"\e000"}
@@ -89,8 +96,8 @@ a#fontIncrease:before, a#fontDecrease:before,.k2icon-call-out,.k2icon-map,.k2ico
 .k2icon-pin:before{content:"\e031"}
 .k2icon-picture:before{content:"\e032"}
 .k2icon-handbag:before{content:"\e035"}
-.k2icon-globe-alt:before {content:"\e036"}
-.k2icon-globe:before {content:"\e037"}
+.k2icon-globe-alt:before{content:"\e036"}
+.k2icon-globe:before{content:"\e037"}
 .k2icon-folder-alt:before{content:"\e039"}
 .k2icon-folder:before{content:"\e089"}
 .k2icon-film:before{content:"\e03a"}
@@ -166,8 +173,8 @@ a#fontIncrease:before, a#fontDecrease:before,.k2icon-call-out,.k2icon-map,.k2ico
 .k2icon-lock:before{content:"\e08e"}
 .k2icon-lock-open:before{content:"\e08f"}
 .k2icon-magnifier:before{content:"\e090"}
-.k2icon-magnifier-add:before, a#fontIncrease:before {content:"\e091"}
-.k2icon-magnifier-remove:before, a#fontDecrease:before {content:"\e092"}
+.k2icon-magnifier-add:before,a#fontIncrease:before{content:"\e091"}
+.k2icon-magnifier-remove:before,a#fontDecrease:before{content:"\e092"}
 .k2icon-paper-clip:before{content:"\e093"}
 .k2icon-paper-plane:before{content:"\e094"}
 .k2icon-power:before{content:"\e097"}
@@ -199,27 +206,15 @@ a#fontIncrease:before, a#fontDecrease:before,.k2icon-call-out,.k2icon-map,.k2ico
 .k2icon-social-youtube:before{content:"\e008"}
 .k2icon-social-dropbox:before{content:"\e00c"}
 
-/* new helper classes */
-.k2-loader {  -webkit-animation: fa-spin 2s infinite linear; animation: fa-spin 2s infinite linear; }
+/* New helper classes */
+.k2-loader {-webkit-animation:fa-spin 2s infinite linear;animation:fa-spin 2s infinite linear;}
 
-/* simple animation for spining icons */
+/* Simple animation for spining icons */
 @-webkit-keyframes fa-spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(359deg);
-    transform: rotate(359deg);
-  }
+  0% {-webkit-transform: rotate(0deg);transform: rotate(0deg);}
+  100% {-webkit-transform: rotate(359deg);transform: rotate(359deg);}
 }
 @keyframes fa-spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(359deg);
-    transform: rotate(359deg);
-  }
+  0% {-webkit-transform: rotate(0deg);transform: rotate(0deg);}
+  100% {-webkit-transform: rotate(359deg);transform: rotate(359deg);}
 }
