@@ -901,7 +901,7 @@ td#k2Comment {}
 div.commentText {}
 div.commentToolbar {padding-top:4px;}
 a.editComment {}
-div.k2CommentControls {}
+div.k2CommentControls {display:none;}
 	a.saveComment {}
 	a.closeComment {}
 div.commentToolbar span.k2CommentsLog {display:block;float:right;font-weight:bold;}
