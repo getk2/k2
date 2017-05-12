@@ -19,29 +19,29 @@ defined('_JEXEC') or die;
 		<h2 id="k2FrontendLogo"><?php echo JText::_('K2_MODERATE_COMMENTS_TO_MY_ITEMS'); ?></h2>
 		<table id="k2FrontendToolbar" cellpadding="2" cellspacing="4">
 			<tr>
-				<td id="toolbar-publish" class="button">
-					<a class="toolbar" onclick="Joomla.submitbutton('publish'); return false;" href="#">
-						<?php echo JText::_('K2_PUBLISH'); ?>
+				<td class="button">
+					<a class="toolbar" onclick="Joomla.submitbutton('publish');return false;" href="#">
+						<i class="fa fa-check" aria-hidden="true"></i> <?php echo JText::_('K2_PUBLISH'); ?>
 					</a>
 				</td>
-				<td id="toolbar-unpublish" class="button">
-					<a class="toolbar" onclick="Joomla.submitbutton('unpublish'); return false;" href="#">
-						<?php echo JText::_('K2_UNPUBLISH'); ?>
+				<td class="button">
+					<a class="toolbar" onclick="Joomla.submitbutton('unpublish');return false;" href="#">
+						<i class="fa fa-times-circle" aria-hidden="true"></i> <?php echo JText::_('K2_UNPUBLISH'); ?>
 					</a>
 				</td>
-				<td id="toolbar-delete" class="button">
-					<a class="toolbar" onclick="Joomla.submitbutton('remove'); return false;" href="#">
-						<?php echo JText::_('K2_DELETE'); ?>
+				<td class="button">
+					<a class="toolbar" onclick="Joomla.submitbutton('remove');return false;" href="#">
+						<i class="fa fa-trash" aria-hidden="true"></i> <?php echo JText::_('K2_DELETE'); ?>
 					</a>
 				</td>
-				<td id="toolbar-Link" class="button">
-					<a onclick="Joomla.submitbutton('deleteUnpublished'); return false;" href="#">
-						<?php echo JText::_('K2_DELETE_ALL_UNPUBLISHED'); ?>
+				<td class="button">
+					<a onclick="Joomla.submitbutton('deleteUnpublished');return false;" href="#">
+						<i class="fa fa-trash-o" aria-hidden="true"></i> <?php echo JText::_('K2_DELETE_ALL_UNPUBLISHED'); ?>
 					</a>
 				</td>
 				<td id="toolbar-cancel" class="button">
-					<a class="toolbar" href="#">
-						<span title="<?php echo JText::_('K2_CANCEL'); ?>" class="icon-32-cancel icon-cancel"></span> <?php echo JText::_('K2_CLOSE'); ?>
+					<a href="#">
+						<i class="fa fa-times-circle" aria-hidden="true"></i> <?php echo JText::_('K2_CLOSE'); ?>
 					</a>
 				</td>
 			</tr>

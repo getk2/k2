@@ -13,9 +13,13 @@
 		#k2FrontendToolbar {display:inline-block;margin:12px 12px 0 0;border-collapse:separate;}
 		#k2FrontendToolbar td {border:none;}
 		#k2FrontendToolbar td.button a {display:block;padding:4px 8px;color:#fff;border:0;border-radius:4px;font-size:14px;font-weight:bold;text-decoration:none;background:#222;cursor:pointer;}
+			#k2FrontendToolbar #toolbar-publish a,
 			#k2FrontendToolbar #toolbar-save a {background:#18bc9c;}
+			#k2FrontendToolbar #toolbar-publish a:hover,
 			#k2FrontendToolbar #toolbar-save a:hover {background:#128f76;}
+			#k2FrontendToolbar #toolbar-unpublish a,
 			#k2FrontendToolbar #toolbar-cancel a {background:#e74c3c;}
+			#k2FrontendToolbar #toolbar-unpublish a:hover,
 			#k2FrontendToolbar #toolbar-cancel a:hover {background:#d62c1a;}
 #k2FrontendContainer #adminForm {margin-top:86px;position:relative;z-index:9;}
 	#k2FrontendContainer .k2AdminTableFilters {border:0;border-bottom:1px solid #dbdcdc;}

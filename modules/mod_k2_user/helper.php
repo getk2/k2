@@ -26,7 +26,7 @@ class modK2UserHelper
             if (K2_JVERSION != '15')
             {
                 $url = 'index.php?Itemid=' . $item->id;
-                
+
             }
             else
             {
@@ -64,17 +64,12 @@ class modK2UserHelper
         {
             if ($profile->image != '')
                 $profile->avatar = JURI::root().'media/k2/users/'.$profile->image;
-
             require_once (JPATH_SITE.'/components/com_k2/helpers/permissions'.'.php');
-
             if (JRequest::getCmd('option') != 'com_k2')
                 K2HelperPermissions::setPermissions();
-
             if (K2HelperPermissions::canAddItem())
                 $profile->addLink = JRoute::_('index.php?option=com_k2&view=item&task=add&tmpl=component');
-
             return $profile;
-
         }
 
     }

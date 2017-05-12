@@ -20,13 +20,13 @@ defined('_JEXEC') or die;
 		<table id="k2FrontendToolbar" cellpadding="2" cellspacing="4">
 			<tr>
 				<td id="toolbar-save" class="button">
-					<a class="toolbar" href="#" onclick="Joomla.submitbutton('save'); return false;">
-						<span title="<?php echo JText::_('K2_SAVE'); ?>" class="icon-32-save icon-save"></span> <?php echo JText::_('K2_SAVE'); ?>
+					<a href="#" onclick="Joomla.submitbutton('save');return false;">
+						<i class="fa fa-check" aria-hidden="true"></i> <?php echo JText::_('K2_SAVE'); ?>
 					</a>
 				</td>
 				<td id="toolbar-cancel" class="button">
-					<a class="toolbar" href="#">
-						<span title="<?php echo JText::_('K2_CANCEL'); ?>" class="icon-32-cancel icon-cancel"></span> <?php echo JText::_('K2_CLOSE'); ?>
+					<a href="#">
+						<i class="fa fa-times-circle" aria-hidden="true"></i> <?php echo JText::_('K2_CLOSE'); ?>
 					</a>
 				</td>
 			</tr>
