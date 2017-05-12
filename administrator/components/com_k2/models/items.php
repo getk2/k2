@@ -11,15 +11,12 @@
 defined('_JEXEC') or die;
 
 jimport('joomla.application.component.model');
-
 JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 
 class K2ModelItems extends K2Model
 {
-
 	function getData()
 	{
-
 		$mainframe = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
 		$option = JRequest::getCmd('option');
@@ -53,7 +50,6 @@ class K2ModelItems extends K2Model
 
 		if ($search)
 		{
-
 			// Detect exact search phrase using double quotes in search string
 			if(substr($search, 0, 1)=='"' && substr($search, -1)=='"')
 			{
@@ -194,12 +190,10 @@ class K2ModelItems extends K2Model
 		$db->setQuery($query, $limitstart, $limit);
 		$rows = $db->loadObjectList();
 		return $rows;
-
 	}
 
 	function getTotal()
 	{
-
 		$mainframe = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
 		$option = JRequest::getCmd('option');
@@ -353,12 +347,10 @@ class K2ModelItems extends K2Model
 		$db->setQuery($query);
 		$result = $db->loadResult();
 		return $result;
-
 	}
 
 	function publish()
 	{
-
 		$mainframe = JFactory::getApplication();
 		$cid = JRequest::getVar('cid');
 		foreach ($cid as $id)
@@ -382,7 +374,6 @@ class K2ModelItems extends K2Model
 
 	function unpublish()
 	{
-
 		$mainframe = JFactory::getApplication();
 		$cid = JRequest::getVar('cid');
 		foreach ($cid as $id)
@@ -406,7 +397,6 @@ class K2ModelItems extends K2Model
 
 	function saveorder()
 	{
-
 		$mainframe = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
 		$db = JFactory::getDBO();
@@ -445,7 +435,6 @@ class K2ModelItems extends K2Model
 
 	function orderup()
 	{
-
 		$mainframe = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
 		$cid = JRequest::getVar('cid');
@@ -463,7 +452,6 @@ class K2ModelItems extends K2Model
 
 	function orderdown()
 	{
-
 		$mainframe = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
 		$cid = JRequest::getVar('cid');
@@ -481,7 +469,6 @@ class K2ModelItems extends K2Model
 
 	function savefeaturedorder()
 	{
-
 		$mainframe = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
 		$db = JFactory::getDBO();
@@ -520,7 +507,6 @@ class K2ModelItems extends K2Model
 
 	function featuredorderup()
 	{
-
 		$mainframe = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
 		$cid = JRequest::getVar('cid');
@@ -538,7 +524,6 @@ class K2ModelItems extends K2Model
 
 	function featuredorderdown()
 	{
-
 		$mainframe = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
 		$cid = JRequest::getVar('cid');
@@ -556,7 +541,6 @@ class K2ModelItems extends K2Model
 
 	function accessregistered()
 	{
-
 		$mainframe = JFactory::getApplication();
 		$db = JFactory::getDBO();
 		$row = JTable::getInstance('K2Item', 'Table');
@@ -580,7 +564,6 @@ class K2ModelItems extends K2Model
 
 	function accessspecial()
 	{
-
 		$mainframe = JFactory::getApplication();
 		$db = JFactory::getDBO();
 		$row = JTable::getInstance('K2Item', 'Table');
@@ -604,7 +587,6 @@ class K2ModelItems extends K2Model
 
 	function accesspublic()
 	{
-
 		$mainframe = JFactory::getApplication();
 		$db = JFactory::getDBO();
 		$row = JTable::getInstance('K2Item', 'Table');
@@ -642,13 +624,12 @@ class K2ModelItems extends K2Model
 
 		foreach ($cid as $id)
 		{
-
-			//Load source item
+			// Load source item
 			$item = JTable::getInstance('K2Item', 'Table');
 			$item->load($id);
 			$item->id = (int)$item->id;
 
-			//Source images
+			// Source images
 			$sourceImage = JPATH_ROOT.'/media/k2/items/src/'.md5("Image".$item->id).'.jpg';
 			$sourceImageXS = JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$item->id).'_XS.jpg';
 			$sourceImageS = JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$item->id).'_S.jpg';
@@ -657,11 +638,11 @@ class K2ModelItems extends K2Model
 			$sourceImageXL = JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$item->id).'_XL.jpg';
 			$sourceImageGeneric = JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$item->id).'_Generic.jpg';
 
-			//Source gallery
+			// Source gallery
 			$sourceGallery = JPATH_ROOT.'/media/k2/galleries/'.$item->id;
 			$sourceGalleryTag = $item->gallery;
 
-			//Source video
+			// Source video
 			preg_match_all("#^{(.*?)}(.*?){#", $item->video, $matches, PREG_PATTERN_ORDER);
 			$videotype = $matches[1][0];
 			$videofile = $matches[2][0];
@@ -675,15 +656,15 @@ class K2ModelItems extends K2Model
 				}
 			}
 
-			//Source tags
+			// Source tags
 			$query = "SELECT * FROM #__k2_tags_xref WHERE itemID={$item->id}";
 			$db->setQuery($query);
 			$sourceTags = $db->loadObjectList();
 
-			//Source Attachments
+			// Source Attachments
 			$sourceAttachments = $itemModel->getAttachments($item->id);
 
-			//Save target item
+			// Save target item
 			$row = JTable::getInstance('K2Item', 'Table');
 			$row = $item;
 			$row->id = NULL;
@@ -696,7 +677,7 @@ class K2ModelItems extends K2Model
 			$row->store();
 			$copies[] = $row->id;
 
-			//Target images
+			// Target images
 			if (JFile::exists($sourceImage))
 				JFile::copy($sourceImage, JPATH_ROOT.'/media/k2/items/src/'.md5("Image".$row->id).'.jpg');
 			if (JFile::exists($sourceImageXS))
@@ -712,7 +693,7 @@ class K2ModelItems extends K2Model
 			if (JFile::exists($sourceImageGeneric))
 				JFile::copy($sourceImageGeneric, JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$row->id).'_Generic.jpg');
 
-			//Target gallery
+			// Target gallery
 			if ($sourceGalleryTag)
 			{
 				if (JString::strpos($sourceGalleryTag, 'http://'))
@@ -729,14 +710,14 @@ class K2ModelItems extends K2Model
 				}
 			}
 
-			//Target video
+			// Target video
 			if (isset($sourceVideo) && JFile::exists(JPATH_ROOT.'/media/k2/videos/'.$sourceVideo))
 			{
 				JFile::copy(JPATH_ROOT.'/media/k2/videos/'.$sourceVideo, JPATH_ROOT.'/media/k2/videos/'.$row->id.'.'.$videotype);
 				$row->video = '{'.$videotype.'}'.$row->id.'{/'.$videotype.'}';
 			}
 
-			//Target attachments
+			// Target attachments
 			$path = $params->get('attachmentsFolder', NULL);
 			if (is_null($path))
 				$savepath = JPATH_ROOT.'/media/k2/attachments';
@@ -758,7 +739,7 @@ class K2ModelItems extends K2Model
 				}
 			}
 
-			//Target tags
+			// Target tags
 			foreach ($sourceTags as $tag)
 			{
 				$query = "INSERT INTO #__k2_tags_xref (`id`, `tagID`, `itemID`) VALUES (NULL, {intval($tag->tagID)}, {intval($row->id)})";
@@ -774,12 +755,10 @@ class K2ModelItems extends K2Model
 			$mainframe->enqueueMessage(JText::_('K2_COPY_COMPLETED'));
 			$mainframe->redirect('index.php?option=com_k2&view=items');
 		}
-
 	}
 
 	function featured()
 	{
-
 		$mainframe = JFactory::getApplication();
 		$db = JFactory::getDBO();
 		$cid = JRequest::getVar('cid');
@@ -804,7 +783,6 @@ class K2ModelItems extends K2Model
 
 	function trash()
 	{
-
 		$mainframe = JFactory::getApplication();
 		$db = JFactory::getDBO();
 		$cid = JRequest::getVar('cid');
@@ -827,12 +805,10 @@ class K2ModelItems extends K2Model
 		$cache->clean();
 		$mainframe->enqueueMessage(JText::_('K2_ITEMS_MOVED_TO_TRASH'));
 		$mainframe->redirect('index.php?option=com_k2&view=items');
-
 	}
 
 	function restore()
 	{
-
 		$mainframe = JFactory::getApplication();
 		$db = JFactory::getDBO();
 		$cid = JRequest::getVar('cid');
@@ -868,7 +844,6 @@ class K2ModelItems extends K2Model
 			$mainframe->enqueueMessage(JText::_('K2_SOME_OF_THE_ITEMS_HAVE_NOT_BEEN_RESTORED_BECAUSE_THEY_BELONG_TO_A_CATEGORY_WHICH_IS_IN_TRASH'), 'notice');
 		$mainframe->enqueueMessage(JText::_('K2_ITEMS_RESTORED'));
 		$mainframe->redirect('index.php?option=com_k2&view=items');
-
 	}
 
 	function remove()
@@ -917,11 +892,11 @@ class K2ModelItems extends K2Model
 				JFile::delete(JPATH_ROOT.'/media/k2/items/cache/'.md5("Image".$row->id).'_Generic.jpg');
 			}
 
-			//Delete gallery
+			// Delete gallery
 			if (JFolder::exists(JPATH_ROOT.'/media/k2/galleries/'.$row->id))
 				JFolder::delete(JPATH_ROOT.'/media/k2/galleries/'.$row->id);
 
-			//Delete video
+			// Delete video
 			preg_match_all("#^{(.*?)}(.*?){#", $row->video, $matches, PREG_PATTERN_ORDER);
 			$videotype = $matches[1][0];
 			$videofile = $matches[2][0];
@@ -953,7 +928,6 @@ class K2ModelItems extends K2Model
 
 			if (in_array($videotype, $videoExtensions) || in_array($videotype, $audioExtensions))
 			{
-
 				if (JFile::exists(JPATH_ROOT.'/media/k2/videos/'.$videofile.'.'.$videotype))
 					JFile::delete(JPATH_ROOT.'/media/k2/videos/'.$videofile.'.'.$videotype);
 
@@ -961,7 +935,7 @@ class K2ModelItems extends K2Model
 					JFile::delete(JPATH_ROOT.'/media/k2/audio/'.$videofile.'.'.$videotype);
 			}
 
-			//Delete attachments
+			// Delete attachments
 			$path = $params->get('attachmentsFolder', NULL);
 			if (is_null($path))
 				$savepath = JPATH_ROOT.'/media/k2/attachments';
@@ -980,12 +954,12 @@ class K2ModelItems extends K2Model
 			$db->setQuery($query);
 			$db->query();
 
-			//Delete tags
+			// Delete tags
 			$query = "DELETE FROM #__k2_tags_xref WHERE itemID={$row->id}";
 			$db->setQuery($query);
 			$db->query();
 
-			//Delete comments
+			// Delete comments
 			$query = "DELETE FROM #__k2_comments WHERE itemID={$row->id}";
 			$db->setQuery($query);
 			$db->query();
@@ -1005,7 +979,6 @@ class K2ModelItems extends K2Model
 
 	function import()
 	{
-
 		$mainframe = JFactory::getApplication();
 		jimport('joomla.filesystem.file');
 		$db = JFactory::getDBO();
@@ -1162,7 +1135,6 @@ class K2ModelItems extends K2Model
 							$itemTag = JString::trim($itemTag);
 							if (in_array($itemTag, JArrayHelper::getColumn($tags, 'name')))
 							{
-
 								$query = "SELECT id FROM #__k2_tags WHERE name=".$db->Quote($itemTag);
 								$db->setQuery($query);
 								$id = $db->loadResult();
@@ -1184,9 +1156,7 @@ class K2ModelItems extends K2Model
 						}
 					}
 				}
-
 			}
-
 		}
 
 		// Handle uncategorized articles
@@ -1259,7 +1229,6 @@ class K2ModelItems extends K2Model
 						$itemTag = JString::trim($itemTag);
 						if (in_array($itemTag, JArrayHelper::getColumn($tags, 'name')))
 						{
-
 							$query = "SELECT id FROM #__k2_tags WHERE name=".$db->Quote($itemTag);
 							$db->setQuery($query);
 							$id = $db->loadResult();
@@ -1495,11 +1464,9 @@ class K2ModelItems extends K2Model
 								$db->query();
 							}
 						}
-
 					}
 				}
 			}
-
 		}
 
 		foreach ($mapping as $oldID => $newID)
@@ -1514,7 +1481,6 @@ class K2ModelItems extends K2Model
 
 	function move()
 	{
-
 		$mainframe = JFactory::getApplication();
 		$cid = JRequest::getVar('cid');
 		$catid = JRequest::getInt('moveCategories');
@@ -1530,7 +1496,6 @@ class K2ModelItems extends K2Model
 		$cache->clean();
 		$mainframe->enqueueMessage(JText::_('K2_MOVE_COMPLETED'));
 		$mainframe->redirect('index.php?option=com_k2&view=items');
-
 	}
 
 	function getItemsAuthors()
@@ -1582,7 +1547,5 @@ class K2ModelItems extends K2Model
 		$cache->clean();
 		$application->enqueueMessage(JText::_('K2_BATCH_COMPLETED'));
 		$application->redirect('index.php?option=com_k2&view=items');
-
 	}
-
 }
