@@ -56,12 +56,12 @@ class K2ViewCategories extends K2View
 				if (pressbutton == 'trash') {
 					var answer = confirm('".JText::_('K2_WARNING_YOU_ARE_ABOUT_TO_TRASH_THE_SELECTED_CATEGORIES_THEIR_CHILDREN_CATEGORIES_AND_ALL_THEIR_INCLUDED_ITEMS', true)."')
 					if (answer){
-						submitform( pressbutton );
+						submitform(pressbutton);
 					} else {
 						return;
 					}
 				} else {
-					submitform( pressbutton );
+					submitform(pressbutton);
 				}
 			};
 		");

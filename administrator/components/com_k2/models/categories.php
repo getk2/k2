@@ -16,10 +16,8 @@ JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 
 class K2ModelCategories extends K2Model
 {
-
     function getData()
     {
-
         $mainframe = JFactory::getApplication();
         $params = JComponentHelper::getParams('com_k2');
         $option = JRequest::getCmd('option');
@@ -201,7 +199,6 @@ class K2ModelCategories extends K2Model
 
     function getTotal()
     {
-
         $mainframe = JFactory::getApplication();
         $params = JComponentHelper::getParams('com_k2');
         $option = JRequest::getCmd('option');
@@ -226,7 +223,6 @@ class K2ModelCategories extends K2Model
 
 		if ($search)
 		{
-
 			// Detect exact search phrase using double quotes in search string
 			if(substr($search, 0, 1)=='"' && substr($search, -1)=='"')
 			{
@@ -332,7 +328,6 @@ class K2ModelCategories extends K2Model
 
     function publish()
     {
-
         $mainframe = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
         foreach ($cid as $id)
@@ -352,7 +347,6 @@ class K2ModelCategories extends K2Model
 
     function unpublish()
     {
-
         $mainframe = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
         foreach ($cid as $id)
@@ -372,7 +366,6 @@ class K2ModelCategories extends K2Model
 
     function saveorder()
     {
-
         $mainframe = JFactory::getApplication();
         $params = JComponentHelper::getParams('com_k2');
         $db = JFactory::getDBO();
@@ -411,7 +404,6 @@ class K2ModelCategories extends K2Model
 
     function orderup()
     {
-
         $mainframe = JFactory::getApplication();
         $params = JComponentHelper::getParams('com_k2');
         $cid = JRequest::getVar('cid');
@@ -429,7 +421,6 @@ class K2ModelCategories extends K2Model
 
     function orderdown()
     {
-
         $mainframe = JFactory::getApplication();
         $params = JComponentHelper::getParams('com_k2');
         $cid = JRequest::getVar('cid');
@@ -447,7 +438,6 @@ class K2ModelCategories extends K2Model
 
     function accessregistered()
     {
-
         $mainframe = JFactory::getApplication();
         $db = JFactory::getDBO();
         $row = JTable::getInstance('K2Category', 'Table');
@@ -471,7 +461,6 @@ class K2ModelCategories extends K2Model
 
     function accessspecial()
     {
-
         $mainframe = JFactory::getApplication();
         $db = JFactory::getDBO();
         $row = JTable::getInstance('K2Category', 'Table');
@@ -495,7 +484,6 @@ class K2ModelCategories extends K2Model
 
     function accesspublic()
     {
-
         $mainframe = JFactory::getApplication();
         $db = JFactory::getDBO();
         $row = JTable::getInstance('K2Category', 'Table');
@@ -519,7 +507,6 @@ class K2ModelCategories extends K2Model
 
     function trash()
     {
-
         $mainframe = JFactory::getApplication();
         $db = JFactory::getDBO();
         $cid = JRequest::getVar('cid');
@@ -544,12 +531,10 @@ class K2ModelCategories extends K2Model
         $cache->clean();
 		$mainframe->enqueueMessage(JText::_('K2_CATEGORIES_MOVED_TO_TRASH'));
         $mainframe->redirect('index.php?option=com_k2&view=categories');
-
     }
 
     function restore()
     {
-
         $mainframe = JFactory::getApplication();
         $db = JFactory::getDBO();
         $cid = JRequest::getVar('cid');
@@ -600,12 +585,10 @@ class K2ModelCategories extends K2Model
             $mainframe->enqueueMessage(JText::_('K2_SOME_OF_THE_CATEGORIES_HAVE_NOT_BEEN_RESTORED_BECAUSE_THEIR_PARENT_CATEGORY_IS_IN_TRASH'), 'notice');
 		$mainframe->enqueueMessage(JText::_('K2_CATEGORIES_MOVED_TO_TRASH'));
         $mainframe->redirect('index.php?option=com_k2&view=categories');
-
     }
 
     function remove()
     {
-
         $mainframe = JFactory::getApplication();
         jimport('joomla.filesystem.file');
         $db = JFactory::getDBO();
@@ -669,7 +652,6 @@ class K2ModelCategories extends K2Model
 
     function categoriesTree($row = NULL, $hideTrashed = false, $hideUnpublished = true)
     {
-
         $db = JFactory::getDBO();
         if (isset($row->id))
         {
@@ -723,12 +705,10 @@ class K2ModelCategories extends K2Model
         foreach ($list as $item)
         {
             $item->treename = JString::str_ireplace('&#160;', '- ', $item->treename);
-
-            if ($item->trash)
-                $item->treename .= ' [**'.JText::_('K2_TRASHED_CATEGORY').'**]';
             if (!$item->published)
                 $item->treename .= ' [**'.JText::_('K2_UNPUBLISHED_CATEGORY').'**]';
-
+            if ($item->trash)
+                $item->treename .= ' [**'.JText::_('K2_TRASHED_CATEGORY').'**]';
             $mitems[] = JHTML::_('select.option', $item->id, $item->treename);
         }
         return $mitems;
@@ -743,11 +723,11 @@ class K2ModelCategories extends K2Model
         $copies = array();
         foreach ($cid as $id)
         {
-            //Load source category
+            // Load source category
             $category = JTable::getInstance('K2Category', 'Table');
             $category->load($id);
 
-            //Save target category
+            // Save target category
             $row = JTable::getInstance('K2Category', 'Table');
             $row = $category;
             $row->id = NULL;
@@ -755,7 +735,7 @@ class K2ModelCategories extends K2Model
             $row->published = 0;
             $row->store();
             $copies[] = $row->id;
-            //Target image
+            // Target image
             if ($category->image && JFile::exists(JPATH_SITE.'/media/k2/categories/'.$category->image))
             {
                 JFile::copy(JPATH_SITE.'/media/k2/categories/'.$category->image, JPATH_SITE.'/media/k2/categories/'.$row->id.'.jpg');
@@ -772,33 +752,6 @@ class K2ModelCategories extends K2Model
             $mainframe->enqueueMessage(JText::_('K2_COPY_COMPLETED'));
             $mainframe->redirect('index.php?option=com_k2&view=categories');
         }
-
-    }
-
-    function move()
-    {
-
-        $mainframe = JFactory::getApplication();
-        $cid = JRequest::getVar('cid');
-        $catid = JRequest::getInt('moveCategories');
-        if(in_array($catid, $cid))
-        {
-            $mainframe->redirect('index.php?option=com_k2&view=categories');
-            return;
-        }
-        foreach ($cid as $id)
-        {
-        	$row = JTable::getInstance('K2Category', 'Table');
-            $row->load($id);
-            $row->parent = $catid;
-            $row->ordering = $row->getNextOrder('parent = '.(int)$row->parent.' AND published = 1');
-            $row->store();
-        }
-        $cache = JFactory::getCache('com_k2');
-        $cache->clean();
-		$mainframe->enqueueMessage(JText::_('K2_MOVE_COMPLETED'));
-        $mainframe->redirect('index.php?option=com_k2&view=categories');
-
     }
 
     function saveBatch()
@@ -845,7 +798,5 @@ class K2ModelCategories extends K2Model
         $cache->clean();
         $application->enqueueMessage(JText::_('K2_BATCH_COMPLETED'));
         $application->redirect('index.php?option=com_k2&view=categories');
-
     }
-
 }
