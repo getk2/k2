@@ -17,7 +17,6 @@ JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 class K2ModelComments extends K2Model {
 
 	function getData() {
-
 		$mainframe = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
 		$option = JRequest::getCmd('option');
@@ -134,7 +133,6 @@ class K2ModelComments extends K2Model {
 	}
 
 	function getTotal() {
-
 		$mainframe = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
 		$option = JRequest::getCmd('option');
@@ -237,14 +235,12 @@ class K2ModelComments extends K2Model {
 				}
 			}
 		}
-
 		$db->setQuery($query);
 		$total = $db->loadresult();
 		return $total;
 	}
 
 	function publish() {
-
 		$mainframe = JFactory::getApplication();
 		$user = JFactory::getUser();
 		$cid = JRequest::getVar('cid');
@@ -276,7 +272,6 @@ class K2ModelComments extends K2Model {
 	}
 
 	function unpublish() {
-
 		$mainframe = JFactory::getApplication();
 		$user = JFactory::getUser();
 		$cid = JRequest::getVar('cid');
@@ -300,7 +295,6 @@ class K2ModelComments extends K2Model {
 	}
 
 	function remove() {
-
 		$mainframe = JFactory::getApplication();
 		$user = JFactory::getUser();
 		$db = JFactory::getDBO();
@@ -332,7 +326,6 @@ class K2ModelComments extends K2Model {
 	}
 
 	function deleteUnpublished() {
-
 		$mainframe = JFactory::getApplication();
 		$db = JFactory::getDBO();
 		$user = JFactory::getUser();
@@ -362,7 +355,6 @@ class K2ModelComments extends K2Model {
 	}
 
 	function save() {
-
 		$mainframe = JFactory::getApplication();
 		$user = JFactory::getUser();
 		$db = JFactory::getDBO();
@@ -422,17 +414,16 @@ class K2ModelComments extends K2Model {
 				else
 				{
 					if(!function_exists('_recaptcha_qsencode'))
-						{
-								require_once (JPATH_ADMINISTRATOR.'/components/com_k2/lib/recaptchalib.php');
-						}
-						$privatekey = $params->get('recaptcha_private_key');
-						$resp = recaptcha_check_answer($privatekey, $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
-						if (!$resp->is_valid) {
-							$this->setError(JText::_('K2_THE_WORDS_YOU_TYPED_DID_NOT_MATCH_THE_ONES_DISPLAYED_PLEASE_TRY_AGAIN'));
-							return false;
-						}
+					{
+							require_once (JPATH_ADMINISTRATOR.'/components/com_k2/lib/recaptchalib.php');
+					}
+					$privatekey = $params->get('recaptcha_private_key');
+					$resp = recaptcha_check_answer($privatekey, $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
+					if (!$resp->is_valid) {
+						$this->setError(JText::_('K2_THE_WORDS_YOU_TYPED_DID_NOT_MATCH_THE_ONES_DISPLAYED_PLEASE_TRY_AGAIN'));
+						return false;
+					}
 				}
-
 		}
 
 		$mainframe = JFactory::getApplication();
@@ -468,7 +459,5 @@ class K2ModelComments extends K2Model {
         $mail->Send();
 
 		return true;
-
     }
-
 }

@@ -166,17 +166,6 @@ $K2(document).ready(function() {
                 $K2('#k2Comment' + commentID + ' .commentToolbar .k2CommentControls').css('display', 'inline');
                 $K2(this).css('display', 'none');
             });
-            $K2('.closeComment').click(function(event) {
-                event.preventDefault();
-                flag = false;
-                var commentID = $K2(this).attr('rel');
-                var target = $K2('#k2Comment' + commentID + ' .commentText');
-                var value = $K2('#k2Comment' + commentID + ' input').val();
-                target.html(value);
-                $K2('#k2Comment' + commentID + ' .commentToolbar .k2CommentControls').css('display', 'none');
-                $K2('#k2Comment' + commentID + ' .commentToolbar a.editComment').css('display', 'inline');
-
-            });
             $K2('.saveComment').click(function(event) {
                 event.preventDefault();
                 flag = false;
@@ -189,17 +178,30 @@ $K2(document).ready(function() {
                 var log = $K2('#k2Comment' + commentID + ' .k2CommentsLog');
                 log.addClass('k2CommentsLoader');
                 $K2.ajax({
-                    url : 'index.php',
-                    type : 'post',
-                    dataType : 'json',
-                    data : $K2('#adminForm').serialize(),
-                    success : function(result) {
+                    url: 'index.php',
+                    type: 'post',
+                    dataType: 'json',
+                    data: $K2('#adminForm').serialize(),
+                    success: function(result) {
                         target.html(result.comment);
                         $K2('#k2Comment' + commentID + ' input').val(result.comment);
                         $K2('#task').val('');
-                        log.removeClass('k2CommentsLoader').html(result.message).delay(3000).fadeOut();
-                    }
+                        log.removeClass('k2CommentsLoader').html(result.message).delay(2000).fadeOut();
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+	                    log.removeClass('k2CommentsLoader').html(textStatus + ': ' + errorThrown).delay(2000).fadeOut();
+	                }
                 });
+                $K2('#k2Comment' + commentID + ' .commentToolbar .k2CommentControls').css('display', 'none');
+                $K2('#k2Comment' + commentID + ' .commentToolbar a.editComment').css('display', 'inline');
+            });
+            $K2('.closeComment').click(function(event) {
+                event.preventDefault();
+                flag = false;
+                var commentID = $K2(this).attr('rel');
+                var target = $K2('#k2Comment' + commentID + ' .commentText');
+                var value = $K2('#k2Comment' + commentID + ' input').val();
+                target.html(value);
                 $K2('#k2Comment' + commentID + ' .commentToolbar .k2CommentControls').css('display', 'none');
                 $K2('#k2Comment' + commentID + ' .commentToolbar a.editComment').css('display', 'inline');
             });
@@ -697,6 +699,13 @@ $K2(document).ready(function() {
 	}
 
 	$(document).ready(function(){
+
+		// Hide system messages after 3 seconds in frontend editing
+		if($('#k2FrontendContainer').length && $('#system-message-container').length){
+			$('#system-message-container').delay(3000).fadeOut('fast', function() {
+				$(this).remove();
+			});
+		}
 
 		// Flatpickr
 		if($('input[data-k2-datetimepicker]').length){

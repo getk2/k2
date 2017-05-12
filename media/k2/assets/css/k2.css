@@ -900,12 +900,13 @@ div.isJ25 div.current {background:#fff;}
 td#k2Comment {}
 div.commentText {}
 div.commentToolbar {padding-top:4px;}
-a.editComment {}
-div.k2CommentControls {display:none;}
-	a.saveComment {}
-	a.closeComment {}
 div.commentToolbar span.k2CommentsLog {display:block;float:right;font-weight:bold;}
 div.commentToolbar span.k2CommentsLoader {background:url(../images/system/loader.gif) no-repeat 0 50%;padding-left:24px;}
+	a.editComment {}
+	div.k2CommentControls {display:none;}
+		div.k2CommentControls span.k2OptionSep {margin:0 4px;}
+		a.saveComment {}
+		a.closeComment {}
 
 /* New views introduced in 2.7 - Batch & Move (using the -alt suffix) */
 .header-alt {padding:15px 8px;font-size:20px;font-weight:300;letter-spacing:-1px;background-color:#fff;box-shadow:0 1px 0 rgba(0,0,0,.18);}
