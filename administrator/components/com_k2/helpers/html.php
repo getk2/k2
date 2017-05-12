@@ -229,7 +229,7 @@ class K2HelperHTML
 					// Set K2 version as global JS variable
 					K2JVersion = "'.K2_JVERSION.'";
 
-					// Set Joomla version as body tag
+					// Set Joomla version as class in the "html" tag
 					(function(){
 						var addedClass = "'.$cssClass.'";
 						if (document.getElementsByTagName("html")[0].className !== "") {
