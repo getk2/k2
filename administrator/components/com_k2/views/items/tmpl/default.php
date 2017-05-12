@@ -44,14 +44,16 @@ $context = JRequest::getCmd('context');
 			<td class="k2AdminTableFiltersSelects">
 				<?php echo $this->lists['trash']; ?>
 				<?php echo $this->lists['featured']; ?>
+				<?php echo $this->lists['state']; ?>
 				<?php echo $this->lists['categories']; ?>
 				<?php if(isset($this->lists['tag'])): ?>
 				<?php echo $this->lists['tag']; ?>
 				<?php endif; ?>
-				<?php echo $this->lists['authors']; ?> <?php echo $this->lists['state']; ?>
+				<?php echo $this->lists['authors']; ?>
 				<?php if(isset($this->lists['language'])): ?>
 				<?php echo $this->lists['language']; ?>
 				<?php endif; ?>
+
 				<?php foreach($this->filters as $filter):?>
 				<?php echo $filter; ?>
 				<?php endforeach; ?>

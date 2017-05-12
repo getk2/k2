@@ -30,8 +30,9 @@ $context = JRequest::getCmd('context');
 				</div>
 			</td>
 			<td class="k2AdminTableFiltersSelects">
+				<?php echo $this->lists['trash']; ?>
+				<?php echo $this->lists['state']; ?>
 				<?php echo $this->lists['categories']; ?>
-				<?php echo $this->lists['trash']; ?> <?php echo $this->lists['state']; ?>
 				<?php if(isset($this->lists['language'])): ?>
 				<?php echo $this->lists['language']; ?>
 				<?php endif; ?>
