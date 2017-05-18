@@ -99,9 +99,9 @@ $context = JRequest::getCmd('context');
 						<?php if($context == "modalselector"): ?>
 						<?php
 						if(JRequest::getVar('output') == 'list'){
-							$onClick = 'window.parent.k2ModalSelector(\''.$row->id.'\', \''.str_replace(array("'", "\""), array("\\'", ""), $row->name).'\'); return false;';
-						} else {
 							$onClick = 'window.parent.k2ModalSelector(\''.$row->id.'\', \''.str_replace(array("'", "\""), array("\\'", ""), $row->name).'\', \''.JRequest::getCmd('fid').'\', \''.JRequest::getVar('fname').'\', \''.JRequest::getCmd('output').'\'); return false;';
+						} else {
+							$onClick = 'window.parent.k2ModalSelector(\''.$row->id.'\', \''.str_replace(array("'", "\""), array("\\'", ""), $row->name).'\'); return false;';
 						}
 						?>
 						<a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ITEM'); ?>" href="#" onclick="<?php echo $onClick; ?>"><?php echo $row->name; ?></a>

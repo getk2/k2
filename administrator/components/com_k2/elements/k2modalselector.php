@@ -41,7 +41,7 @@ class K2ElementK2modalselector extends K2Element
         {
             $fieldName = $control_name.'['.$name.'][]';
             if($node->attributes('scope')){
-	            $scope = $node->attributes()->scope;
+	            $scope = $node->attributes('scope');
             }
             else
             {
