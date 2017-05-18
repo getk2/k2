@@ -21,7 +21,7 @@ if (K2_JVERSION != '15')
 	}
 
 	$language = JFactory::getLanguage();
-	$language->load('mod_k2.j16', JPATH_ADMINISTRATOR);
+	$language->load('com_k2.dates', JPATH_ADMINISTRATOR);
 	if ($user->authorise('core.admin', 'com_k2'))
 	{
 		$user->gid = 1000;

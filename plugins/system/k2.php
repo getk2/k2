@@ -467,7 +467,7 @@ class plgSystemK2 extends JPlugin
 
 		if (K2_JVERSION != '15')
 		{
-			JPlugin::loadLanguage('com_k2.j16', JPATH_ADMINISTRATOR, null, true);
+			JPlugin::loadLanguage('com_k2.dates', JPATH_ADMINISTRATOR, null, true);
 		}
 		if ($mainframe->isAdmin())
 		{

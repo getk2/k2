@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 if (K2_JVERSION != '15')
 {
     $language = JFactory::getLanguage();
-    $language->load('mod_k2.j16', JPATH_ADMINISTRATOR, null, true);
+    $language->load('com_k2.dates', JPATH_ADMINISTRATOR, null, true);
 	require_once JPATH_SITE.'/components/com_users/helpers/route.php';
 }
 

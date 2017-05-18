@@ -90,14 +90,13 @@
 			<filename>uninstall.mysql.sql</filename>
 		</files>
 		<languages folder="administrator/language/en-GB">
+			<language tag="en-GB">en-GB.com_k2.dates.ini</language>
 			<language tag="en-GB">en-GB.com_k2.ini</language>
 			<language tag="en-GB">en-GB.com_k2.menu.ini</language>
-			<language tag="en-GB">en-GB.com_k2.j16.ini</language>
 			<language tag="en-GB">en-GB.mod_k2_quickicons.ini</language>
 			<language tag="en-GB">en-GB.mod_k2_quickicons.sys.ini</language>
 			<language tag="en-GB">en-GB.mod_k2_stats.ini</language>
 			<language tag="en-GB">en-GB.mod_k2_stats.sys.ini</language>
-			<language tag="en-GB">en-GB.mod_k2.j16.ini</language>
 			<language tag="en-GB">en-GB.plg_finder_k2.ini</language>
 			<language tag="en-GB">en-GB.plg_finder_k2.sys.ini</language>
 			<language tag="en-GB">en-GB.plg_search_k2.ini</language>

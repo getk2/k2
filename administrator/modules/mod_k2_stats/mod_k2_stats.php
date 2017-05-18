@@ -23,7 +23,7 @@ if (K2_JVERSION != '15')
 if (K2_JVERSION != '15')
 {
 	$language = JFactory::getLanguage();
-	$language->load('mod_k2.j16', JPATH_ADMINISTRATOR);
+	$language->load('com_k2.dates', JPATH_ADMINISTRATOR);
 }
 
 require_once (dirname(__FILE__).'/helper.php');
