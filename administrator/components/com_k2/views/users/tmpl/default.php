@@ -94,7 +94,7 @@ $context = JRequest::getCmd('context');
 				<td>
 					<?php if($context == "modalselector"): ?>
 					<?php
-					if(JRequest::getVar('output') == 'list'){
+					if(JRequest::getCmd('output') == 'list'){
 						$onClick = 'window.parent.k2ModalSelector(\''.$row->id.'\', \''.str_replace(array("'", "\""), array("\\'", ""), $row->name).'\', \''.JRequest::getCmd('fid').'\', \''.JRequest::getVar('fname').'\', \''.JRequest::getCmd('output').'\'); return false;';
 					} else {
 						$onClick = 'window.parent.k2ModalSelector(\''.$row->id.'\', \''.str_replace(array("'", "\""), array("\\'", ""), $row->name).'\'); return false;';
@@ -146,8 +146,8 @@ $context = JRequest::getCmd('context');
 	<input type="hidden" name="context" value="modalselector" />
 	<input type="hidden" name="tmpl" value="component" />
 	<input type="hidden" name="fid" value="<?php echo JRequest::getCmd('fid'); ?>" />
-	<input type="hidden" name="fname" value="<?php echo JRequest::getCmd('fname'); ?>" />
-	<input type="hidden" name="output" value="<?php echo JRequest::getVar('output'); ?>" />
+	<input type="hidden" name="fname" value="<?php echo JRequest::getVar('fname'); ?>" />
+	<input type="hidden" name="output" value="<?php echo JRequest::getCmd('output'); ?>" />
 	<?php endif; ?>
 	<?php echo JHTML::_( 'form.token' ); ?>
 </form>
