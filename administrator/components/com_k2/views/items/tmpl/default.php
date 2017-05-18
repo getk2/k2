@@ -282,6 +282,9 @@ $context = JRequest::getCmd('context');
 	<?php if($context == "modalselector"): ?>
 	<input type="hidden" name="context" value="modalselector" />
 	<input type="hidden" name="tmpl" value="component" />
+	<input type="hidden" name="fid" value="<?php echo JRequest::getCmd('fid'); ?>" />
+	<input type="hidden" name="fname" value="<?php echo JRequest::getCmd('fname'); ?>" />
+	<input type="hidden" name="output" value="<?php echo JRequest::getVar('output'); ?>" />
 	<?php endif; ?>
 	<?php echo JHTML::_('form.token'); ?>
 </form>

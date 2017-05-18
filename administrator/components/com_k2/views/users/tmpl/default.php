@@ -97,7 +97,14 @@ $context = JRequest::getCmd('context');
 					<td class="k2Center<?php if($context == "modalselector") echo ' k2VisuallyHidden'; ?>"><?php $row->checked_out = 0; echo JHTML::_('grid.id', $key, $row->id ); ?></td>
 					<td>
 						<?php if($context == "modalselector"): ?>
-						<a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ITEM'); ?>" href="#" onclick="window.parent.k2ModalSelector('<?php echo $row->id; ?>', '<?php echo str_replace(array("'", "\""), array("\\'", ""), $row->name); ?>'); return false;"><?php echo $row->name; ?></a>
+						<?php
+						if(JRequest::getVar('output') == 'list'){
+							$onClick = 'window.parent.k2ModalSelector(\''.$row->id.'\', \''.str_replace(array("'", "\""), array("\\'", ""), $row->name).'\'); return false;';
+						} else {
+							$onClick = 'window.parent.k2ModalSelector(\''.$row->id.'\', \''.str_replace(array("'", "\""), array("\\'", ""), $row->name).'\', \''.JRequest::getCmd('fid').'\', \''.JRequest::getVar('fname').'\', \''.JRequest::getCmd('output').'\'); return false;';
+						}
+						?>
+						<a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ITEM'); ?>" href="#" onclick="<?php echo $onClick; ?>"><?php echo $row->name; ?></a>
 						<?php else: ?>
 						<a href="<?php echo $row->link; ?>"><?php echo $row->name; ?></a>
 						<?php endif; ?>
@@ -142,6 +149,9 @@ $context = JRequest::getCmd('context');
 		<?php if($context == "modalselector"): ?>
 		<input type="hidden" name="context" value="modalselector" />
 		<input type="hidden" name="tmpl" value="component" />
+		<input type="hidden" name="fid" value="<?php echo JRequest::getCmd('fid'); ?>" />
+		<input type="hidden" name="fname" value="<?php echo JRequest::getCmd('fname'); ?>" />
+		<input type="hidden" name="output" value="<?php echo JRequest::getVar('output'); ?>" />
 		<?php endif; ?>
 		<?php echo JHTML::_( 'form.token' ); ?>
 	</form>
