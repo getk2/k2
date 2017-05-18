@@ -71,7 +71,7 @@
                     <option value="1">K2_YES</option>
                 </field>
                 <field name="" type="header" default="K2_SELECT_SPECIFIC_ITEMS" label="" description=""/>
-                <field name="items" type="k2items" default="" label="K2_ITEM_SELECTOR" description=""/>
+                <field name="items" type="k2modalselector" scope="items" default="" label="K2_ITEM_SELECTOR" description=""/>
                 <field name="" type="header" default="K2_ITEM_VIEW_OPTIONS_COMMON_FOR_EITHER_SOURCE" label="" description=""/>
                 <field name="itemTitle" type="radio" default="1" label="K2_TITLE" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>

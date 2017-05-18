@@ -69,6 +69,7 @@ class plgSystemK2 extends JPlugin
 		}
 		JLoader::register('K2View', JPATH_ADMINISTRATOR.'/components/com_k2/views/view.php');
 		JLoader::register('K2HelperHTML', JPATH_ADMINISTRATOR.'/components/com_k2/helpers/html.php');
+		JLoader::register('K2HelperUtilities', JPATH_SITE.'/components/com_k2/helpers/utilities.php');
 
 		// Community Builder integration
 		$componentParams = JComponentHelper::getParams('com_k2');

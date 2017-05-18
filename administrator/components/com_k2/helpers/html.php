@@ -49,8 +49,6 @@ class K2HelperHTML
 
 	public static function loadHeadIncludes($loadFramework = false, $jQueryUI = false, $adminHeadIncludes = false, $adminModuleIncludes = false)
 	{
-		JLoader::register('K2HelperUtilities', JPATH_SITE.'/components/com_k2/helpers/utilities.php');
-
 		$application = JFactory::getApplication();
 		$document = JFactory::getDocument();
 		$option = JRequest::getCmd('option');

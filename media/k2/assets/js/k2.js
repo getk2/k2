@@ -676,6 +676,15 @@ $K2(document).ready(function() {
 			});
 		}
 
+		// Sortables (jQuery UI)
+		if($('.k2SortableListContainer').length){
+			$('.k2SortableListContainer').sortable();
+			$('.k2SortableListContainer .k2EntryRemove').click(function(e){
+				e.preventDefault();
+				$(this).parent().remove();
+			});
+		}
+
 		// Flatpickr
 		if($('input[data-k2-datetimepicker]').length){
 			$('input[data-k2-datetimepicker]').each(function(){
@@ -1152,11 +1161,6 @@ function jSelectUser(id, name) {
         parent.$K2('#sbox-window').close();
 	}
 }
-function k2SelectUser(id, name) {
-    $K2('#k2Author').html(name);
-    $K2('input[name=created_by]').val(id);
-	$K2(parent.document).magnificPopup('close');
-}
 
 // MFP modal close
 function k2CloseMFP() {
@@ -1171,4 +1175,34 @@ function elFinderUpdate(fieldID, value) {
     } else {
         parent.$K2('#sbox-window').close();
     }
+}
+
+// Generic modal selector
+function k2ModalSelector(id, name, fid, fname, output) {
+
+	// Generic sortable lists
+	if(output == 'list'){
+		var exists = false;
+		$K2('#'+ fid +' input').each(function(){
+			if($K2(this).val() == id){
+				$K2().k2Alert(K2_THE_SELECTED_ITEM_IS_ALREADY_IN_THE_LIST.replace('ITEM_NAME_HERE', name), 3000);
+				exists = true;
+			}
+		});
+		if(!exists){
+			var entry = '<li class="handle"><a class="k2EntryRemove" href="#" title="'+ K2_REMOVE_THIS_ENTRY +'"><i class="fa fa-trash-o"></i></a><span class="k2EntryText">'+ name +'</span><input type="hidden" name="'+ fname +'" value="'+ id +'" /></li>';
+			$K2('#'+ fid).append(entry).sortable('refresh');
+			$K2().k2Alert(K2_ITEM_ADDED_IN_THE_LIST.replace('ITEM_NAME_HERE', name), 1000);
+		}
+	} else {
+		// Item author
+		if($K2('#k2Author')){
+		    $K2('#k2Author').html(name);
+		    $K2('input[name=created_by]').val(id);
+			$K2(parent.document).magnificPopup('close');
+		}
+	}
+
+	return false;
+
 }
