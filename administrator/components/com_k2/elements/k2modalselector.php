@@ -28,7 +28,8 @@ class K2ElementK2modalselector extends K2Element
         if (K2_JVERSION != '15')
         {
             $fieldName = $name.'[]';
-            if($node->attributes()->scope)){
+            if($node->attributes()->scope)
+            {
 	            $scope = $node->attributes()->scope;
             }
             else
@@ -39,7 +40,7 @@ class K2ElementK2modalselector extends K2Element
         else
         {
             $fieldName = $control_name.'['.$name.'][]';
-            if($node->attributes('scope'))){
+            if($node->attributes('scope')){
 	            $scope = $node->attributes()->scope;
             }
             else
@@ -64,8 +65,8 @@ class K2ElementK2modalselector extends K2Element
 		// JS
         $document->addScriptDeclaration("
         	var K2_THE_SELECTED_ITEM_IS_ALREADY_IN_THE_LIST = '".JText::_('K2_THE_SELECTED_ITEM_IS_ALREADY_IN_THE_LIST')."';
-        	var K2_REMOVE_THIS_ENTRY = '".JText::_('K2_THE_SELECTED_ITEM_IS_ALREADY_IN_THE_LIST')."';
-        	var K2_ITEM_ADDED_IN_THE_LIST = '".JText::_('K2_THE_SELECTED_ITEM_IS_ALREADY_IN_THE_LIST')."';
+        	var K2_REMOVE_THIS_ENTRY = '".JText::_('K2_REMOVE_THIS_ENTRY')."';
+        	var K2_ITEM_ADDED_IN_THE_LIST = '".JText::_('K2_ITEM_ADDED_IN_THE_LIST')."';
         ");
 
 		// Output
