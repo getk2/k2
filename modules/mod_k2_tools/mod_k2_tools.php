@@ -23,8 +23,8 @@ $moduleclass_sfx = $params->get('moduleclass_sfx', '');
 $module_usage = $params->get('module_usage', 0);
 $authorAvatarWidthSelect = $params->get('authorAvatarWidthSelect', 'custom');
 $authorAvatarWidth = $params->get('authorAvatarWidth', 50);
-$button = $params->get('button', '');
-$imagebutton = $params->get('imagebutton', '');
+$button = $params->get('button');
+$imagebutton = $params->get('imagebutton');
 $button_pos = $params->get('button_pos', 'left');
 $button_text = $params->get('button_text', JText::_('K2_SEARCH'));
 $text = $params->get('text', JText::_('K2_SEARCH'));
@@ -37,7 +37,6 @@ $app = JFactory::getApplication();
 // Output
 switch ($module_usage)
 {
-
     case '0' :
         $months = modK2ToolsHelper::getArchive($params);
         if (count($months))

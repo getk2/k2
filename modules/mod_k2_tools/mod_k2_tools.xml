@@ -92,17 +92,17 @@
             <option value="0">K2_NO</option>
             <option value="1">K2_YES</option>
         </param>
-        <param name="liveSearch" type="radio" default="" label="K2_ENABLE_LIVE_SEARCH" description="K2_IF_YOU_ENABLE_THIS_OPTION_SEARCH_RESULTS_WILL_BE_DISPLAYED_RIGHT_BELOW_THE_SEARCH_BOX_AS_YOU_TYPE_YOUR_SEARCH_QUERY">
-            <option value="">K2_NO</option>
+        <param name="liveSearch" type="radio" default="0" label="K2_ENABLE_LIVE_SEARCH" description="K2_IF_YOU_ENABLE_THIS_OPTION_SEARCH_RESULTS_WILL_BE_DISPLAYED_RIGHT_BELOW_THE_SEARCH_BOX_AS_YOU_TYPE_YOUR_SEARCH_QUERY">
+            <option value="0">K2_NO</option>
             <option value="1">K2_YES</option>
         </param>
         <param name="text" type="text" default="" label="K2_SEARCH_BOX_DEFAULT_TEXT" description="K2_THE_TEXT_TO_DISPLAY_BY_DEFAULT_IN_THE_SEARCH_BOX" />
-        <param name="button" type="radio" default="" label="K2_SHOW_SEARCH_BUTTON" description="">
-            <option value="">K2_NO</option>
+        <param name="button" type="radio" default="0" label="K2_SHOW_SEARCH_BUTTON" description="">
+            <option value="0">K2_NO</option>
             <option value="1">K2_YES</option>
         </param>
-        <param name="imagebutton" type="radio" default="" label="K2_SEARCH_BUTTON_AS_IMAGE" description="K2_USE_AN_IMAGE_AS_THE_SEARCH_BUTTON">
-            <option value="">K2_NO</option>
+        <param name="imagebutton" type="radio" default="0" label="K2_SEARCH_BUTTON_AS_IMAGE" description="K2_USE_AN_IMAGE_AS_THE_SEARCH_BUTTON">
+            <option value="0">K2_NO</option>
             <option value="1">K2_YES</option>
         </param>
         <param name="button_text" type="text" default="" label="K2_SEARCH_BUTTON_TEXT" description="K2_SET_THE_DEFAULT_TEXT_WHICH_WILL_APPEAR_ON_THE_SEARCH_BOX_EG_SEARCH_SITE" />
