@@ -19,21 +19,21 @@ class K2ControllerItems extends K2Controller
 		JRequest::setVar('view', 'items');
 		parent::display();
 	}
-	
+
 	function publish()
 	{
 		JRequest::checkToken() or jexit('Invalid Token');
 		$model = $this->getModel('items');
 		$model->publish();
 	}
-	
+
 	function unpublish()
 	{
 		JRequest::checkToken() or jexit('Invalid Token');
 		$model = $this->getModel('items');
 		$model->unpublish();
 	}
-	
+
 	function saveorder()
 	{
 		JRequest::checkToken() or jexit('Invalid Token');
@@ -50,21 +50,21 @@ class K2ControllerItems extends K2Controller
 			$this->setRedirect('index.php?option=com_k2&view=items', JText::_('K2_NEW_ORDERING_SAVED'));
 		}
 	}
-	
+
 	function orderup()
 	{
 		JRequest::checkToken() or jexit('Invalid Token');
 		$model = $this->getModel('items');
 		$model->orderup();
 	}
-	
+
 	function orderdown()
 	{
 		JRequest::checkToken() or jexit('Invalid Token');
 		$model = $this->getModel('items');
 		$model->orderdown();
 	}
-	
+
 	function savefeaturedorder()
 	{
 		JRequest::checkToken() or jexit('Invalid Token');
@@ -81,97 +81,97 @@ class K2ControllerItems extends K2Controller
 			$this->setRedirect('index.php?option=com_k2&view=items', JText::_('K2_NEW_FEATURED_ORDERING_SAVED'));
 		}
 	}
-	
+
 	function featuredorderup()
 	{
 		JRequest::checkToken() or jexit('Invalid Token');
 		$model = $this->getModel('items');
 		$model->featuredorderup();
 	}
-	
+
 	function featuredorderdown()
 	{
 		JRequest::checkToken() or jexit('Invalid Token');
 		$model = $this->getModel('items');
 		$model->featuredorderdown();
 	}
-	
+
 	function accessregistered()
 	{
 		JRequest::checkToken() or jexit('Invalid Token');
 		$model = $this->getModel('items');
 		$model->accessregistered();
 	}
-	
+
 	function accessspecial()
 	{
 		JRequest::checkToken() or jexit('Invalid Token');
 		$model = $this->getModel('items');
 		$model->accessspecial();
 	}
-	
+
 	function accesspublic()
 	{
 		JRequest::checkToken() or jexit('Invalid Token');
 		$model = $this->getModel('items');
 		$model->accesspublic();
 	}
-	
+
 	function featured()
 	{
 		JRequest::checkToken() or jexit('Invalid Token');
 		$model = $this->getModel('items');
 		$model->featured();
 	}
-	
+
 	function trash()
 	{
 		JRequest::checkToken() or jexit('Invalid Token');
 		$model = $this->getModel('items');
 		$model->trash();
 	}
-	
+
 	function restore()
 	{
 		JRequest::checkToken() or jexit('Invalid Token');
 		$model = $this->getModel('items');
 		$model->restore();
 	}
-	
+
 	function remove()
 	{
 		JRequest::checkToken() or jexit('Invalid Token');
 		$model = $this->getModel('items');
 		$model->remove();
 	}
-	
+
 	function add()
 	{
 		$mainframe = JFactory::getApplication();
 		$mainframe->redirect('index.php?option=com_k2&view=item');
 	}
-	
+
 	function edit()
 	{
 		$mainframe = JFactory::getApplication();
 		$cid = JRequest::getVar('cid');
 		$mainframe->redirect('index.php?option=com_k2&view=item&cid='.$cid[0]);
 	}
-	
+
 	function copy()
 	{
 		JRequest::checkToken() or jexit('Invalid Token');
 		$model = $this->getModel('items');
 		$model->copy();
 	}
-	
+
 	function element()
 	{
 		JRequest::setVar('view', 'items');
 		JRequest::setVar('layout', 'element');
 		parent::display();
 	}
-	
+
 	function import()
 	{
 		$model = $this->getModel('items');
@@ -184,20 +184,7 @@ class K2ControllerItems extends K2Controller
 			$model->import();
 		}
 	}
-	
-	function move()
-	{
-		$view = $this->getView('items', 'html');
-		$view->setLayout('move');
-		$view->move();
-	}
-	
-	function saveMove()
-	{
-		$model = $this->getModel('items');
-		$model->move();
-	}
-	
+
 	function saveBatch()
 	{
 		JRequest::checkToken() or jexit('Invalid Token');
@@ -213,11 +200,11 @@ class K2ControllerItems extends K2Controller
 		$date = JFactory::getDate();
 		$now = version_compare(JVERSION, '2.5', 'ge') ? $date->toSql() : $date->toMySQL();
 		$db = JFactory::getDbo();
-		
+
 		$query = 'DELETE FROM #__k2_log';
 		$db->setQuery($query);
 		$db->query();
-		
+
 		$query = 'INSERT INTO #__k2_log VALUES('.$status.', '.$db->quote($response).', '.$db->quote($now).')';
 		$db->setQuery($query);
 		$db->query();

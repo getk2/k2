@@ -369,7 +369,11 @@ class K2ModelItems extends K2Model
 		));
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
-		$mainframe->redirect('index.php?option=com_k2&view=items');
+		if(JRequest::getCmd('context') == "modalselector"){
+			$mainframe->redirect('index.php?option=com_k2&view=items&tmpl=component&context=modalselector');
+		} else {
+			$mainframe->redirect('index.php?option=com_k2&view=items');
+		}
 	}
 
 	function unpublish()
@@ -392,7 +396,11 @@ class K2ModelItems extends K2Model
 		));
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
-		$mainframe->redirect('index.php?option=com_k2&view=items');
+		if(JRequest::getCmd('context') == "modalselector"){
+			$mainframe->redirect('index.php?option=com_k2&view=items&tmpl=component&context=modalselector');
+		} else {
+			$mainframe->redirect('index.php?option=com_k2&view=items');
+		}
 	}
 
 	function saveorder()
@@ -447,7 +455,11 @@ class K2ModelItems extends K2Model
 		$cache->clean();
 		$msg = JText::_('K2_NEW_ORDERING_SAVED');
 		$mainframe->enqueueMessage($msg);
-		$mainframe->redirect('index.php?option=com_k2&view=items');
+		if(JRequest::getCmd('context') == "modalselector"){
+			$mainframe->redirect('index.php?option=com_k2&view=items&tmpl=component&context=modalselector');
+		} else {
+			$mainframe->redirect('index.php?option=com_k2&view=items');
+		}
 	}
 
 	function orderdown()
@@ -464,7 +476,11 @@ class K2ModelItems extends K2Model
 		$cache->clean();
 		$msg = JText::_('K2_NEW_ORDERING_SAVED');
 		$mainframe->enqueueMessage($msg);
-		$mainframe->redirect('index.php?option=com_k2&view=items');
+		if(JRequest::getCmd('context') == "modalselector"){
+			$mainframe->redirect('index.php?option=com_k2&view=items&tmpl=component&context=modalselector');
+		} else {
+			$mainframe->redirect('index.php?option=com_k2&view=items');
+		}
 	}
 
 	function savefeaturedorder()
@@ -519,7 +535,11 @@ class K2ModelItems extends K2Model
 		$cache->clean();
 		$msg = JText::_('K2_NEW_ORDERING_SAVED');
 		$mainframe->enqueueMessage($msg);
-		$mainframe->redirect('index.php?option=com_k2&view=items');
+		if(JRequest::getCmd('context') == "modalselector"){
+			$mainframe->redirect('index.php?option=com_k2&view=items&tmpl=component&context=modalselector');
+		} else {
+			$mainframe->redirect('index.php?option=com_k2&view=items');
+		}
 	}
 
 	function featuredorderdown()
@@ -536,7 +556,11 @@ class K2ModelItems extends K2Model
 		$cache->clean();
 		$msg = JText::_('K2_NEW_ORDERING_SAVED');
 		$mainframe->enqueueMessage($msg);
-		$mainframe->redirect('index.php?option=com_k2&view=items');
+		if(JRequest::getCmd('context') == "modalselector"){
+			$mainframe->redirect('index.php?option=com_k2&view=items&tmpl=component&context=modalselector');
+		} else {
+			$mainframe->redirect('index.php?option=com_k2&view=items');
+		}
 	}
 
 	function accessregistered()
@@ -778,7 +802,11 @@ class K2ModelItems extends K2Model
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
 		$mainframe->enqueueMessage(JText::_('K2_ITEMS_CHANGED'));
-		$mainframe->redirect('index.php?option=com_k2&view=items');
+		if(JRequest::getCmd('context') == "modalselector"){
+			$mainframe->redirect('index.php?option=com_k2&view=items&tmpl=component&context=modalselector');
+		} else {
+			$mainframe->redirect('index.php?option=com_k2&view=items');
+		}
 	}
 
 	function trash()
@@ -862,7 +890,8 @@ class K2ModelItems extends K2Model
 			$row = JTable::getInstance('K2Item', 'Table');
 			$row->load($id);
 			$row->id = (int)$row->id;
-			//Delete images
+
+			// Delete images
 			if (JFile::exists(JPATH_ROOT.'/media/k2/items/src/'.md5("Image".$row->id).'.jpg'))
 			{
 				JFile::delete(JPATH_ROOT.'/media/k2/items/src/'.md5("Image".$row->id).'.jpg');
@@ -1476,25 +1505,6 @@ class K2ModelItems extends K2Model
 			$db->query();
 		}
 		$mainframe->enqueueMessage(JText::_('K2_IMPORT_COMPLETED'));
-		$mainframe->redirect('index.php?option=com_k2&view=items');
-	}
-
-	function move()
-	{
-		$mainframe = JFactory::getApplication();
-		$cid = JRequest::getVar('cid');
-		$catid = JRequest::getInt('moveCategories');
-		foreach ($cid as $id)
-		{
-			$row = JTable::getInstance('K2Item', 'Table');
-			$row->load($id);
-			$row->catid = $catid;
-			$row->ordering = $row->getNextOrder('catid = '.(int)$row->catid.' AND published = 1');
-			$row->store();
-		}
-		$cache = JFactory::getCache('com_k2');
-		$cache->clean();
-		$mainframe->enqueueMessage(JText::_('K2_MOVE_COMPLETED'));
 		$mainframe->redirect('index.php?option=com_k2&view=items');
 	}
 
