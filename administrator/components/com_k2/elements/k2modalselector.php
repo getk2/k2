@@ -16,10 +16,7 @@ class K2ElementK2modalselector extends K2Element
 {
     function fetchElementValue($name, $value, &$node, $control_name)
     {
-        $mainframe = JFactory::getApplication();
         $document = JFactory::getDocument();
-
-		JHTML::_('behavior.modal', 'a.modal');
 
         JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
 
@@ -72,7 +69,7 @@ class K2ElementK2modalselector extends K2Element
 		// Output
         $output = '
         <div class="k2SelectorButton">
-			<a class="modal btn" title="'.JText::_('K2_SELECT').'" href="index.php?option=com_k2&view='.$scope.'&tmpl=component&context=modalselector&output=list&fid='.$fieldID.'&fname='.$fieldName.'" rel="{handler:\'iframe\', size:{x:(document.documentElement.clientWidth)*0.96, y:(document.documentElement.clientHeight)*0.96}}">
+			<a data-k2-modal="iframe" class="btn" title="'.JText::_('K2_SELECT').'" href="index.php?option=com_k2&view='.$scope.'&tmpl=component&context=modalselector&output=list&fid='.$fieldID.'&fname='.$fieldName.'">
 	        	<i class="fa fa-file-text-o"></i> '.JText::_('K2_SELECT').'
 	        </a>
         </div>
