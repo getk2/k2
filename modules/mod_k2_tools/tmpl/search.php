@@ -11,16 +11,16 @@
 defined('_JEXEC') or die;
 
 /*
-Important note:
-If you wish to use the live search option, it's important that you maintain the same class names for wrapping elements, e.g. the wrapping div and form.
+ * Important note for template overrides:
+ * If you wish to use the live search option, you MUST maintain
+ * the same class names for wrapping elements, e.g. the wrapping div and form.
 */
 
 ?>
 
 <div id="k2ModuleBox<?php echo $module->id; ?>" class="k2SearchBlock<?php if($params->get('moduleclass_sfx')) echo ' '.$params->get('moduleclass_sfx'); if($params->get('liveSearch')) echo ' k2LiveSearchBlock'; ?>">
 	<form action="<?php echo $action; ?>" method="get" autocomplete="off" class="k2SearchBlockForm">
-
-		<input type="text" value="<?php echo $text; ?>" name="searchword" maxlength="<?php echo $maxlength; ?>" size="<?php echo $width; ?>" class="inputbox" onblur="if(this.value=='') this.value='<?php echo $text; ?>';" onfocus="if(this.value=='<?php echo $text; ?>') this.value='';" />
+		<input type="text" value="<?php echo $text; ?>" name="searchword" class="inputbox" onblur="if(this.value=='') this.value='<?php echo $text; ?>';" onfocus="if(this.value=='<?php echo $text; ?>') this.value='';" />
 
 		<?php if($button): ?>
 		<?php if($imagebutton): ?>

@@ -27,8 +27,6 @@ $button = $params->get('button', '');
 $imagebutton = $params->get('imagebutton', '');
 $button_pos = $params->get('button_pos', 'left');
 $button_text = $params->get('button_text', JText::_('K2_SEARCH'));
-$width = intval($params->get('width', 20));
-$maxlength = $width > 20 ? $width : 20;
 $text = $params->get('text', JText::_('K2_SEARCH'));
 $searchItemId = $params->get('searchItemId', '');
 

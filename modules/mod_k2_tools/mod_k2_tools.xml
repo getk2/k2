@@ -17,7 +17,7 @@
         <folder>tmpl</folder>
     </files>
     <params addpath="/administrator/components/com_k2/elements/">
-        <param name="moduleclass_sfx" type="text" default="" label="K2_MODULE_CLASS_SUFFIX" description="K2_MODULE_CLASS_SUFFIX_DESCRIPTION"/>
+        <param name="moduleclass_sfx" type="text" default="" label="K2_MODULE_CLASS_SUFFIX" description="K2_MODULE_CLASS_SUFFIX_DESCRIPTION" />
         <param name="module_usage" type="list" default="0" label="K2_SELECT_MODULE_FUNCTIONALITY" description="">
             <option value="0">K2_ARCHIVE</option>
             <option value="1">K2_AUTHORS_LIST</option>
@@ -30,15 +30,15 @@
             <option value="8">K2_CUSTOM_CODE</option>
         </param>
         <!-- Archive Settings -->
-        <param name="" type="header" default="K2_ARCHIVE_SETTINGS" label="" description=""/>
+        <param name="" type="header" default="K2_ARCHIVE_SETTINGS" label="" description="" />
         <param name="archiveItemsCounter" type="radio" default="1" label="K2_ITEMS_COUNTER" description="">
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </param>
-        <param name="archiveCategory" type="categories" label="K2_CATEGORY_FILTER" description="" default=""/>
+        <param name="archiveCategory" type="categories" label="K2_CATEGORY_FILTER" description="" default="" />
         <!-- Authors List Settings -->
-        <param name="" type="header" default="K2_AUTHORS_LIST_SETTINGS" label="" description=""/>
-        <param name="authors_module_category" type="categories" default="" label="K2_FILTER_AUTHORS_BY_ROOT_CATEGORY" description="K2_SELECT_THE_ROOT_CATEGORY_FOR_WHICH_YOU_WANT_TO_FILTER_AN_AUTHOR_LIST_SELECT_NONE_TO_FETCH_AUTHORS_FROM_ALL_CATEGORIES"/>
+        <param name="" type="header" default="K2_AUTHORS_LIST_SETTINGS" label="" description="" />
+        <param name="authors_module_category" type="categories" default="" label="K2_FILTER_AUTHORS_BY_ROOT_CATEGORY" description="K2_SELECT_THE_ROOT_CATEGORY_FOR_WHICH_YOU_WANT_TO_FILTER_AN_AUTHOR_LIST_SELECT_NONE_TO_FETCH_AUTHORS_FROM_ALL_CATEGORIES" />
         <param name="authorItemsCounter" type="radio" default="1" label="K2_ITEMS_COUNTER" description="">
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
@@ -51,22 +51,22 @@
             <option value="inherit">K2_INHERIT_FROM_COMPONENT_PARAMETERS</option>
             <option value="custom">K2_USE_CUSTOM_WIDTH</option>
         </param>
-        <param name="authorAvatarWidth" type="text" default="50" size="4" label="K2_CUSTOM_WIDTH_FOR_AUTHOR_AVATAR_IN_PX" description=""/>
+        <param name="authorAvatarWidth" type="text" default="50" size="4" label="K2_CUSTOM_WIDTH_FOR_AUTHOR_AVATAR_IN_PX" description="" />
         <param name="authorLatestItem" type="radio" default="1" label="K2_LATEST_ITEM_WRITTEN_BY_AUTHOR" description="">
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </param>
         <!-- Calendar Settings -->
-        <param name="" type="header" default="K2_CALENDAR_SETTINGS" label="" description=""/>
-        <param name="calendarCategory" type="categories" label="K2_CATEGORY_FILTER" description="" default=""/>
+        <param name="" type="header" default="K2_CALENDAR_SETTINGS" label="" description="" />
+        <param name="calendarCategory" type="categories" label="K2_CATEGORY_FILTER" description="" default="" />
         <!-- Breadcrumbs Settings -->
-        <param name="" type="header" default="K2_BREADCRUMBS_SETTINGS" label="" description=""/>
-        <param name="home" type="text" default="" label="K2_ROOT_LABEL_EG_HOME" description="K2_THE_LABEL_FOR_THE_HOME_LINK_LEAVE_THIS_BLANK_IF_YOU_DONT_WISH_TO_INCLUDE_A_HOME_LINK_IN_YOUR_PATH"/>
-        <param name="seperator" type="text" default="" label="K2_PATH_SEPARATOR" description="K2_THE_PATH_SEPARATOR_EG_A_RIGHT_ARROW"/>
+        <param name="" type="header" default="K2_BREADCRUMBS_SETTINGS" label="" description="" />
+        <param name="home" type="text" default="" label="K2_ROOT_LABEL_EG_HOME" description="K2_THE_LABEL_FOR_THE_HOME_LINK_LEAVE_THIS_BLANK_IF_YOU_DONT_WISH_TO_INCLUDE_A_HOME_LINK_IN_YOUR_PATH" />
+        <param name="seperator" type="text" default="" label="K2_PATH_SEPARATOR" description="K2_THE_PATH_SEPARATOR_EG_A_RIGHT_ARROW" />
         <!-- Categories List (Menu) Settings -->
-        <param name="" type="header" default="K2_CATEGORIES_LIST_MENU_SETTINGS" label="" description=""/>
-        <param name="root_id" type="categories" default="" label="K2_SELECT_ROOT_CATEGORY" description="K2_SELECT_THE_ROOT_CATEGORY_FOR_WHICH_YOU_WANT_TO_CREATE_A_CATEGORY_LIST_SELECT_NONE_TO_FETCH_A_LIST_OF_ALL_CATEGORIES"/>
-        <param name="end_level" type="text" default="" size="4" label="K2_LEVELS_TO_RENDER" description="K2_SELECT_THE_NUMBER_OF_LEVELS_YOU_WISH_TO_RENDER_LEAVE_THIS_BLANK_IF_YOU_WISH_TO_RENDER_ALL_THE_LEVELS_BELOW_THE_SELECTED_ROOT_CATEGORY"/>
+        <param name="" type="header" default="K2_CATEGORIES_LIST_MENU_SETTINGS" label="" description="" />
+        <param name="root_id" type="categories" default="" label="K2_SELECT_ROOT_CATEGORY" description="K2_SELECT_THE_ROOT_CATEGORY_FOR_WHICH_YOU_WANT_TO_CREATE_A_CATEGORY_LIST_SELECT_NONE_TO_FETCH_A_LIST_OF_ALL_CATEGORIES" />
+        <param name="end_level" type="text" default="" size="4" label="K2_LEVELS_TO_RENDER" description="K2_SELECT_THE_NUMBER_OF_LEVELS_YOU_WISH_TO_RENDER_LEAVE_THIS_BLANK_IF_YOU_WISH_TO_RENDER_ALL_THE_LEVELS_BELOW_THE_SELECTED_ROOT_CATEGORY" />
         <param name="categoriesListOrdering" type="list" default="" label="K2_ORDER_BY" description="">
             <option value="">K2_DEFAULT_BY_ID_ASCENDING</option>
             <option value="reversedefault">K2_REVERSE_DEFAULT_BY_ID_DESCENDING</option>
@@ -79,15 +79,15 @@
             <option value="1">K2_SHOW</option>
         </param>
         <!-- Category Select Box Settings -->
-        <param name="" type="header" default="K2_CATEGORY_SELECT_BOX_SETTINGS" label="" description=""/>
-        <param name="root_id2" type="categories" default="" label="K2_SELECT_ROOT_CATEGORY" description="K2_SELECT_THE_ROOT_CATEGORY_FOR_WHICH_YOU_WANT_TO_CREATE_A_CATEGORY_DROPDOWN_LIST_SELECT_NONE_TO_CREATE_A_DROPDOWN_LIST_FROM_ALL_CATEGORIES"/>
+        <param name="" type="header" default="K2_CATEGORY_SELECT_BOX_SETTINGS" label="" description="" />
+        <param name="root_id2" type="categories" default="" label="K2_SELECT_ROOT_CATEGORY" description="K2_SELECT_THE_ROOT_CATEGORY_FOR_WHICH_YOU_WANT_TO_CREATE_A_CATEGORY_DROPDOWN_LIST_SELECT_NONE_TO_CREATE_A_DROPDOWN_LIST_FROM_ALL_CATEGORIES" />
         <!-- Search Box Settings -->
-        <param name="" type="header" default="K2_SEARCH_BOX_SETTINGS" label="" description=""/>
+        <param name="" type="header" default="K2_SEARCH_BOX_SETTINGS" label="" description="" />
         <param name="catfilter" type="radio" default="0" label="K2_CATEGORY_FILTER" description="">
             <option value="0">K2_ALL</option>
             <option value="1">K2_SELECT</option>
         </param>
-        <param name="category_id" type="categoriesmultiple" default="" label="K2_RESTRICT_SEARCH_RESULTS_TO_ONE_OR_MORE_CATEGORIES" description="K2_BY_CHOOSING_SPECIFIC_CATEGORIES_HERE_YOU_CAN_NARROW_DOWN_SEARCH_RESULTS_TO_ITEMS_BELONGING_IN_THE_SELECTED_CATEGORIES_THIS_OPTION_IS_VERY_HANDY_IF_YOU_ARE_DEVELOPING_A_WEBSITE_FOR_BOTH_GUEST_VISITORS_AND_REGISTERED_MEMBERS_EG_INTRANET_AND_YOU_WANT_TO_RESTRICT_SEARCH_RESULTS_FOR_GUEST_VISITORS_ONLY_TO_CATEGORIES_THAT_THEY_ARE_ALLOWED_TO_VIEW"/>
+        <param name="category_id" type="categoriesmultiple" default="" label="K2_RESTRICT_SEARCH_RESULTS_TO_ONE_OR_MORE_CATEGORIES" description="K2_BY_CHOOSING_SPECIFIC_CATEGORIES_HERE_YOU_CAN_NARROW_DOWN_SEARCH_RESULTS_TO_ITEMS_BELONGING_IN_THE_SELECTED_CATEGORIES_THIS_OPTION_IS_VERY_HANDY_IF_YOU_ARE_DEVELOPING_A_WEBSITE_FOR_BOTH_GUEST_VISITORS_AND_REGISTERED_MEMBERS_EG_INTRANET_AND_YOU_WANT_TO_RESTRICT_SEARCH_RESULTS_FOR_GUEST_VISITORS_ONLY_TO_CATEGORIES_THAT_THEY_ARE_ALLOWED_TO_VIEW" />
         <param name="getChildren" type="radio" default="0" label="K2_FETCH_ITEMS_FROM_CHILDREN_CATEGORIES" description="">
             <option value="0">K2_NO</option>
             <option value="1">K2_YES</option>
@@ -96,8 +96,7 @@
             <option value="">K2_NO</option>
             <option value="1">K2_YES</option>
         </param>
-        <param name="width" type="text" default="20" size="4" label="K2_SEARCH_BOX_MAXIMUM_CHARACTER_LENGTH" description="K2_THE_NUMBER_OF_ALLOWED_CHARACTERS_TO_BE_INPUT_IN_THE_SEARCH_BOX"/>
-        <param name="text" type="text" default="" label="K2_SEARCH_BOX_DEFAULT_TEXT" description="K2_THE_TEXT_TO_DISPLAY_BY_DEFAULT_IN_THE_SEARCH_BOX"/>
+        <param name="text" type="text" default="" label="K2_SEARCH_BOX_DEFAULT_TEXT" description="K2_THE_TEXT_TO_DISPLAY_BY_DEFAULT_IN_THE_SEARCH_BOX" />
         <param name="button" type="radio" default="" label="K2_SHOW_SEARCH_BUTTON" description="">
             <option value="">K2_NO</option>
             <option value="1">K2_YES</option>
@@ -106,22 +105,22 @@
             <option value="">K2_NO</option>
             <option value="1">K2_YES</option>
         </param>
-        <param name="button_text" type="text" default="" label="K2_SEARCH_BUTTON_TEXT" description="K2_SET_THE_DEFAULT_TEXT_WHICH_WILL_APPEAR_ON_THE_SEARCH_BOX_EG_SEARCH_SITE"/>
+        <param name="button_text" type="text" default="" label="K2_SEARCH_BUTTON_TEXT" description="K2_SET_THE_DEFAULT_TEXT_WHICH_WILL_APPEAR_ON_THE_SEARCH_BOX_EG_SEARCH_SITE" />
         <param name="searchItemId" type="menuitem" default="" disable="separator" label="K2_SELECT_A_MENU_ITEM" description="K2_SELECT_A_MENU_ITEM_DESCRIPTION">
             <option value="">K2_NONE_ONSELECTLISTS</option>
         </param>
         <!-- Tag Cloud Settings -->
-        <param name="" type="header" default="K2_TAG_CLOUD_SETTINGS" label="" description=""/>
-        <param name="min_size" type="text" default="75" size="4" label="K2_MIN_FONT_SIZE" description="K2_FONT_SIZE_FOR_LESS_POPULAR_TAGS"/>
-        <param name="max_size" type="text" default="300" size="4" label="K2_MAX_FONT_SIZE" description="K2_FONT_SIZE_FOR_MOST_POPULAR_TAGS"/>
-        <param name="cloud_limit" type="text" default="30" size="4" label="K2_TAG_LIMIT_X_MOST_POPULAR" description="K2_SELECT_THE_X_MOST_POPULAR_TAGS_TO_DISPLAY"/>
-        <param name="cloud_category" type="categories" multiple="multiple" default="0" label="K2_FILTER_TAGS_FROM_ONE_OR_MORE_CATEGORIES" description="K2_TO_SELECT_MULTIPLE_CATEGORIES_PRESS_AND_KEEP_CTRLCMD_AND_THEN_CLICK_ON_THE_DESIRED_CATEGORIES"/>
+        <param name="" type="header" default="K2_TAG_CLOUD_SETTINGS" label="" description="" />
+        <param name="min_size" type="text" default="75" size="4" label="K2_MIN_FONT_SIZE" description="K2_FONT_SIZE_FOR_LESS_POPULAR_TAGS" />
+        <param name="max_size" type="text" default="300" size="4" label="K2_MAX_FONT_SIZE" description="K2_FONT_SIZE_FOR_MOST_POPULAR_TAGS" />
+        <param name="cloud_limit" type="text" default="30" size="4" label="K2_TAG_LIMIT_X_MOST_POPULAR" description="K2_SELECT_THE_X_MOST_POPULAR_TAGS_TO_DISPLAY" />
+        <param name="cloud_category" type="categories" multiple="multiple" default="0" label="K2_FILTER_TAGS_FROM_ONE_OR_MORE_CATEGORIES" description="K2_TO_SELECT_MULTIPLE_CATEGORIES_PRESS_AND_KEEP_CTRLCMD_AND_THEN_CLICK_ON_THE_DESIRED_CATEGORIES" />
         <param name="cloud_category_recursive" type="radio" default="0" label="K2_APPLY_TAG_CATEGORY_FILTER_RECURSIVELY_TO_ALL_SUBCATEGORIES" description="">
             <option value="0">K2_NO</option>
             <option value="1">K2_YES</option>
         </param>
         <!-- Custom code settings -->
-        <param name="" type="header" default="K2_CUSTOM_CODE_SETTINGS" label="" description=""/>
+        <param name="" type="header" default="K2_CUSTOM_CODE_SETTINGS" label="" description="" />
         <param name="customCode" type="textarea" default="" label="K2_ADD_CUSTOM_HTML_CSS_JS_OR_PHP_CODE" description="" cols="60" rows="20" />
         <param name="parsePhp" type="radio" default="0" label="K2_PARSE_PHP_CODE" description="">
             <option value="0">K2_NO</option>
@@ -141,6 +140,6 @@
             <option value="1">K2_USE_GLOBAL</option>
             <option value="0">K2_NO_CACHING</option>
         </param>
-        <param name="cache_time" type="text" default="900" label="K2_CACHE_TIME" description="K2_THE_TIME_IN_SECONDS_BEFORE_THE_MODULE_IS_RECACHED"/>
+        <param name="cache_time" type="text" default="900" label="K2_CACHE_TIME" description="K2_THE_TIME_IN_SECONDS_BEFORE_THE_MODULE_IS_RECACHED" />
     </params>
 </install>
