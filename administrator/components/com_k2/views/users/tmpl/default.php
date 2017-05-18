@@ -97,7 +97,7 @@ $context = JRequest::getCmd('context');
 					<td class="k2Center<?php if($context == "modalselector") echo ' k2VisuallyHidden'; ?>"><?php $row->checked_out = 0; echo JHTML::_('grid.id', $key, $row->id ); ?></td>
 					<td>
 						<?php if($context == "modalselector"): ?>
-						<a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ITEM'); ?>" href="#" onclick="window.parent.k2ModalSelector('<?php echo $row->id; ?>', '<?php echo str_replace(array("'", "\""), array("\\'", ""), $row->name); ?>');"><?php echo $row->name; ?></a>
+						<a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ITEM'); ?>" href="#" onclick="window.parent.k2ModalSelector('<?php echo $row->id; ?>', '<?php echo str_replace(array("'", "\""), array("\\'", ""), $row->name); ?>'); return false;"><?php echo $row->name; ?></a>
 						<?php else: ?>
 						<a href="<?php echo $row->link; ?>"><?php echo $row->name; ?></a>
 						<?php endif; ?>
