@@ -16,11 +16,10 @@ class K2ElementUsersLatest extends K2Element
 {
     function fetchElementValue($name, $value, &$node, $control_name)
     {
-        JHTML::_('behavior.modal');
         $mainframe = JFactory::getApplication();
         $document = JFactory::getDocument();
 
-        K2HelperHTML::loadHeadIncludes(true, true, false, true);
+		JHTML::_('behavior.modal', 'a.modal');
 
         if (K2_JVERSION != '15')
         {
@@ -59,11 +58,7 @@ class K2ElementUsersLatest extends K2Element
 			}
 
 			\$K2(document).ready(function(){
-				\$K2('#usersList').sortable({
-					containment: '#usersList',
-					items: 'li',
-					handle: 'span.handle'
-				});
+				\$K2('#usersList').sortable();
 				\$K2('#usersList .remove').click(function(){
 					\$K2(this).parent().remove();
 				});

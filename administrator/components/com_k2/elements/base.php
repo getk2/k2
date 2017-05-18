@@ -10,6 +10,8 @@
 // no direct access
 defined('_JEXEC') or die;
 
+K2HelperHTML::loadHeadIncludes(true, true, false, true);
+
 if (K2_JVERSION == '15')
 {
     jimport('joomla.html.parameter.element');

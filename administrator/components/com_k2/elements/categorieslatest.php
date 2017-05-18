@@ -22,8 +22,6 @@ class K2ElementCategoriesLatest extends K2Element
 
         JHTML::_('behavior.modal');
 
-        K2HelperHTML::loadHeadIncludes(true, true, false, true);
-
         if (K2_JVERSION != '15')
         {
             $fieldName = $name;

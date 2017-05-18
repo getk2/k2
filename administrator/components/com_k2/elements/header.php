@@ -15,10 +15,6 @@ class K2ElementHeader extends K2Element
 {
     public function fetchElementValue($name, $value, &$node, $control_name)
     {
-        $document = JFactory::getDocument();
-
-        K2HelperHTML::loadHeadIncludes(true, false, false, true);
-
 		if (version_compare(JVERSION, '2.5.0', 'ge'))
 		{
 			return '<div class="jwHeaderContainer"><div class="jwHeaderContent">'.JText::_($value).'</div><div class="jwHeaderClr"></div></div>';

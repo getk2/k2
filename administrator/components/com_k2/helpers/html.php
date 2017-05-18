@@ -105,7 +105,7 @@ class K2HelperHTML
 				{
 					if ($backendJQueryHandling == 'remote')
 					{
-						if ($view == 'item' || $view == 'category' || $option == 'com_menus' || $option == 'com_modules')
+						if ($view == 'item' || $view == 'category')
 						{
 							$document->addScript('https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
 						}
@@ -116,7 +116,7 @@ class K2HelperHTML
 					}
 					else
 					{
-						if ($view == 'item' || $view == 'category' || $option == 'com_menus' || $option == 'com_modules')
+						if ($view == 'item' || $view == 'category')
 						{
 							$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-1.8.3.min.js');
 						}
@@ -131,32 +131,18 @@ class K2HelperHTML
 			// jQueryUI
 			if ($jQueryUI)
 			{
-				if ($view == 'media')
+				// Load latest version for the "media" view, menus & modules only
+				if ($view == 'media' || $option == 'com_menus' || $option == 'com_modules')
 				{
-					// Load latest version for the "media" view only
-					if ($backendJQueryHandling == 'remote')
-					{
-						$document->addStyleSheet('https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css');
-						$document->addScript('https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js');
-					}
-					else
-					{
-						$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/jquery-ui-1.11.4.min.css');
-						$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-ui-1.11.4.min.js');
-					}
+
+					$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css');
+					$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js');
 				}
 
-				if ($view == 'item' || $view == 'category' || $option == 'com_menus' || $option == 'com_modules')
+				// Load version 1.8.24 for tabs & sortables (called the "old" way)...
+				if ($view == 'item' || $view == 'category')
 				{
-					// Load version 1.8.24 for tabs & sortables (until we kill it as a dependency there, for good)...
-					if ($backendJQueryHandling == 'remote')
-					{
-						$document->addScript('https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js');
-					}
-					else
-					{
-						$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-ui-1.8.24.min.js');
-					}
+					$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js');
 				}
 			}
 
@@ -165,9 +151,12 @@ class K2HelperHTML
 			{
 
 				// CSS
+				if ($option == 'com_k2' || $adminModuleIncludes)
+				{
+					$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css?v='.K2_CURRENT_VERSION);
+				}
 				if ($option == 'com_k2')
 				{
-					$document->addStyleSheet('https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css?v='.K2_CURRENT_VERSION);
 					$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v='.K2_CURRENT_VERSION);
 				}
 				if($adminModuleIncludes)

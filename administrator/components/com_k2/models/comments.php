@@ -384,7 +384,7 @@ class K2ModelComments extends K2Model {
         $id = $this->getState('id');
         $name = JString::trim($this->getState('name'));
         $reportReason = JString::trim($this->getState('reportReason'));
-        $params = &K2HelperUtilities::getParams('com_k2');
+        $params = K2HelperUtilities::getParams('com_k2');
         $user = JFactory::getUser();
         $row = JTable::getInstance('K2Comment', 'Table');
         $row->load($id);

@@ -72,8 +72,7 @@
                     <option value="1">K2_YES</option>
                 </field>
                 <field name="" type="header" default="K2_SELECT_SPECIFIC_ITEMS" label="" description=""/>
-                <field name="item" type="item" default="" label="K2_ADD_ITEMS" description="K2_USE_THIS_TO_ADD_ITEMS_TO_THE_LIST_BELOW"/>
-                <field name="items" type="items" default="" label="K2_DRAG_AND_DROP_TO_REORDER_ITEMS" description="K2_DRAG_AND_DROP_TO_REORDER_ITEMS_CLICK_THE_REMOVE_ICON_TO_REMOVE_AN_ITEM_FROM_THE_LIST"/>
+                <field name="items" type="k2items" default="" label="K2_ITEM_SELECTOR" description=""/>
                 <field name="" type="header" default="K2_ITEM_VIEW_OPTIONS_COMMON_FOR_EITHER_SOURCE" label="" description=""/>
                 <field name="itemTitle" type="radio" default="1" label="K2_TITLE" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
