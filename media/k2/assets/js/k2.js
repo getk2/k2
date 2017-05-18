@@ -1185,7 +1185,7 @@ function k2ModalSelector(id, name, fid, fname, output) {
 		var exists = false;
 		$K2('#'+ fid +' input').each(function(){
 			if($K2(this).val() == id){
-				$K2().k2Alert(K2_THE_SELECTED_ITEM_IS_ALREADY_IN_THE_LIST.replace('ITEM_NAME_HERE', name), 3000);
+				$K2().k2Alert(K2_THE_ENTRY_IS_ALREADY_IN_THE_LIST.replace('ENTRY_NAME_HERE', name), 3000);
 				exists = true;
 			}
 		});
@@ -1197,7 +1197,7 @@ function k2ModalSelector(id, name, fid, fname, output) {
 				e.preventDefault();
 				$K2(this).parent().remove();
 			});
-			$K2().k2Alert(K2_ITEM_ADDED_IN_THE_LIST.replace('ITEM_NAME_HERE', name), 1000);
+			$K2().k2Alert(K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST.replace('ENTRY_NAME_HERE', name), 1000);
 		}
 	} else {
 		// Item author
