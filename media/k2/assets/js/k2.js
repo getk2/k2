@@ -124,7 +124,7 @@ $K2(document).ready(function() {
         var view = $K2('#k2AdminContainer input[name=view]').val();
     } else {
     	var K2IsAdmin = false;
-        var view = $K2('#k2FrontendContainer input[name=view]').val();
+        var view = $K2('#k2ModalContainer input[name=view]').val();
     }
 
 	// Report user
@@ -670,7 +670,7 @@ $K2(document).ready(function() {
 	$(document).ready(function(){
 
 		// Hide system messages after 3 seconds in frontend editing
-		if($('#k2FrontendContainer').length && $('#system-message-container').length){
+		if($('#k2ModalContainer').length && $('#system-message-container').length){
 			$('#system-message-container').delay(3000).fadeOut('fast', function() {
 				$(this).remove();
 			});

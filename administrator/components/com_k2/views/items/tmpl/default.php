@@ -10,12 +10,26 @@
 // no direct access
 defined('_JEXEC') or die;
 
+$app = JFactory::getApplication();
 $context = JRequest::getCmd('context');
 
 ?>
 
-<?php if($context == "modalselector"): ?>
-<h2 id="k2ModalSelectorHeader"><?php echo JText::_('K2_ITEMS'); ?></h2>
+<?php if($app->isSite() || $context == "modalselector"): ?>
+<!-- Modal View -->
+<div id="k2ModalContainer">
+	<div id="k2ModalHeader">
+		<h2 id="k2ModalLogo"><?php echo JText::_('K2_ITEMS'); ?></h2>
+		<table id="k2ModalToolbar" cellpadding="2" cellspacing="4">
+			<tr>
+				<td id="toolbar-close" class="button">
+					<a href="#" id="k2CloseMfp" onclick="window.parent.k2CloseMFP();">
+						<i class="fa fa-times-circle" aria-hidden="true"></i> <?php echo JText::_('K2_CLOSE'); ?>
+					</a>
+				</td>
+			</tr>
+		</table>
+	</div>
 <?php endif; ?>
 
 <form action="index.php" method="post" name="adminForm" id="adminForm">
@@ -288,3 +302,7 @@ $context = JRequest::getCmd('context');
 	<?php endif; ?>
 	<?php echo JHTML::_('form.token'); ?>
 </form>
+
+<?php if($app->isSite() || $context == "modalselector"): ?>
+</div>
+<?php endif; ?>

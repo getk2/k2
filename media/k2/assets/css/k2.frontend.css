@@ -7,39 +7,39 @@
  */
 
 /* === Frontend Editing === */
-#k2FrontendContainer {padding:0;margin:0;}
-	#k2FrontendHeader {background:#fff;text-align:right;position:fixed;top:0;left:0;right:0;z-index:10;padding:8px;margin:0;border-bottom:4px solid #eee;}
-		#k2FrontendLogo {background:url(../images/system/k2_logo_126x48.png) no-repeat 8px 50%;background-size:80px;padding:16px 0 16px 108px;margin:0;float:left;}
-		#k2FrontendToolbar {display:inline-block;margin:12px 12px 0 0;border-collapse:separate;}
-		#k2FrontendToolbar td {border:none;}
-		#k2FrontendToolbar td.button a {display:block;padding:4px 8px;color:#fff;border:0;border-radius:4px;font-size:14px;font-weight:bold;text-decoration:none;background:#222;cursor:pointer;}
-			#k2FrontendToolbar #toolbar-publish a,
-			#k2FrontendToolbar #toolbar-save a {background:#18bc9c;}
-			#k2FrontendToolbar #toolbar-publish a:hover,
-			#k2FrontendToolbar #toolbar-save a:hover {background:#128f76;}
-			#k2FrontendToolbar #toolbar-unpublish a,
-			#k2FrontendToolbar #toolbar-close a,
-			#k2FrontendToolbar #toolbar-cancel a {background:#e74c3c;}
-			#k2FrontendToolbar #toolbar-unpublish a:hover,
-			#k2FrontendToolbar #toolbar-close a:hover,
-			#k2FrontendToolbar #toolbar-cancel a:hover {background:#d62c1a;}
-#k2FrontendContainer #adminForm {margin-top:86px;position:relative;z-index:9;}
-	#k2FrontendContainer .k2AdminTableFilters {border:0;border-bottom:1px solid #dbdcdc;}
-	#k2FrontendContainer .k2AdminTableFilters tr,
-	#k2FrontendContainer .k2AdminTableFilters td {border:0 !important;}
-	#k2FrontendContainer #adminForm table tfoot tr td {padding:8px !important;}
+#k2ModalContainer {padding:0;margin:0;}
+	#k2ModalHeader {background:#fff;text-align:right;position:fixed;top:0;left:0;right:0;z-index:10;padding:8px;margin:0;border-bottom:4px solid #eee;}
+		#k2ModalLogo {background:url(../images/system/k2_logo_126x48.png) no-repeat 8px 50%;background-size:80px;padding:16px 0 16px 108px;margin:0;float:left;}
+		#k2ModalToolbar {display:inline-block;margin:12px 12px 0 0;border-collapse:separate;}
+		#k2ModalToolbar td {border:none;}
+		#k2ModalToolbar td.button a {display:block;padding:4px 8px;color:#fff;border:0;border-radius:4px;font-size:14px;font-weight:bold;text-decoration:none;background:#222;cursor:pointer;}
+			#k2ModalToolbar #toolbar-publish a,
+			#k2ModalToolbar #toolbar-save a {background:#18bc9c;}
+			#k2ModalToolbar #toolbar-publish a:hover,
+			#k2ModalToolbar #toolbar-save a:hover {background:#128f76;}
+			#k2ModalToolbar #toolbar-unpublish a,
+			#k2ModalToolbar #toolbar-close a,
+			#k2ModalToolbar #toolbar-cancel a {background:#e74c3c;}
+			#k2ModalToolbar #toolbar-unpublish a:hover,
+			#k2ModalToolbar #toolbar-close a:hover,
+			#k2ModalToolbar #toolbar-cancel a:hover {background:#d62c1a;}
+#k2ModalContainer #adminForm {margin-top:86px;position:relative;z-index:9;}
+	#k2ModalContainer .k2AdminTableFilters {border:0;border-bottom:1px solid #dbdcdc;}
+	#k2ModalContainer .k2AdminTableFilters tr,
+	#k2ModalContainer .k2AdminTableFilters td {border:0 !important;}
+	#k2ModalContainer #adminForm table tfoot tr td {padding:8px !important;}
 
 /* Item */
-#k2FrontendPermissionsNotice {text-align:center;}
-#k2FrontendPermissionsNotice p {display:inline-block;color:#fff;font-size:12px;background:#3498db;padding:8px;margin:8px auto;border-radius:4px;}
-div#k2Frontend div#k2ID {top:-2px;right:160px;} /* Overrides backend position */
-div#k2Frontend div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5 */
+#k2ModalPermissionsNotice {text-align:center;}
+#k2ModalPermissionsNotice p {display:inline-block;color:#fff;font-size:12px;background:#3498db;padding:8px;margin:8px auto;border-radius:4px;}
+div#k2Modal div#k2ID {top:-2px;right:160px;} /* Overrides backend position */
+div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5 */
 
 /* Comments */
-#k2FrontendContainer .k2CommentsPagination {text-align:center;}
-#k2FrontendContainer .k2CommentsPagination .pagination {margin:0;padding:0;}
-#k2FrontendContainer .k2CommentsPagination .pagination span,
-#k2FrontendContainer .k2CommentsPagination .pagination a {}
+#k2ModalContainer .k2CommentsPagination {text-align:center;}
+#k2ModalContainer .k2CommentsPagination .pagination {margin:0;padding:0;}
+#k2ModalContainer .k2CommentsPagination .pagination span,
+#k2ModalContainer .k2CommentsPagination .pagination a {}
 
 /* Joomla System Messages */
 #system-message-container {position:fixed;z-index:11;width:40%;margin:0 auto !important;padding:0 !important;top:20px;left:20%;right:20%;}
