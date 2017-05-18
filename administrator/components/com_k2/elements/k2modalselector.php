@@ -18,8 +18,6 @@ class K2ElementK2modalselector extends K2Element
     {
         $document = JFactory::getDocument();
 
-        JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
-
 		// Attributes
 		$fieldID = 'fieldID_'.md5($name);
         if (K2_JVERSION != '15')
@@ -76,12 +74,26 @@ class K2ElementK2modalselector extends K2Element
         <ul id="'.$fieldID.'" class="k2SortableListContainer">
         ';
 
+        if($scope == 'items')
+        {
+	        JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
+        }
+
         foreach ($saved as $id)
         {
-            $row = JTable::getInstance('K2Item', 'Table');
-            $row->load($id);
+			if($scope == 'items')
+			{
+            	$row = JTable::getInstance('K2Item', 'Table');
+				$row->load($id);
+				$entryName = $row->title;
+			}
+			if($scope == 'users')
+			{
+				$row = JFactory::getUser($id);
+				$entryName = $row->name;
+			}
 
-            $output .= '<li class="handle"><a class="k2EntryRemove" href="#" title="'.JText::_('K2_REMOVE_THIS_ENTRY').'"><i class="fa fa-trash-o"></i></a><span class="k2EntryText">'.$row->title.'</span><input type="hidden" name="'.$fieldName.'" value="'.$row->id.'" /></li>';
+            $output .= '<li class="handle"><a class="k2EntryRemove" href="#" title="'.JText::_('K2_REMOVE_THIS_ENTRY').'"><i class="fa fa-trash-o"></i></a><span class="k2EntryText">'.$entryName.'</span><input type="hidden" name="'.$fieldName.'" value="'.$row->id.'" /></li>';
         }
         $output .= '
         </ul>

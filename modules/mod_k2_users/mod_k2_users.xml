@@ -36,7 +36,7 @@
         </param>
         <param name="limit" type="text" default="4" size="4" label="K2_LIMIT" description=""/>
         <param name="" type="header" default="K2_RETRIEVE_SPECIFIC_USERS" label="" description=""/>
-        <param name="userIDs" type="userslatest" default="" label="K2_SELECTED_USERS_SORT_WITH_DRAG_DROP" description="K2_DRAG_USERS_ONE_BY_ONE_TO_REORDER_THE_LIST_CLICK_THE_REMOVE_ICON_TO_REMOVE_A_USER_FROM_THE_LIST"/>
+        <param name="userIDs" type="k2modalselector" scope="users" default="" label="K2_SELECTED_USERS_SORT_WITH_DRAG_DROP" description="K2_DRAG_USERS_ONE_BY_ONE_TO_REORDER_THE_LIST_CLICK_THE_REMOVE_ICON_TO_REMOVE_A_USER_FROM_THE_LIST"/>
         <param name="" type="header" default="K2_DISPLAY_OPTIONS" label="" description=""/>
         <param name="userName" type="radio" default="1" label="K2_NAME" description="">
             <option value="0">K2_HIDE</option>

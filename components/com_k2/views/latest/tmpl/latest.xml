@@ -22,7 +22,7 @@
 				<option value="all">K2_ALL_FETCHED_ITEMS</option>
 			</param>
 			<param name="" type="header" default="K2_USER_SETTINGS" label="" description=""/>
-			<param name="userIDs" type="userslatest" default="" label="K2_SELECTED_USERS_SORT_WITH_DRAG_DROP" description="K2_DRAG_USERS_ONE_BY_ONE_TO_REORDER_THE_LIST_CLICK_THE_REMOVE_ICON_TO_REMOVE_A_USER_FROM_THE_LIST"/>
+			<param name="userIDs" type="k2modalselector" scope="users" default="" label="K2_SELECTED_USERS_SORT_WITH_DRAG_DROP" description="K2_DRAG_USERS_ONE_BY_ONE_TO_REORDER_THE_LIST_CLICK_THE_REMOVE_ICON_TO_REMOVE_A_USER_FROM_THE_LIST"/>
 			<param name="userName" type="radio" default="1" label="K2_NAME" description="">
 				<option value="0">K2_HIDE</option>
 				<option value="1">K2_SHOW</option>
@@ -146,7 +146,7 @@
 					<option value="all">K2_ALL_FETCHED_ITEMS</option>
 				</field>
 				<field name="" type="header" default="K2_USER_SETTINGS" label="" description=""/>
-				<field name="userIDs" type="userslatest" default="" label="K2_SELECTED_USERS_SORT_WITH_DRAG_DROP" description="K2_DRAG_USERS_ONE_BY_ONE_TO_REORDER_THE_LIST_CLICK_THE_REMOVE_ICON_TO_REMOVE_A_USER_FROM_THE_LIST"/>
+				<field name="userIDs" type="k2modalselector" scope="users" default="" label="K2_SELECTED_USERS_SORT_WITH_DRAG_DROP" description="K2_DRAG_USERS_ONE_BY_ONE_TO_REORDER_THE_LIST_CLICK_THE_REMOVE_ICON_TO_REMOVE_A_USER_FROM_THE_LIST"/>
 				<field name="userName" type="radio" default="1" label="K2_NAME" description="">
 					<option value="0">K2_HIDE</option>
 					<option value="1">K2_SHOW</option>
