@@ -12,7 +12,6 @@
     <files>
         <filename module="mod_k2_user">mod_k2_user.php</filename>
         <filename>helper.php</filename>
-        <filename>index.html</filename>
         <folder>tmpl</folder>
     </files>
     <params addpath="/administrator/components/com_k2/elements/">
