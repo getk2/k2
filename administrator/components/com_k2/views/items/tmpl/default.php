@@ -78,12 +78,18 @@ $context = JRequest::getCmd('context');
 						<?php else: ?>
 						<th>#</th>
 						<?php endif; ?>
-						<th class="center">
+						<th class="center<?php if($context == "modalselector") echo ' k2VisuallyHidden'; ?>">
 							<input id="jToggler" type="checkbox" name="toggle" value="" />
 						</th>
-						<th class="title"> <?php echo JHTML::_('grid.sort', 'K2_TITLE', 'i.title', @$this->lists['order_Dir'], @$this->lists['order']); ?> </th>
-						<th class="center"> <?php echo JHTML::_('grid.sort', 'K2_FEATURED', 'i.featured', @$this->lists['order_Dir'], @$this->lists['order']); ?> </th>
-						<th class="center"> <?php echo JHTML::_('grid.sort', 'K2_PUBLISHED', 'i.published', @$this->lists['order_Dir'], @$this->lists['order']); ?> </th>
+						<th class="title">
+							<?php echo JHTML::_('grid.sort', 'K2_TITLE', 'i.title', @$this->lists['order_Dir'], @$this->lists['order']); ?>
+						</th>
+						<th class="center">
+							<?php echo JHTML::_('grid.sort', 'K2_FEATURED', 'i.featured', @$this->lists['order_Dir'], @$this->lists['order']); ?>
+						</th>
+						<th class="center">
+							<?php echo JHTML::_('grid.sort', 'K2_PUBLISHED', 'i.published', @$this->lists['order_Dir'], @$this->lists['order']); ?>
+						</th>
 						<?php if(K2_JVERSION != '30'): ?>
 						<th>
 							<?php if($this->filter_featured=='1'): ?>
@@ -95,26 +101,54 @@ $context = JRequest::getCmd('context');
 							<?php endif; ?>
 						</th>
 						<?php endif; ?>
-						<th class="hidden-phone"> <?php echo JHTML::_('grid.sort', 'K2_CATEGORY', 'category', @$this->lists['order_Dir'], @$this->lists['order']); ?> </th>
-						<th class="hidden-phone"> <?php echo JHTML::_('grid.sort', 'K2_AUTHOR', 'author', @$this->lists['order_Dir'], @$this->lists['order']); ?> </th>
-						<th class="hidden-phone"> <?php echo JHTML::_('grid.sort', 'K2_LAST_MODIFIED_BY', 'moderator', @$this->lists['order_Dir'], @$this->lists['order']); ?> </th>
-						<th class="hidden-phone center"> <?php echo JHTML::_('grid.sort', 'K2_ACCESS_LEVEL', 'i.access', @$this->lists['order_Dir'], @$this->lists['order']); ?> </th>
-						<th class="hidden-phone"> <?php echo JHTML::_('grid.sort', 'K2_CREATED', 'i.created', @$this->lists['order_Dir'], @$this->lists['order']); ?> </th>
-						<th class="hidden-phone"> <?php echo JHTML::_('grid.sort', 'K2_MODIFIED', 'i.modified', @$this->lists['order_Dir'], @$this->lists['order']); ?> </th>
-						<th class="center hidden-phone"> <?php echo JHTML::_('grid.sort', 'K2_HITS', 'i.hits', @$this->lists['order_Dir'], @$this->lists['order']); ?> </th>
-						<th class="hidden-phone center"> <?php echo JText::_('K2_IMAGE'); ?> </th>
+						<th class="hidden-phone">
+							<?php echo JHTML::_('grid.sort', 'K2_CATEGORY', 'category', @$this->lists['order_Dir'], @$this->lists['order']); ?>
+						</th>
+						<th class="hidden-phone">
+							<?php echo JHTML::_('grid.sort', 'K2_AUTHOR', 'author', @$this->lists['order_Dir'], @$this->lists['order']); ?>
+						</th>
+						<th class="hidden-phone">
+							<?php echo JHTML::_('grid.sort', 'K2_LAST_MODIFIED_BY', 'moderator', @$this->lists['order_Dir'], @$this->lists['order']); ?>
+						</th>
+						<th class="hidden-phone center">
+							<?php echo JHTML::_('grid.sort', 'K2_ACCESS_LEVEL', 'i.access', @$this->lists['order_Dir'], @$this->lists['order']); ?>
+						</th>
+						<th class="hidden-phone">
+							<?php echo JHTML::_('grid.sort', 'K2_CREATED', 'i.created', @$this->lists['order_Dir'], @$this->lists['order']); ?>
+						</th>
+						<th class="hidden-phone">
+							<?php echo JHTML::_('grid.sort', 'K2_MODIFIED', 'i.modified', @$this->lists['order_Dir'], @$this->lists['order']); ?>
+						</th>
+						<th class="center hidden-phone">
+							<?php echo JHTML::_('grid.sort', 'K2_HITS', 'i.hits', @$this->lists['order_Dir'], @$this->lists['order']); ?>
+						</th>
+						<th class="hidden-phone center">
+							<?php echo JText::_('K2_IMAGE'); ?>
+						</th>
 						<?php if(isset($this->lists['language'])): ?>
-						<th class="hidden-phone"> <?php echo JHTML::_('grid.sort', 'K2_LANGUAGE', 'i.language', @$this->lists['order_Dir'], @$this->lists['order']); ?> </th>
+						<th class="hidden-phone">
+							<?php echo JHTML::_('grid.sort', 'K2_LANGUAGE', 'i.language', @$this->lists['order_Dir'], @$this->lists['order']); ?>
+						</th>
 						<?php endif; ?>
-						<th class="hidden-phone"> <?php echo JHTML::_('grid.sort', 'K2_ID', 'i.id', @$this->lists['order_Dir'], @$this->lists['order']); ?> </th>
+						<th class="hidden-phone">
+							<?php echo JHTML::_('grid.sort', 'K2_ID', 'i.id', @$this->lists['order_Dir'], @$this->lists['order']); ?>
+						</th>
 						<?php foreach($this->columns as $column):?>
-						<th> <?php echo JHTML::_('grid.sort', $column->label, $column->property, @$this->lists['order_Dir'], @$this->lists['order']); ?> </th>
+						<th>
+							<?php echo JHTML::_('grid.sort', $column->label, $column->property, @$this->lists['order_Dir'], @$this->lists['order']); ?>
+						</th>
 						<?php endforeach; ?>
 					</tr>
 				</thead>
+				<?php
+					$tfootColspan = 14 + sizeof($this->columns);
+					if(K2_JVERSION != '30') $tfootColspan++;
+					if(isset($this->lists['language']) $tfootColspan++;
+					if($context == "modalselector") $tfootColspan--;
+				?>
 				<tfoot>
 					<tr>
-						<td colspan="<?php echo 16+sizeof($this->columns); ?>">
+						<td colspan="<?php echo $tfootColspan; ?>">
 							<?php if(K2_JVERSION == '30'): ?>
 							<div class="k2LimitBox">
 								<?php echo $this->page->getLimitBox(); ?>
@@ -139,7 +173,7 @@ $context = JRequest::getCmd('context');
 						<?php else: ?>
 						<td><?php echo $key+1; ?></td>
 						<?php endif; ?>
-						<td class="center"><?php echo @JHTML::_('grid.checkedout', $row, $key); ?></td>
+						<td class="center<?php if($context == "modalselector") echo ' k2VisuallyHidden'; ?>"><?php echo @JHTML::_('grid.checkedout', $row, $key); ?></td>
 						<td>
 							<?php if($context == "modalselector"): ?>
 							<a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ITEM'); ?>" href="#" onclick="window.parent.k2ModalSelector('<?php echo $row->id; ?>', '<?php echo str_replace(array("'", "\""), array("\\'", ""), $row->title); ?>', '<?php echo JRequest::getCmd('fid'); ?>', '<?php echo JRequest::getVar('fname'); ?>', '<?php echo JRequest::getCmd('output'); ?>'); return false;">

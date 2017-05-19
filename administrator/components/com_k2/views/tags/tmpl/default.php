@@ -10,78 +10,95 @@
 // no direct access
 defined('_JEXEC') or die;
 
-$document = JFactory::getDocument();
-$document->addScriptDeclaration("
-	Joomla.submitbutton = function(pressbutton) {
-		if (pressbutton == 'remove') {
-			if (confirm('".JText::_('K2_ARE_YOU_SURE_YOU_WANT_TO_DELETE_SELECTED_TAGS', true)."')){
-				submitform( pressbutton );
-			}
-		} else {
-			submitform( pressbutton );
-		}
-	};
-");
+$app = JFactory::getApplication();
+$context = JRequest::getCmd('context');
 
 ?>
 
+<?php if($context == "modalselector"): ?>
+<!-- Modal View -->
+<div id="k2ModalContainer">
+	<div id="k2ModalHeader">
+		<h2 id="k2ModalLogo"><?php echo JText::_('K2_TAGS'); ?></h2>
+		<table id="k2ModalToolbar" cellpadding="2" cellspacing="4">
+			<tr>
+				<td id="toolbar-close" class="button">
+					<a href="#" id="k2CloseMfp" onclick="window.parent.k2CloseMFP();">
+						<i class="fa fa-times-circle" aria-hidden="true"></i> <?php echo JText::_('K2_CLOSE'); ?>
+					</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+<?php endif; ?>
+
 <form action="index.php" method="post" name="adminForm" id="adminForm">
-  <table class="k2AdminTableFilters table">
-    <tr>
-      <td class="k2AdminTableFiltersSearch">
+	<table class="k2AdminTableFilters table">
+		<tr>
+			<td class="k2AdminTableFiltersSearch">
 				<label class="visually-hidden"><?php echo JText::_('K2_FILTER'); ?></label>
 				<div class="btn-wrapper input-append">
 					<input type="text" name="search" value="<?php echo htmlspecialchars($this->lists['search'], ENT_QUOTES, 'UTF-8'); ?>" class="text_area"	title="<?php echo JText::_('K2_FILTER_BY_TITLE'); ?>" placeholder="<?php echo JText::_('K2_FILTER'); ?>" />
 					<button id="k2SubmitButton" class="btn"><?php echo JText::_('K2_GO'); ?></button>
 					<button id="k2ResetButton" class="btn"><?php echo JText::_('K2_RESET'); ?></button>
 				</div>
-      </td>
-      <td class="k2AdminTableFiltersSelects hidden-phone">
-      	<?php echo $this->lists['state']; ?>
-      </td>
-    </tr>
-  </table>
-  <table class="adminlist table table-striped">
-    <thead>
-      <tr>
-        <th class="center hidden-phone">#</th>
-        <th class="center"><input id="jToggler" type="checkbox" name="toggle" value="" /></th>
-        <th><?php echo JHTML::_('grid.sort', 'K2_NAME', 'name', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
-        <th class="center"><?php echo JHTML::_('grid.sort', 'K2_PUBLISHED', 'published', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
-        <th class="center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_ITEMS', 'numOfItems', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
-        <th class="center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_ID', 'id', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
-      </tr>
-    </thead>
-    <tfoot>
-      <tr>
-        <td colspan="6">
-        	<?php if(K2_JVERSION == '30'): ?>
-			<div class="k2LimitBox">
-				<?php echo $this->page->getLimitBox(); ?>
-			</div>
-			<?php endif; ?>
-        	<?php echo $this->page->getListFooter(); ?>
-        </td>
-      </tr>
-    </tfoot>
-    <tbody>
-      <?php foreach ($this->rows as $key => $row): ?>
-      <tr class="row<?php echo ($key%2); ?>">
-        <td class="k2Center center hidden-phone"><?php echo $key+1; ?></td>
-        <td class="k2Center center"><?php $row->checked_out = 0; echo @JHTML::_('grid.checkedout', $row, $key ); ?></td>
-        <td><a href="<?php echo JRoute::_('index.php?option=com_k2&view=tag&cid='.$row->id); ?>"><?php echo $row->name; ?></a></td>
-        <td class="k2Center center"><?php echo $row->status; ?></td>
-        <td class="k2Center center hidden-phone"><?php echo $row->numOfItems; ?></td>
-        <td class="k2Center center hidden-phone"><?php echo $row->id; ?></td>
-      </tr>
-      <?php endforeach; ?>
-    </tbody>
-  </table>
-  <input type="hidden" name="option" value="com_k2" />
-  <input type="hidden" name="view" value="<?php echo JRequest::getVar('view'); ?>" />
-  <input type="hidden" name="task" value="" />
-  <input type="hidden" name="filter_order" value="<?php echo $this->lists['order']; ?>" />
-  <input type="hidden" name="filter_order_Dir" value="<?php echo $this->lists['order_Dir']; ?>" />
-  <input type="hidden" name="boxchecked" value="0" />
-  <?php echo JHTML::_( 'form.token' ); ?>
+			</td>
+			<td class="k2AdminTableFiltersSelects hidden-phone"><?php echo $this->lists['state']; ?></td>
+		</tr>
+	</table>
+	<table class="adminlist table table-striped">
+		<thead>
+			<tr>
+				<th class="center hidden-phone">#</th>
+				<th class="center"><input id="jToggler" type="checkbox" name="toggle" value="" /></th>
+				<th><?php echo JHTML::_('grid.sort', 'K2_NAME', 'name', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
+				<th class="center"><?php echo JHTML::_('grid.sort', 'K2_PUBLISHED', 'published', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
+				<th class="center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_ITEMS', 'numOfItems', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
+				<th class="center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_ID', 'id', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<td colspan="6">
+					<?php if(K2_JVERSION == '30'): ?>
+					<div class="k2LimitBox">
+						<?php echo $this->page->getLimitBox(); ?>
+					</div>
+					<?php endif; ?>
+					<?php echo $this->page->getListFooter(); ?>
+				</td>
+			</tr>
+		</tfoot>
+		<tbody>
+			<?php foreach ($this->rows as $key => $row): ?>
+			<tr class="row<?php echo ($key%2); ?>">
+				<td class="k2Center center hidden-phone"><?php echo $key+1; ?></td>
+				<td class="k2Center center"><?php $row->checked_out = 0; echo @JHTML::_('grid.checkedout', $row, $key ); ?></td>
+				<td><a href="<?php echo JRoute::_('index.php?option=com_k2&view=tag&cid='.$row->id); ?>"><?php echo $row->name; ?></a></td>
+				<td class="k2Center center"><?php echo $row->status; ?></td>
+				<td class="k2Center center hidden-phone"><?php echo $row->numOfItems; ?></td>
+				<td class="k2Center center hidden-phone"><?php echo $row->id; ?></td>
+			</tr>
+			<?php endforeach; ?>
+		</tbody>
+	</table>
+
+	<input type="hidden" name="option" value="com_k2" />
+	<input type="hidden" name="view" value="<?php echo JRequest::getVar('view'); ?>" />
+	<input type="hidden" name="task" value="" />
+	<input type="hidden" name="filter_order" value="<?php echo $this->lists['order']; ?>" />
+	<input type="hidden" name="filter_order_Dir" value="<?php echo $this->lists['order_Dir']; ?>" />
+	<input type="hidden" name="boxchecked" value="0" />
+	<?php if($context == "modalselector"): ?>
+	<input type="hidden" name="context" value="modalselector" />
+	<input type="hidden" name="tmpl" value="component" />
+	<input type="hidden" name="fid" value="<?php echo JRequest::getCmd('fid'); ?>" />
+	<input type="hidden" name="fname" value="<?php echo JRequest::getVar('fname'); ?>" />
+	<input type="hidden" name="output" value="<?php echo JRequest::getCmd('output'); ?>" />
+	<?php endif; ?>
+	<?php echo JHTML::_( 'form.token' ); ?>
 </form>
+
+<?php if($context == "modalselector"): ?>
+</div>
+<?php endif; ?>

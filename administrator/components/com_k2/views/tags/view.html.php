@@ -17,6 +17,7 @@ class K2ViewTags extends K2View
 	function display($tpl = null)
 	{
 		$mainframe = JFactory::getApplication();
+		$document = JFactory::getDocument();
 		$user = JFactory::getUser();
 
 		$option = JRequest::getCmd('option');
@@ -63,6 +64,19 @@ class K2ViewTags extends K2View
 		$lists['state'] = JHTML::_('select.genericlist', $filter_state_options, 'filter_state', '', 'value', 'text', $filter_state);
 
 		$this->assignRef('lists', $lists);
+
+		// JS
+		$document->addScriptDeclaration("
+			Joomla.submitbutton = function(pressbutton) {
+				if (pressbutton == 'remove') {
+					if (confirm('".JText::_('K2_ARE_YOU_SURE_YOU_WANT_TO_DELETE_SELECTED_TAGS', true)."')){
+						submitform( pressbutton );
+					}
+				} else {
+					submitform( pressbutton );
+				}
+			};
+		");
 
 		// Toolbar
 		JToolBarHelper::title(JText::_('K2_TAGS'), 'k2.png');
