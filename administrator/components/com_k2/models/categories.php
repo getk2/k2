@@ -342,7 +342,11 @@ class K2ModelCategories extends K2Model
         $dispatcher->trigger('onFinderChangeState', array('com_k2.category', $cid, 1));
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
-        $mainframe->redirect('index.php?option=com_k2&view=categories');
+		if(JRequest::getCmd('context') == "modalselector"){
+			$mainframe->redirect('index.php?option=com_k2&view=categories&tmpl=component&context=modalselector');
+		} else {
+			$mainframe->redirect('index.php?option=com_k2&view=categories');
+		}
     }
 
     function unpublish()
@@ -361,7 +365,11 @@ class K2ModelCategories extends K2Model
         $dispatcher->trigger('onFinderChangeState', array('com_k2.category', $cid, 0));
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
-        $mainframe->redirect('index.php?option=com_k2&view=categories');
+		if(JRequest::getCmd('context') == "modalselector"){
+			$mainframe->redirect('index.php?option=com_k2&view=categories&tmpl=component&context=modalselector');
+		} else {
+			$mainframe->redirect('index.php?option=com_k2&view=categories');
+		}
     }
 
     function saveorder()
@@ -416,7 +424,11 @@ class K2ModelCategories extends K2Model
         $cache->clean();
         $msg = JText::_('K2_NEW_ORDERING_SAVED');
 		$mainframe->enqueueMessage($msg);
-        $mainframe->redirect('index.php?option=com_k2&view=categories');
+		if(JRequest::getCmd('context') == "modalselector"){
+			$mainframe->redirect('index.php?option=com_k2&view=categories&tmpl=component&context=modalselector');
+		} else {
+			$mainframe->redirect('index.php?option=com_k2&view=categories');
+		}
 	}
 
     function orderdown()
@@ -433,7 +445,11 @@ class K2ModelCategories extends K2Model
         $cache->clean();
         $msg = JText::_('K2_NEW_ORDERING_SAVED');
 		$mainframe->enqueueMessage($msg);
-        $mainframe->redirect('index.php?option=com_k2&view=categories');
+		if(JRequest::getCmd('context') == "modalselector"){
+			$mainframe->redirect('index.php?option=com_k2&view=categories&tmpl=component&context=modalselector');
+		} else {
+			$mainframe->redirect('index.php?option=com_k2&view=categories');
+		}
     }
 
     function accessregistered()

@@ -17,7 +17,7 @@ class K2ElementK2modalselector extends K2Element
     function fetchElementValue($name, $value, &$node, $control_name)
     {
         $document = JFactory::getDocument();
-        
+
         JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
 
 		// Attributes
@@ -83,6 +83,12 @@ class K2ElementK2modalselector extends K2Element
             	$row = JTable::getInstance('K2Item', 'Table');
 				$row->load($id);
 				$entryName = $row->title;
+			}
+			if($scope == 'categories')
+			{
+	            $row = JTable::getInstance('K2Category', 'Table');
+	            $row->load($id);
+	            $entryName = $row->name;
 			}
 			if($scope == 'users')
 			{

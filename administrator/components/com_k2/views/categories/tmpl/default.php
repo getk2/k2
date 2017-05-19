@@ -10,12 +10,26 @@
 // no direct access
 defined('_JEXEC') or die;
 
+$app = JFactory::getApplication();
 $context = JRequest::getCmd('context');
 
 ?>
 
-<?php if($context == "modalselector"): ?>
-<h2 id="k2ModalSelectorHeader"><?php echo JText::_('K2_CATEGORIES'); ?></h2>
+<?php if($app->isSite() || $context == "modalselector"): ?>
+<!-- Modal View -->
+<div id="k2ModalContainer">
+	<div id="k2ModalHeader">
+		<h2 id="k2ModalLogo"><?php echo JText::_('K2_CATEGORIES'); ?></h2>
+		<table id="k2ModalToolbar" cellpadding="2" cellspacing="4">
+			<tr>
+				<td id="toolbar-close" class="button">
+					<a href="#" id="k2CloseMfp" onclick="window.parent.k2CloseMFP();">
+						<i class="fa fa-times-circle" aria-hidden="true"></i> <?php echo JText::_('K2_CLOSE'); ?>
+					</a>
+				</td>
+			</tr>
+		</table>
+	</div>
 <?php endif; ?>
 
 <form action="index.php" method="post" name="adminForm" id="adminForm">
@@ -128,7 +142,14 @@ $context = JRequest::getCmd('context');
 							<?php endif; ?>
 							<?php else: ?>
 							<?php if($context == "modalselector"): ?>
-							<a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ENTRY'); ?>" onclick="window.parent.jSelectCategory('<?php echo $row->id; ?>', '<?php echo str_replace(array("'", "\""), array("\\'", ""), $row->name); ?>', 'id');">
+							<?php
+							if(JRequest::getCmd('output') == 'list'){
+								$onClick = 'window.parent.k2ModalSelector(\''.$row->id.'\', \''.str_replace(array("'", "\""), array("\\'", ""), $row->name).'\', \''.JRequest::getCmd('fid').'\', \''.JRequest::getVar('fname').'\', \''.JRequest::getCmd('output').'\'); return false;';
+							} else {
+								$onClick = 'window.parent.k2ModalSelector(\''.$row->id.'\', \''.str_replace(array("'", "\""), array("\\'", ""), $row->name).'\'); return false;';
+							}
+							?>
+							<a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ENTRY'); ?>" href="#" onclick="<?php echo $onClick; ?>">
 								<?php echo $row->treename; ?>
 								<?php if($this->params->get('showItemsCounterAdmin')): ?>
 								<span class="small">(<?php echo $row->numOfItems.' '.JText::_('K2_ACTIVE'); ?> / <?php echo $row->numOfTrashedItems.' '.JText::_('K2_TRASHED'); ?>)</span>
@@ -263,6 +284,13 @@ $context = JRequest::getCmd('context');
 	<?php if($context == "modalselector"): ?>
 	<input type="hidden" name="context" value="modalselector" />
 	<input type="hidden" name="tmpl" value="component" />
+	<input type="hidden" name="fid" value="<?php echo JRequest::getCmd('fid'); ?>" />
+	<input type="hidden" name="fname" value="<?php echo JRequest::getVar('fname'); ?>" />
+	<input type="hidden" name="output" value="<?php echo JRequest::getCmd('output'); ?>" />
 	<?php endif; ?>
 	<?php echo JHTML::_( 'form.token' ); ?>
 </form>
+
+<?php if($app->isSite() || $context == "modalselector"): ?>
+</div>
+<?php endif; ?>
