@@ -19,9 +19,7 @@ if (version_compare(JVERSION, '3.0', 'ge'))
         {
             parent::display($cachable, $urlparams);
         }
-
     }
-
 }
 else if (version_compare(JVERSION, '2.5', 'ge'))
 {
@@ -31,9 +29,7 @@ else if (version_compare(JVERSION, '2.5', 'ge'))
         {
             parent::display($cachable, $urlparams);
         }
-
     }
-
 }
 else
 {
@@ -45,5 +41,4 @@ else
         }
 
     }
-
 }

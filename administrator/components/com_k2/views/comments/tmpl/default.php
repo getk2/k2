@@ -221,6 +221,9 @@ $context = JRequest::getCmd('context');
 	<?php if($context == "modalselector"): ?>
 	<input type="hidden" name="context" value="modalselector" />
 	<input type="hidden" name="tmpl" value="component" />
+	<?php if($app->isSite()): ?>
+	<input type="hidden" name="template" value="system" />
+	<?php endif; ?>
 	<?php endif; ?>
 	<?php echo JHTML::_('form.token'); ?>
 </form>

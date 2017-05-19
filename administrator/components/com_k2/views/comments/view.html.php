@@ -236,6 +236,28 @@ class K2ViewComments extends K2View
 
         if ($mainframe->isSite())
         {
+	        // Enforce the "system" template in the frontend
+	        JRequest::setVar('template', 'system');
+
+	        // JS
+	        $document->addScriptDeclaration("
+	        	/* K2 - Fix pagination in comment editing in the frontend */
+		        (function(\$){
+			        \$(document).ready(function(){
+						var currentPageUrl = window.location.href;
+						if (currentPageUrl.indexOf('?') > 0) {
+							var concatenator = '&limitstart=';
+						} else {
+							var concatenator = '?limitstart=';
+						}
+					    \$('.pagenav').each(function(){
+						    var counter = \$(this).attr('href').split('start=');
+						    \$(this).attr('href', currentPageUrl+''+concatenator+''+counter[1]);
+						});
+					});
+				})(jQuery);
+	        ");
+
 			// CSS
 			$document->addStyleSheet(JURI::root(true).'/templates/system/css/general.css');
 			$document->addStyleSheet(JURI::root(true).'/templates/system/css/system.css');
