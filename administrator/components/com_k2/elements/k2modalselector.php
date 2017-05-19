@@ -17,6 +17,8 @@ class K2ElementK2modalselector extends K2Element
     function fetchElementValue($name, $value, &$node, $control_name)
     {
         $document = JFactory::getDocument();
+        
+        JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
 
 		// Attributes
 		$fieldID = 'fieldID_'.md5($name);
@@ -73,11 +75,6 @@ class K2ElementK2modalselector extends K2Element
         </div>
         <ul id="'.$fieldID.'" class="k2SortableListContainer">
         ';
-
-        if($scope == 'items')
-        {
-	        JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
-        }
 
         foreach ($saved as $id)
         {
