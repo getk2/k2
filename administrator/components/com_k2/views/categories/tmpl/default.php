@@ -65,7 +65,7 @@ $context = JRequest::getCmd('context');
 		                <?php else: ?>
 		                <th>#</th>
 		                <?php endif; ?>
-						<th>
+						<th<?php if($context == "modalselector") echo ' class="k2VisuallyHidden"'; ?>>
 							<input id="jToggler" type="checkbox" name="toggle" value="" />
 						</th>
 						<th>
@@ -102,9 +102,15 @@ $context = JRequest::getCmd('context');
 						</th>
 					</tr>
 				</thead>
+				<?php
+					$tfootColspan = 10;
+					if(K2_JVERSION != '30') $tfootColspan++;
+					if(isset($this->lists['language'])) $tfootColspan++;
+					if($context == "modalselector") $tfootColspan--;
+				?>
 				<tfoot>
 					<tr>
-						<td colspan="12">
+						<td colspan="<?php echo $tfootColspan; ?>">
 							<?php if(K2_JVERSION == '30'): ?>
 							<div class="k2LimitBox">
 								<?php echo $this->page->getLimitBox(); ?>
@@ -130,7 +136,7 @@ $context = JRequest::getCmd('context');
 		                <?php else: ?>
 		                <td><?php echo $key+1; ?></td>
 		                <?php endif; ?>
-						<td class="k2Center center">
+						<td class="k2Center center<?php if($context == "modalselector") echo ' k2VisuallyHidden'; ?>">
 							<?php if(!$this->filter_trash || $row->trash) { $row->checked_out = 0; echo @JHTML::_('grid.checkedout', $row, $key );}?>
 						</td>
 						<td>

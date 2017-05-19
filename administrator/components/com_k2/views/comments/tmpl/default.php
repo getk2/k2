@@ -10,9 +10,12 @@
 // no direct access
 defined('_JEXEC') or die;
 
+$app = JFactory::getApplication();
+$context = JRequest::getCmd('context');
+
 ?>
 
-<?php if($this->mainframe->isSite()): ?>
+<?php if($app->isSite() || $context == "modalselector"): ?>
 <!-- Frontend Comments Moderation (Modal View) -->
 <div id="k2ModalContainer">
 	<div id="k2ModalHeader">
@@ -119,7 +122,7 @@ defined('_JEXEC') or die;
 		</thead>
 		<tfoot>
 			<tr>
-				<td colspan="15">
+				<td colspan="14">
 					<div class="k2CommentsPagination">
 						<?php if(K2_JVERSION == '30'): ?>
 						<div class="k2LimitBox">
@@ -206,18 +209,22 @@ defined('_JEXEC') or die;
 		</tbody>
 	</table>
 
+	<input type="hidden" id="commentID" name="commentID" value="" />
+	<input type="hidden" id="commentText" name="commentText" value="" />
+	<input type="hidden" id="task" name="task" value="" />
+	<input type="hidden" name="boxchecked" value="0" />
+	<input type="hidden" name="filter_order" value="<?php echo $this->lists['order']; ?>" />
+	<input type="hidden" name="filter_order_Dir" value="<?php echo $this->lists['order_Dir']; ?>" />
 	<input type="hidden" name="isSite" value="<?php echo (int) $this->mainframe->isSite(); ?>" />
 	<input type="hidden" name="option" value="com_k2" />
 	<input type="hidden" name="view" value="<?php echo JRequest::getCmd('view'); ?>" />
-	<input type="hidden" id="task" name="task" value="" />
-	<input type="hidden" name="filter_order" value="<?php echo $this->lists['order']; ?>" />
-	<input type="hidden" name="filter_order_Dir" value="<?php echo $this->lists['order_Dir']; ?>" />
-	<input type="hidden" name="boxchecked" value="0" />
-	<input type="hidden" id="commentID" name="commentID" value="" />
-	<input type="hidden" id="commentText" name="commentText" value="" />
+	<?php if($context == "modalselector"): ?>
+	<input type="hidden" name="context" value="modalselector" />
+	<input type="hidden" name="tmpl" value="component" />
+	<?php endif; ?>
 	<?php echo JHTML::_('form.token'); ?>
 </form>
 
-<?php if($this->mainframe->isSite()): ?>
+<?php if($app->isSite() || $context == "modalselector"): ?>
 </div>
 <?php endif; ?>
