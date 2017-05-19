@@ -36,12 +36,12 @@
 			</param>
 		</params>
 		<url addpath="/administrator/components/com_k2/elements">
-			<param name="tag" type="k2tag" default="" label="K2_SELECT_TAG" description=""/>
+			<param name="tag" type="k2tag" default="" label="K2_SELECT_TAG_IN_MENUS" description=""/>
 			<param name="task" type="hidden" default="tag"/>
 		</url>
 		<fields name="request">
 			<fieldset name="request" addfieldpath="/administrator/components/com_k2/elements">
-				<field name="tag" type="k2tag" default="" label="K2_SELECT_TAG" description=""/>
+				<field name="tag" type="k2tag" default="" label="K2_SELECT_TAG_IN_MENUS" description=""/>
 				<field name="task" type="hidden" default="tag"/>
 			</fieldset>
 		</fields>
