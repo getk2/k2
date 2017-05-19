@@ -30,20 +30,20 @@ defined('_JEXEC') or die;
 	</div>
 
   <ul class="k2UserBlockActions">
-		<?php if(is_object($user->profile) && isset($user->profile->addLink)): ?>
+		<?php if(isset($addItemLink)): ?>
 		<li>
-			<a data-k2-modal="edit" href="<?php echo $user->profile->addLink; ?>"><?php echo JText::_('K2_ADD_NEW_ITEM'); ?></a>
+			<a data-k2-modal="edit" href="<?php echo $addItemLink; ?>"><?php echo JText::_('K2_ADD_NEW_ITEM'); ?></a>
 		</li>
 		<?php endif; ?>
 		<li>
-			<a href="<?php echo JRoute::_(K2HelperRoute::getUserRoute($user->id)); ?>"><?php echo JText::_('K2_MY_PAGE'); ?></a>
+			<a href="<?php echo $viewProfileLink; ?>"><?php echo JText::_('K2_MY_PAGE'); ?></a>
 		</li>
 		<li>
-			<a href="<?php echo $profileLink; ?>"><?php echo JText::_('K2_MY_ACCOUNT'); ?></a>
+			<a href="<?php echo $editProfileLink; ?>"><?php echo JText::_('K2_MY_ACCOUNT'); ?></a>
 		</li>
 		<?php if($K2CommentsEnabled): ?>
 		<li>
-			<a data-k2-modal="iframe" href="<?php echo JRoute::_('index.php?option=com_k2&view=comments&tmpl=component'); ?>"><?php echo JText::_('K2_MODERATE_COMMENTS_TO_MY_PUBLISHED_ITEMS'); ?></a>
+			<a data-k2-modal="iframe" href="<?php echo $editCommentsLink; ?>"><?php echo JText::_('K2_MODERATE_COMMENTS_TO_MY_PUBLISHED_ITEMS'); ?></a>
 		</li>
 		<?php endif; ?>
 	</ul>

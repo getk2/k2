@@ -330,7 +330,11 @@ class K2ModelComments extends K2Model {
 			$mainframe->close();
 		}
 		$mainframe->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
-		$mainframe->redirect('index.php?option=com_k2&view=comments');
+		if(JRequest::getCmd('context') == "modalselector"){
+			$mainframe->redirect('index.php?option=com_k2&view=comments&tmpl=component&context=modalselector');
+		} else {
+			$mainframe->redirect('index.php?option=com_k2&view=comments');
+		}
 	}
 
 	function deleteUnpublished() {
@@ -359,7 +363,11 @@ class K2ModelComments extends K2Model {
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
 		$mainframe->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
-		$mainframe->redirect('index.php?option=com_k2&view=comments');
+		if(JRequest::getCmd('context') == "modalselector"){
+			$mainframe->redirect('index.php?option=com_k2&view=comments&tmpl=component&context=modalselector');
+		} else {
+			$mainframe->redirect('index.php?option=com_k2&view=comments');
+		}
 	}
 
 	function save() {

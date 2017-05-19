@@ -68,7 +68,7 @@ class modK2UserHelper
             if (JRequest::getCmd('option') != 'com_k2')
                 K2HelperPermissions::setPermissions();
             if (K2HelperPermissions::canAddItem())
-                $profile->addLink = JRoute::_('index.php?option=com_k2&view=item&task=add&tmpl=component');
+                $profile->addLink = JRoute::_('index.php?option=com_k2&view=item&task=add&tmpl=component&context=modalselector');
             return $profile;
         }
 
