@@ -176,7 +176,7 @@ $context = JRequest::getCmd('context');
 						<td class="center<?php if($context == "modalselector") echo ' k2VisuallyHidden'; ?>"><?php echo @JHTML::_('grid.checkedout', $row, $key); ?></td>
 						<td>
 							<?php if($context == "modalselector"): ?>
-							<a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ITEM'); ?>" href="#" onclick="window.parent.k2ModalSelector('<?php echo $row->id; ?>', '<?php echo str_replace(array("'", "\""), array("\\'", ""), $row->title); ?>', '<?php echo JRequest::getCmd('fid'); ?>', '<?php echo JRequest::getVar('fname'); ?>', '<?php echo JRequest::getCmd('output'); ?>'); return false;">
+							<a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ENTRY'); ?>" href="#" onclick="window.parent.k2ModalSelector('<?php echo $row->id; ?>', '<?php echo str_replace(array("'", "\""), array("\\'", ""), $row->title); ?>', '<?php echo JRequest::getCmd('fid'); ?>', '<?php echo JRequest::getVar('fname'); ?>', '<?php echo JRequest::getCmd('output'); ?>'); return false;">
 								<?php echo $row->title; ?>
 							</a>
 							<?php else: ?>

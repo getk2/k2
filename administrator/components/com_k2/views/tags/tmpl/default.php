@@ -50,7 +50,7 @@ $context = JRequest::getCmd('context');
 		<thead>
 			<tr>
 				<th class="center hidden-phone">#</th>
-				<th class="center"><input id="jToggler" type="checkbox" name="toggle" value="" /></th>
+				<th class="center<?php if($context == "modalselector") echo ' k2VisuallyHidden'; ?>"><input id="jToggler" type="checkbox" name="toggle" value="" /></th>
 				<th><?php echo JHTML::_('grid.sort', 'K2_NAME', 'name', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
 				<th class="center"><?php echo JHTML::_('grid.sort', 'K2_PUBLISHED', 'published', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
 				<th class="center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_ITEMS', 'numOfItems', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
@@ -73,8 +73,21 @@ $context = JRequest::getCmd('context');
 			<?php foreach ($this->rows as $key => $row): ?>
 			<tr class="row<?php echo ($key%2); ?>">
 				<td class="k2Center center hidden-phone"><?php echo $key+1; ?></td>
-				<td class="k2Center center"><?php $row->checked_out = 0; echo @JHTML::_('grid.checkedout', $row, $key ); ?></td>
-				<td><a href="<?php echo JRoute::_('index.php?option=com_k2&view=tag&cid='.$row->id); ?>"><?php echo $row->name; ?></a></td>
+				<td class="k2Center center<?php if($context == "modalselector") echo ' k2VisuallyHidden'; ?>"><?php $row->checked_out = 0; echo @JHTML::_('grid.checkedout', $row, $key ); ?></td>
+				<td>
+					<?php if($context == "modalselector"): ?>
+					<?php
+					if(JRequest::getCmd('output') == 'list'){
+						$onClick = 'window.parent.k2ModalSelector(\''.urlencode($row->name).'\', \''.str_replace(array("'", "\""), array("\\'", ""), $row->name).'\', \''.JRequest::getCmd('fid').'\', \''.JRequest::getVar('fname').'\', \''.JRequest::getCmd('output').'\'); return false;';
+					} else {
+						$onClick = 'window.parent.k2ModalSelector(\''.urlencode($row->name).'\', \''.str_replace(array("'", "\""), array("\\'", ""), $row->name).'\'); return false;';
+					}
+					?>
+					<a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ENTRY'); ?>" href="#" onclick="<?php echo $onClick; ?>"><?php echo $row->name; ?></a>
+					<?php else: ?>
+					<a href="<?php echo JRoute::_('index.php?option=com_k2&view=tag&cid='.$row->id); ?>"><?php echo $row->name; ?></a>
+					<?php endif; ?>
+				</td>
 				<td class="k2Center center"><?php echo $row->status; ?></td>
 				<td class="k2Center center hidden-phone"><?php echo $row->numOfItems; ?></td>
 				<td class="k2Center center hidden-phone"><?php echo $row->id; ?></td>

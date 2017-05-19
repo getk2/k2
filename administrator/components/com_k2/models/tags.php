@@ -16,10 +16,8 @@ JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 
 class K2ModelTags extends K2Model
 {
-
 	function getData()
 	{
-
 		$mainframe = JFactory::getApplication();
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
@@ -66,7 +64,6 @@ class K2ModelTags extends K2Model
 
 	function getTotal()
 	{
-
 		$mainframe = JFactory::getApplication();
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
@@ -98,7 +95,6 @@ class K2ModelTags extends K2Model
 
 	function publish()
 	{
-
 		$mainframe = JFactory::getApplication();
 		$cid = JRequest::getVar('cid');
 		foreach ($cid as $id)
@@ -110,12 +106,15 @@ class K2ModelTags extends K2Model
 		}
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
-		$mainframe->redirect('index.php?option=com_k2&view=tags');
+		if(JRequest::getCmd('context') == "modalselector"){
+			$mainframe->redirect('index.php?option=com_k2&view=tags&tmpl=component&context=modalselector');
+		} else {
+			$mainframe->redirect('index.php?option=com_k2&view=tags');
+		}
 	}
 
 	function unpublish()
 	{
-
 		$mainframe = JFactory::getApplication();
 		$cid = JRequest::getVar('cid');
 		foreach ($cid as $id)
@@ -127,12 +126,15 @@ class K2ModelTags extends K2Model
 		}
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
-		$mainframe->redirect('index.php?option=com_k2&view=tags');
+		if(JRequest::getCmd('context') == "modalselector"){
+			$mainframe->redirect('index.php?option=com_k2&view=tags&tmpl=component&context=modalselector');
+		} else {
+			$mainframe->redirect('index.php?option=com_k2&view=tags');
+		}
 	}
 
 	function remove()
 	{
-
 		$mainframe = JFactory::getApplication();
 		$db = JFactory::getDBO();
 		$cid = JRequest::getVar('cid');
@@ -150,13 +152,11 @@ class K2ModelTags extends K2Model
 
 	function getFilter()
 	{
-
 		$db = JFactory::getDBO();
 		$query = "SELECT name, id FROM #__k2_tags ORDER BY name";
 		$db->setQuery($query);
 		$rows = $db->loadObjectList();
 		return $rows;
-
 	}
 
 	function countTagItems($id)
@@ -177,5 +177,4 @@ class K2ModelTags extends K2Model
 		$mainframe->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
 		$mainframe->redirect('index.php?option=com_k2&view=tags');
 	}
-
 }

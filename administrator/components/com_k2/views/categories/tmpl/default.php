@@ -128,7 +128,7 @@ $context = JRequest::getCmd('context');
 							<?php endif; ?>
 							<?php else: ?>
 							<?php if($context == "modalselector"): ?>
-							<a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ITEM'); ?>" onclick="window.parent.jSelectCategory('<?php echo $row->id; ?>', '<?php echo str_replace(array("'", "\""), array("\\'", ""), $row->name); ?>', 'id');">
+							<a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ENTRY'); ?>" onclick="window.parent.jSelectCategory('<?php echo $row->id; ?>', '<?php echo str_replace(array("'", "\""), array("\\'", ""), $row->name); ?>', 'id');">
 								<?php echo $row->treename; ?>
 								<?php if($this->params->get('showItemsCounterAdmin')): ?>
 								<span class="small">(<?php echo $row->numOfItems.' '.JText::_('K2_ACTIVE'); ?> / <?php echo $row->numOfTrashedItems.' '.JText::_('K2_TRASHED'); ?>)</span>
