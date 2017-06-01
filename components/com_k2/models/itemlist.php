@@ -177,11 +177,15 @@ class K2ModelItemlist extends K2Model
 						$query .= " AND DAY(i.created) = {$day}";
 					}
 
-					if (JRequest::getInt('catid'))
-					{
-						$catid = JRequest::getInt('catid');
-						$query .= " AND c.id={$catid}";
-					}
+					if (JRequest::getInt('cat_id'))
+			                {
+			                    $catid = JRequest::getVar('cat_id');
+			                    $query .= " AND c.id IN({$catid})";
+			                }
+			                else{
+			                    $catid = JRequest::getVar('catid');
+			                    $query .= " AND c.id IN({$catid})";
+			                }
 
 				}
 				break;
