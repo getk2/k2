@@ -103,7 +103,7 @@ class K2HelperHTML
 				{
 					if ($backendJQueryHandling == 'remote')
 					{
-						if ($view == 'item' || $view == 'category' || $option == 'com_menus')
+						if ($view == 'item' || $view == 'category' || $option == 'com_menus' || $option == 'com_advancedmodules')
 						{
 							$document->addScript('https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
 						}
@@ -114,7 +114,7 @@ class K2HelperHTML
 					}
 					else
 					{
-						if ($view == 'item' || $view == 'category' || $option == 'com_menus')
+						if ($view == 'item' || $view == 'category' || $option == 'com_menus' || $option == 'com_advancedmodules')
 						{
 							$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-1.8.3.min.js');
 						}
@@ -138,7 +138,7 @@ class K2HelperHTML
 				}
 
 				// Load version 1.8.24 for tabs & sortables (called the "old" way)...
-				if ($view == 'item' || $view == 'category' || $option == 'com_menus')
+				if ($view == 'item' || $view == 'category' || $option == 'com_menus' || $option == 'com_advancedmodules')
 				{
 					$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js');
 				}
