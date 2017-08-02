@@ -24,7 +24,6 @@ class K2ElementK2modalselector extends K2Element
 		$fieldID = 'fieldID_'.md5($name);
         if (K2_JVERSION != '15')
         {
-            $fieldName = $name.'[]';
             if($node->attributes()->scope)
             {
 	            $scope = $node->attributes()->scope;
@@ -33,16 +32,31 @@ class K2ElementK2modalselector extends K2Element
             {
 	            $scope = 'items';
             }
+            if($scope == 'items' || $scope == 'categories' || $scope == 'users')
+            {
+	            $fieldName = $name.'[]';
+            }
+            else
+            {
+	            $fieldName = $name;
+            }
         }
         else
         {
-            $fieldName = $control_name.'['.$name.'][]';
             if($node->attributes('scope')){
 	            $scope = $node->attributes('scope');
             }
             else
             {
 	            $scope = 'items';
+            }
+            if($scope == 'items' || $scope == 'categories' || $scope == 'users')
+            {
+            	$fieldName = $control_name.'['.$name.'][]';
+            }
+            else
+            {
+	            $fieldName = $control_name.'['.$name.']';
             }
         }
         if(!$value)
@@ -66,41 +80,101 @@ class K2ElementK2modalselector extends K2Element
         	var K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST = '".JText::_('K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST')."';
         ");
 
-		// Output
-        $output = '
-        <div class="k2SelectorButton">
-			<a data-k2-modal="iframe" class="btn" title="'.JText::_('K2_SELECT').'" href="index.php?option=com_k2&view='.$scope.'&tmpl=component&context=modalselector&output=list&fid='.$fieldID.'&fname='.$fieldName.'">
-	        	<i class="fa fa-file-text-o"></i> '.JText::_('K2_SELECT').'
-	        </a>
-        </div>
-        <ul id="'.$fieldID.'" class="k2SortableListContainer">
-        ';
+        // Output
+        $output = '';
 
-        foreach ($saved as $id)
+        // Output for lists
+        if($scope == 'items' || $scope == 'categories' || $scope == 'users')
         {
-			if($scope == 'items')
+	        $output = '
+	        <div class="k2SelectorButton">
+				<a data-k2-modal="iframe" class="btn" title="'.JText::_('K2_SELECT').'" href="index.php?option=com_k2&view='.$scope.'&tmpl=component&context=modalselector&output=list&fid='.$fieldID.'&fname='.$fieldName.'">
+		        	<i class="fa fa-file-text-o"></i> '.JText::_('K2_SELECT').'
+		        </a>
+	        </div>
+	        <ul id="'.$fieldID.'" class="k2SortableListContainer">
+	        ';
+
+	        foreach ($saved as $id)
+	        {
+				if($scope == 'items')
+				{
+	            	$row = JTable::getInstance('K2Item', 'Table');
+					$row->load($id);
+					$entryName = $row->title;
+				}
+				if($scope == 'categories')
+				{
+		            $row = JTable::getInstance('K2Category', 'Table');
+		            $row->load($id);
+		            $entryName = $row->name;
+				}
+				if($scope == 'users')
+				{
+					$row = JFactory::getUser($id);
+					$entryName = $row->name;
+				}
+
+	            $output .= '<li class="handle"><a class="k2EntryRemove" href="#" title="'.JText::_('K2_REMOVE_THIS_ENTRY').'"><i class="fa fa-trash-o"></i></a><span class="k2EntryText">'.$entryName.'</span><input type="hidden" name="'.$fieldName.'" value="'.$row->id.'" /></li>';
+	        }
+	        $output .= '
+	        </ul>
+	        ';
+        }
+
+        // Output for single entities
+        if($scope == 'item' || $scope == 'category' || $scope == 'user')
+        {
+	        if(count($saved)) $id = $saved[0]; else $id = '';
+
+			if($scope == 'item')
 			{
-            	$row = JTable::getInstance('K2Item', 'Table');
-				$row->load($id);
-				$entryName = $row->title;
+				if($id)
+				{
+	            	$row = JTable::getInstance('K2Item', 'Table');
+					$row->load($id);
+					$entryName = $row->title;
+				}
+				$view = "items";
 			}
-			if($scope == 'categories')
+			if($scope == 'category')
 			{
-	            $row = JTable::getInstance('K2Category', 'Table');
-	            $row->load($id);
-	            $entryName = $row->name;
+				if($id)
+				{
+		            $row = JTable::getInstance('K2Category', 'Table');
+		            $row->load($id);
+		            $entryName = $row->name;
+		        }
+	            $view = "categories";
 			}
-			if($scope == 'users')
+			if($scope == 'user')
 			{
-				$row = JFactory::getUser($id);
-				$entryName = $row->name;
+				if($id)
+				{
+					$row = JFactory::getUser($id);
+					$entryName = $row->name;
+				}
+				$view = "users";
 			}
 
-            $output .= '<li class="handle"><a class="k2EntryRemove" href="#" title="'.JText::_('K2_REMOVE_THIS_ENTRY').'"><i class="fa fa-trash-o"></i></a><span class="k2EntryText">'.$entryName.'</span><input type="hidden" name="'.$fieldName.'" value="'.$row->id.'" /></li>';
-        }
-        $output .= '
-        </ul>
-        ';
+			$output = '
+	        <div class="k2SelectorButton k2SingleSelect">
+				<a data-k2-modal="iframe" class="btn" title="'.JText::_('K2_SELECT').'" href="index.php?option=com_k2&view='.$view.'&tmpl=component&context=modalselector&fid='.$fieldID.'&fname='.$fieldName.'">
+		        	<i class="fa fa-file-text-o"></i> '.JText::_('K2_SELECT').'
+		        </a>
+	        </div>
+	        <div id="'.$fieldID.'" class="k2SingleSelect">
+	        ';
+
+	        if($id)
+	        {
+	        	$output .= '<span class="k2EntryText">'.$row->title.'</span><input type="hidden" name="'.$fieldName.'" value="'.$row->id.'" />';
+			}
+	        $output .= '
+	        </div>
+	        ';
+
+	    }
 
         return $output;
     }
