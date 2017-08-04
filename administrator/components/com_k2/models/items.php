@@ -152,7 +152,6 @@ class K2ModelItems extends K2Model
 			{
 				$query .= " AND i.catid={$filter_category}";
 			}
-
 		}
 
 		if ($filter_author > 0)
@@ -184,9 +183,14 @@ class K2ModelItems extends K2Model
 			$query = JString::str_ireplace('#__groups', '#__viewlevels', $query);
 			$query = JString::str_ireplace('g.name', 'g.title', $query);
 		}
-		$dispatcher = JDispatcher::getInstance();
+
+		// Plugin Events
 		JPluginHelper::importPlugin('k2');
+		$dispatcher = JDispatcher::getInstance();
+
+		// Trigger K2 plugins
 		$dispatcher->trigger('onK2BeforeSetQuery', array(&$query));
+
 		$db->setQuery($query, $limitstart, $limit);
 		$rows = $db->loadObjectList();
 		return $rows;
@@ -324,7 +328,6 @@ class K2ModelItems extends K2Model
 			{
 				$query .= " AND catid={$filter_category}";
 			}
-
 		}
 
 		if ($filter_author > 0)
@@ -341,9 +344,14 @@ class K2ModelItems extends K2Model
 		{
 			$query .= " AND language = ".$db->Quote($language);
 		}
-		$dispatcher = JDispatcher::getInstance();
+
+		// Plugins Events
 		JPluginHelper::importPlugin('k2');
+		$dispatcher = JDispatcher::getInstance();
+
+		// Trigger K2 plugins
 		$dispatcher->trigger('onK2BeforeSetQuery', array(&$query));
+
 		$db->setQuery($query);
 		$result = $db->loadResult();
 		return $result;
@@ -360,16 +368,19 @@ class K2ModelItems extends K2Model
 			$row->published = 1;
 			$row->store();
 		}
+
+		// Plugins Events
+		JPluginHelper::importPlugin('content');
 		JPluginHelper::importPlugin('finder');
 		$dispatcher = JDispatcher::getInstance();
+
+		// Trigger content & finder plugins when state changes
 		$dispatcher->trigger('onContentChangeState', array('com_k2.item', $cid, 1));
-		$dispatcher->trigger('onFinderChangeState', array(
-			'com_k2.item',
-			$cid,
-			1
-		));
+		$dispatcher->trigger('onFinderChangeState', array('com_k2.item', $cid, 1));
+
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
+
 		if(JRequest::getCmd('context') == "modalselector"){
 			$mainframe->redirect('index.php?option=com_k2&view=items&tmpl=component&context=modalselector');
 		} else {
@@ -388,16 +399,19 @@ class K2ModelItems extends K2Model
 			$row->published = 0;
 			$row->store();
 		}
+
+		// Plugins Events
+		JPluginHelper::importPlugin('content');
 		JPluginHelper::importPlugin('finder');
 		$dispatcher = JDispatcher::getInstance();
+
+		// Trigger content & finder plugins when state changes
 		$dispatcher->trigger('onContentChangeState', array('com_k2.item', $cid, 0));
-		$dispatcher->trigger('onFinderChangeState', array(
-			'com_k2.item',
-			$cid,
-			0
-		));
+		$dispatcher->trigger('onFinderChangeState', array('com_k2.item', $cid, 0));
+
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
+
 		if(JRequest::getCmd('context') == "modalselector"){
 			$mainframe->redirect('index.php?option=com_k2&view=items&tmpl=component&context=modalselector');
 		} else {
@@ -438,8 +452,10 @@ class K2ModelItems extends K2Model
 				$row->reorder('catid = '.(int)$group.' AND trash=0');
 			}
 		}
+
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
+
 		return true;
 	}
 
@@ -453,8 +469,10 @@ class K2ModelItems extends K2Model
 		$row->move(-1, 'catid = '.(int)$row->catid.' AND trash=0');
 		if (!$params->get('disableCompactOrdering'))
 			$row->reorder('catid = '.(int)$row->catid.' AND trash=0');
+
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
+
 		$msg = JText::_('K2_NEW_ORDERING_SAVED');
 		$mainframe->enqueueMessage($msg);
 		if(JRequest::getCmd('context') == "modalselector"){
@@ -474,8 +492,10 @@ class K2ModelItems extends K2Model
 		$row->move(1, 'catid = '.(int)$row->catid.' AND trash=0');
 		if (!$params->get('disableCompactOrdering'))
 			$row->reorder('catid = '.(int)$row->catid.' AND trash=0');
+
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
+
 		$msg = JText::_('K2_NEW_ORDERING_SAVED');
 		$mainframe->enqueueMessage($msg);
 		if(JRequest::getCmd('context') == "modalselector"){
@@ -518,8 +538,10 @@ class K2ModelItems extends K2Model
 				$row->reorder('featured = 1 AND trash=0', 'featured_ordering');
 			}
 		}
+
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
+
 		return true;
 	}
 
@@ -533,8 +555,10 @@ class K2ModelItems extends K2Model
 		$row->move(-1, 'featured=1 AND trash=0', 'featured_ordering');
 		if (!$params->get('disableCompactOrdering'))
 			$row->reorder('featured=1 AND trash=0', 'featured_ordering');
+
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
+
 		$msg = JText::_('K2_NEW_ORDERING_SAVED');
 		$mainframe->enqueueMessage($msg);
 		if(JRequest::getCmd('context') == "modalselector"){
@@ -554,8 +578,10 @@ class K2ModelItems extends K2Model
 		$row->move(1, 'featured=1 AND trash=0', 'featured_ordering');
 		if (!$params->get('disableCompactOrdering'))
 			$row->reorder('featured=1 AND trash=0', 'featured_ordering');
+
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
+
 		$msg = JText::_('K2_NEW_ORDERING_SAVED');
 		$mainframe->enqueueMessage($msg);
 		if(JRequest::getCmd('context') == "modalselector"){
@@ -581,8 +607,10 @@ class K2ModelItems extends K2Model
 		{
 			return $row->getError();
 		}
+
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
+
 		$msg = JText::_('K2_NEW_ACCESS_SETTING_SAVED');
 		$mainframe->enqueueMessage($msg);
 		$mainframe->redirect('index.php?option=com_k2&view=items');
@@ -604,8 +632,10 @@ class K2ModelItems extends K2Model
 		{
 			return $row->getError();
 		}
+
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
+
 		$msg = JText::_('K2_NEW_ACCESS_SETTING_SAVED');
 		$mainframe->enqueueMessage($msg);
 		$mainframe->redirect('index.php?option=com_k2&view=items');
@@ -627,8 +657,10 @@ class K2ModelItems extends K2Model
 		{
 			return $row->getError();
 		}
+
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
+
 		$msg = JText::_('K2_NEW_ACCESS_SETTING_SAVED');
 		$mainframe->enqueueMessage($msg);
 		$mainframe->redirect('index.php?option=com_k2&view=items');
@@ -722,7 +754,7 @@ class K2ModelItems extends K2Model
 			// Target gallery
 			if ($sourceGalleryTag)
 			{
-				if (JString::strpos($sourceGalleryTag, 'http://'))
+				if (JString::strpos($sourceGalleryTag, 'http://') || JString::strpos($sourceGalleryTag, 'https://'))
 				{
 					$row->gallery = $sourceGalleryTag;
 				}
@@ -801,8 +833,10 @@ class K2ModelItems extends K2Model
 			}
 			$row->store();
 		}
+
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
+
 		$mainframe->enqueueMessage(JText::_('K2_ITEMS_CHANGED'));
 		if(JRequest::getCmd('context') == "modalselector"){
 			$mainframe->redirect('index.php?option=com_k2&view=items&tmpl=component&context=modalselector');
@@ -824,16 +858,19 @@ class K2ModelItems extends K2Model
 			$row->trash = 1;
 			$row->store();
 		}
+
+		// Plugins Events
+		JPluginHelper::importPlugin('content');
 		JPluginHelper::importPlugin('finder');
 		$dispatcher = JDispatcher::getInstance();
+
+		// Trigger content & finder plugins when state changes
 		$dispatcher->trigger('onContentChangeState', array('com_k2.item', $cid, -2));
-		$dispatcher->trigger('onFinderChangeState', array(
-			'com_k2.item',
-			$cid,
-			0
-		));
+		$dispatcher->trigger('onFinderChangeState', array('com_k2.item', $cid, 0));
+
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
+
 		$mainframe->enqueueMessage(JText::_('K2_ITEMS_MOVED_TO_TRASH'));
 		$mainframe->redirect('index.php?option=com_k2&view=items');
 	}
@@ -862,16 +899,19 @@ class K2ModelItems extends K2Model
 			}
 
 		}
+
+		// Plugins Events
+		JPluginHelper::importPlugin('content');
 		JPluginHelper::importPlugin('finder');
 		$dispatcher = JDispatcher::getInstance();
+
+		// Trigger content & finder plugins when state changes
 		$dispatcher->trigger('onContentChangeState', array('com_k2.item', $cid, $row->published));
-		$dispatcher->trigger('onFinderChangeState', array(
-			'com_k2.item',
-			$cid,
-			1
-		));
+		$dispatcher->trigger('onFinderChangeState', array('com_k2.item', $cid, 1));
+
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
+
 		if ($warning)
 			$mainframe->enqueueMessage(JText::_('K2_SOME_OF_THE_ITEMS_HAVE_NOT_BEEN_RESTORED_BECAUSE_THEY_BELONG_TO_A_CATEGORY_WHICH_IS_IN_TRASH'), 'notice');
 		$mainframe->enqueueMessage(JText::_('K2_ITEMS_RESTORED'));
@@ -887,8 +927,12 @@ class K2ModelItems extends K2Model
 		$itemModel = K2Model::getInstance('Item', 'K2Model');
 		$db = JFactory::getDBO();
 		$cid = JRequest::getVar('cid');
+
+		// Plugin Events
+		JPluginHelper::importPlugin('content');
 		JPluginHelper::importPlugin('finder');
 		$dispatcher = JDispatcher::getInstance();
+
 		foreach ($cid as $id)
 		{
 			$row = JTable::getInstance('K2Item', 'Table');
@@ -999,14 +1043,14 @@ class K2ModelItems extends K2Model
 
 			$row->delete($id);
 
+			// Trigger content & finder plugins after the delete event
 			$dispatcher->trigger('onContentAfterDelete', array('com_k2.item', $row));
-			$dispatcher->trigger('onFinderAfterDelete', array(
-				'com_k2.item',
-				$row
-			));
+			$dispatcher->trigger('onFinderAfterDelete', array('com_k2.item', $row));
 		}
+
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
+
 		$mainframe->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
 		$mainframe->redirect('index.php?option=com_k2&view=items');
 	}
@@ -1291,7 +1335,6 @@ class K2ModelItems extends K2Model
 
 	function importJ16()
 	{
-
 		jimport('joomla.filesystem.file');
 		jimport('joomla.html.parameter');
 		jimport('joomla.utilities.xmlelement');
@@ -1390,7 +1433,6 @@ class K2ModelItems extends K2Model
 			{
 				$K2Category->store();
 				$mapping[$category->id] = $K2Category->id;
-
 			}
 
 			if ($K2Category->image && JFile::exists(realpath(JPATH_SITE.'/'.$category->image)))
@@ -1558,8 +1600,10 @@ class K2ModelItems extends K2Model
 			}
 			$row->store();
 		}
+
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
+
 		$application->enqueueMessage(JText::_('K2_BATCH_COMPLETED'));
 		$application->redirect('index.php?option=com_k2&view=items');
 	}
