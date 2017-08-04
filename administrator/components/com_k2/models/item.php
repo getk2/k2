@@ -197,11 +197,8 @@ class K2ModelItem extends K2Model
 		//Trigger the finder before save event
 		$dispatcher = JDispatcher::getInstance();
 		JPluginHelper::importPlugin('finder');
-		$results = $dispatcher->trigger('onFinderBeforeSave', array(
-			'com_k2.item',
-			$row,
-			$isNew
-		));
+		$dispatcher->trigger('onContentBeforeSave', array('com_k2.item', $row, $isNew));
+		$dispatcher->trigger('onFinderBeforeSave', array('com_k2.item', $row, $isNew));
 
 		// Try to save the video if there is no need to wait for item ID
 		if (!JRequest::getBool('del_video'))

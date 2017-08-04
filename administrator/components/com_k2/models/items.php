@@ -362,6 +362,7 @@ class K2ModelItems extends K2Model
 		}
 		JPluginHelper::importPlugin('finder');
 		$dispatcher = JDispatcher::getInstance();
+		$dispatcher->trigger('onContentChangeState', array('com_k2.item', $cid, 1));
 		$dispatcher->trigger('onFinderChangeState', array(
 			'com_k2.item',
 			$cid,
@@ -389,6 +390,7 @@ class K2ModelItems extends K2Model
 		}
 		JPluginHelper::importPlugin('finder');
 		$dispatcher = JDispatcher::getInstance();
+		$dispatcher->trigger('onContentChangeState', array('com_k2.item', $cid, 0));
 		$dispatcher->trigger('onFinderChangeState', array(
 			'com_k2.item',
 			$cid,
@@ -824,6 +826,7 @@ class K2ModelItems extends K2Model
 		}
 		JPluginHelper::importPlugin('finder');
 		$dispatcher = JDispatcher::getInstance();
+		$dispatcher->trigger('onContentChangeState', array('com_k2.item', $cid, -2));
 		$dispatcher->trigger('onFinderChangeState', array(
 			'com_k2.item',
 			$cid,
@@ -861,6 +864,7 @@ class K2ModelItems extends K2Model
 		}
 		JPluginHelper::importPlugin('finder');
 		$dispatcher = JDispatcher::getInstance();
+		$dispatcher->trigger('onContentChangeState', array('com_k2.item', $cid, $row->published));
 		$dispatcher->trigger('onFinderChangeState', array(
 			'com_k2.item',
 			$cid,
@@ -995,6 +999,7 @@ class K2ModelItems extends K2Model
 
 			$row->delete($id);
 
+			$dispatcher->trigger('onContentAfterDelete', array('com_k2.item', $row));
 			$dispatcher->trigger('onFinderAfterDelete', array(
 				'com_k2.item',
 				$row
