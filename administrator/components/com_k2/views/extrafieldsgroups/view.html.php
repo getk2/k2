@@ -14,10 +14,8 @@ jimport('joomla.application.component.view');
 
 class K2ViewExtraFieldsGroups extends K2View
 {
-
     function display($tpl = null)
     {
-
         $mainframe = JFactory::getApplication();
         $user = JFactory::getUser();
         $option = JRequest::getCmd('option');
@@ -42,11 +40,12 @@ class K2ViewExtraFieldsGroups extends K2View
         $pageNav = new JPagination($total, $limitstart, $limit);
         $this->assignRef('page', $pageNav);
 
+		// Toolbar
         JToolBarHelper::title(JText::_('K2_EXTRA_FIELD_GROUPS'), 'k2.png');
 
-        JToolBarHelper::deleteList('', 'remove', 'K2_DELETE');
-        JToolBarHelper::editList();
         JToolBarHelper::addNew();
+        JToolBarHelper::editList();
+        JToolBarHelper::deleteList('', 'remove', 'K2_DELETE');
 
         if (K2_JVERSION != '15')
         {
@@ -63,5 +62,4 @@ class K2ViewExtraFieldsGroups extends K2View
 
         parent::display($tpl);
     }
-
 }

@@ -31,7 +31,7 @@ class K2ViewTag extends K2View
         JRequest::setVar('hidemainmenu', 1);
 
         // Toolbar
-        (JRequest::getInt('cid')) ? $title = JText::_('K2_EDIT_TAG') : $title = JText::_('K2_ADD_TAG');
+        $title = (JRequest::getInt('cid')) ? JText::_('K2_EDIT_TAG') : JText::_('K2_ADD_TAG');
         JToolBarHelper::title($title, 'k2.png');
 
         JToolBarHelper::apply();

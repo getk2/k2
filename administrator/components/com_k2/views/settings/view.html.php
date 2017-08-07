@@ -12,18 +12,22 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.view');
 
-class K2ViewSettings extends K2View {
-
-	function display($tpl = null) {
-
+class K2ViewSettings extends K2View
+{
+	function display($tpl = null)
+	{
 		JHTML::_('behavior.tooltip');
+
 		jimport('joomla.html.pane');
-		$model = &$this->getModel();
-		$params = &$model->getParams();
+
+		$model = $this->getModel();
+
+		$params = $model->getParams();
 		$this->assignRef('params', $params);
-		$pane = & JPane::getInstance('Tabs');
+
+		$pane = JPane::getInstance('Tabs');
 		$this->assignRef('pane', $pane);
+
 		parent::display($tpl);
 	}
-
 }

@@ -589,6 +589,7 @@ class K2ViewItem extends K2View
 		{
 			// Toolbar
 			JToolBarHelper::title($title, 'k2.png');
+
 			JToolBarHelper::apply();
 			JToolBarHelper::save();
 			$saveNewIcon = version_compare(JVERSION, '2.5.0', 'ge') ? 'save-new.png' : 'save.png';

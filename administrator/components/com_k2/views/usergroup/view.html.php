@@ -18,8 +18,6 @@ class K2ViewUserGroup extends K2View
     {
         JHTML::_('behavior.tooltip');
 
-        JRequest::setVar('hidemainmenu', 1);
-
         $model = $this->getModel();
         $userGroup = $model->getData();
         if (K2_JVERSION == '15')
@@ -59,6 +57,9 @@ class K2ViewUserGroup extends K2View
         $lists['categories'] = JHTML::_('select.genericlist', $categories, 'params[categories][]', 'multiple="multiple" size="15"', 'value', 'text', $appliedCategories);
         $lists['inheritance'] = JHTML::_('select.booleanlist', 'params[inheritance]', NULL, $inheritance);
         $this->assignRef('lists', $lists);
+
+        // Disable Joomla menu
+        JRequest::setVar('hidemainmenu', 1);
 
         // Toolbar
         $title = (JRequest::getInt('cid')) ? JText::_('K2_EDIT_USER_GROUP') : JText::_('K2_ADD_USER_GROUP');

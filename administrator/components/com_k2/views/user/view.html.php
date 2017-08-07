@@ -16,8 +16,6 @@ class K2ViewUser extends K2View
 {
     function display($tpl = null)
     {
-        JRequest::setVar('hidemainmenu', 1);
-
         $model = $this->getModel();
         $user = $model->getData();
         if (K2_JVERSION == '15')
@@ -56,6 +54,9 @@ class K2ViewUser extends K2View
         $dispatcher = JDispatcher::getInstance();
         $K2Plugins = $dispatcher->trigger('onRenderAdminForm', array(&$user, 'user'));
         $this->assignRef('K2Plugins', $K2Plugins);
+
+        // Disable Joomla menu
+        JRequest::setVar('hidemainmenu', 1);
 
 		// Toolbar
 		$toolbar = JToolBar::getInstance('toolbar');
