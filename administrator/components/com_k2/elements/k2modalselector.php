@@ -32,7 +32,7 @@ class K2ElementK2modalselector extends K2Element
             {
 	            $scope = 'items';
             }
-            if($scope == 'items' || $scope == 'categories' || $scope == 'users')
+            if($scope == 'items' || $scope == 'categories' || $scope == 'users' || $scope == 'tags')
             {
 	            $fieldName = $name.'[]';
             }
@@ -50,7 +50,7 @@ class K2ElementK2modalselector extends K2Element
             {
 	            $scope = 'items';
             }
-            if($scope == 'items' || $scope == 'categories' || $scope == 'users')
+            if($scope == 'items' || $scope == 'categories' || $scope == 'users' || $scope == 'tags')
             {
             	$fieldName = $control_name.'['.$name.'][]';
             }
@@ -84,7 +84,7 @@ class K2ElementK2modalselector extends K2Element
         $output = '';
 
         // Output for lists
-        if($scope == 'items' || $scope == 'categories' || $scope == 'users')
+        if($scope == 'items' || $scope == 'categories' || $scope == 'users' || $scope == 'tags')
         {
 	        $output = '
 	        <div class="k2SelectorButton">
@@ -114,6 +114,12 @@ class K2ElementK2modalselector extends K2Element
 					$row = JFactory::getUser($id);
 					$entryName = $row->name;
 				}
+				if($scope == 'tags')
+				{
+		            $row = JTable::getInstance('K2Tag', 'Table');
+		            $row->load($id);
+		            $entryName = $row->name;
+				}
 
 	            $output .= '<li class="handle"><a class="k2EntryRemove" href="#" title="'.JText::_('K2_REMOVE_THIS_ENTRY').'"><i class="fa fa-trash-o"></i></a><span class="k2EntryText">'.$entryName.'</span><input type="hidden" name="'.$fieldName.'" value="'.$row->id.'" /></li>';
 	        }
@@ -123,7 +129,7 @@ class K2ElementK2modalselector extends K2Element
         }
 
         // Output for single entities
-        if($scope == 'item' || $scope == 'category' || $scope == 'user')
+        if($scope == 'item' || $scope == 'category' || $scope == 'user' || $scope == 'tag')
         {
 	        if(count($saved)) $id = $saved[0]; else $id = '';
 
@@ -155,6 +161,16 @@ class K2ElementK2modalselector extends K2Element
 					$entryName = $row->name;
 				}
 				$view = "users";
+			}
+			if($scope == 'tag')
+			{
+				if($id)
+				{
+		            $row = JTable::getInstance('K2Tag', 'Table');
+		            $row->load($id);
+		            $entryName = $row->name;
+		        }
+	            $view = "tags";
 			}
 
 			$output = '
