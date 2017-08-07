@@ -103,7 +103,7 @@ class K2HelperHTML
 				{
 					if ($backendJQueryHandling == 'remote')
 					{
-						if ($view == 'item' || $view == 'category' || $option == 'com_menus' || $option == 'com_advancedmodules')
+						if (($option == 'com_k2' && ($view == 'item' || $view == 'category')) || $option == 'com_menus')
 						{
 							$document->addScript('https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
 						}
@@ -114,7 +114,7 @@ class K2HelperHTML
 					}
 					else
 					{
-						if ($view == 'item' || $view == 'category' || $option == 'com_menus' || $option == 'com_advancedmodules')
+						if (($option == 'com_k2' && ($view == 'item' || $view == 'category')) || $option == 'com_menus')
 						{
 							$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-1.8.3.min.js');
 						}
@@ -129,18 +129,17 @@ class K2HelperHTML
 			// jQueryUI
 			if ($jQueryUI)
 			{
-				// Load latest version for the "media" view, menus & modules only
-				if ($view == 'media' || $option == 'com_modules')
-				{
-
-					$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css');
-					$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js');
-				}
-
 				// Load version 1.8.24 for tabs & sortables (called the "old" way)...
-				if ($view == 'item' || $view == 'category' || $option == 'com_menus' || $option == 'com_advancedmodules')
+				if (($option == 'com_k2' && ($view == 'item' || $view == 'category')) || $option == 'com_menus')
 				{
 					$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js');
+				}
+
+				// Load latest version for the "media" view & modules only
+				if (($option == 'com_k2' && $view == 'media') || $option == 'com_modules' || $option == 'com_advancedmodules')
+				{
+					$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css');
+					$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js');
 				}
 			}
 
