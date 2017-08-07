@@ -14,12 +14,12 @@ jimport('joomla.application.component.view');
 
 class K2ViewUserGroup extends K2View
 {
-
     function display($tpl = null)
     {
-
         JHTML::_('behavior.tooltip');
+
         JRequest::setVar('hidemainmenu', 1);
+
         $model = $this->getModel();
         $userGroup = $model->getData();
         if (K2_JVERSION == '15')
@@ -59,13 +59,14 @@ class K2ViewUserGroup extends K2View
         $lists['categories'] = JHTML::_('select.genericlist', $categories, 'params[categories][]', 'multiple="multiple" size="15"', 'value', 'text', $appliedCategories);
         $lists['inheritance'] = JHTML::_('select.booleanlist', 'params[inheritance]', NULL, $inheritance);
         $this->assignRef('lists', $lists);
-        (JRequest::getInt('cid')) ? $title = JText::_('K2_EDIT_USER_GROUP') : $title = JText::_('K2_ADD_USER_GROUP');
+
+        // Toolbar
+        $title = (JRequest::getInt('cid')) ? JText::_('K2_EDIT_USER_GROUP') : JText::_('K2_ADD_USER_GROUP');
         JToolBarHelper::title($title, 'k2.png');
-        JToolBarHelper::save();
         JToolBarHelper::apply();
+        JToolBarHelper::save();
         JToolBarHelper::cancel();
 
         parent::display($tpl);
     }
-
 }

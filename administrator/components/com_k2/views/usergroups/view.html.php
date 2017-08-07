@@ -14,10 +14,8 @@ jimport('joomla.application.component.view');
 
 class K2ViewUserGroups extends K2View
 {
-
     function display($tpl = null)
     {
-
         $mainframe = JFactory::getApplication();
         $user = JFactory::getUser();
         $option = JRequest::getCmd('option');
@@ -49,11 +47,12 @@ class K2ViewUserGroups extends K2View
 
         $this->assignRef('lists', $lists);
 
+		// Toolbar
         JToolBarHelper::title(JText::_('K2_USER_GROUPS'), 'k2.png');
 
-        JToolBarHelper::deleteList('', 'remove', 'K2_DELETE');
-        JToolBarHelper::editList();
         JToolBarHelper::addNew();
+        JToolBarHelper::editList();
+        JToolBarHelper::deleteList('', 'remove', 'K2_DELETE');
 
         if (K2_JVERSION != '15')
         {
@@ -70,5 +69,4 @@ class K2ViewUserGroups extends K2View
 
         parent::display($tpl);
     }
-
 }

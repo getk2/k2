@@ -14,11 +14,10 @@ jimport('joomla.application.component.view');
 
 class K2ViewUser extends K2View
 {
-
     function display($tpl = null)
     {
-
         JRequest::setVar('hidemainmenu', 1);
+
         $model = $this->getModel();
         $user = $model->getData();
         if (K2_JVERSION == '15')
@@ -52,16 +51,20 @@ class K2ViewUser extends K2View
         $params = JComponentHelper::getParams('com_k2');
         $this->assignRef('params', $params);
 
+		// Plugins
         JPluginHelper::importPlugin('k2');
         $dispatcher = JDispatcher::getInstance();
         $K2Plugins = $dispatcher->trigger('onRenderAdminForm', array(&$user, 'user'));
         $this->assignRef('K2Plugins', $K2Plugins);
 
+		// Toolbar
+		$toolbar = JToolBar::getInstance('toolbar');
         JToolBarHelper::title(JText::_('K2_USER'), 'k2.png');
-        JToolBarHelper::save();
+
         JToolBarHelper::apply();
+        JToolBarHelper::save();
         JToolBarHelper::cancel();
-        $toolbar = JToolBar::getInstance('toolbar');
+
         if (K2_JVERSION != '15')
         {
             $buttonUrl = JURI::base().'index.php?option=com_users&view=user&task=user.edit&id='.$user->userID;
@@ -76,5 +79,4 @@ class K2ViewUser extends K2View
 
         parent::display($tpl);
     }
-
 }
