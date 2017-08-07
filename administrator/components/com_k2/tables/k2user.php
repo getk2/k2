@@ -14,7 +14,6 @@ require_once JPATH_ADMINISTRATOR.'/components/com_k2/tables/table.php';
 
 class TableK2User extends K2Table
 {
-
     var $id = null;
     var $userID = null;
     var $userName = null;
@@ -30,13 +29,11 @@ class TableK2User extends K2Table
 
     function __construct(&$db)
     {
-
         parent::__construct('#__k2_users', 'id', $db);
     }
 
     function check()
     {
-
         if (JString::trim($this->url) != '' && substr($this->url, 0, 7) != 'http://')
             $this->url = 'http://'.$this->url;
         return true;
@@ -44,7 +41,6 @@ class TableK2User extends K2Table
 
     function bind($array, $ignore = '')
     {
-
         if (key_exists('plugins', $array) && is_array($array['plugins']))
         {
             $registry = new JRegistry();
@@ -54,5 +50,4 @@ class TableK2User extends K2Table
 
         return parent::bind($array, $ignore);
     }
-
 }

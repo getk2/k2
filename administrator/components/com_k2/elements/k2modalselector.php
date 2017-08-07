@@ -95,33 +95,39 @@ class K2ElementK2modalselector extends K2Element
 	        <ul id="'.$fieldID.'" class="k2SortableListContainer">
 	        ';
 
-	        foreach ($saved as $id)
+	        foreach ($saved as $value)
 	        {
 				if($scope == 'items')
 				{
 	            	$row = JTable::getInstance('K2Item', 'Table');
-					$row->load($id);
+					$row->load($value);
 					$entryName = $row->title;
+					$entryValue = $row->id;
 				}
 				if($scope == 'categories')
 				{
 		            $row = JTable::getInstance('K2Category', 'Table');
-		            $row->load($id);
+		            $row->load($value);
 		            $entryName = $row->name;
+		            $entryValue = $row->id;
 				}
 				if($scope == 'users')
 				{
-					$row = JFactory::getUser($id);
+					$row = JFactory::getUser($value);
 					$entryName = $row->name;
+					$entryValue = $row->id;
 				}
 				if($scope == 'tags')
 				{
-		            $row = JTable::getInstance('K2Tag', 'Table');
-		            $row->load($id);
+		            $db = JFactory::getDBO();
+		            $query = 'SELECT * FROM #__k2_tags WHERE name='.$db->Quote($value);
+		            $db->setQuery($query);
+		            $row = $db->loadObject();
 		            $entryName = $row->name;
+		            $entryValue = htmlspecialchars($row->name, ENT_QUOTES, 'utf-8');
 				}
 
-	            $output .= '<li class="handle"><a class="k2EntryRemove" href="#" title="'.JText::_('K2_REMOVE_THIS_ENTRY').'"><i class="fa fa-trash-o"></i></a><span class="k2EntryText">'.$entryName.'</span><input type="hidden" name="'.$fieldName.'" value="'.$row->id.'" /></li>';
+	            $output .= '<li class="handle"><a class="k2EntryRemove" href="#" title="'.JText::_('K2_REMOVE_THIS_ENTRY').'"><i class="fa fa-trash-o"></i></a><span class="k2EntryText">'.$entryName.'</span><input type="hidden" id="'.$fieldID.'" name="'.$fieldName.'" value="'.$entryValue.'" /></li>';
 	        }
 	        $output .= '
 	        </ul>
@@ -131,44 +137,50 @@ class K2ElementK2modalselector extends K2Element
         // Output for single entities
         if($scope == 'item' || $scope == 'category' || $scope == 'user' || $scope == 'tag')
         {
-	        if(count($saved)) $id = $saved[0]; else $id = '';
+	        if(count($saved)) $value = $saved[0]; else $value = '';
 
 			if($scope == 'item')
 			{
-				if($id)
+				if($value)
 				{
 	            	$row = JTable::getInstance('K2Item', 'Table');
-					$row->load($id);
+					$row->load($value);
 					$entryName = $row->title;
+					$entryValue = $row->id;
 				}
 				$view = "items";
 			}
 			if($scope == 'category')
 			{
-				if($id)
+				if($value)
 				{
 		            $row = JTable::getInstance('K2Category', 'Table');
-		            $row->load($id);
+		            $row->load($value);
 		            $entryName = $row->name;
+		            $entryValue = $row->id;
 		        }
 	            $view = "categories";
 			}
 			if($scope == 'user')
 			{
-				if($id)
+				if($value)
 				{
-					$row = JFactory::getUser($id);
+					$row = JFactory::getUser($value);
 					$entryName = $row->name;
+					$entryValue = $row->id;
 				}
 				$view = "users";
 			}
 			if($scope == 'tag')
 			{
-				if($id)
+				if($value)
 				{
-		            $row = JTable::getInstance('K2Tag', 'Table');
-		            $row->load($id);
+		            $db = JFactory::getDBO();
+		            $query = 'SELECT * FROM #__k2_tags WHERE name='.$db->Quote($value);
+		            $db->setQuery($query);
+		            $row = $db->loadObject();
 		            $entryName = $row->name;
+		            $entryValue = htmlspecialchars($row->name, ENT_QUOTES, 'utf-8');
 		        }
 	            $view = "tags";
 			}
@@ -182,9 +194,9 @@ class K2ElementK2modalselector extends K2Element
 	        <div id="'.$fieldID.'" class="k2SingleSelect">
 	        ';
 
-	        if($id)
+	        if($value)
 	        {
-	        	$output .= '<span class="k2EntryText">'.$entryName.'</span><input type="hidden" name="'.$fieldName.'" value="'.$row->id.'" />';
+	        	$output .= '<span class="k2EntryText">'.$entryName.'</span><input type="hidden" id="'.$fieldID.'" name="'.$fieldName.'" value="'.$entryValue.'" />';
 			}
 	        $output .= '
 	        </div>
