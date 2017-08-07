@@ -35,12 +35,12 @@
 			</param>
 		</params>
 		<url addpath="/administrator/components/com_k2/elements">
-			<param name="id" type="k2user" default="" label="K2_SELECT_USER" description=""/>
+			<param name="id" type="k2modalselector" scope="user" default="" label="K2_SELECT_USER" description=""/>
 			<param name="task" type="hidden" default="user"/>
 		</url>
 		<fields name="request" addfieldpath="/administrator/components/com_k2/elements">
 			<fieldset name="request">
-				<field name="id" type="k2user" default="" label="K2_SELECT_USER" description=""/>
+				<field name="id" type="k2modalselector" scope="user" default="" label="K2_SELECT_USER" description=""/>
 				<field name="task" type="hidden" default="user"/>
 			</fieldset>
 		</fields>

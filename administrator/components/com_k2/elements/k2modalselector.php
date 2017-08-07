@@ -168,7 +168,7 @@ class K2ElementK2modalselector extends K2Element
 
 	        if($id)
 	        {
-	        	$output .= '<span class="k2EntryText">'.$row->title.'</span><input type="hidden" name="'.$fieldName.'" value="'.$row->id.'" />';
+	        	$output .= '<span class="k2EntryText">'.$entryName.'</span><input type="hidden" name="'.$fieldName.'" value="'.$row->id.'" />';
 			}
 	        $output .= '
 	        </div>
