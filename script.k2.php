@@ -12,7 +12,6 @@ defined('_JEXEC') or die;
 
 class Com_K2InstallerScript
 {
-
     public function postflight($type, $parent)
     {
         $db = JFactory::getDBO();
@@ -101,6 +100,7 @@ class Com_K2InstallerScript
         {
             JFile::delete(JPATH_ADMINISTRATOR.'/components/com_k2/models/cpanel.php');
         }
+
         if (version_compare(JVERSION, '3.0', 'lt') && JFolder::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/contentelements'))
         {
             $elements = $manifest->xpath('joomfish/file');
@@ -140,7 +140,6 @@ class Com_K2InstallerScript
         */
 
         $this->installationResults($status);
-
     }
 
     public function uninstall($parent)
@@ -167,7 +166,6 @@ class Com_K2InstallerScript
                 }
                 $status->plugins[] = array('name' => $name, 'group' => $group, 'result' => $result);
             }
-
         }
         $modules = $manifest->xpath('modules/module');
         foreach ($modules as $module)
@@ -187,7 +185,6 @@ class Com_K2InstallerScript
                 }
                 $status->modules[] = array('name' => $name, 'client' => $client, 'result' => $result);
             }
-
         }
         $this->uninstallationResults($status);
     }
@@ -195,6 +192,7 @@ class Com_K2InstallerScript
     public function update($type)
     {
         $db = JFactory::getDBO();
+
         $fields = $db->getTableColumns('#__k2_categories');
         if (!array_key_exists('language', $fields))
         {
@@ -224,21 +222,18 @@ class Com_K2InstallerScript
             $db->setQuery($query);
             $db->query();
         }
-
         if ($fields['video'] != 'text')
         {
             $query = "ALTER TABLE #__k2_items MODIFY `video` TEXT";
             $db->setQuery($query);
             $db->query();
         }
-
         if ($fields['introtext'] == 'text')
         {
             $query = "ALTER TABLE #__k2_items MODIFY `introtext` MEDIUMTEXT";
             $db->setQuery($query);
             $db->query();
         }
-
         if ($fields['fulltext'] == 'text')
         {
             $query = "ALTER TABLE #__k2_items MODIFY `fulltext` MEDIUMTEXT";
@@ -313,12 +308,11 @@ class Com_K2InstallerScript
         {
             $query = "INSERT INTO #__k2_user_groups (`id`, `name`, `permissions`) VALUES('', 'Registered', '{\"comment\":\"1\",\"frontEdit\":\"0\",\"add\":\"0\",\"editOwn\":\"0\",\"editAll\":\"0\",\"publish\":\"0\",\"inheritance\":0,\"categories\":\"all\"}')";
             $db->setQuery($query);
-            $db->Query();
+            $db->query();
 
             $query = "INSERT INTO #__k2_user_groups (`id`, `name`, `permissions`) VALUES('', 'Site Owner', '{\"comment\":\"1\",\"frontEdit\":\"1\",\"add\":\"1\",\"editOwn\":\"1\",\"editAll\":\"1\",\"publish\":\"1\",\"inheritance\":1,\"categories\":\"all\"}')";
             $db->setQuery($query);
-            $db->Query();
-
+            $db->query();
         }
 
         $fields = $db->getTableColumns('#__k2_users');
@@ -339,8 +333,8 @@ class Com_K2InstallerScript
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
         $db->setQuery($query);
         $db->query();
-
     }
+
     private function installationResults($status)
     {
         $language = JFactory::getLanguage();
@@ -397,12 +391,12 @@ class Com_K2InstallerScript
         </table>
     <?php
     }
-    
+
     private function uninstallationResults($status)
     {
-    $language = JFactory::getLanguage();
-    $language->load('com_k2');
-    $rows = 0;
+    	$language = JFactory::getLanguage();
+		$language->load('com_k2');
+		$rows = 0;
  ?>
         <h2><?php echo JText::_('K2_REMOVAL_STATUS'); ?></h2>
         <table class="adminlist table table-striped">
@@ -455,5 +449,4 @@ class Com_K2InstallerScript
         </table>
     <?php
     }
-
 }
