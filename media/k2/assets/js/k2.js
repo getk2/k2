@@ -1153,22 +1153,6 @@ function addAttachment() {
     }).appendTo(div);
 }
 
-// User select modals
-function jSelectUser(id, name) {
-    $K2('#k2Author').html(name);
-    $K2('input[name=created_by]').val(id);
-    if (typeof window.parent.SqueezeBox.close === 'function') {
-        SqueezeBox.close();
-    } else {
-        parent.$K2('#sbox-window').close();
-	}
-}
-
-// MFP modal close
-function k2CloseMFP() {
-	$K2(parent.document).magnificPopup('close');
-}
-
 // Media manager
 function elFinderUpdate(fieldID, value) {
     $K2('#' + fieldID).val(value);
@@ -1179,11 +1163,15 @@ function elFinderUpdate(fieldID, value) {
     }
 }
 
+// MFP modal close
+function k2CloseMFP() {
+	$K2(parent.document).magnificPopup('close');
+}
+
 // Generic modal selector
 function k2ModalSelector(id, name, fid, fname, output) {
-
-	// Generic sortable lists
 	if(output == 'list'){
+		// Generic sortable lists
 		var exists = false;
 		$K2('#'+ fid +' input').each(function(){
 			if($K2(this).val() == id){
@@ -1202,29 +1190,21 @@ function k2ModalSelector(id, name, fid, fname, output) {
 			$K2().k2Alert(K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST.replace('ENTRY_NAME_HERE', name), 1000);
 		}
 	} else {
-		if($K2('#k2Author').length){
-			// Item view - select user/author
-		    $K2('#k2Author').html(name);
-		    $K2('input[name=created_by]').val(id);
-			$K2(parent.document).magnificPopup('close');
-		} else {
-			// Generic single entity
-			var exists = false;
-			$K2('#'+ fid +' input').each(function(){
-				if($K2(this).val() == id){
-					$K2().k2Alert(K2_THE_ENTRY_IS_ALREADY_IN_THE_LIST.replace('ENTRY_NAME_HERE', name), 3000);
-					exists = true;
-				}
-			});
-			if(!exists){
-				var entry = '<span class="k2EntryText">'+ name +'</span><input type="hidden" name="'+ fname +'" value="'+ id +'" />';
-				$K2('#'+ fid).html(entry);
-				$K2().k2Alert(K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST.replace('ENTRY_NAME_HERE', name), 1000);
-				$K2(parent.document).magnificPopup('close');
+		// Generic single entity
+		var exists = false;
+		$K2('#'+ fid +' input').each(function(){
+			if($K2(this).val() == id){
+				$K2().k2Alert(K2_THE_ENTRY_IS_ALREADY_IN_THE_LIST.replace('ENTRY_NAME_HERE', name), 3000);
+				exists = true;
 			}
+		});
+		if(!exists){
+			var entry = '<span class="k2EntryText">'+ name +'</span><input type="hidden" name="'+ fname +'" value="'+ id +'" />';
+			$K2('#'+ fid).html(entry);
+			$K2().k2Alert(K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST.replace('ENTRY_NAME_HERE', name), 1000);
+			$K2(parent.document).magnificPopup('close');
 		}
 	}
 
 	return false;
-
 }
