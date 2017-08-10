@@ -725,6 +725,13 @@ $K2(document).ready(function() {
 			$('[data-k2-modal="singleSelect"]').magnificPopup({type:'iframe', modal:true, closeOnContentClick:true});
 		}
 
+		if($('#k2CloseMfp').length){
+			$('#k2CloseMfp').on('click', function(e){
+				e.preventDefault();
+				window.parent.k2ModalClose();
+			});
+		}
+
 	});
 
 })(jQuery);
@@ -1164,7 +1171,7 @@ function elFinderUpdate(fieldID, value) {
 }
 
 // MFP modal close
-function k2CloseMFP() {
+function k2ModalClose() {
 	$K2(parent.document).magnificPopup('close');
 }
 
@@ -1205,6 +1212,5 @@ function k2ModalSelector(id, name, fid, fname, output) {
 			$K2(parent.document).magnificPopup('close');
 		}
 	}
-
 	return false;
 }

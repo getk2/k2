@@ -23,7 +23,7 @@ $context = JRequest::getCmd('context');
 		<table id="k2ModalToolbar" cellpadding="2" cellspacing="4">
 			<tr>
 				<td id="toolbar-close" class="button">
-					<a href="#" id="k2CloseMfp" onclick="window.parent.k2CloseMFP();">
+					<a href="#" id="k2CloseMfp">
 						<i class="fa fa-times-circle" aria-hidden="true"></i> <?php echo JText::_('K2_CLOSE'); ?>
 					</a>
 				</td>
