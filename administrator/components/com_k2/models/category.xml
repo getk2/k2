@@ -468,7 +468,13 @@
 	<params group="category-metadata-information" addpath="/administrator/components/com_k2/elements">
 		<param name="catMetaDesc" type="k2textarea" chars="160" default="" label="K2_DESCRIPTION" description="" rows="4" cols="25" />
 		<param name="catMetaKey" type="textarea" default="" label="K2_KEYWORDS" description="" rows="4" cols="25" />
-		<param name="catMetaRobots" type="text" default="" label="K2_ROBOTS" description=""/>
+		<param name="catMetaRobots" type="list" default="" label="K2_ROBOTS" description="">
+			<option value="">K2_USE_GLOBAL</option>
+			<option value="index, follow">K2_METADATA_ROBOTS_INDEX_FOLLOW</option>
+			<option value="index, nofollow">K2_METADATA_ROBOTS_INDEX_NOFOLLOW</option>
+			<option value="noindex, follow">K2_METADATA_ROBOTS_NOINDEX_FOLLOW</option>
+			<option value="noindex, nofollow">K2_METADATA_ROBOTS_NOINDEX_NOFOLLOW</option>
+		</param>
 		<param name="catMetaAuthor" type="text" default="" label="K2_AUTHOR" description=""/>
 	</params>
 	<fields name="params">
@@ -939,7 +945,13 @@
 		<fieldset name="category-metadata-information" addfieldpath="/administrator/components/com_k2/elements">
 			<field name="catMetaDesc" type="k2textarea" chars="160" default="" label="K2_DESCRIPTION" description="" rows="4" cols="25" />
 			<field name="catMetaKey" type="textarea" default="" label="K2_KEYWORDS" description="" rows="4" cols="25" />
-			<field name="catMetaRobots" type="text" default="" label="K2_ROBOTS" description="" />
+			<field name="catMetaRobots" type="list" default="" label="K2_ROBOTS" description="">
+				<option value="">K2_USE_GLOBAL</option>
+				<option value="index, follow">K2_METADATA_ROBOTS_INDEX_FOLLOW</option>
+				<option value="index, nofollow">K2_METADATA_ROBOTS_INDEX_NOFOLLOW</option>
+				<option value="noindex, follow">K2_METADATA_ROBOTS_NOINDEX_FOLLOW</option>
+				<option value="noindex, nofollow">K2_METADATA_ROBOTS_NOINDEX_NOFOLLOW</option>
+			</field>
 			<field name="catMetaAuthor" type="text" default="" label="K2_AUTHOR" description="" />
 		</fieldset>
 	</fields>
