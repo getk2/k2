@@ -487,6 +487,14 @@ class K2ViewItem extends K2View
 
 		// Metadata
 		$lists['metadata'] = class_exists('JParameter') ? new JParameter($item->metadata) : new JRegistry($item->metadata);
+		$metaRobotsOptions = array(
+			'' => JText::_('K2_USE_GLOBAL'),
+			'index, follow' => JText::_('K2_METADATA_ROBOTS_INDEX_FOLLOW'),
+			'index, nofollow' => JText::_('K2_METADATA_ROBOTS_INDEX_NOFOLLOW'),
+			'noindex, follow' => JText::_('K2_METADATA_ROBOTS_NOINDEX_FOLLOW'),
+			'noindex, nofollow' => JText::_('K2_METADATA_ROBOTS_NOINDEX_NOFOLLOW')
+		);
+		$lists['metarobots'] = JHTML::_('select.genericlist', $metaRobotsOptions, 'meta[robots]', 'class="inputbox" ', 'value', 'text', $lists['metadata']->get('robots'));
 
 		// Image
 		$date = JFactory::getDate($item->modified);

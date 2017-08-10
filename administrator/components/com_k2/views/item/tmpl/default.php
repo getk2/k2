@@ -987,7 +987,7 @@ defined('_JEXEC') or die;
 								<label><?php echo JText::_('K2_ROBOTS'); ?></label>
 							</div>
 							<div class="paramValue">
-								<input type="text" name="meta[robots]" value="<?php echo $this->lists['metadata']->get('robots'); ?>" />
+								<?php echo $this->lists['metarobots']; ?>
 							</div>
 						</li>
 						<li>
