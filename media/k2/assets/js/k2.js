@@ -654,6 +654,23 @@ $K2(document).ready(function() {
  */
 (function($){
 
+	// --- Helper Functions ---
+	// Character count (usually placed on a textarea element)
+	$.fn.k2CharCount = function(el, max) {
+		var container = $(el).parent();
+		container.append('<span class="k2CharCounter">&nbsp;</span>');
+		var counter = $(container).find('.k2CharCounter')[0];
+		$(el).on('focus keydown keyup', function(){
+			var count = max - $(el).val().length;
+			if (count < 0) {
+				$(counter).attr('class', 'k2CharCounter k2CharsExceeded');
+			} else {
+				$(counter).attr('class', 'k2CharCounter');
+			}
+			$(counter).html(count);
+		});
+	}
+
 	// Pseudo-alert
 	$.fn.k2Alert = function(msg, duration){
 		if($('#k2AlertContainer').length){
@@ -669,6 +686,7 @@ $K2(document).ready(function() {
 		});
 	}
 
+	// -- Load everything up ---
 	$(document).ready(function(){
 
 		// Hide system messages after 3 seconds in frontend editing
@@ -729,6 +747,16 @@ $K2(document).ready(function() {
 			$('#k2CloseMfp').on('click', function(e){
 				e.preventDefault();
 				window.parent.k2ModalClose();
+			});
+		}
+
+		// Character count
+		if($('[data-k2-chars]').length){
+			$('[data-k2-chars]').each(function(){
+				var count = $(this).data('k2Chars');
+				if(count){
+					$(this).k2CharCount($(this), count);
+				}
 			});
 		}
 

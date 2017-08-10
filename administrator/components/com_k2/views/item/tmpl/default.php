@@ -970,7 +970,7 @@ defined('_JEXEC') or die;
 								<label><?php echo JText::_('K2_DESCRIPTION'); ?></label>
 							</div>
 							<div class="paramValue">
-								<textarea name="metadesc" rows="5" cols="20"><?php echo $this->row->metadesc; ?></textarea>
+								<textarea name="metadesc" rows="5" cols="20" data-k2-chars="160"><?php echo $this->row->metadesc; ?></textarea>
 							</div>
 						</li>
 
