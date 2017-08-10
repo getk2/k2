@@ -164,13 +164,16 @@ div.userItemIsFeatured:before {position:absolute;top:10px;right:10px;color:#CF19
 /* --- Edit Buttons --- */
 span.itemEditLink,
 span.catItemEditLink,
-span.userItemEditLink {float:right;display:block;padding:0;margin:0;width:120px;text-align:right;}
+span.userItemEditLink,
+span.userItemAddLink {float:right;display:block;padding:0;margin:0;width:120px;text-align:right;}
 	span.itemEditLink a,
 	span.catItemEditLink a,
-	span.userItemEditLink a {display:inline-block;padding:4px 8px;margin:0;background:#2d96dd;color:#fff;border:0;border-radius:4px;font-size:11px;line-height:100%;font-weight:bold;text-align:center;text-decoration:none;}
+	span.userItemEditLink a,
+	span.userItemAddLink a {display:inline-block;padding:4px 8px;margin:0;background:#2d96dd;color:#fff;border:0;border-radius:4px;font-size:11px;line-height:100%;font-weight:bold;text-align:center;text-decoration:none;}
 	span.itemEditLink a:hover,
 	span.catItemEditLink a:hover,
-	span.userItemEditLink a:hover {background:#217dbb;}
+	span.userItemEditLink a:hover,
+	span.userItemAddLink a:hover {background:#217dbb;}
 
 
 
@@ -559,10 +562,6 @@ span.catItemDateModified {display:block;text-align:right;padding:4px;margin:4px 
 /* User info block */
 div.userView {}
 	div.userBlock {background:#fafafa;border:1px solid #ddd;border-radius:4px;margin:0 0 24px 0;padding:8px;}
-
-		span.userItemAddLink {display:block;padding:8px 0;margin:0 0 4px 0;border-bottom:1px dotted #ccc;text-align:right;}
-		span.userItemAddLink a {padding:4px 16px;border:1px solid #ddd;background:#fafafa;text-decoration:none;}
-		span.userItemAddLink a:hover {background:#ffffcc;}
 
 		div.userBlock img {display:block;float:left;background:#fff;padding:4px;border:1px solid #ddd;margin:0 8px 0 0;border-radius:50%;}
 		div.userBlock h2 {}

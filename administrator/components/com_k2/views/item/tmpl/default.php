@@ -779,7 +779,7 @@ defined('_JEXEC') or die;
 										<span class="hidden"><?php echo JText::_('K2_DOWNLOAD'); ?></span>
 									</a>
 									<a class="deleteAttachmentButton" title="<?php echo JText::_('K2_DELETE'); ?>" href="<?php echo JURI::base(true); ?>/index.php?option=com_k2&amp;view=item&amp;task=deleteAttachment&amp;id=<?php echo $attachment->id?>&amp;cid=<?php echo $this->row->id; ?>">
-										<i class="fa fa-ban"></i>
+										<i class="fa fa-remove"></i>
 										<span class="hidden"><?php echo JText::_('K2_DELETE'); ?></span>
 									</a>
 								</td>
