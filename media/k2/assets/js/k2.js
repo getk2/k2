@@ -6,6 +6,8 @@
  * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
+var $K2 = jQuery.noConflict();
+
 var K2JVersion;
 var K2SitePath;
 var selectsInstance;

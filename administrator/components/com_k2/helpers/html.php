@@ -162,7 +162,6 @@ class K2HelperHTML
 				}
 
 				// JS
-				$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.noconflict.js?v='.K2_CURRENT_VERSION);
 				$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v='.K2_CURRENT_VERSION.'&amp;sitepath='.JURI::root(true).'/');
 				if ($option="com_k2" && $view == 'item')
 				{
