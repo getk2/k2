@@ -16,8 +16,6 @@ class K2ElementK2modalselector extends K2Element
 {
     function fetchElementValue($name, $value, &$node, $control_name)
     {
-        $document = JFactory::getDocument();
-
         JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
 
 		// Attributes
@@ -72,13 +70,6 @@ class K2ElementK2modalselector extends K2Element
         {
             $saved = $value;
         }
-
-		// JS
-        $document->addScriptDeclaration("
-        	var K2_THE_ENTRY_IS_ALREADY_IN_THE_LIST = '".JText::_('K2_THE_ENTRY_IS_ALREADY_IN_THE_LIST')."';
-        	var K2_REMOVE_THIS_ENTRY = '".JText::_('K2_REMOVE_THIS_ENTRY')."';
-        	var K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST = '".JText::_('K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST')."';
-        ");
 
         // Output
         $output = '';

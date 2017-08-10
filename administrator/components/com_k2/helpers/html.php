@@ -162,6 +162,11 @@ class K2HelperHTML
 				}
 
 				// JS
+		        $document->addScriptDeclaration("
+		        	var K2_THE_ENTRY_IS_ALREADY_IN_THE_LIST = '".JText::_('K2_THE_ENTRY_IS_ALREADY_IN_THE_LIST')."';
+		        	var K2_REMOVE_THIS_ENTRY = '".JText::_('K2_REMOVE_THIS_ENTRY')."';
+		        	var K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST = '".JText::_('K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST')."';
+		        ");
 				$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v='.K2_CURRENT_VERSION.'&amp;sitepath='.JURI::root(true).'/');
 				if ($option="com_k2" && $view == 'item')
 				{
