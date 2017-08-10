@@ -466,7 +466,7 @@
 	</params>
 	<!-- Metadata Information -->
 	<params group="category-metadata-information" addpath="/administrator/components/com_k2/elements">
-		<param name="catMetaDesc" type="textarea" default="" label="K2_DESCRIPTION" description="" rows="4" cols="25" />
+		<param name="catMetaDesc" type="k2textarea" chars="160" default="" label="K2_DESCRIPTION" description="" rows="4" cols="25" />
 		<param name="catMetaKey" type="textarea" default="" label="K2_KEYWORDS" description="" rows="4" cols="25" />
 		<param name="catMetaRobots" type="text" default="" label="K2_ROBOTS" description=""/>
 		<param name="catMetaAuthor" type="text" default="" label="K2_AUTHOR" description=""/>
@@ -937,7 +937,7 @@
 		</fieldset>
 		<!-- Metadata Information -->
 		<fieldset name="category-metadata-information" addfieldpath="/administrator/components/com_k2/elements">
-			<field name="catMetaDesc" type="textarea" default="" label="K2_DESCRIPTION" description="" rows="4" cols="25" />
+			<field name="catMetaDesc" type="k2textarea" chars="160" default="" label="K2_DESCRIPTION" description="" rows="4" cols="25" />
 			<field name="catMetaKey" type="textarea" default="" label="K2_KEYWORDS" description="" rows="4" cols="25" />
 			<field name="catMetaRobots" type="text" default="" label="K2_ROBOTS" description="" />
 			<field name="catMetaAuthor" type="text" default="" label="K2_AUTHOR" description="" />
