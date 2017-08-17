@@ -17,7 +17,7 @@ class K2ElementCategories extends K2Element
 
     function fetchElementValue($name, $value, &$node, $control_name)
     {
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $query = 'SELECT m.* FROM #__k2_categories m WHERE trash = 0 ORDER BY parent, ordering';
         $db->setQuery($query);
         $mitems = $db->loadObjectList();

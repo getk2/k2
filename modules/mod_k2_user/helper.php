@@ -55,7 +55,7 @@ class modK2UserHelper
     {
 
         $user = JFactory::getUser();
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $query = "SELECT * FROM #__k2_users  WHERE userID=".(int)$user->id;
         $db->setQuery($query, 0, 1);
         $profile = $db->loadObject();
@@ -77,7 +77,7 @@ class modK2UserHelper
     public static function countUserComments($userID)
     {
 
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $query = "SELECT COUNT(*) FROM #__k2_comments WHERE userID=".(int)$userID." AND published=1";
         $db->setQuery($query);
         $result = $db->loadResult();

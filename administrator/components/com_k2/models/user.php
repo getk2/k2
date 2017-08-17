@@ -19,7 +19,7 @@ class K2ModelUser extends K2Model
     function getData()
     {
         $cid = JRequest::getInt('cid');
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $query = "SELECT * FROM #__k2_users WHERE userID = ".$cid;
         $db->setQuery($query);
         $row = $db->loadObject();
@@ -136,7 +136,7 @@ class K2ModelUser extends K2Model
 
     function getUserGroups()
     {
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $query = "SELECT * FROM #__k2_user_groups";
         $db->setQuery($query);
         $rows = $db->loadObjectList();
@@ -158,7 +158,7 @@ class K2ModelUser extends K2Model
             $mainframe->enqueueMessage(JText::_('K2_YOU_CANNOT_REPORT_YOURSELF'), 'error');
             return false;
         }
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
 
         // Unpublish user comments
         $db->setQuery("UPDATE #__k2_comments SET published = 0 WHERE userID = ".$id);

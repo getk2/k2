@@ -35,7 +35,7 @@ class modK2ToolsHelper
 
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 
 		$jnow = JFactory::getDate();
 		$now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
@@ -161,7 +161,7 @@ class modK2ToolsHelper
 		$mainframe = JFactory::getApplication();
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 
 		$jnow = JFactory::getDate();
 		$now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
@@ -243,7 +243,7 @@ class modK2ToolsHelper
 		$mainframe = JFactory::getApplication();
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 
 		$jnow = JFactory::getDate();
 		$now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
@@ -432,7 +432,7 @@ class modK2ToolsHelper
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
 		$id = (int)$id;
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT * FROM #__k2_categories  WHERE parent={$id} AND published=1 AND trash=0 ";
 		if (K2_JVERSION != '15')
 		{
@@ -485,7 +485,7 @@ class modK2ToolsHelper
 
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 
 		switch ($params->get('categoriesListOrdering'))
 		{
@@ -597,7 +597,7 @@ class modK2ToolsHelper
 		$id = (int)$id;
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		if (($root_id != 0) && ($level == 0))
 		{
 			$query = "SELECT * FROM #__k2_categories WHERE parent={$root_id} AND published=1 AND trash=0 ";
@@ -701,7 +701,7 @@ class modK2ToolsHelper
 		$option = JRequest::getCmd('option');
 		$task = JRequest::getCmd('task');
 
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
 
@@ -853,7 +853,7 @@ class modK2ToolsHelper
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
 		$catid = (int)$catid;
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT * FROM #__k2_categories WHERE id={$catid} AND published=1 AND trash=0 ";
 
 		if (K2_JVERSION != '15')
@@ -896,7 +896,7 @@ class modK2ToolsHelper
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
 		$catid = (int)$catid;
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT * FROM #__k2_categories WHERE parent={$catid} AND published=1 AND trash=0 ";
 		if (K2_JVERSION != '15')
 		{
@@ -939,7 +939,7 @@ class modK2ToolsHelper
 		$aid = (int)$user->get('aid');
 		$month = (int)$month;
 		$year = (int)$year;
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 
 		$jnow = JFactory::getDate();
 		$now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
@@ -977,7 +977,7 @@ class modK2ToolsHelper
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
 		$id = (int)$id;
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 
 		$jnow = JFactory::getDate();
 		$now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
@@ -1126,7 +1126,7 @@ class MyCalendar extends Calendar
 			$mainframe = JFactory::getApplication();
 			$user = JFactory::getUser();
 			$aid = $user->get('aid');
-			$db = JFactory::getDBO();
+			$db = JFactory::getDbo();
 
 			$jnow = JFactory::getDate();
 			$now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();

@@ -25,7 +25,7 @@ class K2ViewItem extends K2View
         $view = JRequest::getWord('view');
         $task = JRequest::getWord('task');
 
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $jnow = JFactory::getDate();
         $now =  K2_JVERSION == '15'?$jnow->toMySQL():$jnow->toSql();
         $nullDate = $db->getNullDate();

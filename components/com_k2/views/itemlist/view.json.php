@@ -446,7 +446,7 @@ class K2ViewItemlist extends K2View
         if ($task == 'tag' && !count($response->items))
         {
             $tag = JRequest::getString('tag');
-            $db = JFactory::getDBO();
+            $db = JFactory::getDbo();
             $db->setQuery('SELECT id FROM #__k2_tags WHERE name = '.$db->quote($tag));
             $tagID = $db->loadResult();
             if (!$tagID)

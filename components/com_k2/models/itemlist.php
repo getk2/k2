@@ -22,7 +22,7 @@ class K2ModelItemlist extends K2Model
 
 		$user = JFactory::getUser();
 		$aid = $user->get('aid');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$params = K2HelperUtilities::getParams('com_k2');
 		$limitstart = JRequest::getInt('limitstart');
 		$limit = JRequest::getInt('limit');
@@ -366,7 +366,7 @@ class K2ModelItemlist extends K2Model
 
 		$user = JFactory::getUser();
 		$aid = $user->get('aid');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$params = K2HelperUtilities::getParams('com_k2');
 		$task = JRequest::getCmd('task');
 
@@ -602,7 +602,7 @@ class K2ModelItemlist extends K2Model
 	function getCategoryTree($categories, $associations = false)
 	{
 		$mainframe = JFactory::getApplication();
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
 		if (!is_array($categories))
@@ -664,7 +664,7 @@ class K2ModelItemlist extends K2Model
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
 		$catid = (int)$catid;
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT * FROM #__k2_categories WHERE parent={$catid} AND published=1 AND trash=0 AND access<={$aid} ORDER BY ordering ";
 		$db->setQuery($query);
 		$rows = $db->loadObjectList();
@@ -687,7 +687,7 @@ class K2ModelItemlist extends K2Model
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
 		$id = (int)$id;
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT * FROM #__k2_categories WHERE parent={$id} AND published=1 AND trash=0 AND access<={$aid} ";
 		$db->setQuery($query);
 		$rows = $db->loadObjectList();
@@ -708,7 +708,7 @@ class K2ModelItemlist extends K2Model
 		$mainframe = JFactory::getApplication();
 		$user = JFactory::getUser();
 		$aid = $user->get('aid');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT * FROM #__k2_categories WHERE parent={$catid} AND published=1 AND trash=0";
 
 		if (K2_JVERSION != '15')
@@ -768,7 +768,7 @@ class K2ModelItemlist extends K2Model
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
 		$id = (int)$id;
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 
 		$jnow = JFactory::getDate();
 		$now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
@@ -800,7 +800,7 @@ class K2ModelItemlist extends K2Model
 	function getUserProfile($id = NULL)
 	{
 
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		if (is_null($id))
 			$id = JRequest::getInt('id');
 		else
@@ -820,7 +820,7 @@ class K2ModelItemlist extends K2Model
 		$itemID = (int)$itemID;
 		$userID = (int)$userID;
 		$limit = (int)$limit;
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 
 		$jnow = JFactory::getDate();
 		$now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
@@ -916,7 +916,7 @@ class K2ModelItemlist extends K2Model
 
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 
 		$jnow = JFactory::getDate();
 		$now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
@@ -996,7 +996,7 @@ class K2ModelItemlist extends K2Model
 	{
 
 		jimport('joomla.filesystem.file');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$language = JFactory::getLanguage();
 		$defaultLang = $language->getDefault();
 		$currentLang = $language->getTag();
@@ -1164,7 +1164,7 @@ class K2ModelItemlist extends K2Model
 	function getModuleItems($moduleID)
 	{
 
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT * FROM #__modules WHERE id={$moduleID} AND published=1 AND client_id=0";
 		$db->setQuery($query, 0, 1);
 		$module = $db->loadObject();
@@ -1219,7 +1219,7 @@ class K2ModelItemlist extends K2Model
 	{
 		$mainframe = JFactory::getApplication();
 		$clientID = $mainframe->getClientId();
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
 

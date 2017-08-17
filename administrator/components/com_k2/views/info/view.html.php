@@ -19,7 +19,7 @@ class K2ViewInfo extends K2View
     {
         jimport('joomla.filesystem.file');
         $user = JFactory::getUser();
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $db_version = $db->getVersion();
         $php_version = phpversion();
         $server = $this->get_server_software();

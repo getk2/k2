@@ -171,7 +171,7 @@ class plgUserK2 extends JPlugin
 		if ($mainframe->isSite())
 		{
 			// Get the user id
-			$db = JFactory::getDBO();
+			$db = JFactory::getDbo();
 			$db->setQuery("SELECT id FROM #__users WHERE username = ".$db->Quote($user['username']));
 			$id = $db->loadResult();
 
@@ -220,7 +220,7 @@ class plgUserK2 extends JPlugin
 	{
 
 		$mainframe = JFactory::getApplication();
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "DELETE FROM #__k2_users WHERE userID={$user['id']}";
 		$db->setQuery($query);
 		$db->query();
@@ -280,7 +280,7 @@ class plgUserK2 extends JPlugin
 	function getK2UserID($id)
 	{
 
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT id FROM #__k2_users WHERE userID={$id}";
 		$db->setQuery($query);
 		$result = $db->loadResult();
@@ -307,7 +307,7 @@ class plgUserK2 extends JPlugin
 				$response = json_decode($response);
 				if ($response->ip->appears || $response->email->appears || $response->username->appears)
 				{
-					$db = JFactory::getDBO();
+					$db = JFactory::getDbo();
 					$db->setQuery("UPDATE #__users SET block = 1 WHERE id = ".$user['id']);
 					$db->query();
 					$user['notes'] = JText::_('K2_POSSIBLE_SPAMMER_DETECTED_BY_STOPFORUMSPAM');

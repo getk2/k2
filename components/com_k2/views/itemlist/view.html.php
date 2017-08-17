@@ -23,7 +23,7 @@ class K2ViewItemlist extends K2View
 		$limitstart = JRequest::getInt('limitstart');
 		$view = JRequest::getWord('view');
 		$task = JRequest::getWord('task');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 
 		// Add link
 		if (K2HelperPermissions::canAddItem())
@@ -277,7 +277,7 @@ class K2ViewItemlist extends K2View
 
 				// Prevent spammers from using the tag view
 				$tag = JRequest::getString('tag');
-				$db = JFactory::getDBO();
+				$db = JFactory::getDbo();
 				$db->setQuery('SELECT id, name FROM #__k2_tags WHERE name = '.$db->quote($tag));
 				$tag = $db->loadObject();
 				if (!$tag || !$tag->id)

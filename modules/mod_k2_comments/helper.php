@@ -23,7 +23,7 @@ class modK2CommentsHelper
 		$limit = $params->get('comments_limit', '5');
 		$user = JFactory::getUser();
 		$aid = $user->get('aid');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$cid = $params->get('category_id', NULL);
 
 		$jnow = JFactory::getDate();
@@ -188,7 +188,7 @@ class modK2CommentsHelper
 		$limit = $params->get('commenters_limit', '5');
 		$user = JFactory::getUser();
 		$aid = $user->get('aid');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT COUNT(id) as counter, userName, userID, commentEmail FROM #__k2_comments WHERE userID > 0 AND published = 1 GROUP BY userID ORDER BY counter DESC";
 		$db->setQuery($query, 0, $limit);
 		$rows = $db->loadObjectList();

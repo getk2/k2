@@ -18,7 +18,7 @@ if (version_compare(JVERSION, '1.6.0', '<'))
     // Load K2 language file
     $language = JFactory::getLanguage();
     $language->load('com_k2');
-    $db = JFactory::getDBO();
+    $db = JFactory::getDbo();
     $status = new stdClass;
     $status->modules = array();
     $status->plugins = array();
@@ -105,7 +105,7 @@ if (version_compare(JVERSION, '1.6.0', '<'))
         JFile::delete(JPATH_ADMINISTRATOR.'/components/com_k2/models/cpanel.php');
     }
 
-    $db = JFactory::getDBO();
+    $db = JFactory::getDbo();
     $fields = $db->getTableFields('#__k2_categories');
     if (!array_key_exists('language', $fields['#__k2_categories']))
     {

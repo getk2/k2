@@ -229,7 +229,7 @@ class K2HelperPermissions
     public static function getK2User($userID)
     {
 
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $query = "SELECT * FROM #__k2_users WHERE userID = ".(int)$userID;
         $db->setQuery($query);
         $row = $db->loadObject();
@@ -239,7 +239,7 @@ class K2HelperPermissions
     public static function getK2UserGroup($id)
     {
 
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $query = "SELECT * FROM #__k2_user_groups WHERE id = ".(int)$id;
         $db->setQuery($query);
         $row = $db->loadObject();
@@ -259,7 +259,7 @@ class K2HelperPermissions
         {
             return in_array('add.category.'.$category, $K2Permissions->actions);
         }
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $query = "SELECT id FROM #__k2_categories WHERE published=1 AND trash=0";
         if (K2_JVERSION != '15')
         {

@@ -17,7 +17,7 @@ class K2ElementMenus extends K2Element
     function fetchElementValue($name, $value, &$node, $control_name)
     {
         $fieldName = (K2_JVERSION != '15') ? $name : $control_name.'['.$name.']';
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $query = "SELECT menutype, title FROM #__menu_types";
         $db->setQuery($query);
         $menus = $db->loadObjectList();

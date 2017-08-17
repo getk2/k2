@@ -21,7 +21,7 @@ class K2ElementTemplate extends K2Element
         $fieldName = (K2_JVERSION != '15') ? $name : $control_name.'['.$name.']';
         $componentPath = JPATH_SITE.'/components/com_k2/templates';
         $componentFolders = JFolder::folders($componentPath);
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         if (K2_JVERSION != '15')
         {
             $query = "SELECT template FROM #__template_styles WHERE client_id = 0 AND home = 1";

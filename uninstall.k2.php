@@ -31,7 +31,7 @@ if (version_compare(JVERSION, '1.6.0', '<'))
         {
             $mname = $module->attributes('module');
             $client = $module->attributes('client');
-            $db = JFactory::getDBO();
+            $db = JFactory::getDbo();
             $query = "SELECT `id` FROM `#__modules` WHERE module = ".$db->Quote($mname)."";
             $db->setQuery($query);
             $modules = $db->loadResultArray();
@@ -56,7 +56,7 @@ if (version_compare(JVERSION, '1.6.0', '<'))
             {
                 continue;
             }
-            $db = JFactory::getDBO();
+            $db = JFactory::getDbo();
             $query = 'SELECT `id` FROM #__plugins WHERE element = '.$db->Quote($pname).' AND folder = '.$db->Quote($pgroup);
             $db->setQuery($query);
             $plugins = $db->loadResultArray();

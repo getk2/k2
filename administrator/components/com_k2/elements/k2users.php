@@ -57,7 +57,7 @@ class K2ElementK2Users extends K2Element
 		$options = array();
 		if(is_array($value) && count($value))
 		{
-			$db = JFactory::getDBO();
+			$db = JFactory::getDbo();
 			$query = "SELECT id AS value, name AS text FROM #__users WHERE id IN(".implode(',', $value).")";
 			$db->setQuery($query);
 			$options = $db->loadObjectList();

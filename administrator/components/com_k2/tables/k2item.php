@@ -175,7 +175,7 @@ class TableK2Item extends K2Table
 		$params = JComponentHelper::getParams('com_k2');
 		if ($params->get('k2Sef') && !$params->get('k2SefInsertItemId'))
 		{
-			$db = JFactory::getDBO();
+			$db = JFactory::getDbo();
 			$db->setQuery("SELECT id FROM #__k2_items WHERE alias = ".$db->quote($this->alias)." AND id != ".(int)$this->id);
 			$result = count($db->loadObjectList());
 			if ($result > 0)

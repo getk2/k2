@@ -19,7 +19,7 @@ class K2ElementItem extends K2Element
     function fetchElementValue($name, $value, &$node, $control_name)
     {
         $mainframe = JFactory::getApplication();
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $document = JFactory::getDocument();
         $fieldName = (K2_JVERSION != '15') ? $name : $control_name.'['.$name.']';
         JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');

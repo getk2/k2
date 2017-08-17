@@ -23,7 +23,7 @@ class K2ModelExtraFields extends K2Model
         $mainframe = JFactory::getApplication();
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
         $limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
         $filter_order = $mainframe->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'groupname', 'cmd');
@@ -83,7 +83,7 @@ class K2ModelExtraFields extends K2Model
         $mainframe = JFactory::getApplication();
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
         $limitstart = $mainframe->getUserStateFromRequest($option.'.limitstart', 'limitstart', 0, 'int');
         $filter_state = $mainframe->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', 1, 'int');
@@ -159,7 +159,7 @@ class K2ModelExtraFields extends K2Model
     {
 
         $mainframe = JFactory::getApplication();
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $cid = JRequest::getVar('cid', array(0), 'post', 'array');
         $total = count($cid);
         $order = JRequest::getVar('order', array(0), 'post', 'array');
@@ -234,7 +234,7 @@ class K2ModelExtraFields extends K2Model
     {
 
         $mainframe = JFactory::getApplication();
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $cid = JRequest::getVar('cid');
         foreach ($cid as $id)
         {
@@ -265,7 +265,7 @@ class K2ModelExtraFields extends K2Model
         $view = JRequest::getCmd('view');
         $limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
         $limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $query = "SELECT * FROM #__k2_extra_fields_groups ORDER BY `name`";
         if ($filter)
         {
@@ -298,7 +298,7 @@ class K2ModelExtraFields extends K2Model
     function getTotalGroups()
     {
 
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $query = "SELECT COUNT(*) FROM #__k2_extra_fields_groups";
         $db->setQuery($query);
         $total = $db->loadResult();
@@ -352,7 +352,7 @@ class K2ModelExtraFields extends K2Model
     {
 
         $mainframe = JFactory::getApplication();
-        $db = &JFactory::getDBO();
+        $db = &JFactory::getDbo();
         $cid = JRequest::getVar('cid');
         JArrayHelper::toInteger($cid);
         foreach ($cid as $id)

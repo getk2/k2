@@ -16,7 +16,7 @@ class K2ElementMenuItem extends K2Element
 {
     function fetchElementValue($name, $value, &$node, $control_name)
     {
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
 
         // load the list of menu types
         // TODO: move query to model

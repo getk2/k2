@@ -22,7 +22,7 @@ class K2ModelCategories extends K2Model
         $params = JComponentHelper::getParams('com_k2');
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
         $limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
         $search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
@@ -203,7 +203,7 @@ class K2ModelCategories extends K2Model
         $params = JComponentHelper::getParams('com_k2');
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
         $limitstart = $mainframe->getUserStateFromRequest($option.'.limitstart', 'limitstart', 0, 'int');
         $search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
@@ -376,7 +376,7 @@ class K2ModelCategories extends K2Model
     {
         $mainframe = JFactory::getApplication();
         $params = JComponentHelper::getParams('com_k2');
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $cid = JRequest::getVar('cid', array(0), 'post', 'array');
         $total = count($cid);
         $order = JRequest::getVar('order', array(0), 'post', 'array');
@@ -455,7 +455,7 @@ class K2ModelCategories extends K2Model
     function accessregistered()
     {
         $mainframe = JFactory::getApplication();
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $row = JTable::getInstance('K2Category', 'Table');
         $cid = JRequest::getVar('cid');
         $row->load($cid[0]);
@@ -478,7 +478,7 @@ class K2ModelCategories extends K2Model
     function accessspecial()
     {
         $mainframe = JFactory::getApplication();
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $row = JTable::getInstance('K2Category', 'Table');
         $cid = JRequest::getVar('cid');
         $row->load($cid[0]);
@@ -501,7 +501,7 @@ class K2ModelCategories extends K2Model
     function accesspublic()
     {
         $mainframe = JFactory::getApplication();
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $row = JTable::getInstance('K2Category', 'Table');
         $cid = JRequest::getVar('cid');
         $row->load($cid[0]);
@@ -524,7 +524,7 @@ class K2ModelCategories extends K2Model
     function trash()
     {
         $mainframe = JFactory::getApplication();
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $cid = JRequest::getVar('cid');
         $row = JTable::getInstance('K2Category', 'Table');
         JArrayHelper::toInteger($cid);
@@ -532,7 +532,7 @@ class K2ModelCategories extends K2Model
         $model = K2Model::getInstance('Itemlist', 'K2Model');
         $categories = $model->getCategoryTree($cid);
         $sql = @implode(',', $categories);
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $query = "UPDATE #__k2_categories SET trash=1  WHERE id IN ({$sql})";
         $db->setQuery($query);
         $db->query();
@@ -552,7 +552,7 @@ class K2ModelCategories extends K2Model
     function restore()
     {
         $mainframe = JFactory::getApplication();
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $cid = JRequest::getVar('cid');
         $warning = false;
         $restored = array();
@@ -607,7 +607,7 @@ class K2ModelCategories extends K2Model
     {
         $mainframe = JFactory::getApplication();
         jimport('joomla.filesystem.file');
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $cid = JRequest::getVar('cid');
         JArrayHelper::toInteger($cid);
         JPluginHelper::importPlugin('finder');
@@ -668,7 +668,7 @@ class K2ModelCategories extends K2Model
 
     function categoriesTree($row = NULL, $hideTrashed = false, $hideUnpublished = true)
     {
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         if (isset($row->id))
         {
             $idCheck = ' AND id != '.( int )$row->id;

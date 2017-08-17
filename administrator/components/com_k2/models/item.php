@@ -31,7 +31,7 @@ class K2ModelItem extends K2Model
 		jimport('joomla.filesystem.folder');
 		jimport('joomla.filesystem.archive');
 		require_once(JPATH_SITE.'/media/k2/assets/vendors/verot/class.upload.php/src/class.upload.php');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$user = JFactory::getUser();
 		$row = JTable::getInstance('K2Item', 'Table');
 		$params = JComponentHelper::getParams('com_k2');
@@ -793,7 +793,7 @@ class K2ModelItem extends K2Model
 		// Tags
 		if ($user->gid < 24 && $params->get('lockTags'))
 			$params->set('taggingSystem', 0);
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "DELETE FROM #__k2_tags_xref WHERE itemID={intval($row->id)}";
 		$db->setQuery($query);
 		$db->query();
@@ -1115,7 +1115,7 @@ class K2ModelItem extends K2Model
 
 	function getAttachments($itemID)
 	{
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT * FROM #__k2_attachments WHERE itemID=".(int)$itemID;
 		$db->setQuery($query);
 		$rows = $db->loadObjectList();
@@ -1135,7 +1135,7 @@ class K2ModelItem extends K2Model
 		$id = JRequest::getInt('id');
 		$itemID = JRequest::getInt('cid');
 
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT COUNT(*) FROM #__k2_attachments WHERE itemID={$itemID} AND id={$id}";
 		$db->setQuery($query);
 		$result = $db->loadResult();
@@ -1169,7 +1169,7 @@ class K2ModelItem extends K2Model
 
 	function getAvailableTags($itemID = NULL)
 	{
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT * FROM #__k2_tags as tags";
 		if (!is_null($itemID))
 			$query .= " WHERE tags.id NOT IN (SELECT tagID FROM #__k2_tags_xref WHERE itemID=".(int)$itemID.")";
@@ -1180,7 +1180,7 @@ class K2ModelItem extends K2Model
 
 	function getCurrentTags($itemID)
 	{
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$itemID = (int)$itemID;
 		$query = "SELECT tags.* FROM #__k2_tags AS tags JOIN #__k2_tags_xref AS xref ON tags.id = xref.tagID WHERE xref.itemID = ".(int)$itemID." ORDER BY xref.id ASC";
 		$db->setQuery($query);
@@ -1192,7 +1192,7 @@ class K2ModelItem extends K2Model
 	{
 		$mainframe = JFactory::getApplication();
 		$id = JRequest::getInt('id');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "UPDATE #__k2_items SET hits=0 WHERE id={$id}";
 		$db->setQuery($query);
 		$db->query();
@@ -1208,7 +1208,7 @@ class K2ModelItem extends K2Model
 	{
 		$mainframe = JFactory::getApplication();
 		$id = JRequest::getInt('id');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "DELETE FROM #__k2_rating WHERE itemID={$id}";
 		$db->setQuery($query);
 		$db->query();
@@ -1223,7 +1223,7 @@ class K2ModelItem extends K2Model
 	function getRating()
 	{
 		$id = JRequest::getInt('cid');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT * FROM #__k2_rating WHERE itemID={$id}";
 		$db->setQuery($query, 0, 1);
 		$row = $db->loadObject();

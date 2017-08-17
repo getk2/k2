@@ -110,7 +110,7 @@ class K2ElementK2modalselector extends K2Element
 				}
 				if($scope == 'tags')
 				{
-		            $db = JFactory::getDBO();
+		            $db = JFactory::getDbo();
 		            $query = 'SELECT * FROM #__k2_tags WHERE name='.$db->Quote($value);
 		            $db->setQuery($query);
 		            $row = $db->loadObject();
@@ -166,7 +166,7 @@ class K2ElementK2modalselector extends K2Element
 			{
 				if($value)
 				{
-		            $db = JFactory::getDBO();
+		            $db = JFactory::getDbo();
 		            $query = 'SELECT * FROM #__k2_tags WHERE name='.$db->Quote($value);
 		            $db->setQuery($query);
 		            $row = $db->loadObject();

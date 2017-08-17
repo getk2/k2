@@ -21,7 +21,7 @@ class K2ModelComments extends K2Model {
 		$params = JComponentHelper::getParams('com_k2');
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
 		$limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
 		$filter_order = $mainframe->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'c.id', 'cmd');
@@ -137,7 +137,7 @@ class K2ModelComments extends K2Model {
 		$params = JComponentHelper::getParams('com_k2');
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
 		$limitstart = $mainframe->getUserStateFromRequest($option.'.limitstart', 'limitstart', 0, 'int');
 		$filter_state = $mainframe->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', 1, 'int');
@@ -305,7 +305,7 @@ class K2ModelComments extends K2Model {
 	function remove() {
 		$mainframe = JFactory::getApplication();
 		$user = JFactory::getUser();
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$cid = JRequest::getVar('cid');
 	  	if(!count($cid)){
             $cid[]=JRequest::getInt('commentID');
@@ -339,7 +339,7 @@ class K2ModelComments extends K2Model {
 
 	function deleteUnpublished() {
 		$mainframe = JFactory::getApplication();
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$user = JFactory::getUser();
 		$userID = $user->id;
 		if($mainframe->isSite()){
@@ -373,7 +373,7 @@ class K2ModelComments extends K2Model {
 	function save() {
 		$mainframe = JFactory::getApplication();
 		$user = JFactory::getUser();
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$id = JRequest::getInt('commentID');
 		$item = JTable::getInstance('K2Item', 'Table');
 		$row = JTable::getInstance('K2Comment', 'Table');

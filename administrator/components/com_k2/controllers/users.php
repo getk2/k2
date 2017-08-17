@@ -87,7 +87,7 @@ class K2ControllerUsers extends K2Controller
 	function search()
 	{
 		$mainframe = JFactory::getApplication();
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $word = JRequest::getString('q', null);
         if (K2_JVERSION == '15')
         {

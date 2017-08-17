@@ -20,7 +20,7 @@ class K2ViewItem extends K2View
 		$document = JFactory::getDocument();
 		$user = JFactory::getUser();
 
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$view = JRequest::getCmd('view');
 		$task = JRequest::getCmd('task');
 

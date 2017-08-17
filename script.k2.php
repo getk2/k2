@@ -14,7 +14,7 @@ class Com_K2InstallerScript
 {
     public function postflight($type, $parent)
     {
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $status = new stdClass;
         $status->modules = array();
         $status->plugins = array();
@@ -144,7 +144,7 @@ class Com_K2InstallerScript
 
     public function uninstall($parent)
     {
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $status = new stdClass;
         $status->modules = array();
         $status->plugins = array();
@@ -172,7 +172,7 @@ class Com_K2InstallerScript
         {
             $name = (string)$module->attributes()->module;
             $client = (string)$module->attributes()->client;
-            $db = JFactory::getDBO();
+            $db = JFactory::getDbo();
             $query = "SELECT `extension_id` FROM `#__extensions` WHERE `type`='module' AND element = ".$db->Quote($name)."";
             $db->setQuery($query);
             $extensions = $db->loadColumn();
@@ -191,7 +191,7 @@ class Com_K2InstallerScript
 
     public function update($type)
     {
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
 
         $fields = $db->getTableColumns('#__k2_categories');
         if (!array_key_exists('language', $fields))

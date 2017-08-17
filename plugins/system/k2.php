@@ -84,7 +84,7 @@ class plgSystemK2 extends JPlugin
 		{
 			if (K2_JVERSION == '15')
 			{
-				$db = JFactory::getDBO();
+				$db = JFactory::getDbo();
 				$config = JFactory::getConfig();
 				$prefix = $config->getValue('config.dbprefix');
 				if (array_key_exists($prefix.'_jf_languages_ext', $db->getTableList()))
@@ -169,7 +169,7 @@ class plgSystemK2 extends JPlugin
 
 			$user = JFactory::getUser();
 
-			$db = JFactory::getDBO();
+			$db = JFactory::getDbo();
 
 			$query = "SELECT COUNT(*) FROM #__jf_content WHERE reference_field = 'extra_fields' AND language_id = {$language_id} AND reference_id = {$reference_id} AND reference_table='k2_items'";
 			$db->setQuery($query);
@@ -236,7 +236,7 @@ class plgSystemK2 extends JPlugin
 			$category = JTable::getInstance('K2Category', 'Table');
 			$category->load($category_id);
 			$group = $category->extraFieldsGroup;
-			$db = JFactory::getDBO();
+			$db = JFactory::getDbo();
 			$query = "SELECT * FROM #__k2_extra_fields WHERE `group`=".$db->Quote($group)." AND published=1 ORDER BY ordering";
 			$db->setQuery($query);
 			$extraFields = $db->loadObjectList();
@@ -345,7 +345,7 @@ class plgSystemK2 extends JPlugin
 			$value = json_encode($objects);
 
 			$user = JFactory::getUser();
-			$db = JFactory::getDBO();
+			$db = JFactory::getDbo();
 
 			$query = "SELECT COUNT(*) FROM #__jf_content WHERE reference_field = 'value' AND language_id = {$language_id} AND reference_id = {$reference_id} AND reference_table='k2_extra_fields'";
 			$db->setQuery($query);
@@ -413,7 +413,7 @@ class plgSystemK2 extends JPlugin
 				}
 			}
 
-			$db = JFactory::getDBO();
+			$db = JFactory::getDbo();
 			$query = "SELECT `value` FROM #__jf_content WHERE reference_field = 'value' AND language_id = {$language_id} AND reference_id = {$reference_id} AND reference_table='k2_extra_fields'";
 			$db->setQuery($query);
 			$result = $db->loadResult();
@@ -925,7 +925,7 @@ class plgSystemK2 extends JPlugin
 		}
 
 		$language_id = JRequest::getInt('select_language_id');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT `value` FROM #__jf_content WHERE reference_field = 'extra_fields' AND language_id = {$language_id} AND reference_id = {$itemID} AND reference_table='k2_items'";
 		$db->setQuery($query);
 		$result = $db->loadResult();

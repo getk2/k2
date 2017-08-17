@@ -164,7 +164,7 @@ class K2ModelCategory extends K2Model
     function countCategoryItems($catid, $trash = 0)
     {
 
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $catid = (int)$catid;
         $query = "SELECT COUNT(*) FROM #__k2_items WHERE catid={$catid} AND trash = ".(int)$trash;
         $db->setQuery($query);

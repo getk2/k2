@@ -93,7 +93,7 @@ class K2ModelTag extends K2Model
             $mainframe->close();
         }
 
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $query = "SELECT COUNT(*) FROM #__k2_tags WHERE name=".$db->Quote($tag);
         $db->setQuery($query);
         $result = $db->loadResult();
@@ -125,7 +125,7 @@ class K2ModelTag extends K2Model
     function tags()
     {
         $mainframe = JFactory::getApplication();
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $word = JRequest::getString('q', null);
 		$id = JRequest::getInt('id');
         if (K2_JVERSION == '15')

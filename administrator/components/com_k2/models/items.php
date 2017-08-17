@@ -21,7 +21,7 @@ class K2ModelItems extends K2Model
 		$params = JComponentHelper::getParams('com_k2');
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
 		$limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
 		$filter_order = $mainframe->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'i.id', 'cmd');
@@ -202,7 +202,7 @@ class K2ModelItems extends K2Model
 		$params = JComponentHelper::getParams('com_k2');
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$filter_trash = $mainframe->getUserStateFromRequest($option.$view.'filter_trash', 'filter_trash', 0, 'int');
 		$filter_featured = $mainframe->getUserStateFromRequest($option.$view.'filter_featured', 'filter_featured', -1, 'int');
 		$filter_category = $mainframe->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
@@ -423,7 +423,7 @@ class K2ModelItems extends K2Model
 	{
 		$mainframe = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$cid = JRequest::getVar('cid', array(0), 'post', 'array');
 		$total = count($cid);
 		$order = JRequest::getVar('order', array(0), 'post', 'array');
@@ -509,7 +509,7 @@ class K2ModelItems extends K2Model
 	{
 		$mainframe = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$cid = JRequest::getVar('cid', array(0), 'post', 'array');
 		$total = count($cid);
 		$order = JRequest::getVar('order', array(0), 'post', 'array');
@@ -594,7 +594,7 @@ class K2ModelItems extends K2Model
 	function accessregistered()
 	{
 		$mainframe = JFactory::getApplication();
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$row = JTable::getInstance('K2Item', 'Table');
 		$cid = JRequest::getVar('cid');
 		$row->load($cid[0]);
@@ -619,7 +619,7 @@ class K2ModelItems extends K2Model
 	function accessspecial()
 	{
 		$mainframe = JFactory::getApplication();
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$row = JTable::getInstance('K2Item', 'Table');
 		$cid = JRequest::getVar('cid');
 		$row->load($cid[0]);
@@ -644,7 +644,7 @@ class K2ModelItems extends K2Model
 	function accesspublic()
 	{
 		$mainframe = JFactory::getApplication();
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$row = JTable::getInstance('K2Item', 'Table');
 		$cid = JRequest::getVar('cid');
 		$row->load($cid[0]);
@@ -673,7 +673,7 @@ class K2ModelItems extends K2Model
 		$mainframe = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
 		$itemModel = K2Model::getInstance('Item', 'K2Model');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$cid = JRequest::getVar('cid');
 		JArrayHelper::toInteger($cid);
 		$row = JTable::getInstance('K2Item', 'Table');
@@ -818,7 +818,7 @@ class K2ModelItems extends K2Model
 	function featured()
 	{
 		$mainframe = JFactory::getApplication();
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$cid = JRequest::getVar('cid');
 		foreach ($cid as $id)
 		{
@@ -848,7 +848,7 @@ class K2ModelItems extends K2Model
 	function trash()
 	{
 		$mainframe = JFactory::getApplication();
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$cid = JRequest::getVar('cid');
 		JArrayHelper::toInteger($cid);
 		foreach ($cid as $id)
@@ -878,7 +878,7 @@ class K2ModelItems extends K2Model
 	function restore()
 	{
 		$mainframe = JFactory::getApplication();
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$cid = JRequest::getVar('cid');
 		$warning = false;
 		foreach ($cid as $id)
@@ -925,7 +925,7 @@ class K2ModelItems extends K2Model
 		$mainframe = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
 		$itemModel = K2Model::getInstance('Item', 'K2Model');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$cid = JRequest::getVar('cid');
 
 		// Plugin Events
@@ -1059,7 +1059,7 @@ class K2ModelItems extends K2Model
 	{
 		$mainframe = JFactory::getApplication();
 		jimport('joomla.filesystem.file');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT * FROM #__sections";
 		$db->setQuery($query);
 		$sections = $db->loadObjectList();
@@ -1339,7 +1339,7 @@ class K2ModelItems extends K2Model
 		jimport('joomla.html.parameter');
 		jimport('joomla.utilities.xmlelement');
 		$mainframe = JFactory::getApplication();
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 
 		$query = "SELECT COUNT(*) FROM #__k2_categories";
 		$db->setQuery($query);

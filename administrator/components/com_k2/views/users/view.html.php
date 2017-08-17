@@ -19,7 +19,7 @@ class K2ViewUsers extends K2View
         $mainframe = JFactory::getApplication();
         $document = JFactory::getDocument();
         $user = JFactory::getUser();
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
 
         $params = JComponentHelper::getParams('com_k2');
 

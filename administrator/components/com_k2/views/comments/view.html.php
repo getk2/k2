@@ -101,7 +101,7 @@ class K2ViewComments extends K2View
 			$comment->commenterLastVisitIP = NULL;
 			if ($comment->userID)
 			{
-				$db = JFactory::getDBO();
+				$db = JFactory::getDbo();
 				$db->setQuery("SELECT ip FROM #__k2_users WHERE userID = ".$comment->userID);
 				$comment->commenterLastVisitIP = $db->loadResult();
 

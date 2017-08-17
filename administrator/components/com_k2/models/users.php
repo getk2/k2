@@ -23,7 +23,7 @@ class K2ModelUsers extends K2Model
         $mainframe = JFactory::getApplication();
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
         $limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
         $filter_order = $mainframe->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'juser.name', 'cmd');
@@ -131,7 +131,7 @@ class K2ModelUsers extends K2Model
         $mainframe = JFactory::getApplication();
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
         $limitstart = $mainframe->getUserStateFromRequest($option.'.limitstart', 'limitstart', 0, 'int');
         $filter_status = $mainframe->getUserStateFromRequest($option.$view.'filter_status', 'filter_status', -1, 'int');
@@ -203,7 +203,7 @@ class K2ModelUsers extends K2Model
         $mainframe = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
         JArrayHelper::toInteger($cid);
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $query = "DELETE FROM #__k2_users WHERE userID IN(".implode(',', $cid).")";
         $db->setQuery($query);
         $db->query();
@@ -216,7 +216,7 @@ class K2ModelUsers extends K2Model
     function getUserGroups($type = 'joomla')
     {
 
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
 
         if ($type == 'joomla')
         {
@@ -278,7 +278,7 @@ class K2ModelUsers extends K2Model
     function checkLogin($id)
     {
 
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $query = "SELECT COUNT(s.userid) FROM #__session AS s WHERE s.userid = ".(int)$id;
         $db->setQuery($query);
         $result = $db->loadResult();
@@ -288,7 +288,7 @@ class K2ModelUsers extends K2Model
     function hasProfile($id)
     {
 
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $query = "SELECT id FROM #__k2_users WHERE userID = ".(int)$id;
         $db->setQuery($query);
         $result = $db->loadResult();
@@ -300,7 +300,7 @@ class K2ModelUsers extends K2Model
         $mainframe = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
         JArrayHelper::toInteger($cid);
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $query = "UPDATE #__users SET block=0 WHERE id IN(".implode(',', $cid).")";
         $db->setQuery($query);
         $db->query();
@@ -317,7 +317,7 @@ class K2ModelUsers extends K2Model
         $mainframe = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
         JArrayHelper::toInteger($cid);
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $query = "UPDATE #__users SET block=1 WHERE id IN(".implode(',', $cid).")";
         $db->setQuery($query);
         $db->query();
@@ -335,7 +335,7 @@ class K2ModelUsers extends K2Model
         $user = JFactory::getUser();
         $cid = JRequest::getVar('cid');
         JArrayHelper::toInteger($cid);
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         if (in_array($user->id, $cid))
         {
             foreach ($cid as $key => $id)
@@ -410,7 +410,7 @@ class K2ModelUsers extends K2Model
     function saveMove()
     {
         $mainframe = JFactory::getApplication();
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $cid = JRequest::getVar('cid');
         JArrayHelper::toInteger($cid);
         $group = JRequest::getVar('group');
@@ -474,7 +474,7 @@ class K2ModelUsers extends K2Model
     {
 
         $mainframe = JFactory::getApplication();
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         if (K2_JVERSION != '15')
         {
             $db->setQuery("SELECT id, title AS name FROM #__usergroups");

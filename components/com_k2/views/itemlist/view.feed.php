@@ -153,7 +153,7 @@ class K2ViewItemlist extends K2View
 
                     // Prevent spammers from using the tag view
                     $tag = JRequest::getString('tag');
-                    $db = JFactory::getDBO();
+                    $db = JFactory::getDbo();
                     $db->setQuery('SELECT id, name FROM #__k2_tags WHERE name = '.$db->quote($tag));
                     $tag = $db->loadObject();
                     if (!$tag->id)

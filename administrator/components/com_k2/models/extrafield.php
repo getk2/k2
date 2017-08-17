@@ -195,7 +195,7 @@ class K2ModelExtraField extends K2Model
 	function getExtraFieldsByGroup($group)
 	{
 
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$group = (int)$group;
 		$query = "SELECT * FROM #__k2_extra_fields WHERE `group`={$group} AND published=1 ORDER BY ordering";
 		$db->setQuery($query);
@@ -428,7 +428,7 @@ class K2ModelExtraField extends K2Model
 	function getExtraFieldInfo($fieldID)
 	{
 
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$fieldID = (int)$fieldID;
 		$query = "SELECT * FROM #__k2_extra_fields WHERE published=1 AND id = ".$fieldID;
 		$db->setQuery($query, 0, 1);

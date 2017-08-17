@@ -23,7 +23,7 @@ class K2ModelUserGroups extends K2Model
         $mainframe = JFactory::getApplication();
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
         $limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
         $filter_order = $mainframe->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', '', 'cmd');
@@ -49,7 +49,7 @@ class K2ModelUserGroups extends K2Model
         $mainframe = JFactory::getApplication();
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
 
         $query = "SELECT COUNT(*) FROM #__k2_user_groups";
 
@@ -62,7 +62,7 @@ class K2ModelUserGroups extends K2Model
     {
 
         $mainframe = JFactory::getApplication();
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $cid = JRequest::getVar('cid');
         foreach ($cid as $id)
         {

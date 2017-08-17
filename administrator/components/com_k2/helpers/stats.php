@@ -16,6 +16,20 @@ class K2HelperStats
 	{
 		$data = self::getData();
 		$token = version_compare(JVERSION, '2.5', 'ge') ? JSession::getFormToken() : JUtility::getToken();
+
+		if (version_compare(JVERSION, '1.6.0', 'ge'))
+		{
+			JHtml::_('behavior.framework');
+		}
+		else
+		{
+			JHTML::_('behavior.mootools');
+		}
+		if (version_compare(JVERSION, '3.0.0', 'ge'))
+		{
+			JHtml::_('jquery.framework');
+		}
+
 		$document = JFactory::getDocument();
 		$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.3/jquery.xdomainrequest.min.js');
 		$document->addScriptDeclaration("

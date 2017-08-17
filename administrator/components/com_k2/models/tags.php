@@ -21,7 +21,7 @@ class K2ModelTags extends K2Model
 		$mainframe = JFactory::getApplication();
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
 		$limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
 		$filter_order = $mainframe->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'id', 'cmd');
@@ -67,7 +67,7 @@ class K2ModelTags extends K2Model
 		$mainframe = JFactory::getApplication();
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
 		$limitstart = $mainframe->getUserStateFromRequest($option.'.limitstart', 'limitstart', 0, 'int');
 		$filter_state = $mainframe->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', 1, 'int');
@@ -136,7 +136,7 @@ class K2ModelTags extends K2Model
 	function remove()
 	{
 		$mainframe = JFactory::getApplication();
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$cid = JRequest::getVar('cid');
 		foreach ($cid as $id)
 		{
@@ -152,7 +152,7 @@ class K2ModelTags extends K2Model
 
 	function getFilter()
 	{
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT name, id FROM #__k2_tags ORDER BY name";
 		$db->setQuery($query);
 		$rows = $db->loadObjectList();
@@ -161,7 +161,7 @@ class K2ModelTags extends K2Model
 
 	function countTagItems($id)
 	{
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT COUNT(*) FROM #__k2_tags_xref WHERE tagID = ".(int)$id;
 		$db->setQuery($query);
 		$result = $db->loadResult();
@@ -170,7 +170,7 @@ class K2ModelTags extends K2Model
 
 	function removeOrphans()
 	{
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$db->setQuery("DELETE FROM #__k2_tags WHERE id NOT IN (SELECT DISTINCT tagID FROM #__k2_tags_xref)");
 		$db->query();
 		$mainframe = JFactory::getApplication();

@@ -20,7 +20,7 @@ class K2ModelItem extends K2Model
 	{
 		$mainframe = JFactory::getApplication();
 		$id = JRequest::getInt('id');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT * FROM #__k2_items WHERE id={$id}";
 		if (K2_JVERSION != '15')
 		{
@@ -68,7 +68,7 @@ class K2ModelItem extends K2Model
 		}
 
 		//Category
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$category = JTable::getInstance('K2Category', 'Table');
 		$category->load($item->catid);
 
@@ -962,7 +962,7 @@ class K2ModelItem extends K2Model
 
 		if ($rate >= 1 && $rate <= 5)
 		{
-			$db = JFactory::getDBO();
+			$db = JFactory::getDbo();
 			$userIP = $_SERVER['REMOTE_ADDR'];
 			$query = "SELECT * FROM #__k2_rating WHERE itemID =".(int)$item->id;
 			$db->setQuery($query);
@@ -1005,7 +1005,7 @@ class K2ModelItem extends K2Model
 		{
 			return $K2RatingsInstances[$id];
 		}
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT * FROM #__k2_rating WHERE itemID = ".$id;
 		$db->setQuery($query);
 		$vote = $db->loadObject();
@@ -1055,7 +1055,7 @@ class K2ModelItem extends K2Model
 	{
 		$mainframe = JFactory::getApplication();
 		$user = JFactory::getUser();
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$xhr = false;
 		$result = 0;
 		if (is_null($itemID))
@@ -1206,7 +1206,7 @@ class K2ModelItem extends K2Model
 
 			if ($user->guest)
 			{
-				$db = JFactory::getDBO();
+				$db = JFactory::getDbo();
 				$query = "SELECT COUNT(*) FROM #__users WHERE name=".$db->Quote($userName)." OR email=".$db->Quote($commentEmail);
 				$db->setQuery($query);
 				$result = $db->loadresult();
@@ -1376,7 +1376,7 @@ class K2ModelItem extends K2Model
 		{
 			return $K2ItemTagsInstances[$itemID];
 		}
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT tag.*
 			FROM #__k2_tags AS tag
 			JOIN #__k2_tags_xref AS xref ON tag.id = xref.tagID
@@ -1399,7 +1399,7 @@ class K2ModelItem extends K2Model
 		}
 
 		jimport('joomla.filesystem.file');
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$jsonObjects = json_decode($itemExtraFields);
 		$imgExtensions = array(
 			'jpg',
@@ -1674,7 +1674,7 @@ class K2ModelItem extends K2Model
 		{
 			return $K2ItemAttachmentsInstances[$itemID];
 		}
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT * FROM #__k2_attachments WHERE itemID=".$itemID;
 		$db->setQuery($query);
 		$rows = $db->loadObjectList();
@@ -1692,7 +1692,7 @@ class K2ModelItem extends K2Model
 		$params = K2HelperUtilities::getParams('com_k2');
 		$order = $params->get('commentsOrdering', 'DESC');
 		$ordering = ($order == 'DESC') ? 'DESC' : 'ASC';
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT * FROM #__k2_comments WHERE itemID=".(int)$itemID;
 		if ($published)
 		{
@@ -1713,7 +1713,7 @@ class K2ModelItem extends K2Model
 		{
 			return $K2ItemCommentsCountInstances[$index];
 		}
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT COUNT(*) FROM #__k2_comments WHERE itemID=".$itemID;
 		if ($published)
 		{
@@ -1754,7 +1754,7 @@ class K2ModelItem extends K2Model
 		$id = (int)$id;
 		$catid = (int)$catid;
 		$ordering = (int)$ordering;
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 
 		$jnow = JFactory::getDate();
 		$now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
@@ -1799,7 +1799,7 @@ class K2ModelItem extends K2Model
 		$id = (int)$id;
 		$catid = (int)$catid;
 		$ordering = (int)$ordering;
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 
 		$jnow = JFactory::getDate();
 		$now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
@@ -1838,7 +1838,7 @@ class K2ModelItem extends K2Model
 
 	function getUserProfile($id = NULL)
 	{
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		if (is_null($id))
 			$id = JRequest::getInt('id');
 

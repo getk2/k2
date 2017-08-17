@@ -464,7 +464,7 @@ if ($params->get('k2Sef'))
 	{
 		$slug = null;
 
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT items.id, categories.id AS catid, CASE WHEN CHAR_LENGTH(categories.alias) THEN CONCAT_WS('-', categories.id, categories.alias) ELSE categories.id END AS catslug FROM #__k2_items AS items INNER JOIN #__k2_categories AS categories ON items.catid = categories.id WHERE items.id = ".(int)$ItemId;
 		$db->setQuery($query);
 
@@ -495,7 +495,7 @@ if ($params->get('k2Sef'))
 	function getItemId($alias)
 	{
 		$id = null;
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT id FROM #__k2_items WHERE alias = ".$db->quote($alias);
 		$db->setQuery($query);
 		try
@@ -520,7 +520,7 @@ if ($params->get('k2Sef'))
 	function getCatId($alias)
 	{
 		$id = null;
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = "SELECT id FROM #__k2_categories WHERE alias = ".$db->quote($alias);
 		$db->setQuery($query);
 		try

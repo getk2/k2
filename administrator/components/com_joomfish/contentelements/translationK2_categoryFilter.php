@@ -19,7 +19,7 @@ class translationK2_categoryFilter extends translationFilter {
     }
     
     function _createFilter() {
-        $database = JFactory::getDBO();
+        $database = JFactory::getDbo();
         if (!$this->filterField)
             return "";
         $filter = "";
@@ -41,7 +41,7 @@ class translationK2_categoryFilter extends translationFilter {
     function _createfilterHTML() {
         if (!$this->filterField)
             return "";
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $categoryOptions = array();
         $categoryOptions[] = JHTML::_('select.option', '-1', JText::_('K2_SELECT_CATEGORY'));
         

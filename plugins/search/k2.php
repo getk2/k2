@@ -38,7 +38,7 @@ class plgSearchK2 extends JPlugin
         JPlugin::loadLanguage('plg_search_k2', JPATH_ADMINISTRATOR);
         jimport('joomla.html.parameter');
         $mainframe = JFactory::getApplication();
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
         $jnow = JFactory::getDate();
         $now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
 

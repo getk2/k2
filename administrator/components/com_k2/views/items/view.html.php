@@ -41,7 +41,7 @@ class K2ViewItems extends K2View
 		$tag = $mainframe->getUserStateFromRequest($option.$view.'tag', 'tag', 0, 'int');
 		$language = $mainframe->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
 
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$nullDate = $db->getNullDate();
 
 		// JS
