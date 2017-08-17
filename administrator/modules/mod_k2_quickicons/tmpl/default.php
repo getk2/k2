@@ -125,7 +125,7 @@ defined('_JEXEC') or die;
   </div>
   <div class="icon-wrapper">
     <div class="icon">
-    	<a class="modal" rel="{handler:'iframe', size:{x:(document.documentElement.clientWidth)*0.9, y:(document.documentElement.clientHeight)*0.95}}" target="_blank" href="https://getk2.org/documentation/">
+    	<a data-k2-modal="iframe" target="_blank" href="https://getk2.org/documentation/">
 			<i class="dashicon documentation"></i>
 			<span><?php echo JText::_('K2_DOCS_AND_TUTORIALS'); ?></span>
     	</a>
@@ -134,7 +134,7 @@ defined('_JEXEC') or die;
   <?php if ($user->gid>23): ?>
   <div class="icon-wrapper">
     <div class="icon">
-    	<a class="modal" rel="{handler:'iframe', size:{x:(document.documentElement.clientWidth)*0.9, y:(document.documentElement.clientHeight)*0.95}}" target="_blank" href="https://getk2.org/extend/">
+    	<a data-k2-modal="iframe" target="_blank" href="https://getk2.org/extend/">
 			<i class="dashicon extend"></i>
 			<span><?php echo JText::_('K2_EXTEND'); ?></span>
     	</a>
@@ -142,7 +142,7 @@ defined('_JEXEC') or die;
   </div>
   <div class="icon-wrapper">
     <div class="icon">
-    	<a class="modal" rel="{handler:'iframe', size:{x:(document.documentElement.clientWidth)*0.9, y:(document.documentElement.clientHeight)*0.95}}" target="_blank" href="https://getk2.org/community/">
+    	<a data-k2-modal="iframe" target="_blank" href="https://getk2.org/community/">
 			<i class="dashicon help"></i>
 			<span><?php echo JText::_('K2_COMMUNITY'); ?></span>
     	</a>
@@ -150,7 +150,7 @@ defined('_JEXEC') or die;
   </div>
   <div class="icon-wrapper">
     <div class="icon">
-	    <a class="modal" rel="{handler:'iframe', size:{x:(document.documentElement.clientWidth)*0.9, y:(document.documentElement.clientHeight)*0.95}}" href="https://joomlareader.com/" title="<?php echo JText::_('K2_JOOMLA_NEWS_FROM_MORE_THAN_200_SOURCES_WORLDWIDE'); ?>">
+	    <a data-k2-modal="iframe" href="https://joomlareader.com/" title="<?php echo JText::_('K2_JOOMLA_NEWS_FROM_MORE_THAN_200_SOURCES_WORLDWIDE'); ?>">
 			<i class="dashicon joomlareader"></i>
 			<span><?php echo JText::_('K2_JOOMLAREADERCOM'); ?></span>
 	    </a>

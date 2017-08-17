@@ -14,12 +14,10 @@ $user = JFactory::getUser();
 
 if (K2_JVERSION != '15')
 {
-
 	if (!$user->authorise('core.manage', 'com_k2'))
 	{
 		return;
 	}
-
 	$language = JFactory::getLanguage();
 	$language->load('com_k2.dates', JPATH_ADMINISTRATOR);
 	if ($user->authorise('core.admin', 'com_k2'))
@@ -65,10 +63,8 @@ switch($onlineImageEditor)
 		break;
 }
 
-// Call the modal and add some needed JS
-JHTML::_('behavior.modal');
-
-// Append CSS to the document's head
+// Load CSS & JS
+K2HelperHTML::loadHeadIncludes(true, false, true, false);
 if ($modCSSStyling)
 {
 	$document->addStyleSheet(JURI::base(true).'/modules/'.$mod_name.'/tmpl/css/style.css?v='.K2_CURRENT_VERSION);

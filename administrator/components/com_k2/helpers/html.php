@@ -219,7 +219,7 @@ class K2HelperHTML
 				$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js');
 
 				// Fancybox
-				if ($view == 'items' || $view == 'categories')
+				if ($view == 'item' || $view == 'items' || $view == 'categories')
 				{
 					$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.css');
 					$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js');
