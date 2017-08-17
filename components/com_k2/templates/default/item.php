@@ -402,15 +402,15 @@ defined('_JEXEC') or die;
 			<?php endif; ?>
 
 			<?php if($this->item->params->get('itemAuthorURL') && !empty($this->item->author->profile->url)): ?>
-			<span class="itemAuthorUrl"><i class="k2icon-globe"></i> <a rel="me" href="<?php echo $this->item->author->profile->url; ?>" target="_blank"><?php echo str_replace('http://','',$this->item->author->profile->url); ?></a></span>
+			<span class="itemAuthorUrl"><i class="icon-globe"></i> <a rel="me" href="<?php echo $this->item->author->profile->url; ?>" target="_blank"><?php echo str_replace('http://','',$this->item->author->profile->url); ?></a></span>
 			<?php endif; ?>
-			
+
 			<?php if($this->item->params->get('itemAuthorURL') && !empty($this->item->author->profile->url) && $this->item->params->get('itemAuthorEmail')): ?>
 			<span class="k2HorizontalSep">|</span>
 			<?php endif; ?>
-			
+
 			<?php if($this->item->params->get('itemAuthorEmail')): ?>
-			<span class="itemAuthorEmail"><i class="k2icon-envelope"></i> <?php echo JHTML::_('Email.cloak', $this->item->author->email); ?></span>
+			<span class="itemAuthorEmail"><i class="icon-envelope"></i> <?php echo JHTML::_('Email.cloak', $this->item->author->email); ?></span>
 			<?php endif; ?>
 
 			<div class="clr"></div>

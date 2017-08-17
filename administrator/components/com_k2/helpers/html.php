@@ -152,7 +152,7 @@ class K2HelperHTML
 				// CSS
 				if ($option == 'com_k2' || $adminModuleIncludes)
 				{
-					$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css?v='.K2_CURRENT_VERSION);
+					$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 				}
 				if ($option == 'com_k2')
 				{
@@ -210,7 +210,12 @@ class K2HelperHTML
 
 				// Magnific Popup
 				$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css');
-				$document->addStyleDeclaration('.mfp-iframe-holder .mfp-content {line-height:0 !important;width:100% !important;height:100% !important;} /* Updated iframe dimensions for better editing */');
+				$document->addStyleDeclaration('
+					/* K2 - Magnific Popup Overrides */
+					.mfp-iframe-holder {padding:10px;}
+					.mfp-iframe-holder .mfp-content{max-width:auto;height:100%;}
+					.mfp-iframe-scaler iframe {background:#fff;padding:10px;box-sizing:border-box;box-shadow:none;}
+				');
 				$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js');
 
 				// Fancybox
@@ -247,7 +252,12 @@ class K2HelperHTML
 				// Magnific Popup
 				if (!$user->guest || ($option == 'com_k2' && $view == 'item') || defined('K2_JOOMLA_MODAL_REQUIRED')){
 					$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css');
-					$document->addStyleDeclaration('.mfp-iframe-holder .mfp-content {line-height:0 !important;width:100% !important;height:100% !important;} /* Updated iframe dimensions for better editing */');
+					$document->addStyleDeclaration('
+						/* K2 - Magnific Popup Overrides */
+						.mfp-iframe-holder {padding:10px;}
+						.mfp-iframe-holder .mfp-content{max-width:auto;height:100%;}
+						.mfp-iframe-scaler iframe {background:#fff;padding:10px;box-sizing:border-box;box-shadow:none;}
+					');
 					$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js');
 				}
 
@@ -290,15 +300,8 @@ class K2HelperHTML
 				{
 					jimport('joomla.filesystem.file');
 
-					// k2.fonts.css
-					if (JFile::exists(JPATH_SITE.'/templates/'.$application->getTemplate().'/css/k2.fonts.css'))
-					{
-						$document->addStyleSheet(JURI::root(true).'/templates/'.$application->getTemplate().'/css/k2.fonts.css?v='.K2_CURRENT_VERSION);
-					}
-					else
-					{
-						$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.fonts.css?v='.K2_CURRENT_VERSION);
-					}
+					// Simple Line Icons
+					$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css');
 
 					// k2.css
 					if (JFile::exists(JPATH_SITE.'/templates/'.$application->getTemplate().'/css/k2.css'))
