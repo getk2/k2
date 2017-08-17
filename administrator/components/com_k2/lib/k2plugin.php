@@ -25,7 +25,7 @@ class K2Plugin extends JPlugin
 	function onRenderAdminForm(&$item, $type, $tab = '')
 	{
 
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$manifest = (K2_JVERSION == '15') ? JPATH_SITE.'/plugins/k2/'.$this->pluginName.'.xml' : JPATH_SITE.'/plugins/k2/'.$this->pluginName.'/'.$this->pluginName.'.xml';
 		if (!empty($tab))
 		{

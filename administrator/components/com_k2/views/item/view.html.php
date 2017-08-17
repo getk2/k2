@@ -16,7 +16,7 @@ class K2ViewItem extends K2View
 {
 	function display($tpl = null)
 	{
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$document = JFactory::getDocument();
 		$user = JFactory::getUser();
 
@@ -76,7 +76,7 @@ class K2ViewItem extends K2View
 		));
 
 		// Permissions check for frontend editing
-		if ($mainframe->isSite())
+		if ($application->isSite())
 		{
 			JLoader::register('K2HelperPermissions', JPATH_COMPONENT.'/helpers/permissions.php');
 			if ($task == 'edit' && !K2HelperPermissions::canEditItem($item->created_by, $item->catid))
@@ -123,9 +123,9 @@ class K2ViewItem extends K2View
 		if ($item->isCheckedOut($user->get('id'), $item->checked_out))
 		{
 			$message = JText::_('K2_THE_ITEM').': '.$item->title.' '.JText::_('K2_IS_CURRENTLY_BEING_EDITED_BY_ANOTHER_ADMINISTRATOR');
-			$url = ($mainframe->isSite()) ? 'index.php?option=com_k2&view=item&id='.$item->id.'&tmpl=component' : 'index.php?option=com_k2';
-			$mainframe->enqueueMessage($message);
-			$mainframe->redirect($url);
+			$url = ($application->isSite()) ? 'index.php?option=com_k2&view=item&id='.$item->id.'&tmpl=component' : 'index.php?option=com_k2';
+			$application->enqueueMessage($message);
+			$application->redirect($url);
 		}
 
 		if ($item->id)
@@ -235,7 +235,7 @@ class K2ViewItem extends K2View
 		$lists['ordering'] = version_compare(JVERSION, '3.0', 'ge') ? NUll : JHTML::_('list.specificordering', $item, $item->id, $query);
 
 		if (!$item->id)
-			$item->catid = $mainframe->getUserStateFromRequest('com_k2itemsfilter_category', 'catid', 0, 'int');
+			$item->catid = $application->getUserStateFromRequest('com_k2itemsfilter_category', 'catid', 0, 'int');
 
 		require_once JPATH_ADMINISTRATOR.'/components/com_k2/models/categories.php';
 		$categoriesModel = K2Model::getInstance('Categories', 'K2Model');
@@ -402,7 +402,7 @@ class K2ViewItem extends K2View
 
 		$categories_option[] = JHTML::_('select.option', 0, JText::_('K2_SELECT_CATEGORY'));
 		$categories = $categoriesModel->categoriesTree(NUll, true, false);
-		if ($mainframe->isSite())
+		if ($application->isSite())
 		{
 			JLoader::register('K2HelperPermissions', JPATH_SITE.'/components/com_k2/helpers/permissions.php');
 			if (($task == 'add' || $task == 'edit') && !K2HelperPermissions::canAddToAll())
@@ -588,12 +588,12 @@ class K2ViewItem extends K2View
 		$this->assignRef('user', $user);
 		(JRequest::getInt('cid')) ? $title = JText::_('K2_EDIT_ITEM') : $title = JText::_('K2_ADD_ITEM');
 		$this->assignRef('title', $title);
-		$this->assignRef('mainframe', $mainframe);
+		$this->assignRef('mainframe', $application);
 
 		// Disable Joomla menu
 		JRequest::setVar('hidemainmenu', 1);
 
-		if ($mainframe->isAdmin())
+		if ($application->isAdmin())
 		{
 			// Toolbar
 			JToolBarHelper::title($title, 'k2.png');

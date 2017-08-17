@@ -54,7 +54,7 @@ class K2ControllerItemlist extends K2Controller
 	{
 		require_once(JPATH_SITE.'/media/k2/assets/vendors/cascade/calendar/calendar.php');
 		require_once(JPATH_SITE.'/modules/mod_k2_tools/helper.php');
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$month = JRequest::getInt('month');
 		$year = JRequest::getInt('year');
 		$months = array(JText::_('K2_JANUARY'), JText::_('K2_FEBRUARY'), JText::_('K2_MARCH'), JText::_('K2_APRIL'), JText::_('K2_MAY'), JText::_('K2_JUNE'), JText::_('K2_JULY'), JText::_('K2_AUGUST'), JText::_('K2_SEPTEMBER'), JText::_('K2_OCTOBER'), JText::_('K2_NOVEMBER'), JText::_('K2_DECEMBER'), );
@@ -72,7 +72,7 @@ class K2ControllerItemlist extends K2Controller
 		{
 			echo $cal->getCurrentMonthView();
 		}
-		$mainframe->close();
+		$application->close();
 	}
 
 	function module()

@@ -29,12 +29,12 @@ class K2ModelExtraField extends K2Model
 	function save()
 	{
 
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$row = JTable::getInstance('K2ExtraField', 'Table');
 		if (!$row->bind(JRequest::get('post')))
 		{
-			$mainframe->enqueueMessage($row->getError(), 'error');
-			$mainframe->redirect('index.php?option=com_k2&view=extrafields');
+			$application->enqueueMessage($row->getError(), 'error');
+			$application->redirect('index.php?option=com_k2&view=extrafields');
 		}
 
 		$isNewGroup = JRequest::getInt('isNew');
@@ -159,14 +159,14 @@ class K2ModelExtraField extends K2Model
 
 		if (!$row->check())
 		{
-			$mainframe->enqueueMessage($row->getError(), 'error');
-			$mainframe->redirect('index.php?option=com_k2&view=extrafield&cid='.$row->id);
+			$application->enqueueMessage($row->getError(), 'error');
+			$application->redirect('index.php?option=com_k2&view=extrafield&cid='.$row->id);
 		}
 
 		if (!$row->store())
 		{
-			$mainframe->enqueueMessage($row->getError(), 'error');
-			$mainframe->redirect('index.php?option=com_k2&view=extrafields');
+			$application->enqueueMessage($row->getError(), 'error');
+			$application->redirect('index.php?option=com_k2&view=extrafields');
 		}
 
 		$params = JComponentHelper::getParams('com_k2');
@@ -188,8 +188,8 @@ class K2ModelExtraField extends K2Model
 				$link = 'index.php?option=com_k2&view=extrafields';
 				break;
 		}
-		$mainframe->enqueueMessage($msg);
-		$mainframe->redirect($link);
+		$application->enqueueMessage($msg);
+		$application->redirect($link);
 	}
 
 	function getExtraFieldsByGroup($group)
@@ -206,7 +206,7 @@ class K2ModelExtraField extends K2Model
 	function renderExtraField($extraField, $itemID = NULL)
 	{
 
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 
 		if (!is_null($itemID))
 		{

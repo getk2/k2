@@ -18,7 +18,7 @@ class K2ViewItemlist extends K2View
     function display($tpl = null)
     {
 
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $params = K2HelperUtilities::getParams('com_k2');
         $document = JFactory::getDocument();
         $model = $this->getModel('itemlist');
@@ -64,8 +64,8 @@ class K2ViewItemlist extends K2View
                             {
                                 $uri = JFactory::getURI();
                                 $url = 'index.php?option=com_users&view=login&return='.base64_encode($uri->toString());
-								$mainframe->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
-                                $mainframe->redirect(JRoute::_($url, false));
+								$application->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
+                                $application->redirect(JRoute::_($url, false));
                             }
                             else
                             {
@@ -73,7 +73,7 @@ class K2ViewItemlist extends K2View
                                 return;
                             }
                         }
-                        $languageFilter = $mainframe->getLanguageFilter();
+                        $languageFilter = $application->getLanguageFilter();
                         $languageTag = JFactory::getLanguage()->getTag();
                         if ($languageFilter && $category->language != $languageTag && $category->language != '*')
                         {
@@ -88,8 +88,8 @@ class K2ViewItemlist extends K2View
                             {
                                 $uri = JFactory::getURI();
                                 $url = 'index.php?option=com_user&view=login&return='.base64_encode($uri->toString());
-								$mainframe->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
-                                $mainframe->redirect(JRoute::_($url, false));
+								$application->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
+                                $application->redirect(JRoute::_($url, false));
                             }
                             else
                             {
@@ -242,13 +242,13 @@ class K2ViewItemlist extends K2View
             }
             else
             {
-                if ($mainframe->getCfg('feed_email') == 'author')
+                if ($application->getCfg('feed_email') == 'author')
                 {
                     $feedItem->authorEmail = $item->author->email;
                 }
                 else
                 {
-                    $feedItem->authorEmail = $mainframe->getCfg('mailfrom');
+                    $feedItem->authorEmail = $application->getCfg('mailfrom');
                 }
             }
 
@@ -258,7 +258,7 @@ class K2ViewItemlist extends K2View
 
         // Set title
         $document = JFactory::getDocument();
-        $menus = $mainframe->getMenu();
+        $menus = $application->getMenu();
         $menu = $menus->getActive();
         if (is_object($menu))
         {
@@ -272,14 +272,14 @@ class K2ViewItemlist extends K2View
         }
         if (K2_JVERSION != '15')
         {
-            if ($mainframe->getCfg('sitename_pagetitles', 0) == 1)
+            if ($application->getCfg('sitename_pagetitles', 0) == 1)
             {
-                $title = JText::sprintf('JPAGETITLE', $mainframe->getCfg('sitename'), $params->get('page_title'));
+                $title = JText::sprintf('JPAGETITLE', $application->getCfg('sitename'), $params->get('page_title'));
                 $params->set('page_title', $title);
             }
-            elseif ($mainframe->getCfg('sitename_pagetitles', 0) == 2)
+            elseif ($application->getCfg('sitename_pagetitles', 0) == 2)
             {
-                $title = JText::sprintf('JPAGETITLE', $params->get('page_title'), $mainframe->getCfg('sitename'));
+                $title = JText::sprintf('JPAGETITLE', $params->get('page_title'), $application->getCfg('sitename'));
                 $params->set('page_title', $title);
             }
         }

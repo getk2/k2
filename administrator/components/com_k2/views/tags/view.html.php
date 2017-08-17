@@ -16,7 +16,7 @@ class K2ViewTags extends K2View
 {
 	function display($tpl = null)
 	{
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$document = JFactory::getDocument();
 		$user = JFactory::getUser();
 
@@ -24,12 +24,12 @@ class K2ViewTags extends K2View
 		$view = JRequest::getCmd('view');
 		$task = JRequest::getCmd('task');
 
-		$limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
-		$limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
-		$filter_order = $mainframe->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'id', 'cmd');
-		$filter_order_Dir = $mainframe->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', 'DESC', 'word');
-		$filter_state = $mainframe->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
-		$search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
+		$limit = $application->getUserStateFromRequest('global.list.limit', 'limit', $application->getCfg('list_limit'), 'int');
+		$limitstart = $application->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
+		$filter_order = $application->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'id', 'cmd');
+		$filter_order_Dir = $application->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', 'DESC', 'word');
+		$filter_state = $application->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
+		$search = $application->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
 		$search = JString::strtolower($search);
 		$search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
 

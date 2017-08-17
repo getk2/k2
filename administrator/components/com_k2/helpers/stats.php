@@ -31,7 +31,7 @@ class K2HelperStats
 		}
 
 		$document = JFactory::getDocument();
-		$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.3/jquery.xdomainrequest.min.js');
+		$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.4/jquery.xdomainrequest.min.js');
 		$document->addScriptDeclaration("
 	    	/* K2 - Metrics */
 	        (function(\$){
@@ -52,9 +52,9 @@ class K2HelperStats
 		        \$(document).ready(function(){
 					\$.ajax({
 						crossDomain: true,
-						type : 'POST',
-						url : 'https://metrics.getk2.org/gather.php',
-						data : ".$data."
+						type: 'POST',
+						url: 'https://metrics.getk2.org/gather.php',
+						data: ".$data."
 					}).done(function(response, result, xhr) {
 						K2LogResult(xhr);
 					}).fail(function(xhr, result, response) {

@@ -29,25 +29,25 @@ class K2ModelTag extends K2Model
     function save()
     {
 
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $row = JTable::getInstance('K2Tag', 'Table');
 
         if (!$row->bind(JRequest::get('post')))
         {
-        	$mainframe->enqueueMessage($row->getError(), 'error');
-            $mainframe->redirect('index.php?option=com_k2&view=tags');
+        	$application->enqueueMessage($row->getError(), 'error');
+            $application->redirect('index.php?option=com_k2&view=tags');
         }
 
         if (!$row->check())
         {
-        	$mainframe->enqueueMessage($row->getError(), 'error');
-            $mainframe->redirect('index.php?option=com_k2&view=tag&cid='.$row->id);
+        	$application->enqueueMessage($row->getError(), 'error');
+            $application->redirect('index.php?option=com_k2&view=tag&cid='.$row->id);
         }
 
         if (!$row->store())
         {
-        	$mainframe->enqueueMessage($row->getError(), 'error');
-            $mainframe->redirect('index.php?option=com_k2&view=tags');
+        	$application->enqueueMessage($row->getError(), 'error');
+            $application->redirect('index.php?option=com_k2&view=tags');
         }
 
         $cache = JFactory::getCache('com_k2');
@@ -65,14 +65,14 @@ class K2ModelTag extends K2Model
                 $link = 'index.php?option=com_k2&view=tags';
                 break;
         }
-		$mainframe->enqueueMessage($msg);
-        $mainframe->redirect($link);
+		$application->enqueueMessage($msg);
+        $application->redirect($link);
     }
 
     function addTag()
     {
 
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
 
         $user = JFactory::getUser();
         $params = JComponentHelper::getParams('com_k2');
@@ -90,7 +90,7 @@ class K2ModelTag extends K2Model
         {
             $response->set('msg', JText::_('K2_YOU_NEED_TO_ENTER_A_TAG', true));
             echo json_encode($response);
-            $mainframe->close();
+            $application->close();
         }
 
         $db = JFactory::getDbo();
@@ -102,7 +102,7 @@ class K2ModelTag extends K2Model
         {
             $response->set('msg', JText::_('K2_TAG_ALREADY_EXISTS', true));
             echo json_encode($response);
-            $mainframe->close();
+            $application->close();
         }
 
         $row = JTable::getInstance('K2Tag', 'Table');
@@ -118,13 +118,13 @@ class K2ModelTag extends K2Model
         $response->set('msg', JText::_('K2_TAG_ADDED_TO_AVAILABLE_TAGS_LIST', true));
         echo json_encode($response);
 
-        $mainframe->close();
+        $application->close();
 
     }
 
     function tags()
     {
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $db = JFactory::getDbo();
         $word = JRequest::getString('q', null);
 		$id = JRequest::getInt('id');
@@ -151,7 +151,7 @@ class K2ModelTag extends K2Model
 		}
 
         echo json_encode($result);
-        $mainframe->close();
+        $application->close();
     }
 
 }

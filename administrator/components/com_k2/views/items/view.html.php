@@ -17,7 +17,7 @@ class K2ViewItems extends K2View
 	function display($tpl = null)
 	{
 		jimport('joomla.filesystem.file');
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$document = JFactory::getDocument();
 
 		$user = JFactory::getUser();
@@ -26,20 +26,20 @@ class K2ViewItems extends K2View
 
 		$params = JComponentHelper::getParams('com_k2');
 
-		$limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
-		$limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
-		$filter_order = $mainframe->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'i.id', 'cmd');
-		$filter_order_Dir = $mainframe->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', 'DESC', 'word');
-		$filter_trash = $mainframe->getUserStateFromRequest($option.$view.'filter_trash', 'filter_trash', 0, 'int');
-		$filter_featured = $mainframe->getUserStateFromRequest($option.$view.'filter_featured', 'filter_featured', -1, 'int');
-		$filter_category = $mainframe->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
-		$filter_author = $mainframe->getUserStateFromRequest($option.$view.'filter_author', 'filter_author', 0, 'int');
-		$filter_state = $mainframe->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
-		$search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
+		$limit = $application->getUserStateFromRequest('global.list.limit', 'limit', $application->getCfg('list_limit'), 'int');
+		$limitstart = $application->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
+		$filter_order = $application->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'i.id', 'cmd');
+		$filter_order_Dir = $application->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', 'DESC', 'word');
+		$filter_trash = $application->getUserStateFromRequest($option.$view.'filter_trash', 'filter_trash', 0, 'int');
+		$filter_featured = $application->getUserStateFromRequest($option.$view.'filter_featured', 'filter_featured', -1, 'int');
+		$filter_category = $application->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
+		$filter_author = $application->getUserStateFromRequest($option.$view.'filter_author', 'filter_author', 0, 'int');
+		$filter_state = $application->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
+		$search = $application->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
 		$search = JString::strtolower($search);
 		$search = trim(preg_replace('/[^\p{L}\p{N}\s\"\-_]/u', '', $search));
-		$tag = $mainframe->getUserStateFromRequest($option.$view.'tag', 'tag', 0, 'int');
-		$language = $mainframe->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
+		$tag = $application->getUserStateFromRequest($option.$view.'tag', 'tag', 0, 'int');
+		$language = $application->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
 
 		$db = JFactory::getDbo();
 		$nullDate = $db->getNullDate();
@@ -354,7 +354,7 @@ class K2ViewItems extends K2View
 		$this->loadHelper('html');
 		K2HelperHTML::subMenu();
 
-		$template = $mainframe->getTemplate();
+		$template = $application->getTemplate();
 		$this->assignRef('template', $template);
 		$this->assignRef('filter_featured', $filter_featured);
 		$this->assignRef('filter_trash', $filter_trash);

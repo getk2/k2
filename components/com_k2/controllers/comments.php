@@ -127,7 +127,7 @@ class K2ControllerComments extends K2Controller
         K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
         $model = K2Model::getInstance('Comments', 'K2Model');
         $model->save();
-        $mainframe->close();
+        $application->close();
     }
 
     function report()
@@ -160,13 +160,13 @@ class K2ControllerComments extends K2Controller
         {
             echo JText::_('K2_REPORT_SUBMITTED');
         }
-        $mainframe = JFactory::getApplication();
-        $mainframe->close();
+        $application = JFactory::getApplication();
+        $application->close();
     }
 
     function reportSpammer()
     {
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $user = JFactory::getUser();
         $format = JRequest::getVar('format');
         $errors = array();
@@ -191,7 +191,7 @@ class K2ControllerComments extends K2Controller
         if ($format == 'raw')
         {
             $response = '';
-            $messages = $mainframe->getMessageQueue();
+            $messages = $application->getMessageQueue();
             foreach ($messages as $message)
             {
                 $response .= $message['message']."\n";

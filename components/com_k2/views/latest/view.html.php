@@ -17,7 +17,7 @@ class K2ViewLatest extends K2View
 
     function display($tpl = null)
     {
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $params = K2HelperUtilities::getParams('com_k2');
         $document = JFactory::getDocument();
         $user = JFactory::getUser();
@@ -49,7 +49,7 @@ class K2ViewLatest extends K2View
                     if (K2_JVERSION != '15')
                     {
                         $accessCheck = in_array($category->access, $user->getAuthorisedViewLevels());
-                        if ($mainframe->getLanguageFilter())
+                        if ($application->getLanguageFilter())
                         {
                             $languageTag = JFactory::getLanguage()->getTag();
                             $languageCheck = in_array($category->language, array($languageTag, '*'));
@@ -230,13 +230,13 @@ class K2ViewLatest extends K2View
 		$browserTitle = $params->get('page_title');
 		if (K2_JVERSION != '15')
 		{
-			if ($mainframe->getCfg('sitename_pagetitles', 0) == 1)
+			if ($application->getCfg('sitename_pagetitles', 0) == 1)
             {
-                $browserTitle = JText::sprintf('JPAGETITLE', $mainframe->getCfg('sitename'), $params->get('page_title'));
+                $browserTitle = JText::sprintf('JPAGETITLE', $application->getCfg('sitename'), $params->get('page_title'));
             }
-            elseif ($mainframe->getCfg('sitename_pagetitles', 0) == 2)
+            elseif ($application->getCfg('sitename_pagetitles', 0) == 2)
             {
-                $browserTitle = JText::sprintf('JPAGETITLE', $params->get('page_title'), $mainframe->getCfg('sitename'));
+                $browserTitle = JText::sprintf('JPAGETITLE', $params->get('page_title'), $application->getCfg('sitename'));
             }
 		}
 		$document->setTitle($browserTitle);
@@ -284,19 +284,19 @@ class K2ViewLatest extends K2View
         $this->_addPath('template', JPATH_COMPONENT.'/templates/default');
 
         //Look for overrides in template folder (K2 template structure)
-        $this->_addPath('template', JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2/templates');
-        $this->_addPath('template', JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2/templates/default');
+        $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates');
+        $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/default');
 
         //Look for overrides in template folder (Joomla template structure)
-        $this->_addPath('template', JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2/default');
-        $this->_addPath('template', JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2');
+        $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/default');
+        $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2');
 
         // Look for specific K2 theme files
         if ($theme)
         {
             $this->_addPath('template', JPATH_COMPONENT.'/templates/'.$theme);
-            $this->_addPath('template', JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2/templates/'.$theme);
-            $this->_addPath('template', JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2/'.$theme);
+            $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/'.$theme);
+            $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/'.$theme);
         }
 
         //Assign params

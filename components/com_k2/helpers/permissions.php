@@ -142,19 +142,19 @@ class K2HelperPermissions
         }
         $task = JRequest::getCmd('task');
         $user = JFactory::getUser();
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         if ($user->guest && ($task == 'add' || $task == 'edit'))
         {
             $uri = JURI::getInstance();
             $return = base64_encode($uri->toString());
-			$mainframe->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
+			$application->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
             if (K2_JVERSION == '15')
             {
-                $mainframe->redirect('index.php?option=com_user&view=login&return='.$return.'&tmpl=component');
+                $application->redirect('index.php?option=com_user&view=login&return='.$return.'&tmpl=component');
             }
             else
             {
-                $mainframe->redirect('index.php?option=com_users&view=login&return='.$return.'&tmpl=component');
+                $application->redirect('index.php?option=com_users&view=login&return='.$return.'&tmpl=component');
             }
         }
 

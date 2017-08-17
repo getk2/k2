@@ -26,15 +26,15 @@ class K2ControllerExtraFieldsGroups extends K2Controller
 
     function add()
     {
-        $mainframe = JFactory::getApplication();
-        $mainframe->redirect('index.php?option=com_k2&view=extrafieldsgroup');
+        $application = JFactory::getApplication();
+        $application->redirect('index.php?option=com_k2&view=extrafieldsgroup');
     }
 
     function edit()
     {
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
-        $mainframe->redirect('index.php?option=com_k2&view=extrafieldsgroup&cid='.$cid[0]);
+        $application->redirect('index.php?option=com_k2&view=extrafieldsgroup&cid='.$cid[0]);
     }
 
     function remove()

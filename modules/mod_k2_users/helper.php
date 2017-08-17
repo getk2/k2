@@ -19,7 +19,7 @@ class modK2UsersHelper
     public static function getUsers(&$params)
     {
 
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $user = JFactory::getUser();
         $aid = (int)$user->get('aid');
         $db = JFactory::getDbo();
@@ -35,7 +35,7 @@ class modK2UsersHelper
             $itemAccessCheck = " i.access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
             $categoryAccessCheck = " c.access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
             $languageCheck = '';
-            if ($mainframe->getLanguageFilter())
+            if ($application->getLanguageFilter())
             {
                 $languageTag = JFactory::getLanguage()->getTag();
                 $languageCheck = " AND c.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") AND i.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').")";

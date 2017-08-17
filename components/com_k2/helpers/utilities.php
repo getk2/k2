@@ -19,13 +19,13 @@ class K2HelperUtilities
 
 		jimport('joomla.filesystem.folder');
 		jimport('joomla.application.component.model');
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$params = K2HelperUtilities::getParams('com_k2');
 
 		// Check for placeholder overrides
-		if (JFile::exists(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/images/placeholder/user.png'))
+		if (JFile::exists(JPATH_SITE.'/templates/'.$application->getTemplate().'/images/placeholder/user.png'))
 		{
-			$avatarPath = 'templates/'.$mainframe->getTemplate().'/images/placeholder/user.png';
+			$avatarPath = 'templates/'.$application->getTemplate().'/images/placeholder/user.png';
 		}
 		else
 		{
@@ -84,7 +84,7 @@ class K2HelperUtilities
 	{
 
 		jimport('joomla.filesystem.file');
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$categoryImage = NULL;
 		if (!empty($image))
 		{
@@ -94,9 +94,9 @@ class K2HelperUtilities
 		{
 			if ($params->get('catImageDefault'))
 			{
-				if (JFile::exists(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/images/placeholder/category.png'))
+				if (JFile::exists(JPATH_SITE.'/templates/'.$application->getTemplate().'/images/placeholder/category.png'))
 				{
-					$categoryImage = JURI::root(true).'/templates/'.$mainframe->getTemplate().'/images/placeholder/category.png';
+					$categoryImage = JURI::root(true).'/templates/'.$application->getTemplate().'/images/placeholder/category.png';
 				}
 				else
 				{

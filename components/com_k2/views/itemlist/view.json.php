@@ -18,7 +18,7 @@ class K2ViewItemlist extends K2View
     function display($tpl = null)
     {
 
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $params = K2HelperUtilities::getParams('com_k2');
         $document = JFactory::getDocument();
         if (K2_JVERSION == '15')
@@ -98,7 +98,7 @@ class K2ViewItemlist extends K2View
                         {
                             JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
                         }
-                        $languageFilter = $mainframe->getLanguageFilter();
+                        $languageFilter = $application->getLanguageFilter();
                         $languageTag = JFactory::getLanguage()->getTag();
                         if ($languageFilter && $category->language != $languageTag && $category->language != '*')
                         {

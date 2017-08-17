@@ -43,18 +43,18 @@ class plgUserK2 extends JPlugin
 	function onAfterStoreUser($user, $isnew, $success, $msg)
 	{
 
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
 		jimport('joomla.filesystem.file');
 		$task = JRequest::getCmd('task');
 
-		if ($mainframe->isSite() && ($task == 'activate' || $isnew) && $params->get('stopForumSpam'))
+		if ($application->isSite() && ($task == 'activate' || $isnew) && $params->get('stopForumSpam'))
 		{
 			$this->checkSpammer($user);
 
 		}
 
-		if ($mainframe->isSite() && $task != 'activate' && JRequest::getInt('K2UserForm'))
+		if ($application->isSite() && $task != 'activate' && JRequest::getInt('K2UserForm'))
 		{
 			JPlugin::loadLanguage('com_k2');
 			JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
@@ -119,7 +119,7 @@ class plgUserK2 extends JPlugin
 				}
 				else
 				{
-					$mainframe->enqueueMessage(JText::_('K2_COULD_NOT_UPLOAD_YOUR_IMAGE').$handle->error, 'notice');
+					$application->enqueueMessage(JText::_('K2_COULD_NOT_UPLOAD_YOUR_IMAGE').$handle->error, 'notice');
 				}
 				$image = $handle->file_dst_name;
 			}
@@ -151,13 +151,13 @@ class plgUserK2 extends JPlugin
 				{
 					if (JURI::isInternal($url))
 					{
-						$mainframe->enqueueMessage(JText::_('K2_YOUR_SETTINGS_HAVE_BEEN_SAVED'));
-						$mainframe->redirect($url);
+						$application->enqueueMessage(JText::_('K2_YOUR_SETTINGS_HAVE_BEEN_SAVED'));
+						$application->redirect($url);
 					}
 				}
 				else
 				{
-					$mainframe->setUserState('com_users.edit.profile.redirect', $url);
+					$application->setUserState('com_users.edit.profile.redirect', $url);
 				}
 			}
 		}
@@ -167,8 +167,8 @@ class plgUserK2 extends JPlugin
 	function onLoginUser($user, $options)
 	{
 		$params = JComponentHelper::getParams('com_k2');
-		$mainframe = JFactory::getApplication();
-		if ($mainframe->isSite())
+		$application = JFactory::getApplication();
+		if ($application->isSite())
 		{
 			// Get the user id
 			$db = JFactory::getDbo();
@@ -208,8 +208,8 @@ class plgUserK2 extends JPlugin
 	function onLogoutUser($user)
 	{
 		$params = JComponentHelper::getParams('com_k2');
-		$mainframe = JFactory::getApplication();
-		if ($mainframe->isSite() && $params->get('cookieDomain'))
+		$application = JFactory::getApplication();
+		if ($application->isSite() && $params->get('cookieDomain'))
 		{
 			setcookie("userID", "", time() - 3600, '/', $params->get('cookieDomain'), 0);
 		}
@@ -219,7 +219,7 @@ class plgUserK2 extends JPlugin
 	function onAfterDeleteUser($user, $succes, $msg)
 	{
 
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$db = JFactory::getDbo();
 		$query = "DELETE FROM #__k2_users WHERE userID={$user['id']}";
 		$db->setQuery($query);
@@ -228,10 +228,10 @@ class plgUserK2 extends JPlugin
 
 	function onBeforeStoreUser($user, $isNew)
 	{
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
 		$session = JFactory::getSession();
-		if ($params->get('K2UserProfile') && $isNew && $params->get('recaptchaOnRegistration') && $mainframe->isSite() && !$session->get('socialConnectData'))
+		if ($params->get('K2UserProfile') && $isNew && $params->get('recaptchaOnRegistration') && $application->isSite() && !$session->get('socialConnectData'))
 		{
 			if($params->get('recaptchaV2'))
 			{
@@ -246,8 +246,8 @@ class plgUserK2 extends JPlugin
 					{
 						$url = 'index.php?option=com_user&view=register';
 					}
-					$mainframe->enqueueMessage(JText::_('K2_COULD_NOT_VERIFY_THAT_YOU_ARE_NOT_A_ROBOT'), 'error');
-					$mainframe->redirect($url);
+					$application->enqueueMessage(JText::_('K2_COULD_NOT_VERIFY_THAT_YOU_ARE_NOT_A_ROBOT'), 'error');
+					$application->redirect($url);
 				}
 			}
 			else
@@ -270,8 +270,8 @@ class plgUserK2 extends JPlugin
 					{
 						$url = 'index.php?option=com_user&view=register';
 					}
-					$mainframe->enqueueMessage(JText::_('K2_THE_WORDS_YOU_TYPED_DID_NOT_MATCH_THE_ONES_DISPLAYED_PLEASE_TRY_AGAIN'), 'error');
-					$mainframe->redirect($url);
+					$application->enqueueMessage(JText::_('K2_THE_WORDS_YOU_TYPED_DID_NOT_MATCH_THE_ONES_DISPLAYED_PLEASE_TRY_AGAIN'), 'error');
+					$application->redirect($url);
 				}
 			}
 		}

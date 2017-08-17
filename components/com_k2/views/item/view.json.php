@@ -18,7 +18,7 @@ class K2ViewItem extends K2View
     function display($tpl = null)
     {
 
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $user = JFactory::getUser();
         $document = JFactory::getDocument();
         if (K2_JVERSION == '15')

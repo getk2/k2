@@ -19,7 +19,7 @@ class modK2CommentsHelper
 	public static function getLatestComments(&$params)
 	{
 
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$limit = $params->get('comments_limit', '5');
 		$user = JFactory::getUser();
 		$aid = $user->get('aid');
@@ -79,7 +79,7 @@ class modK2CommentsHelper
 
 		if (K2_JVERSION != '15')
 		{
-			if ($mainframe->getLanguageFilter())
+			if ($application->getLanguageFilter())
 			{
 				$languageTag = JFactory::getLanguage()->getTag();
 				$query .= " AND category.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") AND i.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').")";

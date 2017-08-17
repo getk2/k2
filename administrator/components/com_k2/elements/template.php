@@ -17,7 +17,7 @@ class K2ElementTemplate extends K2Element
     public function fetchElementValue($name, $value, &$node, $control_name)
     {
         jimport('joomla.filesystem.folder');
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $fieldName = (K2_JVERSION != '15') ? $name : $control_name.'['.$name.']';
         $componentPath = JPATH_SITE.'/components/com_k2/templates';
         $componentFolders = JFolder::folders($componentPath);

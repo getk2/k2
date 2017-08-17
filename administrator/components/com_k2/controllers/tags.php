@@ -44,15 +44,15 @@ class K2ControllerTags extends K2Controller
 
 	function add()
 	{
-		$mainframe = JFactory::getApplication();
-		$mainframe->redirect('index.php?option=com_k2&view=tag');
+		$application = JFactory::getApplication();
+		$application->redirect('index.php?option=com_k2&view=tag');
 	}
 
 	function edit()
 	{
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$cid = JRequest::getVar('cid');
-		$mainframe->redirect('index.php?option=com_k2&view=tag&cid='.$cid[0]);
+		$application->redirect('index.php?option=com_k2&view=tag&cid='.$cid[0]);
 	}
 
 	function element()

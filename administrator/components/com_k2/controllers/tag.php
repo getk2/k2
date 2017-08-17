@@ -35,8 +35,8 @@ class K2ControllerTag extends K2Controller
 
     function cancel()
     {
-        $mainframe = JFactory::getApplication();
-        $mainframe->redirect('index.php?option=com_k2&view=tags');
+        $application = JFactory::getApplication();
+        $application->redirect('index.php?option=com_k2&view=tags');
     }
 
 }

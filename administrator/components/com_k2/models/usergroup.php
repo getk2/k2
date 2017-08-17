@@ -27,25 +27,25 @@ class K2ModelUserGroup extends K2Model
 
     function save()
     {
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $row = JTable::getInstance('K2UserGroup', 'Table');
 
         if (!$row->bind(JRequest::get('post')))
         {
-        	$mainframe->enqueueMessage($row->getError(), 'error');
-            $mainframe->redirect('index.php?option=com_k2&view=usergroups');
+        	$application->enqueueMessage($row->getError(), 'error');
+            $application->redirect('index.php?option=com_k2&view=usergroups');
         }
 
         if (!$row->check())
         {
-        	$mainframe->enqueueMessage($row->getError(), 'error');
-            $mainframe->redirect('index.php?option=com_k2&view=usergroup&cid='.$row->id);
+        	$application->enqueueMessage($row->getError(), 'error');
+            $application->redirect('index.php?option=com_k2&view=usergroup&cid='.$row->id);
         }
 
         if (!$row->store())
         {
-        	$mainframe->enqueueMessage($row->getError(), 'error');
-            $mainframe->redirect('index.php?option=com_k2&view=usergroups');
+        	$application->enqueueMessage($row->getError(), 'error');
+            $application->redirect('index.php?option=com_k2&view=usergroups');
         }
 
         $cache = JFactory::getCache('com_k2');
@@ -63,8 +63,8 @@ class K2ModelUserGroup extends K2Model
                 $link = 'index.php?option=com_k2&view=usergroups';
                 break;
         }
-		$mainframe->enqueueMessage($msg);
-        $mainframe->redirect($link);
+		$application->enqueueMessage($msg);
+        $application->redirect($link);
     }
 
 }

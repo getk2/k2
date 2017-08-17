@@ -34,7 +34,7 @@ class K2ControllerMedia extends K2Controller
 			JSession::checkToken('get') or jexit(JText::_('JINVALID_TOKEN'));
 		}
 
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_media');
 		$root = $params->get('file_path', 'media');
 		$folder = JRequest::getVar('folder', $root, 'default', 'path');
@@ -65,7 +65,7 @@ class K2ControllerMedia extends K2Controller
 
 		function access($attr, $path, $data, $volume)
 		{
-			$mainframe = JFactory::getApplication();
+			$application = JFactory::getApplication();
 
 			// Hide PHP files
 			$ext = strtolower(JFile::getExt(basename($path)));
@@ -88,10 +88,10 @@ class K2ControllerMedia extends K2Controller
 					return true;
 					break;
 				case 'write' :
-					return ($mainframe->isSite()) ? false : true;
+					return ($application->isSite()) ? false : true;
 					break;
 				case 'locked' :
-					return ($mainframe->isSite()) ? true : false;
+					return ($application->isSite()) ? true : false;
 					break;
 				case 'hidden' :
 					return false;
@@ -100,7 +100,7 @@ class K2ControllerMedia extends K2Controller
 
 		}
 
-		if ($mainframe->isAdmin())
+		if ($application->isAdmin())
 		{
 			$permissions = array('read' => true, 'write' => true);
 		}

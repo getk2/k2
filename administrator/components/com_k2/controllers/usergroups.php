@@ -23,15 +23,15 @@ class K2ControllerUserGroups extends K2Controller
 
     function edit()
     {
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
-        $mainframe->redirect('index.php?option=com_k2&view=usergroup&cid='.$cid[0]);
+        $application->redirect('index.php?option=com_k2&view=usergroup&cid='.$cid[0]);
     }
 
     function add()
     {
-        $mainframe = JFactory::getApplication();
-        $mainframe->redirect('index.php?option=com_k2&view=usergroup');
+        $application = JFactory::getApplication();
+        $application->redirect('index.php?option=com_k2&view=usergroup');
     }
 
     function remove()

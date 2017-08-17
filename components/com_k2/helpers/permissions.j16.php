@@ -18,7 +18,7 @@ class K2HelperPermissions
     public static function checkPermissions()
     {
         // Set some variables
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $user = JFactory::getUser();
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
@@ -29,12 +29,12 @@ class K2HelperPermissions
         if (!$user->authorise('core.manage', $option))
         {
             JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
-            $mainframe->redirect('index.php');
+            $application->redirect('index.php');
         }
 
         // Determine action for rest checks
         $action = false;
-        if ($mainframe->isAdmin() && $view != '' && $view != 'info')
+        if ($application->isAdmin() && $view != '' && $view != 'info')
         {
             switch($task)
             {
@@ -78,7 +78,7 @@ class K2HelperPermissions
                 if (!$user->authorise($action, $option))
                 {
                     JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
-                    $mainframe->redirect('index.php?option=com_k2');
+                    $application->redirect('index.php?option=com_k2');
                 }
             }
 

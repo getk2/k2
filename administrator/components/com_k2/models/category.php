@@ -27,7 +27,7 @@ class K2ModelCategory extends K2Model
 
     function save()
     {
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         jimport('joomla.filesystem.file');
         require_once(JPATH_SITE.'/media/k2/assets/vendors/verot/class.upload.php/src/class.upload.php');
         $row = JTable::getInstance('K2Category', 'Table');
@@ -35,8 +35,8 @@ class K2ModelCategory extends K2Model
 
         if (!$row->bind(JRequest::get('post')))
         {
-        	$mainframe->enqueueMessage($row->getError(), 'error');
-            $mainframe->redirect('index.php?option=com_k2&view=categories');
+        	$application->enqueueMessage($row->getError(), 'error');
+            $application->redirect('index.php?option=com_k2&view=categories');
         }
 
         $isNew = ($row->id) ? false : true;
@@ -60,14 +60,14 @@ class K2ModelCategory extends K2Model
 
         if (!$row->check())
         {
-        	$mainframe->enqueueMessage($row->getError(), 'error');
-            $mainframe->redirect('index.php?option=com_k2&view=category&cid='.$row->id);
+        	$application->enqueueMessage($row->getError(), 'error');
+            $application->redirect('index.php?option=com_k2&view=category&cid='.$row->id);
         }
 
         if (!$row->store())
         {
-        	$mainframe->enqueueMessage($row->getError(), 'error');
-            $mainframe->redirect('index.php?option=com_k2&view=categories');
+        	$application->enqueueMessage($row->getError(), 'error');
+            $application->redirect('index.php?option=com_k2&view=categories');
         }
 
         if (!$params->get('disableCompactOrdering'))
@@ -110,8 +110,8 @@ class K2ModelCategory extends K2Model
             }
             else
             {
-            	$mainframe->enqueueMessage($handle->error, 'error');
-                $mainframe->redirect('index.php?option=com_k2&view=categories');
+            	$application->enqueueMessage($handle->error, 'error');
+                $application->redirect('index.php?option=com_k2&view=categories');
             }
             $row->image = $handle->file_dst_name;
         }
@@ -129,8 +129,8 @@ class K2ModelCategory extends K2Model
 
         if (!$row->store())
         {
-        	$mainframe->enqueueMessage($row->getError(), 'error');
-            $mainframe->redirect('index.php?option=com_k2&view=categories');
+        	$application->enqueueMessage($row->getError(), 'error');
+            $application->redirect('index.php?option=com_k2&view=categories');
         }
 
         //Trigger the finder after save event
@@ -157,8 +157,8 @@ class K2ModelCategory extends K2Model
                 $link = 'index.php?option=com_k2&view=categories';
                 break;
         }
-		$mainframe->enqueueMessage($msg);
-        $mainframe->redirect($link);
+		$application->enqueueMessage($msg);
+        $application->redirect($link);
     }
 
     function countCategoryItems($catid, $trash = 0)

@@ -20,20 +20,20 @@ class K2ModelExtraFields extends K2Model
     function getData()
     {
 
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
         $db = JFactory::getDbo();
-        $limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
-        $limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
-        $filter_order = $mainframe->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'groupname', 'cmd');
-        $filter_order_Dir = $mainframe->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', 'ASC', 'word');
-        $filter_state = $mainframe->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
-        $search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
+        $limit = $application->getUserStateFromRequest('global.list.limit', 'limit', $application->getCfg('list_limit'), 'int');
+        $limitstart = $application->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
+        $filter_order = $application->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'groupname', 'cmd');
+        $filter_order_Dir = $application->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', 'ASC', 'word');
+        $filter_state = $application->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
+        $search = $application->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
         $search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
-        $filter_type = $mainframe->getUserStateFromRequest($option.$view.'filter_type', 'filter_type', '', 'string');
-        $filter_group = $mainframe->getUserStateFromRequest($option.$view.'filter_group', 'filter_group', 0, 'int');
+        $filter_type = $application->getUserStateFromRequest($option.$view.'filter_type', 'filter_type', '', 'string');
+        $filter_group = $application->getUserStateFromRequest($option.$view.'filter_group', 'filter_group', 0, 'int');
 
         $query = "SELECT exf.*, exfg.name as groupname FROM #__k2_extra_fields AS exf LEFT JOIN #__k2_extra_fields_groups exfg ON exf.group=exfg.id  WHERE exf.id>0";
 
@@ -80,18 +80,18 @@ class K2ModelExtraFields extends K2Model
     function getTotal()
     {
 
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
         $db = JFactory::getDbo();
-        $limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
-        $limitstart = $mainframe->getUserStateFromRequest($option.'.limitstart', 'limitstart', 0, 'int');
-        $filter_state = $mainframe->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', 1, 'int');
-        $search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
+        $limit = $application->getUserStateFromRequest('global.list.limit', 'limit', $application->getCfg('list_limit'), 'int');
+        $limitstart = $application->getUserStateFromRequest($option.'.limitstart', 'limitstart', 0, 'int');
+        $filter_state = $application->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', 1, 'int');
+        $search = $application->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
         $search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
-        $filter_type = $mainframe->getUserStateFromRequest($option.$view.'filter_type', 'filter_type', '', 'string');
-        $filter_group = $mainframe->getUserStateFromRequest($option.$view.'filter_group', 'filter_group', '', 'string');
+        $filter_type = $application->getUserStateFromRequest($option.$view.'filter_type', 'filter_type', '', 'string');
+        $filter_group = $application->getUserStateFromRequest($option.$view.'filter_group', 'filter_group', '', 'string');
 
         $query = "SELECT COUNT(*) FROM #__k2_extra_fields WHERE id>0";
 
@@ -124,7 +124,7 @@ class K2ModelExtraFields extends K2Model
     function publish()
     {
 
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
         foreach ($cid as $id)
         {
@@ -135,13 +135,13 @@ class K2ModelExtraFields extends K2Model
         }
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
-        $mainframe->redirect('index.php?option=com_k2&view=extrafields');
+        $application->redirect('index.php?option=com_k2&view=extrafields');
     }
 
     function unpublish()
     {
 
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
         foreach ($cid as $id)
         {
@@ -152,13 +152,13 @@ class K2ModelExtraFields extends K2Model
         }
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
-        $mainframe->redirect('index.php?option=com_k2&view=extrafields');
+        $application->redirect('index.php?option=com_k2&view=extrafields');
     }
 
     function saveorder()
     {
 
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $db = JFactory::getDbo();
         $cid = JRequest::getVar('cid', array(0), 'post', 'array');
         $total = count($cid);
@@ -197,7 +197,7 @@ class K2ModelExtraFields extends K2Model
     function orderup()
     {
 
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
         $row = JTable::getInstance('K2ExtraField', 'Table');
         $row->load($cid[0]);
@@ -208,14 +208,14 @@ class K2ModelExtraFields extends K2Model
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         $msg = JText::_('K2_NEW_ORDERING_SAVED');
-		$mainframe->enqueueMessage($msg);
-        $mainframe->redirect('index.php?option=com_k2&view=extrafields');
+		$application->enqueueMessage($msg);
+        $application->redirect('index.php?option=com_k2&view=extrafields');
     }
 
     function orderdown()
     {
 
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
         $row = JTable::getInstance('K2ExtraField', 'Table');
         $row->load($cid[0]);
@@ -226,14 +226,14 @@ class K2ModelExtraFields extends K2Model
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         $msg = JText::_('K2_NEW_ORDERING_SAVED');
-		$mainframe->enqueueMessage($msg);
-        $mainframe->redirect('index.php?option=com_k2&view=extrafields');
+		$application->enqueueMessage($msg);
+        $application->redirect('index.php?option=com_k2&view=extrafields');
     }
 
     function remove()
     {
 
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $db = JFactory::getDbo();
         $cid = JRequest::getVar('cid');
         foreach ($cid as $id)
@@ -244,8 +244,8 @@ class K2ModelExtraFields extends K2Model
         }
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
-		$mainframe->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
-        $mainframe->redirect('index.php?option=com_k2&view=extrafields');
+		$application->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
+        $application->redirect('index.php?option=com_k2&view=extrafields');
     }
 
     function getExtraFieldsGroup()
@@ -260,11 +260,11 @@ class K2ModelExtraFields extends K2Model
     function getGroups($filter = false)
     {
 
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
-        $limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
-        $limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
+        $limit = $application->getUserStateFromRequest('global.list.limit', 'limit', $application->getCfg('list_limit'), 'int');
+        $limitstart = $application->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
         $db = JFactory::getDbo();
         $query = "SELECT * FROM #__k2_extra_fields_groups ORDER BY `name`";
         if ($filter)
@@ -308,25 +308,25 @@ class K2ModelExtraFields extends K2Model
     function saveGroup()
     {
 
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $id = JRequest::getInt('id');
         $row = JTable::getInstance('K2ExtraFieldsGroup', 'Table');
         if (!$row->bind(JRequest::get('post')))
         {
-        	$mainframe->enqueueMessage($row->getError(), 'error');
-            $mainframe->redirect('index.php?option=com_k2&view=extrafieldsgroups');
+        	$application->enqueueMessage($row->getError(), 'error');
+            $application->redirect('index.php?option=com_k2&view=extrafieldsgroups');
         }
 
         if (!$row->check())
         {
-        	$mainframe->enqueueMessage($row->getError(), 'error');
-            $mainframe->redirect('index.php?option=com_k2&view=extrafieldsgroup&cid='.$row->id);
+        	$application->enqueueMessage($row->getError(), 'error');
+            $application->redirect('index.php?option=com_k2&view=extrafieldsgroup&cid='.$row->id);
         }
 
         if (!$row->store())
         {
-        	$mainframe->enqueueMessage($row->getError(), 'error');
-            $mainframe->redirect('index.php?option=com_k2&view=extrafieldsgroup');
+        	$application->enqueueMessage($row->getError(), 'error');
+            $application->redirect('index.php?option=com_k2&view=extrafieldsgroup');
         }
 
         switch(JRequest::getCmd('task'))
@@ -344,14 +344,14 @@ class K2ModelExtraFields extends K2Model
 
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
-		$mainframe->enqueueMessage($msg);
-        $mainframe->redirect($link);
+		$application->enqueueMessage($msg);
+        $application->redirect($link);
     }
 
     function removeGroups()
     {
 
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $db = &JFactory::getDbo();
         $cid = JRequest::getVar('cid');
         JArrayHelper::toInteger($cid);
@@ -366,8 +366,8 @@ class K2ModelExtraFields extends K2Model
         }
         $cache = &JFactory::getCache('com_k2');
         $cache->clean();
-		$mainframe->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
-        $mainframe->redirect('index.php?option=com_k2&view=extrafieldsgroups');
+		$application->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
+        $application->redirect('index.php?option=com_k2&view=extrafieldsgroups');
     }
 
 }

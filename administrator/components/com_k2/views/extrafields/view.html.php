@@ -16,20 +16,20 @@ class K2ViewExtraFields extends K2View
 {
     function display($tpl = null)
     {
-        $mainframe = JFactory::getApplication();
+        $application = JFactory::getApplication();
         $user = JFactory::getUser();
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
-        $limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
-        $limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
-        $filter_order = $mainframe->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'groupname', 'cmd');
-        $filter_order_Dir = $mainframe->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', 'ASC', 'word');
-        $filter_state = $mainframe->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
-        $search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
+        $limit = $application->getUserStateFromRequest('global.list.limit', 'limit', $application->getCfg('list_limit'), 'int');
+        $limitstart = $application->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
+        $filter_order = $application->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'groupname', 'cmd');
+        $filter_order_Dir = $application->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', 'ASC', 'word');
+        $filter_state = $application->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
+        $search = $application->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
         $search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
-        $filter_type = $mainframe->getUserStateFromRequest($option.$view.'filter_type', 'filter_type', '', 'string');
-        $filter_group = $mainframe->getUserStateFromRequest($option.$view.'filter_group', 'filter_group', '', 'string');
+        $filter_type = $application->getUserStateFromRequest($option.$view.'filter_type', 'filter_type', '', 'string');
+        $filter_group = $application->getUserStateFromRequest($option.$view.'filter_group', 'filter_group', '', 'string');
 
         $model = $this->getModel();
         $total = $model->getTotal();

@@ -74,8 +74,8 @@ class K2ModelItemlist extends K2Model
 
 			$query .= "i.access IN(".implode(',', $user->getAuthorisedViewLevels()).")"." AND i.trash = 0"." AND c.published = 1"." AND c.access IN(".implode(',', $user->getAuthorisedViewLevels()).")"." AND c.trash = 0";
 
-			$mainframe = JFactory::getApplication();
-			$languageFilter = $mainframe->getLanguageFilter();
+			$application = JFactory::getApplication();
+			$languageFilter = $application->getLanguageFilter();
 			if ($languageFilter)
 			{
 				$languageTag = JFactory::getLanguage()->getTag();
@@ -395,8 +395,8 @@ class K2ModelItemlist extends K2Model
 		{
 			$query .= "i.access IN(".implode(',', $user->getAuthorisedViewLevels()).")"." AND i.trash = 0"." AND c.published = 1"." AND c.access IN(".implode(',', $user->getAuthorisedViewLevels()).")"." AND c.trash = 0";
 
-			$mainframe = JFactory::getApplication();
-			$languageFilter = $mainframe->getLanguageFilter();
+			$application = JFactory::getApplication();
+			$languageFilter = $application->getLanguageFilter();
 			if ($languageFilter)
 			{
 				$languageTag = JFactory::getLanguage()->getTag();
@@ -601,7 +601,7 @@ class K2ModelItemlist extends K2Model
 
 	function getCategoryTree($categories, $associations = false)
 	{
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$db = JFactory::getDbo();
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
@@ -613,7 +613,7 @@ class K2ModelItemlist extends K2Model
 		$categories = array_unique($categories);
 		sort($categories);
 		$key = implode('|', $categories);
-		$clientID = $mainframe->getClientId();
+		$clientID = $application->getClientId();
 		static $K2CategoryTreeInstances = array();
 		if (isset($K2CategoryTreeInstances[$clientID]) && array_key_exists($key, $K2CategoryTreeInstances[$clientID]))
 		{
@@ -626,7 +626,7 @@ class K2ModelItemlist extends K2Model
 						FROM #__k2_categories
 						WHERE parent IN (".implode(',', $array).")
 						AND id NOT IN (".implode(',', $array).") ";
-			if ($mainframe->isSite())
+			if ($application->isSite())
 			{
 				$query .= "
 								AND published=1
@@ -634,7 +634,7 @@ class K2ModelItemlist extends K2Model
 				if (K2_JVERSION != '15')
 				{
 					$query .= " AND access IN(".implode(',', $user->getAuthorisedViewLevels()).")";
-					if ($mainframe->getLanguageFilter())
+					if ($application->getLanguageFilter())
 					{
 						$query .= " AND language IN(".$db->Quote(JFactory::getLanguage()->getTag()).", ".$db->Quote('*').")";
 					}
@@ -705,7 +705,7 @@ class K2ModelItemlist extends K2Model
 	function getCategoryFirstChildren($catid, $ordering = NULL)
 	{
 
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$user = JFactory::getUser();
 		$aid = $user->get('aid');
 		$db = JFactory::getDbo();
@@ -714,7 +714,7 @@ class K2ModelItemlist extends K2Model
 		if (K2_JVERSION != '15')
 		{
 			$query .= " AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
-			if ($mainframe->getLanguageFilter())
+			if ($application->getLanguageFilter())
 			{
 				$query .= " AND language IN(".$db->Quote(JFactory::getLanguage()->getTag()).", ".$db->Quote('*').")";
 			}
@@ -764,7 +764,7 @@ class K2ModelItemlist extends K2Model
 	function countCategoryItems($id)
 	{
 
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
 		$id = (int)$id;
@@ -780,7 +780,7 @@ class K2ModelItemlist extends K2Model
 		if (K2_JVERSION != '15')
 		{
 			$query .= " AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
-			if ($mainframe->getLanguageFilter())
+			if ($application->getLanguageFilter())
 			{
 				$query .= " AND language IN(".$db->Quote(JFactory::getLanguage()->getTag()).", ".$db->Quote('*').")";
 			}
@@ -814,7 +814,7 @@ class K2ModelItemlist extends K2Model
 	function getAuthorLatest($itemID, $limit, $userID)
 	{
 
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
 		$itemID = (int)$itemID;
@@ -836,7 +836,7 @@ class K2ModelItemlist extends K2Model
 		if (K2_JVERSION != '15')
 		{
 			$query .= " AND i.access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
-			if ($mainframe->getLanguageFilter())
+			if ($application->getLanguageFilter())
 			{
 				$query .= " AND i.language IN(".$db->Quote(JFactory::getLanguage()->getTag()).", ".$db->Quote('*').")";
 			}
@@ -854,7 +854,7 @@ class K2ModelItemlist extends K2Model
 		if (K2_JVERSION != '15')
 		{
 			$query .= " AND c.access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
-			if ($mainframe->getLanguageFilter())
+			if ($application->getLanguageFilter())
 			{
 				$query .= " AND c.language IN(".$db->Quote(JFactory::getLanguage()->getTag()).", ".$db->Quote('*').")";
 			}
@@ -904,7 +904,7 @@ class K2ModelItemlist extends K2Model
 	function getRelatedItems($itemID, $tags, $params)
 	{
 
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$limit = $params->get('itemRelatedLimit', 10);
 		$itemID = (int)$itemID;
 		foreach ($tags as $tag)
@@ -940,7 +940,7 @@ class K2ModelItemlist extends K2Model
 		if (K2_JVERSION != '15')
 		{
 			$query .= " AND i.access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
-			if ($mainframe->getLanguageFilter())
+			if ($application->getLanguageFilter())
 			{
 				$query .= " AND i.language IN(".$db->Quote(JFactory::getLanguage()->getTag()).", ".$db->Quote('*').")";
 			}
@@ -957,7 +957,7 @@ class K2ModelItemlist extends K2Model
 		if (K2_JVERSION != '15')
 		{
 			$query .= " AND c.access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
-			if ($mainframe->getLanguageFilter())
+			if ($application->getLanguageFilter())
 			{
 				$query .= " AND c.language IN(".$db->Quote(JFactory::getLanguage()->getTag()).", ".$db->Quote('*').")";
 			}
@@ -1217,20 +1217,20 @@ class K2ModelItemlist extends K2Model
 
 	public function getCategoriesTree()
 	{
-		$mainframe = JFactory::getApplication();
-		$clientID = $mainframe->getClientId();
+		$application = JFactory::getApplication();
+		$clientID = $application->getClientId();
 		$db = JFactory::getDbo();
 		$user = JFactory::getUser();
 		$aid = (int)$user->get('aid');
 
 		$query = "SELECT id, name,  parent	FROM #__k2_categories";
-		if ($mainframe->isSite())
+		if ($application->isSite())
 		{
 			$query .= " WHERE published=1  AND trash=0";
 			if (K2_JVERSION != '15')
 			{
 				$query .= " AND access IN(".implode(',', $user->getAuthorisedViewLevels()).")";
-				if ($mainframe->getLanguageFilter())
+				if ($application->getLanguageFilter())
 				{
 					$query .= " AND language IN(".$db->Quote(JFactory::getLanguage()->getTag()).", ".$db->Quote('*').")";
 				}

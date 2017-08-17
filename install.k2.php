@@ -91,8 +91,8 @@ if (version_compare(JVERSION, '1.6.0', '<'))
     }
     else
     {
-        $mainframe = JFactory::getApplication();
-        $mainframe->enqueueMessage(JText::_('K2_NOTICE_K2_CONTENT_ELEMENTS_FOR_JOOMFISH_WERE_NOT_COPIED_TO_THE_RELATED_FOLDER_BECAUSE_JOOMFISH_WAS_NOT_FOUND_ON_YOUR_SYSTEM'));
+        $application = JFactory::getApplication();
+        $application->enqueueMessage(JText::_('K2_NOTICE_K2_CONTENT_ELEMENTS_FOR_JOOMFISH_WERE_NOT_COPIED_TO_THE_RELATED_FOLDER_BECAUSE_JOOMFISH_WAS_NOT_FOUND_ON_YOUR_SYSTEM'));
     }
 
     if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_k2/admin.k2.php'))

@@ -71,7 +71,7 @@ class K2ControllerItem extends K2Controller
 
 	function extraFields()
 	{
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$itemID = JRequest::getInt('id', NULL);
 		$categoryModel = $this->getModel('category');
 		$category = $categoryModel->getData();
@@ -110,7 +110,7 @@ class K2ControllerItem extends K2Controller
 
 		echo $output;
 
-		$mainframe->close();
+		$application->close();
 	}
 
 	function resetHits()

@@ -16,7 +16,7 @@ class K2ViewComments extends K2View
 {
 	function display($tpl = null)
 	{
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$document = JFactory::getDocument();
 		$user = JFactory::getUser();
 		$option = JRequest::getCmd('option');
@@ -24,17 +24,17 @@ class K2ViewComments extends K2View
 
 		$params = JComponentHelper::getParams('com_k2');
 
-		$limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
-		$limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
-		$filter_order = $mainframe->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'c.id', 'cmd');
-		$filter_order_Dir = $mainframe->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', 'DESC', 'word');
-		$filter_state = $mainframe->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
-		$filter_category = $mainframe->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
-		$filter_author = $mainframe->getUserStateFromRequest($option.$view.'filter_author', 'filter_author', 0, 'int');
-		$search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
+		$limit = $application->getUserStateFromRequest('global.list.limit', 'limit', $application->getCfg('list_limit'), 'int');
+		$limitstart = $application->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
+		$filter_order = $application->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'c.id', 'cmd');
+		$filter_order_Dir = $application->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', 'DESC', 'word');
+		$filter_state = $application->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
+		$filter_category = $application->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
+		$filter_author = $application->getUserStateFromRequest($option.$view.'filter_author', 'filter_author', 0, 'int');
+		$search = $application->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
 		$search = JString::strtolower($search);
 		$search = trim(preg_replace('/[^\p{L}\p{N}\s\"\.\@\-_]/u', '', $search));
-		if ($mainframe->isSite())
+		if ($application->isSite())
 		{
 			$filter_author = $user->id;
 			JRequest::setVar('filter_author', $user->id);
@@ -94,7 +94,7 @@ class K2ViewComments extends K2View
 			JRequest::setVar('limitstart', $limitstart);
 		}
 
-		$reportLink = $mainframe->isAdmin() ? 'index.php?option=com_k2&view=user&task=report&id=' : 'index.php?option=com_k2&view=comments&task=reportSpammer&id=';
+		$reportLink = $application->isAdmin() ? 'index.php?option=com_k2&view=user&task=report&id=' : 'index.php?option=com_k2&view=comments&task=reportSpammer&id=';
 		foreach ($comments as $key => $comment)
 		{
 			$comment->reportUserLink = false;
@@ -110,7 +110,7 @@ class K2ViewComments extends K2View
 				{
 					$comment->userName = $commenter->name;
 				}
-				if ($mainframe->isSite())
+				if ($application->isSite())
 				{
 					if (K2_JVERSION != '15')
 					{
@@ -133,7 +133,7 @@ class K2ViewComments extends K2View
 				}
 			}
 
-			if ($mainframe->isSite())
+			if ($application->isSite())
 			{
 				$comment->status = K2HelperHTML::stateToggler($comment, $key);
 			}
@@ -193,7 +193,7 @@ class K2ViewComments extends K2View
 		}
 		$lists['authors'] = JHTML::_('select.genericlist', $options, 'filter_author', '', 'value', 'text', $filter_author);
 		$this->assignRef('lists', $lists);
-		$this->assignRef('mainframe', $mainframe);
+		$this->assignRef('mainframe', $application);
 
 		if (K2_JVERSION != '15')
 		{
@@ -205,7 +205,7 @@ class K2ViewComments extends K2View
 		}
 		$this->assignRef('dateFormat', $dateFormat);
 
-		if ($mainframe->isAdmin())
+		if ($application->isAdmin())
 		{
 			// Toolbar
 			$toolbar = JToolBar::getInstance('toolbar');
@@ -231,7 +231,7 @@ class K2ViewComments extends K2View
 			$this->assignRef('userEditLink', $userEditLink);
 		}
 
-        if ($mainframe->isSite())
+        if ($application->isSite())
         {
 	        // Enforce the "system" template in the frontend
 	        JRequest::setVar('template', 'system');

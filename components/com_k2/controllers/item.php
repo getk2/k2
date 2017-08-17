@@ -87,7 +87,7 @@ class K2ControllerItem extends K2Controller
 	function edit()
 	{
 		JRequest::setVar('tmpl', 'component');
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$params = K2HelperUtilities::getParams('com_k2');
 		$language = JFactory::getLanguage();
 		$language->load('com_k2', JPATH_ADMINISTRATOR);
@@ -115,19 +115,19 @@ class K2ControllerItem extends K2Controller
 		$view->addTemplatePath(JPATH_COMPONENT.'/templates/default');
 
 		// Look for overrides in template folder (K2 template structure)
-		$view->addTemplatePath(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2/templates');
-		$view->addTemplatePath(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2/templates/default');
+		$view->addTemplatePath(JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates');
+		$view->addTemplatePath(JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/default');
 
 		// Look for overrides in template folder (Joomla template structure)
-		$view->addTemplatePath(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2/default');
-		$view->addTemplatePath(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2');
+		$view->addTemplatePath(JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/default');
+		$view->addTemplatePath(JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2');
 
 		// Look for specific K2 theme files
 		if ($params->get('theme'))
 		{
 			$view->addTemplatePath(JPATH_COMPONENT.'/templates/'.$params->get('theme'));
-			$view->addTemplatePath(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2/templates/'.$params->get('theme'));
-			$view->addTemplatePath(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/html/com_k2/'.$params->get('theme'));
+			$view->addTemplatePath(JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/'.$params->get('theme'));
+			$view->addTemplatePath(JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/'.$params->get('theme'));
 		}
 		$view->display();
 	}
@@ -145,7 +145,7 @@ class K2ControllerItem extends K2Controller
 
 	function save()
 	{
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		JRequest::checkToken() or jexit('Invalid Token');
 		JRequest::setVar('tmpl', 'component');
 		$language = JFactory::getLanguage();
@@ -153,7 +153,7 @@ class K2ControllerItem extends K2Controller
 		require_once(JPATH_COMPONENT_ADMINISTRATOR.'/models/item.php');
 		$model = new K2ModelItem;
 		$model->save(true);
-		$mainframe->close();
+		$application->close();
 
 	}
 
@@ -192,7 +192,7 @@ class K2ControllerItem extends K2Controller
 
 	function extraFields()
 	{
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$language = JFactory::getLanguage();
 		$language->load('com_k2', JPATH_ADMINISTRATOR);
 		$itemID = JRequest::getInt('id', NULL);
@@ -233,7 +233,7 @@ class K2ControllerItem extends K2Controller
 			$output = JText::_('K2_THIS_CATEGORY_DOESNT_HAVE_ASSIGNED_EXTRA_FIELDS');
 
 		echo $output;
-		$mainframe->close();
+		$application->close();
 	}
 
 	function checkin()
@@ -307,9 +307,9 @@ class K2ControllerItem extends K2Controller
 			{
 				$url = 'index.php?option=com_user&view=login&return='.base64_encode($uri->toString());
 			}
-			$mainframe = JFactory::getApplication();
-			$mainframe->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
-			$mainframe->redirect(JRoute::_($url, false));
+			$application = JFactory::getApplication();
+			$application->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
+			$application->redirect(JRoute::_($url, false));
 		}
 
 		K2HelperHTML::loadHeadIncludes(false, true, true);
@@ -350,7 +350,7 @@ class K2ControllerItem extends K2Controller
 			JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
 		}
 		JRequest::setVar('tmpl', 'component');
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
 		$language = JFactory::getLanguage();
 		$language->load('com_k2', JPATH_ADMINISTRATOR);

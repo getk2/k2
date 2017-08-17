@@ -20,7 +20,7 @@ class modK2ContentHelper
 	{
 
 		jimport('joomla.filesystem.file');
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$limit = $params->get('itemCount', 5);
 		$cid = $params->get('category_id', NULL);
 		$ordering = $params->get('itemsOrdering', '');
@@ -77,7 +77,7 @@ class modK2ContentHelper
 				AND i.id={$id}";
 				if (K2_JVERSION != '15')
 				{
-					if ($mainframe->getLanguageFilter())
+					if ($application->getLanguageFilter())
 					{
 						$languageTag = JFactory::getLanguage()->getTag();
 						$query .= " AND c.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") AND i.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').")";
@@ -199,7 +199,7 @@ class modK2ContentHelper
 
 			if (K2_JVERSION != '15')
 			{
-				if ($mainframe->getLanguageFilter())
+				if ($application->getLanguageFilter())
 				{
 					$languageTag = JFactory::getLanguage()->getTag();
 					$query .= " AND c.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") AND i.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').")";

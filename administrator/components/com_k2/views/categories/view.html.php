@@ -16,7 +16,7 @@ class K2ViewCategories extends K2View
 {
 	function display($tpl = null)
 	{
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$document = JFactory::getDocument();
 		$user = JFactory::getUser();
 
@@ -25,15 +25,15 @@ class K2ViewCategories extends K2View
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
 
-		$limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
-		$limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
-		$filter_order = $mainframe->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'c.ordering', 'cmd');
-		$filter_order_Dir = $mainframe->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', '', 'word');
-		$filter_trash = $mainframe->getUserStateFromRequest($option.$view.'filter_trash', 'filter_trash', 0, 'int');
-		$filter_category = $mainframe->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
-		$filter_state = $mainframe->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
-		$language = $mainframe->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
-		$search = $mainframe->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
+		$limit = $application->getUserStateFromRequest('global.list.limit', 'limit', $application->getCfg('list_limit'), 'int');
+		$limitstart = $application->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
+		$filter_order = $application->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'c.ordering', 'cmd');
+		$filter_order_Dir = $application->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', '', 'word');
+		$filter_trash = $application->getUserStateFromRequest($option.$view.'filter_trash', 'filter_trash', 0, 'int');
+		$filter_category = $application->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
+		$filter_state = $application->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
+		$language = $application->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
+		$search = $application->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
 		$search = JString::strtolower($search);
 		$search = trim(preg_replace('/[^\p{L}\p{N}\s\"\-_]/u', '', $search));
 		$model = $this->getModel();
@@ -126,7 +126,7 @@ class K2ViewCategories extends K2View
 
 		// Show message for trash entries in Categories
 		if(count($categories) && $filter_trash) {
-			$mainframe->enqueueMessage(JText::_('K2_ALL_TRASHED_ITEMS_IN_A_CATEGORY_MUST_BE_DELETED_FIRST'));
+			$application->enqueueMessage(JText::_('K2_ALL_TRASHED_ITEMS_IN_A_CATEGORY_MUST_BE_DELETED_FIRST'));
 		}
 
 		jimport('joomla.html.pagination');
@@ -242,7 +242,7 @@ class K2ViewCategories extends K2View
 		K2HelperHTML::subMenu();
 
 		$this->assignRef('filter_trash', $filter_trash);
-		$template = $mainframe->getTemplate();
+		$template = $application->getTemplate();
 		$this->assignRef('template', $template);
 		$ordering = (($this->lists['order'] == 'c.ordering' || $this->lists['order'] == 'c.parent, c.ordering') && (!$this->filter_trash));
 		$this->assignRef('ordering', $ordering);
