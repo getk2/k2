@@ -1124,9 +1124,9 @@ function initExtraFieldsEditor() {
         } else {
             new nicEditor({
                 fullPanel : true,
-                maxHeight : 180,
+                maxHeight : 200,
                 width : '100%',
-                iconsPath : K2SitePath + 'media/k2/assets/images/nicedit/nicEditorIcons.gif'
+                iconsPath : K2SitePath + 'media/k2/assets/vendors/bkirchoff/nicedit/nicEditorIcons.gif'
             }).panelInstance($K2(this).attr('id'));
         }
     });

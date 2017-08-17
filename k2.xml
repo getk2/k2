@@ -112,8 +112,7 @@
 			<fieldset>
 				<!-- ######################### CSS Settings ######################### -->
 				<field name="enable_css" default="1" />
-				<field name="jQueryHandling" default="1.8remote" />
-				<field name="backendJQueryHandling" default="remote" />
+				<field name="jQueryHandling" default="1.9.1" />
 				<!-- ######################### Layout and view options for user (blog/profile) pages ######################### -->
 				<field name="userName" default="1" />
 				<field name="userImage" default="1" />

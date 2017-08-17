@@ -7,24 +7,14 @@
 			<option value="0">K2_DISABLE</option>
 			<option value="1">K2_ENABLE</option>
 		</param>
-		<param menu="hide" name="jQueryHandling" type="list" default="1.8remote" label="K2_COM_JQUERY_HANDLING" description="K2_COM_JQUERY_HANDLING_DESC">
+		<param menu="hide" name="jQueryHandling" type="list" default="1.9.1" label="K2_COM_JQUERY_HANDLING" description="K2_COM_JQUERY_HANDLING_DESC">
 			<option value="0">K2_COM_DO_NOT_LOAD_THE_JQUERY_LIBRARY</option>
-			<option value="1.7.2">K2_COM_LOAD_V1_7_LOCAL_COPY</option>
-			<option value="1.7remote">K2_COM_LOAD_V1_7_X_LATEST_REMOTE_COPY</option>
-			<option value="1.8.3">K2_COM_LOAD_V1_8_LOCAL_COPY</option>
-			<option value="1.8remote">K2_COM_LOAD_V1_8_X_LATEST_REMOTE_COPY</option>
-			<option value="1.9.1">K2_COM_LOAD_V1_9_LOCAL_COPY</option>
-			<option value="1.9.1remote">K2_COM_LOAD_V1_9_X_LATEST_REMOTE_COPY</option>
-			<option value="1.10.2">K2_COM_LOAD_V1_10_LOCAL_COPY</option>
-			<option value="1.10.2remote">K2_COM_LOAD_V1_10_X_LATEST_REMOTE_COPY</option>
-			<option value="1.11.3">K2_COM_LOAD_V1_11_LOCAL_COPY</option>
-			<option value="1.11.3remote">K2_COM_LOAD_V1_11_X_LATEST_REMOTE_COPY</option>
-			<option value="1.12.4">K2_COM_LOAD_V1_12_LOCAL_COPY</option>
-			<option value="1.12.4remote">K2_COM_LOAD_V1_12_X_LATEST_REMOTE_COPY</option>
-		</param>
-		<param menu="hide" name="backendJQueryHandling" type="list" default="remote" label="K2_COM_BACKEND_JQUERY_HANDLING" description="K2_COM_BACKEND_JQUERY_HANDLING_DESC">
-			<option value="local">K2_COM_LOAD_A_LOCAL_COPY</option>
-			<option value="remote">K2_COM_LOAD_A_REMOTE_COPY</option>
+			<option value="1.7.2">K2_COM_LOAD_V1_7</option>
+			<option value="1.8.3">K2_COM_LOAD_V1_8</option>
+			<option value="1.9.1">K2_COM_LOAD_V1_9</option>
+			<option value="1.10.2">K2_COM_LOAD_V1_10</option>
+			<option value="1.11.3">K2_COM_LOAD_V1_11</option>
+			<option value="1.12.4">K2_COM_LOAD_V1_12</option>
 		</param>
 
 		<!-- ######################### Layout and view options for user (blog/profile) pages ######################### -->
@@ -550,24 +540,14 @@
 			<option value="0">K2_DISABLE</option>
 			<option value="1">K2_ENABLE</option>
 		</field>
-		<field menu="hide" name="jQueryHandling" type="list" default="1.8remote" label="K2_COM_JQUERY_HANDLING" description="K2_COM_JQUERY_HANDLING_DESC">
+		<field menu="hide" name="jQueryHandling" type="list" default="1.9.1" label="K2_COM_JQUERY_HANDLING" description="K2_COM_JQUERY_HANDLING_DESC">
 			<option value="0">K2_COM_DO_NOT_LOAD_THE_JQUERY_LIBRARY</option>
-			<option value="1.7.2">K2_COM_LOAD_V1_7_LOCAL_COPY</option>
-			<option value="1.7remote">K2_COM_LOAD_V1_7_X_LATEST_REMOTE_COPY</option>
-			<option value="1.8.3">K2_COM_LOAD_V1_8_LOCAL_COPY</option>
-			<option value="1.8remote">K2_COM_LOAD_V1_8_X_LATEST_REMOTE_COPY</option>
-			<option value="1.9.1">K2_COM_LOAD_V1_9_LOCAL_COPY</option>
-			<option value="1.9.1remote">K2_COM_LOAD_V1_9_X_LATEST_REMOTE_COPY</option>
-			<option value="1.10.2">K2_COM_LOAD_V1_10_LOCAL_COPY</option>
-			<option value="1.10.2remote">K2_COM_LOAD_V1_10_X_LATEST_REMOTE_COPY</option>
-			<option value="1.11.3">K2_COM_LOAD_V1_11_LOCAL_COPY</option>
-			<option value="1.11.3remote">K2_COM_LOAD_V1_11_X_LATEST_REMOTE_COPY</option>
-			<option value="1.12.4">K2_COM_LOAD_V1_12_LOCAL_COPY</option>
-			<option value="1.12.4remote">K2_COM_LOAD_V1_12_X_LATEST_REMOTE_COPY</option>
-		</field>
-		<field menu="hide" name="backendJQueryHandling" type="list" default="remote" label="K2_COM_BACKEND_JQUERY_HANDLING" description="K2_COM_BACKEND_JQUERY_HANDLING_DESC">
-			<option value="local">K2_COM_LOAD_A_LOCAL_COPY</option>
-			<option value="remote">K2_COM_LOAD_A_REMOTE_COPY</option>
+			<option value="1.7.2">K2_COM_LOAD_V1_7</option>
+			<option value="1.8.3">K2_COM_LOAD_V1_8</option>
+			<option value="1.9.1">K2_COM_LOAD_V1_9</option>
+			<option value="1.10.2">K2_COM_LOAD_V1_10</option>
+			<option value="1.11.3">K2_COM_LOAD_V1_11</option>
+			<option value="1.12.4">K2_COM_LOAD_V1_12</option>
 		</field>
 
 		<!-- ######################### Layout and view options for user (blog/profile) pages ######################### -->

@@ -58,8 +58,7 @@ class K2HelperHTML
 		$view = strtolower(JRequest::getWord('view', 'items'));
 		$task = JRequest::getCmd('task');
 
-		$jQueryHandling = $params->get('jQueryHandling', '1.8remote');
-		$backendJQueryHandling = $params->get('backendJQueryHandling', 'remote');
+		$jQueryHandling = $params->get('jQueryHandling', '1.9.1');
 
 		if ($document->getType() == 'html')
 		{
@@ -90,40 +89,26 @@ class K2HelperHTML
 				// Frontend
 				if ($application->isSite())
 				{
-					if ($jQueryHandling && JString::strpos($jQueryHandling, 'remote') !== false)
-					{
-						$document->addScript('https://ajax.googleapis.com/ajax/libs/jquery/'.str_replace('remote', '', $jQueryHandling).'/jquery.min.js');
-					}
-					else if ($jQueryHandling && JString::strpos($jQueryHandling, 'remote') === false)
-					{
-						$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-'.$jQueryHandling.'.min.js');
-					}
+					// B/C for saved old options
+					if ($jQueryHandling == '1.7remote') $jQueryHandling = '1.7.2';
+					if ($jQueryHandling == '1.8remote') $jQueryHandling = '1.8.3';
+					if ($jQueryHandling == '1.9remote') $jQueryHandling = '1.9.1';
+					if ($jQueryHandling == '1.10remote') $jQueryHandling = '1.10.2';
+					if ($jQueryHandling == '1.11remote') $jQueryHandling = '1.11.3';
+					if ($jQueryHandling == '1.12remote') $jQueryHandling = '1.12.4';
+					$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/'.$jQueryHandling.'/jquery.min.js');
 				}
 
 				// Backend
 				if ($application->isAdmin())
 				{
-					if ($backendJQueryHandling == 'remote')
+					if (($option == 'com_k2' && ($view == 'item' || $view == 'category')) || $option == 'com_menus')
 					{
-						if (($option == 'com_k2' && ($view == 'item' || $view == 'category')) || $option == 'com_menus')
-						{
-							$document->addScript('https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
-						}
-						else
-						{
-							$document->addScript('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js');
-						}
+						$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js');
 					}
 					else
 					{
-						if (($option == 'com_k2' && ($view == 'item' || $view == 'category')) || $option == 'com_menus')
-						{
-							$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-1.8.3.min.js');
-						}
-						else
-						{
-							$document->addScript(JURI::root(true).'/media/k2/assets/js/jquery-1.12.4.min.js');
-						}
+						$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js');
 					}
 				}
 			}
@@ -174,7 +159,7 @@ class K2HelperHTML
 				// NicEdit
 				if ($option="com_k2" && $view == 'item')
 				{
-					$document->addScript(JURI::root(true).'/media/k2/assets/js/nicEdit.js?v='.K2_CURRENT_VERSION);
+					$document->addScript(JURI::root(true).'/media/k2/assets/vendors/bkirchoff/nicedit/nicEdit.js?v='.K2_CURRENT_VERSION);
 				}
 
 				// Media (elFinder)
@@ -203,9 +188,9 @@ class K2HelperHTML
 				// Flatpickr
 				if ($view == 'item' || $view == 'extrafield')
 				{
-					$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/flatpickr/2.6.1/flatpickr.min.css');
-					$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/flatpickr/2.6.1/flatpickr.min.js');
-					$document->addCustomTag('<!--[if IE 9]><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/2.6.1/ie.css" /><![endif]-->');
+					$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/flatpickr/2.6.3/flatpickr.min.css');
+					$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/flatpickr/2.6.3/flatpickr.min.js');
+					$document->addCustomTag('<!--[if IE 9]><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/2.6.3/ie.css" /><![endif]-->');
 				}
 
 				// Magnific Popup
@@ -221,8 +206,8 @@ class K2HelperHTML
 				// Fancybox
 				if ($view == 'item' || $view == 'items' || $view == 'categories')
 				{
-					$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.css');
-					$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js');
+					$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css');
+					$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js');
 				}
 
 				$isBackend = ($application->isAdmin()) ? ' k2IsBackend' : '';

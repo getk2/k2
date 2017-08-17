@@ -106,8 +106,7 @@
 	<params>
 		<!-- ######################### CSS Settings ######################### -->
 		<param name="enable_css" default="1" />
-		<param name="jQueryHandling" default="1.8remote" />
-		<param name="backendJQueryHandling" default="remote" />
+		<param name="jQueryHandling" default="1.9.1" />
 		<!-- ######################### Layout and view options for user (blog/profile) pages ######################### -->
 		<param name="userName" default="1" />
 		<param name="userImage" default="1" />

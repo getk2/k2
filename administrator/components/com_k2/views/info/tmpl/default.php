@@ -57,43 +57,67 @@ defined('_JEXEC') or die;
 										<td><a target="_blank" href="https://github.com/verot/class.upload.php">class.upload.php</a></td>
 										<td>0.34dev</td>
 										<td><?php echo JText::_('K2_PHP_CLASS'); ?></td>
-										<td><?php echo JText::_('K2_GNUGPL'); ?></td>
+										<td>GNU/GPL v2</td>
+									</tr>
+									<tr>
+										<td><a target="_blank" href="https://github.com/achingbrain/php5-akismet">PHP5 Akismet</a></td>
+										<td>0.5</td>
+										<td><?php echo JText::_('K2_PHP_CLASS'); ?></td>
+										<td>BSD</td>
 									</tr>
 									<tr>
 										<td><a target="_blank" href="https://jquery.com/">jQuery</a></td>
-										<td>1.7.x - 1.12.x</td>
+										<td>1.7.2 - 1.12.4</td>
 										<td><?php echo JText::_('K2_JS_LIB'); ?></td>
-										<td><?php echo JText::_('K2_MIT'); ?></td>
+										<td>MIT</td>
 									</tr>
 									<tr>
 										<td><a target="_blank" href="https://jqueryui.com/">jQuery UI</a></td>
 										<td>1.8.24 &amp; 1.11.4</td>
 										<td><?php echo JText::_('K2_JS_LIB'); ?></td>
-										<td><?php echo JText::_('K2_MIT'); ?></td>
+										<td>MIT</td>
 									</tr>
 									<tr>
 										<td><a target="_blank" href="https://github.com/Studio-42/elFinder">elFinder</a></td>
 										<td>2.1.28</td>
 										<td><?php echo JText::_('K2_INFO_FILE_MANAGER'); ?></td>
-										<td><?php echo JText::_('K2_BSD'); ?></td>
+										<td>BSD</td>
 									</tr>
 									<tr>
 										<td><a target="_blank" href="https://github.com/select2/select2">Select2</a></td>
 										<td>4.0.3</td>
 										<td><?php echo JText::_('K2_INFO_REPLACEMENT_FOR_SELECT_BOXES'); ?></td>
-										<td><?php echo JText::_('K2_MIT'); ?></td>
+										<td>MIT</td>
 									</tr>
 									<tr>
 										<td><a target="_blank" href="https://github.com/dimsemenov/Magnific-Popup">Magnific Popup</a></td>
 										<td>1.1.0</td>
 										<td><?php echo JText::_('K2_INFO_RESPONSIVE_LIGHTBOX_DIALOG_SCRIPT'); ?></td>
-										<td><?php echo JText::_('K2_MIT'); ?></td>
+										<td>MIT</td>
+									</tr>
+									<tr>
+										<td><a target="_blank" href="https://github.com/fancyapps/fancybox">fancyBox</a></td>
+										<td>3.1.20</td>
+										<td><?php echo JText::_('K2_INFO_RESPONSIVE_LIGHTBOX_DIALOG_SCRIPT'); ?></td>
+										<td>GNU/GPL v3</td>
+									</tr>
+									<tr>
+										<td><a target="_blank" href="https://github.com/chmln/flatpickr">flatpickr</a></td>
+										<td>2.6.3</td>
+										<td><?php echo JText::_('K2_INFO_DATETIME_PICKER'); ?></td>
+										<td>MIT</td>
 									</tr>
 									<tr>
 										<td><a target="_blank" href="http://www.nicedit.com/">NicEdit</a></td>
 										<td>0.9 r25</td>
 										<td><?php echo JText::_('K2_INFO_WYSIWYG_EDITOR'); ?></td>
-										<td><?php echo JText::_('K2_MIT'); ?></td>
+										<td>MIT</td>
+									</tr>
+									<tr>
+										<td><a target="_blank" href="https://github.com/thesabbir/simple-line-icons">Simple Line Icons</a></td>
+										<td>2.4.1</td>
+										<td><?php echo JText::_('K2_INFO_ICONS'); ?></td>
+										<td>MIT</td>
 									</tr>
 								</tbody>
 							</table>
