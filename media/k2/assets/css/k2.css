@@ -631,8 +631,8 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 .com_k2.view-extrafields,
 .com_k2.view-extrafieldsgroups {background:#f0f2f2;}
 
-.isJ30 .row-fluid .span10 {margin-left:0;min-width:85%;}
-.isJ30 .row-fluid .span2 {min-width:15%;}
+.isJ30 .row-fluid .span2 {min-width:12%;}
+.isJ30 .row-fluid .span10 {margin-left:0;min-width:88%;}
 
 /* Lists - filters */
 #k2AdminContainer .k2AdminTableFilters {margin-bottom:0;width:100%;border-left:1px solid #dbdcdc;}
@@ -858,7 +858,7 @@ input#k2ImageBrowseServer {width:auto;height:30px;line-height:8px;margin-left:10
 /* Params */
 .oldJ .xmlParamsFields ul li {padding:10px 20px 10px 0;}
 
-/* Joomla 1.5! specific */
+/* Joomla 1.5 specific */
 #system-message dd.message {overflow:hidden;margin-top:0;}
 .isJ15 div.header {padding:0;margin:12px;}
 .isJ15 div.toolbar {margin-top:10px;}
