@@ -14,7 +14,6 @@ jimport('joomla.plugin.plugin');
 
 class plgUserK2 extends JPlugin
 {
-
 	function onUserAfterSave($user, $isnew, $success, $msg)
 	{
 		return $this->onAfterStoreUser($user, $isnew, $success, $msg);
@@ -42,16 +41,14 @@ class plgUserK2 extends JPlugin
 
 	function onAfterStoreUser($user, $isnew, $success, $msg)
 	{
-
+		jimport('joomla.filesystem.file');
 		$application = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
-		jimport('joomla.filesystem.file');
 		$task = JRequest::getCmd('task');
 
 		if ($application->isSite() && ($task == 'activate' || $isnew) && $params->get('stopForumSpam'))
 		{
 			$this->checkSpammer($user);
-
 		}
 
 		if ($application->isSite() && $task != 'activate' && JRequest::getInt('K2UserForm'))
@@ -140,7 +137,6 @@ class plgUserK2 extends JPlugin
 			}
 
 			$itemid = $params->get('redirect');
-
 			if (!$isnew && $itemid)
 			{
 				$menu = JSite::getMenu();
@@ -161,7 +157,6 @@ class plgUserK2 extends JPlugin
 				}
 			}
 		}
-
 	}
 
 	function onLoginUser($user, $options)
@@ -218,7 +213,6 @@ class plgUserK2 extends JPlugin
 
 	function onAfterDeleteUser($user, $succes, $msg)
 	{
-
 		$application = JFactory::getApplication();
 		$db = JFactory::getDbo();
 		$query = "DELETE FROM #__k2_users WHERE userID={$user['id']}";
@@ -279,7 +273,6 @@ class plgUserK2 extends JPlugin
 
 	function getK2UserID($id)
 	{
-
 		$db = JFactory::getDbo();
 		$query = "SELECT id FROM #__k2_users WHERE userID={$id}";
 		$db->setQuery($query);
@@ -315,5 +308,4 @@ class plgUserK2 extends JPlugin
 			}
 		}
 	}
-
 }
