@@ -213,7 +213,7 @@ class K2HelperHTML
 				$document->addStyleDeclaration('
 					/* K2 - Magnific Popup Overrides */
 					.mfp-iframe-holder {padding:10px;}
-					.mfp-iframe-holder .mfp-content{max-width:auto;height:100%;}
+					.mfp-iframe-holder .mfp-content {max-width:100%;width:100%;height:100%;}
 					.mfp-iframe-scaler iframe {background:#fff;padding:10px;box-sizing:border-box;box-shadow:none;}
 				');
 				$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js');
@@ -255,7 +255,7 @@ class K2HelperHTML
 					$document->addStyleDeclaration('
 						/* K2 - Magnific Popup Overrides */
 						.mfp-iframe-holder {padding:10px;}
-						.mfp-iframe-holder .mfp-content{max-width:auto;height:100%;}
+						.mfp-iframe-holder .mfp-content {max-width:100%;width:100%;height:100%;}
 						.mfp-iframe-scaler iframe {background:#fff;padding:10px;box-sizing:border-box;box-shadow:none;}
 					');
 					$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js');
