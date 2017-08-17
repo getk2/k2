@@ -12,7 +12,6 @@ defined('_JEXEC') or die;
 
 class K2HelperHTML
 {
-
 	public static function subMenu()
 	{
 		$user = JFactory::getUser();
@@ -51,11 +50,14 @@ class K2HelperHTML
 	{
 		$application = JFactory::getApplication();
 		$document = JFactory::getDocument();
-		$option = JRequest::getCmd('option');
-		$view = JRequest::getWord('view', 'items');
-		$view = JString::strtolower($view);
-		$task = JRequest::getCmd('task');
+		$user = JFactory::getUser();
+
 		$params = K2HelperUtilities::getParams('com_k2');
+
+		$option = JRequest::getCmd('option');
+		$view = strtolower(JRequest::getWord('view', 'items'));
+		$task = JRequest::getCmd('task');
+
 		$jQueryHandling = $params->get('jQueryHandling', '1.8remote');
 		$backendJQueryHandling = $params->get('backendJQueryHandling', 'remote');
 
@@ -168,6 +170,8 @@ class K2HelperHTML
 		        	var K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST = '".JText::_('K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST')."';
 		        ");
 				$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v='.K2_CURRENT_VERSION.'&amp;sitepath='.JURI::root(true).'/');
+
+				// NicEdit
 				if ($option="com_k2" && $view == 'item')
 				{
 					$document->addScript(JURI::root(true).'/media/k2/assets/js/nicEdit.js?v='.K2_CURRENT_VERSION);
@@ -176,9 +180,9 @@ class K2HelperHTML
 				// Media (elFinder)
 				if ($view == 'media')
 				{
-					$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/elfinder.min.css?v='.K2_CURRENT_VERSION);
-			        $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/theme.css?v='.K2_CURRENT_VERSION);
-					$document->addScript(JURI::root(true).'/media/k2/assets/js/elfinder.min.js?v='.K2_CURRENT_VERSION);
+					$document->addStyleSheet(JURI::root(true).'/media/k2/assets/vendors/studio-42/elfinder/css/elfinder.min.css?v='.K2_CURRENT_VERSION);
+			        $document->addStyleSheet(JURI::root(true).'/media/k2/assets/vendors/studio-42/elfinder/css/theme.css?v='.K2_CURRENT_VERSION);
+					$document->addScript(JURI::root(true).'/media/k2/assets/vendors/studio-42/elfinder/js/elfinder.min.js?v='.K2_CURRENT_VERSION);
 				}
 				else
 				{
@@ -205,8 +209,8 @@ class K2HelperHTML
 				}
 
 				// Magnific Popup
-				$document->addStyleSheet(JUri::root(true).'/media/k2/assets/css/magnific-popup.css?v='.K2_CURRENT_VERSION);
-				//$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css');
+				$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css');
+				$document->addStyleDeclaration('.mfp-iframe-holder .mfp-content {line-height:0 !important;width:100% !important;height:100% !important;} /* Updated iframe dimensions for better editing */');
 				$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js');
 
 				// Fancybox
@@ -235,9 +239,91 @@ class K2HelperHTML
 					})();
 
 				');
+			}
 
+			// Frontend only
+			if($application->isSite())
+			{
+				// Magnific Popup
+				if (!$user->guest || ($option == 'com_k2' && $view == 'item') || defined('K2_JOOMLA_MODAL_REQUIRED')){
+					$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css');
+					$document->addStyleDeclaration('.mfp-iframe-holder .mfp-content {line-height:0 !important;width:100% !important;height:100% !important;} /* Updated iframe dimensions for better editing */');
+					$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js');
+				}
+
+				// JS
+				$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.frontend.js?v='.K2_CURRENT_VERSION.'&amp;sitepath='.JURI::root(true).'/');
+
+				// Google Search (deprecated - to remove)
+				if ($task == 'search' && $params->get('googleSearch'))
+				{
+					$language = JFactory::getLanguage();
+					$lang = $language->getTag();
+					// Fallback to the new container ID without breaking things
+					$googleSearchContainerID = trim($params->get('googleSearchContainer', 'k2GoogleSearchContainer'));
+					if($googleSearchContainerID == 'k2Container'){
+						$googleSearchContainerID = 'k2GoogleSearchContainer';
+					}
+					$document->addScript('https://www.google.com/jsapi');
+					$document->addScriptDeclaration('
+						google.load("search", "1", {"language" : "'.$lang.'"});
+						function OnLoad(){
+							var searchControl = new google.search.SearchControl();
+							var siteSearch = new google.search.WebSearch();
+							siteSearch.setUserDefinedLabel("'.$application->getCfg('sitename').'");
+							siteSearch.setUserDefinedClassSuffix("k2");
+							options = new google.search.SearcherOptions();
+							options.setExpandMode(google.search.SearchControl.EXPAND_MODE_OPEN);
+							siteSearch.setSiteRestriction("'.JURI::root().'");
+							searchControl.addSearcher(siteSearch, options);
+							searchControl.setResultSetSize(google.search.Search.LARGE_RESULTSET);
+							searchControl.setLinkTarget(google.search.Search.LINK_TARGET_SELF);
+							searchControl.draw(document.getElementById("'.$googleSearchContainerID.'"));
+							searchControl.execute("'.JRequest::getString('searchword').'");
+						}
+						google.setOnLoadCallback(OnLoad);
+					');
+				}
+
+				// Add related CSS to the <head>
+				if ($params->get('enable_css'))
+				{
+					jimport('joomla.filesystem.file');
+
+					// k2.fonts.css
+					if (JFile::exists(JPATH_SITE.'/templates/'.$application->getTemplate().'/css/k2.fonts.css'))
+					{
+						$document->addStyleSheet(JURI::root(true).'/templates/'.$application->getTemplate().'/css/k2.fonts.css?v='.K2_CURRENT_VERSION);
+					}
+					else
+					{
+						$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.fonts.css?v='.K2_CURRENT_VERSION);
+					}
+
+					// k2.css
+					if (JFile::exists(JPATH_SITE.'/templates/'.$application->getTemplate().'/css/k2.css'))
+					{
+						$document->addStyleSheet(JURI::root(true).'/templates/'.$application->getTemplate().'/css/k2.css?v='.K2_CURRENT_VERSION);
+					}
+					else
+					{
+						$document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.css?v='.K2_CURRENT_VERSION);
+					}
+
+					// k2.print.css
+					if (JRequest::getInt('print') == 1)
+					{
+						if (JFile::exists(JPATH_SITE.'/templates/'.$application->getTemplate().'/css/k2.print.css'))
+						{
+							$document->addStyleSheet(JURI::root(true).'/templates/'.$application->getTemplate().'/css/k2.print.css?v='.K2_CURRENT_VERSION, 'text/css', 'print');
+						}
+						else
+						{
+							$document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.print.css?v='.K2_CURRENT_VERSION, 'text/css', 'print');
+						}
+					}
+				}
 			}
 		}
 	}
-
 }

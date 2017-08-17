@@ -99,7 +99,7 @@ class plgUserK2 extends JPlugin
 
 			$file = JRequest::get('files');
 
-			require_once(JPATH_SITE.'/media/k2/assets/vendors/verot/class.upload.php/class.upload.php');
+			require_once(JPATH_SITE.'/media/k2/assets/vendors/verot/class.upload.php/src/class.upload.php');
 			$savepath = JPATH_ROOT.'/media/k2/users/';
 
 			if (isset($file['image']) && $file['image']['error'] == 0 && !JRequest::getBool('del_image'))

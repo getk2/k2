@@ -19,39 +19,39 @@ class K2ElementK2Users extends K2Element
 		$fieldName = (K2_JVERSION != '15') ? $name.'[]' : $control_name.'['.$name.'][]';
 
 		$document = JFactory::getDocument();
-		$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/select2.min.css?v='.K2_CURRENT_VERSION);
-		$document->addScript(JURI::root(true).'/media/k2/assets/js/select2.min.js?v='.K2_CURRENT_VERSION);
+		$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css');
+		$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js');
 		$document->addScriptDeclaration('
-		$K2(document).ready(function() {
-			if(typeof($K2(".k2UsersElement").chosen) == "function") {
-				$K2(".k2UsersElement").chosen("destroy");
-			}
-			$K2(".k2UsersElement").select2({
-				width : "300px",
-				minimumInputLength : 2,
-				ajax: {
-					dataType : "json",
-					url: "'.JURI::root(true).'/administrator/index.php?option=com_k2&view=users&task=search&format=raw",
-					cache: "true",
-					 data: function (params) {
-					 	var queryParameters = {q: params.term};
-					 	return queryParameters;
-					 },
-					 processResults: function (data) {
-					 	var results = [];
-					 	jQuery.each(data, function(index, value) {
-					 		var row = {
-					 			id : value.id,
-					 			text : value.name
-					 		};
-							results.push(row);
-					 	});
-					 	return {results: results};
-					 }
-
+			$K2(document).ready(function() {
+				if(typeof($K2(".k2UsersElement").chosen) == "function") {
+					$K2(".k2UsersElement").chosen("destroy");
 				}
+				$K2(".k2UsersElement").select2({
+					width : "300px",
+					minimumInputLength : 2,
+					ajax: {
+						dataType : "json",
+						url: "'.JURI::root(true).'/administrator/index.php?option=com_k2&view=users&task=search&format=raw",
+						cache: "true",
+						 data: function (params) {
+						 	var queryParameters = {q: params.term};
+						 	return queryParameters;
+						 },
+						 processResults: function (data) {
+						 	var results = [];
+						 	jQuery.each(data, function(index, value) {
+						 		var row = {
+						 			id : value.id,
+						 			text : value.name
+						 		};
+								results.push(row);
+						 	});
+						 	return {results: results};
+						 }
+
+					}
+				});
 			});
-		});
 		');
 
 		$options = array();

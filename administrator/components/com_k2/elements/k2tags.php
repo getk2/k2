@@ -19,8 +19,8 @@ class K2ElementK2Tags extends K2Element
 		$fieldName = (K2_JVERSION != '15') ? $name.'[]' : $control_name.'['.$name.'][]';
 
 		$document = JFactory::getDocument();
-		$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/select2.min.css?v='.K2_CURRENT_VERSION);
-		$document->addScript(JURI::root(true).'/media/k2/assets/js/select2.min.js?v='.K2_CURRENT_VERSION);
+		$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css');
+		$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js');
 		$document->addScriptDeclaration('
 			$K2(document).ready(function() {
 				if(typeof($K2(".k2TagsElement").chosen) == "function") {
@@ -53,6 +53,7 @@ class K2ElementK2Tags extends K2Element
 				});
 			});
 		');
+
 		$options = array();
 		if(is_array($value) && count($value))
 		{

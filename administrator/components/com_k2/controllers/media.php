@@ -61,7 +61,7 @@ class K2ControllerMedia extends K2Controller
 
 		JPath::check($path);
 
-		require_once JPATH_COMPONENT_ADMINISTRATOR.'/lib/elfinder/autoload.php';
+		require_once(JPATH_SITE.'/media/k2/assets/vendors/studio-42/elfinder/php/autoload.php');
 
 		function access($attr, $path, $data, $volume)
 		{

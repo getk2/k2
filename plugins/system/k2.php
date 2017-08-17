@@ -458,95 +458,26 @@ class plgSystemK2 extends JPlugin
 
 	function onAfterRoute()
 	{
-		$params = JComponentHelper::getParams('com_k2');
-		$mainframe = JFactory::getApplication();
+		$application = JFactory::getApplication();
 		$document = JFactory::getDocument();
 		$user = JFactory::getUser();
-		$basepath = ($mainframe->isSite()) ? JPATH_SITE : JPATH_ADMINISTRATOR;
 
+		$params = JComponentHelper::getParams('com_k2');
+
+		$basepath = ($application->isSite()) ? JPATH_SITE : JPATH_ADMINISTRATOR;
 		JPlugin::loadLanguage('com_k2', $basepath);
-
 		if (K2_JVERSION != '15')
 		{
 			JPlugin::loadLanguage('com_k2.dates', JPATH_ADMINISTRATOR, null, true);
 		}
-		if ($mainframe->isAdmin())
-		{
-			return;
-		}
-		if ((JRequest::getCmd('task') == 'add' || JRequest::getCmd('task') == 'edit') && JRequest::getCmd('option') == 'com_k2')
+
+		if ($application->isAdmin() || (JRequest::getCmd('option') == 'com_k2' && (JRequest::getCmd('task') == 'add' || JRequest::getCmd('task') == 'edit')))
 		{
 			return;
 		}
 
-		// jQuery & K2 JS loading
+		// Load required CSS & JS
 		K2HelperHTML::loadHeadIncludes();
-
-		// Joomla modal trigger
-		if ( !$user->guest || (JRequest::getCmd('option') == 'com_k2' && JRequest::getCmd('view') == 'item') || defined('K2_JOOMLA_MODAL_REQUIRED') ){
-			$document->addScript(JUri::root(true).'/media/k2/assets/js/jquery.magnific-popup.min.js?v='.K2_CURRENT_VERSION);
-			$document->addStyleSheet(JUri::root(true).'/media/k2/assets/css/magnific-popup.css?v='.K2_CURRENT_VERSION);
-		}
-
-		$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.frontend.js?v='.K2_CURRENT_VERSION.'&amp;sitepath='.JURI::root(true).'/');
-
-		if (JRequest::getCmd('task') == 'search' && $params->get('googleSearch'))
-		{
-			$language = JFactory::getLanguage();
-			$lang = $language->getTag();
-			// Fallback to the new container ID without breaking things
-			$googleSearchContainerID = trim($params->get('googleSearchContainer', 'k2GoogleSearchContainer'));
-			if($googleSearchContainerID=='k2Container'){
-				$googleSearchContainerID = 'k2GoogleSearchContainer';
-			}
-			$document->addScript('//www.google.com/jsapi');
-			$js = '
-			google.load("search", "1", {"language" : "'.$lang.'"});
-			function OnLoad(){
-				var searchControl = new google.search.SearchControl();
-				var siteSearch = new google.search.WebSearch();
-				siteSearch.setUserDefinedLabel("'.$mainframe->getCfg('sitename').'");
-				siteSearch.setUserDefinedClassSuffix("k2");
-				options = new google.search.SearcherOptions();
-				options.setExpandMode(google.search.SearchControl.EXPAND_MODE_OPEN);
-				siteSearch.setSiteRestriction("'.JURI::root().'");
-				searchControl.addSearcher(siteSearch, options);
-				searchControl.setResultSetSize(google.search.Search.LARGE_RESULTSET);
-				searchControl.setLinkTarget(google.search.Search.LINK_TARGET_SELF);
-				searchControl.draw(document.getElementById("'.$googleSearchContainerID.'"));
-				searchControl.execute("'.JRequest::getString('searchword').'");
-			}
-			google.setOnLoadCallback(OnLoad);
- 			';
-			$document->addScriptDeclaration($js);
-		}
-
-		// Add related CSS to the <head>
-		if ($document->getType() == 'html' && $params->get('enable_css'))
-		{
-			jimport('joomla.filesystem.file');
-
-			// k2.fonts.css
-			if (JFile::exists(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/css/k2.fonts.css'))
-				$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.fonts.css?v='.K2_CURRENT_VERSION);
-			else
-				$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.fonts.css?v='.K2_CURRENT_VERSION);
-
-			// k2.css
-			if (JFile::exists(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/css/k2.css'))
-				$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.css?v='.K2_CURRENT_VERSION);
-			else
-				$document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.css?v='.K2_CURRENT_VERSION);
-
-			// k2.print.css
-			if (JRequest::getInt('print') == 1)
-			{
-				if (JFile::exists(JPATH_SITE.'/templates/'.$mainframe->getTemplate().'/css/k2.print.css'))
-					$document->addStyleSheet(JURI::root(true).'/templates/'.$mainframe->getTemplate().'/css/k2.print.css?v='.K2_CURRENT_VERSION, 'text/css', 'print');
-				else
-					$document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.print.css?v='.K2_CURRENT_VERSION, 'text/css', 'print');
-			}
-		}
 	}
 
 	function onAfterDispatch()

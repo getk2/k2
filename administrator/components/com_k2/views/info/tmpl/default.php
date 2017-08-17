@@ -72,19 +72,19 @@ defined('_JEXEC') or die;
 							      <td><?php echo JText::_('K2_MIT'); ?></td>
 							    </tr>
 							    <tr>
-							      <td><a target="_blank" href="http://studio-42.github.io/elFinder/">elFinder</a></td>
-							      <td>2.1.14</td>
+							      <td><a target="_blank" href="https://github.com/Studio-42/elFinder">elFinder</a></td>
+							      <td>2.1.28</td>
 							      <td><?php echo JText::_('K2_INFO_FILE_MANAGER'); ?></td>
 							      <td><?php echo JText::_('K2_BSD'); ?></td>
 							    </tr>
 							    <tr>
-							      <td><a target="_blank" href="https://select2.github.io/">Select2</a></td>
+							      <td><a target="_blank" href="https://github.com/select2/select2">Select2</a></td>
 							      <td>4.0.3</td>
 							      <td><?php echo JText::_('K2_INFO_REPLACEMENT_FOR_SELECT_BOXES'); ?></td>
 							      <td><?php echo JText::_('K2_MIT'); ?></td>
 							    </tr>
 							    <tr>
-							      <td><a target="_blank" href="http://dimsemenov.com/plugins/magnific-popup/">Magnific Popup</a></td>
+							      <td><a target="_blank" href="https://github.com/dimsemenov/Magnific-Popup">Magnific Popup</a></td>
 							      <td>1.1.0</td>
 							      <td><?php echo JText::_('K2_INFO_RESPONSIVE_LIGHTBOX_DIALOG_SCRIPT'); ?></td>
 							      <td><?php echo JText::_('K2_MIT'); ?></td>
