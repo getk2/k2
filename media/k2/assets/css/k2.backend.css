@@ -135,4 +135,12 @@ ul.k2SortableListContainer li span.k2EntryText {}
 .com_config .form-horizontal .span10 .controls fieldset.radio input[type="radio"],
 .com_config .form-horizontal .span10 .controls fieldset.radio .checkbox input[type="checkbox"] {display:inline-block !important;float:none !important;margin:-2px 0 0 0 !important;}
 
+
+
+/* --- JoomFish Styling --- */
+#K2ExtraFields {color:#000;font-size:11px;padding:6px 2px 4px 4px;text-align:left;}
+#K2ExtraFields h1 {font-size:16px;height:25px;}
+#K2ExtraFields h2 {font-size:14px;}
+#K2ExtraFields strong {font-style:italic;}
+
 /* END */

@@ -48,8 +48,18 @@ class plgSystemK2 extends JPlugin
 		jimport('joomla.application.component.model');
 		jimport('joomla.application.component.view');
 
-		// Get application
+		// Get application & K2 component params
 		$application = JFactory::getApplication();
+		if ((int)K2_JVERSION < 25) {
+			$option = JRequest::getCmd('option');
+			$task = JRequest::getCmd('task');
+			$type = JRequest::getCmd('catid');
+		} else {
+			$option = JFactory::getApplication()->input->get('option');
+			$task = JFactory::getApplication()->input->get('task');
+			$type = JRequest::getCmd('catid');
+		}
+		$params = JComponentHelper::getParams('com_k2');
 
 		// Load the K2 classes
 		JLoader::register('K2Table', JPATH_ADMINISTRATOR.'/components/com_k2/tables/table.php');
@@ -71,13 +81,21 @@ class plgSystemK2 extends JPlugin
 		JLoader::register('K2HelperHTML', JPATH_ADMINISTRATOR.'/components/com_k2/helpers/html.php');
 		JLoader::register('K2HelperUtilities', JPATH_SITE.'/components/com_k2/helpers/utilities.php');
 
-		// Community Builder integration
-		$componentParams = JComponentHelper::getParams('com_k2');
+		// Define the default Itemid for users and tags (to be removed)
+		//define('K2_USERS_ITEMID', $params->get('defaultUsersItemid'));
+		//define('K2_TAGS_ITEMID', $params->get('defaultTagsItemid'));
 
-		// Define the default Itemid for users and tags. Defined here instead of the K2HelperRoute for performance reasons.
-		// UPDATE : Removed. All K2 links without Itemid now use the anyK2Link defined in the router helper.
-		// define('K2_USERS_ITEMID', $componentParams->get('defaultUsersItemid'));
-		// define('K2_TAGS_ITEMID', $componentParams->get('defaultTagsItemid'));
+		// Custom HTTP headers
+		$user = JFactory::getUser();
+		if (!$user->guest)
+		{
+			JResponse::setHeader('X-Logged-In', 'True', true);
+		}
+		else
+		{
+			JResponse::setHeader('X-Logged-In', 'False', true);
+		}
+		JResponse::setHeader('X-Content-Powered-By', 'K2 v'.K2_CURRENT_VERSION.' (by JoomlaWorks)', true);
 
 		// Define JoomFish compatibility version.
 		if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/joomfish.php'))
@@ -90,7 +108,6 @@ class plgSystemK2 extends JPlugin
 				if (array_key_exists($prefix.'_jf_languages_ext', $db->getTableList()))
 				{
 					define('K2_JF_ID', 'lang_id');
-
 				}
 				else
 				{
@@ -103,356 +120,337 @@ class plgSystemK2 extends JPlugin
 			}
 		}
 
-		// Thank you K2 for making Joomla reverse caching proxy friendly :)
-		$user = JFactory::getUser();
-		if (!$user->guest)
-		{
-			JResponse::setHeader('X-Logged-In', 'True', true);
-		}
-		else
-		{
-			JResponse::setHeader('X-Logged-In', 'False', true);
-		}
-
-		JResponse::setHeader('X-Content-Powered-By', 'K2 v'.K2_CURRENT_VERSION.' (by JoomlaWorks)', true);
-
+		// Backend only
 		if (!$application->isAdmin())
 		{
 			return;
 		}
 
-		if ((int)K2_JVERSION < 25) {
+		// K2 Metrics
+		if($application->isAdmin() && $params->get('gatherStatistics', 1))
+		{
 			$option = JRequest::getCmd('option');
-			$task = JRequest::getCmd('task');
-			$type = JRequest::getCmd('catid');
-		} else {
-			$option = JFactory::getApplication()->input->get('option');
-			$task = JFactory::getApplication()->input->get('task');
-			$type =  JRequest::getCmd('catid');
-		}
-
-		if ($option != 'com_joomfish')
-			return;
-
-		JPlugin::loadLanguage('com_k2', JPATH_ADMINISTRATOR);
-		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
-
-		// Joom!Fish
-		if ($option == 'com_joomfish' && ($task == 'translate.apply' || $task == 'translate.save') && $type == 'k2_items')
-		{
-
-			$language_id = JRequest::getInt('select_language_id');
-			$reference_id = JRequest::getInt('reference_id');
-			$objects = array();
-			$variables = JRequest::get('post');
-
-			foreach ($variables as $key => $value)
+			$view = JRequest::getCmd('view');
+			$viewsToRun = array('items', 'categories', 'tags', 'comments', 'users', 'usergroups', 'extrafields', 'extrafieldsgroups', '');
+			if($option == 'com_k2' && in_array($view, $viewsToRun))
 			{
-				if (( bool )JString::stristr($key, 'K2ExtraField_'))
+				require_once(JPATH_ADMINISTRATOR.'/components/com_k2/helpers/stats.php');
+				if(K2HelperStats::shouldLog())
 				{
-					$object = new JObject;
-					$object->set('id', JString::substr($key, 13));
-					$object->set('value', $value);
-					unset($object->_errors);
-					$objects[] = $object;
+					K2HelperStats::getScripts();
 				}
 			}
-
-			$extra_fields = json_encode($objects);
-			$extra_fields_search = '';
-
-			foreach ($objects as $object)
-			{
-				$extra_fields_search .= $this->getSearchValue($object->id, $object->value);
-				$extra_fields_search .= ' ';
-			}
-
-			$user = JFactory::getUser();
-
-			$db = JFactory::getDbo();
-
-			$query = "SELECT COUNT(*) FROM #__jf_content WHERE reference_field = 'extra_fields' AND language_id = {$language_id} AND reference_id = {$reference_id} AND reference_table='k2_items'";
-			$db->setQuery($query);
-			$result = $db->loadResult();
-
-			if ($result > 0)
-			{
-				$query = "UPDATE #__jf_content SET value=".$db->Quote($extra_fields)." WHERE reference_field = 'extra_fields' AND language_id = {$language_id} AND reference_id = {$reference_id} AND reference_table='k2_items'";
-				$db->setQuery($query);
-				$db->query();
-			}
-			else
-			{
-				$modified = date("Y-m-d H:i:s");
-				$modified_by = $user->id;
-				$published = JRequest::getVar('published', 0);
-				$query = "INSERT INTO #__jf_content (`id`, `language_id`, `reference_id`, `reference_table`, `reference_field` ,`value`, `original_value`, `original_text`, `modified`, `modified_by`, `published`) VALUES (NULL, {$language_id}, {$reference_id}, 'k2_items', 'extra_fields', ".$db->Quote($extra_fields).", '','', ".$db->Quote($modified).", {$modified_by}, {$published} )";
-				$db->setQuery($query);
-				$db->query();
-			}
-
-			$query = "SELECT COUNT(*) FROM #__jf_content WHERE reference_field = 'extra_fields_search' AND language_id = {$language_id} AND reference_id = {$reference_id} AND reference_table='k2_items'";
-			$db->setQuery($query);
-			$result = $db->loadResult();
-
-			if ($result > 0)
-			{
-				$query = "UPDATE #__jf_content SET value=".$db->Quote($extra_fields_search)." WHERE reference_field = 'extra_fields_search' AND language_id = {$language_id} AND reference_id = {$reference_id} AND reference_table='k2_items'";
-				$db->setQuery($query);
-				$db->query();
-			}
-			else
-			{
-				$modified = date("Y-m-d H:i:s");
-				$modified_by = $user->id;
-				$published = JRequest::getVar('published', 0);
-				$query = "INSERT INTO #__jf_content (`id`, `language_id`, `reference_id`, `reference_table`, `reference_field` ,`value`, `original_value`, `original_text`, `modified`, `modified_by`, `published`) VALUES (NULL, {$language_id}, {$reference_id}, 'k2_items', 'extra_fields_search', ".$db->Quote($extra_fields_search).", '','', ".$db->Quote($modified).", {$modified_by}, {$published} )";
-				$db->setQuery($query);
-				$db->query();
-			}
-
 		}
 
-		if ($option == 'com_joomfish' && ($task == 'translate.edit' || $task == 'translate.apply') && $type == 'k2_items')
+		// --- JoomFish integration [start] ---
+		if ($option == 'com_joomfish')
 		{
+			JPlugin::loadLanguage('com_k2', JPATH_ADMINISTRATOR);
+			JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
 
-			if ($task == 'translate.edit')
+			if (($task == 'translate.apply' || $task == 'translate.save') && $type == 'k2_items')
 			{
-				$cid = JRequest::getVar('cid');
-				$array = explode('|', $cid[0]);
-				$reference_id = $array[1];
-			}
-
-			if ($task == 'translate.apply')
-			{
+				$language_id = JRequest::getInt('select_language_id');
 				$reference_id = JRequest::getInt('reference_id');
-			}
+				$objects = array();
+				$variables = JRequest::get('post');
 
-			$item = JTable::getInstance('K2Item', 'Table');
-			$item->load($reference_id);
-			$category_id = $item->catid;
-			$language_id = JRequest::getInt('select_language_id');
-
-			$category = JTable::getInstance('K2Category', 'Table');
-			$category->load($category_id);
-			$group = $category->extraFieldsGroup;
-			$db = JFactory::getDbo();
-			$query = "SELECT * FROM #__k2_extra_fields WHERE `group`=".$db->Quote($group)." AND published=1 ORDER BY ordering";
-			$db->setQuery($query);
-			$extraFields = $db->loadObjectList();
-
-			$output = '';
-			if (count($extraFields))
-			{
-				$output .= '<h1>'.JText::_('K2_EXTRA_FIELDS').'</h1>';
-				$output .= '<h2>'.JText::_('K2_ORIGINAL').'</h2>';
-				foreach ($extraFields as $extrafield)
+				foreach ($variables as $key => $value)
 				{
-					$extraField = json_decode($extrafield->value);
-					$output .= trim($this->renderOriginal($extrafield, $reference_id));
-
-				}
-			}
-
-			if (count($extraFields))
-			{
-				$output .= '<h2>'.JText::_('K2_TRANSLATION').'</h2>';
-				foreach ($extraFields as $extrafield)
-				{
-					$extraField = json_decode($extrafield->value);
-					$output .= trim($this->renderTranslated($extrafield, $reference_id));
-				}
-			}
-
-			$pattern = '/\r\n|\r|\n/';
-
-			/* Mootools Snippet */
-			$js = "
-			window.addEvent('domready', function(){
-				var target = $$('table.adminform');
-				target.setProperty('id', 'adminform');
-				var div = new Element('div', {'id': 'K2ExtraFields'}).setHTML('".preg_replace($pattern, '', $output)."').injectInside($('adminform'));
-			});
-			";
-
-			if (K2_JVERSION == '15')
-			{
-				JHTML::_('behavior.mootools');
-			}
-			else
-			{
-				JHTML::_('behavior.framework');
-
-			}
-
-			$document = JFactory::getDocument();
-			$document->addScriptDeclaration($js);
-
-			// *** Embedded CSS Snippet ***
-			$document->addCustomTag('
-			<style type="text/css">
-				#K2ExtraFields { color:#000; font-size:11px; padding:6px 2px 4px 4px; text-align:left; }
-				#K2ExtraFields h1 { font-size:16px; height:25px; }
-				#K2ExtraFields h2 { font-size:14px; }
-				#K2ExtraFields strong { font-style:italic; }
-			</style>
-			');
-		}
-
-		if ($option == 'com_joomfish' && ($task == 'translate.apply' || $task == 'translate.save') && $type == 'k2_extra_fields')
-		{
-
-			$language_id = JRequest::getInt('select_language_id');
-			$reference_id = JRequest::getInt('reference_id');
-			$extraFieldType = JRequest::getVar('extraFieldType');
-
-			$objects = array();
-			$values = JRequest::getVar('option_value');
-			$names = JRequest::getVar('option_name');
-			$target = JRequest::getVar('option_target');
-
-			for ($i = 0; $i < sizeof($values); $i++)
-			{
-				$object = new JObject;
-				$object->set('name', $names[$i]);
-
-				if ($extraFieldType == 'select' || $extraFieldType == 'multipleSelect' || $extraFieldType == 'radio')
-				{
-					$object->set('value', $i + 1);
-				}
-				elseif ($extraFieldType == 'link')
-				{
-					if (substr($values[$i], 0, 7) == 'http://')
+					if (( bool )JString::stristr($key, 'K2ExtraField_'))
 					{
-						$values[$i] = $values[$i];
+						$object = new JObject;
+						$object->set('id', JString::substr($key, 13));
+						$object->set('value', $value);
+						unset($object->_errors);
+						$objects[] = $object;
 					}
-					else
-					{
-						$values[$i] = 'http://'.$values[$i];
-					}
-					$object->set('value', $values[$i]);
-				}
-				else
-				{
-					$object->set('value', $values[$i]);
 				}
 
-				$object->set('target', $target[$i]);
-				unset($object->_errors);
-				$objects[] = $object;
-			}
-
-			$value = json_encode($objects);
-
-			$user = JFactory::getUser();
-			$db = JFactory::getDbo();
-
-			$query = "SELECT COUNT(*) FROM #__jf_content WHERE reference_field = 'value' AND language_id = {$language_id} AND reference_id = {$reference_id} AND reference_table='k2_extra_fields'";
-			$db->setQuery($query);
-			$result = $db->loadResult();
-
-			if ($result > 0)
-			{
-				$query = "UPDATE #__jf_content SET value=".$db->Quote($value)." WHERE reference_field = 'value' AND language_id = {$language_id} AND reference_id = {$reference_id} AND reference_table='k2_extra_fields'";
-				$db->setQuery($query);
-				$db->query();
-			}
-			else
-			{
-				$modified = date("Y-m-d H:i:s");
-				$modified_by = $user->id;
-				$published = JRequest::getVar('published', 0);
-				$query = "INSERT INTO #__jf_content (`id`, `language_id`, `reference_id`, `reference_table`, `reference_field` ,`value`, `original_value`, `original_text`, `modified`, `modified_by`, `published`) VALUES (NULL, {$language_id}, {$reference_id}, 'k2_extra_fields', 'value', ".$db->Quote($value).", '','', ".$db->Quote($modified).", {$modified_by}, {$published} )";
-				$db->setQuery($query);
-				$db->query();
-			}
-
-		}
-
-		if ($option == 'com_joomfish' && ($task == 'translate.edit' || $task == 'translate.apply') && $type == 'k2_extra_fields')
-		{
-
-			if ($task == 'translate.edit')
-			{
-				$cid = JRequest::getVar('cid');
-				$array = explode('|', $cid[0]);
-				$reference_id = $array[1];
-			}
-
-			if ($task == 'translate.apply')
-			{
-				$reference_id = JRequest::getInt('reference_id');
-			}
-
-			$extraField = JTable::getInstance('K2ExtraField', 'Table');
-			$extraField->load($reference_id);
-			$language_id = JRequest::getInt('select_language_id');
-
-			if ($extraField->type == 'multipleSelect' || $extraField->type == 'select' || $extraField->type == 'radio')
-			{
-				$subheader = '<strong>'.JText::_('K2_OPTIONS').'</strong>';
-			}
-			else
-			{
-				$subheader = '<strong>'.JText::_('K2_DEFAULT_VALUE').'</strong>';
-			}
-
-			$objects = json_decode($extraField->value);
-			$output = '<input type="hidden" value="'.$extraField->type.'" name="extraFieldType" />';
-			if (count($objects))
-			{
-				$output .= '<h1>'.JText::_('K2_EXTRA_FIELDS').'</h1>';
-				$output .= '<h2>'.JText::_('K2_ORIGINAL').'</h2>';
-				$output .= $subheader.'<br />';
+				$extra_fields = json_encode($objects);
+				$extra_fields_search = '';
 
 				foreach ($objects as $object)
 				{
-					$output .= '<p>'.$object->name.'</p>';
-					if ($extraField->type == 'textfield' || $extraField->type == 'textarea')
-						$output .= '<p>'.$object->value.'</p>';
+					$extra_fields_search .= $this->getSearchValue($object->id, $object->value);
+					$extra_fields_search .= ' ';
 				}
-			}
 
-			$db = JFactory::getDbo();
-			$query = "SELECT `value` FROM #__jf_content WHERE reference_field = 'value' AND language_id = {$language_id} AND reference_id = {$reference_id} AND reference_table='k2_extra_fields'";
-			$db->setQuery($query);
-			$result = $db->loadResult();
+				$user = JFactory::getUser();
 
-			$translatedObjects = json_decode($result);
+				$db = JFactory::getDbo();
+				$query = "SELECT COUNT(*) FROM #__jf_content WHERE reference_field = 'extra_fields' AND language_id = {$language_id} AND reference_id = {$reference_id} AND reference_table='k2_items'";
+				$db->setQuery($query);
+				$result = $db->loadResult();
 
-			if (count($objects))
-			{
-				$output .= '<h2>'.JText::_('K2_TRANSLATION').'</h2>';
-				$output .= $subheader.'<br />';
-				foreach ($objects as $key => $value)
+				if ($result > 0)
 				{
-					if (isset($translatedObjects[$key]))
-						$value = $translatedObjects[$key];
+					$query = "UPDATE #__jf_content SET value=".$db->Quote($extra_fields)." WHERE reference_field = 'extra_fields' AND language_id = {$language_id} AND reference_id = {$reference_id} AND reference_table='k2_items'";
+					$db->setQuery($query);
+					$db->query();
+				}
+				else
+				{
+					$modified = date("Y-m-d H:i:s");
+					$modified_by = $user->id;
+					$published = JRequest::getVar('published', 0);
+					$query = "INSERT INTO #__jf_content (`id`, `language_id`, `reference_id`, `reference_table`, `reference_field` ,`value`, `original_value`, `original_text`, `modified`, `modified_by`, `published`) VALUES (NULL, {$language_id}, {$reference_id}, 'k2_items', 'extra_fields', ".$db->Quote($extra_fields).", '','', ".$db->Quote($modified).", {$modified_by}, {$published} )";
+					$db->setQuery($query);
+					$db->query();
+				}
 
-					if ($extraField->type == 'textarea')
-						$output .= '<p><textarea name="option_name[]" cols="30" rows="15"> '.$value->name.'</textarea></p>';
+				$query = "SELECT COUNT(*) FROM #__jf_content WHERE reference_field = 'extra_fields_search' AND language_id = {$language_id} AND reference_id = {$reference_id} AND reference_table='k2_items'";
+				$db->setQuery($query);
+				$result = $db->loadResult();
+
+				if ($result > 0)
+				{
+					$query = "UPDATE #__jf_content SET value=".$db->Quote($extra_fields_search)." WHERE reference_field = 'extra_fields_search' AND language_id = {$language_id} AND reference_id = {$reference_id} AND reference_table='k2_items'";
+					$db->setQuery($query);
+					$db->query();
+				}
+				else
+				{
+					$modified = date("Y-m-d H:i:s");
+					$modified_by = $user->id;
+					$published = JRequest::getVar('published', 0);
+					$query = "INSERT INTO #__jf_content (`id`, `language_id`, `reference_id`, `reference_table`, `reference_field` ,`value`, `original_value`, `original_text`, `modified`, `modified_by`, `published`) VALUES (NULL, {$language_id}, {$reference_id}, 'k2_items', 'extra_fields_search', ".$db->Quote($extra_fields_search).", '','', ".$db->Quote($modified).", {$modified_by}, {$published} )";
+					$db->setQuery($query);
+					$db->query();
+				}
+
+			}
+
+			if (($task == 'translate.edit' || $task == 'translate.apply') && $type == 'k2_items')
+			{
+				if ($task == 'translate.edit')
+				{
+					$cid = JRequest::getVar('cid');
+					$array = explode('|', $cid[0]);
+					$reference_id = $array[1];
+				}
+
+				if ($task == 'translate.apply')
+				{
+					$reference_id = JRequest::getInt('reference_id');
+				}
+
+				$item = JTable::getInstance('K2Item', 'Table');
+				$item->load($reference_id);
+				$category_id = $item->catid;
+				$language_id = JRequest::getInt('select_language_id');
+				$category = JTable::getInstance('K2Category', 'Table');
+				$category->load($category_id);
+				$group = $category->extraFieldsGroup;
+				$db = JFactory::getDbo();
+				$query = "SELECT * FROM #__k2_extra_fields WHERE `group`=".$db->Quote($group)." AND published=1 ORDER BY ordering";
+				$db->setQuery($query);
+				$extraFields = $db->loadObjectList();
+
+				$output = '';
+				if (count($extraFields))
+				{
+					$output .= '<h1>'.JText::_('K2_EXTRA_FIELDS').'</h1>';
+					$output .= '<h2>'.JText::_('K2_ORIGINAL').'</h2>';
+					foreach ($extraFields as $extrafield)
+					{
+						$extraField = json_decode($extrafield->value);
+						$output .= trim($this->renderOriginal($extrafield, $reference_id));
+
+					}
+				}
+
+				if (count($extraFields))
+				{
+					$output .= '<h2>'.JText::_('K2_TRANSLATION').'</h2>';
+					foreach ($extraFields as $extrafield)
+					{
+						$extraField = json_decode($extrafield->value);
+						$output .= trim($this->renderTranslated($extrafield, $reference_id));
+					}
+				}
+
+				$pattern = '/\r\n|\r|\n/';
+
+				// Load CSS & JS
+				if (K2_JVERSION == '15')
+				{
+					JHTML::_('behavior.mootools');
+				}
+				else
+				{
+					JHTML::_('behavior.framework');
+				}
+				$document = JFactory::getDocument();
+				$document->addScriptDeclaration("
+					window.addEvent('domready', function(){
+						var target = $$('table.adminform');
+						target.setProperty('id', 'adminform');
+						var div = new Element('div', {'id': 'K2ExtraFields'}).setHTML('".preg_replace($pattern, '', $output)."').injectInside($('adminform'));
+					});
+				");
+			}
+
+			if (($task == 'translate.apply' || $task == 'translate.save') && $type == 'k2_extra_fields')
+			{
+				$language_id = JRequest::getInt('select_language_id');
+				$reference_id = JRequest::getInt('reference_id');
+				$extraFieldType = JRequest::getVar('extraFieldType');
+
+				$objects = array();
+				$values = JRequest::getVar('option_value');
+				$names = JRequest::getVar('option_name');
+				$target = JRequest::getVar('option_target');
+
+				for ($i = 0; $i < sizeof($values); $i++)
+				{
+					$object = new JObject;
+					$object->set('name', $names[$i]);
+
+					if ($extraFieldType == 'select' || $extraFieldType == 'multipleSelect' || $extraFieldType == 'radio')
+					{
+						$object->set('value', $i + 1);
+					}
+					elseif ($extraFieldType == 'link')
+					{
+						if (substr($values[$i], 0, 7) == 'http://')
+						{
+							$values[$i] = $values[$i];
+						}
+						else
+						{
+							$values[$i] = 'http://'.$values[$i];
+						}
+						$object->set('value', $values[$i]);
+					}
 					else
-						$output .= '<p><input type="text" name="option_name[]" value="'.$value->name.'" /></p>';
-					$output .= '<p><input type="hidden" name="option_value[]" value="'.$value->value.'" /></p>';
-					$output .= '<p><input type="hidden" name="option_target[]" value="'.$value->target.'" /></p>';
+					{
+						$object->set('value', $values[$i]);
+					}
+
+					$object->set('target', $target[$i]);
+					unset($object->_errors);
+					$objects[] = $object;
+				}
+
+				$value = json_encode($objects);
+
+				$user = JFactory::getUser();
+
+				$db = JFactory::getDbo();
+				$query = "SELECT COUNT(*) FROM #__jf_content WHERE reference_field = 'value' AND language_id = {$language_id} AND reference_id = {$reference_id} AND reference_table='k2_extra_fields'";
+				$db->setQuery($query);
+				$result = $db->loadResult();
+
+				if ($result > 0)
+				{
+					$query = "UPDATE #__jf_content SET value=".$db->Quote($value)." WHERE reference_field = 'value' AND language_id = {$language_id} AND reference_id = {$reference_id} AND reference_table='k2_extra_fields'";
+					$db->setQuery($query);
+					$db->query();
+				}
+				else
+				{
+					$modified = date("Y-m-d H:i:s");
+					$modified_by = $user->id;
+					$published = JRequest::getVar('published', 0);
+					$query = "INSERT INTO #__jf_content (`id`, `language_id`, `reference_id`, `reference_table`, `reference_field` ,`value`, `original_value`, `original_text`, `modified`, `modified_by`, `published`) VALUES (NULL, {$language_id}, {$reference_id}, 'k2_extra_fields', 'value', ".$db->Quote($value).", '','', ".$db->Quote($modified).", {$modified_by}, {$published} )";
+					$db->setQuery($query);
+					$db->query();
 				}
 			}
 
-			$pattern = '/\r\n|\r|\n/';
+			if (($task == 'translate.edit' || $task == 'translate.apply') && $type == 'k2_extra_fields')
+			{
 
-			/* Mootools Snippet */
-			$js = "
-			window.addEvent('domready', function(){
-				var target = $$('table.adminform');
-				target.setProperty('id', 'adminform');
-				var div = new Element('div', {'id': 'K2ExtraFields'}).setHTML('".preg_replace($pattern, '', $output)."').injectInside($('adminform'));
-			});
-			";
+				if ($task == 'translate.edit')
+				{
+					$cid = JRequest::getVar('cid');
+					$array = explode('|', $cid[0]);
+					$reference_id = $array[1];
+				}
 
-			JHTML::_('behavior.mootools');
-			$document = JFactory::getDocument();
-			$document->addScriptDeclaration($js);
+				if ($task == 'translate.apply')
+				{
+					$reference_id = JRequest::getInt('reference_id');
+				}
+
+				$extraField = JTable::getInstance('K2ExtraField', 'Table');
+				$extraField->load($reference_id);
+				$language_id = JRequest::getInt('select_language_id');
+
+				if ($extraField->type == 'multipleSelect' || $extraField->type == 'select' || $extraField->type == 'radio')
+				{
+					$subheader = '<strong>'.JText::_('K2_OPTIONS').'</strong>';
+				}
+				else
+				{
+					$subheader = '<strong>'.JText::_('K2_DEFAULT_VALUE').'</strong>';
+				}
+
+				$objects = json_decode($extraField->value);
+				$output = '<input type="hidden" value="'.$extraField->type.'" name="extraFieldType" />';
+				if (count($objects))
+				{
+					$output .= '<h1>'.JText::_('K2_EXTRA_FIELDS').'</h1>';
+					$output .= '<h2>'.JText::_('K2_ORIGINAL').'</h2>';
+					$output .= $subheader.'<br />';
+
+					foreach ($objects as $object)
+					{
+						$output .= '<p>'.$object->name.'</p>';
+						if ($extraField->type == 'textfield' || $extraField->type == 'textarea')
+							$output .= '<p>'.$object->value.'</p>';
+					}
+				}
+
+				$db = JFactory::getDbo();
+				$query = "SELECT `value` FROM #__jf_content WHERE reference_field = 'value' AND language_id = {$language_id} AND reference_id = {$reference_id} AND reference_table='k2_extra_fields'";
+				$db->setQuery($query);
+				$result = $db->loadResult();
+
+				$translatedObjects = json_decode($result);
+
+				if (count($objects))
+				{
+					$output .= '<h2>'.JText::_('K2_TRANSLATION').'</h2>';
+					$output .= $subheader.'<br />';
+					foreach ($objects as $key => $value)
+					{
+						if (isset($translatedObjects[$key]))
+							$value = $translatedObjects[$key];
+
+						if ($extraField->type == 'textarea')
+							$output .= '<p><textarea name="option_name[]" cols="30" rows="15"> '.$value->name.'</textarea></p>';
+						else
+							$output .= '<p><input type="text" name="option_name[]" value="'.$value->name.'" /></p>';
+						$output .= '<p><input type="hidden" name="option_value[]" value="'.$value->value.'" /></p>';
+						$output .= '<p><input type="hidden" name="option_target[]" value="'.$value->target.'" /></p>';
+					}
+				}
+
+				$pattern = '/\r\n|\r|\n/';
+
+				// Load CSS & JS
+				if (K2_JVERSION == '15')
+				{
+					JHTML::_('behavior.mootools');
+				}
+				else
+				{
+					JHtml::_('behavior.framework');
+				}
+				$document = JFactory::getDocument();
+				$document->addScriptDeclaration("
+					window.addEvent('domready', function(){
+						var target = $$('table.adminform');
+						target.setProperty('id', 'adminform');
+						var div = new Element('div', {'id': 'K2ExtraFields'}).setHTML('".preg_replace($pattern, '', $output)."').injectInside($('adminform'));
+					});
+				");
+			}
 		}
+		// --- JoomFish integration [finish] ---
+
 		return;
 	}
 
@@ -482,11 +480,15 @@ class plgSystemK2 extends JPlugin
 
 	function onAfterDispatch()
 	{
-
 		$application = JFactory::getApplication();
+
 		if ($application->isAdmin()) return;
+
 		$params = JComponentHelper::getParams('com_k2');
 		if (!$params->get('K2UserProfile')) return;
+
+		$document = JFactory::getDocument();
+
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
 		$task = JRequest::getCmd('task');
@@ -505,33 +507,33 @@ class plgSystemK2 extends JPlugin
 		// Extend user forms with K2 fields
 		if (($option == 'com_user' && $view == 'register') || ($option == 'com_users' && $view == 'registration'))
 		{
-
 			if ($params->get('recaptchaOnRegistration') && $params->get('recaptcha_public_key'))
 			{
-				$document = JFactory::getDocument();
 				if($params->get('recaptchaV2')) {
 					$document->addScript('https://www.google.com/recaptcha/api.js?onload=onK2RecaptchaLoaded&render=explicit');
-					$js = 'function onK2RecaptchaLoaded(){grecaptcha.render("recaptcha", {"sitekey" : "'.$params->get('recaptcha_public_key').'"});}';
-					$document->addScriptDeclaration($js);
+					$document->addScriptDeclaration('
+					/* K2 - Google reCAPTCHA */
+					function onK2RecaptchaLoaded(){
+						grecaptcha.render("recaptcha", {"sitekey": "'.$params->get('recaptcha_public_key').'"});
+					}
+					');
 					$recaptchaClass = 'k2-recaptcha-v2';
 				}
 				else
 				{
 					$document->addScript('https://www.google.com/recaptcha/api/js/recaptcha_ajax.js');
-					$js = '
-					function showRecaptcha(){
-						Recaptcha.create("'.$params->get('recaptcha_public_key').'", "recaptcha", {
-							theme: "'.$params->get('recaptcha_theme', 'clean').'"
+					$document->addScriptDeclaration('
+						function showRecaptcha(){
+							Recaptcha.create("'.$params->get('recaptcha_public_key').'", "recaptcha", {
+								theme: "'.$params->get('recaptcha_theme', 'clean').'"
+							});
+						}
+						$K2(document).ready(function() {
+							showRecaptcha();
 						});
-					}
-					$K2(document).ready(function() {
-						showRecaptcha();
-					});
-					';
-					$document->addScriptDeclaration($js);
+					');
 					$recaptchaClass = 'k2-recaptcha-v1';
 				}
-
 			}
 
 			if (!$user->guest)
@@ -544,7 +546,6 @@ class plgSystemK2 extends JPlugin
 			{
 				require_once(JPATH_SITE.'/components/com_users/controller.php');
 				$controller = new UsersController;
-
 			}
 			else
 			{
@@ -611,14 +612,11 @@ class plgSystemK2 extends JPlugin
 			ob_start();
 			$view->display();
 			$contents = ob_get_clean();
-			$document = JFactory::getDocument();
 			$document->setBuffer($contents, 'component');
-
 		}
 
 		if (($option == 'com_user' && $view == 'user' && ($task == 'edit' || $layout == 'form')) || ($option == 'com_users' && $view == 'profile' && ($layout == 'edit' || $task == 'profile.edit')))
 		{
-
 			if ($user->guest)
 			{
 				$uri = JFactory::getURI();
@@ -728,13 +726,9 @@ class plgSystemK2 extends JPlugin
 			{
 				$view->_displayForm();
 			}
-
 			$contents = ob_get_clean();
-			$document = JFactory::getDocument();
 			$document->setBuffer($contents, 'component');
-
 		}
-
 	}
 
 	function onAfterRender()
@@ -769,22 +763,6 @@ class plgSystemK2 extends JPlugin
 			}
 			$response = JString::str_ireplace($searches, $replacements, $response);
 			JResponse::setBody($response);
-		}
-
-		// K2 Metrics
-		if($application->isAdmin() && $params->get('gatherStatistics', 1))
-		{
-			$option = JRequest::getCmd('option');
-			$view = JRequest::getCmd('view');
-			$viewsToRun = array('items', 'categories', 'tags', 'comments', 'users', 'usergroups', 'extrafields', 'extrafieldsgroups', '');
-			if($option == 'com_k2' && in_array($view, $viewsToRun))
-			{
-				require_once(JPATH_ADMINISTRATOR.'/components/com_k2/helpers/stats.php');
-				if(K2HelperStats::shouldLog())
-				{
-					K2HelperStats::getScripts();
-				}
-			}
 		}
 	}
 
