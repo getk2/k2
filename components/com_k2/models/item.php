@@ -16,7 +16,6 @@ JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
 
 class K2ModelItem extends K2Model
 {
-
 	function getData()
 	{
 		$mainframe = JFactory::getApplication();
@@ -39,7 +38,6 @@ class K2ModelItem extends K2Model
 
 	function prepareItem($item, $view, $task)
 	{
-
 		jimport('joomla.filesystem.file');
 		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
 		$limitstart = JRequest::getInt('limitstart');
@@ -277,12 +275,10 @@ class K2ModelItem extends K2Model
 		}
 
 		return $item;
-
 	}
 
 	function prepareFeedItem(&$item)
 	{
-
 		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
 		$params = K2HelperUtilities::getParams('com_k2');
 		$limitstart = 0;
@@ -914,19 +910,16 @@ class K2ModelItem extends K2Model
 			}
 		}
 		return $item;
-
 	}
 
 	function hit($id)
 	{
-
 		$row = JTable::getInstance('K2Item', 'Table');
 		$row->hit($id);
 	}
 
 	function vote()
 	{
-
 		$mainframe = JFactory::getApplication();
 		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
 
@@ -1022,7 +1015,6 @@ class K2ModelItem extends K2Model
 
 	function getVotesNum($itemID = NULL)
 	{
-
 		$mainframe = JFactory::getApplication();
 		$user = JFactory::getUser();
 		$xhr = false;
@@ -1031,14 +1023,15 @@ class K2ModelItem extends K2Model
 			$itemID = JRequest::getInt('itemID');
 			$xhr = true;
 		}
-
 		$vote = $this->getRating($itemID);
-
 		if (!is_null($vote))
+		{
 			$rating_count = intval($vote->rating_count);
+		}
 		else
+		{
 			$rating_count = 0;
-
+		}
 		if ($rating_count != 1)
 		{
 			$result = "(".$rating_count." ".JText::_('K2_VOTES').")";
@@ -1053,12 +1046,13 @@ class K2ModelItem extends K2Model
 			$mainframe->close();
 		}
 		else
+		{
 			return $result;
+		}
 	}
 
 	function getVotesPercentage($itemID = NULL)
 	{
-
 		$mainframe = JFactory::getApplication();
 		$user = JFactory::getUser();
 		$db = JFactory::getDBO();
@@ -1066,13 +1060,10 @@ class K2ModelItem extends K2Model
 		$result = 0;
 		if (is_null($itemID))
 		{
-
 			$itemID = JRequest::getInt('itemID');
 			$xhr = true;
 		}
-
 		$vote = $this->getRating($itemID);
-
 		if (!is_null($vote) && $vote->rating_count != 0)
 		{
 			$result = number_format(intval($vote->rating_sum) / intval($vote->rating_count), 2) * 20;
@@ -1083,12 +1074,13 @@ class K2ModelItem extends K2Model
 			$mainframe->close();
 		}
 		else
+		{
 			return $result;
+		}
 	}
 
 	function comment()
 	{
-
 		$mainframe = JFactory::getApplication();
 		jimport('joomla.mail.helper');
 		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
@@ -1269,12 +1261,11 @@ class K2ModelItem extends K2Model
 			// Akismet
 			if ($params->get('antispam') == 'akismet' || $params->get('antispam') == 'both')
 			{
-
 				if ($user->guest || $params->get('akismetForRegistered', 1))
 				{
 					if ($params->get('akismetApiKey'))
 					{
-						require_once(JPATH_ADMINISTRATOR.'/components/com_k2/lib/akismet.class.php');
+						require_once(JPATH_SITE.'/media/k2/assets/vendors/achingbrain/php5-akismet/akismet.class.php');
 						$akismetApiKey = trim($params->get('akismetApiKey'));
 						$akismet = new Akismet(JURI::root(false), $akismetApiKey);
 						$akismet->setCommentAuthor($userName);
@@ -1302,7 +1293,6 @@ class K2ModelItem extends K2Model
 
 					}
 				}
-
 			}
 
 			if ($commentURL == JText::_('K2_ENTER_YOUR_SITE_URL') || $commentURL == "")
@@ -1387,12 +1377,11 @@ class K2ModelItem extends K2Model
 			return $K2ItemTagsInstances[$itemID];
 		}
 		$db = JFactory::getDBO();
-
 		$query = "SELECT tag.*
-		FROM #__k2_tags AS tag
-		JOIN #__k2_tags_xref AS xref ON tag.id = xref.tagID
-		WHERE tag.published=1
-		AND xref.itemID = ".(int)$itemID." ORDER BY xref.id ASC";
+			FROM #__k2_tags AS tag
+			JOIN #__k2_tags_xref AS xref ON tag.id = xref.tagID
+			WHERE tag.published=1
+			AND xref.itemID = ".(int)$itemID." ORDER BY xref.id ASC";
 
 		$db->setQuery($query);
 		$rows = $db->loadObjectList();
@@ -1402,7 +1391,6 @@ class K2ModelItem extends K2Model
 
 	function getItemExtraFields($itemExtraFields, &$item = null)
 	{
-
 		static $K2ItemExtraFieldsInstances = array();
 		if ($item && isset($K2ItemExtraFieldsInstances[$item->id]))
 		{
@@ -1444,7 +1432,6 @@ class K2ModelItem extends K2Model
 
 		for ($i = 0; $i < $size; $i++)
 		{
-
 			$value = '';
 			$rawValue = '';
 			$values = array();
@@ -1495,7 +1482,7 @@ class K2ModelItem extends K2Model
 							if($label != '')
 							{
 								$label = str_replace('-', ' ', $label);
-								$value .= '<a href="' . JRoute::_('index.php?option=com_k2&view=itemlist&task=search&searchword=' . urlencode($label)) . '">' . $label . '</a> ';
+								$value .= '<a href="'.JRoute::_('index.php?option=com_k2&view=itemlist&task=search&searchword=' . urlencode($label)) . '">'.$label.'</a>';
 							}
 						}
 
@@ -1687,7 +1674,6 @@ class K2ModelItem extends K2Model
 		{
 			return $K2ItemAttachmentsInstances[$itemID];
 		}
-
 		$db = JFactory::getDBO();
 		$query = "SELECT * FROM #__k2_attachments WHERE itemID=".$itemID;
 		$db->setQuery($query);
@@ -1703,7 +1689,6 @@ class K2ModelItem extends K2Model
 
 	function getItemComments($itemID, $limitstart, $limit, $published = true)
 	{
-
 		$params = K2HelperUtilities::getParams('com_k2');
 		$order = $params->get('commentsOrdering', 'DESC');
 		$ordering = ($order == 'DESC') ? 'DESC' : 'ASC';
@@ -1721,7 +1706,6 @@ class K2ModelItem extends K2Model
 
 	function countItemComments($itemID, $published = true)
 	{
-
 		$itemID = (int)$itemID;
 		$index = $itemID.'_'.(int)$published;
 		static $K2ItemCommentsCountInstances = array();
@@ -1729,7 +1713,6 @@ class K2ModelItem extends K2Model
 		{
 			return $K2ItemCommentsCountInstances[$index];
 		}
-
 		$db = JFactory::getDBO();
 		$query = "SELECT COUNT(*) FROM #__k2_comments WHERE itemID=".$itemID;
 		if ($published)
@@ -1740,35 +1723,32 @@ class K2ModelItem extends K2Model
 		$result = $db->loadResult();
 		$K2ItemCommentsCountInstances[$index] = $result;
 		return $K2ItemCommentsCountInstances[$index];
-
 	}
 
 	function checkin()
 	{
-
-    $mainframe = JFactory::getApplication();
+	    $mainframe = JFactory::getApplication();
 		$id = JRequest::getInt('cid');
-    if($id)
-    {
-      $row = JTable::getInstance('K2Item', 'Table');
-      $row->load($id);
-      $row->checkin();
-    }
-    else
-    {
-      // Clean up SIGPro
-      $sigProFolder = JRequest::getCmd('sigProFolder');
-      if($sigProFolder && !is_numeric($sigProFolder) && JFolder::exists(JPATH_SITE.'/media/k2/galleries/'.$sigProFolder))
-      {
-        JFolder::delete(JPATH_SITE.'/media/k2/galleries/'.$sigProFolder);
-      }
-    }
+	    if($id)
+	    {
+			$row = JTable::getInstance('K2Item', 'Table');
+			$row->load($id);
+			$row->checkin();
+	    }
+	    else
+	    {
+			// Clean up SIGPro
+			$sigProFolder = JRequest::getCmd('sigProFolder');
+			if($sigProFolder && !is_numeric($sigProFolder) && JFolder::exists(JPATH_SITE.'/media/k2/galleries/'.$sigProFolder))
+			{
+				JFolder::delete(JPATH_SITE.'/media/k2/galleries/'.$sigProFolder);
+			}
+	    }
 		$mainframe->close();
 	}
 
 	function getPreviousItem($id, $catid, $ordering)
 	{
-
 		$mainframe = JFactory::getApplication();
 		$user = JFactory::getUser();
 		$id = (int)$id;
@@ -1814,7 +1794,6 @@ class K2ModelItem extends K2Model
 
 	function getNextItem($id, $catid, $ordering)
 	{
-
 		$mainframe = JFactory::getApplication();
 		$user = JFactory::getUser();
 		$id = (int)$id;
@@ -1859,7 +1838,6 @@ class K2ModelItem extends K2Model
 
 	function getUserProfile($id = NULL)
 	{
-
 		$db = JFactory::getDBO();
 		if (is_null($id))
 			$id = JRequest::getInt('id');
@@ -1876,5 +1854,4 @@ class K2ModelItem extends K2Model
 		$K2UsersInstances[$id] = $row;
 		return $row;
 	}
-
 }

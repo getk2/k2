@@ -71,6 +71,7 @@ defined('_JEXEC') or die;
  * @author	Alex Potsides
  * @link	http://www.achingbrain.net/
  */
+
 class Akismet
 {
 	private $version = '0.5';

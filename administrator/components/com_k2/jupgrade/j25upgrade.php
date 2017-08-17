@@ -10,18 +10,18 @@
 defined('JPATH_BASE') or die();
 
 /**
- * K2 migration class from Joomla 1.5 to Joomla 1.6+
+ * K2 migration class from Joomla 1.5 to Joomla 2.5+
  *
  * You can also put this class into your own extension, which makes jUpgrade to use your own copy instead of this adapter class.
- * In order to do that you should have j16upgrade.xml file somewhere in your extension path containing:
+ * In order to do that you should have j25upgrade.xml file somewhere in your extension path containing:
  * 	<jupgrade>
  * 		<!-- Adapter class location and name -->
  * 		<installer>
- * 			<file>administrator/components/com_k2/jupgrade/j16upgrade.php</file>
+ * 			<file>administrator/components/com_k2/jupgrade/j25upgrade.php</file>
  * 			<class>jUpgradeComponentK2</class>
  * 		</installer>
  * 	</jupgrade>
- * For more information, see ./j16upgrade.xml
+ * For more information, see ./j25upgrade.xml
  */
 class jUpgradeComponentK2 extends jUpgradeExtensions
 {
@@ -52,7 +52,8 @@ class jUpgradeComponentK2 extends jUpgradeExtensions
 		return true;
 	}
 
-	protected function copyTable_k2_categories($table) {
+	protected function copyTable_k2_categories($table)
+	{
 		$this->source = $this->destination = "#__{$table}";
 
 		// Clone table
@@ -69,8 +70,9 @@ class jUpgradeComponentK2 extends jUpgradeExtensions
 		$this->setDestinationData($rows);
 		return true;
 	}
-	
-	protected function copyTable_k2_items($table) {
+
+	protected function copyTable_k2_items($table)
+	{
 		$this->source = $this->destination = "#__{$table}";
 
 		// Clone table
@@ -88,5 +90,4 @@ class jUpgradeComponentK2 extends jUpgradeExtensions
 		$this->setDestinationData($rows);
 		return true;
 	}
-
 }

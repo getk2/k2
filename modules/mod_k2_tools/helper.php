@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 require_once(JPATH_SITE.'/components/com_k2/helpers/route.php');
 require_once(JPATH_SITE.'/components/com_k2/helpers/utilities.php');
-require_once(JPATH_SITE.'/administrator/components/com_k2/lib/calendarClass.php');
+require_once(JPATH_SITE.'/media/k2/assets/vendors/cascade/calendar/calendar.php');
 
 class modK2ToolsHelper
 {

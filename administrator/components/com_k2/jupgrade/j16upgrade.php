@@ -52,7 +52,8 @@ class jUpgradeComponentK2 extends jUpgrade
 		return true;
 	}
 
-	protected function copyTable_k2_categories($table) {
+	protected function copyTable_k2_categories($table)
+	{
 		$this->source = $this->destination = "#__{$table}";
 
 		// Clone table
@@ -69,8 +70,9 @@ class jUpgradeComponentK2 extends jUpgrade
 		$this->setDestinationData($rows);
 		return true;
 	}
-	
-	protected function copyTable_k2_items($table) {
+
+	protected function copyTable_k2_items($table)
+	{
 		$this->source = $this->destination = "#__{$table}";
 
 		// Clone table
@@ -88,5 +90,4 @@ class jUpgradeComponentK2 extends jUpgrade
 		$this->setDestinationData($rows);
 		return true;
 	}
-
 }
