@@ -14,18 +14,15 @@ jimport('joomla.application.component.view');
 
 class K2ViewComments extends K2View
 {
-
 	function display($tpl = null)
 	{
-
 		$mainframe = JFactory::getApplication();
 		$document = JFactory::getDocument();
 		$user = JFactory::getUser();
-
-		$params = JComponentHelper::getParams('com_k2');
-
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
+
+		$params = JComponentHelper::getParams('com_k2');
 
 		$limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
 		$limitstart = $mainframe->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');

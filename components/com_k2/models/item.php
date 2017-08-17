@@ -1248,7 +1248,7 @@ class K2ModelItem extends K2Model
 					{
 						if (!function_exists('_recaptcha_qsencode'))
 						{
-							require_once(JPATH_ADMINISTRATOR.'/components/com_k2/lib/recaptchalib.php');
+							require_once(JPATH_SITE.'/media/k2/assets/vendors/google/recaptcha_legacy/recaptcha.php');
 						}
 						$privatekey = trim($params->get('recaptcha_private_key'));
 						$recaptcha_challenge_field = isset($_POST["recaptcha_challenge_field"]) ? $_POST["recaptcha_challenge_field"] : '';
