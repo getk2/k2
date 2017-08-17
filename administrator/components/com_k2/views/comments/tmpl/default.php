@@ -190,7 +190,8 @@ $context = JRequest::getCmd('context');
 					<?php endif; ?>
 				</td>
 				<td class="hidden-phone">
-					<a target="_blank" href="<?php echo JURI::root().K2HelperRoute::getItemRoute($row->itemID.':'.urlencode($row->itemAlias),$row->catid.':'.urlencode($row->catAlias)); ?>"><?php echo $row->title; ?></a>
+					<?php $itemURL = K2HelperRoute::getItemRoute($row->itemID.':'.urlencode($row->itemAlias),$row->catid.':'.urlencode($row->catAlias)); ?>
+					<a target="_blank" href="<?php echo ($app->isSite()) ? JRoute::_($itemURL) : JURI::root().$itemURL; ?>"><?php echo $row->title; ?></a>
 				</td>
 				<td class="hidden-phone">
 					<?php echo $row->catName; ?>
