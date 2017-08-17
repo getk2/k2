@@ -150,7 +150,7 @@ class K2ControllerItem extends K2Controller
 		JRequest::setVar('tmpl', 'component');
 		$language = JFactory::getLanguage();
 		$language->load('com_k2', JPATH_ADMINISTRATOR);
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/item.php');
+		require_once(JPATH_COMPONENT_ADMINISTRATOR.'/models/item.php');
 		$model = new K2ModelItem;
 		$model->save(true);
 		$mainframe->close();
@@ -159,14 +159,14 @@ class K2ControllerItem extends K2Controller
 
 	function deleteAttachment()
 	{
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/item.php');
+		require_once(JPATH_COMPONENT_ADMINISTRATOR.'/models/item.php');
 		$model = new K2ModelItem;
 		$model->deleteAttachment();
 	}
 
 	function tag()
 	{
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/tag.php');
+		require_once(JPATH_COMPONENT_ADMINISTRATOR.'/models/tag.php');
 		$model = new K2ModelTag;
 		$model->addTag();
 	}
@@ -178,14 +178,14 @@ class K2ControllerItem extends K2Controller
 		{
 			JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
 		}
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/tag.php');
+		require_once(JPATH_COMPONENT_ADMINISTRATOR.'/models/tag.php');
 		$model = new K2ModelTag;
 		$model->tags();
 	}
 
 	function download()
 	{
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/item.php');
+		require_once(JPATH_COMPONENT_ADMINISTRATOR.'/models/item.php');
 		$model = new K2ModelItem;
 		$model->download();
 	}
@@ -202,7 +202,7 @@ class K2ControllerItem extends K2Controller
 		$category = JTable::getInstance('K2Category', 'Table');
 		$category->load($catid);
 
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/extrafield.php');
+		require_once(JPATH_COMPONENT_ADMINISTRATOR.'/models/extrafield.php');
 		$extraFieldModel = new K2ModelExtraField;
 
 		$extraFields = $extraFieldModel->getExtraFieldsByGroup($category->extraFieldsGroup);
@@ -270,7 +270,7 @@ class K2ControllerItem extends K2Controller
 	{
 		JRequest::checkToken() or jexit('Invalid Token');
 		JRequest::setVar('tmpl', 'component');
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/item.php');
+		require_once(JPATH_COMPONENT_ADMINISTRATOR.'/models/item.php');
 		$language = JFactory::getLanguage();
 		$language->load('com_k2', JPATH_ADMINISTRATOR);
 		$model = new K2ModelItem;
@@ -281,7 +281,7 @@ class K2ControllerItem extends K2Controller
 	{
 		JRequest::checkToken() or jexit('Invalid Token');
 		JRequest::setVar('tmpl', 'component');
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/item.php');
+		require_once(JPATH_COMPONENT_ADMINISTRATOR.'/models/item.php');
 		$language = JFactory::getLanguage();
 		$language->load('com_k2', JPATH_ADMINISTRATOR);
 		$model = new K2ModelItem;
@@ -329,7 +329,7 @@ class K2ControllerItem extends K2Controller
 		{
 			JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
 		}
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/controllers/media.php');
+		require_once(JPATH_COMPONENT_ADMINISTRATOR.'/controllers/media.php');
 		$controller = new K2ControllerMedia();
 		$controller->connector();
 	}

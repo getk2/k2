@@ -55,19 +55,19 @@ defined('_JEXEC') or die;
 							  <tbody>
 							    <tr>
 							      <td><a target="_blank" href="https://github.com/verot/class.upload.php">class.upload.php</a></td>
-							      <td>0.33</td>
+							      <td>0.34dev</td>
 							      <td><?php echo JText::_('K2_PHP_CLASS'); ?></td>
 							      <td><?php echo JText::_('K2_GNUGPL'); ?></td>
 							    </tr>
 							    <tr>
-							      <td><a target="_blank" href="http://jquery.com">jQuery</a></td>
+							      <td><a target="_blank" href="https://jquery.com/">jQuery</a></td>
 							      <td>1.7.x - 1.12.x</td>
 							      <td><?php echo JText::_('K2_JS_LIB'); ?></td>
 							      <td><?php echo JText::_('K2_MIT'); ?></td>
 							    </tr>
 							    <tr>
-							      <td><a target="_blank" href="http://jqueryui.com/">jQuery UI</a></td>
-							      <td>1.8.24 & 1.11.4</td>
+							      <td><a target="_blank" href="https://jqueryui.com/">jQuery UI</a></td>
+							      <td>1.8.24 &amp; 1.11.4</td>
 							      <td><?php echo JText::_('K2_JS_LIB'); ?></td>
 							      <td><?php echo JText::_('K2_MIT'); ?></td>
 							    </tr>

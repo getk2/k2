@@ -17,7 +17,7 @@ if (K2_JVERSION != '15')
 	require_once JPATH_SITE.'/components/com_users/helpers/route.php';
 }
 
-require_once (dirname(__FILE__).'/helper.php');
+require_once(dirname(__FILE__).'/helper.php');
 
 $moduleclass_sfx = $params->get('moduleclass_sfx', '');
 $userGreetingText = $params->get('userGreetingText', '');
@@ -74,7 +74,7 @@ if ($user->guest)
     $option = K2_JVERSION != '15' ? 'com_users' : 'com_user';
     $task = K2_JVERSION != '15' ? 'user.login' : 'login';
 
-    require (JModuleHelper::getLayoutPath('mod_k2_user', 'login'));
+    require(JModuleHelper::getLayoutPath('mod_k2_user', 'login'));
 }
 else
 {
@@ -94,5 +94,5 @@ else
     $option = K2_JVERSION != '15' ? 'com_users' : 'com_user';
     $task = K2_JVERSION != '15' ? 'user.logout' : 'logout';
 
-    require (JModuleHelper::getLayoutPath('mod_k2_user', 'userblock'));
+    require(JModuleHelper::getLayoutPath('mod_k2_user', 'userblock'));
 }

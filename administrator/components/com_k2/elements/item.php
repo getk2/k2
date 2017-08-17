@@ -11,7 +11,7 @@
 defined('_JEXEC') or die;
 
 // Load CSS/JS for all elements/fields
-require_once (JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
+require_once(JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
 class K2ElementItem extends K2Element
 {

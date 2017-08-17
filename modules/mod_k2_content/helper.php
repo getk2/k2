@@ -10,8 +10,8 @@
 // no direct access
 defined('_JEXEC') or die;
 
-require_once (JPATH_SITE.'/components/com_k2/helpers/route.php');
-require_once (JPATH_SITE.'/components/com_k2/helpers/utilities.php');
+require_once(JPATH_SITE.'/components/com_k2/helpers/route.php');
+require_once(JPATH_SITE.'/components/com_k2/helpers/utilities.php');
 
 class modK2ContentHelper
 {

@@ -58,7 +58,7 @@ if (JFile::exists(JPATH_COMPONENT.'/controllers/'.$controller.'.php'))
 {
     $classname = 'K2Controller'.$controller;
     if(!class_exists($classname))
-        require_once (JPATH_COMPONENT.'/controllers/'.$controller.'.php');
+        require_once(JPATH_COMPONENT.'/controllers/'.$controller.'.php');
     $controller = new $classname();
     $controller->execute($task);
     $controller->redirect();

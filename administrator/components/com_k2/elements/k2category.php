@@ -10,7 +10,7 @@
 // no direct access
 defined('_JEXEC') or die;
 
-require_once (JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
+require_once(JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
 class K2ElementK2Category extends K2Element
 {

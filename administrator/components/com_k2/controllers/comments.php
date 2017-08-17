@@ -17,7 +17,7 @@ class K2ControllerComments extends K2Controller
 
     public function display($cachable = false, $urlparams = array())
     {
-        require_once (JPATH_SITE.'/components/com_k2/helpers/route.php');
+        require_once(JPATH_SITE.'/components/com_k2/helpers/route.php');
         JRequest::setVar('view', 'comments');
         parent::display();
     }

@@ -1178,7 +1178,7 @@ class K2ModelItemlist extends K2Model
 			{
 
 				case 'mod_k2_content' :
-					require_once (JPATH_SITE.'/modules/mod_k2_content/helper.php');
+					require_once(JPATH_SITE.'/modules/mod_k2_content/helper.php');
 					$helper = new modK2ContentHelper;
 					$items = $helper->getItems($params, $format);
 					break;
@@ -1187,7 +1187,7 @@ class K2ModelItemlist extends K2Model
 					if ($params->get('module_usage') == 1)
 						JError::raiseError(404, JText::_('K2_NOT_FOUND'));
 
-					require_once (JPATH_SITE.'/modules/mod_k2_comments/helper.php');
+					require_once(JPATH_SITE.'/modules/mod_k2_comments/helper.php');
 					$helper = new modK2CommentsHelper;
 					$items = $helper->getLatestComments($params);
 

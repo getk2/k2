@@ -64,7 +64,7 @@ class modK2UserHelper
         {
             if ($profile->image != '')
                 $profile->avatar = JURI::root().'media/k2/users/'.$profile->image;
-            require_once (JPATH_SITE.'/components/com_k2/helpers/permissions'.'.php');
+            require_once(JPATH_SITE.'/components/com_k2/helpers/permissions'.'.php');
             if (JRequest::getCmd('option') != 'com_k2')
                 K2HelperPermissions::setPermissions();
             if (K2HelperPermissions::canAddItem())

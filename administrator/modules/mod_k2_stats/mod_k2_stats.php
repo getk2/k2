@@ -26,7 +26,7 @@ if (K2_JVERSION != '15')
 	$language->load('com_k2.dates', JPATH_ADMINISTRATOR);
 }
 
-require_once (dirname(__FILE__).'/helper.php');
+require_once(dirname(__FILE__).'/helper.php');
 
 if ($params->get('latestItems', 1))
 {
@@ -49,4 +49,4 @@ if ($params->get('statistics', 1))
 	$statistics = modK2StatsHelper::getStatistics();
 }
 
-require (JModuleHelper::getLayoutPath('mod_k2_stats'));
+require(JModuleHelper::getLayoutPath('mod_k2_stats'));

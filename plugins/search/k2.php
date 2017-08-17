@@ -56,8 +56,8 @@ class plgSearchK2 extends JPlugin
         $tagIDs = array();
         $itemIDs = array();
 
-        require_once (JPATH_SITE.'/administrator/components/com_search/helpers/search.php');
-        require_once (JPATH_SITE.'/components/com_k2/helpers/route.php');
+        require_once(JPATH_SITE.'/administrator/components/com_search/helpers/search.php');
+        require_once(JPATH_SITE.'/components/com_k2/helpers/route.php');
 
         $searchText = $text;
         if (is_array($areas))

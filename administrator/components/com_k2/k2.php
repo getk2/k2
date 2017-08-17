@@ -136,7 +136,7 @@ JLoader::register('K2Model', JPATH_COMPONENT.'/models/model.php');
 
 $controller = JRequest::getWord('view', 'items');
 $controller = JString::strtolower($controller);
-require_once (JPATH_COMPONENT.'/controllers/'.$controller.'.php');
+require_once(JPATH_COMPONENT.'/controllers/'.$controller.'.php');
 $classname = 'K2Controller'.$controller;
 $controller = new $classname();
 $controller->registerTask('saveAndNew', 'save');

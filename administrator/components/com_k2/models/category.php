@@ -29,7 +29,7 @@ class K2ModelCategory extends K2Model
     {
         $mainframe = JFactory::getApplication();
         jimport('joomla.filesystem.file');
-        require_once (JPATH_COMPONENT.'/lib/class.upload.php');
+        require_once(JPATH_SITE.'/media/k2/assets/vendors/verot/class.upload.php/class.upload.php');
         $row = JTable::getInstance('K2Category', 'Table');
         $params = JComponentHelper::getParams('com_k2');
 

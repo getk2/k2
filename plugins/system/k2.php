@@ -611,13 +611,13 @@ class plgSystemK2 extends JPlugin
 			}
 			if (K2_JVERSION != '15')
 			{
-				require_once (JPATH_SITE.'/components/com_users/controller.php');
+				require_once(JPATH_SITE.'/components/com_users/controller.php');
 				$controller = new UsersController;
 
 			}
 			else
 			{
-				require_once (JPATH_SITE.'/components/com_user/controller.php');
+				require_once(JPATH_SITE.'/components/com_user/controller.php');
 				$controller = new UserController;
 			}
 			$view = $controller->getView($view, 'html');
@@ -707,12 +707,12 @@ class plgSystemK2 extends JPlugin
 
 			if (K2_JVERSION != '15')
 			{
-				require_once (JPATH_SITE.'/components/com_users/controller.php');
+				require_once(JPATH_SITE.'/components/com_users/controller.php');
 				$controller = new UsersController;
 			}
 			else
 			{
-				require_once (JPATH_SITE.'/components/com_user/controller.php');
+				require_once(JPATH_SITE.'/components/com_user/controller.php');
 				$controller = new UserController;
 			}
 

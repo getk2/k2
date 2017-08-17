@@ -236,13 +236,13 @@ class K2ViewItem extends K2View
         // Email link
         if (K2_JVERSION != '15')
         {
-            require_once (JPATH_SITE.'/components/com_mailto/helpers/mailto.php');
+            require_once(JPATH_SITE.'/components/com_mailto/helpers/mailto.php');
             $template = $mainframe->getTemplate();
             $item->emailLink = JRoute::_('index.php?option=com_mailto&tmpl=component&template='.$template.'&link='.MailToHelper::addLink($item->absoluteURL));
         }
         else
         {
-            require_once (JPATH_SITE.'/components/com_mailto/helpers/mailto.php');
+            require_once(JPATH_SITE.'/components/com_mailto/helpers/mailto.php');
             $item->emailLink = JRoute::_('index.php?option=com_mailto&tmpl=component&link='.MailToHelper::addLink($item->absoluteURL));
         }
 

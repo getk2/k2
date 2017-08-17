@@ -99,7 +99,7 @@ class plgUserK2 extends JPlugin
 
 			$file = JRequest::get('files');
 
-			require_once (JPATH_ADMINISTRATOR.'/components/com_k2/lib/class.upload.php');
+			require_once(JPATH_SITE.'/media/k2/assets/vendors/verot/class.upload.php/class.upload.php');
 			$savepath = JPATH_ROOT.'/media/k2/users/';
 
 			if (isset($file['image']) && $file['image']['error'] == 0 && !JRequest::getBool('del_image'))
@@ -254,7 +254,7 @@ class plgUserK2 extends JPlugin
 			{
 				if (!function_exists('_recaptcha_qsencode'))
 				{
-					require_once (JPATH_ADMINISTRATOR.'/components/com_k2/lib/recaptchalib.php');
+					require_once(JPATH_ADMINISTRATOR.'/components/com_k2/lib/recaptchalib.php');
 				}
 				$privatekey = $params->get('recaptcha_private_key');
 				$recaptcha_challenge_field = isset($_POST["recaptcha_challenge_field"]) ? $_POST["recaptcha_challenge_field"] : '';

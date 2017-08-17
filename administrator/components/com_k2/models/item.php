@@ -30,7 +30,7 @@ class K2ModelItem extends K2Model
 		jimport('joomla.filesystem.file');
 		jimport('joomla.filesystem.folder');
 		jimport('joomla.filesystem.archive');
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/lib/class.upload.php');
+		require_once(JPATH_SITE.'/media/k2/assets/vendors/verot/class.upload.php/class.upload.php');
 		$db = JFactory::getDBO();
 		$user = JFactory::getUser();
 		$row = JTable::getInstance('K2Item', 'Table');
@@ -780,7 +780,7 @@ class K2ModelItem extends K2Model
 
 		$row->extra_fields = json_encode($objects);
 
-		require_once (JPATH_COMPONENT_ADMINISTRATOR.'/models/extrafield.php');
+		require_once(JPATH_COMPONENT_ADMINISTRATOR.'/models/extrafield.php');
 		$extraFieldModel = K2Model::getInstance('ExtraField', 'K2Model');
 		$row->extra_fields_search = '';
 
@@ -1082,7 +1082,7 @@ class K2ModelItem extends K2Model
 
 		if (JFile::exists($file))
 		{
-			require_once (JPATH_COMPONENT_ADMINISTRATOR.'/lib/class.upload.php');
+			require_once(JPATH_SITE.'/media/k2/assets/vendors/verot/class.upload.php/class.upload.php');
 			$handle = new Upload($file);
 
 			// Trigger K2 plugins

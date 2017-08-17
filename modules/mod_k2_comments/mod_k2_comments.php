@@ -16,7 +16,7 @@ if (K2_JVERSION != '15')
     $language->load('com_k2.dates', JPATH_ADMINISTRATOR, null, true);
 }
 
-require_once (dirname(__FILE__).'/helper.php');
+require_once(dirname(__FILE__).'/helper.php');
 
 // Params
 $moduleclass_sfx = $params->get('moduleclass_sfx', '');
@@ -55,11 +55,11 @@ switch($module_usage)
 {
     case '0' :
         $comments = modK2CommentsHelper::getLatestComments($params);
-        require (JModuleHelper::getLayoutPath('mod_k2_comments', 'comments'));
+        require(JModuleHelper::getLayoutPath('mod_k2_comments', 'comments'));
         break;
 
     case '1' :
         $commenters = modK2CommentsHelper::getTopCommenters($params);
-        require (JModuleHelper::getLayoutPath('mod_k2_comments', 'commenters'));
+        require(JModuleHelper::getLayoutPath('mod_k2_comments', 'commenters'));
         break;
 }

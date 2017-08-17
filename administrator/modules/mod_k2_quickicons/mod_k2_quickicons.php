@@ -76,5 +76,5 @@ if ($modCSSStyling)
 
 // Output content with template
 echo $mod_copyrights_start;
-require (JModuleHelper::getLayoutPath($mod_name, 'default'));
+require(JModuleHelper::getLayoutPath($mod_name, 'default'));
 echo $mod_copyrights_end;

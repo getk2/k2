@@ -1248,7 +1248,7 @@ class K2ModelItem extends K2Model
 					{
 						if (!function_exists('_recaptcha_qsencode'))
 						{
-							require_once (JPATH_ADMINISTRATOR.'/components/com_k2/lib/recaptchalib.php');
+							require_once(JPATH_ADMINISTRATOR.'/components/com_k2/lib/recaptchalib.php');
 						}
 						$privatekey = trim($params->get('recaptcha_private_key'));
 						$recaptcha_challenge_field = isset($_POST["recaptcha_challenge_field"]) ? $_POST["recaptcha_challenge_field"] : '';
@@ -1274,7 +1274,7 @@ class K2ModelItem extends K2Model
 				{
 					if ($params->get('akismetApiKey'))
 					{
-						require_once (JPATH_ADMINISTRATOR.'/components/com_k2/lib/akismet.class.php');
+						require_once(JPATH_ADMINISTRATOR.'/components/com_k2/lib/akismet.class.php');
 						$akismetApiKey = trim($params->get('akismetApiKey'));
 						$akismet = new Akismet(JURI::root(false), $akismetApiKey);
 						$akismet->setCommentAuthor($userName);

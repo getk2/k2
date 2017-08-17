@@ -495,9 +495,9 @@ class K2ViewItemlist extends K2View
             }
 
             if ($params->get('getTemplate'))
-                require (JModuleHelper::getLayoutPath('mod_k2_content', $params->get('getTemplate').'/default'));
+                require(JModuleHelper::getLayoutPath('mod_k2_content', $params->get('getTemplate').'/default'));
             else
-                require (JModuleHelper::getLayoutPath($result->module, 'default'));
+                require(JModuleHelper::getLayoutPath($result->module, 'default'));
         }
         $mainframe->close();
     }
