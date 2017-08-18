@@ -29,8 +29,8 @@ ul.k2SortableListContainer li span.k2EntryText {}
 
 
 /* --- Header Element --- */
-.jwHeaderContainer {background:#e5f7fd;color:#346b93;font-size:20px;padding:24px 16px;margin:0;border-radius:4px;}
-.jwHeaderContainer15 {clear:both;font-weight:bold;font-size:12px;color:#369;margin:0;padding:0;background:#d5e7fa;border-bottom:2px solid #96b0cb;float:left;width:100%;}
+.jwHeaderContainer {background:#e5f7fd;color:#346b93;font-size:20px;margin:0;padding:24px 16px;border-radius:4px;}
+.jwHeaderContainer15 {background:#d5e7fa;color:#369;font-size:13px;margin:0;padding:10px;border-bottom:2px solid #96b0cb;font-weight:bold;float:left;width:100%;clear:both;}
 .jwHeaderContent {}
 .jwHeaderClr {clear:both;height:0;line-height:0;border:none;float:none;background:none;padding:0;margin:0;}
 
