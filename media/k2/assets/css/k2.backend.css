@@ -6,141 +6,1002 @@
  * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
-/* --- Common --- */
+/* Import Open Sans */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,800italic,800,700italic,700,600,600italic,400italic,300italic,300&subset=latin,greek,vietnamese,cyrillic-ext,cyrillic);
+
+/* Common */
+a:active,a:focus {outline:0;}
+.clr,
 .k2clr {clear:both;height:0;line-height:0;border:none;float:none;background:none;padding:0;margin:0;}
-#k2AlertContainer {position:fixed;top:0;left:0;right:0;z-index:99999;}
-	#k2AlertMessage {width:40%;background:#42a640;color:#fff;font-size:18px;text-align:center;margin:0 auto;padding:20px;box-sizing:border-box;border-bottom:4px solid #358534;}
-		a#k2AlertClose {color:#358534;font-family:monospace;font-size:24px;font-weight:bold;display:block;width:16px;height:16px;margin:0 0 10px 10px;float:right;text-decoration:none;}
-		a#k2AlertClose:hover {color:#2b752a;}
-		#k2AlertMessage span {display:block;width:92%;margin:auto;}
+hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding:0;margin:4px 0;}
+
+.isJ30 body {padding-right:0;padding-left:0;}
+.com_k2 select[multiple],
+.com_k2 select[size],
+.com_k2 select {min-height:40px;height:40px;max-width:100%;}
+
+/* Reset Bootstrap responsive stuff */
+.isJ30 .header,
+.isJ30 .navbar-fixed-top,
+.isJ30 .navbar-fixed-bottom,
+.isJ30 .navbar-static-top,
+.isJ30 .btn-subhead,
+.isJ30 .subhead {margin-left:0;margin-right:0;}
 
 
 
-/* --- jQueryUI Sortables for K2 Fields/Elements --- */
-div.k2SelectorButton {display:block;border-bottom:1px dotted #ccc;padding:8px 0;margin:0 0 8px 0;}
-div.k2SelectorButton a {}
-	div.k2SingleSelect {border:0;padding:0;margin:0;}
-	div.k2SingleSelect span.k2EntryText {display:inline-block;margin:2px 0;padding:4px 6px;border:1px solid #ccc;background:#eee;border-radius:2px;color:#555;}
-ul.k2SortableListContainer {list-style:none;display:block;clear:both;margin:0;padding:0;width:80%;}
-ul.k2SortableListContainer li {list-style:none;margin:2px 0;padding:8px;border:1px solid #ccc;background:#eee;border-radius:2px;cursor:move;}
-ul.k2SortableListContainer li a.k2EntryRemove {cursor:pointer;margin:0 12px 0 0;font-size:14px;}
-ul.k2SortableListContainer li span.k2EntryText {}
+/* -------------- Admin Common -------------- */
 
+.k2Center {text-align:center;}
+.k2Left {text-align:left;}
+.k2Right {text-align:right;}
+.k2FLeft {float:left;}
+.k2FRight {float:right;}
+.k2ForceWrap {white-space:normal!important;max-width:120px;overflow:hidden;}
+.k2NoWrap {white-space:nowrap;}
+.k2Date {white-space:nowrap;text-align:center;}
+.k2Order {white-space:nowrap!important;text-align:right;width:auto!important;min-width:80px;}
+.k2Order span {}
+.k2OrderBox {text-align:center;}
+.k2OptionSep {color:#999;font-style:normal;}
+.k2IsIcon {font-family:Arial,Helvetica,sans-serif!important;font-size:16px!important;}
+.k2IsIcon:hover {color:#BB3A00;text-decoration:none;}
+.k2TitleBox {font-size:20px!important;height:35px!important;padding:5px 6px!important;width:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+.k2TitleAliasBox {width:60%;font-size:12px;}
+.k2TextBox {background:#fff;padding:4px;}
+.k2ListItemDisabled {cursor:pointer;color:#0B55C4;} /* used in popup lists */
+.k2VisuallyHidden,
+.visually-hidden {position:absolute;overflow:hidden;clip:rect(0, 0, 0, 0);}
 
+.k2CharCounter {margin:0 0 0 8px;color:#2ecc40;}
+	.k2CharsExceeded {color:#ff4136;}
 
-/* --- Header Element --- */
-.jwHeaderContainer {background:#e5f7fd;color:#346b93;font-size:20px;padding:24px 16px;margin:0;border-radius:4px;}
-.jwHeaderContainer15 {clear:both;font-weight:bold;font-size:12px;color:#369;margin:0;padding:0;background:#d5e7fa;border-bottom:2px solid #96b0cb;float:left;width:100%;}
-.jwHeaderContent {}
-.jwHeaderClr {clear:both;height:0;line-height:0;border:none;float:none;background:none;padding:0;margin:0;}
-
-
-
-/* --- Style parameters for modules --- */
-.com_modules .form-horizontal .span9 .control-group {border-radius:4px;padding:0;margin:0 0 4px 0 !important;}
-.com_modules .form-horizontal .span9 .control-group:nth-child(2n-1) {background:#f7f7f7;}
-.com_modules .form-horizontal .span9 .control-group:last-child {margin-bottom:100px !important;}
-.com_modules .form-horizontal .span9 .control-group .control-label,
-.com_modules .form-horizontal .span9 .control-group .controls {padding:16px;margin:0;}
-.com_modules .form-horizontal .span9 .control-group .control-label label {padding:0;margin:0;}
-.com_modules .form-horizontal .span9 .control-group .controls label {}
-.com_modules .form-horizontal .span9 .control-group .control-label label {font-size:14px;margin-top:4px;}
-
-/* Resize parameter columns */
-@media all and (min-width:771px) {
-	.com_modules .form-horizontal .span9 .control-group .control-label {width:30% !important;}
-	.com_modules .form-horizontal .span9 .control-group .controls {margin-left:32% !important;}
+/* Simple grid based on Foundation */
+#k2AdminContainer .row {margin-left:auto;margin-right:auto;width:100%;max-width:1200px;}
+#k2AdminContainer .row .row {margin-left:-0.625em;margin-right:-0.625em;width:auto;}
+#k2AdminContainer .row.row-nomax {max-width:100%;}
+.column,
+.columns {float:left;padding-left:0.625em;padding-right:0.625em;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+.small-12 {width:100%;}
+@media screen and (min-width:60em) {
+	.large-6 {width:50%;}
+	.large-8 {width:75%;}
+	.large-9 {width:66.67%;}
+	.large-10 {width:83%;}
 }
-@media all and (min-width:481px) and (max-width:770px){
-	.com_modules .form-horizontal .span9 .control-group .control-label {width:45% !important;}
-	.com_modules .form-horizontal .span9 .control-group .controls {margin-left:47% !important;}
+.column.small-centered,
+.columns.small-centered {float:none;margin-left:auto;margin-right:auto;}
+
+/* Sprite */
+.icon-48-k2,
+body.com_k2 .page-title,
+.k2Inactive,
+span.k2GalleryNotice ,
+.k2Active {display:inline-block;background:url('../images/backend/sprite.png') no-repeat;overflow:hidden;text-align:left;}
+#k2ExtraFieldsValidationResults:before {background:url('../images/backend/sprite.png') no-repeat;overflow:hidden;text-align:left;}
+span.k2GalleryNotice {background-position:-79px -118px;width:16px;height:16px;}
+#k2ExtraFieldsValidationResults:before {content:'';float:left;margin-right:10px;background-position:-10px -92px;width:59px;height:54px;}
+.icon-48-k2 {background-position:-10px -0px;height:36px;}
+.isJ15 .icon-48-k2,
+.isJ25 .icon-48-k2 {height:48px;}
+body.com_k2 .page-title {background-position:-10px -46px;width:auto;height:36px;}
+.k2Inactive {background-position:-79px -92px;width:16px;height:16px;}
+.k2Active {background-position:-79px -144px;width:16px;height:16px;}
+/* End of the sprite */
+
+.k2Toggler {display:block;width:16px;height:16px;margin:0 auto;padding:0;background-repeat:no-repeat;background-position:0 0;text-indent:-500px;overflow:hidden;}
+.k2Active {background-image:url(../images/backend/tick.png);}
+.k2Inactive {background-image:url(../images/backend/cross.png);}
+
+div#k2AdminContainer {font-family:'Open Sans',sans-serif;}
+
+/* Common image styling */
+img.k2AdminImage {border:4px solid #ddd;margin:10px 0;padding:0;display:block;}
+img.k2UserAvatar {margin:10px 20px;}
+
+.paramHeader {padding:6px 8px;}
+
+ul.k2GenericList {list-style:square;margin:0 8px 8px;padding:2px 8px;}
+ul.k2GenericList li {list-style:square;padding:2px 0;}
+
+/* Generic button */
+.k2Selector {background:#f0f2f2;border:1px solid #d4d7d9;border-radius:3px;display:inline-block;margin:0;padding:4px 8px;color:#555;font-weight:bold;font-size:12px;cursor:pointer;text-decoration:none;box-shadow:0 0 1px 0 rgba(41,40,42,0.2);}
+.k2Selector:hover {color:#222;text-decoration:none;border-color:rgba(82,168,236,0.8);box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,0.6);-webkit-transition:box-shadow 300ms ease;transition:box-shadow 300ms ease;}
+
+/* Date/time picker */
+.k2DateTimePickerControl {position:relative;}
+.k2DateTimePickerControl .fa-calendar {position:absolute;top:8px;right:8px;}
+
+/* Header */
+.subhead .btn-toolbar {padding-right:10px;}
+.icon-48-k2 {color:#222!important;padding-left:120px!important;font-size:24px!important;}
+.icon-48-k2 h2 {color:#222!important;font-size:24px!important;margin-left:10px!important;}
+
+/* Normalize all Joomla radio controls?
+div.controls label.radio {}
+div.controls label.radio input[type="radio"] {}
+*/
+
+div#k2AdminContainer h1 {padding:0 0 8px 0;margin:0;}
+span.k2Notice {cursor:pointer;font-weight:bold;}
+.k2LimitBox {float:left;margin:0 10px 0 0;}
+
+/* Fixes pagination issue for the limitbox */
+.k2LimitBox .chzn-drop {top:auto!important;bottom:38px!important;}
+.k2LimitBox .chzn-container-active.chzn-with-drop .chzn-single {border-radius:0 0 5px 5px!important;}
+.k2LimitBox .chzn-container .chzn-drop {padding-top:10px;border-bottom:0;border-top:1px solid #aaa;border-radius:4px 4px 0 0;}
+
+/* Common for Joomla 2.5 */
+div.isJ25 table.admintable {}
+div.isJ25 table.admintable td.key {background:#f6f6f6;/*border-bottom:1px solid #e9e9e9;border-right:1px solid #e9e9e9;*/color:#666;font-weight:bold;text-align:right;font-size:11px;width:140px;}
+div.isJ25 table.admintable td.key label {margin:0;padding:0;}
+
+/* Common for Joomla 3.x */
+body.com_k2 .container-fluid {padding:0!important;}
+body.com_k2 .page-title {padding-left:100px;}
+@media (max-width:767px) {
+	body.com_k2 .page-title {padding-left:0;text-indent:-800px}
 }
-.com_modules .form-horizontal .span9 .control-group-header {background:#e5f7fd;margin-top:32px !important;}
-.com_modules .form-horizontal .span9 .control-group-header .control-label,
-.com_modules .form-horizontal .span9 .control-group-header .controls {padding:0 !important;margin:0 !important;}
+div.controls label.radio {display:inline-block;}
+.isJ30 table.adminlist tfoot tr td .pagination {text-align:center;}
 
-/* Textarea & Chosen (multi-container) blocks */
-.com_modules .form-horizontal .span9 .controls .chzn-container-multi {width:90% !important;}
-.com_modules .form-horizontal .span9 .controls textarea {width:90%;}
-
-
-
-/* --- Style parameters for menus --- */
-.com_menus .form-horizontal #attrib-basic .control-group {border-radius:4px;padding:0;margin:0 0 4px 0 !important;}
-.com_menus .form-horizontal #attrib-basic .control-group:nth-child(2n-1) {background:#f7f7f7;}
-.com_menus .form-horizontal #attrib-basic .control-group:last-child {margin-bottom:100px !important;}
-.com_menus .form-horizontal #attrib-basic .control-group .control-label,
-.com_menus .form-horizontal #attrib-basic .control-group .controls {padding:16px;margin:0;}
-.com_menus .form-horizontal #attrib-basic .control-group .control-label label {padding:0;margin:0;}
-.com_menus .form-horizontal #attrib-basic .control-group .controls label {}
-.com_menus .form-horizontal #attrib-basic .control-group .control-label label {font-size:14px;margin-top:4px;}
-
-/* Resize parameter columns */
-@media all and (min-width:771px) {
-	.com_menus .form-horizontal #attrib-basic .control-group .control-label {width:30% !important;}
-	.com_menus .form-horizontal #attrib-basic .control-group .controls {margin-left:32% !important;}
+/* Footer */
+#k2AdminFooter {text-align:center;margin:20px auto 4px auto;width:100%;clear:both;float:left;}
+@media screen and (min-width:767px) {
+	#k2AdminFooter {margin-bottom:45px;}
 }
-@media all and (min-width:481px) and (max-width:770px){
-	.com_menus .form-horizontal #attrib-basic .control-group .control-label {width:45% !important;}
-	.com_menus .form-horizontal #attrib-basic .control-group .controls {margin-left:47% !important;}
+
+/* div tables */
+div.k2Table {margin:0 0 20px 0;}
+div.k2Table .k2TableLabel > label {font-weight:normal;color:#777;}
+div.k2Table .k2TableValue {}
+div.k2Table .k2TableValue input[type="text"] {min-height:40px;line-height:40px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+div.k2Table .k2TableValue:after {content:" ";display:block;margin-bottom:8px;}
+div.k2SubTable {margin-bottom:15px;}
+div.k2SubTable .k2SubTableLabel {display:inline-block;text-align:right;vertical-align:top;}
+div.k2SubTable .k2SubTableLabel > label {font-weight:normal;color:#777;}
+
+div.k2SubTable .k2SubTableValue label {padding-left:4px!important;}
+div.k2SubTable .k2SubTableValue input[type="radio"] {margin:2px 8px 0 0!important;}
+
+.k2TableValue,
+.k2SubTableValue {margin-bottom:15px;}
+
+@media screen and (max-width:1240px) {
+	.k2TableRightTop {margin-top:20px;}
 }
-.com_menus .form-horizontal #attrib-basic .control-group-header {background:#e5f7fd;margin-top:32px !important;}
-.com_menus .form-horizontal #attrib-basic .control-group-header .control-label,
-.com_menus .form-horizontal #attrib-basic .control-group-header .controls {padding:0 !important;margin:0 !important;}
-
-/* Textarea & Chosen (multi-container) blocks */
-.com_menus .form-horizontal #attrib-basic .controls .chzn-container-multi {width:90% !important;}
-.com_menus .form-horizontal #attrib-basic .controls textarea {width:90%;}
-
-/* Radio/Checkbox Buttons */
-.com_menus .form-horizontal #attrib-basic .controls fieldset.radio:not(.btn-group) label {display:inline-block !important;margin:0 !important;padding:0 16px 0 2px !important;}
-.com_menus .form-horizontal #attrib-basic .controls fieldset.radio:not(.btn-group),
-.com_menus .form-horizontal #attrib-basic .controls fieldset.checkbox:not(.btn-group) {padding:0 !important;margin:4px 0 0 0 !important;}
-.com_menus .form-horizontal #attrib-basic .controls fieldset.radio:not(.btn-group) input[type="radio"],
-.com_menus .form-horizontal #attrib-basic .controls fieldset.radio:not(.btn-group) .checkbox input[type="checkbox"] {display:inline-block !important;float:none !important;margin:-2px 0 0 0 !important;}
-
-
-
-/* --- Style component parameters --- */
-.com_config .form-horizontal .span10 .control-group {border-radius:4px;padding:0;margin:0 0 4px 0 !important;}
-.com_config .form-horizontal .span10 .control-group:nth-child(2n-1) {background:#f7f7f7;}
-.com_config .form-horizontal .span10 .control-group:last-child {margin-bottom:100px !important;}
-.com_config .form-horizontal .span10 .control-group .control-label,
-.com_config .form-horizontal .span10 .control-group .controls {padding:16px;margin:0;}
-.com_config .form-horizontal .span10 .control-group .control-label label {padding:0;margin:0;}
-.com_config .form-horizontal .span10 .control-group .controls label {}
-.com_config .form-horizontal .span10 .control-group .control-label label {font-size:14px;margin-top:4px;}
-
-/* Resize parameter columns */
-@media all and (min-width:771px) {
-	.com_config .form-horizontal .span10 .control-group .control-label {width:30% !important;}
-	.com_config .form-horizontal .span10 .control-group .controls {margin-left:32% !important;}
+@media screen and (min-width:1240px) {
+	div.k2TableInline {display:inline-block;}
+	div.k2TableLeft {float:left;}
+	div.k2TableRight {float:right;text-align:right;}
+	div.k2TableRight .chzn-container {text-align:left;}
+	.k2ViewIsItem div.k2SubTable .k2SubTableLabel:first-child {margin-left:0;width:auto;}
+	.k2ItemTableRightPad {padding-left:16px;}
 }
-@media all and (min-width:481px) and (max-width:770px){
-	.com_config .form-horizontal .span10 .control-group .control-label {width:45% !important;}
-	.com_config .form-horizontal .span10 .control-group .controls {margin-left:47% !important;}
+/*
+@media screen and (min-width:1660px) {
+	div.k2CatTableLeft {float:left;}
+	div.k2CatTableRight {float:right;text-align:right;}
+	div.k2ItemTableLeft {float:left;}
+	div.k2ItemTableRight {float:right;text-align:right;}
 }
-.com_config .form-horizontal .span10 .control-group-header {background:#e5f7fd;margin-top:32px !important;}
-.com_config .form-horizontal .span10 .control-group-header .control-label,
-.com_config .form-horizontal .span10 .control-group-header .controls {padding:0 !important;margin:0 !important;}
+*/
+@media screen and (min-width:1000px) {
+	div.k2Table .k2TableValue {margin-left:120px;vertical-align:top;}
+	div.k2Table .k2TableLabel {position:absolute;width:100px;vertical-align:top;text-align:right;}
+	div.k2SubTable .k2SubTableValue {display:inline-block;vertical-align:top;}
+	div.k2SubTable .k2SubTableLabel {margin:0 0 0 20px;padding:9px 8px 0;}
+	div.k2SubTable .k2SubTableValue {width:210px;}
+	.k2ViewIsCategory div.k2SubTable .k2SubTableLabel {width:150px;}
+	.k2ViewIsItem div.k2SubTable .k2SubTableLabel {width:90px;}
+}
+@media screen and (min-width:767px) {
+	div.k2Table .k2TableLabel {display:block;padding:10px 0;}
+	.k2ViewIsItem div.k2SubTable .k2SubTableLabel:first-child {margin-left:-107px;}
+	/* Category specific styling */
+	.k2CategoryForm div.k2Table .k2TableLabel > label {width:125px;max-width:125px;}
+	.k2CategoryForm div.k2Table .k2TableValue {margin-left:145px;}
+	label[for="title"] {font-size:18px;}
+	label[for="tags"] {padding:20px 0 0 0;}
+}
 
-/* Textarea & Chosen (multi-container) blocks */
-.com_config .form-horizontal .span10 .controls .chzn-container-multi {width:90% !important;}
-.com_config .form-horizontal .span10 .controls textarea {width:90%;}
+/* Generic Tabs Layout */
+.ui-tabs-hide {display:none;}
+div.k2Tabs {clear:both;padding:10px 0;}
+ul.k2TabsNavigation {margin:0;padding:0;text-align:left;list-style:none;}
+ul.k2TabsNavigation li {display:inline-block;margin:0 -2px 0 0;padding:0;width:49%}
+ul.k2TabsNavigation li a {display:block;padding:10px;margin:0;background:#f0f2f2;font-size:14px;text-decoration:none;font-weight:normal;outline:0;border-radius:3px 3px 0 0;color:#6d6f71;border-bottom:1px solid #d4d7d9;}
+ul.k2TabsNavigation li a:hover {text-decoration:none;background-color:#f6f6f6;}
+ul.k2TabsNavigation li a i {margin-right:8px;color:#6d6f71;display:none;}
+ul.k2TabsNavigation li.ui-tabs-selected a {padding:10px 20px;background:#fff;color:#58595b;border:1px solid #d4d7d9;border-bottom:1px solid #fff;}
+ul.k2TabsNavigation li.ui-tabs-selected a i {color:#0091ff;}
+ul.k2TabsNavigation li.ui-tabs-selected a:hover {background-color:#fff;}
+#k2MediaTabs ul.k2TabsNavigation li {width:100%;font-size:12px;}
 
-/* Radio/Checkbox Buttons */
-.com_config .form-horizontal .span10 .controls fieldset.radio label {display:inline-block !important;margin:0 !important;padding:0 16px 0 2px !important;}
-.com_config .form-horizontal .span10 .controls fieldset.radio,
-.com_config .form-horizontal .span10 .controls fieldset.checkbox {padding:0 !important;margin:4px 0 0 0 !important;}
-.com_config .form-horizontal .span10 .controls fieldset.radio input[type="radio"],
-.com_config .form-horizontal .span10 .controls fieldset.radio .checkbox input[type="checkbox"] {display:inline-block !important;float:none !important;margin:-2px 0 0 0 !important;}
+@media screen and (min-width:480px) {
+	ul.k2TabsNavigation li {width:32.3333%;}
+}
+@media screen and (min-width:600px) {
+	ul.k2TabsNavigation li {width:auto;}
+}
+@media screen and (min-width:800px) {
+	ul.k2TabsNavigation li a i {display:inline-block;}
+	ul.k2TabsNavigation li a {padding:10px 21px;}
+	#k2MediaTabs ul.k2TabsNavigation li {width:50%;}
+}
+
+/* Media Tabs */
+@media screen and (min-width:1024px) {
+	#k2MediaTabs ul.k2TabsNavigation li {width:auto;font-size:16px;}
+}
+div.k2TabsContent {background:#fff;border:1px solid #d4d7d9;padding:10px;margin-top:-1px;margin-bottom:10px;}
+.k2TabsContent.k2TabsContentLower {padding:25px 30px;}
+div.isJ25 div.k2TabsContent {}
+div.isJ30 div.k2TabsContent {}
+div.k2TabsContent {width:100%;float:left;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
+
+/* Entity ID */
+div#k2ID {position:absolute;right:0;top:0;font-size:18px;font-weight:normal;padding:21px 24px;color:#0091ff;display:none;}
+div#k2ID strong {color:#a8c5dd;}
+
+/* Top Nav Tabs */
+#k2FormTopNav {padding:0;}
+#k2FormTopNav ul.k2NavTabs {margin:0;padding:0;text-align:left;white-space:nowrap;background:#f0f2f2;border-bottom:1px solid #d4d7d9;}
+#k2FormTopNav ul.k2NavTabs li {list-style:none;display:inline-block;margin:0;padding:0;color:#414042;}
+#k2FormTopNav ul.k2NavTabs li a {display:block;font-size:14px;text-decoration:none;font-weight:normal;outline:0;padding:21px 10px;margin:0;border-right:1px solid #d4d7d9;color:#414042;}
+#k2FormTopNav ul.k2NavTabs li a:hover {text-decoration:none;color:#0091ff;}
+#k2FormTopNav ul.k2NavTabs li:last-child a {border-right:0;}
+#k2FormTopNav ul.k2NavTabs li a i {font-size:18px;margin-right:12px;color:#9cbcd3;display:none;}
+#k2FormTopNav ul.k2NavTabs li a:hover i {color:#0091ff;}
+#k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a {position:relative;color:#122747;}
+#k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {content:"\f0d8";font-family:"FontAwesome";font-style:normal;font-weight:normal;text-decoration:inherit;color:#fff;font-size:32px;position:absolute;bottom:-5px;left:50%;margin-left:-16px;width:32px;text-shadow:0px -1px 1px #ccc;}
+#k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a i {color:#0091ff;}
+
+@media screen and ( min-width:640px ) {
+	#k2FormTopNav ul.k2NavTabs li a {font-size:18px;padding:21px 24px;}
+	#k2FormTopNav ul.k2NavTabs li a i {display:inline-block;}
+}
+@media screen and ( min-width:500px ) {
+	div#k2ID {display:block;}
+	#k2FormTopNav ul.k2NavTabs li a {}
+}
+div.k2NavTabContent {padding:20px;}
+
+/* XML Parameter Rendering */
+form#adminForm {}
+#k2TabDisplaySet,
+#k2TabPubAndMeta {padding:0;}
+
+/* Metadata specific styling */
+#k2TabPubAndMeta .row {margin-left:0;max-width:100%;}
+
+ul.k2ScrollSpyMenu {position:fixed;list-style:none;padding:20px 0 0;margin:0;width:320px;display:none;}
+ul.k2ScrollSpyMenu li a {display:block;-webkit-transition:.5s all ease-out;-moz-transition:.5s all ease-out;transition:.5s all ease-out;font-size:16px;
+color:#00afec;padding:14px 28px;text-decoration:none;}
+ul.k2ScrollSpyMenu li a:hover {color:#000;}
+ul.k2ScrollSpyMenu li.active a {background:#f7f7f7;}
+div.k2ScrollingContent {margin-left:0;padding:20px 20px 0;}
+div.K2ScrollingContent h3 {margin-top:20px;}
+
+@media screen and (min-width:900px) {
+	ul.k2ScrollSpyMenu {display:block;}
+	div.k2ScrollingContent {margin-left:320px;padding-left:30px;padding-right:30px;padding-top:20px;border-left:1px solid #e3e4e4;}
+}
+
+/* The fields */
+.xmlParamsFields {}
+.xmlParamsFields.limitWidth {max-width:850px;padding:0 20px;}
+.xmlParamsFields ul {list-style:none outside none;margin:0;padding:0;clear:both;}
+.xmlParamsFields ul li {display:block;float:left;width:100%;clear:both;border-radius:3px;margin:0;padding:10px 20px 10px 0;}
+.xmlParamsFields ul li:nth-child(2n-2) {background:#f7f7f7;}
+.xmlParamsFields ul li.headerElement {padding:0;background:#fff;}
+
+.xmlParamsFields .paramValue label {min-width:85px;width:auto;text-align:center;border:1px solid #d4d6d8;line-height:33px;vertical-align:top;height:33px;font-size:12px;margin:0 -2px;padding:0 13px;
+color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background-color:#eff1f1;
+box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
+.xmlParamsFields .paramValue label:hover {cursor:pointer;box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 0 10px rgba(0,0,0,.15);}
+.xmlParamsFields .paramValue input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);}
+.xmlParamsFields .paramValue input[type="text"],
+.xmlParamsFields .paramValue textarea,
+.xmlParamsFields .paramValue select,
+.xmlParamsFields .paramValue div.chzn-container {/*margin-left:20px;*/}
+
+/* Check boxes - generic */
+.xmlParamsFields .paramValue input:checked + label {background:#63696f;color:#fff;box-shadow:0 1px 1px rgba(65,64,66,.14);}
+/* Check boxes - show */
+.xmlParamsFields .paramValue input[value="1"]:checked + label {background:#3fa800;color:#fff;box-shadow:0 1px 1px rgba(65,64,66,.14);}
+/* Check boxes - hide */
+.xmlParamsFields .paramValue input[value="0"]:checked + label {background:#bd362f;color:#fff;box-shadow:0 1px 1px rgba(65,64,66,.14);}
+/* Check boxes - inherit */
+.xmlParamsFields .paramValue input[value=""]:checked + label {background:#63696f;color:#fff;box-shadow:0 1px 1px rgba(65,64,66,.14);}
+.xmlParamsFields .paramValue input[value=""] + label {border-radius:3px 0 0 3px;}
+.xmlParamsFields .paramValue input[value="1"] + label {border-radius:0 3px 3px 0;}
+
+/* the labels */
+.xmlParamsFields .paramLabel label {font-size:13px;font-weight:700;color:#777778;padding:10px 10px 10px 20px;line-height:1;margin:0;display:inline-block;vertical-align:middle;}
+.xmlParamsFields .paramValue,
+.xmlParamsFields .paramLabel {display:inline-block;vertical-align:middle;}
+.xmlParamsFields .paramLabel {width:30%;}
+.xmlParamsFields .paramLabel input[type="checkbox"] {margin-left:20px;display:inline-block;vertical-align:middle;position:relative;top:-2px;}
+.xmlParamsFields .paramLabel input[type="checkbox"] + label {padding-left:5px;}
+
+.k2ScrollingContent > h3,
+.k2NavTabContent h3 {font-size:16px;font-weight:300;padding-bottom:16px;margin-top:25px;margin-bottom:15px;border-bottom:2px solid #dddedf;color:#00afec;}
+@media screen and (min-width:767px) {
+	.xmlParamsFields .paramValue {width:auto;}
+	.k2ScrollingContent > h3,
+	.k2NavTabContent h3 {font-size:24px;}
+	.xmlParamsFields .paramValue input[type="text"],
+	.xmlParamsFields .paramValue textarea {/*float:right;*/}
+}
+
+div#k2AdminContainer.isJ25 form#adminForm div.xmlParamsFields fieldset input {float:none!important;}
+div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-right:1px solid #e9e9e9;color:#666;font-weight:bold;text-align:right;font-size:11px;}
+
+/* Generic form additional styling - tags, users, usergroups etc. */
+.k2GenericForm {width:850px;max-width:100%;padding:0 20px;}
+.k2GenericForm h3 {font-size:24px;font-weight:300;padding-bottom:16px;margin-top:25px;margin-bottom:15px;border-bottom:2px solid #dddedf;color:#00afec;}
+.k2GenericForm .k2ItemFormEditor {padding:20px 0 20px 20px;}
+
+/* Additional parameters styling for the item form */
+.additionalParams {border-bottom:2px solid #f1f1f1;border-radius:3px;position:relative;overflow:hidden;margin:0;padding:0;}
+.additionalParams > li {background:#ededed;padding-top:3px;padding-bottom:4px;display:block;overflow:hidden;padding:5px 12px 5px 25px;border-radius:3px;font-size:16px;}
+.additionalParams > li:nth-child(2n-2) {background:#f7f7f7;}
+.additionalParams label {font-size:13px;font-weight:700;color:#777778;padding:10px 0;line-height:1;margin:0;}
+
+/* Hits */
+.itemHits {text-align:center;color:#296d86;text-transform:uppercase;font-size:12px;font-weight:700;padding-top:20px;overflow:hidden;background:#2fbbec;border-radius:3px;}
+.itemHits span {color:#fff;font-weight:300;font-size:70px;line-height:1;display:block;margin-bottom:15px;}
+.itemHitsReset {background:#ededed;padding:8px;border-radius:0 0 3px 3px;}
+#resetHitsButton {border-radius:3px;display:block;width:100%;font-weight:700;max-width:none;padding:5px 0;font-size:11px;color:#414042;border-color:#d4d7d9;background-color:#f0f2f2;box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
+
+/* Rating */
+.itemRating {text-align:center;color:#8d6e3c;text-transform:uppercase;font-size:12px;font-weight:700;padding-top:20px;background:#f7be59;border-radius:3px;}
+.itemRating span {color:#fff;font-weight:300;font-size:30px;line-height:1;display:block;margin:11px 0;}
+.itemRatingReset {background:#ededed;padding:8px;border-radius:0 0 3px 3px;margin-top:15px;}
+#resetRatingButton {border-radius:3px;display:block;width:100%;font-weight:700;max-width:none;padding:5px 0;font-size:11px;color:#414042;border-color:#d4d7d9;background-color:#f0f2f2;box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
+
+/* Small - responsive blocks */
+@media screen and (min-width:767px) {
+	.row-resposive > .col:first-child {padding-left:0;}
+	.row-resposive > .col:last-child {padding-right:0;}
+	.row-resposive {overflow:hidden;width:100%;}
+	.col {float:left;padding:0 15px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
+	.col6 {width:50%;}
+	.col3 {width:25%;}
+}
+.row-resposive {margin-bottom:45px;}
+
+/* Extrafields - newly generated elements */
+#exFieldsTypesDiv {padding-top:15px;}
+#exFieldsTypesDiv input[type="text"] {min-height:30px;line-height:40px;}
+#exFieldsTypesDiv input[type="button"],
+#exFieldsTypesDiv button {margin-bottom:20px;display:inline-block;vertical-align:top;margin-right:10px;color:#414042;min-width:100px;padding:10px 15px;border-radius:3px;border:1px solid #dedede;border-bottom-color:#cacaca;background:#fdfdfd;white-space:normal;position:relative;font-weight:700;background:-moz-linear-gradient(top,#fdfdfd 0%,#f5f5f5 100%);background:-webkit-linear-gradient(top,#fdfdfd 0%,#f5f5f5 100%);background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd',endColorstr='#f5f5f5',GradientType=0);box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
+#exFieldsTypesDiv input[type="button"]:hover,
+#exFieldsTypesDiv button:hover {background:#d4d7d9;}
+#exFieldsTypesDiv .k2ExtraFieldNotice {color:#999;margin-left:10px;}
+
+#groupContainer {text-align:right;width:100%;clear:both;float:left;margin:20px 0 0;}
+#groupContainer > span,
+#groupContainer > label {font-weight:700;color:#777;padding-right:10px;}
+.oldJ #groupContainer input[type="text"] {width:auto;}
 
 
 
-/* --- JoomFish Styling --- */
-#K2ExtraFields {color:#000;font-size:11px;padding:6px 2px 4px 4px;text-align:left;}
-#K2ExtraFields h1 {font-size:16px;height:25px;}
-#K2ExtraFields h2 {font-size:14px;}
-#K2ExtraFields strong {font-style:italic;}
+/* ====================================================================================================== */
+/* ====================================================================================================== */
+/* ====================================== Backend View Specific CSS ===================================== */
+/* ====================================================================================================== */
+/* ====================================================================================================== */
 
-/* END */
+/* Settings - Joomla 3.x, 2.5 & 1.5 */
+.paramHeaderContent {background:#e5f7fd;border-radius:3px;line-height:1;padding:18px 25px;margin:25px 0 10px 0;color:#346b93;font-size:18px;}
+.tab-pane > .control-group:first-child .paramHeaderContent {margin-top:0;}
+
+.form-horizontal .controls label,
+.controls label,
+.k2Table .k2SubTableValue label {min-width:85px;width:auto;text-align:center;border:1px solid #d4d6d8;line-height:33px;vertical-align:top;height:33px;font-size:12px;margin:0 -2px;padding:0 13px!important;
+color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background-color:#eff1f1;
+box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
+
+.controls label:hover,
+.k2Table .k2SubTableValue label:hover {cursor:pointer;box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 0 10px rgba(0,0,0,.15);}
+.controls input[type="radio"],.k2Table .k2SubTableValue input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);}
+
+.controls label:first-of-type,
+.k2Table .k2SubTableValue label:first-of-type {border-radius:3px 0 0 3px;}
+.controls label:last-of-type,
+.k2Table .k2SubTableValue label:last-of-type {border-radius:0 3px 3px 0;}
+
+/* Check boxes - show/Yes */
+.controls input[value="1"]:checked + label,
+.k2Table .k2SubTableValue input[value="1"]:checked + label,
+label[id*="1-"].radio.isChecked {background:#3fa800;color:#fff;box-shadow:0 1px 1px rgba(65,64,66,.14);}
+
+/* Check boxes - hide/No */
+.controls input[value="0"]:checked + label,
+.k2Table .k2SubTableValue input[value="0"]:checked + label,
+label[id*="0-"].radio.isChecked {background:#bd362f;color:#fff;box-shadow:0 1px 1px rgba(65,64,66,.14);}
+
+/* Check boxes - Generic */
+.xmlParamsFields .paramValue label.isChecked,
+.k2Table .k2SubTableValue label.isChecked,
+.controls label.isChecked {background:#63696f;color:#fff;box-shadow:0 1px 1px rgba(65,64,66,.14);}
+
+/* Redefining the form */
+.form-horizontal .control-label:empty {display:none;}
+.form-horizontal .controls {margin-left:0!important;}
+.form-horizontal .control-label {min-width:350px;max-width:350px;}
+.form-horizontal .control-label label {font-size:13px;font-weight:700;color:#777778;padding:15px 10px 10px;line-height:1;margin:0;}
+.controls .radio,
+.controls .checkbox {padding-left:0;}
+
+/* Bootstrap resets */
+.form-horizontal .control-group {margin-bottom:0!important;border-radius:3px;}
+.form-horizontal .control-group:nth-child(2n-2) {background:#f7f7f7;}
+.form-horizontal .controls > .radio:first-child,
+.form-horizontal .controls > .checkbox:first-child {padding-top:10px;}
+.k2Table .controls > .radio:first-child,
+.k2Table .controls > .checkbox:first-child,
+.k2GenericForm .controls > .radio:first-child,
+.k2GenericForm .controls > .checkbox:first-child {padding-top:0px;}
+.form-horizontal .controls fieldset {padding:10px 0;}
+.form-horizontal .controls .chzn-container {margin:15px 0;}
+.form-horizontal .controls input[type="text"],
+.form-horizontal .controls textarea {margin:10px 0 15px 0;}
+
+.tab-pane {padding-top:25px;}
+
+/* Permissions */
+#permissions-sliders,
+.rule-desc {padding:15px 15px 0;}
+#permissions .alert {margin:5px 0 0;}
+#permissions-sliders {border-radius:3px;}
+
+/* Item - Overrides */
+.K2AdminViewItem {}
+#k2Author {font-weight:bold;color:#333;display:inline-block;margin-top:10px;margin-right:10px;}
+div#k2TabContent {padding:0;}
+span.k2ItemFormEditorTitle {display:block;color:#58595b;font-size:20px;font-weight:bold;padding:24px 0 12px 24px;}
+.k2ItemFormEditor .editor {background:#f0f2f2;border-top:1px solid #d7d9d9;border-bottom:1px solid #e9ebec;}
+.k2ItemFormEditor .editor .btn-toolbar {padding:4px 20px;}
+
+/* Flatpickr Overrides */
+.com_k2 input.numInput {height:auto;}
+.com_k2 .flatpickr-calendar.showTimeInput.hasTime .flatpickr-time {padding:2px 10px 0px;}
+.com_k2 .flatpickr-time.hasSeconds .numInputWrapper {padding:0 5px;}
+.com_k2 .numInputWrapper span {max-height:35%;right:5px;}
+.com_k2 .numInputWrapper span.arrowDown {top:auto;bottom:9px;border-radius:0 0px 5px 0;}
+.com_k2 .numInputWrapper span.arrowUp {top:4px;border-radius:0 5px 0 0 }
+
+/* System Messages */
+.view-item #system-message-container {padding:0;}
+.view-item #system-message-container .alert {margin-bottom:0;border-radius:0;}
+
+/* Item - Free tagging */
+ul.tags {background:#fff;border:1px solid #ccc;cursor:default;min-height:48px;height:auto;display:inline-block;margin:0;padding:4px 6px;border-radius:3px;box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);box-sizing:border-box;width:100%;}
+ul.tags li {border-radius:3px;background:#d1e8fc;color:#0f4776;line-height:14px;list-style:none;float:left;clear:none;padding:10px;margin:2px 2px 2px 0;font-size:14px;font-weight:bold;font-family:"Lucida Grande";vertical-align:middle;}
+ul.tags li span.tagRemove {font-size:12px;font-family:"Lucida Grande";color:#0b4373;cursor:pointer;}
+ul.tags li span.tagRemove:hover {color:#505050;cursor:pointer;}
+ul.tags li input {border:none;padding-top:2px;background:none;font-size:12px;font-weight:normal;font-family:"Lucida Grande";float:left;clear:none;-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none;}
+ul.tags li input:focus {background:none;}
+ul.tags li input.tagsLoading {background:url(../images/backend/loader.gif) no-repeat 50% 50%;}
+ul.tags li.clr {clear:both;height:0;line-height:0;border:none;float:none;background:none;padding:0;margin:0;}
+ul.tags li.tagAdd {border:none;padding:0;background:none;height:35px;}
+ul.tags li.tagAdd input#search-field {border:none;height:35px;min-height:0;line-height:35px;}ul.tags li.tagAdd input {border:none;}
+p.k2TagsNotice {display:block;font-size:11px;font-weight:bold;margin:0;padding:0;color:#999;}
+
+.ui-autocomplete {position:absolute;margin:0;padding:0;list-style:none;border:1px solid #eee;background-color:white;border-right-color:#ddd;border-bottom-color:#ddd;text-align:left;z-index:50;}
+* html .ui-autocomplete {width:1px;} /* without this the menu expands to 100% in IE6 */
+
+.ui-menu {list-style:none;padding:2px;	margin:0;	margin-top:-3px;display:block;	float:left;}
+.ui-menu .ui-menu-item {margin:0;padding:0;zoom:0;float:left;clear:left;width:99%;}
+.ui-menu .ui-menu-item a {text-decoration:none;	display:block;	padding:.2em .4em;	line-height:1.5;zoom:1;font-weight:bold;}
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-active {margin:-1px;background-color:#444;color:#fff;}
+
+/* Item - Selection based tagging */
+#tagsLog {float:left;padding-left:4px;font-weight:bold;line-height:16px;vertical-align:middle;}
+#tagsLog.tagsLoading {background:url(../images/backend/loader.gif) no-repeat 50% 50%;margin-left:4px;padding:0;width:16px;height:16px;display:block;float:left;}
+
+table#tagLists {width:100%;}
+table#tagLists tr td span {display:block;font-weight:bold;}
+table#tagLists tr td#tagListsLeft {width:40%;}
+table#tagLists tr td#tagListsLeft select {width:99%;height:106px;}
+table#tagLists tr td#tagListsButtons {vertical-align:middle;width:20%;}
+table#tagLists tr td#tagListsButtons input {width:99%;}
+table#tagLists tr td#tagListsRight {width:40%;}
+table#tagLists tr td#tagListsRight select {width:99%;height:106px;}
+
+/* Item - Extra Fields Validation */
+#k2ExtraFieldsValidationResults {clear:both;font-weight:bold;font-size:12px;color:#369;margin:12px 0 4px;padding:16px;background-color:#d5e7fa;border-top:4px solid #96b0cb;display:none;}
+#k2ExtraFieldsValidationResults h3 {padding:0;margin:0;font-size:20px;color:#369;border:0;}
+ul#k2ExtraFieldsMissing {margin:8px;padding:0 18px;overflow:hidden;}
+ul#k2ExtraFieldsMissing li {font-weight:normal;}
+.k2Invalid {border-color:red;}
+
+/* Item - Attachments */
+#itemAttachments {margin-top:15px;padding-top:10px;}
+#itemAttachments label {font-weight:bold;}
+#itemAttachments input {margin-bottom:10px;}
+#itemAttachments input.linkTitle {width:200px;}
+#itemAttachments textarea {width:200px;}
+#itemAttachments a.k2AttachmentBrowseServer {margin-right:8px;}
+td.k2ItemFormDateField {white-space:nowrap;}
+td.k2ItemFormDateField input {}
+td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
+
+@media screen and (min-width:767px) {
+	#itemAttachments label {margin-right:10px;width:170px;float:left;clear:left;text-align:right;}
+}
+
+.itemAttachmentsTable {width:100%;margin:0 0 20px;}
+.itemAttachmentsTable th {border-bottom:3px solid #d7d9d9;border-top:0;color:#6d6f71;font-size:14px;font-weight:700;text-align:left;line-height:1;padding:12px 14px 12px 0;}
+.itemAttachmentsTable th.k2Center {text-align:center;}
+.itemAttachmentsTable td {padding:12px 14px 12px 0;font-size:13px;}
+.itemAttachmentsTable td input {padding:8px 10px 7px;border:1px solid #d7d9d9;border-radius:3px;height:auto;}
+.deleteAttachmentButton {font-size:18px;color:#9e0b0f;}
+.downloadAttachmentButton {padding-right:10px;font-size:18px;}
+
+/* New attachments form */
+.itemNewAttachment {border-top:3px solid #d7d9d9;padding:20px 0;}
+.itemNewAttachment button {background:none;float:right;border:0;font-size:16px;color:#9e0b0f;font-size:18px;}
+.itemNewAttachment .attachmentGap {margin-bottom:20px;}
+.itemNewAttachment button + input[type="text"] {min-height:30px;line-height:40px;vertical-align:top;}
+
+/* Item - Extrafields & Image Fields */
+#extraFields {padding-top:20px;}
+.itemAdditionalField {margin-bottom:25px;clear:both;width:100%;float:left;}
+.itemAdditionalField .itemAdditionalValue {margin-right:15px;margin-bottom:10px;}
+.itemAdditionalField label {font-size:13px;color:#68696b;font-weight:700;display:block;margin-top:0;margin-bottom:0;padding-top:5px;}
+.itemAdditionalField .sep,
+.itemAdditionalField label.sep {display:block;font-weight:700;margin:25px 0;font-size:15px;text-transform:uppercase;}
+.itemAdditionalField .itemAdditionalData {}
+.itemAdditionalField input[type="text"],
+.itemAdditionalField input[type="email"] {width:100%;max-width:100%;min-height:40px;line-height:40px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+.itemAdditionalField textarea {width:100%;max-width:100%;min-height:40px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+.itemAdditionalField input[type="text"]#existingImageValue {width:100%;display:block;margin-bottom:15px;}
+.nicEdit-main {outline:0;}
+.k2ExtraFieldHeader {font-size:16px;color:#68696b;font-weight:300;display:block;margin-top:0;margin-bottom:0;padding-top:5px;}
+
+/* padding correction for the calendar */
+#extraFieldsContainer .k2Calendar + .btn {padding:10px 12px;}
+#extraFieldsContainer .icon-calendar {margin-right:0;}
+
+@media screen and (min-width:767px) {
+	.itemAdditionalField .itemAdditionalValue {width:100px;margin-bottom:0 }
+	.itemAdditionalField label {display:inline-block;vertical-align:middle;}
+	.itemAdditionalField .itemAdditionalData {min-width:75%;float:left;}
+	.itemNewAttachment button + input[type="text"] {margin-left:-12px;}
+	.itemAdditionalField .sep,
+	.itemAdditionalField label.sep {display:inline-block;vertical-align:middle;margin:0 25px;}
+	.itemAdditionalField input[type="text"]#existingImageValue {width:auto;display:inline-block;vertical-align:middle;margin-right:-10px;margin-bottom:0;}
+	.k2ExtraFieldHeader {margin-left:120px;}
+}
+
+/* Item Buttons */
+.itemAdditionalField .itemAdditionalData > button,
+.itemAdditionalField .itemAdditionalData > input[type="button"],
+.itemAdditionalField .itemAdditionalData > input[type="submit"],
+.k2Button {color:#414042;min-width:150px;padding:10px 15px;border-radius:3px;;border:1px solid #dedede;border-bottom-color:#cacaca;background:#fdfdfd;white-space:normal;display:inline-block;vertical-align:middle;position:relative;font-weight:700;background:-moz-linear-gradient(top,#fdfdfd 0%,#f5f5f5 100%);background:-webkit-linear-gradient(top,#fdfdfd 0%,#f5f5f5 100%);background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd',endColorstr='#f5f5f5',GradientType=0);box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
+.itemAdditionalField .itemAdditionalData > button:hover,
+.itemAdditionalField .itemAdditionalData > input[type="button"]:hover,
+.itemAdditionalField .itemAdditionalData > input[type="submit"]:hover,
+.itemAdditionalField .k2Button:hover {text-decoration:none;border-color:#dedede;border-bottom-color:#cacaca;background:#fdfdfd;background:-moz-linear-gradient(top,#fdfdfd 0%,#f5f5f5 100%);background:-webkit-linear-gradient(top,#fdfdfd 0%,#f5f5f5 100%);background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd',endColorstr='#f5f5f5',GradientType=0);}
+
+/* Additional item secondary fields */
+.itemAdditionalBlock {display:inline-block;vertical-align:middle;margin-right:15px;}
+.itemAdditionalBlock.sep {margin:0 25px 0 0;color:#2f98f3;}
+.itemAdditionalBlock label {font-weight:700;padding:0;}
+.itemAdditionalBlock input[type="text"],
+.itemAdditionalBlock input[type="email"],
+.itemAdditionalBlock textarea {margin-bottom:0;}
+
+.k2DocLink {font-weight:700;margin-top:15px;}
+.k2DocLink a {}
+.k2DocLink span {}
+
+/* Item - Gallery */
+.itemGalleryBlock {margin-bottom:20px;}
+.itemGalleryBlock label {display:block;margin-bottom:10px;}
+#itemGallery label {display:inline;}
+.itemGalleryBlock input[type="text"] {max-width:300px;}
+.itemGalleryBlock.separator {text-transform:uppercase;font-weight:700;color:#46afff;}
+span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;line-height:16px;padding:0;margin:0 0 -4px 0;display:inline-block;overflow-x:hidden;}
+
+/* Admin - Item */
+.itemPlugins {margin-top:20px;clear:both;}
+.itemPlugins label {font-size:13px;color:#68696b;font-weight:700;display:block;margin-top:0;margin-bottom:0;padding-top:5px;padding-bottom:10px;}
+.itemPluginsContent {padding:0 20px;}
+
+/* Admin - Media Manager */
+.K2AdminViewMedia {border-left:1px solid #d3d3d3;border-bottom:1px solid #d3d3d3;}
+	#elfinderContainer {width:auto;padding:4px;margin:0;}
+		.isJ30.k2IsBackend #elfinder input {width:95%;} /* Fix for Joomla 3.2+ */
+
+/* Lists - Generic styling */
+#k2AdminContainer {position:relative;width:auto;clear:both;margin-bottom:10px;}
+
+.com_k2.view-items,
+.com_k2.view-categories,
+.com_k2.view-tags,
+.com_k2.view-comments,
+.com_k2.view-usergroups,
+.com_k2.view-users,
+.com_k2.view-extrafields,
+.com_k2.view-extrafieldsgroups {background:#f0f2f2;}
+
+.isJ30 .row-fluid .span2 {max-width:12%;}
+.isJ30 .row-fluid .span10 {margin-left:0;width:88%;}
+
+/* Lists - filters */
+#k2AdminContainer .k2AdminTableFilters {margin-bottom:0;width:100%;border-left:1px solid #dbdcdc;}
+#k2AdminContainer .k2AdminTableFilters .chzn-container {margin-bottom:5px;}
+#k2AdminContainer .k2AdminTableFilters tr td {background:#fff;padding-top:15px;}
+
+/* Filters on smaller viewports */
+#k2AdminContainer .k2AdminTableFiltersSelects,
+#k2AdminContainer .k2AdminTableFiltersSearch {display:block;width:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+#k2AdminContainer .k2AdminTableFiltersSelects select {max-width:48%;}
+
+@media screen and (min-width:920px) {
+	#k2AdminContainer .k2AdminTableFiltersSelects,
+	#k2AdminContainer .k2AdminTableFiltersSearch {display:table-cell;width:auto;}
+	#k2AdminContainer .k2AdminTableFilters tr td {border-bottom:1px solid #dbdcdc;border-top:0;}
+	table.k2AdminTableFilters tr td.k2AdminTableFiltersSelects {text-align:right;}
+	#k2AdminContainer .k2AdminTableFiltersSelects select {max-width:none;}
+}
+
+/* Legacy styling */
+table.k2AdminTableFilters {width:100%;}
+table.k2AdminTableFilters tr td.k2AdminTableFiltersSearch {white-space:nowrap;}
+table.k2AdminTableFilters tr td.k2AdminTableFiltersSelects .chzn-container {text-align:left;}
+table.k2AdminTableFilters tr td.k2AdminTableFiltersSelects select {margin:1px 0 5px 0;}
+
+/* Edit Forms */
+table.adminFormK2 {width:100%;margin-bottom:16px;}
+
+/* Lists - items */
+#k2AdminContainer .adminlist {margin-bottom:0;border-left:1px solid #dbdcdc;}
+#k2AdminContainer .adminlist input[type="checkbox"] {margin-top:0;}
+#k2AdminContainer .adminlist thead tr th {background:#fff;border-bottom:1px solid #dbdcdc;}
+#k2AdminContainer .adminlist tbody tr td {padding-top:15px;padding-bottom:15px;}
+#k2AdminContainer .adminlist tfoot tr td {background:#fff;border-bottom:1px solid #dbdcdc;border-top:1px solid #dbdcdc;}
+#k2AdminContainer .adminlist a {text-decoration:none;color:#636b6e;cursor:pointer;}
+#k2AdminContainer .adminlist a.editComment {color:#46afff;}
+#k2AdminContainer .adminlist a:hover {color:#46afff;}
+
+.isJ15 #k2AdminContainer .adminlist tr td,
+.isJ25 #k2AdminContainer .adminlist tr td {background:#f0f2f2;border-bottom:1px solid #dbdcdc;}
+
+.table-responsive-wrap {position:relative;}
+.table-responsive {width:100%;margin-bottom:15px;overflow-y:hidden;-webkit-overflow-scrolling:touch;-ms-overflow-style:-ms-autohiding-scrollbar;}
+
+/* minimal modal */
+.jw-modal {display:none;position:fixed;z-index:9999;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.3);}
+.jw-modal.jw-modal-open {display:block;}
+.jw-modal-main {padding-top:40px;}
+.jw-modal-header {color:#fff;padding:25px 20px;font-size:20px;font-weight:300;letter-spacing:-1px;background-color:#63696f;box-shadow:0 1px 0 rgba(0,0,0,.18);overflow:hidden;}
+.jw-modal-header h3 {margin:0;font-size:20px;}
+.jw-modal-content {position:absolute;left:50%;width:650px;border:1px solid rgba(0,0,0,.8);background-color:#fdfdfd;box-shadow:0 0 29px rgba(0,0,0,.16);
+z-index:100;margin:25px auto 25px -325px;font-family:'Open Sans',sans-serif;-webkit-font-smoothing:antialiased;font-smoothing:antialiased;}
+.jw-modal-footer {padding:16px 0;background-color:#eff1f1;box-shadow:0 1px 0 rgba(0,0,0,.18);clear:both;width:100%;overflow:hidden;}
+
+/* Button styling */
+.jw-btn {display:inline-block;vertical-align:middle;white-space:nowrap;color:#fdfdfd;font-size:13px;line-height:1;padding:10px 30px;border-radius:3px;border:1px solid #363a3d;font-weight:700;}
+.jw-btn-save {border:1px solid #363a3d;background-color:#3fa700;box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #54db00;}
+.jw-btn-save:hover {background:#358b01;}
+.jw-btn-close {border-color:#a53222;background-color:#d7412d;box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #ff4d35;}
+.jw-btn-close:hover {background:#a53222;}
+
+/* Information View */
+.k2ViewIsInfo .header,
+.k2ViewIsInfo .subhead {position:relative;z-index:2;}
+
+#k2InfoPage {max-width:1300px;}
+#k2InfoPage .k2ScrollingContent {margin-bottom:10px }
+
+#k2AdminContainer #k2InfoPage h1,
+#k2AdminContainer #k2InfoPage h2 {margin-bottom:20px;padding:0;font-weight:400;font-size:26px;line-height:28px;}
+#k2InfoPage a {color:#00afec;}
+#k2InfoPage ul {margin-bottom:30px;}
+#k2InfoPage table li {background:#fff;}
+
+.isJ15 #k2InfoPage ul.k2ScrollSpyMenu {top:175px;}
+.isJ25 #k2InfoPage ul.k2ScrollSpyMenu {top:183px;}
+.isJ30 #k2InfoPage ul.k2ScrollSpyMenu {padding-top:138px;top:0;border-left:1px solid #e3e4e4;}
+
+#k2InfoPage ul.k2ScrollSpyMenu {padding:0;height:100%;padding-top:31px;z-index:1;}
+#k2InfoPage ul.k2ScrollSpyMenu li {border-bottom:1px solid #e3e4e4;border-right:1px solid #e3e4e4;}
+#k2InfoPage ul.k2ScrollSpyMenu > li:first-child {border-top:1px solid #e3e4e4;}
+
+#k2InfoPage ul.k2ScrollSpyMenu li a {font-size:14px;padding:17px 28px;display:block;color:#636b6e;}
+#k2InfoPage ul.k2ScrollSpyMenu li a.active {background:#f7f7f7;}
+#k2InfoPage ul.k2ScrollSpyMenu li a:hover {background:#00afec;color:#fff;}
+#k2InfoPage .fa {float:right;}
+
+#k2InfoPage table,
+#k2InfoPage fieldset {width:100%;border:0;border-spacing:0;}
+#k2InfoPage fieldset div {padding:10px 0 0;}
+#k2InfoPage .k2InfoTable tr td:first-child {width:70%;}
+#k2InfoPage .k2InfoTable tr td:last-child {width:30%;}
+
+#k2InfoPage fieldset {margin-bottom:40px;}
+
+#k2InfoPage legend {font-size:23px;font-weight:300;color:#4a4949;display:block;margin:0 0 10px;padding-bottom:10px;border-bottom:1px solid #c5c4c4;position:static;float:none;}
+#k2InfoPage th {background:#fff;height:35px;line-height:35px;text-align:left;padding:0 15px;}
+#k2InfoPage td {padding:12px 15px;border:0;}
+#k2InfoPage tr td:first-child {border-radius:3px 0 0 3px;}
+#k2InfoPage tr td:last-child {border-radius:0 3px 3px 0;}
+#k2InfoPage table.stripped tr:nth-child(2n-1) td {background:#f7f7f7;}
+#k2InfoPage .green {color:#3fa800;font-weight:600;}
+#k2InfoPage .red {color:#bd362f;font-weight:600 }
+
+/* About Block */
+#k2InfoPage #k2AboutBlock {font-size:14px;line-height:1.65;}
+#k2InfoPage #k2AboutBlock h2 {margin:30px 0 10px;border:none;
+padding:0;color:#4a4949;}
+#k2InfoPage #k2AboutBlock a {padding-bottom:2px;border-bottom:1px solid #dbdcdc;}
+
+
+
+/* ====================================================================================================== */
+/* ====================================================================================================== */
+/* ====================================== Joomla CSS Normalizations ===================================== */
+/* ====================================================================================================== */
+/* ====================================================================================================== */
+
+/* Joomla 1.5 */
+html.isJ15 {overflow-y:scroll;}
+html.isJ15 #system-message {margin:-26px 0 16px;}
+html.isJ15 #system-message dd ul {padding:20px 10px;}
+html.isJ15 div#element-box div.m {padding:0;border-bottom:1px solid #ccc;}
+html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs {border-top:1px solid #d4d7d9;}
+html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {content:"\f0d8";font-family:"FontAwesome";font-style:normal;font-weight:normal;text-decoration:inherit;color:#fff;font-size:32px;position:absolute;bottom:-12px;left:50%;margin-left:-16px;width:32px;text-shadow:0px -1px 1px #ccc;}
+
+/* Joomla 1.5 & 2.5 */
+html.isJ25 {overflow-y:scroll;}
+html.isJ25 div#element-box div.m {padding:10px 0;}
+html.isJ25 div#element-box div.m div#k2AdminContainer {margin-top:-10px;background:#fff;}
+html.isJ25 div#element-box div.m div#k2AdminContainer #k2FormTopNav {padding:0;margin-top:0;}
+html.isJ25 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs {border-top:1px solid #d4d7d9;}
+html.isJ25 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {content:"\f0d8";font-family:"FontAwesome";font-style:normal;font-weight:normal;text-decoration:inherit;color:#fff;font-size:32px;position:absolute;bottom:-12px;left:50%;margin-left:-16px;width:32px;text-shadow:0px -1px 1px #ccc;}
+html.isJ25 div.m {border:0;}
+html.isJ25 div.m,
+html.isJ25 #content-box {-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;}
+html.isJ25 .xmlParamsFields .paramValue label {padding:0 13px!important;}
+html.isJ25 #element-box {margin-bottom:0;padding:0;}
+html.isJ25 #toolbar-box {padding:0 0;}
+html.isJ25 div#toolbar-box div.m {padding:10px 0;}
+html.isJ25 .xmlParamsFields .paramValue input[type="text"],
+html.isJ25 .xmlParamsFields .paramValue textarea,
+html.isJ25 .xmlParamsFields .paramValue select {margin-left:0;}
+html.oldJ #k2AdminContainer .k2AdminTableFilters,
+html.oldJ #k2AdminContainer .adminlist {border-left:0;}
+.oldJ .controls input[type="radio"],
+.oldJ .k2Table .k2SubTableValue input[type="radio"] {top:0;left:0;}
+
+/* The submenu for Joomla 1.5 & 2.5 */
+html.isJ25 #toolbar-box {margin-bottom:0;}
+html.isJ25 #submenu-box,
+html.isJ15 #submenu-box {padding:0;margin:0;border-top:1px solid #d4d7d9;float:left;width:100%;}
+html.isJ25 #submenu-box div.m,
+html.isJ15 #submenu-box .m {border:0;padding:0;}
+
+html.isJ25 #submenu,
+html.isJ15 #submenu {border-bottom:1px solid #d4d7d9;float:left;width:100%;background:#f0f2f2;}
+html.isJ25 #submenu li a,
+html.isJ15 #submenu li a {display:block;color:#777;font-size:14px;text-decoration:none;font-weight:normal;outline:0;padding:21px 24px;margin:0;border-right:1px solid #d4d7d9;position:relative;}
+html.isJ25 #submenu li a.active,
+html.isJ15 #submenu li a.active {color:#0091ff;background:#f0f2f2;}
+html.isJ25 #submenu li a.active:before,
+html.isJ15 #submenu li a.active:before	 {text-align:center;content:"\f0d8";font-family:"FontAwesome";color:#fff;position:absolute;font-size:32px;bottom:-2px;left:50%;margin-left:-16px;width:32px;text-shadow:0px -1px 1px #ccc;}
+
+/* The list */
+.oldJ table.adminlist {border-spacing:0;}
+.oldJ table.adminlist tbody tr td {border:0;}
+.oldJ table.adminlist thead th {padding:10px 0;border-left:0;border-right:0;}
+#k2AdminContainer.oldJ .adminlist {border:0;}
+#k2AdminContainer.oldJ .adminlist tfoot tr td {border-top:0;padding:15px 0;}
+#k2AdminContainer.oldJ	table.k2AdminTableFilters {border-left:0;}
+#k2AdminContainer.oldJ .k2AdminTableFilters tr td {padding:10px;}
+#k2AdminContainer.oldJ .adminlist tbody tr td {padding:10px;}
+
+html.isJ25 #k2AdminContainer .k2AdminTableFilters tr td {padding:10px;}
+
+.oldJ h1 {color:#00AFEB;}
+
+/* Item form */
+.oldJ fieldset {padding-left:0;border:0;}
+.oldJ select,
+.oldJ input[type="text"],
+.oldJ input[type="email"] {height:30px;min-height:30px;width:auto;max-width:100%;}
+.oldJ select {max-width:300px;}
+
+/* field normalisation */
+.k2ViewIsItem .oldJ input[type="file"],
+.k2ViewIsCategory .oldJ input[type="file"] {margin-bottom:20px;}
+input#k2ImageBrowseServer {width:auto;height:30px;line-height:8px;margin-left:10px;}
+.k2ViewIsCategory .oldJ input,
+.k2ViewIsCategory .oldJ select,
+.k2ViewIsItem .oldJ select {height:40px;width:100%;}
+
+/* Proper widths */
+.k2ViewIsItem .oldJ input,
+.k2ViewIsItem .oldJ input[type="text"] {width:auto;min-width:208px;}
+.k2ViewIsItem .oldJ input.k2TitleBox {min-width:100%;}
+
+.oldJ input[type="text"] {width:100%;}
+.oldJ .adminlist input[type="text"] {width:auto;min-width:0;}
+.oldJ .k2TagsNotice {margin-bottom:30px;}
+.oldJ #itemAttachments a.k2AttachmentBrowseServer {margin-left:20px;}
+
+/* Mimick Joomla 3.x's input styling for 1.5 & 2.5 */
+.oldJ label,
+.oldJ .paramLabel {font-size:13px;font-weight:700;display:inline-block;vertical-align:middle;color:#777;}
+.oldJ textarea,
+.oldJ input[type="text"],
+.oldJ input[type="password"],
+.oldJ input[type="number"],
+.oldJ input[type="email"],
+.oldJ input[type="url"],
+.oldJ .uneditable-input,
+.oldJ .k2ViewIsItem select,
+.oldJ .k2ViewIsCategory select,
+.oldJ .k2GenericForm select {background-color:#fff;border:1px solid #ccc;box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);-webkit-transition:border linear .2s,box-shadow linear .2s;-moz-transition:border linear .2s,box-shadow linear .2s;transition:border linear .2s,box-shadow linear .2s;display:inline-block;height:30px;font-size:13px;padding:0 10px;min-width:80px;line-height:18px;color:#555;border-radius:3px;vertical-align:middle;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
+.oldJ .k2GenericForm select {min-width:169px;}
+.oldJ input.k2OrderBox {} /* don't hard code the width as we never know how large the number can be */
+.oldJ td.order span {display:none;}
+
+/* Forms */
+.k2GenericForm > h3:first-child {display:none;}
+
+/* Params */
+.oldJ .xmlParamsFields ul li {padding:10px 20px 10px 0;}
+
+/* Joomla 1.5 specific */
+#system-message dd.message {overflow:hidden;margin-top:0;}
+.isJ15 div.header {padding:0;margin:12px;}
+.isJ15 div.toolbar {margin-top:10px;}
+.isJ15 #content-box .padding {padding:0;}
+.isJ15 div#toolbar-box div.t,
+.isJ15 div#element-box div.section-box div.t {padding:0;background:none;}
+.isJ15 div.t,
+.isJ15 div.b {display:none!important;}
+.isJ15 div#toolbar-box {margin:0;}
+.isJ15 div.m {border:0!important;}
+.isJ15 #border-bottom {display:none;}
+.isJ15 #submenu-box {margin:0;}
+.isJ15 #k2AdminFooter {margin:10px auto 0;padding:0 0 20px;border-bottom:1px solid #ccc;}
+
+/* Joomla 3.x specific */
+html.isJ30 {}
+body#com_k2 {}
+.com_k2 .subhead-collapse {margin-bottom:1px;}
+.com_k2 .subhead {border-bottom:1px solid #D4D7D7;margin-bottom:0;}
+
+/* Fix user group permissions category drop-down glitches under Joomla 3.0 */
+#paramscategories_chzn li {padding:3px 20px 3px 5px;}
+
+@media screen and (max-width:600px) {
+	.k2ItemFormEditor .editor .btn {display:block;margin:0 0 15px!important;text-align:left;}
+	.k2ItemFormEditor .editor .btn-group {display:block;}
+	.k2ItemFormEditor .editor .btn-toolbar {-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
+	.k2ItemFormEditor .editor .btn-toolbar.pull-right {float:none;width:100%;padding-top:0;margin-top:-10px;}
+	.k2ItemFormEditor .editor .btn-toolbar.pull-left {float:none;}
+}
+
+/* -------------- View Styling -------------- */
+
+/* Admin - Dashboard */
+#cpanel.k2AdminCpanel {float:left;width:52%;}
+#k2AdminStats {float:right;width:47%;}
+#k2AdminStats dl.tabs dt.closed {border:1px solid #ccc;}
+#k2AdminStats dl.tabs dt.open {background:#fff;border:1px solid #ccc;border-bottom:1px solid #fff;}
+div.isJ25 div.current {background:#fff;}
+#k2AdminStats table.adminlist {width:100%;}
+
+/* Admin - Item - Autocomplete */
+.ui-autocomplete {position:absolute;margin:0;padding:0;list-style:none;border:1px solid #eee;background-color:white;border-right-color:#ddd;border-bottom-color:#ddd;text-align:left;z-index:50;}
+* html .ui-autocomplete {width:1px;} /* without this, the menu expands to 100% in IE6 */
+
+.ui-menu {list-style:none;padding:2px;	margin:0;	margin-top:-3px;display:block;	float:left;}
+.ui-menu .ui-menu-item {margin:0;padding:0;zoom:0;float:left;clear:left;width:99%;}
+.ui-menu .ui-menu-item a {text-decoration:none;	display:block;	padding:.2em .4em;	line-height:1.5;zoom:1;font-weight:bold;}
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-active {margin:-1px;background-color:#444;color:#fff;}
+
+/* Admin - Comments */
+td#k2Comment {}
+div.commentText {}
+div.commentToolbar {padding-top:4px;}
+div.commentToolbar span.k2CommentsLog {display:block;float:right;font-weight:bold;}
+div.commentToolbar span.k2CommentsLoader {background:url(../images/backend/loader.gif) no-repeat 0 50%;padding-left:24px;}
+	a.editComment {}
+	div.k2CommentControls {display:none;}
+		div.k2CommentControls span.k2OptionSep {margin:0 4px;}
+		a.saveComment {}
+		a.closeComment {}
+
+/* New views introduced in 2.7 - Batch & Move (using the -alt suffix) */
+.header-alt {padding:15px 8px;font-size:20px;font-weight:300;letter-spacing:-1px;background-color:#fff;box-shadow:0 1px 0 rgba(0,0,0,.18);}
+.header-alt h3 {margin:0;padding:0;line-height:1;font-weight:300;}
+.header-alt.margin {margin-bottom:48px;}
+
+.subheader-alt {overflow:hidden;padding-top:24px;padding-bottom:24px;border-top:1px solid #d0d0cf;border-bottom:1px solid #d0d0cf;margin-bottom:24px;}
+.subheader-alt label {display:inline-block;vertical-align:middle;color:#000;font-weight:700;margin:0;line-height:1;	}
+.subheader-alt input[type="radio"] {display:inline-block;vertical-align:middle;margin-right:5px;margin-top:0;}
+
+.action-alt {margin-bottom:25px;min-height:66px;}
+.action-alt ol {padding-left:15px;margin:10px 0 15px 0;font-size:13px;font-weight:500;}
+.action-alt ol li {margin-bottom:8px;}
+
+.label-alt {font-weight:700;color:#636a6f;font-size:13px;line-height:1;display:block;}
+.label-alt.margin {margin-bottom:10px;}
+.label-alt .fa {font-size:18px;display:inline-block;vertical-align:middle;margin-right:5px;}
+.oldJ .label-alt {display:block;}
+
+
+
+/* ====================================================================================== */
+/* ====================================================================================== */
+/* ====================================== Overrides ===================================== */
+/* ====================================================================================== */
+/* ====================================================================================== */
+
+/* Joomla System Messages */
+#system-message-container {position:relative;z-index:11;width:60%;margin:0 auto !important;padding:0 !important;}
+#system-message-container .alert {margin:8px 0;}
+
+/* Modal Selector */
+#k2AdminContainer.inModalSelector #adminForm {margin-top:56px;position:relative;z-index:9;}
+#k2AdminContainer.inModalSelector .k2AdminTableFilters {border:0;border-bottom:1px solid #dbdcdc;}
+#k2AdminContainer.inModalSelector .k2AdminTableFilters tr,
+#k2AdminContainer.inModalSelector .k2AdminTableFilters td {border:0 !important;}
+#k2AdminFooter.inModalSelector {margin:8px auto;}
+#k2ModalSelectorHeader {background:#fff url(../images/backend/k2_logo_126x48.png) no-repeat 8px 50%;background-size:80px;padding:16px 0 16px 108px;margin:0;position:fixed;top:0;left:0;right:0;z-index:10;border-bottom:4px solid #eee;}
+
+
+
+/* === Frontend Editing === */
+#k2ModalContainer {padding:0;margin:0;}
+	#k2ModalHeader {background:#fff;text-align:right;position:fixed;top:0;left:0;right:0;z-index:10;padding:8px;margin:0;border-bottom:4px solid #eee;}
+		#k2ModalLogo {background:url(../images/backend/k2_logo_126x48.png) no-repeat 8px 50%;background-size:80px;padding:16px 0 16px 108px;margin:0;float:left;}
+		#k2ModalToolbar {display:inline-block;margin:12px 12px 0 0;border-collapse:separate;}
+		#k2ModalToolbar td {border:none;}
+		#k2ModalToolbar td.button a {display:block;padding:4px 8px;color:#fff;border:0;border-radius:4px;font-size:14px;font-weight:bold;text-decoration:none;background:#222;cursor:pointer;}
+			#k2ModalToolbar #toolbar-publish a,
+			#k2ModalToolbar #toolbar-save a {background:#18bc9c;}
+			#k2ModalToolbar #toolbar-publish a:hover,
+			#k2ModalToolbar #toolbar-save a:hover {background:#128f76;}
+			#k2ModalToolbar #toolbar-unpublish a,
+			#k2ModalToolbar #toolbar-close a,
+			#k2ModalToolbar #toolbar-cancel a {background:#e74c3c;}
+			#k2ModalToolbar #toolbar-unpublish a:hover,
+			#k2ModalToolbar #toolbar-close a:hover,
+			#k2ModalToolbar #toolbar-cancel a:hover {background:#d62c1a;}
+#k2ModalContainer #adminForm {margin-top:86px;position:relative;z-index:9;}
+	#k2ModalContainer .k2AdminTableFilters {border:0;border-bottom:1px solid #dbdcdc;}
+	#k2ModalContainer .k2AdminTableFilters tr,
+	#k2ModalContainer .k2AdminTableFilters td {border:0 !important;}
+	#k2ModalContainer #adminForm table tfoot tr td {padding:8px !important;}
+
+/* Item */
+#k2ModalPermissionsNotice {text-align:center;}
+#k2ModalPermissionsNotice p {display:inline-block;color:#fff;font-size:12px;background:#3498db;padding:8px;margin:8px auto;border-radius:4px;}
+div#k2Modal div#k2ID {top:-2px;right:160px;} /* Overrides backend position */
+div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5 */
+
+/* Comments */
+#k2ModalContainer .k2CommentsPagination {text-align:center;}
+#k2ModalContainer .k2CommentsPagination .pagination {margin:0;padding:0;}
+#k2ModalContainer .k2CommentsPagination .pagination span,
+#k2ModalContainer .k2CommentsPagination .pagination a {}
+
+/* Joomla System Messages */
+#system-message-container {position:fixed;z-index:11;width:40%;margin:0 auto !important;padding:0 !important;top:20px;left:20%;right:20%;}
+#system-message-container .alert {margin:8px 0;}
+
+
+
+/* End */

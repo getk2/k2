@@ -1,0 +1,146 @@
+/**
+ * @version    2.8.x
+ * @package    K2
+ * @author     JoomlaWorks http://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2017 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ */
+
+/* --- Common --- */
+.k2clr {clear:both;height:0;line-height:0;border:none;float:none;background:none;padding:0;margin:0;}
+#k2AlertContainer {position:fixed;top:0;left:0;right:0;z-index:99999;}
+	#k2AlertMessage {width:40%;background:#42a640;color:#fff;font-size:18px;text-align:center;margin:0 auto;padding:20px;box-sizing:border-box;border-bottom:4px solid #358534;}
+		a#k2AlertClose {color:#358534;font-family:monospace;font-size:24px;font-weight:bold;display:block;width:16px;height:16px;margin:0 0 10px 10px;float:right;text-decoration:none;}
+		a#k2AlertClose:hover {color:#2b752a;}
+		#k2AlertMessage span {display:block;width:92%;margin:auto;}
+
+
+
+/* --- jQueryUI Sortables for K2 Fields/Elements --- */
+div.k2SelectorButton {display:block;border-bottom:1px dotted #ccc;padding:8px 0;margin:0 0 8px 0;}
+div.k2SelectorButton a {}
+	div.k2SingleSelect {border:0;padding:0;margin:0;}
+	div.k2SingleSelect span.k2EntryText {display:inline-block;margin:2px 0;padding:4px 6px;border:1px solid #ccc;background:#eee;border-radius:2px;color:#555;}
+ul.k2SortableListContainer {list-style:none;display:block;clear:both;margin:0;padding:0;width:80%;}
+ul.k2SortableListContainer li {list-style:none;margin:2px 0;padding:8px;border:1px solid #ccc;background:#eee;border-radius:2px;cursor:move;}
+ul.k2SortableListContainer li a.k2EntryRemove {cursor:pointer;margin:0 12px 0 0;font-size:14px;}
+ul.k2SortableListContainer li span.k2EntryText {}
+
+
+
+/* --- Header Element --- */
+.jwHeaderContainer {background:#e5f7fd;color:#346b93;font-size:20px;padding:24px 16px;margin:0;border-radius:4px;}
+.jwHeaderContainer15 {clear:both;font-weight:bold;font-size:12px;color:#369;margin:0;padding:0;background:#d5e7fa;border-bottom:2px solid #96b0cb;float:left;width:100%;}
+.jwHeaderContent {}
+.jwHeaderClr {clear:both;height:0;line-height:0;border:none;float:none;background:none;padding:0;margin:0;}
+
+
+
+/* --- Style parameters for modules --- */
+.com_modules .form-horizontal .span9 .control-group {border-radius:4px;padding:0;margin:0 0 4px 0 !important;}
+.com_modules .form-horizontal .span9 .control-group:nth-child(2n-1) {background:#f7f7f7;}
+.com_modules .form-horizontal .span9 .control-group:last-child {margin-bottom:100px !important;}
+.com_modules .form-horizontal .span9 .control-group .control-label,
+.com_modules .form-horizontal .span9 .control-group .controls {padding:16px;margin:0;}
+.com_modules .form-horizontal .span9 .control-group .control-label label {padding:0;margin:0;}
+.com_modules .form-horizontal .span9 .control-group .controls label {}
+.com_modules .form-horizontal .span9 .control-group .control-label label {font-size:14px;margin-top:4px;}
+
+/* Resize parameter columns */
+@media all and (min-width:771px) {
+	.com_modules .form-horizontal .span9 .control-group .control-label {width:30% !important;}
+	.com_modules .form-horizontal .span9 .control-group .controls {margin-left:32% !important;}
+}
+@media all and (min-width:481px) and (max-width:770px){
+	.com_modules .form-horizontal .span9 .control-group .control-label {width:45% !important;}
+	.com_modules .form-horizontal .span9 .control-group .controls {margin-left:47% !important;}
+}
+.com_modules .form-horizontal .span9 .control-group-header {background:#e5f7fd;margin-top:32px !important;}
+.com_modules .form-horizontal .span9 .control-group-header .control-label,
+.com_modules .form-horizontal .span9 .control-group-header .controls {padding:0 !important;margin:0 !important;}
+
+/* Textarea & Chosen (multi-container) blocks */
+.com_modules .form-horizontal .span9 .controls .chzn-container-multi {width:90% !important;}
+.com_modules .form-horizontal .span9 .controls textarea {width:90%;}
+
+
+
+/* --- Style parameters for menus --- */
+.com_menus .form-horizontal #attrib-basic .control-group {border-radius:4px;padding:0;margin:0 0 4px 0 !important;}
+.com_menus .form-horizontal #attrib-basic .control-group:nth-child(2n-1) {background:#f7f7f7;}
+.com_menus .form-horizontal #attrib-basic .control-group:last-child {margin-bottom:100px !important;}
+.com_menus .form-horizontal #attrib-basic .control-group .control-label,
+.com_menus .form-horizontal #attrib-basic .control-group .controls {padding:16px;margin:0;}
+.com_menus .form-horizontal #attrib-basic .control-group .control-label label {padding:0;margin:0;}
+.com_menus .form-horizontal #attrib-basic .control-group .controls label {}
+.com_menus .form-horizontal #attrib-basic .control-group .control-label label {font-size:14px;margin-top:4px;}
+
+/* Resize parameter columns */
+@media all and (min-width:771px) {
+	.com_menus .form-horizontal #attrib-basic .control-group .control-label {width:30% !important;}
+	.com_menus .form-horizontal #attrib-basic .control-group .controls {margin-left:32% !important;}
+}
+@media all and (min-width:481px) and (max-width:770px){
+	.com_menus .form-horizontal #attrib-basic .control-group .control-label {width:45% !important;}
+	.com_menus .form-horizontal #attrib-basic .control-group .controls {margin-left:47% !important;}
+}
+.com_menus .form-horizontal #attrib-basic .control-group-header {background:#e5f7fd;margin-top:32px !important;}
+.com_menus .form-horizontal #attrib-basic .control-group-header .control-label,
+.com_menus .form-horizontal #attrib-basic .control-group-header .controls {padding:0 !important;margin:0 !important;}
+
+/* Textarea & Chosen (multi-container) blocks */
+.com_menus .form-horizontal #attrib-basic .controls .chzn-container-multi {width:90% !important;}
+.com_menus .form-horizontal #attrib-basic .controls textarea {width:90%;}
+
+/* Radio/Checkbox Buttons */
+.com_menus .form-horizontal #attrib-basic .controls fieldset.radio:not(.btn-group) label {display:inline-block !important;margin:0 !important;padding:0 16px 0 2px !important;}
+.com_menus .form-horizontal #attrib-basic .controls fieldset.radio:not(.btn-group),
+.com_menus .form-horizontal #attrib-basic .controls fieldset.checkbox:not(.btn-group) {padding:0 !important;margin:4px 0 0 0 !important;}
+.com_menus .form-horizontal #attrib-basic .controls fieldset.radio:not(.btn-group) input[type="radio"],
+.com_menus .form-horizontal #attrib-basic .controls fieldset.radio:not(.btn-group) .checkbox input[type="checkbox"] {display:inline-block !important;float:none !important;margin:-2px 0 0 0 !important;}
+
+
+
+/* --- Style component parameters --- */
+.com_config .form-horizontal .span10 .control-group {border-radius:4px;padding:0;margin:0 0 4px 0 !important;}
+.com_config .form-horizontal .span10 .control-group:nth-child(2n-1) {background:#f7f7f7;}
+.com_config .form-horizontal .span10 .control-group:last-child {margin-bottom:100px !important;}
+.com_config .form-horizontal .span10 .control-group .control-label,
+.com_config .form-horizontal .span10 .control-group .controls {padding:16px;margin:0;}
+.com_config .form-horizontal .span10 .control-group .control-label label {padding:0;margin:0;}
+.com_config .form-horizontal .span10 .control-group .controls label {}
+.com_config .form-horizontal .span10 .control-group .control-label label {font-size:14px;margin-top:4px;}
+
+/* Resize parameter columns */
+@media all and (min-width:771px) {
+	.com_config .form-horizontal .span10 .control-group .control-label {width:30% !important;}
+	.com_config .form-horizontal .span10 .control-group .controls {margin-left:32% !important;}
+}
+@media all and (min-width:481px) and (max-width:770px){
+	.com_config .form-horizontal .span10 .control-group .control-label {width:45% !important;}
+	.com_config .form-horizontal .span10 .control-group .controls {margin-left:47% !important;}
+}
+.com_config .form-horizontal .span10 .control-group-header {background:#e5f7fd;margin-top:32px !important;}
+.com_config .form-horizontal .span10 .control-group-header .control-label,
+.com_config .form-horizontal .span10 .control-group-header .controls {padding:0 !important;margin:0 !important;}
+
+/* Textarea & Chosen (multi-container) blocks */
+.com_config .form-horizontal .span10 .controls .chzn-container-multi {width:90% !important;}
+.com_config .form-horizontal .span10 .controls textarea {width:90%;}
+
+/* Radio/Checkbox Buttons */
+.com_config .form-horizontal .span10 .controls fieldset.radio label {display:inline-block !important;margin:0 !important;padding:0 16px 0 2px !important;}
+.com_config .form-horizontal .span10 .controls fieldset.radio,
+.com_config .form-horizontal .span10 .controls fieldset.checkbox {padding:0 !important;margin:4px 0 0 0 !important;}
+.com_config .form-horizontal .span10 .controls fieldset.radio input[type="radio"],
+.com_config .form-horizontal .span10 .controls fieldset.radio .checkbox input[type="checkbox"] {display:inline-block !important;float:none !important;margin:-2px 0 0 0 !important;}
+
+
+
+/* --- JoomFish Styling --- */
+#K2ExtraFields {color:#000;font-size:11px;padding:6px 2px 4px 4px;text-align:left;}
+#K2ExtraFields h1 {font-size:16px;height:25px;}
+#K2ExtraFields h2 {font-size:14px;}
+#K2ExtraFields strong {font-style:italic;}
+
+/* END */

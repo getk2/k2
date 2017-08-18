@@ -39,7 +39,7 @@ $K2(document).ready(function() {
 	}
 
 	// Set the site root path
-	K2SitePath = getUrlParams('k2.js', 'sitepath');
+	K2SitePath = getUrlParams('k2.backend.js', 'sitepath');
 
     // --- Common functions ---
 

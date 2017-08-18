@@ -158,7 +158,7 @@ class K2HelperHTML
 		        	var K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST = '".JText::_('K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST')."';
 
 				");
-				$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v='.K2_CURRENT_VERSION.'&amp;sitepath='.JURI::root(true).'/');
+				$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.backend.js?v='.K2_CURRENT_VERSION.'&amp;sitepath='.JURI::root(true).'/');
 
 				// NicEdit
 				if ($option == 'com_k2' && $view == 'item')
@@ -221,11 +221,11 @@ class K2HelperHTML
 				}
 				if ($option == 'com_k2')
 				{
-					$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v='.K2_CURRENT_VERSION);
+					$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.backend.css?v='.K2_CURRENT_VERSION);
 				}
 				if($adminModuleIncludes)
 				{
-					$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.backend.css?v='.K2_CURRENT_VERSION);
+					$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.global.css?v='.K2_CURRENT_VERSION);
 				}
 			}
 
