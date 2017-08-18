@@ -631,8 +631,8 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 .com_k2.view-extrafields,
 .com_k2.view-extrafieldsgroups {background:#f0f2f2;}
 
-.isJ30 .row-fluid .span2 {min-width:12%;}
-.isJ30 .row-fluid .span10 {margin-left:0;min-width:88%;}
+.isJ30 .row-fluid .span2 {max-width:12%;}
+.isJ30 .row-fluid .span10 {margin-left:0;width:88%;}
 
 /* Lists - filters */
 #k2AdminContainer .k2AdminTableFilters {margin-bottom:0;width:100%;border-left:1px solid #dbdcdc;}
