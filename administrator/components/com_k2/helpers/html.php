@@ -133,27 +133,31 @@ class K2HelperHTML
 			// Everything else...
 			if ($application->isAdmin() || $adminHeadIncludes)
 			{
-
-				// CSS
-				if ($option == 'com_k2' || $adminModuleIncludes)
-				{
-					$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
-				}
-				if ($option == 'com_k2')
-				{
-					$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v='.K2_CURRENT_VERSION);
-				}
-				if($adminModuleIncludes)
-				{
-					$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.backend.css?v='.K2_CURRENT_VERSION);
-				}
-
 				// JS
-		        $document->addScriptDeclaration("
+				$isBackend = ($application->isAdmin()) ? ' k2IsBackend' : '';
+				$isTask = ($task) ? ' k2TaskIs'.ucfirst($task) : '';
+				$cssClass = 'isJ'.K2_JVERSION.' k2ViewIs'.ucfirst($view).''.$isTask.''.$isBackend;
+				$document->addScriptDeclaration("
+
+					// Set K2 version as global JS variable
+					K2JVersion = '".K2_JVERSION."';
+
+					// Set Joomla version as class in the 'html' tag
+					(function(){
+						var addedClass = '".$cssClass."';
+						if (document.getElementsByTagName('html')[0].className !== '') {
+							document.getElementsByTagName('html')[0].className += ' '+addedClass;
+						} else {
+							document.getElementsByTagName('html')[0].className = addedClass;
+						}
+					})();
+
+					// K2 Language Strings
 		        	var K2_THE_ENTRY_IS_ALREADY_IN_THE_LIST = '".JText::_('K2_THE_ENTRY_IS_ALREADY_IN_THE_LIST')."';
 		        	var K2_REMOVE_THIS_ENTRY = '".JText::_('K2_REMOVE_THIS_ENTRY')."';
 		        	var K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST = '".JText::_('K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST')."';
-		        ");
+
+				");
 				$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v='.K2_CURRENT_VERSION.'&amp;sitepath='.JURI::root(true).'/');
 
 				// NicEdit
@@ -210,25 +214,19 @@ class K2HelperHTML
 					$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js');
 				}
 
-				$isBackend = ($application->isAdmin()) ? ' k2IsBackend' : '';
-				$isTask = ($task) ? ' k2TaskIs'.ucfirst($task) : '';
-				$cssClass = 'isJ'.K2_JVERSION.' k2ViewIs'.ucfirst($view).''.$isTask.''.$isBackend;
-				$document->addScriptDeclaration('
-
-					// Set K2 version as global JS variable
-					K2JVersion = "'.K2_JVERSION.'";
-
-					// Set Joomla version as class in the "html" tag
-					(function(){
-						var addedClass = "'.$cssClass.'";
-						if (document.getElementsByTagName("html")[0].className !== "") {
-							document.getElementsByTagName("html")[0].className += " "+addedClass;
-						} else {
-							document.getElementsByTagName("html")[0].className = addedClass;
-						}
-					})();
-
-				');
+				// CSS
+				if ($option == 'com_k2' || $adminModuleIncludes)
+				{
+					$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+				}
+				if ($option == 'com_k2')
+				{
+					$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.css?v='.K2_CURRENT_VERSION);
+				}
+				if($adminModuleIncludes)
+				{
+					$document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.backend.css?v='.K2_CURRENT_VERSION);
+				}
 			}
 
 			// Frontend only
