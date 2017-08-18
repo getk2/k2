@@ -45,52 +45,49 @@ $K2(document).ready(function() {
 
     // Minimal Scrollspy
 	$K2(".k2ScrollSpyMenu").each(function( index ) {
-
 		// Cache selectors
 		var lastId,
-		    topMenu = $K2(this),
-		    topMenuHeight = topMenu.outerHeight()+15,
-		    // All list items
-		    menuItems = topMenu.find("a"),
-		    // Anchors corresponding to menu items
-		    scrollItems = menuItems.map(function(){
-		      var item = $K2($K2(this).attr("href"));
-		      if (item.length) { return item; }
-		    });
+			topMenu = $K2(this),
+			topMenuHeight = topMenu.outerHeight()+15,
+			// All list items
+			menuItems = topMenu.find("a"),
+			// Anchors corresponding to menu items
+			scrollItems = menuItems.map(function(){
+				var item = $K2($K2(this).attr("href"));
+				if (item.length) return item;
+			});
 
 		// Bind click handler to menu items so we can get a fancy scroll animation
 		menuItems.click(function(e){
-		  var href = $K2(this).attr("href"),
-		      offsetTop = (href === "#") ? 0 : $K2(href).offset().top-60;
-		  $K2('html, body').stop().animate({
-		      scrollTop: offsetTop
-		  }, 300);
-		  e.preventDefault();
+			var href = $K2(this).attr("href"),
+				offsetTop = (href === "#") ? 0 : $K2(href).offset().top-60;
+			$K2('html, body').stop().animate({
+				scrollTop: offsetTop
+			}, 300);
+			e.preventDefault();
 		});
 
 		// Bind to scroll
 		$K2(window).scroll(function(){
-		   // Get container scroll position
-		   var fromTop = $K2(this).scrollTop() + 100;
+			// Get container scroll position
+			var fromTop = $K2(this).scrollTop() + 100;
 
-		   // Get id of current scroll item
-		   var cur = scrollItems.map(function(){
-		     if ($K2(this).offset().top < fromTop)
-		       return this;
-		   });
-		   // Get the id of the current element
-		   cur = cur[cur.length-1];
-		   var id = cur && cur.length ? cur[0].id : "";
+			// Get id of current scroll item
+			var cur = scrollItems.map(function(){
+				if ($K2(this).offset().top < fromTop) return this;
+			});
+			// Get the id of the current element
+			cur = cur[cur.length-1];
+			var id = cur && cur.length ? cur[0].id : "";
 
-		   if (lastId !== id) {
-		       lastId = id;
-		       // Set/remove active class
-		       menuItems
-		         .parent().removeClass("active")
-		         .end().filter('a[href="#'+id+'"]').parent().addClass("active");
-		   }
+			if (lastId !== id) {
+				lastId = id;
+				// Set/remove active class
+				menuItems
+					.parent().removeClass("active")
+					.end().filter('a[href="#'+id+'"]').parent().addClass("active");
+			}
 		});
-
 	});
 
 	// Toggler
