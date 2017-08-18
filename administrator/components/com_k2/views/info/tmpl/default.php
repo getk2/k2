@@ -208,6 +208,16 @@ defined('_JEXEC') or die;
 								</tfoot>
 								<tbody>
 									<tr>
+										<td><strong>cache</strong></td>
+										<td>
+											<?php if ($this->cache_folder_check): ?>
+											<span class="green"><?php echo JText::_('K2_WRITABLE'); ?></span>
+											<?php else: ?>
+											<span class="red"><?php echo JText::_('K2_NOT_WRITABLE'); ?></span>
+											<?php endif; ?>
+										</td>
+									</tr>
+									<tr>
 										<td><strong>media/k2</strong></td>
 										<td>
 											<?php if ($this->media_folder_check): ?>
@@ -271,16 +281,6 @@ defined('_JEXEC') or die;
 										<td><strong>media/k2/videos</strong></td>
 										<td>
 											<?php if ($this->videos_folder_check): ?>
-											<span class="green"><?php echo JText::_('K2_WRITABLE'); ?></span>
-											<?php else: ?>
-											<span class="red"><?php echo JText::_('K2_NOT_WRITABLE'); ?></span>
-											<?php endif; ?>
-										</td>
-									</tr>
-									<tr>
-										<td><strong>cache</strong></td>
-										<td>
-											<?php if ($this->cache_folder_check): ?>
 											<span class="green"><?php echo JText::_('K2_WRITABLE'); ?></span>
 											<?php else: ?>
 											<span class="red"><?php echo JText::_('K2_NOT_WRITABLE'); ?></span>
