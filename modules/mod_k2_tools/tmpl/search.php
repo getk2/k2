@@ -24,7 +24,7 @@ defined('_JEXEC') or die;
 
 		<?php if($button): ?>
 		<?php if($imagebutton): ?>
-		<input type="image" alt="<?php echo $button_text; ?>" class="button" onclick="this.form.searchword.focus();" src="<?php echo JURI::base(true); ?>/components/com_k2/images/fugue/search.png" />
+		<input type="image" alt="<?php echo $button_text; ?>" class="button" onclick="this.form.searchword.focus();" src="<?php echo JURI::base(true); ?>/components/com_k2/images/search.png" />
 		<?php else: ?>
 		<input type="submit" value="<?php echo $button_text; ?>" class="button" onclick="this.form.searchword.focus();" />
 		<?php endif; ?>

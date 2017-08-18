@@ -49,7 +49,6 @@ class K2ViewUsers extends K2View
         $users = $model->getData();
         for ($i = 0; $i < sizeof($users); $i++)
         {
-
             $users[$i]->loggedin = $model->checkLogin($users[$i]->id);
             $users[$i]->profileID = $model->hasProfile($users[$i]->id);
             if ($users[$i]->profileID)
@@ -97,9 +96,7 @@ class K2ViewUsers extends K2View
                 0 => array('disable', 'K2_ENABLED', 'K2_DISABLE', 'K2_ENABLED', false, 'publish', 'publish'),
                 1 => array('enable', 'K2_DISABLED', 'K2_ENABLE', 'K2_DISABLED', false, 'unpublish', 'unpublish'));
                 $users[$i]->blockStatus = JHtml::_('jgrid.state', $states, $users[$i]->block, $i, '', $task != 'element');
-
             }
-
         }
 
         $this->assignRef('rows', $users);

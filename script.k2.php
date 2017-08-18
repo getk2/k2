@@ -340,7 +340,7 @@ class Com_K2InstallerScript
         $language = JFactory::getLanguage();
         $language->load('com_k2');
         $rows = 0; ?>
-        <img src="<?php echo JURI::root(true); ?>/media/k2/assets/images/system/k2_logo_126x48.png" alt="K2" align="right" />
+        <img src="<?php echo JURI::root(true); ?>/media/k2/assets/images/backend/k2_logo_126x48.png" alt="K2" align="right" />
         <h2><?php echo JText::_('K2_INSTALLATION_STATUS'); ?></h2>
         <table class="adminlist table table-striped">
             <thead>

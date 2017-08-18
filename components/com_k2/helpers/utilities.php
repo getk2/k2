@@ -12,11 +12,9 @@ defined('_JEXEC') or die;
 
 class K2HelperUtilities
 {
-
 	// Get user avatar
 	public static function getAvatar($userID, $email = NULL, $width = 50)
 	{
-
 		jimport('joomla.filesystem.folder');
 		jimport('joomla.application.component.model');
 		$application = JFactory::getApplication();
@@ -82,7 +80,6 @@ class K2HelperUtilities
 
 	public static function getCategoryImage($image, $params)
 	{
-
 		jimport('joomla.filesystem.file');
 		$application = JFactory::getApplication();
 		$categoryImage = NULL;
@@ -149,7 +146,6 @@ class K2HelperUtilities
 		{
 			return $str;
 		}
-
 	}
 
 	// Cleanup HTML entities
@@ -175,26 +171,20 @@ class K2HelperUtilities
 		{
 			$image = 'image'.$item->params->get('itemImgSize');
 			$item->image = $item->$image;
-
 			switch ($item->params->get('itemImgSize'))
 			{
-
 				case 'XSmall' :
 					$item->imageWidth = $item->params->get('itemImageXS');
 					break;
-
 				case 'Small' :
 					$item->imageWidth = $item->params->get('itemImageS');
 					break;
-
 				case 'Medium' :
 					$item->imageWidth = $item->params->get('itemImageM');
 					break;
-
 				case 'Large' :
 					$item->imageWidth = $item->params->get('itemImageL');
 					break;
-
 				case 'XLarge' :
 					$item->imageWidth = $item->params->get('itemImageXL');
 					break;
@@ -205,26 +195,20 @@ class K2HelperUtilities
 		{
 			$image = 'image'.$params->get($item->itemGroup.'ImgSize');
 			$item->image = isset($item->$image) ? $item->$image : '';
-
 			switch ($params->get($item->itemGroup.'ImgSize'))
 			{
-
 				case 'XSmall' :
 					$item->imageWidth = $item->params->get('itemImageXS');
 					break;
-
 				case 'Small' :
 					$item->imageWidth = $item->params->get('itemImageS');
 					break;
-
 				case 'Medium' :
 					$item->imageWidth = $item->params->get('itemImageM');
 					break;
-
 				case 'Large' :
 					$item->imageWidth = $item->params->get('itemImageL');
 					break;
-
 				case 'XLarge' :
 					$item->imageWidth = $item->params->get('itemImageXL');
 					break;
@@ -235,26 +219,20 @@ class K2HelperUtilities
 		{
 			$image = 'image'.$params->get('latestItemImageSize');
 			$item->image = $item->$image;
-
 			switch ($params->get('latestItemImageSize'))
 			{
-
 				case 'XSmall' :
 					$item->imageWidth = $item->params->get('itemImageXS');
 					break;
-
 				case 'Small' :
 					$item->imageWidth = $item->params->get('itemImageS');
 					break;
-
 				case 'Medium' :
 					$item->imageWidth = $item->params->get('itemImageM');
 					break;
-
 				case 'Large' :
 					$item->imageWidth = $item->params->get('itemImageL');
 					break;
-
 				case 'XLarge' :
 					$item->imageWidth = $item->params->get('itemImageXL');
 					break;
@@ -263,40 +241,31 @@ class K2HelperUtilities
 
 		if ($view == 'relatedByTag' && $params->get('itemRelatedImageSize'))
 		{
-
 			$image = 'image'.$params->get('itemRelatedImageSize');
 			$item->image = $item->$image;
-
 			switch ($params->get('itemRelatedImageSize'))
 			{
-
 				case 'XSmall' :
 					$item->imageWidth = $item->params->get('itemImageXS');
 					break;
-
 				case 'Small' :
 					$item->imageWidth = $item->params->get('itemImageS');
 					break;
-
 				case 'Medium' :
 					$item->imageWidth = $item->params->get('itemImageM');
 					break;
-
 				case 'Large' :
 					$item->imageWidth = $item->params->get('itemImageL');
 					break;
-
 				case 'XLarge' :
 					$item->imageWidth = $item->params->get('itemImageXL');
 					break;
 			}
 		}
-
 	}
 
 	public static function getParams($option)
 	{
-
 		if (K2_JVERSION != '15')
 		{
 			$application = JFactory::getApplication();
@@ -314,7 +283,6 @@ class K2HelperUtilities
 			$params = JComponentHelper::getParams($option);
 		}
 		return $params;
-
 	}
 
 	public static function cleanTags($string, $allowed_tags)
@@ -351,8 +319,8 @@ class K2HelperUtilities
 		return $string;
 	}
 
-	public static function verifyRecaptcha() {
-
+	public static function verifyRecaptcha()
+	{
 		$params = JComponentHelper::getParams('com_k2');
 		$vars = array();
 		$vars['secret'] = $params->get('recaptcha_private_key');
@@ -375,7 +343,5 @@ class K2HelperUtilities
 		{
 			return false;
 		}
-
 	}
-
-} // End Class
+}

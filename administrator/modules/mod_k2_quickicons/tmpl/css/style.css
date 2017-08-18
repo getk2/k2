@@ -6,49 +6,49 @@
  * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
-.clr { clear:both; height:0; line-height:0; display:block; float:none; }
-div#k2QuickIconsTitle { margin:16px 0 0; padding:0; /*background:url(../images/bg.jpg) repeat-x 0 50%;height:8px;*/ position:relative; z-index:9; }
-div#k2QuickIconsTitle a { display:block; clear:both; float:none; background-color:#f9f9f9 ; width:46px; height:18px; padding:2px 6px; margin:0 0 0 24px; border:1px solid #d5d5d5; border-bottom:1px solid #f9f9f9; }
-div#k2QuickIconsTitle a span { display:none; }
+.clr {clear:both;height:0;line-height:0;display:block;float:none;}
+div#k2QuickIconsTitle {margin:16px 0 0;padding:0;position:relative;z-index:9;}
+div#k2QuickIconsTitle a {display:block;clear:both;float:none;background-color:#f9f9f9 ;width:46px;height:18px;padding:2px 6px;margin:0 0 0 24px;border:1px solid #d5d5d5;border-bottom:1px solid #f9f9f9;}
+div#k2QuickIconsTitle a span {display:none;}
 
 /* Sprite */
-.dashicon { display: inline-block; background: url('../../../../../media/k2/assets/images/dashboard/sprite-dashboard.png') no-repeat; overflow: hidden; text-indent: -9999px; text-align: left; margin: 10px auto; }
-	.categories-trashed { background-position: -10px -0px; width: 48px; height: 48px; }
-	.categories { background-position: -10px -58px; width: 48px; height: 48px; }
-	.comments { background-position: -10px -116px; width: 48px; height: 48px; }
-	.documentation { background-position: -10px -174px; width: 48px; height: 48px; }
-	.extend { background-position: -10px -232px; width: 48px; height: 48px; }
-	.extra-field-groups { background-position: -10px -290px; width: 48px; height: 48px; }
-	.extra-fields { background-position: -10px -348px; width: 48px; height: 48px; }
-	.help { background-position: -10px -406px; width: 48px; height: 48px; }
-	.image-editing { background-position: -10px -464px; width: 48px; height: 48px; }
-	.item-new { background-position: -10px -522px; width: 48px; height: 48px; }
-	.items-featured { background-position: -10px -580px; width: 48px; height: 48px; }
-	.items-trashed { background-position: -10px -638px; width: 48px; height: 48px; }
-	.items { background-position: -10px -696px; width: 48px; height: 48px; }
-	.joomlareader { background-position: -10px -754px; width: 48px; height: 48px; }
-	.mediamanager { background-position: -10px -812px; width: 48px; height: 48px; }
-	.tags { background-position: -10px -870px; width: 48px; height: 48px; }
-	.k2logo { background-position: -4px -924px; }
+.dashicon {display:inline-block;background:url('../../../../../media/k2/assets/images/backend/dashboard.png') no-repeat;overflow:hidden;text-indent:-9999px;text-align:left;margin:10px auto;}
+	.categories-trashed {background-position:-10px -0px;width:48px;height:48px;}
+	.categories {background-position:-10px -58px;width:48px;height:48px;}
+	.comments {background-position:-10px -116px;width:48px;height:48px;}
+	.documentation {background-position:-10px -174px;width:48px;height:48px;}
+	.extend {background-position:-10px -232px;width:48px;height:48px;}
+	.extra-field-groups {background-position:-10px -290px;width:48px;height:48px;}
+	.extra-fields {background-position:-10px -348px;width:48px;height:48px;}
+	.help {background-position:-10px -406px;width:48px;height:48px;}
+	.image-editing {background-position:-10px -464px;width:48px;height:48px;}
+	.item-new {background-position:-10px -522px;width:48px;height:48px;}
+	.items-featured {background-position:-10px -580px;width:48px;height:48px;}
+	.items-trashed {background-position:-10px -638px;width:48px;height:48px;}
+	.items {background-position:-10px -696px;width:48px;height:48px;}
+	.joomlareader {background-position:-10px -754px;width:48px;height:48px;}
+	.mediamanager {background-position:-10px -812px;width:48px;height:48px;}
+	.tags {background-position:-10px -870px;width:48px;height:48px;}
+	.k2logo {background-position:-4px -924px;}
 
 /* Joomla 1.5 */
 #k2QuickIcons15 {clear:both;margin:-1px 0 8px 0;padding:8px 0;border-top:1px solid #d5d5d5;position:relative;z-index:8;}
 #k2QuickIcons15.k2NoLogo {margin:0 0 8px 0;padding:0;border:none;}
 	#k2QuickIcons15 div.icon-wrapper {float:left;}
-		#k2QuickIcons15 div.icon { text-align:center; float:left; margin:0 5px 5px 0; }
-			#k2QuickIcons15 div.icon a { display:block; float:left; border:1px solid #f0f0f0; height:97px; width:108px; color:#666; vertical-align:middle; text-decoration:none; }
-			#k2QuickIcons15 div.icon a:hover { border-left:1px solid #eee; border-top:1px solid #eee; border-right:1px solid #ccc; border-bottom:1px solid #ccc; background:#f9f9f9; color:#0B55C4; }
-				#k2QuickIcons15 div.icon a img { padding:10px 0; margin:0 auto; }
-				#k2QuickIcons15 div.icon a span { display:block; text-align:center; }
+		#k2QuickIcons15 div.icon {text-align:center;float:left;margin:0 5px 5px 0;}
+			#k2QuickIcons15 div.icon a {display:block;float:left;border:1px solid #f0f0f0;height:97px;width:108px;color:#666;vertical-align:middle;text-decoration:none;}
+			#k2QuickIcons15 div.icon a:hover {border-left:1px solid #eee;border-top:1px solid #eee;border-right:1px solid #ccc;border-bottom:1px solid #ccc;background:#f9f9f9;color:#0B55C4;}
+				#k2QuickIcons15 div.icon a img {padding:10px 0;margin:0 auto;}
+				#k2QuickIcons15 div.icon a span {display:block;text-align:center;}
 
 /* Joomla 1.6+ */
-#k2QuickIcons { clear:both; margin:-1px 0 8px; padding:8px 0; border-top:1px solid #d5d5d5; position:relative; z-index:8; }
-#k2QuickIcons.k2NoLogo { margin:0 0 8px; padding:0; border:none; }
-	#k2QuickIcons div.icon-wrapper { float:left; display: block !important; width: auto !important; height :auto!important; line-height:12px !important; background: none; }
-		#k2QuickIcons div.icon { text-align:center; margin-right:15px; float:left; margin-bottom:15px; }
-			#k2QuickIcons div.icon a { background-color:#fff; background-position:-30px; display:block; float:left; height:97px; width:108px; color:#565656; vertical-align:middle; text-decoration:none; border:1px solid #CCC; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px; -webkit-transition-property:background-position, 0 0; -moz-transition-property:background-position, 0 0; -webkit-transition-duration:.8s; -moz-transition-duration:.8s; }
+#k2QuickIcons {clear:both;margin:-1px 0 8px;padding:8px 0;border-top:1px solid #d5d5d5;position:relative;z-index:8;}
+#k2QuickIcons.k2NoLogo {margin:0 0 8px;padding:0;border:none;}
+	#k2QuickIcons div.icon-wrapper {float:left;display:block !important;width:auto !important;height :auto!important;line-height:12px !important;background:none;}
+		#k2QuickIcons div.icon {text-align:center;margin-right:15px;float:left;margin-bottom:15px;}
+			#k2QuickIcons div.icon a {background-color:#fff;background-position:-30px;display:block;float:left;height:97px;width:108px;color:#565656;vertical-align:middle;text-decoration:none;border:1px solid #CCC;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-webkit-transition-property:background-position, 0 0;-moz-transition-property:background-position, 0 0;-webkit-transition-duration:.8s;-moz-transition-duration:.8s;}
 			#k2QuickIcons div.icon a:hover,
 			#cpanel div.icon a:focus,
-			#cpanel div.icon a:active { background-position:0; -webkit-border-bottom-left-radius:50% 20px; -moz-border-radius-bottomleft:50% 20px; border-bottom-left-radius:50% 20px; -webkit-box-shadow:-5px 10px 15px rgba(0,0,0,0.25); -moz-box-shadow:-5px 10px 15px rgba(0,0,0,0.25); box-shadow:-5px 10px 15px rgba(0,0,0,0.25); position:relative; z-index:10; }
-				#k2QuickIcons div.icon a img { padding:10px 0; margin:0 auto; }
-				#k2QuickIcons div.icon a span { display:block; text-align:center; }
+			#cpanel div.icon a:active {background-position:0;-webkit-border-bottom-left-radius:50% 20px;-moz-border-radius-bottomleft:50% 20px;border-bottom-left-radius:50% 20px;-webkit-box-shadow:-5px 10px 15px rgba(0,0,0,0.25);-moz-box-shadow:-5px 10px 15px rgba(0,0,0,0.25);box-shadow:-5px 10px 15px rgba(0,0,0,0.25);position:relative;z-index:10;}
+				#k2QuickIcons div.icon a img {padding:10px 0;margin:0 auto;}
+				#k2QuickIcons div.icon a span {display:block;text-align:center;}
