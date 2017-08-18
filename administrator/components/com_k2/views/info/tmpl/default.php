@@ -114,8 +114,20 @@ defined('_JEXEC') or die;
 										<td>MIT</td>
 									</tr>
 									<tr>
+										<td><a target="_blank" href="https://github.com/FortAwesome/Font-Awesome">Font Awesome</a></td>
+										<td>4.7.0</td>
+										<td><?php echo JText::_('K2_INFO_ICONS'); ?></td>
+										<td>MIT</td>
+									</tr>
+									<tr>
 										<td><a target="_blank" href="https://github.com/thesabbir/simple-line-icons">Simple Line Icons</a></td>
 										<td>2.4.1</td>
+										<td><?php echo JText::_('K2_INFO_ICONS'); ?></td>
+										<td>MIT</td>
+									</tr>
+									<tr>
+										<td><a target="_blank" href="https://github.com/ionic-team/ionicons">Ionicons</a></td>
+										<td>2.0.1</td>
 										<td><?php echo JText::_('K2_INFO_ICONS'); ?></td>
 										<td>MIT</td>
 									</tr>
