@@ -14,7 +14,7 @@ require_once(JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
 class K2ElementTemplate extends K2Element
 {
-    public function fetchElementValue($name, $value, &$node, $control_name)
+    public function fetchElement($name, $value, &$node, $control_name)
     {
         jimport('joomla.filesystem.folder');
         $application = JFactory::getApplication();

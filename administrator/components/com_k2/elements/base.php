@@ -28,11 +28,14 @@ else
 		{
 		    function getInput()
 		    {
+			    /*
 			    if (method_exists($this,'fetchElement')) // BC
 			    {
 				   return $this->fetchElement($this->name, $this->value, $this->element, $this->options['control']);
 			    }
 		        return $this->fetchElementValue($this->name, $this->value, $this->element, $this->options['control']);
+		        */
+		        return $this->fetchElement($this->name, $this->value, $this->element, $this->options['control']);
 		    }
 		    function getLabel()
 		    {
@@ -40,10 +43,12 @@ else
 		        {
 		        	return $this->fetchTooltip($this->element['label'], $this->description, $this->element, $this->options['control'], $this->element['name'] = '');
 		        }
+		        /*
 		        if (method_exists($this, 'fetchElementName'))
 		        {
 		        	return $this->fetchElementName($this->element['label'], $this->description, $this->element, $this->options['control'], $this->element['name'] = '');
 		        }
+		        */
 		        return parent::getLabel();
 		    }
 		    function render($layoutId, $data = array())
@@ -58,11 +63,14 @@ else
 		{
 		    function getInput()
 		    {
+			    /*
 		        if (method_exists($this, 'fetchElement')) // BC
 		        {
 			        return $this->fetchElement($this->name, $this->value, $this->element, $this->options['control']);
 			    }
 		        return $this->fetchElementValue($this->name, $this->value, $this->element, $this->options['control']);
+		        */
+		        return $this->fetchElement($this->name, $this->value, $this->element, $this->options['control']);
 		    }
 		    function getLabel()
 		    {
@@ -70,10 +78,12 @@ else
 		        {
 			        return $this->fetchTooltip($this->element['label'], $this->description, $this->element, $this->options['control'], $this->element['name'] = '');
 			    }
+			    /*
 		        if (method_exists($this, 'fetchElementName'))
 		        {
 		            return $this->fetchElementName($this->element['label'], $this->description, $this->element, $this->options['control'], $this->element['name'] = '');
 		        }
+		        */
 		        return parent::getLabel();
 		    }
 		    function render()

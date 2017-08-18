@@ -14,7 +14,7 @@ require_once(JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
 class K2ElementK2Users extends K2Element
 {
-	function fetchElementValue($name, $value, &$node, $control_name)
+	function fetchElement($name, $value, &$node, $control_name)
 	{
 		$fieldName = (K2_JVERSION != '15') ? $name.'[]' : $control_name.'['.$name.'][]';
 

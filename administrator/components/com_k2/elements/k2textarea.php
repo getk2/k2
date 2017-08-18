@@ -14,7 +14,7 @@ require_once(JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
 class K2ElementK2textarea extends K2Element
 {
-    function fetchElementValue($name, $value, &$node, $control_name)
+    function fetchElement($name, $value, &$node, $control_name)
     {
 		// Attributes
         if (version_compare(JVERSION, '1.5.0', 'gt'))
