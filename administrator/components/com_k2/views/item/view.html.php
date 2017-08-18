@@ -487,6 +487,8 @@ class K2ViewItem extends K2View
 
 		// Metadata
 		$lists['metadata'] = class_exists('JParameter') ? new JParameter($item->metadata) : new JRegistry($item->metadata);
+		/*
+		// J3.x compatible only
 		$metaRobotsOptions = array(
 			'' => JText::_('K2_USE_GLOBAL'),
 			'index, follow' => JText::_('K2_METADATA_ROBOTS_INDEX_FOLLOW'),
@@ -494,7 +496,14 @@ class K2ViewItem extends K2View
 			'noindex, follow' => JText::_('K2_METADATA_ROBOTS_NOINDEX_FOLLOW'),
 			'noindex, nofollow' => JText::_('K2_METADATA_ROBOTS_NOINDEX_NOFOLLOW')
 		);
-		$lists['metarobots'] = JHTML::_('select.genericlist', $metaRobotsOptions, 'meta[robots]', 'class="inputbox" ', 'value', 'text', $lists['metadata']->get('robots'));
+		*/
+		$metaRobotsOptions = array();
+		$metaRobotsOptions[] = JHTML::_('select.option', '', JText::_('K2_USE_GLOBAL'));
+		$metaRobotsOptions[] = JHTML::_('select.option', 'index, follow', JText::_('K2_METADATA_ROBOTS_INDEX_FOLLOW'));
+		$metaRobotsOptions[] = JHTML::_('select.option', 'index, nofollow', JText::_('K2_METADATA_ROBOTS_INDEX_NOFOLLOW'));
+		$metaRobotsOptions[] = JHTML::_('select.option', 'noindex, follow', JText::_('K2_METADATA_ROBOTS_NOINDEX_FOLLOW'));
+		$metaRobotsOptions[] = JHTML::_('select.option', 'noindex, nofollow', JText::_('K2_METADATA_ROBOTS_NOINDEX_NOFOLLOW'));
+		$lists['metarobots'] = JHTML::_('select.genericlist', $metaRobotsOptions, 'meta[robots]', 'class="inputbox"', 'value', 'text', $lists['metadata']->get('robots'));
 
 		// Image
 		$date = JFactory::getDate($item->modified);
