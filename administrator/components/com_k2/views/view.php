@@ -16,12 +16,10 @@ if (version_compare(JVERSION, '3.0', 'ge'))
     class K2View extends JViewLegacy
     {
     }
-
 }
 else
 {
     class K2View extends JView
     {
     }
-
 }

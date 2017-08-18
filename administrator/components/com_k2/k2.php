@@ -16,11 +16,8 @@ $view = JString::strtolower($view);
 $task = JRequest::getCmd('task');
 $params = JComponentHelper::getParams('com_k2');
 
-if($view != 'media') {
-  JHTML::_('behavior.tooltip');
-}
-
-if(K2_JVERSION=='15'){
+if(K2_JVERSION=='15')
+{
     if(($params->get('lockTags') && $user->gid<=23 && ($view=='tags' || $view=='tag')) || ($user->gid <= 23) && (
     			$view=='extrafield' ||
     			$view=='extrafields' ||
@@ -35,15 +32,19 @@ if(K2_JVERSION=='15'){
     	{
     		JError::raiseError( 403, JText::_('K2_ALERTNOTAUTH') );
     	}
-} else {
-
+}
+else
+{
 	JLoader::register('K2HelperPermissions', JPATH_SITE.'/components/com_k2/helpers/permissions.j16.php');
 	K2HelperPermissions::checkPermissions();
 
 	// Compatibility for gid variable
-	if($user->authorise('core.admin', 'com_k2')){
+	if($user->authorise('core.admin', 'com_k2'))
+	{
 		$user->gid = 1000;
-	} else {
+	}
+	else
+	{
 		$user->gid = 1;
 	}
 
@@ -66,8 +67,7 @@ if(K2_JVERSION=='15'){
 }
 
 $document = JFactory::getDocument();
-
-K2HelperHTML::loadHeadIncludes(true, true);
+K2HelperHTML::loadHeadIncludes(true, true, true);
 
 // Container CSS class definition
 if(K2_JVERSION == '15')
