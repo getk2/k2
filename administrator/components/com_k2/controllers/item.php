@@ -14,7 +14,6 @@ jimport('joomla.application.component.controller');
 
 class K2ControllerItem extends K2Controller
 {
-
 	public function display($cachable = false, $urlparams = array())
 	{
 		JRequest::setVar('view', 'item');
@@ -104,7 +103,6 @@ class K2ControllerItem extends K2Controller
 			}
 		}
 
-
 		if ($counter == 0)
 			$output = JText::_('K2_THIS_CATEGORY_DOESNT_HAVE_ASSIGNED_EXTRA_FIELDS');
 
@@ -118,7 +116,6 @@ class K2ControllerItem extends K2Controller
 		JRequest::checkToken() or jexit('Invalid Token');
 		$model = $this->getModel('item');
 		$model->resetHits();
-
 	}
 
 	function resetRating()
@@ -126,7 +123,5 @@ class K2ControllerItem extends K2Controller
 		JRequest::checkToken() or jexit('Invalid Token');
 		$model = $this->getModel('item');
 		$model->resetRating();
-
 	}
-
 }

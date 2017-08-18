@@ -275,17 +275,17 @@ form#adminForm {}
 /* Metadata specific styling */
 #k2TabPubAndMeta .row {margin-left:0;max-width:100%;}
 
-ul.k2ScrollSpyMenu {position:fixed;list-style:none;padding:20px 0 0;margin:0;width:320px;display:none;}
-ul.k2ScrollSpyMenu li a {display:block;-webkit-transition:.5s all ease-out;-moz-transition:.5s all ease-out;transition:.5s all ease-out;font-size:16px;
-color:#00afec;padding:14px 28px;text-decoration:none;}
-ul.k2ScrollSpyMenu li a:hover {color:#000;}
-ul.k2ScrollSpyMenu li.active a {background:#f7f7f7;}
+/* ScrollSpy */
+ul.k2ScrollSpyMenu {display:none;}
 div.k2ScrollingContent {margin-left:0;padding:20px 20px 0;}
 div.K2ScrollingContent h3 {margin-top:20px;}
-
 @media screen and (min-width:900px) {
-	ul.k2ScrollSpyMenu {display:block;}
-	div.k2ScrollingContent {margin-left:320px;padding-left:30px;padding-right:30px;padding-top:20px;border-left:1px solid #e3e4e4;}
+	ul.k2ScrollSpyMenu {display:block;position:fixed;list-style:none;padding:20px 0 0;margin:0;width:320px;}
+	ul.k2ScrollSpyMenu li a {display:block;font-size:16px;
+	color:#00afec;padding:14px 28px;text-decoration:none;-webkit-transition:.5s all ease-out;-moz-transition:.5s all ease-out;transition:.5s all ease-out;}
+	ul.k2ScrollSpyMenu li a:hover {color:#000;}
+	ul.k2ScrollSpyMenu li.active a {background:#f7f7f7;}
+	div.k2ScrollingContent {margin-left:320px;padding:20px 30px 0 30px;border-left:1px solid #e3e4e4;}
 }
 
 /* The fields */
@@ -465,6 +465,7 @@ div#k2TabContent {padding:0;}
 span.k2ItemFormEditorTitle {display:block;color:#58595b;font-size:20px;font-weight:bold;padding:24px 0 12px 24px;}
 .k2ItemFormEditor .editor {background:#f0f2f2;border-top:1px solid #d7d9d9;border-bottom:1px solid #e9ebec;}
 .k2ItemFormEditor .editor .btn-toolbar {padding:4px 20px;}
+input#del_image {display:block;}
 
 /* Flatpickr Overrides */
 .com_k2 input.numInput {height:auto;}

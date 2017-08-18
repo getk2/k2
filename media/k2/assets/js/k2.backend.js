@@ -47,10 +47,8 @@ $K2(document).ready(function() {
 	$K2(".k2ScrollSpyMenu").each(function( index ) {
 		// Cache selectors
 		var lastId,
-			topMenu = $K2(this),
-			topMenuHeight = topMenu.outerHeight()+15,
-			// All list items
-			menuItems = topMenu.find("a"),
+			menuItems = $K2(this).find("a"),
+			firstMenuItem = menuItems[0],
 			// Anchors corresponding to menu items
 			scrollItems = menuItems.map(function(){
 				var item = $K2($K2(this).attr("href"));
