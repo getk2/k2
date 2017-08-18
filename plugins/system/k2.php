@@ -50,15 +50,6 @@ class plgSystemK2 extends JPlugin
 
 		// Get application & K2 component params
 		$application = JFactory::getApplication();
-		if ((int)K2_JVERSION < 25) {
-			$option = JRequest::getCmd('option');
-			$task = JRequest::getCmd('task');
-			$type = JRequest::getCmd('catid');
-		} else {
-			$option = JFactory::getApplication()->input->get('option');
-			$task = JFactory::getApplication()->input->get('task');
-			$type = JRequest::getCmd('catid');
-		}
 		$params = JComponentHelper::getParams('com_k2');
 
 		// Load the K2 classes
@@ -143,6 +134,15 @@ class plgSystemK2 extends JPlugin
 		}
 
 		// --- JoomFish integration [start] ---
+		if ((int)K2_JVERSION < 25) {
+			$option = JRequest::getCmd('option');
+			$task = JRequest::getCmd('task');
+			$type = JRequest::getCmd('catid');
+		} else {
+			$option = JFactory::getApplication()->input->get('option');
+			$task = JFactory::getApplication()->input->get('task');
+			$type = JRequest::getCmd('catid');
+		}
 		if ($option == 'com_joomfish')
 		{
 			JPlugin::loadLanguage('com_k2', JPATH_ADMINISTRATOR);

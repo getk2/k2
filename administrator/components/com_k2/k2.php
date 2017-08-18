@@ -11,8 +11,8 @@
 defined('_JEXEC') or die;
 
 $user = JFactory::getUser();
-$view = JRequest::getWord('view', 'items');
-$view = JString::strtolower($view);
+$option = JRequest::getCmd('option');
+$view = strtolower(JRequest::getWord('view', 'items'));
 $task = JRequest::getCmd('task');
 $params = JComponentHelper::getParams('com_k2');
 
@@ -67,7 +67,7 @@ else
 }
 
 $document = JFactory::getDocument();
-K2HelperHTML::loadHeadIncludes(true, true, true);
+K2HelperHTML::loadHeadIncludes(true, true);
 
 // Container CSS class definition
 if(K2_JVERSION == '15')

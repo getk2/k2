@@ -161,7 +161,7 @@ class K2HelperHTML
 				$document->addScript(JURI::root(true).'/media/k2/assets/js/k2.js?v='.K2_CURRENT_VERSION.'&amp;sitepath='.JURI::root(true).'/');
 
 				// NicEdit
-				if ($option="com_k2" && $view == 'item')
+				if ($option == 'com_k2' && $view == 'item')
 				{
 					$document->addScript(JURI::root(true).'/media/k2/assets/vendors/bkirchoff/nicedit/nicEdit.js?v='.K2_CURRENT_VERSION);
 				}
