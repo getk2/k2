@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS `#__k2_attachments` (
     `titleAttribute` text NOT NULL,
     `hits` int(11) NOT NULL,
     PRIMARY KEY (`id`),
+    KEY `hits` (`hits`),
     KEY `itemID` (`itemID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -45,6 +46,7 @@ CREATE TABLE IF NOT EXISTS `#__k2_comments` (
     `commentURL` varchar(255) NOT NULL,
     `published` int(11) NOT NULL DEFAULT '0',
     PRIMARY KEY (`id`),
+    KEY `commentDate` (`commentDate`),
     KEY `countComments` (`itemID`,`published`),
     KEY `itemID` (`itemID`),
     KEY `latestComments` (`published`,`commentDate`),
