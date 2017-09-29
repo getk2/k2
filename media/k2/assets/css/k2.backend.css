@@ -839,6 +839,8 @@ input#k2ImageBrowseServer {width:auto;height:30px;line-height:8px;margin-left:10
 .k2ViewIsCategory .oldJ input,
 .k2ViewIsCategory .oldJ select,
 .k2ViewIsItem .oldJ select {height:40px;width:100%;}
+.k2ViewIsCategory .oldJ select[multiple],
+.k2ViewIsItem .oldJ select[multiple] {height:auto;}
 
 /* Proper widths */
 .k2ViewIsItem .oldJ input,
