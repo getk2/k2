@@ -16,8 +16,7 @@ JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 
 class K2ModelUserGroup extends K2Model
 {
-
-    function getData()
+    public function getData()
     {
         $cid = JRequest::getVar('cid');
         $row = JTable::getInstance('K2UserGroup', 'Table');
@@ -25,46 +24,45 @@ class K2ModelUserGroup extends K2Model
         return $row;
     }
 
-    function save()
+    public function save()
     {
         $application = JFactory::getApplication();
         $row = JTable::getInstance('K2UserGroup', 'Table');
 
-        if (!$row->bind(JRequest::get('post')))
-        {
-        	$application->enqueueMessage($row->getError(), 'error');
+        if (!$row->bind(JRequest::get('post'))) {
+            $application->enqueueMessage($row->getError(), 'error');
             $application->redirect('index.php?option=com_k2&view=usergroups');
         }
 
-        if (!$row->check())
-        {
-        	$application->enqueueMessage($row->getError(), 'error');
+        if (!$row->check()) {
+            $application->enqueueMessage($row->getError(), 'error');
             $application->redirect('index.php?option=com_k2&view=usergroup&cid='.$row->id);
         }
 
-        if (!$row->store())
-        {
-        	$application->enqueueMessage($row->getError(), 'error');
+        if (!$row->store()) {
+            $application->enqueueMessage($row->getError(), 'error');
             $application->redirect('index.php?option=com_k2&view=usergroups');
         }
 
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
 
-        switch(JRequest::getCmd('task'))
-        {
-            case 'apply' :
+        switch (JRequest::getCmd('task')) {
+            case 'apply':
                 $msg = JText::_('K2_CHANGES_TO_USER_GROUP_SAVED');
                 $link = 'index.php?option=com_k2&view=usergroup&cid='.$row->id;
                 break;
-            case 'save' :
-            default :
+            case 'saveAndNew':
+                $msg = JText::_('K2_USER_GROUP_SAVED');
+                $link = 'index.php?option=com_k2&view=usergroup';
+                break;
+            case 'save':
+            default:
                 $msg = JText::_('K2_USER_GROUP_SAVED');
                 $link = 'index.php?option=com_k2&view=usergroups';
                 break;
         }
-		$application->enqueueMessage($msg);
+        $application->enqueueMessage($msg);
         $application->redirect($link);
     }
-
 }

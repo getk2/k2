@@ -294,7 +294,7 @@ class K2ModelExtraFields extends K2Model
                 break;
             case 'saveAndNew':
                 $msg = JText::_('K2_GROUP_SAVED');
-                $link = 'index.php?option=com_k2&view=extrafieldsgroups';
+                $link = 'index.php?option=com_k2&view=extrafieldsgroup';
                 break;
             case 'save':
             default:
