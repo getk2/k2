@@ -578,8 +578,12 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 #extraFieldsContainer .k2Calendar + .btn {padding:10px 12px;}
 #extraFieldsContainer .icon-calendar {margin-right:0;}
 
+@media screen and (max-width:600px) {
+	.itemAdditionalField .itemAdditionalData {width:auto;float:none;}
+}
+
 @media screen and (min-width:767px) {
-	.itemAdditionalField .itemAdditionalValue {width:100px;margin-bottom:0 }
+	.itemAdditionalField .itemAdditionalValue {width:100px;margin-bottom:0;}
 	.itemAdditionalField label {display:inline-block;vertical-align:middle;}
 	.itemAdditionalField .itemAdditionalData {min-width:75%;float:left;}
 	.itemNewAttachment button + input[type="text"] {margin-left:-12px;}
