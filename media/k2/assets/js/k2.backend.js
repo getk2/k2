@@ -15,80 +15,80 @@ var selectsInstance;
 $K2(document).ready(function() {
 
     // Set the selects instance to allow inheritance of jQuery chosen bindings
-    if ( typeof (K2JVersion) !== 'undefined' && K2JVersion === '30') {
+    if (typeof(K2JVersion) !== 'undefined' && K2JVersion === '30') {
         selectsInstance = jQuery;
     } else {
         selectsInstance = $K2;
     }
 
     // Generic function to get URL params passed in .js script include
-	function getUrlParams(targetScript, varName) {
-		var scripts = document.getElementsByTagName('script');
-		var scriptCount = scripts.length;
-		for (var a = 0; a < scriptCount; a++) {
-			var scriptSrc = scripts[a].src;
-			if (scriptSrc.indexOf(targetScript) >= 0) {
-				varName = varName.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-				var re = new RegExp("[\\?&]" + varName + "=([^&#]*)");
-				var parsedVariables = re.exec(scriptSrc);
-				if (parsedVariables !== null) {
-					return parsedVariables[1];
-				}
-			}
-		}
-	}
+    function getUrlParams(targetScript, varName) {
+        var scripts = document.getElementsByTagName('script');
+        var scriptCount = scripts.length;
+        for (var a = 0; a < scriptCount; a++) {
+            var scriptSrc = scripts[a].src;
+            if (scriptSrc.indexOf(targetScript) >= 0) {
+                varName = varName.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+                var re = new RegExp("[\\?&]" + varName + "=([^&#]*)");
+                var parsedVariables = re.exec(scriptSrc);
+                if (parsedVariables !== null) {
+                    return parsedVariables[1];
+                }
+            }
+        }
+    }
 
-	// Set the site root path
-	K2SitePath = getUrlParams('k2.backend.js', 'sitepath');
+    // Set the site root path
+    K2SitePath = getUrlParams('k2.backend.js', 'sitepath');
 
     // --- Common functions ---
 
     // Minimal Scrollspy
-	$K2(".k2ScrollSpyMenu").each(function( index ) {
-		// Cache selectors
-		var lastId,
-			menuItems = $K2(this).find("a"),
-			firstMenuItem = menuItems[0],
-			// Anchors corresponding to menu items
-			scrollItems = menuItems.map(function(){
-				var item = $K2($K2(this).attr("href"));
-				if (item.length) return item;
-			});
+    $K2(".k2ScrollSpyMenu").each(function(index) {
+        // Cache selectors
+        var lastId,
+            menuItems = $K2(this).find("a"),
+            firstMenuItem = menuItems[0],
+            // Anchors corresponding to menu items
+            scrollItems = menuItems.map(function() {
+                var item = $K2($K2(this).attr("href"));
+                if (item.length) return item;
+            });
 
-		// Bind click handler to menu items so we can get a fancy scroll animation
-		menuItems.click(function(e){
-			var href = $K2(this).attr("href"),
-				offsetTop = (href === "#") ? 0 : $K2(href).offset().top-60;
-			$K2('html, body').stop().animate({
-				scrollTop: offsetTop
-			}, 300);
-			e.preventDefault();
-		});
+        // Bind click handler to menu items so we can get a fancy scroll animation
+        menuItems.click(function(e) {
+            var href = $K2(this).attr("href"),
+                offsetTop = (href === "#") ? 0 : $K2(href).offset().top - 60;
+            $K2('html, body').stop().animate({
+                scrollTop: offsetTop
+            }, 300);
+            e.preventDefault();
+        });
 
-		// Bind to scroll
-		$K2(window).scroll(function(){
-			// Get container scroll position
-			var fromTop = $K2(this).scrollTop() + 100;
+        // Bind to scroll
+        $K2(window).scroll(function() {
+            // Get container scroll position
+            var fromTop = $K2(this).scrollTop() + 100;
 
-			// Get id of current scroll item
-			var cur = scrollItems.map(function(){
-				if ($K2(this).offset().top < fromTop) return this;
-			});
-			// Get the id of the current element
-			cur = cur[cur.length-1];
-			var id = cur && cur.length ? cur[0].id : "";
+            // Get id of current scroll item
+            var cur = scrollItems.map(function() {
+                if ($K2(this).offset().top < fromTop) return this;
+            });
+            // Get the id of the current element
+            cur = cur[cur.length - 1];
+            var id = cur && cur.length ? cur[0].id : "";
 
-			if (lastId !== id) {
-				lastId = id;
-				// Set/remove active class
-				menuItems
-					.parent().removeClass("active")
-					.end().filter('a[href="#'+id+'"]').parent().addClass("active");
-			}
-		});
-	});
+            if (lastId !== id) {
+                lastId = id;
+                // Set/remove active class
+                menuItems
+                    .parent().removeClass("active")
+                    .end().filter('a[href="#' + id + '"]').parent().addClass("active");
+            }
+        });
+    });
 
-	// Toggler
+    // Toggler
     $K2('#jToggler').click(function() {
         if ($K2(this).attr('checked')) {
             $K2('input[id^=cb]').attr('checked', true);
@@ -117,14 +117,14 @@ $K2(document).ready(function() {
 
     // View specific functions
     if ($K2('#k2AdminContainer').length > 0) {
-    	var K2IsAdmin = true;
+        var K2IsAdmin = true;
         var view = $K2('#k2AdminContainer input[name=view]').val();
     } else {
-    	var K2IsAdmin = false;
+        var K2IsAdmin = false;
         var view = $K2('#k2ModalContainer input[name=view]').val();
     }
 
-	// Report user
+    // Report user
     $K2('.k2ReportUserButton').click(function(event) {
         event.preventDefault();
         if (view == 'comments') {
@@ -137,7 +137,7 @@ $K2(document).ready(function() {
         }
     });
 
-    switch(view) {
+    switch (view) {
 
         case 'comments':
             var flag = false;
@@ -154,9 +154,9 @@ $K2(document).ready(function() {
                 $K2('#k2Comment' + commentID + ' input').val(value);
                 target.empty();
                 var textarea = $K2('<textarea/>', {
-                    name : 'comment',
-                    rows : '5',
-                    cols : '40'
+                    name: 'comment',
+                    rows: '5',
+                    cols: '40'
                 });
                 textarea.html(value).appendTo(target);
                 textarea.focus();
@@ -186,8 +186,8 @@ $K2(document).ready(function() {
                         log.removeClass('k2CommentsLoader').html(result.message).delay(2000).fadeOut();
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
-	                    log.removeClass('k2CommentsLoader').html(textStatus + ': ' + errorThrown).delay(2000).fadeOut();
-	                }
+                        log.removeClass('k2CommentsLoader').html(textStatus + ': ' + errorThrown).delay(2000).fadeOut();
+                    }
                 });
                 $K2('#k2Comment' + commentID + ' .commentToolbar .k2CommentControls').css('display', 'none');
                 $K2('#k2Comment' + commentID + ' .commentToolbar a.editComment').css('display', 'inline');
@@ -203,20 +203,20 @@ $K2(document).ready(function() {
                 $K2('#k2Comment' + commentID + ' .commentToolbar a.editComment').css('display', 'inline');
             });
             if ($K2('input[name=isSite]').val() == 1) {
-	            // Close comments moderation modal/window
-	            $K2('#toolbar-cancel a').click(function(event) {
-					event.preventDefault();
-					// Close modal
-					if (typeof(parent.$K2.magnificPopup) !== 'undefined') {
-						parent.window.location.reload();
-						parent.$K2.magnificPopup.close();
-					}
-					// Close window/tab
-					if (top == self) {
-						window.close();
-					}
-	            });
-	            // Pagination
+                // Close comments moderation modal/window
+                $K2('#toolbar-cancel a').click(function(event) {
+                    event.preventDefault();
+                    // Close modal
+                    if (typeof(parent.$K2.magnificPopup) !== 'undefined') {
+                        parent.window.location.reload();
+                        parent.$K2.magnificPopup.close();
+                    }
+                    // Close window/tab
+                    if (top == self) {
+                        window.close();
+                    }
+                });
+                // Pagination
                 $K2('.k2CommentsPagination a').click(function(event) {
                     var url = $K2(this).attr('href').split('limitstart=');
                     event.preventDefault();
@@ -264,14 +264,14 @@ $K2(document).ready(function() {
                     $K2('#exFieldsTypesDiv').empty();
                     renderExtraFields(selectedType, values, newField);
                     $K2('#exFieldsTypesDiv').fadeIn('slow');
-                    if(selectedType === 'select' || selectedType === 'multipleSelect') {
-                    	$K2('#k2ExtraFieldsShowNullFlag').fadeIn('slow');
+                    if (selectedType === 'select' || selectedType === 'multipleSelect') {
+                        $K2('#k2ExtraFieldsShowNullFlag').fadeIn('slow');
                     }
-                    if(selectedType !== 'header') {
-                    	$K2('#k2ExtraFieldsRequiredFlag').fadeIn('slow');
+                    if (selectedType !== 'header') {
+                        $K2('#k2ExtraFieldsRequiredFlag').fadeIn('slow');
                     }
-                    if(selectedType === 'header') {
-                    	$K2('#k2ExtraFieldsDisplayInFrontEndFlag').fadeIn('slow');
+                    if (selectedType === 'header') {
+                        $K2('#k2ExtraFieldsDisplayInFrontEndFlag').fadeIn('slow');
                     }
                 });
             });
@@ -328,10 +328,10 @@ $K2(document).ready(function() {
                 event.preventDefault();
                 var checked = $K2('input[name="cid[]"]:checked').length;
                 $K2('#k2BatchOperationsCounter').text(checked);
-                if(checked > 0) {
+                if (checked > 0) {
                     $K2('#k2BatchOperations').addClass('jw-modal-open');
                     $K2('#batchCategory option').removeAttr('disabled');
-                    $K2('input[name="cid[]"]:checked').each(function () {
+                    $K2('input[name="cid[]"]:checked').each(function() {
                         $K2('#batchCategory option[value="' + $K2(this).val() + '"]').attr('disabled', 'disabled');
                         $K2('#batchCategory').trigger('liszt:updated');
                     });
@@ -343,10 +343,10 @@ $K2(document).ready(function() {
                 event.preventDefault();
                 var checked = $K2('input[name="cid[]"]:checked').length;
                 $K2('#k2MoveOperationsCounter').text(checked);
-                if(checked > 0) {
+                if (checked > 0) {
                     $K2('#k2MoveOperations').addClass('jw-modal-open');
                     $K2('#moveCategories option').removeAttr('disabled');
-                    $K2('input[name="cid[]"]:checked').each(function () {
+                    $K2('input[name="cid[]"]:checked').each(function() {
                         $K2('#moveCategories option[value="' + $K2(this).val() + '"]').attr('disabled', 'disabled');
                         $K2('#moveCategories').trigger('liszt:updated');
                     });
@@ -358,19 +358,19 @@ $K2(document).ready(function() {
 
         case 'category':
             $K2('#k2Accordion').accordion({
-                collapsible : true,
-                autoHeight : false
+                collapsible: true,
+                autoHeight: false
             });
             $K2('.k2Tabs').tabs();
             $K2('#k2ImageBrowseServer').click(function(event) {
                 event.preventDefault();
                 SqueezeBox.initialize();
                 SqueezeBox.fromElement(this, {
-                    handler : 'iframe',
-                    url : K2BasePath + 'index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID=existingImageValue',
-                    size : {
-                        x : 800,
-                        y : 434
+                    handler: 'iframe',
+                    url: K2BasePath + 'index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID=existingImageValue',
+                    size: {
+                        x: 800,
+                        y: 434
                     }
                 });
             });
@@ -381,35 +381,35 @@ $K2(document).ready(function() {
                 event.preventDefault();
                 var checked = $K2('input[name="cid[]"]:checked').length;
                 $K2('#k2BatchOperationsCounter').text(checked);
-                if(checked > 0) {
-                  $K2('#k2BatchOperations').addClass('jw-modal-open');
+                if (checked > 0) {
+                    $K2('#k2BatchOperations').addClass('jw-modal-open');
                 } else {
-                  alert(K2SelectItemsError);
+                    alert(K2SelectItemsError);
                 }
             });
             $K2('#K2MoveButton').click(function(event) {
                 event.preventDefault();
                 var checked = $K2('input[name="cid[]"]:checked').length;
                 $K2('#k2MoveOperationsCounter').text(checked);
-                if(checked > 0) {
-                  $K2('#k2MoveOperations').addClass('jw-modal-open');
+                if (checked > 0) {
+                    $K2('#k2MoveOperations').addClass('jw-modal-open');
                 } else {
-                  alert(K2SelectItemsError);
+                    alert(K2SelectItemsError);
                 }
             });
             break;
 
         case 'item':
             $K2('#k2Accordion').accordion({
-                collapsible : true,
-                autoHeight : false
+                collapsible: true,
+                autoHeight: false
             });
             $K2('.k2Tabs').tabs();
-            if ( typeof (K2ActiveMediaTab) === 'undefined') {
+            if (typeof(K2ActiveMediaTab) === 'undefined') {
                 $K2('#k2MediaTabs').tabs();
             } else {
                 $K2('#k2MediaTabs').tabs({
-                    selected : K2ActiveMediaTab
+                    selected: K2ActiveMediaTab
                 });
             }
             $K2('#k2ToggleSidebar').click(function(event) {
@@ -426,9 +426,9 @@ $K2(document).ready(function() {
                     var element = $K2(this).parent().parent();
                     var url = $K2(this).attr('href');
                     $K2.ajax({
-                        url : url,
-                        type : 'get',
-                        success : function() {
+                        url: url,
+                        type: 'get',
+                        success: function() {
                             $K2(element).fadeOut('fast', function() {
                                 $K2(element).remove();
                             });
@@ -454,13 +454,13 @@ $K2(document).ready(function() {
                 var tag = $K2('#tag').val();
                 var url = 'index.php?option=com_k2&view=item&task=tag&tag=' + tag;
                 $K2.ajax({
-                    url : url,
-                    type : 'get',
-                    dataType : 'json',
-                    success : function(response) {
+                    url: url,
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(response) {
                         if (response.status == 'success') {
                             var option = $K2('<option/>', {
-                                value : response.id
+                                value: response.id
                             }).html(response.name).appendTo($K2('#tags'));
                         }
                         log.html(response.msg);
@@ -478,11 +478,11 @@ $K2(document).ready(function() {
                     $K2(this).appendTo($K2('#tags'));
                 });
             });
-            $K2('#k2AdminContainer').on('click', 'input[type="radio"]', function(e){
-            	$K2(this).parents('.controls').children('label.radio').each(function(){
-            		$K2(this).removeClass('isChecked');
-            	});
-            	$K2(this).parent().addClass('isChecked');
+            $K2('#k2AdminContainer').on('click', 'input[type="radio"]', function(e) {
+                $K2(this).parents('.controls').children('label.radio').each(function() {
+                    $K2(this).removeClass('isChecked');
+                });
+                $K2(this).parent().addClass('isChecked');
             });
             selectsInstance('#catid').change(function() {
                 if (selectsInstance(this).find('option:selected').attr('disabled')) {
@@ -494,17 +494,17 @@ $K2(document).ready(function() {
                 var url = K2BasePath + 'index.php?option=com_k2&view=item&task=extraFields&cid=' + selectedValue + '&id=' + $K2('input[name=id]').val();
                 $K2('#extraFieldsContainer').fadeOut('slow', function() {
                     $K2.ajax({
-                        url : url,
-                        type : 'get',
-                        success : function(response) {
+                        url: url,
+                        type: 'get',
+                        success: function(response) {
                             $K2('#extraFieldsContainer').html(response);
                             initExtraFieldsEditor();
 
                             // Load Flatpickr
                             $K2('.k2Calendar').each(function() {
                                 $K2(this).flatpickr({
-									allowInput: true
-								});
+                                    allowInput: true
+                                });
                                 inputFieldID = $K2(this).attr('id');
                             });
 
@@ -517,11 +517,11 @@ $K2(document).ready(function() {
                 event.preventDefault();
                 SqueezeBox.initialize();
                 SqueezeBox.fromElement(this, {
-                    handler : 'iframe',
-                    url : K2BasePath + 'index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID=existingImageValue',
-                    size : {
-                        x : 800,
-                        y : 434
+                    handler: 'iframe',
+                    url: K2BasePath + 'index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID=existingImageValue',
+                    size: {
+                        x: 800,
+                        y: 434
                     }
                 });
             });
@@ -529,11 +529,11 @@ $K2(document).ready(function() {
                 event.preventDefault();
                 SqueezeBox.initialize();
                 SqueezeBox.fromElement(this, {
-                    handler : 'iframe',
-                    url : K2BasePath + 'index.php?option=com_k2&view=media&type=video&tmpl=component&fieldID=remoteVideo',
-                    size : {
-                        x : 800,
-                        y : 434
+                    handler: 'iframe',
+                    url: K2BasePath + 'index.php?option=com_k2&view=media&type=video&tmpl=component&fieldID=remoteVideo',
+                    size: {
+                        x: 800,
+                        y: 434
                     }
                 });
             });
@@ -543,13 +543,13 @@ $K2(document).ready(function() {
                 k2ActiveAttachmentField.attr('id', 'k2ActiveAttachment');
                 SqueezeBox.initialize();
                 SqueezeBox.fromElement(this, {
-                    handler : 'iframe',
-                    url : K2BasePath + 'index.php?option=com_k2&view=media&type=attachment&tmpl=component&fieldID=k2ActiveAttachment',
-                    size : {
-                        x : 800,
-                        y : 434
+                    handler: 'iframe',
+                    url: K2BasePath + 'index.php?option=com_k2&view=media&type=attachment&tmpl=component&fieldID=k2ActiveAttachment',
+                    size: {
+                        x: 800,
+                        y: 434
                     },
-                    onClose : function() {
+                    onClose: function() {
                         k2ActiveAttachmentField.removeAttr('id');
                     }
                 });
@@ -570,18 +570,18 @@ $K2(document).ready(function() {
                 }
             });
             var tagsUrl = K2SitePath;
-            if(K2IsAdmin) {
-            	tagsUrl += 'administrator/';
+            if (K2IsAdmin) {
+                tagsUrl += 'administrator/';
             }
             tagsUrl += 'index.php?option=com_k2&view=item&task=tags';
             $K2('#search-field').autocomplete({
-                source : function(request, response) {
+                source: function(request, response) {
                     $K2.ajax({
-                        type : 'post',
-                        url : tagsUrl,
-                        data : 'q=' + request.term,
-                        dataType : 'json',
-                        success : function(data) {
+                        type: 'post',
+                        url: tagsUrl,
+                        data: 'q=' + request.term,
+                        dataType: 'json',
+                        success: function(data) {
                             $K2('#search-field').removeClass('tagsLoading');
                             response($K2.map(data, function(item) {
                                 return item;
@@ -589,20 +589,20 @@ $K2(document).ready(function() {
                         }
                     });
                 },
-                minLength : 3,
-                select : function(event, ui) {
+                minLength: 3,
+                select: function(event, ui) {
                     $K2('<li class="addedTag">' + ui.item.label + '<span class="tagRemove" onclick="$K2(this).parent().remove();">&times;</span><input type="hidden" value="' + ui.item.value + '" name="tags[]"></li>').insertBefore('.tags .tagAdd');
                     this.value = '';
                     return false;
                 },
-                search : function(event, ui) {
+                search: function(event, ui) {
                     $K2('#search-field').addClass('tagsLoading');
                 }
             });
 
             if ($K2('input[name=isSite]').val() == 1) {
-	            // Close item form modal/window
-	            $K2('#toolbar-cancel a').click(function(event) {
+                // Close item form modal/window
+                $K2('#toolbar-cancel a').click(function(event) {
                     event.preventDefault();
                     var k2ItemId = $K2('input[name=id]').val();
                     var sigProFolder = $K2('input[name=sigProFolder]').val();
@@ -611,18 +611,18 @@ $K2(document).ready(function() {
                         cache: false,
                         url: K2SitePath + 'index.php?option=com_k2&view=item&task=checkin&cid=' + k2ItemId + '&lang=' + $K2('input[name=lang]').val() + '&sigProFolder=' + sigProFolder,
                         success: function() {
-							// Close modal
-							if (typeof(parent.$K2.magnificPopup) !== 'undefined') {
-								parent.window.location.reload();
-								parent.$K2.magnificPopup.close();
-							}
-							// Close window/tab
-							if (top == self) {
-								window.close();
-							}
+                            // Close modal
+                            if (typeof(parent.$K2.magnificPopup) !== 'undefined') {
+                                parent.window.location.reload();
+                                parent.$K2.magnificPopup.close();
+                            }
+                            // Close window/tab
+                            if (top == self) {
+                                window.close();
+                            }
                         }
                     });
-	            });
+                });
             }
             extraFieldsImage();
             break;
@@ -632,11 +632,11 @@ $K2(document).ready(function() {
     $K2('label.radio').has('input:checked').addClass('isChecked');
 
     // Toggle clickable Labels
-    $K2('label.radio').has('input').click(function(e){
+    $K2('label.radio').has('input').click(function(e) {
 
         $K2(this).parent().children().removeClass('isChecked');
 
-        if( !$K2(this).hasClass('isChecked') ) {
+        if (!$K2(this).hasClass('isChecked')) {
             $K2(this).addClass('isChecked');
         }
     });
@@ -647,116 +647,125 @@ $K2(document).ready(function() {
 /*
  * JS encapsulated behind the "jQuery" object - added in K2 v2.8.0+
  */
-(function($){
+(function($) {
 
-	// --- Helper Functions ---
-	// Character count (usually placed on a textarea element)
-	$.fn.k2CharCount = function(el, max) {
-		var container = $(el).parent();
-		container.append('<span class="k2CharCounter">&nbsp;</span>');
-		var counter = $(container).find('.k2CharCounter')[0];
-		$(el).on('focus keydown keyup', function(){
-			var count = max - $(el).val().length;
-			if (count < 0) {
-				$(counter).attr('class', 'k2CharCounter k2CharsExceeded');
-			} else {
-				$(counter).attr('class', 'k2CharCounter');
-			}
-			$(counter).html(count);
-		});
-	}
+    // --- Helper Functions ---
+    // Character count (usually placed on a textarea element)
+    $.fn.k2CharCount = function(el, max) {
+        var container = $(el).parent();
+        container.append('<span class="k2CharCounter">&nbsp;</span>');
+        var counter = $(container).find('.k2CharCounter')[0];
+        $(el).on('focus keydown keyup', function() {
+            var count = max - $(el).val().length;
+            if (count < 0) {
+                $(counter).attr('class', 'k2CharCounter k2CharsExceeded');
+            } else {
+                $(counter).attr('class', 'k2CharCounter');
+            }
+            $(counter).html(count);
+        });
+    }
 
-	// Pseudo-alert
-	$.fn.k2Alert = function(msg, duration){
-		if($('#k2AlertContainer').length){
-			$('#k2AlertContainer').remove();
-		}
-		$('body').append('<div id="k2AlertContainer"><div id="k2AlertMessage"><a href="#" id="k2AlertClose">&times;</a><span>' + msg + '</span></div></div>');
-		$('#k2AlertClose').on('click', function(e){
-			e.preventDefault();
-			$('#k2AlertContainer').remove();
-		});
-		$('#k2AlertContainer').delay(duration).fadeOut('fast', function() {
-			$(this).remove();
-		});
-	}
+    // Pseudo-alert
+    $.fn.k2Alert = function(msg, duration) {
+        if ($('#k2AlertContainer').length) {
+            $('#k2AlertContainer').remove();
+        }
+        $('body').append('<div id="k2AlertContainer"><div id="k2AlertMessage"><a href="#" id="k2AlertClose">&times;</a><span>' + msg + '</span></div></div>');
+        $('#k2AlertClose').on('click', function(e) {
+            e.preventDefault();
+            $('#k2AlertContainer').remove();
+        });
+        $('#k2AlertContainer').delay(duration).fadeOut('fast', function() {
+            $(this).remove();
+        });
+    }
 
-	// -- Load everything up ---
-	$(document).ready(function(){
+    // -- Load everything up ---
+    $(document).ready(function() {
 
-		// Hide system messages after 3 seconds in frontend editing
-		if($('#k2ModalContainer').length && $('#system-message-container').length){
-			$('#system-message-container').delay(3000).fadeOut('fast', function() {
-				$(this).remove();
-			});
-		}
+        // Hide system messages after 3 seconds in frontend editing
+        if ($('#k2ModalContainer').length && $('#system-message-container').length) {
+            $('#system-message-container').delay(3000).fadeOut('fast', function() {
+                $(this).remove();
+            });
+        }
 
-		// Sortables (jQuery UI)
-		if($('.k2SortableListContainer').length){
-			$('.k2SortableListContainer').sortable();
-			$('.k2SortableListContainer .k2EntryRemove').on('click', function(e){
-				e.preventDefault();
-				$(this).parent().remove();
-			});
-		}
+        // Sortables (jQuery UI)
+        if ($('.k2SortableListContainer').length) {
+            $('.k2SortableListContainer').sortable();
+            $('.k2SortableListContainer .k2EntryRemove').on('click', function(e) {
+                e.preventDefault();
+                $(this).parent().remove();
+            });
+        }
 
-		// Flatpickr
-		if($('input[data-k2-datetimepicker]').length){
-			$('input[data-k2-datetimepicker]').each(function(){
-				var options = $(this).data('k2Datetimepicker');
-				if(options){
-					$(this).flatpickr(options);
-				} else {
-					$(this).flatpickr({
-						enableTime: true,
-						enableSeconds: true,
-						allowInput: true
-					});
-				}
-			});
-		}
+        // Flatpickr
+        if ($('input[data-k2-datetimepicker]').length) {
+            $('input[data-k2-datetimepicker]').each(function() {
+                var options = $(this).data('k2Datetimepicker');
+                if (options) {
+                    $(this).flatpickr(options);
+                } else {
+                    $(this).flatpickr({
+                        enableTime: true,
+                        enableSeconds: true,
+                        allowInput: true
+                    });
+                }
+            });
+        }
 
-		// Assist parameter styling
-		if($('.jwHeaderContainer').length){
-			$('.jwHeaderContainer').each(function(){
-				$(this).parents('.control-group').addClass('control-group-header');
-			});
-		}
+        // Assist parameter styling
+        if ($('.jwHeaderContainer').length) {
+            $('.jwHeaderContainer').each(function() {
+                $(this).parents('.control-group').addClass('control-group-header');
+            });
+        }
 
-		// Magnific Popup
-		if(typeof($.magnificPopup) !== 'undefined') {
-			$('[data-k2-modal="image"]').magnificPopup({
-				type:'image',
-				image: {
-					titleSrc: function(){
-						return '';
-					}
-				}
-			});
-			$('[data-k2-modal="edit"]').magnificPopup({type:'iframe', modal:true});
-			$('[data-k2-modal="iframe"]').magnificPopup({type:'iframe'});
-			//$('[data-k2-modal="iframe"]').magnificPopup({type:'iframe', iframe: {markup: '<div class="mfp-iframe-scaler"><div class="mfp-close"></div><iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe></div>'}});
-			$('[data-k2-modal="singleSelect"]').magnificPopup({type:'iframe', modal:true, closeOnContentClick:true});
-		}
+        // Magnific Popup
+        if (typeof($.magnificPopup) !== 'undefined') {
+            $('[data-k2-modal="image"]').magnificPopup({
+                type: 'image',
+                image: {
+                    titleSrc: function() {
+                        return '';
+                    }
+                }
+            });
+            $('[data-k2-modal="edit"]').magnificPopup({
+                type: 'iframe',
+                modal: true
+            });
+            $('[data-k2-modal="iframe"]').magnificPopup({
+                type: 'iframe'
+            });
+            //$('[data-k2-modal="iframe"]').magnificPopup({type:'iframe', iframe: {markup: '<div class="mfp-iframe-scaler"><div class="mfp-close"></div><iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe></div>'}});
+            $('[data-k2-modal="singleSelect"]').magnificPopup({
+                type: 'iframe',
+                modal: true,
+                closeOnContentClick: true
+            });
+        }
 
-		if($('#k2CloseMfp').length){
-			$('#k2CloseMfp').on('click', function(e){
-				e.preventDefault();
-				window.parent.k2ModalClose();
-			});
-		}
+        if ($('#k2CloseMfp').length) {
+            $('#k2CloseMfp').on('click', function(e) {
+                e.preventDefault();
+                window.parent.k2ModalClose();
+            });
+        }
 
-		// Character count
-		if($('[data-k2-chars]').length){
-			$('[data-k2-chars]').each(function(){
-				var count = $(this).data('k2Chars');
-				if(count){
-					$(this).k2CharCount($(this), count);
-				}
-			});
-		}
+        // Character count
+        if ($('[data-k2-chars]').length) {
+            $('[data-k2-chars]').each(function() {
+                var count = $(this).data('k2Chars');
+                if (count) {
+                    $(this).k2CharCount($(this), count);
+                }
+            });
+        }
 
-	});
+    });
 
 })(jQuery);
 
@@ -768,83 +777,83 @@ $K2(document).ready(function() {
 
 // Extra fields validation
 function validateExtraFields() {
-	$K2('.k2Required').removeClass('k2Invalid');
-	$K2('#tabExtraFields a').removeClass('k2Invalid');
-	var response = new Object();
-	var efResults = [];
-	response.isValid = true;
-	response.errorFields = new Array();
-	$K2('.k2Required').each(function() {
-		var id = $K2(this).attr('id');
-		var value;
-		if ($K2(this).hasClass('k2ExtraFieldEditor')) {
-			if ( typeof tinymce != 'undefined') {
-				var value = tinyMCE.get(id).getContent();
-			}
-		} else {
-			var value = $K2(this).val();
-		}
-		if (($K2.trim(value) === '') || ($K2(this).hasClass('k2ExtraFieldEditor') && $K2.trim(value) === '<p></p>')) {
-			$K2(this).addClass('k2Invalid');
-			response.isValid = false;
-			var label = $K2('label[for="' + id + '"]').text();
-			response.errorFields.push(label);
-		}
-	});
-	$K2.each(response.errorFields, function(key, value) {
-		efResults.push('<li>' + value + '</li>');
-	});
-	if(response.isValid === false) {
-		$K2('#k2ExtraFieldsMissing').html(efResults);
-		$K2('#k2ExtraFieldsValidationResults').css('display','block');
-		$K2('#tabExtraFields a').addClass('k2Invalid');
-	}
-	return response.isValid;
+    $K2('.k2Required').removeClass('k2Invalid');
+    $K2('#tabExtraFields a').removeClass('k2Invalid');
+    var response = new Object();
+    var efResults = [];
+    response.isValid = true;
+    response.errorFields = new Array();
+    $K2('.k2Required').each(function() {
+        var id = $K2(this).attr('id');
+        var value;
+        if ($K2(this).hasClass('k2ExtraFieldEditor')) {
+            if (typeof tinymce != 'undefined') {
+                var value = tinyMCE.get(id).getContent();
+            }
+        } else {
+            var value = $K2(this).val();
+        }
+        if (($K2.trim(value) === '') || ($K2(this).hasClass('k2ExtraFieldEditor') && $K2.trim(value) === '<p></p>')) {
+            $K2(this).addClass('k2Invalid');
+            response.isValid = false;
+            var label = $K2('label[for="' + id + '"]').text();
+            response.errorFields.push(label);
+        }
+    });
+    $K2.each(response.errorFields, function(key, value) {
+        efResults.push('<li>' + value + '</li>');
+    });
+    if (response.isValid === false) {
+        $K2('#k2ExtraFieldsMissing').html(efResults);
+        $K2('#k2ExtraFieldsValidationResults').css('display', 'block');
+        $K2('#tabExtraFields a').addClass('k2Invalid');
+    }
+    return response.isValid;
 }
 
 // Extra Fields image field
 function extraFieldsImage() {
-	$K2('body').on('click', '.k2ExtraFieldImageButton', function(event) {
-    	event.preventDefault();
-    	var href = $K2(this).attr('href');
-    	SqueezeBox.initialize();
+    $K2('body').on('click', '.k2ExtraFieldImageButton', function(event) {
+        event.preventDefault();
+        var href = $K2(this).attr('href');
+        SqueezeBox.initialize();
         SqueezeBox.fromElement(this, {
-            handler : 'iframe',
-            url : K2BasePath + href,
-            size : {
-                x : 800,
-                y : 434
+            handler: 'iframe',
+            url: K2BasePath + href,
+            size: {
+                x: 800,
+                y: 434
             }
         });
     });
 }
 
 // If we are in Joomla 1.5 define the functions for validation
-if (typeof (Joomla) === 'undefined') {
+if (typeof(Joomla) === 'undefined') {
     var Joomla = {};
     Joomla.submitbutton = function(pressbutton) {
         submitform(pressbutton);
     };
+
     function submitbutton(pressbutton) {
         Joomla.submitbutton(pressbutton);
     }
-
 }
 
 // Extra fields
 function addOption() {
     var div = $K2('<div/>').appendTo($K2('#select_dd_options'));
     var input = $K2('<input/>', {
-        name : 'option_name[]',
-        type : 'text'
+        name: 'option_name[]',
+        type: 'text'
     }).appendTo(div);
     var input = $K2('<input/>', {
-        name : 'option_value[]',
-        type : 'hidden'
+        name: 'option_value[]',
+        type: 'hidden'
     }).appendTo(div);
     var input = $K2('<input/>', {
-        value : K2Language[0],
-        type : 'button'
+        value: K2Language[0],
+        type: 'button'
     }).appendTo(div);
     input.click(function() {
         $K2(this).parent().remove();
@@ -859,8 +868,8 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
 
         case 'textfield':
             var input = $K2('<input/>', {
-                name : 'option_value[]',
-                type : 'text'
+                name: 'option_value[]',
+                type: 'text'
             }).appendTo(target);
             var notice = $K2('<span/>').html('(' + K2Language[1] + ')').appendTo(target);
             if (!isNewField && currentType == fieldType) {
@@ -870,8 +879,8 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
 
         case 'labels':
             var input = $K2('<input/>', {
-                name : 'option_value[]',
-                type : 'text'
+                name: 'option_value[]',
+                type: 'text'
             }).appendTo(target);
             var notice = $K2('<span/>').html(K2Language[2] + ' (' + K2Language[1] + ')').appendTo(target);
             if (!isNewField && currentType == fieldType) {
@@ -881,16 +890,16 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
 
         case 'textarea':
             var textarea = $K2('<textarea/>', {
-                name : 'option_value[]',
-                cols : '40',
-                rows : '10'
+                name: 'option_value[]',
+                cols: '40',
+                rows: '10'
             }).appendTo(target);
 
             var br = $K2('<br/>').appendTo(target);
             var label = $K2('<span class="label"/>').html(K2Language[17]).appendTo(target);
-			var input = $K2('<input/>', {
-                name : 'option_rows[]',
-                type : 'text'
+            var input = $K2('<input/>', {
+                name: 'option_rows[]',
+                type: 'text'
             }).appendTo(target);
 
             if (!isNewField && currentType == fieldType) {
@@ -899,9 +908,9 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
 
             var br = $K2('<br/>').appendTo(target);
             var label = $K2('<span class="label"/>').html(K2Language[16]).appendTo(target);
-			var input = $K2('<input/>', {
-                name : 'option_cols[]',
-                type : 'text'
+            var input = $K2('<input/>', {
+                name: 'option_cols[]',
+                type: 'text'
             }).appendTo(target);
 
             if (!isNewField && currentType == fieldType) {
@@ -911,9 +920,9 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             var br = $K2('<br/>').appendTo(target);
             var label = $K2('<span class="label"/>').html(K2Language[3]).appendTo(target);
             var input = $K2('<input/>', {
-                name : 'option_editor[]',
-                type : 'checkbox',
-                value : '1'
+                name: 'option_editor[]',
+                type: 'checkbox',
+                value: '1'
             }).appendTo(target);
 
             var br = $K2('<br/>').appendTo(target);
@@ -933,15 +942,15 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
         case 'multipleSelect':
         case 'radio':
             var input = $K2('<input/>', {
-                value : K2Language[5],
-                type : 'button'
+                value: K2Language[5],
+                type: 'button'
             }).appendTo(target);
             input.click(function() {
                 addOption();
             });
             var br = $K2('<br/>').appendTo(target);
             var div = $K2('<div/>', {
-                id : 'select_dd_options'
+                id: 'select_dd_options'
             }).appendTo(target);
             if (isNewField || currentType != fieldType) {
                 addOption();
@@ -949,18 +958,18 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                 $K2.each(fieldValues, function(index, value) {
                     var div = $K2('<div/>').appendTo($K2('#select_dd_options'));
                     var input = $K2('<input/>', {
-                        name : 'option_name[]',
-                        type : 'text',
-                        value : value.name
+                        name: 'option_name[]',
+                        type: 'text',
+                        value: value.name
                     }).appendTo(div);
                     var input = $K2('<input/>', {
-                        name : 'option_value[]',
-                        type : 'hidden',
-                        value : value.value
+                        name: 'option_value[]',
+                        type: 'hidden',
+                        value: value.value
                     }).appendTo(div);
                     var input = $K2('<input/>', {
-                        value : K2Language[0],
-                        type : 'button'
+                        value: K2Language[0],
+                        type: 'button'
                     }).appendTo(div);
                     input.click(function() {
                         $K2(this).parent().remove();
@@ -972,31 +981,31 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
         case 'link':
             var label = $K2('<label/>').html(K2Language[6]).appendTo(target);
             var inputName = $K2('<input/>', {
-                name : 'option_name[]',
-                type : 'text'
+                name: 'option_name[]',
+                type: 'text'
             }).appendTo(target);
             var br = $K2('<br/>').appendTo(target);
             var label = $K2('<label/>').html(K2Language[7]).appendTo(target);
             var inputValue = $K2('<input/>', {
-                name : 'option_value[]',
-                type : 'text'
+                name: 'option_value[]',
+                type: 'text'
             }).appendTo(target);
             var br = $K2('<br/>').appendTo(target);
             var label = $K2('<label/>').html(K2Language[8]).appendTo(target);
             var select = $K2('<select/>', {
-                name : 'option_target[]'
+                name: 'option_target[]'
             }).appendTo(target);
             var option = $K2('<option/>', {
-                value : 'same'
+                value: 'same'
             }).html(K2Language[9]).appendTo(select);
             var option = $K2('<option/>', {
-                value : 'new'
+                value: 'new'
             }).html(K2Language[10]).appendTo(select);
             var option = $K2('<option/>', {
-                value : 'popup'
+                value: 'popup'
             }).html(K2Language[11]).appendTo(select);
             var option = $K2('<option/>', {
-                value : 'lightbox'
+                value: 'lightbox'
             }).html(K2Language[12]).appendTo(select);
             var br = $K2('<br/>').appendTo(target);
             var br = $K2('<br/>').appendTo(target);
@@ -1014,17 +1023,17 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
 
         case 'csv':
             var input = $K2('<input/>', {
-                name : 'csv_file',
-                type : 'file'
+                name: 'csv_file',
+                type: 'file'
             }).appendTo(target);
             var inputValue = $K2('<input/>', {
-                name : 'option_value[]',
-                type : 'hidden'
+                name: 'option_value[]',
+                type: 'hidden'
             }).appendTo(target);
             if (!isNewField && currentType == fieldType) {
                 inputValue.val($K2.parseJSON(fieldValues[0].value));
                 var table = $K2('<table/>', {
-                    'class' : 'csvTable'
+                    'class': 'csvTable'
                 }).appendTo(target);
                 fieldValues[0].value.each(function(row, index) {
                     var tr = $K2('<tr/>').appendTo(table);
@@ -1038,11 +1047,11 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                 });
                 var label = $K2('<label/>').html(K2Language[13]).appendTo(target);
                 var input = $K2('<input/>', {
-                    name : 'K2ResetCSV',
-                    type : 'checkbox'
+                    name: 'K2ResetCSV',
+                    type: 'checkbox'
                 }).appendTo(target);
                 var br = $K2('<br/>', {
-                    'class' : 'clr'
+                    'class': 'clr'
                 }).appendTo(target);
             }
             var notice = $K2('<span/>').html('(' + K2Language[1] + ')').appendTo(target);
@@ -1051,30 +1060,30 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
         case 'date':
             var id = 'k2DateField' + $K2.now();
             var input = $K2('<input/>', {
-                name : 'option_value[]',
-                type : 'text',
-                id : id,
-                value : fieldValues[0].value
+                name: 'option_value[]',
+                type: 'text',
+                id: id,
+                value: fieldValues[0].value
             }).appendTo(target);
 
-			// Load Flatpickr
+            // Load Flatpickr
             $K2(input).flatpickr({
-				allowInput: true
-			});
+                allowInput: true
+            });
 
             var notice = $K2('<span/>').attr('class', 'k2ExtraFieldNotice').html('(' + K2Language[1] + ')').appendTo(target);
             break;
 
         case 'image':
-        	var id = 'K2ExtraFieldImage_'+new Date().getTime();
+            var id = 'K2ExtraFieldImage_' + new Date().getTime();
             var input = $K2('<input/>', {
-                name : 'option_value[]',
-                type : 'text',
+                name: 'option_value[]',
+                type: 'text',
                 id: id
             }).appendTo(target);
             var a = $K2('<a/>', {
-                'href' : 'index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID='+id,
-                'class' : 'k2ExtraFieldImageButton'
+                'href': 'index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID=' + id,
+                'class': 'k2ExtraFieldImageButton'
             }).html('Select').appendTo(target);
             var notice = $K2('<span/>').html('(' + K2Language[1] + ')').appendTo(target);
             if (!isNewField && currentType == fieldType) {
@@ -1083,10 +1092,10 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             break;
 
         case 'header':
-        	target.html(' - ');
+            target.html(' - ');
             var input = $K2('<input/>', {
-                name : 'option_value[]',
-                type : 'hidden'
+                name: 'option_value[]',
+                type: 'hidden'
             }).appendTo(target);
             if (!isNewField && currentType == fieldType) {
                 input.val(fieldValues[0].value);
@@ -1095,7 +1104,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
 
         default:
             var title = $K2('<span/>', {
-                'class' : 'notice'
+                'class': 'notice'
             }).html(K2Language[15]).appendTo(target);
             break;
 
@@ -1106,22 +1115,39 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
 function initExtraFieldsEditor() {
     $K2('.k2ExtraFieldEditor').each(function() {
         var id = $K2(this).attr('id');
-        if ( typeof tinymce != 'undefined') {
+        var editorOptions = {};
+        var editorHeight = parseInt($K2(this).css('height'));
+        if (editorHeight < 100) {
+            $K2(this).css('height', 400);
+        }
+        if (typeof tinymce != 'undefined') {
+            // Get Joomla 3.x TinyMCE editor options
+            if (Joomla.optionsStorage.plg_editor_tinymce) {
+                editorOptions = Joomla.optionsStorage.plg_editor_tinymce.tinyMCE.default;
+            }
+            // Get JCE editor options
+            if (typeof WFEditor != 'undefined') {
+                editorOptions = WFEditor.settings;
+            }
+            editorOptions.selector = '#' + id;
+            editorOptions.width = 'auto';
+            // Do not set editorOptions.height as it affects all editor instances in JCE (for some uknown reason)
+
             if (tinyMCE.get(id)) {
                 tinymce.EditorManager.remove(tinyMCE.get(id));
             }
-            if(tinymce.majorVersion == 4) {
-            	tinymce.init({selector: '#'+id});
-            	tinymce.editors[id].show();
+            if (tinymce.majorVersion == 4) {
+                tinymce.init(editorOptions);
+                tinymce.editors[id].show();
             } else {
-            	tinyMCE.execCommand('mceAddControl', false, id);
+                tinyMCE.execCommand('mceAddControl', false, id);
             }
         } else {
             new nicEditor({
-                fullPanel : true,
-                maxHeight : 200,
-                width : '100%',
-                iconsPath : K2SitePath + 'media/k2/assets/vendors/bkirchoff/nicedit/nicEditorIcons.gif'
+                fullPanel: true,
+                maxHeight: 200,
+                width: '100%',
+                iconsPath: K2SitePath + 'media/k2/assets/vendors/bkirchoff/nicedit/nicEditorIcons.gif'
             }).panelInstance($K2(this).attr('id'));
         }
     });
@@ -1131,56 +1157,56 @@ function syncExtraFieldsEditor() {
     $K2('.k2ExtraFieldEditor').each(function() {
         editor = nicEditors.findEditor($K2(this).attr('id'));
         var content = editor && editor.getContent();
-        if ( typeof editor != 'undefined') {
+        if (typeof editor != 'undefined') {
             if (content == '<br>' || content == '<br />') {
                 editor.setContent('');
             }
             editor.saveContent();
         }
     });
-    if(K2JVersion === '30') {
-		onK2EditorSave();
+    if (K2JVersion === '30') {
+        onK2EditorSave();
     }
 }
 
 function addAttachment() {
     var div = $K2('<div class="itemNewAttachment"/>', {
-        style : ''
+        style: ''
     }).appendTo($K2('#itemAttachments'));
     var input = $K2('<input/>', {
-        name : 'attachment_file[]',
-        type : 'file'
+        name: 'attachment_file[]',
+        type: 'file'
     }).appendTo(div);
     var label = $K2('<a/>', {
-        href : 'index.php?option=com_k2&view=media&type=attachment&tmpl=component&fieldID=k2ActiveAttachment',
-        'class' : 'k2AttachmentBrowseServer k2Button'
+        href: 'index.php?option=com_k2&view=media&type=attachment&tmpl=component&fieldID=k2ActiveAttachment',
+        'class': 'k2AttachmentBrowseServer k2Button'
     }).html(K2Language[5]).appendTo(div);
     var input = $K2('<button><i class="fa fa-ban"></i></button>', {
-        value : '',
-        type : 'button',
+        value: '',
+        type: 'button',
         class: 'removeAttachment k2FRight',
-        title : K2Language[0]
+        title: K2Language[0]
     }).appendTo(div);
     input.click(function() {
         $K2(this).parent().remove();
     });
     var input = $K2('<input/>', {
-        name : 'attachment_existing_file[]',
-        type : 'text'
+        name: 'attachment_existing_file[]',
+        type: 'text'
     }).appendTo(div);
     var br = $K2('<div class="attachmentGap"/>').appendTo(div);
     var label = $K2('<label/>').html(K2Language[1]).appendTo(div);
     var input = $K2('<input/>', {
-        name : 'attachment_title[]',
-        type : 'text',
-        'class' : 'linkTitle'
+        name: 'attachment_title[]',
+        type: 'text',
+        'class': 'linkTitle'
     }).appendTo(div);
     var br = $K2('<div class="attachmentGap"/>').appendTo(div);
     var label = $K2('<label/>').html(K2Language[2]).appendTo(div);
     var textarea = $K2('<textarea/>', {
-        name : 'attachment_title_attribute[]',
-        cols : '30',
-        rows : '3'
+        name: 'attachment_title_attribute[]',
+        cols: '30',
+        rows: '3'
     }).appendTo(div);
 }
 
@@ -1196,45 +1222,45 @@ function elFinderUpdate(fieldID, value) {
 
 // MFP modal close
 function k2ModalClose() {
-	$K2(parent.document).magnificPopup('close');
+    $K2(parent.document).magnificPopup('close');
 }
 
 // Generic modal selector
 function k2ModalSelector(id, name, fid, fname, output) {
-	if(output == 'list'){
-		// Generic sortable lists
-		var exists = false;
-		$K2('#'+ fid +' input').each(function(){
-			if($K2(this).val() == id){
-				$K2().k2Alert(K2_THE_ENTRY_IS_ALREADY_IN_THE_LIST.replace('ENTRY_NAME_HERE', name), 3000);
-				exists = true;
-			}
-		});
-		if(!exists){
-			var entry = '<li class="handle"><a class="k2EntryRemove" href="#" title="'+ K2_REMOVE_THIS_ENTRY +'"><i class="fa fa-trash-o"></i></a><span class="k2EntryText">'+ name +'</span><input type="hidden" name="'+ fname +'" value="'+ id +'" /></li>';
-			$K2('#'+ fid).append(entry);
-			$K2('#'+ fid).sortable('refresh');
-			$K2('#'+ fid +' .k2EntryRemove').on('click', function(e){
-				e.preventDefault();
-				$K2(this).parent().remove();
-			});
-			$K2().k2Alert(K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST.replace('ENTRY_NAME_HERE', name), 1000);
-		}
-	} else {
-		// Generic single entity
-		var exists = false;
-		$K2('#'+ fid +' input').each(function(){
-			if($K2(this).val() == id){
-				$K2().k2Alert(K2_THE_ENTRY_IS_ALREADY_IN_THE_LIST.replace('ENTRY_NAME_HERE', name), 3000);
-				exists = true;
-			}
-		});
-		if(!exists){
-			var entry = '<span class="k2EntryText">'+ name +'</span><input type="hidden" name="'+ fname +'" value="'+ id +'" />';
-			$K2('#'+ fid).html(entry);
-			$K2().k2Alert(K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST.replace('ENTRY_NAME_HERE', name), 1000);
-			$K2(parent.document).magnificPopup('close');
-		}
-	}
-	return false;
+    if (output == 'list') {
+        // Generic sortable lists
+        var exists = false;
+        $K2('#' + fid + ' input').each(function() {
+            if ($K2(this).val() == id) {
+                $K2().k2Alert(K2_THE_ENTRY_IS_ALREADY_IN_THE_LIST.replace('ENTRY_NAME_HERE', name), 3000);
+                exists = true;
+            }
+        });
+        if (!exists) {
+            var entry = '<li class="handle"><a class="k2EntryRemove" href="#" title="' + K2_REMOVE_THIS_ENTRY + '"><i class="fa fa-trash-o"></i></a><span class="k2EntryText">' + name + '</span><input type="hidden" name="' + fname + '" value="' + id + '" /></li>';
+            $K2('#' + fid).append(entry);
+            $K2('#' + fid).sortable('refresh');
+            $K2('#' + fid + ' .k2EntryRemove').on('click', function(e) {
+                e.preventDefault();
+                $K2(this).parent().remove();
+            });
+            $K2().k2Alert(K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST.replace('ENTRY_NAME_HERE', name), 1000);
+        }
+    } else {
+        // Generic single entity
+        var exists = false;
+        $K2('#' + fid + ' input').each(function() {
+            if ($K2(this).val() == id) {
+                $K2().k2Alert(K2_THE_ENTRY_IS_ALREADY_IN_THE_LIST.replace('ENTRY_NAME_HERE', name), 3000);
+                exists = true;
+            }
+        });
+        if (!exists) {
+            var entry = '<span class="k2EntryText">' + name + '</span><input type="hidden" name="' + fname + '" value="' + id + '" />';
+            $K2('#' + fid).html(entry);
+            $K2().k2Alert(K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST.replace('ENTRY_NAME_HERE', name), 1000);
+            $K2(parent.document).magnificPopup('close');
+        }
+    }
+    return false;
 }
