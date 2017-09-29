@@ -14,36 +14,34 @@ jimport('joomla.application.component.controller');
 
 class K2ControllerCategory extends K2Controller
 {
-
     public function display($cachable = false, $urlparams = array())
     {
         JRequest::setVar('view', 'category');
         parent::display();
     }
 
-    function save()
+    public function save()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('category');
         $model->save();
     }
 
-    function saveAndNew()
+    public function saveAndNew()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('category');
         $model->save();
     }
 
-    function apply()
+    public function apply()
     {
         $this->save();
     }
 
-    function cancel()
+    public function cancel()
     {
         $application = JFactory::getApplication();
         $application->redirect('index.php?option=com_k2&view=categories');
     }
-
 }
