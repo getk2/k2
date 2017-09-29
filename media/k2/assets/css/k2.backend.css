@@ -381,7 +381,7 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
 #exFieldsTypesDiv button:hover {background:#d4d7d9;}
 #exFieldsTypesDiv .k2ExtraFieldNotice {color:#999;margin-left:10px;}
 
-#groupContainer {text-align:right;width:100%;clear:both;float:left;margin:20px 0 0;}
+#groupContainer {text-align:right;margin:0;padding:0;display:inline-block;}
 #groupContainer > span,
 #groupContainer > label {font-weight:700;color:#777;padding-right:10px;}
 .oldJ #groupContainer input[type="text"] {width:auto;}
