@@ -14,15 +14,15 @@ jimport('joomla.application.component.view');
 
 class K2ViewExtraFieldsGroup extends K2View
 {
-    function display($tpl = null)
+    public function display($tpl = null)
     {
         $model = $this->getModel();
         $extraFieldsGroup = $model->getExtraFieldsGroup();
         JFilterOutput::objectHTMLSafe($extraFieldsGroup);
         $this->assignRef('row', $extraFieldsGroup);
 
-		// Disable Joomla menu
-		JRequest::setVar('hidemainmenu', 1);
+        // Disable Joomla menu
+        JRequest::setVar('hidemainmenu', 1);
 
         // Toolbar
         $title = (JRequest::getInt('cid')) ? JText::_('K2_EDIT_EXTRA_FIELD_GROUP') : JText::_('K2_ADD_EXTRA_FIELD_GROUP');
@@ -30,6 +30,8 @@ class K2ViewExtraFieldsGroup extends K2View
 
         JToolBarHelper::apply();
         JToolBarHelper::save();
+        $saveNewIcon = version_compare(JVERSION, '2.5.0', 'ge') ? 'save-new.png' : 'save.png';
+        JToolBarHelper::custom('saveAndNew', $saveNewIcon, 'save_f2.png', 'K2_SAVE_AND_NEW', false);
         JToolBarHelper::cancel();
 
         parent::display($tpl);

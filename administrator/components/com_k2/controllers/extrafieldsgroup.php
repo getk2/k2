@@ -14,7 +14,6 @@ jimport('joomla.application.component.controller');
 
 class K2ControllerExtraFieldsGroup extends K2Controller
 {
-
     public function display($cachable = false, $urlparams = array())
     {
         JRequest::setVar('view', 'extrafieldsgroup');
@@ -24,7 +23,12 @@ class K2ControllerExtraFieldsGroup extends K2Controller
         parent::display();
     }
 
-    function save()
+    public function apply()
+    {
+        $this->save();
+    }
+
+    public function save()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('extraFields');
@@ -33,15 +37,14 @@ class K2ControllerExtraFieldsGroup extends K2Controller
         $model->saveGroup();
     }
 
-    function apply()
+    public function saveAndNew()
     {
         $this->save();
     }
 
-    function cancel()
+    public function cancel()
     {
         $application = JFactory::getApplication();
         $application->redirect('index.php?option=com_k2&view=extrafieldsgroups');
     }
-
 }

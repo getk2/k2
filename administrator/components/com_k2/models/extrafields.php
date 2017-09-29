@@ -16,10 +16,8 @@ JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 
 class K2ModelExtraFields extends K2Model
 {
-
-    function getData()
+    public function getData()
     {
-
         $application = JFactory::getApplication();
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
@@ -37,38 +35,30 @@ class K2ModelExtraFields extends K2Model
 
         $query = "SELECT exf.*, exfg.name as groupname FROM #__k2_extra_fields AS exf LEFT JOIN #__k2_extra_fields_groups exfg ON exf.group=exfg.id  WHERE exf.id>0";
 
-        if ($filter_state > -1)
-        {
+        if ($filter_state > -1) {
             $query .= " AND published={$filter_state}";
         }
 
-        if ($search)
-        {
+        if ($search) {
             $escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
             $query .= " AND LOWER( exf.name ) LIKE ".$db->Quote('%'.$escaped.'%', false);
         }
 
-        if ($filter_type)
-        {
+        if ($filter_type) {
             $query .= " AND `type`=".$db->Quote($filter_type);
         }
 
-        if ($filter_group)
-        {
+        if ($filter_group) {
             $query .= " AND `group`={$filter_group}";
         }
 
-        if (!$filter_order)
-        {
+        if (!$filter_order) {
             $filter_order = '`group`';
         }
 
-        if ($filter_order == 'ordering')
-        {
+        if ($filter_order == 'ordering') {
             $query .= " ORDER BY `group`, ordering {$filter_order_Dir}";
-        }
-        else
-        {
+        } else {
             $query .= " ORDER BY {$filter_order} {$filter_order_Dir}, `group`, ordering";
         }
 
@@ -77,9 +67,8 @@ class K2ModelExtraFields extends K2Model
         return $rows;
     }
 
-    function getTotal()
+    public function getTotal()
     {
-
         $application = JFactory::getApplication();
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
@@ -95,24 +84,20 @@ class K2ModelExtraFields extends K2Model
 
         $query = "SELECT COUNT(*) FROM #__k2_extra_fields WHERE id>0";
 
-        if ($filter_state > -1)
-        {
+        if ($filter_state > -1) {
             $query .= " AND published={$filter_state}";
         }
 
-        if ($search)
-        {
+        if ($search) {
             $escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
             $query .= " AND LOWER( name ) LIKE ".$db->Quote('%'.$escaped.'%', false);
         }
 
-        if ($filter_type)
-        {
+        if ($filter_type) {
             $query .= " AND `type`=".$db->Quote($filter_type);
         }
 
-        if ($filter_group)
-        {
+        if ($filter_group) {
             $query .= " AND `group`=".$db->Quote($filter_group);
         }
 
@@ -121,43 +106,38 @@ class K2ModelExtraFields extends K2Model
         return $total;
     }
 
-    function publish()
+    public function publish()
     {
-
         $application = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
-        foreach ($cid as $id)
-        {
-        	$row = JTable::getInstance('K2ExtraField', 'Table');
+        foreach ($cid as $id) {
+            $row = JTable::getInstance('K2ExtraField', 'Table');
             $row->load($id);
             $row->published = 1;
-			$row->store();
+            $row->store();
         }
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         $application->redirect('index.php?option=com_k2&view=extrafields');
     }
 
-    function unpublish()
+    public function unpublish()
     {
-
         $application = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
-        foreach ($cid as $id)
-        {
-        	$row = JTable::getInstance('K2ExtraField', 'Table');
+        foreach ($cid as $id) {
+            $row = JTable::getInstance('K2ExtraField', 'Table');
             $row->load($id);
             $row->published = 0;
-			$row->store();
+            $row->store();
         }
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         $application->redirect('index.php?option=com_k2&view=extrafields');
     }
 
-    function saveorder()
+    public function saveorder()
     {
-
         $application = JFactory::getApplication();
         $db = JFactory::getDbo();
         $cid = JRequest::getVar('cid', array(0), 'post', 'array');
@@ -165,27 +145,22 @@ class K2ModelExtraFields extends K2Model
         $order = JRequest::getVar('order', array(0), 'post', 'array');
         JArrayHelper::toInteger($order, array(0));
         $groupings = array();
-        for ($i = 0; $i < $total; $i++)
-        {
-        	$row = JTable::getInstance('K2ExtraField', 'Table');
+        for ($i = 0; $i < $total; $i++) {
+            $row = JTable::getInstance('K2ExtraField', 'Table');
             $row->load((int)$cid[$i]);
             $groupings[] = $row->group;
-            if ($row->ordering != $order[$i])
-            {
+            if ($row->ordering != $order[$i]) {
                 $row->ordering = $order[$i];
-                if (!$row->store())
-                {
+                if (!$row->store()) {
                     JError::raiseError(500, $db->getErrorMsg());
                 }
             }
         }
         $params = JComponentHelper::getParams('com_k2');
-        if (!$params->get('disableCompactOrdering'))
-        {
+        if (!$params->get('disableCompactOrdering')) {
             $groupings = array_unique($groupings);
-            foreach ($groupings as $group)
-            {
-            	$row = JTable::getInstance('K2ExtraField', 'Table');
+            foreach ($groupings as $group) {
+                $row = JTable::getInstance('K2ExtraField', 'Table');
                 $row->reorder("`group` = ".(int)$group);
             }
         }
@@ -194,72 +169,68 @@ class K2ModelExtraFields extends K2Model
         return true;
     }
 
-    function orderup()
+    public function orderup()
     {
-
         $application = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
         $row = JTable::getInstance('K2ExtraField', 'Table');
         $row->load($cid[0]);
         $row->move(-1, "`group` = '{$row->group}'");
         $params = JComponentHelper::getParams('com_k2');
-        if (!$params->get('disableCompactOrdering'))
+        if (!$params->get('disableCompactOrdering')) {
             $row->reorder("`group` = ".(int)$row->group);
+        }
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         $msg = JText::_('K2_NEW_ORDERING_SAVED');
-		$application->enqueueMessage($msg);
+        $application->enqueueMessage($msg);
         $application->redirect('index.php?option=com_k2&view=extrafields');
     }
 
-    function orderdown()
+    public function orderdown()
     {
-
         $application = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
         $row = JTable::getInstance('K2ExtraField', 'Table');
         $row->load($cid[0]);
         $row->move(1, "`group` = '{$row->group}'");
         $params = JComponentHelper::getParams('com_k2');
-        if (!$params->get('disableCompactOrdering'))
+        if (!$params->get('disableCompactOrdering')) {
             $row->reorder("`group` = ".(int)$row->group);
+        }
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         $msg = JText::_('K2_NEW_ORDERING_SAVED');
-		$application->enqueueMessage($msg);
+        $application->enqueueMessage($msg);
         $application->redirect('index.php?option=com_k2&view=extrafields');
     }
 
-    function remove()
+    public function remove()
     {
-
         $application = JFactory::getApplication();
         $db = JFactory::getDbo();
         $cid = JRequest::getVar('cid');
-        foreach ($cid as $id)
-        {
-        	$row = JTable::getInstance('K2ExtraField', 'Table');
+        foreach ($cid as $id) {
+            $row = JTable::getInstance('K2ExtraField', 'Table');
             $row->load($id);
             $row->delete($id);
         }
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
-		$application->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
+        $application->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
         $application->redirect('index.php?option=com_k2&view=extrafields');
     }
 
-    function getExtraFieldsGroup()
+    public function getExtraFieldsGroup()
     {
-
         $cid = JRequest::getVar('cid');
         $row = JTable::getInstance('K2ExtraFieldsGroup', 'Table');
         $row->load($cid);
         return $row;
     }
 
-    function getGroups($filter = false)
+    public function getGroups($filter = false)
     {
-
         $application = JFactory::getApplication();
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
@@ -267,37 +238,28 @@ class K2ModelExtraFields extends K2Model
         $limitstart = $application->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
         $db = JFactory::getDbo();
         $query = "SELECT * FROM #__k2_extra_fields_groups ORDER BY `name`";
-        if ($filter)
-        {
+        if ($filter) {
             $db->setQuery($query);
-        }
-        else
-        {
+        } else {
             $db->setQuery($query, $limitstart, $limit);
         }
 
         $rows = $db->loadObjectList();
-        for ($i = 0; $i < sizeof($rows); $i++)
-        {
+        for ($i = 0; $i < sizeof($rows); $i++) {
             $query = "SELECT name FROM #__k2_categories WHERE extraFieldsGroup=".(int)$rows[$i]->id;
             $db->setQuery($query);
             $categories = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
-            if (is_array($categories))
-            {
+            if (is_array($categories)) {
                 $rows[$i]->categories = implode(', ', $categories);
-            }
-            else
-            {
+            } else {
                 $rows[$i]->categories = '';
             }
-
         }
         return $rows;
     }
 
-    function getTotalGroups()
+    public function getTotalGroups()
     {
-
         $db = JFactory::getDbo();
         $query = "SELECT COUNT(*) FROM #__k2_extra_fields_groups";
         $db->setQuery($query);
@@ -305,38 +267,37 @@ class K2ModelExtraFields extends K2Model
         return $total;
     }
 
-    function saveGroup()
+    public function saveGroup()
     {
-
         $application = JFactory::getApplication();
         $id = JRequest::getInt('id');
         $row = JTable::getInstance('K2ExtraFieldsGroup', 'Table');
-        if (!$row->bind(JRequest::get('post')))
-        {
-        	$application->enqueueMessage($row->getError(), 'error');
+        if (!$row->bind(JRequest::get('post'))) {
+            $application->enqueueMessage($row->getError(), 'error');
             $application->redirect('index.php?option=com_k2&view=extrafieldsgroups');
         }
 
-        if (!$row->check())
-        {
-        	$application->enqueueMessage($row->getError(), 'error');
+        if (!$row->check()) {
+            $application->enqueueMessage($row->getError(), 'error');
             $application->redirect('index.php?option=com_k2&view=extrafieldsgroup&cid='.$row->id);
         }
 
-        if (!$row->store())
-        {
-        	$application->enqueueMessage($row->getError(), 'error');
+        if (!$row->store()) {
+            $application->enqueueMessage($row->getError(), 'error');
             $application->redirect('index.php?option=com_k2&view=extrafieldsgroup');
         }
 
-        switch(JRequest::getCmd('task'))
-        {
-            case 'apply' :
+        switch (JRequest::getCmd('task')) {
+            case 'apply':
                 $msg = JText::_('K2_CHANGES_TO_GROUP_SAVED');
                 $link = 'index.php?option=com_k2&view=extrafieldsgroup&cid='.$row->id;
                 break;
-            case 'save' :
-            default :
+            case 'saveAndNew':
+                $msg = JText::_('K2_GROUP_SAVED');
+                $link = 'index.php?option=com_k2&view=extrafieldsgroups';
+                break;
+            case 'save':
+            default:
                 $msg = JText::_('K2_GROUP_SAVED');
                 $link = 'index.php?option=com_k2&view=extrafieldsgroups';
                 break;
@@ -344,20 +305,18 @@ class K2ModelExtraFields extends K2Model
 
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
-		$application->enqueueMessage($msg);
+        $application->enqueueMessage($msg);
         $application->redirect($link);
     }
 
-    function removeGroups()
+    public function removeGroups()
     {
-
         $application = JFactory::getApplication();
         $db = &JFactory::getDbo();
         $cid = JRequest::getVar('cid');
         JArrayHelper::toInteger($cid);
-        foreach ($cid as $id)
-        {
-        	$row = JTable::getInstance('K2ExtraFieldsGroup', 'Table');
+        foreach ($cid as $id) {
+            $row = JTable::getInstance('K2ExtraFieldsGroup', 'Table');
             $row->load($id);
             $query = "DELETE FROM #__k2_extra_fields WHERE `group`={$id}";
             $db->setQuery($query);
@@ -366,8 +325,7 @@ class K2ModelExtraFields extends K2Model
         }
         $cache = &JFactory::getCache('com_k2');
         $cache->clean();
-		$application->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
+        $application->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
         $application->redirect('index.php?option=com_k2&view=extrafieldsgroups');
     }
-
 }
