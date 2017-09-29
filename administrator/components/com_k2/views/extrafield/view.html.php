@@ -138,6 +138,8 @@ class K2ViewExtraField extends K2View
 
 		JToolBarHelper::apply();
 		JToolBarHelper::save();
+        $saveNewIcon = version_compare(JVERSION, '2.5.0', 'ge') ? 'save-new.png' : 'save.png';
+        JToolBarHelper::custom('saveAndNew', $saveNewIcon, 'save_f2.png', 'K2_SAVE_AND_NEW', false);
 		JToolBarHelper::cancel();
 
 		parent::display($tpl);
