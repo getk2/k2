@@ -34,7 +34,7 @@ defined('_JEXEC') or die;
 	</div>
 <?php endif; ?>
 
-<form action="<?php if($this->mainframe->isSite()) echo JURI::root(true).'/'; ?>index.php" enctype="multipart/form-data" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_('index.php'); ?>" enctype="multipart/form-data" method="post" name="adminForm" id="adminForm">
 
 	<?php if($this->mainframe->isSite() && !$this->permissions->get('publish')): ?>
 	<div id="k2ModalPermissionsNotice">

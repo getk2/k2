@@ -201,11 +201,23 @@ $K2(document).ready(function() {
                     }
                 });
                 // Pagination
-                $K2('.k2CommentsPagination a').click(function(event) {
-                    var url = $K2(this).attr('href').split('limitstart=');
-                    event.preventDefault();
-                    $K2('input[name=limitstart]').val(url[1]);
-                    Joomla.submitform();
+                $K2('.k2CommentsPagination a').each(function() {
+                    var pageURL = $K2(this).attr('href');
+                    if (pageURL.indexOf('limitstart=') < 0) {
+                        if (pageURL.indexOf('?start=') > 0) {
+                            $K2(this).attr('href', pageURL.replace('?start=', '?limitstart='));
+                        } else if (pageURL.indexOf('&start=') > 0) {
+                            $K2(this).attr('href', pageURL.replace('&start=', '&limitstart='));
+                        } else {
+                            var currentPageUrl = window.location.href;
+                            if (currentPageUrl.indexOf('?') > 0) {
+                                var ls = '&limitstart=0';
+                            } else {
+                                var ls = '?limitstart=0';
+                            }
+                            $K2(this).attr('href', pageURL + ls);
+                        }
+                    }
                 });
             }
             break;
