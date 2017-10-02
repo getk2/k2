@@ -80,7 +80,7 @@ $context = JRequest::getCmd('context');
 					#
 				</th>
 				<th class="center">
-					<input id="k2Toggler<?php echo ucfirst($this->params->get('backendListToggler', 'standard')); ?>" type="checkbox" name="toggle" value="" />
+					<input id="k2Toggler<?php echo $this->params->get('backendListToggler', 'TogglerStandard'); ?>" type="checkbox" name="toggle" value="" />
 				</th>
 				<th>
 					<?php echo JHTML::_('grid.sort', 'K2_COMMENT', 'c.commentText', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>

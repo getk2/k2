@@ -392,8 +392,8 @@
 			<option value="1">K2_YES</option>
 		</param>
 		<param menu="hide" name="backendListToggler" type="radio" default="standard" label="K2_BACKEND_LIST_TOGGLER" description="K2_BACKEND_LIST_TOGGLER_DESC">
-			<option value="standard">K2_TOGGLER_STANDARD</option>
-			<option value="true">K2_TOGGLER_TRUE</option>
+			<option value="TogglerStandard">K2_TOGGLER_STANDARD</option>
+			<option value="TogglerTrue">K2_TOGGLER_TRUE</option>
 		</param>
 		<param menu="hide" name="attachmentsFolder" type="text" default="" size="40" label="K2_CHANGE_ROOT_ATTACHMENTS_FOLDER" description="K2_ENTER_THE_RELATIVE_PATH_TO_THE_FOLDER_FOR_STORING_ATTACHMENTS_LEAVE_THIS_BLANK_TO_USE_THE_DEFAULT_K2_ATTACHMENTS_FOLDER_MEDIAK2ATTACHMENTS_IF_YOU_CHANGE_THIS_SETTING_AT_ANY_POINT_REMEMBER_TO_MOVE_YOUR_FILES_FROM_THE_OLD_FOLDER_TO_THE_NEWLY_CREATED_ONE" />
 		<param menu="hide" name="hideImportButton" type="radio" default="0" label="K2_HIDE_IMPORT_BUTTONS" description="K2_HIDE_IMPORT_JOOMLA_CONTENT_AND_IMPORT_JOOMLA_USERS_BUTTONS">
@@ -925,8 +925,8 @@
 			<option value="1">K2_YES</option>
 		</field>
 		<field menu="hide" name="backendListToggler" type="radio" default="standard" label="K2_BACKEND_LIST_TOGGLER" description="K2_BACKEND_LIST_TOGGLER_DESC">
-			<option value="standard">K2_TOGGLER_STANDARD</option>
-			<option value="true">K2_TOGGLER_TRUE</option>
+			<option value="TogglerStandard">K2_TOGGLER_STANDARD</option>
+			<option value="TogglerTrue">K2_TOGGLER_TRUE</option>
 		</field>
 		<field menu="hide" name="attachmentsFolder" type="text" default="" size="40" label="K2_CHANGE_ROOT_ATTACHMENTS_FOLDER" description="K2_ENTER_THE_RELATIVE_PATH_TO_THE_FOLDER_FOR_STORING_ATTACHMENTS_LEAVE_THIS_BLANK_TO_USE_THE_DEFAULT_K2_ATTACHMENTS_FOLDER_MEDIAK2ATTACHMENTS_IF_YOU_CHANGE_THIS_SETTING_AT_ANY_POINT_REMEMBER_TO_MOVE_YOUR_FILES_FROM_THE_OLD_FOLDER_TO_THE_NEWLY_CREATED_ONE" />
 		<field menu="hide" name="hideImportButton" type="radio" default="0" label="K2_HIDE_IMPORT_BUTTONS" description="K2_HIDE_IMPORT_JOOMLA_CONTENT_AND_IMPORT_JOOMLA_USERS_BUTTONS">
