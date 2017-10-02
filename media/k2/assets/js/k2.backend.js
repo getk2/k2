@@ -88,22 +88,6 @@ $K2(document).ready(function() {
         });
     });
 
-    // Toggler
-    $K2('#jToggler').click(function() {
-        if ($K2(this).attr('checked')) {
-            $K2('input[id^=cb]').attr('checked', true);
-            $K2('input[name=boxchecked]').val($K2('input[id^=cb]:checked').length);
-        } else {
-            $K2('input[id^=cb]').attr('checked', false);
-            $K2('input[name=boxchecked]').val('0');
-        }
-    });
-
-    // Submit form
-    $K2('#k2SubmitButton').click(function() {
-        this.form.submit();
-    });
-
     // Form filters reset
     $K2('#k2ResetButton').click(function(event) {
         event.preventDefault();
@@ -683,6 +667,26 @@ $K2(document).ready(function() {
 
     // -- Load everything up ---
     $(document).ready(function() {
+
+        // Standard Toggler
+        $('#jToggler, #k2TogglerStandard').click(function() {
+            var checkBoxes = $('input[id^=cb]');
+            checkBoxes.prop('checked', !checkBoxes.prop('checked'));
+            $(this).prop('checked', checkBoxes.is(':checked'));
+            $('input[name=boxchecked]').val($('input[id^=cb]:checked').length);
+        });
+
+        // True Toggler
+        $('#k2TogglerTrue').click(function() {
+            var checkBoxes = $('input[id^=cb]');
+            checkBoxes.trigger('click');
+            $('input[name=boxchecked]').val($('input[id^=cb]:checked').length);
+        });
+
+        // Submit form
+        $('#k2SubmitButton').click(function() {
+            this.form.submit();
+        });
 
         // Hide system messages after 3 seconds in frontend editing
         if ($('#k2ModalContainer').length && $('#system-message-container').length) {

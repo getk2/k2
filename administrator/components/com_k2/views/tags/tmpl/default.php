@@ -50,7 +50,7 @@ $context = JRequest::getCmd('context');
 		<thead>
 			<tr>
 				<th class="center hidden-phone">#</th>
-				<th class="center<?php if($context == "modalselector") echo ' k2VisuallyHidden'; ?>"><input id="jToggler" type="checkbox" name="toggle" value="" /></th>
+				<th class="center<?php if($context == "modalselector") echo ' k2VisuallyHidden'; ?>"><input id="k2Toggler<?php echo ucfirst($this->params->get('backendListToggler', 'standard')); ?>" type="checkbox" name="toggle" value="" /></th>
 				<th><?php echo JHTML::_('grid.sort', 'K2_NAME', 'name', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
 				<th class="center"><?php echo JHTML::_('grid.sort', 'K2_PUBLISHED', 'published', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
 				<th class="center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_ITEMS', 'numOfItems', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>

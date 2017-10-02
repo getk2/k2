@@ -66,7 +66,7 @@ $context = JRequest::getCmd('context');
 		                <th>#</th>
 		                <?php endif; ?>
 						<th<?php if($context == "modalselector") echo ' class="k2VisuallyHidden"'; ?>>
-							<input id="jToggler" type="checkbox" name="toggle" value="" />
+							<input id="k2Toggler<?php echo ucfirst($this->params->get('backendListToggler', 'standard')); ?>" type="checkbox" name="toggle" value="" />
 						</th>
 						<th>
 							<?php echo JHTML::_('grid.sort', 'K2_TITLE', 'c.name', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>

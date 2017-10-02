@@ -30,7 +30,7 @@ $document->addScriptDeclaration("
     <thead>
       <tr>
         <th class="center hidden-phone">#</th>
-        <th class="center"><input id="jToggler" type="checkbox" name="toggle" value="" /></th>
+        <th class="center"><input id="k2Toggler<?php echo ucfirst($this->params->get('backendListToggler', 'standard')); ?>" type="checkbox" name="toggle" value="" /></th>
         <th><?php echo JText::_('K2_GROUP_NAME'); ?></th>
         <th class="hidden-phone"><?php echo JText::_('K2_ASSIGNED_CATEGORIES'); ?></th>
       </tr>

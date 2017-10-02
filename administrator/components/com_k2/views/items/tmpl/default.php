@@ -79,7 +79,7 @@ $context = JRequest::getCmd('context');
 						<th>#</th>
 						<?php endif; ?>
 						<th class="center<?php if($context == "modalselector") echo ' k2VisuallyHidden'; ?>">
-							<input id="jToggler" type="checkbox" name="toggle" value="" />
+							<input id="k2Toggler<?php echo ucfirst($this->params->get('backendListToggler', 'standard')); ?>" type="checkbox" name="toggle" value="" />
 						</th>
 						<th class="title">
 							<?php echo JHTML::_('grid.sort', 'K2_TITLE', 'i.title', @$this->lists['order_Dir'], @$this->lists['order']); ?>
@@ -165,7 +165,7 @@ $context = JRequest::getCmd('context');
 						<td class="order center hidden-phone">
 							<?php if($row->canChange): ?>
 							<span class="sortable-handler<?php echo ($this->ordering) ? '' : ' inactive tip-top' ; ?>" title="<?php echo ($this->ordering) ? '' : JText::_('JORDERINGDISABLED'); ?>" rel="tooltip"><i class="icon-menu"></i></span>
-							<input type="text" style="display:none"  name="order[]" size="5" value="<?php echo ($this->filter_featured!='1') ? $row->ordering : $row->featured_ordering; ?>" class="width-20 text-area-order " />
+							<input type="text" style="display:none"  name="order[]" size="5" value="<?php echo ($this->filter_featured!='1') ? $row->ordering : $row->featured_ordering; ?>" class="width-20 text-area-order" />
 							<?php else: ?>
 							<span class="sortable-handler inactive" ><i class="icon-menu"></i></span>
 							<?php endif; ?>

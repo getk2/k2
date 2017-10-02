@@ -223,10 +223,9 @@
 				<field name="showExtraFieldsTab" default="1" />
 				<field name="showAttachmentsTab" default="1" />
 				<field name="showK2Plugins" default="1" />
-				<field name="sideBarDisplayFrontend" default="0" />
 				<!-- ######################### Advanced Settings ######################### -->
 				<field name="mergeEditors" default="1" />
-				<field name="sideBarDisplay" default="1" />
+				<field name="backendListToggler" default="standard" />
 				<field name="attachmentsFolder" default="" />
 				<field name="hideImportButton" default="0" />
 				<field name="googleSearch" default="0" />

@@ -30,7 +30,7 @@ $document->addScriptDeclaration("
     <thead>
       <tr>
         <th class="hidden-phone center">#</th>
-        <th class="center"><input id="jToggler" type="checkbox" name="toggle" value="" /></th>
+        <th class="center"><input id="k2Toggler<?php echo ucfirst($this->params->get('backendListToggler', 'standard')); ?>" type="checkbox" name="toggle" value="" /></th>
         <th class="title"><?php echo JHTML::_('grid.sort', 'K2_NAME', 'name', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
         <th class="center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_USER_COUNT', 'numOfUsers', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
         <th class="center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_ID', 'id', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>

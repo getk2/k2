@@ -217,9 +217,9 @@
 		<param name="showExtraFieldsTab" default="1" />
 		<param name="showAttachmentsTab" default="1" />
 		<param name="showK2Plugins" default="1" />
-		<param name="sideBarDisplayFrontend" default="0" />
 		<!-- ######################### Advanced Settings ######################### -->
 		<param name="mergeEditors" default="1" />
+		<field name="backendListToggler" default="standard" />
 		<param name="attachmentsFolder" default="" />
 		<param name="hideImportButton" default="0" />
 		<param name="googleSearch" default="0" />
