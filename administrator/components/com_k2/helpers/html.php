@@ -90,13 +90,15 @@ class K2HelperHTML
 				if ($application->isSite())
 				{
 					// B/C for saved old options
-					if ($jQueryHandling == '1.7remote') $jQueryHandling = '1.7.2';
-					if ($jQueryHandling == '1.8remote') $jQueryHandling = '1.8.3';
-					if ($jQueryHandling == '1.9remote') $jQueryHandling = '1.9.1';
-					if ($jQueryHandling == '1.10remote') $jQueryHandling = '1.10.2';
-					if ($jQueryHandling == '1.11remote') $jQueryHandling = '1.11.3';
-					if ($jQueryHandling == '1.12remote') $jQueryHandling = '1.12.4';
-					$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/'.$jQueryHandling.'/jquery.min.js');
+					if ($jQueryHandling) {
+						if ($jQueryHandling == '1.7remote') $jQueryHandling = '1.7.2';
+						if ($jQueryHandling == '1.8remote') $jQueryHandling = '1.8.3';
+						if ($jQueryHandling == '1.9remote') $jQueryHandling = '1.9.1';
+						if ($jQueryHandling == '1.10remote') $jQueryHandling = '1.10.2';
+						if ($jQueryHandling == '1.11remote') $jQueryHandling = '1.11.3';
+						if ($jQueryHandling == '1.12remote') $jQueryHandling = '1.12.4';
+						$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/'.$jQueryHandling.'/jquery.min.js');
+					}
 				}
 
 				// Backend
