@@ -391,7 +391,7 @@
 			<option value="0">K2_NO</option>
 			<option value="1">K2_YES</option>
 		</param>
-		<param menu="hide" name="backendListToggler" type="radio" default="standard" label="K2_BACKEND_LIST_TOGGLER" description="K2_BACKEND_LIST_TOGGLER_DESC">
+		<param menu="hide" name="backendListToggler" type="radio" default="TogglerStandard" label="K2_BACKEND_LIST_TOGGLER" description="K2_BACKEND_LIST_TOGGLER_DESC">
 			<option value="TogglerStandard">K2_TOGGLER_STANDARD</option>
 			<option value="TogglerTrue">K2_TOGGLER_TRUE</option>
 		</param>
@@ -924,7 +924,7 @@
 			<option value="0">K2_NO</option>
 			<option value="1">K2_YES</option>
 		</field>
-		<field menu="hide" name="backendListToggler" type="radio" default="standard" label="K2_BACKEND_LIST_TOGGLER" description="K2_BACKEND_LIST_TOGGLER_DESC">
+		<field menu="hide" name="backendListToggler" type="radio" default="TogglerStandard" label="K2_BACKEND_LIST_TOGGLER" description="K2_BACKEND_LIST_TOGGLER_DESC">
 			<option value="TogglerStandard">K2_TOGGLER_STANDARD</option>
 			<option value="TogglerTrue">K2_TOGGLER_TRUE</option>
 		</field>
