@@ -24,6 +24,9 @@ class K2ViewTags extends K2View
 		$view = JRequest::getCmd('view');
 		$task = JRequest::getCmd('task');
 
+		$params = JComponentHelper::getParams('com_k2');
+		$this->assignRef('params', $params);
+
 		$limit = $application->getUserStateFromRequest('global.list.limit', 'limit', $application->getCfg('list_limit'), 'int');
 		$limitstart = $application->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
 		$filter_order = $application->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'id', 'cmd');

@@ -20,6 +20,10 @@ class K2ViewExtraFieldsGroups extends K2View
         $user = JFactory::getUser();
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
+
+		$params = JComponentHelper::getParams('com_k2');
+		$this->assignRef('params', $params);
+
         $limit = $application->getUserStateFromRequest('global.list.limit', 'limit', $application->getCfg('list_limit'), 'int');
         $limitstart = $application->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
         $filter_order = $application->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', '', 'cmd');

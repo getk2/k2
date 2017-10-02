@@ -21,6 +21,7 @@ class K2ViewCategories extends K2View
 		$user = JFactory::getUser();
 
 		$params = JComponentHelper::getParams('com_k2');
+		$this->assignRef('params', $params);
 
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
@@ -65,8 +66,6 @@ class K2ViewCategories extends K2View
 				}
 			};
 		");
-
-		$this->assignRef('params', $params);
 
 		if (K2_JVERSION != '15')
 		{

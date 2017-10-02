@@ -21,7 +21,8 @@ class K2ViewUsers extends K2View
         $user = JFactory::getUser();
         $db = JFactory::getDbo();
 
-        $params = JComponentHelper::getParams('com_k2');
+		$params = JComponentHelper::getParams('com_k2');
+		$this->assignRef('params', $params);
 
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
