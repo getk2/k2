@@ -527,7 +527,7 @@ class plgSystemK2 extends JPlugin
 				$application->close();
 			}
 
-            $view = $this->getUsersControllerView();
+            $view = $this->getUsersControllerView($application);
 			$view->setLayout('register');
 
 			$K2User = new JObject;
@@ -606,7 +606,7 @@ class plgSystemK2 extends JPlugin
 				$application->redirect(JRoute::_($url, false));
 			}
 
-            $view = $this->getUsersControllerView();
+            $view = $this->getUsersControllerView($application);
 			$view->setLayout('profile');
 
 			$model = K2Model::getInstance('Itemlist', 'K2Model');
@@ -802,20 +802,22 @@ class plgSystemK2 extends JPlugin
 
 		$output = '';
 
-		switch ($extraField->type)
-		{
+		switch ($extraField->type) {
 			case 'textfield' :
-				$output = '<div><strong>'.$extraField->name.'</strong><br /><input type="text" disabled="disabled" name="OriginalK2ExtraField_'.$extraField->id.'" value="'.$active.'" /></div><br /><br />';
+				$output = '<input type="text" disabled="disabled" name="OriginalK2ExtraField_'.$extraField->id.'" value="'.$active.'" />';
 				break;
 
 			case 'textarea' :
-				$output = '<div><strong>'.$extraField->name.'</strong><br /><textarea disabled="disabled" name="OriginalK2ExtraField_'.$extraField->id.'" rows="10" cols="40">'.$active.'</textarea></div><br /><br />';
+				$output = '<textarea disabled="disabled" name="OriginalK2ExtraField_'.$extraField->id.'" rows="10" cols="40">'.$active.'</textarea>';
 				break;
 
 			case 'link' :
-				$output = '<div><strong>'.$extraField->name.'</strong><br /><input disabled="disabled" type="text" name="OriginalK2ExtraField_'.$extraField->id.'[]" value="'.$active[0].'" /></div><br /><br />';
+				$output = '<input disabled="disabled" type="text" name="OriginalK2ExtraField_'.$extraField->id.'[]" value="'.$active[0].'" />';
 				break;
 		}
+        if ($output) {
+            $output =  '<div><strong>'.$extraField->name.'</strong><br />' . $output . '</div><br /><br />';
+        }
 
 		return $output;
 
@@ -914,8 +916,9 @@ class plgSystemK2 extends JPlugin
 
 	}
 
-    private function getUsersControllerView()
+    private function getUsersControllerView($application)
     {
+        $controller = getUsersController();
         $view = $controller->getView($view, 'html');
         $view->addTemplatePath(JPATH_SITE.'/components/com_k2/templates');
         $view->addTemplatePath(JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates');

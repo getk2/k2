@@ -14,32 +14,32 @@ jimport('joomla.plugin.plugin');
 
 class plgUserK2 extends JPlugin
 {
-	function onUserAfterSave($user, $isnew, $success, $msg)
+	public function onUserAfterSave($user, $isnew, $success, $msg)
 	{
 		return $this->onAfterStoreUser($user, $isnew, $success, $msg);
 	}
 
-	function onUserLogin($user, $options)
+	public function onUserLogin($user, $options)
 	{
 		return $this->onLoginUser($user, $options);
 	}
 
-	function onUserLogout($user)
+	public function onUserLogout($user)
 	{
 		return $this->onLogoutUser($user);
 	}
 
-	function onUserAfterDelete($user, $success, $msg)
+	public function onUserAfterDelete($user, $success, $msg)
 	{
 		return $this->onAfterDeleteUser($user, $success, $msg);
 	}
 
-	function onUserBeforeSave($user, $isNew)
+	public function onUserBeforeSave($user, $isNew)
 	{
 		return $this->onBeforeStoreUser($user, $isNew);
 	}
 
-	function onAfterStoreUser($user, $isnew, $success, $msg)
+	public function onAfterStoreUser($user, $isnew, $success, $msg)
 	{
 		jimport('joomla.filesystem.file');
 		$application = JFactory::getApplication();
@@ -101,24 +101,7 @@ class plgUserK2 extends JPlugin
 
 			if (isset($file['image']) && $file['image']['error'] == 0 && !JRequest::getBool('del_image'))
 			{
-				$handle = new Upload($file['image']);
-				$handle->allowed = array('image/*');
-				if ($handle->uploaded)
-				{
-					$handle->file_auto_rename = false;
-					$handle->file_overwrite = true;
-					$handle->file_new_name_body = $row->id;
-					$handle->image_resize = true;
-					$handle->image_ratio_y = true;
-					$handle->image_x = $params->get('userImageWidth', '100');
-					$handle->Process($savepath);
-					$handle->Clean();
-				}
-				else
-				{
-					$application->enqueueMessage(JText::_('K2_COULD_NOT_UPLOAD_YOUR_IMAGE').$handle->error, 'notice');
-				}
-				$image = $handle->file_dst_name;
+                $image = $this->uploadImage($application, $file['image'], $row->id, $savepath, $params);
 			}
 
 			if (JRequest::getBool('del_image'))
@@ -159,7 +142,7 @@ class plgUserK2 extends JPlugin
 		}
 	}
 
-	function onLoginUser($user, $options)
+	public function onLoginUser($user, $options)
 	{
 		$params = JComponentHelper::getParams('com_k2');
 		$application = JFactory::getApplication();
@@ -200,7 +183,7 @@ class plgUserK2 extends JPlugin
 		return true;
 	}
 
-	function onLogoutUser($user)
+	public function onLogoutUser($user)
 	{
 		$params = JComponentHelper::getParams('com_k2');
 		$application = JFactory::getApplication();
@@ -211,7 +194,7 @@ class plgUserK2 extends JPlugin
 		return true;
 	}
 
-	function onAfterDeleteUser($user, $succes, $msg)
+	public function onAfterDeleteUser($user, $succes, $msg)
 	{
 		$application = JFactory::getApplication();
 		$db = JFactory::getDbo();
@@ -220,7 +203,7 @@ class plgUserK2 extends JPlugin
 		$db->query();
 	}
 
-	function onBeforeStoreUser($user, $isNew)
+	public function onBeforeStoreUser($user, $isNew)
 	{
 		$application = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
@@ -271,7 +254,7 @@ class plgUserK2 extends JPlugin
 		}
 	}
 
-	function getK2UserID($id)
+	private function getK2UserID($id)
 	{
 		$db = JFactory::getDbo();
 		$query = "SELECT id FROM #__k2_users WHERE userID={$id}";
@@ -280,7 +263,7 @@ class plgUserK2 extends JPlugin
 		return $result;
 	}
 
-	function checkSpammer(&$user)
+	private function checkSpammer(&$user)
 	{
 		if (!$user['block'])
 		{
@@ -308,4 +291,26 @@ class plgUserK2 extends JPlugin
 			}
 		}
 	}
+
+    private function uploadImage($application, $imageFile, $rowID, $savepath, $params)
+    {
+        $handle = new Upload($imageFile);
+        $handle->allowed = array('image/*');
+        if ($handle->uploaded)
+        {
+            $handle->file_auto_rename = false;
+            $handle->file_overwrite = true;
+            $handle->file_new_name_body = $rowID;
+            $handle->image_resize = true;
+            $handle->image_ratio_y = true;
+            $handle->image_x = $params->get('userImageWidth', '100');
+            $handle->Process($savepath);
+            $handle->Clean();
+        }
+        else
+        {
+            $application->enqueueMessage(JText::_('K2_COULD_NOT_UPLOAD_YOUR_IMAGE').$handle->error, 'notice');
+        }
+        return $handle->file_dst_name;
+    }
 }
