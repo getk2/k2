@@ -32,7 +32,7 @@ class K2ElementCategories extends K2Element
                     $v->parent_id = $v->parent;
                 }
                 $pt = $v->parent;
-                $list = @$children[$pt] ? $children[$pt] : array();
+                $list = isset($children[$pt]) ? $children[$pt] : array();
                 array_push($list, $v);
                 $children[$pt] = $list;
             }
