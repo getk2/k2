@@ -15,6 +15,11 @@ require_once(JPATH_SITE.'/components/com_k2/helpers/utilities.php');
 
 class modK2UsersHelper
 {
+    const FILTER_BY_K2_USER_GROUP = 0;
+    const FILTER_WITH_MOST_ITEMS = 1;
+    const FILTER_WITH_MOST_POPULAR_ITEMS = 2;
+    const FILTER_WITH_MOST_COMMENTED_ITEMS = 3;
+
     public static function getUsers(&$params)
     {
         $application = JFactory::getApplication();
@@ -70,7 +75,7 @@ class modK2UsersHelper
         } else {
             switch ($params->get('filter', 0)) {
 
-                case 0:
+                case self::FILTER_BY_K2_USER_GROUP:
                     $query = "SELECT users.name,users.email,users.id AS UID, profiles.*";
 
                     if ($params->get('ordering') == 'recent') {
@@ -106,7 +111,7 @@ class modK2UsersHelper
 
                     break;
 
-                case 1:
+                case self::FILTER_WITH_MOST_ITEMS:
                     $query = "SELECT users.name,users.email,users.id AS UID, profiles.*, COUNT(i.id) AS counter FROM #__users AS users
 					LEFT JOIN #__k2_users AS profiles ON users.id=profiles.userID
 					LEFT JOIN #__k2_items AS i ON users.id=i.created_by
@@ -121,7 +126,7 @@ class modK2UsersHelper
 
                     break;
 
-                case 2:
+                case self::FILTER_WITH_MOST_POPULAR_ITEMS:
                     $query = "SELECT users.name,users.email,users.id AS UID, profiles.*, MAX(i.hits) AS counter FROM #__users AS users
 					LEFT JOIN #__k2_users AS profiles ON users.id=profiles.userID
 					LEFT JOIN #__k2_items AS i ON users.id=i.created_by
@@ -135,7 +140,7 @@ class modK2UsersHelper
 					GROUP BY users.id ORDER BY counter DESC";
                     break;
 
-                case 3:
+                case self::FILTER_WITH_MOST_COMMENTED_ITEMS:
                     $query = "SELECT users.name,users.email,users.id AS UID, profiles.*, COUNT(comment.id) AS counter FROM #__users AS users
 					LEFT JOIN #__k2_users AS profiles ON users.id=profiles.userID
 					LEFT JOIN #__k2_items AS i ON users.id=i.created_by
