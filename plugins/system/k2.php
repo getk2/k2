@@ -527,7 +527,7 @@ class plgSystemK2 extends JPlugin
 				$application->close();
 			}
 
-            $view = $this->getUsersControllerView($application);
+            $view = $this->getUsersControllerView($view, $application);
 			$view->setLayout('register');
 
 			$K2User = new JObject;
@@ -606,7 +606,7 @@ class plgSystemK2 extends JPlugin
 				$application->redirect(JRoute::_($url, false));
 			}
 
-            $view = $this->getUsersControllerView($application);
+            $view = $this->getUsersControllerView($view, $application);
 			$view->setLayout('profile');
 
 			$model = K2Model::getInstance('Itemlist', 'K2Model');
@@ -916,10 +916,10 @@ class plgSystemK2 extends JPlugin
 
 	}
 
-    private function getUsersControllerView($application)
+    private function getUsersControllerView($oldView, $application)
     {
-        $controller = getUsersController();
-        $view = $controller->getView($view, 'html');
+        $controller = $this->getUsersController();
+        $view = $controller->getView($oldView, 'html');
         $view->addTemplatePath(JPATH_SITE.'/components/com_k2/templates');
         $view->addTemplatePath(JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates');
         $view->addTemplatePath(JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2');
