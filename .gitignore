@@ -2,3 +2,4 @@
 /.project
 .ftpconfig
 .DS_Store
+/nbproject/private/
