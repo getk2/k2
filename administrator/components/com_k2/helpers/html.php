@@ -259,17 +259,17 @@ class K2HelperHTML
                 $document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css');
 
                 // k2.css
-                $document->addStyleSheet($this->styleSheetPath('k2.print.css', $application));
+                $document->addStyleSheet(self::styleSheetPath('k2.print.css', $application));
 
                 // k2.print.css
                 if (JRequest::getInt('print') == 1) {
-                    $document->addStyleSheet($this->styleSheetPath('k2.print.css', $application));
+                    $document->addStyleSheet(self::styleSheetPath('k2.print.css', $application));
                 }
             }
         }
     }
 
-    private function styleSheetPath($css, $application) {
+    private static function styleSheetPath($css, $application) {
         if (JFile::exists(JPATH_SITE . '/templates/' . $application->getTemplate() . '/css/' . $css)) {
             return JURI::root(true) . '/templates/' . $application->getTemplate() . '/css/' . $css . '?v=' . K2_CURRENT_VERSION;
         } else {
