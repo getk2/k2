@@ -35,7 +35,7 @@ if(K2_JVERSION=='15')
 }
 else
 {
-	JLoader::register('K2HelperPermissions', JPATH_SITE.'/components/com_k2/helpers/permissions.j16.php');
+	JLoader::register('K2HelperPermissions', JPATH_SITE.'/administrator/components/com_k2/helpers/permissions.php');
 	K2HelperPermissions::checkPermissions();
 
 	// Compatibility for gid variable

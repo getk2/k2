@@ -14,10 +14,8 @@ jimport('joomla.html.parameter');
 
 class K2HelperPermissions
 {
-
     public static function checkPermissions()
     {
-        // Set some variables
         $application = JFactory::getApplication();
         $user = JFactory::getUser();
         $option = JRequest::getCmd('option');
@@ -25,64 +23,52 @@ class K2HelperPermissions
         $task = JRequest::getCmd('task');
         $id = ($task == 'apply' || $task == 'save') ? JRequest::getInt('id') : JRequest::getVar('cid');
 
-        //Generic manage check
-        if (!$user->authorise('core.manage', $option))
-        {
+        // Generic access check
+        if (!$user->authorise('core.manage', $option)) {
             JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
             $application->redirect('index.php');
         }
 
-        // Determine action for rest checks
+        // Determine actions for everything else
         $action = false;
-        if ($application->isAdmin() && $view != '' && $view != 'info')
-        {
-            switch($task)
-            {
-                case '' :
-                case 'save' :
-                case 'apply' :
-                    if (!$id)
-                    {
+        if ($application->isAdmin() && $view != '' && $view != 'info') {
+            switch ($task) {
+                case '':
+                case 'save':
+                case 'apply':
+                    if (!$id) {
                         $action = 'core.create';
-                    }
-                    else
-                    {
+                    } else {
                         $action = 'core.edit';
                     }
                     break;
-                case 'trash' :
-                case 'remove' :
+                case 'trash':
+                case 'remove':
                     $action = 'core.delete';
                     break;
-                case 'publish' :
-                case 'unpublish' :
-				case 'featured':
+                case 'publish':
+                case 'unpublish':
+                case 'featured':
                     $action = 'core.edit.state';
             }
 
-            // Edit or Edit own action
-            if ($action == 'core.edit' && $view == 'item' && $id)
-            {
+            // Edit or edit own action
+            if ($action == 'core.edit' && $view == 'item' && $id) {
                 JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
                 $item = JTable::getInstance('K2Item', 'Table');
                 $item->load($id);
-                if ($item->created_by == $user->id)
-                {
+                if ($item->created_by == $user->id) {
                     $action = 'core.edit.own';
                 }
             }
 
             // Check the determined action
-            if ($action)
-            {
-                if (!$user->authorise($action, $option))
-                {
+            if ($action) {
+                if (!$user->authorise($action, $option)) {
                     JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
                     $application->redirect('index.php?option=com_k2');
                 }
             }
-
         }
     }
-
 }
