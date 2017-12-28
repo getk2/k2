@@ -235,7 +235,7 @@ class K2HelperHTML
 			if($application->isSite())
 			{
 				// Magnific Popup
-				if (!$user->guest || ($option == 'com_k2' && $view == 'item') || defined('K2_JOOMLA_MODAL_REQUIRED')){
+				if (!$user->guest || ($option == 'com_k2' && ($view == 'itemlist' || $view == 'item') || defined('K2_JOOMLA_MODAL_REQUIRED')){
 					$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css');
 					$document->addStyleDeclaration('
 						/* K2 - Magnific Popup Overrides */
