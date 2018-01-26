@@ -14,8 +14,7 @@ jimport('joomla.application.component.view');
 
 class K2ViewItem extends K2View
 {
-
-    function display($tpl = null)
+    public function display($tpl = null)
     {
         $application = JFactory::getApplication();
         $user = JFactory::getUser();
@@ -33,8 +32,9 @@ class K2ViewItem extends K2View
         $this->setLayout('item');
 
         // Add link
-        if (K2HelperPermissions::canAddItem())
+        if (K2HelperPermissions::canAddItem()) {
             $addLink = JRoute::_('index.php?option=com_k2&view=item&task=add&tmpl=component');
+        }
         $this->assignRef('addLink', $addLink);
 
         // Get item
@@ -43,8 +43,7 @@ class K2ViewItem extends K2View
         $item->event = new stdClass;
 
         // Does the item exists?
-        if (!is_object($item) || !$item->id)
-        {
+        if (!is_object($item) || !$item->id) {
             JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
         }
 
@@ -53,11 +52,10 @@ class K2ViewItem extends K2View
 
         // Plugins
         $item = $model->execPlugins($item, $view, $task);
-        
+
         // User K2 plugins
         $item->event->K2UserDisplay = '';
-        if (isset($item->author) && is_object($item->author->profile) && isset($item->author->profile->id))
-        {
+        if (isset($item->author) && is_object($item->author->profile) && isset($item->author->profile->id)) {
             $dispatcher = JDispatcher::getInstance();
             JPluginHelper::importPlugin('k2');
             $results = $dispatcher->trigger('onK2UserDisplay', array(&$item->author->profile, &$params, $limitstart));
@@ -66,41 +64,29 @@ class K2ViewItem extends K2View
         }
 
         // Access check
-        if ($this->getLayout() == 'form')
-        {
+        if ($this->getLayout() == 'form') {
             JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
         }
-        if (K2_JVERSION != '15')
-        {
-            if (!in_array($item->access, $user->getAuthorisedViewLevels()) || !in_array($item->category->access, $user->getAuthorisedViewLevels()))
-            {
-                if ($user->guest)
-                {
+        if (K2_JVERSION != '15') {
+            if (!in_array($item->access, $user->getAuthorisedViewLevels()) || !in_array($item->category->access, $user->getAuthorisedViewLevels())) {
+                if ($user->guest) {
                     $uri = JFactory::getURI();
                     $url = 'index.php?option=com_users&view=login&return='.base64_encode($uri->toString());
-					$application->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
+                    $application->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
                     $application->redirect(JRoute::_($url, false));
-                }
-                else
-                {
+                } else {
                     JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
                     return;
                 }
             }
-        }
-        else
-        {
-            if ($item->access > $user->get('aid', 0) || $item->category->access > $user->get('aid', 0))
-            {
-                if ($user->guest)
-                {
+        } else {
+            if ($item->access > $user->get('aid', 0) || $item->category->access > $user->get('aid', 0)) {
+                if ($user->guest) {
                     $uri = JFactory::getURI();
                     $url = 'index.php?option=com_user&view=login&return='.base64_encode($uri->toString());
-					$application->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
+                    $application->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
                     $application->redirect(JRoute::_($url, false));
-                }
-                else
-                {
+                } else {
                     JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
                     return;
                 }
@@ -108,23 +94,19 @@ class K2ViewItem extends K2View
         }
 
         // Published check
-        if (!$item->published || $item->trash)
-        {
+        if (!$item->published || $item->trash) {
             JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
         }
 
-        if ($item->publish_up != $nullDate && $item->publish_up > $now)
-        {
+        if ($item->publish_up != $nullDate && $item->publish_up > $now) {
             JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
         }
 
-        if ($item->publish_down != $nullDate && $item->publish_down < $now)
-        {
+        if ($item->publish_down != $nullDate && $item->publish_down < $now) {
             JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
         }
 
-        if (!$item->category->published || $item->category->trash)
-        {
+        if (!$item->category->published || $item->category->trash) {
             JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
         }
 
@@ -133,12 +115,11 @@ class K2ViewItem extends K2View
 
         // Set default image
         K2HelperUtilities::setDefaultImage($item, $view);
-        
+
         // Comments
         $item->event->K2CommentsCounter = '';
         $item->event->K2CommentsBlock = '';
-        if ($item->params->get('itemComments'))
-        {
+        if ($item->params->get('itemComments')) {
 
             // Trigger comments events
             $dispatcher = JDispatcher::getInstance();
@@ -149,23 +130,20 @@ class K2ViewItem extends K2View
             $item->event->K2CommentsBlock = trim(implode("\n", $results));
 
             // Load K2 native comments system only if there are no plugins overriding it
-            if (empty($item->event->K2CommentsCounter) && empty($item->event->K2CommentsBlock))
-            {
-
+            if (empty($item->event->K2CommentsCounter) && empty($item->event->K2CommentsBlock)) {
                 $limit = $params->get('commentsLimit');
                 $comments = $model->getItemComments($item->id, $limitstart, $limit);
                 $pattern = "@\b(https?://)?(([0-9a-zA-Z_!~*'().&=+$%-]+:)?[0-9a-zA-Z_!~*'().&=+$%-]+\@)?(([0-9]{1,3}\.){3}[0-9]{1,3}|([0-9a-zA-Z_!~*'()-]+\.)*([0-9a-zA-Z][0-9a-zA-Z-]{0,61})?[0-9a-zA-Z]\.[a-zA-Z]{2,6})(:[0-9]{1,4})?((/[0-9a-zA-Z_!~*'().;?:\@&=+$,%#-]+)*/?)@";
 
-                for ($i = 0; $i < sizeof($comments); $i++)
-                {
-
+                for ($i = 0; $i < sizeof($comments); $i++) {
                     $comments[$i]->commentText = nl2br($comments[$i]->commentText);
                     $comments[$i]->commentText = preg_replace($pattern, '<a target="_blank" rel="nofollow" href="\0">\0</a>', $comments[$i]->commentText);
                     $comments[$i]->userImage = K2HelperUtilities::getAvatar($comments[$i]->userID, $comments[$i]->commentEmail, $params->get('commenterImgWidth'));
-                    if ($comments[$i]->userID > 0)
+                    if ($comments[$i]->userID > 0) {
                         $comments[$i]->userLink = K2HelperRoute::getUserRoute($comments[$i]->userID);
-                    else
+                    } else {
                         $comments[$i]->userLink = $comments[$i]->commentURL;
+                    }
                 }
 
                 $item->comments = $comments;
@@ -174,18 +152,14 @@ class K2ViewItem extends K2View
                 $total = $item->numOfComments;
                 $pagination = new JPagination($total, $limitstart, $limit);
             }
-
         }
 
         // Author's latest items
-        if ($item->params->get('itemAuthorLatest') && $item->created_by_alias == '')
-        {
+        if ($item->params->get('itemAuthorLatest') && $item->created_by_alias == '') {
             $model = $this->getModel('itemlist');
             $authorLatestItems = $model->getAuthorLatest($item->id, $item->params->get('itemAuthorLatestLimit'), $item->created_by);
-            if (count($authorLatestItems))
-            {
-                for ($i = 0; $i < sizeof($authorLatestItems); $i++)
-                {
+            if (count($authorLatestItems)) {
+                for ($i = 0; $i < sizeof($authorLatestItems); $i++) {
                     $authorLatestItems[$i]->link = urldecode(JRoute::_(K2HelperRoute::getItemRoute($authorLatestItems[$i]->id.':'.urlencode($authorLatestItems[$i]->alias), $authorLatestItems[$i]->catid.':'.urlencode($authorLatestItems[$i]->categoryalias))));
                 }
                 $this->assignRef('authorLatestItems', $authorLatestItems);
@@ -193,40 +167,32 @@ class K2ViewItem extends K2View
         }
 
         // Related items
-        if ($item->params->get('itemRelated') && isset($item->tags) && count($item->tags))
-        {
+        if ($item->params->get('itemRelated') && isset($item->tags) && count($item->tags)) {
             $model = $this->getModel('itemlist');
             $relatedItems = $model->getRelatedItems($item->id, $item->tags, $item->params);
-            if (count($relatedItems))
-            {
-                for ($i = 0; $i < sizeof($relatedItems); $i++)
-                {
+            if (count($relatedItems)) {
+                for ($i = 0; $i < sizeof($relatedItems); $i++) {
                     $relatedItems[$i]->link = urldecode(JRoute::_(K2HelperRoute::getItemRoute($relatedItems[$i]->id.':'.urlencode($relatedItems[$i]->alias), $relatedItems[$i]->catid.':'.urlencode($relatedItems[$i]->categoryalias))));
                 }
                 $this->assignRef('relatedItems', $relatedItems);
             }
-
         }
 
         // Navigation (previous and next item)
-        if ($item->params->get('itemNavigation'))
-        {
+        if ($item->params->get('itemNavigation')) {
             $model = $this->getModel('item');
 
             $nextItem = $model->getNextItem($item->id, $item->catid, $item->ordering);
-            if (!is_null($nextItem))
-            {
+            if (!is_null($nextItem)) {
                 $item->nextLink = urldecode(JRoute::_(K2HelperRoute::getItemRoute($nextItem->id.':'.urlencode($nextItem->alias), $nextItem->catid.':'.urlencode($item->category->alias))));
                 $item->nextTitle = $nextItem->title;
             }
 
             $previousItem = $model->getPreviousItem($item->id, $item->catid, $item->ordering);
-            if (!is_null($previousItem))
-            {
+            if (!is_null($previousItem)) {
                 $item->previousLink = urldecode(JRoute::_(K2HelperRoute::getItemRoute($previousItem->id.':'.urlencode($previousItem->alias), $previousItem->catid.':'.urlencode($item->category->alias))));
                 $item->previousTitle = $previousItem->title;
             }
-
         }
 
         // Absolute URL
@@ -234,49 +200,50 @@ class K2ViewItem extends K2View
         $item->absoluteURL = $uri->toString();
 
         // Email link
-        if (K2_JVERSION != '15')
-        {
+        if (K2_JVERSION != '15') {
             require_once(JPATH_SITE.'/components/com_mailto/helpers/mailto.php');
             $template = $application->getTemplate();
             $item->emailLink = JRoute::_('index.php?option=com_mailto&tmpl=component&template='.$template.'&link='.MailToHelper::addLink($item->absoluteURL));
-        }
-        else
-        {
+        } else {
             require_once(JPATH_SITE.'/components/com_mailto/helpers/mailto.php');
             $item->emailLink = JRoute::_('index.php?option=com_mailto&tmpl=component&link='.MailToHelper::addLink($item->absoluteURL));
         }
 
         // Twitter link (legacy code)
-        if ($params->get('twitterUsername'))
-        {
+        if ($params->get('twitterUsername')) {
             $item->twitterURL = 'http://twitter.com/intent/tweet?text='.urlencode($item->title).'&amp;url='.urlencode($item->absoluteURL).'&amp;via='.$params->get('twitterUsername');
-        }
-        else
-        {
+        } else {
             $item->twitterURL = 'http://twitter.com/intent/tweet?text='.urlencode($item->title).'&amp;url='.urlencode($item->absoluteURL);
         }
 
         // Social link
         $item->socialLink = urlencode($item->absoluteURL);
 
-        // Look for template files in component folders
+        // Lookup template folders
         $this->_addPath('template', JPATH_COMPONENT.'/templates');
         $this->_addPath('template', JPATH_COMPONENT.'/templates/default');
 
-        // Look for overrides in template folder (K2 template structure)
         $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates');
         $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/default');
 
-        // Look for overrides in template folder (Joomla template structure)
-        $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/default');
         $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2');
+        $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/default');
 
-        // Look for specific K2 theme files
-        if ($item->params->get('theme'))
-        {
+        if ($item->params->get('theme')) {
             $this->_addPath('template', JPATH_COMPONENT.'/templates/'.$item->params->get('theme'));
             $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/'.$item->params->get('theme'));
             $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/'.$item->params->get('theme'));
+        }
+
+        // Allow temporary template loading with ?template=
+        $template = JRequest::getCmd('template');
+        if (isset($template)) {
+            // Look for overrides in template folder (new K2 template structure)
+            $this->_addPath('template', JPATH_SITE.'/templates/'.$template.'/html/com_k2');
+            $this->_addPath('template', JPATH_SITE.'/templates/'.$template.'/html/com_k2/default');
+            if ($item->params->get('theme')) {
+                $this->_addPath('template', JPATH_SITE.'/templates/'.$template.'/html/com_k2/'.$item->params->get('theme'));
+            }
         }
 
         // Assign data
@@ -287,5 +254,4 @@ class K2ViewItem extends K2View
 
         parent::display($tpl);
     }
-
 }
