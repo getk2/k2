@@ -453,6 +453,7 @@ class K2ModelItem extends K2Model
                         $handle = new Upload($file);
                         if ($handle->uploaded) {
                             $handle->file_auto_rename = true;
+                            $handle->file_safe_name = true;
                             $handle->allowed[] = 'application/x-zip';
                             $handle->allowed[] = 'application/download';
                             $handle->Process($savepath);
@@ -925,7 +926,7 @@ class K2ModelItem extends K2Model
             JResponse::setHeader('Expires', '0', true);
             JResponse::setHeader('Cache-Control', 'must-revalidate, post-check=0, pre-check=0', true);
             JResponse::setHeader('Content-Type', $handle->file_src_mime, true);
-            JResponse::setHeader('Content-Disposition', 'attachment; filename='.$filename.';', true);
+            JResponse::setHeader('Content-Disposition', 'attachment; filename="'.$filename.'";', true);
             JResponse::setHeader('Content-Transfer-Encoding', 'binary', true);
             JResponse::setHeader('Content-Length', $len, true);
             JResponse::sendHeaders();

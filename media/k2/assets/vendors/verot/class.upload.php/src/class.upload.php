@@ -3109,9 +3109,10 @@ class upload {
                 $this->log .= '- file name body prepend : ' . $this->file_name_body_pre . '<br />';
             }
             if ($this->file_safe_name) { // formats the name
-                $this->file_dst_name_body = utf8_encode(strtr(utf8_decode($this->file_dst_name_body), utf8_decode('ŠŽšžŸÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïñòóôõöøùúûüýÿ'), 'SZszYAAAAAACEEEEIIIINOOOOOOUUUUYaaaaaaceeeeiiiinoooooouuuuyy'));
-                $this->file_dst_name_body = strtr($this->file_dst_name_body, array('Þ' => 'TH', 'þ' => 'th', 'Ð' => 'DH', 'ð' => 'dh', 'ß' => 'ss', 'Œ' => 'OE', 'œ' => 'oe', 'Æ' => 'AE', 'æ' => 'ae', 'µ' => 'u'));
-                $this->file_dst_name_body = preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $this->file_dst_name_body);
+	            $this->file_dst_name_body = trim(preg_replace(array('/[^\p{L}\p{N}\p{P}\p{M}\-_]/u', '/\.[\.]+/', "/(\"|\'|\“|\”)+/"), array('_', '.', '_'), $this->file_dst_name_body)); // Much better!
+                //$this->file_dst_name_body = utf8_encode(strtr(utf8_decode($this->file_dst_name_body), utf8_decode('ŠŽšžŸÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïñòóôõöøùúûüýÿ'), 'SZszYAAAAAACEEEEIIIINOOOOOOUUUUYaaaaaaceeeeiiiinoooooouuuuyy'));
+                //$this->file_dst_name_body = strtr($this->file_dst_name_body, array('Þ' => 'TH', 'þ' => 'th', 'Ð' => 'DH', 'ð' => 'dh', 'ß' => 'ss', 'Œ' => 'OE', 'œ' => 'oe', 'Æ' => 'AE', 'æ' => 'ae', 'µ' => 'u'));
+                //$this->file_dst_name_body = preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $this->file_dst_name_body);
                 $this->log .= '- file name safe format<br />';
             }
 
