@@ -23,7 +23,7 @@ class K2ControllerMedia extends K2Controller
 
     public function connector()
     {
-	    // Check token
+        // Check token
         $method = ($_POST) ? 'post' : 'get';
         if (version_compare(JVERSION, '2.5', 'ge')) {
             JSession::checkToken($method) or jexit(JText::_('JINVALID_TOKEN'));
@@ -53,6 +53,18 @@ class K2ControllerMedia extends K2Controller
         $path = JPATH_SITE.'/'.JPath::clean($folder);
 
         JPath::check($path);
+        
+        // Disallow force downloading sensitive file types
+        $disallowedFileTypes = array('php', 'ini', 'sql', 'htaccess');
+        $target = JRequest::getCmd('target');
+        $download = JRequest::getCmd('download');
+        if ($target && $download) {
+            $filePath = base64_decode(substr($target, 2));
+            $fileExtension = strtolower(pathinfo(basename($filePath), PATHINFO_EXTENSION));
+            if (in_array($fileExtension, $disallowedFileTypes)) {
+                return;
+            }
+        }
 
         require_once(JPATH_SITE.'/media/k2/assets/vendors/studio-42/elfinder/php/autoload.php');
 
