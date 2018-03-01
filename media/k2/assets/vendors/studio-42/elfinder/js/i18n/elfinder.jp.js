@@ -2,7 +2,7 @@
  * Japanese translation
  * @author Tomoaki Yoshida <info@yoshida-studio.jp>
  * @author Naoki Sawada <hypweb@gmail.com>
- * @version 2017-08-15
+ * @version 2017-12-08
  */
 (function(root, factory) {
 	if (typeof define === 'function' && define.amd) {
@@ -43,7 +43,7 @@
 			'errDataEmpty'         : '空のデータです。',
 			'errCmdReq'            : 'バックエンドリクエストはコマンド名が必要です。',
 			'errOpen'              : '"$1" を開くことができません。',
-			'errNotFolder'         : 'オブジェクトがフォルダーではありません。',
+			'errNotFolder'         : 'オブジェクトがフォルダではありません。',
 			'errNotFile'           : 'オブジェクトがファイルではありません。',
 			'errRead'              : '"$1" を読み込むことができません。',
 			'errWrite'             : '"$1" に書き込むことができません。',
@@ -52,11 +52,11 @@
 			'errExists'            : '"$1" というアイテム名はすでに存在しています。',
 			'errInvName'           : '無効なファイル名です。',
 			'errInvDirname'        : '無効なフォルダ名です。',  // from v2.1.24 added 12.4.2017
-			'errFolderNotFound'    : 'フォルダーが見つかりません。',
+			'errFolderNotFound'    : 'フォルダが見つかりません。',
 			'errFileNotFound'      : 'ファイルが見つかりません。',
-			'errTrgFolderNotFound' : 'ターゲットとするフォルダー "$1" が見つかりません。',
+			'errTrgFolderNotFound' : 'ターゲットとするフォルダ "$1" が見つかりません。',
 			'errPopup'             : 'ポップアップウィンドウが開けません。ファイルを開くにはブラウザの設定を変更してください。',
-			'errMkdir'             : 'フォルダー "$1" を作成することができません。',
+			'errMkdir'             : 'フォルダ "$1" を作成することができません。',
 			'errMkfile'            : 'ファイル "$1" を作成することができません。',
 			'errRename'            : '"$1" の名前を変更することができません。',
 			'errCopyFrom'          : '"$1" からのファイルコピーは許可されていません。',
@@ -114,7 +114,7 @@
 			'errRestore'           : '宛先の特定ができないため、ごみ箱から戻せません。', // from v2.1.24 added 3.5.2017
 			'errEditorNotFound'    : 'このファイルタイプのエディターがありません。', // from v2.1.25 added 23.5.2017
 			'errServerError'       : 'サーバー側でエラーが発生しました。', // from v2.1.25 added 16.6.2017
-			'errEmpty'             : 'フォルダー"$1"を空にすることができません。', // from v2.1.25 added 22.6.2017
+			'errEmpty'             : 'フォルダ"$1"を空にすることができません。', // from v2.1.25 added 22.6.2017
 			
 			/******************************* commands names ********************************/
 			'cmdarchive'   : 'アーカイブ作成',
@@ -130,8 +130,8 @@
 			'cmdhelp'      : 'このソフトウェアについて',
 			'cmdhome'      : 'ルート',
 			'cmdinfo'      : '情報',
-			'cmdmkdir'     : '新規フォルダー',
-			'cmdmkdirin'   : '新規フォルダーへ', // from v2.1.7 added 19.2.2016
+			'cmdmkdir'     : '新規フォルダ',
+			'cmdmkdirin'   : '新規フォルダへ', // from v2.1.7 added 19.2.2016
 			'cmdmkfile'    : '新規テキストファイル',
 			'cmdopen'      : '開く',
 			'cmdpaste'     : 'ペースト',
@@ -142,7 +142,7 @@
 			'cmdtrash'     : 'ごみ箱へ', //from v2.1.24 added 29.4.2017
 			'cmdrestore'   : '復元', //from v2.1.24 added 3.5.2017
 			'cmdsearch'    : 'ファイルを探す',
-			'cmdup'        : '親ディレクトリーへ移動',
+			'cmdup'        : '親フォルダへ移動',
 			'cmdupload'    : 'ファイルアップロード',
 			'cmdview'      : 'ビュー',
 			'cmdresize'    : 'リサイズと回転',
@@ -155,7 +155,7 @@
 			'cmdcolwidth'  : '列幅リセット', // from v2.1.13 added 12.06.2016
 			'cmdfullscreen': 'フルスクリーン', // from v2.1.15 added 03.08.2016
 			'cmdmove'      : '移動', // from v2.1.15 added 21.08.2016
-			'cmdempty'     : 'フォルダーを空に', // from v2.1.25 added 22.06.2017
+			'cmdempty'     : 'フォルダを空に', // from v2.1.25 added 22.06.2017
 			'cmdundo'      : '元に戻す', // from v2.1.27 added 31.07.2017
 			'cmdredo'      : 'やり直し', // from v2.1.27 added 31.07.2017
 			'cmdpreference': '環境設定', // from v2.1.27 added 03.08.2017
@@ -189,14 +189,14 @@
 			'btnSaveAs'   : '別名保存', // from v2.1.25 added 24.5.2017
 
 			/******************************** notifications ********************************/
-			'ntfopen'     : 'フォルダーを開いています',
+			'ntfopen'     : 'フォルダを開いています',
 			'ntffile'     : 'ファイルを開いています',
-			'ntfreload'   : 'フォルダーを再読込しています',
-			'ntfmkdir'    : 'フォルダーを作成しています',
+			'ntfreload'   : 'フォルダを再読込しています',
+			'ntfmkdir'    : 'フォルダを作成しています',
 			'ntfmkfile'   : 'ファイルを作成しています',
-			'ntfrm'       : 'ファイルを削除しています',
-			'ntfcopy'     : 'ファイルをコピーしています',
-			'ntfmove'     : 'ファイルを移動しています',
+			'ntfrm'       : 'アイテムを削除しています',
+			'ntfcopy'     : 'アイテムをコピーしています',
+			'ntfmove'     : 'アイテムを移動しています',
 			'ntfprepare'  : '既存アイテムを確認しています',
 			'ntfrename'   : 'ファイル名を変更しています',
 			'ntfupload'   : 'ファイルをアップロードしています',
@@ -211,7 +211,7 @@
 			'ntfnetmount' : 'ネットボリュームをマウント中', // added 18.04.2012
 			'ntfnetunmount': 'ネットボリュームをアンマウント中', // from v2.1 added 30.04.2012
 			'ntfdim'      : '画像サイズを取得しています', // added 20.05.2013
-			'ntfreaddir'  : 'ホルダ情報を読み取っています', // from v2.1 added 01.07.2013
+			'ntfreaddir'  : 'フォルダ情報を読み取っています', // from v2.1 added 01.07.2013
 			'ntfurl'      : 'リンクURLを取得しています', // from v2.1 added 11.03.2014
 			'ntfchmod'    : 'ファイル属性を変更しています', // from v2.1 added 20.6.2015
 			'ntfpreupload': 'アップロードファイル名を検証中', // from v2.1 added 31.11.2015
@@ -220,7 +220,7 @@
 			'ntfchunkmerge': 'アップロード済みファイルを処理中', // from v2.1.17 added 2.11.2016
 			'ntftrash'    : 'ごみ箱に入れています', // from v2.1.24 added 2.5.2017
 			'ntfrestore'  : 'ごみ箱から元に戻しています', // from v2.1.24 added 2.5.2017
-			'ntfchkdir'   : '宛先ホルダーを確認しています', // from v2.1.24 added 3.5.2017
+			'ntfchkdir'   : '宛先フォルダを確認しています', // from v2.1.24 added 3.5.2017
 			'ntfundo'     : '前の操作を取り消して元に戻しています', // from v2.1.27 added 31.07.2017
 			'ntfredo'     : '元に戻した操作をやり直しています', // from v2.1.27 added 31.07.2017
 
@@ -289,7 +289,7 @@
 
 			/********************************** messages **********************************/
 			'confirmReq'      : '処理を実行しますか？',
-			'confirmRm'       : 'アイテムを完全に削除してもよろしいですか？<br/>この操作は取り消せません！',
+			'confirmRm'       : 'アイテムを完全に削除してもよろしいですか？<br/>この操作は取り消しできません！',
 			'confirmRepl'     : '古いアイテムを新しいアイテムで上書きしますか？',
 			'confirmRest'     : '既存のアイテムをごみ箱のアイテムで上書きしますか？', // fromv2.1.24 added 5.5.2017
 			'confirmConvUTF8' : 'UTF-8 以外の文字が含まれています。<br/>UTF-8  に変換しますか？<br/>変換後の保存でコンテンツは UTF-8 になります。', // from v2.1 added 08.04.2014
@@ -307,10 +307,10 @@
 			'noaccess'        : 'アクセス禁止',
 			'and'             : ',',
 			'unknown'         : '不明',
-			'selectall'       : '全てのファイルを選択',
-			'selectfiles'     : 'ファイル選択',
-			'selectffile'     : '最初のファイルを選択',
-			'selectlfile'     : '最後のファイルを選択',
+			'selectall'       : 'すべてのアイテムを選択',
+			'selectfiles'     : 'アイテム選択',
+			'selectffile'     : '最初のアイテムを選択',
+			'selectlfile'     : '最後のアイテムを選択',
 			'viewlist'        : 'リスト形式で表示',
 			'viewicons'       : 'アイコン形式で表示',
 			'places'          : 'お気に入り',
@@ -320,14 +320,14 @@
 			'locked'          : 'ロック',
 			'dim'             : 'サイズ',
 			'files'           : 'ファイル',
-			'folders'         : 'フォルダー',
+			'folders'         : 'フォルダ',
 			'items'           : 'アイテム',
 			'yes'             : 'はい',
 			'no'              : 'いいえ',
 			'link'            : 'リンク',
 			'searcresult'     : '検索結果',
 			'selected'        : '選択されたアイテム',
-			'about'           : 'アバウト',
+			'about'           : '概要',
 			'shortcuts'       : 'ショートカット',
 			'help'            : 'ヘルプ',
 			'webfm'           : 'ウェブファイルマネージャー',
@@ -419,22 +419,37 @@
 			'minsLeft'        : '残り$1分', // from v2.1.17 added 13.11.2016
 			'openAsEncoding'  : '選択したエンコーディングで開き直す', // from v2.1.19 added 2.12.2016
 			'saveAsEncoding'  : '選択したエンコーディングで保存', // from v2.1.19 added 2.12.2016
-			'selectFolder'    : 'フォルダーを選択', // from v2.1.20 added 13.12.2016
+			'selectFolder'    : 'フォルダを選択', // from v2.1.20 added 13.12.2016
 			'firstLetterSearch': '一文字目で検索', // from v2.1.23 added 24.3.2017
 			'presets'         : 'プリセット', // from v2.1.25 added 26.5.2017
 			'tooManyToTrash'  : 'アイテム数が多すぎるのでごみ箱に入れられません。', // from v2.1.25 added 9.6.2017
 			'TextArea'        : 'テキストエリア', // from v2.1.25 added 14.6.2017
-			'folderToEmpty'   : 'フォルダー"$1"を空にします。', // from v2.1.25 added 22.6.2017
-			'filderIsEmpty'   : 'フォルダー"$1"にアイテムはありません。', // from v2.1.25 added 22.6.2017
+			'folderToEmpty'   : 'フォルダ"$1"を空にします。', // from v2.1.25 added 22.6.2017
+			'filderIsEmpty'   : 'フォルダ"$1"にアイテムはありません。', // from v2.1.25 added 22.6.2017
 			'preference'      : '環境設定', // from v2.1.26 added 28.6.2017
 			'language'        : '言語設定', // from v2.1.26 added 28.6.2017
 			'clearBrowserData': 'ブラウザに保存された設定を初期化する', // from v2.1.26 added 28.6.2017
 			'toolbarPref'     : 'ツールバー設定', // from v2.1.27 added 2.8.2017
+			'charsLeft'       : '... 残り $1 文字',  // from v2.1.29 added 30.8.2017
+			'sum'             : '合計', // from v2.1.29 added 28.9.2017
+			'roughFileSize'   : '大まかなファイルサイズ', // from v2.1.30 added 2.11.2017
+			'autoFocusDialog' : 'マウスオーバーでダイアログの要素にフォーカスする',  // from v2.1.30 added 2.11.2017
+			'select'          : '選択', // from v2.1.30 added 23.11.2017
+			'selectAction'    : 'ファイル選択時の動作', // from v2.1.30 added 23.11.2017
+			'useStoredEditor' : '前回使用したエディターで開く', // from v2.1.30 added 23.11.2017
+			'selectinvert'    : '選択アイテムを反転', // from v2.1.30 added 25.11.2017
+			'renameMultiple'  : '選択した $1 個のアイテムを $2 のようにリネームしますか？<br/>この操作は取り消しできません！', // from v2.1.31 added 4.12.2017
+			'batchRename'     : '一括リネーム', // from v2.1.31 added 8.12.2017
+			'plusNumber'      : '+ 連番', // from v2.1.31 added 8.12.2017
+			'asPrefix'        : '先頭に追加', // from v2.1.31 added 8.12.2017
+			'asSuffix'        : '末尾に追加', // from v2.1.31 added 8.12.2017
+			'changeExtention' : '拡張子変更', // from v2.1.31 added 8.12.2017
 
 			/********************************** mimetypes **********************************/
 			'kindUnknown'     : '不明',
 			'kindRoot'        : 'ボリュームルート', // from v2.1.16 added 16.10.2016
-			'kindFolder'      : 'フォルダー',
+			'kindFolder'      : 'フォルダ',
+			'kindSelects'     : '複数選択', // from v2.1.29 added 29.8.2017
 			'kindAlias'       : '別名',
 			'kindAliasBroken' : '宛先不明の別名',
 			// applications

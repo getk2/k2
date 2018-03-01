@@ -2,7 +2,8 @@
  * Русский язык translation
  * @author Dmitry "dio" Levashov <dio@std42.ru>
  * @author Andrew Berezovsky <andrew.berezovsky@gmail.com>
- * @version 2017-07-08
+ * @author Alex Yashkin <alex@yashkin.by>
+ * @version 2017-12-18
  */
 (function(root, factory) {
 	if (typeof define === 'function' && define.amd) {
@@ -14,7 +15,7 @@
 	}
 }(this, function(elFinder) {
 	elFinder.prototype.i18.ru = {
-		translator : 'Dmitry "dio" Levashov &lt;dio@std42.ru&gt;, Andrew Berezovsky &lt;andrew.berezovsky@gmail.com&gt;',
+		translator : 'Dmitry "dio" Levashov &lt;dio@std42.ru&gt;, Andrew Berezovsky &lt;andrew.berezovsky@gmail.com&gt;, Alex Yashkin &lt;alex@yashkin.by&gt;',
 		language   : 'Русский язык',
 		direction  : 'ltr',
 		dateFormat : 'd M Y H:i', // Mar 13, 2012 05:27 PM
@@ -156,6 +157,12 @@
 			'cmdfullscreen': 'Полный экран', // from v2.1.15 added 03.08.2016
 			'cmdmove'      : 'Переместить', // from v2.1.15 added 21.08.2016
 			'cmdempty'     : 'Очистить папку', // from v2.1.25 added 22.06.2017
+			'cmdundo'      : 'Отменить', // from v2.1.27 added 31.07.2017
+			'cmdredo'      : 'Вернуть', // from v2.1.27 added 31.07.2017
+			'cmdpreference': 'Предпочтения', // from v2.1.27 added 03.08.2017
+			'cmdselectall' : 'Выделить все', // from v2.1.28 added 15.08.2017
+			'cmdselectnone': 'Снять все выделение', // from v2.1.28 added 15.08.2017
+			'cmdselectinvert': 'Инвертировать выделение', // from v2.1.28 added 15.08.2017
 
 			/*********************************** buttons ***********************************/
 			'btnClose'  : 'Закрыть',
@@ -215,6 +222,8 @@
 			'ntftrash'    : 'Перемещение в корзину', // from v2.1.24 added 2.5.2017
 			'ntfrestore'  : 'Восстановление из корзины', // from v2.1.24 added 3.5.2017
 			'ntfchkdir'   : 'Проверка папки назначения', // from v2.1.24 added 3.5.2017
+			'ntfundo'     : 'Отмена предыдущей операции', // from v2.1.27 added 31.07.2017
+			'ntfredo'     : 'Восстановление предыдущей операции', // from v2.1.27 added 31.07.2017
 
 			/*********************************** volumes *********************************/
 			'volume_Trash' : 'Корзина', //from v2.1.24 added 29.4.2017
@@ -322,7 +331,7 @@
 			'about'           : 'О программе',
 			'shortcuts'       : 'Горячие клавиши',
 			'help'            : 'Помощь',
-			'webfm'           : 'Файловый менеджер для web',
+			'webfm'           : 'Файловый менеджер для Web',
 			'ver'             : 'Версия',
 			'protocolver'     : 'версия протокола',
 			'homepage'        : 'Сайт проекта',
@@ -419,13 +428,29 @@
 			'folderToEmpty'   : 'Очистить папку "$1".', // from v2.1.25 added 22.6.2017
 			'filderIsEmpty'   : 'Нет файлов в паке "$1".', // from v2.1.25 added 22.6.2017
 			'preference'      : 'Настройки', // from v2.1.26 added 28.6.2017
-			'language'        : 'Настройки языка', // from v2.1.26 added 28.6.2017
-			'clearBrowserData': 'Инициализировать настройки, сохраненные в этом браузере', // from v2.1.26 added 28.6.2017
+			'language'        : 'Язык', // from v2.1.26 added 28.6.2017
+			'clearBrowserData': 'Сбросить настройки для этого браузера', // from v2.1.26 added 28.6.2017
+			'toolbarPref'     : 'Настройки панели', // from v2.1.27 added 2.8.2017
+			'charsLeft'       : '... еще символов: $1.',  // from v2.1.29 added 30.8.2017
+			'sum'             : 'Общий размер', // from v2.1.29 added 28.9.2017
+			'roughFileSize'   : 'Приблизительный размер файла', // from v2.1.30 added 2.11.2017
+			'autoFocusDialog' : 'Фокус на элементе диалога при наведении мыши',  // from v2.1.30 added 2.11.2017
+			'select'          : 'Выбрать', // from v2.1.30 added 23.11.2017
+			'selectAction'    : 'Действие при выборе файла', // from v2.1.30 added 23.11.2017
+			'useStoredEditor' : 'Открывать в редакторе, использованном последний раз', // from v2.1.30 added 23.11.2017
+			'selectinvert'    : 'Выбрать элементы с инвертированием', // from v2.1.30 added 25.11.2017
+			'renameMultiple'  : 'Переименовать выбранные элементы ($1 шт.) в $2?<br/>Действие нельзя отменить!', // from v2.1.31 added 4.12.2017
+			'batchRename'     : 'Групповое переименование', // from v2.1.31 added 8.12.2017
+			'plusNumber'      : '+ Число', // from v2.1.31 added 8.12.2017
+			'asPrefix'        : 'Добавить префикс', // from v2.1.31 added 8.12.2017
+			'asSuffix'        : 'Добавить суффикс', // from v2.1.31 added 8.12.2017
+			'changeExtention' : 'Изменить расширение', // from v2.1.31 added 8.12.2017
 
 			/********************************** mimetypes **********************************/
 			'kindUnknown'     : 'Неизвестный',
 			'kindRoot'        : 'Корень тома', // from v2.1.16 added 16.10.2016
 			'kindFolder'      : 'Папка',
+			'kindSelects'     : 'Выбор', // from v2.1.29 added 29.8.2017
 			'kindAlias'       : 'Ссылка',
 			'kindAliasBroken' : 'Битая ссылка',
 			// applications

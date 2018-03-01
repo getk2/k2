@@ -2,7 +2,7 @@
  * Czech translation
  * @author Jay Gridley <gridley.jay@hotmail.com>
  * @author RobiNN <kelcakrobo@gmail.com>
- * @version 2017-06-23
+ * @version 2017-11-25
  */
 (function(root, factory) {
 	if (typeof define === 'function' && define.amd) {
@@ -15,7 +15,7 @@
 }(this, function(elFinder) {
 	elFinder.prototype.i18.cs = {
 		translator : 'Jay Gridley &lt;gridley.jay@hotmail.com&gt;, RobiNN &lt;kelcakrobo@gmail.com&gt;',
-		language   : 'čeština',
+		language   : 'Čeština',
 		direction  : 'ltr',
 		dateFormat : 'd. m. Y H:i', // Mar 13, 2012 05:27 PM
 		fancyDateFormat : '$1 H:i', // will produce smth like: Today 12:25 PM
@@ -107,7 +107,7 @@
 			'errExtractExec'       : 'Chyba při extrahování souboru: "$1"',
 			'errNetUnMount'        : 'Nepodařilo se odpojit', // from v2.1 added 30.04.2012
 			'errConvUTF8'          : 'Nelze převést na UTF-8', // from v2.1 added 08.04.2014
-			'errFolderUpload'      : 'Pokud chcete nahrát do složky, zkuste použít prohlížeč Google Chrome.', // from v2.1 added 26.6.2015
+			'errFolderUpload'      : 'Chcete-li nahrát složku, zkuste moderní prohlížeč.', // from v2.1 added 26.6.2015
 			'errSearchTimeout'     : 'Vypršení časového limitu při hledání "$1". Je částečně výsledkem hledání.', // from v2.1 added 12.1.2016
 			'errReauthRequire'     : 'Opětovné povolení je nutné.', // from v2.1.10 added 24.3.2016
 			'errMaxTargets'        : 'Maximální počet volitelných předmětů je $1.', // from v2.1.17 added 17.10.2016
@@ -156,6 +156,12 @@
 			'cmdfullscreen': 'Celá obrazovka', // from v2.1.15 added 03.08.2016
 			'cmdmove'      : 'Posouvat', // from v2.1.15 added 21.08.2016
 			'cmdempty'     : 'Vyprázdnit složku', // from v2.1.25 added 22.06.2017
+			'cmdundo'      : 'Krok zpět', // from v2.1.27 added 31.07.2017
+			'cmdredo'      : 'Udělat to znovu', // from v2.1.27 added 31.07.2017
+			'cmdpreference': 'Preference', // from v2.1.27 added 03.08.2017
+			'cmdselectall' : 'Vyberat vše', // from v2.1.28 added 15.08.2017
+			'cmdselectnone': 'Nic nevyberať', // from v2.1.28 added 15.08.2017
+			'cmdselectinvert': 'Invertovat výběr', // from v2.1.28 added 15.08.2017
 
 			/*********************************** buttons ***********************************/
 			'btnClose'  : 'Zavřít',
@@ -188,10 +194,10 @@
 			'ntfreload'   : 'Obnovování obsahu složky',
 			'ntfmkdir'    : 'Vytváření složky',
 			'ntfmkfile'   : 'Vytváření souborů',
-			'ntfrm'       : 'Mazání souborů',
-			'ntfcopy'     : 'Kopírování souborů',
-			'ntfmove'     : 'Přesunování souborů',
-			'ntfprepare'  : 'Příprava ke kopírování souborů',
+			'ntfrm'       : 'Vymazání položek',
+			'ntfcopy'     : 'Kopírování položek',
+			'ntfmove'     : 'Přemístění položek',
+			'ntfprepare'  : 'Kontrola existujících položek',
 			'ntfrename'   : 'Přejmenovávání souborů',
 			'ntfupload'   : 'Nahrávání souborů',
 			'ntfdownload' : 'Stahování souborů',
@@ -215,6 +221,8 @@
 			'ntftrash'    : 'Hodit do koše', // from v2.1.24 added 2.5.2017
 			'ntfrestore'  : 'Obnova z koše', // from v2.1.24 added 3.5.2017
 			'ntfchkdir'   : 'Kontrola cílové složky', // from v2.1.24 added 3.5.2017
+			'ntfundo'     : 'Zrušit  předchozí operaci', // from v2.1.27 added 31.07.2017
+			'ntfredo'     : 'Obnovit předchozí zrušení', // from v2.1.27 added 31.07.2017
 
 			/*********************************** volumes *********************************/
 			'volume_Trash' : 'Koš', //from v2.1.24 added 29.4.2017
@@ -299,10 +307,10 @@
 			'noaccess'        : 'přístup odepřen',
 			'and'             : 'a',
 			'unknown'         : 'neznámý',
-			'selectall'       : 'Vybrat všechny soubory',
-			'selectfiles'     : 'Vybrat soubor(y)',
-			'selectffile'     : 'Vybrat první soubor',
-			'selectlfile'     : 'Vybrat poslední soubor',
+			'selectall'       : 'Vybrat všechny položky',
+			'selectfiles'     : 'Vybrat položku(y)',
+			'selectffile'     : 'Vybrat první položku',
+			'selectlfile'     : 'Vybrat poslední položku',
 			'viewlist'        : 'Seznam',
 			'viewicons'       : 'Ikony',
 			'places'          : 'Místa',
@@ -415,14 +423,27 @@
 			'firstLetterSearch': 'Hledání prvního listu', // from v2.1.23 added 24.3.2017
 			'presets'         : 'Předvolby', // from v2.1.25 added 26.5.2017
 			'tooManyToTrash'  : 'Je to příliš mnoho položek, takže se nemohou dostat do koše.', // from v2.1.25 added 9.6.2017
-			'TextArea'        : 'TextArea', // from v2.1.25 added 14.6.2017
+			'TextArea'        : 'Textarea', // from v2.1.25 added 14.6.2017
 			'folderToEmpty'   : 'Vyprázdnit složku "$1".', // from v2.1.25 added 22.6.2017
 			'filderIsEmpty'   : 'Ve složce "$1" nejsou žádné položky.', // from v2.1.25 added 22.6.2017
+			'preference'      : 'Preference', // from v2.1.26 added 28.6.2017
+			'language'        : 'Nastavte jazyk', // from v2.1.26 added 28.6.2017
+			'clearBrowserData': 'Inicializujte nastavení uložená v tomto prohlížeči', // from v2.1.26 added 28.6.2017
+			'toolbarPref'     : 'Nastavení panelu nástrojů', // from v2.1.27 added 2.8.2017
+			'charsLeft'       : '...$1 znaků zbývá.',  // from v2.1.29 added 30.8.2017
+			'sum'             : 'Součet', // from v2.1.29 added 28.9.2017
+			'roughFileSize'   : 'Hrubá velikost souboru', // from v2.1.30 added 2.11.2017
+			'autoFocusDialog' : 'Zaměření na prvek dialogu s mouseover',  // from v2.1.30 added 2.11.2017
+			'select'          : 'Vybrat', // from v2.1.30 added 23.11.2017
+			'selectAction'    : 'Akce při vybraném souboru', // from v2.1.30 added 23.11.2017
+			'useStoredEditor' : 'Otevřít pomocí naposledy použitého editoru', // from v2.1.30 added 23.11.2017
+			'selectinvert'    : 'Obrátit výběr položek', // from v2.1.30 added 25.11.2017
 
 			/********************************** mimetypes **********************************/
 			'kindUnknown'     : 'Neznámý',
 			'kindRoot'        : 'Kořen média', // from v2.1.16 added 16.10.2016
 			'kindFolder'      : 'Složka',
+			'kindSelects'     : 'Výběry', // from v2.1.29 added 29.8.2017
 			'kindAlias'       : 'Alias',
 			'kindAliasBroken' : 'Zlomený alias',
 			// applications

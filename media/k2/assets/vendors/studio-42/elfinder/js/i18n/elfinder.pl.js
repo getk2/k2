@@ -1,10 +1,11 @@
 /**
- * Polish translation
+ * Polski translation
  * @author Marcin Mikołajczyk <marcin@pjwstk.edu.pl>
  * @author Wojciech Jabłoński <www.jablonski@gmail.com>
  * @author Bogusław Zięba <bobi@poczta.fm>
- * @version 2017-08-06
-*/
+ * @author Bogusław Zięba <bobi@poczta.fm>
+ * @version 2017-11-30
+ */
 (function(root, factory) {
 	if (typeof define === 'function' && define.amd) {
 		define(['elfinder'], factory);
@@ -15,7 +16,7 @@
 	}
 }(this, function(elFinder) {
 	elFinder.prototype.i18.pl = {
-		translator : 'Marcin Mikołajczyk &lt;marcin@pjwstk.edu.pl&gt;, Wojciech Jabłoński &lt;www.jablonski@gmail.com&gt;, Bogusław Zięba &lt;bobi@poczta.fm&gt;',
+		translator : 'Marcin Mikołajczyk &lt;marcin@pjwstk.edu.pl&gt;, Wojciech Jabłoński &lt;www.jablonski@gmail.com&gt;, Bogusław Zięba &lt;bobi@poczta.fm&gt;, Bogusław Zięba &lt;bobi@poczta.fm&gt;',
 		language   : 'Polski',
 		direction  : 'ltr',
 		dateFormat : 'd.m.Y H:i', // Mar 13, 2012 05:27 PM
@@ -129,7 +130,7 @@
 			'cmdforward'   : 'Dalej',
 			'cmdgetfile'   : 'Wybierz pliki',
 			'cmdhelp'      : 'Informacje o programie',
-			'cmdhome'      : 'Katalog główny',
+			'cmdhome'      : 'Główny',
 			'cmdinfo'      : 'Właściwości',
 			'cmdmkdir'     : 'Nowy katalog',
 			'cmdmkdirin'   : 'Do nowego katalogu', // from v2.1.7 added 19.2.2016
@@ -160,6 +161,9 @@
 			'cmdundo'      : 'Cofnij', // from v2.1.27 added 31.07.2017
 			'cmdredo'      : 'Ponów', // from v2.1.27 added 31.07.2017
 			'cmdpreference': 'Preferencje', // from v2.1.27 added 03.08.2017
+			'cmdselectall' : 'Zaznacz wszystko', // from v2.1.28 added 15.08.2017
+			'cmdselectnone': 'Odznacz wszystko', // from v2.1.28 added 15.08.2017
+			'cmdselectinvert': 'Odwróć wybór', // from v2.1.28 added 15.08.2017
 
 			/*********************************** buttons ***********************************/
 			'btnClose'  : 'Zamknij',
@@ -428,11 +432,20 @@
 			'language'        : 'Ustawienie języka', // from v2.1.26 added 28.6.2017
 			'clearBrowserData': 'Zainicjuj ustawienia zapisane w tej przeglądarce', // from v2.1.26 added 28.6.2017
 			'toolbarPref'     : 'Ustawienia paska narzędzi', // from v2.1.27 added 2.8.2017
+			'charsLeft'       : '... pozostało $1 znak(ów).',  // from v2.1.29 added 30.8.2017
+			'sum'             : 'Suma', // from v2.1.29 added 28.9.2017
+			'roughFileSize'   : 'Przybliżony rozmiar pliku', // from v2.1.30 added 2.11.2017
+			'autoFocusDialog' : 'Skoncentruj się na elemencie dialogowym po najechaniu myszą',  // from v2.1.30 added 2.11.2017
+			'select'          : 'Wybierz', // from v2.1.30 added 23.11.2017
+			'selectAction'    : 'Działanie po wybraniu pliku', // from v2.1.30 added 23.11.2017
+			'useStoredEditor' : 'Otwórz za pomocą ostatnio używanego edytora', // from v2.1.30 added 23.11.2017
+			'selectinvert'    : 'Odwróć zaznaczenie', // from v2.1.30 added 25.11.2017
 
 			/********************************** mimetypes **********************************/
 			'kindUnknown'     : 'Nieznany',
 			'kindRoot'        : 'Główny Wolumin', // from v2.1.16 added 16.10.2016
 			'kindFolder'      : 'Katalog',
+			'kindSelects'     : 'Zaznaczenie', // from v2.1.29 added 29.8.2017
 			'kindAlias'       : 'Alias',
 			'kindAliasBroken' : 'Utracony alias',
 			// applications
