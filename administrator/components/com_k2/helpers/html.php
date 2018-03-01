@@ -177,9 +177,9 @@ class K2HelperHTML
 
                 // Flatpickr
                 if ($view == 'item' || $view == 'extrafield') {
-                    $document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/flatpickr/3.0.7/flatpickr.min.css');
-                    $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/flatpickr/3.0.7/flatpickr.min.js');
-                    $document->addCustomTag('<!--[if IE 9]><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/3.0.7/ie.css" /><![endif]-->');
+                    $document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.3.2/flatpickr.min.css');
+                    $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.3.2/flatpickr.min.js');
+                    $document->addCustomTag('<!--[if IE 9]><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.3.2/ie.css" /><![endif]-->');
                 }
 
                 // Magnific Popup
@@ -194,8 +194,8 @@ class K2HelperHTML
 
                 // Fancybox
                 if ($view == 'item' || $view == 'items' || $view == 'categories') {
-                    $document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css');
-                    $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js');
+                    $document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css');
+                    $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js');
                 }
 
                 // CSS
