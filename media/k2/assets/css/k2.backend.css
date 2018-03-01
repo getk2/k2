@@ -631,7 +631,9 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 /* Admin - Media Manager */
 .K2AdminViewMedia {border-left:1px solid #d3d3d3;border-bottom:1px solid #d3d3d3;}
 	#elfinderContainer {width:auto;padding:4px;margin:0;}
-		.isJ30.k2IsBackend #elfinder input {width:95%;} /* Fix for Joomla 3.2+ */
+		.isJ30 .elfinder-ltr .elfinder-button-search .ui-icon-search {left:4px;top:12px;}
+		.isJ30 .elfinder-ltr .elfinder-button-search .ui-icon-close,
+		.isJ30 .elfinder-rtl .elfinder-button-search .ui-icon-search {right:0;top:12px;}
 
 /* Lists - Generic styling */
 #k2AdminContainer {position:relative;width:auto;clear:both;margin-bottom:10px;}
