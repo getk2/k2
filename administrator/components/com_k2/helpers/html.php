@@ -68,9 +68,7 @@ class K2HelperHTML
             }
 
             if (version_compare(JVERSION, '3.0.0', 'ge')) {
-                if ($application->isAdmin() || ($application->isSite() && $params->get('jQueryHandling'))) {
-                    JHtml::_('jquery.framework');
-                }
+                JHtml::_('jquery.framework');
             }
 
             // jQuery
