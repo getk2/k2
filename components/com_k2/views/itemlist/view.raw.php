@@ -22,19 +22,18 @@ class K2ViewItemlist extends K2View
         $limitstart = JRequest::getInt('limitstart');
         $view = JRequest::getWord('view');
         $task = JRequest::getWord('task');
-        $theme = $params->get('theme');
 
-        //Add link
+        // Add link
         if (K2HelperPermissions::canAddItem()) {
             $addLink = JRoute::_('index.php?option=com_k2&view=item&task=add&tmpl=component');
         }
         $this->assignRef('addLink', $addLink);
 
-        //Get data depending on task
+        // Get data depending on task
         switch ($task) {
 
             case 'category':
-                //Get category
+                // Get category
                 $id = JRequest::getInt('id');
                 JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
                 $category = JTable::getInstance('K2Category', 'Table');
@@ -45,7 +44,7 @@ class K2ViewItemlist extends K2View
                     JError::raiseError(404, JText::_('K2_CATEGORY_NOT_FOUND'));
                 }
 
-                //Access check
+                // Access check
                 $user = JFactory::getUser();
                 if (K2_JVERSION != '15') {
                     if (!in_array($category->access, $user->getAuthorisedViewLevels())) {
@@ -83,7 +82,7 @@ class K2ViewItemlist extends K2View
                     unset($this->addLink);
                 }
 
-                //Merge params
+                // Merge params
                 $cparams = class_exists('JParameter') ? new JParameter($category->params) : new JRegistry($category->params);
                 if ($cparams->get('inheritFrom')) {
                     $masterCategory = JTable::getInstance('K2Category', 'Table');
@@ -92,13 +91,13 @@ class K2ViewItemlist extends K2View
                 }
                 $params->merge($cparams);
 
-                //Category link
+                // Category link
                 $category->link = urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($category->id.':'.urlencode($category->alias))));
 
-                //Category image
+                // Category image
                 $category->image = K2HelperUtilities::getCategoryImage($category->image, $params);
 
-                //Category plugins
+                // Category plugins
                 $dispatcher = JDispatcher::getInstance();
                 JPluginHelper::importPlugin('content');
                 $category->text = $category->description;
@@ -111,7 +110,7 @@ class K2ViewItemlist extends K2View
 
                 $category->description = $category->text;
 
-                //Category K2 plugins
+                // Category K2 plugins
                 $category->event->K2CategoryDisplay = '';
                 JPluginHelper::importPlugin('k2');
                 $results = $dispatcher->trigger('onK2CategoryDisplay', array(&$category, &$params, $limitstart));
@@ -123,7 +122,7 @@ class K2ViewItemlist extends K2View
                 $this->assignRef('category', $category);
                 $this->assignRef('user', $user);
 
-                //Category children
+                // Category children
                 $ordering = $params->get('subCatOrdering');
                 $children = $model->getCategoryFirstChildren($id, $ordering);
                 if (count($children)) {
@@ -138,16 +137,16 @@ class K2ViewItemlist extends K2View
                     $this->assignRef('subCategories', $subCategories);
                 }
 
-                //Set limit
+                // Set limit
                 $limit = $params->get('num_leading_items') + $params->get('num_primary_items') + $params->get('num_secondary_items') + $params->get('num_links');
 
-                //Set featured flag
+                // Set featured flag
                 JRequest::setVar('featured', $params->get('catFeaturedItems'));
 
-                //Set layout
+                // Set layout
                 $this->setLayout('category');
 
-                //Set title
+                // Set title
                 $title = $category->name;
 
                 // Set ordering
@@ -160,22 +159,22 @@ class K2ViewItemlist extends K2View
                 break;
 
             case 'user':
-                //Get user
+                // Get user
                 $id = JRequest::getInt('id');
                 $userObject = JFactory::getUser($id);
 
-                //Check user status
+                // Check user status
                 if ($userObject->block) {
                     JError::raiseError(404, JText::_('K2_USER_NOT_FOUND'));
                 }
 
-                //Get K2 user profile
+                // Get K2 user profile
                 $userObject->profile = $model->getUserProfile();
 
-                //User image
+                // User image
                 $userObject->avatar = K2HelperUtilities::getAvatar($userObject->id, $userObject->email, $params->get('userImageWidth'));
 
-                //User K2 plugins
+                // User K2 plugins
                 $userObject->event->K2UserDisplay = '';
                 if (is_object($userObject->profile) && $userObject->profile->id > 0) {
                     $dispatcher = JDispatcher::getInstance();
@@ -187,13 +186,13 @@ class K2ViewItemlist extends K2View
 
                 $this->assignRef('user', $userObject);
 
-                //Set layout
+                // Set layout
                 $this->setLayout('user');
 
-                //Set limit
+                // Set limit
                 $limit = $params->get('userItemCount');
 
-                //Set title
+                // Set title
                 $title = $userObject->name;
 
                 // Set ordering
@@ -202,10 +201,10 @@ class K2ViewItemlist extends K2View
                 break;
 
             case 'tag':
-                //Set layout
+                // Set layout
                 $this->setLayout('tag');
 
-                //Set limit
+                // Set limit
                 $limit = $params->get('tagItemCount');
 
                 // Prevent spammers from using the tag view
@@ -218,7 +217,7 @@ class K2ViewItemlist extends K2View
                     return false;
                 }
 
-                //set title
+                // set title
                 $title = JText::_('K2_DISPLAYING_ITEMS_BY_TAG').' '.$tag->name;
 
                 // Set ordering
@@ -226,22 +225,22 @@ class K2ViewItemlist extends K2View
                 break;
 
             case 'search':
-                //Set layout
+                // Set layout
                 $this->setLayout('generic');
                 $tpl = JRequest::getCmd('tpl', null);
 
-                //Set limit
+                // Set limit
                 $limit = $params->get('genericItemCount');
 
-                //Set title
+                // Set title
                 $title = JText::_('K2_SEARCH_RESULTS_FOR').' '.JRequest::getVar('searchword');
                 break;
 
             case 'date':
-                //Set layout
+                // Set layout
                 $this->setLayout('generic');
 
-                //Set limit
+                // Set limit
                 $limit = $params->get('genericItemCount');
 
                 // Set title
@@ -259,17 +258,17 @@ class K2ViewItemlist extends K2View
                 break;
 
             default:
-                //Set layout
+                // Set layout
                 $this->setLayout('category');
                 $user = JFactory::getUser();
                 $this->assignRef('user', $user);
 
-                //Set limit
+                // Set limit
                 $limit = $params->get('num_leading_items') + $params->get('num_primary_items') + $params->get('num_secondary_items') + $params->get('num_links');
                 //Set featured flag
                 JRequest::setVar('featured', $params->get('catFeaturedItems'));
 
-                //Set title
+                // Set title
                 $title = $params->get('page_title');
 
                 // Set ordering
@@ -278,7 +277,7 @@ class K2ViewItemlist extends K2View
                 break;
         }
 
-        //Set limit for model
+        // Set limit for model
         JRequest::setVar('limit', $limit);
 
         if (!isset($ordering)) {
@@ -287,18 +286,18 @@ class K2ViewItemlist extends K2View
             $items = $model->getData($ordering);
         }
 
-        //Pagination
+        // Pagination
         jimport('joomla.html.pagination');
         $total = count($items) ? $model->getTotal() : 0;
         $pagination = new JPagination($total, $limitstart, $limit);
 
-        //Prepare items
+        // Prepare items
         $user = JFactory::getUser();
         $cache = JFactory::getCache('com_k2_extended');
         $model = $this->getModel('item');
         for ($i = 0; $i < sizeof($items); $i++) {
 
-            //Item group
+            // Item group
             if ($task == "category" || $task == "") {
                 if ($i < ($params->get('num_links') + $params->get('num_leading_items') + $params->get('num_primary_items') + $params->get('num_secondary_items'))) {
                     $items[$i]->itemGroup = 'links';
@@ -314,7 +313,7 @@ class K2ViewItemlist extends K2View
                 }
             }
 
-            //Check if model should use cache for preparing item even if user is logged in
+            // Check if model should use cache for preparing item even if user is logged in
             if ($user->guest || $task == 'tag' || $task == 'search' || $task == 'date') {
                 $cacheFlag = true;
             } else {
@@ -324,7 +323,7 @@ class K2ViewItemlist extends K2View
                 }
             }
 
-            //Prepare item
+            // Prepare item
             if ($cacheFlag) {
                 $hits = $items[$i]->hits;
                 $items[$i]->hits = 0;
@@ -335,21 +334,21 @@ class K2ViewItemlist extends K2View
                 $items[$i] = $model->prepareItem($items[$i], $view, $task);
             }
 
-            //Plugins
+            // Plugins
             $items[$i] = $model->execPlugins($items[$i], $view, $task);
 
-            //Trigger comments counter event
+            // Trigger comments counter event
             $dispatcher = JDispatcher::getInstance();
             JPluginHelper::importPlugin('k2');
             $results = $dispatcher->trigger('onK2CommentsCounter', array(&$items[$i], &$params, $limitstart));
             $items[$i]->event->K2CommentsCounter = trim(implode("\n", $results));
         }
 
-        //Pathway
+        // Pathway
         $pathway = $application->getPathWay();
         $pathway->addItem($title);
 
-        //Feed link
+        // Feed link
         $config = JFactory::getConfig();
         $menu = $application->getMenu();
         $default = $menu->getDefault();
@@ -369,7 +368,7 @@ class K2ViewItemlist extends K2View
         $feed = JRoute::_($link);
         $this->assignRef('feed', $feed);
 
-        //Assign data
+        // Assign data
         if ($task == "category" || $task == "") {
             $leading = @array_slice($items, 0, $params->get('num_leading_items'));
             $primary = @array_slice($items, $params->get('num_leading_items'), $params->get('num_primary_items'));
@@ -383,7 +382,7 @@ class K2ViewItemlist extends K2View
             $this->assignRef('items', $items);
         }
 
-        //Set default values to avoid division by zero
+        // Set default values to avoid division by zero
         if ($params->get('num_leading_columns') == 0) {
             $params->set('num_leading_columns', 1);
         }
@@ -410,6 +409,7 @@ class K2ViewItemlist extends K2View
         $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2');
         $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/default');
 
+        $theme = $params->get('theme');
         if ($theme) {
             $this->_addPath('template', JPATH_COMPONENT.'/templates/'.$theme);
             $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/'.$theme);

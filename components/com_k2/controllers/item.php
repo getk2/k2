@@ -82,7 +82,6 @@ class K2ControllerItem extends K2Controller
         $params = K2HelperUtilities::getParams('com_k2');
         $language = JFactory::getLanguage();
         $language->load('com_k2', JPATH_ADMINISTRATOR);
-        $theme = $params->get('theme');
 
         K2HelperHTML::loadHeadIncludes(true, true, true);
 
@@ -109,6 +108,7 @@ class K2ControllerItem extends K2Controller
         $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2');
         $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/default');
 
+        $theme = $params->get('theme');
         if ($theme) {
             $this->_addPath('template', JPATH_COMPONENT.'/templates/'.$theme);
             $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/'.$theme);

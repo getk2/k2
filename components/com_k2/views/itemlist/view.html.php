@@ -23,7 +23,6 @@ class K2ViewItemlist extends K2View
         $view = JRequest::getWord('view');
         $task = JRequest::getWord('task');
         $db = JFactory::getDbo();
-        $theme = $params->get('theme');
 
         // Add link
         if (K2HelperPermissions::canAddItem()) {
@@ -672,6 +671,7 @@ class K2ViewItemlist extends K2View
         $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2');
         $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/default');
 
+        $theme = $params->get('theme');
         if ($theme) {
             $this->_addPath('template', JPATH_COMPONENT.'/templates/'.$theme);
             $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/'.$theme);

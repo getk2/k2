@@ -25,7 +25,6 @@ class K2ViewLatest extends K2View
         $limitstart = JRequest::getInt('limitstart');
         $model = $this->getModel('itemlist');
         $itemModel = $this->getModel('item');
-        $theme = $params->get('theme');
 
         if ($params->get('source')) {
             $categoryIDs = $params->get('categoryIDs');
@@ -243,6 +242,7 @@ class K2ViewLatest extends K2View
         $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2');
         $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/default');
 
+        $theme = $params->get('theme');
         if ($theme) {
             $this->_addPath('template', JPATH_COMPONENT.'/templates/'.$theme);
             $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/'.$theme);
