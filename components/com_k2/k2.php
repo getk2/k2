@@ -24,8 +24,9 @@ if (K2_JVERSION != '15')
 }
 
 JLoader::register('K2Controller', JPATH_COMPONENT.'/controllers/controller.php');
-JLoader::register('K2Model', JPATH_COMPONENT_ADMINISTRATOR.'/models/model.php');
 JLoader::register('K2View', JPATH_COMPONENT_ADMINISTRATOR.'/views/view.php');
+JLoader::register('K2Model', JPATH_COMPONENT_ADMINISTRATOR.'/models/model.php');
+
 JLoader::register('K2HelperRoute', JPATH_COMPONENT.'/helpers/route.php');
 JLoader::register('K2HelperPermissions', JPATH_COMPONENT.'/helpers/permissions.php');
 JLoader::register('K2HelperUtilities', JPATH_COMPONENT.'/helpers/utilities.php');

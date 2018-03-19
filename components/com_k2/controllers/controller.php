@@ -11,39 +11,28 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.controller');
 
-if (version_compare(JVERSION, '3.0', 'ge'))
-{
+if (version_compare(JVERSION, '3.0', 'ge')) {
     class K2Controller extends JControllerLegacy
     {
         public function display($cachable = false, $urlparams = array())
         {
             parent::display($cachable, $urlparams);
         }
-
     }
-
-}
-else if (version_compare(JVERSION, '2.5', 'ge'))
-{
+} elseif (version_compare(JVERSION, '2.5', 'ge')) {
     class K2Controller extends JController
     {
         public function display($cachable = false, $urlparams = false)
         {
             parent::display($cachable, $urlparams);
         }
-
     }
-
-}
-else
-{
+} else {
     class K2Controller extends JController
     {
         public function display($cachable = false)
         {
             parent::display($cachable);
         }
-
     }
-
 }
