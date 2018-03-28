@@ -635,6 +635,37 @@ class K2ViewItem extends K2View
 		}
 		$this->assignRef('sigPro', $sigPro);
 
+		// For frontend editing
+		if ($application->isSite()) {
+	        // Lookup template folders
+	        $this->_addPath('template', JPATH_COMPONENT.'/templates');
+	        $this->_addPath('template', JPATH_COMPONENT.'/templates/default');
+
+	        $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates');
+	        $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/default');
+
+	        $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2');
+	        $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/default');
+
+	        $theme = $params->get('theme');
+	        if ($theme) {
+	            $this->_addPath('template', JPATH_COMPONENT.'/templates/'.$theme);
+	            $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/'.$theme);
+	            $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/'.$theme);
+	        }
+
+	        // Allow temporary template loading with ?template=
+	        $template = JRequest::getCmd('template');
+	        if (isset($template)) {
+	            // Look for overrides in template folder (new K2 template structure)
+	            $this->_addPath('template', JPATH_SITE.'/templates/'.$template.'/html/com_k2');
+	            $this->_addPath('template', JPATH_SITE.'/templates/'.$template.'/html/com_k2/default');
+	            if ($theme) {
+	                $this->_addPath('template', JPATH_SITE.'/templates/'.$template.'/html/com_k2/'.$theme);
+	            }
+	        }
+		}
+
 		parent::display($tpl);
 	}
 }

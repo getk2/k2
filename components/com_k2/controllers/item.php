@@ -98,34 +98,6 @@ class K2ControllerItem extends K2Controller
             JRequest::setVar('catid', $params->get('category'));
         }
 
-        // Lookup template folders
-        $this->_addPath('template', JPATH_COMPONENT.'/templates');
-        $this->_addPath('template', JPATH_COMPONENT.'/templates/default');
-
-        $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates');
-        $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/default');
-
-        $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2');
-        $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/default');
-
-        $theme = $params->get('theme');
-        if ($theme) {
-            $this->_addPath('template', JPATH_COMPONENT.'/templates/'.$theme);
-            $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/'.$theme);
-            $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/'.$theme);
-        }
-
-        // Allow temporary template loading with ?template=
-        $template = JRequest::getCmd('template');
-        if (isset($template)) {
-            // Look for overrides in template folder (new K2 template structure)
-            $this->_addPath('template', JPATH_SITE.'/templates/'.$template.'/html/com_k2');
-            $this->_addPath('template', JPATH_SITE.'/templates/'.$template.'/html/com_k2/default');
-            if ($theme) {
-                $this->_addPath('template', JPATH_SITE.'/templates/'.$template.'/html/com_k2/'.$theme);
-            }
-        }
-
         $view->display();
     }
 
