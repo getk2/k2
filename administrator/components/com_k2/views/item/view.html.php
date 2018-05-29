@@ -72,7 +72,8 @@ class K2ViewItem extends K2View
 		JFilterOutput::objectHTMLSafe($item, ENT_QUOTES, array(
 			'video',
 			'params',
-			'plugins'
+			'plugins',
+			'metadata'
 		));
 
 		// Permissions check for frontend editing
