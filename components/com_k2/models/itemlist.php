@@ -86,7 +86,7 @@ class K2ModelItemlist extends K2Model
             $query .= " AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )";
         }
 
-        //Build query depending on task
+        // Build query depending on task
         switch ($task) {
 
             case 'category':
@@ -199,11 +199,13 @@ class K2ModelItemlist extends K2Model
 
                 $query .= " AND i.id IN (SELECT itemID FROM #__k2_tags_xref WHERE tagID=".(int)$result.")";
 
-                /*if (isset($result) && $result > 0) {
-                 $query .= " AND (tags.id) = {$result}";
-                 } else {
-                 $query .= " AND (tags.name) = ".$db->Quote($tag);
-                 }*/
+                /*
+                if (isset($result) && $result > 0) {
+                    $query .= " AND (tags.id) = {$result}";
+                } else {
+                    $query .= " AND (tags.name) = ".$db->Quote($tag);
+                }
+                */
 
                 $categories = $params->get('categoriesFilter', null);
                 if (is_array($categories)) {
@@ -234,7 +236,7 @@ class K2ModelItemlist extends K2Model
                 break;
         }
 
-        //Set featured flag
+        // Set featured flag
         if ($task == 'category' || empty($task)) {
             if (JRequest::getInt('featured') == '0') {
                 $query .= " AND i.featured != 1";
@@ -243,10 +245,10 @@ class K2ModelItemlist extends K2Model
             }
         }
 
-        //Remove duplicates
+        // Remove duplicates
         //$query .= " GROUP BY i.id";
 
-        //Set ordering
+        // Set ordering
         switch ($ordering) {
 
             case 'date':
@@ -356,7 +358,7 @@ class K2ModelItemlist extends K2Model
             if ($languageFilter) {
                 $languageTag = JFactory::getLanguage()->getTag();
                 $query .= " AND c.language IN (".$db->quote($languageTag).", ".$db->quote('*').")
-						AND i.language IN (".$db->quote($languageTag).", ".$db->quote('*').")";
+                        AND i.language IN (".$db->quote($languageTag).", ".$db->quote('*').")";
             }
         } else {
             $query .= "i.access <= {$aid}"." AND i.trash = 0"." AND c.published = 1"." AND c.access <= {$aid}"." AND c.trash = 0";
@@ -365,7 +367,7 @@ class K2ModelItemlist extends K2Model
         $query .= " AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )";
         $query .= " AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )";
 
-        //Build query depending on task
+        // Build query depending on task
         switch ($task) {
 
             case 'category':
@@ -503,7 +505,7 @@ class K2ModelItemlist extends K2Model
                 break;
         }
 
-        //Set featured flag
+        // Set featured flag
         if ($task == 'category' || empty($task)) {
             if (JRequest::getVar('featured') == '0') {
                 $query .= " AND i.featured != 1";
@@ -540,13 +542,13 @@ class K2ModelItemlist extends K2Model
         $array = $categories;
         while (count($array)) {
             $query = "SELECT id
-						FROM #__k2_categories
-						WHERE parent IN (".implode(',', $array).")
-						AND id NOT IN (".implode(',', $array).") ";
+                        FROM #__k2_categories
+                        WHERE parent IN (".implode(',', $array).")
+                        AND id NOT IN (".implode(',', $array).") ";
             if ($application->isSite()) {
                 $query .= "
-								AND published=1
-								AND trash=0";
+                                AND published=1
+                                AND trash=0";
                 if (K2_JVERSION != '15') {
                     $query .= " AND access IN(".implode(',', $user->getAuthorisedViewLevels()).")";
                     if ($application->getLanguageFilter()) {
@@ -720,11 +722,11 @@ class K2ModelItemlist extends K2Model
         $nullDate = $db->getNullDate();
 
         $query = "SELECT i.*, c.alias as categoryalias FROM #__k2_items as i
-				LEFT JOIN #__k2_categories c ON c.id = i.catid
-				WHERE i.id != {$itemID}
-				AND i.published = 1
-				AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
-				AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." ) ";
+            LEFT JOIN #__k2_categories c ON c.id = i.catid
+            WHERE i.id != {$itemID}
+            AND i.published = 1
+            AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
+            AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." ) ";
 
         if (K2_JVERSION != '15') {
             $query .= " AND i.access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
@@ -736,9 +738,9 @@ class K2ModelItemlist extends K2Model
         }
 
         $query .= " AND i.trash = 0
-				AND i.created_by = {$userID}
-				AND i.created_by_alias=''
-				AND c.published = 1 ";
+            AND i.created_by = {$userID}
+            AND i.created_by_alias=''
+            AND c.published = 1 ";
 
         if (K2_JVERSION != '15') {
             $query .= " AND c.access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
@@ -750,13 +752,13 @@ class K2ModelItemlist extends K2Model
         }
 
         $query .= " AND c.trash = 0
-				ORDER BY i.created DESC";
+            ORDER BY i.created DESC";
 
         $db->setQuery($query, 0, $limit);
         $rows = $db->loadObjectList();
 
         foreach ($rows as $item) {
-            //Image
+            // Image
             $item->imageXSmall = '';
             $item->imageSmall = '';
             $item->imageMedium = '';
@@ -821,10 +823,10 @@ class K2ModelItemlist extends K2Model
         $sql = implode(',', $itemsIDs);
 
         $query = "SELECT i.*, c.alias as categoryalias FROM #__k2_items as i
-				LEFT JOIN #__k2_categories c ON c.id = i.catid
-				WHERE i.published = 1
-				AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
-				AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." ) ";
+            LEFT JOIN #__k2_categories c ON c.id = i.catid
+            WHERE i.published = 1
+            AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
+            AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." ) ";
 
         if (K2_JVERSION != '15') {
             $query .= " AND i.access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
@@ -836,7 +838,7 @@ class K2ModelItemlist extends K2Model
         }
 
         $query .= " AND i.trash = 0
-				AND c.published = 1 ";
+                AND c.published = 1 ";
 
         if (K2_JVERSION != '15') {
             $query .= " AND c.access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
@@ -848,8 +850,8 @@ class K2ModelItemlist extends K2Model
         }
 
         $query .= " AND c.trash = 0
-				AND (i.id) IN ({$sql})
-				ORDER BY i.created DESC";
+                AND (i.id) IN ({$sql})
+                ORDER BY i.created DESC";
 
         $db->setQuery($query, 0, $limit);
         $rows = $db->loadObjectList();
@@ -919,16 +921,16 @@ class K2ModelItemlist extends K2Model
                     $jfQuery .= " AND jfc.published=1";
                     $jfQuery .= " AND jfc.value LIKE ".$word;
                     $jfQuery .= " AND (jfc.reference_field = 'title'
-								OR jfc.reference_field = 'introtext'
-								OR jfc.reference_field = 'fulltext'
-								OR jfc.reference_field = 'image_caption'
-								OR jfc.reference_field = 'image_credits'
-								OR jfc.reference_field = 'video_caption'
-								OR jfc.reference_field = 'video_credits'
-								OR jfc.reference_field = 'extra_fields_search'
-								OR jfc.reference_field = 'metadesc'
-								OR jfc.reference_field = 'metakey'
-					)";
+                        OR jfc.reference_field = 'introtext'
+                        OR jfc.reference_field = 'fulltext'
+                        OR jfc.reference_field = 'image_caption'
+                        OR jfc.reference_field = 'image_credits'
+                        OR jfc.reference_field = 'video_caption'
+                        OR jfc.reference_field = 'video_credits'
+                        OR jfc.reference_field = 'extra_fields_search'
+                        OR jfc.reference_field = 'metadesc'
+                        OR jfc.reference_field = 'metakey'
+                    )";
                     $db->setQuery($jfQuery);
                     $result = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
                     $result = @array_unique($result);
@@ -951,16 +953,16 @@ class K2ModelItemlist extends K2Model
                         $jfQuery .= " AND jfc.published=1";
                         $jfQuery .= " AND jfc.value LIKE ".$word;
                         $jfQuery .= " AND (jfc.reference_field = 'title'
-									OR jfc.reference_field = 'introtext'
-									OR jfc.reference_field = 'fulltext'
-									OR jfc.reference_field = 'image_caption'
-									OR jfc.reference_field = 'image_credits'
-									OR jfc.reference_field = 'video_caption'
-									OR jfc.reference_field = 'video_credits'
-									OR jfc.reference_field = 'extra_fields_search'
-									OR jfc.reference_field = 'metadesc'
-									OR jfc.reference_field = 'metakey'
-						)";
+                            OR jfc.reference_field = 'introtext'
+                            OR jfc.reference_field = 'fulltext'
+                            OR jfc.reference_field = 'image_caption'
+                            OR jfc.reference_field = 'image_credits'
+                            OR jfc.reference_field = 'video_caption'
+                            OR jfc.reference_field = 'video_credits'
+                            OR jfc.reference_field = 'extra_fields_search'
+                            OR jfc.reference_field = 'metadesc'
+                            OR jfc.reference_field = 'metakey'
+                        )";
                         $db->setQuery($jfQuery);
                         $result = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
                         $result = @array_unique($result);
@@ -1057,7 +1059,7 @@ class K2ModelItemlist extends K2Model
         $user = JFactory::getUser();
         $aid = (int)$user->get('aid');
 
-        $query = "SELECT id, name,  parent	FROM #__k2_categories";
+        $query = "SELECT id, name,  parent  FROM #__k2_categories";
         if ($application->isSite()) {
             $query .= " WHERE published=1  AND trash=0";
             if (K2_JVERSION != '15') {
