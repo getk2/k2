@@ -810,7 +810,7 @@ class K2ModelItemlist extends K2Model
         $now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
         $nullDate = $db->getNullDate();
 
-        $query = "SELECT DISTINCT itemID FROM #__k2_tags_xref WHERE tagID IN ({$sql}) AND itemID!={$itemID}";
+        $query = "SELECT itemID FROM #__k2_tags_xref WHERE tagID IN ({$sql}) AND itemID!={$itemID} GROUP BY itemID";
         $db->setQuery($query);
         $itemsIDs = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
 
