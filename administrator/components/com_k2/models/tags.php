@@ -171,7 +171,7 @@ class K2ModelTags extends K2Model
 	function removeOrphans()
 	{
 		$db = JFactory::getDbo();
-		$db->setQuery("DELETE FROM #__k2_tags WHERE id NOT IN (SELECT DISTINCT tagID FROM #__k2_tags_xref)");
+		$db->setQuery("DELETE FROM #__k2_tags WHERE id NOT IN (SELECT tagID FROM #__k2_tags_xref GROUP BY tagID)");
 		$db->query();
 		$application = JFactory::getApplication();
 		$application->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));

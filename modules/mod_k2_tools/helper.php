@@ -45,24 +45,26 @@ class modK2ToolsHelper
                 $languageTag = JFactory::getLanguage()->getTag();
                 $languageCheck = "AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').")";
             }
-            $query = "SELECT DISTINCT created_by FROM #__k2_items
-	        WHERE {$where} published=1
-	        AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." )
-	        AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." )
-	        AND trash=0
-	        AND access IN(".implode(',', $user->getAuthorisedViewLevels()).")
-	        AND created_by_alias=''
-			{$languageCheck}
-	        AND EXISTS (SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") {$languageCheck})";
+            $query = "SELECT created_by FROM #__k2_items
+            WHERE {$where} published=1
+            AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." )
+            AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." )
+            AND trash=0
+            AND access IN(".implode(',', $user->getAuthorisedViewLevels()).")
+            AND created_by_alias=''
+            {$languageCheck}
+            AND EXISTS (SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") {$languageCheck})
+            GROUP BY created_by";
         } else {
-            $query = "SELECT DISTINCT created_by FROM #__k2_items
-	        WHERE {$where} published=1
-	        AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." )
-	        AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." )
-	        AND trash=0
-	        AND access<={$aid}
-	        AND created_by_alias=''
-	        AND EXISTS (SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND access<={$aid} )";
+            $query = "SELECT created_by FROM #__k2_items
+            WHERE {$where} published=1
+            AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." )
+            AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." )
+            AND trash=0
+            AND access<={$aid}
+            AND created_by_alias=''
+            AND EXISTS (SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND access<={$aid})
+            GROUP BY created_by";
         }
 
         $db->setQuery($query);
@@ -89,22 +91,22 @@ class modK2ToolsHelper
                         $languageCheck = "AND i.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") AND c.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').")";
                     }
                     $query = "SELECT i.*, c.alias as categoryalias FROM #__k2_items as i
-			        LEFT JOIN #__k2_categories c ON c.id = i.catid
-			        WHERE i.created_by = ".(int)$author->id."
-			        AND i.published = 1
-			        AND i.access IN(".implode(',', $user->getAuthorisedViewLevels()).")
-			        AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
-			        AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )
-			        AND i.trash = 0 AND created_by_alias='' AND c.published = 1 AND c.access IN(".implode(',', $user->getAuthorisedViewLevels()).") AND c.trash = 0 {$languageCheck} ORDER BY created DESC";
+                    LEFT JOIN #__k2_categories c ON c.id = i.catid
+                    WHERE i.created_by = ".(int)$author->id."
+                    AND i.published = 1
+                    AND i.access IN(".implode(',', $user->getAuthorisedViewLevels()).")
+                    AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
+                    AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )
+                    AND i.trash = 0 AND created_by_alias='' AND c.published = 1 AND c.access IN(".implode(',', $user->getAuthorisedViewLevels()).") AND c.trash = 0 {$languageCheck} ORDER BY created DESC";
                 } else {
                     $query = "SELECT i.*, c.alias as categoryalias FROM #__k2_items as i
-			        LEFT JOIN #__k2_categories c ON c.id = i.catid
-			        WHERE i.created_by = ".(int)$author->id."
-			        AND i.published = 1
-			        AND i.access <= {$aid}
-			        AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
-			        AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )
-			        AND i.trash = 0 AND created_by_alias='' AND c.published = 1 AND c.access <= {$aid} AND c.trash = 0 ORDER BY created DESC";
+                    LEFT JOIN #__k2_categories c ON c.id = i.catid
+                    WHERE i.created_by = ".(int)$author->id."
+                    AND i.published = 1
+                    AND i.access <= {$aid}
+                    AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
+                    AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )
+                    AND i.trash = 0 AND created_by_alias='' AND c.published = 1 AND c.access <= {$aid} AND c.trash = 0 ORDER BY created DESC";
                 }
 
                 $db->setQuery($query, 0, 1);
@@ -149,7 +151,7 @@ class modK2ToolsHelper
 
         $nullDate = $db->getNullDate();
 
-        $query = "SELECT DISTINCT MONTH(created) as m, YEAR(created) as y FROM #__k2_items  WHERE published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) AND trash=0";
+        $query = "SELECT DISTINCT MONTH(created) as m, YEAR(created) as y FROM #__k2_items WHERE published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) AND trash=0";
         if (K2_JVERSION != '15') {
             $query .= " AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
             if ($application->getLanguageFilter()) {
@@ -275,10 +277,10 @@ class modK2ToolsHelper
         }
 
         $query = "SELECT tag.name, tag.id
-        FROM #__k2_tags as tag
-        LEFT JOIN #__k2_tags_xref AS xref ON xref.tagID = tag.id
-        WHERE xref.itemID IN (".implode(',', $IDs).")
-        AND tag.published = 1";
+            FROM #__k2_tags as tag
+            LEFT JOIN #__k2_tags_xref AS xref ON xref.tagID = tag.id
+            WHERE xref.itemID IN (".implode(',', $IDs).")
+            AND tag.published = 1";
         $db->setQuery($query);
         $rows = $db->loadObjectList();
         $cloud = array();
@@ -519,10 +521,10 @@ class modK2ToolsHelper
         if ($level == 0) {
             echo '
 <div class="k2CategorySelectBlock '.$params->get('moduleclass_sfx').'">
-	<form action="'.JRoute::_('index.php').'" method="get">
-		<select name="category" onchange="window.location=this.form.category.value;">
-			<option value="'.JURI::base(true).'/">'.JText::_('K2_SELECT_CATEGORY').'</option>
-			';
+    <form action="'.JRoute::_('index.php').'" method="get">
+        <select name="category" onchange="window.location=this.form.category.value;">
+            <option value="'.JURI::base(true).'/">'.JText::_('K2_SELECT_CATEGORY').'</option>
+            ';
         }
         $indent = "";
         for ($i = 0; $i < $level; $i++) {
@@ -545,11 +547,11 @@ class modK2ToolsHelper
 
         if ($level == 0) {
             echo '
-			</select>
-			<input name="option" value="com_k2" type="hidden" />
-			<input name="view" value="itemlist" type="hidden" />
-			<input name="task" value="category" type="hidden" />
-			<input name="Itemid" value="'.JRequest::getInt('Itemid').'" type="hidden" />';
+            </select>
+            <input name="option" value="com_k2" type="hidden" />
+            <input name="view" value="itemlist" type="hidden" />
+            <input name="task" value="category" type="hidden" />
+            <input name="Itemid" value="'.JRequest::getInt('Itemid').'" type="hidden" />';
 
             // For Joom!Fish compatibility
             if (JRequest::getCmd('lang')) {
@@ -557,9 +559,9 @@ class modK2ToolsHelper
             }
 
             echo '
-	</form>
+    </form>
 </div>
-			';
+            ';
         }
     }
 
