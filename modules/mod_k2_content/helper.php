@@ -78,13 +78,13 @@ class modK2ContentHelper
                 }
             }
         } else {
-            $query = "SELECT DISTINCT i.*,";
+            $query = "SELECT i.*,";
 
             if ($ordering == 'modified') {
                 $query .= " CASE WHEN i.modified = 0 THEN i.created ELSE i.modified END as lastChanged,";
             }
 
-            $query .= "c.name AS categoryname,c.id AS categoryid, c.alias AS categoryalias, c.params AS categoryparams";
+            $query .= "c.name AS categoryname, c.id AS categoryid, c.alias AS categoryalias, c.params AS categoryparams";
 
             if ($ordering == 'best') {
                 $query .= ", (r.rating_sum/r.rating_count) AS rating";

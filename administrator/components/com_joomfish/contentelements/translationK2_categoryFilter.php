@@ -8,20 +8,24 @@
  */
 
 // Don't allow direct linking
-defined( 'JPATH_BASE' ) or die( 'Direct Access to this location is not allowed.' );
+defined('JPATH_BASE') or die('Direct Access to this location is not allowed.');
 
-class translationK2_categoryFilter extends translationFilter {
-    function translationK2_categoryFilter($contentElement) {
+class translationK2_categoryFilter extends translationFilter
+{
+    public function translationK2_categoryFilter($contentElement)
+    {
         $this->filterNullValue = -1;
         $this->filterType = "catid";
         $this->filterField = $contentElement->getFilter("K2_category");
         parent::translationFilter($contentElement);
     }
-    
-    function _createFilter() {
+
+    public function _createFilter()
+    {
         $database = JFactory::getDbo();
-        if (!$this->filterField)
+        if (!$this->filterField) {
             return "";
+        }
         $filter = "";
         if ($this->filter_value != $this->filterNullValue) {
             $sql = "SELECT tab.id FROM #__k2_items as tab WHERE tab.catid=$this->filter_value";
@@ -29,22 +33,25 @@ class translationK2_categoryFilter extends translationFilter {
             $ids = $database->loadObjectList();
             $idstring = "";
             foreach ($ids as $pid) {
-                if (strlen($idstring) > 0)
+                if (strlen($idstring) > 0) {
                     $idstring .= ",";
+                }
                 $idstring .= $pid->id;
             }
             $filter = "c.id IN($idstring)";
         }
         return $filter;
     }
-    
-    function _createfilterHTML() {
-        if (!$this->filterField)
+
+    public function _createfilterHTML()
+    {
+        if (!$this->filterField) {
             return "";
+        }
         $db = JFactory::getDbo();
         $categoryOptions = array();
         $categoryOptions[] = JHTML::_('select.option', '-1', JText::_('K2_SELECT_CATEGORY'));
-        
+
         $sql = "SELECT DISTINCT p.id, p.name FROM #__k2_categories as p, #__".$this->tableName." as c WHERE c.".$this->filterField."=p.id ORDER BY p.name";
         $db->setQuery($sql);
         $cats = $db->loadObjectList();
@@ -59,4 +66,3 @@ class translationK2_categoryFilter extends translationFilter {
         return $catnameList;
     }
 }
-?>
