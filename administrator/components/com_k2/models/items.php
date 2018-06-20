@@ -1405,7 +1405,7 @@ class K2ModelItems extends K2Model
     public function getItemsAuthors()
     {
         $db = $this->getDBO();
-        $query = "SELECT id, name, block FROM #__users WHERE id IN(SELECT DISTINCT(created_by) FROM #__k2_items) ORDER BY name";
+        $query = "SELECT id, name, block FROM #__users WHERE id IN(SELECT created_by FROM #__k2_items GROUP BY created_by) ORDER BY name";
         $db->setQuery($query);
         $rows = $db->loadObjectList();
         return $rows;
