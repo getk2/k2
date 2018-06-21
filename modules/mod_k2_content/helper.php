@@ -250,7 +250,7 @@ class modK2ContentHelper
                     break;
             }
 
-            $query .= " ORDER BY ".$orderby;
+            $query .= " GROUP BY i.id ORDER BY ".$orderby;
             $db->setQuery($query, 0, $limit);
             $items = $db->loadObjectList();
         }
