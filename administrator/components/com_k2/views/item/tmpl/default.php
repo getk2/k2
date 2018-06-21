@@ -2,7 +2,7 @@
 /**
  * @version    2.8.x
  * @package    K2
- * @author     JoomlaWorks http://www.joomlaworks.net
+ * @author     JoomlaWorks https://www.joomlaworks.net
  * @copyright  Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
  * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
@@ -518,7 +518,7 @@ defined('_JEXEC') or die;
 											</div>
 
 											<div class="k2Right k2DocLink">
-												<a data-k2-modal="iframe" href="http://www.joomlaworks.net/allvideos-documentation">
+												<a data-k2-modal="iframe" href="https://www.joomlaworks.net/allvideos-documentation">
 													<i class="fa fa-info"></i>
 													<span><?php echo JText::_('K2_READ_THE_ALLVIDEOS_DOCUMENTATION_FOR_MORE'); ?></span>
 												</a>

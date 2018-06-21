@@ -2,7 +2,7 @@
 /**
  * @version    2.8.x
  * @package    K2
- * @author     JoomlaWorks http://www.joomlaworks.net
+ * @author     JoomlaWorks https://www.joomlaworks.net
  * @copyright  Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
  * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
@@ -493,7 +493,7 @@ class modK2ContentHelper
                         if ($params->get('itemAuthorAvatar')) {
                             $item->authorAvatar = K2HelperUtilities::getAvatar($author->id, $author->email, $componentParams->get('userImageWidth'));
                         }
-                        //Author Link
+                        // Author Link
                         $item->authorLink = JRoute::_(K2HelperRoute::getUserRoute($item->created_by));
                     }
                 }

@@ -39,4 +39,4 @@ More at: https://getk2.org
 
 ***
 
-Copyright &copy; 2006-2017 [JoomlaWorks Ltd.](http://www.joomlaworks.net) & [Nuevvo Webware P.C.](http://nuevvo.com)
+Copyright &copy; 2006-2018 [JoomlaWorks Ltd.](https://www.joomlaworks.net) & [Nuevvo Webware P.C.](https://nuevvo.com)

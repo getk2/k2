@@ -2,7 +2,7 @@
 /**
  * @version    2.8.x
  * @package    K2
- * @author     JoomlaWorks http://www.joomlaworks.net
+ * @author     JoomlaWorks https://www.joomlaworks.net
  * @copyright  Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
  * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
@@ -113,7 +113,7 @@ if(
 	</div>
 
 	<div id="k2AdminFooter" class="'.$k2FooterClass.'">
-		<a target="_blank" href="https://getk2.org/">K2 v'.K2_CURRENT_VERSION.K2_BUILD.'</a> | Copyright &copy; 2006-'.date('Y').' <a target="_blank" href="http://www.joomlaworks.net/">JoomlaWorks Ltd.</a>
+		<a target="_blank" href="https://getk2.org/">K2 v'.K2_CURRENT_VERSION.K2_BUILD.'</a> | Copyright &copy; 2006-'.date('Y').' <a target="_blank" href="https://www.joomlaworks.net/">JoomlaWorks Ltd.</a>
 	</div>
 
 	<!-- K2 Update Service -->
