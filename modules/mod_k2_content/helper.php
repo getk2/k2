@@ -261,10 +261,10 @@ class modK2ContentHelper
             foreach ($items as $item) {
                 $item->event = new stdClass;
 
-                //Clean title
+                // Cleanup title
                 $item->title = JFilterOutput::ampReplace($item->title);
 
-                //Images
+                // Images
                 if ($params->get('itemImage')) {
                     $date = JFactory::getDate($item->modified);
                     $timestamp = '?t='.$date->toUnix();
@@ -317,10 +317,10 @@ class modK2ContentHelper
                     }
                 }
 
-                //Read more link
+                // Read more link
                 $item->link = urldecode(JRoute::_(K2HelperRoute::getItemRoute($item->id.':'.urlencode($item->alias), $item->catid.':'.urlencode($item->categoryalias))));
 
-                //Tags
+                // Tags
                 if ($params->get('itemTags')) {
                     $tags = $model->getItemTags($item->id);
                     for ($i = 0; $i < sizeof($tags); $i++) {
@@ -329,33 +329,33 @@ class modK2ContentHelper
                     $item->tags = $tags;
                 }
 
-                //Category link
+                // Category link
                 if ($params->get('itemCategory')) {
                     $item->categoryLink = urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($item->catid.':'.urlencode($item->categoryalias))));
                 }
 
-                //Extra fields
+                // Extra fields
                 if ($params->get('itemExtraFields')) {
                     $item->extra_fields = $model->getItemExtraFields($item->extra_fields, $item);
                 }
 
-                //Comments counter
+                // Comments counter
                 if ($params->get('itemCommentsCounter')) {
                     $item->numOfComments = $model->countItemComments($item->id);
                 }
 
-                //Attachments
+                // Attachments
                 if ($params->get('itemAttachments')) {
                     $item->attachments = $model->getItemAttachments($item->id);
                 }
 
-                //Import plugins
+                // Import plugins
                 if ($format != 'feed') {
                     $dispatcher = JDispatcher::getInstance();
                     JPluginHelper::importPlugin('content');
                 }
 
-                //Video
+                // Video
                 if ($params->get('itemVideo') && $format != 'feed') {
                     $params->set('vfolder', 'media/k2/videos');
                     $params->set('afolder', 'media/k2/audio');
@@ -380,8 +380,7 @@ class modK2ContentHelper
                 }
 
                 if ($format != 'feed') {
-                    $params->set('parsedInModule', 1);
-                    // for plugins to know when they are parsed inside this module
+                    $params->set('parsedInModule', 1); // for plugins to know when they are parsed inside this module
 
                     $item->event = new stdClass;
                     $item->event->BeforeDisplay = '';
@@ -391,7 +390,7 @@ class modK2ContentHelper
                     $item->event->AfterDisplayContent = '';
 
                     if ($params->get('JPlugins', 1)) {
-                        //Plugins
+                        // Plugins
                         if (K2_JVERSION != '15') {
                             $item->event->BeforeDisplay = '';
                             $item->event->AfterDisplay = '';
@@ -425,7 +424,7 @@ class modK2ContentHelper
                             $dispatcher->trigger('onPrepareContent', array(&$item, &$params, $limitstart));
                         }
                     }
-                    //Init K2 plugin events
+                    // Initialize K2 plugin events
                     $item->event->K2BeforeDisplay = '';
                     $item->event->K2AfterDisplay = '';
                     $item->event->K2AfterDisplayTitle = '';
@@ -434,7 +433,7 @@ class modK2ContentHelper
                     $item->event->K2CommentsCounter = '';
 
                     if ($params->get('K2Plugins', 1)) {
-                        //K2 plugins
+                        // K2 plugins
                         JPluginHelper::importPlugin('k2');
                         $results = $dispatcher->trigger('onK2BeforeDisplay', array(&$item, &$params, $limitstart));
                         $item->event->K2BeforeDisplay = trim(implode("\n", $results));
@@ -460,13 +459,13 @@ class modK2ContentHelper
                     }
                 }
 
-                // Restore the intotext variable after plugins execution
+                // Restore the intotext variable after plugins are executed
                 $item->introtext = $item->text;
 
-                //Clean the plugin tags
+                // Clean the plugin tags
                 $item->introtext = preg_replace("#{(.*?)}(.*?){/(.*?)}#s", '', $item->introtext);
 
-                //Author
+                // Author
                 if ($params->get('itemAuthor')) {
                     if (!empty($item->created_by_alias)) {
                         $item->author = $item->created_by_alias;
