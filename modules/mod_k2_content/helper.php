@@ -233,7 +233,6 @@ class modK2ContentHelper
                         $date = K2_JVERSION == '15' ? $datenow->toMySQL() : $datenow->toSql();
                         $query .= " AND i.created > DATE_SUB('{$date}',INTERVAL ".$params->get('popularityRange')." DAY) ";
                     }
-                    $query .= " GROUP BY i.id ";
                     $orderby = 'numOfComments DESC';
                     break;
 
