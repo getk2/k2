@@ -1234,6 +1234,7 @@ class K2ModelItem extends K2Model
                                 $src .= JURI::root(true).'/';
                             }
                             $src .= $object->value;
+                            $src = str_replace('\\', '/', $src);
                             $value = '<img src="'.$src.'" alt="'.$rows[$i]->name.'" />';
                         } else {
                             $value = false;
