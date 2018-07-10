@@ -40,7 +40,8 @@ class K2ModelItem extends K2Model
         JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
         $limitstart = JRequest::getInt('limitstart');
         $application = JFactory::getApplication();
-        //Initialize params
+
+        // Initialize params
         if ($view != 'item') {
             if (K2_JVERSION == '30') {
                 $params = $application->getParams('com_k2');
@@ -58,7 +59,7 @@ class K2ModelItem extends K2Model
             $params = K2HelperUtilities::getParams('com_k2');
         }
 
-        //Category
+        // Category
         $db = JFactory::getDbo();
         $category = JTable::getInstance('K2Category', 'Table');
         $category->load($item->catid);
@@ -66,11 +67,11 @@ class K2ModelItem extends K2Model
         $item->category = $category;
         $item->category->link = urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($category->id.':'.urlencode($category->alias))));
 
-        //Read more link
+        // Read more link
         $link = K2HelperRoute::getItemRoute($item->id.':'.urlencode($item->alias), $item->catid.':'.urlencode($item->category->alias));
         $item->link = urldecode(JRoute::_($link));
 
-        //Print link
+        // Print link
         $item->printLink = urldecode(JRoute::_($link.'&tmpl=component&print=1'));
 
         //Params
@@ -1229,8 +1230,8 @@ class K2ModelItem extends K2Model
                     } elseif ($rows[$i]->type == 'image') {
                         if ($object->value) {
                             $src = '';
-                            if (JString::strpos('http://', $object->value) === false) {
-                                $src .= JURI::root(true);
+                            if (JString::strpos('://', $object->value) === false) {
+                                $src .= JURI::root(true).'/';
                             }
                             $src .= $object->value;
                             $value = '<img src="'.$src.'" alt="'.$rows[$i]->name.'" />';
