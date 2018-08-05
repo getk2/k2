@@ -175,9 +175,9 @@ class K2HelperHTML
 
                 // Flatpickr
                 if ($view == 'item' || $view == 'extrafield') {
-                    $document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.3.2/flatpickr.min.css');
-                    $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.3.2/flatpickr.min.js');
-                    $document->addCustomTag('<!--[if IE 9]><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.3.2/ie.css" /><![endif]-->');
+                    $document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.5.1/flatpickr.min.css');
+                    $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.5.1/flatpickr.min.js');
+                    $document->addCustomTag('<!--[if IE 9]><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.5.1/ie.css" /><![endif]-->');
                 }
 
                 // Magnific Popup
