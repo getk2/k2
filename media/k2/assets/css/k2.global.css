@@ -28,6 +28,11 @@ ul.k2SortableListContainer li span.k2EntryText {}
 
 
 
+/* --- Single entries for K2 Fields/Elements --- */
+.handle a.k2EntryRemove {margin:0 12px 0 0;font-size:14px;}
+
+
+
 /* --- Header Element --- */
 .jwHeaderContainer {background:#e5f7fd;color:#346b93;font-size:20px;margin:0;padding:24px 16px;border-radius:4px;}
 .jwHeaderContainer15 {background:#d5e7fa;color:#369;font-size:13px;margin:0;padding:10px;border-bottom:2px solid #96b0cb;font-weight:bold;float:left;width:100%;clear:both;}

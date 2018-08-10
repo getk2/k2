@@ -716,6 +716,14 @@ $K2(document).ready(function() {
             });
         }
 
+        // Single Items
+        if ($('.k2SingleSelect').length) {
+            $('.k2SingleSelect .k2EntryRemove').on('click', function(e) {
+                e.preventDefault();
+                $(this).parent().remove();
+            });
+        }
+
         // Flatpickr
         if ($('input[data-k2-datetimepicker]').length) {
             $('input[data-k2-datetimepicker]').each(function() {
@@ -1272,7 +1280,7 @@ function k2ModalSelector(id, name, fid, fname, output) {
             }
         });
         if (!exists) {
-            var entry = '<span class="k2EntryText">' + name + '</span><input type="hidden" name="' + fname + '" value="' + id + '" />';
+            var entry = '<div class="handle"><a class="k2EntryRemove" href="#" title="' + K2_REMOVE_THIS_ENTRY + '"><i class="fa fa-trash-o"></i></a><span class="k2EntryText">' + name + '</span><input type="hidden" name="' + fname + '" value="' + id + '" /></div>';
             $K2('#' + fid).html(entry);
             $K2().k2Alert(K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST.replace('ENTRY_NAME_HERE', name), 1000);
             $K2(parent.document).magnificPopup('close');
