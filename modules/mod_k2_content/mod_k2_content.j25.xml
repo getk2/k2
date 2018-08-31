@@ -77,7 +77,7 @@
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>
-                <field name="itemAuthor" type="radio" default="1" label="K2_USER_AUTHOR" description="" class="btn-group btn-group-yesno">
+                <field name="itemAuthor" type="radio" default="1" label="K2_USER_AUTHOR" description="K2_MOD_K2_CONTENT_USER_AUTHOR_DESC" class="btn-group btn-group-yesno">
                     <option value="0">K2_HIDE</option>
                     <option value="1">K2_SHOW</option>
                 </field>
