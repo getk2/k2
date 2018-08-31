@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * @version    2.8.x
  * @package    K2
@@ -11,15 +11,16 @@
 defined('_JEXEC') or die;
 
 ?>
+
 <div id="k2ModuleBox<?php echo $module->id; ?>" class="k2ArchivesBlock<?php if($params->get('moduleclass_sfx')) echo ' '.$params->get('moduleclass_sfx'); ?>">
-  <ul>
-    <?php foreach ($months as $month): ?>
-    <li>
-      <a href="<?php echo $month->link; ?>">
-        <?php echo $month->name.' '.$month->y; ?>
-        <?php if ($params->get('archiveItemsCounter')) echo '('.$month->numOfItems.')'; ?>
-      </a>
-    </li>
-    <?php endforeach; ?>
-  </ul>
+    <ul>
+        <?php foreach ($months as $month): ?>
+        <li>
+            <a href="<?php echo $month->link; ?>">
+                <?php echo $month->name.' '.$month->y; ?>
+                <?php if ($params->get('archiveItemsCounter')) echo ' ('.$month->numOfItems.')'; ?>
+            </a>
+        </li>
+        <?php endforeach; ?>
+    </ul>
 </div>
