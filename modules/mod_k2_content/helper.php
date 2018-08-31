@@ -53,7 +53,7 @@ class modK2ContentHelper
             $languageFilter = '';
         }
 
-        // Sources
+        // Sources (prepare the DB query)
         if ($params->get('source') == 'specific') {
             $value = $params->get('items');
             $current = array();
