@@ -12,9 +12,9 @@ defined('_JEXEC') or die;
 
 ?>
 
-<div id="k2ModuleBox<?php echo $module->id; ?>" class="k2LoginBlock<?php if($params->get('moduleclass_sfx')) echo ' '.$params->get('moduleclass_sfx'); ?>">
+<div id="k2ModuleBox<?php echo $module->id; ?>" class="k2LoginBlock<?php if ($params->get('moduleclass_sfx')) echo ' '.$params->get('moduleclass_sfx'); ?>">
     <form action="<?php echo JRoute::_('index.php', true, $params->get('usesecure')); ?>" method="post" name="login" id="form-login">
-        <?php if($params->get('pretext')): ?>
+        <?php if ($params->get('pretext')): ?>
         <p class="preText"><?php echo $params->get('pretext'); ?></p>
         <?php endif; ?>
 
@@ -27,7 +27,7 @@ defined('_JEXEC') or die;
                 <label for="modlgn_passwd"><?php echo JText::_('K2_PASSWORD') ?></label>
                 <input id="modlgn_passwd" type="password" name="<?php echo $passwordFieldName; ?>" class="inputbox" size="18" />
             </p>
-            <?php if(JPluginHelper::isEnabled('system', 'remember')): ?>
+            <?php if (JPluginHelper::isEnabled('system', 'remember')): ?>
             <p id="form-login-remember">
                 <label for="modlgn_remember"><?php echo JText::_('K2_REMEMBER_ME') ?></label>
                 <input id="modlgn_remember" type="checkbox" name="remember" class="inputbox" value="yes" />
@@ -44,7 +44,7 @@ defined('_JEXEC') or die;
             <?php endif; ?>
         </ul>
 
-        <?php if($params->get('posttext')): ?>
+        <?php if ($params->get('posttext')): ?>
         <p class="postText"><?php echo $params->get('posttext'); ?></p>
         <?php endif; ?>
 

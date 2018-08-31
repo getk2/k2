@@ -12,24 +12,24 @@ defined('_JEXEC') or die;
 
 ?>
 
-<div id="k2ModuleBox<?php echo $module->id; ?>" class="k2UserBlock<?php if($params->get('moduleclass_sfx')) echo ' '.$params->get('moduleclass_sfx'); ?>">
-    <?php if($userGreetingText): ?>
+<div id="k2ModuleBox<?php echo $module->id; ?>" class="k2UserBlock<?php if ($params->get('moduleclass_sfx')) echo ' '.$params->get('moduleclass_sfx'); ?>">
+    <?php if ($userGreetingText): ?>
     <p class="ubGreeting"><?php echo $userGreetingText; ?></p>
     <?php endif; ?>
 
     <div class="k2UserBlockDetails">
-        <?php if($params->get('userAvatar')): ?>
+        <?php if ($params->get('userAvatar')): ?>
         <a class="k2Avatar ubAvatar" href="<?php echo JRoute::_(K2HelperRoute::getUserRoute($user->id)); ?>" title="<?php echo JText::_('K2_MY_PAGE'); ?>">
             <img src="<?php echo K2HelperUtilities::getAvatar($user->id, $user->email); ?>" alt="<?php echo K2HelperUtilities::cleanHtml($user->name); ?>" style="width:<?php echo $avatarWidth; ?>px;height:auto;" />
         </a>
         <?php endif; ?>
         <span class="ubName"><?php echo $user->name; ?></span>
-        <span class="ubCommentsCount"><?php echo JText::_('K2_YOU_HAVE'); ?> <b><?php echo $user->numOfComments; ?></b> <?php if($user->numOfComments==1) echo JText::_('K2_PUBLISHED_COMMENT'); else echo JText::_('K2_PUBLISHED_COMMENTS'); ?></span>
+        <span class="ubCommentsCount"><?php echo JText::_('K2_YOU_HAVE'); ?> <b><?php echo $user->numOfComments; ?></b> <?php if ($user->numOfComments==1) echo JText::_('K2_PUBLISHED_COMMENT'); else echo JText::_('K2_PUBLISHED_COMMENTS'); ?></span>
         <div class="clr"></div>
     </div>
 
     <ul class="k2UserBlockActions">
-        <?php if(isset($addItemLink)): ?>
+        <?php if (isset($addItemLink)): ?>
         <li>
             <a data-k2-modal="edit" href="<?php echo $addItemLink; ?>"><?php echo JText::_('K2_ADD_NEW_ITEM'); ?></a>
         </li>
@@ -40,7 +40,7 @@ defined('_JEXEC') or die;
         <li>
             <a href="<?php echo $editProfileLink; ?>"><?php echo JText::_('K2_MY_ACCOUNT'); ?></a>
         </li>
-        <?php if($K2CommentsEnabled): ?>
+        <?php if ($K2CommentsEnabled): ?>
         <li>
             <a data-k2-modal="iframe" href="<?php echo $editCommentsLink; ?>"><?php echo JText::_('K2_MODERATE_COMMENTS_TO_MY_PUBLISHED_ITEMS'); ?></a>
         </li>
@@ -50,23 +50,23 @@ defined('_JEXEC') or die;
     <ul class="k2UserBlockRenderedMenu">
         <?php $level = 1; foreach($menu as $key => $link): $level++; ?>
         <li class="linkItemId<?php echo $link->id; ?>">
-            <?php if($link->type=='url' && $link->browserNav==0): ?>
+            <?php if ($link->type=='url' && $link->browserNav==0): ?>
             <a href="<?php echo $link->route; ?>"><?php echo $link->name; ?></a>
-            <?php elseif(strpos($link->link,'option=com_k2&view=item&layout=itemform') || $link->browserNav==2): ?>
+            <?php elseif (strpos($link->link,'option=com_k2&view=item&layout=itemform') || $link->browserNav==2): ?>
             <a data-k2-modal="edit" href="<?php echo $link->route; ?>"><?php echo $link->name; ?></a>
             <?php else: ?>
-            <a href="<?php echo $link->route; ?>"<?php if($link->browserNav==1) echo ' target="_blank"'; ?>><?php echo $link->name; ?></a>
+            <a href="<?php echo $link->route; ?>"<?php if ($link->browserNav==1) echo ' target="_blank"'; ?>><?php echo $link->name; ?></a>
             <?php endif; ?>
 
-            <?php if(isset($menu[$key+1]) && $menu[$key]->level < $menu[$key+1]->level): ?>
+            <?php if (isset($menu[$key+1]) && $menu[$key]->level < $menu[$key+1]->level): ?>
             <ul>
             <?php endif; ?>
 
-            <?php if(isset($menu[$key+1]) && $menu[$key]->level > $menu[$key+1]->level): ?>
+            <?php if (isset($menu[$key+1]) && $menu[$key]->level > $menu[$key+1]->level): ?>
             <?php echo str_repeat('</li></ul>', $menu[$key]->level - $menu[$key+1]->level); ?>
             <?php endif; ?>
 
-            <?php if(isset($menu[$key+1]) && $menu[$key]->level == $menu[$key+1]->level): ?>
+            <?php if (isset($menu[$key+1]) && $menu[$key]->level == $menu[$key+1]->level): ?>
         </li>
         <?php endif; ?>
         <?php endforeach; ?>
