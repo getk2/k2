@@ -10,8 +10,7 @@
 // no direct access
 defined('_JEXEC') or die;
 
-if (K2_JVERSION != '15')
-{
+if (K2_JVERSION != '15') {
     $language = JFactory::getLanguage();
     $language->load('com_k2.dates', JPATH_ADMINISTRATOR, null, true);
 }
@@ -27,24 +26,18 @@ $itemCustomLinkTitle = $params->get('itemCustomLinkTitle', '');
 $itemCustomLinkURL = trim($params->get('itemCustomLinkURL'));
 $itemCustomLinkMenuItem = $params->get('itemCustomLinkMenuItem');
 
-if ($itemCustomLinkURL && $itemCustomLinkURL!='http://')
-{
-	if ($itemCustomLinkTitle=='')
-	{
-		if (strpos($itemCustomLinkURL, '://')!==false)
-		{
-			$linkParts = explode('://', $itemCustomLinkURL);
-			$itemCustomLinkURL = $linkParts[1];
-		}
-		$itemCustomLinkTitle = $itemCustomLinkURL;
-	}
-}
-else if ($itemCustomLinkMenuItem)
-{
+if ($itemCustomLinkURL && ($itemCustomLinkURL!='http://' || $itemCustomLinkURL!='https://')) {
+    if ($itemCustomLinkTitle=='') {
+        if (strpos($itemCustomLinkURL, '://')!==false) {
+            $linkParts = explode('://', $itemCustomLinkURL);
+            $itemCustomLinkURL = $linkParts[1];
+        }
+        $itemCustomLinkTitle = $itemCustomLinkURL;
+    }
+} elseif ($itemCustomLinkMenuItem) {
     $menu = JMenu::getInstance('site');
     $menuLink = $menu->getItem($itemCustomLinkMenuItem);
-    if (!$itemCustomLinkTitle)
-    {
+    if (!$itemCustomLinkTitle) {
         $itemCustomLinkTitle = (K2_JVERSION != '15') ? $menuLink->title : $menuLink->name;
     }
     $itemCustomLinkURL = JRoute::_('index.php?&Itemid='.$menuLink->id);
@@ -58,18 +51,14 @@ $params->set('itemCustomLinkURL', $itemCustomLinkURL);
 $componentParams = JComponentHelper::getParams('com_k2');
 
 // User avatar
-if ($itemAuthorAvatarWidthSelect == 'inherit')
-{
+if ($itemAuthorAvatarWidthSelect == 'inherit') {
     $avatarWidth = $componentParams->get('userImageWidth');
-}
-else
-{
+} else {
     $avatarWidth = $itemAuthorAvatarWidth;
 }
 
 $items = modK2ContentHelper::getItems($params);
 
-if (count($items))
-{
+if (count($items)) {
     require(JModuleHelper::getLayoutPath('mod_k2_content', $getTemplate.'/default'));
 }

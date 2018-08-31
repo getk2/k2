@@ -10,8 +10,7 @@
 // no direct access
 defined('_JEXEC') or die;
 
-if (K2_JVERSION != '15')
-{
+if (K2_JVERSION != '15') {
     $language = JFactory::getLanguage();
     $language->load('com_k2.dates', JPATH_ADMINISTRATOR, null, true);
 }
@@ -32,33 +31,26 @@ $commenterAvatarWidth = $params->get('commenterAvatarWidth', 50);
 $componentParams = JComponentHelper::getParams('com_k2');
 
 // User avatar for latest comments
-if ($commentAvatarWidthSelect == 'inherit')
-{
+if ($commentAvatarWidthSelect == 'inherit') {
     $lcAvatarWidth = $componentParams->get('commenterImgWidth');
-}
-else
-{
+} else {
     $lcAvatarWidth = $commentAvatarWidth;
 }
 
 // User avatar for top commenters
-if ($commenterAvatarWidthSelect == 'inherit')
-{
+if ($commenterAvatarWidthSelect == 'inherit') {
     $tcAvatarWidth = $componentParams->get('commenterImgWidth');
-}
-else
-{
+} else {
     $tcAvatarWidth = $commenterAvatarWidth;
 }
 
-switch($module_usage)
-{
-    case '0' :
+switch ($module_usage) {
+    case '0':
         $comments = modK2CommentsHelper::getLatestComments($params);
         require(JModuleHelper::getLayoutPath('mod_k2_comments', 'comments'));
         break;
 
-    case '1' :
+    case '1':
         $commenters = modK2CommentsHelper::getTopCommenters($params);
         require(JModuleHelper::getLayoutPath('mod_k2_comments', 'commenters'));
         break;

@@ -10,8 +10,7 @@
 // no direct access
 defined('_JEXEC') or die;
 
-if (K2_JVERSION != '15')
-{
+if (K2_JVERSION != '15') {
     $language = JFactory::getLanguage();
     $language->load('com_k2.dates', JPATH_ADMINISTRATOR, null, true);
 }
@@ -33,13 +32,10 @@ $userFeed = $params->get('userFeed', 1);
 $userItemCount = $params->get('userItemCount', 1);
 
 // User avatar
-if ($userAvatarWidthSelect == 'inherit')
-{
+if ($userAvatarWidthSelect == 'inherit') {
     $componentParams = JComponentHelper::getParams('com_k2');
     $avatarWidth = $componentParams->get('userImageWidth');
-}
-else
-{
+} else {
     $avatarWidth = $userAvatarWidth;
 }
 
