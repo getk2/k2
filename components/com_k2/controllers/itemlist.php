@@ -14,76 +14,54 @@ jimport('joomla.application.component.controller');
 
 class K2ControllerItemlist extends K2Controller
 {
+    public function display($cachable = false, $urlparams = array())
+    {
+        $model = $this->getModel('item');
+        $format = JRequest::getWord('format', 'html');
+        $document = JFactory::getDocument();
+        $viewType = $document->getType();
+        $view = $this->getView('itemlist', $viewType);
+        $view->setModel($model);
+        $user = JFactory::getUser();
+        if ($user->guest) {
+            $cache = true;
+        } else {
+            $cache = false;
+        }
+        if (K2_JVERSION != '15') {
+            $urlparams['limit'] = 'UINT';
+            $urlparams['limitstart'] = 'UINT';
+            $urlparams['id'] = 'INT';
+            $urlparams['tag'] = 'STRING';
+            $urlparams['searchword'] = 'STRING';
+            $urlparams['day'] = 'INT';
+            $urlparams['year'] = 'INT';
+            $urlparams['month'] = 'INT';
+            $urlparams['print'] = 'INT';
+            $urlparams['lang'] = 'CMD';
+            $urlparams['Itemid'] = 'INT';
+            $urlparams['ordering'] = 'CMD';
+        }
+        parent::display($cache, $urlparams);
+    }
 
-	public function display($cachable = false, $urlparams = array())
-	{
-		$model = $this->getModel('item');
-		$format = JRequest::getWord('format', 'html');
-		$document = JFactory::getDocument();
-		$viewType = $document->getType();
-		$view = $this->getView('itemlist', $viewType);
-		$view->setModel($model);
-		$user = JFactory::getUser();
-		if ($user->guest)
-		{
-			$cache = true;
-		}
-		else
-		{
-			$cache = false;
-		}
-		if (K2_JVERSION != '15')
-		{
-			$urlparams['limit'] = 'UINT';
-			$urlparams['limitstart'] = 'UINT';
-			$urlparams['id'] = 'INT';
-			$urlparams['tag'] = 'STRING';
-			$urlparams['searchword'] = 'STRING';
-			$urlparams['day'] = 'INT';
-			$urlparams['year'] = 'INT';
-			$urlparams['month'] = 'INT';
-			$urlparams['print'] = 'INT';
-			$urlparams['lang'] = 'CMD';
-			$urlparams['Itemid'] = 'INT';
-			$urlparams['ordering'] = 'CMD';
-		}
-		parent::display($cache, $urlparams);
-	}
+    // For mod_k2_content
+    public function module()
+    {
+        $document = JFactory::getDocument();
+        $view = $this->getView('itemlist', 'raw');
+        $model = $this->getModel('itemlist');
+        $view->setModel($model);
+        $model = $this->getModel('item');
+        $view->setModel($model);
+        $view->module();
+    }
 
-	function calendar()
-	{
-		require_once(JPATH_SITE.'/media/k2/assets/vendors/cascade/calendar/calendar.php');
-		require_once(JPATH_SITE.'/modules/mod_k2_tools/helper.php');
-		$application = JFactory::getApplication();
-		$month = JRequest::getInt('month');
-		$year = JRequest::getInt('year');
-		$months = array(JText::_('K2_JANUARY'), JText::_('K2_FEBRUARY'), JText::_('K2_MARCH'), JText::_('K2_APRIL'), JText::_('K2_MAY'), JText::_('K2_JUNE'), JText::_('K2_JULY'), JText::_('K2_AUGUST'), JText::_('K2_SEPTEMBER'), JText::_('K2_OCTOBER'), JText::_('K2_NOVEMBER'), JText::_('K2_DECEMBER'), );
-		$days = array(JText::_('K2_SUN'), JText::_('K2_MON'), JText::_('K2_TUE'), JText::_('K2_WED'), JText::_('K2_THU'), JText::_('K2_FRI'), JText::_('K2_SAT'), );
-		$cal = new MyCalendar;
-		$cal->setMonthNames($months);
-		$cal->setDayNames($days);
-		$cal->category = JRequest::getInt('catid');
-		$cal->setStartDay(1);
-		if (($month) && ($year))
-		{
-			echo $cal->getMonthView($month, $year);
-		}
-		else
-		{
-			echo $cal->getCurrentMonthView();
-		}
-		$application->close();
-	}
-
-	function module()
-	{
-		$document = JFactory::getDocument();
-		$view = $this->getView('itemlist', 'raw');
-		$model = $this->getModel('itemlist');
-		$view->setModel($model);
-		$model = $this->getModel('item');
-		$view->setModel($model);
-		$view->module();
-	}
-
+    // For mod_k2_tools
+    public function calendar()
+    {
+        require_once(JPATH_SITE.'/modules/mod_k2_tools/helper.php');
+        $calendar = new modK2ToolsHelper();
+        $calendar->calendarNavigation();
+    }
 }
