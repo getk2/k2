@@ -15,14 +15,18 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
     jimport('joomla.installer.installer');
 
     // Load K2 language file
+    $db = JFactory::getDbo();
+
     $language = JFactory::getLanguage();
     $language->load('com_k2');
-    $db = JFactory::getDbo();
+
     $status = new stdClass;
     $status->modules = array();
     $status->plugins = array();
+
     $src = $this->parent->getPath('source');
-    $isUpdate = JFile::exists(JPATH_SITE.'/modules/mod_k2_content/mod_k2_content.php');
+
+    $k2AlreadyInstalled = JFile::exists(JPATH_SITE.'/components/com_k2/k2.php');
 
     // Retrieve modules from the installation XML file and install one by one
     $modules = $this->manifest->getElementByPath('modules');
@@ -39,12 +43,16 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
             $status->modules[] = array('name' => $mname, 'client' => $client, 'result' => $result);
         }
 
-        if (!$isUpdate) {
-            $query = "UPDATE #__modules SET position='icon', ordering=99, published=1 WHERE module='mod_k2_quickicons'";
+        if (!$k2AlreadyInstalled) {
+            if (version_compare(JVERSION, '1.6.0', '<')) {
+                $query = "UPDATE #__modules SET position='icon', ordering=99, published=1 WHERE module='mod_k2_quickicons'";
+            } else {
+                $query = "UPDATE #__modules SET position='cpanel', ordering=0, published=1 WHERE module='mod_k2_quickicons'";
+            }
             $db->setQuery($query);
             $db->query();
 
-            $query = "UPDATE #__modules SET position='cpanel', ordering=0, published=1 WHERE module='mod_k2_stats'";
+            $query = "UPDATE #__modules SET position='cpanel', ordering=1, published=1 WHERE module='mod_k2_stats'";
             $db->setQuery($query);
             $db->query();
         }
@@ -77,9 +85,6 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
                 JFile::copy($src.'/administrator/components/com_joomfish/contentelements/'.$element->data(), JPATH_ADMINISTRATOR.'/components/com_joomfish/contentelements/'.$element->data());
             }
         }
-    } else {
-        $application = JFactory::getApplication();
-        $application->enqueueMessage(JText::_('K2_NOTICE_K2_CONTENT_ELEMENTS_FOR_JOOMFISH_WERE_NOT_COPIED_TO_THE_RELATED_FOLDER_BECAUSE_JOOMFISH_WAS_NOT_FOUND_ON_YOUR_SYSTEM'));
     }
 
     // Cleanups
@@ -157,18 +162,17 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
     $fields = $db->getTableFields('#__k2_users');
     if (!array_key_exists('ip', $fields['#__k2_users'])) {
         $query = "ALTER TABLE `#__k2_users`
-        ADD `ip` VARCHAR( 15 ) NOT NULL ,
-        ADD `hostname` VARCHAR( 255 ) NOT NULL ,
-        ADD `notes` TEXT NOT NULL";
+	        ADD `ip` VARCHAR( 15 ) NOT NULL ,
+	        ADD `hostname` VARCHAR( 255 ) NOT NULL ,
+	        ADD `notes` TEXT NOT NULL";
         $db->setQuery($query);
         $db->query();
     }
 
-    // User groups
+    // User groups (set first 2 user groups)
     $query = "SELECT COUNT(*) FROM #__k2_user_groups";
     $db->setQuery($query);
     $num = $db->loadResult();
-
     if ($num == 0) {
         $query = "INSERT INTO #__k2_user_groups (`id`, `name`, `permissions`) VALUES('', 'Registered', 'frontEdit=0\nadd=0\neditOwn=0\neditAll=0\npublish=0\ncomment=1\ninheritance=0\ncategories=all\n\n')";
         $db->setQuery($query);
@@ -233,8 +237,7 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
 }
 
 if (version_compare(JVERSION, '1.6.0', '<')) {
-    $rows = 0;
-?>
+    $rows = 0; ?>
 
 <img src="<?php echo JURI::root(true); ?>/media/k2/assets/images/backend/k2_logo_126x48.png" alt="K2" align="right" />
 
