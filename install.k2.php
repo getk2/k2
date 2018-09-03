@@ -10,7 +10,7 @@
 // no direct access
 defined('_JEXEC') or die;
 
-
+// Installer for Joomla 1.5
 if (version_compare(JVERSION, '1.6.0', '<')) {
     jimport('joomla.installer.installer');
 
@@ -26,7 +26,7 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
 
     $src = $this->parent->getPath('source');
 
-    $k2AlreadyInstalled = JFile::exists(JPATH_SITE.'/components/com_k2/k2.php');
+    $k2AlreadyInstalled = JFile::exists(JPATH_SITE.'/modules/mod_k2_content/mod_k2_content.php');
 
     // Retrieve modules from the installation XML file and install one by one
     $modules = $this->manifest->getElementByPath('modules');
@@ -44,15 +44,11 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
         }
 
         if (!$k2AlreadyInstalled) {
-            if (version_compare(JVERSION, '1.6.0', '<')) {
-                $query = "UPDATE #__modules SET position='icon', ordering=99, published=1 WHERE module='mod_k2_quickicons'";
-            } else {
-                $query = "UPDATE #__modules SET position='cpanel', ordering=0, published=1 WHERE module='mod_k2_quickicons'";
-            }
+            $query = "UPDATE #__modules SET position='icon', ordering=99, published=1 WHERE module='mod_k2_quickicons'";
             $db->setQuery($query);
             $db->query();
 
-            $query = "UPDATE #__modules SET position='cpanel', ordering=1, published=1 WHERE module='mod_k2_stats'";
+            $query = "UPDATE #__modules SET position='cpanel', ordering=0, published=1 WHERE module='mod_k2_stats'";
             $db->setQuery($query);
             $db->query();
         }
@@ -234,15 +230,10 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
         $db->query();
     }
     */
-}
 
-if (version_compare(JVERSION, '1.6.0', '<')) {
     $rows = 0; ?>
-
-<img src="<?php echo JURI::root(true); ?>/media/k2/assets/images/backend/k2_logo_126x48.png" alt="K2" align="right" />
-
+<img src="https://cdn.joomlaworks.org/joomla/extensions/k2/app/k2_logo.png" alt="K2" align="right" />
 <h2><?php echo JText::_('K2_INSTALLATION_STATUS'); ?></h2>
-
 <table class="adminlist">
     <thead>
         <tr>
@@ -290,6 +281,5 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
         <?php endif; ?>
     </tbody>
 </table>
-
 <?php
 }
