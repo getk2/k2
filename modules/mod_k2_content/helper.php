@@ -44,13 +44,10 @@ class modK2ContentHelper
         }
 
         // Get language on Joomla 2.5+
-        if (K2_JVERSION != '15') {
-            if ($app->getLanguageFilter()) {
-                $languageTag = JFactory::getLanguage()->getTag();
-                $languageFilter = $db->Quote($languageTag).", ".$db->Quote('*');
-            }
-        } else {
-            $languageFilter = '';
+        $languageFilter = '';
+        if ($app->getLanguageFilter()) {
+            $languageTag = JFactory::getLanguage()->getTag();
+            $languageFilter = $db->Quote($languageTag).", ".$db->Quote('*');
         }
 
         // Sources (prepare the DB query)
