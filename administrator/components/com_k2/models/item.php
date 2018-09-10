@@ -617,55 +617,56 @@ class K2ModelItem extends K2Model
         }
 
         // Extra fields
-        $objects = array();
-        $variables = JRequest::get('post', 2);
-        foreach ($variables as $key => $value) {
-            if (( bool )JString::stristr($key, 'K2ExtraField_')) {
-                $object = new JObject;
-                $object->set('id', JString::substr($key, 13));
-                if (is_string($value)) {
-                    $value = trim($value);
-                }
-                $object->set('value', $value);
-                unset($object->_errors);
-                $objects[] = $object;
-            }
-        }
-
-        $csvFiles = JRequest::get('files');
-        foreach ($csvFiles as $key => $file) {
-            if ((bool) JString::stristr($key, 'K2ExtraField_')) {
-                $object = new JObject;
-                $object->set('id', JString::substr($key, 13));
-                $csvFile = $file['tmp_name'][0];
-                if (!empty($csvFile) && JFile::getExt($file['name'][0]) == 'csv') {
-                    $handle = @fopen($csvFile, 'r');
-                    $csvData = array();
-                    while (($data = fgetcsv($handle, 1000)) !== false) {
-                        $csvData[] = $data;
+        if ($params->get('showExtraFieldsTab') || $application->isAdmin()) {
+            $objects = array();
+            $variables = JRequest::get('post', 2);
+            foreach ($variables as $key => $value) {
+                if (( bool )JString::stristr($key, 'K2ExtraField_')) {
+                    $object = new JObject;
+                    $object->set('id', JString::substr($key, 13));
+                    if (is_string($value)) {
+                        $value = trim($value);
                     }
-                    fclose($handle);
-                    $object->set('value', $csvData);
-                } else {
-                    $object->set('value', json_decode(JRequest::getVar('K2CSV_'.$object->id)));
-                    if (JRequest::getBool('K2ResetCSV_'.$object->id)) {
-                        $object->set('value', null);
-                    }
+                    $object->set('value', $value);
+                    unset($object->_errors);
+                    $objects[] = $object;
                 }
-                unset($object->_errors);
-                $objects[] = $object;
             }
-        }
 
-        $row->extra_fields = json_encode($objects);
+            $csvFiles = JRequest::get('files');
+            foreach ($csvFiles as $key => $file) {
+                if ((bool) JString::stristr($key, 'K2ExtraField_')) {
+                    $object = new JObject;
+                    $object->set('id', JString::substr($key, 13));
+                    $csvFile = $file['tmp_name'][0];
+                    if (!empty($csvFile) && JFile::getExt($file['name'][0]) == 'csv') {
+                        $handle = @fopen($csvFile, 'r');
+                        $csvData = array();
+                        while (($data = fgetcsv($handle, 1000)) !== false) {
+                            $csvData[] = $data;
+                        }
+                        fclose($handle);
+                        $object->set('value', $csvData);
+                    } else {
+                        $object->set('value', json_decode(JRequest::getVar('K2CSV_'.$object->id)));
+                        if (JRequest::getBool('K2ResetCSV_'.$object->id)) {
+                            $object->set('value', null);
+                        }
+                    }
+                    unset($object->_errors);
+                    $objects[] = $object;
+                }
+            }
 
-        require_once(JPATH_COMPONENT_ADMINISTRATOR.'/models/extrafield.php');
-        $extraFieldModel = K2Model::getInstance('ExtraField', 'K2Model');
-        $row->extra_fields_search = '';
+            $row->extra_fields = json_encode($objects);
 
-        foreach ($objects as $object) {
-            $row->extra_fields_search .= $extraFieldModel->getSearchValue($object->id, $object->value);
-            $row->extra_fields_search .= ' ';
+            require_once(JPATH_COMPONENT_ADMINISTRATOR.'/models/extrafield.php');
+            $extraFieldModel = K2Model::getInstance('ExtraField', 'K2Model');
+            $row->extra_fields_search = '';
+            foreach ($objects as $object) {
+                $row->extra_fields_search .= $extraFieldModel->getSearchValue($object->id, $object->value);
+                $row->extra_fields_search .= ' ';
+            }
         }
 
         // Tags
@@ -759,7 +760,12 @@ class K2ModelItem extends K2Model
         if (!is_null($row->gallery)) {
             $query .= " gallery = ".$db->Quote($row->gallery).", ";
         }
-        $query .= " extra_fields = ".$db->Quote($row->extra_fields).", extra_fields_search = ".$db->Quote($row->extra_fields_search)." , published = ".$db->Quote($row->published)." WHERE id = ".$row->id;
+
+        if ($params->get('showExtraFieldsTab') || $application->isAdmin()) {
+            $query .= " extra_fields = ".$db->Quote($row->extra_fields).", extra_fields_search = ".$db->Quote($row->extra_fields_search).", ";
+        }
+        $query .= " published = ".$db->Quote($row->published)." WHERE id = ".$row->id;
+
         $db->setQuery($query);
 
         if (!$db->query()) {
