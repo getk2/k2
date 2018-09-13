@@ -52,13 +52,12 @@ class modK2CommentsHelper
         }
 
         // Get language on Joomla 2.5+
+        $languageFilter = '';
         if (K2_JVERSION != '15') {
             if ($app->getLanguageFilter()) {
                 $languageTag = JFactory::getLanguage()->getTag();
                 $languageFilter = $db->Quote($languageTag).", ".$db->Quote('*');
             }
-        } else {
-            $languageFilter = '';
         }
 
         $query = "SELECT c.*, i.catid, i.title, i.alias, category.alias AS catalias, category.name AS categoryname
