@@ -305,9 +305,9 @@ class K2ModelItem extends K2Model
             } else {
                 $params->set('vfolder', 'media/k2/videos');
                 $params->set('afolder', 'media/k2/audio');
-                if (JString::strpos($item->video, 'remote}')) {
+                if (stripos($item->video, 'remote}') !== false) {
                     preg_match("#}(.*?){/#s", $item->video, $matches);
-                    if (!JString::strpos($matches[1], 'http://}')) {
+                    if (stripos($matches[1], 'http') === false) {
                         $item->video = str_replace($matches[1], JURI::root().$matches[1], $item->video);
                     }
                 }
@@ -533,9 +533,9 @@ class K2ModelItem extends K2Model
                 $params->set('afolder', 'media/k2/audio');
                 $params->set('vfolder', 'media/k2/videos');
 
-                if (JString::strpos($item->video, 'remote}')) {
+                if (stripos($item->video, 'remote}') !== false) {
                     preg_match("#}(.*?){/#s", $item->video, $matches);
-                    if (JString::substr($matches[1], 0, 7) != 'http://') {
+                    if (stripos($matches[1], 'http') === false) {
                         $item->video = str_replace($matches[1], JURI::root().$matches[1], $item->video);
                     }
                 }
@@ -1107,7 +1107,7 @@ class K2ModelItem extends K2Model
             if ($commentURL == JText::_('K2_ENTER_YOUR_SITE_URL') || $commentURL == "") {
                 $row->commentURL = null;
             } else {
-                if (substr($commentURL, 0, 7) != 'http://') {
+                if (substr(trim($commentURL), 0, 4) != 'http') {
                     $row->commentURL = 'http://'.$commentURL;
                 }
             }
@@ -1165,10 +1165,10 @@ class K2ModelItem extends K2Model
         }
         $db = JFactory::getDbo();
         $query = "SELECT tag.*
-			FROM #__k2_tags AS tag
-			JOIN #__k2_tags_xref AS xref ON tag.id = xref.tagID
-			WHERE tag.published=1
-			AND xref.itemID = ".(int)$itemID." ORDER BY xref.id ASC";
+            FROM #__k2_tags AS tag
+            JOIN #__k2_tags_xref AS xref ON tag.id = xref.tagID
+            WHERE tag.published=1
+            AND xref.itemID = ".(int)$itemID." ORDER BY xref.id ASC";
 
         $db->setQuery($query);
         $rows = $db->loadObjectList();
