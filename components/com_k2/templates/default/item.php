@@ -35,7 +35,7 @@ defined('_JEXEC') or die;
 	<?php if($this->item->params->get('itemDateCreated')): ?>
 	<!-- Date created -->
 	<span class="itemDateCreated">
-		<?php echo JHTML::_('date', $this->item->created , JText::_('K2_DATE_FORMAT_LC2')); ?>
+		<?php echo JHTML::_('date', $this->item->created, JText::_('K2_DATE_FORMAT_LC2')); ?>
 	</span>
 	<?php endif; ?>
 

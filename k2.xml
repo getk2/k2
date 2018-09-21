@@ -228,8 +228,6 @@
 				<field name="backendListToggler" default="standard" />
 				<field name="attachmentsFolder" default="" />
 				<field name="hideImportButton" default="0" />
-				<field name="googleSearch" default="0" />
-				<field name="googleSearchContainer" default="k2GoogleSearchContainer" />
 				<field name="K2UserProfile" default="1" />
 				<field name="K2UserGroup" default="" />
 				<field name="redirect" default="" />

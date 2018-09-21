@@ -477,8 +477,9 @@ class K2ViewItemlist extends K2View
         }
         $document->setTitle($params->get('page_title'));
 
-        // Search - Update the Google Search results container
+        // Keep for b/c in v2.x: Search - Update the Google Search results container
         if ($task == 'search') {
+            $params->set('googleSearch', 0);
             $googleSearchContainerID = trim($params->get('googleSearchContainer', 'k2GoogleSearchContainer'));
             if ($googleSearchContainerID == 'k2Container') {
                 $googleSearchContainerID = 'k2GoogleSearchContainer';

@@ -400,11 +400,6 @@
 			<option value="0">K2_NO</option>
 			<option value="1">K2_YES</option>
 		</param>
-		<param menu="hide" name="googleSearch" type="radio" default="0" label="K2_GOOGLE_SEARCH_INTEGRATION" description="K2_SET_THIS_TO_YES_IF_YOU_WANT_TO_INTEGRATE_GOOGLE_SEARCH_ON_YOUR_SITE_NOTE_THAT_THIS_WILL_DISABLE_THE_K2_ORIGINAL_SEARCH_FUNCTION">
-			<option value="0">K2_NO</option>
-			<option value="1">K2_YES</option>
-		</param>
-		<param menu="hide" name="googleSearchContainer" type="text" default="k2GoogleSearchContainer" label="K2_CONTAINER_ID_TO_RENDER_THE_GOOGLE_SEARCH" description="K2_ENTER_THE_ID_OF_THE_ELEMENT_YOU_WISH_TO_RENDER_IN_THE_GOOGLE_SEARCH_RESULTS_NOTE_THAT_YOU_HAVE_TO_ENABLE_THIS_ON_THE_COMPONENT_PARAMS" />
 		<param menu="hide" name="K2UserProfile" type="radio" default="1" label="K2_ENABLE_K2_USER_PROFILE" description="K2_EXTEND_THE_USER_PROFILE_WITH_THE_K2_TEMPLATE">
 			<option value="0">K2_NO</option>
 			<option value="1">K2_YES</option>
@@ -933,11 +928,6 @@
 			<option value="0">K2_NO</option>
 			<option value="1">K2_YES</option>
 		</field>
-		<field menu="hide" name="googleSearch" type="radio" default="0" label="K2_GOOGLE_SEARCH_INTEGRATION" description="K2_SET_THIS_TO_YES_IF_YOU_WANT_TO_INTEGRATE_GOOGLE_SEARCH_ON_YOUR_SITE_NOTE_THAT_THIS_WILL_DISABLE_THE_K2_ORIGINAL_SEARCH_FUNCTION">
-			<option value="0">K2_NO</option>
-			<option value="1">K2_YES</option>
-		</field>
-		<field menu="hide" name="googleSearchContainer" type="text" default="k2GoogleSearchContainer" label="K2_CONTAINER_ID_TO_RENDER_THE_GOOGLE_SEARCH" description="K2_ENTER_THE_ID_OF_THE_ELEMENT_YOU_WISH_TO_RENDER_IN_THE_GOOGLE_SEARCH_RESULTS_NOTE_THAT_YOU_HAVE_TO_ENABLE_THIS_ON_THE_COMPONENT_PARAMS" />
 		<field menu="hide" name="K2UserProfile" type="radio" default="1" label="K2_ENABLE_K2_USER_PROFILE" description="K2_EXTEND_THE_USER_PROFILE_WITH_THE_K2_TEMPLATE">
 			<option value="0">K2_NO</option>
 			<option value="1">K2_YES</option>

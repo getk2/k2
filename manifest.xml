@@ -222,8 +222,6 @@
 		<field name="backendListToggler" default="standard" />
 		<param name="attachmentsFolder" default="" />
 		<param name="hideImportButton" default="0" />
-		<param name="googleSearch" default="0" />
-		<param name="googleSearchContainer" default="k2GoogleSearchContainer" />
 		<param name="K2UserProfile" default="1" />
 		<param name="K2UserGroup" default="" />
 		<param name="redirect" default="" />

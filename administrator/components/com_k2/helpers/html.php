@@ -192,8 +192,8 @@ class K2HelperHTML
 
                 // Fancybox
                 if ($view == 'item' || $view == 'items' || $view == 'categories') {
-                    $document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css');
-                    $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js');
+                    $document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.4.2/jquery.fancybox.min.css');
+                    $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.4.2/jquery.fancybox.min.js');
                 }
 
                 // CSS
@@ -224,36 +224,6 @@ class K2HelperHTML
 
                 // JS
                 $document->addScript(JURI::root(true).'/media/k2/assets/js/k2.frontend.js?v='.K2_CURRENT_VERSION.'&amp;sitepath='.JURI::root(true).'/');
-
-                // Google Search (deprecated - to remove)
-                if ($task == 'search' && $params->get('googleSearch')) {
-                    $language = JFactory::getLanguage();
-                    $lang = $language->getTag();
-                    // Fallback to the new container ID without breaking things
-                    $googleSearchContainerID = trim($params->get('googleSearchContainer', 'k2GoogleSearchContainer'));
-                    if ($googleSearchContainerID == 'k2Container') {
-                        $googleSearchContainerID = 'k2GoogleSearchContainer';
-                    }
-                    $document->addScript('https://www.google.com/jsapi');
-                    $document->addScriptDeclaration('
-						google.load("search", "1", {"language" : "'.$lang.'"});
-						function OnLoad(){
-							var searchControl = new google.search.SearchControl();
-							var siteSearch = new google.search.WebSearch();
-							siteSearch.setUserDefinedLabel("'.$application->getCfg('sitename').'");
-							siteSearch.setUserDefinedClassSuffix("k2");
-							options = new google.search.SearcherOptions();
-							options.setExpandMode(google.search.SearchControl.EXPAND_MODE_OPEN);
-							siteSearch.setSiteRestriction("'.JURI::root().'");
-							searchControl.addSearcher(siteSearch, options);
-							searchControl.setResultSetSize(google.search.Search.LARGE_RESULTSET);
-							searchControl.setLinkTarget(google.search.Search.LINK_TARGET_SELF);
-							searchControl.draw(document.getElementById("'.$googleSearchContainerID.'"));
-							searchControl.execute("'.JRequest::getString('searchword').'");
-						}
-						google.setOnLoadCallback(OnLoad);
-					');
-                }
 
                 // Add related CSS to the <head>
                 if ($params->get('enable_css')) {
