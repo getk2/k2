@@ -250,9 +250,9 @@ defined('_JEXEC') or die;
 		<div class="itemExtraFields">
 			<h3><?php echo JText::_('K2_ADDITIONAL_INFO'); ?></h3>
 			<ul>
-				<?php foreach ($this->item->extra_fields as $key=>$extraField): ?>
+				<?php foreach ($this->item->extra_fields as $key => $extraField): ?>
 				<?php if($extraField->value != ''): ?>
-				<li class="<?php echo ($key%2) ? "odd" : "even"; ?> type<?php echo ucfirst($extraField->type); ?> group<?php echo $extraField->group; ?>">
+				<li class="<?php echo ($key%2) ? "odd" : "even"; ?> type<?php echo ucfirst($extraField->type); ?> group<?php echo $extraField->group; ?> alias<?php echo ucfirst($extraField->alias); ?>">
 					<?php if($extraField->type == 'header'): ?>
 					<h4 class="itemExtraFieldsHeader"><?php echo $extraField->name; ?></h4>
 					<?php else: ?>

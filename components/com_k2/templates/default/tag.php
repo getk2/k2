@@ -91,9 +91,9 @@ defined('_JEXEC') or die;
 		  <div class="tagItemExtraFields">
 		  	<h4><?php echo JText::_('K2_ADDITIONAL_INFO'); ?></h4>
 		  	<ul>
-				<?php foreach ($item->extra_fields as $key=>$extraField): ?>
+				<?php foreach ($item->extra_fields as $key => $extraField): ?>
 				<?php if($extraField->value != ''): ?>
-				<li class="<?php echo ($key%2) ? "odd" : "even"; ?> type<?php echo ucfirst($extraField->type); ?> group<?php echo $extraField->group; ?>">
+				<li class="<?php echo ($key%2) ? "odd" : "even"; ?> type<?php echo ucfirst($extraField->type); ?> group<?php echo $extraField->group; ?> alias<?php echo ucfirst($extraField->alias); ?>">
 					<?php if($extraField->type == 'header'): ?>
 					<h4 class="tagItemExtraFieldsHeader"><?php echo $extraField->name; ?></h4>
 					<?php else: ?>
