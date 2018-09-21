@@ -27,7 +27,7 @@ class K2ModelItemlist extends K2Model
         $task = JRequest::getCmd('task');
 
         if ($task == 'search') {
-            $params->set('googleSearch', 0)
+            $params->set('googleSearch', 0);
         }
 
         $jnow = JFactory::getDate();
@@ -332,7 +332,7 @@ class K2ModelItemlist extends K2Model
         $task = JRequest::getCmd('task');
 
         if ($task == 'search') {
-            $params->set('googleSearch', 0)
+            $params->set('googleSearch', 0);
         }
 
         $jnow = JFactory::getDate();
