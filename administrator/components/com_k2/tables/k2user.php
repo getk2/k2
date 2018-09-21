@@ -14,35 +14,35 @@ require_once JPATH_ADMINISTRATOR.'/components/com_k2/tables/table.php';
 
 class TableK2User extends K2Table
 {
-    var $id = null;
-    var $userID = null;
-    var $userName = null;
-    var $gender = null;
-    var $description = null;
-    var $image = null;
-    var $url = null;
-    var $group = null;
-    var $plugins = null;
-    var $ip = null;
-    var $hostname = null;
-    var $notes = null;
+    public $id = null;
+    public $userID = null;
+    public $userName = null;
+    public $gender = null;
+    public $description = null;
+    public $image = null;
+    public $url = null;
+    public $group = null;
+    public $plugins = null;
+    public $ip = null;
+    public $hostname = null;
+    public $notes = null;
 
-    function __construct(&$db)
+    public function __construct(&$db)
     {
         parent::__construct('#__k2_users', 'id', $db);
     }
 
-    function check()
+    public function check()
     {
-        if (JString::trim($this->url) != '' && substr($this->url, 0, 7) != 'http://')
+        if (trim($this->url) != '' && substr($this->url, 0, 4) != 'http') {
             $this->url = 'http://'.$this->url;
+        }
         return true;
     }
 
-    function bind($array, $ignore = '')
+    public function bind($array, $ignore = '')
     {
-        if (key_exists('plugins', $array) && is_array($array['plugins']))
-        {
+        if (key_exists('plugins', $array) && is_array($array['plugins'])) {
             $registry = new JRegistry();
             $registry->loadArray($array['plugins']);
             $array['plugins'] = $registry->toString();
