@@ -83,7 +83,7 @@ class modK2CommentsHelper
         }
 
         if ($languageFilter) {
-            $query .= " AND i.language IN ({$languageFilter}) AND c.language IN ({$languageFilter})";
+            $query .= " AND i.language IN ({$languageFilter}) AND category.language IN ({$languageFilter})";
         }
 
         $query .= " GROUP BY i.id ORDER BY c.commentDate DESC";
