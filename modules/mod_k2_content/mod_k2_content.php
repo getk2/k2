@@ -26,7 +26,7 @@ $itemCustomLinkTitle = $params->get('itemCustomLinkTitle', '');
 $itemCustomLinkURL = trim($params->get('itemCustomLinkURL'));
 $itemCustomLinkMenuItem = $params->get('itemCustomLinkMenuItem');
 
-if ($itemCustomLinkURL && $itemCustomLinkURL!='http://' && $itemCustomLinkURL!='https://')) {
+if ($itemCustomLinkURL && $itemCustomLinkURL!='http://' && $itemCustomLinkURL!='https://') {
     if ($itemCustomLinkTitle=='') {
         if (strpos($itemCustomLinkURL, '://')!==false) {
             $linkParts = explode('://', $itemCustomLinkURL);
