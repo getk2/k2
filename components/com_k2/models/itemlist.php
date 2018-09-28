@@ -811,8 +811,13 @@ class K2ModelItemlist extends K2Model
         $now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
         $nullDate = $db->getNullDate();
 
-        $query = "SELECT itemID FROM #__k2_tags_xref WHERE tagID IN ({$sql}) AND itemID!={$itemID} GROUP BY itemID";
+        $query = "SELECT itemID
+            FROM #__k2_tags_xref
+            WHERE tagID IN ({$sql})
+                AND itemID!={$itemID}
+            GROUP BY itemID";
         $db->setQuery($query);
+
         $itemsIDs = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
 
         if (!count($itemsIDs)) {
@@ -821,36 +826,33 @@ class K2ModelItemlist extends K2Model
 
         $sql = implode(',', $itemsIDs);
 
-        $query = "SELECT i.*, c.alias as categoryalias FROM #__k2_items as i
+        $query = "SELECT i.*, c.alias as categoryalias
+            FROM #__k2_items as i
             LEFT JOIN #__k2_categories c ON c.id = i.catid
             WHERE i.published = 1
-            AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
-            AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." ) ";
+                AND i.trash = 0
+                AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now).")
+                AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now).")";
 
         if (K2_JVERSION != '15') {
-            $query .= " AND i.access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
+            $query .= " AND i.access IN(".implode(',', $user->getAuthorisedViewLevels()).")";
             if ($application->getLanguageFilter()) {
-                $query .= " AND i.language IN(".$db->Quote(JFactory::getLanguage()->getTag()).", ".$db->Quote('*').")";
+                $query .= " AND i.language IN (".$db->Quote(JFactory::getLanguage()->getTag()).", ".$db->Quote('*').")";
             }
         } else {
-            $query .= " AND i.access <= {$aid} ";
+            $query .= " AND i.access <= {$aid}";
         }
-
-        $query .= " AND i.trash = 0
-                AND c.published = 1 ";
 
         if (K2_JVERSION != '15') {
-            $query .= " AND c.access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
+            $query .= " AND c.access IN(".implode(',', $user->getAuthorisedViewLevels()).")";
             if ($application->getLanguageFilter()) {
-                $query .= " AND c.language IN(".$db->Quote(JFactory::getLanguage()->getTag()).", ".$db->Quote('*').")";
+                $query .= " AND c.language IN (".$db->Quote(JFactory::getLanguage()->getTag()).", ".$db->Quote('*').")";
             }
         } else {
-            $query .= " AND c.access <= {$aid} ";
+            $query .= " AND c.access <= {$aid}";
         }
 
-        $query .= " AND c.trash = 0
-                AND (i.id) IN ({$sql})
-                ORDER BY i.created DESC";
+        $query .= " AND c.published = 1 AND c.trash = 0 AND i.id IN ({$sql}) ORDER BY i.created DESC";
 
         $db->setQuery($query, 0, $limit);
         $rows = $db->loadObjectList();
