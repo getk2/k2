@@ -246,9 +246,6 @@ class K2ModelItemlist extends K2Model
             }
         }
 
-        // Remove duplicates
-        //$query .= " GROUP BY i.id";
-
         // Set ordering
         switch ($ordering) {
 
@@ -314,7 +311,8 @@ class K2ModelItemlist extends K2Model
                 break;
         }
 
-        $query .= " ORDER BY ".$orderby;
+        $query .= " GROUP BY i.id ORDER BY ".$orderby;
+        //$query .= " ORDER BY ".$orderby;
         $dispatcher = JDispatcher::getInstance();
         JPluginHelper::importPlugin('k2');
         $dispatcher->trigger('onK2BeforeSetQuery', array(&$query));

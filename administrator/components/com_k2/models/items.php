@@ -1063,9 +1063,9 @@ class K2ModelItems extends K2Model
                 }
 
                 $query = "SELECT article.*, xref.content_id
-				FROM #__content AS article
-				LEFT JOIN #__content_frontpage AS xref ON article.id = xref.content_id
-				WHERE catid = ".(int)$category->id;
+                FROM #__content AS article
+                LEFT JOIN #__content_frontpage AS xref ON article.id = xref.content_id
+                WHERE catid = ".(int)$category->id;
                 $db->setQuery($query);
                 $items = $db->loadObjectList();
 
@@ -1304,9 +1304,9 @@ class K2ModelItems extends K2Model
                 JFile::copy(realpath(JPATH_SITE.'/'.$category->image), JPATH_SITE.'/media/k2/categories/'.$K2Category->image);
             }
             $query = "SELECT article.*, xref.content_id
-				FROM #__content AS article
-				LEFT JOIN #__content_frontpage AS xref ON article.id = xref.content_id
-				WHERE catid = ".(int)$category->id;
+                FROM #__content AS article
+                LEFT JOIN #__content_frontpage AS xref ON article.id = xref.content_id
+                WHERE catid = ".(int)$category->id;
             $db->setQuery($query);
             $items = $db->loadObjectList();
 
@@ -1405,9 +1405,14 @@ class K2ModelItems extends K2Model
     public function getItemsAuthors()
     {
         $db = $this->getDBO();
-        $query = "SELECT id, name, block FROM #__users WHERE id IN(SELECT created_by FROM #__k2_items GROUP BY created_by) ORDER BY name";
+        $query = "SELECT u.id, u.name, u.block
+            FROM #__users as u
+            RIGHT JOIN #__k2_items as i on u.id = i.created_by
+            GROUP BY u.id
+            ORDER BY u.name";
         $db->setQuery($query);
         $rows = $db->loadObjectList();
+
         return $rows;
     }
 
