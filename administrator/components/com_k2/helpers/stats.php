@@ -31,7 +31,10 @@ class K2HelperStats
 		}
 
 		$document = JFactory::getDocument();
-		$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.4/jquery.xdomainrequest.min.js');
+		
+		// For IE8/9 only (to be removed in K2 v3.x)
+		$document->addScript('https://cdn.jsdelivr.net/npm/jquery-ajax-transport-xdomainrequest@1.0.4/jquery.xdomainrequest.min.js');
+		
 		$document->addScriptDeclaration("
 	    	/* K2 - Metrics */
 	        (function(\$){

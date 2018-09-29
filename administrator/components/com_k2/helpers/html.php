@@ -95,16 +95,16 @@ class K2HelperHTML
                         if ($jQueryHandling == '1.12remote') {
                             $jQueryHandling = '1.12.4';
                         }
-                        $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/'.$jQueryHandling.'/jquery.min.js');
+                        $document->addScript('https://cdn.jsdelivr.net/npm/jquery@'.$jQueryHandling.'/dist/jquery.min.js');
                     }
                 }
 
                 // Backend
                 if ($application->isAdmin()) {
                     if (($option == 'com_k2' && ($view == 'item' || $view == 'category')) || $option == 'com_menus') {
-                        $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js');
+                        $document->addScript('https://cdn.jsdelivr.net/npm/jquery@1.8.3/dist/jquery.min.js');
                     } else {
-                        $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js');
+                        $document->addScript('https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js');
                     }
                 }
             }
@@ -113,13 +113,13 @@ class K2HelperHTML
             if ($jQueryUI) {
                 // Load version 1.8.24 for tabs & sortables (called the "old" way)...
                 if (($option == 'com_k2' && ($view == 'item' || $view == 'category')) || $option == 'com_menus') {
-                    $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js');
+                    $document->addScript('https://code.jquery.com/ui/1.8.24/jquery-ui.min.js');
                 }
 
                 // Load latest version for the "media" view & modules only
                 if (($option == 'com_k2' && $view == 'media') || $option == 'com_modules' || $option == 'com_advancedmodules') {
-                    $document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css');
-                    $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js');
+                    $document->addStyleSheet('https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.min.css');
+                    $document->addScript('https://code.jquery.com/ui/1.12.1/jquery-ui.min.js');
                 }
             }
 
@@ -131,25 +131,25 @@ class K2HelperHTML
                 $cssClass = 'isJ'.K2_JVERSION.' k2ViewIs'.ucfirst($view).''.$isTask.''.$isBackend;
                 $document->addScriptDeclaration("
 
-					// Set K2 version as global JS variable
-					K2JVersion = '".K2_JVERSION."';
+                    // Set K2 version as global JS variable
+                    K2JVersion = '".K2_JVERSION."';
 
-					// Set Joomla version as class in the 'html' tag
-					(function(){
-						var addedClass = '".$cssClass."';
-						if (document.getElementsByTagName('html')[0].className !== '') {
-							document.getElementsByTagName('html')[0].className += ' '+addedClass;
-						} else {
-							document.getElementsByTagName('html')[0].className = addedClass;
-						}
-					})();
+                    // Set Joomla version as class in the 'html' tag
+                    (function(){
+                        var addedClass = '".$cssClass."';
+                        if (document.getElementsByTagName('html')[0].className !== '') {
+                            document.getElementsByTagName('html')[0].className += ' '+addedClass;
+                        } else {
+                            document.getElementsByTagName('html')[0].className = addedClass;
+                        }
+                    })();
 
-					// K2 Language Strings
-		        	var K2_THE_ENTRY_IS_ALREADY_IN_THE_LIST = '".JText::_('K2_THE_ENTRY_IS_ALREADY_IN_THE_LIST')."';
-		        	var K2_REMOVE_THIS_ENTRY = '".JText::_('K2_REMOVE_THIS_ENTRY')."';
-		        	var K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST = '".JText::_('K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST')."';
+                    // K2 Language Strings
+                    var K2_THE_ENTRY_IS_ALREADY_IN_THE_LIST = '".JText::_('K2_THE_ENTRY_IS_ALREADY_IN_THE_LIST')."';
+                    var K2_REMOVE_THIS_ENTRY = '".JText::_('K2_REMOVE_THIS_ENTRY')."';
+                    var K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST = '".JText::_('K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST')."';
 
-				");
+                ");
                 $document->addScript(JURI::root(true).'/media/k2/assets/js/k2.backend.js?v='.K2_CURRENT_VERSION.'&amp;sitepath='.JURI::root(true).'/');
 
                 // NicEdit
@@ -175,30 +175,30 @@ class K2HelperHTML
 
                 // Flatpickr
                 if ($view == 'item' || $view == 'extrafield') {
-                    $document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.5.1/flatpickr.min.css');
-                    $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.5.1/flatpickr.min.js');
-                    $document->addCustomTag('<!--[if IE 9]><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.5.1/ie.css" /><![endif]-->');
+                    $document->addStyleSheet('https://cdn.jsdelivr.net/npm/flatpickr@4.5.2/dist/flatpickr.min.css');
+                    $document->addScript('https://cdn.jsdelivr.net/npm/flatpickr@4.5.2/dist/flatpickr.min.js');
+                    $document->addCustomTag('<!--[if IE 9]><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/flatpickr@4.5.2/dist/ie.css" /><![endif]-->');
                 }
 
                 // Magnific Popup
-                $document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css');
+                $document->addStyleSheet('https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css');
                 $document->addStyleDeclaration('
-					/* K2 - Magnific Popup Overrides */
-					.mfp-iframe-holder {padding:10px;}
-					.mfp-iframe-holder .mfp-content {max-width:100%;width:100%;height:100%;}
-					.mfp-iframe-scaler iframe {background:#fff;padding:10px;box-sizing:border-box;box-shadow:none;}
-				');
-                $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js');
+                    /* K2 - Magnific Popup Overrides */
+                    .mfp-iframe-holder {padding:10px;}
+                    .mfp-iframe-holder .mfp-content {max-width:100%;width:100%;height:100%;}
+                    .mfp-iframe-scaler iframe {background:#fff;padding:10px;box-sizing:border-box;box-shadow:none;}
+                ');
+                $document->addScript('https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js');
 
                 // Fancybox
                 if ($view == 'item' || $view == 'items' || $view == 'categories') {
-                    $document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.4.2/jquery.fancybox.min.css');
-                    $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.4.2/jquery.fancybox.min.js');
+                    $document->addStyleSheet('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.0/dist/jquery.fancybox.min.css');
+                    $document->addScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.0/dist/jquery.fancybox.min.js');
                 }
 
                 // CSS
                 if ($option == 'com_k2' || $adminModuleIncludes) {
-                    $document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+                    $document->addStyleSheet('https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css');
                 }
                 if ($option == 'com_k2') {
                     $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.backend.css?v='.K2_CURRENT_VERSION);
@@ -212,14 +212,14 @@ class K2HelperHTML
             if ($application->isSite()) {
                 // Magnific Popup
                 if (!$user->guest || ($option == 'com_k2' && $view == 'item') || defined('K2_JOOMLA_MODAL_REQUIRED')) {
-                    $document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css');
+                    $document->addStyleSheet('https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css');
                     $document->addStyleDeclaration('
-						/* K2 - Magnific Popup Overrides */
-						.mfp-iframe-holder {padding:10px;}
-						.mfp-iframe-holder .mfp-content {max-width:100%;width:100%;height:100%;}
-						.mfp-iframe-scaler iframe {background:#fff;padding:10px;box-sizing:border-box;box-shadow:none;}
-					');
-                    $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js');
+                        /* K2 - Magnific Popup Overrides */
+                        .mfp-iframe-holder {padding:10px;}
+                        .mfp-iframe-holder .mfp-content {max-width:100%;width:100%;height:100%;}
+                        .mfp-iframe-scaler iframe {background:#fff;padding:10px;box-sizing:border-box;box-shadow:none;}
+                    ');
+                    $document->addScript('https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js');
                 }
 
                 // JS
@@ -231,7 +231,7 @@ class K2HelperHTML
                     $template = JRequest::getCmd('template');
 
                     // Simple Line Icons
-                    $document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css');
+                    $document->addStyleSheet('https://cdn.jsdelivr.net/npm/simple-line-icons@2.4.1/css/simple-line-icons.css');
 
                     // k2.css
                     if (isset($template) && JFile::exists(JPATH_SITE.'/templates/'.$template.'/css/k2.css')) {
