@@ -73,7 +73,7 @@ defined('_JEXEC') or die;
 									</tr>
 									<tr>
 										<td><a target="_blank" href="https://jqueryui.com/">jQuery UI</a></td>
-										<td>1.8.24 &amp; 1.11.4</td>
+										<td>1.8.24 &amp; 1.12.1</td>
 										<td><?php echo JText::_('K2_JS_LIB'); ?></td>
 										<td>MIT</td>
 									</tr>
@@ -85,7 +85,7 @@ defined('_JEXEC') or die;
 									</tr>
 									<tr>
 										<td><a target="_blank" href="https://github.com/select2/select2">Select2</a></td>
-										<td>4.0.3</td>
+										<td>4.0.5</td>
 										<td><?php echo JText::_('K2_INFO_REPLACEMENT_FOR_SELECT_BOXES'); ?></td>
 										<td>MIT</td>
 									</tr>
@@ -97,13 +97,13 @@ defined('_JEXEC') or die;
 									</tr>
 									<tr>
 										<td><a target="_blank" href="https://github.com/fancyapps/fancybox">fancyBox</a></td>
-										<td>3.1.20</td>
+										<td>3.5.0</td>
 										<td><?php echo JText::_('K2_INFO_RESPONSIVE_LIGHTBOX_DIALOG_SCRIPT'); ?></td>
 										<td>GNU/GPL v3</td>
 									</tr>
 									<tr>
-										<td><a target="_blank" href="https://github.com/chmln/flatpickr">flatpickr</a></td>
-										<td>2.6.3</td>
+										<td><a target="_blank" href="https://github.com/flatpickr/flatpickr">flatpickr</a></td>
+										<td>4.5.2</td>
 										<td><?php echo JText::_('K2_INFO_DATETIME_PICKER'); ?></td>
 										<td>MIT</td>
 									</tr>
