@@ -356,7 +356,7 @@ defined('_JEXEC') or die;
 						<?php if($this->sigPro): ?>
 						<div class="itemGalleryBlock">
 							<label><?php echo JText::_('K2_COM_BE_ITEM_SIGPRO_UPLOAD_NOTE'); ?></label>
-							<a class="k2Button modal" rel="{handler: 'iframe', size: {x: 940, y: 560}}" href="index.php?option=com_sigpro&view=galleries&task=create&newFolder=<?php echo $this->sigProFolder; ?>&type=k2&tmpl=component">
+							<a class="k2Button modal" rel="{handler: 'iframe', size: {x: (window.innerWidth)*0.9, y: (window.innerHeight)*0.9}}" href="index.php?option=com_sigpro&view=galleries&task=create&newFolder=<?php echo $this->sigProFolder; ?>&type=k2&tmpl=component">
 								<?php echo JText::_('K2_COM_BE_ITEM_SIGPRO_UPLOAD'); ?>
 							</a>
 							<br />
