@@ -55,8 +55,8 @@ class K2ViewItem extends K2View
         // User K2 plugins
         $item->event->K2UserDisplay = '';
         if (isset($item->author) && is_object($item->author->profile) && isset($item->author->profile->id)) {
-            $dispatcher = JDispatcher::getInstance();
             JPluginHelper::importPlugin('k2');
+            $dispatcher = JDispatcher::getInstance();
             $results = $dispatcher->trigger('onK2UserDisplay', array(
                 &$item->author->profile,
                 &$params,
@@ -133,8 +133,8 @@ class K2ViewItem extends K2View
         $item->event->K2CommentsBlock = '';
         if ($item->params->get('itemComments')) {
             // Trigger comments events
-            $dispatcher = JDispatcher::getInstance();
             JPluginHelper::importPlugin('k2');
+            $dispatcher = JDispatcher::getInstance();
             $results = $dispatcher->trigger('onK2CommentsCounter', array(
                 &$item,
                 &$params,
@@ -162,15 +162,15 @@ class K2ViewItem extends K2View
                         } else {
                             $document->addScript('https://www.google.com/recaptcha/api/js/recaptcha_ajax.js');
                             $js = '
-							function showRecaptcha(){
-								Recaptcha.create("'.$item->params->get('recaptcha_public_key').'", "recaptcha", {
-									theme: "'.$item->params->get('recaptcha_theme', 'clean').'"
-								});
-							}
-							$K2(window).load(function() {
-								showRecaptcha();
-							});
-							';
+                            function showRecaptcha(){
+                                Recaptcha.create("'.$item->params->get('recaptcha_public_key').'", "recaptcha", {
+                                    theme: "'.$item->params->get('recaptcha_theme', 'clean').'"
+                                });
+                            }
+                            $K2(window).load(function() {
+                                showRecaptcha();
+                            });
+                            ';
                             $document->addScriptDeclaration($js);
                             $this->recaptchaClass = 'k2-recaptcha-v1';
                         }

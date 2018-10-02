@@ -40,8 +40,8 @@ class K2ModelCategory extends K2Model
         $isNew = ($row->id) ? false : true;
 
         // Trigger the finder before save event
-        $dispatcher = JDispatcher::getInstance();
         JPluginHelper::importPlugin('finder');
+        $dispatcher = JDispatcher::getInstance();
         $results = $dispatcher->trigger('onFinderBeforeSave', array('com_k2.category', $row, $isNew));
 
         $row->description = JRequest::getVar('description', '', 'post', 'string', 2);
@@ -119,8 +119,8 @@ class K2ModelCategory extends K2Model
         }
 
         // Trigger the finder after save event
-        $dispatcher = JDispatcher::getInstance();
         JPluginHelper::importPlugin('finder');
+        $dispatcher = JDispatcher::getInstance();
         $results = $dispatcher->trigger('onFinderAfterSave', array('com_k2.category', $row, $isNew));
 
         $cache = JFactory::getCache('com_k2');

@@ -23,6 +23,11 @@ class K2ViewItemlist extends K2View
         $view = JRequest::getWord('view');
         $task = JRequest::getWord('task');
 
+        // Import plugins
+        JPluginHelper::importPlugin('content');
+        JPluginHelper::importPlugin('k2');
+        $dispatcher = JDispatcher::getInstance();
+
         // Add link
         if (K2HelperPermissions::canAddItem()) {
             $addLink = JRoute::_('index.php?option=com_k2&view=item&task=add&tmpl=component');
@@ -98,8 +103,6 @@ class K2ViewItemlist extends K2View
                 $category->image = K2HelperUtilities::getCategoryImage($category->image, $params);
 
                 // Category plugins
-                $dispatcher = JDispatcher::getInstance();
-                JPluginHelper::importPlugin('content');
                 $category->text = $category->description;
 
                 if (K2_JVERSION != '15') {
@@ -177,8 +180,6 @@ class K2ViewItemlist extends K2View
                 // User K2 plugins
                 $userObject->event->K2UserDisplay = '';
                 if (is_object($userObject->profile) && $userObject->profile->id > 0) {
-                    $dispatcher = JDispatcher::getInstance();
-                    JPluginHelper::importPlugin('k2');
                     $results = $dispatcher->trigger('onK2UserDisplay', array(&$userObject->profile, &$params, $limitstart));
                     $userObject->event->K2UserDisplay = trim(implode("\n", $results));
                     $userObject->profile->url = htmlspecialchars($userObject->profile->url, ENT_QUOTES, 'UTF-8');
@@ -217,7 +218,7 @@ class K2ViewItemlist extends K2View
                     return false;
                 }
 
-                // set title
+                // Set title
                 $title = JText::_('K2_DISPLAYING_ITEMS_BY_TAG').' '.$tag->name;
 
                 // Set ordering
@@ -338,8 +339,6 @@ class K2ViewItemlist extends K2View
             $items[$i] = $model->execPlugins($items[$i], $view, $task);
 
             // Trigger comments counter event
-            $dispatcher = JDispatcher::getInstance();
-            JPluginHelper::importPlugin('k2');
             $results = $dispatcher->trigger('onK2CommentsCounter', array(&$items[$i], &$params, $limitstart));
             $items[$i]->event->K2CommentsCounter = trim(implode("\n", $results));
         }

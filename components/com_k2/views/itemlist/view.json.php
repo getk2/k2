@@ -46,6 +46,11 @@ class K2ViewItemlist extends K2View
         $response = new JObject();
         unset($response->_errors);
 
+        // Import plugins
+        JPluginHelper::importPlugin('content');
+        JPluginHelper::importPlugin('k2');
+        $dispatcher = JDispatcher::getInstance();
+
         // Site
         $response->site = new stdClass();
         $uri = JURI::getInstance();
@@ -63,7 +68,6 @@ class K2ViewItemlist extends K2View
 
             // Get data depending on task
             switch ($task) {
-
                 case 'category':
                     // Get category
                     $id = JRequest::getInt('id');
@@ -109,8 +113,6 @@ class K2ViewItemlist extends K2View
                     $category->image = K2HelperUtilities::getCategoryImage($category->image, $params);
 
                     // Category plugins
-                    $dispatcher = JDispatcher::getInstance();
-                    JPluginHelper::importPlugin('content');
                     $category->text = $category->description;
 
                     if (K2_JVERSION != '15') {
@@ -124,14 +126,13 @@ class K2ViewItemlist extends K2View
                     // Category K2 plugins
                     $category->event = new stdClass;
                     $category->event->K2CategoryDisplay = '';
-                    JPluginHelper::importPlugin('k2');
                     $results = $dispatcher->trigger('onK2CategoryDisplay', array(&$category, &$params, $limitstart));
                     $category->event->K2CategoryDisplay = trim(implode("\n", $results));
                     $category->text = $category->description;
                     $dispatcher->trigger('onK2PrepareContent', array(&$category, &$params, $limitstart));
                     $category->description = $category->text;
 
-                    //Category children
+                    // Category children
                     $ordering = $params->get('subCatOrdering');
                     $children = $model->getCategoryFirstChildren($id, $ordering);
                     $subCategories = array();
@@ -205,8 +206,6 @@ class K2ViewItemlist extends K2View
                     // User K2 plugins
                     $userObject->event->K2UserDisplay = '';
                     if (is_object($userObject->profile) && $userObject->profile->id > 0) {
-                        $dispatcher = JDispatcher::getInstance();
-                        JPluginHelper::importPlugin('k2');
                         $results = $dispatcher->trigger('onK2UserDisplay', array(&$userObject->profile, &$params, $limitstart));
                         $userObject->event->K2UserDisplay = trim(implode("\n", $results));
                         $userObject->profile->url = htmlspecialchars($userObject->profile->url, ENT_QUOTES, 'UTF-8');
@@ -254,7 +253,6 @@ class K2ViewItemlist extends K2View
                     break;
 
                 case 'search':
-
                     // Set title
                     $title = JText::_('K2_SEARCH_RESULTS_FOR').' '.JRequest::getVar('searchword');
 
@@ -265,7 +263,6 @@ class K2ViewItemlist extends K2View
                     break;
 
                 case 'date':
-
                     // Set title
                     if (JRequest::getInt('day')) {
                         $date = strtotime(JRequest::getInt('year').'-'.JRequest::getInt('month').'-'.JRequest::getInt('day'));
@@ -377,8 +374,6 @@ class K2ViewItemlist extends K2View
             $items[$i] = $model->execPlugins($items[$i], $view, $task);
 
             // Trigger comments counter event
-            $dispatcher = JDispatcher::getInstance();
-            JPluginHelper::importPlugin('k2');
             $results = $dispatcher->trigger('onK2CommentsCounter', array(&$items[$i], &$params, $limitstart));
             $items[$i]->event->K2CommentsCounter = trim(implode("\n", $results));
 

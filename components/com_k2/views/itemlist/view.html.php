@@ -24,6 +24,11 @@ class K2ViewItemlist extends K2View
         $task = JRequest::getWord('task');
         $db = JFactory::getDbo();
 
+        // Import plugins
+        JPluginHelper::importPlugin('content');
+        JPluginHelper::importPlugin('k2');
+        $dispatcher = JDispatcher::getInstance();
+
         // Add link
         if (K2HelperPermissions::canAddItem()) {
             $addLink = JRoute::_('index.php?option=com_k2&view=item&task=add&tmpl=component');
@@ -107,8 +112,6 @@ class K2ViewItemlist extends K2View
                 $category->image = K2HelperUtilities::getCategoryImage($category->image, $params);
 
                 // Category plugins
-                $dispatcher = JDispatcher::getInstance();
-                JPluginHelper::importPlugin('content');
                 $category->text = $category->description;
                 if (K2_JVERSION != '15') {
                     $dispatcher->trigger('onContentPrepare', array(
@@ -207,8 +210,6 @@ class K2ViewItemlist extends K2View
                 // User K2 plugins
                 $userObject->event->K2UserDisplay = '';
                 if (is_object($userObject->profile) && $userObject->profile->id > 0) {
-                    $dispatcher = JDispatcher::getInstance();
-                    JPluginHelper::importPlugin('k2');
                     $results = $dispatcher->trigger('onK2UserDisplay', array(
                         &$userObject->profile,
                         &$params,
@@ -375,7 +376,7 @@ class K2ViewItemlist extends K2View
         $total = count($items) ? $model->getTotal() : 0;
         $pagination = new JPagination($total, $limitstart, $limit);
 
-        //Prepare items
+        // Prepare items
         $cache = JFactory::getCache('com_k2_extended');
         $model = $this->getModel('item');
 
@@ -384,7 +385,7 @@ class K2ViewItemlist extends K2View
             // Ensure that all items have a group. If an item with no group is found then assign to it the leading group
             $items[$i]->itemGroup = 'leading';
 
-            //Item group
+            // Item group
             if ($task == "category" || $task == "") {
                 if ($i < ($params->get('num_links') + $params->get('num_leading_items') + $params->get('num_primary_items') + $params->get('num_secondary_items'))) {
                     $items[$i]->itemGroup = 'links';
@@ -432,9 +433,8 @@ class K2ViewItemlist extends K2View
                 ($params->get('catItemCommentsAnchor') ||
                  $params->get('itemCommentsAnchor') ||
                  $params->get('itemComments'))) {
+
                 // Trigger comments counter event
-                $dispatcher = JDispatcher::getInstance();
-                JPluginHelper::importPlugin('k2');
                 $results = $dispatcher->trigger('onK2CommentsCounter', array(
                     &$items[$i],
                     &$params,
@@ -512,7 +512,6 @@ class K2ViewItemlist extends K2View
         }
 
         if (K2_JVERSION != '15') {
-
             // Menu metadata options
             if ($params->get('menu-meta_description')) {
                 $document->setDescription($params->get('menu-meta_description'));
@@ -692,8 +691,7 @@ class K2ViewItemlist extends K2View
 
         $nullDate = $db->getNullDate();
         $this->assignRef('nullDate', $nullDate);
-        $dispatcher = JDispatcher::getInstance();
-        JPluginHelper::importPlugin('k2');
+
         $dispatcher->trigger('onK2BeforeViewDisplay');
 
         parent::display($tpl);

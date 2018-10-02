@@ -282,8 +282,9 @@ class K2ViewItems extends K2View
 		// Augment with plugin events
 		$filters = array();
 		$columns = array();
-		$dispatcher = JDispatcher::getInstance();
+
 		JPluginHelper::importPlugin('k2');
+		$dispatcher = JDispatcher::getInstance();
 		$dispatcher->trigger('onK2BeforeAssignFilters', array(&$filters));
 		$this->assignRef('filters', $filters);
 		$dispatcher->trigger('onK2BeforeAssignColumns', array(&$columns));

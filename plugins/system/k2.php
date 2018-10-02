@@ -235,12 +235,12 @@ class plgSystemK2 extends JPlugin
                 }
                 $document = JFactory::getDocument();
                 $document->addScriptDeclaration("
-					window.addEvent('domready', function(){
-						var target = $$('table.adminform');
-						target.setProperty('id', 'adminform');
-						var div = new Element('div', {'id': 'K2ExtraFields'}).setHTML('".preg_replace($pattern, '', $output)."').injectInside($('adminform'));
-					});
-				");
+                    window.addEvent('domready', function(){
+                        var target = $$('table.adminform');
+                        target.setProperty('id', 'adminform');
+                        var div = new Element('div', {'id': 'K2ExtraFields'}).setHTML('".preg_replace($pattern, '', $output)."').injectInside($('adminform'));
+                    });
+                ");
             }
 
             if (($task == 'translate.apply' || $task == 'translate.save') && $type == 'k2_extra_fields') {
@@ -369,12 +369,12 @@ class plgSystemK2 extends JPlugin
                 }
                 $document = JFactory::getDocument();
                 $document->addScriptDeclaration("
-					window.addEvent('domready', function(){
-						var target = $$('table.adminform');
-						target.setProperty('id', 'adminform');
-						var div = new Element('div', {'id': 'K2ExtraFields'}).setHTML('".preg_replace($pattern, '', $output)."').injectInside($('adminform'));
-					});
-				");
+                    window.addEvent('domready', function(){
+                        var target = $$('table.adminform');
+                        target.setProperty('id', 'adminform');
+                        var div = new Element('div', {'id': 'K2ExtraFields'}).setHTML('".preg_replace($pattern, '', $output)."').injectInside($('adminform'));
+                    });
+                ");
             }
         }
         // --- JoomFish integration [finish] ---
@@ -425,6 +425,10 @@ class plgSystemK2 extends JPlugin
         $layout = JRequest::getCmd('layout');
         $user = JFactory::getUser();
 
+        // Import plugins
+        JPluginHelper::importPlugin('k2');
+        $dispatcher = JDispatcher::getInstance();
+
         if (K2_JVERSION != '15') {
             $active = JFactory::getApplication()->getMenu()->getActive();
             if (isset($active->query['layout'])) {
@@ -438,24 +442,24 @@ class plgSystemK2 extends JPlugin
                 if ($params->get('recaptchaV2')) {
                     $document->addScript('https://www.google.com/recaptcha/api.js?onload=onK2RecaptchaLoaded&render=explicit');
                     $document->addScriptDeclaration('
-					/* K2 - Google reCAPTCHA */
-					function onK2RecaptchaLoaded(){
-						grecaptcha.render("recaptcha", {"sitekey": "'.$params->get('recaptcha_public_key').'"});
-					}
-					');
+                    /* K2 - Google reCAPTCHA */
+                    function onK2RecaptchaLoaded(){
+                        grecaptcha.render("recaptcha", {"sitekey": "'.$params->get('recaptcha_public_key').'"});
+                    }
+                    ');
                     $recaptchaClass = 'k2-recaptcha-v2';
                 } else {
                     $document->addScript('https://www.google.com/recaptcha/api/js/recaptcha_ajax.js');
                     $document->addScriptDeclaration('
-						function showRecaptcha(){
-							Recaptcha.create("'.$params->get('recaptcha_public_key').'", "recaptcha", {
-								theme: "'.$params->get('recaptcha_theme', 'clean').'"
-							});
-						}
-						$K2(document).ready(function() {
-							showRecaptcha();
-						});
-					');
+                        function showRecaptcha(){
+                            Recaptcha.create("'.$params->get('recaptcha_public_key').'", "recaptcha", {
+                                theme: "'.$params->get('recaptcha_theme', 'clean').'"
+                            });
+                        }
+                        $K2(document).ready(function() {
+                            showRecaptcha();
+                        });
+                    ');
                     $recaptchaClass = 'k2-recaptcha-v1';
                 }
             }
@@ -506,8 +510,6 @@ class plgSystemK2 extends JPlugin
             $view->assignRef('K2Params', $params);
             $view->assignRef('recaptchaClass', $recaptchaClass);
 
-            JPluginHelper::importPlugin('k2');
-            $dispatcher = JDispatcher::getInstance();
             $K2Plugins = $dispatcher->trigger('onRenderAdminForm', array(
                 &$K2User,
                 'user'
@@ -602,8 +604,6 @@ class plgSystemK2 extends JPlugin
 
             $view->assignRef('lists', $lists);
 
-            JPluginHelper::importPlugin('k2');
-            $dispatcher = JDispatcher::getInstance();
             $K2Plugins = $dispatcher->trigger('onRenderAdminForm', array(
                 &$K2User,
                 'user'
@@ -679,9 +679,12 @@ class plgSystemK2 extends JPlugin
         }
     }
 
+
+
     /* ============================================ */
     /* ============= Helper Functions ============= */
     /* ============================================ */
+
     public function getSearchValue($id, $currentValue)
     {
         JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
@@ -807,7 +810,6 @@ class plgSystemK2 extends JPlugin
         $output = '';
 
         switch ($extraField->type) {
-
             case 'textfield':
                 $output = '<div><strong>'.$extraField->name.'</strong><br /><input type="text" name="K2ExtraField_'.$extraField->id.'" value="'.$active.'" /></div><br /><br />';
                 break;

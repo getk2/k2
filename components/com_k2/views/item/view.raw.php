@@ -56,8 +56,8 @@ class K2ViewItem extends K2View
         // User K2 plugins
         $item->event->K2UserDisplay = '';
         if (isset($item->author) && is_object($item->author->profile) && isset($item->author->profile->id)) {
-            $dispatcher = JDispatcher::getInstance();
             JPluginHelper::importPlugin('k2');
+            $dispatcher = JDispatcher::getInstance();
             $results = $dispatcher->trigger('onK2UserDisplay', array(&$item->author->profile, &$params, $limitstart));
             $item->event->K2UserDisplay = trim(implode("\n", $results));
             $item->author->profile->url = htmlspecialchars($item->author->profile->url, ENT_QUOTES, 'UTF-8');
@@ -122,8 +122,8 @@ class K2ViewItem extends K2View
         if ($item->params->get('itemComments')) {
 
             // Trigger comments events
-            $dispatcher = JDispatcher::getInstance();
             JPluginHelper::importPlugin('k2');
+            $dispatcher = JDispatcher::getInstance();
             $results = $dispatcher->trigger('onK2CommentsCounter', array(&$item, &$params, $limitstart));
             $item->event->K2CommentsCounter = trim(implode("\n", $results));
             $results = $dispatcher->trigger('onK2CommentsBlock', array(&$item, &$params, $limitstart));

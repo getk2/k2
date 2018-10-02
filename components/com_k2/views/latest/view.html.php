@@ -26,6 +26,11 @@ class K2ViewLatest extends K2View
         $model = $this->getModel('itemlist');
         $itemModel = $this->getModel('item');
 
+        // Import plugins
+        JPluginHelper::importPlugin('content');
+        JPluginHelper::importPlugin('k2');
+        $dispatcher = JDispatcher::getInstance();
+
         if ($params->get('source')) {
             $categoryIDs = $params->get('categoryIDs');
             if (is_string($categoryIDs) && !empty($categoryIDs)) {
@@ -52,7 +57,7 @@ class K2ViewLatest extends K2View
 
                     if ($category->published && $accessCheck && $languageCheck) {
 
-                        //Merge params
+                        // Merge params
                         $cparams = class_exists('JParameter') ? new JParameter($category->params) : new JRegistry($category->params);
                         if ($cparams->get('inheritFrom')) {
                             $masterCategory = JTable::getInstance('K2Category', 'Table');
@@ -61,12 +66,10 @@ class K2ViewLatest extends K2View
                         }
                         $params->merge($cparams);
 
-                        //Category image
+                        // Category image
                         $category->image = K2HelperUtilities::getCategoryImage($category->image, $params);
 
-                        //Category plugins
-                        $dispatcher = JDispatcher::getInstance();
-                        JPluginHelper::importPlugin('content');
+                        // Category plugins
                         $category->text = $category->description;
 
                         if (K2_JVERSION != '15') {
@@ -76,16 +79,15 @@ class K2ViewLatest extends K2View
                         }
                         $category->description = $category->text;
 
-                        //Category K2 plugins
+                        // Category K2 plugins
                         $category->event->K2CategoryDisplay = '';
-                        JPluginHelper::importPlugin('k2');
                         $results = $dispatcher->trigger('onK2CategoryDisplay', array(&$category, &$params, $limitstart));
                         $category->event->K2CategoryDisplay = trim(implode("\n", $results));
                         $category->text = $category->description;
                         $dispatcher->trigger('onK2PrepareContent', array(&$category, &$params, $limitstart));
                         $category->description = $category->text;
 
-                        //Category link
+                        // Category link
                         $link = urldecode(K2HelperRoute::getCategoryRoute($category->id.':'.urlencode($category->alias)));
                         $category->link = JRoute::_($link);
                         $category->feed = JRoute::_($link.'&format=feed');
@@ -111,9 +113,7 @@ class K2ViewLatest extends K2View
                                 $category->items[$i]->hits = $hits;
                                 $category->items[$i] = $itemModel->execPlugins($category->items[$i], 'latest', '');
 
-                                //Trigger comments counter event
-                                $dispatcher = JDispatcher::getInstance();
-                                JPluginHelper::importPlugin('k2');
+                                // Trigger comments counter event
                                 $results = $dispatcher->trigger('onK2CommentsCounter', array(&$category->items[$i], &$params, $limitstart));
                                 $category->items[$i]->event->K2CommentsCounter = trim(implode("\n", $results));
                             }
@@ -140,17 +140,15 @@ class K2ViewLatest extends K2View
                     if (!$userObject->block) {
                         $userObject->event = new stdClass;
 
-                        //User profile
+                        // User profile
                         $userObject->profile = $model->getUserProfile($userID);
 
-                        //User image
+                        // User image
                         $userObject->avatar = K2HelperUtilities::getAvatar($userObject->id, $userObject->email, $params->get('userImageWidth'));
 
-                        //User K2 plugins
+                        // User K2 plugins
                         $userObject->event->K2UserDisplay = '';
                         if (is_object($userObject->profile) && $userObject->profile->id > 0) {
-                            $dispatcher = JDispatcher::getInstance();
-                            JPluginHelper::importPlugin('k2');
                             $results = $dispatcher->trigger('onK2UserDisplay', array(&$userObject->profile, &$params, $limitstart));
                             $userObject->event->K2UserDisplay = trim(implode("\n", $results));
                             $userObject->profile->url = htmlspecialchars($userObject->profile->url, ENT_QUOTES, 'UTF-8');
@@ -169,12 +167,10 @@ class K2ViewLatest extends K2View
                                 $userObject->items[$i] = $cache->call(array($itemModel, 'prepareItem'), $userObject->items[$i], 'latest', '');
                                 $userObject->items[$i]->hits = $hits;
 
-                                //Plugins
+                                // Plugins
                                 $userObject->items[$i] = $itemModel->execPlugins($userObject->items[$i], 'latest', '');
 
-                                //Trigger comments counter event
-                                $dispatcher = JDispatcher::getInstance();
-                                JPluginHelper::importPlugin('k2');
+                                // Trigger comments counter event
                                 $results = $dispatcher->trigger('onK2CommentsCounter', array(&$userObject->items[$i], &$params, $limitstart));
                                 $userObject->items[$i]->event->K2CommentsCounter = trim(implode("\n", $results));
                             }
@@ -199,7 +195,6 @@ class K2ViewLatest extends K2View
             }
         }
         $document->setTitle($browserTitle);
-
 
         // Set menu metadata for Joomla 2.5+
         if (K2_JVERSION != '15') {
@@ -260,14 +255,14 @@ class K2ViewLatest extends K2View
             }
         }
 
-        //Assign params
+        // Assign params
         $this->assignRef('params', $params);
         $this->assignRef('source', $source);
 
-        //Set layout
+        // Set layout
         $this->setLayout('latest');
 
-        //Display
+        // Display
         parent::display($tpl);
     }
 }

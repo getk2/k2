@@ -241,8 +241,9 @@ class K2ModelItem extends K2Model
         $limitstart = 0;
         $view = JRequest::getCmd('view');
 
-        // Get content plugins
+        // Import plugins
         JPluginHelper::importPlugin('content');
+        JPluginHelper::importPlugin('k2');
         $dispatcher = JDispatcher::getInstance();
 
         // Category
@@ -475,6 +476,7 @@ class K2ModelItem extends K2Model
 
         // Import plugins
         JPluginHelper::importPlugin('content');
+        JPluginHelper::importPlugin('k2');
         $dispatcher = JDispatcher::getInstance();
 
         if (!isset($this->isSigInstalled)) {
@@ -642,6 +644,7 @@ class K2ModelItem extends K2Model
                     break;
             }
         }
+
         $item->event = new stdClass;
         if (K2_JVERSION != '15') {
             $item->event->BeforeDisplay = '';
@@ -728,8 +731,6 @@ class K2ModelItem extends K2Model
         $item->event->K2AfterDisplayContent = '';
 
         if (($view == 'item' && $item->params->get('itemK2Plugins')) || ($view == 'itemlist' && ($task == '' || $task == 'category') && $item->params->get('catItemK2Plugins')) || ($view == 'itemlist' && $task == 'user' && $item->params->get('userItemK2Plugins')) || ($view == 'itemlist' && ($task == 'search' || $task == 'tag' || $task == 'date'))) {
-            JPluginHelper::importPlugin('k2');
-
             $results = $dispatcher->trigger('onK2BeforeDisplay', array(
                 &$item,
                 &$params,

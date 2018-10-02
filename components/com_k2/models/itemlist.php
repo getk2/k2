@@ -89,7 +89,6 @@ class K2ModelItemlist extends K2Model
 
         // Build query depending on task
         switch ($task) {
-
             case 'category':
                 $id = JRequest::getInt('id');
 
@@ -248,7 +247,6 @@ class K2ModelItemlist extends K2Model
 
         // Set ordering
         switch ($ordering) {
-
             case 'date':
                 $orderby = 'i.created ASC';
                 break;
@@ -311,11 +309,13 @@ class K2ModelItemlist extends K2Model
                 break;
         }
 
-        $query .= " GROUP BY i.id ORDER BY ".$orderby;
-        //$query .= " ORDER BY ".$orderby;
-        $dispatcher = JDispatcher::getInstance();
+        //$query .= " GROUP BY i.id ORDER BY ".$orderby;
+        $query .= " ORDER BY ".$orderby;
+
         JPluginHelper::importPlugin('k2');
+        $dispatcher = JDispatcher::getInstance();
         $dispatcher->trigger('onK2BeforeSetQuery', array(&$query));
+
         $db->setQuery($query, $limitstart, $limit);
         $rows = $db->loadObjectList();
         return $rows;
@@ -363,8 +363,8 @@ class K2ModelItemlist extends K2Model
             $query .= "i.access <= {$aid}"." AND i.trash = 0"." AND c.published = 1"." AND c.access <= {$aid}"." AND c.trash = 0";
         }
 
-        $query .= " AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )";
-        $query .= " AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )";
+        $query .= " AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now).")";
+        $query .= " AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now).")";
 
         // Build query depending on task
         switch ($task) {
@@ -512,9 +512,11 @@ class K2ModelItemlist extends K2Model
                 $query .= " AND i.featured = 1";
             }
         }
-        $dispatcher = JDispatcher::getInstance();
+
         JPluginHelper::importPlugin('k2');
+        $dispatcher = JDispatcher::getInstance();
         $dispatcher->trigger('onK2BeforeSetQuery', array(&$query));
+
         $db->setQuery($query);
         $result = $db->loadResult();
         return $result;
@@ -657,7 +659,6 @@ class K2ModelItemlist extends K2Model
             echo $db->stderr();
             return false;
         }
-
         return $rows;
     }
 
@@ -1072,8 +1073,9 @@ class K2ModelItemlist extends K2Model
                 $query .= " AND access<={$aid}";
             }
         }
-        $query .= " ORDER BY parent ";
+        $query .= " ORDER BY parent";
         $db->setQuery($query);
+
         $categories = $db->loadObjectList();
         $tree = array();
         return $this->buildTree($categories);
@@ -1082,7 +1084,6 @@ class K2ModelItemlist extends K2Model
     public function buildTree(array &$categories, $parent = 0)
     {
         $branch = array();
-
         foreach ($categories as &$category) {
             if ($category->parent == $parent) {
                 $children = $this->buildTree($categories, $category->id);
@@ -1111,7 +1112,6 @@ class K2ModelItemlist extends K2Model
                 }
             }
         }
-
         return null;
     }
 }
