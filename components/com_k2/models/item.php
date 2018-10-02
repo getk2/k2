@@ -780,7 +780,7 @@ class K2ModelItem extends K2Model
 
         // Extra fields plugins
         if (($view == 'item' && $item->params->get('itemExtraFields')) || ($view == 'itemlist' && ($task == '' || $task == 'category') && $item->params->get('catItemExtraFields')) || ($view == 'itemlist' && $task == 'tag' && $item->params->get('tagItemExtraFields')) || ($view == 'itemlist' && ($task == 'search' || $task == 'date') && $item->params->get('genericItemExtraFields'))) {
-            if (count($item->extra_fields) && is_array($item->extra_fields)) {
+            if (isset($item->extra_fields) && is_array($item->extra_fields) && count($item->extra_fields)) {
                 foreach ($item->extra_fields as $key => $extraField) {
                     if ($extraField->type == 'textarea' || $extraField->type == 'textfield') {
                         // Create temp object to parse plugins
