@@ -74,7 +74,7 @@ class K2ModelItem extends K2Model
         // Print link
         $item->printLink = urldecode(JRoute::_($link.'&tmpl=component&print=1'));
 
-        //Params
+        // Params
         $cparams = class_exists('JParameter') ? new JParameter($category->params) : new JRegistry($category->params);
         $iparams = class_exists('JParameter') ? new JParameter($item->params) : new JRegistry($item->params);
         $item->params = version_compare(PHP_VERSION, '5.0.0', '>=') ? clone $params : $params;
@@ -240,6 +240,11 @@ class K2ModelItem extends K2Model
         $params = K2HelperUtilities::getParams('com_k2');
         $limitstart = 0;
         $view = JRequest::getCmd('view');
+
+        // Get content plugins
+        JPluginHelper::importPlugin('content');
+        $dispatcher = JDispatcher::getInstance();
+
         // Category
         $category = JTable::getInstance('K2Category', 'Table');
         $category->load($item->catid);
@@ -298,6 +303,37 @@ class K2ModelItem extends K2Model
             }
         }
 
+
+        // Item gallery
+        if ($params->get('feedItemGallery') && $item->gallery) {
+            $params->set('galleries_rootfolder', 'media/k2/galleries');
+            $params->set('enabledownload', '0');
+
+            // Create temp object to parse plugins
+            $galleryTempText = new JObject();
+            $galleryTempText->text = $item->gallery;
+            if (K2_JVERSION == '15') {
+                $dispatcher->trigger('onPrepareContent', array(
+                    &$galleryTempText,
+                    &$params,
+                    $limitstart
+                ));
+            } else {
+                $dispatcher->trigger('onContentPrepare', array(
+                    'com_k2.'.$view.'-gallery',
+                    &$galleryTempText,
+                    &$params,
+                    $limitstart
+                ));
+            }
+            $dispatcher->trigger('onK2PrepareContent', array(
+                &$galleryTempText,
+                &$params,
+                $limitstart
+            ));
+            $item->description .= '<div class="K2FeedGallery">'.$galleryTempText->text.'</div>';
+        }
+
         // Item Video
         if ($params->get('feedItemVideo') && $item->video) {
             if (!empty($item->video) && JString::substr($item->video, 0, 1) !== '{') {
@@ -305,55 +341,31 @@ class K2ModelItem extends K2Model
             } else {
                 $params->set('vfolder', 'media/k2/videos');
                 $params->set('afolder', 'media/k2/audio');
-                if (stripos($item->video, 'remote}') !== false) {
-                    preg_match("#}(.*?){/#s", $item->video, $matches);
-                    if (stripos($matches[1], 'http') === false) {
-                        $item->video = str_replace($matches[1], JURI::root().$matches[1], $item->video);
-                    }
-                }
-                $dispatcher = JDispatcher::getInstance();
-                JPluginHelper::importPlugin('content');
-                $item->text = $item->video;
+
+                // Create temp object to parse plugins
+                $mediaTempText = new JObject();
+                $mediaTempText->text = $item->video;
                 if (K2_JVERSION == '15') {
                     $dispatcher->trigger('onPrepareContent', array(
-                        &$item,
+                        &$mediaTempText,
                         &$params,
                         $limitstart
                     ));
                 } else {
                     $dispatcher->trigger('onContentPrepare', array(
-                        'com_k2.'.$view,
-                        &$item,
+                        'com_k2.'.$view.'-media',
+                        &$mediaTempText,
                         &$params,
                         $limitstart
                     ));
                 }
-                $item->description .= '<div class="K2FeedVideo">'.$item->text.'</div>';
-            }
-        }
-
-        // Item gallery
-        if ($params->get('feedItemGallery') && $item->gallery) {
-            $params->set('galleries_rootfolder', 'media/k2/galleries');
-            $params->set('enabledownload', '0');
-            $dispatcher = JDispatcher::getInstance();
-            JPluginHelper::importPlugin('content');
-            $item->text = $item->gallery;
-            if (K2_JVERSION == '15') {
-                $dispatcher->trigger('onPrepareContent', array(
-                    &$item,
+                $dispatcher->trigger('onK2PrepareContent', array(
+                    &$mediaTempText,
                     &$params,
                     $limitstart
                 ));
-            } else {
-                $dispatcher->trigger('onContentPrepare', array(
-                    'com_k2.'.$view,
-                    &$item,
-                    &$params,
-                    $limitstart
-                ));
+                $item->description .= '<div class="K2FeedVideo">'.$mediaTempText->text.'</div>';
             }
-            $item->description .= '<div class="K2FeedGallery">'.$item->text.'</div>';
         }
 
         // Item attachments
@@ -460,15 +472,16 @@ class K2ModelItem extends K2Model
         jimport('joomla.filesystem.folder');
         $params = K2HelperUtilities::getParams('com_k2');
         $limitstart = JRequest::getInt('limitstart');
+
         // Import plugins
-        $dispatcher = JDispatcher::getInstance();
         JPluginHelper::importPlugin('content');
+        $dispatcher = JDispatcher::getInstance();
 
         if (!isset($this->isSigInstalled)) {
             $this->isSigInstalled = (
-            JFile::exists(JPATH_SITE.'/plugins/content/jw_sigpro.php') ||
-            JFile::exists(JPATH_SITE.'/plugins/content/jw_sigpro/jw_sigpro.php') ||
-            JFile::exists(JPATH_SITE.'/plugins/content/jw_sigpro/jw_sigpro/jw_sigpro.php')
+                JFile::exists(JPATH_SITE.'/plugins/content/jw_sigpro.php') ||
+                JFile::exists(JPATH_SITE.'/plugins/content/jw_sigpro/jw_sigpro.php') ||
+                JFile::exists(JPATH_SITE.'/plugins/content/jw_sigpro/jw_sigpro/jw_sigpro.php')
             );
         }
 
@@ -504,26 +517,33 @@ class K2ModelItem extends K2Model
                     }
                 }
 
-                $item->text = $item->gallery;
+                // Create temp object to parse plugins
+                $galleryTempText = new JObject();
+                $galleryTempText->text = $item->gallery;
                 if (K2_JVERSION == '15') {
                     $dispatcher->trigger('onPrepareContent', array(
-                        &$item,
+                        &$galleryTempText,
                         &$params,
                         $limitstart
                     ));
                 } else {
                     $dispatcher->trigger('onContentPrepare', array(
                         'com_k2.'.$view.'-gallery',
-                        &$item,
+                        &$galleryTempText,
                         &$params,
                         $limitstart
                     ));
                 }
-                $item->gallery = $item->text;
+                $dispatcher->trigger('onK2PrepareContent', array(
+                    &$galleryTempText,
+                    &$params,
+                    $limitstart
+                ));
+                $item->gallery = $galleryTempText->text;
             }
         }
 
-        // Video
+        // Media (also referred to as "Video" in variables)
         if (($view == 'item' && $item->params->get('itemVideo')) || ($view == 'itemlist' && ($task == '' || $task == 'category') && $item->params->get('catItemVideo')) || ($view == 'latest' && $item->params->get('latestItemVideo')) || ($view == 'relatedByTag')) {
             if (!empty($item->video) && JString::substr($item->video, 0, 1) !== '{') {
                 $item->video = $item->video;
@@ -532,13 +552,6 @@ class K2ModelItem extends K2Model
                 $item->videoType = 'allvideos';
                 $params->set('afolder', 'media/k2/audio');
                 $params->set('vfolder', 'media/k2/videos');
-
-                if (stripos($item->video, 'remote}') !== false) {
-                    preg_match("#}(.*?){/#s", $item->video, $matches);
-                    if (stripos($matches[1], 'http') === false) {
-                        $item->video = str_replace($matches[1], JURI::root().$matches[1], $item->video);
-                    }
-                }
 
                 if ($view == 'item') {
                     $params->set('vwidth', $item->params->get('itemVideoWidth'));
@@ -554,22 +567,29 @@ class K2ModelItem extends K2Model
                     $params->set('autoplay', $item->params->get('catItemVideoAutoPlay'));
                 }
 
-                $item->text = $item->video;
+                // Create temp object to parse plugins
+                $mediaTempText = new JObject();
+                $mediaTempText->text = $item->video;
                 if (K2_JVERSION == '15') {
                     $dispatcher->trigger('onPrepareContent', array(
-                        &$item,
+                        &$mediaTempText,
                         &$params,
                         $limitstart
                     ));
                 } else {
                     $dispatcher->trigger('onContentPrepare', array(
                         'com_k2.'.$view.'-media',
-                        &$item,
+                        &$mediaTempText,
                         &$params,
                         $limitstart
                     ));
                 }
-                $item->video = $item->text;
+                $dispatcher->trigger('onK2PrepareContent', array(
+                    &$mediaTempText,
+                    &$params,
+                    $limitstart
+                ));
+                $item->video = $mediaTempText->text;
             }
         }
 
@@ -763,28 +783,29 @@ class K2ModelItem extends K2Model
             if (count($item->extra_fields) && is_array($item->extra_fields)) {
                 foreach ($item->extra_fields as $key => $extraField) {
                     if ($extraField->type == 'textarea' || $extraField->type == 'textfield') {
-                        $tmp = new JObject();
-                        $tmp->text = $extraField->value;
-                        if (K2_JVERSION != '15') {
-                            $dispatcher->trigger('onContentPrepare', array(
-                                'com_k2.'.$view,
-                                &$tmp,
+                        // Create temp object to parse plugins
+                        $extraFieldTempText = new JObject();
+                        $extraFieldTempText->text = $extraField->value;
+                        if (K2_JVERSION == '15') {
+                            $dispatcher->trigger('onPrepareContent', array(
+                                &$extraFieldTempText,
                                 &$params,
                                 $limitstart
                             ));
                         } else {
-                            $dispatcher->trigger('onPrepareContent', array(
-                                &$tmp,
+                            $dispatcher->trigger('onContentPrepare', array(
+                                'com_k2.'.$view.'-extrafields',
+                                &$extraFieldTempText,
                                 &$params,
                                 $limitstart
                             ));
                         }
                         $dispatcher->trigger('onK2PrepareContent', array(
-                            &$tmp,
+                            &$extraFieldTempText,
                             &$params,
                             $limitstart
                         ));
-                        $extraField->value = $tmp->text;
+                        $extraField->value = $extraFieldTempText->text;
                     }
                 }
             }
