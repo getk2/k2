@@ -255,13 +255,13 @@ class modK2ContentHelper
         $model = K2Model::getInstance('Item', 'K2Model');
 
         // Import plugins
-        $dispatcher = JDispatcher::getInstance();
         if ($params->get('JPlugins', 1)) {
             JPluginHelper::importPlugin('content');
         }
         if ($params->get('K2Plugins', 1)) {
             JPluginHelper::importPlugin('k2');
         }
+        $dispatcher = JDispatcher::getInstance();
 
         if (count($items)) {
             foreach ($items as $item) {
@@ -330,19 +330,34 @@ class modK2ContentHelper
                 if ($params->get('itemVideo') && $format != 'feed') {
                     $params->set('vfolder', 'media/k2/videos');
                     $params->set('afolder', 'media/k2/audio');
-                    $tmp = new stdClass;
-                    $tmp->text = $item->video;
+
+                    // Create temp object to parse plugins
+                    $mediaTempText = new JObject();
+                    $mediaTempText->text = $item->video;
                     if ($params->get('JPlugins', 1)) {
-                        if (K2_JVERSION != '15') {
-                            $dispatcher->trigger('onContentPrepare', array('mod_k2_content.', &$tmp, &$params, $limitstart));
+                        if (K2_JVERSION == '15') {
+                            $dispatcher->trigger('onPrepareContent', array(
+                            &$mediaTempText,
+                            &$params,
+                            $limitstart
+                        ));
                         } else {
-                            $dispatcher->trigger('onPrepareContent', array(&$tmp, &$params, $limitstart));
+                            $dispatcher->trigger('onContentPrepare', array(
+                            'mod_k2_content.item-media',
+                            &$mediaTempText,
+                            &$params,
+                            $limitstart
+                        ));
                         }
                     }
                     if ($params->get('K2Plugins', 1)) {
-                        $dispatcher->trigger('onK2PrepareContent', array(&$tmp, &$params, $limitstart));
+                        $dispatcher->trigger('onK2PrepareContent', array(
+                        &$mediaTempText,
+                        &$params,
+                        $limitstart
+                    ));
                     }
-                    $item->video = $tmp->text;
+                    $item->video = $mediaTempText->text;
                 }
 
                 // Extra fields
@@ -353,19 +368,33 @@ class modK2ContentHelper
                     if (is_array($item->extra_fields)) {
                         foreach ($item->extra_fields as $key => $extraField) {
                             if ($extraField->type == 'textarea' || $extraField->type == 'textfield') {
-                                $tmp = new stdClass;
-                                $tmp->text = $extraField->value;
+                                // Create temp object to parse plugins
+                                $extraFieldTempText = new JObject();
+                                $extraFieldTempText->text = $extraField->value;
                                 if ($params->get('JPlugins', 1)) {
-                                    if (K2_JVERSION != '15') {
-                                        $dispatcher->trigger('onContentPrepare', array('mod_k2_content', &$tmp, &$params, $limitstart));
+                                    if (K2_JVERSION == '15') {
+                                        $dispatcher->trigger('onPrepareContent', array(
+                                            &$extraFieldTempText,
+                                            &$params,
+                                            $limitstart
+                                        ));
                                     } else {
-                                        $dispatcher->trigger('onPrepareContent', array(&$tmp, &$params, $limitstart));
+                                        $dispatcher->trigger('onContentPrepare', array(
+                                            'mod_k2_content.item-extrafields',
+                                            &$extraFieldTempText,
+                                            &$params,
+                                            $limitstart
+                                        ));
                                     }
                                 }
                                 if ($params->get('K2Plugins', 1)) {
-                                    $dispatcher->trigger('onK2PrepareContent', array(&$tmp, &$params, $limitstart));
+                                    $dispatcher->trigger('onK2PrepareContent', array(
+                                        &$extraFieldTempText,
+                                        &$params,
+                                        $limitstart
+                                    ));
                                 }
-                                $extraField->value = $tmp->text;
+                                $extraField->value = $extraFieldTempText->text;
                             }
                         }
                     }
