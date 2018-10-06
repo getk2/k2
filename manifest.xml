@@ -134,6 +134,7 @@
 		<param name="tagItemImage" default="1" />
 		<param name="tagItemIntroText" default="1" />
 		<param name="tagItemCategory" default="1" />
+		<param name="tagItemTags" default="1" />
 		<param name="tagItemReadMore" default="1" />
 		<param name="tagItemExtraFields" default="0" />
 		<param name="tagOrdering" default="" />

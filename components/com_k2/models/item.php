@@ -94,7 +94,13 @@ class K2ModelItem extends K2Model
         }
 
         // Tags
-        if (($view == 'item' && ($item->params->get('itemTags') || $item->params->get('itemRelated'))) || ($view == 'itemlist' && ($task == '' || $task == 'category') && $item->params->get('catItemTags')) || ($view == 'itemlist' && $task == 'user' && $item->params->get('userItemTags')) || ($view == 'latest' && $params->get('latestItemTags'))) {
+        if (
+        	($view == 'item' && ($item->params->get('itemTags') || $item->params->get('itemRelated'))) ||
+        	($view == 'itemlist' && ($task == '' || $task == 'category') && $item->params->get('catItemTags')) ||
+        	($view == 'itemlist' && $task == 'tag' && $item->params->get('tagItemTags')) ||
+        	($view == 'itemlist' && $task == 'user' && $item->params->get('userItemTags')) ||
+        	($view == 'latest' && $params->get('latestItemTags'))
+        ) {
             $tags = $this->getItemTags($item->id);
             for ($i = 0; $i < sizeof($tags); $i++) {
                 $tags[$i]->link = JRoute::_(K2HelperRoute::getTagRoute($tags[$i]->name));
@@ -1252,11 +1258,13 @@ class K2ModelItem extends K2Model
                     } elseif ($rows[$i]->type == 'image') {
                         if ($object->value) {
                             $src = '';
-                            if (JString::strpos('://', $object->value) === false) {
-                                $src .= JURI::root(true).'/';
+                            if (strpos($object->value, '://') === false) {
+                                $src .= JURI::root(true).'/'.$object->value;
+                                $src = str_replace('//', '/', $src); // Merge duplicate forward slashes
+                            } else {
+                                $src .= $object->value;
                             }
-                            $src .= $object->value;
-                            $src = str_replace('\\', '/', $src);
+                            $src = str_replace('\\', '/', $src); // Normalize paths on Windows
                             $value = '<img src="'.$src.'" alt="'.$rows[$i]->name.'" />';
                         } else {
                             $value = false;

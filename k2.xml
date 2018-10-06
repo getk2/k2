@@ -140,6 +140,7 @@
 				<field name="tagItemImage" default="1" />
 				<field name="tagItemIntroText" default="1" />
 				<field name="tagItemCategory" default="1" />
+				<field name="tagItemTags" default="1" />
 				<field name="tagItemReadMore" default="1" />
 				<field name="tagItemExtraFields" default="0" />
 				<field name="tagOrdering" default="" />

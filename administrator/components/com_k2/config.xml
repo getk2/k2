@@ -115,6 +115,10 @@
 			<option value="0">K2_HIDE</option>
 			<option value="1">K2_SHOW</option>
 		</param>
+		<param menu="hide" name="tagItemTags" type="radio" default="1" label="K2_ITEM_TAGS" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</param>
 		<param menu="hide" name="tagItemReadMore" type="radio" default="1" label="K2_ITEM_READ_MORE_LINK" description="">
 			<option value="0">K2_HIDE</option>
 			<option value="1">K2_SHOW</option>
@@ -640,6 +644,10 @@
 			<option value="1">K2_SHOW</option>
 		</field>
 		<field menu="hide" name="tagItemCategory" type="radio" default="1" label="K2_ITEM_CATEGORY" description="">
+			<option value="0">K2_HIDE</option>
+			<option value="1">K2_SHOW</option>
+		</field>
+		<field menu="hide" name="tagItemTags" type="radio" default="1" label="K2_ITEM_TAGS" description="">
 			<option value="0">K2_HIDE</option>
 			<option value="1">K2_SHOW</option>
 		</field>
