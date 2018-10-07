@@ -22,7 +22,7 @@ defined('_JEXEC') or die;
     </div>
     <?php endif; ?>
 
-    <?php if(count($this->items) && $this->params->get('genericFeedIcon',1)): ?>
+    <?php if($this->params->get('genericFeedIcon',1) && isset($this->items) && count($this->items)): ?>
     <!-- RSS feed icon -->
     <div class="k2FeedIcon">
         <a href="<?php echo $this->feed; ?>" title="<?php echo JText::_('K2_SUBSCRIBE_TO_THIS_RSS_FEED'); ?>">
@@ -32,7 +32,7 @@ defined('_JEXEC') or die;
     </div>
     <?php endif; ?>
 
-    <?php if(count($this->items)): ?>
+    <?php if(isset($this->items) && count($this->items)): ?>
 
     <div class="genericItemList">
         <?php foreach($this->items as $item): ?>
@@ -87,7 +87,7 @@ defined('_JEXEC') or die;
 
           <div class="clr"></div>
 
-          <?php if($this->params->get('genericItemExtraFields') && count($item->extra_fields)): ?>
+          <?php if($this->params->get('genericItemExtraFields') && isset($item->extra_fields) && count($item->extra_fields)): ?>
           <!-- Item extra fields -->
           <div class="genericItemExtraFields">
             <h4><?php echo JText::_('K2_ADDITIONAL_INFO'); ?></h4>

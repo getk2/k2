@@ -98,7 +98,7 @@ defined('_JEXEC') or die;
 		</div>
 		<?php endif; ?>
 
-	  <?php if($this->item->params->get('latestItemTags') && count($this->item->tags)): ?>
+	  <?php if($this->item->params->get('latestItemTags') && isset($this->item->tags) && count($this->item->tags)): ?>
 	  <!-- Item tags -->
 	  <div class="latestItemTagsBlock">
 		  <span><?php echo JText::_('K2_TAGGED_UNDER'); ?></span>

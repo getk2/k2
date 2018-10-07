@@ -131,7 +131,7 @@ K2HelperUtilities::setDefaultImage($this->item, 'itemlist', $this->params);
 
 		<div class="clr"></div>
 
-	  <?php if($this->item->params->get('catItemExtraFields') && count($this->item->extra_fields)): ?>
+	  <?php if($this->item->params->get('catItemExtraFields') && isset($this->item->extra_fields) && count($this->item->extra_fields)): ?>
 	  <!-- Item extra fields -->
 	  <div class="catItemExtraFields">
 	  	<h4><?php echo JText::_('K2_ADDITIONAL_INFO'); ?></h4>
@@ -187,7 +187,7 @@ K2HelperUtilities::setDefaultImage($this->item, 'itemlist', $this->params);
 		</div>
 		<?php endif; ?>
 
-	  <?php if($this->item->params->get('catItemTags') && count($this->item->tags)): ?>
+	  <?php if($this->item->params->get('catItemTags') && isset($this->item->tags) && count($this->item->tags)): ?>
 	  <!-- Item tags -->
 	  <div class="catItemTagsBlock">
 		  <span><?php echo JText::_('K2_TAGGED_UNDER'); ?></span>
@@ -200,7 +200,7 @@ K2HelperUtilities::setDefaultImage($this->item, 'itemlist', $this->params);
 	  </div>
 	  <?php endif; ?>
 
-	  <?php if($this->item->params->get('catItemAttachments') && count($this->item->attachments)): ?>
+	  <?php if($this->item->params->get('catItemAttachments') && isset($this->item->attachments) && count($this->item->attachments)): ?>
 	  <!-- Item attachments -->
 	  <div class="catItemAttachmentsBlock">
 		  <span><?php echo JText::_('K2_DOWNLOAD_ATTACHMENTS'); ?></span>

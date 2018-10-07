@@ -245,7 +245,7 @@ defined('_JEXEC') or die;
 
 		<div class="clr"></div>
 
-		<?php if($this->item->params->get('itemExtraFields') && count($this->item->extra_fields)): ?>
+		<?php if($this->item->params->get('itemExtraFields') && isset($this->item->extra_fields) && count($this->item->extra_fields)): ?>
 		<!-- Item extra fields -->
 		<div class="itemExtraFields">
 			<h3><?php echo JText::_('K2_ADDITIONAL_INFO'); ?></h3>
@@ -351,7 +351,7 @@ defined('_JEXEC') or die;
 		</div>
 		<?php endif; ?>
 
-		<?php if($this->item->params->get('itemTags') && count($this->item->tags)): ?>
+		<?php if($this->item->params->get('itemTags') && isset($this->item->tags) && count($this->item->tags)): ?>
 		<!-- Item tags -->
 		<div class="itemTagsBlock">
 			<span><?php echo JText::_('K2_TAGGED_UNDER'); ?></span>
@@ -364,7 +364,7 @@ defined('_JEXEC') or die;
 		</div>
 		<?php endif; ?>
 
-		<?php if($this->item->params->get('itemAttachments') && count($this->item->attachments)): ?>
+		<?php if($this->item->params->get('itemAttachments') && isset($this->item->attachments) && count($this->item->attachments)): ?>
 		<!-- Item attachments -->
 		<div class="itemAttachmentsBlock">
 			<span><?php echo JText::_('K2_DOWNLOAD_ATTACHMENTS'); ?></span>

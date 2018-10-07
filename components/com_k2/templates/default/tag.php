@@ -32,7 +32,7 @@ defined('_JEXEC') or die;
     </div>
     <?php endif; ?>
 
-    <?php if(count($this->items)): ?>
+    <?php if(isset($this->items) && count($this->items)): ?>
     <div class="tagItemList">
         <?php foreach($this->items as $item): ?>
 
@@ -84,7 +84,7 @@ defined('_JEXEC') or die;
 
             <div class="clr"></div>
 
-            <?php if($item->params->get('tagItemExtraFields',0) && count($item->extra_fields)): ?>
+            <?php if($item->params->get('tagItemExtraFields',0) && isset($item->extra_fields) && count($item->extra_fields)): ?>
             <!-- Item extra fields -->
             <div class="tagItemExtraFields">
                 <h4><?php echo JText::_('K2_ADDITIONAL_INFO'); ?></h4>
