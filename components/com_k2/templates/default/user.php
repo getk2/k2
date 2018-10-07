@@ -255,7 +255,7 @@ $user = JFactory::getUser();
     </div>
 
     <!-- Pagination -->
-    <?php if(isset($this->pagination->getPagesLinks()) && count($this->pagination->getPagesLinks())): ?>
+    <?php if(count($this->pagination->getPagesLinks())): ?>
     <div class="k2Pagination">
         <?php echo $this->pagination->getPagesLinks(); ?>
         <div class="clr"></div>
