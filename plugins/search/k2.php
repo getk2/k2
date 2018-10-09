@@ -94,8 +94,19 @@ class plgSearchK2 extends JPlugin
             if ($phrase == 'exact') {
                 $text = JString::trim($text, '"');
                 $escaped = K2_JVERSION == '15' ? $db->getEscaped($text, true) : $db->escape($text, true);
-                $quoted = $db->Quote($escaped);
-                $where = "(LOWER(i.title) = ".$quoted." OR LOWER(i.introtext) = ".$quoted." OR LOWER(i.`fulltext`) = ".$quoted." OR LOWER(i.extra_fields_search) = ".$quoted." OR LOWER(i.image_caption) = ".$quoted." OR LOWER(i.image_credits) = ".$quoted." OR LOWER(i.video_caption) = ".$quoted." OR LOWER(i.video_credits) = ".$quoted." OR LOWER(i.metadesc) = ".$quoted." OR LOWER(i.metakey) = ".$quoted.")";
+                $quoted = $db->Quote('%'.$escaped.'%', false);
+                $where = "(
+                    LOWER(i.title) LIKE ".$quoted." OR
+                    LOWER(i.introtext) LIKE ".$quoted." OR
+                    LOWER(i.`fulltext`) LIKE ".$quoted." OR
+                    LOWER(i.extra_fields_search) LIKE ".$quoted." OR
+                    LOWER(i.image_caption) LIKE ".$quoted." OR
+                    LOWER(i.image_credits) LIKE ".$quoted." OR
+                    LOWER(i.video_caption) LIKE ".$quoted." OR
+                    LOWER(i.video_credits) LIKE ".$quoted." OR
+                    LOWER(i.metadesc) LIKE ".$quoted." OR
+                    LOWER(i.metakey) LIKE ".$quoted."
+                )";
 
             } else {
                 $words = explode(' ', $text);
@@ -103,7 +114,18 @@ class plgSearchK2 extends JPlugin
                 foreach ($words as $word) {
                     $escaped = K2_JVERSION == '15' ? $db->getEscaped($word, true) : $db->escape($word, true);
                     $quoted = $db->Quote('%'.$escaped.'%', false);
-                    $wheres[] = " (LOWER(i.title) LIKE ".$quoted." OR LOWER(i.introtext) LIKE ".$quoted." OR LOWER(i.`fulltext`) LIKE ".$quoted." OR LOWER(i.extra_fields_search) LIKE ".$quoted." OR LOWER(i.image_caption) LIKE ".$quoted." OR LOWER(i.image_credits) LIKE ".$quoted." OR LOWER(i.video_caption) LIKE ".$quoted." OR LOWER(i.video_credits) LIKE ".$quoted." OR LOWER(i.metadesc) LIKE ".$quoted." OR LOWER(i.metakey) LIKE ".$quoted.")";
+                    $wheres[] = "(
+                        LOWER(i.title) LIKE ".$quoted." OR
+                        LOWER(i.introtext) LIKE ".$quoted." OR
+                        LOWER(i.`fulltext`) LIKE ".$quoted." OR
+                        LOWER(i.extra_fields_search) LIKE ".$quoted." OR
+                        LOWER(i.image_caption) LIKE ".$quoted." OR
+                        LOWER(i.image_credits) LIKE ".$quoted." OR
+                        LOWER(i.video_caption) LIKE ".$quoted." OR
+                        LOWER(i.video_credits) LIKE ".$quoted." OR
+                        LOWER(i.metadesc) LIKE ".$quoted." OR
+                        LOWER(i.metakey) LIKE ".$quoted."
+                    )";
                 }
                 $where = '(' . implode(($phrase == 'all' ? ') AND (' : ') OR ('), $wheres) . ')';
             }
