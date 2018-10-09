@@ -90,30 +90,20 @@ class plgSearchK2 extends JPlugin
                     $itemIDs = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
                 }
             }
+
             if ($phrase == 'exact') {
                 $text = JString::trim($text, '"');
                 $escaped = K2_JVERSION == '15' ? $db->getEscaped($text, true) : $db->escape($text, true);
                 $quoted = $db->Quote($escaped);
-                $where = " ( LOWER(i.title) = ".$quoted." OR LOWER(i.introtext) = ".$quoted." OR LOWER(i.`fulltext`) = ".$quoted." OR LOWER(i.extra_fields_search) = ".$quoted." OR LOWER(i.image_caption) = ".$quoted." OR LOWER(i.image_credits) = ".$quoted." OR LOWER(i.video_caption) = ".$quoted." OR LOWER(i.video_credits) = ".$quoted." OR LOWER(i.metadesc) = ".$quoted." OR LOWER(i.metakey) = ".$quoted.") ";
+                $where = "(LOWER(i.title) = ".$quoted." OR LOWER(i.introtext) = ".$quoted." OR LOWER(i.`fulltext`) = ".$quoted." OR LOWER(i.extra_fields_search) = ".$quoted." OR LOWER(i.image_caption) = ".$quoted." OR LOWER(i.image_credits) = ".$quoted." OR LOWER(i.video_caption) = ".$quoted." OR LOWER(i.video_credits) = ".$quoted." OR LOWER(i.metadesc) = ".$quoted." OR LOWER(i.metakey) = ".$quoted.")";
+
             } else {
                 $words = explode(' ', $text);
                 $wheres = array();
-
                 foreach ($words as $word) {
                     $escaped = K2_JVERSION == '15' ? $db->getEscaped($word, true) : $db->escape($word, true);
                     $quoted = $db->Quote('%'.$escaped.'%', false);
-                    $wheres2 = array();
-                    $wheres2[] = "LOWER(i.title) LIKE ".$quoted;
-                    $wheres2[] = "LOWER(i.introtext) LIKE ".$quoted;
-                    $wheres2[] = "LOWER(i.`fulltext`) LIKE ".$quoted;
-                    $wheres2[] = "LOWER(i.extra_fields_search) LIKE ".$quoted;
-                    $wheres2[] = "LOWER(i.image_caption) LIKE ".$quoted;
-                    $wheres2[] = "LOWER(i.image_credits) LIKE ".$quoted;
-                    $wheres2[] = "LOWER(i.video_caption) LIKE ".$quoted;
-                    $wheres2[] = "LOWER(i.video_credits) LIKE ".$quoted;
-                    $wheres2[] = "LOWER(i.metadesc) LIKE ".$quoted;
-                    $wheres2[] = "LOWER(i.metakey) LIKE ".$quoted;
-                    $wheres[] = implode(' OR ', $wheres2);
+                    $wheres[] = " (LOWER(i.title) LIKE ".$quoted." OR LOWER(i.introtext) LIKE ".$quoted." OR LOWER(i.`fulltext`) LIKE ".$quoted." OR LOWER(i.extra_fields_search) LIKE ".$quoted." OR LOWER(i.image_caption) LIKE ".$quoted." OR LOWER(i.image_credits) LIKE ".$quoted." OR LOWER(i.video_caption) LIKE ".$quoted." OR LOWER(i.video_credits) LIKE ".$quoted." OR LOWER(i.metadesc) LIKE ".$quoted." OR LOWER(i.metakey) LIKE ".$quoted.")";
                 }
                 $where = '(' . implode(($phrase == 'all' ? ') AND (' : ') OR ('), $wheres) . ')';
             }
@@ -122,58 +112,57 @@ class plgSearchK2 extends JPlugin
                 JArrayHelper::toInteger($itemIDs);
                 $where .= " OR i.id IN (".implode(',', $itemIDs).")";
             }
-            $query = "
-                SELECT i.title AS title,
-                i.metadesc,
-                i.metakey,
-                c.name as section,
-                i.image_caption,
-                i.image_credits,
-                i.video_caption,
-                i.video_credits,
-                i.extra_fields_search,
-                i.created,
+            $query = "SELECT i.title AS title,
+                    i.metadesc,
+                    i.metakey,
+                    c.name as section,
+                    i.image_caption,
+                    i.image_credits,
+                    i.video_caption,
+                    i.video_credits,
+                    i.extra_fields_search,
+                    i.created,
                 CONCAT(i.introtext, i.fulltext) AS text,
                 CASE WHEN CHAR_LENGTH(i.alias) THEN CONCAT_WS(':', i.id, i.alias) ELSE i.id END as slug,
                 CASE WHEN CHAR_LENGTH(c.alias) THEN CONCAT_WS(':', c.id, c.alias) ELSE c.id END as catslug
                 FROM #__k2_items AS i
                 INNER JOIN #__k2_categories AS c ON c.id=i.catid AND c.access {$accessCheck}
                 WHERE {$where}
-                AND i.trash = 0
-                AND i.published = 1
-                AND i.access {$accessCheck}
-                AND c.published = 1
-                AND c.access {$accessCheck}
-                AND c.trash = 0
-                AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
-                AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )";
+                    AND i.trash = 0
+                    AND i.published = 1
+                    AND i.access {$accessCheck}
+                    AND c.published = 1
+                    AND c.access {$accessCheck}
+                    AND c.trash = 0
+                    AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now).")
+                    AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now).")";
 
             if (K2_JVERSION != '15' && $application->isSite() && $application->getLanguageFilter()) {
                 $languageTag = JFactory::getLanguage()->getTag();
-                $query .= " AND c.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") AND i.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") ";
+                $query .= " AND c.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") AND i.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').")";
             }
-            $query .= " GROUP BY i.id ";
+            $query .= " GROUP BY i.id";
 
             switch ($ordering) {
                 case 'oldest':
-                    $query .= 'ORDER BY i.created ASC';
+                    $query .= ' ORDER BY i.created ASC';
                     break;
 
                 case 'popular':
-                    $query .= 'ORDER BY i.hits DESC';
+                    $query .= ' ORDER BY i.hits DESC';
                     break;
 
                 case 'alpha':
-                    $query .= 'ORDER BY i.title ASC';
+                    $query .= ' ORDER BY i.title ASC';
                     break;
 
                 case 'category':
-                    $query .= 'ORDER BY c.name ASC, i.title ASC';
+                    $query .= ' ORDER BY c.name ASC, i.title ASC';
                     break;
 
                 case 'newest':
                 default:
-                    $query .= 'ORDER BY i.created DESC';
+                    $query .= ' ORDER BY i.created DESC';
                     break;
             }
 
