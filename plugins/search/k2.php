@@ -123,30 +123,30 @@ class plgSearchK2 extends JPlugin
                 $where .= " OR i.id IN (".implode(',', $itemIDs).")";
             }
             $query = "
-				SELECT i.title AS title,
-			    i.metadesc,
-			    i.metakey,
-			    c.name as section,
-			    i.image_caption,
-			    i.image_credits,
-			    i.video_caption,
-			    i.video_credits,
-			    i.extra_fields_search,
-			    i.created,
-		    	CONCAT(i.introtext, i.fulltext) AS text,
-		    	CASE WHEN CHAR_LENGTH(i.alias) THEN CONCAT_WS(':', i.id, i.alias) ELSE i.id END as slug,
-		    	CASE WHEN CHAR_LENGTH(c.alias) THEN CONCAT_WS(':', c.id, c.alias) ELSE c.id END as catslug
-		    	FROM #__k2_items AS i
-		    	INNER JOIN #__k2_categories AS c ON c.id=i.catid AND c.access {$accessCheck}
-				WHERE {$where}
-				AND i.trash = 0
-				AND i.published = 1
-				AND i.access {$accessCheck}
-				AND c.published = 1
-				AND c.access {$accessCheck}
-				AND c.trash = 0
-				AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
-				AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )";
+                SELECT i.title AS title,
+                i.metadesc,
+                i.metakey,
+                c.name as section,
+                i.image_caption,
+                i.image_credits,
+                i.video_caption,
+                i.video_credits,
+                i.extra_fields_search,
+                i.created,
+                CONCAT(i.introtext, i.fulltext) AS text,
+                CASE WHEN CHAR_LENGTH(i.alias) THEN CONCAT_WS(':', i.id, i.alias) ELSE i.id END as slug,
+                CASE WHEN CHAR_LENGTH(c.alias) THEN CONCAT_WS(':', c.id, c.alias) ELSE c.id END as catslug
+                FROM #__k2_items AS i
+                INNER JOIN #__k2_categories AS c ON c.id=i.catid AND c.access {$accessCheck}
+                WHERE {$where}
+                AND i.trash = 0
+                AND i.published = 1
+                AND i.access {$accessCheck}
+                AND c.published = 1
+                AND c.access {$accessCheck}
+                AND c.trash = 0
+                AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
+                AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )";
 
             if (K2_JVERSION != '15' && $application->isSite() && $application->getLanguageFilter()) {
                 $languageTag = JFactory::getLanguage()->getTag();

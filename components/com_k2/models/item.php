@@ -310,7 +310,6 @@ class K2ModelItem extends K2Model
             }
         }
 
-
         // Item gallery
         if ($params->get('feedItemGallery') && $item->gallery) {
             $params->set('galleries_rootfolder', 'media/k2/galleries');
