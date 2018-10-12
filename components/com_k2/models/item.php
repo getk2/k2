@@ -95,11 +95,11 @@ class K2ModelItem extends K2Model
 
         // Tags
         if (
-        	($view == 'item' && ($item->params->get('itemTags') || $item->params->get('itemRelated'))) ||
-        	($view == 'itemlist' && ($task == '' || $task == 'category') && $item->params->get('catItemTags')) ||
-        	($view == 'itemlist' && $task == 'tag' && $item->params->get('tagItemTags')) ||
-        	($view == 'itemlist' && $task == 'user' && $item->params->get('userItemTags')) ||
-        	($view == 'latest' && $params->get('latestItemTags'))
+            ($view == 'item' && ($item->params->get('itemTags') || $item->params->get('itemRelated'))) ||
+            ($view == 'itemlist' && ($task == '' || $task == 'category') && $item->params->get('catItemTags')) ||
+            ($view == 'itemlist' && $task == 'tag' && $item->params->get('tagItemTags')) ||
+            ($view == 'itemlist' && $task == 'user' && $item->params->get('userItemTags')) ||
+            ($view == 'latest' && $params->get('latestItemTags'))
         ) {
             $tags = $this->getItemTags($item->id);
             for ($i = 0; $i < sizeof($tags); $i++) {
@@ -161,12 +161,20 @@ class K2ModelItem extends K2Model
         }
 
         // Extra fields
-        if ((($view == 'item' || $view == 'relatedByTag') && $item->params->get('itemExtraFields')) || ($view == 'itemlist' && ($task == '' || $task == 'category') && $item->params->get('catItemExtraFields')) || ($view == 'itemlist' && $task == 'tag' && $item->params->get('tagItemExtraFields')) || ($view == 'itemlist' && ($task == 'search' || $task == 'date') && $item->params->get('genericItemExtraFields'))) {
+        if (
+            ($item->params->get('itemExtraFields') && ($view == 'item' || $view == 'relatedByTag')) ||
+            ($item->params->get('catItemExtraFields') && $view == 'itemlist' && ($task == '' || $task == 'category')) ||
+            ($item->params->get('tagItemExtraFields') && $view == 'itemlist' && $task == 'tag') ||
+            ($item->params->get('genericItemExtraFields') && $view == 'itemlist' && ($task == 'search' || $task == 'date'))
+        ) {
             $item->extra_fields = $this->getItemExtraFields($item->extra_fields, $item);
         }
 
         // Attachments
-        if (($view == 'item' && $item->params->get('itemAttachments')) || ($view == 'itemlist' && ($task == '' || $task == 'category') && $item->params->get('catItemAttachments'))) {
+        if (
+            ($item->params->get('itemAttachments') && $view == 'item') ||
+            ($item->params->get('catItemAttachments') && $view == 'itemlist' && ($task == '' || $task == 'category'))
+        ) {
             $item->attachments = $this->getItemAttachments($item->id);
         }
 
