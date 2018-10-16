@@ -19,7 +19,7 @@ class K2ViewItemlist extends K2View
         $application = JFactory::getApplication();
         $params = K2HelperUtilities::getParams('com_k2');
         $model = $this->getModel('itemlist');
-        $limitstart = JRequest::getInt('limitstart');
+        $limitstart = JRequest::getInt('limitstart', 0);
         $view = JRequest::getWord('view');
         $task = JRequest::getWord('task');
         $db = JFactory::getDbo();

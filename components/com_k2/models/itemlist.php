@@ -16,14 +16,16 @@ JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
 
 class K2ModelItemlist extends K2Model
 {
+    public $getTotal;
+
     public function getData($ordering = null)
     {
         $user = JFactory::getUser();
         $aid = $user->get('aid');
         $db = JFactory::getDbo();
         $params = K2HelperUtilities::getParams('com_k2');
-        $limitstart = JRequest::getInt('limitstart');
-        $limit = JRequest::getInt('limit');
+        $limitstart = JRequest::getInt('limitstart', 0);
+        $limit = JRequest::getInt('limit', 10);
         $task = JRequest::getCmd('task');
 
         if ($task == 'search') {
@@ -38,13 +40,13 @@ class K2ModelItemlist extends K2Model
             $limit = $params->get('feedLimit');
         }
 
-        $query = "SELECT i.*,";
+        $query = "SELECT SQL_CALC_FOUND_ROWS i.*,";
 
         if ($ordering == 'modified') {
-            $query .= " CASE WHEN i.modified = 0 THEN i.created ELSE i.modified END as lastChanged, ";
+            $query .= " CASE WHEN i.modified = 0 THEN i.created ELSE i.modified END AS lastChanged,";
         }
 
-        $query .= " c.name as categoryname,c.id as categoryid, c.alias as categoryalias, c.params as categoryparams";
+        $query .= " c.name AS categoryname, c.id AS categoryid, c.alias AS categoryalias, c.params AS categoryparams";
 
         if ($ordering == 'best') {
             $query .= ", (r.rating_sum/r.rating_count) AS rating";
@@ -53,7 +55,7 @@ class K2ModelItemlist extends K2Model
         $query .= " FROM #__k2_items as i RIGHT JOIN #__k2_categories AS c ON c.id = i.catid";
 
         if ($ordering == 'best') {
-            $query .= " LEFT JOIN #__k2_rating r ON r.itemID = i.id";
+            $query .= " LEFT JOIN #__k2_rating AS r ON r.itemID = i.id";
         }
 
         /*
@@ -64,27 +66,27 @@ class K2ModelItemlist extends K2Model
         */
 
         if ($task == 'user' && !$user->guest && $user->id == JRequest::getInt('id')) {
-            $query .= " WHERE ";
+            $query .= " WHERE";
         } else {
-            $query .= " WHERE i.published = 1 AND ";
+            $query .= " WHERE i.published = 1 AND";
         }
 
         if (K2_JVERSION != '15') {
-            $query .= "i.access IN(".implode(',', $user->getAuthorisedViewLevels()).")"." AND i.trash = 0"." AND c.published = 1"." AND c.access IN(".implode(',', $user->getAuthorisedViewLevels()).")"." AND c.trash = 0";
+            $query .= " i.access IN(".implode(',', $user->getAuthorisedViewLevels()).") AND i.trash = 0 AND c.published = 1 AND c.access IN(".implode(',', $user->getAuthorisedViewLevels()).") AND c.trash = 0";
 
             $application = JFactory::getApplication();
             $languageFilter = $application->getLanguageFilter();
             if ($languageFilter) {
                 $languageTag = JFactory::getLanguage()->getTag();
-                $query .= " AND c.language IN (".$db->quote($languageTag).", ".$db->quote('*').") AND i.language IN (".$db->quote($languageTag).", ".$db->quote('*').")";
+                $query .= " AND c.language IN(".$db->quote($languageTag).", ".$db->quote('*').") AND i.language IN(".$db->quote($languageTag).", ".$db->quote('*').")";
             }
         } else {
-            $query .= "i.access <= {$aid}"." AND i.trash = 0"." AND c.published = 1"." AND c.access <= {$aid}"." AND c.trash = 0";
+            $query .= " i.access <= {$aid} AND i.trash = 0 AND c.published = 1 AND c.access <= {$aid} AND c.trash = 0";
         }
 
         if (!($task == 'user' && !$user->guest && $user->id == JRequest::getInt('id'))) {
-            $query .= " AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )";
-            $query .= " AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )";
+            $query .= " AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now).")";
+            $query .= " AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now).")";
         }
 
         // Build query depending on task
@@ -107,7 +109,7 @@ class K2ModelItemlist extends K2Model
                 } else {
                     $categories = $this->getCategoryTree($id);
                     $sql = @implode(',', $categories);
-                    $query .= " AND c.id IN ({$sql})";
+                    $query .= " AND c.id IN({$sql})";
                 }
 
                 break;
@@ -149,7 +151,7 @@ class K2ModelItemlist extends K2Model
                 if ((JRequest::getInt('month')) && (JRequest::getInt('year'))) {
                     $month = JRequest::getInt('month');
                     $year = JRequest::getInt('year');
-                    $query .= " AND MONTH(i.created) = {$month} AND YEAR(i.created)={$year} ";
+                    $query .= " AND MONTH(i.created) = {$month} AND YEAR(i.created)={$year}";
                     if (JRequest::getInt('day')) {
                         $day = JRequest::getInt('day');
                         $query .= " AND DAY(i.created) = {$day}";
@@ -169,11 +171,13 @@ class K2ModelItemlist extends K2Model
                     $registry = JFactory::getConfig();
                     $lang = K2_JVERSION == '30' ? $registry->get('jflang') : $registry->getValue('config.jflang');
 
-                    $sql = " SELECT reference_id FROM #__jf_content as jfc LEFT JOIN #__languages as jfl ON jfc.language_id = jfl.".K2_JF_ID;
-                    $sql .= " WHERE jfc.value = ".$db->Quote($tag);
-                    $sql .= " AND jfc.reference_table = 'k2_tags'";
-                    $sql .= " AND jfc.reference_field = 'name' AND jfc.published=1";
-
+                    $sql = "SELECT reference_id
+                        FROM #__jf_content AS jfc
+                        LEFT JOIN #__languages AS jfl ON jfc.language_id = jfl.".K2_JF_ID."
+                        WHERE jfc.value = ".$db->Quote($tag)."
+                            AND jfc.reference_table = 'k2_tags'
+                            AND jfc.reference_field = 'name'
+                            AND jfc.published=1";
                     $db->setQuery($sql, 0, 1);
                     $result = $db->loadResult();
                 }
@@ -182,11 +186,13 @@ class K2ModelItemlist extends K2Model
                     $registry = JFactory::getConfig();
                     $lang = K2_JVERSION == '30' ? $registry->get('jflang') : $registry->getValue('config.jflang');
 
-                    $sql = " SELECT reference_id FROM #__falang_content as fc LEFT JOIN #__languages as fl ON fc.language_id = fl.lang_id";
-                    $sql .= " WHERE fc.value = ".$db->Quote($tag);
-                    $sql .= " AND fc.reference_table = 'k2_tags'";
-                    $sql .= " AND fc.reference_field = 'name' AND fc.published=1";
-
+                    $sql = "SELECT reference_id
+                        FROM #__falang_content AS fc
+                        LEFT JOIN #__languages AS fl ON fc.language_id = fl.lang_id
+                        WHERE fc.value = ".$db->Quote($tag)."
+                            AND fc.reference_table = 'k2_tags'
+                            AND fc.reference_field = 'name'
+                            AND fc.published=1";
                     $db->setQuery($sql, 0, 1);
                     $result = $db->loadResult();
                 }
@@ -197,7 +203,7 @@ class K2ModelItemlist extends K2Model
                     $result = $db->loadResult();
                 }
 
-                $query .= " AND i.id IN (SELECT itemID FROM #__k2_tags_xref WHERE tagID=".(int)$result.")";
+                $query .= " AND i.id IN(SELECT itemID FROM #__k2_tags_xref WHERE tagID=".(int)$result.")";
 
                 /*
                 if (isset($result) && $result > 0) {
@@ -219,20 +225,18 @@ class K2ModelItemlist extends K2Model
 
             default:
                 $searchIDs = $params->get('categories');
-
                 if (is_array($searchIDs) && count($searchIDs)) {
                     if ($params->get('catCatalogMode')) {
                         $sql = @implode(',', $searchIDs);
-                        $query .= " AND c.id IN ({$sql})";
+                        $query .= " AND c.id IN({$sql})";
                     } else {
                         $result = $this->getCategoryTree($searchIDs);
                         if (count($result)) {
                             $sql = @implode(',', $result);
-                            $query .= " AND c.id IN ({$sql})";
+                            $query .= " AND c.id IN({$sql})";
                         }
                     }
                 }
-
                 break;
         }
 
@@ -309,8 +313,8 @@ class K2ModelItemlist extends K2Model
                 break;
         }
 
-        //$query .= " GROUP BY i.id ORDER BY ".$orderby;
-        $query .= " ORDER BY ".$orderby;
+        $query .= " GROUP BY i.id ORDER BY ".$orderby;
+        //$query .= " ORDER BY ".$orderby;
 
         JPluginHelper::importPlugin('k2');
         $dispatcher = JDispatcher::getInstance();
@@ -318,11 +322,19 @@ class K2ModelItemlist extends K2Model
 
         $db->setQuery($query, $limitstart, $limit);
         $rows = $db->loadObjectList();
+
+        if (count($rows)) {
+            $db->setQuery('SELECT FOUND_ROWS();');
+            $this->getTotal = $db->loadResult();
+        }
+
         return $rows;
     }
 
     public function getTotal()
     {
+        return $this->getTotal;
+        /*
         $user = JFactory::getUser();
         $aid = $user->get('aid');
         $db = JFactory::getDbo();
@@ -337,30 +349,31 @@ class K2ModelItemlist extends K2Model
         $now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
         $nullDate = $db->getNullDate();
 
-        $query = "SELECT COUNT(*) FROM #__k2_items as i RIGHT JOIN #__k2_categories c ON c.id = i.catid";
+        $query = "SELECT COUNT(*)
+            FROM #__k2_items AS i
+            RIGHT JOIN #__k2_categories AS c ON c.id = i.catid";
 
         if ($task == 'tag') {
-            $query .= " LEFT JOIN #__k2_tags_xref tags_xref ON tags_xref.itemID = i.id LEFT JOIN #__k2_tags tags ON tags.id = tags_xref.tagID";
+            $query .= " LEFT JOIN #__k2_tags_xref AS tags_xref ON tags_xref.itemID = i.id LEFT JOIN #__k2_tags AS tags ON tags.id = tags_xref.tagID";
         }
 
         if ($task == 'user' && !$user->guest && $user->id == JRequest::getInt('id')) {
-            $query .= " WHERE ";
+            $query .= " WHERE";
         } else {
-            $query .= " WHERE i.published = 1 AND ";
+            $query .= " WHERE i.published = 1 AND";
         }
 
         if (K2_JVERSION != '15') {
-            $query .= "i.access IN(".implode(',', $user->getAuthorisedViewLevels()).")"." AND i.trash = 0"." AND c.published = 1"." AND c.access IN(".implode(',', $user->getAuthorisedViewLevels()).")"." AND c.trash = 0";
+            $query .= " i.access IN(".implode(',', $user->getAuthorisedViewLevels()).")"." AND i.trash = 0"." AND c.published = 1"." AND c.access IN(".implode(',', $user->getAuthorisedViewLevels()).")"." AND c.trash = 0";
 
             $application = JFactory::getApplication();
             $languageFilter = $application->getLanguageFilter();
             if ($languageFilter) {
                 $languageTag = JFactory::getLanguage()->getTag();
-                $query .= " AND c.language IN (".$db->quote($languageTag).", ".$db->quote('*').")
-                        AND i.language IN (".$db->quote($languageTag).", ".$db->quote('*').")";
+                $query .= " AND c.language IN(".$db->quote($languageTag).", ".$db->quote('*').") AND i.language IN(".$db->quote($languageTag).", ".$db->quote('*').")";
             }
         } else {
-            $query .= "i.access <= {$aid}"." AND i.trash = 0"." AND c.published = 1"." AND c.access <= {$aid}"." AND c.trash = 0";
+            $query .= " i.access <= {$aid}"." AND i.trash = 0"." AND c.published = 1"." AND c.access <= {$aid}"." AND c.trash = 0";
         }
 
         $query .= " AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now).")";
@@ -387,7 +400,7 @@ class K2ModelItemlist extends K2Model
                 } else {
                     $categories = $this->getCategoryTree($id);
                     $sql = @implode(',', $categories);
-                    $query .= " AND c.id IN ({$sql})";
+                    $query .= " AND c.id IN({$sql})";
                 }
 
                 break;
@@ -491,12 +504,12 @@ class K2ModelItemlist extends K2Model
                 if (is_array($searchIDs) && count($searchIDs)) {
                     if ($params->get('catCatalogMode')) {
                         $sql = @implode(',', $searchIDs);
-                        $query .= " AND c.id IN ({$sql})";
+                        $query .= " AND c.id IN({$sql})";
                     } else {
                         $result = $this->getCategoryTree($searchIDs);
                         if (count($result)) {
                             $sql = @implode(',', $result);
-                            $query .= " AND c.id IN ({$sql})";
+                            $query .= " AND c.id IN({$sql})";
                         }
                     }
                 }
@@ -520,6 +533,7 @@ class K2ModelItemlist extends K2Model
         $db->setQuery($query);
         $result = $db->loadResult();
         return $result;
+        */
     }
 
     public function getCategoryTree($categories, $associations = false)
@@ -544,12 +558,10 @@ class K2ModelItemlist extends K2Model
         while (count($array)) {
             $query = "SELECT id
                         FROM #__k2_categories
-                        WHERE parent IN (".implode(',', $array).")
-                        AND id NOT IN (".implode(',', $array).") ";
+                        WHERE parent IN(".implode(',', $array).")
+                            AND id NOT IN(".implode(',', $array).")";
             if ($application->isSite()) {
-                $query .= "
-                                AND published=1
-                                AND trash=0";
+                $query .= " AND published=1 AND trash=0";
                 if (K2_JVERSION != '15') {
                     $query .= " AND access IN(".implode(',', $user->getAuthorisedViewLevels()).")";
                     if ($application->getLanguageFilter()) {
@@ -580,7 +592,7 @@ class K2ModelItemlist extends K2Model
         $aid = (int)$user->get('aid');
         $catid = (int)$catid;
         $db = JFactory::getDbo();
-        $query = "SELECT * FROM #__k2_categories WHERE parent={$catid} AND published=1 AND trash=0 AND access<={$aid} ORDER BY ordering ";
+        $query = "SELECT * FROM #__k2_categories WHERE parent={$catid} AND published=1 AND trash=0 AND access<={$aid} ORDER BY ordering";
         $db->setQuery($query);
         $rows = $db->loadObjectList();
 
@@ -675,10 +687,10 @@ class K2ModelItemlist extends K2Model
         $nullDate = $db->getNullDate();
 
         $categories = $this->getCategoryTree($id);
-        $query = "SELECT COUNT(*) FROM #__k2_items WHERE catid IN (".implode(',', $categories).") AND published=1 AND trash=0";
+        $query = "SELECT COUNT(*) FROM #__k2_items WHERE catid IN(".implode(',', $categories).") AND published=1 AND trash=0";
 
         if (K2_JVERSION != '15') {
-            $query .= " AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
+            $query .= " AND access IN(".implode(',', $user->getAuthorisedViewLevels()).")";
             if ($application->getLanguageFilter()) {
                 $query .= " AND language IN(".$db->Quote(JFactory::getLanguage()->getTag()).", ".$db->Quote('*').")";
             }
@@ -686,8 +698,7 @@ class K2ModelItemlist extends K2Model
             $query .= " AND access<=".$aid;
         }
 
-        $query .= " AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." )";
-        $query .= " AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." )";
+        $query .= " AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now).") AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now).")";
         $db->setQuery($query);
         $total = $db->loadResult();
         return $total;
@@ -814,7 +825,7 @@ class K2ModelItemlist extends K2Model
 
         $query = "SELECT itemID
             FROM #__k2_tags_xref
-            WHERE tagID IN ({$sql})
+            WHERE tagID IN({$sql})
                 AND itemID!={$itemID}
             GROUP BY itemID";
         $db->setQuery($query);
@@ -827,9 +838,9 @@ class K2ModelItemlist extends K2Model
 
         $sql = implode(',', $itemsIDs);
 
-        $query = "SELECT i.*, c.alias as categoryalias
-            FROM #__k2_items as i
-            LEFT JOIN #__k2_categories c ON c.id = i.catid
+        $query = "SELECT i.*, c.alias AS categoryalias
+            FROM #__k2_items AS i
+            LEFT JOIN #__k2_categories AS c ON c.id = i.catid
             WHERE i.published = 1
                 AND i.trash = 0
                 AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now).")
@@ -838,7 +849,7 @@ class K2ModelItemlist extends K2Model
         if (K2_JVERSION != '15') {
             $query .= " AND i.access IN(".implode(',', $user->getAuthorisedViewLevels()).")";
             if ($application->getLanguageFilter()) {
-                $query .= " AND i.language IN (".$db->Quote(JFactory::getLanguage()->getTag()).", ".$db->Quote('*').")";
+                $query .= " AND i.language IN(".$db->Quote(JFactory::getLanguage()->getTag()).", ".$db->Quote('*').")";
             }
         } else {
             $query .= " AND i.access <= {$aid}";
@@ -847,13 +858,13 @@ class K2ModelItemlist extends K2Model
         if (K2_JVERSION != '15') {
             $query .= " AND c.access IN(".implode(',', $user->getAuthorisedViewLevels()).")";
             if ($application->getLanguageFilter()) {
-                $query .= " AND c.language IN (".$db->Quote(JFactory::getLanguage()->getTag()).", ".$db->Quote('*').")";
+                $query .= " AND c.language IN(".$db->Quote(JFactory::getLanguage()->getTag()).", ".$db->Quote('*').")";
             }
         } else {
             $query .= " AND c.access <= {$aid}";
         }
 
-        $query .= " AND c.published = 1 AND c.trash = 0 AND i.id IN ({$sql}) ORDER BY i.created DESC";
+        $query .= " AND c.published = 1 AND c.trash = 0 AND i.id IN({$sql}) ORDER BY i.created DESC";
 
         $db->setQuery($query, 0, $limit);
         $rows = $db->loadObjectList();
@@ -886,7 +897,7 @@ class K2ModelItemlist extends K2Model
         if (JRequest::getVar('categories')) {
             $categories = @explode(',', JRequest::getVar('categories'));
             JArrayHelper::toInteger($categories);
-            $sql .= " AND c.id IN (".@implode(',', $categories).") ";
+            $sql .= " AND c.id IN(".@implode(',', $categories).")";
         }
 
         if (empty($search)) {
@@ -1061,9 +1072,9 @@ class K2ModelItemlist extends K2Model
         $user = JFactory::getUser();
         $aid = (int)$user->get('aid');
 
-        $query = "SELECT id, name,  parent  FROM #__k2_categories";
+        $query = "SELECT id, name, parent FROM #__k2_categories";
         if ($application->isSite()) {
-            $query .= " WHERE published=1  AND trash=0";
+            $query .= " WHERE published=1 AND trash=0";
             if (K2_JVERSION != '15') {
                 $query .= " AND access IN(".implode(',', $user->getAuthorisedViewLevels()).")";
                 if ($application->getLanguageFilter()) {
