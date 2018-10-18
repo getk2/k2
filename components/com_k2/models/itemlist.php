@@ -16,7 +16,7 @@ JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
 
 class K2ModelItemlist extends K2Model
 {
-    public $getTotal;
+    private $getTotal;
 
     public function getData($ordering = null)
     {

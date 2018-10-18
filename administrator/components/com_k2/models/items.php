@@ -11,10 +11,13 @@
 defined('_JEXEC') or die;
 
 jimport('joomla.application.component.model');
+
 JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 
 class K2ModelItems extends K2Model
 {
+    private $getTotal;
+
     public function getData()
     {
         $application = JFactory::getApplication();
@@ -37,9 +40,13 @@ class K2ModelItems extends K2Model
         $tag = $application->getUserStateFromRequest($option.$view.'tag', 'tag', 0, 'int');
         $language = $application->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
 
-        $query = "SELECT i.*, g.name AS groupname, c.name AS category, v.name AS author, w.name as moderator, u.name AS editor FROM #__k2_items as i";
-
-        $query .= " LEFT JOIN #__k2_categories AS c ON c.id = i.catid"." LEFT JOIN #__groups AS g ON g.id = i.access"." LEFT JOIN #__users AS u ON u.id = i.checked_out"." LEFT JOIN #__users AS v ON v.id = i.created_by"." LEFT JOIN #__users AS w ON w.id = i.modified_by";
+        $query = "SELECT SQL_CALC_FOUND_ROWS i.*, g.name AS groupname, c.name AS category, v.name AS author, w.name AS moderator, u.name AS editor
+            FROM #__k2_items AS i
+            LEFT JOIN #__k2_categories AS c ON c.id = i.catid
+            LEFT JOIN #__groups AS g ON g.id = i.access
+            LEFT JOIN #__users AS u ON u.id = i.checked_out
+            LEFT JOIN #__users AS v ON v.id = i.created_by
+            LEFT JOIN #__users AS w ON w.id = i.modified_by";
 
         if ($params->get('showTagFilter') && $tag) {
             $query .= " LEFT JOIN #__k2_tags_xref AS tags_xref ON tags_xref.itemID = i.id";
@@ -70,18 +77,18 @@ class K2ModelItems extends K2Model
                 }
                 if ($params->get('adminSearch') == 'full') {
                     foreach ($quoted as $quotedWord) {
-                        $query .= " AND ( ".
-                            "LOWER(i.title) LIKE ".$quotedWord." ".
-                            "OR LOWER(i.introtext) LIKE ".$quotedWord." ".
-                            "OR LOWER(i.`fulltext`) LIKE ".$quotedWord." ".
-                            "OR LOWER(i.extra_fields_search) LIKE ".$quotedWord." ".
-                            "OR LOWER(i.image_caption) LIKE ".$quotedWord." ".
-                            "OR LOWER(i.image_credits) LIKE ".$quotedWord." ".
-                            "OR LOWER(i.video_caption) LIKE ".$quotedWord." ".
-                            "OR LOWER(i.video_credits) LIKE ".$quotedWord." ".
-                            "OR LOWER(i.metadesc) LIKE ".$quotedWord." ".
-                            "OR LOWER(i.metakey) LIKE ".$quotedWord." ".
-                            " )";
+                        $query .= " AND (
+                            LOWER(i.title) LIKE ".$quotedWord." OR
+                            LOWER(i.introtext) LIKE ".$quotedWord." OR
+                            LOWER(i.`fulltext`) LIKE ".$quotedWord." OR
+                            LOWER(i.extra_fields_search) LIKE ".$quotedWord." OR
+                            LOWER(i.image_caption) LIKE ".$quotedWord." OR
+                            LOWER(i.image_credits) LIKE ".$quotedWord." OR
+                            LOWER(i.video_caption) LIKE ".$quotedWord." OR
+                            LOWER(i.video_credits) LIKE ".$quotedWord." OR
+                            LOWER(i.metadesc) LIKE ".$quotedWord." OR
+                            LOWER(i.metakey) LIKE ".$quotedWord."
+                        )";
                     }
                 } else {
                     foreach ($quoted as $quotedWord) {
@@ -94,18 +101,18 @@ class K2ModelItems extends K2Model
                 $quoted = $db->Quote('%'.$escaped.'%', false);
 
                 if ($params->get('adminSearch') == 'full') {
-                    $query .= " AND ( ".
-                        "LOWER(i.title) LIKE ".$quoted." ".
-                        "OR LOWER(i.introtext) LIKE ".$quoted." ".
-                        "OR LOWER(i.`fulltext`) LIKE ".$quoted." ".
-                        "OR LOWER(i.extra_fields_search) LIKE ".$quoted." ".
-                        "OR LOWER(i.image_caption) LIKE ".$quoted." ".
-                        "OR LOWER(i.image_credits) LIKE ".$quoted." ".
-                        "OR LOWER(i.video_caption) LIKE ".$quoted." ".
-                        "OR LOWER(i.video_credits) LIKE ".$quoted." ".
-                        "OR LOWER(i.metadesc) LIKE ".$quoted." ".
-                        "OR LOWER(i.metakey) LIKE ".$quoted." ".
-                        " )";
+                    $query .= " AND (
+                        LOWER(i.title) LIKE ".$quoted." OR
+                        LOWER(i.introtext) LIKE ".$quoted." OR
+                        LOWER(i.`fulltext`) LIKE ".$quoted." OR
+                        LOWER(i.extra_fields_search) LIKE ".$quoted." OR
+                        LOWER(i.image_caption) LIKE ".$quoted." OR
+                        LOWER(i.image_credits) LIKE ".$quoted." OR
+                        LOWER(i.video_caption) LIKE ".$quoted." OR
+                        LOWER(i.video_credits) LIKE ".$quoted." OR
+                        LOWER(i.metadesc) LIKE ".$quoted." OR
+                        LOWER(i.metakey) LIKE ".$quoted."
+                    )";
                 } else {
                     $query .= " AND LOWER(i.title) LIKE ".$quoted;
                 }
@@ -147,12 +154,12 @@ class K2ModelItems extends K2Model
         if ($filter_order == 'i.ordering') {
             $query .= " ORDER BY i.catid, i.ordering {$filter_order_Dir}";
         } else {
-            $query .= " ORDER BY {$filter_order} {$filter_order_Dir} ";
+            $query .= " ORDER BY {$filter_order} {$filter_order_Dir}";
         }
 
         if (K2_JVERSION != '15') {
-            $query = JString::str_ireplace('#__groups', '#__viewlevels', $query);
-            $query = JString::str_ireplace('g.name', 'g.title', $query);
+            $query = str_ireplace('#__groups', '#__viewlevels', $query);
+            $query = str_ireplace('g.name', 'g.title', $query);
         }
 
         // Plugin Events
@@ -164,11 +171,19 @@ class K2ModelItems extends K2Model
 
         $db->setQuery($query, $limitstart, $limit);
         $rows = $db->loadObjectList();
+
+        if (count($rows)) {
+            $db->setQuery('SELECT FOUND_ROWS();');
+            $this->getTotal = $db->loadResult();
+        }
+
         return $rows;
     }
 
     public function getTotal()
     {
+        return $this->getTotal;
+        /*
         $application = JFactory::getApplication();
         $params = JComponentHelper::getParams('com_k2');
         $option = JRequest::getCmd('option');
@@ -301,6 +316,7 @@ class K2ModelItems extends K2Model
         $db->setQuery($query);
         $result = $db->loadResult();
         return $result;
+        */
     }
 
     public function publish()

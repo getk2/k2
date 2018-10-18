@@ -95,16 +95,16 @@ class K2HelperHTML
                         if ($jQueryHandling == '1.12remote') {
                             $jQueryHandling = '1.12.4';
                         }
-                        $document->addScript('https://cdn.jsdelivr.net/npm/jquery@'.$jQueryHandling.'/dist/jquery.min.js');
+                        $document->addScript('https://code.jquery.com/jquery-'.$jQueryHandling.'.min.js');
                     }
                 }
 
                 // Backend
                 if ($application->isAdmin()) {
                     if (($option == 'com_k2' && ($view == 'item' || $view == 'category')) || $option == 'com_menus') {
-                        $document->addScript('https://cdn.jsdelivr.net/npm/jquery@1.8.3/dist/jquery.min.js');
+                        $document->addScript('https://code.jquery.com/jquery-1.8.3.min.js');
                     } else {
-                        $document->addScript('https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js');
+                        $document->addScript('https://code.jquery.com/jquery-1.12.4.min.js');
                     }
                 }
             }

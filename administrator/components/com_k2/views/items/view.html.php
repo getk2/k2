@@ -73,13 +73,13 @@ class K2ViewItems extends K2View
 		}
 
 		$model = $this->getModel();
+		$items = $model->getData();
 		$total = $model->getTotal();
 		if ($limitstart > $total - $limit)
 		{
 			$limitstart = max(0, (int)(ceil($total / $limit) - 1) * $limit);
 			JRequest::setVar('limitstart', $limitstart);
 		}
-		$items = $model->getData();
 
 		if (K2_JVERSION != '15')
 		{
