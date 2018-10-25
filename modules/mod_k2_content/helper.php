@@ -91,13 +91,13 @@ class modK2ContentHelper
                 }
             }
         } else {
-            $query = "SELECT i.*, ";
+            $query = "SELECT i.*,";
 
             if ($ordering == 'modified') {
-                $query .= " CASE WHEN i.modified = 0 THEN i.created ELSE i.modified END AS lastChanged, ";
+                $query .= " CASE WHEN i.modified = 0 THEN i.created ELSE i.modified END AS lastChanged,";
             }
 
-            $query .= "c.name AS categoryname, c.id AS categoryid, c.alias AS categoryalias, c.params AS categoryparams";
+            $query .= " c.name AS categoryname, c.id AS categoryid, c.alias AS categoryalias, c.params AS categoryparams";
 
             if ($ordering == 'best') {
                 $query .= ", (r.rating_sum/r.rating_count) AS rating";
@@ -212,7 +212,7 @@ class modK2ContentHelper
 
                 case 'hits':
                     if ($params->get('popularityRange')) {
-                        $query .= " AND i.created > DATE_SUB('{$now}', INTERVAL ".$params->get('popularityRange')." DAY) ";
+                        $query .= " AND i.created > DATE_SUB('{$now}', INTERVAL ".$params->get('popularityRange')." DAY)";
                     }
                     $orderby = 'i.hits DESC';
                     break;
@@ -227,7 +227,7 @@ class modK2ContentHelper
 
                 case 'comments':
                     if ($params->get('popularityRange')) {
-                        $query .= " AND i.created > DATE_SUB('{$now}', INTERVAL ".$params->get('popularityRange')." DAY) ";
+                        $query .= " AND i.created > DATE_SUB('{$now}', INTERVAL ".$params->get('popularityRange')." DAY)";
                     }
                     $orderby = 'numOfComments DESC';
                     break;
