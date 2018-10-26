@@ -17,8 +17,8 @@ class modK2UserHelper
     public static function getReturnURL($params, $type)
     {
         if ($itemid = $params->get($type)) {
-            $application = JFactory::getApplication();
-            $menu = $application->getMenu();
+            $app = JFactory::getApplication();
+            $menu = $app->getMenu();
             $item = $menu->getItem($itemid);
             if (K2_JVERSION != '15') {
                 $url = 'index.php?Itemid=' . $item->id;
@@ -77,7 +77,8 @@ class modK2UserHelper
         $items = array();
         $children = array();
         if ($params->get('menu')) {
-            $menu = JSite::getMenu();
+            $app = JFactory::getApplication();
+            $menu = $app->getMenu();
             $items = $menu->getItems('menutype', $params->get('menu'));
         }
         foreach ($items as $item) {
