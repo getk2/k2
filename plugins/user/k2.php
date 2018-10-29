@@ -42,16 +42,16 @@ class plgUserK2 extends JPlugin
 	function onAfterStoreUser($user, $isnew, $success, $msg)
 	{
 		jimport('joomla.filesystem.file');
-		$application = JFactory::getApplication();
+		$app = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
 		$task = JRequest::getCmd('task');
 
-		if ($application->isSite() && ($task == 'activate' || $isnew) && $params->get('stopForumSpam'))
+		if ($app->isSite() && ($task == 'activate' || $isnew) && $params->get('stopForumSpam'))
 		{
 			$this->checkSpammer($user);
 		}
 
-		if ($application->isSite() && $task != 'activate' && JRequest::getInt('K2UserForm'))
+		if ($app->isSite() && $task != 'activate' && JRequest::getInt('K2UserForm'))
 		{
 			JPlugin::loadLanguage('com_k2');
 			JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
@@ -116,7 +116,7 @@ class plgUserK2 extends JPlugin
 				}
 				else
 				{
-					$application->enqueueMessage(JText::_('K2_COULD_NOT_UPLOAD_YOUR_IMAGE').$handle->error, 'notice');
+					$app->enqueueMessage(JText::_('K2_COULD_NOT_UPLOAD_YOUR_IMAGE').$handle->error, 'notice');
 				}
 				$image = $handle->file_dst_name;
 			}
@@ -139,7 +139,7 @@ class plgUserK2 extends JPlugin
 			$itemid = $params->get('redirect');
 			if (!$isnew && $itemid)
 			{
-				$menu = JSite::getMenu();
+				$menu = $app->getMenu();
 				$item = $menu->getItem($itemid);
 				$url = JRoute::_($item->link.'&Itemid='.$itemid, false);
 
@@ -147,13 +147,13 @@ class plgUserK2 extends JPlugin
 				{
 					if (JURI::isInternal($url))
 					{
-						$application->enqueueMessage(JText::_('K2_YOUR_SETTINGS_HAVE_BEEN_SAVED'));
-						$application->redirect($url);
+						$app->enqueueMessage(JText::_('K2_YOUR_SETTINGS_HAVE_BEEN_SAVED'));
+						$app->redirect($url);
 					}
 				}
 				else
 				{
-					$application->setUserState('com_users.edit.profile.redirect', $url);
+					$app->setUserState('com_users.edit.profile.redirect', $url);
 				}
 			}
 		}
@@ -162,8 +162,8 @@ class plgUserK2 extends JPlugin
 	function onLoginUser($user, $options)
 	{
 		$params = JComponentHelper::getParams('com_k2');
-		$application = JFactory::getApplication();
-		if ($application->isSite())
+		$app = JFactory::getApplication();
+		if ($app->isSite())
 		{
 			// Get the user id
 			$db = JFactory::getDbo();
@@ -203,8 +203,8 @@ class plgUserK2 extends JPlugin
 	function onLogoutUser($user)
 	{
 		$params = JComponentHelper::getParams('com_k2');
-		$application = JFactory::getApplication();
-		if ($application->isSite() && $params->get('cookieDomain'))
+		$app = JFactory::getApplication();
+		if ($app->isSite() && $params->get('cookieDomain'))
 		{
 			setcookie("userID", "", time() - 3600, '/', $params->get('cookieDomain'), 0);
 		}
@@ -213,7 +213,7 @@ class plgUserK2 extends JPlugin
 
 	function onAfterDeleteUser($user, $succes, $msg)
 	{
-		$application = JFactory::getApplication();
+		$app = JFactory::getApplication();
 		$db = JFactory::getDbo();
 		$query = "DELETE FROM #__k2_users WHERE userID={$user['id']}";
 		$db->setQuery($query);
@@ -222,10 +222,10 @@ class plgUserK2 extends JPlugin
 
 	function onBeforeStoreUser($user, $isNew)
 	{
-		$application = JFactory::getApplication();
+		$app = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
 		$session = JFactory::getSession();
-		if ($params->get('K2UserProfile') && $isNew && $params->get('recaptchaOnRegistration') && $application->isSite() && !$session->get('socialConnectData'))
+		if ($params->get('K2UserProfile') && $isNew && $params->get('recaptchaOnRegistration') && $app->isSite() && !$session->get('socialConnectData'))
 		{
 			if($params->get('recaptchaV2'))
 			{
@@ -240,8 +240,8 @@ class plgUserK2 extends JPlugin
 					{
 						$url = 'index.php?option=com_user&view=register';
 					}
-					$application->enqueueMessage(JText::_('K2_COULD_NOT_VERIFY_THAT_YOU_ARE_NOT_A_ROBOT'), 'error');
-					$application->redirect($url);
+					$app->enqueueMessage(JText::_('K2_COULD_NOT_VERIFY_THAT_YOU_ARE_NOT_A_ROBOT'), 'error');
+					$app->redirect($url);
 				}
 			}
 			else
@@ -264,8 +264,8 @@ class plgUserK2 extends JPlugin
 					{
 						$url = 'index.php?option=com_user&view=register';
 					}
-					$application->enqueueMessage(JText::_('K2_THE_WORDS_YOU_TYPED_DID_NOT_MATCH_THE_ONES_DISPLAYED_PLEASE_TRY_AGAIN'), 'error');
-					$application->redirect($url);
+					$app->enqueueMessage(JText::_('K2_THE_WORDS_YOU_TYPED_DID_NOT_MATCH_THE_ONES_DISPLAYED_PLEASE_TRY_AGAIN'), 'error');
+					$app->redirect($url);
 				}
 			}
 		}
