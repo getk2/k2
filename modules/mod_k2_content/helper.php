@@ -135,13 +135,15 @@ class modK2ContentHelper
                 if ($params->get('getChildren')) {
                     $itemListModel = K2Model::getInstance('Itemlist', 'K2Model');
                     $categories = $itemListModel->getCategoryTree($cid);
+                    sort($categories);
                     $sql = @implode(',', $categories);
                     $query .= " AND i.catid IN ({$sql})";
                 } else {
                     if (is_array($cid)) {
+                        sort($cid);
                         $query .= " AND i.catid IN(".implode(',', $cid).")";
                     } else {
-                        $query .= " AND i.catid = ".(int)$cid;
+                        $query .= " AND i.catid = ".(int) $cid;
                     }
                 }
             }
