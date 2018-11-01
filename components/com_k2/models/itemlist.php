@@ -34,6 +34,13 @@ class K2ModelItemlist extends K2Model
 
         $jnow = JFactory::getDate();
         $now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
+        /*
+        if (version_compare(JVERSION, '3.3', 'ge')) {
+            $now = $jnow->format('%Y-%m-%d %H:%M:00');
+        } else {
+            $now = $jnow->toFormat('%Y-%m-%d %H:%M:00');
+        }
+        */
         $nullDate = $db->getNullDate();
 
         if (JRequest::getWord('format') == 'feed') {
