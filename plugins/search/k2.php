@@ -163,7 +163,6 @@ class plgSearchK2 extends JPlugin
                 $languageTag = JFactory::getLanguage()->getTag();
                 $query .= " AND c.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") AND i.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').")";
             }
-            $query .= " GROUP BY i.id";
 
             switch ($ordering) {
                 case 'oldest':
@@ -190,6 +189,7 @@ class plgSearchK2 extends JPlugin
 
             $db->setQuery($query, 0, $limit);
             $list = $db->loadObjectList();
+
             $limit -= count($list);
             if (isset($list)) {
                 foreach ($list as $key => $item) {

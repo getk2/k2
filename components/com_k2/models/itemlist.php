@@ -326,7 +326,11 @@ class K2ModelItemlist extends K2Model
                 break;
         }
 
-        $query .= " GROUP BY i.id ORDER BY ".$orderby;
+        if ($task == 'tag') {
+            $query .= ' GROUP BY i.id';
+        }
+
+        $query .= ' ORDER BY '.$orderby;
 
         JPluginHelper::importPlugin('k2');
         $dispatcher = JDispatcher::getInstance();

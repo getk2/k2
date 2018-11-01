@@ -247,7 +247,11 @@ class modK2ContentHelper
                     break;
             }
 
-            $query .= " GROUP BY i.id ORDER BY ".$orderby;
+            if ($tagsFilter && is_array($tagsFilter) && count($tagsFilter)) {
+                $query .= ' GROUP BY i.id';
+            }
+
+            $query .= ' ORDER BY '.$orderby;
 
             $db->setQuery($query, 0, $limit);
             $items = $db->loadObjectList();

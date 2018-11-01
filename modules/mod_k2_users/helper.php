@@ -230,7 +230,7 @@ class modK2UsersHelper
                         $query .= " AND i.language IN ({$languageFilter}) AND c.language IN ({$languageFilter})";
                     }
 
-                    $query .= " GROUP BY i.id ORDER BY i.created DESC";
+                    $query .= " ORDER BY i.created DESC";
 
                     $db->setQuery($query, 0, $params->get('userItemCount'));
                     $userObject->items = $db->loadObjectList();
