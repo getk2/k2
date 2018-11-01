@@ -630,7 +630,8 @@ class K2ModelItemlist extends K2Model
         foreach ($tags as $tag) {
             $tagIDs[] = $tag->id;
         }
-        JArrayHelper::toInteger($tagIDs);
+        //JArrayHelper::toInteger($tagIDs);
+        sort($tagIDs);
         $sql = implode(',', $tagIDs);
 
         $user = JFactory::getUser();
@@ -653,6 +654,7 @@ class K2ModelItemlist extends K2Model
         if (!count($itemsIDs)) {
             return array();
         }
+        sort($itemsIDs);
         $sql = implode(',', $itemsIDs);
 
         $query = "SELECT i.*, c.alias AS categoryalias
