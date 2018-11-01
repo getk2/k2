@@ -33,7 +33,7 @@ class K2ModelItemlist extends K2Model
         }
 
         $jnow = JFactory::getDate();
-        $now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
+        $now = (K2_JVERSION == '15') ? $jnow->toMySQL() : $jnow->toSql();
         /*
         if (version_compare(JVERSION, '3.3', 'ge')) {
             $now = $jnow->format('%Y-%m-%d %H:%M:00');
@@ -179,7 +179,7 @@ class K2ModelItemlist extends K2Model
                 jimport('joomla.filesystem.file');
                 if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/joomfish.php') && $task == 'tag') {
                     $registry = JFactory::getConfig();
-                    $lang = K2_JVERSION == '30' ? $registry->get('jflang') : $registry->getValue('config.jflang');
+                    $lang = (K2_JVERSION == '30') ? $registry->get('jflang') : $registry->getValue('config.jflang');
 
                     $sql = "SELECT reference_id
                         FROM #__jf_content AS jfc
@@ -194,7 +194,7 @@ class K2ModelItemlist extends K2Model
 
                 if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_falang/falang.php') && $task == 'tag') {
                     $registry = JFactory::getConfig();
-                    $lang = K2_JVERSION == '30' ? $registry->get('jflang') : $registry->getValue('config.jflang');
+                    $lang = (K2_JVERSION == '30') ? $registry->get('jflang') : $registry->getValue('config.jflang');
 
                     $sql = "SELECT reference_id
                         FROM #__falang_content AS fc
@@ -388,7 +388,7 @@ class K2ModelItemlist extends K2Model
                 }
             }
             $db->setQuery($query);
-            $array = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
+            $array = (K2_JVERSION == '30') ? $db->loadColumn() : $db->loadResultArray();
             $categories = array_merge($categories, $array);
         }
         JArrayHelper::toInteger($categories);
@@ -499,7 +499,7 @@ class K2ModelItemlist extends K2Model
         $db = JFactory::getDbo();
 
         $jnow = JFactory::getDate();
-        $now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
+        $now = (K2_JVERSION == '15') ? $jnow->toMySQL() : $jnow->toSql();
         $nullDate = $db->getNullDate();
 
         $categories = $this->getCategoryTree($id);
@@ -545,7 +545,7 @@ class K2ModelItemlist extends K2Model
         $db = JFactory::getDbo();
 
         $jnow = JFactory::getDate();
-        $now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
+        $now = (K2_JVERSION == '15') ? $jnow->toMySQL() : $jnow->toSql();
         $nullDate = $db->getNullDate();
 
         $query = "SELECT i.*, c.alias AS categoryalias
@@ -626,6 +626,7 @@ class K2ModelItemlist extends K2Model
         $application = JFactory::getApplication();
         $limit = $params->get('itemRelatedLimit', 10);
         $itemID = (int)$itemID;
+
         foreach ($tags as $tag) {
             $tagIDs[] = $tag->id;
         }
@@ -637,7 +638,7 @@ class K2ModelItemlist extends K2Model
         $db = JFactory::getDbo();
 
         $jnow = JFactory::getDate();
-        $now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
+        $now = (K2_JVERSION == '15') ? $jnow->toMySQL() : $jnow->toSql();
         $nullDate = $db->getNullDate();
 
         $query = "SELECT itemID
@@ -647,12 +648,11 @@ class K2ModelItemlist extends K2Model
             GROUP BY itemID";
         $db->setQuery($query);
 
-        $itemsIDs = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
+        $itemsIDs = (K2_JVERSION == '30') ? $db->loadColumn() : $db->loadResultArray();
 
         if (!count($itemsIDs)) {
             return array();
         }
-
         $sql = implode(',', $itemsIDs);
 
         $query = "SELECT i.*, c.alias AS categoryalias
@@ -681,7 +681,7 @@ class K2ModelItemlist extends K2Model
             $query .= " AND c.access <= {$aid}";
         }
 
-        $query .= " AND c.published = 1 AND c.trash = 0 AND i.id IN({$sql}) ORDER BY i.created DESC";
+        $query .= " AND c.published = 1 AND c.trash = 0 AND i.id IN({$sql}) ORDER BY i.id DESC";
 
         $db->setQuery($query, 0, $limit);
         $rows = $db->loadObjectList();
@@ -742,8 +742,8 @@ class K2ModelItemlist extends K2Model
                 $word = JString::substr($search, 1, $length - 2);
 
                 if (JString::strlen($word) > 3 && !in_array($word, $search_ignore)) {
-                    $escaped = K2_JVERSION == '15' ? $db->getEscaped($word, true) : $db->escape($word, true);
-                    $langField = K2_JVERSION == '15' ? 'code' : 'lang_code';
+                    $escaped = (K2_JVERSION == '15') ? $db->getEscaped($word, true) : $db->escape($word, true);
+                    $langField = (K2_JVERSION == '15') ? 'code' : 'lang_code';
                     $word = $db->Quote('%'.$escaped.'%', false);
 
                     $jfQuery = " SELECT reference_id FROM #__jf_content AS jfc LEFT JOIN #__languages AS jfl ON jfc.language_id = jfl.".K2_JF_ID;
@@ -763,7 +763,7 @@ class K2ModelItemlist extends K2Model
                         OR jfc.reference_field = 'metakey'
                     )";
                     $db->setQuery($jfQuery);
-                    $result = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
+                    $result = (K2_JVERSION == '30') ? $db->loadColumn() : $db->loadResultArray();
                     $result = @array_unique($result);
                     JArrayHelper::toInteger($result);
                     if (count($result)) {
@@ -774,9 +774,9 @@ class K2ModelItemlist extends K2Model
                 $search = explode(' ', JString::strtolower($search));
                 foreach ($search as $searchword) {
                     if (JString::strlen($searchword) > 3 && !in_array($searchword, $search_ignore)) {
-                        $escaped = K2_JVERSION == '15' ? $db->getEscaped($searchword, true) : $db->escape($searchword, true);
+                        $escaped = (K2_JVERSION == '15') ? $db->getEscaped($searchword, true) : $db->escape($searchword, true);
                         $word = $db->Quote('%'.$escaped.'%', false);
-                        $langField = K2_JVERSION == '15' ? 'code' : 'lang_code';
+                        $langField = (K2_JVERSION == '15') ? 'code' : 'lang_code';
 
                         $jfQuery = " SELECT reference_id FROM #__jf_content AS jfc LEFT JOIN #__languages AS jfl ON jfc.language_id = jfl.".K2_JF_ID;
                         $jfQuery .= " WHERE jfc.reference_table = 'k2_items'";
@@ -795,7 +795,7 @@ class K2ModelItemlist extends K2Model
                             OR jfc.reference_field = 'metakey'
                         )";
                         $db->setQuery($jfQuery);
-                        $result = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
+                        $result = (K2_JVERSION == '30') ? $db->loadColumn() : $db->loadResultArray();
                         $result = @array_unique($result);
                         foreach ($result as $id) {
                             $allIDs[] = $id;
@@ -815,18 +815,40 @@ class K2ModelItemlist extends K2Model
                 $sql .= " AND (".implode(" OR ", $conditions).")";
             }
         } else {
-            $escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
+            $escaped = (K2_JVERSION == '15') ? $db->getEscaped($search, true) : $db->escape($search, true);
             $quoted = $db->Quote('%'.$escaped.'%', false);
 
             if ($type == 'exact') {
                 $text = JString::trim($search, '"');
-                $escaped = K2_JVERSION == '15' ? $db->getEscaped($text, true) : $db->escape($text, true);
+                $escaped = (K2_JVERSION == '15') ? $db->getEscaped($text, true) : $db->escape($text, true);
                 $quoted = $db->Quote('%'.$escaped.'%', false);
-                $sql .= " AND ( LOWER(i.title) = ".$quoted." OR LOWER(i.introtext) = ".$quoted." OR LOWER(i.`fulltext`) = ".$quoted." OR LOWER(i.extra_fields_search) = ".$quoted." OR LOWER(i.image_caption) = ".$quoted." OR LOWER(i.image_credits) = ".$quoted." OR LOWER(i.video_caption) = ".$quoted." OR LOWER(i.video_credits) = ".$quoted." OR LOWER(i.metadesc) = ".$quoted." OR LOWER(i.metakey) = ".$quoted.")";
+                $sql .= " AND (
+                    LOWER(i.title) = ".$quoted." OR
+                    LOWER(i.introtext) = ".$quoted." OR
+                    LOWER(i.`fulltext`) = ".$quoted." OR
+                    LOWER(i.extra_fields_search) = ".$quoted." OR
+                    LOWER(i.image_caption) = ".$quoted." OR
+                    LOWER(i.image_credits) = ".$quoted." OR
+                    LOWER(i.video_caption) = ".$quoted." OR
+                    LOWER(i.video_credits) = ".$quoted." OR
+                    LOWER(i.metadesc) = ".$quoted." OR
+                    LOWER(i.metakey) = ".$quoted."
+                )";
             } else {
-                $escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
+                $escaped = (K2_JVERSION == '15') ? $db->getEscaped($search, true) : $db->escape($search, true);
                 $text = $db->Quote($escaped);
-                $sql .= " AND ( LOWER(i.title) LIKE ".$quoted." OR LOWER(i.introtext) LIKE ".$quoted." OR LOWER(i.`fulltext`) LIKE ".$quoted." OR LOWER(i.extra_fields_search) LIKE ".$quoted." OR LOWER(i.image_caption) LIKE ".$quoted." OR LOWER(i.image_credits) LIKE ".$quoted." OR LOWER(i.video_caption) LIKE ".$quoted." OR LOWER(i.video_credits) LIKE ".$quoted." OR LOWER(i.metadesc) LIKE ".$quoted." OR LOWER(i.metakey) LIKE ".$quoted.")";
+                $sql .= " AND (
+                    LOWER(i.title) LIKE ".$quoted." OR
+                    LOWER(i.introtext) LIKE ".$quoted." OR
+                    LOWER(i.`fulltext`) LIKE ".$quoted." OR
+                    LOWER(i.extra_fields_search) LIKE ".$quoted." OR
+                    LOWER(i.image_caption) LIKE ".$quoted." OR
+                    LOWER(i.image_credits) LIKE ".$quoted." OR
+                    LOWER(i.video_caption) LIKE ".$quoted." OR
+                    LOWER(i.video_credits) LIKE ".$quoted." OR
+                    LOWER(i.metadesc) LIKE ".$quoted." OR
+                    LOWER(i.metakey) LIKE ".$quoted."
+                )";
             }
         }
 
