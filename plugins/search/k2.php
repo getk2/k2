@@ -75,25 +75,9 @@ class plgSearchK2 extends JPlugin
         $rows = array();
 
         if ($limit > 0) {
-            if ($pluginParams->get('search_tags')) {
-                $tagQuery = JString::strtolower($text);
-                $escaped = K2_JVERSION == '15' ? $db->getEscaped($tagQuery, true) : $db->escape($tagQuery, true);
-                $quoted = $db->Quote('%'.$escaped.'%', false);
-                $query = "SELECT id FROM #__k2_tags WHERE LOWER(name) LIKE ".$quoted." AND published=1";
-                $db->setQuery($query);
-                $tagIDs = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
-
-                if (count($tagIDs)) {
-                    JArrayHelper::toInteger($tagIDs);
-                    $query = "SELECT itemID FROM #__k2_tags_xref WHERE tagID IN (".implode(',', $tagIDs).")";
-                    $db->setQuery($query);
-                    $itemIDs = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
-                }
-            }
-
             if ($phrase == 'exact') {
                 $text = JString::trim($text, '"');
-                $escaped = K2_JVERSION == '15' ? $db->getEscaped($text, true) : $db->escape($text, true);
+                $escaped = (K2_JVERSION == '15') ? $db->getEscaped($text, true) : $db->escape($text, true);
                 $quoted = $db->Quote('%'.$escaped.'%', false);
                 $where = "(
                     LOWER(i.title) LIKE ".$quoted." OR
@@ -107,12 +91,11 @@ class plgSearchK2 extends JPlugin
                     LOWER(i.metadesc) LIKE ".$quoted." OR
                     LOWER(i.metakey) LIKE ".$quoted."
                 )";
-
             } else {
                 $words = explode(' ', $text);
                 $wheres = array();
                 foreach ($words as $word) {
-                    $escaped = K2_JVERSION == '15' ? $db->getEscaped($word, true) : $db->escape($word, true);
+                    $escaped = (K2_JVERSION == '15') ? $db->getEscaped($word, true) : $db->escape($word, true);
                     $quoted = $db->Quote('%'.$escaped.'%', false);
                     $wheres[] = "(
                         LOWER(i.title) LIKE ".$quoted." OR
@@ -130,10 +113,27 @@ class plgSearchK2 extends JPlugin
                 $where = '(' . implode(($phrase == 'all' ? ') AND (' : ') OR ('), $wheres) . ')';
             }
 
-            if ($pluginParams->get('search_tags') && count($itemIDs)) {
-                JArrayHelper::toInteger($itemIDs);
-                $where .= " OR i.id IN (".implode(',', $itemIDs).")";
+            if ($pluginParams->get('search_tags')) {
+                $tagQuery = JString::strtolower($text);
+                $escaped = (K2_JVERSION == '15') ? $db->getEscaped($tagQuery, true) : $db->escape($tagQuery, true);
+                $quoted = $db->Quote('%'.$escaped.'%', false);
+                $query = "SELECT id FROM #__k2_tags WHERE LOWER(name) LIKE ".$quoted." AND published=1";
+                $db->setQuery($query);
+                $tagIDs = (K2_JVERSION == '30') ? $db->loadColumn() : $db->loadResultArray();
+                if (count($tagIDs)) {
+                    sort($tagIDs);
+                    $query = "SELECT itemID FROM #__k2_tags_xref WHERE tagID IN (".implode(',', $tagIDs).")";
+                    $db->setQuery($query);
+                    $itemIDs = (K2_JVERSION == '30') ? $db->loadColumn() : $db->loadResultArray();
+                    $itemIDs = array_unique($itemIDs);
+                    if (count($itemIDs)) {
+                        //JArrayHelper::toInteger($itemIDs);
+                        sort($itemIDs);
+                        $where .= " OR i.id IN (".implode(',', $itemIDs).")";
+                    }
+                }
             }
+
             $query = "SELECT i.title AS title,
                     i.metadesc,
                     i.metakey,
@@ -144,11 +144,11 @@ class plgSearchK2 extends JPlugin
                     i.video_credits,
                     i.extra_fields_search,
                     i.created,
-                CONCAT(i.introtext, i.fulltext) AS text,
-                CASE WHEN CHAR_LENGTH(i.alias) THEN CONCAT_WS(':', i.id, i.alias) ELSE i.id END as slug,
-                CASE WHEN CHAR_LENGTH(c.alias) THEN CONCAT_WS(':', c.id, c.alias) ELSE c.id END as catslug
+                    CONCAT(i.introtext, i.fulltext) AS text,
+                    CASE WHEN CHAR_LENGTH(i.alias) THEN CONCAT_WS(':', i.id, i.alias) ELSE i.id END as slug,
+                    CASE WHEN CHAR_LENGTH(c.alias) THEN CONCAT_WS(':', c.id, c.alias) ELSE c.id END as catslug
                 FROM #__k2_items AS i
-                INNER JOIN #__k2_categories AS c ON c.id=i.catid AND c.access {$accessCheck}
+                INNER JOIN #__k2_categories AS c ON c.id = i.catid
                 WHERE {$where}
                     AND i.trash = 0
                     AND i.published = 1
