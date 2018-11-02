@@ -170,8 +170,12 @@ class modK2CommentsHelper
 
         $limit = $params->get('commenters_limit', '5');
 
-        $query = "SELECT COUNT(id) as counter, userName, userID, commentEmail FROM #__k2_comments WHERE userID > 0 AND published = 1 GROUP BY userID ORDER BY counter DESC";
-
+        $query = "SELECT COUNT(id) as counter, userName, userID, commentEmail
+        	FROM #__k2_comments
+        	WHERE userID > 0
+        		AND published = 1
+        	GROUP BY userID
+        	ORDER BY counter DESC";
         $db->setQuery($query, 0, $limit);
         $rows = $db->loadObjectList();
 
