@@ -92,6 +92,13 @@ class elFinderVolumeGoogleDrive extends elFinderVolumeDriver
     public $netMountKey = '';
 
     /**
+     * Current token expires
+     * 
+     * @var integer
+     **/
+    private $expires;
+
+    /**
      * Constructor
      * Extend options with required fields.
      *
@@ -918,6 +925,7 @@ class elFinderVolumeGoogleDrive extends elFinderVolumeDriver
                 if (!$serviceAccountConfig) {
                     if ($this->options['access_token']) {
                         $client->setAccessToken($this->options['access_token']);
+                        $access_token = $this->options['access_token'];
                     }
                     if ($client->isAccessTokenExpired()) {
                         $client->setClientId($this->options['client_id']);
@@ -934,6 +942,7 @@ class elFinderVolumeGoogleDrive extends elFinderVolumeDriver
                         }
                         $this->options['access_token'] = $access_token;
                     }
+                    $this->expires = empty($access_token['refresh_token']) ? $access_token['created'] + $access_token['expires_in'] - 30 : 0;
                 } else {
                     $client->setAuthConfigFile($serviceAccountConfig);
                     $client->setScopes([Google_Service_Drive::DRIVE]);
@@ -994,6 +1003,9 @@ class elFinderVolumeGoogleDrive extends elFinderVolumeDriver
             $this->options['tmbPath'] = '';
         }
 
+        // enable command archive
+        $this->options['useRemoteArchive'] = true;
+
         return true;
     }
 
@@ -1010,9 +1022,6 @@ class elFinderVolumeGoogleDrive extends elFinderVolumeDriver
         if (!$this->tmp && $this->tmbPathWritable) {
             $this->tmp = $this->tmbPath;
         }
-
-        $this->disabled[] = 'archive';
-        $this->disabled[] = 'extract';
 
         if ($this->isMyReload()) {
             $this->_gd_getDirectoryData(false);
@@ -1089,6 +1098,11 @@ class elFinderVolumeGoogleDrive extends elFinderVolumeDriver
      **/
     protected function doSearch($path, $q, $mimes)
     {
+        if (!empty($this->doSearchCurrentQuery['matchMethod'])) {
+            // has custom match method use elFinderVolumeDriver::doSearch()
+            return parent::doSearch($path, $q, $mimes);
+        }
+
         list(, $itemId) = $this->_gd_splitPath($path);
 
         $path = $this->_normpath($path.'/');
@@ -1525,7 +1539,11 @@ class elFinderVolumeGoogleDrive extends elFinderVolumeDriver
     protected function _stat($path)
     {
         if ($raw = $this->_gd_getFile($path)) {
-            return $this->_gd_parseRaw($raw);
+            $stat = $this->_gd_parseRaw($raw);
+            if ($path === $this->root) {
+                $stat['expires'] = $this->expires;
+            }
+            return $stat;
         }
 
         return false;

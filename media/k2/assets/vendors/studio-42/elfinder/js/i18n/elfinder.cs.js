@@ -2,7 +2,7 @@
  * Czech translation
  * @author Jay Gridley <gridley.jay@hotmail.com>
  * @author RobiNN <kelcakrobo@gmail.com>
- * @version 2017-11-25
+ * @version 2018-05-05
  */
 (function(root, factory) {
 	if (typeof define === 'function' && define.amd) {
@@ -132,7 +132,7 @@
 			'cmdinfo'      : 'Zobrazit informace',
 			'cmdmkdir'     : 'Nová složka',
 			'cmdmkdirin'   : 'Do nové složky', // from v2.1.7 added 19.2.2016
-			'cmdmkfile'    : 'Nový textový soubor',
+			'cmdmkfile'    : 'Nový soubor',
 			'cmdopen'      : 'Otevřít',
 			'cmdpaste'     : 'Vložit',
 			'cmdquicklook' : 'Náhled',
@@ -162,6 +162,7 @@
 			'cmdselectall' : 'Vyberat vše', // from v2.1.28 added 15.08.2017
 			'cmdselectnone': 'Nic nevyberať', // from v2.1.28 added 15.08.2017
 			'cmdselectinvert': 'Invertovat výběr', // from v2.1.28 added 15.08.2017
+			'cmdopennew'   : 'Otevři v novém okně', // from v2.1.38 added 3.4.2018
 
 			/*********************************** buttons ***********************************/
 			'btnClose'  : 'Zavřít',
@@ -438,6 +439,24 @@
 			'selectAction'    : 'Akce při vybraném souboru', // from v2.1.30 added 23.11.2017
 			'useStoredEditor' : 'Otevřít pomocí naposledy použitého editoru', // from v2.1.30 added 23.11.2017
 			'selectinvert'    : 'Obrátit výběr položek', // from v2.1.30 added 25.11.2017
+			'renameMultiple'  : 'Opravdu chcete přejmenovat $1 vybraných položek, jako například $2<br/>Není to možné vrátit zpět!', // from v2.1.31 added 4.12.2017
+			'batchRename'     : 'Batch přejmenování', // from v2.1.31 added 8.12.2017
+			'plusNumber'      : '+ Číslo', // from v2.1.31 added 8.12.2017
+			'asPrefix'        : 'Přidat předponu', // from v2.1.31 added 8.12.2017
+			'asSuffix'        : 'Přidat příponu', // from v2.1.31 added 8.12.2017
+			'changeExtention' : 'Změnit příponu', // from v2.1.31 added 8.12.2017
+			'columnPref'      : 'Nastavení sloupců (Zobrazení seznamu)', // from v2.1.32 added 6.2.2018
+			'reflectOnImmediate' : 'Všechny změny se okamžitě projeví v archivu.', // from v2.1.33 added 2.3.2018
+			'reflectOnUnmount'   : 'Jakékoliv změny se nebudou odrážet, dokud nebude tento svazek odpojen.', // from v2.1.33 added 2.3.2018
+			'unmountChildren' : 'Následující svazky namontované na tomto svazku jsou také odpojeny. Opravdu ji odpojíte?', // from v2.1.33 added 5.3.2018
+			'selectionInfo'   : 'Informace o výběru', // from v2.1.33 added 7.3.2018
+			'hashChecker'     : 'Algoritmy pro zobrazení hashování souborů', // from v2.1.33 added 10.3.2018
+			'infoItems'       : 'Informační položky (panel s informacemi o výběru)', // from v2.1.38 added 28.3.2018
+			'pressAgainToExit': 'Dalším stisknutím opustíte.', // from v2.1.38 added 1.4.2018
+			'toolbar'         : 'Panel nástrojů', // from v2.1.38 added 4.4.2018
+			'workspace'       : 'Pracovní prostor', // from v2.1.38 added 4.4.2018
+			'dialog'          : 'Dialog', // from v2.1.38 added 4.4.2018
+			'all'             : 'Všechno', // from v2.1.38 added 4.4.2018
 
 			/********************************** mimetypes **********************************/
 			'kindUnknown'     : 'Neznámý',

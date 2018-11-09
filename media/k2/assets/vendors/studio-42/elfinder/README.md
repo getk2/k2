@@ -1,7 +1,7 @@
 elFinder
 ========
 
-**WARNING: IF YOU HAVE OLDER (IN PARTICULAR 2.1.20 OR EARLIER) VERSIONS OF ELFINDER ON PUBLIC SERVERS, IT MAY CAUSE SERIOUS DAMAGE TO YOUR SERVER AND VISITED USER. YOU SHOULD UPDATE TO THE LATEST VERSION OR REMOVE IT FROM THE SERVER.**
+**WARNING: IF YOU HAVE OLDER (IN PARTICULAR 2.1.38 OR EARLIER) VERSIONS OF ELFINDER ON PUBLIC SERVERS, IT MAY CAUSE SERIOUS DAMAGE TO YOUR SERVER AND VISITED USER. YOU SHOULD UPDATE TO THE LATEST VERSION OR REMOVE IT FROM THE SERVER.**
 
 <pre>
       _ ______ _           _           
@@ -16,8 +16,8 @@ elFinder is an open-source file manager for web, written in JavaScript using
 jQuery UI. Creation is inspired by simplicity and convenience of Finder program
 used in Mac OS X operating system.
 
-[![Download now!](http://studio-42.github.io/elFinder/images/download-icon.png)](https://github.com/Studio-42/elFinder/releases/latest)
-[![Packagist License](https://poser.pugx.org/studio-42/elfinder/license.png)](http://choosealicense.com/licenses/bsd-3-clause/)
+[![Download now!](https://studio-42.github.io/elFinder/images/download-icon.png)](https://github.com/Studio-42/elFinder/releases/latest)
+[![Packagist License](https://poser.pugx.org/studio-42/elfinder/license.png)](https://choosealicense.com/licenses/bsd-3-clause/)
 [![Latest Stable Version](https://poser.pugx.org/studio-42/elfinder/version.png)](https://packagist.org/packages/studio-42/elfinder)
 [![Total Downloads](https://poser.pugx.org/studio-42/elfinder/d/total.png)](https://packagist.org/packages/studio-42/elfinder)
 [![CDNJS version](https://img.shields.io/cdnjs/v/elfinder.svg)](https://cdnjs.com/libraries/elfinder)
@@ -92,17 +92,18 @@ Requirements
 ------------
 ### jQuery / jQuery UI
  * jQuery 1.8.0+
- * jQuery UI 1.9.0+ (require selectable, draggable, droppable and resizable)
+ * jQuery UI 1.9.0+ (require draggable, droppable, resizable, selectable and slider)
 
 **However, we recommend newest version.**
 
 ### Client
- * Modern browser. elFinder was tested in Internet Explorer 8
-   and newest Firefox, Chrome, IE, Edge and Opera
+ * Modern browsers both of desktop or mobile. elFinder was tested in newest Chrome, Edge, Firefox, IE and Opera
+     - **Caution**: Web App mode ("apple-mobile-web-app-capable" meta tag) on iOS is not work perfectly in elFinder
 
 ### Server
  * Any web server
  * PHP 5.2+ (Recommend PHP 5.4 or higher) And for thumbnails - GD / Imagick module / convert(imagemagick) require
+     * Recommend PHP 7.1 or higher to supports non-ASCII character of file path/name on the Windows server
 
 Installation
 ------------
@@ -127,7 +128,7 @@ Installation
 Downloads
 ------------
 **Stable releases** ([Changelog](https://github.com/Studio-42/elFinder/blob/master/Changelog))
- + [elFinder 2.1.31](https://github.com/Studio-42/elFinder/archive/2.1.31.zip)
+ + [elFinder 2.1.42](https://github.com/Studio-42/elFinder/archive/2.1.42.zip)
  + [elFinder 2.0.9](https://github.com/Studio-42/elFinder/archive/2.0.9.zip) (deprecated)
 
 **Nightly builds**
@@ -161,6 +162,7 @@ You can create or modify the language file to use translation tool. Please refer
  * [ASP.NET](https://github.com/leniel/elFinder.Net)
  * [Java Servlet](https://github.com/trustsystems/elfinder-java-connector)
  * [JavaScript/Efw](https://github.com/efwGrp/efw3.X/blob/master/help/api_efw_tag.md#elfinder-tag)
+ * [Nodejs](https://github.com/dekyfin/elfinder-node)
  * [Python](https://github.com/Studio-42/elfinder-python)
  * [Ruby/Rails](https://github.com/phallstrom/el_finder)
 
@@ -204,8 +206,8 @@ Authors
 
  * Chief developer: Dmitry "dio" Levashov <dio@std42.ru>
  * Maintainer: Troex Nevelin <troex@fury.scancode.ru>
- * Developers: Alexey Sukhotin <strogg@yandex.ru>, Naoki Sawada <hypweb@gmail.com>
- * Icons: [PixelMixer](http://pixelmixer.ru), [Yusuke Kamiyamane](http://p.yusukekamiyamane.com)
+ * Developers: Alexey Sukhotin <strogg@yandex.ru>, Naoki Sawada <hypweb+elfinder@gmail.com>
+ * Icons: PixelMixer, [Yusuke Kamiyamane](http://p.yusukekamiyamane.com), [Icons8](https://icons8.com)
 
 We hope our tools will be helpful for you.
 

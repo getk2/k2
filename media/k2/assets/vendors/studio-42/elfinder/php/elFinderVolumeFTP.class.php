@@ -142,6 +142,7 @@ class elFinderVolumeFTP extends elFinderVolumeDriver {
 		}
 		$options['statOwner'] = true;
 		$options['allowChmodReadOnly'] = true;
+		$options['acceptedName'] = '#^[^/\\?*:|"<>]*[^./\\?*:|"<>]$#';
 		return $options;
 	}
 	
@@ -1060,7 +1061,12 @@ class elFinderVolumeFTP extends elFinderVolumeDriver {
 		if ($this->tmp) {
 			$local = $this->getTempFile($path);
 			$fp = fopen($local, 'wb');
-			if (ftp_fget($this->connect, $fp, $path, FTP_BINARY)) {
+			$ret = ftp_nb_fget($this->connect, $fp, $path, FTP_BINARY);
+			while ($ret === FTP_MOREDATA) {
+				elFinder::extendTimeLimit();
+				$ret = ftp_nb_continue($this->connect);
+			}
+			if ($ret === FTP_FINISHED) {
 				fclose($fp);
 				$fp = fopen($local, $mode);
 				return $fp;

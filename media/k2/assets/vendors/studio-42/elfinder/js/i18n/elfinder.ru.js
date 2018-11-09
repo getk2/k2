@@ -3,7 +3,7 @@
  * @author Dmitry "dio" Levashov <dio@std42.ru>
  * @author Andrew Berezovsky <andrew.berezovsky@gmail.com>
  * @author Alex Yashkin <alex@yashkin.by>
- * @version 2017-12-18
+ * @version 2018-08-08
  */
 (function(root, factory) {
 	if (typeof define === 'function' && define.amd) {
@@ -133,7 +133,7 @@
 			'cmdinfo'      : 'Свойства',
 			'cmdmkdir'     : 'Новая папка',
 			'cmdmkdirin'   : 'В новую папку', // from v2.1.7 added 19.2.2016
-			'cmdmkfile'    : 'Новый текстовый файл',
+			'cmdmkfile'    : 'Новый файл',
 			'cmdopen'      : 'Открыть',
 			'cmdpaste'     : 'Вставить',
 			'cmdquicklook' : 'Быстрый просмотр',
@@ -160,9 +160,11 @@
 			'cmdundo'      : 'Отменить', // from v2.1.27 added 31.07.2017
 			'cmdredo'      : 'Вернуть', // from v2.1.27 added 31.07.2017
 			'cmdpreference': 'Предпочтения', // from v2.1.27 added 03.08.2017
-			'cmdselectall' : 'Выделить все', // from v2.1.28 added 15.08.2017
-			'cmdselectnone': 'Снять все выделение', // from v2.1.28 added 15.08.2017
-			'cmdselectinvert': 'Инвертировать выделение', // from v2.1.28 added 15.08.2017
+			'cmdselectall' : 'Выбрать все', // from v2.1.28 added 15.08.2017
+			'cmdselectnone': 'Отменить выбор', // from v2.1.28 added 15.08.2017
+			'cmdselectinvert': 'Инвертировать выбор', // from v2.1.28 added 15.08.2017
+			'cmdopennew'   : 'Открыть в новом окне', // from v2.1.38 added 3.4.2018
+			'cmdhide'      : 'Скрыть (персонально)', // from v2.1.41 added 24.7.2018
 
 			/*********************************** buttons ***********************************/
 			'btnClose'  : 'Закрыть',
@@ -224,6 +226,7 @@
 			'ntfchkdir'   : 'Проверка папки назначения', // from v2.1.24 added 3.5.2017
 			'ntfundo'     : 'Отмена предыдущей операции', // from v2.1.27 added 31.07.2017
 			'ntfredo'     : 'Восстановление предыдущей операции', // from v2.1.27 added 31.07.2017
+			'ntfchkcontent' : 'Проверка содержимого', // from v2.1.41 added 3.8.2018
 
 			/*********************************** volumes *********************************/
 			'volume_Trash' : 'Корзина', //from v2.1.24 added 29.4.2017
@@ -287,6 +290,8 @@
 			'untitled file.txt' : 'НовыйФайл.txt', // added 10.11.2015
 			'untitled folder'   : 'НоваяПапка',   // added 10.11.2015
 			'Archive'           : 'НовыйАрхив',  // from v2.1 added 10.11.2015
+			'untitled file'     : 'НовыйФайл.$1',  // from v2.1.41 added 6.8.2018
+			'extentionfile'     : '$1 Файл',     // from v2.1.41 added 6.8.2018
 
 			/********************************** messages **********************************/
 			'confirmReq'      : 'Необходимо подтверждение',
@@ -314,6 +319,10 @@
 			'selectlfile'     : 'Выбрать последний файл',
 			'viewlist'        : 'В виде списка',
 			'viewicons'       : 'В виде иконок',
+			'viewSmall'       : 'Маленькие иконки', // from v2.1.39 added 22.5.2018
+			'viewMedium'      : 'Средние иконки', // from v2.1.39 added 22.5.2018
+			'viewLarge'       : 'Большие иконки', // from v2.1.39 added 22.5.2018
+			'viewExtraLarge'  : 'Очень большие иконки', // from v2.1.39 added 22.5.2018
 			'places'          : 'Избранное',
 			'calc'            : 'Вычислить',
 			'path'            : 'Путь',
@@ -336,9 +345,9 @@
 			'protocolver'     : 'версия протокола',
 			'homepage'        : 'Сайт проекта',
 			'docs'            : 'Документация',
-			'github'          : 'Форкните на Github',
-			'twitter'         : 'Следите в twitter',
-			'facebook'        : 'Присоединяйтесь на facebook',
+			'github'          : 'Форкните на GitHub',
+			'twitter'         : 'Следите в Twitter',
+			'facebook'        : 'Присоединяйтесь на Facebook',
 			'team'            : 'Команда',
 			'chiefdev'        : 'ведущий разработчик',
 			'developer'       : 'разработчик',
@@ -437,7 +446,7 @@
 			'autoFocusDialog' : 'Фокус на элементе диалога при наведении мыши',  // from v2.1.30 added 2.11.2017
 			'select'          : 'Выбрать', // from v2.1.30 added 23.11.2017
 			'selectAction'    : 'Действие при выборе файла', // from v2.1.30 added 23.11.2017
-			'useStoredEditor' : 'Открывать в редакторе, использованном последний раз', // from v2.1.30 added 23.11.2017
+			'useStoredEditor' : 'Открывать в редакторе, выбранном в прошлый раз', // from v2.1.30 added 23.11.2017
 			'selectinvert'    : 'Выбрать элементы с инвертированием', // from v2.1.30 added 25.11.2017
 			'renameMultiple'  : 'Переименовать выбранные элементы ($1 шт.) в $2?<br/>Действие нельзя отменить!', // from v2.1.31 added 4.12.2017
 			'batchRename'     : 'Групповое переименование', // from v2.1.31 added 8.12.2017
@@ -445,6 +454,31 @@
 			'asPrefix'        : 'Добавить префикс', // from v2.1.31 added 8.12.2017
 			'asSuffix'        : 'Добавить суффикс', // from v2.1.31 added 8.12.2017
 			'changeExtention' : 'Изменить расширение', // from v2.1.31 added 8.12.2017
+			'columnPref'      : 'Настройки колонок (для просмотра в виде списка)', // from v2.1.32 added 6.2.2018
+			'reflectOnImmediate' : 'Все изменения будут немедленно отражены в архиве.', // from v2.1.33 added 2.3.2018
+			'reflectOnUnmount'   : 'Изменения не вступят в силу до тех пор, пока вы не размонтируете этот том.', // from v2.1.33 added 2.3.2018
+			'unmountChildren' : 'Тома, смонтированные на этом томе, также будут размонтированы. Вы хотите отключить его?', // from v2.1.33 added 5.3.2018
+			'selectionInfo'   : 'Свойства', // from v2.1.33 added 7.3.2018
+			'hashChecker'     : 'Алгоритмы для отображения хеш-сумм файлов', // from v2.1.33 added 10.3.2018
+			'infoItems'       : 'Элементы в панели свойств', // from v2.1.38 added 28.3.2018
+			'pressAgainToExit': 'Нажмите снова для выхода.', // from v2.1.38 added 1.4.2018
+			'toolbar'         : 'Панель', // from v2.1.38 added 4.4.2018
+			'workspace'       : 'Рабочая область', // from v2.1.38 added 4.4.2018
+			'dialog'          : 'Диалог', // from v2.1.38 added 4.4.2018
+			'all'             : 'Все', // from v2.1.38 added 4.4.2018
+			'iconSize'        : 'Размер иконок (В виде иконок)', // from v2.1.39 added 7.5.2018
+			'editorMaximized' : 'Открывать редактор в развернутом виде', // from v2.1.40 added 30.6.2018
+			'editorConvNoApi' : 'Так как конвертация с помощью API недоступно, произведите конвертацию на веб-сайте.', //from v2.1.40 added 8.7.2018
+			'editorConvNeedUpload' : 'После конвертации вы должны загрузить скачанный файл, чтобы сохранить его.', //from v2.1.40 added 8.7.2018
+			'convertOn'       : 'Конвертировать на сайте $1', // from v2.1.40 added 10.7.2018
+			'integrations'    : 'Интеграции', // from v2.1.40 added 11.7.2018
+			'integrationWith' : 'Менеджер elFinder интегрирован со следующими внешними сервисами. Ознакомьтесь с правилами пользования, политиками безопасности и др. перед их использованием.', // from v2.1.40 added 11.7.2018
+			'showHidden'      : 'Показать скрытые элементы', // from v2.1.41 added 24.7.2018
+			'hideHidden'      : 'Скрыть скрытые элементы', // from v2.1.41 added 24.7.2018
+			'toggleHidden'    : 'Показать/скрыть скрытые элементы', // from v2.1.41 added 24.7.2018
+			'makefileTypes'   : 'Типы файлов в меню "Новый файл"', // from v2.1.41 added 7.8.2018
+			'typeOfTextfile'  : 'Тип текстового файла', // from v2.1.41 added 7.8.2018
+			'add'             : 'Добавить', // from v2.1.41 added 7.8.2018
 
 			/********************************** mimetypes **********************************/
 			'kindUnknown'     : 'Неизвестный',

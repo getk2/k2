@@ -1,8 +1,8 @@
 /**
  * Slovak translation
- * @author Jakub Ďuraš <jkblmr@gmail.com>
  * @author RobiNN <kelcakrobo@gmail.com>
- * @version 2017-11-25
+ * @author Jakub Ďuraš <jkblmr@gmail.com>
+ * @version 2018-06-09
  */
 (function(root, factory) {
 	if (typeof define === 'function' && define.amd) {
@@ -14,7 +14,7 @@
 	}
 }(this, function(elFinder) {
 	elFinder.prototype.i18.sk = {
-		translator : 'Jakub Ďuraš &lt;jkblmr@gmail.com&gt;, RobiNN &lt;kelcakrobo@gmail.com&gt;',
+		translator : 'RobiNN &lt;kelcakrobo@gmail.com&gt;, Jakub Ďuraš &lt;jkblmr@gmail.com&gt;',
 		language   : 'Slovenčina',
 		direction  : 'ltr',
 		dateFormat : 'd.m.Y H:i', // Mar 13, 2012 05:27 PM
@@ -36,7 +36,7 @@
 			'errNotFound'          : 'Backend nenájdený.',
 			'errResponse'          : 'Nesprávna backend odpoveď.',
 			'errConf'              : 'Nesprávna backend konfigurácia.',
-			'errJSON'              : 'Požadovaný PHP JSON modul nie je nainštalovaný.',
+			'errJSON'              : 'PHP JSON modul nie je nainštalovaný.',
 			'errNoVolumes'         : 'Nie sú dostupné žiadne čitateľné média.',
 			'errCmdParams'         : 'Nesprávne parametre pre príkaz "$1".',
 			'errDataNotJSON'       : 'Dáta nie sú formátu JSON.',
@@ -49,31 +49,31 @@
 			'errWrite'             : 'Nie je možné písať do "$1".',
 			'errPerm'              : 'Prístup zamietnutý.',
 			'errLocked'            : '"$1" je uzamknutý a nemôže byť premenovaný, presunutý alebo odstránený.',
-			'errExists'            : 'Súbor s názvom "$1" už existuje.',
+			'errExists'            : 'Položka s názvom "$1" už existuje.',
 			'errInvName'           : 'Neplatný názov súboru.',
 			'errInvDirname'        : 'Neplatný názov priečinka.',  // from v2.1.24 added 12.4.2017
 			'errFolderNotFound'    : 'Priečinok nebol nájdený.',
 			'errFileNotFound'      : 'Súbor nenájdený.',
 			'errTrgFolderNotFound' : 'Cieľový priečinok "$1" sa nenašiel.',
 			'errPopup'             : 'Prehliadač zabránil otvoreniu vyskakovacieho okna. Pre otvorenie súboru povoľte vyskakovacie okná.',
-			'errMkdir'             : 'Nie je možné vytvoriť priečinok "$1".',
-			'errMkfile'            : 'Nie je možné vytvoriť súbor "$1".',
-			'errRename'            : 'Nie je možné premenovať "$1".',
+			'errMkdir'             : 'Nepodarilo sa vytvoriť priečinok "$1".',
+			'errMkfile'            : 'Nepodarilo sa vytvoriť súbor "$1".',
+			'errRename'            : 'Nepodarilo sa premenovať "$1".',
 			'errCopyFrom'          : 'Kopírovanie súborov z média "$1" nie je povolené.',
 			'errCopyTo'            : 'Kopírovanie súborov na médium "$1" nie je povolené.',
 			'errMkOutLink'         : 'Nie je možné vytvoriť odkaz mimo koreňového zväzku.', // from v2.1 added 03.10.2015
 			'errUpload'            : 'Chyba pri nahrávaní.',  // old name - errUploadCommon
-			'errUploadFile'        : 'Nie je možné nahrať "$1".', // old name - errUpload
+			'errUploadFile'        : 'Nepodarilo sa nahrať "$1".', // old name - errUpload
 			'errUploadNoFiles'     : 'Neboli nájdené žiadne súbory na nahranie.',
 			'errUploadTotalSize'   : 'Dáta prekračujú maximálnu povolenú veľkosť.', // old name - errMaxSize
 			'errUploadFileSize'    : 'Súbor prekračuje maximálnu povolenú veľkosť.', //  old name - errFileMaxSize
 			'errUploadMime'        : 'Nepovolený typ súboru.',
 			'errUploadTransfer'    : 'Problém s nahrávaním "$1".',
-			'errUploadTemp'        : 'Nie je možné vytvoriť dočasný súbor pre nahranie.', // from v2.1 added 26.09.2015
+			'errUploadTemp'        : 'Nepodarilo sa vytvoriť dočasný súbor na nahranie.', // from v2.1 added 26.09.2015
 			'errNotReplace'        : 'Objekt "$1" na tomto mieste už existuje a nemôže byť nahradený objektom iného typu.', // new
 			'errReplace'           : 'Nie je možné nahradiť "$1".',
 			'errSave'              : 'Nie je možné uložiť "$1".',
-			'errCopy'              : 'Nie je možné kopíropvať "$1".',
+			'errCopy'              : 'Nie je možné kopírovať "$1".',
 			'errMove'              : 'Nie je možné preniesť "$1".',
 			'errCopyInItself'      : 'Nie je možné kopírovať "$1" do seba.',
 			'errRm'                : 'Nie je možné vymazať "$1".',
@@ -132,7 +132,7 @@
 			'cmdinfo'      : 'Info',
 			'cmdmkdir'     : 'Nový priečinok',
 			'cmdmkdirin'   : 'Do novej zložky', // from v2.1.7 added 19.2.2016
-			'cmdmkfile'    : 'Nový textový súbor',
+			'cmdmkfile'    : 'Nový súbor',
 			'cmdopen'      : 'Otvoriť',
 			'cmdpaste'     : 'Vložiť',
 			'cmdquicklook' : 'Náhľad',
@@ -162,6 +162,7 @@
 			'cmdselectall' : 'Vybrať všetko', // from v2.1.28 added 15.08.2017
 			'cmdselectnone': 'Nič nevyberať', // from v2.1.28 added 15.08.2017
 			'cmdselectinvert': 'Invertovať výber', // from v2.1.28 added 15.08.2017
+			'cmdopennew'   : 'Otvoriť v novom okne', // from v2.1.38 added 3.4.2018
 
 			/*********************************** buttons ***********************************/
 			'btnClose'  : 'Zavrieť',
@@ -280,20 +281,20 @@
 			'sortmode'          : 'podľa módu',       // from v2.1.13 added 13.06.2016
 			'sortowner'         : 'podľa majiteľa',      // from v2.1.13 added 13.06.2016
 			'sortgroup'         : 'podľa skupiny',      // from v2.1.13 added 13.06.2016
-			'sortAlsoTreeview'  : 'Tiež stromove zobrazenie',  // from v2.1.15 added 01.08.2016
+			'sortAlsoTreeview'  : 'Tiež stromové zobrazenie',  // from v2.1.15 added 01.08.2016
 
 			/********************************** new items **********************************/
-			'untitled file.txt' : 'Nový textový súbor.txt', // added 10.11.2015
+			'untitled file.txt' : 'Nový textový dokument.txt', // added 10.11.2015
 			'untitled folder'   : 'Nový priečinok',   // added 10.11.2015
 			'Archive'           : 'Nový archív',  // from v2.1 added 10.11.2015
 
 			/********************************** messages **********************************/
 			'confirmReq'      : 'Potrebné potvrdenie',
-			'confirmRm'       : 'Určite chcete vymazať súbory?<br/>Nebude sa to dať vrátiť späť!',
-			'confirmRepl'     : 'Nahradiť starý súbor novým?',
+			'confirmRm'       : 'Určite chcete vymazať súbory?<br/>Nie je to možné vrátiť späť!',
+			'confirmRepl'     : 'Nahradiť starý súbor za nový? (Ak obsahuje priečinky, bude zlúčené. Ak chcete zálohovať a nahradiť, vyberte možnosť Zálohovať.)',
 			'confirmRest'     : 'Nahradiť existujúcu položku s položkou v koši?', // fromv2.1.24 added 5.5.2017
-			'confirmConvUTF8' : 'Nie je v UTF-8<br/>Previesť na UTF-8?<br/>Obsah sa stane UTF-8 po uložení konverzie.', // from v2.1 added 08.04.2014
-			'confirmNonUTF8'  : 'Kódovanie tohto súboru nemoholo byť detekované. Pre editáciu dočasne potrebujete previesť na UTF-8 .<br/>Prosím, vyberte kódovanie znakov tohto súboru.', // from v2.1.19 added 28.11.2016
+			'confirmConvUTF8' : 'Nie je v UTF-8<br/>Previesť na UTF-8?<br/>Obsah bude v UTF-8 po uložení konverzie.', // from v2.1 added 08.04.2014
+			'confirmNonUTF8'  : 'Kódovanie tohto súboru nemohlo byť detekované. Pre úpravu dočasne potrebujete previesť na UTF-8 .<br/>Prosím, vyberte kódovanie znakov tohto súboru.', // from v2.1.19 added 28.11.2016
 			'confirmNotSave'  : 'Bol upravený.<br/>Ak zmeny neuložíte, stratíte vykonanú prácu.', // from v2.1 added 15.7.2015
 			'confirmTrash'    : 'Naozaj chcete presunúť položky do koša?', //from v2.1.24 added 29.4.2017
 			'apllyAll'        : 'Použiť na všetky',
@@ -313,6 +314,10 @@
 			'selectlfile'     : 'Vybrať poslednú položku',
 			'viewlist'        : 'Zoznam',
 			'viewicons'       : 'Ikony',
+			'viewSmall'       : 'Malé ikony', // from v2.1.39 added 22.5.2018
+			'viewMedium'      : 'Stredné ikony', // from v2.1.39 added 22.5.2018
+			'viewLarge'       : 'Veľké ikony', // from v2.1.39 added 22.5.2018
+			'viewExtraLarge'  : 'Extra veľké ikony', // from v2.1.39 added 22.5.2018
 			'places'          : 'Miesta',
 			'calc'            : 'Prepočítavanie',
 			'path'            : 'Cesta',
@@ -370,9 +375,9 @@
 			'port'                : 'Port', // added 18.04.2012
 			'user'                : 'Užívateľ', // added 18.04.2012
 			'pass'                : 'Heslo', // added 18.04.2012
-			'confirmUnmount'      : 'Chcete odpojiť $1?',  // from v2.1 added 30.04.2012
-			'dropFilesBrowser': 'Premiestnite alebo presunte súbory z prehliadača', // from v2.1 added 30.05.2012
-			'dropPasteFiles'  : 'Tu premiestnite alebo presunte súbory a adresy URL', // from v2.1 added 07.04.2014
+			'confirmUnmount'      : 'Naozaj chcete odpojiť $1?',  // from v2.1 added 30.04.2012
+			'dropFilesBrowser': 'Premiestnite alebo presuňte súbory z prehliadača', // from v2.1 added 30.05.2012
+			'dropPasteFiles'  : 'Tu premiestnite alebo presuňte súbory a adresy URL', // from v2.1 added 07.04.2014
 			'encoding'        : 'Kódovanie', // from v2.1 added 19.12.2014
 			'locale'          : 'Lokalizácia',   // from v2.1 added 19.12.2014
 			'searchTarget'    : 'Cieľ: $1',                // from v2.1 added 22.5.2015
@@ -384,8 +389,8 @@
 			'perm'            : 'Povolenie', // from v2.1 added 20.6.2015
 			'mode'            : 'Režim', // from v2.1 added 20.6.2015
 			'emptyFolder'     : 'Priečinok je prázdny', // from v2.1.6 added 30.12.2015
-			'emptyFolderDrop' : 'Priečinok je prázdny, premiestnite alebo presunte položky', // from v2.1.6 added 30.12.2015
-			'emptyFolderLTap' : 'Priečinok je prázdny, dlhým kliknutím pridáte položky', // from v2.1.6 added 30.12.2015
+			'emptyFolderDrop' : 'Priečinok je prázdny\\A Premiestnite alebo presuňte položky', // from v2.1.6 added 30.12.2015
+			'emptyFolderLTap' : 'Priečinok je prázdny\\A Dlhým kliknutím pridáte položky', // from v2.1.6 added 30.12.2015
 			'quality'         : 'Kvalita', // from v2.1.6 added 5.1.2016
 			'autoSync'        : 'Automatická synchronizácia',  // from v2.1.6 added 10.1.2016
 			'moveUp'          : 'Posunúť nahor',  // from v2.1.6 added 18.1.2016
@@ -397,8 +402,8 @@
 			'nowLoading'      : 'Práve načítava...', // from v2.1.12 added 4.26.2016
 			'openMulti'       : 'Otvorenie viacerých súborov', // from v2.1.12 added 5.14.2016
 			'openMultiConfirm': 'Pokúšate sa otvoriť súbor $1. Naozaj ho chcete otvoriť v prehliadači?', // from v2.1.12 added 5.14.2016
-			'emptySearch'     : 'Výsledky vyhľadávania su prázdne v hľadanom cieli.', // from v2.1.12 added 5.16.2016
-			'editingFile'     : 'Upravujete súbor.', // from v2.1.13 added 6.3.2016
+			'emptySearch'     : 'Výsledky vyhľadávania sú prázdne v hľadanom cieli.', // from v2.1.12 added 5.16.2016
+			'editingFile'     : 'Je to úprava súboru.', // from v2.1.13 added 6.3.2016
 			'hasSelected'     : 'Vybrali ste $1 položky.', // from v2.1.13 added 6.3.2016
 			'hasClipboard'    : 'Máte $1 položky v schránke.', // from v2.1.13 added 6.3.2016
 			'incSearchOnly'   : 'Prírastkové hľadanie je iba z aktuálneho zobrazenia.', // from v2.1.13 added 6.30.2016
@@ -413,7 +418,7 @@
 			'8pxgrid'         : '8px mriežka', // from v2.1.16 added 4.10.2016
 			'enabled'         : 'Povolené', // from v2.1.16 added 4.10.2016
 			'disabled'        : 'Zakázané', // from v2.1.16 added 4.10.2016
-			'emptyIncSearch'  : 'Výsledky vyhľadávania sú prázdne v aktuálnom zobrazení.\\Stlačením tlačidla [Enter] rozšírite vyhľadávanie cieľa.', // from v2.1.16 added 5.10.2016
+			'emptyIncSearch'  : 'Výsledky vyhľadávania sú prázdne v aktuálnom zobrazení. Stlačením tlačidla [Enter] rozšírite vyhľadávanie cieľa.', // from v2.1.16 added 5.10.2016
 			'emptyLetSearch'  : 'Výsledky vyhľadávania prvého listu sú v aktuálnom zobrazení prázdne.', // from v2.1.23 added 24.3.2017
 			'textLabel'       : 'Nápis textu', // from v2.1.17 added 13.10.2016
 			'minsLeft'        : '$1 minút ostáva', // from v2.1.17 added 13.11.2016
@@ -435,9 +440,28 @@
 			'roughFileSize'   : 'Hrubá veľkosť súboru', // from v2.1.30 added 2.11.2017
 			'autoFocusDialog' : 'Zameranie na prvok dialógu s mouseover',  // from v2.1.30 added 2.11.2017
 			'select'          : 'Vybrať', // from v2.1.30 added 23.11.2017
-			'selectAction'    : 'Akcia pri vybratom súbore', // from v2.1.30 added 23.11.2017
+			'selectAction'    : 'Akcia pri vybranom súbore', // from v2.1.30 added 23.11.2017
 			'useStoredEditor' : 'Otvoriť pomocou naposledy použitého editora', // from v2.1.30 added 23.11.2017
 			'selectinvert'    : 'Invertovať výber položiek', // from v2.1.30 added 25.11.2017
+			'renameMultiple'  : 'Naozaj chcete premenovať $1 vybraných položiek, ako napríklad $2<br/>Nie je to možné vrátiť späť!', // from v2.1.31 added 4.12.2017
+			'batchRename'     : 'Batch premenovanie', // from v2.1.31 added 8.12.2017
+			'plusNumber'      : '+ Číslo', // from v2.1.31 added 8.12.2017
+			'asPrefix'        : 'Pridať predponu', // from v2.1.31 added 8.12.2017
+			'asSuffix'        : 'Pridať príponu', // from v2.1.31 added 8.12.2017
+			'changeExtention' : 'Zmeniť príponu', // from v2.1.31 added 8.12.2017
+			'columnPref'      : 'Nastavenia stĺpcov (zoznamové zobrazenie)', // from v2.1.32 added 6.2.2018
+			'reflectOnImmediate' : 'Všetky zmeny sa okamžite premietnu do archívu.', // from v2.1.33 added 2.3.2018
+			'reflectOnUnmount'   : 'Akékoľvek zmeny sa neodzrkadľujú, kým sa toto médium neodinštaluje.', // from v2.1.33 added 2.3.2018
+			'unmountChildren' : 'Nasledujúce médium(a) pripojené v tomto médiu je tiež odpojené. Určite ho odpojiť?', // from v2.1.33 added 5.3.2018
+			'selectionInfo'   : 'Informácie o výbere', // from v2.1.33 added 7.3.2018
+			'hashChecker'     : 'Algoritmy na zobrazenie hashu súborov', // from v2.1.33 added 10.3.2018
+			'infoItems'       : 'Informačné položky (panel s informáciami o výbere)', // from v2.1.38 added 28.3.2018
+			'pressAgainToExit': 'Opätovným stlačením opustíte.', // from v2.1.38 added 1.4.2018
+			'toolbar'         : 'Panel nástrojov', // from v2.1.38 added 4.4.2018
+			'workspace'       : 'Pracovný priestor', // from v2.1.38 added 4.4.2018
+			'dialog'          : 'Dialóg', // from v2.1.38 added 4.4.2018
+			'all'             : 'Všetko', // from v2.1.38 added 4.4.2018
+			'iconSize'        : 'Veľkosť ikony (zobrazenie ikon)', // form v2.1.39 added 7.5.2018
 
 			/********************************** mimetypes **********************************/
 			'kindUnknown'     : 'Neznámy',

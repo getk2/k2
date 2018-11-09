@@ -1,10 +1,8 @@
 /**
  * Polski translation
  * @author Marcin Mikołajczyk <marcin@pjwstk.edu.pl>
- * @author Wojciech Jabłoński <www.jablonski@gmail.com>
  * @author Bogusław Zięba <bobi@poczta.fm>
- * @author Bogusław Zięba <bobi@poczta.fm>
- * @version 2017-11-30
+ * @version 2018-08-23
  */
 (function(root, factory) {
 	if (typeof define === 'function' && define.amd) {
@@ -16,7 +14,7 @@
 	}
 }(this, function(elFinder) {
 	elFinder.prototype.i18.pl = {
-		translator : 'Marcin Mikołajczyk &lt;marcin@pjwstk.edu.pl&gt;, Wojciech Jabłoński &lt;www.jablonski@gmail.com&gt;, Bogusław Zięba &lt;bobi@poczta.fm&gt;, Bogusław Zięba &lt;bobi@poczta.fm&gt;',
+		translator : 'Marcin Mikołajczyk &lt;marcin@pjwstk.edu.pl&gt;, Bogusław Zięba &lt;bobi@poczta.fm&gt;',
 		language   : 'Polski',
 		direction  : 'ltr',
 		dateFormat : 'd.m.Y H:i', // Mar 13, 2012 05:27 PM
@@ -134,7 +132,7 @@
 			'cmdinfo'      : 'Właściwości',
 			'cmdmkdir'     : 'Nowy katalog',
 			'cmdmkdirin'   : 'Do nowego katalogu', // from v2.1.7 added 19.2.2016
-			'cmdmkfile'    : 'Nowy plik tekstowy',
+			'cmdmkfile'    : 'Nowy plik',
 			'cmdopen'      : 'Otwórz',
 			'cmdpaste'     : 'Wklej',
 			'cmdquicklook' : 'Podgląd',
@@ -164,6 +162,8 @@
 			'cmdselectall' : 'Zaznacz wszystko', // from v2.1.28 added 15.08.2017
 			'cmdselectnone': 'Odznacz wszystko', // from v2.1.28 added 15.08.2017
 			'cmdselectinvert': 'Odwróć wybór', // from v2.1.28 added 15.08.2017
+			'cmdopennew'   : 'Otwórz w nowym oknie', // from v2.1.38 added 3.4.2018
+			'cmdhide'      : 'Ukryj (osobiste)', // from v2.1.41 added 24.7.2018
 
 			/*********************************** buttons ***********************************/
 			'btnClose'  : 'Zamknij',
@@ -225,6 +225,7 @@
 			'ntfchkdir'   : 'Sprawdzanie folderu docelowego', // from v2.1.24 added 3.5.2017
 			'ntfundo'     : 'Cofanie poprzedniej operacji', // from v2.1.27 added 31.07.2017
 			'ntfredo'     : 'Ponownie poprzednio cofnięte', // from v2.1.27 added 31.07.2017
+			'ntfchkcontent' : 'Checking contents', // from v2.1.41 added 3.8.2018
 
 			/*********************************** volumes *********************************/
 			'volume_Trash' : 'Śmieci', //from v2.1.24 added 29.4.2017
@@ -288,6 +289,8 @@
 			'untitled file.txt' : 'NowyPlik.txt', // added 10.11.2015
 			'untitled folder'   : 'NowyFolder',   // added 10.11.2015
 			'Archive'           : 'NoweArchiwum',  // from v2.1 added 10.11.2015
+			'untitled file'     : 'NewFile.$1',  // from v2.1.41 added 6.8.2018
+			'extentionfile'     : '$1 File',     // from v2.1.41 added 6.8.2018
 
 			/********************************** messages **********************************/
 			'confirmReq'      : 'Wymagane potwierdzenie',
@@ -315,6 +318,10 @@
 			'selectlfile'     : 'Zaznacz ostatni plik',
 			'viewlist'        : 'Widok listy',
 			'viewicons'       : 'Widok ikon',
+			'viewSmall'       : 'Małe ikony', // from v2.1.39 added 22.5.2018
+			'viewMedium'      : 'Średnie ikony', // from v2.1.39 added 22.5.2018
+			'viewLarge'       : 'Duże ikony', // from v2.1.39 added 22.5.2018
+			'viewExtraLarge'  : 'Bardzo duże ikony', // from v2.1.39 added 22.5.2018
 			'places'          : 'Ulubione',
 			'calc'            : 'Obliczanie',
 			'path'            : 'Ścieżka',
@@ -386,8 +393,8 @@
 			'perm'            : 'Uprawnienia', // from v2.1 added 20.6.2015
 			'mode'            : 'Tryb', // from v2.1 added 20.6.2015
 			'emptyFolder'     : 'Katalog jest pusty', // from v2.1.6 added 30.12.2015
-			'emptyFolderDrop' : 'Katalog jest pusty\\Upuść aby dodać pozycje', // from v2.1.6 added 30.12.2015
-			'emptyFolderLTap' : 'Katalog jest pusty\\Dotknij dłużej aby dodać pozycje', // from v2.1.6 added 30.12.2015
+			'emptyFolderDrop' : 'Katalog jest pusty\\AUpuść aby dodać pozycje', // from v2.1.6 added 30.12.2015
+			'emptyFolderLTap' : 'Katalog jest pusty\\ADotknij dłużej aby dodać pozycje', // from v2.1.6 added 30.12.2015
 			'quality'         : 'Jakość', // from v2.1.6 added 5.1.2016
 			'autoSync'        : 'Auto synchronizacja',  // from v2.1.6 added 10.1.2016
 			'moveUp'          : 'Przenieś w górę',  // from v2.1.6 added 18.1.2016
@@ -440,6 +447,37 @@
 			'selectAction'    : 'Działanie po wybraniu pliku', // from v2.1.30 added 23.11.2017
 			'useStoredEditor' : 'Otwórz za pomocą ostatnio używanego edytora', // from v2.1.30 added 23.11.2017
 			'selectinvert'    : 'Odwróć zaznaczenie', // from v2.1.30 added 25.11.2017
+			'renameMultiple'  : 'Czy na pewno chcesz zmienić nazwę $1 wybranych elementów takich jak $2?<br/>Tego nie da się cofnąć!', // from v2.1.31 added 4.12.2017
+			'batchRename'     : 'Zmień partiami', // from v2.1.31 added 8.12.2017
+			'plusNumber'      : '+ Liczba', // from v2.1.31 added 8.12.2017
+			'asPrefix'        : 'Dodaj prefix', // from v2.1.31 added 8.12.2017
+			'asSuffix'        : 'Dodaj suffix', // from v2.1.31 added 8.12.2017
+			'changeExtention' : 'Zmień rozszerzenie', // from v2.1.31 added 8.12.2017
+			'columnPref'      : 'Ustawienia kolumn (Widok listy)', // from v2.1.32 added 6.2.2018
+			'reflectOnImmediate' : 'Wszystkie zmiany widoczne natychmiast w archiwum.', // from v2.1.33 added 2.3.2018
+			'reflectOnUnmount'   : 'Wszelkie zmiany nie będą widoczne, dopóki nie odłączysz tego woluminu.', // from v2.1.33 added 2.3.2018
+			'unmountChildren' : 'Następujący wolumin (y), zamontowany na tym urządzeniu również niezamontowany. Czy na pewno chcesz go odmontować?', // from v2.1.33 added 5.3.2018
+			'selectionInfo'   : 'Informacje Wyboru', // from v2.1.33 added 7.3.2018
+			'hashChecker'     : 'Algorytmy do pokazywania hash pliku', // from v2.1.33 added 10.3.2018
+			'infoItems'       : 'Info Elementów (Wybór Panelu Informacyjnego)', // from v2.1.38 added 28.3.2018
+			'pressAgainToExit': 'Naciśnij ponownie, aby wyjść.', // from v2.1.38 added 1.4.2018
+			'toolbar'         : 'Pasek narzędziowy', // from v2.1.38 added 4.4.2018
+			'workspace'       : 'Obszar Pracy', // from v2.1.38 added 4.4.2018
+			'dialog'          : 'Dialog', // from v2.1.38 added 4.4.2018
+			'all'             : 'Wszystko', // from v2.1.38 added 4.4.2018
+			'iconSize'        : 'Rozmiar Ikony (Podgląd ikon)', // from v2.1.39 added 7.5.2018
+			'editorMaximized' : 'Otwórz zmaksymalizowane okno edytora', // from v2.1.40 added 30.6.2018
+			'editorConvNoApi' : 'Ponieważ konwersja przez API nie jest obecnie dostępna, należy dokonać konwersji w witrynie.', //from v2.1.40 added 8.7.2018
+			'editorConvNeedUpload' : 'Po konwersji musisz przesłać z adresem URL pozycji lub pobranym plikiem, aby zapisać przekonwertowany plik.', //from v2.1.40 added 8.7.2018
+			'convertOn'       : 'Konwertuj na stronie $1', // from v2.1.40 added 10.7.2018
+			'integrations'    : 'Integracje', // from v2.1.40 added 11.7.2018
+			'integrationWith' : 'Ten elFinder ma zintegrowane następujące usługi zewnętrzne. Przed użyciem ich sprawdź warunki użytkowania, politykę prywatności itp.', // from v2.1.40 added 11.7.2018
+			'showHidden'      : 'Pokaż ukryte pozycje', // from v2.1.41 added 24.7.2018
+			'hideHidden'      : 'Ukryj ukryte pozycje', // from v2.1.41 added 24.7.2018
+			'toggleHidden'    : 'Pokaż/Ukryj ukryte pozycje', // from v2.1.41 added 24.7.2018
+			'makefileTypes'   : 'File types to enable with "New file"', // from v2.1.41 added 7.8.2018
+			'typeOfTextfile'  : 'Type of the Text file', // from v2.1.41 added 7.8.2018
+			'add'             : 'Add', // from v2.1.41 added 7.8.2018
 
 			/********************************** mimetypes **********************************/
 			'kindUnknown'     : 'Nieznany',

@@ -34,7 +34,7 @@ class elFinderEditorZohoOffice extends elFinderEditor
 
     public function enabled()
     {
-        return defined('ELFINDER_ZOHO_OFFICE_APIKEY') && function_exists('curl_init');
+        return defined('ELFINDER_ZOHO_OFFICE_APIKEY') && ELFINDER_ZOHO_OFFICE_APIKEY && function_exists('curl_init');
     }
 
     public function init()
@@ -73,6 +73,7 @@ class elFinderEditorZohoOffice extends elFinderEditor
                 if ($lang === 'jp') {
                     $lang = 'ja';
                 }
+                $srvsName = $this->srvs[$file['mime']];
                 $data = array(
                     'apikey' => ELFINDER_ZOHO_OFFICE_APIKEY,
                     'output' => 'url',
@@ -87,7 +88,7 @@ class elFinderEditorZohoOffice extends elFinderEditor
                     $data['content'] = $cfile;
                 }
                 $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $this->urls[$this->srvs[$file['mime']]]);
+                curl_setopt($ch, CURLOPT_URL, $this->urls[$srvsName]);
                 curl_setopt($ch, CURLOPT_TIMEOUT, self::$curlTimeout);
                 curl_setopt($ch, CURLOPT_HEADER, 0);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
