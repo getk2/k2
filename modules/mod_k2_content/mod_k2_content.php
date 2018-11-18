@@ -59,6 +59,6 @@ if ($itemAuthorAvatarWidthSelect == 'inherit') {
 
 $items = modK2ContentHelper::getItems($params);
 
-if (count($items)) {
+if (is_array($items) && count($items)) {
     require(JModuleHelper::getLayoutPath('mod_k2_content', $getTemplate.'/default'));
 }
