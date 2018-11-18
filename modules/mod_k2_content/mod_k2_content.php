@@ -15,7 +15,7 @@ if (K2_JVERSION != '15') {
     $language->load('com_k2.dates', JPATH_ADMINISTRATOR, null, true);
 }
 
-require_once(dirname(__FILE__).'/helper.php');
+require_once(dirname(__FILE__) . '/helper.php');
 
 // Params
 $moduleclass_sfx = $params->get('moduleclass_sfx', '');
@@ -26,9 +26,9 @@ $itemCustomLinkTitle = $params->get('itemCustomLinkTitle', '');
 $itemCustomLinkURL = trim($params->get('itemCustomLinkURL'));
 $itemCustomLinkMenuItem = $params->get('itemCustomLinkMenuItem');
 
-if ($itemCustomLinkURL && $itemCustomLinkURL!='http://' && $itemCustomLinkURL!='https://') {
+if ($itemCustomLinkURL && ($itemCustomLinkURL != 'http://' || $itemCustomLinkURL != 'https://')) {
     if ($itemCustomLinkTitle=='') {
-        if (strpos($itemCustomLinkURL, '://')!==false) {
+        if (strpos($itemCustomLinkURL, '://') !== false) {
             $linkParts = explode('://', $itemCustomLinkURL);
             $itemCustomLinkURL = $linkParts[1];
         }
@@ -40,7 +40,7 @@ if ($itemCustomLinkURL && $itemCustomLinkURL!='http://' && $itemCustomLinkURL!='
     if (!$itemCustomLinkTitle) {
         $itemCustomLinkTitle = (K2_JVERSION != '15') ? $menuLink->title : $menuLink->name;
     }
-    $itemCustomLinkURL = JRoute::_('index.php?&Itemid='.$menuLink->id);
+    $itemCustomLinkURL = JRoute::_('index.php?&Itemid=' . $menuLink->id);
 }
 
 // Make params backwards compatible
@@ -59,6 +59,6 @@ if ($itemAuthorAvatarWidthSelect == 'inherit') {
 
 $items = modK2ContentHelper::getItems($params);
 
-if (count($items)) {
-    require(JModuleHelper::getLayoutPath('mod_k2_content', $getTemplate.'/default'));
+if (is_array($items) && count($items)) {
+    require(JModuleHelper::getLayoutPath('mod_k2_content', $getTemplate . '/default'));
 }
