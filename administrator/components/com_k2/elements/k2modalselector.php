@@ -14,60 +14,51 @@ require_once(JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
 class K2ElementK2modalselector extends K2Element
 {
-    function fetchElement($name, $value, &$node, $control_name)
+    public function fetchElement($name, $value, &$node, $control_name)
     {
         JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
 
         // Attributes
         $fieldID = 'fieldID_'.md5($name);
-        if (version_compare(JVERSION, '1.5.0', 'gt'))
-        {
-            if($node->attributes()->scope)
-            {
+        if (version_compare(JVERSION, '1.5.0', 'gt')) {
+            if ($node->attributes()->scope) {
                 $scope = $node->attributes()->scope;
-            }
-            else
-            {
+            } else {
                 $scope = 'items';
             }
-            if($scope == 'items' || $scope == 'categories' || $scope == 'users' || $scope == 'tags')
-            {
-                $fieldName = $name.'[]';
-            }
-            else
-            {
+            if ($scope == 'items' || $scope == 'categories' || $scope == 'users' || $scope == 'tags') {
+                if (defined('K2_PLUGIN_API')) {
+                    $fieldName = 'plugins['.$name.'][]';
+                } else {
+                    $fieldName = $name.'[]';
+                }
+            } else {
                 $fieldName = $name;
             }
-        }
-        else
-        {
-            if($node->attributes('scope')){
+        } else {
+            if ($node->attributes('scope')) {
                 $scope = $node->attributes('scope');
-            }
-            else
-            {
+            } else {
                 $scope = 'items';
             }
-            if($scope == 'items' || $scope == 'categories' || $scope == 'users' || $scope == 'tags')
-            {
-                $fieldName = $control_name.'['.$name.'][]';
-            }
-            else
-            {
+            if ($scope == 'items' || $scope == 'categories' || $scope == 'users' || $scope == 'tags') {
+                if (defined('K2_PLUGIN_API')) {
+                    $fieldName = 'plugins['.$control_name.'['.$name.']][]';
+                } else {
+                    $fieldName = $control_name.'['.$name.'][]';
+                }
+            } else {
                 $fieldName = $control_name.'['.$name.']';
             }
         }
-        if(!$value)
-        {
-          $value = '';
+        if (!$value) {
+            $value = '';
         }
         $saved = array();
-        if (is_string($value) && !empty($value))
-        {
+        if (is_string($value) && !empty($value)) {
             $saved[] = $value;
         }
-        if (is_array($value))
-        {
+        if (is_array($value)) {
             $saved = $value;
         }
 
@@ -75,8 +66,7 @@ class K2ElementK2modalselector extends K2Element
         $output = '';
 
         // Output for lists
-        if($scope == 'items' || $scope == 'categories' || $scope == 'users' || $scope == 'tags')
-        {
+        if ($scope == 'items' || $scope == 'categories' || $scope == 'users' || $scope == 'tags') {
             $output = '
             <div class="k2SelectorButton">
                 <a data-k2-modal="iframe" class="btn" title="'.JText::_('K2_SELECT').'" href="index.php?option=com_k2&view='.$scope.'&tmpl=component&context=modalselector&output=list&fid='.$fieldID.'&fname='.$fieldName.'">
@@ -86,30 +76,25 @@ class K2ElementK2modalselector extends K2Element
             <ul id="'.$fieldID.'" class="k2SortableListContainer">
             ';
 
-            foreach ($saved as $value)
-            {
-                if($scope == 'items')
-                {
+            foreach ($saved as $value) {
+                if ($scope == 'items') {
                     $row = JTable::getInstance('K2Item', 'Table');
                     $row->load($value);
                     $entryName = $row->title;
                     $entryValue = $row->id;
                 }
-                if($scope == 'categories')
-                {
+                if ($scope == 'categories') {
                     $row = JTable::getInstance('K2Category', 'Table');
                     $row->load($value);
                     $entryName = $row->name;
                     $entryValue = $row->id;
                 }
-                if($scope == 'users')
-                {
+                if ($scope == 'users') {
                     $row = JFactory::getUser($value);
                     $entryName = $row->name;
                     $entryValue = $row->id;
                 }
-                if($scope == 'tags')
-                {
+                if ($scope == 'tags') {
                     $db = JFactory::getDbo();
                     $query = 'SELECT * FROM #__k2_tags WHERE name='.$db->Quote($value);
                     $db->setQuery($query);
@@ -126,14 +111,15 @@ class K2ElementK2modalselector extends K2Element
         }
 
         // Output for single entities
-        if($scope == 'item' || $scope == 'category' || $scope == 'user' || $scope == 'tag')
-        {
-            if(count($saved)) $value = $saved[0]; else $value = '';
+        if ($scope == 'item' || $scope == 'category' || $scope == 'user' || $scope == 'tag') {
+            if (count($saved)) {
+                $value = $saved[0];
+            } else {
+                $value = '';
+            }
 
-            if($scope == 'item')
-            {
-                if($value)
-                {
+            if ($scope == 'item') {
+                if ($value) {
                     $row = JTable::getInstance('K2Item', 'Table');
                     $row->load($value);
                     $entryName = $row->title;
@@ -141,10 +127,8 @@ class K2ElementK2modalselector extends K2Element
                 }
                 $view = "items";
             }
-            if($scope == 'category')
-            {
-                if($value)
-                {
+            if ($scope == 'category') {
+                if ($value) {
                     $row = JTable::getInstance('K2Category', 'Table');
                     $row->load($value);
                     $entryName = $row->name;
@@ -152,20 +136,16 @@ class K2ElementK2modalselector extends K2Element
                 }
                 $view = "categories";
             }
-            if($scope == 'user')
-            {
-                if($value)
-                {
+            if ($scope == 'user') {
+                if ($value) {
                     $row = JFactory::getUser($value);
                     $entryName = $row->name;
                     $entryValue = $row->id;
                 }
                 $view = "users";
             }
-            if($scope == 'tag')
-            {
-                if($value)
-                {
+            if ($scope == 'tag') {
+                if ($value) {
                     $db = JFactory::getDbo();
                     $query = 'SELECT * FROM #__k2_tags WHERE name='.$db->Quote($value);
                     $db->setQuery($query);
@@ -185,14 +165,12 @@ class K2ElementK2modalselector extends K2Element
             <div id="'.$fieldID.'" class="k2SingleSelect">
             ';
 
-            if($value)
-            {
+            if ($value) {
                 $output .= '<div class="handle"><a class="k2EntryRemove" href="#" title="'.JText::_('K2_REMOVE_THIS_ENTRY').'"><i class="fa fa-trash-o"></i></a><span class="k2EntryText">'.$entryName.'</span><input type="hidden" name="'.$fieldName.'" value="'.$entryValue.'" /></div>';
             }
             $output .= '
             </div>
             ';
-
         }
 
         return $output;
@@ -201,10 +179,10 @@ class K2ElementK2modalselector extends K2Element
 
 class JFormFieldK2modalselector extends K2ElementK2modalselector
 {
-    var $type = 'k2modalselector';
+    public $type = 'k2modalselector';
 }
 
 class JElementK2modalselector extends K2ElementK2modalselector
 {
-    var $_name = 'k2modalselector';
+    public $_name = 'k2modalselector';
 }
