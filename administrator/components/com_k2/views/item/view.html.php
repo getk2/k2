@@ -110,10 +110,10 @@ class K2ViewItem extends K2View
         $publishUp = $item->publish_up;
         $publishDown = $item->publish_down;
 
-        $created = JHTML::_('date', $item->created, $dateFormat);
-        $publishUp = JHTML::_('date', $item->publish_up, $dateFormat);
+        $created = $item->created;
+        $publishUp = $item->publish_up;
         if ((int)$item->publish_down) {
-            $publishDown = JHTML::_('date', $item->publish_down, $dateFormat);
+            $publishDown = $item->publish_down;
         } else {
             $publishDown = '';
         }
@@ -123,7 +123,7 @@ class K2ViewItem extends K2View
         $lists['publish_down'] = $publishDown;
 
         if ($item->id) {
-            $lists['created'] = JHTML::_('date', $item->created, JText::_('DATE_FORMAT_LC2'));
+            $lists['created'] = $item->created);
         } else {
             $lists['created'] = JText::_('K2_NEW_DOCUMENT');
         }
@@ -131,7 +131,7 @@ class K2ViewItem extends K2View
         if ($item->modified == $db->getNullDate() || !$item->id) {
             $lists['modified'] = JText::_('K2_NEVER');
         } else {
-            $lists['modified'] = JHTML::_('date', $item->modified, JText::_('DATE_FORMAT_LC2'));
+            $lists['modified'] = $item->modified);
         }
 
         // Editors
