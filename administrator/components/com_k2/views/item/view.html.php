@@ -107,20 +107,20 @@ class K2ViewItem extends K2View
 
         // Date/time
         $created = $item->created;
-        $publishUp = $item->publish_up;
-        $publishDown = $item->publish_down;
+		$publishUp = $item->publish_up;
+		if ((int)$item->publish_down)
+		{
+			$publishDown = $item->publish_down;
+		}
+		else
+		{
+			$publishDown = '';
+		}
 
-        $created = JHTML::_('date', $item->created, $dateFormat);
-        $publishUp = JHTML::_('date', $item->publish_up, $dateFormat);
-        if ((int)$item->publish_down) {
-            $publishDown = JHTML::_('date', $item->publish_down, $dateFormat);
-        } else {
-            $publishDown = '';
-        }
-
-        $lists['createdCalendar'] = $created;
-        $lists['publish_up'] = $publishUp;
-        $lists['publish_down'] = $publishDown;
+       // Set up calendars
+		$lists['createdCalendar'] = JHTML::_('calendar', $created, 'created', 'created', $dateFormat);
+		$lists['publish_up'] = JHTML::_('calendar', $publishUp, 'publish_up', 'publish_up', $dateFormat);
+		$lists['publish_down'] = JHTML::_('calendar', $publishDown, 'publish_down', 'publish_down', $dateFormat);
 
         if ($item->id) {
             $lists['created'] = JHTML::_('date', $item->created, JText::_('DATE_FORMAT_LC2'));
