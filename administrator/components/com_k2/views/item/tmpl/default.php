@@ -937,16 +937,14 @@ defined('_JEXEC') or die;
 								<label><?php echo JText::_('K2_CREATION_DATE'); ?></label>
 							</div>
 							<div class="paramValue k2DateTimePickerControl">
-								<input type="text" data-k2-datetimepicker id="created" name="created" value="<?php echo $this->lists['createdCalendar']; ?>" autocomplete="off" />
-								<i class="fa fa-calendar" aria-hidden="true"></i>
+								<?php echo $this->lists['createdCalendar']; ?>
 							</div>
 						<li>
 						    <div class="paramLabel">
 								<label><?php echo JText::_('K2_START_PUBLISHING'); ?></label>
 							</div>
 							<div class="paramValue k2DateTimePickerControl">
-								<input type="text" data-k2-datetimepicker id="publish_up" name="publish_up" value="<?php echo $this->lists['publish_up']; ?>" autocomplete="off" />
-								<i class="fa fa-calendar" aria-hidden="true"></i>
+								<?php echo $this->lists['publish_up']; ?>
 							</div>
 						</li>
 						<li>
@@ -954,8 +952,7 @@ defined('_JEXEC') or die;
 								<label><?php echo JText::_('K2_FINISH_PUBLISHING'); ?></label>
 							</div>
 							<div class="paramValue k2DateTimePickerControl">
-								<input type="text" data-k2-datetimepicker id="publish_down" name="publish_down" value="<?php echo $this->lists['publish_down']; ?>" autocomplete="off" />
-								<i class="fa fa-calendar" aria-hidden="true"></i>
+								<?php echo $this->lists['publish_up']; ?>
 							</div>
 						</li>
 					</ul>
