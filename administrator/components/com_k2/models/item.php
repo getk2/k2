@@ -63,7 +63,8 @@ class K2ModelItem extends K2Model
             $id = JRequest::getInt('id');
             $currentRow = JTable::getInstance('K2Item', 'Table');
             $currentRow->load($id);
-            $currentFeaturedState = $currentRow->featured;
+            $published = $currentRow->published;
+            $featured = $currentRow->featured;
         }
 
         if ($params->get('mergeEditors')) {
@@ -725,26 +726,18 @@ class K2ModelItem extends K2Model
 
         // Check publishing permissions in frontend editing
         if ($front) {
-            // New items require the "Publish items" permission
-            if ($isNew && $row->published && !K2HelperPermissions::canPublishItem($row->catid)) {
+            // "Publish items" permission check
+            if ($isNew && !K2HelperPermissions::canPublishItem($row->catid)) {
                 $row->published = 0;
+                $row->featured = 0;
                 $application->enqueueMessage(JText::_('K2_YOU_DONT_HAVE_THE_PERMISSION_TO_PUBLISH_ITEMS'), 'notice');
             }
 
-            // Existing items require either the "Publish items" or the "Allow editing of already published items" permission
-            if (!$isNew && $row->published && !K2HelperPermissions::canEditPublished($row->catid)) {
+            // "Allow editing of already published items" permission check
+            if (!$isNew && $published && !K2HelperPermissions::canEditPublished($row->catid)) {
                 $row->published = 0;
+                $row->featured = 0;
                 $application->enqueueMessage(JText::_('K2_YOU_DONT_HAVE_THE_PERMISSION_TO_PUBLISH_ITEMS'), 'notice');
-            }
-
-            // If any user does not have the permissions to publish an item,
-            // then they should also not have the permissions to mark the item as featured
-            if (!K2HelperPermissions::canPublishItem($row->catid)) {
-                if ($isNew) {
-                    $row->featured = 0;
-                } else {
-                    $row->featured = $currentFeaturedState;
-                }
             }
         }
 
