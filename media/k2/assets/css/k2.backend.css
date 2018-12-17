@@ -829,7 +829,6 @@ html.isJ25 #k2AdminContainer .k2AdminTableFilters tr td {padding:10px;}
 
 /* Item form */
 .oldJ fieldset {padding-left:0;border:0;}
-.oldJ select,
 .oldJ input[type="text"],
 .oldJ input[type="email"] {height:30px;min-height:30px;width:auto;max-width:100%;}
 .oldJ select {max-width:300px;}
@@ -867,7 +866,10 @@ input#k2ImageBrowseServer {width:auto;height:30px;line-height:8px;margin-left:10
 .oldJ .k2ViewIsItem select,
 .oldJ .k2ViewIsCategory select,
 .oldJ .k2GenericForm select {background-color:#fff;border:1px solid #ccc;box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);-webkit-transition:border linear .2s,box-shadow linear .2s;-moz-transition:border linear .2s,box-shadow linear .2s;transition:border linear .2s,box-shadow linear .2s;display:inline-block;height:30px;font-size:13px;padding:0 10px;min-width:80px;line-height:18px;color:#555;border-radius:3px;vertical-align:middle;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
-.oldJ textarea {height:auto;}
+.oldJ textarea,
+.oldJ .k2ViewIsItem select,
+.oldJ .k2ViewIsCategory select,
+.oldJ .k2GenericForm select {height:auto;}
 .oldJ .k2GenericForm select {min-width:169px;}
 .oldJ input.k2OrderBox {} /* don't hard code the width as we never know how large the number can be */
 .oldJ td.order span {display:none;}
