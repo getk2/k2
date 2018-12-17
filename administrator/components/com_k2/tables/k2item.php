@@ -148,8 +148,8 @@ class TableK2Item extends K2Table
         // Check if the item alias already exists. If so warn the user and append the item ID to it.
         $params = JComponentHelper::getParams('com_k2');
         if ($params->get('k2Sef') && !$params->get('k2SefInsertItemId')) {
+            $db = JFactory::getDbo();
             if ($this->id) {
-                $db = JFactory::getDbo();
                 $db->setQuery("SELECT id FROM #__k2_items WHERE alias = ".$db->quote($this->alias)." AND id != ".(int)$this->id);
                 $result = count($db->loadObjectList());
                 if ($result > 0) {
@@ -157,8 +157,12 @@ class TableK2Item extends K2Table
                     $app->enqueueMessage(JText::_('K2_WARNING_DUPLICATE_TITLE_ALIAS_DETECTED'), 'notice');
                 }
             } else {
-                $this->alias .= '-'.date('YmdHi');
-                $app->enqueueMessage(JText::_('K2_WARNING_DUPLICATE_TITLE_ALIAS_DETECTED'), 'notice');
+                $db->setQuery("SELECT id FROM #__k2_items WHERE alias = ".$db->quote($this->alias));
+                $result = count($db->loadObjectList());
+                if ($result > 0) {
+                    $this->alias .= '-'.date('YmdHi');
+                    $app->enqueueMessage(JText::_('K2_WARNING_DUPLICATE_TITLE_ALIAS_DETECTED'), 'notice');
+                }
             }
         }
         return true;
