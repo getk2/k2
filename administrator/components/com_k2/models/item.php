@@ -738,6 +738,9 @@ class K2ModelItem extends K2Model
                 $row->published = 0;
                 $row->featured = 0;
                 $application->enqueueMessage(JText::_('K2_YOU_DONT_HAVE_THE_PERMISSION_TO_PUBLISH_ITEMS'), 'notice');
+            } else {
+                $row->published = $published;
+                $row->featured = $featured;
             }
         }
 
