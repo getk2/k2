@@ -831,7 +831,7 @@ html.isJ25 #k2AdminContainer .k2AdminTableFilters tr td {padding:10px;}
 .oldJ fieldset {padding-left:0;border:0;}
 .oldJ input[type="text"],
 .oldJ input[type="email"] {height:30px;min-height:30px;width:auto;max-width:100%;}
-.oldJ select {max-width:300px;}
+.oldJ select {}
 
 /* field normalisation */
 .k2ViewIsItem .oldJ input[type="file"],
