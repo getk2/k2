@@ -63,7 +63,6 @@ class K2ModelItem extends K2Model
             $id = JRequest::getInt('id');
             $currentRow = JTable::getInstance('K2Item', 'Table');
             $currentRow->load($id);
-            $isAlreadyPublished = $currentRow->published;
             $currentFeaturedState = $currentRow->featured;
         }
 
@@ -733,12 +732,9 @@ class K2ModelItem extends K2Model
             }
 
             // Existing items require either the "Publish items" or the "Allow editing of already published items" permission
-            if (!$isNew && $row->published) {
-                $canEditPublished = $isAlreadyPublished && K2HelperPermissions::canEditPublished($row->catid);
-                if (!K2HelperPermissions::canPublishItem($row->catid) && (!$canEditPublished)) {
-                    $row->published = 0;
-                    $application->enqueueMessage(JText::_('K2_YOU_DONT_HAVE_THE_PERMISSION_TO_PUBLISH_ITEMS'), 'notice');
-                }
+            if (!$isNew && $row->published && !K2HelperPermissions::canEditPublished($row->catid)) {
+                $row->published = 0;
+                $application->enqueueMessage(JText::_('K2_YOU_DONT_HAVE_THE_PERMISSION_TO_PUBLISH_ITEMS'), 'notice');
             }
 
             // If any user does not have the permissions to publish an item,
