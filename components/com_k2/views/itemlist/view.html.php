@@ -380,7 +380,7 @@ class K2ViewItemlist extends K2View
         $cache = JFactory::getCache('com_k2_extended');
         $model = $this->getModel('item');
 
-        for ($i = 0; $i < sizeof($items); $i++) {
+        for ($i = 0; $i < count($items); $i++) {
 
             // Ensure that all items have a group. If an item with no group is found then assign to it the leading group
             $items[$i]->itemGroup = 'leading';

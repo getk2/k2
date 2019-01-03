@@ -102,7 +102,7 @@ class K2ModelItem extends K2Model
             ($view == 'latest' && $params->get('latestItemTags'))
         ) {
             $tags = $this->getItemTags($item->id);
-            for ($i = 0; $i < sizeof($tags); $i++) {
+            for ($i = 0; $i < count($tags); $i++) {
                 $tags[$i]->link = JRoute::_(K2HelperRoute::getTagRoute($tags[$i]->name));
             }
             $item->tags = $tags;

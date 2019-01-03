@@ -204,7 +204,7 @@ class K2ViewItem extends K2View
                 $limit = $params->get('commentsLimit');
                 $comments = $model->getItemComments($item->id, $limitstart, $limit, $commentsPublished);
 
-                for ($i = 0; $i < sizeof($comments); $i++) {
+                for ($i = 0; $i < count($comments); $i++) {
                     $comments[$i]->commentText = nl2br($comments[$i]->commentText);
 
                     // Convert URLs to links properly
@@ -242,7 +242,7 @@ class K2ViewItem extends K2View
             $model = $this->getModel('itemlist');
             $authorLatestItems = $model->getAuthorLatest($item->id, $item->params->get('itemAuthorLatestLimit'), $item->created_by);
             if (count($authorLatestItems)) {
-                for ($i = 0; $i < sizeof($authorLatestItems); $i++) {
+                for ($i = 0; $i < count($authorLatestItems); $i++) {
                     $authorLatestItems[$i]->link = urldecode(JRoute::_(K2HelperRoute::getItemRoute($authorLatestItems[$i]->id.':'.urlencode($authorLatestItems[$i]->alias), $authorLatestItems[$i]->catid.':'.urlencode($authorLatestItems[$i]->categoryalias))));
                 }
                 $this->assignRef('authorLatestItems', $authorLatestItems);
@@ -254,7 +254,7 @@ class K2ViewItem extends K2View
             $model = $this->getModel('itemlist');
             $relatedItems = $model->getRelatedItems($item->id, $item->tags, $item->params);
             if (count($relatedItems)) {
-                for ($i = 0; $i < sizeof($relatedItems); $i++) {
+                for ($i = 0; $i < count($relatedItems); $i++) {
                     $relatedItems[$i]->link = urldecode(JRoute::_(K2HelperRoute::getItemRoute($relatedItems[$i]->id.':'.urlencode($relatedItems[$i]->alias), $relatedItems[$i]->catid.':'.urlencode($relatedItems[$i]->categoryalias))));
                 }
                 $this->assignRef('relatedItems', $relatedItems);

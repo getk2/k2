@@ -78,7 +78,7 @@ class K2ViewCategories extends K2View
 			}
 		}
 
-		for ($i = 0; $i < sizeof($categories); $i++)
+		for ($i = 0; $i < count($categories); $i++)
 		{
 			$categories[$i]->status = K2_JVERSION == '15' ? JHTML::_('grid.published', $categories[$i], $i) : JHtml::_('jgrid.published', $categories[$i]->published, $i, '', $filter_trash == 0 && $task != 'element');
 			if ($params->get('showItemsCounterAdmin'))

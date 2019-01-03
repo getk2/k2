@@ -534,7 +534,7 @@ class K2ModelCategories extends K2Model
         $warningItems = false;
         $warningChildren = false;
         $cid = array_reverse($cid);
-        for ($i = 0; $i < sizeof($cid); $i++) {
+        for ($i = 0; $i < count($cid); $i++) {
             $row = JTable::getInstance('K2Category', 'Table');
             $row->load($cid[$i]);
 

@@ -106,7 +106,7 @@ class K2ViewLatest extends K2View
                             JRequest::setVar('view', 'latest');
                             JRequest::setVar('task', '');
 
-                            for ($i = 0; $i < sizeof($category->items); $i++) {
+                            for ($i = 0; $i < count($category->items); $i++) {
                                 $hits = $category->items[$i]->hits;
                                 $category->items[$i]->hits = 0;
                                 $category->items[$i] = $cache->call(array($itemModel, 'prepareItem'), $category->items[$i], 'latest', '');
@@ -161,7 +161,7 @@ class K2ViewLatest extends K2View
                         if ($limit) {
                             $userObject->items = $model->getAuthorLatest(0, $limit, $userID);
 
-                            for ($i = 0; $i < sizeof($userObject->items); $i++) {
+                            for ($i = 0; $i < count($userObject->items); $i++) {
                                 $hits = $userObject->items[$i]->hits;
                                 $userObject->items[$i]->hits = 0;
                                 $userObject->items[$i] = $cache->call(array($itemModel, 'prepareItem'), $userObject->items[$i], 'latest', '');

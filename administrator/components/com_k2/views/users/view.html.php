@@ -48,7 +48,7 @@ class K2ViewUsers extends K2View
             JRequest::setVar('limitstart', $limitstart);
         }
         $users = $model->getData();
-        for ($i = 0; $i < sizeof($users); $i++)
+        for ($i = 0; $i < count($users); $i++)
         {
             $users[$i]->loggedin = $model->checkLogin($users[$i]->id);
             $users[$i]->profileID = $model->hasProfile($users[$i]->id);

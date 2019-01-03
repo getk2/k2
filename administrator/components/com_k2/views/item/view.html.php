@@ -310,7 +310,7 @@ class K2ViewItem extends K2View
         if ($application->isSite()) {
             JLoader::register('K2HelperPermissions', JPATH_SITE.'/components/com_k2/helpers/permissions.php');
             if (($task == 'add' || $task == 'edit') && !K2HelperPermissions::canAddToAll()) {
-                for ($i = 0; $i < sizeof($categories); $i++) {
+                for ($i = 0; $i < count($categories); $i++) {
                     if (!K2HelperPermissions::canAddItem($categories[$i]->value) && $task == 'add') {
                         $categories[$i]->disable = true;
                     }
@@ -332,10 +332,10 @@ class K2ViewItem extends K2View
         if ($category->id) {
             $extraFields = $extraFieldModel->getExtraFieldsByGroup($category->extraFieldsGroup);
         } else {
-            $extraFields = null;
+            $extraFields = array();
         }
 
-        for ($i = 0; $i < sizeof($extraFields); $i++) {
+        for ($i = 0; $i < count($extraFields); $i++) {
             $extraFields[$i]->element = $extraFieldModel->renderExtraField($extraFields[$i], $item->id);
         }
 

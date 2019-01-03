@@ -62,7 +62,7 @@ class K2ModelExtraField extends K2Model
             $alias = '';
         }
         $lastOptionId = 1;
-        for ($i = 0; $i < sizeof($values); $i++) {
+        for ($i = 0; $i < count($values); $i++) {
             $object = new JObject;
             $object->set('name', $names[$i]);
 

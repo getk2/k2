@@ -253,7 +253,7 @@ class plgSystemK2 extends JPlugin
                 $names = JRequest::getVar('option_name');
                 $target = JRequest::getVar('option_target');
 
-                for ($i = 0; $i < sizeof($values); $i++) {
+                for ($i = 0; $i < count($values); $i++) {
                     $object = new JObject;
                     $object->set('name', $names[$i]);
 

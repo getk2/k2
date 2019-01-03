@@ -141,7 +141,7 @@ $context = JRequest::getCmd('context');
 					</tr>
 				</thead>
 				<?php
-					$tfootColspan = 14 + sizeof($this->columns);
+					$tfootColspan = 14 + count($this->columns);
 					if(K2_JVERSION != '30') $tfootColspan++;
 					if(isset($this->lists['language'])) $tfootColspan++;
 					if($context == "modalselector") $tfootColspan--;

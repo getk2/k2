@@ -314,7 +314,7 @@ class K2ViewItemlist extends K2View
         $cache = JFactory::getCache('com_k2_extended');
         $model = $this->getModel('item');
         $rows = array();
-        for ($i = 0; $i < sizeof($items); $i++) {
+        for ($i = 0; $i < count($items); $i++) {
 
             // Item group
             if ($task == "category" || $task == "") {
