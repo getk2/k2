@@ -481,7 +481,6 @@ class K2ViewItem extends K2View
 
         // Set Twitter meta tags
         if ($params->get('twitterMetatags', 1)) {
-            $document->setMetaData('twitter:image:alt', (!empty($item->image_caption)) ? K2HelperUtilities::cleanHtml($item->image_caption) : K2HelperUtilities::cleanHtml($item->title));
             $document->setMetaData('twitter:card', 'summary');
             if ($params->get('twitterUsername')) {
                 $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
@@ -503,6 +502,7 @@ class K2ViewItem extends K2View
                     $document->setMetaData('twitter:image', $image);
                 }
             }
+            $document->setMetaData('twitter:image:alt', (!empty($item->image_caption)) ? K2HelperUtilities::cleanHtml($item->image_caption) : K2HelperUtilities::cleanHtml($item->title));
         }
 
         // Get the frontend's language for use in social media buttons - use explicit variable references for future update flexibility
