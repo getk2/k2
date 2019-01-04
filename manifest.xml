@@ -193,9 +193,11 @@
 		<param name="imageMemoryLimit" default="" />
 		<!-- ######################### Social Settings ######################### -->
 		<param name="socialButtonCode" default="" />
-		<param name="twitterUsername" default="" />
 		<param name="facebookMetatags" default="1" />
 		<param name="facebookImage" default="Medium" />
+		<param name="twitterUsername" default="" />
+		<param name="twitterMetatags" default="1" />
+		<param name="twitterImage" default="Medium" />
 		<!-- ######################### Comments ######################### -->
 		<param name="comments" default="1" />
 		<param name="commentsOrdering" default="DESC" />

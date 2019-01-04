@@ -199,9 +199,11 @@
 				<field name="imageMemoryLimit" default="" />
 				<!-- ######################### Social Settings ######################### -->
 				<field name="socialButtonCode" default="" />
-				<field name="twitterUsername" default="" />
 				<field name="facebookMetatags" default="1" />
 				<field name="facebookImage" default="Medium" />
+				<field name="twitterUsername" default="" />
+				<field name="twitterMetatags" default="1" />
+				<field name="twitterImage" default="Medium" />
 				<!-- ######################### Comments ######################### -->
 				<field name="comments" default="1" />
 				<field name="commentsOrdering" default="DESC" />

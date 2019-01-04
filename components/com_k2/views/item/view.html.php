@@ -452,17 +452,14 @@ class K2ViewItem extends K2View
             }
         }
 
-        // Common for meta tags
-        $uri = JURI::getInstance();
-
         // Set Facebook meta tags
-        if ($params->get('facebookMetatags', '1')) {
-            $document->setMetaData('og:url', $uri->toString());
+        if ($params->get('facebookMetatags', 1)) {
+            $document->setMetaData('og:url', $item->absoluteURL);
             $document->setMetaData('og:type', 'article');
             $document->setMetaData('og:title', (K2_JVERSION == '15') ? htmlspecialchars($document->getTitle(), ENT_QUOTES, 'UTF-8') : $document->getTitle());
             $document->setMetaData('og:description', strip_tags($document->getDescription()));
 
-            $facebookImage = 'image'.$params->get('facebookImage', 'Small');
+            $facebookImage = 'image'.$params->get('facebookImage', 'Medium');
             if ($item->$facebookImage) {
                 $basename = basename($item->$facebookImage);
                 if (strpos($basename, '?t=')!==false) {
@@ -474,7 +471,7 @@ class K2ViewItem extends K2View
                 if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.$basenameWithNoTimestamp)) {
                     $image = JURI::root().'media/k2/items/cache/'.$basename;
                     $document->setMetaData('og:image', $image);
-                    $document->setMetaData('image', $image);
+                    $document->setMetaData('image', $image); // Generic meta
                 }
             }
         }
@@ -488,7 +485,7 @@ class K2ViewItem extends K2View
             $document->setMetaData('twitter:title', (K2_JVERSION == '15') ? htmlspecialchars($document->getTitle(), ENT_QUOTES, 'UTF-8') : $document->getTitle());
             $document->setMetaData('twitter:description', strip_tags($document->getDescription()));
 
-            $twitterImage = 'image'.$params->get('twitterImage', 'Small');
+            $twitterImage = 'image'.$params->get('twitterImage', 'Medium');
             if ($item->$twitterImage) {
                 $basename = basename($item->$twitterImage);
                 if (strpos($basename, '?t=')!==false) {
@@ -500,6 +497,9 @@ class K2ViewItem extends K2View
                 if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.$basenameWithNoTimestamp)) {
                     $image = JURI::root().'media/k2/items/cache/'.$basename;
                     $document->setMetaData('twitter:image', $image);
+                    if (!$params->get('facebookMetatags')) {
+                        $document->setMetaData('image', $image); // Generic meta
+                    }
                 }
             }
             $document->setMetaData('twitter:image:alt', (!empty($item->image_caption)) ? K2HelperUtilities::cleanHtml($item->image_caption) : K2HelperUtilities::cleanHtml($item->title));

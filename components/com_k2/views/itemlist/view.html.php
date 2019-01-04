@@ -17,6 +17,7 @@ class K2ViewItemlist extends K2View
     public function display($tpl = null)
     {
         $application = JFactory::getApplication();
+        $document = JFactory::getDocument();
         $params = K2HelperUtilities::getParams('com_k2');
         $model = $this->getModel('itemlist');
         $limitstart = JRequest::getInt('limitstart', 0);
@@ -445,8 +446,6 @@ class K2ViewItemlist extends K2View
         }
 
         // Set title
-        $document = JFactory::getDocument();
-        $application = JFactory::getApplication();
         $menus = $application->getMenu();
         $menu = $menus->getActive();
         if (is_object($menu)) {
@@ -646,10 +645,11 @@ class K2ViewItemlist extends K2View
         $this->assignRef('params', $params);
         $this->assignRef('pagination', $pagination);
 
+        // Common for meta tags
+        $uri = JURI::getInstance();
+
         // Set Facebook meta data
         if ($params->get('facebookMetatags', '1')) {
-            $document = JFactory::getDocument();
-            $uri = JURI::getInstance();
             $document->setMetaData('og:url', $uri->toString());
             $document->setMetaData('og:title', (K2_JVERSION == '15') ? htmlspecialchars($document->getTitle(), ENT_QUOTES, 'UTF-8') : $document->getTitle());
             $document->setMetaData('og:type', 'website');

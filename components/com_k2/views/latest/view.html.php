@@ -217,10 +217,11 @@ class K2ViewLatest extends K2View
             $params->set('show_page_title', $params->get('show_page_heading'));
         }
 
-        // Set Facebook meta data
+        // Common for meta tags
+        $uri = JURI::getInstance();
+
+        // Set Facebook meta tags
         if ($params->get('facebookMetatags', '1')) {
-            $document = JFactory::getDocument();
-            $uri = JURI::getInstance();
             $document->setMetaData('og:url', $uri->toString());
             $document->setMetaData('og:title', (K2_JVERSION == '15') ? htmlspecialchars($document->getTitle(), ENT_QUOTES, 'UTF-8') : $document->getTitle());
             $document->setMetaData('og:type', 'website');
