@@ -192,7 +192,6 @@ class K2ViewItem extends K2View
                 if (K2_JVERSION != '15') {
                     if ($user->authorise('core.admin', 'com_k2')) {
                         $reportSpammerFlag = true;
-                        $document = JFactory::getDocument();
                         $document->addScriptDeclaration('var K2Language = ["'.JText::_('K2_REPORT_USER_WARNING', true).'"];');
                     }
                 } else {
@@ -453,13 +452,16 @@ class K2ViewItem extends K2View
             }
         }
 
-        // Set Facebook meta data
+        // Common for meta tags
+        $uri = JURI::getInstance();
+
+        // Set Facebook meta tags
         if ($params->get('facebookMetatags', '1')) {
-            $document = JFactory::getDocument();
-            $uri = JURI::getInstance();
             $document->setMetaData('og:url', $uri->toString());
-            $document->setMetaData('og:title', (K2_JVERSION == '15') ? htmlspecialchars($document->getTitle(), ENT_QUOTES, 'UTF-8') : $document->getTitle());
             $document->setMetaData('og:type', 'article');
+            $document->setMetaData('og:title', (K2_JVERSION == '15') ? htmlspecialchars($document->getTitle(), ENT_QUOTES, 'UTF-8') : $document->getTitle());
+            $document->setMetaData('og:description', strip_tags($document->getDescription()));
+
             $facebookImage = 'image'.$params->get('facebookImage', 'Small');
             if ($item->$facebookImage) {
                 $basename = basename($item->$facebookImage);
@@ -475,7 +477,32 @@ class K2ViewItem extends K2View
                     $document->setMetaData('image', $image);
                 }
             }
-            $document->setMetaData('og:description', strip_tags($document->getDescription()));
+        }
+
+        // Set Twitter meta tags
+        if ($params->get('twitterMetatags', 1)) {
+            $document->setMetaData('twitter:image:alt', (!empty($item->image_caption)) ? K2HelperUtilities::cleanHtml($item->image_caption) : K2HelperUtilities::cleanHtml($item->title));
+            $document->setMetaData('twitter:card', 'summary');
+            if ($params->get('twitterUsername')) {
+                $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
+            }
+            $document->setMetaData('twitter:title', (K2_JVERSION == '15') ? htmlspecialchars($document->getTitle(), ENT_QUOTES, 'UTF-8') : $document->getTitle());
+            $document->setMetaData('twitter:description', strip_tags($document->getDescription()));
+
+            $twitterImage = 'image'.$params->get('twitterImage', 'Small');
+            if ($item->$twitterImage) {
+                $basename = basename($item->$twitterImage);
+                if (strpos($basename, '?t=')!==false) {
+                    $tmpBasename = explode('?t=', $basename);
+                    $basenameWithNoTimestamp = $tmpBasename[0];
+                } else {
+                    $basenameWithNoTimestamp = $basename;
+                }
+                if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.$basenameWithNoTimestamp)) {
+                    $image = JURI::root().'media/k2/items/cache/'.$basename;
+                    $document->setMetaData('twitter:image', $image);
+                }
+            }
         }
 
         // Get the frontend's language for use in social media buttons - use explicit variable references for future update flexibility
