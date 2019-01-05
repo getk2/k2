@@ -375,6 +375,9 @@ class K2ViewItem extends K2View
             }
         }
 
+        // Set canonical tag
+        $document->addHeadLink($item->link, 'canonical', 'rel');
+
         // Set page title
         if ($menuItemMatchesK2Item) {
             if (is_string($menu->params)) {
