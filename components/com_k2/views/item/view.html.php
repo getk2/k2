@@ -354,10 +354,29 @@ class K2ViewItem extends K2View
         // Social link
         $item->socialLink = urlencode($item->absoluteURL);
 
-        // Set page title
+        // Get current menu item
         $menus = $application->getMenu();
         $menu = $menus->getActive();
+
+        // Check if the current menu item matches the displayed K2 item
+        $menuItemMatchesK2Item = false;
         if (is_object($menu) && isset($menu->query['view']) && $menu->query['view'] == 'item' && isset($menu->query['id']) && $menu->query['id'] == $item->id) {
+            $menuItemMatchesK2Item = true;
+        }
+
+        // Set pathway
+        $pathway = $application->getPathWay();
+        if ($menu) {
+            if (isset($menu->query['view']) && ($menu->query['view'] != 'item' || $menu->query['id'] != $item->id)) {
+                if (!isset($menu->query['task']) || $menu->query['task'] != 'category' || $menu->query['id'] != $item->catid) {
+                    $pathway->addItem($item->category->name, $item->category->link);
+                }
+                $pathway->addItem($item->cleanTitle, '');
+            }
+        }
+
+        // Set page title
+        if ($menuItemMatchesK2Item) {
             if (is_string($menu->params)) {
                 $menu_params = K2_JVERSION == '15' ? new JParameter($menu->params) : new JRegistry($menu->params);
             } else {
@@ -369,7 +388,6 @@ class K2ViewItem extends K2View
         } else {
             $params->set('page_title', $item->cleanTitle);
         }
-
         if (K2_JVERSION != '15') {
             if ($application->getCfg('sitename_pagetitles', 0) == 1) {
                 $title = JText::sprintf('JPAGETITLE', $application->getCfg('sitename'), $params->get('page_title'));
@@ -381,28 +399,18 @@ class K2ViewItem extends K2View
         }
         $document->setTitle($params->get('page_title'));
 
-        // Set pathway
-        $menus = $application->getMenu();
-        $menu = $menus->getActive();
-        $pathway = $application->getPathWay();
-        if ($menu) {
-            if (isset($menu->query['view']) && ($menu->query['view'] != 'item' || $menu->query['id'] != $item->id)) {
-                if (!isset($menu->query['task']) || $menu->query['task'] != 'category' || $menu->query['id'] != $item->catid) {
-                    $pathway->addItem($item->category->name, $item->category->link);
-                }
-                $pathway->addItem($item->cleanTitle, '');
-            }
-        }
-
         // Set metadata
+        $metaDesc = '';
         if ($item->metadesc) {
             $metaDesc = filter_var($item->metadesc, FILTER_SANITIZE_STRING);
         } else {
             $metaDesc = preg_replace("#{(.*?)}(.*?){/(.*?)}#s", '', $itemTextBeforePlugins);
-            $metaDesc = filter_var($socialMetaDesc, FILTER_SANITIZE_STRING);
+            $metaDesc = filter_var($metaDesc, FILTER_SANITIZE_STRING);
             $metaDesc = K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150));
         }
-        $document->setDescription($metaDesc);
+        if ($metaDesc) {
+            $document->setDescription($metaDesc);
+        }
 
         if ($item->metakey) {
             $document->setMetadata('keywords', $item->metakey);
@@ -416,40 +424,35 @@ class K2ViewItem extends K2View
             }
         }
 
-        // Menu metadata for Joomla 2.5+ (overrides the current metadata if set)
-        if (K2_JVERSION != '15') {
-            if ($params->get('menu-meta_description')) {
-                $document->setDescription($params->get('menu-meta_description'));
-            }
-
-            if ($params->get('menu-meta_keywords')) {
-                $document->setMetadata('keywords', $params->get('menu-meta_keywords'));
-            }
-
-            if ($params->get('robots')) {
-                $document->setMetadata('robots', $params->get('robots'));
-            }
-
-            // Menu page display options
-            if ($params->get('page_heading')) {
-                $params->set('page_title', $params->get('page_heading'));
-            }
-            $params->set('show_page_title', $params->get('show_page_heading'));
-        }
-
-        if ($application->getCfg('MetaTitle') == '1') {
-            $document->setMetadata('title', $item->cleanTitle);
-        }
         if ($application->getCfg('MetaAuthor') == '1' && isset($item->author->name)) {
             $document->setMetadata('author', $item->author->name);
         }
-        $mdata = class_exists('JParameter') ? new JParameter($item->metadata) : new JRegistry($item->metadata);
-        $mdata = $mdata->toArray();
-        foreach ($mdata as $k => $v) {
-            if ($k == 'robots' || $k == 'author') {
-                if ($v) {
-                    $document->setMetadata($k, $v);
+
+        $itemMetaData = class_exists('JParameter') ? new JParameter($item->metadata) : new JRegistry($item->metadata);
+        $itemMetaData = $itemMetaData->toArray();
+        foreach ($itemMetaData as $k => $v) {
+            if (($k == 'robots' || $k == 'author') && $v) {
+                $document->setMetadata($k, $v);
+            }
+        }
+
+        // Override metadata from the menu item (for Joomla 2.5+)
+        if ($menuItemMatchesK2Item) {
+            if (K2_JVERSION != '15') {
+                if ($params->get('menu-meta_description')) {
+                    $document->setDescription($params->get('menu-meta_description'));
                 }
+                if ($params->get('menu-meta_keywords')) {
+                    $document->setMetadata('keywords', $params->get('menu-meta_keywords'));
+                }
+                if ($params->get('robots')) {
+                    $document->setMetadata('robots', $params->get('robots'));
+                }
+                // Menu page display options
+                if ($params->get('page_heading')) {
+                    $params->set('page_title', $params->get('page_heading'));
+                }
+                $params->set('show_page_title', $params->get('show_page_heading'));
             }
         }
 
