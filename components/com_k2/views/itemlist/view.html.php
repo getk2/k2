@@ -645,7 +645,7 @@ class K2ViewItemlist extends K2View
         $this->assignRef('params', $params);
         $this->assignRef('pagination', $pagination);
 
-        // Common for meta tags
+        // Common for social meta tags
         $uri = JURI::getInstance();
         $metaUrl = $uri->toString();
         $metaTitle = ($title) ? $title : $document->getTitle();

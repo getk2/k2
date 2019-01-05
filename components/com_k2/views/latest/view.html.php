@@ -217,7 +217,7 @@ class K2ViewLatest extends K2View
             $params->set('show_page_title', $params->get('show_page_heading'));
         }
 
-        // Common for meta tags
+        // Common for social meta tags
         $uri = JURI::getInstance();
         $metaUrl = $uri->toString();
         $metaTitle = $document->getTitle();

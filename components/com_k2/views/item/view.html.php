@@ -396,14 +396,14 @@ class K2ViewItem extends K2View
 
         // Set metadata
         if ($item->metadesc) {
-            $document->setDescription((K2_JVERSION == '15') ? htmlspecialchars($item->metadesc, ENT_QUOTES, 'UTF-8') : $item->metadesc);
+            $metaDesc = filter_var($item->metadesc, FILTER_SANITIZE_STRING);
         } else {
-            $metaDescItem = preg_replace("#{(.*?)}(.*?){/(.*?)}#s", '', $item->introtext.' '.$item->fulltext);
-            $metaDescItem = preg_replace("/<script\b[^>]*>(.*?)<\/script>/is", '', $item->introtext.' '.$item->fulltext);
-            $metaDescItem = strip_tags($metaDescItem);
-            $metaDescItem = K2HelperUtilities::characterLimit($metaDescItem, $params->get('metaDescLimit', 150));
-            $document->setDescription(K2_JVERSION == '15' ? $metaDescItem : html_entity_decode($metaDescItem));
+            $metaDesc = preg_replace("#{(.*?)}(.*?){/(.*?)}#s", '', $itemTextBeforePlugins);
+            $metaDesc = filter_var($socialMetaDesc, FILTER_SANITIZE_STRING);
+            $metaDesc = K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150));
         }
+        $document->setDescription($metaDesc);
+
         if ($item->metakey) {
             $document->setMetadata('keywords', $item->metakey);
         } else {
@@ -453,7 +453,7 @@ class K2ViewItem extends K2View
             }
         }
 
-        // Common for meta tags
+        // Common for social meta tags
         if ($item->metadesc) {
             $socialMetaDesc = $item->metadesc;
         } else {
