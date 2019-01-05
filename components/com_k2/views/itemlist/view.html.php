@@ -680,7 +680,7 @@ class K2ViewItemlist extends K2View
                 if (!$params->get('facebookMetatags')) {
                     $document->setMetaData('image', $metaImage); // Generic meta
                 }
-                $document->setMetaData('twitter:image:alt', K2HelperUtilities::cleanHtml($metaTitle));
+                $document->setMetaData('twitter:image:alt', filter_var($metaTitle, FILTER_SANITIZE_STRING));
             }
         }
 
