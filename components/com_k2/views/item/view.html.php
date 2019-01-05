@@ -452,13 +452,20 @@ class K2ViewItem extends K2View
             }
         }
 
+        // Common for meta tags
+        if ($item->metadesc) {
+            $socialMetaDesc = $item->metadesc;
+        } else {
+            $socialMetaDesc = preg_replace("#{(.*?)}(.*?){/(.*?)}#s", '', $item->introtext.' '.$item->fulltext);
+            $socialMetaDesc = filter_var($socialMetaDesc, FILTER_SANITIZE_STRING);
+        }
+
         // Set Facebook meta tags
         if ($params->get('facebookMetatags', 1)) {
             $document->setMetaData('og:url', $item->absoluteURL);
             $document->setMetaData('og:type', 'article');
-            $document->setMetaData('og:title', (K2_JVERSION == '15') ? htmlspecialchars($document->getTitle(), ENT_QUOTES, 'UTF-8') : $document->getTitle());
-            $document->setMetaData('og:description', strip_tags($document->getDescription()));
-
+            $document->setMetaData('og:title', filter_var($item->title, FILTER_SANITIZE_STRING));
+            $document->setMetaData('og:description', K2HelperUtilities::characterLimit($socialMetaDesc, 300)); // 300 chars limit for Facebook post sharing
             $facebookImage = 'image'.$params->get('facebookImage', 'Medium');
             if ($item->$facebookImage) {
                 $basename = basename($item->$facebookImage);
@@ -482,9 +489,8 @@ class K2ViewItem extends K2View
             if ($params->get('twitterUsername')) {
                 $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
             }
-            $document->setMetaData('twitter:title', (K2_JVERSION == '15') ? htmlspecialchars($document->getTitle(), ENT_QUOTES, 'UTF-8') : $document->getTitle());
-            $document->setMetaData('twitter:description', strip_tags($document->getDescription()));
-
+            $document->setMetaData('twitter:title', filter_var($item->title, FILTER_SANITIZE_STRING));
+            $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($socialMetaDesc, 200)); // 200 chars limit for Twitter post sharing
             $twitterImage = 'image'.$params->get('twitterImage', 'Medium');
             if ($item->$twitterImage) {
                 $basename = basename($item->$twitterImage);

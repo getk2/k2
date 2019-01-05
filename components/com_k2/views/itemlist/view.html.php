@@ -160,7 +160,7 @@ class K2ViewItemlist extends K2View
                             $child->numOfItems = $model->countCategoryItems($child->id);
                         }
                         $child->image = K2HelperUtilities::getCategoryImage($child->image, $params);
-                        $child->name = htmlspecialchars($child->name, ENT_QUOTES);
+                        $child->name = htmlspecialchars($child->name, ENT_QUOTES, 'utf-8');
                         $child->link = urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($child->id.':'.urlencode($child->alias))));
                         $subCategories[] = $child;
                     }
@@ -178,7 +178,7 @@ class K2ViewItemlist extends K2View
 
                 // Set title
                 $title = $category->name;
-                $category->name = htmlspecialchars($category->name, ENT_QUOTES);
+                $category->name = htmlspecialchars($category->name, ENT_QUOTES, 'utf-8');
 
                 // Set ordering
                 if ($params->get('singleCatOrdering')) {
@@ -217,7 +217,7 @@ class K2ViewItemlist extends K2View
                         $limitstart
                     ));
                     $userObject->event->K2UserDisplay = trim(implode("\n", $results));
-                    $userObject->profile->url = htmlspecialchars($userObject->profile->url, ENT_QUOTES, 'UTF-8');
+                    $userObject->profile->url = htmlspecialchars($userObject->profile->url, ENT_QUOTES, 'utf-8');
                 }
                 $this->assignRef('user', $userObject);
 
@@ -647,18 +647,41 @@ class K2ViewItemlist extends K2View
 
         // Common for meta tags
         $uri = JURI::getInstance();
+        $metaUrl = $uri->toString();
+        $metaTitle = ($title) ? $title : $document->getTitle();
+        $metaDesc = strip_tags($document->getDescription());
+        $metaImage = '';
+        if ($task == 'category' && $this->category->image && strpos($this->category->image, 'placeholder/category.png') === false) {
+            $metaImage = substr(JURI::root(), 0, -1).str_replace(JURI::root(true), '', $this->category->image);
+        }
 
-        // Set Facebook meta data
-        if ($params->get('facebookMetatags', '1')) {
-            $document->setMetaData('og:url', $uri->toString());
-            $document->setMetaData('og:title', (K2_JVERSION == '15') ? htmlspecialchars($document->getTitle(), ENT_QUOTES, 'UTF-8') : $document->getTitle());
+        // Set Facebook meta tags
+        if ($params->get('facebookMetatags', 1)) {
+            $document->setMetaData('og:url', $metaUrl);
             $document->setMetaData('og:type', 'website');
-            if ($task == 'category' && $this->category->image && strpos($this->category->image, 'placeholder/category.png') === false) {
-                $image = substr(JURI::root(), 0, -1).str_replace(JURI::root(true), '', $this->category->image);
-                $document->setMetaData('og:image', $image);
-                $document->setMetaData('image', $image);
+            $document->setMetaData('og:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+            $document->setMetaData('og:description', $metaDesc);
+            if ($metaImage) {
+                $document->setMetaData('og:image', $metaImage);
+                $document->setMetaData('image', $metaImage);
             }
-            $document->setMetaData('og:description', strip_tags($document->getDescription()));
+        }
+
+        // Set Twitter meta tags
+        if ($params->get('twitterMetatags', 1)) {
+            $document->setMetaData('twitter:card', 'summary');
+            if ($params->get('twitterUsername')) {
+                $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
+            }
+            $document->setMetaData('twitter:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+            $document->setMetaData('twitter:description', $metaDesc);
+            if ($metaImage) {
+                $document->setMetaData('twitter:image', $metaImage);
+                if (!$params->get('facebookMetatags')) {
+                    $document->setMetaData('image', $metaImage); // Generic meta
+                }
+                $document->setMetaData('twitter:image:alt', K2HelperUtilities::cleanHtml($metaTitle));
+            }
         }
 
         // Lookup template folders

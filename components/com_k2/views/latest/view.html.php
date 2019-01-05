@@ -99,7 +99,7 @@ class K2ViewLatest extends K2View
                         JRequest::setVar('limit', $limit);
                         JRequest::setVar('clearFlag', true);
 
-                        $category->name = htmlspecialchars($category->name, ENT_QUOTES);
+                        $category->name = htmlspecialchars($category->name, ENT_QUOTES, 'utf-8');
                         if ($limit) {
                             $category->items = $model->getData('rdate');
 
@@ -151,13 +151,13 @@ class K2ViewLatest extends K2View
                         if (is_object($userObject->profile) && $userObject->profile->id > 0) {
                             $results = $dispatcher->trigger('onK2UserDisplay', array(&$userObject->profile, &$params, $limitstart));
                             $userObject->event->K2UserDisplay = trim(implode("\n", $results));
-                            $userObject->profile->url = htmlspecialchars($userObject->profile->url, ENT_QUOTES, 'UTF-8');
+                            $userObject->profile->url = htmlspecialchars($userObject->profile->url, ENT_QUOTES, 'utf-8');
                         }
 
                         $link = K2HelperRoute::getUserRoute($userObject->id);
                         $userObject->link = JRoute::_($link);
                         $userObject->feed = JRoute::_($link.'&format=feed');
-                        $userObject->name = htmlspecialchars($userObject->name, ENT_QUOTES);
+                        $userObject->name = htmlspecialchars($userObject->name, ENT_QUOTES, 'utf-8');
                         if ($limit) {
                             $userObject->items = $model->getAuthorLatest(0, $limit, $userID);
 
@@ -219,13 +219,26 @@ class K2ViewLatest extends K2View
 
         // Common for meta tags
         $uri = JURI::getInstance();
+        $metaUrl = $uri->toString();
+        $metaTitle = $document->getTitle();
+        $metaDesc = strip_tags($document->getDescription());
 
         // Set Facebook meta tags
-        if ($params->get('facebookMetatags', '1')) {
-            $document->setMetaData('og:url', $uri->toString());
-            $document->setMetaData('og:title', (K2_JVERSION == '15') ? htmlspecialchars($document->getTitle(), ENT_QUOTES, 'UTF-8') : $document->getTitle());
+        if ($params->get('facebookMetatags', 1)) {
+            $document->setMetaData('og:url', $metaUrl);
             $document->setMetaData('og:type', 'website');
-            $document->setMetaData('og:description', strip_tags($document->getDescription()));
+            $document->setMetaData('og:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+            $document->setMetaData('og:description', $metaDesc);
+        }
+
+        // Set Twitter meta tags
+        if ($params->get('twitterMetatags', 1)) {
+            $document->setMetaData('twitter:card', 'summary');
+            if ($params->get('twitterUsername')) {
+                $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
+            }
+            $document->setMetaData('twitter:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+            $document->setMetaData('twitter:description', $metaDesc);
         }
 
         // Lookup template folders
