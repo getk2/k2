@@ -48,6 +48,7 @@ class K2ViewItem extends K2View
 
         // Prepare item
         $item = $model->prepareItem($item, $view, $task);
+        $itemTextBeforePlugins = $item->introtext.' '.$item->fulltext;
 
         // Plugins
         $item = $model->execPlugins($item, $view, $task);
@@ -456,7 +457,7 @@ class K2ViewItem extends K2View
         if ($item->metadesc) {
             $socialMetaDesc = $item->metadesc;
         } else {
-            $socialMetaDesc = preg_replace("#{(.*?)}(.*?){/(.*?)}#s", '', $item->introtext.' '.$item->fulltext);
+            $socialMetaDesc = preg_replace("#{(.*?)}(.*?){/(.*?)}#s", '', $itemTextBeforePlugins);
             $socialMetaDesc = filter_var($socialMetaDesc, FILTER_SANITIZE_STRING);
         }
 
