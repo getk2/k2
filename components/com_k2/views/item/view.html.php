@@ -346,9 +346,9 @@ class K2ViewItem extends K2View
 
         // Twitter link (legacy code)
         if ($params->get('twitterUsername')) {
-            $item->twitterURL = 'http://twitter.com/intent/tweet?text='.urlencode($item->title).'&amp;url='.urlencode($item->absoluteURL).'&amp;via='.$params->get('twitterUsername');
+            $item->twitterURL = 'https://twitter.com/intent/tweet?text='.urlencode($item->title).'&amp;url='.urlencode($item->absoluteURL).'&amp;via='.$params->get('twitterUsername');
         } else {
-            $item->twitterURL = 'http://twitter.com/intent/tweet?text='.urlencode($item->title).'&amp;url='.urlencode($item->absoluteURL);
+            $item->twitterURL = 'https://twitter.com/intent/tweet?text='.urlencode($item->title).'&amp;url='.urlencode($item->absoluteURL);
         }
 
         // Social link
@@ -375,8 +375,14 @@ class K2ViewItem extends K2View
             }
         }
 
-        // Set canonical tag
-        $document->addHeadLink($item->link, 'canonical', 'rel');
+        // Set canonical link
+        $canonicalURL = $params->get('canonicalURL', 'relative');
+        if ($canonicalURL == 'absolute') {
+            $document->addHeadLink(substr(str_replace(JUri::root(true), '', JUri::root(false)), 0, -1).$item->link, 'canonical', 'rel');
+        }
+        if ($canonicalURL == 'relative') {
+            $document->addHeadLink($item->link, 'canonical', 'rel');
+        }
 
         // Set page title
         if ($menuItemMatchesK2Item) {
