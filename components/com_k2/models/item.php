@@ -1230,7 +1230,7 @@ class K2ModelItem extends K2Model
         );
         $params = K2HelperUtilities::getParams('com_k2');
 
-        if (isset($jsonObjects) && count($jsonObjects) < 1) {
+        if ($jsonObjects == null || count($jsonObjects) < 1) {
             return null;
         }
 
