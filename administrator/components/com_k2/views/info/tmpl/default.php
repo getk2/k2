@@ -97,7 +97,7 @@ defined('_JEXEC') or die;
 									</tr>
 									<tr>
 										<td><a target="_blank" href="https://github.com/fancyapps/fancybox">fancyBox</a></td>
-										<td>3.5.0</td>
+										<td>3.5.5</td>
 										<td><?php echo JText::_('K2_INFO_RESPONSIVE_LIGHTBOX_DIALOG_SCRIPT'); ?></td>
 										<td>GNU/GPL v3</td>
 									</tr>

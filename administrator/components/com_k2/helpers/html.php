@@ -192,8 +192,8 @@ class K2HelperHTML
 
                 // Fancybox
                 if ($view == 'item' || $view == 'items' || $view == 'categories') {
-                    $document->addStyleSheet('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.0/dist/jquery.fancybox.min.css');
-                    $document->addScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.0/dist/jquery.fancybox.min.js');
+                    $document->addStyleSheet('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.5/dist/jquery.fancybox.min.css');
+                    $document->addScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.5/dist/jquery.fancybox.min.js');
                 }
 
                 // CSS
