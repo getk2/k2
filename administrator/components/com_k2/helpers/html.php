@@ -209,7 +209,7 @@ class K2HelperHTML
             }
 
             // Frontend only
-            if ($application->isSite() && ($option == 'com_k2')) {
+            if ($application->isSite() && $option == 'com_k2') {
                 // Magnific Popup
                 if (!$user->guest || ($option == 'com_k2' && $view == 'item') || defined('K2_JOOMLA_MODAL_REQUIRED')) {
                     $document->addStyleSheet('https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css');
