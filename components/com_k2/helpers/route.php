@@ -31,7 +31,6 @@ class K2HelperRoute
         if (isset(self::$cache['item'][$key])) {
             return self::$cache['item'][$key];
         }
-
         $needles = array(
             'item' => (int)$id,
             'category' => (int)$catid,
@@ -65,7 +64,6 @@ class K2HelperRoute
         if (isset(self::$cache['user'][$key])) {
             return self::$cache['user'][$key];
         }
-
         $needles = array('user' => (int)$userID);
         $user = JFactory::getUser($userID);
         if (K2_JVERSION != '15' && JFactory::getConfig()->get('unicodeslugs') == 1) {
