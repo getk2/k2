@@ -32,6 +32,12 @@ class K2ModelCategory extends K2Model
         $row = JTable::getInstance('K2Category', 'Table');
         $params = JComponentHelper::getParams('com_k2');
 
+        // Plugin Events
+        JPluginHelper::importPlugin('k2');
+        JPluginHelper::importPlugin('content');
+        JPluginHelper::importPlugin('finder');
+        $dispatcher = JDispatcher::getInstance();
+
         if (!$row->bind(JRequest::get('post'))) {
             $application->enqueueMessage($row->getError(), 'error');
             $application->redirect('index.php?option=com_k2&view=categories');
@@ -39,10 +45,17 @@ class K2ModelCategory extends K2Model
 
         $isNew = ($row->id) ? false : true;
 
-        // Trigger the finder before save event
-        JPluginHelper::importPlugin('finder');
-        $dispatcher = JDispatcher::getInstance();
-        $results = $dispatcher->trigger('onFinderBeforeSave', array('com_k2.category', $row, $isNew));
+        // Trigger K2 plugins
+        $result = $dispatcher->trigger('onBeforeK2Save', array(&$row, $isNew));
+
+        if (in_array(false, $result, true)) {
+            JError::raiseError(500, $row->getError());
+            return false;
+        }
+
+        // Trigger content & finder plugins before the save event
+        $dispatcher->trigger('onContentBeforeSave', array('com_k2.category', $row, $isNew));
+        $dispatcher->trigger('onFinderBeforeSave', array('com_k2.category', $row, $isNew));
 
         $row->description = JRequest::getVar('description', '', 'post', 'string', 2);
         if ($params->get('xssFiltering')) {
@@ -118,13 +131,19 @@ class K2ModelCategory extends K2Model
             $application->redirect('index.php?option=com_k2&view=categories');
         }
 
-        // Trigger the finder after save event
-        JPluginHelper::importPlugin('finder');
-        $dispatcher = JDispatcher::getInstance();
-        $results = $dispatcher->trigger('onFinderAfterSave', array('com_k2.category', $row, $isNew));
-
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
+
+        // Trigger K2 plugins
+        $dispatcher->trigger('onAfterK2Save', array(&$row, $isNew));
+
+        // Trigger content & finder plugins after the save event
+        if (K2_JVERSION != '15') {
+            $dispatcher->trigger('onContentAfterSave', array('com_k2.category', &$row, $isNew));
+        } else {
+            $dispatcher->trigger('onAfterContentSave', array(&$row, $isNew));
+        }
+        $results = $dispatcher->trigger('onFinderAfterSave', array('com_k2.category', $row, $isNew));
 
         switch (JRequest::getCmd('task')) {
             case 'apply':
