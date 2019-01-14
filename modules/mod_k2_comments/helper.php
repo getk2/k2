@@ -86,7 +86,7 @@ class modK2CommentsHelper
             $query .= " AND i.language IN ({$languageFilter}) AND category.language IN ({$languageFilter})";
         }
 
-        $query .= " ORDER BY c.commentDate DESC";
+        $query .= " ORDER BY c.id DESC";
 
         $db->setQuery($query, 0, $limit);
         $rows = $db->loadObjectList();
