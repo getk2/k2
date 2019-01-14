@@ -158,7 +158,7 @@ class K2HelperRoute
         $application = JFactory::getApplication();
         $menus = $application->getMenu('site', array());
         if (K2_JVERSION != '15') {
-            $items = $menus->getItems(array('component_id', 'language'), $component->id); // Grab menu items from all languages (/libraries/src/Menu/SiteMenu.php)
+            $items = $menus->getItems(array('component_id', 'language'), array($component->id, null)); // Grab menu items from all languages (/libraries/src/Menu/SiteMenu.php)
         } else {
             $items = $menus->getItems('componentid', $component->id);
         }
