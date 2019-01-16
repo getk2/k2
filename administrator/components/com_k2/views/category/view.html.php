@@ -45,11 +45,11 @@ class K2ViewCategory extends K2View
 			$onSave = $wysiwyg->save('description');
 		}
 		$this->assignRef('onSave', $onSave);
-		
+
 		// JS
         $document->addScriptDeclaration("
         	var K2BasePath = '".JURI::base(true)."/';
-        	
+
 			Joomla.submitbutton = function(pressbutton){
 				if (pressbutton == 'cancel') {
 					submitform(pressbutton);
@@ -78,7 +78,7 @@ class K2ViewCategory extends K2View
         $lists['parent'] = JHTML::_('select.genericlist', $categories, 'parent', 'class="inputbox"', 'value', 'text', $category->parent);
 
         $extraFieldsModel = K2Model::getInstance('ExtraFields', 'K2Model');
-        $groups = $extraFieldsModel->getGroups();
+        $groups = $extraFieldsModel->getGroups(true); // Fetch entire extra field group list
         $group[] = JHTML::_('select.option', '0', JText::_('K2_NONE_ONSELECTLISTS'), 'id', 'name');
         $group = array_merge($group, $groups);
         $lists['extraFieldsGroup'] = JHTML::_('select.genericlist', $group, 'extraFieldsGroup', 'class="inputbox" size="1" ', 'id', 'name', $category->extraFieldsGroup);

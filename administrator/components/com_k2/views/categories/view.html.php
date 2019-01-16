@@ -166,7 +166,7 @@ class K2ViewCategories extends K2View
 
 		// Batch Operations
 		$extraFieldsModel = K2Model::getInstance('ExtraFields', 'K2Model');
-		$extraFieldsGroups = $extraFieldsModel->getGroups();
+		$extraFieldsGroups = $extraFieldsModel->getGroups(true); // Fetch entire extra field group list
 		$options = array();
 		$options[] = JHTML::_('select.option', '', JText::_('K2_LEAVE_UNCHANGED'));
 		$options[] = JHTML::_('select.option', '0', JText::_('K2_NONE_ONSELECTLISTS'));
