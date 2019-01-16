@@ -14,15 +14,15 @@ jimport('joomla.application.component.view');
 
 class K2ViewExtraFields extends K2View
 {
-    function display($tpl = null)
+    public function display($tpl = null)
     {
         $application = JFactory::getApplication();
         $user = JFactory::getUser();
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
 
-		$params = JComponentHelper::getParams('com_k2');
-		$this->assignRef('params', $params);
+        $params = JComponentHelper::getParams('com_k2');
+        $this->assignRef('params', $params);
 
         $limit = $application->getUserStateFromRequest('global.list.limit', 'limit', $application->getCfg('list_limit'), 'int');
         $limitstart = $application->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
@@ -37,25 +37,20 @@ class K2ViewExtraFields extends K2View
 
         $model = $this->getModel();
         $total = $model->getTotal();
-        if ($limitstart > $total - $limit)
-        {
+        if ($limitstart > $total - $limit) {
             $limitstart = max(0, (int)(ceil($total / $limit) - 1) * $limit);
             JRequest::setVar('limitstart', $limitstart);
         }
         $extraFields = $model->getData();
-        foreach ($extraFields as $key => $extraField)
-        {
+        foreach ($extraFields as $key => $extraField) {
             $extraField->status = K2_JVERSION == '15' ? JHTML::_('grid.published', $extraField, $key) : JHtml::_('jgrid.published', $extraField->published, $key);
-			$values = json_decode($extraField->value);
-			if (isset($values[0]->alias) && !empty($values[0]->alias))
-			{
-				$extraField->alias = $values[0]->alias;
-			}
-			else
-			{
-				$filter = JFilterInput::getInstance();
-				$extraField->alias = $filter->clean($extraField->name, 'WORD');
-			}
+            $values = json_decode($extraField->value);
+            if (isset($values[0]->alias) && !empty($values[0]->alias)) {
+                $extraField->alias = $values[0]->alias;
+            } else {
+                $filter = JFilterInput::getInstance();
+                $extraField->alias = $filter->clean($extraField->name, 'WORD');
+            }
         }
         $this->assignRef('rows', $extraFields);
 
@@ -75,8 +70,7 @@ class K2ViewExtraFields extends K2View
         $extraFieldGroups = $model->getGroups(true);
         $groups[] = JHTML::_('select.option', '0', JText::_('K2_SELECT_GROUP'));
 
-        foreach ($extraFieldGroups as $extraFieldGroup)
-        {
+        foreach ($extraFieldGroups as $extraFieldGroup) {
             $groups[] = JHTML::_('select.option', $extraFieldGroup->id, $extraFieldGroup->name);
         }
         $lists['group'] = JHTML::_('select.genericlist', $groups, 'filter_group', '', 'value', 'text', $filter_group);
@@ -91,27 +85,24 @@ class K2ViewExtraFields extends K2View
         $typeOptions[] = JHTML::_('select.option', 'csv', JText::_('K2_CSV_DATA'));
         $typeOptions[] = JHTML::_('select.option', 'labels', JText::_('K2_SEARCHABLE_LABELS'));
         $typeOptions[] = JHTML::_('select.option', 'date', JText::_('K2_DATE'));
-		$typeOptions[] = JHTML::_('select.option', 'image', JText::_('K2_IMAGE'));
-		$typeOptions[] = JHTML::_('select.option', 'header', JText::_('K2_HEADER'));
+        $typeOptions[] = JHTML::_('select.option', 'image', JText::_('K2_IMAGE'));
+        $typeOptions[] = JHTML::_('select.option', 'header', JText::_('K2_HEADER'));
         $lists['type'] = JHTML::_('select.genericlist', $typeOptions, 'filter_type', '', 'value', 'text', $filter_type);
 
         $this->assignRef('lists', $lists);
 
-		// Toolbar
+        // Toolbar
         JToolBarHelper::title(JText::_('K2_EXTRA_FIELDS'), 'k2.png');
 
-		JToolBarHelper::addNew();
-		JToolBarHelper::editList();
+        JToolBarHelper::addNew();
+        JToolBarHelper::editList();
         JToolBarHelper::publishList();
         JToolBarHelper::unpublishList();
         JToolBarHelper::deleteList('K2_ARE_YOU_SURE_YOU_WANT_TO_DELETE_SELECTED_EXTRA_FIELDS', 'remove', 'K2_DELETE');
 
-        if (K2_JVERSION != '15')
-        {
+        if (K2_JVERSION != '15') {
             JToolBarHelper::preferences('com_k2', 580, 800, 'K2_PARAMETERS');
-        }
-        else
-        {
+        } else {
             $toolbar = JToolBar::getInstance('toolbar');
             $toolbar->appendButton('Popup', 'config', 'K2_PARAMETERS', 'index.php?option=com_k2&view=settings', 800, 580);
         }
@@ -123,10 +114,8 @@ class K2ViewExtraFields extends K2View
         $this->assignRef('ordering', $ordering);
 
         // Joomla 3.x drag-n-drop sorting variables
-        if (K2_JVERSION == '30')
-        {
-            if ($ordering)
-            {
+        if (K2_JVERSION == '30') {
+            if ($ordering) {
                 JHtml::_('sortablelist.sortable', 'k2ExtraFieldsList', 'adminForm', strtolower($this->lists['order_Dir']), 'index.php?option=com_k2&view=extrafields&task=saveorder&format=raw');
             }
             $document = JFactory::getDocument();
