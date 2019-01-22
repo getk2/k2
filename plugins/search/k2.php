@@ -117,7 +117,7 @@ class plgSearchK2 extends JPlugin
                 $tagQuery = JString::strtolower($text);
                 $escaped = (K2_JVERSION == '15') ? $db->getEscaped($tagQuery, true) : $db->escape($tagQuery, true);
                 $quoted = $db->Quote('%'.$escaped.'%', false);
-                $query = "SELECT id FROM #__k2_tags WHERE LOWER(name) LIKE ".$quoted." AND published=1";
+                $query = "SELECT id FROM #__k2_tags WHERE published = 1 AND LOWER(name) LIKE ".$quoted;
                 $db->setQuery($query);
                 $tagIDs = (K2_JVERSION == '30') ? $db->loadColumn() : $db->loadResultArray();
                 if (count($tagIDs)) {

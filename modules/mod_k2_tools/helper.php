@@ -282,9 +282,10 @@ class modK2ToolsHelper
             FROM #__k2_tags as tag
             LEFT JOIN #__k2_tags_xref AS xref ON xref.tagID = tag.id
             WHERE xref.itemID IN (".implode(',', $IDs).")
-            AND tag.published = 1";
+            	AND tag.published = 1";
         $db->setQuery($query);
         $rows = $db->loadObjectList();
+
         $cloud = array();
         if (count($rows)) {
             foreach ($rows as $tag) {

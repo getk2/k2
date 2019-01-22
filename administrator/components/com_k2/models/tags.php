@@ -75,7 +75,7 @@ class K2ModelTags extends K2Model
 		$search = JString::strtolower($search);
 		$search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
 
-		$query = "SELECT COUNT(*) FROM #__k2_tags WHERE id>0";
+		$query = "SELECT COUNT(*) FROM #__k2_tags WHERE id > 0";
 
 		if ($filter_state > -1)
 		{

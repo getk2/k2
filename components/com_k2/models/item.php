@@ -882,7 +882,7 @@ class K2ModelItem extends K2Model
                 echo JText::_('K2_THANKS_FOR_RATING');
             } else {
                 if ($userIP != ($rating->lastip)) {
-                    $query = "UPDATE #__k2_rating"." SET rating_count = rating_count + 1, rating_sum = rating_sum + {$rate}, lastip = ".$db->Quote($userIP)." WHERE itemID = {$item->id}";
+                    $query = "UPDATE #__k2_rating SET rating_count = rating_count + 1, rating_sum = rating_sum + {$rate}, lastip = ".$db->Quote($userIP)." WHERE itemID = {$item->id}";
                     $db->setQuery($query);
                     $db->query();
                     echo JText::_('K2_THANKS_FOR_RATING');
@@ -1202,8 +1202,9 @@ class K2ModelItem extends K2Model
         $query = "SELECT tag.*
             FROM #__k2_tags AS tag
             JOIN #__k2_tags_xref AS xref ON tag.id = xref.tagID
-            WHERE tag.published=1
-            AND xref.itemID = ".(int)$itemID." ORDER BY xref.id ASC";
+            WHERE tag.published = 1
+            	AND xref.itemID = ".(int)$itemID."
+            ORDER BY xref.id ASC";
 
         $db->setQuery($query);
         $rows = $db->loadObjectList();

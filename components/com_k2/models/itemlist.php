@@ -644,8 +644,8 @@ class K2ModelItemlist extends K2Model
 
         $query = "SELECT itemID
             FROM #__k2_tags_xref
-            WHERE tagID IN({$sql})
-                AND itemID!={$itemID}
+            WHERE tagID IN ({$sql})
+                AND itemID != {$itemID}
             GROUP BY itemID";
         $db->setQuery($query);
 

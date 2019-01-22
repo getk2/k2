@@ -133,7 +133,7 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
         $db->setQuery($query);
         $db->query();
 
-        $query = "ALTER TABLE #__k2_categories ADD INDEX (`language`)";
+        $query = "ALTER TABLE #__k2_categories ADD INDEX `idx_language` (`language`)";
         $db->setQuery($query);
         $db->query();
     }
@@ -144,12 +144,12 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
     $indexes = $db->loadObjectList();
     $indexExists = false;
     foreach ($indexes as $index) {
-        if ($index->Key_name == 'countComments') {
+        if ($index->Key_name == 'countComments' || $index->Key_name == 'idx_countComments') {
             $indexExists = true;
         }
     }
     if (!$indexExists) {
-        $query = "ALTER TABLE #__k2_comments ADD INDEX `countComments` (`itemID`, `published`)";
+        $query = "ALTER TABLE #__k2_comments ADD INDEX `idx_countComments` (`itemID`, `published`)";
         $db->setQuery($query);
         $db->query();
     }
@@ -158,8 +158,8 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
     $fields = $db->getTableFields('#__k2_users');
     if (!array_key_exists('ip', $fields['#__k2_users'])) {
         $query = "ALTER TABLE `#__k2_users`
-	        ADD `ip` VARCHAR( 15 ) NOT NULL ,
-	        ADD `hostname` VARCHAR( 255 ) NOT NULL ,
+	        ADD `ip` VARCHAR(45) NOT NULL ,
+	        ADD `hostname` VARCHAR(255) NOT NULL ,
 	        ADD `notes` TEXT NOT NULL";
         $db->setQuery($query);
         $db->query();
@@ -184,16 +184,17 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
 			`status` int(11) NOT NULL,
 			`response` text NOT NULL,
 			`timestamp` datetime NOT NULL
-		) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;";
     $db->setQuery($query);
     $db->query();
 
-    // Clean up empty entries in #__k2_users table caused by an issue in the K2 user plugin. Fix details: http://code.google.com/p/getk2/source/detail?r=1966
+    // Clean up empty entries in #__k2_users table caused by an issue in the K2 user plugin
     $query = "DELETE FROM #__k2_users WHERE userID = 0";
     $db->setQuery($query);
     $db->query();
 
     /*
+	// TO DO: Use the following info to remove FULLTEXT attributes from the items & tags tables
     $query = "SHOW INDEX FROM #__k2_items";
     $db->setQuery($query);
     $indexes = $db->loadObjectList();

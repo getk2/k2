@@ -242,7 +242,7 @@ class Com_K2InstallerScript
             $db->setQuery($query);
             $db->query();
 
-            $query = "ALTER TABLE #__k2_categories ADD INDEX (`language`)";
+            $query = "ALTER TABLE #__k2_categories ADD INDEX `idx_language` (`language`)";
             $db->setQuery($query);
             $db->query();
         }
@@ -253,12 +253,12 @@ class Com_K2InstallerScript
         $indexes = $db->loadObjectList();
         $indexExists = false;
         foreach ($indexes as $index) {
-            if ($index->Key_name == 'countComments') {
+            if ($index->Key_name == 'countComments' || $index->Key_name == 'idx_countComments') {
                 $indexExists = true;
             }
         }
         if (!$indexExists) {
-            $query = "ALTER TABLE #__k2_comments ADD INDEX `countComments` (`itemID`, `published`)";
+            $query = "ALTER TABLE #__k2_comments ADD INDEX `idx_countComments` (`itemID`, `published`)";
             $db->setQuery($query);
             $db->query();
         }
@@ -267,9 +267,9 @@ class Com_K2InstallerScript
         $fields = $db->getTableColumns('#__k2_users');
         if (!array_key_exists('ip', $fields)) {
             $query = "ALTER TABLE `#__k2_users`
-            ADD `ip` VARCHAR( 15 ) NOT NULL ,
-            ADD `hostname` VARCHAR( 255 ) NOT NULL ,
-            ADD `notes` TEXT NOT NULL";
+	            ADD `ip` VARCHAR(45) NOT NULL ,
+	            ADD `hostname` VARCHAR(255) NOT NULL ,
+	            ADD `notes` TEXT NOT NULL";
             $db->setQuery($query);
             $db->query();
         }
@@ -291,10 +291,10 @@ class Com_K2InstallerScript
 
         // Log for updates
         $query = "CREATE TABLE IF NOT EXISTS `#__k2_log` (
-	        `status` int(11) NOT NULL,
-	        `response` text NOT NULL,
-	        `timestamp` datetime NOT NULL
-	        ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+		        `status` int(11) NOT NULL,
+		        `response` text NOT NULL,
+		        `timestamp` datetime NOT NULL
+	        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;";
         $db->setQuery($query);
         $db->query();
 
