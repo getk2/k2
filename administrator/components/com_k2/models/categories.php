@@ -580,7 +580,7 @@ class K2ModelCategories extends K2Model
     {
         $db = JFactory::getDbo();
         if (isset($row->id)) {
-            $idCheck = ' AND id != '.( int )$row->id;
+            $idCheck = ' AND id != '.(int) $row->id;
         } else {
             $idCheck = null;
         }
@@ -593,11 +593,11 @@ class K2ModelCategories extends K2Model
         $query = "SELECT m.* FROM #__k2_categories m WHERE id > 0 {$idCheck}";
 
         if ($hideUnpublished) {
-            $query .= " AND published=1 ";
+            $query .= " AND published = 1";
         }
 
         if ($hideTrashed) {
-            $query .= " AND trash=0 ";
+            $query .= " AND trash = 0";
         }
 
         $query .= " ORDER BY parent, ordering";
@@ -607,7 +607,11 @@ class K2ModelCategories extends K2Model
         if ($mitems) {
             foreach ($mitems as $v) {
                 if (K2_JVERSION != '15') {
-                    $v->title = $v->name;
+                    if ($v->language != '*') {
+                        $v->title = $v->name.' ['.$v->language.']';
+                    } else {
+                        $v->title = $v->name;
+                    }
                     $v->parent_id = $v->parent;
                 }
                 $pt = $v->parent;
