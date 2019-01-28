@@ -190,7 +190,7 @@ class K2ModelItem extends K2Model
             $filterAttrs = preg_split('#[,\s]+#', trim($params->get('introTextCleanupTagAttr')));
             $filterAttrs = array_filter($filterAttrs);
             $item->introtext = K2HelperUtilities::cleanTags($item->introtext, $filterTags);
-            if (count($filterAttrs)) {
+            if (isset($filterAttrs) && count($filterAttrs)) {
                 $item->introtext = K2HelperUtilities::cleanAttributes($item->introtext, $filterTags, $filterAttrs);
             }
         }
@@ -200,7 +200,7 @@ class K2ModelItem extends K2Model
             $filterAttrs = preg_split('#[,\s]+#', trim($params->get('fullTextCleanupTagAttr')));
             $filterAttrs = array_filter($filterAttrs);
             $item->fulltext = K2HelperUtilities::cleanTags($item->fulltext, $filterTags);
-            if (count($filterAttrs)) {
+            if (isset($filterAttrs) && count($filterAttrs)) {
                 $item->fulltext = K2HelperUtilities::cleanAttributes($item->fulltext, $filterTags, $filterAttrs);
             }
         }
@@ -309,7 +309,7 @@ class K2ModelItem extends K2Model
         // Item Tags
         if ($params->get('feedItemTags')) {
             $tags = $this->getItemTags($item->id);
-            if (count($tags)) {
+            if (isset($tags) && count($tags)) {
                 $item->description .= '<div class="K2FeedTags"><ul>';
                 foreach ($tags as $tag) {
                     $item->description .= '<li>'.$tag->name.'</li>';
@@ -385,7 +385,7 @@ class K2ModelItem extends K2Model
         // Item attachments
         if ($params->get('feedItemAttachments')) {
             $attachments = $this->getItemAttachments($item->id);
-            if (count($attachments)) {
+            if (isset($attachments) && count($attachments)) {
                 $item->description .= '<div class="K2FeedAttachments"><ul>';
                 foreach ($attachments as $attachment) {
                     $item->description .= '<li><a title="'.htmlentities($attachment->titleAttribute, ENT_QUOTES, 'UTF-8').'" href="'.$attachment->link.'">'.$attachment->title.'</a></li>';
@@ -794,7 +794,7 @@ class K2ModelItem extends K2Model
 
         // Extra fields plugins
         if (($view == 'item' && $item->params->get('itemExtraFields')) || ($view == 'itemlist' && ($task == '' || $task == 'category') && $item->params->get('catItemExtraFields')) || ($view == 'itemlist' && $task == 'tag' && $item->params->get('tagItemExtraFields')) || ($view == 'itemlist' && ($task == 'search' || $task == 'date') && $item->params->get('genericItemExtraFields'))) {
-            if (isset($item->extra_fields) && is_array($item->extra_fields) && count($item->extra_fields)) {
+            if (isset($item->extra_fields) && count($item->extra_fields)) {
                 foreach ($item->extra_fields as $key => $extraField) {
                     if ($extraField->type == 'textarea' || $extraField->type == 'textfield') {
                         // Create temp object to parse plugins
@@ -1305,7 +1305,7 @@ class K2ModelItem extends K2Model
                         $value = @implode(', ', $values);
                     } elseif ($rows[$i]->type == 'csv') {
                         $array = $object->value;
-                        if (count($array)) {
+                        if (isset($array) && count($array)) {
                             $value .= '<table cellspacing="0" cellpadding="0" class="csvTable">';
                             foreach ($array as $key => $row) {
                                 $value .= '<tr>';

@@ -102,7 +102,7 @@ class modK2UserHelper
                 $item->level = $item->sublevel;
                 switch ($item->type) {
                     case 'separator':
-                        continue;
+                        continue 2;
                         break;
                     case 'url':
                         if ((strpos($item->link, 'index.php?') === 0) && (strpos($item->link, 'Itemid=') === false)) {
@@ -130,7 +130,7 @@ class modK2UserHelper
                 $item->flink = $item->link;
                 switch ($item->type) {
                     case 'separator':
-                        continue;
+                        continue 2;
                     case 'url':
                         if ((strpos($item->link, 'index.php?') === 0) && (strpos($item->link, 'Itemid=') === false)) {
                             $item->flink = $item->link.'&Itemid='.$item->id;
