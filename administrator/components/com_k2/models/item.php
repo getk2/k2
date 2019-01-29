@@ -58,7 +58,7 @@ class K2ModelItem extends K2Model
 
         $isNew = ($row->id) ? false : true;
 
-        // If we are in front-end and the item is not new we need to get it's current published state.
+        // If we are in the frontend and the item is not new, we need to get it's current published state
         if (!$isNew && $front) {
             $id = JRequest::getInt('id');
             $currentRow = JTable::getInstance('K2Item', 'Table');
@@ -102,7 +102,7 @@ class K2ModelItem extends K2Model
             }
         }
 
-        $row->created_by = $row->created_by ? $row->created_by : $user->get('id');
+        $row->created_by = ($row->created_by) ? $row->created_by : $user->get('id');
 
         if ($front) {
             $K2Permissions = K2Permissions::getInstance();
@@ -125,7 +125,7 @@ class K2ModelItem extends K2Model
         }
 
         $date = JFactory::getDate($row->publish_up, $tzoffset);
-        $row->publish_up = K2_JVERSION == '15' ? $date->toMySQL() : $date->toSql();
+        $row->publish_up = (K2_JVERSION == '15') ? $date->toMySQL() : $date->toSql();
 
         if (trim($row->publish_down) == JText::_('K2_NEVER') || trim($row->publish_down) == '') {
             $row->publish_down = $nullDate;
@@ -726,21 +726,21 @@ class K2ModelItem extends K2Model
 
         // Check publishing permissions in frontend editing
         if ($front) {
-            // "Publish items" permission check
-            if ($isNew && !K2HelperPermissions::canPublishItem($row->catid)) {
-                $row->published = 0;
-                $row->featured = 0;
-                $application->enqueueMessage(JText::_('K2_YOU_DONT_HAVE_THE_PERMISSION_TO_PUBLISH_ITEMS'), 'notice');
-            }
+            $newPublishedState = $row->published;
+            $row->published = 0;
 
             // "Allow editing of already published items" permission check
-            if (!$isNew && $published && !K2HelperPermissions::canEditPublished($row->catid)) {
-                $row->published = 0;
-                $row->featured = 0;
-                $application->enqueueMessage(JText::_('K2_YOU_DONT_HAVE_THE_PERMISSION_TO_PUBLISH_ITEMS'), 'notice');
-            } else {
+            if (!$isNew && K2HelperPermissions::canEditPublished($row->catid)) {
                 $row->published = $published;
-                $row->featured = $featured;
+            }
+
+            // "Publish items" permission check
+            if (K2HelperPermissions::canPublishItem($row->catid)) {
+                $row->published = $newPublishedState;
+            }
+            
+            if (!K2HelperPermissions::canEditPublished($row->catid) && !K2HelperPermissions::canPublishItem($row->catid) && $newPublishedState) {
+                $application->enqueueMessage(JText::_('K2_YOU_DONT_HAVE_THE_PERMISSION_TO_PUBLISH_ITEMS'), 'notice');
             }
         }
 

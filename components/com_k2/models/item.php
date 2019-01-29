@@ -1203,7 +1203,7 @@ class K2ModelItem extends K2Model
             FROM #__k2_tags AS tag
             JOIN #__k2_tags_xref AS xref ON tag.id = xref.tagID
             WHERE tag.published = 1
-            	AND xref.itemID = ".(int)$itemID."
+                AND xref.itemID = ".(int)$itemID."
             ORDER BY xref.id ASC";
 
         $db->setQuery($query);
@@ -1496,39 +1496,117 @@ class K2ModelItem extends K2Model
         $application->close();
     }
 
-    public function getPreviousItem($id, $catid, $ordering)
+    public function getAdjacentItem($id, $catid, $ordering, $direction)
     {
         $application = JFactory::getApplication();
         $user = JFactory::getUser();
-        $id = (int)$id;
-        $catid = (int)$catid;
-        $ordering = (int)$ordering;
-        $db = JFactory::getDbo();
 
+        $id = (int) $id;
+        $catid = (int) $catid;
+        $ordering = (int) $ordering;
+
+        $db = JFactory::getDbo();
         $jnow = JFactory::getDate();
         $now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
         $nullDate = $db->getNullDate();
 
         if (K2_JVERSION != '15') {
-            $accessCondition = ' AND access IN('.implode(',', $user->getAuthorisedViewLevels()).')';
+            $accessCondition = 'AND access IN ('.implode(',', $user->getAuthorisedViewLevels()).')';
         } else {
-            $accessCondition = ' AND access <= '.$user->aid;
-            ;
+            $accessCondition = 'AND access <= '.$user->aid;
         }
 
         $languageCondition = '';
         if (K2_JVERSION != '15') {
             if ($application->getLanguageFilter()) {
-                $languageCondition = "AND language IN (".$db->quote(JFactory::getLanguage()->getTag()).",".$db->quote('*').")";
+                $languageCondition = "AND language IN (".$db->quote(JFactory::getLanguage()->getTag()).", ".$db->quote('*').")";
+            }
+        }
+
+        if ($direction == 'prev') {
+            $dirOperand = '<';
+            $dirSorting = 'DESC';
+        } else {
+            $dirOperand = '>';
+            $dirSorting = 'ASC';
+        }
+
+        if ($ordering == "0") {
+            $orderCondition = "AND id {$dirOperand} {$id}";
+        } else {
+            $orderCondition = "AND id != {$id} AND ordering {$dirOperand} {$ordering}";
+        }
+
+        $query = "SELECT *
+            FROM #__k2_items
+            WHERE catid = {$catid}
+                AND published = 1
+                AND trash = 0
+                {$orderCondition}
+                AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now).")
+                AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now).")
+                {$accessCondition}
+                {$languageCondition}
+            ORDER BY ordering {$dirSorting}";
+
+        $db->setQuery($query, 0, 1);
+        $row = $db->loadObject();
+        return $row;
+    }
+
+    public function getPreviousItem($id, $catid, $ordering)
+    {
+        $application = JFactory::getApplication();
+        $user = JFactory::getUser();
+
+        $id = (int) $id;
+        $catid = (int) $catid;
+        $ordering = (int) $ordering;
+
+        $db = JFactory::getDbo();
+        $jnow = JFactory::getDate();
+        $now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
+        $nullDate = $db->getNullDate();
+
+        if (K2_JVERSION != '15') {
+            $accessCondition = 'AND access IN ('.implode(',', $user->getAuthorisedViewLevels()).')';
+        } else {
+            $accessCondition = 'AND access <= '.$user->aid;
+        }
+
+        $languageCondition = '';
+        if (K2_JVERSION != '15') {
+            if ($application->getLanguageFilter()) {
+                $languageCondition = "AND language IN (".$db->quote(JFactory::getLanguage()->getTag()).", ".$db->quote('*').")";
             }
         }
 
         if ($ordering == "0") {
-            $query = "SELECT * FROM #__k2_items WHERE id < {$id} AND catid={$catid} AND published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) {$accessCondition} AND trash=0 {$languageCondition} ORDER BY ordering DESC";
+            $query = "SELECT *
+                FROM #__k2_items
+                WHERE id < {$id}
+                    AND catid = {$catid}
+                    AND published = 1
+                    AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now).")
+                    AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now).")
+                    {$accessCondition}
+                    AND trash = 0
+                    {$languageCondition}
+                ORDER BY ordering DESC";
         } else {
-            $query = "SELECT * FROM #__k2_items WHERE id != {$id} AND catid={$catid} AND ordering < {$ordering} AND published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) {$accessCondition} AND trash=0 {$languageCondition} ORDER BY ordering DESC";
+            $query = "SELECT *
+                FROM #__k2_items
+                WHERE id != {$id}
+                    AND catid = {$catid}
+                    AND ordering < {$ordering}
+                    AND published = 1
+                    AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now).")
+                    AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now).")
+                    {$accessCondition}
+                    AND trash = 0
+                    {$languageCondition}
+                ORDER BY ordering DESC";
         }
-
         $db->setQuery($query, 0, 1);
         $row = $db->loadObject();
         return $row;
@@ -1538,33 +1616,54 @@ class K2ModelItem extends K2Model
     {
         $application = JFactory::getApplication();
         $user = JFactory::getUser();
-        $id = (int)$id;
-        $catid = (int)$catid;
-        $ordering = (int)$ordering;
-        $db = JFactory::getDbo();
 
+        $id = (int) $id;
+        $catid = (int) $catid;
+        $ordering = (int) $ordering;
+
+        $db = JFactory::getDbo();
         $jnow = JFactory::getDate();
         $now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
         $nullDate = $db->getNullDate();
 
         if (K2_JVERSION != '15') {
-            $accessCondition = ' AND access IN('.implode(',', $user->getAuthorisedViewLevels()).')';
+            $accessCondition = 'AND access IN ('.implode(',', $user->getAuthorisedViewLevels()).')';
         } else {
-            $accessCondition = ' AND access <= '.$user->aid;
-            ;
+            $accessCondition = 'AND access <= '.$user->aid;
         }
 
         $languageCondition = '';
         if (K2_JVERSION != '15') {
             if ($application->getLanguageFilter()) {
-                $languageCondition = "AND language IN (".$db->quote(JFactory::getLanguage()->getTag()).",".$db->quote('*').")";
+                $languageCondition = "AND language IN (".$db->quote(JFactory::getLanguage()->getTag()).", ".$db->quote('*').")";
             }
         }
 
         if ($ordering == "0") {
-            $query = "SELECT * FROM #__k2_items WHERE id > {$id} AND catid={$catid} AND published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) {$accessCondition} AND trash=0 {$languageCondition} ORDER BY ordering ASC";
+            $query = "SELECT *
+                FROM #__k2_items
+                WHERE id > {$id}
+                    AND catid = {$catid}
+                    AND published = 1
+                    AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now).")
+                    AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now).")
+                    {$accessCondition}
+                    AND trash = 0
+                    {$languageCondition}
+                ORDER BY ordering ASC";
         } else {
-            $query = "SELECT * FROM #__k2_items WHERE id != {$id} AND catid={$catid} AND ordering > {$ordering} AND published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) {$accessCondition} AND trash=0 {$languageCondition} ORDER BY ordering ASC";
+            $query = "SELECT *
+                FROM #__k2_items
+                WHERE id != {$id}
+                    AND catid = {$catid}
+                    AND ordering > {$ordering}
+                    AND published = 1
+                    AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now).")
+                    AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now).")
+                    {$accessCondition}
+                    AND trash = 0
+                    {$languageCondition}
+                ORDER BY ordering ASC";
         }
         $db->setQuery($query, 0, 1);
         $row = $db->loadObject();
