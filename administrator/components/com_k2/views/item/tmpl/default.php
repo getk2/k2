@@ -743,7 +743,7 @@ defined('_JEXEC') or die;
                 <!-- Tab attachements -->
                 <div class="k2TabsContent k2TabsContentLower" id="k2TabAttachments">
                     <div class="itemAttachments table-responsive">
-                        <?php if (count($this->row->attachments)): ?>
+                        <?php if ($this->row->attachments && count($this->row->attachments)): ?>
                         <table class="itemAttachmentsTable">
                             <tr>
                                 <th>
