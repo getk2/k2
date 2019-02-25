@@ -513,6 +513,35 @@ class K2ViewItem extends K2View
                 '".JText::_('K2_YOU_ARE_NOT_ALLOWED_TO_POST_TO_THIS_CATEGORY', true)."',
                 '".JText::_('K2_OR_SELECT_A_FILE_ON_THE_SERVER', true)."'
             ];
+            
+            // Add hover/Get close
+			\$K2(function(){
+    			\$K2('#toolbar-save').hover(
+        		function(){ $(this).addClass('active') },
+        		function(){ $(this).removeClass('active') }
+				)
+				if (localStorage.getItem('save')) {
+					var k2ItemId = \$K2('input[name=id]').val();
+					var sigProFolder = \$K2('input[name=sigProFolder]').val();	
+            		\$K2.ajax({
+            			type: 'get',
+                		cache: false,
+                		url: K2SitePath + 'index.php?option=com_k2&view=item&task=checkin&cid=' +  k2ItemId + '&lang=' + \$K2('input[name=lang]').val()  + '&sigProFolder=' + sigProFolder,
+                		success: function() {
+							localStorage.removeItem('save');
+                		// Close modal
+                    		if (typeof(parent.\$K2.magnificPopup) !== 'undefined') {
+                    			parent.window.location.reload();
+                        		parent.\$K2.magnificPopup.close();
+                        		}
+                		// Close window/tab
+                    			if (top == self) {
+                     				window.close();
+                			}
+               			}
+         			});
+				}
+			});
 
             Joomla.submitbutton = function(pressbutton){
                 if (pressbutton == 'cancel') {
@@ -521,17 +550,30 @@ class K2ViewItem extends K2View
                 }
                 if (\$K2.trim(\$K2('#title').val()) == '') {
                     alert( '".JText::_('K2_ITEM_MUST_HAVE_A_TITLE', true)."' );
-                } else if (\$K2.trim(\$K2('#catid').val()) == '0') {
-                    alert( '".JText::_('K2_PLEASE_SELECT_A_CATEGORY', true)."' );
-                } else {
-                    syncExtraFieldsEditor();
-                    var validation = validateExtraFields();
-                    if(validation === true) {
-                        \$K2('#selectedTags option').attr('selected', 'selected');
-                        submitform( pressbutton );
-                    }
-                }
-            };
+                } 
+                if (\$K2.trim(\$K2('#catid').val()) == '0') {
+					alert( '".JText::_('K2_PLEASE_SELECT_A_CATEGORY', true)."' );
+				// Add Active
+				}
+				else if (\$K2('#toolbar-save').hasClass('active')) {
+					syncExtraFieldsEditor();
+					var validation = validateExtraFields();
+					if(validation === true) {
+						\$K2('#selectedTags option').attr('selected', 'selected');
+						submitform( pressbutton );
+					}			
+				}
+				else {
+					syncExtraFieldsEditor();
+					var validation = validateExtraFields();
+					if(validation === true) {
+						\$K2('#selectedTags option').attr('selected', 'selected');
+						// Set close
+						localStorage.setItem('save', 'itemsaved');
+						submitform( pressbutton );
+					}
+				}
+			};
 
             /* Tab offset */
             var K2ActiveMediaTab = ".$options['startOffset'].";
