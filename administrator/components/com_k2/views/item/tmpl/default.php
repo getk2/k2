@@ -29,6 +29,12 @@ defined('_JEXEC') or die;
                         <i class="fa fa-times-circle" aria-hidden="true"></i> <?php echo JText::_('K2_CLOSE'); ?>
                     </a>
                 </td>
+                <!-- Add Save & Close -->
+				<td id="toolbar-action" class="button">
+					<a href="#" onclick="Joomla.submitbutton('save');return false;">
+						<i class="fa fa-bullseye" aria-hidden="true"></i> Save & Close
+					</a>
+				</td>
             </tr>
         </table>
     </div>
