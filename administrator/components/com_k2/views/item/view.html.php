@@ -564,7 +564,7 @@ class K2ViewItem extends K2View
             $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2');
             $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/default');
 
-            $theme = $params->get('theme');
+            $theme = (isset($this->frontendTheme)) ? $this->frontendTheme : $params->get('theme');
             if ($theme) {
                 $this->_addPath('template', JPATH_COMPONENT.'/templates/'.$theme);
                 $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/'.$theme);

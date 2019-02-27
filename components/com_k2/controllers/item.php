@@ -49,18 +49,18 @@ class K2ControllerItem extends K2Controller
                 $itemListModel = K2Model::getInstance('Itemlist', 'K2Model');
                 $profile = $itemListModel->getUserProfile($user->id);
                 $script = "
-					\$K2(document).ready(function() {
-						\$K2('#userName').val(".json_encode($user->name).").attr('disabled', 'disabled');
-						\$K2('#commentEmail').val('".$user->email."').attr('disabled', 'disabled');
-				";
+                    \$K2(document).ready(function() {
+                        \$K2('#userName').val(".json_encode($user->name).").attr('disabled', 'disabled');
+                        \$K2('#commentEmail').val('".$user->email."').attr('disabled', 'disabled');
+                ";
                 if (is_object($profile) && $profile->url) {
                     $script .= "
-						\$K2('#commentURL').val('".htmlspecialchars($profile->url, ENT_QUOTES, 'UTF-8')."').attr('disabled', 'disabled');
-					";
+                        \$K2('#commentURL').val('".htmlspecialchars($profile->url, ENT_QUOTES, 'UTF-8')."').attr('disabled', 'disabled');
+                    ";
                 }
                 $script .= "
-					});
-				";
+                    });
+                ";
                 $document->addScriptDeclaration($script);
             }
         }
@@ -89,9 +89,10 @@ class K2ControllerItem extends K2Controller
         $document->addStyleSheet(JURI::root(true).'/templates/system/css/general.css');
         $document->addStyleSheet(JURI::root(true).'/templates/system/css/system.css');
 
-        $this->addViewPath(JPATH_COMPONENT_ADMINISTRATOR.'/views');
         $this->addModelPath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
+        $this->addViewPath(JPATH_COMPONENT_ADMINISTRATOR.'/views');
         $view = $this->getView('item', 'html');
+        $view->frontendTheme = $params->get('theme');
         $view->setLayout('itemform');
 
         if ($params->get('category')) {
