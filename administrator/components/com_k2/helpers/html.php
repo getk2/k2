@@ -59,11 +59,14 @@ class K2HelperHTML
         $jQueryHandling = $params->get('jQueryHandling', '1.9.1');
 
         if ($document->getType() == 'html') {
+            // JS framework loading
+            if (version_compare(JVERSION, '1.6.0', 'lt')) {
+                JHTML::_('behavior.mootools');
+            }
+
             if ($loadFramework && $view != 'media') {
                 if (version_compare(JVERSION, '1.6.0', 'ge')) {
                     JHtml::_('behavior.framework');
-                } else {
-                    JHTML::_('behavior.mootools');
                 }
             }
 
