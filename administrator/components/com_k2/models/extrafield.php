@@ -208,7 +208,7 @@ class K2ModelExtraField extends K2Model
 
         if (isset($item)) {
             $currentValues = json_decode($item->extra_fields);
-            if (count($currentValues)) {
+            if ($currentValues && count($currentValues)) {
                 foreach ($currentValues as $value) {
                     if ($value->id == $extraField->id) {
                         if ($extraField->type == 'textarea') {
