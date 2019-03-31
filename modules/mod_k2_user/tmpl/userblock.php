@@ -55,7 +55,7 @@ defined('_JEXEC') or die;
             <?php elseif (strpos($link->link,'option=com_k2&view=item&layout=itemform') || $link->browserNav==2): ?>
             <a data-k2-modal="edit" href="<?php echo $link->route; ?>"><?php echo $link->name; ?></a>
             <?php else: ?>
-            <a href="<?php echo $link->route; ?>"<?php if ($link->browserNav==1) echo ' target="_blank"'; ?>><?php echo $link->name; ?></a>
+            <a href="<?php echo $link->route; ?>" <?php if ($link->browserNav==1) echo ' target="_blank"'; ?>><?php echo $link->name; ?></a>
             <?php endif; ?>
 
             <?php if (isset($menu[$key+1]) && $menu[$key]->level < $menu[$key+1]->level): ?>
@@ -66,7 +66,7 @@ defined('_JEXEC') or die;
             <?php echo str_repeat('</li></ul>', $menu[$key]->level - $menu[$key+1]->level); ?>
             <?php endif; ?>
 
-            <?php if (isset($menu[$key+1]) && $menu[$key]->level == $menu[$key+1]->level): ?>
+        <?php if (isset($menu[$key+1]) && $menu[$key]->level == $menu[$key+1]->level): ?>
         </li>
         <?php endif; ?>
         <?php endforeach; ?>

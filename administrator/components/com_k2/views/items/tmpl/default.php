@@ -56,7 +56,7 @@ $context = JRequest::getCmd('context');
                 <?php echo $this->lists['language']; ?>
                 <?php endif; ?>
 
-                <?php foreach($this->filters as $filter):?>
+                <?php foreach($this->filters as $filter): ?>
                 <?php echo $filter; ?>
                 <?php endforeach; ?>
             </td>
@@ -133,7 +133,7 @@ $context = JRequest::getCmd('context');
                         <th class="hidden-phone center">
                             <?php echo JHTML::_('grid.sort', 'K2_ID', 'i.id', @$this->lists['order_Dir'], @$this->lists['order']); ?>
                         </th>
-                        <?php foreach($this->columns as $column):?>
+                        <?php foreach($this->columns as $column): ?>
                         <th>
                             <?php echo JHTML::_('grid.sort', $column->label, $column->property, @$this->lists['order_Dir'], @$this->lists['order']); ?>
                         </th>
@@ -251,7 +251,7 @@ $context = JRequest::getCmd('context');
                         <td class="center hidden-phone"><?php echo $row->language; ?></td>
                         <?php endif; ?>
                         <td class="center hidden-phone"><?php echo $row->id; ?></td>
-                        <?php foreach($this->columns as $column):?>
+                        <?php foreach($this->columns as $column): ?>
                         <td<?php if($column->class) echo ' class="'.$column->class.'"'; ?>>
                             <?php $property = $column->property; echo $row->$property; ?>
                         </td>

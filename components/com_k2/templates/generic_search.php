@@ -14,8 +14,8 @@ defined('_JEXEC') or die;
 
 <?php if(isset($this->items) && count($this->items)): ?>
 <ul class="liveSearchResults">
-	<?php foreach($this->items as $item): ?>
-	<li><a href="<?php echo $item->link; ?>"><?php echo $item->title; ?></a></li>
-	<?php endforeach; ?>
+    <?php foreach($this->items as $item): ?>
+    <li><a href="<?php echo $item->link; ?>"><?php echo $item->title; ?></a></li>
+    <?php endforeach; ?>
 </ul>
 <?php endif; ?>

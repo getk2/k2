@@ -17,7 +17,6 @@ defined('_JEXEC') or die;
     <ul>
         <?php foreach ($commenters as $key=>$commenter): ?>
         <li class="<?php echo ($key%2) ? "odd" : "even"; if(count($commenters)==$key+1) echo ' lastItem'; ?>">
-
             <?php if($commenter->userImage): ?>
             <a class="k2Avatar tcAvatar" rel="author" href="<?php echo $commenter->link; ?>">
                 <img src="<?php echo $commenter->userImage; ?>" alt="<?php echo JFilterOutput::cleanText($commenter->userName); ?>" style="width:<?php echo $tcAvatarWidth; ?>px;height:auto;" />
@@ -27,13 +26,11 @@ defined('_JEXEC') or die;
             <?php if($params->get('commenterLink')): ?>
             <a class="tcLink" rel="author" href="<?php echo $commenter->link; ?>">
             <?php endif; ?>
+                <span class="tcUsername"><?php echo $commenter->userName; ?></span>
 
-            <span class="tcUsername"><?php echo $commenter->userName; ?></span>
-
-            <?php if($params->get('commenterCommentsCounter')): ?>
-            <span class="tcCommentsCounter">(<?php echo $commenter->counter; ?>)</span>
-            <?php endif; ?>
-
+                <?php if($params->get('commenterCommentsCounter')): ?>
+                <span class="tcCommentsCounter">(<?php echo $commenter->counter; ?>)</span>
+                <?php endif; ?>
             <?php if($params->get('commenterLink')): ?>
             </a>
             <?php endif; ?>

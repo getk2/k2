@@ -129,7 +129,7 @@ $context = JRequest::getCmd('context');
                         <?php if(K2_JVERSION == '30'): ?>
                         <td class="order center hidden-phone">
                             <?php if($row->canChange): ?>
-                            <span class="sortable-handler <?php echo ($this->ordering) ? '' : 'inactive tip-top' ;?>" title="<?php echo ($this->ordering) ? '' :JText::_('JORDERINGDISABLED');?>" rel="tooltip"><i class="icon-menu"></i></span>
+                            <span class="sortable-handler <?php echo ($this->ordering) ? '' : 'inactive tip-top' ;?>" title="<?php echo ($this->ordering) ? '' :JText::_('JORDERINGDISABLED'); ?>" rel="tooltip"><i class="icon-menu"></i></span>
                             <input type="text" style="display:none"  name="order[]" size="5" value="<?php echo $row->ordering;?>" class="width-20 text-area-order " />
                             <?php else: ?>
                             <span class="sortable-handler inactive" ><i class="icon-menu"></i></span>

@@ -16,9 +16,7 @@ $user = JFactory::getUser();
 ?>
 
 <!-- Start K2 User Layout -->
-
 <div id="k2Container" class="userView<?php if($this->params->get('pageclass_sfx')) echo ' '.$this->params->get('pageclass_sfx'); ?>">
-
     <?php if($this->params->get('show_page_title') && $this->params->get('page_title')!=$this->user->name): ?>
     <!-- Page title -->
     <div class="componentheading<?php echo $this->params->get('pageclass_sfx')?>">
@@ -38,7 +36,6 @@ $user = JFactory::getUser();
 
     <?php if ($this->params->get('userImage') || $this->params->get('userName') || $this->params->get('userDescription') || $this->params->get('userURL') || $this->params->get('userEmail')): ?>
     <div class="userBlock">
-
         <?php if(isset($this->addLink) && JRequest::getInt('id')==$user->id): ?>
         <!-- Item add link -->
         <span class="userItemAddLink">
@@ -88,10 +85,8 @@ $user = JFactory::getUser();
     <!-- Item list -->
     <div class="userItemList">
         <?php foreach ($this->items as $item): ?>
-
         <!-- Start K2 Item Layout -->
         <div class="userItemView<?php if(!$item->published || ($item->publish_up != $this->nullDate && $item->publish_up > $this->now) || ($item->publish_down != $this->nullDate && $item->publish_down < $this->now)) echo ' userItemViewUnpublished'; ?><?php echo ($item->featured) ? ' userItemIsFeatured' : ''; ?>">
-
             <!-- Plugins: BeforeDisplay -->
             <?php echo $item->event->BeforeDisplay; ?>
 
@@ -106,9 +101,9 @@ $user = JFactory::getUser();
                 </span>
                 <?php endif; ?>
 
-              <?php if($this->params->get('userItemTitle')): ?>
-              <!-- Item title -->
-              <h3 class="userItemTitle">
+                <?php if($this->params->get('userItemTitle')): ?>
+                <!-- Item title -->
+                <h3 class="userItemTitle">
                     <?php if(isset($item->editLink)): ?>
                     <!-- Item edit link -->
                     <span class="userItemEditLink">
@@ -118,71 +113,69 @@ $user = JFactory::getUser();
                     </span>
                     <?php endif; ?>
 
-                <?php if ($this->params->get('userItemTitleLinked') && $item->published): ?>
+                    <?php if ($this->params->get('userItemTitleLinked') && $item->published): ?>
                     <a href="<?php echo $item->link; ?>">
-                    <?php echo $item->title; ?>
-                </a>
-                <?php else: ?>
-                <?php echo $item->title; ?>
-                <?php endif; ?>
-                <?php if(!$item->published || ($item->publish_up != $this->nullDate && $item->publish_up > $this->now) || ($item->publish_down != $this->nullDate && $item->publish_down < $this->now)): ?>
-                <span>
-                    <sup>
-                        <?php echo JText::_('K2_UNPUBLISHED'); ?>
-                    </sup>
-                </span>
-                <?php endif; ?>
-              </h3>
-              <?php endif; ?>
-          </div>
-
-          <!-- Plugins: AfterDisplayTitle -->
-          <?php echo $item->event->AfterDisplayTitle; ?>
-
-          <!-- K2 Plugins: K2AfterDisplayTitle -->
-          <?php echo $item->event->K2AfterDisplayTitle; ?>
-
-          <div class="userItemBody">
-
-              <!-- Plugins: BeforeDisplayContent -->
-              <?php echo $item->event->BeforeDisplayContent; ?>
-
-              <!-- K2 Plugins: K2BeforeDisplayContent -->
-              <?php echo $item->event->K2BeforeDisplayContent; ?>
-
-              <?php if($this->params->get('userItemImage') && !empty($item->imageGeneric)): ?>
-              <!-- Item Image -->
-              <div class="userItemImageBlock">
-                  <span class="userItemImage">
-                    <a href="<?php echo $item->link; ?>" title="<?php if(!empty($item->image_caption)) echo K2HelperUtilities::cleanHtml($item->image_caption); else echo K2HelperUtilities::cleanHtml($item->title); ?>">
-                        <img src="<?php echo $item->imageGeneric; ?>" alt="<?php if(!empty($item->image_caption)) echo K2HelperUtilities::cleanHtml($item->image_caption); else echo K2HelperUtilities::cleanHtml($item->title); ?>" style="width:<?php echo $this->params->get('itemImageGeneric'); ?>px; height:auto;" />
+                        <?php echo $item->title; ?>
                     </a>
-                  </span>
-                  <div class="clr"></div>
-              </div>
-              <?php endif; ?>
+                    <?php else: ?>
+                    <?php echo $item->title; ?>
+                    <?php endif; ?>
+                    <?php if(!$item->published || ($item->publish_up != $this->nullDate && $item->publish_up > $this->now) || ($item->publish_down != $this->nullDate && $item->publish_down < $this->now)): ?>
+                    <span>
+                        <sup>
+                            <?php echo JText::_('K2_UNPUBLISHED'); ?>
+                        </sup>
+                    </span>
+                    <?php endif; ?>
+                </h3>
+                <?php endif; ?>
+            </div>
 
-              <?php if($this->params->get('userItemIntroText')): ?>
-              <!-- Item introtext -->
-              <div class="userItemIntroText">
-                <?php echo $item->introtext; ?>
-              </div>
-              <?php endif; ?>
+            <!-- Plugins: AfterDisplayTitle -->
+            <?php echo $item->event->AfterDisplayTitle; ?>
+
+            <!-- K2 Plugins: K2AfterDisplayTitle -->
+            <?php echo $item->event->K2AfterDisplayTitle; ?>
+
+            <div class="userItemBody">
+                <!-- Plugins: BeforeDisplayContent -->
+                <?php echo $item->event->BeforeDisplayContent; ?>
+
+                <!-- K2 Plugins: K2BeforeDisplayContent -->
+                <?php echo $item->event->K2BeforeDisplayContent; ?>
+
+                <?php if($this->params->get('userItemImage') && !empty($item->imageGeneric)): ?>
+                <!-- Item Image -->
+                <div class="userItemImageBlock">
+                    <span class="userItemImage">
+                        <a href="<?php echo $item->link; ?>" title="<?php if(!empty($item->image_caption)) echo K2HelperUtilities::cleanHtml($item->image_caption); else echo K2HelperUtilities::cleanHtml($item->title); ?>">
+                            <img src="<?php echo $item->imageGeneric; ?>" alt="<?php if(!empty($item->image_caption)) echo K2HelperUtilities::cleanHtml($item->image_caption); else echo K2HelperUtilities::cleanHtml($item->title); ?>" style="width:<?php echo $this->params->get('itemImageGeneric'); ?>px; height:auto;" />
+                        </a>
+                    </span>
+                    <div class="clr"></div>
+                </div>
+                <?php endif; ?>
+
+                <?php if($this->params->get('userItemIntroText')): ?>
+                <!-- Item introtext -->
+                <div class="userItemIntroText">
+                    <?php echo $item->introtext; ?>
+                </div>
+                <?php endif; ?>
 
                 <div class="clr"></div>
 
-              <!-- Plugins: AfterDisplayContent -->
-              <?php echo $item->event->AfterDisplayContent; ?>
+                <!-- Plugins: AfterDisplayContent -->
+                <?php echo $item->event->AfterDisplayContent; ?>
 
-              <!-- K2 Plugins: K2AfterDisplayContent -->
-              <?php echo $item->event->K2AfterDisplayContent; ?>
+                <!-- K2 Plugins: K2AfterDisplayContent -->
+                <?php echo $item->event->K2AfterDisplayContent; ?>
 
-              <div class="clr"></div>
-          </div>
+                <div class="clr"></div>
+            </div>
 
-          <?php if($this->params->get('userItemCategory') || $this->params->get('userItemTags')): ?>
-          <div class="userItemLinks">
-
+            <?php if($this->params->get('userItemCategory') || $this->params->get('userItemTags')): ?>
+            <div class="userItemLinks">
                 <?php if($this->params->get('userItemCategory')): ?>
                 <!-- Item category name -->
                 <div class="userItemCategory">
@@ -191,22 +184,22 @@ $user = JFactory::getUser();
                 </div>
                 <?php endif; ?>
 
-              <?php if($this->params->get('userItemTags') && isset($item->tags)): ?>
-              <!-- Item tags -->
-              <div class="userItemTagsBlock">
-                  <span><?php echo JText::_('K2_TAGGED_UNDER'); ?></span>
-                  <ul class="userItemTags">
-                    <?php foreach ($item->tags as $tag): ?>
-                    <li><a href="<?php echo $tag->link; ?>"><?php echo $tag->name; ?></a></li>
-                    <?php endforeach; ?>
-                  </ul>
-                  <div class="clr"></div>
-              </div>
-              <?php endif; ?>
+                <?php if($this->params->get('userItemTags') && isset($item->tags)): ?>
+                <!-- Item tags -->
+                <div class="userItemTagsBlock">
+                    <span><?php echo JText::_('K2_TAGGED_UNDER'); ?></span>
+                    <ul class="userItemTags">
+                        <?php foreach ($item->tags as $tag): ?>
+                        <li><a href="<?php echo $tag->link; ?>"><?php echo $tag->name; ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <div class="clr"></div>
+                </div>
+                <?php endif; ?>
 
                 <div class="clr"></div>
-          </div>
-          <?php endif; ?>
+            </div>
+            <?php endif; ?>
 
             <div class="clr"></div>
 
@@ -214,18 +207,18 @@ $user = JFactory::getUser();
             <!-- Anchor link to comments below -->
             <div class="userItemCommentsLink">
                 <?php if(!empty($item->event->K2CommentsCounter)): ?>
-                    <!-- K2 Plugins: K2CommentsCounter -->
-                    <?php echo $item->event->K2CommentsCounter; ?>
+                <!-- K2 Plugins: K2CommentsCounter -->
+                <?php echo $item->event->K2CommentsCounter; ?>
                 <?php else: ?>
-                    <?php if($item->numOfComments > 0): ?>
-                    <a href="<?php echo $item->link; ?>#itemCommentsAnchor">
-                        <?php echo $item->numOfComments; ?> <?php echo ($item->numOfComments>1) ? JText::_('K2_COMMENTS') : JText::_('K2_COMMENT'); ?>
-                    </a>
-                    <?php else: ?>
-                    <a href="<?php echo $item->link; ?>#itemCommentsAnchor">
-                        <?php echo JText::_('K2_BE_THE_FIRST_TO_COMMENT'); ?>
-                    </a>
-                    <?php endif; ?>
+                <?php if($item->numOfComments > 0): ?>
+                <a href="<?php echo $item->link; ?>#itemCommentsAnchor">
+                    <?php echo $item->numOfComments; ?> <?php echo ($item->numOfComments>1) ? JText::_('K2_COMMENTS') : JText::_('K2_COMMENT'); ?>
+                </a>
+                <?php else: ?>
+                <a href="<?php echo $item->link; ?>#itemCommentsAnchor">
+                    <?php echo JText::_('K2_BE_THE_FIRST_TO_COMMENT'); ?>
+                </a>
+                <?php endif; ?>
                 <?php endif; ?>
             </div>
             <?php endif; ?>
@@ -241,11 +234,11 @@ $user = JFactory::getUser();
 
             <div class="clr"></div>
 
-          <!-- Plugins: AfterDisplay -->
-          <?php echo $item->event->AfterDisplay; ?>
+            <!-- Plugins: AfterDisplay -->
+            <?php echo $item->event->AfterDisplay; ?>
 
-          <!-- K2 Plugins: K2AfterDisplay -->
-          <?php echo $item->event->K2AfterDisplay; ?>
+            <!-- K2 Plugins: K2AfterDisplay -->
+            <?php echo $item->event->K2AfterDisplay; ?>
 
             <div class="clr"></div>
         </div>
@@ -264,7 +257,5 @@ $user = JFactory::getUser();
     <?php endif; ?>
 
     <?php endif; ?>
-
 </div>
-
 <!-- End K2 User Layout -->

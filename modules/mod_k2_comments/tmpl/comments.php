@@ -13,7 +13,6 @@ defined('_JEXEC') or die;
 ?>
 
 <div id="k2ModuleBox<?php echo $module->id; ?>" class="k2LatestCommentsBlock<?php if($params->get('moduleclass_sfx')) echo ' '.$params->get('moduleclass_sfx'); ?>">
-
     <?php if(count($comments)): ?>
     <ul>
         <?php foreach ($comments as $key=>$comment):    ?>
@@ -77,5 +76,4 @@ defined('_JEXEC') or die;
         <div class="clr"></div>
     </div>
     <?php endif; ?>
-
 </div>

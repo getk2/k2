@@ -23,7 +23,6 @@ defined('_JEXEC') or die;
 <span id="startOfPageId<?php echo JRequest::getInt('id'); ?>"></span>
 
 <div id="k2Container" class="itemView<?php echo ($this->item->featured) ? ' itemIsFeatured' : ''; ?><?php if($this->item->params->get('pageclass_sfx')) echo ' '.$this->item->params->get('pageclass_sfx'); ?>">
-
     <!-- Plugins: BeforeDisplay -->
     <?php echo $this->item->event->BeforeDisplay; ?>
 
@@ -31,49 +30,47 @@ defined('_JEXEC') or die;
     <?php echo $this->item->event->K2BeforeDisplay; ?>
 
     <div class="itemHeader">
-
-    <?php if($this->item->params->get('itemDateCreated')): ?>
-    <!-- Date created -->
-    <span class="itemDateCreated">
-        <?php echo JHTML::_('date', $this->item->created, JText::_('K2_DATE_FORMAT_LC2')); ?>
-    </span>
-    <?php endif; ?>
-
-    <?php if($this->item->params->get('itemTitle')): ?>
-    <!-- Item title -->
-    <h2 class="itemTitle">
-        <?php if(isset($this->item->editLink)): ?>
-        <!-- Item edit link -->
-        <span class="itemEditLink">
-            <a data-k2-modal="edit" href="<?php echo $this->item->editLink; ?>"><?php echo JText::_('K2_EDIT_ITEM'); ?></a>
+        <?php if($this->item->params->get('itemDateCreated')): ?>
+        <!-- Date created -->
+        <span class="itemDateCreated">
+            <?php echo JHTML::_('date', $this->item->created, JText::_('K2_DATE_FORMAT_LC2')); ?>
         </span>
         <?php endif; ?>
 
-        <?php echo $this->item->title; ?>
+        <?php if($this->item->params->get('itemTitle')): ?>
+        <!-- Item title -->
+        <h2 class="itemTitle">
+            <?php if(isset($this->item->editLink)): ?>
+            <!-- Item edit link -->
+            <span class="itemEditLink">
+                <a data-k2-modal="edit" href="<?php echo $this->item->editLink; ?>"><?php echo JText::_('K2_EDIT_ITEM'); ?></a>
+            </span>
+            <?php endif; ?>
 
-        <?php if($this->item->params->get('itemFeaturedNotice') && $this->item->featured): ?>
-        <!-- Featured flag -->
-        <span>
-            <sup>
-                <?php echo JText::_('K2_FEATURED'); ?>
-            </sup>
+            <?php echo $this->item->title; ?>
+
+            <?php if($this->item->params->get('itemFeaturedNotice') && $this->item->featured): ?>
+            <!-- Featured flag -->
+            <span>
+                <sup>
+                    <?php echo JText::_('K2_FEATURED'); ?>
+                </sup>
+            </span>
+            <?php endif; ?>
+        </h2>
+        <?php endif; ?>
+
+        <?php if($this->item->params->get('itemAuthor')): ?>
+        <!-- Item Author -->
+        <span class="itemAuthor">
+            <?php echo K2HelperUtilities::writtenBy($this->item->author->profile->gender); ?>
+            <?php if(empty($this->item->created_by_alias)): ?>
+            <a rel="author" href="<?php echo $this->item->author->link; ?>"><?php echo $this->item->author->name; ?></a>
+            <?php else: ?>
+            <?php echo $this->item->author->name; ?>
+            <?php endif; ?>
         </span>
         <?php endif; ?>
-    </h2>
-    <?php endif; ?>
-
-    <?php if($this->item->params->get('itemAuthor')): ?>
-    <!-- Item Author -->
-    <span class="itemAuthor">
-        <?php echo K2HelperUtilities::writtenBy($this->item->author->profile->gender); ?>
-        <?php if(empty($this->item->created_by_alias)): ?>
-        <a rel="author" href="<?php echo $this->item->author->link; ?>"><?php echo $this->item->author->name; ?></a>
-        <?php else: ?>
-        <?php echo $this->item->author->name; ?>
-        <?php endif; ?>
-    </span>
-    <?php endif; ?>
-
     </div>
 
     <!-- Plugins: AfterDisplayTitle -->
@@ -188,7 +185,6 @@ defined('_JEXEC') or die;
     <?php endif; ?>
 
     <div class="itemBody">
-
         <!-- Plugins: BeforeDisplayContent -->
         <?php echo $this->item->event->BeforeDisplayContent; ?>
 
@@ -269,7 +265,6 @@ defined('_JEXEC') or die;
 
         <?php if($this->item->params->get('itemHits') || ($this->item->params->get('itemDateModified') && intval($this->item->modified)!=0)): ?>
         <div class="itemContentFooter">
-
             <?php if($this->item->params->get('itemHits')): ?>
             <!-- Item Hits -->
             <span class="itemHits">
@@ -295,7 +290,6 @@ defined('_JEXEC') or die;
         <?php echo $this->item->event->K2AfterDisplayContent; ?>
 
         <div class="clr"></div>
-
     </div>
 
     <?php if(
@@ -305,12 +299,22 @@ defined('_JEXEC') or die;
     ): ?>
     <!-- Social sharing -->
     <div class="itemSocialSharing">
-
         <?php if($this->item->params->get('itemTwitterButton',1)): ?>
         <!-- Twitter Button -->
         <div class="itemTwitterButton">
             <a href="https://twitter.com/share" class="twitter-share-button" data-lang="<?php echo $this->item->langTagForTW; ?>" data-via="<?php if($this->item->params->get('twitterUsername')) echo $this->item->params->get('twitterUsername'); ?>"><?php echo JText::_('K2_TWEET'); ?></a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            <script>
+            ! function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0],
+                    p = /^http:/.test(d.location) ? 'http' : 'https';
+                if (!d.getElementById(id)) {
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = p + '://platform.twitter.com/widgets.js';
+                    fjs.parentNode.insertBefore(js, fjs);
+                }
+            }(document, 'script', 'twitter-wjs');
+            </script>
         </div>
         <?php endif; ?>
 
@@ -318,7 +322,16 @@ defined('_JEXEC') or die;
         <!-- Facebook Button -->
         <div class="itemFacebookButton">
             <div id="fb-root"></div>
-            <script>(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id)) return;js=d.createElement(s);js.id=id;js.src="//connect.facebook.net/<?php echo $this->item->langTagForFB; ?>/sdk.js#xfbml=1&version=v2.5";fjs.parentNode.insertBefore(js,fjs);}(document,'script','facebook-jssdk'));</script>
+            <script>
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/<?php echo $this->item->langTagForFB; ?>/sdk.js#xfbml=1&version=v2.5";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+            </script>
             <div class="fb-like" data-width="200" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
         </div>
         <?php endif; ?>
@@ -327,12 +340,23 @@ defined('_JEXEC') or die;
         <!-- Google +1 Button -->
         <div class="itemGooglePlusOneButton">
             <div class="g-plusone" data-size="medium"></div>
-            <script>window.___gcfg={lang:'<?php echo $this->item->langTagForGP; ?>'};(function(){var po=document.createElement('script');po.type='text/javascript';po.async=true;po.src='https://apis.google.com/js/platform.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(po,s);})();</script>
+            <script>
+            window.___gcfg = {
+                lang: '<?php echo $this->item->langTagForGP; ?>'
+            };
+            (function() {
+                var po = document.createElement('script');
+                po.type = 'text/javascript';
+                po.async = true;
+                po.src = 'https://apis.google.com/js/platform.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(po, s);
+            })();
+            </script>
         </div>
         <?php endif; ?>
 
         <div class="clr"></div>
-
     </div>
     <?php endif; ?>
 
@@ -342,7 +366,6 @@ defined('_JEXEC') or die;
         $this->item->params->get('itemAttachments')
     ): ?>
     <div class="itemLinks">
-
         <?php if($this->item->params->get('itemCategory')): ?>
         <!-- Item category -->
         <div class="itemCategory">
@@ -452,7 +475,6 @@ defined('_JEXEC') or die;
     ...then your Related Items will be transformed into a vertical-scrolling block, inside which, all items have the same height (equal column heights). This can be very useful if you want to show your related articles or products with title/author/category/image etc., which would take a significant amount of space in the classic list-style display.
     */
     ?>
-
     <?php if($this->item->params->get('itemRelated') && isset($this->relatedItems)): ?>
     <!-- Related items by tag -->
     <div class="itemRelated">
@@ -460,7 +482,6 @@ defined('_JEXEC') or die;
         <ul>
             <?php foreach($this->relatedItems as $key=>$item): ?>
             <li class="<?php echo ($key%2) ? "odd" : "even"; ?>">
-
                 <?php if($this->item->params->get('itemRelatedTitle', 1)): ?>
                 <a class="itemRelTitle" href="<?php echo $item->link ?>"><?php echo $item->title; ?></a>
                 <?php endif; ?>
@@ -666,7 +687,6 @@ defined('_JEXEC') or die;
         <?php $user = JFactory::getUser(); if($this->item->params->get('comments') == '2' && $user->guest): ?>
         <div class="itemCommentsLoginFirst"><?php echo JText::_('K2_LOGIN_TO_POST_COMMENTS'); ?></div>
         <?php endif; ?>
-
     </div>
     <?php endif; ?>
 
@@ -679,6 +699,5 @@ defined('_JEXEC') or die;
     <?php endif; ?>
 
     <div class="clr"></div>
-
 </div>
 <!-- End K2 Item Layout -->
