@@ -410,42 +410,8 @@ class K2ViewItem extends K2View
 
         // Set metadata
         $metaDesc = '';
-        if ($item->metadesc) {
-            $metaDesc = filter_var($item->metadesc, FILTER_SANITIZE_STRING);
-        } else {
-            $metaDesc = preg_replace("#{(.*?)}(.*?){/(.*?)}#s", '', $itemTextBeforePlugins);
-            $metaDesc = filter_var($metaDesc, FILTER_SANITIZE_STRING);
-            $metaDesc = K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150));
-        }
-        if ($metaDesc) {
-            $document->setDescription($metaDesc);
-        }
 
-        if ($item->metakey) {
-            $document->setMetadata('keywords', $item->metakey);
-        } else {
-            if (isset($item->tags) && count($item->tags)) {
-                $tmp = array();
-                foreach ($item->tags as $tag) {
-                    $tmp[] = $tag->name;
-                }
-                $document->setMetadata('keywords', implode(',', $tmp));
-            }
-        }
-
-        if ($application->getCfg('MetaAuthor') == '1' && isset($item->author->name)) {
-            $document->setMetadata('author', $item->author->name);
-        }
-
-        $itemMetaData = class_exists('JParameter') ? new JParameter($item->metadata) : new JRegistry($item->metadata);
-        $itemMetaData = $itemMetaData->toArray();
-        foreach ($itemMetaData as $k => $v) {
-            if (($k == 'robots' || $k == 'author') && $v) {
-                $document->setMetadata($k, $v);
-            }
-        }
-
-        // Override metadata from the menu item (for Joomla 2.5+)
+        // Get metadata from the menu item (for Joomla 2.5+)
         if ($menuItemMatchesK2Item) {
             if (K2_JVERSION != '15') {
                 if ($params->get('menu-meta_description')) {
@@ -462,6 +428,45 @@ class K2ViewItem extends K2View
                     $params->set('page_title', $params->get('page_heading'));
                 }
                 $params->set('show_page_title', $params->get('show_page_heading'));
+            }
+        }
+
+        // --- Override metadata with data from the item ---
+        // Meta: Description
+        if ($item->metadesc) {
+            $metaDesc = filter_var($item->metadesc, FILTER_SANITIZE_STRING);
+        } else {
+            $metaDesc = preg_replace("#{(.*?)}(.*?){/(.*?)}#s", '', $itemTextBeforePlugins);
+            $metaDesc = filter_var($metaDesc, FILTER_SANITIZE_STRING);
+            $metaDesc = K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150));
+        }
+        if ($metaDesc) {
+            $document->setDescription($metaDesc);
+        }
+
+        // Meta: Keywords
+        if ($item->metakey) {
+            $document->setMetadata('keywords', $item->metakey);
+        } else {
+            if (isset($item->tags) && count($item->tags)) {
+                $tmp = array();
+                foreach ($item->tags as $tag) {
+                    $tmp[] = $tag->name;
+                }
+                $document->setMetadata('keywords', implode(',', $tmp));
+            }
+        }
+
+        // Meta: Robots & author
+        if ($application->getCfg('MetaAuthor') == '1' && isset($item->author->name)) {
+            $document->setMetadata('author', $item->author->name);
+        }
+
+        $itemMetaData = class_exists('JParameter') ? new JParameter($item->metadata) : new JRegistry($item->metadata);
+        $itemMetaData = $itemMetaData->toArray();
+        foreach ($itemMetaData as $k => $v) {
+            if (($k == 'robots' || $k == 'author') && $v) {
+                $document->setMetadata($k, $v);
             }
         }
 

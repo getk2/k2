@@ -479,6 +479,7 @@ class K2ViewItem extends K2View
         (JRequest::getInt('cid')) ? $title = JText::_('K2_EDIT_ITEM') : $title = JText::_('K2_ADD_ITEM');
         $this->assignRef('title', $title);
         $this->assignRef('mainframe', $application);
+        $this->assignRef('app', $application);
 
         // Disable Joomla menu
         JRequest::setVar('hidemainmenu', 1);
