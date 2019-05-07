@@ -196,5 +196,5 @@ defined('_JEXEC') or die;
     <input type="hidden" name="option" value="<?php echo $this->optionValue; ?>" />
     <input type="hidden" name="task" value="<?php echo $this->taskValue; ?>" />
     <input type="hidden" name="K2UserForm" value="1" />
-    <?php echo JHTML::_( 'form.token' ); ?>
+    <?php echo JHTML::_('form.token'); ?>
 </form>

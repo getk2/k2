@@ -200,5 +200,5 @@ defined('_JEXEC') or die;
     <input type="hidden" name="id" value="0" />
     <input type="hidden" name="gid" value="0" />
     <input type="hidden" name="K2UserForm" value="1" />
-    <?php echo JHTML::_( 'form.token' ); ?>
+    <?php echo JHTML::_('form.token'); ?>
 </form>

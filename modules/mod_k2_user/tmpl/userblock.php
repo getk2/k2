@@ -77,6 +77,6 @@ defined('_JEXEC') or die;
         <input type="hidden" name="option" value="<?php echo $option; ?>" />
         <input type="hidden" name="task" value="<?php echo $task; ?>" />
         <input type="hidden" name="return" value="<?php echo $return; ?>" />
-        <?php echo JHTML::_( 'form.token' ); ?>
+        <?php echo JHTML::_('form.token'); ?>
     </form>
 </div>

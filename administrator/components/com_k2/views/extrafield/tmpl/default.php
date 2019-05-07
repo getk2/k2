@@ -140,5 +140,5 @@ $document->addScriptDeclaration("
     <input type="hidden" name="view" value="<?php echo JRequest::getVar('view'); ?>" />
     <input type="hidden" name="task" value="<?php echo JRequest::getVar('task'); ?>" />
     <input type="hidden" id="value" name="value" value="<?php echo htmlentities($this->row->value); ?>" />
-    <?php echo JHTML::_( 'form.token' ); ?>
+    <?php echo JHTML::_('form.token'); ?>
 </form>
