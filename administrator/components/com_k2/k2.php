@@ -10,11 +10,13 @@
 // no direct access
 defined('_JEXEC') or die;
 
-$user = JFactory::getUser();
-$option = JRequest::getCmd('option');
-$view = strtolower(JRequest::getWord('view', 'items'));
-$task = JRequest::getCmd('task');
 $params = JComponentHelper::getParams('com_k2');
+$user = JFactory::getUser();
+
+$option = JRequest::getCmd('option');
+$view = JRequest::getCmd('view', 'items');
+$task = JRequest::getCmd('task');
+$tmpl = JRequest::getCmd('tmpl');
 
 if (K2_JVERSION=='15') {
     if (($params->get('lockTags') && $user->gid<=23 && ($view=='tags' || $view=='tag')) || ($user->gid <= 23) && (
@@ -72,7 +74,7 @@ if (K2_JVERSION == '15') {
     $k2CSSContainerClass = '';
 }
 
-if (JRequest::getCmd('context') == "modalselector") {
+if (JRequest::getCmd('context') == "modalselector" || ($view == 'media' && $tmpl == 'component')) {
     $k2CSSContainerClass .= ' inModalSelector';
     $k2FooterClass = 'inModalSelector';
 } else {
