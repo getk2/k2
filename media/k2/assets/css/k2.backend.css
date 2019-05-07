@@ -58,8 +58,18 @@ div#toolbar {background:url(../images/backend/k2_logo_126x48.png) no-repeat 12px
         #k2ContentView > form .k2AdminTableFilters {position:fixed;width:90%;z-index:99;background:rgba(255, 255, 255, 0.8);}
         #k2ContentView > form .k2AdminTableFilters tr td {background:none;}
         #k2ContentView > form .table-responsive-wrap {padding-top:62px;}
-        @media screen and (max-width:1628px) {#k2ContentView > form .table-responsive-wrap {padding-top:90px;}}
-        @media screen and (max-width:1024px) {#k2ContentView > form .table-responsive-wrap {padding-top:118px;}}
+        @media screen and (max-width:1628px) {
+            .K2AdminViewItems #k2ContentView > form .table-responsive-wrap {padding-top:90px;}
+        }
+        @media screen and (max-width:1206px) {
+            .K2AdminViewCategories #k2ContentView > form .table-responsive-wrap {padding-top:90px;}
+        }
+        @media screen and (max-width:1024px) {
+            #k2ContentView > form .table-responsive-wrap {padding-top:90px;}
+            .K2AdminViewItems #k2ContentView > form .table-responsive-wrap {padding-top:118px;}
+        }
+        .K2AdminViewExtrafieldsgroups #k2ContentView > form .table-responsive-wrap,
+        .K2AdminViewUsergroups #k2ContentView > form .table-responsive-wrap {padding-top:0;}
 
         #k2AdminContainer #k2ContentView > form .k2AdminTableFilters .chzn-container {width:180px !important;}
 
