@@ -363,8 +363,8 @@ $K2(document).ready(function() {
                     handler: 'iframe',
                     url: K2BasePath + 'index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID=existingImageValue',
                     size: {
-                        x: 800,
-                        y: 434
+                        x: (window.innerWidth)*0.9,
+                        y: (window.innerHeight)*0.9
                     }
                 });
             });
@@ -514,8 +514,8 @@ $K2(document).ready(function() {
                     handler: 'iframe',
                     url: K2BasePath + 'index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID=existingImageValue',
                     size: {
-                        x: 800,
-                        y: 434
+                        x: (window.innerWidth)*0.9,
+                        y: (window.innerHeight)*0.9
                     }
                 });
             });
@@ -526,8 +526,8 @@ $K2(document).ready(function() {
                     handler: 'iframe',
                     url: K2BasePath + 'index.php?option=com_k2&view=media&type=video&tmpl=component&fieldID=remoteVideo',
                     size: {
-                        x: 800,
-                        y: 434
+                        x: (window.innerWidth)*0.9,
+                        y: (window.innerHeight)*0.9
                     }
                 });
             });
@@ -540,8 +540,8 @@ $K2(document).ready(function() {
                     handler: 'iframe',
                     url: K2BasePath + 'index.php?option=com_k2&view=media&type=attachment&tmpl=component&fieldID=k2ActiveAttachment',
                     size: {
-                        x: 800,
-                        y: 434
+                        x: (window.innerWidth)*0.9,
+                        y: (window.innerHeight)*0.9
                     },
                     onClose: function() {
                         k2ActiveAttachmentField.removeAttr('id');
@@ -843,8 +843,8 @@ function extraFieldsImage() {
             handler: 'iframe',
             url: K2BasePath + href,
             size: {
-                x: 800,
-                y: 434
+                x: (window.innerWidth)*0.9,
+                y: (window.innerHeight)*0.9
             }
         });
     });
