@@ -492,7 +492,6 @@
 				<option value="XLarge">K2_XLARGE</option>
 				<option value="none">K2_NO_IMAGE</option>
 			</field>
-			<field name="@spacer" type="spacer" default="" label="" description=""/>
 			<field name="num_primary_items" type="text" size="4" default="4" label="K2_PRIMARY_COUNT" description="K2_NUMBER_OF_ITEMS_TO_DISPLAY_AS_PRIMARY"/>
 			<field name="num_primary_columns" type="text" size="4" default="2" label="K2_COLUMNS_FOR_PRIMARY" description=""/>
 			<field name="primaryImgSize" type="list" default="Medium" label="K2_IMAGE_SIZE_FOR_PRIMARY_ITEMS" description="K2_YOU_CAN_OVERRIDE_THE_GLOBAL_DIMENSIONS_FOR_EACH_SIZE_BY_ADJUSTING_THE_RELATED_SETTING_IN_THE_ITEM_IMAGE_OPTIONS_PANE_BELOW">
@@ -503,7 +502,6 @@
 				<option value="XLarge">K2_XLARGE</option>
 				<option value="none">K2_NO_IMAGE</option>
 			</field>
-			<field name="@spacer" type="spacer" default="" label="" description=""/>
 			<field name="num_secondary_items" type="text" size="4" default="4" label="K2_SECONDARY_COUNT" description="K2_NUMBER_OF_ITEMS_TO_DISPLAY_AS_SECONDARY"/>
 			<field name="num_secondary_columns" type="text" size="4" default="1" label="K2_COLUMNS_FOR_SECONDARY" description=""/>
 			<field name="secondaryImgSize" type="list" default="Small" label="K2_IMAGE_SIZE_FOR_SECONDARY_ITEMS" description="K2_YOU_CAN_OVERRIDE_THE_GLOBAL_DIMENSIONS_FOR_EACH_SIZE_BY_ADJUSTING_THE_RELATED_SETTING_IN_THE_ITEM_IMAGE_OPTIONS_PANE_BELOW">
@@ -514,7 +512,6 @@
 				<option value="XLarge">K2_XLARGE</option>
 				<option value="none">K2_NO_IMAGE</option>
 			</field>
-			<field name="@spacer" type="spacer" default="" label="" description=""/>
 			<field name="num_links" type="text" size="4" default="4" label="K2_LINKS_COUNT" description="K2_NUMBER_OF_ITEMS_TO_DISPLAY_AS_LINKS"/>
 			<field name="num_links_columns" type="text" size="4" default="1" label="K2_COLUMNS_FOR_LINKS" description=""/>
 			<field name="linksImgSize" type="list" default="XSmall" label="K2_IMAGE_SIZE_FOR_LINK_ITEMS" description="K2_YOU_CAN_OVERRIDE_THE_GLOBAL_DIMENSIONS_FOR_EACH_SIZE_BY_ADJUSTING_THE_RELATED_SETTING_IN_THE_ITEM_IMAGE_OPTIONS_PANE_BELOW">
