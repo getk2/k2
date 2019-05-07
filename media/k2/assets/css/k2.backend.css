@@ -1022,6 +1022,7 @@ html.isJ25 #k2AdminContainer.inModalSelector #adminForm {margin-top:78px;}
 #k2AdminContainer.inModalSelector .k2AdminTableFilters {border:0;border-bottom:1px solid #dbdcdc;}
 #k2AdminContainer.inModalSelector .k2AdminTableFilters tr,
 #k2AdminContainer.inModalSelector .k2AdminTableFilters td {border:0 !important;}
+#k2AdminContainer.inModalSelector .table-responsive-wrap .table-responsive table {border:0;}
 #k2AdminFooter.inModalSelector {margin:8px auto;}
 #k2ModalSelectorHeader {background:#fff url(../images/backend/k2_logo_126x48.png) no-repeat 8px 50%;background-size:80px;padding:16px 0 16px 108px;margin:0;position:fixed;top:0;left:0;right:0;z-index:10;border-bottom:4px solid #eee;}
 
