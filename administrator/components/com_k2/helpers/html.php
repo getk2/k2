@@ -12,12 +12,77 @@ defined('_JEXEC') or die;
 
 class K2HelperHTML
 {
+    public static function activeMenu($current)
+    {
+        $view = JRequest::getCmd('view');
+        if ($current === $view) {
+            return ' class="active"';
+        }
+    }
+
+    public static function sidebarMenu()
+    {
+        $params = JComponentHelper::getParams('com_k2');
+        $user = JFactory::getUser();
+
+        $sidebarMenu = '
+        <ul>
+            <li'.self::activeMenu('items').'>
+                <a href="index.php?option=com_k2&amp;view=items">'.JText::_('K2_ITEMS').'</a>
+            </li>
+            <li'.self::activeMenu('categories').'>
+                <a href="index.php?option=com_k2&amp;view=categories">'.JText::_('K2_CATEGORIES').'</a>
+            </li>
+        ';
+        if (!$params->get('lockTags') || $user->gid > 23) {
+            $sidebarMenu .= '
+            <li'.self::activeMenu('tags').'>
+                <a href="index.php?option=com_k2&amp;view=tags">'.JText::_('K2_TAGS').'</a>
+            </li>
+            ';
+        }
+        $sidebarMenu .= '
+            <li'.self::activeMenu('comments').'>
+                <a href="index.php?option=com_k2&amp;view=comments">'.JText::_('K2_COMMENTS').'</a>
+            </li>
+        ';
+        if ($user->gid > 23) {
+            $sidebarMenu .= '
+            <li'.self::activeMenu('users').'>
+                <a href="index.php?option=com_k2&amp;view=users">'.JText::_('K2_USERS').'</a>
+            </li>
+            <li'.self::activeMenu('usergroups').'>
+                <a href="index.php?option=com_k2&amp;view=usergroups">'.JText::_('K2_USER_GROUPS').'</a>
+            </li>
+            <li'.self::activeMenu('extrafields').'>
+                <a href="index.php?option=com_k2&amp;view=extrafields">'.JText::_('K2_EXTRA_FIELDS').'</a>
+            </li>
+            <li'.self::activeMenu('extrafieldsgroups').'>
+                <a href="index.php?option=com_k2&amp;view=extrafieldsgroups">'.JText::_('K2_EXTRA_FIELD_GROUPS').'</a>
+            </li>
+            ';
+        }
+        $sidebarMenu .= '
+            <li'.self::activeMenu('media').'>
+                <a href="index.php?option=com_k2&amp;view=media">'.JText::_('K2_MEDIA_MANAGER').'</a>
+            </li>
+            <li'.self::activeMenu('info').'>
+                <a href="index.php?option=com_k2&amp;view=info">'.JText::_('K2_INFORMATION').'</a>
+            </li>
+        </ul>
+        ';
+
+        return $sidebarMenu;
+    }
+
     public static function subMenu()
     {
+        return; /* Disable the old sidebar menu */
+
+        $params = JComponentHelper::getParams('com_k2');
         $user = JFactory::getUser();
         $view = JRequest::getCmd('view');
-        $view = JString::strtolower($view);
-        $params = JComponentHelper::getParams('com_k2');
+
         JSubMenuHelper::addEntry(JText::_('K2_ITEMS'), 'index.php?option=com_k2&view=items', $view == 'items');
         JSubMenuHelper::addEntry(JText::_('K2_CATEGORIES'), 'index.php?option=com_k2&view=categories', $view == 'categories');
         if (!$params->get('lockTags') || $user->gid > 23) {
