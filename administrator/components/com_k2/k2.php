@@ -79,6 +79,11 @@ if (JRequest::getCmd('context') == "modalselector") {
     $k2FooterClass = '';
 }
 
+$editForms = array('item', 'category', 'tag', 'user', 'usergroup', 'extrafield', 'extrafieldsgroup');
+if (in_array($view, $editForms)) {
+    $k2CSSContainerClass .= ' isEditForm';
+}
+
 if (
     $document->getType() != 'raw' &&
     JRequest::getWord('task')!='deleteAttachment' &&
