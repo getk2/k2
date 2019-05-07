@@ -63,7 +63,7 @@ div#toolbar {background:url(../images/backend/k2_logo_126x48.png) no-repeat 12px
 
         #k2AdminContainer #k2ContentView > form .k2AdminTableFilters .chzn-container {width:180px !important;}
 
-        .isJ30 .isEditForm #adminForm {padding-bottom:40px;}
+        .isJ30.isEditForm #adminForm {padding-bottom:40px;}
 
 #k2AdminContainer.inModalSelector {display:block;margin-bottom:16px;min-height:auto;}
 #k2AdminContainer.inModalSelector #k2Sidebar {display:none;}
