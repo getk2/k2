@@ -82,6 +82,8 @@ div#toolbar {background:url(../images/backend/k2_logo_126x48.png) no-repeat 12px
 
 /* Corrections for J3.x */
 .isJ30 .input-append .btn {margin-left:-2px !important;}
+.isJ30 .radio,
+.isJ30 .checkbox {padding-left:0 !important;}
 
 /* --- Added in K2 v2.10 [finish] --- */
 
