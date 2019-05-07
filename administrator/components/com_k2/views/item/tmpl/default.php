@@ -137,7 +137,8 @@ defined('_JEXEC') or die;
                         <table cellspacing="0" cellpadding="0" border="0" id="tagLists">
                             <tr>
                                 <td id="tagListsLeft">
-                                    <span><?php echo JText::_('K2_AVAILABLE_TAGS'); ?></span> <?php echo $this->lists['tags'];  ?>
+                                    <span><?php echo JText::_('K2_AVAILABLE_TAGS'); ?></span>
+                                    <?php echo $this->lists['tags'];  ?>
                                 </td>
                                 <td id="tagListsButtons">
                                     <input type="button" id="addTagButton" class="k2Selector" value="<?php echo JText::_('K2_ADD'); ?> &raquo;" />
@@ -146,7 +147,8 @@ defined('_JEXEC') or die;
                                     <input type="button" id="removeTagButton" class="k2Selector" value="&laquo; <?php echo JText::_('K2_REMOVE'); ?>" />
                                 </td>
                                 <td id="tagListsRight">
-                                    <span><?php echo JText::_('K2_SELECTED_TAGS'); ?></span> <?php echo $this->lists['selectedTags']; ?>
+                                    <span><?php echo JText::_('K2_SELECTED_TAGS'); ?></span>
+                                    <?php echo $this->lists['selectedTags']; ?>
                                 </td>
                             </tr>
                         </table>
