@@ -31,9 +31,9 @@ $document->addScriptDeclaration("
     <div class="xmlParamsFields k2GenericForm">
         <h3>
             <?php if($this->row->id): ?>
-            <?php echo JText::_('K2_EDIT_GROUP'); ?>
+            <?php echo JText::_('K2_EDIT_EXTRA_FIELD_GROUP'); ?>
             <?php else: ?>
-            <?php echo JText::_('K2_ADD_NEW_GROUP'); ?>
+            <?php echo JText::_('K2_ADD_EXTRA_FIELD_GROUP'); ?>
             <?php endif; ?>
         </h3>
         <ul class="adminformlist">
