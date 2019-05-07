@@ -327,7 +327,7 @@ div.K2ScrollingContent h3 {margin-top:20px;}
 .xmlParamsFields {}
 .xmlParamsFields.limitWidth {max-width:850px;padding:0 20px;}
 .xmlParamsFields ul {list-style:none outside none;margin:0;padding:0;clear:both;}
-.xmlParamsFields ul li {display:block;float:left;width:100%;clear:both;border-radius:3px;margin:0;padding:10px 20px 10px 0;}
+.xmlParamsFields ul li {display:block;/*float:left;width:100%;*/clear:both;border-radius:3px;margin:0;padding:10px 20px 10px 0;}
 .xmlParamsFields ul li:nth-child(2n-2) {background:#f7f7f7;}
 .xmlParamsFields ul li.headerElement {padding:0;background:#fff;}
 
@@ -374,7 +374,7 @@ div#k2AdminContainer.isJ25 form#adminForm div.xmlParamsFields fieldset input {fl
 div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-right:1px solid #e9e9e9;color:#666;font-weight:bold;text-align:right;font-size:11px;}
 
 /* Generic form additional styling - tags, users, usergroups etc. */
-.k2GenericForm {width:850px;max-width:100%;padding:0 20px;}
+.k2GenericForm {width:60%;padding:0 20px 40px 20px;margin:0 auto;}
 .k2GenericForm h3 {font-size:24px;font-weight:300;padding-bottom:16px;margin-top:25px;margin-bottom:15px;border-bottom:2px solid #dddedf;color:#00afec;}
 .k2GenericForm .k2ItemFormEditor {padding:20px 0 20px 20px;}
 
@@ -909,7 +909,7 @@ input#k2ImageBrowseServer {width:auto;height:30px;line-height:8px;margin-left:10
 .oldJ td.order span {display:none;}
 
 /* Forms */
-.k2GenericForm > h3:first-child {display:none;}
+.k2GenericForm > h3:first-child {/*display:none;*/}
 
 /* Params */
 .oldJ .xmlParamsFields ul li {padding:10px 20px 10px 0;}
