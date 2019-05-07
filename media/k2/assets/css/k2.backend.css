@@ -377,7 +377,7 @@ box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
 .xmlParamsFields .paramValue input[value="1"] + label {border-radius:0 3px 3px 0;}
 
 /* the labels */
-.xmlParamsFields .paramLabel label {font-size:13px;font-weight:700;color:#777778;padding:10px 10px 10px 20px;line-height:1;margin:0;display:inline-block;vertical-align:middle;}
+.xmlParamsFields .paramLabel label {font-size:13px;font-weight:700;color:#777778;padding:10px 10px 10px 20px;line-height:130%;margin:0;display:inline-block;vertical-align:middle;}
 .xmlParamsFields .paramValue,
 .xmlParamsFields .paramLabel {display:inline-block;vertical-align:middle;}
 .xmlParamsFields .paramLabel {width:30%;padding-left:10px;box-sizing:border-box;}
@@ -537,6 +537,7 @@ span.k2ItemFormEditorTitle {display:block;color:#58595b;font-size:20px;font-weig
 .k2ItemFormEditor .editor {background:#f0f2f2;border-top:1px solid #d7d9d9;border-bottom:1px solid #e9ebec;}
 .k2ItemFormEditor .editor .btn-toolbar {padding:4px 20px;}
 input#del_image {display:block;}
+.k2Note {display:block;padding:10px 0;color:#999;font-style:italic;font-size:11px;}
 
 /* Flatpickr Overrides */
 .com_k2 input.numInput {height:auto;}
@@ -573,8 +574,8 @@ p.k2TagsNotice {display:block;font-size:11px;font-weight:bold;margin:0;padding:0
 .ui-menu .ui-menu-item a.ui-state-active {margin:-1px;background-color:#444;color:#fff;}
 
 /* Item - Selection based tagging */
-#tagsLog {float:left;padding-left:4px;font-weight:bold;line-height:16px;vertical-align:middle;}
-#tagsLog.tagsLoading {background:url(../images/backend/loader.gif) no-repeat 50% 50%;margin-left:4px;padding:0;width:16px;height:16px;display:block;float:left;}
+#tagsLog {display:inline-block;margin-left:10px;font-weight:600;color:#999;}
+#tagsLog.tagsLoading {background:url(../images/backend/loader.gif) no-repeat 50% 50%;width:16px;height:16px;}
 
 table#tagLists {width:100%;}
 table#tagLists tr td span {display:block;font-weight:bold;}
@@ -895,10 +896,10 @@ html.isJ25 #k2AdminContainer .k2AdminTableFilters tr td {padding:10px;}
 .oldJ input[type="email"] {height:30px;min-height:30px;width:auto;max-width:100%;}
 .oldJ select {}
 
-/* field normalisation */
+/* Field normalisation */
 .k2ViewIsItem .oldJ input[type="file"],
 .k2ViewIsCategory .oldJ input[type="file"] {margin-bottom:20px;}
-input#k2ImageBrowseServer {width:auto;height:30px;line-height:8px;margin-left:10px;}
+input#k2ImageBrowseServer {/*width:auto;height:30px;line-height:8px;margin-left:10px;*/}
 .k2ViewIsCategory .oldJ input,
 .k2ViewIsCategory .oldJ select,
 .k2ViewIsItem .oldJ select {height:40px;width:100%;}
