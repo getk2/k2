@@ -60,7 +60,8 @@ div#toolbar {background:url(../images/backend/k2_logo_126x48.png) no-repeat 12px
         @media screen and (max-width:1024px) {#k2ContentView > form .table-responsive-wrap {padding-top:118px;}}
 
         #k2AdminContainer #k2ContentView > form .k2AdminTableFilters .chzn-container {width:180px !important;}
-#k2AdminFooter {display:none;}
+
+        div.isJ30 #adminForm {padding-bottom:40px;}
 /* --- Added in K2 v2.10 [finish] --- */
 
 
@@ -325,7 +326,7 @@ div.K2ScrollingContent h3 {margin-top:20px;}
 
 /* The fields */
 .xmlParamsFields {}
-.xmlParamsFields.limitWidth {max-width:850px;padding:0 20px;}
+.xmlParamsFields.limitWidth {/*max-width:850px;padding:0 20px;*/width:60%;padding:0 20px 40px 20px;margin:0 auto;}
 .xmlParamsFields ul {list-style:none outside none;margin:0;padding:0;clear:both;}
 .xmlParamsFields ul li {display:block;/*float:left;width:100%;*/clear:both;border-radius:3px;margin:0;padding:10px 20px 10px 0;}
 .xmlParamsFields ul li:nth-child(2n-2) {background:#f7f7f7;}
