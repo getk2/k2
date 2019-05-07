@@ -60,7 +60,7 @@ $K2(document).ready(function() {
             var href = $K2(this).attr("href"),
                 offsetTop = (href === "#") ? 0 : $K2(href).offset().top - 60;
             $K2('html, body').stop().animate({
-                scrollTop: offsetTop
+                scrollTop: offsetTop - 88
             }, 300);
             e.preventDefault();
         });
@@ -80,8 +80,8 @@ $K2(document).ready(function() {
 
             if (lastId !== id) {
                 lastId = id;
-                // Set/remove active class
-                menuItems.parent().removeClass("active").end().filter('a[href="#' + id + '"]').parent().addClass("active");
+                // Set/remove active class (needs fixing)
+                //menuItems.parent().removeClass("active").end().filter('a[href="#' + id + '"]').parent().addClass("active");
             }
         });
     });
