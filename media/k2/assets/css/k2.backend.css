@@ -7,7 +7,7 @@
  */
 
 /* Import Open Sans */
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,800italic,800,700italic,700,600,600italic,400italic,300italic,300&subset=latin,greek,vietnamese,cyrillic-ext,cyrillic);
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese");
 
 /* Common */
 a:active,a:focus {outline:0;}
@@ -74,6 +74,8 @@ div#toolbar {background:url(../images/backend/k2_logo_126x48.png) no-repeat 12px
         #k2AdminContainer #k2ContentView > form .k2AdminTableFilters .chzn-container {width:180px !important;}
 
         .isJ30.isEditForm #k2ContentView {padding-bottom:40px;}
+        
+        .k2AliasValue {display:block;color:#999;font-size:11px;}
 
 #k2AdminContainer.inModalSelector {display:block;margin-bottom:16px;min-height:auto;}
 #k2AdminContainer.inModalSelector #k2Sidebar {display:none;}
@@ -740,7 +742,8 @@ table.adminFormK2 {width:100%;margin-bottom:16px;}
 #k2AdminContainer .adminlist thead tr th {background:#fff;border-bottom:1px solid #dbdcdc;}
 #k2AdminContainer .adminlist tbody tr td {padding-top:15px;padding-bottom:15px;}
 #k2AdminContainer .adminlist tfoot tr td {background:#fff;border-bottom:1px solid #dbdcdc;border-top:1px solid #dbdcdc;}
-#k2AdminContainer .adminlist a {text-decoration:none;color:#636b6e;cursor:pointer;}
+
+#k2AdminContainer .adminlist a {text-decoration:none;color:#040707;font-weight:600;}
 #k2AdminContainer .adminlist a.editComment {color:#46afff;}
 #k2AdminContainer .adminlist a:hover {color:#46afff;}
 
