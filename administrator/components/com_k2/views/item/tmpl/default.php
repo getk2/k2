@@ -273,7 +273,7 @@ defined('_JEXEC') or die;
 
                     <?php if ($this->params->get('showImageTab')): ?>
                     <!-- Tab image -->
-                    <div class="k2TabsContent k2TabsContentLower" id="k2TabImage">
+                    <div class="k2TabsContent" id="k2TabImage">
 
                         <div class="itemAdditionalField">
                             <div class="k2FLeft k2Right itemAdditionalValue">
@@ -347,7 +347,7 @@ defined('_JEXEC') or die;
 
                     <?php if ($this->params->get('showImageGalleryTab')): ?>
                     <!-- Tab image gallery -->
-                    <div class="k2TabsContent k2TabsContentLower" id="k2TabImageGallery">
+                    <div class="k2TabsContent" id="k2TabImageGallery">
                         <?php if ($this->lists['checkSIG']): ?>
                         <div id="item_gallery_content" class="itemAdditionalField">
                             <?php if($this->sigPro): ?>
@@ -445,7 +445,7 @@ defined('_JEXEC') or die;
 
                     <?php if ($this->params->get('showVideoTab')): ?>
                     <!-- Tab video -->
-                    <div class="k2TabsContent k2TabsContentLower" id="k2TabMedia">
+                    <div class="k2TabsContent" id="k2TabMedia">
                         <?php if ($this->lists['checkAllVideos']): ?>
                         <div id="item_video_content">
                             <div class="itemAdditionalField">
@@ -460,13 +460,13 @@ defined('_JEXEC') or die;
                                             <li><a href="#k2MediaTab3"><?php echo JText::_('K2_MEDIA_USE_ONLINE_VIDEO_SERVICE'); ?></a></li>
                                             <li><a href="#k2MediaTab4"><?php echo JText::_('K2_EMBED'); ?></a></li>
                                         </ul>
-                                        <div id="k2MediaTab1" class="k2TabsContent k2TabsContentLower">
+                                        <div id="k2MediaTab1" class="k2TabsContent">
                                             <div class="panel" id="Upload_video">
                                                 <input type="file" name="video" class="fileUpload k2Selector" />
                                                 <i>(<?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?>)</i>
                                             </div>
                                         </div>
-                                        <div id="k2MediaTab2" class="k2TabsContent k2TabsContentLower">
+                                        <div id="k2MediaTab2" class="k2TabsContent">
                                             <div class="panel" id="Remote_video">
                                                 <div class="itemAdditionalBlock">
                                                     <a id="k2MediaBrowseServer" class="k2Button" href="index.php?option=com_k2&amp;view=media&amp;type=video&amp;tmpl=component&amp;fieldID=remoteVideo">
@@ -484,7 +484,7 @@ defined('_JEXEC') or die;
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="k2MediaTab3" class="k2TabsContent k2TabsContentLower">
+                                        <div id="k2MediaTab3" class="k2TabsContent">
                                             <div class="panel" id="Video_from_provider">
                                                 <div class="itemAdditionalBlock">
                                                     <label><?php echo JText::_('K2_SELECT_VIDEO_PROVIDER'); ?></label>
@@ -508,7 +508,7 @@ defined('_JEXEC') or die;
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="k2MediaTab4" class="k2TabsContent k2TabsContentLower">
+                                        <div id="k2MediaTab4" class="k2TabsContent">
                                             <div class="itemAdditionalField panel" id="embedVideo">
                                                 <div class="k2FLeft k2Right itemAdditionalValue">
                                                     <label><?php echo JText::_('K2_PASTE_HTML_EMBED_CODE_BELOW'); ?></label>
@@ -651,7 +651,7 @@ defined('_JEXEC') or die;
 
                     <?php if ($this->params->get('showExtraFieldsTab')): ?>
                     <!-- Tab extra fields -->
-                    <div class="k2TabsContent k2TabsContentLower" id="k2TabExtraFields">
+                    <div class="k2TabsContent" id="k2TabExtraFields">
                         <div id="extraFieldsContainer">
                             <?php if (count($this->extraFields)): ?>
                             <div id="extraFields">
@@ -720,7 +720,7 @@ defined('_JEXEC') or die;
 
                     <?php if ($this->params->get('showAttachmentsTab')): ?>
                     <!-- Tab attachements -->
-                    <div class="k2TabsContent k2TabsContentLower" id="k2TabAttachments">
+                    <div class="k2TabsContent" id="k2TabAttachments">
                         <div class="itemAttachments table-responsive">
                             <?php if ($this->row->attachments && count($this->row->attachments)): ?>
                             <table class="itemAttachmentsTable">
@@ -775,7 +775,7 @@ defined('_JEXEC') or die;
 
                     <?php if(count(array_filter($this->K2PluginsItemOther)) && $this->params->get('showK2Plugins')): ?>
                     <!-- Tab other plugins -->
-                    <div class="k2TabsContent k2TabsContentLower" id="k2TabPlugins">
+                    <div class="k2TabsContent" id="k2TabPlugins">
                         <div class="itemPlugins">
                             <?php foreach($this->K2PluginsItemOther as $K2Plugin): ?>
                             <?php if(!is_null($K2Plugin)): ?>

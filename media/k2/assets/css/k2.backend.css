@@ -74,7 +74,7 @@ div#toolbar {background:url(../images/backend/k2_logo_126x48.png) no-repeat 12px
         #k2AdminContainer #k2ContentView > form .k2AdminTableFilters .chzn-container {width:180px !important;}
 
         .isJ30.isEditForm #k2ContentView {padding-bottom:40px;}
-        
+
         .k2AliasValue {display:block;color:#999;font-size:11px;}
 
 #k2AdminContainer.inModalSelector {display:block;margin-bottom:16px;min-height:auto;}
@@ -105,7 +105,7 @@ div#toolbar {background:url(../images/backend/k2_logo_126x48.png) no-repeat 12px
 .k2OptionSep {color:#999;font-style:normal;}
 .k2IsIcon {font-family:Arial,Helvetica,sans-serif!important;font-size:16px!important;}
 .k2IsIcon:hover {color:#BB3A00;text-decoration:none;}
-.k2TitleBox {font-size:20px!important;height:35px!important;padding:5px 6px!important;width:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+.k2TitleBox {font-size:20px!important;height:35px!important;padding:5px 6px!important;width:100%;box-sizing:border-box;}
 .k2TitleAliasBox {width:60%;font-size:12px;}
 .k2TextBox {background:#fff;padding:4px;}
 .k2ListItemDisabled {cursor:pointer;color:#0B55C4;} /* used in popup lists */
@@ -120,7 +120,7 @@ div#toolbar {background:url(../images/backend/k2_logo_126x48.png) no-repeat 12px
 #k2AdminContainer .row .row {margin-left:-0.625em;margin-right:-0.625em;width:auto;}
 #k2AdminContainer .row.row-nomax {max-width:100%;}
 .column,
-.columns {float:left;padding-left:0.625em;padding-right:0.625em;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+.columns {float:left;padding-left:0.625em;padding-right:0.625em;box-sizing:border-box;}
 .small-12 {width:100%;}
 @media screen and (min-width:60em) {
     .large-6 {width:50%;}
@@ -165,7 +165,7 @@ ul.k2GenericList li {list-style:square;padding:2px 0;}
 
 /* Generic button */
 .k2Selector {background:#f0f2f2;border:1px solid #d4d7d9;border-radius:3px;display:inline-block;margin:0;padding:4px 8px;color:#555;font-weight:bold;font-size:12px;cursor:pointer;text-decoration:none;box-shadow:0 0 1px 0 rgba(41,40,42,0.2);}
-.k2Selector:hover {color:#222;text-decoration:none;border-color:rgba(82,168,236,0.8);box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,0.6);-webkit-transition:box-shadow 300ms ease;transition:box-shadow 300ms ease;}
+.k2Selector:hover {color:#222;text-decoration:none;border-color:rgba(82,168,236,0.8);box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,0.6);transition:box-shadow 300ms ease;}
 
 /* Date/time picker */
 .k2DateTimePickerControl {position:relative;}
@@ -214,7 +214,7 @@ div.controls label.radio {display:inline-block;}
 div.k2Table {margin:0 0 20px 0;}
 div.k2Table .k2TableLabel > label {font-weight:normal;color:#777;}
 div.k2Table .k2TableValue {}
-div.k2Table .k2TableValue input[type="text"] {min-height:40px;line-height:40px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+div.k2Table .k2TableValue input[type="text"] {min-height:40px;line-height:40px;box-sizing:border-box;}
 div.k2Table .k2TableValue:after {content:" ";display:block;margin-bottom:8px;}
 div.k2SubTable {margin-bottom:15px;}
 div.k2SubTable .k2SubTableLabel {display:inline-block;text-align:right;vertical-align:top;}
@@ -293,11 +293,10 @@ ul.k2TabsNavigation li.ui-tabs-selected a:hover {background-color:#fff;}
 @media screen and (min-width:1024px) {
     #k2MediaTabs ul.k2TabsNavigation li {width:auto;font-size:16px;}
 }
-div.k2TabsContent {background:#fff;border:1px solid #d4d7d9;padding:10px;margin-top:-1px;margin-bottom:10px;}
-.k2TabsContent.k2TabsContentLower {padding:25px 30px;}
-div.isJ25 div.k2TabsContent {}
-div.isJ30 div.k2TabsContent {}
-div.k2TabsContent {width:100%;float:left;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
+
+/* Tabs */
+.k2TabsContent {background:#fff;border:1px solid #d4d7d9;padding:10px;margin-top:-1px;margin-bottom:10px;width:100%;float:left;box-sizing:border-box;}
+    #k2Tabs .k2TabsContent {padding:20px;}
 
 /* Entity ID */
 div#k2ID {position:absolute;right:0;top:0;font-size:18px;font-weight:normal;padding:21px 24px;color:#0091ff;display:none;}
@@ -341,7 +340,7 @@ div.K2ScrollingContent h3 {margin-top:20px;}
 @media screen and (min-width:900px) {
     ul.k2ScrollSpyMenu {display:block;position:fixed;list-style:none;padding:20px 0 0;margin:0;width:320px;}
     ul.k2ScrollSpyMenu li a {display:block;font-size:16px;
-    color:#00afec;padding:14px 28px;text-decoration:none;-webkit-transition:.5s all ease-out;-moz-transition:.5s all ease-out;transition:.5s all ease-out;}
+    color:#00afec;padding:14px 28px;text-decoration:none;transition:.5s all ease-out;}
     ul.k2ScrollSpyMenu li a:hover {color:#000;}
     ul.k2ScrollSpyMenu li.active a {background:#f7f7f7;}
     div.k2ScrollingContent {margin-left:320px;padding:20px 30px 0 30px;border-left:1px solid #e3e4e4;}
@@ -426,7 +425,7 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
     .row-resposive > .col:first-child {padding-left:0;}
     .row-resposive > .col:last-child {padding-right:0;}
     .row-resposive {overflow:hidden;width:100%;}
-    .col {float:left;padding:0 15px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
+    .col {float:left;padding:0 15px;box-sizing:border-box;}
     .col6 {width:50%;}
     .col3 {width:25%;}
 }
@@ -438,7 +437,7 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
 .isJ30 #exFieldsTypesDiv span {margin-left:10px;}
 #exFieldsTypesDiv input[type="text"] {min-height:30px;line-height:40px;}
 #exFieldsTypesDiv input[type="button"],
-#exFieldsTypesDiv button {margin-bottom:20px;display:inline-block;vertical-align:top;margin-right:10px;color:#414042;min-width:100px;padding:10px 15px;border-radius:3px;border:1px solid #dedede;border-bottom-color:#cacaca;background:#fdfdfd;white-space:normal;position:relative;font-weight:700;background:-moz-linear-gradient(top,#fdfdfd 0%,#f5f5f5 100%);background:-webkit-linear-gradient(top,#fdfdfd 0%,#f5f5f5 100%);background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd',endColorstr='#f5f5f5',GradientType=0);box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
+#exFieldsTypesDiv button {margin-bottom:20px;display:inline-block;vertical-align:top;margin-right:10px;color:#414042;min-width:100px;padding:10px 15px;border-radius:3px;border:1px solid #dedede;border-bottom-color:#cacaca;background:#fdfdfd;white-space:normal;position:relative;font-weight:700;background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
 #exFieldsTypesDiv input[type="button"]:hover,
 #exFieldsTypesDiv button:hover {background:#d4d7d9;}
 #exFieldsTypesDiv .k2ExtraFieldNotice {color:#999;margin-left:10px;}
@@ -556,7 +555,7 @@ ul.tags {background:#fff;border:1px solid #ccc;cursor:default;min-height:48px;he
 ul.tags li {border-radius:3px;background:#d1e8fc;color:#0f4776;line-height:14px;list-style:none;float:left;clear:none;padding:10px;margin:2px 2px 2px 0;font-size:14px;font-weight:bold;font-family:"Lucida Grande";vertical-align:middle;}
 ul.tags li span.tagRemove {font-size:12px;font-family:"Lucida Grande";color:#0b4373;cursor:pointer;}
 ul.tags li span.tagRemove:hover {color:#505050;cursor:pointer;}
-ul.tags li input {border:none;padding-top:2px;background:none;font-size:12px;font-weight:normal;font-family:"Lucida Grande";float:left;clear:none;-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none;}
+ul.tags li input {border:none;padding-top:2px;background:none;font-size:12px;font-weight:normal;font-family:"Lucida Grande";float:left;clear:none;box-shadow:none;}
 ul.tags li input:focus {background:none;}
 ul.tags li input.tagsLoading {background:url(../images/backend/loader.gif) no-repeat 50% 50%;}
 ul.tags li.clr {clear:both;height:0;line-height:0;border:none;float:none;background:none;padding:0;margin:0;}
@@ -632,8 +631,8 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 .itemAdditionalField label.sep {display:block;font-weight:700;margin:25px 0;font-size:15px;text-transform:uppercase;}
 .itemAdditionalField .itemAdditionalData {width:75%;}
 .itemAdditionalField input[type="text"],
-.itemAdditionalField input[type="email"] {width:100%;max-width:100%;min-height:40px;line-height:40px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
-.itemAdditionalField textarea {/*width:100%;max-width:100%;min-height:40px;*/-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+.itemAdditionalField input[type="email"] {width:100%;max-width:100%;min-height:40px;line-height:40px;box-sizing:border-box;}
+.itemAdditionalField textarea {/*width:100%;max-width:100%;min-height:40px;*/box-sizing:border-box;}
 .itemAdditionalField input[type="text"]#existingImageValue {width:100%;display:block;margin-bottom:15px;}
 .nicEdit-main {outline:0;}
 .k2ExtraFieldHeader {font-size:16px;color:#68696b;font-weight:300;display:block;margin-top:0;margin-bottom:0;padding-top:5px;}
@@ -661,12 +660,12 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 .itemAdditionalField .itemAdditionalData > button,
 .itemAdditionalField .itemAdditionalData > input[type="button"],
 .itemAdditionalField .itemAdditionalData > input[type="submit"],
-.k2Button {color:#414042;min-width:150px;padding:10px 15px;border-radius:3px;border:1px solid #dedede;border-bottom-color:#cacaca;background:#fdfdfd;white-space:normal;display:inline-block;vertical-align:middle;position:relative;font-weight:700;background:-moz-linear-gradient(top,#fdfdfd 0%,#f5f5f5 100%);background:-webkit-linear-gradient(top,#fdfdfd 0%,#f5f5f5 100%);background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd',endColorstr='#f5f5f5',GradientType=0);box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
+.k2Button {color:#414042;min-width:150px;padding:10px 15px;border-radius:3px;border:1px solid #dedede;border-bottom-color:#cacaca;background:#fdfdfd;white-space:normal;display:inline-block;vertical-align:middle;position:relative;font-weight:700;background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
 #item_gallery_content .k2Button.modal {display:inline-block !important;position:relative !important;}
 .itemAdditionalField .itemAdditionalData > button:hover,
 .itemAdditionalField .itemAdditionalData > input[type="button"]:hover,
 .itemAdditionalField .itemAdditionalData > input[type="submit"]:hover,
-.itemAdditionalField .k2Button:hover {text-decoration:none;border-color:#dedede;border-bottom-color:#cacaca;background:#fdfdfd;background:-moz-linear-gradient(top,#fdfdfd 0%,#f5f5f5 100%);background:-webkit-linear-gradient(top,#fdfdfd 0%,#f5f5f5 100%);background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd',endColorstr='#f5f5f5',GradientType=0);}
+.itemAdditionalField .k2Button:hover {text-decoration:none;border-color:#dedede;border-bottom-color:#cacaca;background:#fdfdfd;background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);}
 
 /* Additional item secondary fields */
 .itemAdditionalBlock {display:inline-block;vertical-align:middle;margin-right:15px;}
@@ -720,7 +719,7 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 
 /* Filters on smaller viewports */
 #k2AdminContainer .k2AdminTableFiltersSelects,
-#k2AdminContainer .k2AdminTableFiltersSearch {display:block;width:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+#k2AdminContainer .k2AdminTableFiltersSearch {display:block;width:100%;box-sizing:border-box;}
 #k2AdminContainer .k2AdminTableFiltersSelects select {max-width:48%;}
 
 @media screen and (min-width:920px) {
@@ -755,7 +754,7 @@ table.adminFormK2 {width:100%;margin-bottom:16px;}
 .isJ25 #k2AdminContainer .adminlist tr td {background:#f0f2f2;border-bottom:1px solid #dbdcdc;}
 
 .table-responsive-wrap {position:relative;}
-.table-responsive {width:100%;margin-bottom:15px;overflow-y:hidden;-webkit-overflow-scrolling:touch;-ms-overflow-style:-ms-autohiding-scrollbar;}
+.table-responsive {width:100%;margin-bottom:15px;overflow-y:hidden;}
 
 /* minimal modal */
 .jw-modal {display:none;position:fixed;z-index:9999;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.3);}
@@ -764,7 +763,7 @@ table.adminFormK2 {width:100%;margin-bottom:16px;}
 .jw-modal-header {color:#fff;padding:25px 20px;font-size:20px;font-weight:300;letter-spacing:-1px;background-color:#63696f;box-shadow:0 1px 0 rgba(0,0,0,.18);overflow:hidden;}
 .jw-modal-header h3 {margin:0;font-size:20px;}
 .jw-modal-content {position:absolute;left:50%;width:650px;border:1px solid rgba(0,0,0,.8);background-color:#fdfdfd;box-shadow:0 0 29px rgba(0,0,0,.16);
-z-index:100;margin:25px auto 25px -325px;font-family:'Open Sans',sans-serif;-webkit-font-smoothing:antialiased;font-smoothing:antialiased;}
+z-index:100;margin:25px auto 25px -325px;font-family:'Open Sans',sans-serif;font-smoothing:antialiased;}
 .jw-modal-footer {padding:16px 0;background-color:#eff1f1;box-shadow:0 1px 0 rgba(0,0,0,.18);clear:both;width:100%;overflow:hidden;}
 
 /* Button styling */
@@ -848,7 +847,7 @@ html.isJ25 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs
 html.isJ25 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {content:"\f0d8";font-family:"FontAwesome";font-style:normal;font-weight:normal;text-decoration:inherit;color:#fff;font-size:32px;position:absolute;bottom:-12px;left:50%;margin-left:-16px;width:32px;text-shadow:0px -1px 1px #ccc;}
 html.isJ25 div.m {border:0;}
 html.isJ25 div.m,
-html.isJ25 #content-box {-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;}
+html.isJ25 #content-box {border-radius:0;}
 html.isJ25 .xmlParamsFields .paramValue label {padding:0 13px!important;}
 html.isJ25 #element-box {margin-bottom:0;padding:0;}
 html.isJ25 #toolbar-box {padding:0 0;}
@@ -929,7 +928,7 @@ input#k2ImageBrowseServer {/*width:auto;height:30px;line-height:8px;margin-left:
 .oldJ .uneditable-input,
 .oldJ .k2ViewIsItem select,
 .oldJ .k2ViewIsCategory select,
-.oldJ .k2GenericForm select {background-color:#fff;border:1px solid #ccc;box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);-webkit-transition:border linear .2s,box-shadow linear .2s;-moz-transition:border linear .2s,box-shadow linear .2s;transition:border linear .2s,box-shadow linear .2s;display:inline-block;height:30px;font-size:13px;padding:0 10px;min-width:80px;line-height:18px;color:#555;border-radius:3px;vertical-align:middle;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
+.oldJ .k2GenericForm select {background-color:#fff;border:1px solid #ccc;box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);transition:border linear .2s,box-shadow linear .2s;display:inline-block;height:30px;font-size:13px;padding:0 10px;min-width:80px;line-height:18px;color:#555;border-radius:3px;vertical-align:middle;box-sizing:border-box;}
 .oldJ textarea,
 .oldJ .k2ViewIsItem select,
 .oldJ .k2ViewIsCategory select,
@@ -974,7 +973,7 @@ body#com_k2 {}
 @media screen and (max-width:600px) {
     .k2ItemFormEditor .editor .btn {display:block;margin:0 0 15px!important;text-align:left;}
     .k2ItemFormEditor .editor .btn-group {display:block;}
-    .k2ItemFormEditor .editor .btn-toolbar {-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
+    .k2ItemFormEditor .editor .btn-toolbar {box-sizing:border-box;}
     .k2ItemFormEditor .editor .btn-toolbar.pull-right {float:none;width:100%;padding-top:0;margin-top:-10px;}
     .k2ItemFormEditor .editor .btn-toolbar.pull-left {float:none;}
 }
