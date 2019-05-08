@@ -304,7 +304,9 @@ div#k2ID strong {color:#a8c5dd;}
 
 /* Top Nav Tabs */
 #k2FormTopNav {padding:0;}
-#k2FormTopNav ul.k2NavTabs {margin:0;padding:0;text-align:left;white-space:nowrap;background:#f0f2f2;border-bottom:1px solid #d4d7d9;}
+#k2FormTopNav .k2NavTabsWrapper {background:#f0f2f2;border-bottom:1px solid #d4d7d9;}
+#k2FormTopNav .k2NavTabsWrapper > h2 {display:inline-block;padding:0 120px 0 20px;color:#414042;font-weight:400;}
+#k2FormTopNav ul.k2NavTabs {margin:0;padding:0;text-align:left;white-space:nowrap;display:inline-block;}
 #k2FormTopNav ul.k2NavTabs li {list-style:none;display:inline-block;margin:0;padding:0;color:#414042;}
 #k2FormTopNav ul.k2NavTabs li a {display:block;font-size:14px;text-decoration:none;font-weight:normal;outline:0;padding:21px 10px;margin:0;border-right:1px solid #d4d7d9;color:#414042;}
 #k2FormTopNav ul.k2NavTabs li a:hover {text-decoration:none;color:#0091ff;}

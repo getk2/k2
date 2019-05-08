@@ -47,13 +47,16 @@ defined('_JEXEC') or die;
             <div id="k2ID"><strong><?php echo JText::_('K2_ID'); ?></strong> <?php echo $this->row->id; ?></div>
             <?php endif; ?>
 
-            <ul class="k2NavTabs">
-                <li id="tabContent"><a href="#k2TabBasic"><i class="fa fa-home"></i><?php echo JText::_('K2_BASIC'); ?></a></li>
-                <li id="tabContent"><a href="#k2TabPubAndMeta"><i class="fa fa-info-circle"></i><?php echo JText::_('K2_PUBLISHING_AND_METADATA'); ?></a></li>
-                <?php if($this->app->isAdmin()): ?>
-                <li id="tabContent"><a href="#k2TabDisplaySet"><i class="fa fa-desktop"></i><?php echo JText::_('K2_DISPLAY_SETTINGS'); ?></a></li>
-                <?php endif; ?>
-            </ul>
+            <div class="k2NavTabsWrapper">
+                <h2><?php echo JText::_('K2_EDIT_ITEM'); ?></h2>
+                <ul class="k2NavTabs">
+                    <li id="tabContent"><a href="#k2TabBasic"><i class="fa fa-home"></i><?php echo JText::_('K2_BASIC'); ?></a></li>
+                    <li id="tabContent"><a href="#k2TabPubAndMeta"><i class="fa fa-info-circle"></i><?php echo JText::_('K2_PUBLISHING_AND_METADATA'); ?></a></li>
+                    <?php if($this->app->isAdmin()): ?>
+                    <li id="tabContent"><a href="#k2TabDisplaySet"><i class="fa fa-desktop"></i><?php echo JText::_('K2_DISPLAY_SETTINGS'); ?></a></li>
+                    <?php endif; ?>
+                </ul>
+            </div>
 
             <!-- BASIC [start] -->
             <div class="k2NavTabContent" id="k2TabBasic">
