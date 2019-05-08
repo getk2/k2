@@ -37,7 +37,7 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 header.header {display:none;}
 div#toolbar {background:url(../images/backend/k2_logo_126x48.png) no-repeat 12px 50%;background-size:80px;padding:12px 12px 12px calc(10% + 12px);margin:0;min-height:26px;position:fixed;z-index:99;left:0;right:0;}
     div#toolbar .btn-wrapper {margin:0 4px 0 0;}
-#k2AdminContainer {display:grid;grid-template-columns:10% 90%;margin-bottom:16px;min-height:calc(100vh - 116px);}
+#k2AdminContainer {display:grid;grid-template-columns:10% 90%;min-height:calc(100vh - 116px);/*margin-bottom:16px;*/}
     #k2Sidebar {background:#193867;position:relative;z-index:90;/*border-right:4px solid #10213e;*/}
         #k2Sidebar ul {list-style:none;padding:0;margin:0 0 24px 0;position:fixed;width:10%;z-index:92;}
             #k2Sidebar ul li {border-left:4px solid #193867;}
@@ -757,7 +757,7 @@ table.adminFormK2 {width:100%;margin-bottom:16px;}
 #k2AdminContainer .adminlist input[type="checkbox"] {margin-top:0;}
 #k2AdminContainer .adminlist thead tr th {background:#fff;border-bottom:1px solid #dbdcdc;}
 #k2AdminContainer .adminlist tbody tr td {padding-top:10px;padding-bottom:10px;color:#666;}
-#k2AdminContainer .adminlist tfoot tr td {background:#fff;border-bottom:1px solid #dbdcdc;border-top:1px solid #dbdcdc;}
+#k2AdminContainer .adminlist tfoot tr td {background:#fff;border-bottom:0;border-top:1px solid #dbdcdc;padding-bottom:40px;}
 
 #k2AdminContainer .adminlist a {text-decoration:none;color:#040707;/*font-weight:600;*/}
 #k2AdminContainer .adminlist a.editComment {color:#46afff;}
