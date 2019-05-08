@@ -363,8 +363,8 @@ $K2(document).ready(function() {
                     handler: 'iframe',
                     url: K2BasePath + 'index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID=existingImageValue',
                     size: {
-                        x: (window.innerWidth)*0.9,
-                        y: (window.innerHeight)*0.9
+                        x: (window.innerWidth) * 0.9,
+                        y: (window.innerHeight) * 0.9
                     }
                 });
             });
@@ -514,8 +514,8 @@ $K2(document).ready(function() {
                     handler: 'iframe',
                     url: K2BasePath + 'index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID=existingImageValue',
                     size: {
-                        x: (window.innerWidth)*0.9,
-                        y: (window.innerHeight)*0.9
+                        x: (window.innerWidth) * 0.9,
+                        y: (window.innerHeight) * 0.9
                     }
                 });
             });
@@ -526,8 +526,8 @@ $K2(document).ready(function() {
                     handler: 'iframe',
                     url: K2BasePath + 'index.php?option=com_k2&view=media&type=video&tmpl=component&fieldID=remoteVideo',
                     size: {
-                        x: (window.innerWidth)*0.9,
-                        y: (window.innerHeight)*0.9
+                        x: (window.innerWidth) * 0.9,
+                        y: (window.innerHeight) * 0.9
                     }
                 });
             });
@@ -540,8 +540,8 @@ $K2(document).ready(function() {
                     handler: 'iframe',
                     url: K2BasePath + 'index.php?option=com_k2&view=media&type=attachment&tmpl=component&fieldID=k2ActiveAttachment',
                     size: {
-                        x: (window.innerWidth)*0.9,
-                        y: (window.innerHeight)*0.9
+                        x: (window.innerWidth) * 0.9,
+                        y: (window.innerHeight) * 0.9
                     },
                     onClose: function() {
                         k2ActiveAttachmentField.removeAttr('id');
@@ -843,8 +843,8 @@ function extraFieldsImage() {
             handler: 'iframe',
             url: K2BasePath + href,
             size: {
-                x: (window.innerWidth)*0.9,
-                y: (window.innerHeight)*0.9
+                x: (window.innerWidth) * 0.9,
+                y: (window.innerHeight) * 0.9
             }
         });
     });
@@ -1057,7 +1057,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                 var table = $K2('<table/>', {
                     'class': 'csvTable'
                 }).appendTo(target);
-                fieldValues[0].value.each(function(row, index) {
+                $K2(fieldValues[0].value).each(function(row, index) {
                     var tr = $K2('<tr/>').appendTo(table);
                     row.each(function(cell) {
                         if (index > 0) {
@@ -1201,10 +1201,10 @@ function addAttachment() {
                 <label>' + K2Language[6] + '</label>\
             </div>\
             <div class="itemAdditionalData">\
-                <input type="file" name="attachment['+timestamp+'][upload]" class="fileUpload k2Selector" />\
+                <input type="file" name="attachment[' + timestamp + '][upload]" class="fileUpload k2Selector" />\
                 <i>(' + K2Language[7] + ': ' + K2Language[8] + ')</i>\
                 <span class="sep">' + K2Language[9] + '</span>\
-                <input type="text" name="attachment['+timestamp+'][existing]" class="text_area existing_file" readonly />\
+                <input type="text" name="attachment[' + timestamp + '][existing]" class="text_area existing_file" readonly />\
                 <input type="button" value="' + K2Language[10] + '" class="k2AttachmentBrowseServer" />\
             </div>\
         </div>\
@@ -1213,7 +1213,7 @@ function addAttachment() {
                 <label>' + K2Language[1] + '</label>\
             </div>\
             <div class="itemAdditionalData">\
-                <input type="text" name="attachment['+timestamp+'][title]" size="30" class="text_area" />\
+                <input type="text" name="attachment[' + timestamp + '][title]" size="30" class="text_area" />\
             </div>\
         </div>\
         <div class="itemAdditionalField">\
@@ -1221,7 +1221,7 @@ function addAttachment() {
                 <label>' + K2Language[2] + '</label>\
             </div>\
             <div class="itemAdditionalData">\
-                <input type="text" name="attachment['+timestamp+'][title_attribute]" size="30" class="text_area" />\
+                <input type="text" name="attachment[' + timestamp + '][title_attribute]" size="30" class="text_area" />\
             </div>\
         </div>\
     </div>\
