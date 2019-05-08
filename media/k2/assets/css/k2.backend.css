@@ -45,10 +45,10 @@ div#toolbar {background:url(../images/backend/k2_logo_126x48.png) no-repeat 12px
             #k2Sidebar ul li.active {background:#10213e;border-left:4px solid #1480d3;}
             #k2Sidebar ul li a {color:#fff;display:block;padding:8px;}
             #k2Sidebar ul li a:hover {text-decoration:none;}
-        #k2Copyrights {z-index:91;position:fixed;bottom:36px;width:calc(10% - 8px);text-align:center;color:#608ed4;margin:0;padding:4px;line-height:150%;font-size:12px;/*background:#042250;border-radius:4px;*/}
+        #k2Copyrights {z-index:91;position:fixed;bottom:36px;width:calc(10% - 8px);text-align:center;color:#608ed4;margin:0;padding:4px;line-height:150%;font-size:12px;border-top:1px solid #183f7b;/*background:#042250;border-radius:4px;*/}
             #k2Copyrights a {color:#b4cdfb;font-weight:600;}
             #k2Copyrights a:hover {color:#eee;text-decoration:none;}
-            #k2Copyrights div {font-size:10px;border-top:1px solid #193867;line-height:130%;}
+            #k2Copyrights div {font-size:10px;line-height:130%;}
                 #k2Copyrights div a {color:#608ed4;}
         @media screen and (max-height:546px) {#k2Copyrights div {display:none;}}
         @media screen and (max-height:500px) {#k2Copyrights {display:none;}}
