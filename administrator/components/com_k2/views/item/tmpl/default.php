@@ -43,7 +43,6 @@ defined('_JEXEC') or die;
 
         <!-- Top Nav Tabs START here -->
         <div id="k2FormTopNav" class="k2Tabs">
-
             <?php if($this->row->id): ?>
             <div id="k2ID"><strong><?php echo JText::_('K2_ID'); ?></strong> <?php echo $this->row->id; ?></div>
             <?php endif; ?>
