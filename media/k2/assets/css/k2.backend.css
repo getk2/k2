@@ -68,11 +68,11 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
         .K2AdminViewExtrafieldsgroups #k2ContentView > form .table-responsive-wrap,
         .K2AdminViewUsergroups #k2ContentView > form .table-responsive-wrap {padding-top:0;}
 
-        #k2AdminContainer #k2ContentView > form .k2AdminTableFilters .chzn-container {width:180px !important;}
-            #k2AdminContainer #k2ContentView > form .k2AdminTableFilters #filter_trash_chzn {width:100px !important;}
-            #k2AdminContainer #k2ContentView > form .k2AdminTableFilters #filter_featured_chzn,
-            #k2AdminContainer #k2ContentView > form .k2AdminTableFilters #filter_state_chzn {width:150px !important;}
-            #k2AdminContainer #k2ContentView > form .k2AdminTableFilters #language_chzn {width:120px !important;}
+        #k2AdminContainer .k2AdminTableFilters .chzn-container {width:180px !important;}
+            #k2AdminContainer .k2AdminTableFilters #filter_trash_chzn {width:100px !important;}
+            #k2AdminContainer .k2AdminTableFilters #filter_featured_chzn,
+            #k2AdminContainer .k2AdminTableFilters #filter_state_chzn {width:150px !important;}
+            #k2AdminContainer .k2AdminTableFilters #language_chzn {width:120px !important;}
 
         .isJ30.isEditForm #k2ContentView {padding-bottom:40px;}
 
