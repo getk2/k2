@@ -401,77 +401,60 @@ class K2ModelItem extends K2Model
         }
 
         // Attachments
-        $attachments = JRequest::getVar('attachment_file', null, 'FILES', 'array');
-        $attachments_names = JRequest::getVar('attachment_name', '', 'POST', 'array');
-        $attachments_titles = JRequest::getVar('attachment_title', '', 'POST', 'array');
-        $attachments_title_attributes = JRequest::getVar('attachment_title_attribute', '', 'POST', 'array');
-        $attachments_existing_files = JRequest::getVar('attachment_existing_file', '', 'POST', 'array');
+        $path = $params->get('attachmentsFolder', null);
+        if (is_null($path)) {
+            $savepath = JPATH_ROOT.'/media/k2/attachments';
+        } else {
+            $savepath = $path;
+        }
 
-        $attachmentFiles = array();
+        $attPost = JRequest::getVar('attachment', null, 'POST', 'array');
+        $attFiles = JRequest::getVar('attachment', null, 'FILES', 'array');
 
-        if (count($attachments)) {
-            foreach ($attachments as $k => $l) {
-                foreach ($l as $i => $v) {
-                    if (!array_key_exists($i, $attachmentFiles)) {
-                        $attachmentFiles[$i] = array();
+        if (count($attPost)) {
+            foreach ($attPost as $key => $attachment) { /* Use the POST array's key as reference */
+                if (!empty($attachment['existing'])) {
+                    $src = JPATH_SITE.'/'.JPath::clean($attachment['existing']);
+                    $filename = basename($src);
+                    $dest = $savepath.'/'.$filename;
+                    if (JFile::exists($dest)) {
+                        $existingFileName = JFile::getName($dest);
+                        $ext = JFile::getExt($existingFileName);
+                        $basename = JFile::stripExt($existingFileName);
+                        $newFilename = $basename.'_'.time().'.'.$ext;
+                        $filename = $newFilename;
+                        $dest = $savepath.'/'.$newFilename;
                     }
-                    $attachmentFiles[$i][$k] = $v;
-                }
-            }
-
-            $path = $params->get('attachmentsFolder', null);
-            if (is_null($path)) {
-                $savepath = JPATH_ROOT.'/media/k2/attachments';
-            } else {
-                $savepath = $path;
-            }
-
-            $counter = 0;
-
-            foreach ($attachmentFiles as $key => $file) {
-                if ($file["tmp_name"] || $attachments_existing_files[$key]) {
-                    if ($attachments_existing_files[$key]) {
-                        $src = JPATH_SITE.'/'.JPath::clean($attachments_existing_files[$key]);
-                        $copyName = basename($src);
-                        $dest = $savepath.'/'.$copyName;
-                        if (JFile::exists($dest)) {
-                            $existingFileName = JFile::getName($dest);
-                            $ext = JFile::getExt($existingFileName);
-                            $basename = JFile::stripExt($existingFileName);
-                            $newFilename = $basename.'_'.time().'.'.$ext;
-                            $copyName = $newFilename;
-                            $dest = $savepath.'/'.$newFilename;
-                        }
-                        JFile::copy($src, $dest);
-                        $attachment = JTable::getInstance('K2Attachment', 'Table');
-                        $attachment->itemID = $row->id;
-                        $attachment->filename = $copyName;
-                        $attachment->title = (empty($attachments_titles[$counter])) ? $filename : $attachments_titles[$counter];
-                        $attachment->titleAttribute = (empty($attachments_title_attributes[$counter])) ? $filename : $attachments_title_attributes[$counter];
-                        $attachment->store();
+                    JFile::copy($src, $dest);
+                    $attachmentToSave = JTable::getInstance('K2Attachment', 'Table');
+                    $attachmentToSave->itemID = $row->id;
+                    $attachmentToSave->filename = $filename;
+                    $attachmentToSave->title = (empty($attachment['title'])) ? $filename : $attachment['title'];
+                    $attachmentToSave->titleAttribute = (empty($attachment['title_attibute'])) ? $filename : $attachment['title_attibute'];
+                    $attachmentToSave->store();
+                } else {
+                    $handle = new Upload($attFiles['tmp_name'][$key]['upload']);
+                    $filename = $attFiles['name'][$key]['upload'];
+                    if ($handle->uploaded) {
+                        $handle->file_new_name_body = JFile::stripExt($filename);
+                        $handle->file_auto_rename = true;
+                        $handle->file_safe_name = true;
+                        $handle->allowed[] = 'application/x-zip';
+                        $handle->allowed[] = 'application/download';
+                        $handle->Process($savepath);
+                        $dstName = $handle->file_dst_name;
+                        $handle->Clean();
+                        $attachmentToSave = JTable::getInstance('K2Attachment', 'Table');
+                        $attachmentToSave->itemID = $row->id;
+                        $attachmentToSave->filename = $dstName;
+                        $attachmentToSave->title = (empty($attachment['title'])) ? $filename : $attachment['title'];
+                        $attachmentToSave->titleAttribute = (empty($attachment['title_attibute'])) ? $filename : $attachment['title_attibute'];
+                        $attachmentToSave->store();
                     } else {
-                        $handle = new Upload($file);
-                        if ($handle->uploaded) {
-                            $handle->file_auto_rename = true;
-                            $handle->file_safe_name = true;
-                            $handle->allowed[] = 'application/x-zip';
-                            $handle->allowed[] = 'application/download';
-                            $handle->Process($savepath);
-                            $filename = $handle->file_dst_name;
-                            $handle->Clean();
-                            $attachment = JTable::getInstance('K2Attachment', 'Table');
-                            $attachment->itemID = $row->id;
-                            $attachment->filename = $filename;
-                            $attachment->title = (empty($attachments_titles[$counter])) ? $filename : $attachments_titles[$counter];
-                            $attachment->titleAttribute = (empty($attachments_title_attributes[$counter])) ? $filename : $attachments_title_attributes[$counter];
-                            $attachment->store();
-                        } else {
-                            $application->enqueueMessage($handle->error, 'error');
-                            $application->redirect('index.php?option=com_k2&view=items');
-                        }
+                        $application->enqueueMessage($handle->error, 'error');
+                        $application->redirect('index.php?option=com_k2&view=items');
                     }
                 }
-                $counter++;
             }
         }
 
@@ -738,7 +721,7 @@ class K2ModelItem extends K2Model
             if (K2HelperPermissions::canPublishItem($row->catid)) {
                 $row->published = $newPublishedState;
             }
-            
+
             if (!K2HelperPermissions::canEditPublished($row->catid) && !K2HelperPermissions::canPublishItem($row->catid) && $newPublishedState) {
                 $application->enqueueMessage(JText::_('K2_YOU_DONT_HAVE_THE_PERMISSION_TO_PUBLISH_ITEMS'), 'notice');
             }

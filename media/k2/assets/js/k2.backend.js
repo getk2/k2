@@ -533,7 +533,7 @@ $K2(document).ready(function() {
             });
             $K2('#itemAttachments').on('click', '.k2AttachmentBrowseServer', function(event) {
                 event.preventDefault();
-                var k2ActiveAttachmentField = $K2(this).next().next();
+                var k2ActiveAttachmentField = $K2(this).prev();
                 k2ActiveAttachmentField.attr('id', 'k2ActiveAttachment');
                 SqueezeBox.initialize();
                 SqueezeBox.fromElement(this, {
@@ -1192,44 +1192,44 @@ function syncExtraFieldsEditor() {
 }
 
 function addAttachment() {
-    var div = $K2('<div class="itemNewAttachment"/>', {
-        style: ''
-    }).appendTo($K2('#itemAttachments'));
-    var input = $K2('<input/>', {
-        name: 'attachment_file[]',
-        type: 'file'
-    }).appendTo(div);
-    var label = $K2('<a/>', {
-        href: 'index.php?option=com_k2&view=media&type=attachment&tmpl=component&fieldID=k2ActiveAttachment',
-        'class': 'k2AttachmentBrowseServer k2Button'
-    }).html(K2Language[5]).appendTo(div);
-    var input = $K2('<button><i class="fa fa-ban"></i></button>', {
-        value: '',
-        type: 'button',
-        class: 'removeAttachment k2FRight',
-        title: K2Language[0]
-    }).appendTo(div);
-    input.click(function() {
+    var timestamp = new Date().getTime();
+    $K2('\
+    <div class="itemNewAttachment">\
+        <button class="removeAttachment k2FRight" title="' + K2Language[0] + '" value=""><i class="fa fa-ban"></i></button>\
+        <div class="itemAdditionalField">\
+            <div class="k2FLeft k2Right itemAdditionalValue">\
+                <label>' + K2Language[6] + '</label>\
+            </div>\
+            <div class="itemAdditionalData">\
+                <input type="file" name="attachment['+timestamp+'][upload]" class="fileUpload k2Selector" />\
+                <i>(' + K2Language[7] + ': ' + K2Language[8] + ')</i>\
+                <span class="sep">' + K2Language[9] + '</span>\
+                <input type="text" name="attachment['+timestamp+'][existing]" class="text_area existing_file" readonly />\
+                <input type="button" value="' + K2Language[10] + '" class="k2AttachmentBrowseServer" />\
+            </div>\
+        </div>\
+        <div class="itemAdditionalField">\
+            <div class="k2FLeft k2Right itemAdditionalValue">\
+                <label>' + K2Language[1] + '</label>\
+            </div>\
+            <div class="itemAdditionalData">\
+                <input type="text" name="attachment['+timestamp+'][title]" size="30" class="text_area" />\
+            </div>\
+        </div>\
+        <div class="itemAdditionalField">\
+            <div class="k2FLeft k2Right itemAdditionalValue">\
+                <label>' + K2Language[2] + '</label>\
+            </div>\
+            <div class="itemAdditionalData">\
+                <input type="text" name="attachment['+timestamp+'][title_attribute]" size="30" class="text_area" />\
+            </div>\
+        </div>\
+    </div>\
+    ').appendTo($K2('#itemAttachments'));
+
+    $K2('.removeAttachment').on('click', function(e) {
         $K2(this).parent().remove();
     });
-    var input = $K2('<input/>', {
-        name: 'attachment_existing_file[]',
-        type: 'text'
-    }).appendTo(div);
-    var br = $K2('<div class="attachmentGap"/>').appendTo(div);
-    var label = $K2('<label/>').html(K2Language[1]).appendTo(div);
-    var input = $K2('<input/>', {
-        name: 'attachment_title[]',
-        type: 'text',
-        'class': 'linkTitle'
-    }).appendTo(div);
-    var br = $K2('<div class="attachmentGap"/>').appendTo(div);
-    var label = $K2('<label/>').html(K2Language[2]).appendTo(div);
-    var textarea = $K2('<textarea/>', {
-        name: 'attachment_title_attribute[]',
-        cols: '30',
-        rows: '3'
-    }).appendTo(div);
 }
 
 // Media manager

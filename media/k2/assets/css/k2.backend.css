@@ -595,17 +595,19 @@ ul#k2ExtraFieldsMissing li {font-weight:normal;}
 
 /* Item - Attachments */
 #itemAttachments {margin-top:15px;padding-top:10px;}
+/*
 #itemAttachments label {font-weight:bold;}
 #itemAttachments input {margin-bottom:10px;}
 #itemAttachments input.linkTitle {width:200px;}
 #itemAttachments textarea {width:200px;}
 #itemAttachments a.k2AttachmentBrowseServer {margin-right:8px;}
+*/
 td.k2ItemFormDateField {white-space:nowrap;}
 td.k2ItemFormDateField input {}
 td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 
 @media screen and (min-width:767px) {
-    #itemAttachments label {margin-right:10px;width:170px;float:left;clear:left;text-align:right;}
+    #itemAttachments label {/*margin-right:10px;width:170px;float:left;clear:left;text-align:right;*/}
 }
 
 .itemAttachmentsTable {width:100%;margin:0 0 20px;}
@@ -617,10 +619,13 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 .downloadAttachmentButton {padding-right:10px;font-size:18px;}
 
 /* New attachments form */
-.itemNewAttachment {border-top:3px solid #d7d9d9;padding:20px 0;}
+.itemNewAttachment {border-top:3px solid #d7d9d9;padding:20px 0;clear:both;}
 .itemNewAttachment button {background:none;float:right;border:0;font-size:16px;color:#9e0b0f;font-size:18px;}
+.itemNewAttachment .itemAdditionalField input[type="text"].existing_file {width:auto;display:inline-block;vertical-align:middle;margin-right:-10px;margin-bottom:0;}
+/*
 .itemNewAttachment .attachmentGap {margin-bottom:20px;}
 .itemNewAttachment button + input[type="text"] {min-height:30px;line-height:40px;vertical-align:top;}
+*/
 
 /* Item - Extrafields & Image Fields */
 #extraFields {padding-top:20px;}
@@ -649,7 +654,9 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
     .itemAdditionalField .itemAdditionalValue {width:100px;margin-bottom:0;}
     .itemAdditionalField label {display:inline-block;vertical-align:middle;}
     .itemAdditionalField .itemAdditionalData {min-width:75%;float:left;}
+    /*
     .itemNewAttachment button + input[type="text"] {margin-left:-12px;}
+    */
     .itemAdditionalField .sep,
     .itemAdditionalField label.sep {display:inline-block;vertical-align:middle;margin:0 25px;}
     .itemAdditionalField input[type="text"]#existingImageValue {width:auto;display:inline-block;vertical-align:middle;margin-right:-10px;margin-bottom:0;}

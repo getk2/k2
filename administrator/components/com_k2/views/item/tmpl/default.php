@@ -133,7 +133,7 @@ defined('_JEXEC') or die;
                             <?php echo JText::_('K2_WRITE_A_TAG_AND_PRESS_ADD_TO_INSERT_IT_TO_THE_AVAILABLE_TAGS_LISTNEW_TAGS_ARE_APPENDED_AT_THE_BOTTOM_OF_THE_AVAILABLE_TAGS_LIST_LEFT'); ?>
                         </span>
                         <?php endif; ?>
-                        
+
                         <table cellspacing="0" cellpadding="0" border="0" id="tagLists">
                             <tr>
                                 <td id="tagListsLeft">
@@ -480,7 +480,7 @@ defined('_JEXEC') or die;
                                                     <label><?php echo JText::_('K2_PASTE_REMOTE_VIDEO_URL'); ?></label>
                                                 </div>
                                                 <div class="itemAdditionalBlock">
-                                                    <input type="text" size="50" name="remoteVideo" id="remoteVideo" value="<?php echo $this->lists['remoteVideo'] ?>" />
+                                                    <input type="text" size="50" name="remoteVideo" id="remoteVideo" value="<?php echo $this->lists['remoteVideo']; ?>" />
                                                 </div>
                                             </div>
                                         </div>

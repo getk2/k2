@@ -512,7 +512,12 @@ class K2ViewItem extends K2View
                 '".JText::_('K2_LINK_TITLE_ATTRIBUTE_OPTIONAL', true)."',
                 '".JText::_('K2_ARE_YOU_SURE', true)."',
                 '".JText::_('K2_YOU_ARE_NOT_ALLOWED_TO_POST_TO_THIS_CATEGORY', true)."',
-                '".JText::_('K2_OR_SELECT_A_FILE_ON_THE_SERVER', true)."'
+                '".JText::_('K2_OR_SELECT_A_FILE_ON_THE_SERVER', true)."',
+                '".JText::_('K2_ATTACH_FILE', true)."',
+                '".JText::_('K2_MAX_UPLOAD_SIZE', true)."',
+                '".ini_get('upload_max_filesize')."',
+                '".JText::_('K2_OR', true)."',
+                '".JText::_('K2_BROWSE_SERVER', true)."'
             ];
 
             Joomla.submitbutton = function(pressbutton){
