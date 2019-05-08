@@ -38,17 +38,17 @@ header.header {display:none;}
 div#toolbar {background:url(../images/backend/k2_logo_126x48.png) no-repeat 12px 50%;background-size:80px;padding:12px 12px 12px calc(10% + 12px);margin:0;min-height:26px;position:fixed;z-index:99;left:0;right:0;}
     div#toolbar .btn-wrapper {margin:0 4px 0 0;}
 #k2AdminContainer {display:grid;grid-template-columns:10% 90%;margin-bottom:16px;min-height:calc(100vh - 116px);}
-    #k2Sidebar {background:#193867;position:relative;z-index:90;}
+    #k2Sidebar {background:#193867;position:relative;z-index:90;/*border-right:4px solid #10213e;*/}
         #k2Sidebar ul {list-style:none;padding:0;margin:0 0 24px 0;position:fixed;width:10%;z-index:92;}
-            #k2Sidebar ul li {padding:8px;border-left:4px solid #193867;}
+            #k2Sidebar ul li {border-left:4px solid #193867;}
             #k2Sidebar ul li:hover {background:#10213e;border-left:4px solid #10213e;}
             #k2Sidebar ul li.active {background:#10213e;border-left:4px solid #1480d3;}
-            #k2Sidebar ul li a {color:#fff;display:block;}
+            #k2Sidebar ul li a {color:#fff;display:block;padding:8px;}
             #k2Sidebar ul li a:hover {text-decoration:none;}
-        #k2Copyrights {z-index:91;position:fixed;bottom:40px;width:calc(10% - 32px);text-align:center;color:#608ed4;margin:0 8px;padding:4px 8px;background:#042250;border-radius:4px;line-height:150%;}
-            #k2Copyrights a {color:#b4cdfb;font-weight:bold;}
+        #k2Copyrights {z-index:91;position:fixed;bottom:36px;width:calc(10% - 8px);text-align:center;color:#608ed4;margin:0;padding:4px;line-height:150%;font-size:12px;/*background:#042250;border-radius:4px;*/}
+            #k2Copyrights a {color:#b4cdfb;font-weight:600;}
             #k2Copyrights a:hover {color:#eee;text-decoration:none;}
-            #k2Copyrights div {font-size:11px;border-top:1px solid #193867;line-height:130%;}
+            #k2Copyrights div {font-size:10px;border-top:1px solid #193867;line-height:130%;}
                 #k2Copyrights div a {color:#608ed4;}
         @media screen and (max-height:546px) {#k2Copyrights div {display:none;}}
         @media screen and (max-height:500px) {#k2Copyrights {display:none;}}
@@ -755,7 +755,7 @@ table.adminFormK2 {width:100%;margin-bottom:16px;}
 #k2AdminContainer .adminlist tbody tr td {padding-top:10px;padding-bottom:10px;color:#666;}
 #k2AdminContainer .adminlist tfoot tr td {background:#fff;border-bottom:1px solid #dbdcdc;border-top:1px solid #dbdcdc;}
 
-#k2AdminContainer .adminlist a {text-decoration:none;color:#040707;font-weight:600;}
+#k2AdminContainer .adminlist a {text-decoration:none;color:#040707;/*font-weight:600;*/}
 #k2AdminContainer .adminlist a.editComment {color:#46afff;}
 #k2AdminContainer .adminlist a:hover {color:#46afff;}
 
