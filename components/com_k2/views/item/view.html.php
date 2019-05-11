@@ -175,27 +175,33 @@ class K2ViewItem extends K2View
                 // Load K2 native comments system only if there are no plugins overriding it
                 if (empty($item->event->K2CommentsCounter) && empty($item->event->K2CommentsBlock)) {
 
-                // Load reCAPTCHA script
+                    // Load reCaptcha
                     if (!JRequest::getInt('print') && ($item->params->get('comments') == '1' || ($item->params->get('comments') == '2' && K2HelperPermissions::canAddComment($item->catid)))) {
                         if ($params->get('recaptcha') && ($user->guest || $params->get('recaptchaForRegistered', 1))) {
                             if ($params->get('recaptchaV2')) {
                                 $document->addScript('https://www.google.com/recaptcha/api.js?onload=onK2RecaptchaLoaded&render=explicit');
-                                $js = 'function onK2RecaptchaLoaded(){grecaptcha.render("recaptcha", {"sitekey" : "'.$item->params->get('recaptcha_public_key').'"});}';
-                                $document->addScriptDeclaration($js);
+                                $document->addScriptDeclaration('
+                                    /* K2: reCaptcha v2 */
+                                    function onK2RecaptchaLoaded(){
+                                        grecaptcha.render("recaptcha", {
+                                            "sitekey": "'.$item->params->get('recaptcha_public_key').'"
+                                        });
+                                    }
+                                ');
                                 $this->recaptchaClass = 'k2-recaptcha-v2';
                             } else {
                                 $document->addScript('https://www.google.com/recaptcha/api/js/recaptcha_ajax.js');
-                                $js = '
-                            function showRecaptcha(){
-                                Recaptcha.create("'.$item->params->get('recaptcha_public_key').'", "recaptcha", {
-                                    theme: "'.$item->params->get('recaptcha_theme', 'clean').'"
-                                });
-                            }
-                            $K2(window).load(function() {
-                                showRecaptcha();
-                            });
-                            ';
-                                $document->addScriptDeclaration($js);
+                                $document->addScriptDeclaration('
+                                    /* K2: reCaptcha v1 */
+                                    function showRecaptcha(){
+                                        Recaptcha.create("'.$item->params->get('recaptcha_public_key').'", "recaptcha", {
+                                            theme: "'.$item->params->get('recaptcha_theme', 'clean').'"
+                                        });
+                                    }
+                                    $K2(window).load(function() {
+                                        showRecaptcha();
+                                    });
+                                ');
                                 $this->recaptchaClass = 'k2-recaptcha-v1';
                             }
                         }
