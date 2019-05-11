@@ -645,6 +645,7 @@ class K2ViewItem extends K2View
             $this->assignRef('params', $item->params);
             $this->assignRef('pagination', $pagination);
 
+            // Display
             parent::display($tpl);
         }
     }
