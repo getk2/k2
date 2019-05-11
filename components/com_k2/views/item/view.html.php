@@ -536,6 +536,9 @@ class K2ViewItem extends K2View
         $item->langTagForTW = strtolower($languageTag);
         $item->langTagForLI = str_replace('-', '_', $languageTag);
 
+        // Set the link for sharing
+        $item->sharinglink = substr(JUri::root(false), 0, -1).$item->link;
+
         // Lookup template folders
         $this->_addPath('template', JPATH_COMPONENT.'/templates');
         $this->_addPath('template', JPATH_COMPONENT.'/templates/default');

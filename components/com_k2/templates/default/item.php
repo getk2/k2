@@ -302,7 +302,7 @@ defined('_JEXEC') or die;
         <?php if($this->item->params->get('itemTwitterButton',1)): ?>
         <!-- Twitter Button -->
         <div class="itemTwitterButton">
-            <a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo $this->item->link; ?>" data-via="<?php if($this->item->params->get('twitterUsername')) echo $this->item->params->get('twitterUsername'); ?>" data-related="<?php if($this->item->params->get('twitterUsername')) echo $this->item->params->get('twitterUsername'); ?>" data-lang="<?php echo $this->item->langTagForTW; ?>" data-dnt="true" data-show-count="true">Tweet</a>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo $this->item->sharinglink; ?>" data-via="<?php if($this->item->params->get('twitterUsername')) echo $this->item->params->get('twitterUsername'); ?>" data-related="<?php if($this->item->params->get('twitterUsername')) echo $this->item->params->get('twitterUsername'); ?>" data-lang="<?php echo $this->item->langTagForTW; ?>" data-dnt="true" data-show-count="true">Tweet</a>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
         <?php endif; ?>
@@ -312,7 +312,7 @@ defined('_JEXEC') or die;
         <div class="itemFacebookButton">
             <div id="fb-root"></div>
             <script async defer crossorigin="anonymous" src="https://connect.facebook.net/<?php echo $this->item->langTagForFB; ?>/sdk.js#xfbml=1&version=v3.3"></script>
-            <div class="fb-like" data-href="<?php echo $this->item->link; ?>" data-width="160" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+            <div class="fb-like" data-href="<?php echo $this->item->sharinglink; ?>" data-width="160" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
         </div>
         <?php endif; ?>
 
@@ -322,7 +322,7 @@ defined('_JEXEC') or die;
             <script src="https://platform.linkedin.com/in.js" type="text/javascript">
             lang: <?php echo $this->item->langTagForLI; ?>
             </script>
-            <script type="IN/Share" data-url="<?php echo $this->item->link; ?>"></script>
+            <script type="IN/Share" data-url="<?php echo $this->item->sharinglink; ?>"></script>
         </div>
         <?php endif; ?>
 
