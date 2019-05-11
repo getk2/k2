@@ -296,7 +296,7 @@
       <option value="0">K2_HIDE</option>
       <option value="1">K2_SHOW</option>
     </param>
-    <param name="itemGooglePlusOneButton" type="radio" default="" label="K2_GOOGLEPLUSONE_SHARE" description="">
+    <param name="itemLinkedInButton" type="radio" default="" label="K2_LINKEDIN_SHARE" description="">
       <option value="">K2_INHERIT_FROM_CATEGORY</option>
       <option value="0">K2_HIDE</option>
       <option value="1">K2_SHOW</option>
@@ -687,7 +687,7 @@
 	      <option value="0">K2_HIDE</option>
 	      <option value="1">K2_SHOW</option>
 	    </field>
-	    <field name="itemGooglePlusOneButton" type="radio" default="" label="K2_GOOGLEPLUSONE_SHARE" description="">
+	    <field name="itemLinkedInButton" type="radio" default="" label="K2_LINKEDIN_SHARE" description="">
 	      <option value="">K2_INHERIT_FROM_CATEGORY</option>
 	      <option value="0">K2_HIDE</option>
 	      <option value="1">K2_SHOW</option>

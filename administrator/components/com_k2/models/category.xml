@@ -386,7 +386,7 @@
 			<option value="0">K2_HIDE</option>
 			<option value="1">K2_SHOW</option>
 		</param>
-		<param name="itemGooglePlusOneButton" type="radio" default="1" label="K2_GOOGLEPLUSONE_SHARE" description="">
+		<param name="itemLinkedInButton" type="radio" default="1" label="K2_LINKEDIN_SHARE" description="">
 			<option value="0">K2_HIDE</option>
 			<option value="1">K2_SHOW</option>
 		</param>
@@ -860,7 +860,7 @@
 				<option value="0">K2_HIDE</option>
 				<option value="1">K2_SHOW</option>
 			</field>
-			<field name="itemGooglePlusOneButton" type="radio" default="1" label="K2_GOOGLEPLUSONE_SHARE" description="">
+			<field name="itemLinkedInButton" type="radio" default="1" label="K2_LINKEDIN_SHARE" description="">
 				<option value="0">K2_HIDE</option>
 				<option value="1">K2_SHOW</option>
 			</field>

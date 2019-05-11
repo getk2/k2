@@ -295,7 +295,7 @@ defined('_JEXEC') or die;
     <?php if(
         $this->item->params->get('itemTwitterButton',1) ||
         $this->item->params->get('itemFacebookButton',1) ||
-        $this->item->params->get('itemGooglePlusOneButton',1)
+        $this->item->params->get('itemLinkedInButton',1)
     ): ?>
     <!-- Social sharing -->
     <div class="itemSocialSharing">
@@ -336,23 +336,13 @@ defined('_JEXEC') or die;
         </div>
         <?php endif; ?>
 
-        <?php if($this->item->params->get('itemGooglePlusOneButton',1)): ?>
-        <!-- Google +1 Button -->
-        <div class="itemGooglePlusOneButton">
-            <div class="g-plusone" data-size="medium"></div>
-            <script>
-            window.___gcfg = {
-                lang: '<?php echo $this->item->langTagForGP; ?>'
-            };
-            (function() {
-                var po = document.createElement('script');
-                po.type = 'text/javascript';
-                po.async = true;
-                po.src = 'https://apis.google.com/js/platform.js';
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(po, s);
-            })();
+        <?php if($this->item->params->get('itemLinkedInButton',1)): ?>
+        <!-- LinkedIn Button -->
+        <div class="itemLinkedInButton">
+            <script src="https://platform.linkedin.com/in.js" type="text/javascript">
+            lang: <?php echo $this->item->langTagForLI; ?>
             </script>
+            <script type="IN/Share" data-url="<?php echo $this->item->link; ?>"></script>
         </div>
         <?php endif; ?>
 

@@ -534,7 +534,7 @@ class K2ViewItem extends K2View
         $languageTag = $getSiteLanguage->getTag();
         $item->langTagForFB = str_replace('-', '_', $languageTag);
         $item->langTagForTW = strtolower($languageTag);
-        $item->langTagForGP = $languageTag;
+        $item->langTagForLI = str_replace('-', '_', $languageTag);
 
         // Lookup template folders
         $this->_addPath('template', JPATH_COMPONENT.'/templates');
@@ -562,6 +562,13 @@ class K2ViewItem extends K2View
                 $this->_addPath('template', JPATH_SITE.'/templates/'.$template.'/html/com_k2/'.$item->params->get('theme'));
             }
         }
+
+        // --- B/C stuff [start] ---
+        // Deprecate Google+ sharing
+        $params->set('itemGooglePlusOneButton', 0);
+        $item->params->set('itemGooglePlusOneButton', 0);
+        $item->langTagForGP = '';
+        // --- B/C stuff [end] ---
 
         // Assign data
         $this->assignRef('item', $item);
