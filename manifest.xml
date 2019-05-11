@@ -189,7 +189,7 @@
         <param name="userImageDefault" default="1" />
         <param name="commenterImgWidth" default="48" />
         <param name="onlineImageEditor" default="picozu" />
-        <param name="imageTimestamp" default="0" />
+        <param name="imageTimestamp" default="1" />
         <param name="imageMemoryLimit" default="" />
         <!-- ######################### Social Settings ######################### -->
         <param name="socialButtonCode" default="" />
