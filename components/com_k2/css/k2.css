@@ -261,9 +261,9 @@ div.itemContentFooter {display:block;text-align:right;padding:4px 0;margin:16px 
     span.itemDateModified {}
 
 div.itemSocialSharing {padding:8px 0;}
-    div.itemTwitterButton {float:left;margin:2px 24px 0 0;}
-    div.itemFacebookButton {float:left;margin-right:24px;width:200px;}
-    div.itemLinkedInButton {}
+    div.itemTwitterButton {float:left;margin:0 24px 0 0;}
+    div.itemFacebookButton {display:inline-block;margin:0 24px 0 0;}
+    div.itemLinkedInButton {display:inline-block;margin:0;}
 
 div.itemLinks {margin:16px 0;padding:0;}
 

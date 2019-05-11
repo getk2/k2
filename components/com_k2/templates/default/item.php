@@ -302,19 +302,8 @@ defined('_JEXEC') or die;
         <?php if($this->item->params->get('itemTwitterButton',1)): ?>
         <!-- Twitter Button -->
         <div class="itemTwitterButton">
-            <a href="https://twitter.com/share" class="twitter-share-button" data-lang="<?php echo $this->item->langTagForTW; ?>" data-via="<?php if($this->item->params->get('twitterUsername')) echo $this->item->params->get('twitterUsername'); ?>"><?php echo JText::_('K2_TWEET'); ?></a>
-            <script>
-            ! function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0],
-                    p = /^http:/.test(d.location) ? 'http' : 'https';
-                if (!d.getElementById(id)) {
-                    js = d.createElement(s);
-                    js.id = id;
-                    js.src = p + '://platform.twitter.com/widgets.js';
-                    fjs.parentNode.insertBefore(js, fjs);
-                }
-            }(document, 'script', 'twitter-wjs');
-            </script>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo $this->item->link; ?>" data-via="<?php if($this->item->params->get('twitterUsername')) echo $this->item->params->get('twitterUsername'); ?>" data-related="<?php if($this->item->params->get('twitterUsername')) echo $this->item->params->get('twitterUsername'); ?>" data-lang="<?php echo $this->item->langTagForTW; ?>" data-dnt="true" data-show-count="true">Tweet</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
         <?php endif; ?>
 
@@ -323,7 +312,7 @@ defined('_JEXEC') or die;
         <div class="itemFacebookButton">
             <div id="fb-root"></div>
             <script async defer crossorigin="anonymous" src="https://connect.facebook.net/<?php echo $this->item->langTagForFB; ?>/sdk.js#xfbml=1&version=v3.3"></script>
-            <div class="fb-like" data-href="<?php echo $this->item->link; ?>" data-width="200" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+            <div class="fb-like" data-href="<?php echo $this->item->link; ?>" data-width="160" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
         </div>
         <?php endif; ?>
 
