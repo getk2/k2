@@ -34,7 +34,7 @@ $document->addScriptDeclaration("
                 <?php if($this->row->id): ?>
                 <?php echo JText::_('K2_EDIT_USER_GROUP'); ?>
                 <?php else: ?>
-                <?php echo JText::_('K2_ADD_NEW_USER_GROUP'); ?>
+                <?php echo JText::_('K2_ADD_USER_GROUP'); ?>
                 <?php endif; ?>
             </h3>
             <ul class="adminformlist">
