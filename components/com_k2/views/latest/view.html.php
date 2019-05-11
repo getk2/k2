@@ -212,11 +212,11 @@ class K2ViewLatest extends K2View
 
             // Set page title
             if (K2_JVERSION != '15') {
-                if ($application->getCfg('sitename_pagetitles', 0) == 1) {
-                    $title = JText::sprintf('JPAGETITLE', $application->getCfg('sitename'), $params->get('page_title'));
+                if ($app->getCfg('sitename_pagetitles', 0) == 1) {
+                    $title = JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $params->get('page_title'));
                     $params->set('page_title', $title);
-                } elseif ($application->getCfg('sitename_pagetitles', 0) == 2) {
-                    $title = JText::sprintf('JPAGETITLE', $params->get('page_title'), $application->getCfg('sitename'));
+                } elseif ($app->getCfg('sitename_pagetitles', 0) == 2) {
+                    $title = JText::sprintf('JPAGETITLE', $params->get('page_title'), $app->getCfg('sitename'));
                     $params->set('page_title', $title);
                 }
             }

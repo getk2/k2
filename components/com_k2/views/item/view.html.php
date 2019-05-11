@@ -16,7 +16,7 @@ class K2ViewItem extends K2View
 {
     public function display($tpl = null)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $user = JFactory::getUser();
         $document = JFactory::getDocument();
         $params = K2HelperUtilities::getParams('com_k2');
@@ -98,8 +98,8 @@ class K2ViewItem extends K2View
                 if ($user->guest) {
                     $uri = JFactory::getURI();
                     $url = 'index.php?option=com_users&view=login&return='.base64_encode($uri->toString());
-                    $application->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
-                    $application->redirect(JRoute::_($url, false));
+                    $app->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
+                    $app->redirect(JRoute::_($url, false));
                 } else {
                     JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
                     return;
@@ -110,8 +110,8 @@ class K2ViewItem extends K2View
                 if ($user->guest) {
                     $uri = JFactory::getURI();
                     $url = 'index.php?option=com_user&view=login&return='.base64_encode($uri->toString());
-                    $application->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
-                    $application->redirect(JRoute::_($url, false));
+                    $app->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
+                    $app->redirect(JRoute::_($url, false));
                 } else {
                     JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
                     return;
@@ -394,7 +394,7 @@ class K2ViewItem extends K2View
         // Email link
         if (K2_JVERSION != '15') {
             require_once(JPATH_SITE.'/components/com_mailto/helpers/mailto.php');
-            $template = $application->getTemplate();
+            $template = $app->getTemplate();
             $item->emailLink = JRoute::_('index.php?option=com_mailto&tmpl=component&template='.$template.'&link='.MailToHelper::addLink($item->absoluteURL));
         } else {
             require_once(JPATH_SITE.'/components/com_mailto/helpers/mailto.php');
@@ -402,7 +402,7 @@ class K2ViewItem extends K2View
         }
 
         // Get current menu item
-        $menus = $application->getMenu();
+        $menus = $app->getMenu();
         $menu = $menus->getActive();
 
         // Check if the current menu item matches the displayed K2 item
@@ -412,7 +412,7 @@ class K2ViewItem extends K2View
         }
 
         // Set pathway
-        $pathway = $application->getPathWay();
+        $pathway = $app->getPathWay();
         if ($menu) {
             if (isset($menu->query['view']) && ($menu->query['view'] != 'item' || $menu->query['id'] != $item->id)) {
                 if (!isset($menu->query['task']) || $menu->query['task'] != 'category' || $menu->query['id'] != $item->catid) {
@@ -478,11 +478,11 @@ class K2ViewItem extends K2View
                 $params->set('page_title', $item->cleanTitle);
             }
             if (K2_JVERSION != '15') {
-                if ($application->getCfg('sitename_pagetitles', 0) == 1) {
-                    $title = JText::sprintf('JPAGETITLE', $application->getCfg('sitename'), $params->get('page_title'));
+                if ($app->getCfg('sitename_pagetitles', 0) == 1) {
+                    $title = JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $params->get('page_title'));
                     $params->set('page_title', $title);
-                } elseif ($application->getCfg('sitename_pagetitles', 0) == 2) {
-                    $title = JText::sprintf('JPAGETITLE', $params->get('page_title'), $application->getCfg('sitename'));
+                } elseif ($app->getCfg('sitename_pagetitles', 0) == 2) {
+                    $title = JText::sprintf('JPAGETITLE', $params->get('page_title'), $app->getCfg('sitename'));
                     $params->set('page_title', $title);
                 }
             }
@@ -538,7 +538,7 @@ class K2ViewItem extends K2View
             }
 
             // Meta: Robots & author
-            if ($application->getCfg('MetaAuthor') == '1' && isset($item->author->name)) {
+            if ($app->getCfg('MetaAuthor') == '1' && isset($item->author->name)) {
                 $document->setMetadata('author', $item->author->name);
             }
 
@@ -616,16 +616,16 @@ class K2ViewItem extends K2View
             $this->_addPath('template', JPATH_COMPONENT.'/templates');
             $this->_addPath('template', JPATH_COMPONENT.'/templates/default');
 
-            $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates');
-            $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/default');
+            $this->_addPath('template', JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2/templates');
+            $this->_addPath('template', JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2/templates/default');
 
-            $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2');
-            $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/default');
+            $this->_addPath('template', JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2');
+            $this->_addPath('template', JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2/default');
 
             if ($item->params->get('theme')) {
                 $this->_addPath('template', JPATH_COMPONENT.'/templates/'.$item->params->get('theme'));
-                $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/'.$item->params->get('theme'));
-                $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/'.$item->params->get('theme'));
+                $this->_addPath('template', JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2/templates/'.$item->params->get('theme'));
+                $this->_addPath('template', JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2/'.$item->params->get('theme'));
             }
 
             // Allow temporary template loading with ?template=
