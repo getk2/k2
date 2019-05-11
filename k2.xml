@@ -2,12 +2,12 @@
 <extension type="component" version="2.5" method="upgrade">
     <name>COM_K2</name>
     <author>JoomlaWorks</author>
-    <creationDate>January 22nd, 2019</creationDate>
+    <creationDate>May 11th, 2019</creationDate>
     <copyright>Copyright (c) 2006 - 2019 JoomlaWorks Ltd. All rights reserved.</copyright>
     <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
     <authorUrl>www.joomlaworks.net</authorUrl>
     <version>2.9.1</version>
-    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <license>https://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <description>Thank you for installing K2 by JoomlaWorks, the powerful content extension for Joomla</description>
     <installfile>install.k2.php</installfile>
     <uninstallfile>uninstall.k2.php</uninstallfile>
