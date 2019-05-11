@@ -14,15 +14,12 @@ jimport('joomla.application.component.view');
 
 class K2ViewItem extends K2View
 {
-
-    function display($tpl = null)
+    public function display($tpl = null)
     {
-
         $application = JFactory::getApplication();
         $user = JFactory::getUser();
         $document = JFactory::getDocument();
-        if (K2_JVERSION == '15')
-        {
+        if (K2_JVERSION == '15') {
             $document->setMimeEncoding('application/json');
             $document->setType('json');
         }
@@ -40,8 +37,7 @@ class K2ViewItem extends K2View
         $item = $model->getData();
 
         // Does the item exists?
-        if (!is_object($item) || !$item->id)
-        {
+        if (!is_object($item) || !$item->id) {
             JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
         }
 
@@ -65,39 +61,30 @@ class K2ViewItem extends K2View
         $item = $model->execPlugins($item, $view, $task);
 
         // Access check
-        if (K2_JVERSION != '15')
-        {
-            if (!in_array($item->access, $user->getAuthorisedViewLevels()) || !in_array($item->category->access, $user->getAuthorisedViewLevels()))
-            {
-               JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
+        if (K2_JVERSION != '15') {
+            if (!in_array($item->access, $user->getAuthorisedViewLevels()) || !in_array($item->category->access, $user->getAuthorisedViewLevels())) {
+                JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
             }
-        }
-        else
-        {
-            if ($item->access > $user->get('aid', 0) || $item->category->access > $user->get('aid', 0))
-            {
+        } else {
+            if ($item->access > $user->get('aid', 0) || $item->category->access > $user->get('aid', 0)) {
                 JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
             }
         }
 
         // Published check
-        if (!$item->published || $item->trash)
-        {
+        if (!$item->published || $item->trash) {
             JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
         }
 
-        if ($item->publish_up != $nullDate && $item->publish_up > $now)
-        {
+        if ($item->publish_up != $nullDate && $item->publish_up > $now) {
             JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
         }
 
-        if ($item->publish_down != $nullDate && $item->publish_down < $now)
-        {
+        if ($item->publish_down != $nullDate && $item->publish_down < $now) {
             JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
         }
 
-        if (!$item->category->published || $item->category->trash)
-        {
+        if (!$item->category->published || $item->category->trash) {
             JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
         }
         
@@ -124,15 +111,11 @@ class K2ViewItem extends K2View
 
         $json = json_encode($response);
         $callback = JRequest::getCmd('callback');
-        if ($callback)
-        {
+        if ($callback) {
             $document->setMimeEncoding('application/javascript');
             echo $callback.'('.$json.')';
-        }
-        else
-        {
+        } else {
             echo $json;
         }
     }
-
 }

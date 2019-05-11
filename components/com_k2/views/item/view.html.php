@@ -334,6 +334,33 @@ class K2ViewItem extends K2View
         $uri = JURI::getInstance();
         $item->absoluteURL = $uri->toString();
 
+        // Get the frontend's language for use in social media buttons - use explicit variable references for future update flexibility
+        $getSiteLanguage = JFactory::getLanguage();
+        $languageTag = $getSiteLanguage->getTag();
+        $item->langTagForFB = str_replace('-', '_', $languageTag);
+        $item->langTagForTW = strtolower($languageTag);
+        $item->langTagForLI = str_replace('-', '_', $languageTag);
+
+        // Set the link for sharing
+        $item->sharinglink = $item->absoluteURL;
+
+        // --- B/C stuff [start] ---
+        // Social Share URL
+        $item->socialLink = urlencode($item->absoluteURL);
+
+        // Twitter link (legacy code)
+        if ($params->get('twitterUsername')) {
+            $item->twitterURL = 'https://twitter.com/intent/tweet?text='.urlencode($item->title).'&amp;url='.urlencode($item->absoluteURL).'&amp;via='.$params->get('twitterUsername');
+        } else {
+            $item->twitterURL = 'https://twitter.com/intent/tweet?text='.urlencode($item->title).'&amp;url='.urlencode($item->absoluteURL);
+        }
+
+        // Deprecate Google+ sharing
+        $params->set('itemGooglePlusOneButton', 0);
+        $item->params->set('itemGooglePlusOneButton', 0);
+        $item->langTagForGP = '';
+        // --- B/C stuff [end] ---
+
         // Email link
         if (K2_JVERSION != '15') {
             require_once(JPATH_SITE.'/components/com_mailto/helpers/mailto.php');
@@ -343,9 +370,6 @@ class K2ViewItem extends K2View
             require_once(JPATH_SITE.'/components/com_mailto/helpers/mailto.php');
             $item->emailLink = JRoute::_('index.php?option=com_mailto&tmpl=component&link='.MailToHelper::addLink($item->absoluteURL));
         }
-
-        // Social link
-        $item->socialLink = urlencode($item->absoluteURL);
 
         // Get current menu item
         $menus = $application->getMenu();
@@ -368,169 +392,163 @@ class K2ViewItem extends K2View
             }
         }
 
-        // Set canonical link
-        $canonicalURL = $params->get('canonicalURL', 'relative');
-        if ($canonicalURL == 'absolute') {
-            $document->addHeadLink(substr(str_replace(JUri::root(true), '', JUri::root(false)), 0, -1).$item->link, 'canonical', 'rel');
-        }
-        if ($canonicalURL == 'relative') {
-            $document->addHeadLink($item->link, 'canonical', 'rel');
-        }
+        // Head Stuff
+        if ($document->getType() != 'raw') {
 
-        // Set page title
-        if ($menuItemMatchesK2Item) {
-            if (is_string($menu->params)) {
-                $menu_params = K2_JVERSION == '15' ? new JParameter($menu->params) : new JRegistry($menu->params);
-            } else {
-                $menu_params = $menu->params;
+            // Set canonical link
+            $canonicalURL = $params->get('canonicalURL', 'relative');
+            if ($canonicalURL == 'absolute') {
+                $document->addHeadLink(substr(str_replace(JUri::root(true), '', JUri::root(false)), 0, -1).$item->link, 'canonical', 'rel');
             }
-            if (!$menu_params->get('page_title')) {
+            if ($canonicalURL == 'relative') {
+                $document->addHeadLink($item->link, 'canonical', 'rel');
+            }
+
+            // Set page title
+            if ($menuItemMatchesK2Item) {
+                if (is_string($menu->params)) {
+                    $menu_params = K2_JVERSION == '15' ? new JParameter($menu->params) : new JRegistry($menu->params);
+                } else {
+                    $menu_params = $menu->params;
+                }
+                if (!$menu_params->get('page_title')) {
+                    $params->set('page_title', $item->cleanTitle);
+                }
+            } else {
                 $params->set('page_title', $item->cleanTitle);
             }
-        } else {
-            $params->set('page_title', $item->cleanTitle);
-        }
-        if (K2_JVERSION != '15') {
-            if ($application->getCfg('sitename_pagetitles', 0) == 1) {
-                $title = JText::sprintf('JPAGETITLE', $application->getCfg('sitename'), $params->get('page_title'));
-                $params->set('page_title', $title);
-            } elseif ($application->getCfg('sitename_pagetitles', 0) == 2) {
-                $title = JText::sprintf('JPAGETITLE', $params->get('page_title'), $application->getCfg('sitename'));
-                $params->set('page_title', $title);
-            }
-        }
-        $document->setTitle($params->get('page_title'));
-
-        // Set metadata
-        $metaDesc = '';
-
-        // Get metadata from the menu item (for Joomla 2.5+)
-        if ($menuItemMatchesK2Item) {
             if (K2_JVERSION != '15') {
-                if ($params->get('menu-meta_description')) {
-                    $document->setDescription($params->get('menu-meta_description'));
-                }
-                if ($params->get('menu-meta_keywords')) {
-                    $document->setMetadata('keywords', $params->get('menu-meta_keywords'));
-                }
-                if ($params->get('robots')) {
-                    $document->setMetadata('robots', $params->get('robots'));
-                }
-                // Menu page display options
-                if ($params->get('page_heading')) {
-                    $params->set('page_title', $params->get('page_heading'));
-                }
-                $params->set('show_page_title', $params->get('show_page_heading'));
-            }
-        }
-
-        // --- Override metadata with data from the item ---
-        // Meta: Description
-        if ($item->metadesc) {
-            $metaDesc = filter_var($item->metadesc, FILTER_SANITIZE_STRING);
-        } else {
-            $metaDesc = preg_replace("#{(.*?)}(.*?){/(.*?)}#s", '', $itemTextBeforePlugins);
-            $metaDesc = filter_var($metaDesc, FILTER_SANITIZE_STRING);
-            $metaDesc = K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150));
-        }
-        if ($metaDesc) {
-            $document->setDescription($metaDesc);
-        }
-
-        // Meta: Keywords
-        if ($item->metakey) {
-            $document->setMetadata('keywords', $item->metakey);
-        } else {
-            if (isset($item->tags) && count($item->tags)) {
-                $tmp = array();
-                foreach ($item->tags as $tag) {
-                    $tmp[] = $tag->name;
-                }
-                $document->setMetadata('keywords', implode(',', $tmp));
-            }
-        }
-
-        // Meta: Robots & author
-        if ($application->getCfg('MetaAuthor') == '1' && isset($item->author->name)) {
-            $document->setMetadata('author', $item->author->name);
-        }
-
-        $itemMetaData = class_exists('JParameter') ? new JParameter($item->metadata) : new JRegistry($item->metadata);
-        $itemMetaData = $itemMetaData->toArray();
-        foreach ($itemMetaData as $k => $v) {
-            if (($k == 'robots' || $k == 'author') && $v) {
-                $document->setMetadata($k, $v);
-            }
-        }
-
-        // Common for social meta tags
-        if ($item->metadesc) {
-            $socialMetaDesc = $item->metadesc;
-        } else {
-            $socialMetaDesc = preg_replace("#{(.*?)}(.*?){/(.*?)}#s", '', $itemTextBeforePlugins);
-            $socialMetaDesc = filter_var($socialMetaDesc, FILTER_SANITIZE_STRING);
-        }
-
-        // Set Facebook meta tags
-        if ($params->get('facebookMetatags', 1)) {
-            $document->setMetaData('og:url', $item->absoluteURL);
-            $document->setMetaData('og:type', 'article');
-            $document->setMetaData('og:title', filter_var($item->title, FILTER_SANITIZE_STRING));
-            $document->setMetaData('og:description', K2HelperUtilities::characterLimit($socialMetaDesc, 300)); // 300 chars limit for Facebook post sharing
-            $facebookImage = 'image'.$params->get('facebookImage', 'Medium');
-            if ($item->$facebookImage) {
-                $basename = basename($item->$facebookImage);
-                if (strpos($basename, '?t=')!==false) {
-                    $tmpBasename = explode('?t=', $basename);
-                    $basenameWithNoTimestamp = $tmpBasename[0];
-                } else {
-                    $basenameWithNoTimestamp = $basename;
-                }
-                if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.$basenameWithNoTimestamp)) {
-                    $image = JURI::root().'media/k2/items/cache/'.$basename;
-                    $document->setMetaData('og:image', $image);
-                    $document->setMetaData('image', $image); // Generic meta
+                if ($application->getCfg('sitename_pagetitles', 0) == 1) {
+                    $title = JText::sprintf('JPAGETITLE', $application->getCfg('sitename'), $params->get('page_title'));
+                    $params->set('page_title', $title);
+                } elseif ($application->getCfg('sitename_pagetitles', 0) == 2) {
+                    $title = JText::sprintf('JPAGETITLE', $params->get('page_title'), $application->getCfg('sitename'));
+                    $params->set('page_title', $title);
                 }
             }
-        }
+            $document->setTitle($params->get('page_title'));
 
-        // Set Twitter meta tags
-        if ($params->get('twitterMetatags', 1)) {
-            $document->setMetaData('twitter:card', 'summary');
-            if ($params->get('twitterUsername')) {
-                $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
-            }
-            $document->setMetaData('twitter:title', filter_var($item->title, FILTER_SANITIZE_STRING));
-            $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($socialMetaDesc, 200)); // 200 chars limit for Twitter post sharing
-            $twitterImage = 'image'.$params->get('twitterImage', 'Medium');
-            if ($item->$twitterImage) {
-                $basename = basename($item->$twitterImage);
-                if (strpos($basename, '?t=')!==false) {
-                    $tmpBasename = explode('?t=', $basename);
-                    $basenameWithNoTimestamp = $tmpBasename[0];
-                } else {
-                    $basenameWithNoTimestamp = $basename;
+            // Set metadata
+            $metaDesc = '';
+
+            // Get metadata from the menu item (for Joomla 2.5+)
+            if ($menuItemMatchesK2Item) {
+                if (K2_JVERSION != '15') {
+                    if ($params->get('menu-meta_description')) {
+                        $document->setDescription($params->get('menu-meta_description'));
+                    }
+                    if ($params->get('menu-meta_keywords')) {
+                        $document->setMetadata('keywords', $params->get('menu-meta_keywords'));
+                    }
+                    if ($params->get('robots')) {
+                        $document->setMetadata('robots', $params->get('robots'));
+                    }
+                    // Menu page display options
+                    if ($params->get('page_heading')) {
+                        $params->set('page_title', $params->get('page_heading'));
+                    }
+                    $params->set('show_page_title', $params->get('show_page_heading'));
                 }
-                if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.$basenameWithNoTimestamp)) {
-                    $image = JURI::root().'media/k2/items/cache/'.$basename;
-                    $document->setMetaData('twitter:image', $image);
-                    if (!$params->get('facebookMetatags')) {
+            }
+
+            // --- Override metadata with data from the item ---
+            // Meta: Description
+            if ($item->metadesc) {
+                $metaDesc = filter_var($item->metadesc, FILTER_SANITIZE_STRING);
+            } else {
+                $metaDesc = preg_replace("#{(.*?)}(.*?){/(.*?)}#s", '', $itemTextBeforePlugins);
+                $metaDesc = filter_var($metaDesc, FILTER_SANITIZE_STRING);
+                $metaDesc = K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150));
+            }
+            if ($metaDesc) {
+                $document->setDescription($metaDesc);
+            }
+
+            // Meta: Keywords
+            if ($item->metakey) {
+                $document->setMetadata('keywords', $item->metakey);
+            } else {
+                if (isset($item->tags) && count($item->tags)) {
+                    $tmp = array();
+                    foreach ($item->tags as $tag) {
+                        $tmp[] = $tag->name;
+                    }
+                    $document->setMetadata('keywords', implode(',', $tmp));
+                }
+            }
+
+            // Meta: Robots & author
+            if ($application->getCfg('MetaAuthor') == '1' && isset($item->author->name)) {
+                $document->setMetadata('author', $item->author->name);
+            }
+
+            $itemMetaData = class_exists('JParameter') ? new JParameter($item->metadata) : new JRegistry($item->metadata);
+            $itemMetaData = $itemMetaData->toArray();
+            foreach ($itemMetaData as $k => $v) {
+                if (($k == 'robots' || $k == 'author') && $v) {
+                    $document->setMetadata($k, $v);
+                }
+            }
+
+            // Common for social meta tags
+            if ($item->metadesc) {
+                $socialMetaDesc = $item->metadesc;
+            } else {
+                $socialMetaDesc = preg_replace("#{(.*?)}(.*?){/(.*?)}#s", '', $itemTextBeforePlugins);
+                $socialMetaDesc = filter_var($socialMetaDesc, FILTER_SANITIZE_STRING);
+            }
+
+            // Set Facebook meta tags
+            if ($params->get('facebookMetatags', 1)) {
+                $document->setMetaData('og:url', $item->absoluteURL);
+                $document->setMetaData('og:type', 'article');
+                $document->setMetaData('og:title', filter_var($item->title, FILTER_SANITIZE_STRING));
+                $document->setMetaData('og:description', K2HelperUtilities::characterLimit($socialMetaDesc, 300)); // 300 chars limit for Facebook post sharing
+                $facebookImage = 'image'.$params->get('facebookImage', 'Medium');
+                if ($item->$facebookImage) {
+                    $basename = basename($item->$facebookImage);
+                    if (strpos($basename, '?t=')!==false) {
+                        $tmpBasename = explode('?t=', $basename);
+                        $basenameWithNoTimestamp = $tmpBasename[0];
+                    } else {
+                        $basenameWithNoTimestamp = $basename;
+                    }
+                    if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.$basenameWithNoTimestamp)) {
+                        $image = JURI::root().'media/k2/items/cache/'.$basename;
+                        $document->setMetaData('og:image', $image);
                         $document->setMetaData('image', $image); // Generic meta
                     }
-                    $document->setMetaData('twitter:image:alt', (!empty($item->image_caption)) ? filter_var($item->image_caption, FILTER_SANITIZE_STRING) : filter_var($item->title, FILTER_SANITIZE_STRING));
+                }
+            }
+
+            // Set Twitter meta tags
+            if ($params->get('twitterMetatags', 1)) {
+                $document->setMetaData('twitter:card', 'summary');
+                if ($params->get('twitterUsername')) {
+                    $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
+                }
+                $document->setMetaData('twitter:title', filter_var($item->title, FILTER_SANITIZE_STRING));
+                $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($socialMetaDesc, 200)); // 200 chars limit for Twitter post sharing
+                $twitterImage = 'image'.$params->get('twitterImage', 'Medium');
+                if ($item->$twitterImage) {
+                    $basename = basename($item->$twitterImage);
+                    if (strpos($basename, '?t=')!==false) {
+                        $tmpBasename = explode('?t=', $basename);
+                        $basenameWithNoTimestamp = $tmpBasename[0];
+                    } else {
+                        $basenameWithNoTimestamp = $basename;
+                    }
+                    if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.$basenameWithNoTimestamp)) {
+                        $image = JURI::root().'media/k2/items/cache/'.$basename;
+                        $document->setMetaData('twitter:image', $image);
+                        if (!$params->get('facebookMetatags')) {
+                            $document->setMetaData('image', $image); // Generic meta
+                        }
+                        $document->setMetaData('twitter:image:alt', (!empty($item->image_caption)) ? filter_var($item->image_caption, FILTER_SANITIZE_STRING) : filter_var($item->title, FILTER_SANITIZE_STRING));
+                    }
                 }
             }
         }
-
-        // Get the frontend's language for use in social media buttons - use explicit variable references for future update flexibility
-        $getSiteLanguage = JFactory::getLanguage();
-        $languageTag = $getSiteLanguage->getTag();
-        $item->langTagForFB = str_replace('-', '_', $languageTag);
-        $item->langTagForTW = strtolower($languageTag);
-        $item->langTagForLI = str_replace('-', '_', $languageTag);
-
-        // Set the link for sharing
-        $item->sharinglink = substr(JUri::root(false), 0, -1).$item->link;
 
         // Lookup template folders
         $this->_addPath('template', JPATH_COMPONENT.'/templates');
@@ -558,20 +576,6 @@ class K2ViewItem extends K2View
                 $this->_addPath('template', JPATH_SITE.'/templates/'.$template.'/html/com_k2/'.$item->params->get('theme'));
             }
         }
-
-        // --- B/C stuff [start] ---
-        // Twitter link (legacy code)
-        if ($params->get('twitterUsername')) {
-            $item->twitterURL = 'https://twitter.com/intent/tweet?text='.urlencode($item->title).'&amp;url='.urlencode($item->absoluteURL).'&amp;via='.$params->get('twitterUsername');
-        } else {
-            $item->twitterURL = 'https://twitter.com/intent/tweet?text='.urlencode($item->title).'&amp;url='.urlencode($item->absoluteURL);
-        }
-
-        // Deprecate Google+ sharing
-        $params->set('itemGooglePlusOneButton', 0);
-        $item->params->set('itemGooglePlusOneButton', 0);
-        $item->langTagForGP = '';
-        // --- B/C stuff [end] ---
 
         // Assign data
         $this->assignRef('item', $item);
