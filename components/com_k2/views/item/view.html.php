@@ -46,6 +46,28 @@ class K2ViewItem extends K2View
             JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
         }
 
+        // --- JSON View [start] ---
+        // Set the document type in Joomla 1.5
+        if (K2_JVERSION == '15' && JRequest::getCmd('format') == 'json') {
+            $document->setMimeEncoding('application/json');
+            $document->setType('json');
+        }
+        // Override some parameters to show all elements
+        if ($document->getType() == 'json') {
+            $itemParams = class_exists('JParameter') ? new JParameter($item->params) : new JRegistry($item->params);
+            $itemParams->set('itemIntroText', true);
+            $itemParams->set('itemFullText', true);
+            $itemParams->set('itemTags', true);
+            $itemParams->set('itemExtraFields', true);
+            $itemParams->set('itemAttachments', true);
+            $itemParams->set('itemRating', true);
+            $itemParams->set('itemAuthor', true);
+            $itemParams->set('itemImageGallery', true);
+            $itemParams->set('itemVideo', true);
+            $item->params = $itemParams->toString();
+        }
+        // --- JSON View [finish] ---
+
         // Prepare item
         $item = $model->prepareItem($item, $view, $task);
         $itemTextBeforePlugins = $item->introtext.' '.$item->fulltext;
@@ -120,7 +142,7 @@ class K2ViewItem extends K2View
         // Set default image
         K2HelperUtilities::setDefaultImage($item, $view);
 
-        // Pass the old parameter to the view in order to avoid layout changes
+        // B/C code for reCaptcha
         if ($params->get('antispam') == 'recaptcha' || $params->get('antispam') == 'both') {
             $params->set('recaptcha', true);
             $item->params->set('recaptcha', true);
@@ -130,39 +152,40 @@ class K2ViewItem extends K2View
         }
 
         // Comments
-        $item->event->K2CommentsCounter = '';
-        $item->event->K2CommentsBlock = '';
-        if ($item->params->get('itemComments')) {
-            // Trigger comments events
-            JPluginHelper::importPlugin('k2');
-            $dispatcher = JDispatcher::getInstance();
-            $results = $dispatcher->trigger('onK2CommentsCounter', array(
+        if ($document->getType() != 'json') {
+            $item->event->K2CommentsCounter = '';
+            $item->event->K2CommentsBlock = '';
+            if ($item->params->get('itemComments')) {
+                // Trigger comments events
+                JPluginHelper::importPlugin('k2');
+                $dispatcher = JDispatcher::getInstance();
+                $results = $dispatcher->trigger('onK2CommentsCounter', array(
                 &$item,
                 &$params,
                 $limitstart
             ));
-            $item->event->K2CommentsCounter = trim(implode("\n", $results));
-            $results = $dispatcher->trigger('onK2CommentsBlock', array(
+                $item->event->K2CommentsCounter = trim(implode("\n", $results));
+                $results = $dispatcher->trigger('onK2CommentsBlock', array(
                 &$item,
                 &$params,
                 $limitstart
             ));
-            $item->event->K2CommentsBlock = trim(implode("\n", $results));
+                $item->event->K2CommentsBlock = trim(implode("\n", $results));
 
-            // Load K2 native comments system only if there are no plugins overriding it
-            if (empty($item->event->K2CommentsCounter) && empty($item->event->K2CommentsBlock)) {
+                // Load K2 native comments system only if there are no plugins overriding it
+                if (empty($item->event->K2CommentsCounter) && empty($item->event->K2CommentsBlock)) {
 
                 // Load reCAPTCHA script
-                if (!JRequest::getInt('print') && ($item->params->get('comments') == '1' || ($item->params->get('comments') == '2' && K2HelperPermissions::canAddComment($item->catid)))) {
-                    if ($params->get('recaptcha') && ($user->guest || $params->get('recaptchaForRegistered', 1))) {
-                        if ($params->get('recaptchaV2')) {
-                            $document->addScript('https://www.google.com/recaptcha/api.js?onload=onK2RecaptchaLoaded&render=explicit');
-                            $js = 'function onK2RecaptchaLoaded(){grecaptcha.render("recaptcha", {"sitekey" : "'.$item->params->get('recaptcha_public_key').'"});}';
-                            $document->addScriptDeclaration($js);
-                            $this->recaptchaClass = 'k2-recaptcha-v2';
-                        } else {
-                            $document->addScript('https://www.google.com/recaptcha/api/js/recaptcha_ajax.js');
-                            $js = '
+                    if (!JRequest::getInt('print') && ($item->params->get('comments') == '1' || ($item->params->get('comments') == '2' && K2HelperPermissions::canAddComment($item->catid)))) {
+                        if ($params->get('recaptcha') && ($user->guest || $params->get('recaptchaForRegistered', 1))) {
+                            if ($params->get('recaptchaV2')) {
+                                $document->addScript('https://www.google.com/recaptcha/api.js?onload=onK2RecaptchaLoaded&render=explicit');
+                                $js = 'function onK2RecaptchaLoaded(){grecaptcha.render("recaptcha", {"sitekey" : "'.$item->params->get('recaptcha_public_key').'"});}';
+                                $document->addScriptDeclaration($js);
+                                $this->recaptchaClass = 'k2-recaptcha-v2';
+                            } else {
+                                $document->addScript('https://www.google.com/recaptcha/api/js/recaptcha_ajax.js');
+                                $js = '
                             function showRecaptcha(){
                                 Recaptcha.create("'.$item->params->get('recaptcha_public_key').'", "recaptcha", {
                                     theme: "'.$item->params->get('recaptcha_theme', 'clean').'"
@@ -172,68 +195,69 @@ class K2ViewItem extends K2View
                                 showRecaptcha();
                             });
                             ';
-                            $document->addScriptDeclaration($js);
-                            $this->recaptchaClass = 'k2-recaptcha-v1';
+                                $document->addScriptDeclaration($js);
+                                $this->recaptchaClass = 'k2-recaptcha-v1';
+                            }
                         }
                     }
-                }
 
-                // Check for inline comment moderation
-                if (!$user->guest && $user->id == $item->created_by && $params->get('inlineCommentsModeration')) {
-                    $inlineCommentsModeration = true;
-                    $commentsPublished = false;
-                } else {
-                    $inlineCommentsModeration = false;
-                    $commentsPublished = true;
-                }
-                $this->assignRef('inlineCommentsModeration', $inlineCommentsModeration);
-
-                // Flag spammer link
-                $reportSpammerFlag = false;
-                if (K2_JVERSION != '15') {
-                    if ($user->authorise('core.admin', 'com_k2')) {
-                        $reportSpammerFlag = true;
-                        $document->addScriptDeclaration('var K2Language = ["'.JText::_('K2_REPORT_USER_WARNING', true).'"];');
-                    }
-                } else {
-                    if ($user->gid > 24) {
-                        $reportSpammerFlag = true;
-                    }
-                }
-
-                $limit = $params->get('commentsLimit');
-                $comments = $model->getItemComments($item->id, $limitstart, $limit, $commentsPublished);
-
-                for ($i = 0; $i < count($comments); $i++) {
-                    $comments[$i]->commentText = nl2br($comments[$i]->commentText);
-
-                    // Convert URLs to links properly
-                    $comments[$i]->commentText = preg_replace("/([^\w\/])(www\.[a-z0-9\-]+\.[a-z0-9\-]+)/i", "$1http://$2", $comments[$i]->commentText);
-                    $comments[$i]->commentText = preg_replace("/([\w]+:\/\/[\w\-?&;#~=\.\/\@]+[\w\/])/i", "<a target=\"_blank\" rel=\"nofollow\" href=\"$1\">$1</A>", $comments[$i]->commentText);
-                    $comments[$i]->commentText = preg_replace("/([\w\-?&;#~=\.\/]+\@(\[?)[a-zA-Z0-9\-\.]+\.([a-zA-Z]{2,3}|[0-9]{1,3})(\]?))/i", "<a href=\"mailto:$1\">$1</A>", $comments[$i]->commentText);
-
-                    $comments[$i]->userImage = K2HelperUtilities::getAvatar($comments[$i]->userID, $comments[$i]->commentEmail, $params->get('commenterImgWidth'));
-                    if ($comments[$i]->userID > 0) {
-                        $comments[$i]->userLink = K2HelperRoute::getUserRoute($comments[$i]->userID);
+                    // Check for inline comment moderation
+                    if (!$user->guest && $user->id == $item->created_by && $params->get('inlineCommentsModeration')) {
+                        $inlineCommentsModeration = true;
+                        $commentsPublished = false;
                     } else {
-                        $comments[$i]->userLink = $comments[$i]->commentURL;
+                        $inlineCommentsModeration = false;
+                        $commentsPublished = true;
                     }
-                    if ($reportSpammerFlag && $comments[$i]->userID > 0) {
-                        $comments[$i]->reportUserLink = JRoute::_('index.php?option=com_k2&view=comments&task=reportSpammer&id='.$comments[$i]->userID.'&format=raw');
+                    $this->assignRef('inlineCommentsModeration', $inlineCommentsModeration);
+
+                    // Flag spammer link
+                    $reportSpammerFlag = false;
+                    if (K2_JVERSION != '15') {
+                        if ($user->authorise('core.admin', 'com_k2')) {
+                            $reportSpammerFlag = true;
+                            $document->addScriptDeclaration('var K2Language = ["'.JText::_('K2_REPORT_USER_WARNING', true).'"];');
+                        }
                     } else {
-                        $comments[$i]->reportUserLink = false;
+                        if ($user->gid > 24) {
+                            $reportSpammerFlag = true;
+                        }
                     }
+
+                    $limit = $params->get('commentsLimit');
+                    $comments = $model->getItemComments($item->id, $limitstart, $limit, $commentsPublished);
+
+                    for ($i = 0; $i < count($comments); $i++) {
+                        $comments[$i]->commentText = nl2br($comments[$i]->commentText);
+
+                        // Convert URLs to links properly
+                        $comments[$i]->commentText = preg_replace("/([^\w\/])(www\.[a-z0-9\-]+\.[a-z0-9\-]+)/i", "$1http://$2", $comments[$i]->commentText);
+                        $comments[$i]->commentText = preg_replace("/([\w]+:\/\/[\w\-?&;#~=\.\/\@]+[\w\/])/i", "<a target=\"_blank\" rel=\"nofollow\" href=\"$1\">$1</A>", $comments[$i]->commentText);
+                        $comments[$i]->commentText = preg_replace("/([\w\-?&;#~=\.\/]+\@(\[?)[a-zA-Z0-9\-\.]+\.([a-zA-Z]{2,3}|[0-9]{1,3})(\]?))/i", "<a href=\"mailto:$1\">$1</A>", $comments[$i]->commentText);
+
+                        $comments[$i]->userImage = K2HelperUtilities::getAvatar($comments[$i]->userID, $comments[$i]->commentEmail, $params->get('commenterImgWidth'));
+                        if ($comments[$i]->userID > 0) {
+                            $comments[$i]->userLink = K2HelperRoute::getUserRoute($comments[$i]->userID);
+                        } else {
+                            $comments[$i]->userLink = $comments[$i]->commentURL;
+                        }
+                        if ($reportSpammerFlag && $comments[$i]->userID > 0) {
+                            $comments[$i]->reportUserLink = JRoute::_('index.php?option=com_k2&view=comments&task=reportSpammer&id='.$comments[$i]->userID.'&format=raw');
+                        } else {
+                            $comments[$i]->reportUserLink = false;
+                        }
+                    }
+
+                    $item->comments = $comments;
+
+                    if (!isset($item->numOfComments)) {
+                        $item->numOfComments = 0;
+                    }
+
+                    jimport('joomla.html.pagination');
+                    $total = $item->numOfComments;
+                    $pagination = new JPagination($total, $limitstart, $limit);
                 }
-
-                $item->comments = $comments;
-
-                if (!isset($item->numOfComments)) {
-                    $item->numOfComments = 0;
-                }
-
-                jimport('joomla.html.pagination');
-                $total = $item->numOfComments;
-                $pagination = new JPagination($total, $limitstart, $limit);
             }
         }
 
@@ -392,8 +416,38 @@ class K2ViewItem extends K2View
             }
         }
 
+        // JSON View Output
+        if ($document->getType() == 'json') {
+            // Build the output object
+            $row = $model->prepareJSONItem($item);
+
+            // Output
+            $response = new stdClass();
+
+            // Site
+            $response->site = new stdClass();
+            $uri = JURI::getInstance();
+            $response->site->url = $uri->toString(array('scheme', 'host', 'port'));
+
+            $config = JFactory::getConfig();
+            $response->site->name = K2_JVERSION == '30' ? $config->get('sitename') : $config->getValue('config.sitename');
+
+            $response->item = $row;
+
+            $json = json_encode($response);
+
+            $callback = JRequest::getCmd('callback');
+
+            if ($callback) {
+                $document->setMimeEncoding('application/javascript');
+                echo $callback.'('.$json.')';
+            } else {
+                echo $json;
+            }
+        }
+
         // Head Stuff
-        if ($document->getType() != 'raw') {
+        if (!in_array($document->getType(), ['raw', 'json'])) {
 
             // Set canonical link
             $canonicalURL = $params->get('canonicalURL', 'relative');
@@ -550,39 +604,42 @@ class K2ViewItem extends K2View
             }
         }
 
-        // Lookup template folders
-        $this->_addPath('template', JPATH_COMPONENT.'/templates');
-        $this->_addPath('template', JPATH_COMPONENT.'/templates/default');
+        if ($document->getType() != 'json') {
 
-        $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates');
-        $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/default');
+            // Lookup template folders
+            $this->_addPath('template', JPATH_COMPONENT.'/templates');
+            $this->_addPath('template', JPATH_COMPONENT.'/templates/default');
 
-        $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2');
-        $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/default');
+            $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates');
+            $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/default');
 
-        if ($item->params->get('theme')) {
-            $this->_addPath('template', JPATH_COMPONENT.'/templates/'.$item->params->get('theme'));
-            $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/'.$item->params->get('theme'));
-            $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/'.$item->params->get('theme'));
-        }
+            $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2');
+            $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/default');
 
-        // Allow temporary template loading with ?template=
-        $template = JRequest::getCmd('template');
-        if (isset($template)) {
-            // Look for overrides in template folder (new K2 template structure)
-            $this->_addPath('template', JPATH_SITE.'/templates/'.$template.'/html/com_k2');
-            $this->_addPath('template', JPATH_SITE.'/templates/'.$template.'/html/com_k2/default');
             if ($item->params->get('theme')) {
-                $this->_addPath('template', JPATH_SITE.'/templates/'.$template.'/html/com_k2/'.$item->params->get('theme'));
+                $this->_addPath('template', JPATH_COMPONENT.'/templates/'.$item->params->get('theme'));
+                $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/'.$item->params->get('theme'));
+                $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/'.$item->params->get('theme'));
             }
+
+            // Allow temporary template loading with ?template=
+            $template = JRequest::getCmd('template');
+            if (isset($template)) {
+                // Look for overrides in template folder (new K2 template structure)
+                $this->_addPath('template', JPATH_SITE.'/templates/'.$template.'/html/com_k2');
+                $this->_addPath('template', JPATH_SITE.'/templates/'.$template.'/html/com_k2/default');
+                if ($item->params->get('theme')) {
+                    $this->_addPath('template', JPATH_SITE.'/templates/'.$template.'/html/com_k2/'.$item->params->get('theme'));
+                }
+            }
+
+            // Assign data
+            $this->assignRef('item', $item);
+            $this->assignRef('user', $user);
+            $this->assignRef('params', $item->params);
+            $this->assignRef('pagination', $pagination);
+
+            parent::display($tpl);
         }
-
-        // Assign data
-        $this->assignRef('item', $item);
-        $this->assignRef('user', $user);
-        $this->assignRef('params', $item->params);
-        $this->assignRef('pagination', $pagination);
-
-        parent::display($tpl);
     }
 }
