@@ -211,9 +211,9 @@ class K2ViewItem extends K2View
 
         // Twitter link (legacy code)
         if ($params->get('twitterUsername')) {
-            $item->twitterURL = 'http://twitter.com/intent/tweet?text='.urlencode($item->title).'&amp;url='.urlencode($item->absoluteURL).'&amp;via='.$params->get('twitterUsername');
+            $item->twitterURL = 'https://twitter.com/intent/tweet?text='.urlencode($item->title).'&amp;url='.urlencode($item->absoluteURL).'&amp;via='.$params->get('twitterUsername');
         } else {
-            $item->twitterURL = 'http://twitter.com/intent/tweet?text='.urlencode($item->title).'&amp;url='.urlencode($item->absoluteURL);
+            $item->twitterURL = 'https://twitter.com/intent/tweet?text='.urlencode($item->title).'&amp;url='.urlencode($item->absoluteURL);
         }
 
         // Social link
