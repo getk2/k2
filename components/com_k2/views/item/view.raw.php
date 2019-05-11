@@ -26,7 +26,7 @@ class K2ViewItem extends K2View
 
         $db = JFactory::getDbo();
         $jnow = JFactory::getDate();
-        $now =  K2_JVERSION == '15'?$jnow->toMySQL():$jnow->toSql();
+        $now = K2_JVERSION == '15'?$jnow->toMySQL():$jnow->toSql();
         $nullDate = $db->getNullDate();
 
         $this->setLayout('item');

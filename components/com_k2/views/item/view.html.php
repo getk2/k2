@@ -37,11 +37,11 @@ class K2ViewItem extends K2View
         }
         $this->assignRef('addLink', $addLink);
 
-        // Get item
+        // Get item model
         $model = $this->getModel();
         $item = $model->getData();
 
-        // Does the item exists?
+        // Check if item exists
         if (!is_object($item) || !$item->id) {
             JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
         }
@@ -344,13 +344,6 @@ class K2ViewItem extends K2View
             $item->emailLink = JRoute::_('index.php?option=com_mailto&tmpl=component&link='.MailToHelper::addLink($item->absoluteURL));
         }
 
-        // Twitter link (legacy code)
-        if ($params->get('twitterUsername')) {
-            $item->twitterURL = 'https://twitter.com/intent/tweet?text='.urlencode($item->title).'&amp;url='.urlencode($item->absoluteURL).'&amp;via='.$params->get('twitterUsername');
-        } else {
-            $item->twitterURL = 'https://twitter.com/intent/tweet?text='.urlencode($item->title).'&amp;url='.urlencode($item->absoluteURL);
-        }
-
         // Social link
         $item->socialLink = urlencode($item->absoluteURL);
 
@@ -567,6 +560,13 @@ class K2ViewItem extends K2View
         }
 
         // --- B/C stuff [start] ---
+        // Twitter link (legacy code)
+        if ($params->get('twitterUsername')) {
+            $item->twitterURL = 'https://twitter.com/intent/tweet?text='.urlencode($item->title).'&amp;url='.urlencode($item->absoluteURL).'&amp;via='.$params->get('twitterUsername');
+        } else {
+            $item->twitterURL = 'https://twitter.com/intent/tweet?text='.urlencode($item->title).'&amp;url='.urlencode($item->absoluteURL);
+        }
+
         // Deprecate Google+ sharing
         $params->set('itemGooglePlusOneButton', 0);
         $item->params->set('itemGooglePlusOneButton', 0);
