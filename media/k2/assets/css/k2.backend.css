@@ -89,7 +89,7 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ30 div#toolbar {background:url(../images/backend/k2_logo_126x48.png) no-repeat 12px 50%;background-size:80px;padding:12px 12px 12px calc(10% + 12px);margin:0;min-height:26px;position:fixed;z-index:99;left:0;right:0;}
     .isJ30 div#toolbar .btn-wrapper {margin:0 4px 0 0;}
     .isJ30 div#toolbar .btn-success {min-width:100px;}
-    
+
 /* Corrections for J1.5 */
 .isJ15 body {margin:0;padding:0;}
 .isJ15 #toolbar-box .m .header,
@@ -102,15 +102,15 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ15 #header-box {left:0;right:0;box-sizing:border-box;width:100%;}
 
 .isJ15 #border-top {position:fixed;z-index:109;}
-.isJ15 #header-box {position:fixed;z-index:110;top:54px;}
+.isJ15 #header-box {position:fixed;z-index:110;top:44px;border-left:0;border-right:0;border-top:4px solid #183867;}
 .isJ15 #content-box .padding {position:relative;}
-.isJ15 #toolbar-box {background:#f0f0f0 url(../images/backend/k2_logo_126x48.png) no-repeat 12px 50%;background-size:80px;padding:8px 8px 8px calc(10% + 8px);margin:0;min-height:26px;position:fixed;z-index:109;left:0;right:0;top:80px;}
+.isJ15 #toolbar-box {background:#f0f0f0 url(../images/backend/k2_logo_126x48.png) no-repeat 12px 50%;background-size:80px;padding:4px 8px;margin:0;min-height:26px;position:fixed;z-index:109;left:0;right:0;top:74px;}
 .isJ15 #toolbar-box .m {border:0;padding:4px 0;margin:0;}
 .isJ15 #toolbar-box table.toolbar tr td {height:auto;}
 .isJ15 #toolbar-box table.toolbar tr td a {border:1px solid #b3b3b3;border-radius:4px;background:#f3f3f3;padding:4px 8px;line-height:20px;color:#333;}
 .isJ15 #toolbar-box table.toolbar tr td a:hover {border:1px solid #b3b3b3;background:#e6e6e6;}
 .isJ15 #toolbar-box table.toolbar tr td a span {float:left;width:20px;height:20px;background-size:cover;margin-right:8px;}
-.isJ15 #element-box {padding-top:136px;}
+.isJ15 #element-box {padding-top:122px;}
 .isJ15 #element-box .m {padding:0 0 20px 0;margin:0;}
 .isJ15 #element-box .m .table-responsive {margin:0;padding:0;}
 .isJ15 #footer {background:#ebebeb;padding:4px 10px;margin:0;border-top:1px solid #dedede;box-shadow:0 0 3px rgba(0, 0, 0, 0.08);position:fixed;z-index:199;bottom:0;left:0;right:0;}
