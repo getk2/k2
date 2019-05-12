@@ -466,6 +466,12 @@ class K2ViewItemlist extends K2View
                     break;
             }
 
+            // --- Feed Output [start] ---
+            if ($document->getType() == 'feed') {
+                $limit = $params->get('feedLimit');
+            }
+            // --- Feed Output [finish] ---
+
             // Set a default limit (for the model) if none is found
             if (!$limit) {
                 $limit = 10;

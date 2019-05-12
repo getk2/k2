@@ -44,10 +44,6 @@ class K2ModelItemlist extends K2Model
         */
         $nullDate = $db->getNullDate();
 
-        if (JRequest::getWord('format') == 'feed') {
-            $limit = $params->get('feedLimit');
-        }
-
         $query = "SELECT SQL_CALC_FOUND_ROWS i.*,";
 
         if ($ordering == 'modified') {
