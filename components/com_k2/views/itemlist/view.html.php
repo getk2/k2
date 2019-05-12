@@ -602,7 +602,7 @@ class K2ViewItemlist extends K2View
                     }
                 }
 
-                $rowsForJSON[] = $model->prepareJSONItem($items[$i]);
+                $rowsForJSON[] = $itemModel->prepareJSONItem($items[$i]);
             }
             // --- JSON View [finish] ---
         }
