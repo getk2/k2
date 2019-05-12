@@ -195,7 +195,6 @@ class K2ViewLatest extends K2View
 
         // Head Stuff
         if (!in_array($document->getType(), ['raw', 'json'])) {
-
             // URL
             $uri = JURI::getInstance();
             $url = $uri->toString();
@@ -261,7 +260,6 @@ class K2ViewLatest extends K2View
                 $document->setMetaData('twitter:title', filter_var($socialMetaTitle, FILTER_SANITIZE_STRING));
                 $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($socialMetaDesc, 200)); // 200 chars limit for Twitter post sharing
             }
-
         }
 
         // Lookup template folders

@@ -52,8 +52,8 @@ class K2ViewItem extends K2View
             $document->setMimeEncoding('application/json');
             $document->setType('json');
         }
-        // Override some parameters to show all elements
         if ($document->getType() == 'json') {
+            // Override some display parameters to show a minimum of content elements
             $itemParams = class_exists('JParameter') ? new JParameter($item->params) : new JRegistry($item->params);
             $itemParams->set('itemIntroText', true);
             $itemParams->set('itemFullText', true);
@@ -454,7 +454,6 @@ class K2ViewItem extends K2View
 
         // Head Stuff
         if (!in_array($document->getType(), ['raw', 'json'])) {
-
             // Set canonical link
             $canonicalURL = $params->get('canonicalURL', 'relative');
             if ($canonicalURL == 'absolute') {
@@ -611,7 +610,6 @@ class K2ViewItem extends K2View
         }
 
         if ($document->getType() != 'json') {
-
             // Lookup template folders
             $this->_addPath('template', JPATH_COMPONENT.'/templates');
             $this->_addPath('template', JPATH_COMPONENT.'/templates/default');
