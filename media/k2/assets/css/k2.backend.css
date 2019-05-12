@@ -34,7 +34,7 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
         teal: #1480d3
         red: #c52c6a
 */
-#k2AdminContainer {display:grid;grid-template-columns:10% 90%;min-height:calc(100vh - 116px);/*margin-bottom:16px;*/}
+#k2AdminContainer {font-family:'Open Sans',sans-serif;display:grid;grid-template-columns:10% 90%;min-height:calc(100vh - 116px);}
     #k2Sidebar {background:#193867;position:relative;z-index:90;/*border-right:4px solid #10213e;*/}
         #k2Sidebar ul {list-style:none;padding:0;margin:0 0 24px 0;position:fixed;width:10%;z-index:92;}
             #k2Sidebar ul li {border-left:4px solid #193867;}
@@ -42,7 +42,7 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
             #k2Sidebar ul li.active {background:#10213e;border-left:4px solid #1480d3;}
             #k2Sidebar ul li a {color:#fff;display:block;padding:8px;}
             #k2Sidebar ul li a:hover {text-decoration:none;}
-        #k2Copyrights {z-index:91;position:fixed;bottom:36px;width:calc(10% - 8px);text-align:center;color:#608ed4;margin:0;padding:4px;line-height:150%;font-size:12px;border-top:1px solid #183f7b;/*background:#042250;border-radius:4px;*/}
+        #k2Copyrights {z-index:91;position:fixed;bottom:36px;width:calc(10% - 8px);text-align:center;color:#608ed4;margin:0;padding:4px;line-height:150%;font-size:12px;border-top:1px solid #183f7b;}
             #k2Copyrights a {color:#b4cdfb;font-weight:600;}
             #k2Copyrights a:hover {color:#eee;text-decoration:none;}
             #k2Copyrights div {font-size:10px;line-height:130%;}
@@ -92,6 +92,14 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 
 /* Corrections for J1.5 */
 .isJ15 body {margin:0;padding:0;}
+.isJ15 body * {font-family:'Open Sans',sans-serif !important;font-size:12px;}
+
+.isJ15 #border-top,
+.isJ15 #header-box,
+.isJ15 #toolbar-box,
+.isJ15 #element-box,
+.isJ15 #footer {font-family:'Open Sans',sans-serif;}
+
 .isJ15 #toolbar-box .m .header,
 .isJ15 #submenu-box,
 .isJ15 #element-box .t,
@@ -107,7 +115,7 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ15 #toolbar-box {background:#f0f0f0 url(../images/backend/k2_logo_126x48.png) no-repeat 12px 50%;background-size:80px;padding:4px 8px;margin:0;min-height:26px;position:fixed;z-index:109;left:0;right:0;top:74px;}
 .isJ15 #toolbar-box .m {border:0;padding:4px 0;margin:0;}
 .isJ15 #toolbar-box table.toolbar tr td {height:auto;}
-.isJ15 #toolbar-box table.toolbar tr td a {border:1px solid #b3b3b3;border-radius:4px;background:#f3f3f3;padding:4px 8px;line-height:20px;color:#333;}
+.isJ15 #toolbar-box table.toolbar tr td a {border:1px solid #b3b3b3;border-radius:4px;background:#f3f3f3;padding:4px 8px;line-height:20px;color:#333;font-size:12px;}
 .isJ15 #toolbar-box table.toolbar tr td a:hover {border:1px solid #b3b3b3;background:#e6e6e6;}
 .isJ15 #toolbar-box table.toolbar tr td a span {float:left;width:20px;height:20px;background-size:cover;margin-right:8px;}
 .isJ15 #element-box {padding-top:122px;}
@@ -183,8 +191,6 @@ body.com_k2 .page-title {background-position:-10px -46px;width:auto;height:36px;
 .k2Toggler {display:block;width:16px;height:16px;margin:0 auto;padding:0;background-repeat:no-repeat;background-position:0 0;text-indent:-500px;overflow:hidden;}
 .k2Active {background-image:url(../images/backend/tick.png);}
 .k2Inactive {background-image:url(../images/backend/cross.png);}
-
-div#k2AdminContainer {font-family:'Open Sans',sans-serif;}
 
 /* Common image styling */
 img.k2AdminImage {border:4px solid #ddd;margin:10px 0;padding:0;display:block;}
