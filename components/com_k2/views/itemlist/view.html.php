@@ -456,17 +456,21 @@ class K2ViewItemlist extends K2View
                     break;
             }
 
-            // Protect from large limit requests
-            if ($limit > 100) {
-                $limit = 100;
-            }
             // Set a default limit (for the model) if none is found
             if (!$limit) {
                 $limit = 10;
             }
+            // Allow JSON to request more items that the preset limit
+            if ($document->getType() == 'json' && JRequest::getInt('limit')) {
+                $limit = JRequest::getInt('limit');
+            }
+            // Protect from large limit requests
+            if ($limit > 100) {
+                $limit = 100;
+            }
             JRequest::setVar('limit', $limit);
 
-            // Allow for paginated results using "page"
+            // Allow for simplified paginated results using "page"
             $page = JRequest::getInt('page');
             if ($page) {
                 $limitstart = $page * $limit;
