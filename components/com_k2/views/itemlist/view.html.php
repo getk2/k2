@@ -48,7 +48,15 @@ class K2ViewItemlist extends K2View
         JPluginHelper::importPlugin('k2');
         $dispatcher = JDispatcher::getInstance();
 
-        // --- JSON View [start] ---
+        // --- Feed Output [start] ---
+        if ($document->getType() == 'feed') {
+            $result = $itemlistModel->getModuleItems($moduleID);
+            $title = $result->title;
+            $items = $result->items;
+        }
+        // --- Feed Output [finish] ---
+
+        // --- JSON Output [start] ---
         // Set the document type in Joomla 1.5
         if (K2_JVERSION == '15' && JRequest::getCmd('format') == 'json') {
             $document->setMimeEncoding('application/json');
@@ -72,7 +80,7 @@ class K2ViewItemlist extends K2View
                 $prefix = 'cat';
             }
         }
-        // --- JSON View [finish] ---
+        // --- JSON Output [finish] ---
 
         // Get data based on task
         if (!$moduleID) {
@@ -224,7 +232,7 @@ class K2ViewItemlist extends K2View
                     // Set head feed link
                     $addHeadFeedLink = $params->get('catFeedLink');
 
-                    // --- JSON View [start] ---
+                    // --- JSON Output [start] ---
                     if ($document->getType() == 'json') {
                         // Set parameters prefix
                         $prefix = 'cat';
@@ -246,7 +254,7 @@ class K2ViewItemlist extends K2View
 
                         $response->category = $row;
                     }
-                    // --- JSON View [finish] ---
+                    // --- JSON Output [finish] ---
 
                     break;
 
@@ -296,7 +304,7 @@ class K2ViewItemlist extends K2View
                     // Set head feed link
                     $addHeadFeedLink = $params->get('userFeedLink', 1);
 
-                    // --- JSON View [start] ---
+                    // --- JSON Output [start] ---
                     if ($document->getType() == 'json') {
                         // Set parameters prefix
                         $prefix = 'user';
@@ -314,7 +322,7 @@ class K2ViewItemlist extends K2View
 
                         $response->user = $row;
                     }
-                    // --- JSON View [finish] ---
+                    // --- JSON Output [finish] ---
 
                     break;
 
@@ -343,14 +351,14 @@ class K2ViewItemlist extends K2View
                     // Set head feed link
                     $addHeadFeedLink = $params->get('tagFeedLink', 1);
 
-                    // --- JSON View [start] ---
+                    // --- JSON Output [start] ---
                     if ($document->getType() == 'json') {
                         // Set parameters prefix
                         $prefix = 'tag';
 
                         $response->tag = JRequest::getVar('tag');
                     }
-                    // --- JSON View [finish] ---
+                    // --- JSON Output [finish] ---
 
                     break;
 
@@ -367,14 +375,14 @@ class K2ViewItemlist extends K2View
                     // Set head feed link
                     $addHeadFeedLink = $params->get('genericFeedLink', 1);
 
-                    // --- JSON View [start] ---
+                    // --- JSON Output [start] ---
                     if ($document->getType() == 'json') {
                         // Set parameters prefix
                         $prefix = 'generic';
 
                         $response->search = JRequest::getVar('searchword');
                     }
-                    // --- JSON View [finish] ---
+                    // --- JSON Output [finish] ---
 
                     break;
 
@@ -414,14 +422,14 @@ class K2ViewItemlist extends K2View
                     // Set head feed link
                     $addHeadFeedLink = $params->get('genericFeedLink', 1);
 
-                    // --- JSON View [start] ---
+                    // --- JSON Output [start] ---
                     if ($document->getType() == 'json') {
                         // Set parameters prefix
                         $prefix = 'generic';
 
                         $response->date = JHTML::_('date', $dateFromRequest, $dateFormat);
                     }
-                    // --- JSON View [finish] ---
+                    // --- JSON Output [finish] ---
 
                     break;
 
@@ -446,12 +454,12 @@ class K2ViewItemlist extends K2View
                     // Set head feed link
                     $addHeadFeedLink = $params->get('catFeedLink', 1);
 
-                    // --- JSON View [start] ---
+                    // --- JSON Output [start] ---
                     if ($document->getType() == 'json') {
                         // Set parameters prefix
                         $prefix = 'cat';
                     }
-                    // --- JSON View [finish] ---
+                    // --- JSON Output [finish] ---
 
                     break;
             }
@@ -476,6 +484,12 @@ class K2ViewItemlist extends K2View
                 $limitstart = $page * $limit;
                 JRequest::setVar('limitstart', $limitstart);
             }
+
+            // --- Feed Output [start] ---
+            if ($document->getType() == 'feed') {
+                $title = JFilterOutput::ampReplace($title);
+            }
+            // --- Feed Output [finish] ---
 
             // Get items
             if (!isset($ordering)) {
@@ -534,7 +548,34 @@ class K2ViewItemlist extends K2View
                 }
             }
 
-            // --- JSON View [start] ---
+            // --- Feed Output [start] ---
+            if ($document->getType() == 'feed') {
+                $item = $itemModel->prepareFeedItem($item);
+                $item->title = html_entity_decode($this->escape($item->title));
+
+                $feedItem = new JFeedItem();
+                $feedItem->link = $item->link;
+                $feedItem->title = $item->title;
+                $feedItem->description = $item->description;
+                $feedItem->date = $item->created;
+                $feedItem->category = $item->category->name;
+                $feedItem->author = $item->author->name;
+                if ($params->get('feedBogusEmail')) {
+                    $feedItem->authorEmail = $params->get('feedBogusEmail');
+                } else {
+                    if ($app->getCfg('feed_email') == 'author') {
+                        $feedItem->authorEmail = $item->author->email;
+                    } else {
+                        $feedItem->authorEmail = $app->getCfg('mailfrom');
+                    }
+                }
+
+                // Add feed item
+                $document->addItem($feedItem);
+            }
+            // --- Feed Output [finish] ---
+
+            // --- JSON Output [start] ---
             if ($document->getType() == 'json') {
                 // Override some display parameters to show a minimum of content elements
                 $itemParams = class_exists('JParameter') ? new JParameter($items[$i]->params) : new JRegistry($items[$i]->params);
@@ -550,7 +591,7 @@ class K2ViewItemlist extends K2View
                 $itemParams->set($prefix.'ItemImage', true);
                 $items[$i]->params = $itemParams->toString();
             }
-            // --- JSON View [finish] ---
+            // --- JSON Output [finish] ---
 
             // Check if the model should use the cache for preparing the item even if the user is logged in
             if ($user->guest || $task == 'tag' || $task == 'search' || $task == 'date') {
@@ -592,7 +633,7 @@ class K2ViewItemlist extends K2View
                 $items[$i]->event->K2CommentsCounter = trim(implode("\n", $results));
             }
 
-            // --- JSON View [start] ---
+            // --- JSON Output [start] ---
             if ($document->getType() == 'json') {
                 // Set default image
                 if ($task == 'date' || $task == 'search' || $task == 'tag' || $task == 'user') {
@@ -605,10 +646,10 @@ class K2ViewItemlist extends K2View
 
                 $rowsForJSON[] = $itemModel->prepareJSONItem($items[$i]);
             }
-            // --- JSON View [finish] ---
+            // --- JSON Output [finish] ---
         }
 
-        // --- JSON View [start] ---
+        // --- JSON Output [start] ---
         if ($document->getType() == 'json') {
             $response->items = $rowsForJSON;
 
@@ -622,7 +663,7 @@ class K2ViewItemlist extends K2View
                 echo $json;
             }
         }
-        // --- JSON View [finish] ---
+        // --- JSON Output [finish] ---
 
         // Add item link
         if (K2HelperPermissions::canAddItem()) {
