@@ -85,10 +85,37 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ30 .input-append .btn {margin-left:-2px !important;}
 .isJ30 .radio,
 .isJ30 .checkbox {padding-left:0 !important;}
-header.header {display:none;}
-div#toolbar {background:url(../images/backend/k2_logo_126x48.png) no-repeat 12px 50%;background-size:80px;padding:12px 12px 12px calc(10% + 12px);margin:0;min-height:26px;position:fixed;z-index:99;left:0;right:0;}
-    div#toolbar .btn-wrapper {margin:0 4px 0 0;}
-    div#toolbar .btn-success {min-width:100px;}
+.isJ30 header.header {display:none;}
+.isJ30 div#toolbar {background:url(../images/backend/k2_logo_126x48.png) no-repeat 12px 50%;background-size:80px;padding:12px 12px 12px calc(10% + 12px);margin:0;min-height:26px;position:fixed;z-index:99;left:0;right:0;}
+    .isJ30 div#toolbar .btn-wrapper {margin:0 4px 0 0;}
+    .isJ30 div#toolbar .btn-success {min-width:100px;}
+    
+/* Corrections for J1.5 */
+.isJ15 body {margin:0;padding:0;}
+.isJ15 #toolbar-box .m .header,
+.isJ15 #submenu-box,
+.isJ15 #element-box .t,
+.isJ15 #element-box .b,
+.isJ15 #border-bottom {display:none;}
+.isJ15 .toolbar {margin:0;padding:0;}
+.isJ15 #border-top,
+.isJ15 #header-box {left:0;right:0;box-sizing:border-box;width:100%;}
+
+.isJ15 #border-top {position:fixed;z-index:109;}
+.isJ15 #header-box {position:fixed;z-index:110;top:54px;}
+.isJ15 #content-box .padding {position:relative;}
+.isJ15 #toolbar-box {background:#f0f0f0 url(../images/backend/k2_logo_126x48.png) no-repeat 12px 50%;background-size:80px;padding:8px 8px 8px calc(10% + 8px);margin:0;min-height:26px;position:fixed;z-index:109;left:0;right:0;top:80px;}
+.isJ15 #toolbar-box .m {border:0;padding:4px 0;margin:0;}
+.isJ15 #toolbar-box table.toolbar tr td {height:auto;}
+.isJ15 #toolbar-box table.toolbar tr td a {border:1px solid #b3b3b3;border-radius:4px;background:#f3f3f3;padding:4px 8px;line-height:20px;color:#333;}
+.isJ15 #toolbar-box table.toolbar tr td a:hover {border:1px solid #b3b3b3;background:#e6e6e6;}
+.isJ15 #toolbar-box table.toolbar tr td a span {float:left;width:20px;height:20px;background-size:cover;margin-right:8px;}
+.isJ15 #element-box {padding-top:136px;}
+.isJ15 #element-box .m {padding:0 0 20px 0;margin:0;}
+.isJ15 #element-box .m .table-responsive {margin:0;padding:0;}
+.isJ15 #footer {background:#ebebeb;padding:4px 10px;margin:0;border-top:1px solid #dedede;box-shadow:0 0 3px rgba(0, 0, 0, 0.08);position:fixed;z-index:199;bottom:0;left:0;right:0;}
+.isJ15 #footer .copyright {text-align:right;padding:0;margin:0;color:#626262;font-size:12px;}
+.isJ15 #footer .copyright a {color:#333;}
 
 /* --- Added in K2 v2.10 [finish] --- */
 
@@ -848,7 +875,9 @@ padding:0;color:#4a4949;}
 html.isJ15 {overflow-y:scroll;}
 html.isJ15 #system-message {margin:-26px 0 16px;}
 html.isJ15 #system-message dd ul {padding:20px 10px;}
+/*
 html.isJ15 div#element-box div.m {padding:0;border-bottom:1px solid #ccc;}
+*/
 html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs {border-top:1px solid #d4d7d9;}
 html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {content:"\f0d8";font-family:"FontAwesome";font-style:normal;font-weight:normal;text-decoration:inherit;color:#fff;font-size:32px;position:absolute;bottom:-12px;left:50%;margin-left:-16px;width:32px;text-shadow:0px -1px 1px #ccc;}
 
@@ -875,6 +904,7 @@ html.oldJ #k2AdminContainer .adminlist {border-left:0;}
 .oldJ .k2Table .k2SubTableValue input[type="radio"] {top:0;left:0;}
 
 /* The submenu for Joomla 1.5 & 2.5 */
+/*
 html.isJ25 #toolbar-box {margin-bottom:0;}
 html.isJ25 #submenu-box,
 html.isJ15 #submenu-box {padding:0;margin:0;border-top:1px solid #d4d7d9;float:left;width:100%;}
@@ -889,6 +919,7 @@ html.isJ25 #submenu li a.active,
 html.isJ15 #submenu li a.active {color:#0091ff;background:#f0f2f2;}
 html.isJ25 #submenu li a.active:before,
 html.isJ15 #submenu li a.active:before   {text-align:center;content:"\f0d8";font-family:"FontAwesome";color:#fff;position:absolute;font-size:32px;bottom:-2px;left:50%;margin-left:-16px;width:32px;text-shadow:0px -1px 1px #ccc;}
+*/
 
 /* The list */
 .oldJ table.adminlist {border-spacing:0;}
@@ -959,18 +990,23 @@ input#k2ImageBrowseServer {/*width:auto;height:30px;line-height:8px;margin-left:
 
 /* Joomla 1.5 specific */
 #system-message dd.message {overflow:hidden;margin-top:0;}
-.isJ15 div.header {padding:0;margin:12px;}
-.isJ15 div.toolbar {margin-top:10px;}
+
 .isJ15 #content-box .padding {padding:0;}
 .isJ15 div#toolbar-box div.t,
 .isJ15 div#element-box div.section-box div.t {padding:0;background:none;}
 .isJ15 div.t,
 .isJ15 div.b {display:none!important;}
+
+/*
+.isJ15 div.header {padding:0;margin:12px;}
+.isJ15 div.toolbar {margin-top:10px;}
+
 .isJ15 div#toolbar-box {margin:0;}
 .isJ15 div.m {border:0!important;}
 .isJ15 #border-bottom {display:none;}
 .isJ15 #submenu-box {margin:0;}
 .isJ15 #k2AdminFooter {margin:10px auto 0;padding:0 0 20px;border-bottom:1px solid #ccc;}
+*/
 
 /* Joomla 3.x specific */
 html.isJ30 {}

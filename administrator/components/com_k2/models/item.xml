@@ -181,7 +181,7 @@
       <option value="0">K2_HIDE</option>
       <option value="1">K2_SHOW</option>
     </param>
-    <param name="itemImgSize" type="radio" default="" label="K2_IMAGE_SIZE" description="">
+    <param name="itemImgSize" type="list" default="" label="K2_IMAGE_SIZE" description="">
       <option value="">K2_INHERIT_FROM_CATEGORY</option>
       <option value="XSmall">K2_XSMALL</option>
       <option value="Small">K2_SMALL</option>
