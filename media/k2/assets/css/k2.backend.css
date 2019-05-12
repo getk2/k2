@@ -81,7 +81,7 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 #k2AdminContainer.inModalSelector {display:block;margin-bottom:16px;min-height:auto;}
 #k2AdminContainer.inModalSelector #k2Sidebar {display:none;}
 
-/* Corrections for J3.x */
+/* --- Corrections for J3.x --- */
 .isJ30 .input-append .btn {margin-left:-2px !important;}
 .isJ30 .radio,
 .isJ30 .checkbox {padding-left:0 !important;}
@@ -90,9 +90,18 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
     .isJ30 div#toolbar .btn-wrapper {margin:0 4px 0 0;}
     .isJ30 div#toolbar .btn-success {min-width:100px;}
 
-/* Corrections for J1.5 */
-.isJ15 body {margin:0;padding:0;}
-.isJ15 body * {font-family:'Open Sans',sans-serif !important;font-size:12px;}
+/* --- Corrections for J1.5 --- */
+.isJ15 body {margin:0;padding:0;font-family:'Open Sans',sans-serif;}
+.isJ15 body * :not(i) {font-family:'Open Sans',sans-serif !important;font-size:12px;color:#333;}
+
+.isJ15 #border-top .title {font-size:14px;font-weight:600;color:#f7f7f7;}
+.isJ15 #border-top .version {padding:26px 16px 0 0;font-size:11px;color:#f7f7f7;}
+
+.isJ15 #header-box #module-menu #menu > li,
+.isJ15 #header-box #module-menu #menu > li.hover {padding:2px 4px;margin:0;}
+.isJ15 #header-box #module-menu #menu > li > ul {margin-top:2px;}
+.isJ15 #header-box #module-status {padding:2px 8px;}
+.isJ15 #header-box #module-status * {font-size:11px;}
 
 .isJ15 #border-top,
 .isJ15 #header-box,
@@ -110,20 +119,44 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ15 #header-box {left:0;right:0;box-sizing:border-box;width:100%;}
 
 .isJ15 #border-top {position:fixed;z-index:109;}
-.isJ15 #header-box {position:fixed;z-index:110;top:44px;border-left:0;border-right:0;border-top:4px solid #183867;}
-.isJ15 #content-box .padding {position:relative;}
-.isJ15 #toolbar-box {background:#f0f0f0 url(../images/backend/k2_logo_126x48.png) no-repeat 12px 50%;background-size:80px;padding:4px 8px;margin:0;min-height:26px;position:fixed;z-index:109;left:0;right:0;top:74px;}
-.isJ15 #toolbar-box .m {border:0;padding:4px 0;margin:0;}
+.isJ15 #header-box {position:fixed;z-index:110;top:44px;border-left:0;border-right:0;border-top:4px solid #1a509e;}
+.isJ15 #content-box,
+.isJ15 #content-box .border,
+.isJ15 #content-box .border .padding {border:0;margin:0;padding:0;}
+
+.isJ15 #toolbar-box {background:#f0f0f0 url(../images/backend/k2_logo_126x48.png) no-repeat 12px 50%;background-size:80px;padding:4px 16px 4px 8px;margin:0;position:fixed;z-index:109;left:0;right:0;top:78px;border-bottom:1px solid #d4d7d7;}
+.isJ15 #toolbar-box .m {border:0;padding:0;margin:0;}
 .isJ15 #toolbar-box table.toolbar tr td {height:auto;}
-.isJ15 #toolbar-box table.toolbar tr td a {border:1px solid #b3b3b3;border-radius:4px;background:#f3f3f3;padding:4px 8px;line-height:20px;color:#333;font-size:12px;}
+.isJ15 #toolbar-box table.toolbar tr td a {border:1px solid #b3b3b3;border-radius:4px;background:#f3f3f3;padding:6px 8px;line-height:20px;color:#333;font-size:12px;}
 .isJ15 #toolbar-box table.toolbar tr td a:hover {border:1px solid #b3b3b3;background:#e6e6e6;}
 .isJ15 #toolbar-box table.toolbar tr td a span {float:left;width:20px;height:20px;background-size:cover;margin-right:8px;}
+
 .isJ15 #element-box {padding-top:122px;}
-.isJ15 #element-box .m {padding:0 0 20px 0;margin:0;}
+.isJ15 #element-box .m {padding:0 0 20px 0;margin:0;border:0;background:#f0f2f2;}
 .isJ15 #element-box .m .table-responsive {margin:0;padding:0;}
+
 .isJ15 #footer {background:#ebebeb;padding:4px 10px;margin:0;border-top:1px solid #dedede;box-shadow:0 0 3px rgba(0, 0, 0, 0.08);position:fixed;z-index:199;bottom:0;left:0;right:0;}
 .isJ15 #footer .copyright {text-align:right;padding:0;margin:0;color:#626262;font-size:12px;}
+.isJ15 #footer .copyright::after {content:" — Joomla! 1.5";}
 .isJ15 #footer .copyright a {color:#333;}
+
+.isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters {border-collapse:collapse;border:0;}
+.isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td {padding:8px 8px 6px 8px;}
+.isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSearch input {width:200px;padding:4px 8px;border:1px solid #b3b3b3;display:inline-block;}
+.isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSearch button {border-radius:0 3px 3px 0;border:1px solid #b3b3b3;margin:0 0 0 -6px;padding:4px 12px;font-size:13px;line-height:20px;text-align:center;vertical-align:middle;color:#333;background:#f3f3f3;display:inline-block;}
+.isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects {padding-right:16px;}
+.isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects select {max-width:160px;height:30px;}
+
+.isJ15 #k2AdminContainer #k2ContentView > form .table-responsive-wrap {padding-top:50px;}
+
+.isJ15 #k2AdminContainer .adminlist {border-collapse:collapse;}
+.isJ15 #k2AdminContainer .adminlist tr td {border-left:0;border-right:0;height:auto;padding:10px;}
+.isJ15 #k2AdminContainer .adminlist tbody > tr:nth-child(odd) > td,
+.isJ15 #k2AdminContainer .adminlist tbody > tr:nth-child(odd) > th {background:#f9f9f9;}
+.isJ15 #k2AdminContainer .adminlist tr td.order span {margin-top:6px;}
+
+.isJ15 #k2AdminContainer .adminlist .pagination {padding:0;margin:8px auto;}
+.isJ15 #k2AdminContainer .adminlist .pagination .limit select {margin-left:4px;}
 
 /* --- Added in K2 v2.10 [finish] --- */
 
@@ -928,6 +961,7 @@ html.isJ15 #submenu li a.active:before   {text-align:center;content:"\f0d8";font
 */
 
 /* The list */
+/*
 .oldJ table.adminlist {border-spacing:0;}
 .oldJ table.adminlist tbody tr td {border:0;}
 .oldJ table.adminlist thead th {padding:10px 0;border-left:0;border-right:0;}
@@ -940,12 +974,15 @@ html.isJ15 #submenu li a.active:before   {text-align:center;content:"\f0d8";font
 html.isJ25 #k2AdminContainer .k2AdminTableFilters tr td {padding:10px;}
 
 .oldJ h1 {color:#00AFEB;}
+*/
 
 /* Item form */
+/*
 .oldJ fieldset {padding-left:0;border:0;}
 .oldJ input[type="text"],
 .oldJ input[type="email"] {height:30px;min-height:30px;width:auto;max-width:100%;}
 .oldJ select {}
+*/
 
 /* Field normalisation */
 .k2ViewIsItem .oldJ input[type="file"],
@@ -962,10 +999,12 @@ input#k2ImageBrowseServer {/*width:auto;height:30px;line-height:8px;margin-left:
 .k2ViewIsItem .oldJ input[type="text"] {width:auto;min-width:208px;}
 .k2ViewIsItem .oldJ input.k2TitleBox {min-width:100%;}
 
+/*
 .oldJ input[type="text"] {width:100%;}
 .oldJ .adminlist input[type="text"] {width:auto;min-width:0;}
 .oldJ .k2TagsNotice {margin-bottom:30px;}
 .oldJ #itemAttachments a.k2AttachmentBrowseServer {margin-left:20px;}
+*/
 
 /* Mimick Joomla 3.x's input styling for 1.5 & 2.5 */
 .oldJ label,
@@ -979,7 +1018,7 @@ input#k2ImageBrowseServer {/*width:auto;height:30px;line-height:8px;margin-left:
 .oldJ .uneditable-input,
 .oldJ .k2ViewIsItem select,
 .oldJ .k2ViewIsCategory select,
-.oldJ .k2GenericForm select {background-color:#fff;border:1px solid #ccc;box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);transition:border linear .2s,box-shadow linear .2s;display:inline-block;height:30px;font-size:13px;padding:0 10px;min-width:80px;line-height:18px;color:#555;border-radius:3px;vertical-align:middle;box-sizing:border-box;}
+.oldJ .k2GenericForm select {background-color:#fff;border:1px solid #ccc;box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);transition:border linear .2s,box-shadow linear .2s;display:inline-block;font-size:12px;padding:4px 2px;min-width:50px;line-height:20px;color:#555;border-radius:4px;vertical-align:middle;box-sizing:border-box;}
 .oldJ textarea,
 .oldJ .k2ViewIsItem select,
 .oldJ .k2ViewIsCategory select,
@@ -1017,8 +1056,8 @@ input#k2ImageBrowseServer {/*width:auto;height:30px;line-height:8px;margin-left:
 /* Joomla 3.x specific */
 html.isJ30 {}
 body#com_k2 {}
-.com_k2 .subhead-collapse {margin-bottom:1px;}
-.com_k2 .subhead {border-bottom:1px solid #D4D7D7;margin-bottom:0;}
+.isJ30 .com_k2 .subhead-collapse {margin-bottom:1px;}
+.isJ30 .com_k2 .subhead {border-bottom:1px solid #d4d7d7;margin-bottom:0;}
 .isJ30 body.view-info .subhead {position:fixed;z-index:99;}
 .isJ30 body.view-info .subhead-collapse.collapse {margin-top:-30px;}
 .isJ30 body.view-info #k2AdminContainer {margin-top:30px;}
