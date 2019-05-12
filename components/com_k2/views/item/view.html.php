@@ -46,7 +46,7 @@ class K2ViewItem extends K2View
             JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
         }
 
-        // --- JSON View [start] ---
+        // --- JSON Output [start] ---
         // Set the document type in Joomla 1.5
         if (K2_JVERSION == '15' && JRequest::getCmd('format') == 'json') {
             $document->setMimeEncoding('application/json');
@@ -66,7 +66,7 @@ class K2ViewItem extends K2View
             $itemParams->set('itemVideo', true);
             $item->params = $itemParams->toString();
         }
-        // --- JSON View [finish] ---
+        // --- JSON Output [finish] ---
 
         // Prepare item
         $item = $model->prepareItem($item, $view, $task);
@@ -422,7 +422,7 @@ class K2ViewItem extends K2View
             }
         }
 
-        // JSON View Output
+        // --- JSON Output [start] ---
         if ($document->getType() == 'json') {
             // Build the output object
             $row = $model->prepareJSONItem($item);
@@ -451,6 +451,7 @@ class K2ViewItem extends K2View
                 echo $json;
             }
         }
+        // --- JSON Output [finish] ---
 
         // Head Stuff
         if (!in_array($document->getType(), ['raw', 'json'])) {

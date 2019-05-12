@@ -470,8 +470,8 @@ class K2ViewItemlist extends K2View
             if (!$limit) {
                 $limit = 10;
             }
-            // Allow JSON to request more items that the preset limit
-            if ($document->getType() == 'json' && JRequest::getInt('limit')) {
+            // Allow Feed & JSON outputs to request more items that the preset limit
+            if (in_array($document->getType(), ['feed', 'json']) && JRequest::getInt('limit')) {
                 $limit = JRequest::getInt('limit');
             }
             // Protect from large limit requests
