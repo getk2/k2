@@ -50,9 +50,11 @@ class K2ViewItemlist extends K2View
 
         // --- Feed Output [start] ---
         if ($document->getType() == 'feed') {
-            $result = $itemlistModel->getModuleItems($moduleID);
-            $title = $result->title;
-            $items = $result->items;
+            if ($moduleID) {
+                $result = $itemlistModel->getModuleItems($moduleID);
+                $title = $result->title;
+                $items = $result->items;
+            }
         }
         // --- Feed Output [finish] ---
 
@@ -550,7 +552,7 @@ class K2ViewItemlist extends K2View
 
             // --- Feed Output [start] ---
             if ($document->getType() == 'feed') {
-                $item = $itemModel->prepareFeedItem($item);
+                $item = $itemModel->prepareFeedItem($items[$i]);
                 $item->title = html_entity_decode($this->escape($item->title));
 
                 $feedItem = new JFeedItem();
@@ -730,7 +732,7 @@ class K2ViewItemlist extends K2View
         // --- B/C stuff [finish] ---
 
         // Head Stuff
-        if (!in_array($document->getType(), ['raw', 'json'])) {
+        if (!in_array($document->getType(), ['feed', 'json', 'raw'])) {
             // Set canonical link
             if ($task == 'category') {
                 $canonicalURL = $params->get('canonicalURL', 'relative');
@@ -868,7 +870,7 @@ class K2ViewItemlist extends K2View
             }
         }
 
-        if ($document->getType() != 'json') {
+        if (!in_array($document->getType(), ['feed', 'json'])) {
             // Lookup template folders
             $this->_addPath('template', JPATH_COMPONENT.'/templates');
             $this->_addPath('template', JPATH_COMPONENT.'/templates/default');
