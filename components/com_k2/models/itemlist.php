@@ -23,10 +23,11 @@ class K2ModelItemlist extends K2Model
         $user = JFactory::getUser();
         $aid = $user->get('aid');
         $db = JFactory::getDbo();
-        $params = K2HelperUtilities::getParams('com_k2');
+        $task = JRequest::getCmd('task');
         $limitstart = JRequest::getInt('limitstart', 0);
         $limit = JRequest::getInt('limit', 10);
-        $task = JRequest::getCmd('task');
+
+        $params = K2HelperUtilities::getParams('com_k2');
 
         if ($task == 'search') {
             $params->set('googleSearch', 0);

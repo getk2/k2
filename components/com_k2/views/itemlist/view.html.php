@@ -24,6 +24,7 @@ class K2ViewItemlist extends K2View
         $view = JRequest::getCmd('view');
         $task = JRequest::getCmd('task');
         $limitstart = JRequest::getInt('limitstart', 0);
+        $limit = JRequest::getInt('limit', 10);
 
         $params = K2HelperUtilities::getParams('com_k2');
         $moduleID = JRequest::getInt('moduleID');
@@ -54,21 +55,6 @@ class K2ViewItemlist extends K2View
             $document->setType('json');
         }
         if ($document->getType() == 'json') {
-            // Set limit for model
-            $limit = JRequest::getInt('limit');
-            if ($limit > 100 || $limit == 0) {
-                $limit = 100;
-                JRequest::setVar('limit', $limit);
-            }
-            $page = JRequest::getInt('page');
-            if ($page <= 0) {
-                $limitstart = 0;
-            } else {
-                $page--;
-                $limitstart = $page * $limit;
-            }
-            JRequest::setVar('limitstart', $limitstart);
-
             // Prepare JSON output
             $response = new JObject();
             unset($response->_errors);
@@ -470,6 +456,23 @@ class K2ViewItemlist extends K2View
                     break;
             }
 
+            // Protect from large limit requests
+            if ($limit > 100) {
+                $limit = 100;
+            }
+            // Set a default limit (for the model) if none is found
+            if (!$limit) {
+                $limit = 10;
+            }
+            JRequest::setVar('limit', $limit);
+
+            // Allow for paginated results using "page"
+            $page = JRequest::getInt('page');
+            if ($page) {
+                $limitstart = $page * $limit;
+                JRequest::setVar('limitstart', $limitstart);
+            }
+
             // Get items
             if (!isset($ordering)) {
                 $items = $itemlistModel->getData();
@@ -495,12 +498,6 @@ class K2ViewItemlist extends K2View
         }
 
         if ($document->getType() != 'json') {
-            // Set limit for model
-            if (!$limit) {
-                $limit = 10;
-            }
-            JRequest::setVar('limit', $limit);
-
             // Pagination
             jimport('joomla.html.pagination');
             $total = (count($items)) ? $itemlistModel->getTotal() : 0;
