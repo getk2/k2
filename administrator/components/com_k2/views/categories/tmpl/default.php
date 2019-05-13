@@ -123,7 +123,7 @@ $context = JRequest::getCmd('context');
                         </tr>
                     </tfoot>
                     <tbody>
-	                    <?php if(isset($this->rows) && count($this->rows) > 0): ?>
+                        <?php if(isset($this->rows) && count($this->rows) > 0): ?>
                         <?php foreach ($this->rows as $key => $row) :   ?>
                         <tr class="row<?php echo ($key%2); ?>" sortable-group-id="<?php echo $row->parent; ?>">
 
