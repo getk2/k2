@@ -213,11 +213,11 @@ defined('_JEXEC') or die;
         <!-- DISPLAY SETTINGS [start] -->
         <div class="k2NavTabContent" id="k2TabDisplaySet">
             <ul class="k2ScrollSpyMenu">
-                <li><a href="#catLayoutOptions"><?php echo JText::_('K2_CATEGORY_ITEM_LAYOUT'); ?></a></li>
-                <li><a href="#catViewOptions"><?php echo JText::_('K2_CATEGORY_VIEW_OPTIONS'); ?></a></li>
-                <li><a href="#catImageOptions"><?php echo JText::_('K2_ITEM_IMAGE_OPTIONS'); ?></a></li>
-                <li><a href="#catItemsOptions"><?php echo JText::_('K2_ITEM_VIEW_OPTIONS_IN_CATEGORY_LISTINGS'); ?></a></li>
-                <li><a href="#catItemOptions"><?php echo JText::_('K2_ITEM_VIEW_OPTIONS'); ?></a></li>
+                <li><a href="#catLayoutOptions"><?php echo JText::_('K2_CATEGORY_ITEM_LAYOUT'); ?><i class="right fa fa-angle-right"></i></a></li>
+                <li><a href="#catViewOptions"><?php echo JText::_('K2_CATEGORY_VIEW_OPTIONS'); ?><i class="right fa fa-angle-right"></i></a></li>
+                <li><a href="#catImageOptions"><?php echo JText::_('K2_ITEM_IMAGE_OPTIONS'); ?><i class="right fa fa-angle-right"></i></a></li>
+                <li><a href="#catItemsOptions"><?php echo JText::_('K2_ITEM_VIEW_OPTIONS_IN_CATEGORY_LISTINGS'); ?><i class="right fa fa-angle-right"></i></a></li>
+                <li><a href="#catItemOptions"><?php echo JText::_('K2_ITEM_VIEW_OPTIONS'); ?><i class="right fa fa-angle-right"></i></a></li>
             </ul>
 
             <div class="k2ScrollingContent xmlParamsFields">
