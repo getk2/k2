@@ -22,7 +22,7 @@ defined('_JEXEC') or die;
             </button>
         </div>
         <div class="configuration">
-            <?php echo JText::_('K2_PARAMETERS')?>
+            <?php echo JText::_('K2_SETTINGS')?>
         </div>
         <div class="clr"></div>
     </fieldset>
