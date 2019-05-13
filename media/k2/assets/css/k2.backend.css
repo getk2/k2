@@ -67,8 +67,8 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
             #k2ContentView > form .table-responsive-wrap {padding-top:90px;}
             .K2AdminViewItems #k2ContentView > form .table-responsive-wrap {padding-top:118px;}
         }
-        .K2AdminViewExtrafieldsgroups #k2ContentView > form .table-responsive-wrap,
-        .K2AdminViewUsergroups #k2ContentView > form .table-responsive-wrap {padding-top:0;}
+        html #k2AdminContainer.K2AdminViewExtrafieldsgroups #k2ContentView > form .table-responsive-wrap,
+        html #k2AdminContainer.K2AdminViewUsergroups #k2ContentView > form .table-responsive-wrap {padding-top:0;}
 
         #k2AdminContainer .k2AdminTableFilters .chzn-container {width:180px !important;}
             #k2AdminContainer .k2AdminTableFilters #filter_trash_chzn {width:100px !important;}
@@ -1130,7 +1130,8 @@ div.commentToolbar span.k2CommentsLoader {background:url(../images/backend/loade
 .oldJ .label-alt {display:block;}
 
 /* Infromation */
-.isJ30 #k2InfoPage ul.k2ScrollSpyMenu {top:50px;padding-top:0;border-left:1px solid #e3e4e4;}
+.isJ25 #k2InfoPage ul.k2ScrollSpyMenu {top:183px;}
+.isJ30 #k2InfoPage ul.k2ScrollSpyMenu {top:0;padding-top:138px;border-left:1px solid #e3e4e4;}
 #k2InfoPage ul.k2ScrollSpyMenu {padding:0;height:100%;padding-top:31px;z-index:1;}
 #k2InfoPage ul.k2ScrollSpyMenu li {border-bottom:1px solid #e3e4e4;border-right:1px solid #e3e4e4;}
 #k2InfoPage ul.k2ScrollSpyMenu > li:first-child {border-top:1px solid #e3e4e4;}
