@@ -28,6 +28,8 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ30 .btn-subhead,
 .isJ30 .subhead {margin-left:0;margin-right:0;}
 
+
+
 /* --- Added in K2 v2.10 [start] --- */
 /*
     Color Legend:
@@ -90,7 +92,7 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 #k2AdminContainer.inModalSelector {display:block;margin-bottom:16px;min-height:auto;}
 #k2AdminContainer.inModalSelector #k2Sidebar {display:none;}
 
-/* --- Corrections for J3.x --- */
+/* --- Corrections for Joomla 3.x [start] --- */
 .isJ30 .input-append .btn {margin-left:-2px !important;}
 .isJ30 .radio,
 .isJ30 .checkbox {padding-left:0 !important;}
@@ -98,8 +100,9 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ30 div#toolbar {background:url(../images/backend/k2_logo_126x48.png) no-repeat 12px 50%;background-size:80px;padding:12px 12px 12px calc(10% + 12px);margin:0;min-height:26px;position:fixed;z-index:99;left:0;right:0;}
     .isJ30 div#toolbar .btn-wrapper {margin:0 4px 0 0;}
     .isJ30 div#toolbar .btn-success {min-width:100px;}
+/* --- Corrections for Joomla 3.x [finish] --- */
 
-/* --- Corrections for J1.5 --- */
+/* --- Corrections for Joomla 1.5 [start] --- */
 .isJ15 body {margin:0;padding:0;font-family:'Open Sans',sans-serif;}
 .isJ15 body * :not(i) {font-family:'Open Sans',sans-serif !important;/*font-size:12px;color:#333;*/}
 
@@ -177,6 +180,32 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ15 #k2AdminContainer .adminlist .pagination .limit select {margin-left:4px;}
 
 .isJ15 #k2AdminContainer #k2Sidebar ul li a {font-size:13px;font-weight:300;}
+
+/* Settings */
+.isJ15 #k2AdminContainer.K2AdminViewSettings {width:90%;margin:0 auto;padding:10px 0 40px 0;}
+.isJ15 #k2AdminContainer.K2AdminViewSettings #k2ContentView form > fieldset {border:0;padding:20px 24px 10px 24px;margin:0 auto 20px auto;border-bottom:2px solid #dddedf;}
+.isJ15 #k2AdminContainer.K2AdminViewSettings #k2ContentView form > fieldset .configuration {font-size:30px;font-weight:600;padding:0;margin:0;color:#183867;background:none;}
+.isJ15 #k2AdminContainer.K2AdminViewSettings #k2ContentView form > fieldset div button {border:1px solid #b3b3b3;border-radius:4px;background:#f3f3f3;padding:6px 8px;line-height:20px;color:#333;font-size:12px;cursor:pointer;}
+.isJ15 #k2AdminContainer.K2AdminViewSettings #k2ContentView form > fieldset div button:hover {border:1px solid #b3b3b3;background:#e6e6e6;}
+.isJ15 #k2AdminContainer.K2AdminViewSettings dl.tabs dt {margin:0 0 -1px 0;padding:8px 16px;font-size:14px;margin:0 4px 0 0;border:1px solid #dddedf;}
+.isJ15 #k2AdminContainer.K2AdminViewSettings dl.tabs dt.open {background:#fff;border-bottom:1px solid #fff;}
+.isJ15 #k2AdminContainer.K2AdminViewSettings dl.tabs dt:hover {background:#e6e6e6;}
+.isJ15 #k2AdminContainer.K2AdminViewSettings div.current {border:1px solid #dddedf;padding:10px;}
+.isJ15 #k2AdminContainer.K2AdminViewSettings div.current dd table.admintable {border:0;}
+.isJ15 #k2AdminContainer.K2AdminViewSettings table.admintable td {font-size:13px;font-weight:400;color:#333;padding:10px;vertical-align:middle;}
+.isJ15 #k2AdminContainer.K2AdminViewSettings table.admintable td.key,
+.isJ15 #k2AdminContainer.K2AdminViewSettings table.admintable td.paramlist_key {width:30%;}
+.isJ15 #k2AdminContainer.K2AdminViewSettings table.admintable td.paramlist_value input {text-align:center;min-width:60px;}
+.isJ15 #k2AdminContainer.K2AdminViewSettings table.admintable td.paramlist_value textarea {min-width:400px;}
+.isJ15 #k2AdminContainer.K2AdminViewSettings table.admintable td.paramlist_value input,
+.isJ15 #k2AdminContainer.K2AdminViewSettings table.admintable td.paramlist_value select,
+.isJ15 #k2AdminContainer.K2AdminViewSettings table.admintable td.paramlist_value button,
+.isJ15 #k2AdminContainer.K2AdminViewSettings table.admintable td.paramlist_value textarea {font-size:13px;}
+.isJ15 #k2AdminContainer.K2AdminViewSettings table.admintable td.paramlist_value input[type="radio"]+label {margin-right:10px;}
+.isJ15 #k2AdminContainer.K2AdminViewSettings table.admintable td.paramlist_value[colspan="2"] {padding:0;}
+.isJ15 #k2AdminContainer.K2AdminViewSettings table.admintable td.paramlist_value[colspan="2"] .jwHeaderContainer15 {padding:20px;font-size:16px;font-weight:400;border-bottom:4px solid #96b0cb;float:none;}
+
+/* --- Corrections for Joomla 1.5 [finish] --- */
 
 /* --- Added in K2 v2.10 [finish] --- */
 
@@ -492,7 +521,7 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
 
 /* Generic form additional styling - tags, users, usergroups etc. */
 .k2GenericForm {width:60%;padding:0 20px 40px 20px;margin:0 auto;}
-.k2GenericForm h3 {font-size:24px;font-weight:300;padding-bottom:16px;margin-top:25px;margin-bottom:15px;border-bottom:2px solid #dddedf;color:#00afec;}
+.k2GenericForm h3 {font-size:30px;font-weight:600;padding:20px 24px;margin:40px auto 20px auto;border-bottom:2px solid #dddedf;color:#183867;/*color:#00afec;*/}
 .k2GenericForm .k2ItemFormEditor {padding:20px 0 20px 20px;}
 
 /* Additional parameters styling for the item form */
@@ -1029,8 +1058,6 @@ input#k2ImageBrowseServer {/*width:auto;height:30px;line-height:8px;margin-left:
 */
 
 /* Mimick Joomla 3.x's input styling for 1.5 & 2.5 */
-.oldJ label,
-.oldJ .paramLabel {font-size:13px;font-weight:700;display:inline-block;vertical-align:middle;color:#777;}
 .oldJ textarea,
 .oldJ input[type="text"],
 .oldJ input[type="password"],

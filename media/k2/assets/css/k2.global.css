@@ -35,7 +35,7 @@ ul.k2SortableListContainer li span.k2EntryText {}
 
 /* --- Header Element --- */
 .jwHeaderContainer {background:#e5f7fd;color:#346b93;font-size:20px;margin:0;padding:24px 16px;border-radius:4px;}
-.jwHeaderContainer15 {background:#d5e7fa;color:#369;font-size:13px;margin:0;padding:10px;border-bottom:2px solid #96b0cb;font-weight:bold;float:left;width:100%;clear:both;}
+.jwHeaderContainer15 {background:#d5e7fa;color:#369;font-size:13px;margin:0;padding:10px;border-bottom:2px solid #96b0cb;font-weight:bold;float:left;width:100%;clear:both;box-sizing:border-box;}
 .jwHeaderContent {}
 .jwHeaderClr {clear:both;height:0;line-height:0;border:none;float:none;background:none;padding:0;margin:0;}
 
