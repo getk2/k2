@@ -45,7 +45,7 @@ defined('_JEXEC') or die;
                     <label><?php echo JText::_('K2_DESCRIPTION'); ?></label>
                 </div>
                 <div class="paramValue">
-                    <?php echo echo $this->editor; ?>
+                    <?php echo $this->editor; ?>
                 </div>
             </li>
             <li>
