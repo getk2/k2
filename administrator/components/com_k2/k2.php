@@ -74,7 +74,7 @@ if (K2_JVERSION == '15') {
     $k2CSSContainerClass = '';
 }
 
-if (JRequest::getCmd('context') == "modalselector" || ($view == 'media' && $tmpl == 'component')) {
+if (JRequest::getCmd('context') == "modalselector" || ($view == 'media' && $tmpl == 'component') || $view == 'settings') {
     $k2CSSContainerClass .= ' inModalSelector';
     $k2FooterClass = 'inModalSelector';
 } else {

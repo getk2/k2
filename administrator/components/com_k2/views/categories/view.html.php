@@ -50,21 +50,21 @@ class K2ViewCategories extends K2View
 
         // JS
         $document->addScriptDeclaration("
-			var K2SelectItemsError = '".JText::_('K2_SELECT_SOME_ITEMS_FIRST')."';
+            var K2SelectItemsError = '".JText::_('K2_SELECT_SOME_ITEMS_FIRST')."';
 
-			Joomla.submitbutton = function(pressbutton) {
-				if (pressbutton == 'trash') {
-					var answer = confirm('".JText::_('K2_WARNING_YOU_ARE_ABOUT_TO_TRASH_THE_SELECTED_CATEGORIES_THEIR_CHILDREN_CATEGORIES_AND_ALL_THEIR_INCLUDED_ITEMS', true)."')
-					if (answer){
-						submitform(pressbutton);
-					} else {
-						return;
-					}
-				} else {
-					submitform(pressbutton);
-				}
-			};
-		");
+            Joomla.submitbutton = function(pressbutton) {
+                if (pressbutton == 'trash') {
+                    var answer = confirm('".JText::_('K2_WARNING_YOU_ARE_ABOUT_TO_TRASH_THE_SELECTED_CATEGORIES_THEIR_CHILDREN_CATEGORIES_AND_ALL_THEIR_INCLUDED_ITEMS', true)."')
+                    if (answer){
+                        submitform(pressbutton);
+                    } else {
+                        return;
+                    }
+                } else {
+                    submitform(pressbutton);
+                }
+            };
+        ");
 
         if (K2_JVERSION != '15') {
             $langs = JLanguageHelper::getLanguages();
@@ -203,9 +203,9 @@ class K2ViewCategories extends K2View
 
         // Preferences (Parameters/Settings)
         if (K2_JVERSION != '15') {
-            JToolBarHelper::preferences('com_k2', 580, 800, 'K2_PARAMETERS');
+            JToolBarHelper::preferences('com_k2', '(window.innerHeight) * 0.8', '(window.innerWidth) * 0.8', 'K2_PARAMETERS');
         } else {
-            $toolbar->appendButton('Popup', 'config', 'K2_PARAMETERS', 'index.php?option=com_k2&view=settings', 800, 580);
+            $toolbar->appendButton('Popup', 'config', 'K2_PARAMETERS', 'index.php?option=com_k2&view=settings', '(window.innerWidth) * 0.8', '(window.innerHeight) * 0.8');
         }
 
         $this->loadHelper('html');
@@ -223,17 +223,17 @@ class K2ViewCategories extends K2View
                 JHtml::_('sortablelist.sortable', 'k2CategoriesList', 'adminForm', strtolower($this->lists['order_Dir']), 'index.php?option=com_k2&view=categories&task=saveorder&format=raw');
             }
             $document->addScriptDeclaration('
-	            Joomla.orderTable = function() {
-	                table = document.getElementById("sortTable");
-	                direction = document.getElementById("directionTable");
-	                order = table.options[table.selectedIndex].value;
-	                if (order != \''.$this->lists['order'].'\') {
-						dirn = \'asc\';
-		            } else {
-		                dirn = direction.options[direction.selectedIndex].value;
-		            }
-					Joomla.tableOrdering(order, dirn, "");
-	            }
+                Joomla.orderTable = function() {
+                    table = document.getElementById("sortTable");
+                    direction = document.getElementById("directionTable");
+                    order = table.options[table.selectedIndex].value;
+                    if (order != \''.$this->lists['order'].'\') {
+                        dirn = \'asc\';
+                    } else {
+                        dirn = direction.options[direction.selectedIndex].value;
+                    }
+                    Joomla.tableOrdering(order, dirn, "");
+                }
             ');
         }
 

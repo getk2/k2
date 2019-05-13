@@ -211,7 +211,7 @@ $context = JRequest::getCmd('context');
                         <?php endforeach; ?>
                         <?php else: ?>
                         <tr>
-                            <td colspan="<?php echo $tfootColspan; ?>" class="k2ui-nocontent">
+                            <td colspan="14" class="k2ui-nocontent">
                                 <div class="k2ui-nocontent-message">
                                     <i class="fa fa-list" aria-hidden="true"></i><?php echo JText::_('K2_BE_NO_COMMENTS_FOUND'); ?>
                                 </div>

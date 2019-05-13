@@ -14,15 +14,15 @@ jimport('joomla.application.component.view');
 
 class K2ViewUserGroups extends K2View
 {
-    function display($tpl = null)
+    public function display($tpl = null)
     {
         $application = JFactory::getApplication();
         $user = JFactory::getUser();
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
 
-		$params = JComponentHelper::getParams('com_k2');
-		$this->assignRef('params', $params);
+        $params = JComponentHelper::getParams('com_k2');
+        $this->assignRef('params', $params);
 
         $limit = $application->getUserStateFromRequest('global.list.limit', 'limit', $application->getCfg('list_limit'), 'int');
         $limitstart = $application->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
@@ -31,8 +31,7 @@ class K2ViewUserGroups extends K2View
 
         $model = $this->getModel();
         $total = $model->getTotal();
-        if ($limitstart > $total - $limit)
-        {
+        if ($limitstart > $total - $limit) {
             $limitstart = max(0, (int)(ceil($total / $limit) - 1) * $limit);
             JRequest::setVar('limitstart', $limitstart);
         }
@@ -51,21 +50,18 @@ class K2ViewUserGroups extends K2View
 
         $this->assignRef('lists', $lists);
 
-		// Toolbar
+        // Toolbar
         JToolBarHelper::title(JText::_('K2_USER_GROUPS'), 'k2.png');
 
         JToolBarHelper::addNew();
         JToolBarHelper::editList();
         JToolBarHelper::deleteList('', 'remove', 'K2_DELETE');
 
-        if (K2_JVERSION != '15')
-        {
-            JToolBarHelper::preferences('com_k2', 580, 800, 'K2_PARAMETERS');
-        }
-        else
-        {
+        if (K2_JVERSION != '15') {
+            JToolBarHelper::preferences('com_k2', '(window.innerHeight) * 0.8', '(window.innerWidth) * 0.8', 'K2_PARAMETERS');
+        } else {
             $toolbar = JToolBar::getInstance('toolbar');
-            $toolbar->appendButton('Popup', 'config', 'K2_PARAMETERS', 'index.php?option=com_k2&view=settings', 800, 580);
+            $toolbar->appendButton('Popup', 'config', 'K2_PARAMETERS', 'index.php?option=com_k2&view=settings', '(window.innerWidth) * 0.8', '(window.innerHeight) * 0.8');
         }
 
         $this->loadHelper('html');

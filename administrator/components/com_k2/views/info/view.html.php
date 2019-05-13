@@ -14,8 +14,7 @@ jimport('joomla.application.component.view');
 
 class K2ViewInfo extends K2View
 {
-
-    function display($tpl = null)
+    public function display($tpl = null)
     {
         jimport('joomla.filesystem.file');
         $user = JFactory::getUser();
@@ -52,14 +51,11 @@ class K2ViewInfo extends K2View
 
         JToolBarHelper::title(JText::_('K2_INFORMATION'), 'k2.png');
 
-        if (K2_JVERSION != '15')
-        {
-            JToolBarHelper::preferences('com_k2', 580, 800, 'K2_PARAMETERS');
-        }
-        else
-        {
+        if (K2_JVERSION != '15') {
+            JToolBarHelper::preferences('com_k2', '(window.innerHeight) * 0.8', '(window.innerWidth) * 0.8', 'K2_PARAMETERS');
+        } else {
             $toolbar = JToolBar::getInstance('toolbar');
-            $toolbar->appendButton('Popup', 'config', 'K2_PARAMETERS', 'index.php?option=com_k2&view=settings', 800, 580);
+            $toolbar->appendButton('Popup', 'config', 'K2_PARAMETERS', 'index.php?option=com_k2&view=settings', '(window.innerWidth) * 0.8', '(window.innerHeight) * 0.8');
         }
 
         $this->loadHelper('html');
@@ -68,20 +64,14 @@ class K2ViewInfo extends K2View
         parent::display($tpl);
     }
 
-    function get_server_software()
+    public function get_server_software()
     {
-        if (isset($_SERVER['SERVER_SOFTWARE']))
-        {
+        if (isset($_SERVER['SERVER_SOFTWARE'])) {
             return $_SERVER['SERVER_SOFTWARE'];
-        }
-        else if (($sf = getenv('SERVER_SOFTWARE')))
-        {
+        } elseif (($sf = getenv('SERVER_SOFTWARE'))) {
             return $sf;
-        }
-        else
-        {
+        } else {
             return JText::_('K2_NA');
         }
     }
-
 }
