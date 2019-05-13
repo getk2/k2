@@ -104,7 +104,7 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 
 /* --- Corrections for Joomla 1.5 [start] --- */
 .isJ15 body {margin:0;padding:0;font-family:'Open Sans',sans-serif;}
-.isJ15 body * :not(i) {font-family:'Open Sans',sans-serif !important;/*font-size:12px;color:#333;*/}
+.isJ15 body * :not(i) {font-family:'Open Sans',sans-serif !important;}
 
 .isJ15 #border-top.h_green > div {background:none;}
 .isJ15 #border-top.h_green div div {background-position-x:-8px;}
@@ -184,8 +184,8 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 /* Settings */
 .isJ15 #k2AdminContainer.K2AdminViewSettings {width:90%;margin:0 auto;padding:10px 0 40px 0;}
 .isJ15 #k2AdminContainer.K2AdminViewSettings #k2ContentView form > fieldset {border:0;padding:20px 24px 10px 24px;margin:0 auto 20px auto;border-bottom:2px solid #dddedf;}
-.isJ15 #k2AdminContainer.K2AdminViewSettings #k2ContentView form > fieldset .configuration {font-size:30px;font-weight:600;padding:0;margin:0;color:#183867;background:none;}
-.isJ15 #k2AdminContainer.K2AdminViewSettings #k2ContentView form > fieldset div button {border:1px solid #b3b3b3;border-radius:4px;background:#f3f3f3;padding:6px 8px;line-height:20px;color:#333;font-size:12px;cursor:pointer;}
+.isJ15 #k2AdminContainer.K2AdminViewSettings #k2ContentView form > fieldset .configuration {font-size:30px;line-height:30px;font-weight:600;padding:0;margin:0;color:#183867;background:none;}
+.isJ15 #k2AdminContainer.K2AdminViewSettings #k2ContentView form > fieldset div button {border:1px solid #b3b3b3;border-radius:4px;background:#f3f3f3;padding:6px 18px;margin:0 0 0 4px;line-height:20px;color:#333;font-size:12px;cursor:pointer;}
 .isJ15 #k2AdminContainer.K2AdminViewSettings #k2ContentView form > fieldset div button:hover {border:1px solid #b3b3b3;background:#e6e6e6;}
 .isJ15 #k2AdminContainer.K2AdminViewSettings dl.tabs dt {margin:0 0 -1px 0;padding:8px 16px;font-size:14px;margin:0 4px 0 0;border:1px solid #dddedf;}
 .isJ15 #k2AdminContainer.K2AdminViewSettings dl.tabs dt.open {background:#fff;border-bottom:1px solid #fff;}
@@ -204,6 +204,12 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ15 #k2AdminContainer.K2AdminViewSettings table.admintable td.paramlist_value input[type="radio"]+label {margin-right:10px;}
 .isJ15 #k2AdminContainer.K2AdminViewSettings table.admintable td.paramlist_value[colspan="2"] {padding:0;}
 .isJ15 #k2AdminContainer.K2AdminViewSettings table.admintable td.paramlist_value[colspan="2"] .jwHeaderContainer15 {padding:20px;font-size:16px;font-weight:400;border-bottom:4px solid #96b0cb;float:none;}
+
+/* Information */
+.isJ15 #k2AdminContainer.K2AdminViewInfo #k2ContentView {background:#fff;}
+.isJ15 #k2AdminContainer.K2AdminViewInfo #k2ContentView ul.k2ScrollSpyMenu {top:122px;padding:0;height:100%;padding-top:0;z-index:1;}
+.isJ15 #k2AdminContainer.K2AdminViewInfo #k2ContentView table tr th,
+.isJ15 #k2AdminContainer.K2AdminViewInfo #k2ContentView table tr td {font-size:13px;color:#333;}
 
 /* --- Corrections for Joomla 1.5 [finish] --- */
 
@@ -917,7 +923,6 @@ z-index:100;margin:25px auto 25px -325px;font-family:'Open Sans',sans-serif;font
 #k2InfoPage ul {margin-bottom:30px;}
 #k2InfoPage table li {background:#fff;}
 
-.isJ15 #k2InfoPage ul.k2ScrollSpyMenu {top:175px;}
 .isJ25 #k2InfoPage ul.k2ScrollSpyMenu {top:183px;}
 .isJ30 #k2InfoPage ul.k2ScrollSpyMenu {top:0;padding-top:138px;border-left:1px solid #e3e4e4;}
 
