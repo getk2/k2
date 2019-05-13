@@ -216,11 +216,10 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value select[multiple] {height:auto;}
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value button {font-family:'Open Sans',sans-serif;font-size:13px;}
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value textarea {min-width:400px;padding-left:10px;padding:right:10px;}
-.isJ15 #k2AdminContainer table.admintable td.paramlist_value label,
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value input,
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value select,
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value textarea {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);}
-.isJ15 #k2AdminContainer table.admintable td.paramlist_value label {border:0;}
+.isJ15 #k2AdminContainer table.admintable td.paramlist_value label {font-family:'Open Sans',sans-serif;font-size:13px;}
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);}
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value input[type="radio"] + label {min-width:80px;width:auto;line-height:30px;height:30px;text-align:center;margin:0 -2px 0 0;padding:0 10px;color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background:#eff1f1;cursor:pointer;}
 
@@ -235,7 +234,7 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value input[type="radio"][value="1"]:checked + label,
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value input[type="radio"][value="all"]:checked + label {background:#3fa800;color:#fff;}
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value[colspan="2"] {padding:0;}
-.isJ15 #k2AdminContainer table.admintable td.paramlist_value[colspan="2"] .jwHeaderContainer15 {padding:20px;font-size:16px;font-weight:400;border-bottom:4px solid #96b0cb;float:none;}
+.isJ15 #k2AdminContainer table.admintable td.paramlist_value[colspan="2"] .jwHeaderContainer15 {padding:20px;font-size:16px;font-weight:400;border-top:10px solid #fff;border-bottom:4px solid #96b0cb;float:none;}
 
 /* Parameters rendered from XML (lists) */
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields h3.paramHeader {font-size:24px;}
@@ -251,11 +250,10 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue select[multiple] {height:auto;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue button {font-family:'Open Sans',sans-serif;font-size:13px;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {min-width:400px;padding-left:10px;padding:right:10px;}
-.isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue label,
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input,
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue select,
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);}
-.isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue label {border:0;}
+.isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue label {font-family:'Open Sans',sans-serif;font-size:13px;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="radio"] + label {min-width:80px;width:auto;line-height:30px;height:30px;text-align:center;margin:0 -2px 0 0;padding:0 10px;color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background:#eff1f1;cursor:pointer;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="radio"]:first-child + label {border-radius:4px 0 0 4px;}
@@ -274,6 +272,8 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li > fieldset.adminform {border:0;padding:0;margin:0;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li > fieldset.adminform > legend {position:relative;background:#d5e7fa;color:#369;width:100%;clear:both;box-sizing:border-box;margin:0;padding:20px;font-size:20px;font-weight:400;border-top:10px solid #fff;border-bottom:4px solid #96b0cb;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields fieldset.adminform > legend::after {font-family:"FontAwesome";font-size:24px;content:"\f12e";position:absolute;right:20px;top:20px;}
+
+.isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields fieldset.panelform ul li .paramHeader {padding:10px 0 0 0;}
 
 /* --- Corrections for Joomla 1.5 [finish] --- */
 
