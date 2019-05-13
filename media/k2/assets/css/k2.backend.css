@@ -36,6 +36,9 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
         teal: #1480d3
         red: #c52c6a
 */
+#k2AdminContainer.isEditForm #k2ContentView > form h3 {font-size:24px;font-weight:600;padding:20px 0 10px 4px;margin:0 auto 20px auto;border-bottom:2px solid #dddedf;color:#183867;}
+#k2AdminContainer.isEditForm #k2ContentView > form .k2GenericForm h3 {font-size:32px;}
+
 #k2AdminContainer {font-family:'Open Sans',sans-serif;display:grid;grid-template-columns:10% 90%;min-height:calc(100vh - 116px);}
     #k2Sidebar {background:#193867;position:relative;z-index:90;/*border-right:4px solid #10213e;*/}
         #k2Sidebar ul {list-style:none;padding:0;margin:0 0 24px 0;position:fixed;width:10%;z-index:92;}
@@ -246,7 +249,8 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value[colspan="2"] .jwHeaderContainer15 {padding:20px;font-size:16px;font-weight:400;border-top:10px solid #fff;border-bottom:4px solid #96b0cb;float:none;}
 
 /* Parameters rendered from XML (lists) */
-.isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields h3.paramHeader {font-size:24px;}
+.isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields h3.paramHeader,
+.isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields .k2ScrollingContent > h3 {font-size:24px;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields fieldset {padding:0 0 1px 0;margin:0 auto 20px auto;border:0;border-bottom:2px solid #dddedf;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul {padding:0;margin:0;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li {display:table;width:100%;box-sizing:border-box;}
@@ -580,8 +584,6 @@ box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
 .isJ30 .xmlParamsFields .paramLabel input[type="checkbox"] + label {padding-left:5px;}
 .isJ30 .xmlParamsFields .paramValue input {margin:0;}
 
-.k2ScrollingContent > h3,
-.k2NavTabContent h3 {font-size:16px;font-weight:300;padding-bottom:16px;margin-top:25px;margin-bottom:15px;border-bottom:2px solid #dddedf;}
 @media screen and (min-width:767px) {
     .xmlParamsFields .paramValue {width:auto;}
     .k2ScrollingContent > h3,
@@ -595,8 +597,7 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
 
 /* Generic form additional styling - tags, users, usergroups etc. */
 .k2GenericForm {width:60%;padding:0 20px 40px 20px;margin:0 auto;}
-.k2GenericForm h3 {font-size:32px;font-weight:600;padding:20px 0 10px 4px;margin:20px auto;border-bottom:2px solid #dddedf;color:#183867;}
-.isJ30 .k2GenericForm .k2ItemFormEditor {padding:20px 0 20px 20px;}
+.k2GenericForm h3 {font-size:32px;font-weight:600;padding:20px 0 10px 4px;margin:0 auto 20px auto;border-bottom:2px solid #dddedf;color:#183867;}
 
 /* Additional parameters styling for the item form */
 .additionalParams {border-bottom:2px solid #f1f1f1;border-radius:3px;position:relative;overflow:hidden;margin:0;padding:0;}
