@@ -208,10 +208,10 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ15 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu {padding:0;height:100%;padding-top:0;z-index:1;top:188px;}
 .isJ15 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu li {border-bottom:1px solid #e3e4e4;}
 .isJ15 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu > li:first-child {border-top:1px solid #e3e4e4;}
-.isJ15 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu li a {font-size:14px;font-weight:600;padding:16px 32px;display:block;color:#636b6e;}
+.isJ15 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu li a {font-size:14px;font-weight:600;padding:16px 20px;display:block;color:#636b6e;}
 .isJ15 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu li a.active {background:#f7f7f7;}
 .isJ15 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu li a:hover {background:#1480d3;color:#fff;}
-.isJ15 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu li a .fa {float:right;}
+.isJ15 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu li a .fa {float:right;margin-top:4px;}
 
 /* Parameters rendered from XML (tables) */
 .isJ15 #k2AdminContainer table.admintable {padding:0 0 1px 0;margin:0 auto 20px auto;border-collapse:separate;border-spacing:0;border:0;border-bottom:2px solid #dddedf;width:100%;}
@@ -581,7 +581,7 @@ box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
 .isJ30 .xmlParamsFields .paramValue input {margin:0;}
 
 .k2ScrollingContent > h3,
-.k2NavTabContent h3 {font-size:16px;font-weight:300;padding-bottom:16px;margin-top:25px;margin-bottom:15px;border-bottom:2px solid #dddedf;color:#00afec;}
+.k2NavTabContent h3 {font-size:16px;font-weight:300;padding-bottom:16px;margin-top:25px;margin-bottom:15px;border-bottom:2px solid #dddedf;}
 @media screen and (min-width:767px) {
     .xmlParamsFields .paramValue {width:auto;}
     .k2ScrollingContent > h3,
@@ -1206,7 +1206,7 @@ div.commentToolbar span.k2CommentsLoader {background:url(../images/backend/loade
 #k2InfoPage ul.k2ScrollSpyMenu {padding:0;height:100%;padding-top:31px;z-index:1;}
 #k2InfoPage ul.k2ScrollSpyMenu li {border-bottom:1px solid #e3e4e4;}
 #k2InfoPage ul.k2ScrollSpyMenu > li:first-child {border-top:1px solid #e3e4e4;}
-#k2InfoPage ul.k2ScrollSpyMenu li a {font-size:14px;padding:16px 32px;display:block;color:#636b6e;}
+#k2InfoPage ul.k2ScrollSpyMenu li a {font-size:14px;padding:16px 20px;display:block;color:#636b6e;}
 #k2InfoPage ul.k2ScrollSpyMenu li a.active {background:#f7f7f7;}
 #k2InfoPage ul.k2ScrollSpyMenu li a:hover {background:#1480d3;color:#fff;}
 #k2InfoPage .fa {float:right;}
