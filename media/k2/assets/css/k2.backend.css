@@ -156,11 +156,13 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ15 #k2AdminContainer #k2ContentView > form .table-responsive-wrap {padding-top:50px;}
 
 .isJ15 #k2AdminContainer .adminlist {border-collapse:collapse;}
-.isJ15 #k2AdminContainer .adminlist tr th {font-size:13px;}
+.isJ15 #k2AdminContainer .adminlist tr th {padding:10px;font-size:13px;}
 .isJ15 #k2AdminContainer .adminlist tr td {border-left:0;border-right:0;height:auto;padding:10px;font-size:13px;}
 .isJ15 #k2AdminContainer .adminlist tbody > tr:nth-child(odd) > td,
 .isJ15 #k2AdminContainer .adminlist tbody > tr:nth-child(odd) > th {background:#f9f9f9;}
 .isJ15 #k2AdminContainer .adminlist tr td.order span {margin-top:6px;}
+
+.isJ15 #k2AdminContainer .adminlist .adminlist input[type="checkbox"] {margin:0;padding:0;}
 
 .isJ15 #k2AdminContainer .adminlist .pagination {padding:0;margin:8px auto;}
 .isJ15 #k2AdminContainer .adminlist .pagination .limit select {margin-left:4px;}

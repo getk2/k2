@@ -67,17 +67,18 @@ $context = JRequest::getCmd('context');
                 <table class="adminlist table table-striped<?php if(isset($this->rows) && count($this->rows) == 0): ?> nocontent<?php endif; ?>" id="k2ItemsList">
                     <thead>
                         <tr>
-                            <?php if(K2_JVERSION == '30'): ?>
+
                             <th width="1%" class="center hidden-phone">
+                                <?php if(K2_JVERSION == '30'): ?>
                                 <?php if($this->filter_featured=='1'): ?>
                                 <?php echo JHtml::_('grid.sort', '<i class="icon-menu-2"></i>', 'i.featured_ordering', @$this->lists['order_Dir'], @$this->lists['order'], null, 'asc', 'K2_FEATURED_ORDER'); ?>
                                 <?php else: ?>
                                 <?php echo JHtml::_('grid.sort', '<i class="icon-menu-2"></i>', 'i.ordering', @$this->lists['order_Dir'], @$this->lists['order'], null, 'asc', 'K2_ORDER'); ?>
                                 <?php endif; ?>
+                                <?php else: ?>
+                                #
+                                <?php endif; ?>
                             </th>
-                            <?php else: ?>
-                            <th>#</th>
-                            <?php endif; ?>
                             <th class="center<?php if($context == "modalselector") echo ' k2VisuallyHidden'; ?>">
                                 <input id="k2<?php echo $this->params->get('backendListToggler', 'TogglerStandard'); ?>" type="checkbox" name="toggle" value="" />
                             </th>
@@ -162,18 +163,18 @@ $context = JRequest::getCmd('context');
                         <?php if(isset($this->rows) && count($this->rows) > 0): ?>
                         <?php foreach ($this->rows as $key => $row): ?>
                         <tr class="row<?php echo ($key%2); ?>" <?php if($this->filter_featured!='1') echo ' sortable-group-id="'.$row->catid.'"'; ?>>
-                            <?php if(K2_JVERSION == '30'): ?>
                             <td class="order center hidden-phone">
+                                <?php if(K2_JVERSION == '30'): ?>
                                 <?php if($row->canChange): ?>
                                 <span class="sortable-handler<?php echo ($this->ordering) ? '' : ' inactive tip-top' ; ?>" title="<?php echo ($this->ordering) ? '' : JText::_('JORDERINGDISABLED'); ?>" rel="tooltip"><i class="icon-menu"></i></span>
                                 <input type="text" style="display:none" name="order[]" size="5" value="<?php echo ($this->filter_featured!='1') ? $row->ordering : $row->featured_ordering; ?>" class="width-20 text-area-order" />
                                 <?php else: ?>
                                 <span class="sortable-handler inactive"><i class="icon-menu"></i></span>
                                 <?php endif; ?>
+                                <?php else: ?>
+                                <?php echo $key+1; ?>
+                                <?php endif; ?>
                             </td>
-                            <?php else: ?>
-                            <td><?php echo $key+1; ?></td>
-                            <?php endif; ?>
                             <td class="center<?php if($context == "modalselector") echo ' k2VisuallyHidden'; ?>"><?php echo @JHTML::_('grid.checkedout', $row, $key); ?></td>
                             <td>
                                 <?php if($context == "modalselector"): ?>
