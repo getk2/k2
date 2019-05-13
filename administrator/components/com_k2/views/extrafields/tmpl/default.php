@@ -32,7 +32,7 @@ defined('_JEXEC') or die;
     </table>
     <div class="table-responsive-wrap">
         <div class="table-responsive">
-            <table class="adminlist table table-striped" id="k2ExtraFieldsList">
+            <table class="adminlist table table-striped<?php if(isset($this->rows) && count($this->rows) == 0): ?> nocontent<?php endif; ?>" id="k2ExtraFieldsList">
                 <thead>
                     <tr>
                         <?php if(K2_JVERSION == '30'): ?>
@@ -53,7 +53,24 @@ defined('_JEXEC') or die;
                         <th class="k2Center center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_ID', 'exf.id', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
                     </tr>
                 </thead>
+                <?php
+                    $tfootColspan = 7;
+                    if(K2_JVERSION != '30') $tfootColspan++;
+                ?>
+                <tfoot>
+                    <tr>
+                        <td colspan="<?php echo $tfootColspan; ?>">
+                            <?php if(K2_JVERSION == '30'): ?>
+                            <div class="k2LimitBox">
+                                <?php echo $this->page->getLimitBox(); ?>
+                            </div>
+                            <?php endif; ?>
+                            <?php echo $this->page->getListFooter(); ?>
+                        </td>
+                    </tr>
+                </tfoot>
                 <tbody>
+                    <?php if(isset($this->rows) && count($this->rows) > 0): ?>
                     <?php foreach ($this->rows as $key=>$row): ?>
                     <tr class="row<?php echo ($key%2); ?>" sortable-group-id="<?php echo $row->group; ?>">
                         <?php if(K2_JVERSION == '30'): ?>
@@ -83,19 +100,16 @@ defined('_JEXEC') or die;
                         <td class="k2Center center hidden-phone"><?php echo $row->id; ?></td>
                     </tr>
                     <?php endforeach; ?>
-                </tbody>
-                <tfoot>
+                    <?php else: ?>
                     <tr>
-                        <td colspan="8">
-                            <?php if(K2_JVERSION == '30'): ?>
-                            <div class="k2LimitBox">
-                                <?php echo $this->page->getLimitBox(); ?>
+                        <td colspan="<?php echo $tfootColspan; ?>" class="k2ui-nocontent">
+                            <div class="k2ui-nocontent-message">
+                                <i class="fa fa-list" aria-hidden="true"></i><?php echo JText::_('K2_BE_NO_EXTRA_FIELDS_FOUND'); ?>
                             </div>
-                            <?php endif; ?>
-                            <?php echo $this->page->getListFooter(); ?>
                         </td>
                     </tr>
-                </tfoot>
+                    <?php endif; ?>
+                </tbody>
             </table>
         </div>
     </div>
