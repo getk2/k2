@@ -78,6 +78,9 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 
         .k2AliasValue {display:block;color:#999;font-size:11px;}
 
+        html #k2AdminContainer .adminlist tr th.k2ui-center,
+        html #k2AdminContainer .adminlist tr td.k2ui-center {text-align:center;}
+
 /* No content message */
 #k2AdminContainer #k2ContentView > form .nocontent tfoot {display:none;}
 #k2AdminContainer .k2ui-nocontent {background:#efefed;padding:0;margin:0;text-align:center;}
@@ -99,6 +102,9 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 /* --- Corrections for J1.5 --- */
 .isJ15 body {margin:0;padding:0;font-family:'Open Sans',sans-serif;}
 .isJ15 body * :not(i) {font-family:'Open Sans',sans-serif !important;/*font-size:12px;color:#333;*/}
+
+.isJ15 #border-top.h_green > div {background:none;}
+.isJ15 #border-top.h_green div div {background-position-x:-8px;}
 
 .isJ15 #border-top .title {font-size:14px;font-weight:600;color:#f7f7f7;}
 .isJ15 #border-top .version {padding:26px 16px 0 0;font-size:11px;color:#f7f7f7;}
@@ -156,8 +162,11 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ15 #k2AdminContainer #k2ContentView > form .table-responsive-wrap {padding-top:50px;}
 
 .isJ15 #k2AdminContainer .adminlist {border-collapse:collapse;}
-.isJ15 #k2AdminContainer .adminlist tr th {padding:10px;font-size:13px;}
-.isJ15 #k2AdminContainer .adminlist tr td {border-left:0;border-right:0;height:auto;padding:10px;font-size:13px;}
+.isJ15 #k2AdminContainer .adminlist tr td {border-left:0;border-right:0;height:auto;}
+
+.isJ15 #k2AdminContainer .adminlist tr th,
+.isJ15 #k2AdminContainer .adminlist tr td {padding:10px;font-size:13px;text-align:left;}
+
 .isJ15 #k2AdminContainer .adminlist tbody > tr:nth-child(odd) > td,
 .isJ15 #k2AdminContainer .adminlist tbody > tr:nth-child(odd) > th {background:#f9f9f9;}
 .isJ15 #k2AdminContainer .adminlist tr td.order span {margin-top:6px;}
@@ -690,13 +699,15 @@ td.k2ItemFormDateField {white-space:nowrap;}
 td.k2ItemFormDateField input {}
 td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 
+/*
 @media screen and (min-width:767px) {
-    #itemAttachments label {/*margin-right:10px;width:170px;float:left;clear:left;text-align:right;*/}
+    #itemAttachments label {margin-right:10px;width:170px;float:left;clear:left;text-align:right;}
 }
+*/
 
 .itemAttachmentsTable {width:100%;margin:0 0 20px;}
 .itemAttachmentsTable th {border-bottom:3px solid #d7d9d9;border-top:0;color:#6d6f71;font-size:14px;font-weight:700;text-align:left;line-height:1;padding:12px 14px 12px 0;}
-.itemAttachmentsTable th.k2Center {text-align:center;}
+/*.itemAttachmentsTable th.k2Center {text-align:center;}*/
 .itemAttachmentsTable td {padding:12px 14px 12px 0;font-size:13px;}
 .itemAttachmentsTable td input {padding:8px 10px 7px;border:1px solid #d7d9d9;border-radius:3px;height:auto;}
 .deleteAttachmentButton {font-size:18px;color:#9e0b0f;}
