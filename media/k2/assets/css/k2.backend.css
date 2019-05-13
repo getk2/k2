@@ -170,8 +170,8 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ15 #k2AdminContainer .adminlist tr th,
 .isJ15 #k2AdminContainer .adminlist tr td {padding:10px;font-size:13px;text-align:left;}
 
-.isJ15 #k2AdminContainer .adminlist tbody > tr:nth-child(odd) > td,
-.isJ15 #k2AdminContainer .adminlist tbody > tr:nth-child(odd) > th {background:#f9f9f9;}
+.isJ15 #k2AdminContainer .adminlist tbody > tr:nth-child(odd) > th,
+.isJ15 #k2AdminContainer .adminlist tbody > tr:nth-child(odd) > td {background:#f9f9f9;}
 .isJ15 #k2AdminContainer .adminlist tr td.order span {margin-top:6px;}
 
 .isJ15 #k2AdminContainer .adminlist .adminlist input[type="checkbox"] {margin:0;padding:0;}
@@ -209,7 +209,7 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ15 #k2AdminContainer.K2AdminViewInfo #k2ContentView {background:#fff;}
 .isJ15 #k2AdminContainer.K2AdminViewInfo #k2ContentView ul.k2ScrollSpyMenu {top:122px;padding:0;height:100%;padding-top:0;z-index:1;}
 .isJ15 #k2AdminContainer.K2AdminViewInfo #k2ContentView table tr th,
-.isJ15 #k2AdminContainer.K2AdminViewInfo #k2ContentView table tr td {font-size:13px;color:#333;}
+.isJ15 #k2AdminContainer.K2AdminViewInfo #k2ContentView table tr td {font-size:13px;color:#333;padding:10px;}
 
 /* --- Corrections for Joomla 1.5 [finish] --- */
 
@@ -526,8 +526,8 @@ div#k2AdminContainer.isJ25 form#adminForm div.xmlParamsFields fieldset input {fl
 div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-right:1px solid #e9e9e9;color:#666;font-weight:bold;text-align:right;font-size:11px;}
 
 /* Generic form additional styling - tags, users, usergroups etc. */
-.k2GenericForm {width:60%;padding:0 20px 40px 20px;margin:0 auto;}
-.k2GenericForm h3 {font-size:30px;font-weight:600;padding:20px 24px;margin:40px auto 20px auto;border-bottom:2px solid #dddedf;color:#183867;/*color:#00afec;*/}
+.k2GenericForm {width:60%;padding:40px 20px;margin:0 auto;}
+.k2GenericForm h3 {font-size:30px;font-weight:600;padding:20px 24px;margin:20px auto;border-bottom:2px solid #dddedf;color:#183867;/*color:#00afec;*/}
 .k2GenericForm .k2ItemFormEditor {padding:20px 0 20px 20px;}
 
 /* Additional parameters styling for the item form */
@@ -910,54 +910,6 @@ z-index:100;margin:25px auto 25px -325px;font-family:'Open Sans',sans-serif;font
 .jw-btn-close {border-color:#a53222;background-color:#d7412d;box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #ff4d35;}
 .jw-btn-close:hover {background:#a53222;}
 
-/* Information View */
-.k2ViewIsInfo .header,
-.k2ViewIsInfo .subhead {position:relative;z-index:2;}
-
-#k2InfoPage {max-width:1300px;}
-#k2InfoPage .k2ScrollingContent {margin-bottom:10px }
-
-#k2AdminContainer #k2InfoPage h1,
-#k2AdminContainer #k2InfoPage h2 {margin-bottom:20px;padding:0;font-weight:400;font-size:26px;line-height:28px;}
-#k2InfoPage a {color:#00afec;}
-#k2InfoPage ul {margin-bottom:30px;}
-#k2InfoPage table li {background:#fff;}
-
-.isJ25 #k2InfoPage ul.k2ScrollSpyMenu {top:183px;}
-.isJ30 #k2InfoPage ul.k2ScrollSpyMenu {top:0;padding-top:138px;border-left:1px solid #e3e4e4;}
-
-#k2InfoPage ul.k2ScrollSpyMenu {padding:0;height:100%;padding-top:31px;z-index:1;}
-#k2InfoPage ul.k2ScrollSpyMenu li {border-bottom:1px solid #e3e4e4;border-right:1px solid #e3e4e4;}
-#k2InfoPage ul.k2ScrollSpyMenu > li:first-child {border-top:1px solid #e3e4e4;}
-
-#k2InfoPage ul.k2ScrollSpyMenu li a {font-size:14px;padding:17px 28px;display:block;color:#636b6e;}
-#k2InfoPage ul.k2ScrollSpyMenu li a.active {background:#f7f7f7;}
-#k2InfoPage ul.k2ScrollSpyMenu li a:hover {background:#00afec;color:#fff;}
-#k2InfoPage .fa {float:right;}
-
-#k2InfoPage table,
-#k2InfoPage fieldset {width:100%;border:0;border-spacing:0;}
-#k2InfoPage fieldset div {padding:10px 0 0;}
-#k2InfoPage .k2InfoTable tr td:first-child {width:70%;}
-#k2InfoPage .k2InfoTable tr td:last-child {width:30%;}
-
-#k2InfoPage fieldset {margin-bottom:40px;}
-
-#k2InfoPage legend {font-size:23px;font-weight:300;color:#4a4949;display:block;margin:0 0 10px;padding-bottom:10px;border-bottom:1px solid #c5c4c4;position:static;float:none;}
-#k2InfoPage th {background:#fff;height:35px;line-height:35px;text-align:left;padding:0 15px;}
-#k2InfoPage td {padding:12px 15px;border:0;}
-#k2InfoPage tr td:first-child {border-radius:3px 0 0 3px;}
-#k2InfoPage tr td:last-child {border-radius:0 3px 3px 0;}
-#k2InfoPage table.stripped tr:nth-child(2n-1) td {background:#f7f7f7;}
-#k2InfoPage .green {color:#3fa800;font-weight:600;}
-#k2InfoPage .red {color:#bd362f;font-weight:600 }
-
-/* About Block */
-#k2InfoPage #k2AboutBlock {font-size:14px;line-height:1.65;}
-#k2InfoPage #k2AboutBlock h2 {margin:30px 0 10px;border:none;
-padding:0;color:#4a4949;}
-#k2InfoPage #k2AboutBlock a {padding-bottom:2px;border-bottom:1px solid #dbdcdc;}
-
 
 
 /* ====================================================================================================== */
@@ -1176,6 +1128,32 @@ div.commentToolbar span.k2CommentsLoader {background:url(../images/backend/loade
 .label-alt.margin {margin-bottom:10px;}
 .label-alt .fa {font-size:18px;display:inline-block;vertical-align:middle;margin-right:5px;}
 .oldJ .label-alt {display:block;}
+
+/* Infromation */
+.isJ25 #k2InfoPage ul.k2ScrollSpyMenu {top:183px;}
+.isJ30 #k2InfoPage ul.k2ScrollSpyMenu {top:0;padding-top:138px;border-left:1px solid #e3e4e4;}
+#k2InfoPage ul.k2ScrollSpyMenu {padding:0;height:100%;padding-top:31px;z-index:1;}
+#k2InfoPage ul.k2ScrollSpyMenu li {border-bottom:1px solid #e3e4e4;border-right:1px solid #e3e4e4;}
+#k2InfoPage ul.k2ScrollSpyMenu > li:first-child {border-top:1px solid #e3e4e4;}
+#k2InfoPage ul.k2ScrollSpyMenu li a {font-size:14px;padding:17px 28px;display:block;color:#636b6e;}
+#k2InfoPage ul.k2ScrollSpyMenu li a.active {background:#f7f7f7;}
+#k2InfoPage ul.k2ScrollSpyMenu li a:hover {background:#1480d3;color:#fff;}
+#k2InfoPage .fa {float:right;}
+
+#k2InfoPage a {color:#00afec;}
+
+#k2InfoPage .k2InfoTable {width:100%;}
+#k2InfoPage .k2InfoTable th {background:#fff;text-align:left;}
+#k2InfoPage .k2InfoTable tr td:first-child {width:70%;}
+#k2InfoPage .k2InfoTable tr td:last-child {width:30%;}
+
+#k2InfoPage #k2Credits .k2InfoTable tr td {width:25%;}
+
+#k2InfoPage table.stripped tr:nth-child(odd) > td {background:#f9f9f9;}
+#k2InfoPage table.stripped tr:nth-child(even) > td {background:#f0f2f2;}
+
+#k2InfoPage .green {color:#3fa800;font-weight:600;}
+#k2InfoPage .red {color:#bd362f;font-weight:600;}
 
 
 
