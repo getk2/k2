@@ -212,7 +212,7 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value {background:#fbfbfb;border-top:1px solid #fff;border-bottom:1px solid #fbfbfb;font-size:13px;}
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value input {width:300px;padding-left:10px;padding:right:10px;}
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value input[type="file"] {border-radius:4px;padding:8px;box-sizing:border-box;background:#fff;}
-.isJ15 #k2AdminContainer table.admintable td.paramlist_value select {width:300px;height:30px;line-height:30px;}
+.isJ15 #k2AdminContainer table.admintable td.paramlist_value select {width:300px;height:30px;line-height:30px;background:#fff;}
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value select[multiple] {height:auto;}
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value button {font-family:'Open Sans',sans-serif;font-size:13px;}
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value textarea {min-width:400px;padding-left:10px;padding:right:10px;}
@@ -247,7 +247,7 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue {background:#fbfbfb;border-top:1px solid #fff;border-bottom:1px solid #fbfbfb;font-size:13px;padding:10px;display:table-cell;width:70%;box-sizing:border-box;vertical-align:middle;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input {width:300px;padding-left:10px;padding:right:10px;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="file"] {border-radius:4px;padding:8px;box-sizing:border-box;background:#fff;}
-.isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue select {width:300px;height:30px;line-height:30px;}
+.isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue select {width:300px;height:30px;line-height:30px;background:#fff;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue select[multiple] {height:auto;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue button {font-family:'Open Sans',sans-serif;font-size:13px;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {min-width:400px;padding-left:10px;padding:right:10px;}
