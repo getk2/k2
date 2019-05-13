@@ -28,7 +28,7 @@ $document->addScriptDeclaration("
 <form action="index.php" method="post" name="adminForm" id="adminForm">
     <div class="table-responsive-wrap">
         <div class="table-responsive">
-            <table class="adminlist table table-striped" id="k2UserGroupsList">
+            <table class="adminlist table table-striped<?php if(isset($this->rows) && count($this->rows) == 0): ?> nocontent<?php endif; ?>" id="k2UserGroupsList">
                 <thead>
                     <tr>
                         <th class="hidden-phone center">#</th>
@@ -51,6 +51,7 @@ $document->addScriptDeclaration("
                     </tr>
                 </tfoot>
                 <tbody>
+                    <?php if(isset($this->rows) && count($this->rows) > 0): ?>
                     <?php foreach ($this->rows as $key => $row): ?>
                     <tr class="row<?php echo ($key%2); ?>">
                         <td class="k2Center center hidden-phone"><?php echo $key+1; ?></td>
@@ -60,6 +61,15 @@ $document->addScriptDeclaration("
                         <td class="k2Center center hidden-phone"><?php echo $row->id; ?></td>
                     </tr>
                     <?php endforeach; ?>
+                    <?php else: ?>
+                    <tr>
+                        <td colspan="5" class="k2ui-nocontent">
+                            <div class="k2ui-nocontent-message">
+                                <i class="fa fa-list" aria-hidden="true"></i><?php echo JText::_('K2_BE_NO_USER_GROUPS_FOUND'); ?>
+                            </div>
+                        </td>
+                    </tr>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
