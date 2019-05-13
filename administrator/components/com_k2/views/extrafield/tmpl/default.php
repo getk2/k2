@@ -75,8 +75,7 @@ $document->addScriptDeclaration("
                 <div class="paramValue">
                     <?php echo $this->lists['group']; ?>
                     <div id="groupContainer">
-                        <label><?php echo JText::_('K2_NEW_GROUP_NAME'); ?></label>
-                        <input id="group" type="text" name="group" value="<?php echo $this->row->group; ?>" />
+                        <input id="group" type="text" name="group" value="<?php echo $this->row->group; ?>" placeholder="<?php echo JText::_('K2_NEW_GROUP_NAME'); ?>" />
                     </div>
                 </div>
             </li>
@@ -131,6 +130,7 @@ $document->addScriptDeclaration("
             </li>
         </ul>
     </div>
+
     <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
     <input type="hidden" name="isNew" id="isNew" value="<?php echo ($this->row->group) ? '0':'1'; ?>" />
     <input type="hidden" name="option" value="com_k2" />
