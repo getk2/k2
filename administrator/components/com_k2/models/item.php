@@ -411,7 +411,7 @@ class K2ModelItem extends K2Model
         $attPost = JRequest::getVar('attachment', null, 'POST', 'array');
         $attFiles = JRequest::getVar('attachment', null, 'FILES', 'array');
 
-        if (count($attPost)) {
+        if (is_array($attPost) && count($attPost)) {
             foreach ($attPost as $key => $attachment) { /* Use the POST array's key as reference */
                 if (!empty($attachment['existing'])) {
                     $src = JPATH_SITE.'/'.JPath::clean($attachment['existing']);
@@ -667,7 +667,7 @@ class K2ModelItem extends K2Model
             }
 
             $tags = JRequest::getVar('tags', null, 'POST', 'array');
-            if (count($tags)) {
+            if (is_array($tags) && count($tags)) {
                 $tags = array_unique($tags);
                 foreach ($tags as $tag) {
                     $tag = JString::trim($tag);
@@ -698,7 +698,7 @@ class K2ModelItem extends K2Model
             }
         } else {
             $tags = JRequest::getVar('selectedTags', null, 'POST', 'array');
-            if (count($tags)) {
+            if (is_array($tags) && count($tags)) {
                 foreach ($tags as $tagID) {
                     $query = "INSERT INTO #__k2_tags_xref (`id`, `tagID`, `itemID`) VALUES (NULL, {intval($tagID)}, {intval($row->id)})";
                     $db->setQuery($query);
