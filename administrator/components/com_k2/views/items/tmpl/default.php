@@ -64,7 +64,7 @@ $context = JRequest::getCmd('context');
         </table>
         <div class="table-responsive-wrap">
             <div class="table-responsive">
-                <table class="adminlist table table-striped" id="k2ItemsList">
+                <table class="adminlist table table-striped<?php if(isset($this->rows) && count($this->rows) == 0): ?> nocontent<?php endif; ?>" id="k2ItemsList">
                     <thead>
                         <tr>
                             <?php if(K2_JVERSION == '30'): ?>
@@ -159,6 +159,7 @@ $context = JRequest::getCmd('context');
                         </tr>
                     </tfoot>
                     <tbody>
+                        <?php if(isset($this->rows) && count($this->rows) > 0): ?>
                         <?php foreach ($this->rows as $key => $row): ?>
                         <tr class="row<?php echo ($key%2); ?>" <?php if($this->filter_featured!='1') echo ' sortable-group-id="'.$row->catid.'"'; ?>>
                             <?php if(K2_JVERSION == '30'): ?>
@@ -258,6 +259,15 @@ $context = JRequest::getCmd('context');
                             <?php endforeach; ?>
                         </tr>
                         <?php endforeach; ?>
+                        <?php else: ?>
+                        <tr>
+                            <td colspan="<?php echo $tfootColspan; ?>" class="k2ui-nocontent">
+                                <div class="k2ui-nocontent-message">
+                                    <i class="fa fa-list" aria-hidden="true"></i><?php echo JText::_('K2_BE_NO_ITEMS_FOUND'); ?>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>

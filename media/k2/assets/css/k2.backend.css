@@ -78,6 +78,12 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 
         .k2AliasValue {display:block;color:#999;font-size:11px;}
 
+/* No content message */
+#k2AdminContainer #k2ContentView > form .nocontent tfoot {display:none;}
+#k2AdminContainer .k2ui-nocontent {background:#efefed;padding:0;margin:0;text-align:center;}
+#k2AdminContainer .k2ui-nocontent-message {font-size:40px;font-weight:300;width:auto;height:calc(100vh - 216px);box-sizing:border-box;padding-top:calc((100vh - 400px) / 2);}
+#k2AdminContainer .k2ui-nocontent-message i {font-size:120px;display:block;}
+
 #k2AdminContainer.inModalSelector {display:block;margin-bottom:16px;min-height:auto;}
 #k2AdminContainer.inModalSelector #k2Sidebar {display:none;}
 
@@ -92,7 +98,7 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 
 /* --- Corrections for J1.5 --- */
 .isJ15 body {margin:0;padding:0;font-family:'Open Sans',sans-serif;}
-.isJ15 body * :not(i) {font-family:'Open Sans',sans-serif !important;font-size:12px;color:#333;}
+.isJ15 body * :not(i) {font-family:'Open Sans',sans-serif !important;/*font-size:12px;color:#333;*/}
 
 .isJ15 #border-top .title {font-size:14px;font-weight:600;color:#f7f7f7;}
 .isJ15 #border-top .version {padding:26px 16px 0 0;font-size:11px;color:#f7f7f7;}
@@ -142,10 +148,10 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters {border-collapse:collapse;border:0;}
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td {padding:8px 8px 6px 8px;}
-.isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSearch input {width:200px;padding:4px 8px;border:1px solid #b3b3b3;display:inline-block;}
-.isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSearch button {border-radius:0 3px 3px 0;border:1px solid #b3b3b3;margin:0 0 0 -6px;padding:4px 12px;font-size:13px;line-height:20px;text-align:center;vertical-align:middle;color:#333;background:#f3f3f3;display:inline-block;}
+.isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSearch input {width:200px;padding:4px 8px;border:1px solid #b3b3b3;display:inline-block;border-radius:4px 0 0 4px;position:relative;z-index:9;}
+.isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSearch button {border-radius:0 4px 4px 0;border:1px solid #b3b3b3;margin:0 0 0 -6px;padding:4px 12px;font-size:13px;line-height:20px;text-align:center;vertical-align:middle;color:#333;background:#f3f3f3;display:inline-block;position:relative;z-index:8;}
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects {padding-right:16px;}
-.isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects select {max-width:160px;height:30px;}
+.isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects select {max-width:160px;height:30px;font-size:12px;}
 
 .isJ15 #k2AdminContainer #k2ContentView > form .table-responsive-wrap {padding-top:50px;}
 
@@ -157,6 +163,8 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 
 .isJ15 #k2AdminContainer .adminlist .pagination {padding:0;margin:8px auto;}
 .isJ15 #k2AdminContainer .adminlist .pagination .limit select {margin-left:4px;}
+
+.isJ15 #k2AdminContainer #k2Sidebar ul li a {font-size:13px;font-weight:300;}
 
 /* --- Added in K2 v2.10 [finish] --- */
 
@@ -820,7 +828,7 @@ table.k2AdminTableFilters tr td.k2AdminTableFiltersSelects select {margin:1px 0 
 table.adminFormK2 {width:100%;margin-bottom:16px;}
 
 /* Lists - items */
-#k2AdminContainer .adminlist {margin-bottom:0;border-left:1px solid #dbdcdc;}
+#k2AdminContainer .adminlist {margin-bottom:0;/*border-left:1px solid #dbdcdc;*/}
 #k2AdminContainer .adminlist input[type="checkbox"] {margin-top:0;}
 #k2AdminContainer .adminlist thead tr th {background:#fff;border-bottom:1px solid #dbdcdc;}
 #k2AdminContainer .adminlist tbody tr td {padding-top:10px;padding-bottom:10px;color:#666;}
