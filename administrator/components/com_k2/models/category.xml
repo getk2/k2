@@ -292,7 +292,7 @@
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </param>
-        <param name="itemImgSize" type="radio" default="Large" label="K2_IMAGE_SIZE" description="">
+        <param name="itemImgSize" type="list" default="Large" label="K2_IMAGE_SIZE" description="">
             <option value="XSmall">K2_XSMALL</option>
             <option value="Small">K2_SMALL</option>
             <option value="Medium">K2_MEDIUM</option>
@@ -430,7 +430,7 @@
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </param>
-        <param name="itemRelatedImageSize" type="radio" default="0" label="K2_RELATED_ITEMS_IMAGE" description="">
+        <param name="itemRelatedImageSize" type="list" default="0" label="K2_RELATED_ITEMS_IMAGE" description="">
             <option value="0">K2_NONE_SELECTED</option>
             <option value="XSmall">K2_XSMALL</option>
             <option value="Small">K2_SMALL</option>
