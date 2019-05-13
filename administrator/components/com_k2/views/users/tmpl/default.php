@@ -59,19 +59,21 @@ $context = JRequest::getCmd('context');
                             <th<?php if($context == "modalselector") echo ' class="k2VisuallyHidden"'; ?>><input id="k2<?php echo $this->params->get('backendListToggler', 'TogglerStandard'); ?>" type="checkbox" name="toggle" value="" /></th>
                             <th><?php echo JHTML::_('grid.sort', 'K2_NAME', 'juser.name', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
                             <th class="hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_USERNAME', 'juser.username', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
-                            <th class="center"><?php echo JText::_('K2_LOGGED_IN'); ?></th>
-                            <th class="center"><?php echo JHTML::_('grid.sort', 'K2_ENABLED', 'juser.block', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
-                            <?php if(K2_JVERSION == '30'): ?>
-                            <th class="hidden-phone"><?php echo JText::_('K2_JOOMLA_GROUP'); ?></th>
-                            <?php else: ?>
-                            <th class="hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_JOOMLA_GROUP', 'juser.usertype', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
-                            <?php endif; ?>
+                            <th class="k2ui-center"><?php echo JText::_('K2_LOGGED_IN'); ?></th>
+                            <th class="k2ui-center"><?php echo JHTML::_('grid.sort', 'K2_ENABLED', 'juser.block', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
+                            <th class="hidden-phone">
+                                <?php if(K2_JVERSION == '30'): ?>
+                                <?php echo JText::_('K2_JOOMLA_GROUP'); ?>
+                                <?php else: ?>
+                                <?php echo JHTML::_('grid.sort', 'K2_JOOMLA_GROUP', 'juser.usertype', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
+                                <?php endif; ?>
+                            </th>
                             <th class="hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_GROUP', 'groupname', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
                             <th><?php echo JHTML::_('grid.sort', 'K2_EMAIL', 'juser.email', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
                             <th class="hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_LAST_VISIT', 'juser.lastvisitDate', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
-                            <th class="center hidden-phone">IP</th>
-                            <th class="center"><?php echo JText::_('K2_FLAG_AS_SPAMMER'); ?></th>
-                            <th class="center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_ID', 'juser.id', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
+                            <th class="k2ui-center hidden-phone">IP</th>
+                            <th class="k2ui-center"><?php echo JText::_('K2_FLAG_AS_SPAMMER'); ?></th>
+                            <th class="k2ui-center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_ID', 'juser.id', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
                         </tr>
                     </thead>
                     <?php
@@ -97,7 +99,7 @@ $context = JRequest::getCmd('context');
                         <?php foreach ($this->rows as $key => $row): ?>
                         <tr class="row<?php echo ($key%2); ?>">
                             <td class="hidden-phone"><?php echo $key+1; ?></td>
-                            <td class="k2Center<?php if($context == "modalselector") echo ' k2VisuallyHidden'; ?>"><?php $row->checked_out = 0; echo JHTML::_('grid.id', $key, $row->id ); ?></td>
+                            <td class="k2ui-center<?php if($context == "modalselector") echo ' k2VisuallyHidden'; ?>"><?php $row->checked_out = 0; echo JHTML::_('grid.id', $key, $row->id ); ?></td>
                             <td>
                                 <?php if($context == "modalselector"): ?>
                                 <?php
@@ -113,18 +115,18 @@ $context = JRequest::getCmd('context');
                                 <?php endif; ?>
                             </td>
                             <td class="hidden-phone"><?php echo $row->username; ?></td>
-                            <td class="k2Center center"><?php echo $row->loggedInStatus; ?></td>
-                            <td class="k2Center center"><?php echo $row->blockStatus; ?></td>
+                            <td class="k2ui-center"><?php echo $row->loggedInStatus; ?></td>
+                            <td class="k2ui-center"><?php echo $row->blockStatus; ?></td>
                             <td class="hidden-phone"><?php echo $row->usertype; ?></td>
                             <td class="hidden-phone"><?php echo $row->groupname; ?></td>
                             <td><?php echo $row->email; ?></td>
                             <td class="k2Date hidden-phone"><?php echo ($row->lvisit) ? JHTML::_('date', $row->lvisit , $this->dateFormat):JText::_('K2_NEVER'); ?></td>
-                            <td class="k2Center center hidden-phone">
+                            <td class="k2ui-center hidden-phone">
                                 <?php if($row->ip): ?>
                                 <a target="_blank" href="https://ipalyzer.com/<?php echo $row->ip; ?>"><?php echo $row->ip; ?></a>
                                 <?php endif; ?>
                             </td>
-                            <td class="k2Center center">
+                            <td class="k2ui-center">
                                 <?php if(!$row->block): ?>
                                 <?php if($context == "modalselector"): ?>
                                 <a class="k2ReportUserButton k2IsIcon" href="<?php echo JRoute::_('index.php?option=com_k2&view=user&task=report&tmpl=component&context=modalselector&id='.$row->id); ?>">
@@ -137,7 +139,7 @@ $context = JRequest::getCmd('context');
                                 <?php endif; ?>
                                 <?php endif; ?>
                             </td>
-                            <td class="center hidden-phone"><?php echo $row->id; ?></td>
+                            <td class="k2ui-center hidden-phone"><?php echo $row->id; ?></td>
                         </tr>
                         <?php endforeach; ?>
                         <?php else: ?>
