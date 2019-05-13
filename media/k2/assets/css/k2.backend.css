@@ -148,15 +148,16 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters {border-collapse:collapse;border:0;}
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td {padding:8px 8px 6px 8px;}
-.isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSearch input {width:200px;padding:4px 8px;border:1px solid #b3b3b3;display:inline-block;border-radius:4px 0 0 4px;position:relative;z-index:9;}
+.isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSearch input {width:200px;font-size:13px;padding:4px 8px;border:1px solid #b3b3b3;display:inline-block;border-radius:4px 0 0 4px;position:relative;z-index:9;}
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSearch button {border-radius:0 4px 4px 0;border:1px solid #b3b3b3;margin:0 0 0 -6px;padding:4px 12px;font-size:13px;line-height:20px;text-align:center;vertical-align:middle;color:#333;background:#f3f3f3;display:inline-block;position:relative;z-index:8;}
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects {padding-right:16px;}
-.isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects select {max-width:160px;height:30px;font-size:12px;}
+.isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects select {max-width:160px;height:30px;font-size:13px;}
 
 .isJ15 #k2AdminContainer #k2ContentView > form .table-responsive-wrap {padding-top:50px;}
 
 .isJ15 #k2AdminContainer .adminlist {border-collapse:collapse;}
-.isJ15 #k2AdminContainer .adminlist tr td {border-left:0;border-right:0;height:auto;padding:10px;}
+.isJ15 #k2AdminContainer .adminlist tr th {font-size:13px;}
+.isJ15 #k2AdminContainer .adminlist tr td {border-left:0;border-right:0;height:auto;padding:10px;font-size:13px;}
 .isJ15 #k2AdminContainer .adminlist tbody > tr:nth-child(odd) > td,
 .isJ15 #k2AdminContainer .adminlist tbody > tr:nth-child(odd) > th {background:#f9f9f9;}
 .isJ15 #k2AdminContainer .adminlist tr td.order span {margin-top:6px;}
