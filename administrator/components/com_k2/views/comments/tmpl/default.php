@@ -77,31 +77,31 @@ $context = JRequest::getCmd('context');
                 <table class="adminlist table table-striped<?php if(isset($this->rows) && count($this->rows) == 0): ?> nocontent<?php endif; ?>" id="k2CommentsList">
                     <thead>
                         <tr>
-                            <th class="center hidden-phone">
+                            <th class="k2ui-center hidden-phone">
                                 #
                             </th>
-                            <th class="center">
+                            <th class="k2ui-center">
                                 <input id="k2<?php echo $this->params->get('backendListToggler', 'TogglerStandard'); ?>" type="checkbox" name="toggle" value="" />
                             </th>
                             <th>
                                 <?php echo JHTML::_('grid.sort', 'K2_COMMENT', 'c.commentText', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
                             </th>
-                            <th class="center">
+                            <th class="k2ui-center">
                                 <?php echo JHTML::_('grid.sort', 'K2_PUBLISHED', 'c.published', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
                             </th>
                             <th class="hidden-phone">
                                 <?php echo JHTML::_('grid.sort', 'K2_NAME', 'c.userName', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
                             </th>
-                            <th class="center k2NoWrap">
+                            <th class="k2ui-center k2ui-nowrap">
                                 <?php echo JHTML::_('grid.sort', 'K2_EMAIL', 'c.commentEmail', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
                             </th>
                             <th class="hidden-phone">
                                 <?php echo JHTML::_('grid.sort', 'K2_URL', 'c.commentURL', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
                             </th>
-                            <th class="center hidden-phone">
+                            <th class="k2ui-center hidden-phone">
                                 IP
                             </th>
-                            <th class="center">
+                            <th class="k2ui-center">
                                 <?php echo JText::_('K2_FLAG_AS_SPAMMER'); ?>
                             </th>
                             <th class="hidden-phone">
@@ -139,10 +139,10 @@ $context = JRequest::getCmd('context');
                         <?php if(isset($this->rows) && count($this->rows) > 0): ?>
                         <?php foreach ($this->rows as $key=>$row): ?>
                         <tr class="row<?php echo ($key%2); ?>">
-                            <td class="center hidden-phone">
+                            <td class="k2ui-center hidden-phone">
                                 <?php echo $key+1; ?>
                             </td>
-                            <td class="center">
+                            <td class="k2ui-center">
                                 <?php $row->checked_out = 0; echo @JHTML::_('grid.checkedout', $row, $key ); ?>
                             </td>
                             <td id="k2Comment<?php echo $row->id; ?>">
@@ -159,7 +159,7 @@ $context = JRequest::getCmd('context');
                                 </div>
                                 <input type="hidden" name="currentValue[]" value="<?php echo $row->commentText; ?>" />
                             </td>
-                            <td class="k2Center center">
+                            <td class="k2ui-center">
                                 <?php echo $row->status; ?>
                             </td>
                             <td class="hidden-phone">
@@ -169,24 +169,24 @@ $context = JRequest::getCmd('context');
                                 <?php echo $row->userName; ?>
                                 <?php endif; ?>
                             </td>
-                            <td class="center">
+                            <td class="k2ui-center">
                                 <a href="mailto:<?php echo JFilterOutput::cleanText($row->commentEmail); ?>" title="<?php echo JFilterOutput::cleanText($row->commentEmail); ?>"><i class="fa fa-envelope-o" aria-hidden="true"></i></a> <a target="_blank" href="https://hunter.io/email-verifier/<?php echo JFilterOutput::cleanText($row->commentEmail); ?>" title="<?php echo JText::_('K2_TEST_EMAIL_ADRESS_VALID'); ?>: <?php echo JFilterOutput::cleanText($row->commentEmail); ?>"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
                             </td>
-                            <td class="k2ForceWrap hidden-phone">
+                            <td class="k2ui-wrap hidden-phone">
                                 <?php if($row->commentURL): ?>
                                 <a target="_blank" href="<?php echo JFilterOutput::cleanText($row->commentURL); ?>" title="<?php echo JFilterOutput::cleanText($row->commentURL); ?>">
                                     <i class="fa fa-globe" aria-hidden="true"></i>
                                 </a>
                                 <?php endif; ?>
                             </td>
-                            <td class="k2Center center hidden-phone">
+                            <td class="k2ui-center hidden-phone">
                                 <?php if($row->commenterLastVisitIP): ?>
                                 <a target="_blank" href="https://ipalyzer.com/<?php echo $row->commenterLastVisitIP; ?>">
                                     <?php echo $row->commenterLastVisitIP; ?>
                                 </a>
                                 <?php endif; ?>
                             </td>
-                            <td class="k2Center center">
+                            <td class="k2ui-center">
                                 <?php if($row->reportUserLink): ?>
                                 <a class="k2ReportUserButton k2IsIcon" href="<?php echo $row->reportUserLink; ?>"><i class="fa fa-ban" aria-hidden="true"></i></a>
                                 <?php endif; ?>
@@ -201,7 +201,7 @@ $context = JRequest::getCmd('context');
                             <td class="hidden-phone">
                                 <?php $user = JFactory::getUser($row->created_by); echo $user->name; ?>
                             </td>
-                            <td class="k2Date hidden-phone">
+                            <td class="k2ui-center k2ui-nowrap hidden-phone">
                                 <?php echo JHTML::_('date', $row->commentDate , $this->dateFormat); ?>
                             </td>
                             <td class="hidden-phone">

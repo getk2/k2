@@ -40,9 +40,6 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .k2ForceWrap {white-space:normal!important;max-width:120px;overflow:hidden;}
 .k2NoWrap {white-space:nowrap;}
 .k2Date {white-space:nowrap;text-align:center;}
-.k2Order {white-space:nowrap!important;text-align:right;width:auto!important;min-width:80px;}
-.k2Order span {}
-.k2OrderBox {text-align:center;}
 .k2OptionSep {color:#999;font-style:normal;}
 .k2IsIcon {font-family:Arial,Helvetica,sans-serif!important;font-size:16px!important;}
 .k2IsIcon:hover {color:#BB3A00;text-decoration:none;}
@@ -52,6 +49,14 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .k2ListItemDisabled {cursor:pointer;color:#0B55C4;} /* used in popup lists */
 .k2VisuallyHidden,
 .visually-hidden {position:absolute;overflow:hidden;clip:rect(0, 0, 0, 0);}
+
+/* Lists */
+.k2ui-title {} /* To be added into lists to replace .title */
+.k2ui-nowrap {white-space:nowrap;}
+.k2ui-wrap {white-space:normal!important;max-width:120px;overflow:hidden;}
+.k2ui-order {white-space:nowrap!important;text-align:right;width:auto!important;min-width:80px;}
+.k2ui-order span {}
+.k2ui-order input {text-align:center;}
 
 /* --- Utilities --- */
 .k2CharCounter {margin:0 0 0 8px;color:#2ecc40;font-size:13px;font-weight:600;}
@@ -820,6 +825,7 @@ input#k2ImageBrowseServer {/*width:auto;height:30px;line-height:8px;margin-left:
 */
 
 /* Mimick Joomla 3.x's input styling for 1.5 & 2.5 */
+/*
 .oldJ textarea,
 .oldJ input[type="text"],
 .oldJ input[type="password"],
@@ -835,11 +841,8 @@ input#k2ImageBrowseServer {/*width:auto;height:30px;line-height:8px;margin-left:
 .oldJ .k2ViewIsCategory select,
 .oldJ .k2GenericForm select {height:auto;}
 .oldJ .k2GenericForm select {min-width:169px;}
-.oldJ input.k2OrderBox {} /* don't hard code the width as we never know how large the number can be */
 .oldJ td.order span {display:none;}
-
-/* Forms */
-.k2GenericForm > h3:first-child {/*display:none;*/}
+*/
 
 /* Params */
 /*
@@ -847,11 +850,13 @@ input#k2ImageBrowseServer {/*width:auto;height:30px;line-height:8px;margin-left:
 */
 
 /* Joomla 1.5 specific */
+/*
 .isJ15 #content-box .padding {padding:0;}
 .isJ15 div#toolbar-box div.t,
 .isJ15 div#element-box div.section-box div.t {padding:0;background:none;}
 .isJ15 div.t,
 .isJ15 div.b {display:none!important;}
+*/
 
 /*
 .isJ15 div.header {padding:0;margin:12px;}
@@ -1278,7 +1283,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ15 #footer .copyright a {color:#333;}
 
 /* Utilities */
-.isJ15 #k2AdminContainer .adminlist tr th.k2ui-align-order {text-align:right;padding-right:30px;box-sizing:border-box;}
+.isJ15 #k2AdminContainer .adminlist tr th.k2ui-align-order {text-align:right;padding-right:30px;box-sizing:border-box;} /* Not used for now */
 
 /* Lists */
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters {border-collapse:collapse;border:0;}

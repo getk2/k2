@@ -51,12 +51,12 @@ $context = JRequest::getCmd('context');
                 <table class="adminlist table table-striped<?php if(isset($this->rows) && count($this->rows) == 0): ?> nocontent<?php endif; ?>" id="k2TagsList">
                     <thead>
                         <tr>
-                            <th class="center hidden-phone">#</th>
-                            <th class="center<?php if($context == "modalselector") echo ' k2VisuallyHidden'; ?>"><input id="k2<?php echo $this->params->get('backendListToggler', 'TogglerStandard'); ?>" type="checkbox" name="toggle" value="" /></th>
+                            <th class="k2ui-center hidden-phone">#</th>
+                            <th class="k2ui-center<?php if($context == "modalselector") echo ' k2VisuallyHidden'; ?>"><input id="k2<?php echo $this->params->get('backendListToggler', 'TogglerStandard'); ?>" type="checkbox" name="toggle" value="" /></th>
                             <th><?php echo JHTML::_('grid.sort', 'K2_NAME', 'name', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
-                            <th class="center"><?php echo JHTML::_('grid.sort', 'K2_PUBLISHED', 'published', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
-                            <th class="center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_ITEMS', 'numOfItems', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
-                            <th class="center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_ID', 'id', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
+                            <th class="k2ui-center"><?php echo JHTML::_('grid.sort', 'K2_PUBLISHED', 'published', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
+                            <th class="k2ui-center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_ITEMS', 'numOfItems', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
+                            <th class="k2ui-center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_ID', 'id', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -75,8 +75,8 @@ $context = JRequest::getCmd('context');
                         <?php if(isset($this->rows) && count($this->rows) > 0): ?>
                         <?php foreach ($this->rows as $key => $row): ?>
                         <tr class="row<?php echo ($key%2); ?>">
-                            <td class="k2Center center hidden-phone"><?php echo $key+1; ?></td>
-                            <td class="k2Center center<?php if($context == "modalselector") echo ' k2VisuallyHidden'; ?>"><?php $row->checked_out = 0; echo @JHTML::_('grid.checkedout', $row, $key ); ?></td>
+                            <td class="k2ui-center hidden-phone"><?php echo $key+1; ?></td>
+                            <td class="k2ui-center<?php if($context == "modalselector") echo ' k2VisuallyHidden'; ?>"><?php $row->checked_out = 0; echo @JHTML::_('grid.checkedout', $row, $key ); ?></td>
                             <td>
                                 <?php if($context == "modalselector"): ?>
                                 <?php
@@ -91,9 +91,9 @@ $context = JRequest::getCmd('context');
                                 <a href="<?php echo JRoute::_('index.php?option=com_k2&view=tag&cid='.$row->id); ?>"><?php echo $row->name; ?></a>
                                 <?php endif; ?>
                             </td>
-                            <td class="k2Center center"><?php echo $row->status; ?></td>
-                            <td class="k2Center center hidden-phone"><?php echo $row->numOfItems; ?></td>
-                            <td class="k2Center center hidden-phone"><?php echo $row->id; ?></td>
+                            <td class="k2ui-center"><?php echo $row->status; ?></td>
+                            <td class="k2ui-center hidden-phone"><?php echo $row->numOfItems; ?></td>
+                            <td class="k2ui-center hidden-phone"><?php echo $row->id; ?></td>
                         </tr>
                         <?php endforeach; ?>
                         <?php else: ?>
