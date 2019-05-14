@@ -41,6 +41,7 @@ class K2ViewExtraField extends K2View
                 "'.JText::_('K2_PLEASE_SELECT_A_FIELD_TYPE_FROM_THE_LIST_ABOVE', true).'",
                 "'.JText::_('K2_COLUMNS', true).'",
                 "'.JText::_('K2_ROWS', true).'",
+                "'.JText::_('K2_SELECT', true).'"
             ];
             Joomla.submitbutton = function(pressbutton) {
                 if (pressbutton == "cancel") {

@@ -1086,20 +1086,17 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             break;
 
         case 'image':
-            var id = 'K2ExtraFieldImage_' + new Date().getTime();
-            var input = $K2('<input/>', {
-                name: 'option_value[]',
-                type: 'text',
-                id: id
-            }).appendTo(target);
-            var a = $K2('<a/>', {
-                'href': 'index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID=' + id,
-                'class': 'k2ExtraFieldImageButton'
-            }).html('Select').appendTo(target);
-            var notice = $K2('<span class="k2ui-ef-notice"/>').html('(' + K2Language[1] + ')').appendTo(target);
-            if (!isNewField && currentType == fieldType) {
-                input.val(fieldValues[0].value);
+            var id = 'K2ExtraFieldImage_' + new Date().getTime(),
+                image;
+            if(!isNewField && currentType == fieldType) {
+                image = (fieldValues[0].value ? fieldValues[0].value : '');
             }
+            var html = '\
+                <div class="k2ui-ef-row">\
+                    <input name="option_value[]" type="text" id="'+id+'" value="'+text+'" /> <a class="k2ExtraFieldImageButton" href="index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID='+id+'">'+K2Language[18]+'</a> <span class="k2ui-ef-notice">('+K2Language[1]+')</span>\
+                </div>\
+            ';
+            $K2(html).appendTo(target);
             break;
 
         case 'header':
