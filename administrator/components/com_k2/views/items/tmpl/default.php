@@ -165,7 +165,7 @@ $context = JRequest::getCmd('context');
                         <?php if (isset($this->rows) && count($this->rows) > 0): ?>
                         <?php foreach ($this->rows as $key => $row): ?>
                         <tr class="row<?php echo $key%2; ?>"<?php echo ($this->filter_featured != '1') ? ' sortable-group-id="'.$row->catid.'"' : ''; ?>>
-                            <td class="<?php if (K2_JVERSION == '30'): ?>k2ui-order<?php else: ?>k2ui-center<?php endif; ?> hidden-phone">
+                            <td class="k2ui-center hidden-phone">
                                 <?php if (K2_JVERSION == '30'): ?>
                                 <?php if ($row->canChange): ?>
                                 <span class="sortable-handler<?php echo ($this->ordering) ? '' : ' inactive tip-top'; ?>" title="<?php echo ($this->ordering) ? '' : JText::_('JORDERINGDISABLED'); ?>" rel="tooltip"><i class="icon-menu"></i></span>
