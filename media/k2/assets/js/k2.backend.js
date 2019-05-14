@@ -1114,9 +1114,12 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             break;
 
         default:
-            var title = $K2('<span/>', {
-                'class': 'notice'
-            }).html(K2Language[15]).appendTo(target);
+            var html = '\
+                <div class="k2ui-ef-row">\
+                    <span class="k2ui-ef-notice">('+K2Language[15]+')</span>\
+                </div>\
+            ';
+            $K2(html).appendTo(target);
             break;
     }
 }
