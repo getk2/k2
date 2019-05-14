@@ -1286,7 +1286,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ15 #k2AdminContainer .adminlist tr td {border-left:0;border-right:0;height:auto;}
 
 .isJ15 #k2AdminContainer .adminlist tr th,
-.isJ15 #k2AdminContainer .adminlist tr td {padding:10px;font-size:13px;text-align:left;}
+.isJ15 #k2AdminContainer .adminlist tr td {padding:5px 10px;font-size:13px;text-align:left;}
 
 .isJ15 #k2AdminContainer .adminlist tr th img {vertical-align:middle;margin-left:4px;}
 
