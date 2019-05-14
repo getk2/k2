@@ -72,12 +72,13 @@ $context = JRequest::getCmd('context');
                             <th><?php echo JHTML::_('grid.sort', 'K2_EMAIL', 'juser.email', @$this->lists['order_Dir'], @$this->lists['order']); ?></th>
                             <th class="hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_LAST_VISIT', 'juser.lastvisitDate', @$this->lists['order_Dir'], @$this->lists['order']); ?></th>
                             <th class="k2ui-center hidden-phone">IP</th>
+                            <th class="k2ui-center hidden-phone"><?php echo JText::_('K2_IMAGE'); ?></th>
                             <th class="k2ui-center"><?php echo JText::_('K2_FLAG_AS_SPAMMER'); ?></th>
                             <th class="k2ui-center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_ID', 'juser.id', @$this->lists['order_Dir'], @$this->lists['order']); ?></th>
                         </tr>
                     </thead>
                     <?php
-                        $tfootColspan = 13;
+                        $tfootColspan = 14;
                         if ($context == "modalselector") {
                             $tfootColspan--;
                         }
@@ -130,6 +131,13 @@ $context = JRequest::getCmd('context');
                             <td class="k2ui-center hidden-phone">
                                 <?php if ($row->ip): ?>
                                 <a target="_blank" href="https://ipalyzer.com/<?php echo $row->ip; ?>"><?php echo $row->ip; ?></a>
+                                <?php endif; ?>
+                            </td>
+                            <td class="k2ui-center hidden-phone">
+                                <?php if ($row->image): ?>
+                                <a href="<?php echo JURI::root(true).'/media/k2/users/'.$row->image; ?>" title="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>" data-fancybox="gallery" data-caption="<?php echo $row->title; ?>">
+                                    <i class="fa fa-picture-o" aria-hidden="true" title="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>"></i>
+                                </a>
                                 <?php endif; ?>
                             </td>
                             <td class="k2ui-center">

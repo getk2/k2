@@ -91,7 +91,7 @@ $context = JRequest::getCmd('context');
                                 <?php echo JHTML::_('grid.sort', 'K2_PUBLISHED', 'i.published', @$this->lists['order_Dir'], @$this->lists['order']); ?>
                             </th>
                             <?php if (K2_JVERSION != '30'): ?>
-                            <th class="k2ui-center">
+                            <th class="k2ui-order">
                                 <?php if ($this->filter_featured == '1'): ?>
                                 <?php echo JHTML::_('grid.sort', 'K2_FEATURED_ORDER', 'i.featured_ordering', @$this->lists['order_Dir'], @$this->lists['order']); ?>
                                 <?php if ($this->ordering) echo JHTML::_('grid.order', $this->rows, 'filesave.png', 'savefeaturedorder'); ?>
@@ -165,7 +165,7 @@ $context = JRequest::getCmd('context');
                         <?php if (isset($this->rows) && count($this->rows) > 0): ?>
                         <?php foreach ($this->rows as $key => $row): ?>
                         <tr class="row<?php echo $key%2; ?>"<?php echo ($this->filter_featured != '1') ? ' sortable-group-id="'.$row->catid.'"' : ''; ?>>
-                            <td class="k2ui-order k2ui-center hidden-phone">
+                            <td class="<?php if (K2_JVERSION == '30'): ?>k2ui-order<?php else: ?>k2ui-center<?php endif; ?> hidden-phone">
                                 <?php if (K2_JVERSION == '30'): ?>
                                 <?php if ($row->canChange): ?>
                                 <span class="sortable-handler<?php echo ($this->ordering) ? '' : ' inactive tip-top'; ?>" title="<?php echo ($this->ordering) ? '' : JText::_('JORDERINGDISABLED'); ?>" rel="tooltip"><i class="icon-menu"></i></span>
@@ -245,7 +245,7 @@ $context = JRequest::getCmd('context');
                             <td class="k2ui-center hidden-phone">
                                 <?php if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$row->id).'_XL.jpg')): ?>
                                 <a href="<?php echo JURI::root(true).'/media/k2/items/cache/'.md5("Image".$row->id).'_XL.jpg'; ?>" title="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>" data-fancybox="gallery" data-caption="&lt;b&gt;<?php echo $row->title; ?>&lt;/b&gt; - <?php echo JText::_('K2_PUBLISHED_IN'); ?> &lt;b&gt;<?php echo $row->category; ?>&lt;/b&gt; <?php echo JText::_('K2_BY'); ?> &lt;b&gt;<?php echo $row->author; ?>&lt;/b&gt;">
-                                    <i class="icon-picture" title="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>"></i>
+                                    <i class="fa fa-picture-o" aria-hidden="true" title="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>"></i>
                                 </a>
                                 <?php endif; ?>
                             </td>

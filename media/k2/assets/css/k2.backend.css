@@ -52,9 +52,10 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 
 /* Lists */
 .k2ui-title {} /* To be added into lists to replace .title */
+.k2ui-center {text-align:center;}
 .k2ui-nowrap {white-space:nowrap;}
-.k2ui-wrap {white-space:normal!important;max-width:120px;overflow:hidden;}
-.k2ui-order {white-space:nowrap!important;text-align:right;width:auto!important;min-width:80px;}
+.k2ui-wrap {white-space:normal !important;max-width:120px;overflow:hidden;}
+.k2ui-order {white-space:nowrap !important;text-align:right !important;width:auto !important;min-width:80px;}
 .k2ui-order span {}
 .k2ui-order input {text-align:center;}
 
@@ -1091,9 +1092,6 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 
         .k2AliasValue {display:block;color:#999;font-size:11px;}
 
-        html #k2AdminContainer .adminlist tr th.k2ui-center,
-        html #k2AdminContainer .adminlist tr td.k2ui-center {text-align:center;}
-
 /* No content message */
 #k2AdminContainer #k2ContentView > form .nocontent tfoot {display:none;}
 #k2AdminContainer .adminlist tr td.k2ui-nocontent {background:#efefed;padding:0;margin:0;}
@@ -1253,8 +1251,8 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 
 .isJ15 #toolbar-box .m .header,
 .isJ15 #submenu-box,
-.isJ15 #element-box .t,
-.isJ15 #element-box .b,
+.isJ15 .t,
+.isJ15 .b,
 .isJ15 #border-bottom {display:none;}
 .isJ15 .toolbar {margin:0;padding:0;}
 .isJ15 #border-top,
@@ -1288,7 +1286,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 /* Lists */
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters {border-collapse:collapse;border:0;}
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td {padding:8px 8px 6px 8px;}
-.isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSearch input {width:200px;font-size:13px;padding:4px 8px;border:1px solid #b3b3b3;display:inline-block;border-radius:4px 0 0 4px;position:relative;z-index:9;}
+.isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSearch input {width:200px;font-size:13px;line-height:20px;padding:4px 8px;border:1px solid #b3b3b3;display:inline-block;border-radius:4px 0 0 4px;position:relative;top:2px;z-index:9;}
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSearch button {border-radius:0 4px 4px 0;border:1px solid #b3b3b3;margin:0 0 0 -6px;padding:4px 12px;font-size:13px;line-height:20px;text-align:center;vertical-align:middle;color:#333;background:#f3f3f3;display:inline-block;position:relative;z-index:8;}
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects {padding-right:16px;}
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects select {max-width:160px;height:30px;font-size:13px;}
@@ -1305,7 +1303,9 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 
 .isJ15 #k2AdminContainer .adminlist tbody > tr:nth-child(odd) > th,
 .isJ15 #k2AdminContainer .adminlist tbody > tr:nth-child(odd) > td {background:#f9f9f9;}
-.isJ15 #k2AdminContainer .adminlist tr td.order span {margin-top:6px;}
+
+.isJ15 #k2AdminContainer .adminlist tr td.k2ui-order span {margin-top:6px;}
+.isJ15 #k2AdminContainer .adminlist tr td.k2ui-order input {border-radius:4px;padding:4px;font-size:13px;}
 
 .isJ15 #k2AdminContainer .adminlist .adminlist input[type="checkbox"] {margin:0;padding:0;}
 

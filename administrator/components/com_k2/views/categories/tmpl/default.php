@@ -207,7 +207,7 @@ $context = JRequest::getCmd('context');
                             <td class="k2ui-center hidden-phone">
                                 <?php if ($row->image): ?>
                                 <a href="<?php echo JURI::root(true).'/media/k2/categories/'.$row->image; ?>" title="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>" data-fancybox="gallery" data-caption="<?php echo $row->title; ?>">
-                                    <i class="icon-picture" title="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>"></i>
+                                    <i class="fa fa-picture-o" aria-hidden="true" title="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>"></i>
                                 </a>
                                 <?php endif; ?>
                             </td>
