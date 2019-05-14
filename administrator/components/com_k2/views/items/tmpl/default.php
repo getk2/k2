@@ -92,7 +92,7 @@ $context = JRequest::getCmd('context');
                                 <?php echo JHTML::_('grid.sort', 'K2_PUBLISHED', 'i.published', @$this->lists['order_Dir'], @$this->lists['order']); ?>
                             </th>
                             <?php if(K2_JVERSION != '30'): ?>
-                            <th class="k2ui-center">
+                            <th class="k2ui-align-order">
                                 <?php if($this->filter_featured=='1'): ?>
                                 <?php echo JHTML::_('grid.sort', 'K2_FEATURED_ORDER', 'i.featured_ordering', @$this->lists['order_Dir'], @$this->lists['order']); ?>
                                 <?php if($this->ordering) {echo JHTML::_('grid.order',  $this->rows, 'filesave.png','savefeaturedorder');} ?>
