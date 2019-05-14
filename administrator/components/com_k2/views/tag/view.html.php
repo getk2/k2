@@ -14,13 +14,14 @@ jimport('joomla.application.component.view');
 
 class K2ViewTag extends K2View
 {
-    function display($tpl = null)
+    public function display($tpl = null)
     {
         $model = $this->getModel();
         $tag = $model->getData();
         JFilterOutput::objectHTMLSafe($tag);
-        if (!$tag->id)
+        if (!$tag->id) {
             $tag->published = 1;
+        }
         $this->assignRef('row', $tag);
 
         $lists = array();

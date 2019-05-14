@@ -14,20 +14,20 @@ jimport('joomla.application.component.view');
 
 class K2ViewSettings extends K2View
 {
-	function display($tpl = null)
-	{
-		JHTML::_('behavior.tooltip');
+    public function display($tpl = null)
+    {
+        JHTML::_('behavior.tooltip');
 
-		jimport('joomla.html.pane');
+        jimport('joomla.html.pane');
 
-		$model = $this->getModel();
+        $model = $this->getModel();
 
-		$params = $model->getParams();
-		$this->assignRef('params', $params);
+        $params = $model->getParams();
+        $this->assignRef('params', $params);
 
-		$pane = JPane::getInstance('Tabs');
-		$this->assignRef('pane', $pane);
+        $pane = JPane::getInstance('Tabs');
+        $this->assignRef('pane', $pane);
 
-		parent::display($tpl);
-	}
+        parent::display($tpl);
+    }
 }

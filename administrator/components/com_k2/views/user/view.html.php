@@ -14,16 +14,13 @@ jimport('joomla.application.component.view');
 
 class K2ViewUser extends K2View
 {
-    function display($tpl = null)
+    public function display($tpl = null)
     {
         $model = $this->getModel();
         $user = $model->getData();
-        if (K2_JVERSION == '15')
-        {
+        if (K2_JVERSION == '15') {
             JFilterOutput::objectHTMLSafe($user);
-        }
-        else
-        {
+        } else {
             JFilterOutput::objectHTMLSafe($user, ENT_QUOTES, array('params', 'plugins'));
         }
         $joomlaUser = JUser::getInstance(JRequest::getInt('cid'));
@@ -49,7 +46,7 @@ class K2ViewUser extends K2View
         $params = JComponentHelper::getParams('com_k2');
         $this->assignRef('params', $params);
 
-		// Plugins
+        // Plugins
         JPluginHelper::importPlugin('k2');
         $dispatcher = JDispatcher::getInstance();
         $K2Plugins = $dispatcher->trigger('onRenderAdminForm', array(&$user, 'user'));
@@ -58,20 +55,17 @@ class K2ViewUser extends K2View
         // Disable Joomla menu
         JRequest::setVar('hidemainmenu', 1);
 
-		// Toolbar
-		$toolbar = JToolBar::getInstance('toolbar');
+        // Toolbar
+        $toolbar = JToolBar::getInstance('toolbar');
         JToolBarHelper::title(JText::_('K2_USER'), 'k2.png');
 
         JToolBarHelper::apply();
         JToolBarHelper::save();
         JToolBarHelper::cancel();
 
-        if (K2_JVERSION != '15')
-        {
+        if (K2_JVERSION != '15') {
             $buttonUrl = JURI::base().'index.php?option=com_users&view=user&task=user.edit&id='.$user->userID;
-        }
-        else
-        {
+        } else {
             $buttonUrl = JURI::base().'index.php?option=com_users&view=user&task=edit&cid[]='.$user->userID;
         }
         $buttonText = JText::_('K2_EDIT_JOOMLA_USER');
