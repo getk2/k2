@@ -835,7 +835,7 @@ function validateExtraFields() {
 
 // Extra Fields - image field
 function extraFieldsImage() {
-    $K2('body').on('click', '.k2ExtraFieldImageButton', function(event) {
+    $K2('body').on('click', '.k2app-ef-image-button', function(event) {
         event.preventDefault();
         var href = $K2(this).attr('href');
         SqueezeBox.initialize();
@@ -1093,7 +1093,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             }
             var html = '\
                 <div class="k2ui-ef-row">\
-                    <input name="option_value[]" type="text" id="'+id+'" value="'+text+'" /> <a class="k2ExtraFieldImageButton" href="index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID='+id+'">'+K2Language[18]+'</a> <span class="k2ui-ef-notice">('+K2Language[1]+')</span>\
+                    <input name="option_value[]" type="text" id="'+id+'" value="'+text+'" /> <a class="k2app-ef-image-button" href="index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID='+id+'">'+K2Language[18]+'</a> <span class="k2ui-ef-notice">('+K2Language[1]+')</span>\
                 </div>\
             ';
             $K2(html).appendTo(target);
