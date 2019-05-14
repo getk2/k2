@@ -31,7 +31,7 @@ defined('_JEXEC') or die;
                 },
                 height: (window.innerHeight) * 0.96
                 <?php else: ?>
-                height: (window.innerHeight) - <?php if(K2_JVERSION == '30'): ?>120<?php else: ?>160<?php endif; ?>
+                height: (window.innerHeight) - <?php if(K2_JVERSION == '30'): ?>126<?php else: ?>160<?php endif; ?>
                 <?php endif; ?>
             });
         });
