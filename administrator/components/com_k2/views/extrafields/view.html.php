@@ -76,6 +76,7 @@ class K2ViewExtraFields extends K2View
         $lists['group'] = JHTML::_('select.genericlist', $groups, 'filter_group', '', 'value', 'text', $filter_group);
 
         $typeOptions[] = JHTML::_('select.option', 0, JText::_('K2_SELECT_TYPE'));
+
         $typeOptions[] = JHTML::_('select.option', 'textfield', JText::_('K2_TEXT_FIELD'));
         $typeOptions[] = JHTML::_('select.option', 'textarea', JText::_('K2_TEXTAREA'));
         $typeOptions[] = JHTML::_('select.option', 'select', JText::_('K2_DROPDOWN_SELECTION'));
@@ -87,6 +88,7 @@ class K2ViewExtraFields extends K2View
         $typeOptions[] = JHTML::_('select.option', 'date', JText::_('K2_DATE'));
         $typeOptions[] = JHTML::_('select.option', 'image', JText::_('K2_IMAGE'));
         $typeOptions[] = JHTML::_('select.option', 'header', JText::_('K2_HEADER'));
+
         $lists['type'] = JHTML::_('select.genericlist', $typeOptions, 'filter_type', '', 'value', 'text', $filter_type);
 
         $this->assignRef('lists', $lists);

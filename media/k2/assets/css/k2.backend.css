@@ -106,6 +106,10 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 /* --- Corrections for Joomla 3.x [finish] --- */
 
 /* --- Corrections for Joomla 1.5 [start] --- */
+.isJ15 #system-message {padding:0;margin:0 0 0 -200px;position:absolute;z-index:199;top:40px;left:50%;width:400px;opacity:0.9;}
+.isJ15 #system-message dd ul {padding:0 20px;margin:0;border:0;background-position-x:20px !important;border-radius:8px;}
+.isJ15 #system-message dd ul li {padding:20px;}
+
 .isJ15 body {margin:0;padding:0;font-family:'Open Sans',sans-serif;}
 .isJ15 body * :not(i) {font-family:'Open Sans',sans-serif !important;}
 
@@ -235,6 +239,8 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);}
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value input[type="radio"] + label {min-width:80px;width:auto;line-height:30px;height:30px;text-align:center;margin:0 -2px 0 0;padding:0 10px;color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background:#eff1f1;cursor:pointer;}
 
+.isJ15 #k2AdminContainer table.admintable td.paramlist_value input[type="checkbox"] {box-shadow:none;}
+
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value input[type="radio"]:first-child + label {border-radius:4px 0 0 4px;}
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value input[type="radio"] + label:last-child {border-radius:0 4px 4px 0;}
 
@@ -280,6 +286,7 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="radio"][value="1"]:checked + label,
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="radio"][value="all"]:checked + label {background:#3fa800;color:#fff;}
 
+.isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="checkbox"] {box-shadow:none;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input.k2TitleBox {text-align:left;}
 
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li > fieldset.adminform {border:0;padding:0;margin:0;}
@@ -628,19 +635,25 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
 }
 .row-resposive {margin-bottom:45px;}
 
-/* Extrafields - newly generated elements */
-#exFieldsTypesDiv {}
-#exFieldsTypesDiv span {margin-left:10px;color:#999;}
-#exFieldsTypesDiv input[type="text"] {min-height:30px;line-height:40px;}
-#exFieldsTypesDiv input[type="button"],
-#exFieldsTypesDiv button {margin-bottom:20px;display:inline-block;vertical-align:top;margin-right:10px;color:#414042;min-width:100px;padding:10px 15px;border-radius:3px;border:1px solid #dedede;border-bottom-color:#cacaca;background:#fdfdfd;white-space:normal;position:relative;font-weight:700;background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
-#exFieldsTypesDiv input[type="button"]:hover,
-#exFieldsTypesDiv button:hover {background:#d4d7d9;}
-#exFieldsTypesDiv .k2ExtraFieldNotice {color:#999;margin-left:10px;}
-
+/* Extra fields */
 #groupContainer {display:block;}
 #groupContainer input {margin-top:10px;}
 
+#k2app-ef-type-data {}
+#k2app-ef-type-data input,
+#k2app-ef-type-data button,
+#k2app-ef-type-data select {margin-right:10px;}
+#k2app-ef-type-data .k2ui-ef-notice {color:#999;}
+.k2ui-ef-row {padding:4px 0;}
+    .k2ui-ef-label {min-width:90px;display:inline-block;text-align:right;padding-right:10px;}
+    .k2ui-ef-row input[type="checkbox"] {box-shadow:none;margin:0;padding:0;}
+/*
+#k2app-ef-type-data input[type="text"] {min-height:30px;line-height:40px;}
+#k2app-ef-type-data input[type="button"],
+#k2app-ef-type-data button {margin-bottom:20px;display:inline-block;vertical-align:top;margin-right:10px;color:#414042;min-width:100px;padding:10px 15px;border-radius:3px;border:1px solid #dedede;border-bottom-color:#cacaca;background:#fdfdfd;white-space:normal;position:relative;font-weight:700;background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
+#k2app-ef-type-data input[type="button"]:hover,
+#k2app-ef-type-data button:hover {background:#d4d7d9;}
+*/
 
 
 /* ====================================================================================================== */
@@ -976,12 +989,6 @@ z-index:100;margin:25px auto 25px -325px;font-family:'Open Sans',sans-serif;font
 /* ====================================================================================================== */
 
 /* Joomla 1.5 */
-html.isJ15 {overflow-y:scroll;}
-html.isJ15 #system-message {margin:-26px 0 16px;}
-html.isJ15 #system-message dd ul {padding:20px 10px;}
-/*
-html.isJ15 div#element-box div.m {padding:0;border-bottom:1px solid #ccc;}
-*/
 html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs {border-top:1px solid #d4d7d9;}
 html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {content:"\f0d8";font-family:"FontAwesome";font-style:normal;font-weight:normal;text-decoration:inherit;color:#fff;font-size:32px;position:absolute;bottom:-12px;left:50%;margin-left:-16px;width:32px;text-shadow:0px -1px 1px #ccc;}
 
@@ -1099,8 +1106,6 @@ input#k2ImageBrowseServer {/*width:auto;height:30px;line-height:8px;margin-left:
 */
 
 /* Joomla 1.5 specific */
-#system-message dd.message {overflow:hidden;margin-top:0;}
-
 .isJ15 #content-box .padding {padding:0;}
 .isJ15 div#toolbar-box div.t,
 .isJ15 div#element-box div.section-box div.t {padding:0;background:none;}

@@ -21,28 +21,43 @@ class K2ViewExtraField extends K2View
 
         $document = JFactory::getDocument();
         $document->addScriptDeclaration('
-			var K2BasePath = "'.JURI::base(true).'/";
-			var K2Language = [
-				"'.JText::_('K2_REMOVE', true).'",
-				"'.JText::_('K2_OPTIONAL', true).'",
-				"'.JText::_('K2_COMMA_SEPARATED_VALUES', true).'",
-				"'.JText::_('K2_USE_EDITOR', true).'",
-				"'.JText::_('K2_ALL_SETTINGS_ABOVE_ARE_OPTIONAL', true).'",
-				"'.JText::_('K2_ADD_AN_OPTION', true).'",
-				"'.JText::_('K2_LINK_TEXT', true).'",
-				"'.JText::_('K2_URL', true).'",
-				"'.JText::_('K2_OPEN_IN', true).'",
-				"'.JText::_('K2_SAME_WINDOW', true).'",
-				"'.JText::_('K2_NEW_WINDOW', true).'",
-				"'.JText::_('K2_CLASSIC_JAVASCRIPT_POPUP', true).'",
-				"'.JText::_('K2_LIGHTBOX_POPUP', true).'",
-				"'.JText::_('K2_RESET_VALUE', true).'",
-				"'.JText::_('K2_CALENDAR', true).'",
-				"'.JText::_('K2_PLEASE_SELECT_A_FIELD_TYPE_FROM_THE_LIST_ABOVE', true).'",
-				"'.JText::_('K2_COLUMNS', true).'",
-				"'.JText::_('K2_ROWS', true).'",
-			];
-		');
+            var K2BasePath = "'.JURI::base(true).'/";
+            var K2Language = [
+                "'.JText::_('K2_REMOVE', true).'",
+                "'.JText::_('K2_OPTIONAL', true).'",
+                "'.JText::_('K2_COMMA_SEPARATED_VALUES', true).'",
+                "'.JText::_('K2_USE_EDITOR', true).'",
+                "'.JText::_('K2_ALL_SETTINGS_ABOVE_ARE_OPTIONAL', true).'",
+                "'.JText::_('K2_ADD_AN_OPTION', true).'",
+                "'.JText::_('K2_LINK_TEXT', true).'",
+                "'.JText::_('K2_URL', true).'",
+                "'.JText::_('K2_OPEN_IN', true).'",
+                "'.JText::_('K2_SAME_WINDOW', true).'",
+                "'.JText::_('K2_NEW_WINDOW', true).'",
+                "'.JText::_('K2_CLASSIC_JAVASCRIPT_POPUP', true).'",
+                "'.JText::_('K2_LIGHTBOX_POPUP', true).'",
+                "'.JText::_('K2_RESET_VALUE', true).'",
+                "'.JText::_('K2_CALENDAR', true).'",
+                "'.JText::_('K2_PLEASE_SELECT_A_FIELD_TYPE_FROM_THE_LIST_ABOVE', true).'",
+                "'.JText::_('K2_COLUMNS', true).'",
+                "'.JText::_('K2_ROWS', true).'",
+            ];
+            Joomla.submitbutton = function(pressbutton) {
+                if (pressbutton == "cancel") {
+                    submitform( pressbutton );
+                    return;
+                }
+                if ($K2.trim($K2("#group").val()) == "") {
+                    alert( "'.JText::_('K2_PLEASE_SELECT_A_GROUP_OR_CREATE_A_NEW_ONE', true).'" );
+                } else if ($K2.trim($K2("#name").val()) == "") {
+                    alert( "'.JText::_('K2_NAME_CANNOT_BE_EMPTY', true).'" );
+                } else if ($K2("#type").val() == "0") {
+                    alert( "'.JText::_('K2_PLEASE_SELECT_THE_TYPE_OF_THE_EXTRA_FIELD', true).'" );
+                } else {
+                    submitform(pressbutton);
+                }
+            };
+        ');
 
         $model = $this->getModel();
         $extraField = $model->getData();
@@ -97,6 +112,7 @@ class K2ViewExtraField extends K2View
         $lists['group'] = JHTML::_('select.genericlist', $groups, 'groups', '', 'value', 'text', $extraField->group);
 
         $typeOptions[] = JHTML::_('select.option', 0, JText::_('K2_SELECT_TYPE'));
+
         $typeOptions[] = JHTML::_('select.option', 'textfield', JText::_('K2_TEXT_FIELD'));
         $typeOptions[] = JHTML::_('select.option', 'textarea', JText::_('K2_TEXTAREA'));
         $typeOptions[] = JHTML::_('select.option', 'select', JText::_('K2_DROPDOWN_SELECTION'));
@@ -108,6 +124,7 @@ class K2ViewExtraField extends K2View
         $typeOptions[] = JHTML::_('select.option', 'date', JText::_('K2_DATE'));
         $typeOptions[] = JHTML::_('select.option', 'image', JText::_('K2_IMAGE'));
         $typeOptions[] = JHTML::_('select.option', 'header', JText::_('K2_HEADER'));
+
         $lists['type'] = JHTML::_('select.genericlist', $typeOptions, 'type', '', 'value', 'text', $extraField->type);
 
         $this->assignRef('lists', $lists);

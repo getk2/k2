@@ -10,28 +10,6 @@
 // no direct access
 defined('_JEXEC') or die;
 
-$document = JFactory::getDocument();
-$document->addScriptDeclaration("
-    Joomla.submitbutton = function(pressbutton) {
-        if (pressbutton == 'cancel') {
-            submitform( pressbutton );
-            return;
-        }
-        if (\$K2.trim(\$K2('#group').val()) == '') {
-            alert( '".JText::_('K2_PLEASE_SELECT_A_GROUP_OR_CREATE_A_NEW_ONE', true)."' );
-        }
-        else if (\$K2.trim(\$K2('#name').val()) == '') {
-            alert( '".JText::_('K2_NAME_CANNOT_BE_EMPTY', true)."' );
-        }
-        else if (\$K2('#type').val() == '0') {
-            alert( '".JText::_('K2_PLEASE_SELECT_THE_TYPE_OF_THE_EXTRA_FIELD', true)."' );
-        }
-        else {
-            submitform( pressbutton );
-        }
-    };
-");
-
 ?>
 
 <form action="index.php" method="post" enctype="multipart/form-data" name="adminForm" id="adminForm">
@@ -125,7 +103,7 @@ $document->addScriptDeclaration("
                     <?php echo JText::_('K2_DEFAULT_VALUES'); ?>
                 </div>
                 <div class="paramValue">
-                    <div id="exFieldsTypesDiv"></div>
+                    <div id="k2app-ef-type-data"></div>
                 </div>
             </li>
         </ul>

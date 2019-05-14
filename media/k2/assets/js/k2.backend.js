@@ -254,10 +254,10 @@ $K2(document).ready(function() {
                 $K2('#k2ExtraFieldsShowNullFlag').fadeOut('slow');
                 $K2('#k2ExtraFieldsDisplayInFrontEndFlag').fadeOut('slow');
                 $K2('#k2ExtraFieldsRequiredFlag').fadeOut('slow');
-                $K2('#exFieldsTypesDiv').fadeOut('slow', function() {
-                    $K2('#exFieldsTypesDiv').empty();
+                $K2('#k2app-ef-type-data').fadeOut('slow', function() {
+                    $K2('#k2app-ef-type-data').empty();
                     renderExtraFields(selectedType, values, newField);
-                    $K2('#exFieldsTypesDiv').fadeIn('slow');
+                    $K2('#k2app-ef-type-data').fadeIn('slow');
                     if (selectedType === 'select' || selectedType === 'multipleSelect') {
                         $K2('#k2ExtraFieldsShowNullFlag').fadeIn('slow');
                     }
@@ -883,20 +883,52 @@ function addOption() {
 }
 
 function renderExtraFields(fieldType, fieldValues, isNewField) {
-    var target = $K2('#exFieldsTypesDiv');
+    var target = $K2('#k2app-ef-type-data');
     var currentType = $K2('#type').val();
 
     switch (fieldType) {
 
         case 'textfield':
-            var input = $K2('<input/>', {
-                name: 'option_value[]',
-                type: 'text'
-            }).appendTo(target);
-            var notice = $K2('<span/>').html('(' + K2Language[1] + ')').appendTo(target);
-            if (!isNewField && currentType == fieldType) {
-                input.val(fieldValues[0].value);
+            var text;
+            if(!isNewField && currentType == fieldType) {
+                text = (fieldValues[0].value ? fieldValues[0].value : '');
             }
+            var html = '\
+                <div class="k2ui-ef-row">\
+                    <input name="option_value[]" type="text" value="'+text+'" /><span class="k2ui-ef-notice">('+K2Language[1]+')</span>\
+                </div>\
+            ';
+            $K2(html).appendTo(target);
+            break;
+
+        case 'textarea':
+            var textarea, rows, cols, editorValue, editorChecked;
+            if(!isNewField && currentType == fieldType) {
+                textarea = fieldValues[0].value;
+                rows = (fieldValues[0].rows ? fieldValues[0].rows : '');
+                cols = (fieldValues[0].cols ? fieldValues[0].cols : '');
+                editorValue = (fieldValues[0].editor ? fieldValues[0].editor : '');
+                editorChecked = (editorValue ? ' checked' : '');
+            }
+            var html = '\
+                <textarea name="option_value[]" cols="40" rows="10">'+textarea+'</textarea>\
+                <div class="k2ui-ef-row">\
+                    <span class="k2ui-ef-label">'+K2Language[16]+'</span>\
+                    <input name="option_cols[]" type="text" value="'+cols+'" />\
+                </div>\
+                <div class="k2ui-ef-row">\
+                    <span class="k2ui-ef-label">'+K2Language[17]+'</span>\
+                    <input name="option_rows[]" type="text" value="'+rows+'" />\
+                </div>\
+                <div class="k2ui-ef-row">\
+                    <span class="k2ui-ef-label">'+K2Language[3]+'</span>\
+                    <input name="option_editor[]" type="checkbox" value="1"'+editorChecked+' />\
+                </div>\
+                <div class="k2ui-ef-row">\
+                    <span class="k2ui-ef-notice">('+K2Language[4]+')</span>\
+                </div>\
+            ';
+            $K2(html).appendTo(target);
             break;
 
         case 'labels':
@@ -904,59 +936,9 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                 name: 'option_value[]',
                 type: 'text'
             }).appendTo(target);
-            var notice = $K2('<span/>').html(K2Language[2] + ' (' + K2Language[1] + ')').appendTo(target);
+            var notice = $K2('<span class="k2ui-ef-notice"/>').html(K2Language[2] + ' (' + K2Language[1] + ')').appendTo(target);
             if (!isNewField && currentType == fieldType) {
                 input.val(fieldValues[0].value);
-            }
-            break;
-
-        case 'textarea':
-            var textarea = $K2('<textarea/>', {
-                name: 'option_value[]',
-                cols: '40',
-                rows: '10'
-            }).appendTo(target);
-
-            var br = $K2('<br/>').appendTo(target);
-            var label = $K2('<span class="label"/>').html(K2Language[17]).appendTo(target);
-            var input = $K2('<input/>', {
-                name: 'option_rows[]',
-                type: 'text'
-            }).appendTo(target);
-
-            if (!isNewField && currentType == fieldType) {
-                input.val(fieldValues[0].rows);
-            }
-
-            var br = $K2('<br/>').appendTo(target);
-            var label = $K2('<span class="label"/>').html(K2Language[16]).appendTo(target);
-            var input = $K2('<input/>', {
-                name: 'option_cols[]',
-                type: 'text'
-            }).appendTo(target);
-
-            if (!isNewField && currentType == fieldType) {
-                input.val(fieldValues[0].cols);
-            }
-
-            var br = $K2('<br/>').appendTo(target);
-            var label = $K2('<span class="label"/>').html(K2Language[3]).appendTo(target);
-            var input = $K2('<input/>', {
-                name: 'option_editor[]',
-                type: 'checkbox',
-                value: '1'
-            }).appendTo(target);
-
-            var br = $K2('<br/>').appendTo(target);
-            var br = $K2('<br/>').appendTo(target);
-            var notice = $K2('<span class="label"/>').html('(' + K2Language[4] + ')').appendTo(target);
-            if (!isNewField && currentType == fieldType) {
-                textarea.val(fieldValues[0].value);
-                if (fieldValues[0].editor) {
-                    input.attr('checked', true);
-                } else {
-                    input.attr('checked', false);
-                }
             }
             break;
 
@@ -1031,7 +1013,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             }).html(K2Language[12]).appendTo(select);
             var br = $K2('<br/>').appendTo(target);
             var br = $K2('<br/>').appendTo(target);
-            var notice = $K2('<span/>').html('(' + K2Language[4] + ')').appendTo(target);
+            var notice = $K2('<span class="k2ui-ef-notice"/>').html('(' + K2Language[4] + ')').appendTo(target);
             if (!isNewField && currentType == fieldType) {
                 inputName.val(fieldValues[0].name);
                 inputValue.val(fieldValues[0].value);
@@ -1076,7 +1058,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                     'class': 'clr'
                 }).appendTo(target);
             }
-            var notice = $K2('<span/>').html('(' + K2Language[1] + ')').appendTo(target);
+            var notice = $K2('<span class="k2ui-ef-notice"/>').html('(' + K2Language[1] + ')').appendTo(target);
             break;
 
         case 'date':
@@ -1093,7 +1075,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                 allowInput: true
             });
 
-            var notice = $K2('<span/>').attr('class', 'k2ExtraFieldNotice').html('(' + K2Language[1] + ')').appendTo(target);
+            var notice = $K2('<span class="k2ui-ef-notice"/>').html('(' + K2Language[1] + ')').appendTo(target);
             break;
 
         case 'image':
@@ -1107,7 +1089,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                 'href': 'index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID=' + id,
                 'class': 'k2ExtraFieldImageButton'
             }).html('Select').appendTo(target);
-            var notice = $K2('<span/>').html('(' + K2Language[1] + ')').appendTo(target);
+            var notice = $K2('<span class="k2ui-ef-notice"/>').html('(' + K2Language[1] + ')').appendTo(target);
             if (!isNewField && currentType == fieldType) {
                 input.val(fieldValues[0].value);
             }
