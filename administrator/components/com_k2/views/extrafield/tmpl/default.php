@@ -81,10 +81,10 @@ defined('_JEXEC') or die;
                     <?php echo JText::_('K2_SHOW_NULL'); ?>
                 </div>
                 <div class="paramValue">
-                    <input id="showNull-yes" type="radio" name="showNull" value="1" <?php if($this->row->showNull) echo ' checked="checked"'; ?> />
-                    <label for="showNull-yes"><?php echo JText::_('K2_YES'); ?></label>
                     <input id="showNull-no" type="radio" name="showNull" value="0" <?php if(!$this->row->showNull) echo ' checked="checked"'; ?> />
                     <label for="showNull-no"><?php echo JText::_('K2_NO'); ?></label>
+                    <input id="showNull-yes" type="radio" name="showNull" value="1" <?php if($this->row->showNull) echo ' checked="checked"'; ?> />
+                    <label for="showNull-yes"><?php echo JText::_('K2_YES'); ?></label>
                 </div>
             </li>
             <li id="k2ExtraFieldsDisplayInFrontEndFlag" <?php if($this->row->type != 'header') echo ' style="display:none;"'; ?>>
@@ -92,10 +92,10 @@ defined('_JEXEC') or die;
                     <?php echo JText::_('K2_DISPLAY_IN_THE_FRONTEND'); ?>
                 </div>
                 <div class="paramValue">
-                    <input id="displayInFrontEnd-yes" type="radio" name="displayInFrontEnd" value="1" <?php if($this->row->displayInFrontEnd) echo ' checked="checked"'; ?> />
-                    <label for="displayInFrontEnd-yes"><?php echo JText::_('K2_YES'); ?></label>
                     <input id="displayInFrontEnd-no" type="radio" name="displayInFrontEnd" value="0" <?php if(!$this->row->displayInFrontEnd) echo ' checked="checked"'; ?> />
                     <label for="displayInFrontEnd-no"><?php echo JText::_('K2_NO'); ?></label>
+                    <input id="displayInFrontEnd-yes" type="radio" name="displayInFrontEnd" value="1" <?php if($this->row->displayInFrontEnd) echo ' checked="checked"'; ?> />
+                    <label for="displayInFrontEnd-yes"><?php echo JText::_('K2_YES'); ?></label>
                 </div>
             </li>
             <li>
