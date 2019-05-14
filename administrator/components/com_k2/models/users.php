@@ -33,13 +33,17 @@ class K2ModelUsers extends K2Model
         $search = JString::strtolower($search);
         $search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
 
-        $query = "SELECT juser.*, k2user.group, k2group.name as groupname FROM #__users as juser "."LEFT JOIN #__k2_users as k2user ON juser.id=k2user.userID "."LEFT JOIN #__k2_user_groups as k2group ON k2user.group=k2group.id ";
+        $query = "SELECT juser.*, k2user.group, k2group.name AS groupname, k2user.image AS image
+            FROM #__users AS juser
+            LEFT JOIN #__k2_users AS k2user ON juser.id = k2user.userID
+            LEFT JOIN #__k2_user_groups AS k2group ON k2user.group = k2group.id
+        ";
 
         if (K2_JVERSION != '15' && $filter_group) {
-            $query .= " LEFT JOIN #__user_usergroup_map as `map` ON juser.id=map.user_id ";
+            $query .= " LEFT JOIN #__user_usergroup_map AS `map` ON juser.id = map.user_id";
         }
 
-        $query .= " WHERE juser.id>0";
+        $query .= " WHERE juser.id > 0";
 
         if ($filter_status > -1) {
             $query .= " AND juser.block = {$filter_status}";
@@ -70,8 +74,8 @@ class K2ModelUsers extends K2Model
         }
 
         if ($search) {
-            $escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
-            $query .= " AND (LOWER( juser.name ) LIKE ".$db->Quote('%'.$escaped.'%', false)." OR LOWER( juser.email ) LIKE ".$db->Quote('%'.$escaped.'%', false).")";
+            $escaped = (K2_JVERSION == '15') ? $db->getEscaped($search, true) : $db->escape($search, true);
+            $query .= " AND (LOWER(juser.name) LIKE ".$db->Quote('%'.$escaped.'%', false)." OR LOWER(juser.email) LIKE ".$db->Quote('%'.$escaped.'%', false).")";
         }
 
         if (!$filter_order) {
@@ -79,7 +83,6 @@ class K2ModelUsers extends K2Model
         }
 
         $query .= " ORDER BY {$filter_order} {$filter_order_Dir}";
-
         $db->setQuery($query, $limitstart, $limit);
         $rows = $db->loadObjectList();
 

@@ -259,7 +259,7 @@ class K2HelperHTML
                 $document->addScript('https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js');
 
                 // Fancybox
-                if ($view == 'item' || $view == 'items' || $view == 'categories') {
+                if ($view == 'item' || $view == 'items' || $view == 'categories' || $view == 'users') {
                     $document->addStyleSheet('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.5/dist/jquery.fancybox.min.css');
                     $document->addScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.5/dist/jquery.fancybox.min.js');
                 }
