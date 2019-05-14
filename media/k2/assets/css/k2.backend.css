@@ -1280,9 +1280,6 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ15 #footer .copyright::after {content:" — Joomla! 1.5";}
 .isJ15 #footer .copyright a {color:#333;}
 
-/* Utilities */
-.isJ15 #k2AdminContainer .adminlist tr th.k2ui-align-order {text-align:right;padding-right:30px;box-sizing:border-box;} /* Not used for now */
-
 /* Lists */
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters {border-collapse:collapse;border:0;}
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td {padding:8px 8px 6px 8px;}
@@ -1291,7 +1288,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects {padding-right:16px;}
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects select {max-width:160px;height:30px;font-size:13px;}
 
-.isJ15 #k2AdminContainer #k2ContentView > form .table-responsive-wrap {padding-top:50px;}
+.isJ15 #k2AdminContainer #k2ContentView > form .table-responsive-wrap {padding:50px 0 4px 0;}
 
 .isJ15 #k2AdminContainer .adminlist {border-collapse:collapse;}
 .isJ15 #k2AdminContainer .adminlist tr td {border-left:0;border-right:0;height:auto;}
@@ -1307,8 +1304,9 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ15 #k2AdminContainer .adminlist tr td.k2ui-order span {margin-top:6px;}
 .isJ15 #k2AdminContainer .adminlist tr td.k2ui-order input {border-radius:4px;padding:4px;font-size:13px;}
 
-.isJ15 #k2AdminContainer .adminlist .adminlist input[type="checkbox"] {margin:0;padding:0;}
+.isJ15 #k2AdminContainer .adminlist input[type="checkbox"] {margin:0;padding:0;}
 
+.isJ15 #k2AdminContainer .adminlist tfoot tr td {background:#f9f9f9;}
 .isJ15 #k2AdminContainer .adminlist .pagination {padding:0;margin:8px auto;}
 .isJ15 #k2AdminContainer .adminlist .pagination .limit select {margin-left:4px;}
 
