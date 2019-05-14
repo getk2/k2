@@ -253,7 +253,7 @@ $K2(document).ready(function() {
                 var selectedType = selectsInstance(this).val();
                 $K2('#k2ExtraFieldsShowNullFlag').fadeOut('slow');
                 $K2('#k2ExtraFieldsDisplayInFrontEndFlag').fadeOut('slow');
-                $K2('#k2ExtraFieldsRequiredFlag').fadeOut('slow');
+                $K2('#k2app-ef-header-flag').fadeOut('slow');
                 $K2('#k2app-ef-type-data').fadeOut('slow', function() {
                     $K2('#k2app-ef-type-data').empty();
                     renderExtraFields(selectedType, values, newField);
@@ -262,7 +262,7 @@ $K2(document).ready(function() {
                         $K2('#k2ExtraFieldsShowNullFlag').fadeIn('slow');
                     }
                     if (selectedType !== 'header') {
-                        $K2('#k2ExtraFieldsRequiredFlag').fadeIn('slow');
+                        $K2('#k2app-ef-header-flag').fadeIn('slow');
                     }
                     if (selectedType === 'header') {
                         $K2('#k2ExtraFieldsDisplayInFrontEndFlag').fadeIn('slow');
@@ -833,7 +833,7 @@ function validateExtraFields() {
     return response.isValid;
 }
 
-// Extra Fields image field
+// Extra Fields - image field
 function extraFieldsImage() {
     $K2('body').on('click', '.k2ExtraFieldImageButton', function(event) {
         event.preventDefault();
@@ -932,14 +932,19 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             break;
 
         case 'labels':
-            var input = $K2('<input/>', {
-                name: 'option_value[]',
-                type: 'text'
-            }).appendTo(target);
-            var notice = $K2('<span class="k2ui-ef-notice"/>').html(K2Language[2] + ' (' + K2Language[1] + ')').appendTo(target);
-            if (!isNewField && currentType == fieldType) {
-                input.val(fieldValues[0].value);
+            var label;
+            if(!isNewField && currentType == fieldType) {
+                label = (fieldValues[0].value ? fieldValues[0].value : '');
             }
+            var html = '\
+                <div class="k2ui-ef-row">\
+                    <input name="option_value[]" type="text" value="'+label+'" />\
+                </div>\
+                <div class="k2ui-ef-row">\
+                    <span class="k2ui-ef-notice">'+K2Language[2]+' ('+K2Language[1]+')</span>\
+                </div>\
+            ';
+            $K2(html).appendTo(target);
             break;
 
         case 'select':
@@ -1062,20 +1067,22 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             break;
 
         case 'date':
-            var id = 'k2DateField' + $K2.now();
-            var input = $K2('<input/>', {
-                name: 'option_value[]',
-                type: 'text',
-                id: id,
-                value: fieldValues[0].value
-            }).appendTo(target);
+            var label,
+                time = $K2.now();
+            if(!isNewField && currentType == fieldType) {
+                label = (fieldValues[0].value ? fieldValues[0].value : '');
+            }
+            var html = '\
+                <div class="k2ui-ef-row">\
+                    <input name="option_value[]" type="text" id="k2DateField'+time+'" value="'+label+'" autocomplete="off" /><span class="k2ui-ef-notice">('+K2Language[1]+')</span>\
+                </div>\
+            ';
+            $K2(html).appendTo(target);
 
             // Load Flatpickr
-            $K2(input).flatpickr({
+            $K2('#k2DateField'+time).flatpickr({
                 allowInput: true
             });
-
-            var notice = $K2('<span class="k2ui-ef-notice"/>').html('(' + K2Language[1] + ')').appendTo(target);
             break;
 
         case 'image':
@@ -1096,14 +1103,17 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             break;
 
         case 'header':
-            target.html(' - ');
-            var input = $K2('<input/>', {
-                name: 'option_value[]',
-                type: 'hidden'
-            }).appendTo(target);
-            if (!isNewField && currentType == fieldType) {
-                input.val(fieldValues[0].value);
+            var header;
+            if(!isNewField && currentType == fieldType) {
+                header = (fieldValues[0].value ? fieldValues[0].value : '');
             }
+            var html = '\
+                <div class="k2ui-ef-row">\
+                    <div> - </div>\
+                    <input name="option_value[]" type="hidden" value="'+header+'" />\
+                </div>\
+            ';
+            $K2(html).appendTo(target);
             break;
 
         default:
@@ -1111,9 +1121,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                 'class': 'notice'
             }).html(K2Language[15]).appendTo(target);
             break;
-
     }
-
 }
 
 function initExtraFieldsEditor() {

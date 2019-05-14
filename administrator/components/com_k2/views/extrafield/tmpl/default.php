@@ -65,15 +65,15 @@ defined('_JEXEC') or die;
                     <?php echo $this->lists['type']; ?>
                 </div>
             </li>
-            <li id="k2ExtraFieldsRequiredFlag" <?php if($this->row->type == 'header') echo ' style="display:none;"'; ?>>
+            <li id="k2app-ef-header-flag" <?php if($this->row->type == 'header') echo ' style="display:none;"'; ?>>
                 <div class="paramLabel">
                     <?php echo JText::_('K2_REQUIRED'); ?>
                 </div>
                 <div class="paramValue">
-                    <input id="required-yes" type="radio" name="required" value="1" <?php if($this->row->required) echo ' checked="checked"'; ?> />
-                    <label for="required-yes"><?php echo JText::_('K2_YES'); ?></label>
                     <input id="required-no" type="radio" name="required" value="0" <?php if(!$this->row->required) echo ' checked="checked"'; ?> />
                     <label for="required-no"><?php echo JText::_('K2_NO'); ?></label>
+                    <input id="required-yes" type="radio" name="required" value="1" <?php if($this->row->required) echo ' checked="checked"'; ?> />
+                    <label for="required-yes"><?php echo JText::_('K2_YES'); ?></label>
                 </div>
             </li>
             <li id="k2ExtraFieldsShowNullFlag" <?php if($this->row->type != 'select' && $this->row->type != 'multipleSelect') echo ' style="display: none;"'; ?>>
