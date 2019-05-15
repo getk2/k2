@@ -751,7 +751,7 @@ class K2ViewItemlist extends K2View
             }
 
             // Set page title
-            if (is_object($menuActive)) {
+            if (is_object($menuActive) && isset($menuActive->params)) {
                 if (is_string($menuActive->params)) {
                     $menu_params = (K2_JVERSION == '15') ? new JParameter($menuActive->params) : new JRegistry($menuActive->params);
                 } else {
