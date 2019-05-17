@@ -25,10 +25,14 @@ class K2ViewItemlist extends K2View
         $task = JRequest::getCmd('task');
         $limitstart = JRequest::getInt('limitstart', 0);
         $limit = JRequest::getInt('limit', 10);
+        $moduleID = JRequest::getInt('moduleID');
 
         $params = K2HelperUtilities::getParams('com_k2');
-        $moduleID = JRequest::getInt('moduleID');
+        $cache = JFactory::getCache('com_k2_extended');
+        JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
+
         $itemlistModel = $this->getModel('itemlist');
+        $itemModel = $this->getModel('item');
 
         // Menu
         $menu = $app->getMenu();
@@ -91,7 +95,6 @@ class K2ViewItemlist extends K2View
                     // Get category
                     $id = JRequest::getInt('id');
 
-                    JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
                     $category = JTable::getInstance('K2Category', 'Table');
                     $category->load($id);
 
@@ -468,6 +471,7 @@ class K2ViewItemlist extends K2View
 
             // --- Feed Output [start] ---
             if ($document->getType() == 'feed') {
+                $title = JFilterOutput::ampReplace($title);
                 $limit = $params->get('feedLimit');
             }
             // --- Feed Output [finish] ---
@@ -492,12 +496,6 @@ class K2ViewItemlist extends K2View
                 $limitstart = $page * $limit;
                 JRequest::setVar('limitstart', $limitstart);
             }
-
-            // --- Feed Output [start] ---
-            if ($document->getType() == 'feed') {
-                $title = JFilterOutput::ampReplace($title);
-            }
-            // --- Feed Output [finish] ---
 
             // Get items
             if (!isset($ordering)) {
@@ -529,10 +527,6 @@ class K2ViewItemlist extends K2View
             $total = (count($items)) ? $itemlistModel->getTotal() : 0;
             $pagination = new JPagination($total, $limitstart, $limit);
         }
-
-        // Prepare items
-        $cache = JFactory::getCache('com_k2_extended');
-        $itemModel = $this->getModel('item');
 
         $rowsForJSON = array();
 
