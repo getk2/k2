@@ -370,8 +370,7 @@ $app = JFactory::getApplication();
                             <div class="itemGalleryBlock">
                                 <label><?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_WITH_IMAGES'); ?></label>
                                 <input type="file" name="gallery" class="fileUpload k2Selector" />
-                                <span class="hasTip k2GalleryNotice" title="
-                                <?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP_HEADER'); ?>::<?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP_TEXT'); ?>">
+                                <span class="hasTip k2GalleryNotice" title="<?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP_HEADER'); ?>::<?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP_TEXT'); ?>">
                                     <?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP'); ?>
                                 </span>
                                 <label><?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?></label>
