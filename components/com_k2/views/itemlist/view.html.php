@@ -571,6 +571,9 @@ class K2ViewItemlist extends K2View
                         $feedItem->authorEmail = $app->getCfg('mailfrom');
                     }
                 }
+                if ($params->get('feedItemImage')) {
+                    $feedItem->setEnclosure($item->enclosure);
+                }
 
                 // Add feed item
                 $document->addItem($feedItem);
