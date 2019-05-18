@@ -142,7 +142,7 @@ defined('_JEXEC') or die;
   </div>
   <div class="icon-wrapper">
     <div class="icon">
-    	<a data-k2-modal="iframe" target="_blank" href="https://getk2.org/community/">
+    	<a data-k2-modal="iframe" target="_blank" href="https://www.joomlaworks.net/forum/k2">
 			<i class="dashicon help"></i>
 			<span><?php echo JText::_('K2_COMMUNITY'); ?></span>
     	</a>

@@ -247,7 +247,7 @@
         </param>
         <param menu="hide" name="fullTextCleanupExcludeTags" type="text" default="" label="K2_ENTER_WHICH_HTML_TAGS_NOT_TO_STRIP_IN_FULLTEXT" description="K2_SEPARATE_VALID_HTML_TAGS_BY_COMMA_EG_IMGBRPABSPAN_ETC" />
         <param menu="hide" name="fullTextCleanupTagAttr" type="text" default="" label="K2_ENTER_WHICH_HTML_TAG_ATTRIBUTES_TO_STRIP_IN_FULLTEXT" description="K2_SEPARATE_VALID_HTML_TAG_ATTRIBUTES_BY_COMMA_EG_WIDTHHEIGHTBORDER_ETC" />
-        <param menu="hide" name="xssFiltering" type="radio" default="0" label="K2_XSS_FILTERING_ON_SAVE" description="K2_ENABLE_THIS_FILTER_TO_PREVENT_A_MALICIOUS_USER_TO_INJECT_CLIENTSIDE_SCRIPT_INTO_YOUR_SITE_DISABLED_BY_DEFAULT">
+        <param menu="hide" name="xssFiltering" type="radio" default="0" label="K2_XSS_FILTERING_ON_SAVE" description="K2_ENABLE_THIS_FILTER_TO_PREVENT_A_MALICIOUS_USER_TO_INJECT_JAVASCRIPT_INTO_YOUR_SITE_DISABLED_BY_DEFAULT">
             <option value="0">K2_DISABLED</option>
             <option value="1">K2_ENABLED</option>
         </param>
@@ -795,7 +795,7 @@
         </field>
         <field menu="hide" name="fullTextCleanupExcludeTags" type="text" default="" label="K2_ENTER_WHICH_HTML_TAGS_NOT_TO_STRIP_IN_FULLTEXT" description="K2_SEPARATE_VALID_HTML_TAGS_BY_COMMA_EG_IMGBRPABSPAN_ETC" />
         <field menu="hide" name="fullTextCleanupTagAttr" type="text" default="" label="K2_ENTER_WHICH_HTML_TAG_ATTRIBUTES_TO_STRIP_IN_FULLTEXT" description="K2_SEPARATE_VALID_HTML_TAG_ATTRIBUTES_BY_COMMA_EG_WIDTHHEIGHTBORDER_ETC" />
-        <field menu="hide" name="xssFiltering" type="radio" default="0" label="K2_XSS_FILTERING_ON_SAVE" description="K2_ENABLE_THIS_FILTER_TO_PREVENT_A_MALICIOUS_USER_TO_INJECT_CLIENTSIDE_SCRIPT_INTO_YOUR_SITE_DISABLED_BY_DEFAULT">
+        <field menu="hide" name="xssFiltering" type="radio" default="0" label="K2_XSS_FILTERING_ON_SAVE" description="K2_ENABLE_THIS_FILTER_TO_PREVENT_A_MALICIOUS_USER_TO_INJECT_JAVASCRIPT_INTO_YOUR_SITE_DISABLED_BY_DEFAULT">
             <option value="0">K2_DISABLED</option>
             <option value="1">K2_ENABLED</option>
         </field>

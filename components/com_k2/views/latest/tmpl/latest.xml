@@ -17,8 +17,8 @@
             </param>
             <param name="latestItemsCols" type="text" default="2" size="4" label="K2_NUMBER_OF_COLUMNS"/>
             <param name="latestItemsLimit" type="text" default="3" size="4" label="K2_MAXIMUM_NUMBER_OF_ITEMS_PER_USER_OR_CATEGORY"/>
-            <param name="latestItemsDisplayEffect" type="list" default="all" label="K2_ITEM_VIEW_OPTIONS_SET_BELOW_EFFECT" description="">
-                <option value="first">K2_EFFECT_THE_FIRST_ITEM_ONLY_SUBSEQUENT_ITEMS_DISPLAY_TITLE_ONLY</option>
+            <param name="latestItemsDisplayEffect" type="list" default="all" label="K2_ITEM_VIEW_OPTIONS_SET_BELOW_AFFECT" description="">
+                <option value="first">K2_THE_FIRST_ITEM_ONLY_SUBSEQUENT_ITEMS_DISPLAY_TITLE_ONLY</option>
                 <option value="all">K2_ALL_FETCHED_ITEMS</option>
             </param>
             <param name="" type="header" default="K2_USER_SETTINGS" label="" description=""/>
@@ -141,8 +141,8 @@
                 </field>
                 <field name="latestItemsCols" type="text" default="2" size="4" label="K2_NUMBER_OF_COLUMNS"/>
                 <field name="latestItemsLimit" type="text" default="3" size="4" label="K2_MAXIMUM_NUMBER_OF_ITEMS_PER_USER_OR_CATEGORY"/>
-                <field name="latestItemsDisplayEffect" type="list" default="all" label="K2_ITEM_VIEW_OPTIONS_SET_BELOW_EFFECT" description="">
-                    <option value="first">K2_EFFECT_THE_FIRST_ITEM_ONLY_SUBSEQUENT_ITEMS_DISPLAY_TITLE_ONLY</option>
+                <field name="latestItemsDisplayEffect" type="list" default="all" label="K2_ITEM_VIEW_OPTIONS_SET_BELOW_AFFECT" description="">
+                    <option value="first">K2_THE_FIRST_ITEM_ONLY_SUBSEQUENT_ITEMS_DISPLAY_TITLE_ONLY</option>
                     <option value="all">K2_ALL_FETCHED_ITEMS</option>
                 </field>
                 <field name="" type="header" default="K2_USER_SETTINGS" label="" description=""/>
