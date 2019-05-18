@@ -293,13 +293,13 @@ defined('_JEXEC') or die;
     </div>
 
     <?php if(
-        $this->item->params->get('itemTwitterButton',1) ||
-        $this->item->params->get('itemFacebookButton',1) ||
-        $this->item->params->get('itemLinkedInButton',1)
+        $this->item->params->get('itemTwitterButton') ||
+        $this->item->params->get('itemFacebookButton') ||
+        $this->item->params->get('itemLinkedInButton')
     ): ?>
     <!-- Social sharing -->
     <div class="itemSocialSharing">
-        <?php if($this->item->params->get('itemTwitterButton',1)): ?>
+        <?php if($this->item->params->get('itemTwitterButton')): ?>
         <!-- Twitter Button -->
         <div class="itemTwitterButton">
             <a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo $this->item->sharinglink; ?>" data-via="<?php if($this->item->params->get('twitterUsername')) echo $this->item->params->get('twitterUsername'); ?>" data-related="<?php if($this->item->params->get('twitterUsername')) echo $this->item->params->get('twitterUsername'); ?>" data-lang="<?php echo $this->item->langTagForTW; ?>" data-dnt="true" data-show-count="true">Tweet</a>
@@ -307,7 +307,7 @@ defined('_JEXEC') or die;
         </div>
         <?php endif; ?>
 
-        <?php if($this->item->params->get('itemFacebookButton',1)): ?>
+        <?php if($this->item->params->get('itemFacebookButton')): ?>
         <!-- Facebook Button -->
         <div class="itemFacebookButton">
             <div id="fb-root"></div>
@@ -316,7 +316,7 @@ defined('_JEXEC') or die;
         </div>
         <?php endif; ?>
 
-        <?php if($this->item->params->get('itemLinkedInButton',1)): ?>
+        <?php if($this->item->params->get('itemLinkedInButton')): ?>
         <!-- LinkedIn Button -->
         <div class="itemLinkedInButton">
             <script src="https://platform.linkedin.com/in.js" type="text/javascript">
