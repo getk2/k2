@@ -41,7 +41,7 @@ class K2ControllerCategory extends K2Controller
 
     public function cancel()
     {
-        $application = JFactory::getApplication();
-        $application->redirect('index.php?option=com_k2&view=categories');
+        $app = JFactory::getApplication();
+        $app->redirect('index.php?option=com_k2&view=categories');
     }
 }

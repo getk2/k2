@@ -31,15 +31,15 @@ class K2ModelUser extends K2Model
 
     public function save()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         jimport('joomla.filesystem.file');
         require_once(JPATH_SITE.'/media/k2/assets/vendors/verot/class.upload.php/src/class.upload.php');
         $row = JTable::getInstance('K2User', 'Table');
         $params = JComponentHelper::getParams('com_k2');
 
         if (!$row->bind(JRequest::get('post'))) {
-            $application->enqueueMessage($row->getError(), 'error');
-            $application->redirect('index.php?option=com_k2&view=users');
+            $app->enqueueMessage($row->getError(), 'error');
+            $app->redirect('index.php?option=com_k2&view=users');
         }
 
         $row->description = JRequest::getVar('description', '', 'post', 'string', 2);
@@ -51,8 +51,8 @@ class K2ModelUser extends K2Model
         $row->userName = $jUser->name;
 
         if (!$row->store()) {
-            $application->enqueueMessage($row->getError(), 'error');
-            $application->redirect('index.php?option=com_k2&view=users');
+            $app->enqueueMessage($row->getError(), 'error');
+            $app->redirect('index.php?option=com_k2&view=users');
         }
 
         // Image
@@ -76,8 +76,8 @@ class K2ModelUser extends K2Model
                 $handle->Process($savepath);
                 $handle->Clean();
             } else {
-                $application->enqueueMessage($handle->error, 'error');
-                $application->redirect('index.php?option=com_k2&view=users');
+                $app->enqueueMessage($handle->error, 'error');
+                $app->redirect('index.php?option=com_k2&view=users');
             }
             $row->image = $handle->file_dst_name;
         }
@@ -92,13 +92,13 @@ class K2ModelUser extends K2Model
         }
 
         if (!$row->check()) {
-            $application->enqueueMessage($row->getError(), 'error');
-            $application->redirect('index.php?option=com_k2&view=user&cid='.$row->id);
+            $app->enqueueMessage($row->getError(), 'error');
+            $app->redirect('index.php?option=com_k2&view=user&cid='.$row->id);
         }
 
         if (!$row->store()) {
-            $application->enqueueMessage($row->getError(), 'error');
-            $application->redirect('index.php?option=com_k2&view=users');
+            $app->enqueueMessage($row->getError(), 'error');
+            $app->redirect('index.php?option=com_k2&view=users');
         }
 
         $cache = JFactory::getCache('com_k2');
@@ -115,8 +115,8 @@ class K2ModelUser extends K2Model
                 $link = 'index.php?option=com_k2&view=users';
                 break;
         }
-        $application->enqueueMessage($msg);
-        $application->redirect($link);
+        $app->enqueueMessage($msg);
+        $app->redirect($link);
     }
 
     public function getUserGroups()
@@ -130,7 +130,7 @@ class K2ModelUser extends K2Model
 
     public function reportSpammer()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $params = JComponentHelper::getParams('com_k2');
         $id = (int)$this->getState('id');
         if (!$id) {
@@ -138,7 +138,7 @@ class K2ModelUser extends K2Model
         }
         $user = JFactory::getUser();
         if ($user->id == $id) {
-            $application->enqueueMessage(JText::_('K2_YOU_CANNOT_REPORT_YOURSELF'), 'error');
+            $app->enqueueMessage(JText::_('K2_YOU_CANNOT_REPORT_YOURSELF'), 'error');
             return false;
         }
         $db = JFactory::getDbo();
@@ -146,12 +146,12 @@ class K2ModelUser extends K2Model
         // Unpublish user comments
         $db->setQuery("UPDATE #__k2_comments SET published = 0 WHERE userID = ".$id);
         $db->query();
-        $application->enqueueMessage(JText::_('K2_USER_COMMENTS_UNPUBLISHED'));
+        $app->enqueueMessage(JText::_('K2_USER_COMMENTS_UNPUBLISHED'));
 
         // Unpublish user items
         $db->setQuery("UPDATE #__k2_items SET published = 0 WHERE created_by = ".$id);
         $db->query();
-        $application->enqueueMessage(JText::_('K2_USER_ITEMS_UNPUBLISHED'));
+        $app->enqueueMessage(JText::_('K2_USER_ITEMS_UNPUBLISHED'));
 
         // Report the user to stopforumspam.com
         // We need the IP for this, so the user has to be a registered K2 user
@@ -169,13 +169,13 @@ class K2ModelUser extends K2Model
             fputs($fp, "Connection: close\n\n");
             fputs($fp, $data);
             fclose($fp);
-            $application->enqueueMessage(JText::_('K2_USER_DATA_SUBMITTED_TO_STOPFORUMSPAM'));
+            $app->enqueueMessage(JText::_('K2_USER_DATA_SUBMITTED_TO_STOPFORUMSPAM'));
         }
 
         // Finally block the user
         $db->setQuery("UPDATE #__users SET block = 1 WHERE id=".$id);
         $db->query();
-        $application->enqueueMessage(JText::_('K2_USER_BLOCKED'));
+        $app->enqueueMessage(JText::_('K2_USER_BLOCKED'));
         return true;
     }
 }

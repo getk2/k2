@@ -18,12 +18,12 @@ class K2ModelItem extends K2Model
 {
     public function getData()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $id = JRequest::getInt('id');
         $db = JFactory::getDbo();
         $query = "SELECT * FROM #__k2_items WHERE id={$id}";
         if (K2_JVERSION != '15') {
-            $languageFilter = $application->getLanguageFilter();
+            $languageFilter = $app->getLanguageFilter();
             if ($languageFilter) {
                 $languageTag = JFactory::getLanguage()->getTag();
                 $query .= " AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').")";
@@ -39,18 +39,18 @@ class K2ModelItem extends K2Model
         jimport('joomla.filesystem.file');
         JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
         $limitstart = JRequest::getInt('limitstart');
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
 
         // Initialize params
         if ($view != 'item') {
             if (K2_JVERSION == '30') {
-                $params = $application->getParams('com_k2');
+                $params = $app->getParams('com_k2');
             } else {
                 $component = JComponentHelper::getComponent('com_k2');
                 $params = class_exists('JParameter') ? new JParameter($component->params) : new JRegistry($component->params);
                 $itemid = JRequest::getInt('Itemid');
                 if ($itemid) {
-                    $menu = $application->getMenu();
+                    $menu = $app->getMenu();
                     $menuparams = $menu->getParams($itemid);
                     $params->merge($menuparams);
                 }
@@ -214,7 +214,7 @@ class K2ModelItem extends K2Model
         $item->image_caption = htmlspecialchars($item->image_caption, ENT_QUOTES);
 
         // Author
-        $metaAuthor = K2_JVERSION != '15' && $application->getCfg('MetaAuthor');
+        $metaAuthor = K2_JVERSION != '15' && $app->getCfg('MetaAuthor');
         if ($metaAuthor || ($view == 'item' && ($item->params->get('itemAuthorBlock') || $item->params->get('itemAuthor'))) ||  ($view == 'itemlist' && ($task == '' || $task == 'category') && ($item->params->get('catItemAuthorBlock') || $item->params->get('catItemAuthor'))) || ($view == 'itemlist' && $task == 'user') || ($view == 'relatedByTag')) {
             if (!empty($item->created_by_alias)) {
                 $item->author = new stdClass;
@@ -835,7 +835,7 @@ class K2ModelItem extends K2Model
 
     public function vote()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
 
         // Get item
@@ -891,7 +891,7 @@ class K2ModelItem extends K2Model
                 }
             }
         }
-        $application->close();
+        $app->close();
     }
 
     public function getRating($id)
@@ -911,7 +911,7 @@ class K2ModelItem extends K2Model
 
     public function getVotesNum($itemID = null)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $user = JFactory::getUser();
         $xhr = false;
         if (is_null($itemID)) {
@@ -931,7 +931,7 @@ class K2ModelItem extends K2Model
         }
         if ($xhr) {
             echo $result;
-            $application->close();
+            $app->close();
         } else {
             return $result;
         }
@@ -939,7 +939,7 @@ class K2ModelItem extends K2Model
 
     public function getVotesPercentage($itemID = null)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $user = JFactory::getUser();
         $db = JFactory::getDbo();
         $xhr = false;
@@ -954,7 +954,7 @@ class K2ModelItem extends K2Model
         }
         if ($xhr) {
             echo $result;
-            $application->close();
+            $app->close();
         } else {
             return $result;
         }
@@ -962,7 +962,7 @@ class K2ModelItem extends K2Model
 
     public function comment()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         jimport('joomla.mail.helper');
         JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
         $params = K2HelperUtilities::getParams('com_k2');
@@ -1010,7 +1010,7 @@ class K2ModelItem extends K2Model
                 $response->message = JText::_('K2_ANTISPAM_SETTINGS_ERROR');
                 $response->cssClass = 'k2FormLogError';
                 echo json_encode($response);
-                $application->close();
+                $app->close();
             }
 
             $row = JTable::getInstance('K2Comment', 'Table');
@@ -1019,7 +1019,7 @@ class K2ModelItem extends K2Model
                 $response->message = $row->getError();
                 $response->cssClass = 'k2FormLogError';
                 echo json_encode($response);
-                $application->close();
+                $app->close();
             }
 
             $row->commentText = JRequest::getString('commentText', '', 'default');
@@ -1058,14 +1058,14 @@ class K2ModelItem extends K2Model
                 $response->message = JText::_('K2_YOU_NEED_TO_FILL_IN_ALL_REQUIRED_FIELDS');
                 $response->cssClass = 'k2FormLogError';
                 echo json_encode($response);
-                $application->close();
+                $app->close();
             }
 
             if (!JMailHelper::isEmailAddress($commentEmail)) {
                 $response->message = JText::_('K2_INVALID_EMAIL_ADDRESS');
                 $response->cssClass = 'k2FormLogError';
                 echo json_encode($response);
-                $application->close();
+                $app->close();
             }
 
             if ($user->guest) {
@@ -1077,7 +1077,7 @@ class K2ModelItem extends K2Model
                     $response->message = JText::_('K2_THE_NAME_OR_EMAIL_ADDRESS_YOU_TYPED_IS_ALREADY_IN_USE');
                     $response->cssClass = 'k2FormLogError';
                     echo json_encode($response);
-                    $application->close();
+                    $app->close();
                 }
             }
 
@@ -1090,7 +1090,7 @@ class K2ModelItem extends K2Model
                             $response->message = JText::_('K2_COULD_NOT_VERIFY_THAT_YOU_ARE_NOT_A_ROBOT');
                             $response->cssClass = 'k2FormLogError';
                             echo json_encode($response);
-                            $application->close();
+                            $app->close();
                         }
                     } else {
                         if (!function_exists('_recaptcha_qsencode')) {
@@ -1104,7 +1104,7 @@ class K2ModelItem extends K2Model
                             $response->message = JText::_('K2_THE_WORDS_YOU_TYPED_DID_NOT_MATCH_THE_ONES_DISPLAYED_PLEASE_TRY_AGAIN');
                             $response->cssClass = 'k2FormLogError';
                             echo json_encode($response);
-                            $application->close();
+                            $app->close();
                         }
                     }
                 }
@@ -1127,13 +1127,13 @@ class K2ModelItem extends K2Model
                                 $response->message = JText::_('K2_SPAM_ATTEMPT_HAS_BEEN_DETECTED_THE_COMMENT_HAS_BEEN_REJECTED');
                                 $response->cssClass = 'k2FormLogError';
                                 echo json_encode($response);
-                                $application->close();
+                                $app->close();
                             }
                         } catch (Exception $e) {
                             $response->message = $e->getMessage();
                             $response->cssClass = 'k2FormLogSuccess';
                             echo json_encode($response);
-                            $application->close();
+                            $app->close();
                         }
                     }
                 }
@@ -1167,7 +1167,7 @@ class K2ModelItem extends K2Model
                 $response->message = $row->getError();
                 $response->cssClass = 'k2FormLogError';
                 echo json_encode($response);
-                $application->close();
+                $app->close();
             }
 
             if ($row->published) {
@@ -1188,7 +1188,7 @@ class K2ModelItem extends K2Model
                 echo json_encode($response);
             }
         }
-        $application->close();
+        $app->close();
     }
 
     public function getItemTags($itemID)
@@ -1480,7 +1480,7 @@ class K2ModelItem extends K2Model
 
     public function checkin()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $id = JRequest::getInt('cid');
         if ($id) {
             $row = JTable::getInstance('K2Item', 'Table');
@@ -1493,12 +1493,12 @@ class K2ModelItem extends K2Model
                 JFolder::delete(JPATH_SITE.'/media/k2/galleries/'.$sigProFolder);
             }
         }
-        $application->close();
+        $app->close();
     }
 
     public function getAdjacentItem($id, $catid, $ordering, $direction)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $user = JFactory::getUser();
 
         $id = (int) $id;
@@ -1518,7 +1518,7 @@ class K2ModelItem extends K2Model
 
         $languageCondition = '';
         if (K2_JVERSION != '15') {
-            if ($application->getLanguageFilter()) {
+            if ($app->getLanguageFilter()) {
                 $languageCondition = "AND language IN (".$db->quote(JFactory::getLanguage()->getTag()).", ".$db->quote('*').")";
             }
         }
@@ -1556,7 +1556,7 @@ class K2ModelItem extends K2Model
 
     public function getPreviousItem($id, $catid, $ordering)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $user = JFactory::getUser();
 
         $id = (int) $id;
@@ -1576,7 +1576,7 @@ class K2ModelItem extends K2Model
 
         $languageCondition = '';
         if (K2_JVERSION != '15') {
-            if ($application->getLanguageFilter()) {
+            if ($app->getLanguageFilter()) {
                 $languageCondition = "AND language IN (".$db->quote(JFactory::getLanguage()->getTag()).", ".$db->quote('*').")";
             }
         }
@@ -1614,7 +1614,7 @@ class K2ModelItem extends K2Model
 
     public function getNextItem($id, $catid, $ordering)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $user = JFactory::getUser();
 
         $id = (int) $id;
@@ -1634,7 +1634,7 @@ class K2ModelItem extends K2Model
 
         $languageCondition = '';
         if (K2_JVERSION != '15') {
-            if ($application->getLanguageFilter()) {
+            if ($app->getLanguageFilter()) {
                 $languageCondition = "AND language IN (".$db->quote(JFactory::getLanguage()->getTag()).", ".$db->quote('*').")";
             }
         }

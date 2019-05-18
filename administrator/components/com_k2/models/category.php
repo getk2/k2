@@ -26,7 +26,7 @@ class K2ModelCategory extends K2Model
 
     public function save()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         jimport('joomla.filesystem.file');
         require_once(JPATH_SITE.'/media/k2/assets/vendors/verot/class.upload.php/src/class.upload.php');
         $row = JTable::getInstance('K2Category', 'Table');
@@ -39,8 +39,8 @@ class K2ModelCategory extends K2Model
         $dispatcher = JDispatcher::getInstance();
 
         if (!$row->bind(JRequest::get('post'))) {
-            $application->enqueueMessage($row->getError(), 'error');
-            $application->redirect('index.php?option=com_k2&view=categories');
+            $app->enqueueMessage($row->getError(), 'error');
+            $app->redirect('index.php?option=com_k2&view=categories');
         }
 
         $isNew = ($row->id) ? false : true;
@@ -68,13 +68,13 @@ class K2ModelCategory extends K2Model
         }
 
         if (!$row->check()) {
-            $application->enqueueMessage($row->getError(), 'error');
-            $application->redirect('index.php?option=com_k2&view=category&cid='.$row->id);
+            $app->enqueueMessage($row->getError(), 'error');
+            $app->redirect('index.php?option=com_k2&view=category&cid='.$row->id);
         }
 
         if (!$row->store()) {
-            $application->enqueueMessage($row->getError(), 'error');
-            $application->redirect('index.php?option=com_k2&view=categories');
+            $app->enqueueMessage($row->getError(), 'error');
+            $app->redirect('index.php?option=com_k2&view=categories');
         }
 
         if (!$params->get('disableCompactOrdering')) {
@@ -111,8 +111,8 @@ class K2ModelCategory extends K2Model
                     $handle->Clean();
                 }
             } else {
-                $application->enqueueMessage($handle->error, 'error');
-                $application->redirect('index.php?option=com_k2&view=categories');
+                $app->enqueueMessage($handle->error, 'error');
+                $app->redirect('index.php?option=com_k2&view=categories');
             }
             $row->image = $handle->file_dst_name;
         }
@@ -127,8 +127,8 @@ class K2ModelCategory extends K2Model
         }
 
         if (!$row->store()) {
-            $application->enqueueMessage($row->getError(), 'error');
-            $application->redirect('index.php?option=com_k2&view=categories');
+            $app->enqueueMessage($row->getError(), 'error');
+            $app->redirect('index.php?option=com_k2&view=categories');
         }
 
         $cache = JFactory::getCache('com_k2');
@@ -160,8 +160,8 @@ class K2ModelCategory extends K2Model
                 $link = 'index.php?option=com_k2&view=categories';
                 break;
         }
-        $application->enqueueMessage($msg);
-        $application->redirect($link);
+        $app->enqueueMessage($msg);
+        $app->redirect($link);
     }
 
     public function countCategoryItems($catid, $trash = 0)

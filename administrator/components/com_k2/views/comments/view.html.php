@@ -16,7 +16,7 @@ class K2ViewComments extends K2View
 {
     public function display($tpl = null)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $document = JFactory::getDocument();
         $user = JFactory::getUser();
         $option = JRequest::getCmd('option');
@@ -25,17 +25,17 @@ class K2ViewComments extends K2View
         $params = JComponentHelper::getParams('com_k2');
         $this->assignRef('params', $params);
 
-        $limit = $application->getUserStateFromRequest('global.list.limit', 'limit', $application->getCfg('list_limit'), 'int');
-        $limitstart = $application->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
-        $filter_order = $application->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'c.id', 'cmd');
-        $filter_order_Dir = $application->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', 'DESC', 'word');
-        $filter_state = $application->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
-        $filter_category = $application->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
-        $filter_author = $application->getUserStateFromRequest($option.$view.'filter_author', 'filter_author', 0, 'int');
-        $search = $application->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
+        $limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'), 'int');
+        $limitstart = $app->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
+        $filter_order = $app->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'c.id', 'cmd');
+        $filter_order_Dir = $app->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', 'DESC', 'word');
+        $filter_state = $app->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
+        $filter_category = $app->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
+        $filter_author = $app->getUserStateFromRequest($option.$view.'filter_author', 'filter_author', 0, 'int');
+        $search = $app->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
         $search = trim(preg_replace('/[^\p{L}\p{N}\s\"\.\@\-_]/u', '', $search));
-        if ($application->isSite()) {
+        if ($app->isSite()) {
             $filter_author = $user->id;
             JRequest::setVar('filter_author', $user->id);
         }
@@ -93,7 +93,7 @@ class K2ViewComments extends K2View
             JRequest::setVar('limitstart', $limitstart);
         }
 
-        $reportLink = $application->isAdmin() ? 'index.php?option=com_k2&view=user&task=report&id=' : 'index.php?option=com_k2&view=comments&task=reportSpammer&id=';
+        $reportLink = $app->isAdmin() ? 'index.php?option=com_k2&view=user&task=report&id=' : 'index.php?option=com_k2&view=comments&task=reportSpammer&id=';
         foreach ($comments as $key => $comment) {
             $comment->reportUserLink = false;
             $comment->commenterLastVisitIP = null;
@@ -106,7 +106,7 @@ class K2ViewComments extends K2View
                 if ($commenter->name) {
                     $comment->userName = $commenter->name;
                 }
-                if ($application->isSite()) {
+                if ($app->isSite()) {
                     if (K2_JVERSION != '15') {
                         if ($user->authorise('core.admin', 'com_k2')) {
                             $comment->reportUserLink = JRoute::_($reportLink.$comment->userID);
@@ -121,7 +121,7 @@ class K2ViewComments extends K2View
                 }
             }
 
-            if ($application->isSite()) {
+            if ($app->isSite()) {
                 $comment->status = K2HelperHTML::stateToggler($comment, $key);
             } else {
                 $comment->status = K2_JVERSION == '15' ? JHTML::_('grid.published', $comment, $key) : JHtml::_('jgrid.published', $comment->published, $key);
@@ -172,7 +172,6 @@ class K2ViewComments extends K2View
         }
         $lists['authors'] = JHTML::_('select.genericlist', $options, 'filter_author', '', 'value', 'text', $filter_author);
         $this->assignRef('lists', $lists);
-        $this->assignRef('mainframe', $application);
 
         if (K2_JVERSION != '15') {
             $dateFormat = JText::_('K2_J16_DATE_FORMAT');
@@ -181,7 +180,7 @@ class K2ViewComments extends K2View
         }
         $this->assignRef('dateFormat', $dateFormat);
 
-        if ($application->isAdmin()) {
+        if ($app->isAdmin()) {
             // Toolbar
             $toolbar = JToolBar::getInstance('toolbar');
             JToolBarHelper::title(JText::_('K2_COMMENTS'), 'k2.png');
@@ -203,7 +202,7 @@ class K2ViewComments extends K2View
             $this->assignRef('userEditLink', $userEditLink);
         }
 
-        if ($application->isSite()) {
+        if ($app->isSite()) {
             // Enforce the "system" template in the frontend
             JRequest::setVar('template', 'system');
 

@@ -155,8 +155,8 @@ class K2HelperRoute
     public static function _findItem($needles)
     {
         $component = JComponentHelper::getComponent('com_k2');
-        $application = JFactory::getApplication();
-        $menus = $application->getMenu('site', array());
+        $app = JFactory::getApplication();
+        $menus = $app->getMenu('site', array());
         if (K2_JVERSION == '15') {
             $items = $menus->getItems('componentid', $component->id);
         } elseif (K2_JVERSION == '25') {

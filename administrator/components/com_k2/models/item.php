@@ -26,7 +26,7 @@ class K2ModelItem extends K2Model
 
     public function save($front = false)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         jimport('joomla.filesystem.file');
         jimport('joomla.filesystem.folder');
         jimport('joomla.filesystem.archive');
@@ -44,15 +44,15 @@ class K2ModelItem extends K2Model
         $dispatcher = JDispatcher::getInstance();
 
         if (!$row->bind(JRequest::get('post'))) {
-            $application->enqueueMessage($row->getError(), 'error');
-            $application->redirect('index.php?option=com_k2&view=items');
+            $app->enqueueMessage($row->getError(), 'error');
+            $app->redirect('index.php?option=com_k2&view=items');
         }
 
         if ($front && $row->id == null) {
             JLoader::register('K2HelperPermissions', JPATH_SITE.'/components/com_k2/helpers/permissions.php');
             if (!K2HelperPermissions::canAddItem($row->catid)) {
-                $application->enqueueMessage(JText::_('K2_YOU_ARE_NOT_ALLOWED_TO_POST_TO_THIS_CATEGORY_SAVE_FAILED'), 'error');
-                $application->redirect('index.php?option=com_k2&view=item&task=add&tmpl=component');
+                $app->enqueueMessage(JText::_('K2_YOU_ARE_NOT_ALLOWED_TO_POST_TO_THIS_CATEGORY_SAVE_FAILED'), 'error');
+                $app->redirect('index.php?option=com_k2&view=item&task=add&tmpl=component');
             }
         }
 
@@ -153,8 +153,8 @@ class K2ModelItem extends K2Model
         }
 
         if (!$row->check()) {
-            $application->enqueueMessage($row->getError(), 'error');
-            $application->redirect('index.php?option=com_k2&view=item&cid='.$row->id);
+            $app->enqueueMessage($row->getError(), 'error');
+            $app->redirect('index.php?option=com_k2&view=item&cid='.$row->id);
         }
 
         // Trigger K2 plugins
@@ -191,7 +191,7 @@ class K2ModelItem extends K2Model
         }
 
         // JoomFish front-end editing compatibility
-        if ($application->isSite() && JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/joomfish.php')) {
+        if ($app->isSite() && JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/joomfish.php')) {
             if (version_compare(phpversion(), '5.0') < 0) {
                 $tmpRow = $row;
             } else {
@@ -200,12 +200,12 @@ class K2ModelItem extends K2Model
         }
 
         if (!$row->store()) {
-            $application->enqueueMessage($row->getError(), 'error');
-            $application->redirect('index.php?option=com_k2&view=items');
+            $app->enqueueMessage($row->getError(), 'error');
+            $app->redirect('index.php?option=com_k2&view=items');
         }
 
         // JoomFish front-end editing compatibility
-        if ($application->isSite() && JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/joomfish.php')) {
+        if ($app->isSite() && JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/joomfish.php')) {
             $itemID = $row->id;
             $row = $tmpRow;
             $row->id = $itemID;
@@ -359,7 +359,7 @@ class K2ModelItem extends K2Model
                     $handle->Clean();
                 }
             } else {
-                $application->enqueueMessage(JText::_('K2_IMAGE_WAS_NOT_UPLOADED'), 'notice');
+                $app->enqueueMessage(JText::_('K2_IMAGE_WAS_NOT_UPLOADED'), 'notice');
             }
         }
 
@@ -451,8 +451,8 @@ class K2ModelItem extends K2Model
                         $attachmentToSave->titleAttribute = (empty($attachment['title_attibute'])) ? $filename : $attachment['title_attibute'];
                         $attachmentToSave->store();
                     } else {
-                        $application->enqueueMessage($handle->error, 'error');
-                        $application->redirect('index.php?option=com_k2&view=items');
+                        $app->enqueueMessage($handle->error, 'error');
+                        $app->redirect('index.php?option=com_k2&view=items');
                     }
                 }
             }
@@ -495,8 +495,8 @@ class K2ModelItem extends K2Model
                 }
 
                 if (!JArchive::extract($savepath.'/'.$handle->file_dst_name, $savepath.'/'.$row->id)) {
-                    $application->enqueueMessage(JText::_('K2_GALLERY_UPLOAD_ERROR_CANNOT_EXTRACT_ARCHIVE'), 'error');
-                    $application->redirect('index.php?option=com_k2&view=items');
+                    $app->enqueueMessage(JText::_('K2_GALLERY_UPLOAD_ERROR_CANNOT_EXTRACT_ARCHIVE'), 'error');
+                    $app->redirect('index.php?option=com_k2&view=items');
                 } else {
                     $imageDir = $savepath.'/'.$row->id;
                     $galleryDir = opendir($imageDir);
@@ -513,8 +513,8 @@ class K2ModelItem extends K2Model
                 JFile::delete($savepath.'/'.$handle->file_dst_name);
                 $handle->Clean();
             } else {
-                $application->enqueueMessage($handle->error, 'error');
-                $application->redirect('index.php?option=com_k2&view=items');
+                $app->enqueueMessage($handle->error, 'error');
+                $app->redirect('index.php?option=com_k2&view=items');
             }
         }
 
@@ -558,8 +558,8 @@ class K2ModelItem extends K2Model
                 $filetype = JFile::getExt($files['video']['name']);
 
                 if (!in_array($filetype, $validExtensions)) {
-                    $application->enqueueMessage(JText::_('K2_INVALID_VIDEO_FILE'), 'error');
-                    $application->redirect('index.php?option=com_k2&view=items');
+                    $app->enqueueMessage(JText::_('K2_INVALID_VIDEO_FILE'), 'error');
+                    $app->redirect('index.php?option=com_k2&view=items');
                 }
 
                 if (in_array($filetype, $videoExtensions)) {
@@ -600,7 +600,7 @@ class K2ModelItem extends K2Model
         }
 
         // Extra fields
-        if ($params->get('showExtraFieldsTab') || $application->isAdmin()) {
+        if ($params->get('showExtraFieldsTab') || $app->isAdmin()) {
             $objects = array();
             $variables = JRequest::get('post', 2);
             foreach ($variables as $key => $value) {
@@ -723,7 +723,7 @@ class K2ModelItem extends K2Model
             }
 
             if (!K2HelperPermissions::canEditPublished($row->catid) && !K2HelperPermissions::canPublishItem($row->catid) && $newPublishedState) {
-                $application->enqueueMessage(JText::_('K2_YOU_DONT_HAVE_THE_PERMISSION_TO_PUBLISH_ITEMS'), 'notice');
+                $app->enqueueMessage(JText::_('K2_YOU_DONT_HAVE_THE_PERMISSION_TO_PUBLISH_ITEMS'), 'notice');
             }
         }
 
@@ -736,7 +736,7 @@ class K2ModelItem extends K2Model
             $query .= " gallery = ".$db->Quote($row->gallery).", ";
         }
 
-        if ($params->get('showExtraFieldsTab') || $application->isAdmin()) {
+        if ($params->get('showExtraFieldsTab') || $app->isAdmin()) {
             $query .= " extra_fields = ".$db->Quote($row->extra_fields).", extra_fields_search = ".$db->Quote($row->extra_fields_search).", ";
         }
         $query .= " published = ".$db->Quote($row->published)." WHERE id = ".$row->id;
@@ -744,8 +744,8 @@ class K2ModelItem extends K2Model
         $db->setQuery($query);
 
         if (!$db->query()) {
-            $application->enqueueMessage($db->getErrorMsg(), 'error');
-            $application->redirect('index.php?option=com_k2&view=items');
+            $app->enqueueMessage($db->getErrorMsg(), 'error');
+            $app->redirect('index.php?option=com_k2&view=items');
         }
 
         $row->checkin();
@@ -783,13 +783,13 @@ class K2ModelItem extends K2Model
                 }
                 break;
         }
-        $application->enqueueMessage($msg);
-        $application->redirect($link);
+        $app->enqueueMessage($msg);
+        $app->redirect($link);
     }
 
     public function cancel()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $cid = JRequest::getInt('id');
         if ($cid) {
             $row = JTable::getInstance('K2Item', 'Table');
@@ -802,7 +802,7 @@ class K2ModelItem extends K2Model
                 JFolder::delete(JPATH_SITE.'/media/k2/galleries/'.$sigProFolder);
             }
         }
-        $application->redirect('index.php?option=com_k2&view=items');
+        $app->redirect('index.php?option=com_k2&view=items');
     }
 
     public function getVideoProviders()
@@ -838,7 +838,7 @@ class K2ModelItem extends K2Model
 
     public function download()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $user = JFactory::getUser();
         jimport('joomla.filesystem.file');
         $params = JComponentHelper::getParams('com_k2');
@@ -849,7 +849,7 @@ class K2ModelItem extends K2Model
         $dispatcher = JDispatcher::getInstance();
 
         $attachment = JTable::getInstance('K2Attachment', 'Table');
-        if ($application->isSite()) {
+        if ($app->isSite()) {
             $token = JRequest::getVar('id');
             $check = JString::substr($token, JString::strpos($token, '_') + 1);
             $hash = version_compare(JVERSION, '3.0', 'ge') ? JApplication::getHash($id) : JUtility::getHash($id);
@@ -860,7 +860,7 @@ class K2ModelItem extends K2Model
         $attachment->load($id);
 
         // Frontend editing: Ensure the user has access to the item
-        if ($application->isSite()) {
+        if ($app->isSite()) {
             $item = JTable::getInstance('K2Item', 'Table');
             $item->load($attachment->itemID);
             $category = JTable::getInstance('K2Category', 'Table');
@@ -896,7 +896,7 @@ class K2ModelItem extends K2Model
             // Trigger K2 plugins
             $dispatcher->trigger('onK2AfterDownload', array(&$attachment, &$params));
 
-            if ($application->isSite()) {
+            if ($app->isSite()) {
                 $attachment->hit();
             }
             $len = filesize($file);
@@ -915,7 +915,7 @@ class K2ModelItem extends K2Model
         } else {
             echo JText::_('K2_FILE_DOES_NOT_EXIST');
         }
-        $application->close();
+        $app->close();
     }
 
     public function getAttachments($itemID)
@@ -933,7 +933,7 @@ class K2ModelItem extends K2Model
 
     public function deleteAttachment()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $params = JComponentHelper::getParams('com_k2');
         jimport('joomla.filesystem.file');
         $id = JRequest::getInt('id');
@@ -945,7 +945,7 @@ class K2ModelItem extends K2Model
         $result = $db->loadResult();
 
         if (!$result) {
-            $application->close();
+            $app->close();
         }
 
         $row = JTable::getInstance('K2Attachment', 'Table');
@@ -963,7 +963,7 @@ class K2ModelItem extends K2Model
         }
 
         $row->delete($id);
-        $application->close();
+        $app->close();
     }
 
     public function getAvailableTags($itemID = null)
@@ -990,36 +990,36 @@ class K2ModelItem extends K2Model
 
     public function resetHits()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $id = JRequest::getInt('id');
         $db = JFactory::getDbo();
         $query = "UPDATE #__k2_items SET hits=0 WHERE id={$id}";
         $db->setQuery($query);
         $db->query();
-        if ($application->isAdmin()) {
+        if ($app->isAdmin()) {
             $url = 'index.php?option=com_k2&view=item&cid='.$id;
         } else {
             $url = 'index.php?option=com_k2&view=item&task=edit&cid='.$id.'&tmpl=component';
         }
-        $application->enqueueMessage(JText::_('K2_SUCCESSFULLY_RESET_ITEM_HITS'));
-        $application->redirect($url);
+        $app->enqueueMessage(JText::_('K2_SUCCESSFULLY_RESET_ITEM_HITS'));
+        $app->redirect($url);
     }
 
     public function resetRating()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $id = JRequest::getInt('id');
         $db = JFactory::getDbo();
         $query = "DELETE FROM #__k2_rating WHERE itemID={$id}";
         $db->setQuery($query);
         $db->query();
-        if ($application->isAdmin()) {
+        if ($app->isAdmin()) {
             $url = 'index.php?option=com_k2&view=item&cid='.$id;
         } else {
             $url = 'index.php?option=com_k2&view=item&task=edit&cid='.$id.'&tmpl=component';
         }
-        $application->enqueueMessage(JText::_('K2_SUCCESSFULLY_RESET_ITEM_RATING'));
-        $application->redirect($url);
+        $app->enqueueMessage(JText::_('K2_SUCCESSFULLY_RESET_ITEM_RATING'));
+        $app->redirect($url);
     }
 
     public function getRating()
@@ -1034,7 +1034,7 @@ class K2ModelItem extends K2Model
 
     public function checkSIG()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         if (K2_JVERSION != '15') {
             $check = JPATH_PLUGINS.'/content/jw_sigpro/jw_sigpro.php';
         } else {
@@ -1049,7 +1049,7 @@ class K2ModelItem extends K2Model
 
     public function checkAllVideos()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         if (K2_JVERSION != '15') {
             $check = JPATH_PLUGINS.'/content/jw_allvideos/jw_allvideos.php';
         } else {

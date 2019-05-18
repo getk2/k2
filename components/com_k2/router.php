@@ -541,8 +541,8 @@ else
 	function K2BuildRoute(&$query)
 	{
 		$segments = array();
-		$application = JFactory::getApplication();
-		$menu = $application->getMenu();
+		$app = JFactory::getApplication();
+		$menu = $app->getMenu();
 		if (empty($query['Itemid']))
 		{
 			$menuItem = $menu->getActive();

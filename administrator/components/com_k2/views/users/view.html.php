@@ -16,7 +16,7 @@ class K2ViewUsers extends K2View
 {
     public function display($tpl = null)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $document = JFactory::getDocument();
         $user = JFactory::getUser();
         $db = JFactory::getDbo();
@@ -28,14 +28,14 @@ class K2ViewUsers extends K2View
         $view = JRequest::getCmd('view');
         $task = JRequest::getCmd('task');
 
-        $limit = $application->getUserStateFromRequest('global.list.limit', 'limit', $application->getCfg('list_limit'), 'int');
-        $limitstart = $application->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
-        $filter_order = $application->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'juser.name', 'cmd');
-        $filter_order_Dir = $application->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', '', 'word');
-        $filter_status = $application->getUserStateFromRequest($option.$view.'filter_status', 'filter_status', -1, 'int');
-        $filter_group = $application->getUserStateFromRequest($option.$view.'filter_group', 'filter_group', '', 'string');
-        $filter_group_k2 = $application->getUserStateFromRequest($option.$view.'filter_group_k2', 'filter_group_k2', '', 'string');
-        $search = $application->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
+        $limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'), 'int');
+        $limitstart = $app->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
+        $filter_order = $app->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'juser.name', 'cmd');
+        $filter_order_Dir = $app->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', '', 'word');
+        $filter_status = $app->getUserStateFromRequest($option.$view.'filter_status', 'filter_status', -1, 'int');
+        $filter_group = $app->getUserStateFromRequest($option.$view.'filter_group', 'filter_group', '', 'string');
+        $filter_group_k2 = $app->getUserStateFromRequest($option.$view.'filter_group_k2', 'filter_group_k2', '', 'string');
+        $search = $app->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
         $search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
 
@@ -128,10 +128,10 @@ class K2ViewUsers extends K2View
         }
         $this->assignRef('dateFormat', $dateFormat);
 
-        $template = $application->getTemplate();
+        $template = $app->getTemplate();
         $this->assignRef('template', $template);
 
-        if ($application->isAdmin()) {
+        if ($app->isAdmin()) {
             // JS
             $document->addScriptDeclaration("
                 var K2Language = ['".JText::_('K2_REPORT_USER_WARNING', true)."'];
@@ -186,12 +186,12 @@ class K2ViewUsers extends K2View
                 $toolbar->appendButton('Popup', 'config', 'K2_SETTINGS', 'index.php?option=com_k2&view=settings', '(window.innerWidth) * 0.8', '(window.innerHeight) * 0.8');
             }
         }
-        $isAdmin = $application->isAdmin();
+        $isAdmin = $app->isAdmin();
         $this->assignRef('isAdmin', $isAdmin);
 
         // Head includes
         K2HelperHTML::loadHeadIncludes(true, false, true, true);
-        if ($application->isSite()) {
+        if ($app->isSite()) {
             // CSS
             $document->addStyleSheet(JURI::root(true).'/templates/system/css/general.css');
             $document->addStyleSheet(JURI::root(true).'/templates/system/css/system.css');
@@ -202,7 +202,7 @@ class K2ViewUsers extends K2View
 
     public function move()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
 
         $cid = JRequest::getVar('cid');
         JArrayHelper::toInteger($cid);

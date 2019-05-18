@@ -75,15 +75,15 @@ class K2ControllerExtraFields extends K2Controller
 
     function add()
     {
-        $application = JFactory::getApplication();
-        $application->redirect('index.php?option=com_k2&view=extrafield');
+        $app = JFactory::getApplication();
+        $app->redirect('index.php?option=com_k2&view=extrafield');
     }
 
     function edit()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
-        $application->redirect('index.php?option=com_k2&view=extrafield&cid='.$cid[0]);
+        $app->redirect('index.php?option=com_k2&view=extrafield&cid='.$cid[0]);
     }
 
 }

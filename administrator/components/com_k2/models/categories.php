@@ -18,22 +18,22 @@ class K2ModelCategories extends K2Model
 {
     public function getData()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $params = JComponentHelper::getParams('com_k2');
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
         $db = JFactory::getDbo();
-        $limit = $application->getUserStateFromRequest('global.list.limit', 'limit', $application->getCfg('list_limit'), 'int');
-        $limitstart = $application->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
-        $search = $application->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
+        $limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'), 'int');
+        $limitstart = $app->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
+        $search = $app->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
         $search = trim(preg_replace('/[^\p{L}\p{N}\s\"\-_]/u', '', $search));
-        $filter_order = $application->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'c.ordering', 'cmd');
-        $filter_order_Dir = $application->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', '', 'word');
-        $filter_trash = $application->getUserStateFromRequest($option.$view.'filter_trash', 'filter_trash', 0, 'int');
-        $filter_state = $application->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
-        $language = $application->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
-        $filter_category = $application->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
+        $filter_order = $app->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'c.ordering', 'cmd');
+        $filter_order_Dir = $app->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', '', 'word');
+        $filter_trash = $app->getUserStateFromRequest($option.$view.'filter_trash', 'filter_trash', 0, 'int');
+        $filter_state = $app->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
+        $language = $app->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
+        $filter_category = $app->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
 
         $query = "SELECT c.*, g.name AS groupname, exfg.name as extra_fields_group FROM #__k2_categories as c LEFT JOIN #__groups AS g ON g.id = c.access LEFT JOIN #__k2_extra_fields_groups AS exfg ON exfg.id = c.extraFieldsGroup WHERE c.id>0";
 
@@ -160,20 +160,20 @@ class K2ModelCategories extends K2Model
 
     public function getTotal()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $params = JComponentHelper::getParams('com_k2');
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
         $db = JFactory::getDbo();
-        $limit = $application->getUserStateFromRequest('global.list.limit', 'limit', $application->getCfg('list_limit'), 'int');
-        $limitstart = $application->getUserStateFromRequest($option.'.limitstart', 'limitstart', 0, 'int');
-        $search = $application->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
+        $limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'), 'int');
+        $limitstart = $app->getUserStateFromRequest($option.'.limitstart', 'limitstart', 0, 'int');
+        $search = $app->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
         $search = trim(preg_replace('/[^\p{L}\p{N}\s\"\-_]/u', '', $search));
-        $filter_trash = $application->getUserStateFromRequest($option.$view.'filter_trash', 'filter_trash', 0, 'int');
-        $filter_state = $application->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', 1, 'int');
-        $language = $application->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
-        $filter_category = $application->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
+        $filter_trash = $app->getUserStateFromRequest($option.$view.'filter_trash', 'filter_trash', 0, 'int');
+        $filter_state = $app->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', 1, 'int');
+        $language = $app->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
+        $filter_category = $app->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
 
         $query = "SELECT COUNT(*) FROM #__k2_categories WHERE id>0";
 
@@ -267,7 +267,7 @@ class K2ModelCategories extends K2Model
 
     public function publish()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
         foreach ($cid as $id) {
             $row = JTable::getInstance('K2Category', 'Table');
@@ -281,15 +281,15 @@ class K2ModelCategories extends K2Model
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         if (JRequest::getCmd('context') == "modalselector") {
-            $application->redirect('index.php?option=com_k2&view=categories&tmpl=component&context=modalselector');
+            $app->redirect('index.php?option=com_k2&view=categories&tmpl=component&context=modalselector');
         } else {
-            $application->redirect('index.php?option=com_k2&view=categories');
+            $app->redirect('index.php?option=com_k2&view=categories');
         }
     }
 
     public function unpublish()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
         foreach ($cid as $id) {
             $row = JTable::getInstance('K2Category', 'Table');
@@ -303,15 +303,15 @@ class K2ModelCategories extends K2Model
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         if (JRequest::getCmd('context') == "modalselector") {
-            $application->redirect('index.php?option=com_k2&view=categories&tmpl=component&context=modalselector');
+            $app->redirect('index.php?option=com_k2&view=categories&tmpl=component&context=modalselector');
         } else {
-            $application->redirect('index.php?option=com_k2&view=categories');
+            $app->redirect('index.php?option=com_k2&view=categories');
         }
     }
 
     public function saveorder()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $params = JComponentHelper::getParams('com_k2');
         $db = JFactory::getDbo();
         $cid = JRequest::getVar('cid', array(0), 'post', 'array');
@@ -344,7 +344,7 @@ class K2ModelCategories extends K2Model
 
     public function orderup()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $params = JComponentHelper::getParams('com_k2');
         $cid = JRequest::getVar('cid');
         $row = JTable::getInstance('K2Category', 'Table');
@@ -356,17 +356,17 @@ class K2ModelCategories extends K2Model
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         $msg = JText::_('K2_NEW_ORDERING_SAVED');
-        $application->enqueueMessage($msg);
+        $app->enqueueMessage($msg);
         if (JRequest::getCmd('context') == "modalselector") {
-            $application->redirect('index.php?option=com_k2&view=categories&tmpl=component&context=modalselector');
+            $app->redirect('index.php?option=com_k2&view=categories&tmpl=component&context=modalselector');
         } else {
-            $application->redirect('index.php?option=com_k2&view=categories');
+            $app->redirect('index.php?option=com_k2&view=categories');
         }
     }
 
     public function orderdown()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $params = JComponentHelper::getParams('com_k2');
         $cid = JRequest::getVar('cid');
         $row = JTable::getInstance('K2Category', 'Table');
@@ -378,17 +378,17 @@ class K2ModelCategories extends K2Model
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         $msg = JText::_('K2_NEW_ORDERING_SAVED');
-        $application->enqueueMessage($msg);
+        $app->enqueueMessage($msg);
         if (JRequest::getCmd('context') == "modalselector") {
-            $application->redirect('index.php?option=com_k2&view=categories&tmpl=component&context=modalselector');
+            $app->redirect('index.php?option=com_k2&view=categories&tmpl=component&context=modalselector');
         } else {
-            $application->redirect('index.php?option=com_k2&view=categories');
+            $app->redirect('index.php?option=com_k2&view=categories');
         }
     }
 
     public function accessregistered()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $db = JFactory::getDbo();
         $row = JTable::getInstance('K2Category', 'Table');
         $cid = JRequest::getVar('cid');
@@ -403,13 +403,13 @@ class K2ModelCategories extends K2Model
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         $msg = JText::_('K2_NEW_ACCESS_SETTING_SAVED');
-        $application->enqueueMessage($msg);
-        $application->redirect('index.php?option=com_k2&view=categories');
+        $app->enqueueMessage($msg);
+        $app->redirect('index.php?option=com_k2&view=categories');
     }
 
     public function accessspecial()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $db = JFactory::getDbo();
         $row = JTable::getInstance('K2Category', 'Table');
         $cid = JRequest::getVar('cid');
@@ -424,13 +424,13 @@ class K2ModelCategories extends K2Model
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         $msg = JText::_('K2_NEW_ACCESS_SETTING_SAVED');
-        $application->enqueueMessage($msg);
-        $application->redirect('index.php?option=com_k2&view=categories');
+        $app->enqueueMessage($msg);
+        $app->redirect('index.php?option=com_k2&view=categories');
     }
 
     public function accesspublic()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $db = JFactory::getDbo();
         $row = JTable::getInstance('K2Category', 'Table');
         $cid = JRequest::getVar('cid');
@@ -445,13 +445,13 @@ class K2ModelCategories extends K2Model
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         $msg = JText::_('K2_NEW_ACCESS_SETTING_SAVED');
-        $application->enqueueMessage($msg);
-        $application->redirect('index.php?option=com_k2&view=categories');
+        $app->enqueueMessage($msg);
+        $app->redirect('index.php?option=com_k2&view=categories');
     }
 
     public function trash()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $db = JFactory::getDbo();
         $cid = JRequest::getVar('cid');
         $row = JTable::getInstance('K2Category', 'Table');
@@ -473,13 +473,13 @@ class K2ModelCategories extends K2Model
         $dispatcher->trigger('onFinderChangeState', array('com_k2.category', $cid, 0));
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
-        $application->enqueueMessage(JText::_('K2_CATEGORIES_MOVED_TO_TRASH'));
-        $application->redirect('index.php?option=com_k2&view=categories');
+        $app->enqueueMessage(JText::_('K2_CATEGORIES_MOVED_TO_TRASH'));
+        $app->redirect('index.php?option=com_k2&view=categories');
     }
 
     public function restore()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $db = JFactory::getDbo();
         $cid = JRequest::getVar('cid');
         $warning = false;
@@ -516,15 +516,15 @@ class K2ModelCategories extends K2Model
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
         if ($warning) {
-            $application->enqueueMessage(JText::_('K2_SOME_OF_THE_CATEGORIES_HAVE_NOT_BEEN_RESTORED_BECAUSE_THEIR_PARENT_CATEGORY_IS_IN_TRASH'), 'notice');
+            $app->enqueueMessage(JText::_('K2_SOME_OF_THE_CATEGORIES_HAVE_NOT_BEEN_RESTORED_BECAUSE_THEIR_PARENT_CATEGORY_IS_IN_TRASH'), 'notice');
         }
-        $application->enqueueMessage(JText::_('K2_CATEGORIES_MOVED_TO_TRASH'));
-        $application->redirect('index.php?option=com_k2&view=categories');
+        $app->enqueueMessage(JText::_('K2_CATEGORIES_MOVED_TO_TRASH'));
+        $app->redirect('index.php?option=com_k2&view=categories');
     }
 
     public function remove()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         jimport('joomla.filesystem.file');
         $db = JFactory::getDbo();
         $cid = JRequest::getVar('cid');
@@ -566,14 +566,14 @@ class K2ModelCategories extends K2Model
         $cache->clean();
 
         if ($warningItems) {
-            $application->enqueueMessage(JText::_('K2_SOME_OF_THE_CATEGORIES_HAVE_NOT_BEEN_DELETED_BECAUSE_THEY_HAVE_ITEMS'), 'notice');
+            $app->enqueueMessage(JText::_('K2_SOME_OF_THE_CATEGORIES_HAVE_NOT_BEEN_DELETED_BECAUSE_THEY_HAVE_ITEMS'), 'notice');
         }
         if ($warningChildren) {
-            $application->enqueueMessage(JText::_('K2_SOME_OF_THE_CATEGORIES_HAVE_NOT_BEEN_DELETED_BECAUSE_THEY_HAVE_CHILD_CATEGORIES'), 'notice');
+            $app->enqueueMessage(JText::_('K2_SOME_OF_THE_CATEGORIES_HAVE_NOT_BEEN_DELETED_BECAUSE_THEY_HAVE_CHILD_CATEGORIES'), 'notice');
         }
 
-        $application->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
-        $application->redirect('index.php?option=com_k2&view=categories');
+        $app->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
+        $app->redirect('index.php?option=com_k2&view=categories');
     }
 
     public function categoriesTree($row = null, $hideTrashed = false, $hideUnpublished = true)
@@ -638,7 +638,7 @@ class K2ModelCategories extends K2Model
     public function copy($batch = false)
     {
         jimport('joomla.filesystem.file');
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
         JArrayHelper::toInteger($cid);
         $copies = array();
@@ -665,14 +665,14 @@ class K2ModelCategories extends K2Model
         if ($batch) {
             return $copies;
         } else {
-            $application->enqueueMessage(JText::_('K2_COPY_COMPLETED'));
-            $application->redirect('index.php?option=com_k2&view=categories');
+            $app->enqueueMessage(JText::_('K2_COPY_COMPLETED'));
+            $app->redirect('index.php?option=com_k2&view=categories');
         }
     }
 
     public function saveBatch()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
         $batchMode = JRequest::getCmd('batchMode');
         $catid = JRequest::getCmd('batchCategory');
@@ -683,7 +683,7 @@ class K2ModelCategories extends K2Model
             $cid = $this->copy(true);
         }
         if (in_array($catid, $cid)) {
-            $application->redirect('index.php?option=com_k2&view=categories');
+            $app->redirect('index.php?option=com_k2&view=categories');
             return;
         }
         foreach ($cid as $id) {
@@ -706,7 +706,7 @@ class K2ModelCategories extends K2Model
         }
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
-        $application->enqueueMessage(JText::_('K2_BATCH_COMPLETED'));
-        $application->redirect('index.php?option=com_k2&view=categories');
+        $app->enqueueMessage(JText::_('K2_BATCH_COMPLETED'));
+        $app->redirect('index.php?option=com_k2&view=categories');
     }
 }

@@ -34,9 +34,9 @@ class K2ControllerComments extends K2Controller
             {
                 $url = 'index.php?option=com_user&view=login&return='.base64_encode($uri->toString());
             }
-            $application = JFactory::getApplication();
-			$application->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
-            $application->redirect(JRoute::_($url, false));
+            $app = JFactory::getApplication();
+			$app->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
+            $app->redirect(JRoute::_($url, false));
         }
 
         JRequest::setVar('tmpl', 'component');
@@ -127,7 +127,7 @@ class K2ControllerComments extends K2Controller
         K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
         $model = K2Model::getInstance('Comments', 'K2Model');
         $model->save();
-        $application->close();
+        $app->close();
     }
 
     function report()
@@ -160,13 +160,13 @@ class K2ControllerComments extends K2Controller
         {
             echo JText::_('K2_REPORT_SUBMITTED');
         }
-        $application = JFactory::getApplication();
-        $application->close();
+        $app = JFactory::getApplication();
+        $app->close();
     }
 
     function reportSpammer()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $user = JFactory::getUser();
         $format = JRequest::getVar('format');
         $errors = array();
@@ -191,7 +191,7 @@ class K2ControllerComments extends K2Controller
         if ($format == 'raw')
         {
             $response = '';
-            $messages = $application->getMessageQueue();
+            $messages = $app->getMessageQueue();
             foreach ($messages as $message)
             {
                 $response .= $message['message']."\n";

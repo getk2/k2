@@ -22,9 +22,9 @@ class K2ControllerUsers extends K2Controller
 
     function edit()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
-        $application->redirect('index.php?option=com_k2&view=user&cid='.$cid[0]);
+        $app->redirect('index.php?option=com_k2&view=user&cid='.$cid[0]);
     }
 
     function remove()
@@ -86,7 +86,7 @@ class K2ControllerUsers extends K2Controller
 
 	function search()
 	{
-		$application = JFactory::getApplication();
+		$app = JFactory::getApplication();
         $db = JFactory::getDbo();
         $word = JRequest::getString('q', null);
         if (K2_JVERSION == '15')
@@ -101,6 +101,6 @@ class K2ControllerUsers extends K2Controller
         $db->setQuery($query);
         $result = $db->loadObjectList();
         echo json_encode($result);
-        $application->close();
+        $app->close();
 	}
 }

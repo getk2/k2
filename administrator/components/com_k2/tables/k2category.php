@@ -160,8 +160,8 @@ class TableK2Category extends K2Table
             $result = count($db->loadObjectList());
             if ($result > 0) {
                 $this->alias .= '-'.((int)$result + 1);
-                $application = JFactory::getApplication();
-                $application->enqueueMessage(JText::_('K2_WARNING_DUPLICATE_TITLE_ALIAS_DETECTED'), 'notice');
+                $app = JFactory::getApplication();
+                $app->enqueueMessage(JText::_('K2_WARNING_DUPLICATE_TITLE_ALIAS_DETECTED'), 'notice');
             }
         }
 

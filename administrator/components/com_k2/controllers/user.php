@@ -34,8 +34,8 @@ class K2ControllerUser extends K2Controller
 
     function cancel()
     {
-        $application = JFactory::getApplication();
-        $application->redirect('index.php?option=com_k2&view=users');
+        $app = JFactory::getApplication();
+        $app->redirect('index.php?option=com_k2&view=users');
     }
 
     function report()

@@ -17,15 +17,15 @@ class K2HelperUtilities
     {
         jimport('joomla.filesystem.folder');
         jimport('joomla.application.component.model');
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $params = K2HelperUtilities::getParams('com_k2');
         $template = JRequest::getCmd('template');
 
         // Check for placeholder overrides
         if (isset($template) && JFile::exists(JPATH_SITE.'/templates/'.$template.'/images/placeholder/user.png')) {
             $avatarPath = 'templates/'.$template.'/images/placeholder/user.png';
-        } elseif (JFile::exists(JPATH_SITE.'/templates/'.$application->getTemplate().'/images/placeholder/user.png')) {
-            $avatarPath = 'templates/'.$application->getTemplate().'/images/placeholder/user.png';
+        } elseif (JFile::exists(JPATH_SITE.'/templates/'.$app->getTemplate().'/images/placeholder/user.png')) {
+            $avatarPath = 'templates/'.$app->getTemplate().'/images/placeholder/user.png';
         } else {
             $avatarPath = 'components/com_k2/images/placeholder/user.png';
         }
@@ -65,14 +65,14 @@ class K2HelperUtilities
     public static function getCategoryImage($image, $params)
     {
         jimport('joomla.filesystem.file');
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $categoryImage = null;
         if (!empty($image)) {
             $categoryImage = JURI::root(true).'/media/k2/categories/'.$image;
         } else {
             if ($params->get('catImageDefault')) {
-                if (JFile::exists(JPATH_SITE.'/templates/'.$application->getTemplate().'/images/placeholder/category.png')) {
-                    $categoryImage = JURI::root(true).'/templates/'.$application->getTemplate().'/images/placeholder/category.png';
+                if (JFile::exists(JPATH_SITE.'/templates/'.$app->getTemplate().'/images/placeholder/category.png')) {
+                    $categoryImage = JURI::root(true).'/templates/'.$app->getTemplate().'/images/placeholder/category.png';
                 } else {
                     $categoryImage = JURI::root(true).'/components/com_k2/images/placeholder/category.png';
                 }
@@ -238,9 +238,9 @@ class K2HelperUtilities
     public static function getParams($option)
     {
         if (K2_JVERSION != '15') {
-            $application = JFactory::getApplication();
-            if ($application->isSite()) {
-                $params = $application->getParams($option);
+            $app = JFactory::getApplication();
+            if ($app->isSite()) {
+                $params = $app->getParams($option);
             } else {
                 $params = JComponentHelper::getParams($option);
             }

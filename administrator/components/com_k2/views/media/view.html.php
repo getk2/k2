@@ -16,7 +16,7 @@ class K2ViewMedia extends K2View
 {
     public function display($tpl = null)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $user = JFactory::getUser();
         $document = JFactory::getDocument();
         $type = JRequest::getCmd('type');
@@ -35,7 +35,7 @@ class K2ViewMedia extends K2View
         $this->assignRef('fieldID', $fieldID);
         $this->assignRef('token', $token);
 
-        if ($application->isAdmin()) {
+        if ($app->isAdmin()) {
             // Toolbar
             JToolBarHelper::title(JText::_('K2_MEDIA_MANAGER'), 'k2.png');
             if (K2_JVERSION != '15') {

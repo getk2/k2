@@ -10,9 +10,11 @@
 // no direct access
 defined('_JEXEC') or die;
 
+$app = JFactory::getApplication();
+
 ?>
 
-<?php if($this->app->isSite()): ?>
+<?php if($app->isSite()): ?>
 <!-- Frontend Item Editing (Modal View) -->
 <div id="k2ModalContainer">
     <div id="k2ModalHeader">
@@ -35,7 +37,7 @@ defined('_JEXEC') or die;
 <?php endif; ?>
 
     <form action="<?php echo JRoute::_('index.php'); ?>" enctype="multipart/form-data" method="post" name="adminForm" id="adminForm">
-        <?php if($this->app->isSite() && !$this->permissions->get('publish') && !$this->row->published): ?>
+        <?php if($app->isSite() && !$this->permissions->get('publish') && !$this->row->published): ?>
         <div id="k2ModalPermissionsNotice">
             <p><?php echo JText::_('K2_FRONTEND_PERMISSIONS_NOTICE'); ?></p>
         </div>
@@ -52,7 +54,7 @@ defined('_JEXEC') or die;
                 <ul class="k2NavTabs">
                     <li id="tabContent"><a href="#k2TabBasic"><i class="fa fa-home"></i><?php echo JText::_('K2_BASIC'); ?></a></li>
                     <li id="tabContent"><a href="#k2TabPubAndMeta"><i class="fa fa-info-circle"></i><?php echo JText::_('K2_PUBLISHING_AND_METADATA'); ?></a></li>
-                    <?php if($this->app->isAdmin()): ?>
+                    <?php if($app->isAdmin()): ?>
                     <li id="tabContent"><a href="#k2TabDisplaySet"><i class="fa fa-desktop"></i><?php echo JText::_('K2_DISPLAY_SETTINGS'); ?></a></li>
                     <?php endif; ?>
                 </ul>
@@ -81,7 +83,7 @@ defined('_JEXEC') or die;
                     <div class="k2TableValue">
                         <?php echo $this->lists['categories']; ?>
 
-                        <?php if($this->app->isAdmin() || ($this->app->isSite() && $this->permissions->get('publish'))): ?>
+                        <?php if($app->isAdmin() || ($app->isSite() && $this->permissions->get('publish'))): ?>
                         <div class="k2SubTable k2TableRight k2TableRightTop">
                             <div class="k2SubTableLabel">
                                 <label for="featured"><?php echo JText::_('K2_IS_IT_FEATURED'); ?></label>
@@ -167,7 +169,7 @@ defined('_JEXEC') or die;
                                     <?php echo $this->row->author; ?>
                                     <input type="hidden" name="created_by" value="<?php echo $this->row->created_by; ?>" />
                                 </span>
-                                <?php if($this->app->isAdmin() || ($this->app->isSite() && $this->permissions->get('editAll'))): ?>
+                                <?php if($app->isAdmin() || ($app->isSite() && $this->permissions->get('editAll'))): ?>
                                 <a data-k2-modal="iframe" class="k2Selector" href="index.php?option=com_k2&amp;view=users&amp;tmpl=component&amp;context=modalselector&amp;fid=k2Author&amp;fname=created_by">
                                     <i class="fa fa-pencil"></i>
                                 </a>
@@ -793,8 +795,8 @@ defined('_JEXEC') or die;
                 </div>
                 <!-- Sub-tabs for BASIC [finish] -->
 
-                <input type="hidden" name="isSite" value="<?php echo (int) $this->app->isSite(); ?>" />
-                <?php if($this->app->isSite()): ?>
+                <input type="hidden" name="isSite" value="<?php echo (int) $app->isSite(); ?>" />
+                <?php if($app->isSite()): ?>
                 <input type="hidden" name="lang" value="<?php echo JRequest::getCmd('lang'); ?>" />
                 <?php endif; ?>
                 <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
@@ -959,7 +961,7 @@ defined('_JEXEC') or die;
             </div>
             <!-- META [finish] -->
 
-            <?php if($this->app->isAdmin()): ?>
+            <?php if($app->isAdmin()): ?>
             <!-- DISPLAY SETTINGS [start] -->
             <div class="k2NavTabContent" id="k2TabDisplaySet">
                 <ul class="k2ScrollSpyMenu">
@@ -1047,6 +1049,6 @@ defined('_JEXEC') or die;
         <!-- Top Nav Tabs END here -->
     </form>
 
-<?php if($this->app->isSite()): ?>
+<?php if($app->isSite()): ?>
 </div>
 <?php endif; ?>

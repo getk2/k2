@@ -17,19 +17,19 @@ JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 class K2ModelComments extends K2Model {
 
 	function getData() {
-		$application = JFactory::getApplication();
+		$app = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
 		$db = JFactory::getDbo();
-		$limit = $application->getUserStateFromRequest('global.list.limit', 'limit', $application->getCfg('list_limit'), 'int');
-		$limitstart = $application->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
-		$filter_order = $application->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'c.id', 'cmd');
-		$filter_order_Dir = $application->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', 'DESC', 'word');
-		$filter_state = $application->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
-		$filter_category = $application->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
-		$filter_author = $application->getUserStateFromRequest($option.$view.'filter_author', 'filter_author', 0, 'int');
-		$search = $application->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
+		$limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'), 'int');
+		$limitstart = $app->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
+		$filter_order = $app->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'c.id', 'cmd');
+		$filter_order_Dir = $app->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', 'DESC', 'word');
+		$filter_state = $app->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
+		$filter_category = $app->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
+		$filter_author = $app->getUserStateFromRequest($option.$view.'filter_author', 'filter_author', 0, 'int');
+		$search = $app->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
 		$search = JString::strtolower($search);
 		$search = trim(preg_replace('/[^\p{L}\p{N}\s\"\.\@\-_]/u', '', $search));
 
@@ -133,17 +133,17 @@ class K2ModelComments extends K2Model {
 	}
 
 	function getTotal() {
-		$application = JFactory::getApplication();
+		$app = JFactory::getApplication();
 		$params = JComponentHelper::getParams('com_k2');
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
 		$db = JFactory::getDbo();
-		$limit = $application->getUserStateFromRequest('global.list.limit', 'limit', $application->getCfg('list_limit'), 'int');
-		$limitstart = $application->getUserStateFromRequest($option.'.limitstart', 'limitstart', 0, 'int');
-		$filter_state = $application->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', 1, 'int');
-		$filter_category = $application->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
-		$filter_author = $application->getUserStateFromRequest($option.$view.'filter_author', 'filter_author', 0, 'int');
-		$search = $application->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
+		$limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'), 'int');
+		$limitstart = $app->getUserStateFromRequest($option.'.limitstart', 'limitstart', 0, 'int');
+		$filter_state = $app->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', 1, 'int');
+		$filter_category = $app->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
+		$filter_author = $app->getUserStateFromRequest($option.$view.'filter_author', 'filter_author', 0, 'int');
+		$search = $app->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
 		$search = JString::strtolower($search);
 		$search = trim(preg_replace('/[^\p{L}\p{N}\s\"\.\@\-_]/u', '', $search));
 
@@ -241,7 +241,7 @@ class K2ModelComments extends K2Model {
 	}
 
 	function publish() {
-		$application = JFactory::getApplication();
+		$app = JFactory::getApplication();
 		$user = JFactory::getUser();
 		$cid = JRequest::getVar('cid');
 	    if(!count($cid)){
@@ -251,12 +251,12 @@ class K2ModelComments extends K2Model {
 		foreach ($cid as $id) {
 			$row = JTable::getInstance('K2Comment', 'Table');
 			$row->load($id);
-			if($application->isSite()){
+			if($app->isSite()){
 				$item = JTable::getInstance('K2Item', 'Table');
 				$item->load($row->itemID);
 				if ($item->created_by != $user->id) {
 					JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
-					$application->close();
+					$app->close();
 				}
 			}
 			$row->published = 1;
@@ -266,28 +266,28 @@ class K2ModelComments extends K2Model {
 		$cache->clean();
 		if(JRequest::getCmd('format')=='raw'){
 			echo 'true';
-			$application->close();
+			$app->close();
 		}
 		if(JRequest::getCmd('context') == "modalselector"){
-			$application->redirect('index.php?option=com_k2&view=comments&tmpl=component&context=modalselector');
+			$app->redirect('index.php?option=com_k2&view=comments&tmpl=component&context=modalselector');
 		} else {
-			$application->redirect('index.php?option=com_k2&view=comments');
+			$app->redirect('index.php?option=com_k2&view=comments');
 		}
 	}
 
 	function unpublish() {
-		$application = JFactory::getApplication();
+		$app = JFactory::getApplication();
 		$user = JFactory::getUser();
 		$cid = JRequest::getVar('cid');
 		foreach ($cid as $id) {
 			$row = JTable::getInstance('K2Comment', 'Table');
 			$row->load($id);
-			if($application->isSite()){
+			if($app->isSite()){
 				$item = JTable::getInstance('K2Item', 'Table');
 				$item->load($row->itemID);
 				if ($item->created_by != $user->id) {
 					JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
-					$application->close();
+					$app->close();
 				}
 			}
 			$row->published = 0;
@@ -296,14 +296,14 @@ class K2ModelComments extends K2Model {
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
 		if(JRequest::getCmd('context') == "modalselector"){
-			$application->redirect('index.php?option=com_k2&view=comments&tmpl=component&context=modalselector');
+			$app->redirect('index.php?option=com_k2&view=comments&tmpl=component&context=modalselector');
 		} else {
-			$application->redirect('index.php?option=com_k2&view=comments');
+			$app->redirect('index.php?option=com_k2&view=comments');
 		}
 	}
 
 	function remove() {
-		$application = JFactory::getApplication();
+		$app = JFactory::getApplication();
 		$user = JFactory::getUser();
 		$db = JFactory::getDbo();
 		$cid = JRequest::getVar('cid');
@@ -313,12 +313,12 @@ class K2ModelComments extends K2Model {
 		foreach ($cid as $id) {
 			$row = JTable::getInstance('K2Comment', 'Table');
 			$row->load($id);
-			if($application->isSite()){
+			if($app->isSite()){
 				$item = JTable::getInstance('K2Item', 'Table');
 				$item->load($row->itemID);
 				if ($item->created_by != $user->id) {
 					JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
-					$application->close();
+					$app->close();
 				}
 			}
 			$row->delete($id);
@@ -327,22 +327,22 @@ class K2ModelComments extends K2Model {
 		$cache->clean();
 		if(JRequest::getCmd('format')=='raw'){
 			echo 'true';
-			$application->close();
+			$app->close();
 		}
-		$application->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
+		$app->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
 		if(JRequest::getCmd('context') == "modalselector"){
-			$application->redirect('index.php?option=com_k2&view=comments&tmpl=component&context=modalselector');
+			$app->redirect('index.php?option=com_k2&view=comments&tmpl=component&context=modalselector');
 		} else {
-			$application->redirect('index.php?option=com_k2&view=comments');
+			$app->redirect('index.php?option=com_k2&view=comments');
 		}
 	}
 
 	function deleteUnpublished() {
-		$application = JFactory::getApplication();
+		$app = JFactory::getApplication();
 		$db = JFactory::getDbo();
 		$user = JFactory::getUser();
 		$userID = $user->id;
-		if($application->isSite()){
+		if($app->isSite()){
 			$query = "SELECT c.id FROM #__k2_comments AS c
 			LEFT JOIN #__k2_items AS i ON c.itemID=i.id
 			WHERE i.created_by = {$userID} AND c.published=0";
@@ -362,23 +362,23 @@ class K2ModelComments extends K2Model {
 
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
-		$application->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
+		$app->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
 		if(JRequest::getCmd('context') == "modalselector"){
-			$application->redirect('index.php?option=com_k2&view=comments&tmpl=component&context=modalselector');
+			$app->redirect('index.php?option=com_k2&view=comments&tmpl=component&context=modalselector');
 		} else {
-			$application->redirect('index.php?option=com_k2&view=comments');
+			$app->redirect('index.php?option=com_k2&view=comments');
 		}
 	}
 
 	function save() {
-		$application = JFactory::getApplication();
+		$app = JFactory::getApplication();
 		$user = JFactory::getUser();
 		$db = JFactory::getDbo();
 		$id = JRequest::getInt('commentID');
 		$item = JTable::getInstance('K2Item', 'Table');
 		$row = JTable::getInstance('K2Comment', 'Table');
 		$row->load($id);
-		if($application->isSite()){
+		if($app->isSite()){
 			$item->load($row->itemID);
 			if ($item->created_by != $user->id) {
 				JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
@@ -393,7 +393,7 @@ class K2ModelComments extends K2Model {
 		$response->message = JText::_('K2_COMMENT_SAVED');
 		unset($response->_errors);
 		echo json_encode($response);
-		$application->close();
+		$app->close();
 	}
 
     function report(){
@@ -442,10 +442,10 @@ class K2ModelComments extends K2Model {
 				}
 		}
 
-		$application = JFactory::getApplication();
+		$app = JFactory::getApplication();
         $mail = JFactory::getMailer();
-        $senderEmail = $application->getCfg('mailfrom');
-        $senderName = $application->getCfg('fromname');
+        $senderEmail = $app->getCfg('mailfrom');
+        $senderName = $app->getCfg('fromname');
 
         $mail->setSender(array($senderEmail, $senderName));
         $mail->setSubject(JText::_('K2_COMMENT_REPORT'));
@@ -471,7 +471,7 @@ class K2ModelComments extends K2Model {
 
         $mail->setBody($body);
         $mail->ClearAddresses();
-        $mail->AddAddress($params->get('commentsReportRecipient', $application->getCfg('mailfrom')));
+        $mail->AddAddress($params->get('commentsReportRecipient', $app->getCfg('mailfrom')));
         $mail->Send();
 
 		return true;

@@ -17,19 +17,19 @@ class K2ModelSettings extends K2Model
 
     function save()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $component = JTable::getInstance('component');
         $component->loadByOption('com_k2');
         $post = JRequest::get('post');
         $component->bind($post);
         if (!$component->check())
         {
-            $application->enqueueMessage($component->getError(), 'error');
+            $app->enqueueMessage($component->getError(), 'error');
             return false;
         }
         if (!$component->store())
         {
-            $application->enqueueMessage($component->getError(), 'error');
+            $app->enqueueMessage($component->getError(), 'error');
             return false;
         }
         return true;

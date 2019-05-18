@@ -36,7 +36,7 @@ class plgSearchK2 extends JPlugin
     {
         JPlugin::loadLanguage('plg_search_k2', JPATH_ADMINISTRATOR);
         jimport('joomla.html.parameter');
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $db = JFactory::getDbo();
         $jnow = JFactory::getDate();
         $now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
@@ -159,7 +159,7 @@ class plgSearchK2 extends JPlugin
                     AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now).")
                     AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now).")";
 
-            if (K2_JVERSION != '15' && $application->isSite() && $application->getLanguageFilter()) {
+            if (K2_JVERSION != '15' && $app->isSite() && $app->getLanguageFilter()) {
                 $languageTag = JFactory::getLanguage()->getTag();
                 $query .= " AND c.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") AND i.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').")";
             }

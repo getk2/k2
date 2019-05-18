@@ -16,7 +16,7 @@ class K2ViewItem extends K2View
 {
     public function display($tpl = null)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $document = JFactory::getDocument();
         $user = JFactory::getUser();
 
@@ -43,7 +43,7 @@ class K2ViewItem extends K2View
         ));
 
         // Permissions check for frontend editing
-        if ($application->isSite()) {
+        if ($app->isSite()) {
             JLoader::register('K2HelperPermissions', JPATH_COMPONENT.'/helpers/permissions.php');
             if ($task == 'edit' && !K2HelperPermissions::canEditItem($item->created_by, $item->catid)) {
                 JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
@@ -81,9 +81,9 @@ class K2ViewItem extends K2View
 
         if ($item->isCheckedOut($user->get('id'), $item->checked_out)) {
             $message = JText::_('K2_THE_ITEM').': '.$item->title.' '.JText::_('K2_IS_CURRENTLY_BEING_EDITED_BY_ANOTHER_ADMINISTRATOR');
-            $url = ($application->isSite()) ? 'index.php?option=com_k2&view=item&id='.$item->id.'&tmpl=component' : 'index.php?option=com_k2';
-            $application->enqueueMessage($message);
-            $application->redirect($url);
+            $url = ($app->isSite()) ? 'index.php?option=com_k2&view=item&id='.$item->id.'&tmpl=component' : 'index.php?option=com_k2';
+            $app->enqueueMessage($message);
+            $app->redirect($url);
         }
 
         if ($item->id) {
@@ -168,7 +168,7 @@ class K2ViewItem extends K2View
         $lists['ordering'] = version_compare(JVERSION, '3.0', 'ge') ? null : JHTML::_('list.specificordering', $item, $item->id, $query);
 
         if (!$item->id) {
-            $item->catid = $application->getUserStateFromRequest('com_k2itemsfilter_category', 'catid', 0, 'int');
+            $item->catid = $app->getUserStateFromRequest('com_k2itemsfilter_category', 'catid', 0, 'int');
         }
 
         require_once JPATH_ADMINISTRATOR.'/components/com_k2/models/categories.php';
@@ -307,7 +307,7 @@ class K2ViewItem extends K2View
 
         $categories_option[] = JHTML::_('select.option', 0, JText::_('K2_SELECT_CATEGORY'));
         $categories = $categoriesModel->categoriesTree(null, true, false);
-        if ($application->isSite()) {
+        if ($app->isSite()) {
             JLoader::register('K2HelperPermissions', JPATH_SITE.'/components/com_k2/helpers/permissions.php');
             if (($task == 'add' || $task == 'edit') && !K2HelperPermissions::canAddToAll()) {
                 for ($i = 0; $i < count($categories); $i++) {
@@ -478,13 +478,11 @@ class K2ViewItem extends K2View
         $this->assignRef('user', $user);
         (JRequest::getInt('cid')) ? $title = JText::_('K2_EDIT_ITEM') : $title = JText::_('K2_ADD_ITEM');
         $this->assignRef('title', $title);
-        $this->assignRef('mainframe', $application);
-        $this->assignRef('app', $application);
 
         // Disable Joomla menu
         JRequest::setVar('hidemainmenu', 1);
 
-        if ($application->isAdmin()) {
+        if ($app->isAdmin()) {
             // Toolbar
             JToolBarHelper::title($title, 'k2.png');
 
@@ -559,22 +557,22 @@ class K2ViewItem extends K2View
         $this->assignRef('sigPro', $sigPro);
 
         // For frontend editing
-        if ($application->isSite()) {
+        if ($app->isSite()) {
             // Lookup template folders
             $this->_addPath('template', JPATH_COMPONENT.'/templates');
             $this->_addPath('template', JPATH_COMPONENT.'/templates/default');
 
-            $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates');
-            $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/default');
+            $this->_addPath('template', JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2/templates');
+            $this->_addPath('template', JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2/templates/default');
 
-            $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2');
-            $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/default');
+            $this->_addPath('template', JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2');
+            $this->_addPath('template', JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2/default');
 
             $theme = (isset($this->frontendTheme)) ? $this->frontendTheme : $params->get('theme');
             if ($theme) {
                 $this->_addPath('template', JPATH_COMPONENT.'/templates/'.$theme);
-                $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates/'.$theme);
-                $this->_addPath('template', JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/'.$theme);
+                $this->_addPath('template', JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2/templates/'.$theme);
+                $this->_addPath('template', JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2/'.$theme);
             }
 
             // Allow temporary template loading with ?template=

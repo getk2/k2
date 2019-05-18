@@ -66,7 +66,7 @@ $context = JRequest::getCmd('context');
                 <td class="k2AdminTableFiltersSelects hidden-phone">
                     <?php echo $this->lists['state']; ?>
                     <?php echo $this->lists['categories']; ?>
-                    <?php if($this->mainframe->isAdmin()): ?>
+                    <?php if($app->isAdmin()): ?>
                     <?php echo $this->lists['authors']; ?>
                     <?php endif; ?>
                 </td>
@@ -163,7 +163,7 @@ $context = JRequest::getCmd('context');
                                 <?php echo $row->status; ?>
                             </td>
                             <td class="hidden-phone">
-                                <?php if($this->mainframe->isAdmin() && $row->userID): ?>
+                                <?php if($app->isAdmin() && $row->userID): ?>
                                 <a href="<?php echo $this->userEditLink.$row->userID;?>"><?php echo $row->userName; ?></a>
                                 <?php else :?>
                                 <?php echo $row->userName; ?>
@@ -229,7 +229,7 @@ $context = JRequest::getCmd('context');
         <input type="hidden" name="boxchecked" value="0" />
         <input type="hidden" name="filter_order" value="<?php echo $this->lists['order']; ?>" />
         <input type="hidden" name="filter_order_Dir" value="<?php echo $this->lists['order_Dir']; ?>" />
-        <input type="hidden" name="isSite" value="<?php echo (int) $this->mainframe->isSite(); ?>" />
+        <input type="hidden" name="isSite" value="<?php echo (int) $app->isSite(); ?>" />
         <input type="hidden" name="option" value="com_k2" />
         <input type="hidden" name="view" value="<?php echo JRequest::getCmd('view'); ?>" />
         <?php if($context == "modalselector"): ?>

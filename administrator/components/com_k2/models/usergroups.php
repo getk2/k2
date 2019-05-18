@@ -20,14 +20,14 @@ class K2ModelUserGroups extends K2Model
     function getData()
     {
 
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
         $db = JFactory::getDbo();
-        $limit = $application->getUserStateFromRequest('global.list.limit', 'limit', $application->getCfg('list_limit'), 'int');
-        $limitstart = $application->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
-        $filter_order = $application->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', '', 'cmd');
-        $filter_order_Dir = $application->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', '', 'word');
+        $limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'), 'int');
+        $limitstart = $app->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
+        $filter_order = $app->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', '', 'cmd');
+        $filter_order_Dir = $app->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', '', 'word');
 
         $query = "SELECT userGroup.*, (SELECT COUNT(DISTINCT userID) FROM #__k2_users WHERE `group`=userGroup.id) AS numOfUsers FROM #__k2_user_groups AS userGroup";
 
@@ -46,7 +46,7 @@ class K2ModelUserGroups extends K2Model
     function getTotal()
     {
 
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
         $db = JFactory::getDbo();
@@ -61,7 +61,7 @@ class K2ModelUserGroups extends K2Model
     function remove()
     {
 
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $db = JFactory::getDbo();
         $cid = JRequest::getVar('cid');
         foreach ($cid as $id)
@@ -72,8 +72,8 @@ class K2ModelUserGroups extends K2Model
         }
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
-		$application->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
-        $application->redirect('index.php?option=com_k2&view=usergroups');
+		$app->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
+        $app->redirect('index.php?option=com_k2&view=usergroups');
     }
 
 }

@@ -19,8 +19,8 @@ class K2ControllerSettings extends K2Controller
     {
         if (K2_JVERSION != '15')
         {
-            $application = JFactory::getApplication();
-            $application->redirect('index.php?option=com_config&view=component&component=com_k2&path=&tmpl=component');
+            $app = JFactory::getApplication();
+            $app->redirect('index.php?option=com_config&view=component&component=com_k2&path=&tmpl=component');
         }
         else
         {
@@ -31,11 +31,11 @@ class K2ControllerSettings extends K2Controller
 
     function save()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('settings');
         $model->save();
-        $application->redirect('index.php?option=com_k2&view=settings');
+        $app->redirect('index.php?option=com_k2&view=settings');
 
     }
 

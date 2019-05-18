@@ -110,15 +110,15 @@ class K2ControllerCategories extends K2Controller
 
     function add()
     {
-        $application = JFactory::getApplication();
-        $application->redirect('index.php?option=com_k2&view=category');
+        $app = JFactory::getApplication();
+        $app->redirect('index.php?option=com_k2&view=category');
     }
 
     function edit()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
-        $application->redirect('index.php?option=com_k2&view=category&cid='.$cid[0]);
+        $app->redirect('index.php?option=com_k2&view=category&cid='.$cid[0]);
     }
 
     function element()

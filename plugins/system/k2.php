@@ -43,14 +43,14 @@ class plgSystemK2 extends JPlugin
         jimport('joomla.application.component.view');
 
         // Get application & K2 component params
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $params = JComponentHelper::getParams('com_k2');
 
         // Load the K2 classes
         JLoader::register('K2Table', JPATH_ADMINISTRATOR.'/components/com_k2/tables/table.php');
         JLoader::register('K2Controller', JPATH_BASE.'/components/com_k2/controllers/controller.php');
         JLoader::register('K2Model', JPATH_ADMINISTRATOR.'/components/com_k2/models/model.php');
-        if ($application->isSite()) {
+        if ($app->isSite()) {
             K2Model::addIncludePath(JPATH_SITE.'/components/com_k2/models');
         } else {
             // Fix warning under Joomla 1.5 caused by conflict in model names
@@ -92,12 +92,12 @@ class plgSystemK2 extends JPlugin
         }
 
         // Backend only
-        if (!$application->isAdmin()) {
+        if (!$app->isAdmin()) {
             return;
         }
 
         // K2 Metrics
-        if ($application->isAdmin() && $params->get('gatherStatistics', 1)) {
+        if ($app->isAdmin() && $params->get('gatherStatistics', 1)) {
             $option = JRequest::getCmd('option');
             $view = JRequest::getCmd('view');
             $viewsToRun = array('items', 'categories', 'tags', 'comments', 'users', 'usergroups', 'extrafields', 'extrafieldsgroups', '');
@@ -385,19 +385,19 @@ class plgSystemK2 extends JPlugin
 
     public function onAfterRoute()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $document = JFactory::getDocument();
         $user = JFactory::getUser();
 
         $params = JComponentHelper::getParams('com_k2');
 
-        $basepath = ($application->isSite()) ? JPATH_SITE : JPATH_ADMINISTRATOR;
+        $basepath = ($app->isSite()) ? JPATH_SITE : JPATH_ADMINISTRATOR;
         JPlugin::loadLanguage('com_k2', $basepath);
         if (K2_JVERSION != '15') {
             JPlugin::loadLanguage('com_k2.dates', JPATH_ADMINISTRATOR, null, true);
         }
 
-        if ($application->isAdmin() || (JRequest::getCmd('option') == 'com_k2' && (JRequest::getCmd('task') == 'add' || JRequest::getCmd('task') == 'edit'))) {
+        if ($app->isAdmin() || (JRequest::getCmd('option') == 'com_k2' && (JRequest::getCmd('task') == 'add' || JRequest::getCmd('task') == 'edit'))) {
             return;
         }
 
@@ -407,9 +407,9 @@ class plgSystemK2 extends JPlugin
 
     public function onAfterDispatch()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
 
-        if ($application->isAdmin()) {
+        if ($app->isAdmin()) {
             return;
         }
 
@@ -466,9 +466,9 @@ class plgSystemK2 extends JPlugin
             }
 
             if (!$user->guest) {
-                $application->enqueueMessage(JText::_('K2_YOU_ARE_ALREADY_REGISTERED_AS_A_MEMBER'), 'notice');
-                $application->redirect(JURI::root());
-                $application->close();
+                $app->enqueueMessage(JText::_('K2_YOU_ARE_ALREADY_REGISTERED_AS_A_MEMBER'), 'notice');
+                $app->redirect(JURI::root());
+                $app->close();
             }
             if (K2_JVERSION != '15') {
                 require_once(JPATH_SITE.'/components/com_users/controller.php');
@@ -480,8 +480,8 @@ class plgSystemK2 extends JPlugin
 
             $view = $controller->getView($view, 'html');
             $view->addTemplatePath(JPATH_SITE.'/components/com_k2/templates');
-            $view->addTemplatePath(JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates');
-            $view->addTemplatePath(JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2');
+            $view->addTemplatePath(JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2/templates');
+            $view->addTemplatePath(JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2');
             // Allow temporary template loading with ?template=
             $template = JRequest::getCmd('template');
             if (isset($template)) {
@@ -521,7 +521,7 @@ class plgSystemK2 extends JPlugin
             if (K2_JVERSION != '15') {
                 $view->assignRef('user', $user);
             }
-            $pathway = $application->getPathway();
+            $pathway = $app->getPathway();
             $pathway->setPathway(null);
 
             $nameFieldName = K2_JVERSION != '15' ? 'jform[name]' : 'name';
@@ -553,8 +553,8 @@ class plgSystemK2 extends JPlugin
                 } else {
                     $url = 'index.php?option=com_user&view=login&return='.base64_encode($uri->toString());
                 }
-                $application->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
-                $application->redirect(JRoute::_($url, false));
+                $app->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
+                $app->redirect(JRoute::_($url, false));
             }
 
             if (K2_JVERSION != '15') {
@@ -567,8 +567,8 @@ class plgSystemK2 extends JPlugin
 
             $view = $controller->getView($view, 'html');
             $view->addTemplatePath(JPATH_SITE.'/components/com_k2/templates');
-            $view->addTemplatePath(JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates');
-            $view->addTemplatePath(JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2');
+            $view->addTemplatePath(JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2/templates');
+            $view->addTemplatePath(JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2');
             // Allow temporary template loading with ?template=
             $template = JRequest::getCmd('template');
             if (isset($template)) {
@@ -649,11 +649,11 @@ class plgSystemK2 extends JPlugin
 
     public function onAfterRender()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $params = JComponentHelper::getParams('com_k2');
 
         // Fix OpenGraph meta tags
-        if ($application->isSite() && $params->get('facebookMetatags', 1)) {
+        if ($app->isSite() && $params->get('facebookMetatags', 1)) {
             $response = JResponse::getBody();
             $searches = array(
                 '<meta name="og:url"',
@@ -713,7 +713,7 @@ class plgSystemK2 extends JPlugin
 
     public function renderOriginal($extraField, $itemID)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
         $item = JTable::getInstance('K2Item', 'Table');
         $item->load($itemID);
@@ -764,7 +764,7 @@ class plgSystemK2 extends JPlugin
 
     public function renderTranslated($extraField, $itemID)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
         $item = JTable::getInstance('K2Item', 'Table');
         $item->load($itemID);

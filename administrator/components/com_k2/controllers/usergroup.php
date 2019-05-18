@@ -39,7 +39,7 @@ class K2ControllerUserGroup extends K2Controller
 
     public function cancel()
     {
-        $application = JFactory::getApplication();
-        $application->redirect('index.php?option=com_k2&view=usergroups');
+        $app = JFactory::getApplication();
+        $app->redirect('index.php?option=com_k2&view=usergroups');
     }
 }

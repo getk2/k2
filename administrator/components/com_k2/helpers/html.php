@@ -111,7 +111,7 @@ class K2HelperHTML
 
     public static function loadHeadIncludes($loadFramework = false, $jQueryUI = false, $adminHeadIncludes = false, $adminModuleIncludes = false)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $document = JFactory::getDocument();
         $user = JFactory::getUser();
 
@@ -142,7 +142,7 @@ class K2HelperHTML
             // jQuery
             if (version_compare(JVERSION, '3.0.0', 'lt')) {
                 // Frontend
-                if ($application->isSite()) {
+                if ($app->isSite()) {
                     // B/C for saved old options
                     if ($jQueryHandling) {
                         if ($jQueryHandling == '1.7remote') {
@@ -168,7 +168,7 @@ class K2HelperHTML
                 }
 
                 // Backend
-                if ($application->isAdmin()) {
+                if ($app->isAdmin()) {
                     if (($option == 'com_k2' && ($view == 'item' || $view == 'category')) || $option == 'com_menus') {
                         $document->addScript('https://code.jquery.com/jquery-1.8.3.min.js');
                     } else {
@@ -192,9 +192,9 @@ class K2HelperHTML
             }
 
             // Everything else...
-            if ($application->isAdmin() || $adminHeadIncludes) {
+            if ($app->isAdmin() || $adminHeadIncludes) {
                 // JS
-                $isBackend = ($application->isAdmin()) ? ' k2IsBackend' : '';
+                $isBackend = ($app->isAdmin()) ? ' k2IsBackend' : '';
                 $isTask = ($task) ? ' k2TaskIs'.ucfirst($task) : '';
                 $cssClass = 'isJ'.K2_JVERSION.' k2ViewIs'.ucfirst($view).''.$isTask.''.$isBackend;
                 $document->addScriptDeclaration("
@@ -277,7 +277,7 @@ class K2HelperHTML
             }
 
             // Frontend only
-            if ($application->isSite()) {
+            if ($app->isSite()) {
                 // Magnific Popup
                 if (!$user->guest || ($option == 'com_k2' && $view == 'item') || defined('K2_JOOMLA_MODAL_REQUIRED')) {
                     $document->addStyleSheet('https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css');
@@ -304,8 +304,8 @@ class K2HelperHTML
                     // k2.css
                     if (isset($template) && JFile::exists(JPATH_SITE.'/templates/'.$template.'/css/k2.css')) {
                         $document->addStyleSheet(JURI::root(true).'/templates/'.$template.'/css/k2.css?v='.K2_CURRENT_VERSION);
-                    } elseif (JFile::exists(JPATH_SITE.'/templates/'.$application->getTemplate().'/css/k2.css')) {
-                        $document->addStyleSheet(JURI::root(true).'/templates/'.$application->getTemplate().'/css/k2.css?v='.K2_CURRENT_VERSION);
+                    } elseif (JFile::exists(JPATH_SITE.'/templates/'.$app->getTemplate().'/css/k2.css')) {
+                        $document->addStyleSheet(JURI::root(true).'/templates/'.$app->getTemplate().'/css/k2.css?v='.K2_CURRENT_VERSION);
                     } else {
                         $document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.css?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
                     }
@@ -314,8 +314,8 @@ class K2HelperHTML
                     if (JRequest::getInt('print') == 1) {
                         if (isset($template) && JFile::exists(JPATH_SITE.'/templates/'.$template.'/css/k2.print.css')) {
                             $document->addStyleSheet(JURI::root(true).'/templates/'.$template.'/css/k2.print.css?v='.K2_CURRENT_VERSION, 'text/css', 'print');
-                        } elseif (JFile::exists(JPATH_SITE.'/templates/'.$application->getTemplate().'/css/k2.print.css')) {
-                            $document->addStyleSheet(JURI::root(true).'/templates/'.$application->getTemplate().'/css/k2.print.css?v='.K2_CURRENT_VERSION, 'text/css', 'print');
+                        } elseif (JFile::exists(JPATH_SITE.'/templates/'.$app->getTemplate().'/css/k2.print.css')) {
+                            $document->addStyleSheet(JURI::root(true).'/templates/'.$app->getTemplate().'/css/k2.print.css?v='.K2_CURRENT_VERSION, 'text/css', 'print');
                         } else {
                             $document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.print.css?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID, 'text/css', 'print');
                         }

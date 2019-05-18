@@ -44,7 +44,7 @@ class K2ControllerExtraFieldsGroup extends K2Controller
 
     public function cancel()
     {
-        $application = JFactory::getApplication();
-        $application->redirect('index.php?option=com_k2&view=extrafieldsgroups');
+        $app = JFactory::getApplication();
+        $app->redirect('index.php?option=com_k2&view=extrafieldsgroups');
     }
 }

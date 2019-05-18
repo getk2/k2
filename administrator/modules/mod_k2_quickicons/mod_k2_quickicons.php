@@ -36,7 +36,7 @@ $mod_copyrights_start = "\n\n<!-- JoomlaWorks \"K2 QuickIcons\" Module starts he
 $mod_copyrights_end = "\n<!-- JoomlaWorks \"K2 QuickIcons\" Module ends here -->\n\n";
 
 // API
-$application = JFactory::getApplication();
+$app = JFactory::getApplication();
 $document = JFactory::getDocument();
 $user = JFactory::getUser();
 

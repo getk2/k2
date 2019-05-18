@@ -26,11 +26,11 @@ class K2ModelExtraField extends K2Model
 
     public function save()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $row = JTable::getInstance('K2ExtraField', 'Table');
         if (!$row->bind(JRequest::get('post'))) {
-            $application->enqueueMessage($row->getError(), 'error');
-            $application->redirect('index.php?option=com_k2&view=extrafields');
+            $app->enqueueMessage($row->getError(), 'error');
+            $app->redirect('index.php?option=com_k2&view=extrafields');
         }
 
         $isNewGroup = JRequest::getInt('isNew');
@@ -125,13 +125,13 @@ class K2ModelExtraField extends K2Model
         $row->value = json_encode($objects);
 
         if (!$row->check()) {
-            $application->enqueueMessage($row->getError(), 'error');
-            $application->redirect('index.php?option=com_k2&view=extrafield&cid='.$row->id);
+            $app->enqueueMessage($row->getError(), 'error');
+            $app->redirect('index.php?option=com_k2&view=extrafield&cid='.$row->id);
         }
 
         if (!$row->store()) {
-            $application->enqueueMessage($row->getError(), 'error');
-            $application->redirect('index.php?option=com_k2&view=extrafields');
+            $app->enqueueMessage($row->getError(), 'error');
+            $app->redirect('index.php?option=com_k2&view=extrafields');
         }
 
         $params = JComponentHelper::getParams('com_k2');
@@ -157,8 +157,8 @@ class K2ModelExtraField extends K2Model
                 $link = 'index.php?option=com_k2&view=extrafields';
                 break;
         }
-        $application->enqueueMessage($msg);
-        $application->redirect($link);
+        $app->enqueueMessage($msg);
+        $app->redirect($link);
     }
 
     public function getExtraFieldsByGroup($group)
@@ -173,7 +173,7 @@ class K2ModelExtraField extends K2Model
 
     public function renderExtraField($extraField, $itemID = null)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
 
         if (!is_null($itemID)) {
             $item = JTable::getInstance('K2Item', 'Table');

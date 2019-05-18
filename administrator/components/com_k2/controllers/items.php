@@ -147,15 +147,15 @@ class K2ControllerItems extends K2Controller
 
 	function add()
 	{
-		$application = JFactory::getApplication();
-		$application->redirect('index.php?option=com_k2&view=item');
+		$app = JFactory::getApplication();
+		$app->redirect('index.php?option=com_k2&view=item');
 	}
 
 	function edit()
 	{
-		$application = JFactory::getApplication();
+		$app = JFactory::getApplication();
 		$cid = JRequest::getVar('cid');
-		$application->redirect('index.php?option=com_k2&view=item&cid='.$cid[0]);
+		$app->redirect('index.php?option=com_k2&view=item&cid='.$cid[0]);
 	}
 
 	function copy()
