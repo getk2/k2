@@ -290,12 +290,6 @@ class K2ModelItem extends K2Model
         if ($params->get('feedItemImage') && JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_'.$params->get('feedImgSize').'.jpg')) {
             $altText = ($item->image_caption) ? $item->image_caption : $item->title;
             $item->description .= '<div class="K2FeedImage"><img src="'.JURI::root().'media/k2/items/cache/'.md5('Image'.$item->id).'_'.$params->get('feedImgSize').'.jpg" alt="'.$altText.'" /></div>';
-
-            // Explicitly set the <image> object for RSS type feeds
-            $item->image = new stdClass;
-            $item->image->url = JURI::root().'media/k2/items/cache/'.md5('Image'.$item->id).'_'.$params->get('feedImgSize');
-            $item->image->title = ($item->image_caption) ? $item->image_caption : $item->title;
-            $item->image->link = $item->link;
         }
 
         // Item Introtext
