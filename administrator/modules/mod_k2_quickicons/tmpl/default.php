@@ -150,9 +150,9 @@ defined('_JEXEC') or die;
   </div>
   <div class="icon-wrapper">
     <div class="icon">
-	    <a data-k2-modal="iframe" href="https://joomlareader.com/" title="<?php echo JText::_('K2_JOOMLA_NEWS_FROM_MORE_THAN_200_SOURCES_WORLDWIDE'); ?>">
+	    <a data-k2-modal="iframe" href="https://joomlareader.com/" title="<?php echo JText::_('K2_JOOMLA_NEWS_FROM_AROUND_THE_WORLD'); ?>">
 			<i class="dashicon joomlareader"></i>
-			<span><?php echo JText::_('K2_JOOMLAREADERCOM'); ?></span>
+			<span><?php echo JText::_('K2_JOOMLAREADER'); ?></span>
 	    </a>
     </div>
   </div>

@@ -125,7 +125,7 @@ class K2ViewItem extends K2View
         if ($item->id) {
             $lists['created'] = JHTML::_('date', $item->created, JText::_('DATE_FORMAT_LC2'));
         } else {
-            $lists['created'] = JText::_('K2_NEW_DOCUMENT');
+            $lists['created'] = JText::_('K2_NEW_ITEM');
         }
 
         if ($item->modified == $db->getNullDate() || !$item->id) {

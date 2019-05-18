@@ -56,7 +56,7 @@
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </param>
-        <param menu="hide" name="userItemDateCreated" type="radio" default="1" label="K2_ITEM_CREATED_DATE_TIME" description="">
+        <param menu="hide" name="userItemDateCreated" type="radio" default="1" label="K2_ITEM_CREATED_DATE_AND_TIME" description="">
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </param>
@@ -99,7 +99,7 @@
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </param>
-        <param menu="hide" name="tagItemDateCreated" type="radio" default="1" label="K2_ITEM_CREATED_DATE_TIME" description="">
+        <param menu="hide" name="tagItemDateCreated" type="radio" default="1" label="K2_ITEM_CREATED_DATE_AND_TIME" description="">
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </param>
@@ -159,7 +159,7 @@
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </param>
-        <param menu="hide" name="genericItemDateCreated" type="radio" default="1" label="K2_ITEM_CREATED_DATE_TIME" description="">
+        <param menu="hide" name="genericItemDateCreated" type="radio" default="1" label="K2_ITEM_CREATED_DATE_AND_TIME" description="">
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </param>
@@ -604,7 +604,7 @@
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </field>
-        <field menu="hide" name="userItemDateCreated" type="radio" default="1" label="K2_ITEM_CREATED_DATE_TIME" description="">
+        <field menu="hide" name="userItemDateCreated" type="radio" default="1" label="K2_ITEM_CREATED_DATE_AND_TIME" description="">
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </field>
@@ -647,7 +647,7 @@
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </field>
-        <field menu="hide" name="tagItemDateCreated" type="radio" default="1" label="K2_ITEM_CREATED_DATE_TIME" description="">
+        <field menu="hide" name="tagItemDateCreated" type="radio" default="1" label="K2_ITEM_CREATED_DATE_AND_TIME" description="">
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </field>
@@ -707,7 +707,7 @@
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </field>
-        <field menu="hide" name="genericItemDateCreated" type="radio" default="1" label="K2_ITEM_CREATED_DATE_TIME" description="">
+        <field menu="hide" name="genericItemDateCreated" type="radio" default="1" label="K2_ITEM_CREATED_DATE_AND_TIME" description="">
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </field>

@@ -49,7 +49,7 @@
             <option value="XLarge">K2_XLARGE</option>
         </param>
         <param name="" type="header" default="K2_OTHER_LAYOUT_OPTIONS" label="" description=""/>
-        <param name="catCatalogMode" type="radio" default="0" label="K2_CATALOG_MODE" description="K2_IF_YOU_SELECT_YES_THEN_ONLY_THE_ITEMS_DIRECTLY_BELONGING_TO_THIS_CATEGORY_WILL_BE_RETRIEVED_IF_YOU_SELECT_NO_THEN_ITEMS_FROM_ALL_SUBCATEGORIES_WILL_BE_RETRIEVED_SETTING_THIS_OPTION_TO_NO_IS_IDEAL_FOR_NEWSPORTALMAGAZINEBLOG_LAYOUTS">
+        <param name="catCatalogMode" type="radio" default="0" label="K2_CATALOG_MODE" description="K2_CATALOG_MODE_DESC">
             <option value="0">K2_NO</option>
             <option value="1">K2_YES</option>
         </param>
@@ -523,7 +523,7 @@
                 <option value="XLarge">K2_XLARGE</option>
             </field>
             <field name="" type="header" default="K2_OTHER_LAYOUT_OPTIONS" label="" description=""/>
-            <field name="catCatalogMode" type="radio" default="0" label="K2_CATALOG_MODE" description="K2_IF_YOU_SELECT_YES_THEN_ONLY_THE_ITEMS_DIRECTLY_BELONGING_TO_THIS_CATEGORY_WILL_BE_RETRIEVED_IF_YOU_SELECT_NO_THEN_ITEMS_FROM_ALL_SUBCATEGORIES_WILL_BE_RETRIEVED_SETTING_THIS_OPTION_TO_NO_IS_IDEAL_FOR_NEWSPORTALMAGAZINEBLOG_LAYOUTS">
+            <field name="catCatalogMode" type="radio" default="0" label="K2_CATALOG_MODE" description="K2_CATALOG_MODE_DESC">
                 <option value="0">K2_NO</option>
                 <option value="1">K2_YES</option>
             </field>

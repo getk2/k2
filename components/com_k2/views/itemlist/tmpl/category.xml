@@ -11,9 +11,9 @@
         <params addpath="/administrator/components/com_k2/elements">
             <param name="" type="header" default="K2_SELECT_ONE_OR_MORE_CATEGORIES" label="" description=""/>
             <param name="categories" type="category" default="" label="K2_SELECT_CATEGORIES" description="K2_IF_YOU_SELECT_MULTIPLE_CATEGORIES_YOU_CAN_ADJUST_ADDITIONAL_PARAMETERS_BELOW_IF_YOU_SELECT_ONLY_ONE_CATEGORY_THEN_K2_WILL_FETCH_THE_OPTIONS_AS_DEFINED_IN_THAT_SPECIFIC_CATEGORYS_OPTIONS_IN_K2_CATEGORIES"/>
-            <param name="catCatalogMode" type="radio" default="0" label="K2_FETCH_ITEMS_FROM_CHILDREN_CATEGORIES" description="K2_IF_YOU_SELECT_NO_THEN_ONLY_THE_ITEMS_DIRECTLY_BELONGING_TO_THIS_CATEGORY_WILL_BE_RETRIEVED_IF_YOU_SELECT_YES_THEN_ITEMS_FROM_ALL_SUBCATEGORIES_WILL_BE_RETRIEVED_SETTING_THIS_OPTION_TO_YES_IS_IDEAL_FOR_NEWSPORTALMAGAZINEBLOG_LAYOUTS">
-                <option value="1">K2_NO</option>
-                <option value="0">K2_YES</option>
+            <param name="catCatalogMode" type="radio" default="0" label="K2_CATALOG_MODE" description="K2_CATALOG_MODE_DESC">
+                <option value="0">K2_NO</option>
+                <option value="1">K2_YES</option>
             </param>
             <param name="" type="header" default="K2_LAYOUT_OPTIONS_FOR_SINGLE_CATEGORY_SELECTION" label="" description=""/>
             <param name="singleCatOrdering" type="list" default="" label="K2_ITEM_ORDERING" description="">
@@ -131,9 +131,9 @@
             <fieldset name="basic" addfieldpath="/administrator/components/com_k2/elements">
                 <field name="" type="header" default="K2_SELECT_ONE_OR_MORE_CATEGORIES" label="" description=""/>
                 <field name="categories" type="k2category" default="" label="K2_SELECT_CATEGORIES" description="K2_IF_YOU_SELECT_MULTIPLE_CATEGORIES_YOU_CAN_ADJUST_ADDITIONAL_PARAMETERS_BELOW_IF_YOU_SELECT_ONLY_ONE_CATEGORY_THEN_K2_WILL_FETCH_THE_OPTIONS_AS_DEFINED_IN_THAT_SPECIFIC_CATEGORYS_OPTIONS_IN_K2_CATEGORIES"/>
-                <field name="catCatalogMode" type="radio" default="0" label="K2_FETCH_ITEMS_FROM_CHILDREN_CATEGORIES" description="K2_IF_YOU_SELECT_NO_THEN_ONLY_THE_ITEMS_DIRECTLY_BELONGING_TO_THIS_CATEGORY_WILL_BE_RETRIEVED_IF_YOU_SELECT_YES_THEN_ITEMS_FROM_ALL_SUBCATEGORIES_WILL_BE_RETRIEVED_SETTING_THIS_OPTION_TO_YES_IS_IDEAL_FOR_NEWSPORTALMAGAZINEBLOG_LAYOUTS" class="btn-group btn-group-yesno-reverse">
-                    <option value="1">K2_NO</option>
-                    <option value="0">K2_YES</option>
+                <field name="catCatalogMode" type="radio" default="0" label="K2_CATALOG_MODE" description="K2_CATALOG_MODE_DESC" class="btn-group btn-group-yesno-reverse">
+                    <option value="0">K2_NO</option>
+                    <option value="1">K2_YES</option>
                 </field>
                 <field name="" type="header" default="K2_LAYOUT_OPTIONS_FOR_SINGLE_CATEGORY_SELECTION" label="" description=""/>
                 <field name="singleCatOrdering" type="list" default="" label="K2_ITEM_ORDERING" description="">

@@ -56,13 +56,13 @@ defined('_JEXEC') or die;
                                     <tr>
                                         <td><a target="_blank" href="https://github.com/verot/class.upload.php">class.upload.php</a></td>
                                         <td>0.34dev</td>
-                                        <td><?php echo JText::_('K2_PHP_CLASS'); ?></td>
+                                        <td><?php echo JText::_('K2_PHP_LIBRARY'); ?></td>
                                         <td>GNU/GPL v2</td>
                                     </tr>
                                     <tr>
                                         <td><a target="_blank" href="https://github.com/achingbrain/php5-akismet">PHP5 Akismet</a></td>
                                         <td>0.5</td>
-                                        <td><?php echo JText::_('K2_PHP_CLASS'); ?></td>
+                                        <td><?php echo JText::_('K2_PHP_LIBRARY'); ?></td>
                                         <td>BSD</td>
                                     </tr>
                                     <tr>
@@ -162,7 +162,7 @@ defined('_JEXEC') or die;
                                         <td><?php echo $this->php_version; ?></td>
                                     </tr>
                                     <tr>
-                                        <td><strong><?php echo JText::_('K2_MYSQL_VERSION'); ?></strong></td>
+                                        <td><strong><?php echo JText::_('K2_DATABASE_VERSION'); ?></strong></td>
                                         <td><?php echo $this->db_version; ?></td>
                                     </tr>
                                     <tr>
