@@ -42,6 +42,9 @@ class K2ControllerItemlist extends K2Controller
             $urlparams['Itemid'] = 'INT';
             $urlparams['ordering'] = 'CMD';
             $urlparams['m'] = 'INT';
+            $urlparams['amp'] = 'INT';
+            $urlparams['tmpl'] = 'CMD';
+            $urlparams['template'] = 'CMD';
         }
         parent::display($cache, $urlparams);
     }

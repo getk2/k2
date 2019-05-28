@@ -29,6 +29,9 @@ class K2ControllerLatest extends K2Controller
         if (K2_JVERSION != '15') {
             $urlparams['Itemid'] = 'INT';
             $urlparams['m'] = 'INT';
+            $urlparams['amp'] = 'INT';
+            $urlparams['tmpl'] = 'CMD';
+            $urlparams['template'] = 'CMD';
         }
         parent::display($cache, $urlparams);
     }
