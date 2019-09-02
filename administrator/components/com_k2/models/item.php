@@ -528,34 +528,28 @@ class K2ModelItem extends K2Model
             $row->gallery = '';
         }
 
-        // Video
+        // Media
         if (!JRequest::getBool('del_video')) {
             if (isset($files['video']) && $files['video']['error'] == 0) {
+                $filetype = JFile::getExt($files['video']['name']);
+
                 $videoExtensions = array(
-                    "flv",
+                    "avi",
+                    "m4v",
+                    "mkv",
                     "mp4",
                     "ogv",
-                    "webm",
-                    "f4v",
-                    "m4v",
-                    "3gp",
-                    "3g2",
-                    "mov",
-                    "mpeg",
-                    "mpg",
-                    "avi",
-                    "wmv",
-                    "divx"
+                    "webm"
                 );
                 $audioExtensions = array(
-                    "mp3",
-                    "aac",
+                    "flac",
                     "m4a",
+                    "mp3",
+                    "oga",
                     "ogg",
-                    "wma"
+                    "wav"
                 );
                 $validExtensions = array_merge($videoExtensions, $audioExtensions);
-                $filetype = JFile::getExt($files['video']['name']);
 
                 if (!in_array($filetype, $validExtensions)) {
                     $app->enqueueMessage(JText::_('K2_INVALID_VIDEO_FILE'), 'error');
@@ -571,7 +565,9 @@ class K2ModelItem extends K2Model
                 $filename = JFile::stripExt($files['video']['name']);
 
                 JFile::upload($files['video']['tmp_name'], $savepath.'/'.$row->id.'.'.$filetype);
+
                 $filetype = JFile::getExt($files['video']['name']);
+
                 $row->video = '{'.$filetype.'}'.$row->id.'{/'.$filetype.'}';
             }
         } else {
@@ -579,18 +575,19 @@ class K2ModelItem extends K2Model
             $current->load($row->id);
 
             preg_match_all("#^{(.*?)}(.*?){#", $current->video, $matches, PREG_PATTERN_ORDER);
-            $videotype = $matches[1][0];
-            $videofile = $matches[2][0];
 
-            if (in_array($videotype, $videoExtensions)) {
-                if (JFile::exists(JPATH_ROOT.'/media/k2/videos/'.$videofile.'.'.$videotype)) {
-                    JFile::delete(JPATH_ROOT.'/media/k2/videos/'.$videofile.'.'.$videotype);
+            $mediaType = $matches[1][0];
+            $mediaFile = $matches[2][0];
+
+            if (in_array($mediaType, $videoExtensions)) {
+                if (JFile::exists(JPATH_ROOT.'/media/k2/videos/'.$mediaFile.'.'.$mediaType)) {
+                    JFile::delete(JPATH_ROOT.'/media/k2/videos/'.$mediaFile.'.'.$mediaType);
                 }
             }
 
-            if (in_array($videotype, $audioExtensions)) {
-                if (JFile::exists(JPATH_ROOT.'/media/k2/audio/'.$videofile.'.'.$videotype)) {
-                    JFile::delete(JPATH_ROOT.'/media/k2/audio/'.$videofile.'.'.$videotype);
+            if (in_array($mediaType, $audioExtensions)) {
+                if (JFile::exists(JPATH_ROOT.'/media/k2/audio/'.$mediaFile.'.'.$mediaType)) {
+                    JFile::delete(JPATH_ROOT.'/media/k2/audio/'.$mediaFile.'.'.$mediaType);
                 }
             }
 

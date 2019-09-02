@@ -628,6 +628,24 @@ class K2ModelItems extends K2Model
         $copies = array();
         $nullDate = $db->getNullDate();
 
+        // Define media extensions
+        $videoExtensions = array(
+            "avi",
+            "m4v",
+            "mkv",
+            "mp4",
+            "ogv",
+            "webm"
+        );
+        $audioExtensions = array(
+            "flac",
+            "m4a",
+            "mp3",
+            "oga",
+            "ogg",
+            "wav"
+        );
+
         foreach ($cid as $id) {
             // Load source item
             $item = JTable::getInstance('K2Item', 'Table');
@@ -647,15 +665,20 @@ class K2ModelItems extends K2Model
             $sourceGallery = JPATH_ROOT.'/media/k2/galleries/'.$item->id;
             $sourceGalleryTag = $item->gallery;
 
-            // Source video
+            // Source media
             preg_match_all("#^{(.*?)}(.*?){#", $item->video, $matches, PREG_PATTERN_ORDER);
-            $videotype = $matches[1][0];
-            $videofile = $matches[2][0];
 
-            if ($videotype == 'flv' || $videotype == 'swf' || $videotype == 'wmv' || $videotype == 'mov' || $videotype == 'mp4' || $videotype == '3gp' || $videotype == 'divx') {
-                if (JFile::exists(JPATH_ROOT.'/media/k2/videos/'.$videofile.'.'.$videotype)) {
-                    $sourceVideo = $videofile.'.'.$videotype;
-                    //$row->video='{'.$videotype.'}'.$row->id.'{/'.$videotype.'}';
+            $mediaType = $matches[1][0];
+            $mediaFile = $matches[2][0];
+
+            if (in_array($mediaType, $videoExtensions) || in_array($mediaType, $audioExtensions)) {
+                // Videos
+                if (JFile::exists(JPATH_ROOT.'/media/k2/videos/'.$mediaFile.'.'.$mediaType)) {
+                    $sourceMedia = $mediaFile.'.'.$mediaType;
+                }
+                // Audio
+                if (JFile::exists(JPATH_ROOT.'/media/k2/audio/'.$mediaFile.'.'.$mediaType)) {
+                    $sourceMedia = $mediaFile.'.'.$mediaType;
                 }
             }
 
@@ -715,10 +738,18 @@ class K2ModelItems extends K2Model
                 }
             }
 
-            // Target video
-            if (isset($sourceVideo) && JFile::exists(JPATH_ROOT.'/media/k2/videos/'.$sourceVideo)) {
-                JFile::copy(JPATH_ROOT.'/media/k2/videos/'.$sourceVideo, JPATH_ROOT.'/media/k2/videos/'.$row->id.'.'.$videotype);
-                $row->video = '{'.$videotype.'}'.$row->id.'{/'.$videotype.'}';
+            // Target media
+            if (isset($sourceMedia)) {
+                if (JFile::exists(JPATH_ROOT.'/media/k2/videos/'.$sourceMedia)) {
+                    JFile::copy(JPATH_ROOT.'/media/k2/videos/'.$sourceMedia, JPATH_ROOT.'/media/k2/videos/'.$row->id.'.'.$mediaType);
+                    $row->video = $row->id.'.'.$mediaType;
+                    //$row->video = '{'.$mediaType.'}'.$row->id.'{/'.$mediaType.'}';
+                }
+                if (JFile::exists(JPATH_ROOT.'/media/k2/audio/'.$sourceMedia)) {
+                    JFile::copy(JPATH_ROOT.'/media/k2/audio/'.$sourceMedia, JPATH_ROOT.'/media/k2/audio/'.$row->id.'.'.$mediaType);
+                    $row->video = $row->id.'.'.$mediaType;
+                    //$row->video = '{'.$mediaType.'}'.$row->id.'{/'.$mediaType.'}';
+                }
             }
 
             // Target attachments
@@ -870,6 +901,24 @@ class K2ModelItems extends K2Model
         JPluginHelper::importPlugin('finder');
         $dispatcher = JDispatcher::getInstance();
 
+        // Define media extensions
+        $videoExtensions = array(
+            "avi",
+            "m4v",
+            "mkv",
+            "mp4",
+            "ogv",
+            "webm"
+        );
+        $audioExtensions = array(
+            "flac",
+            "m4a",
+            "mp3",
+            "oga",
+            "ogg",
+            "wav"
+        );
+
         foreach ($cid as $id) {
             $row = JTable::getInstance('K2Item', 'Table');
             $row->load($id);
@@ -903,43 +952,20 @@ class K2ModelItems extends K2Model
                 JFolder::delete(JPATH_ROOT.'/media/k2/galleries/'.$row->id);
             }
 
-            // Delete video
+            // Delete media
             preg_match_all("#^{(.*?)}(.*?){#", $row->video, $matches, PREG_PATTERN_ORDER);
-            $videotype = $matches[1][0];
-            $videofile = $matches[2][0];
 
-            $videoExtensions = array(
-                'flv',
-                'mp4',
-                'ogv',
-                'webm',
-                'f4v',
-                'm4v',
-                '3gp',
-                '3g2',
-                'mov',
-                'mpeg',
-                'mpg',
-                'avi',
-                'wmv',
-                'divx',
-                'swf'
-            );
-            $audioExtensions = array(
-                'mp3',
-                'aac',
-                'mp4',
-                'ogg',
-                'wma'
-            );
+            $mediaType = $matches[1][0];
+            $mediaFile = $matches[2][0];
 
-            if (in_array($videotype, $videoExtensions) || in_array($videotype, $audioExtensions)) {
-                if (JFile::exists(JPATH_ROOT.'/media/k2/videos/'.$videofile.'.'.$videotype)) {
-                    JFile::delete(JPATH_ROOT.'/media/k2/videos/'.$videofile.'.'.$videotype);
+            if (in_array($mediaType, $videoExtensions) || in_array($mediaType, $audioExtensions)) {
+                // Videos
+                if (JFile::exists(JPATH_ROOT.'/media/k2/videos/'.$mediaFile.'.'.$mediaType)) {
+                    JFile::delete(JPATH_ROOT.'/media/k2/videos/'.$mediaFile.'.'.$mediaType);
                 }
-
-                if (JFile::exists(JPATH_ROOT.'/media/k2/audio/'.$videofile.'.'.$videotype)) {
-                    JFile::delete(JPATH_ROOT.'/media/k2/audio/'.$videofile.'.'.$videotype);
+                // Audio
+                if (JFile::exists(JPATH_ROOT.'/media/k2/audio/'.$mediaFile.'.'.$mediaType)) {
+                    JFile::delete(JPATH_ROOT.'/media/k2/audio/'.$mediaFile.'.'.$mediaType);
                 }
             }
 
@@ -1422,9 +1448,9 @@ class K2ModelItems extends K2Model
     {
         $db = $this->getDBO();
         $query = "SELECT id, name, block
-        	FROM #__users
-        	WHERE id IN (SELECT DISTINCT created_by FROM #__k2_items)
-        	ORDER BY name";
+            FROM #__users
+            WHERE id IN (SELECT DISTINCT created_by FROM #__k2_items)
+            ORDER BY name";
         /*
         $query = "SELECT u.id, u.name, u.block
             FROM #__users as u
