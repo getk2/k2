@@ -460,7 +460,7 @@ $app = JFactory::getApplication();
                                         <ul class="k2TabsNavigation">
                                             <li><a href="#k2MediaTab1"><?php echo JText::_('K2_UPLOAD'); ?></a></li>
                                             <li><a href="#k2MediaTab2"><?php echo JText::_('K2_BROWSE_SERVERUSE_REMOTE_MEDIA'); ?></a></li>
-                                            <li><a href="#k2MediaTab3"><?php echo JText::_('K2_MEDIA_USE_ONLINE_VIDEO_SERVICE'); ?></a></li>
+                                            <li><a href="#k2MediaTab3"><?php echo JText::_('K2_MEDIA_USE_THIRD_PARTY_MEDIA_SERVICE'); ?></a></li>
                                             <li><a href="#k2MediaTab4"><?php echo JText::_('K2_EMBED'); ?></a></li>
                                         </ul>
                                         <div id="k2MediaTab1" class="k2TabsContent">
@@ -490,7 +490,7 @@ $app = JFactory::getApplication();
                                         <div id="k2MediaTab3" class="k2TabsContent">
                                             <div class="panel" id="Video_from_provider">
                                                 <div class="itemAdditionalBlock">
-                                                    <label><?php echo JText::_('K2_SELECT_VIDEO_PROVIDER'); ?></label>
+                                                    <label><?php echo JText::_('K2_SELECT_THIRD_PARTY_MEDIA_PROVIDER'); ?></label>
                                                 </div>
                                                 <div class="itemAdditionalBlock">
                                                     <?php echo $this->lists['providers']; ?>
@@ -498,7 +498,7 @@ $app = JFactory::getApplication();
                                                 <br />
                                                 <br />
                                                 <div class="itemAdditionalBlock">
-                                                    <label><?php echo JText::_('K2_AND_ENTER_VIDEO_ID'); ?></label>
+                                                    <label><?php echo JText::_('K2_AND_ENTER_MEDIA_URL_OR_ID'); ?></label>
                                                 </div>
                                                 <div class="itemAdditionalBlock">
                                                     <input type="text" size="50" name="videoID" value="<?php echo $this->lists['providerVideo'] ?>" />
