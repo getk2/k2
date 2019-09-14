@@ -1202,10 +1202,12 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="radio"][value="0"]:checked + label,
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="radio"][value="none"]:checked + label,
-.isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue .controls > label.isChecked[for="published0"] {background:#bd362f;color:#fff;}
+.isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue .controls > label.isChecked[for="published0"],
+.isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue .controls > label.isChecked[for="featured0"] {background:#bd362f;color:#fff;}
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="radio"][value="1"]:checked + label,
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="radio"][value="all"]:checked + label,
-.isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue .controls > label.isChecked[for="published1"] {background:#3fa800;color:#fff;}
+.isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue .controls > label.isChecked[for="published1"],
+.isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue .controls > label.isChecked[for="featured1"] {background:#3fa800;color:#fff;}
 
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="checkbox"] {box-shadow:none;}
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input.k2TitleBox {text-align:left;}
@@ -1219,6 +1221,36 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields fieldset.adminform > legend::after {font-family:"FontAwesome";font-size:24px;content:"\f12e";position:absolute;right:20px;top:20px;}
 
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields fieldset.panelform ul li .paramValueHeader {padding:10px 0 0 0;}
+
+/* Radio buttons in sub-tables (K2 item form) */
+.k2SubTable .k2SubTableValue input[type="radio"] {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);}
+
+.k2SubTable .k2SubTableValue input[type="radio"],
+.k2SubTable .k2SubTableValue .controls label > input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);}
+.k2SubTable .k2SubTableValue input[type="radio"] + label,
+.k2SubTable .k2SubTableValue .controls > label.radio,
+.k2SubTable .k2SubTableValue .controls > label.isChecked {min-width:80px;width:auto;line-height:30px;height:30px;text-align:center;margin:0 -2px 0 0;padding:0 10px !important;color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background:#eff1f1;cursor:pointer;border:0;}
+
+.k2SubTable .k2SubTableValue input[type="radio"]:first-child + label,
+.k2SubTable .k2SubTableValue .controls > label.radio:first-child {border-radius:4px 0 0 4px;}
+.k2SubTable .k2SubTableValue input[type="radio"] + label:last-child,
+.k2SubTable .k2SubTableValue .controls > label.radio:last-child {border-radius:0 4px 4px 0;}
+
+.k2SubTable .k2SubTableValue input[type="radio"]:checked + label,
+.k2SubTable .k2SubTableValue .controls > label.isChecked {background:#63696f;color:#fff;} /* Generic */
+.k2SubTable .k2SubTableValue input[type="radio"] + label:hover,
+.k2SubTable .k2SubTableValue .controls > label.radio:hover {background:#e8e8e8;}
+.k2SubTable .k2SubTableValue input[type="radio"]:checked + label:hover,
+.k2SubTable .k2SubTableValue .controls > label.isChecked:hover {background:#555;}
+
+.k2SubTable .k2SubTableValue input[type="radio"][value="0"]:checked + label,
+.k2SubTable .k2SubTableValue input[type="radio"][value="none"]:checked + label,
+.k2SubTable .k2SubTableValue .controls > label.isChecked[for="published0"],
+.k2SubTable .k2SubTableValue .controls > label.isChecked[for="featured0"] {background:#bd362f;color:#fff;}
+.k2SubTable .k2SubTableValue input[type="radio"][value="1"]:checked + label,
+.k2SubTable .k2SubTableValue input[type="radio"][value="all"]:checked + label,
+.k2SubTable .k2SubTableValue .controls > label.isChecked[for="published1"],
+.k2SubTable .k2SubTableValue .controls > label.isChecked[for="featured1"] {background:#3fa800;color:#fff;}
 
 /* --- Corrections for Joomla 3.x [finish] --- */
 
