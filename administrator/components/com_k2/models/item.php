@@ -812,25 +812,20 @@ class K2ModelItem extends K2Model
             $file = JPATH_PLUGINS.'/content/jw_allvideos/includes/sources.php';
         }
 
+        $providers = array();
+
         if (JFile::exists($file)) {
             require $file;
-            $thirdPartyProviders = array_slice($tagReplace, 40);
-            $providersTmp = array_keys($thirdPartyProviders);
-            $providers = array();
-            foreach ($providersTmp as $providerTmp) {
-                if (stristr($providerTmp, 'google|google.co.uk|google.com.au|google.de|google.es|google.fr|google.it|google.nl|google.pl') !== false) {
-                    $provider = 'google';
-                } elseif (stristr($providerTmp, 'spike|ifilm') !== false) {
-                    $provider = 'spike';
-                } else {
-                    $provider = $providerTmp;
+            if (!empty($tagReplace) && is_array($tagReplace)) {
+                foreach ($tagReplace as $name => $embed) {
+                    if (strpos($embed, '<iframe') !== false || strpos($embed, '<script') !== false) {
+                        $providers[] = $name;
+                    }
                 }
-                $providers[] = $provider;
             }
-            return $providers;
-        } else {
-            return array();
         }
+
+        return $providers;
     }
 
     public function download()
