@@ -564,6 +564,7 @@ $K2(document).ready(function() {
                     if ($K2(this).val() != '') {
                         $K2('<li class="addedTag">' + $K2(this).val() + '<span class="tagRemove" onclick="$K2(this).parent().remove();">&times;</span><input type="hidden" value="' + $K2(this).val() + '" name="tags[]"></li>').insertBefore('.tags .tagAdd');
                         $K2(this).val('');
+                        event.preventDefault();
                     }
                 }
             });
