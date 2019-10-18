@@ -931,6 +931,10 @@ class K2ModelItem extends K2Model
         $id = JRequest::getInt('id');
         $itemID = JRequest::getInt('cid');
 
+        // Plugin Events
+        JPluginHelper::importPlugin('k2');
+        $dispatcher = JDispatcher::getInstance();
+
         $db = JFactory::getDbo();
         $query = "SELECT COUNT(*) FROM #__k2_attachments WHERE itemID={$itemID} AND id={$id}";
         $db->setQuery($query);
@@ -955,6 +959,10 @@ class K2ModelItem extends K2Model
         }
 
         $row->delete($id);
+
+        // Trigger K2 plugins
+        $result = $dispatcher->trigger('onAfterK2DeleteAttachment', array($id, $savepath));
+
         $app->close();
     }
 
