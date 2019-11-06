@@ -209,7 +209,7 @@ class K2ModelItem extends K2Model
             $item->introtext = K2HelperUtilities::wordLimit($item->introtext, $item->params->get('catItemIntroTextWordLimit'));
         }
 
-        $item->cleanTitle = $item->title;
+        $item->rawTitle = $item->title;
         $item->title = htmlspecialchars($item->title, ENT_QUOTES);
         $item->image_caption = htmlspecialchars($item->image_caption, ENT_QUOTES);
 

@@ -418,7 +418,7 @@ class K2ViewItem extends K2View
                 if (!isset($menu->query['task']) || $menu->query['task'] != 'category' || $menu->query['id'] != $item->catid) {
                     $pathway->addItem($item->category->name, $item->category->link);
                 }
-                $pathway->addItem($item->cleanTitle, '');
+                $pathway->addItem($item->rawTitle, '');
             }
         }
 
@@ -464,35 +464,38 @@ class K2ViewItem extends K2View
                 $document->addHeadLink($item->link, 'canonical', 'rel');
             }
 
-            // Set page title
-            if ($menuItemMatchesK2Item) {
-                if (is_string($menu->params)) {
-                    $menu_params = K2_JVERSION == '15' ? new JParameter($menu->params) : new JRegistry($menu->params);
-                } else {
-                    $menu_params = $menu->params;
-                }
-                if (!$menu_params->get('page_title')) {
-                    $params->set('page_title', $item->cleanTitle);
-                }
+            // Set <title>
+            if ($menuItemMatchesK2Item && empty($params->get('page_title'))) {
+                $params->set('page_title', $item->rawTitle);
             } else {
-                $params->set('page_title', $item->cleanTitle);
+                $params->set('page_title', $item->rawTitle);
             }
+
             if (K2_JVERSION != '15') {
+                // Prepend/append site name
                 if ($app->getCfg('sitename_pagetitles', 0) == 1) {
                     $title = JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $params->get('page_title'));
-                    $params->set('page_title', $title);
                 } elseif ($app->getCfg('sitename_pagetitles', 0) == 2) {
                     $title = JText::sprintf('JPAGETITLE', $params->get('page_title'), $app->getCfg('sitename'));
-                    $params->set('page_title', $title);
                 }
+                $params->set('page_title', $title);
             }
+
+            if ($menuItemMatchesK2Item && K2_JVERSION != '15') {
+                // Override page title with page heading (if set)
+                if ($params->get('page_heading')) {
+                    $params->set('page_title', $params->get('page_heading'));
+                }
+
+                // B/C assignment so Joomla 2.5+ uses 'show_page_title' like Joomla 1.5
+                $params->set('show_page_title', $params->get('show_page_heading'));
+            }
+
             $document->setTitle($params->get('page_title'));
 
-            // Set metadata
+            // Set meta description
             $metaDesc = '';
 
-            // --- Override metadata with data from the item ---
-            // Meta: Description
             if ($item->metadesc) {
                 $metaDesc = filter_var($item->metadesc, FILTER_SANITIZE_STRING);
             } else {
@@ -500,54 +503,65 @@ class K2ViewItem extends K2View
                 $metaDesc = filter_var($metaDesc, FILTER_SANITIZE_STRING);
                 $metaDesc = K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150));
             }
-            if ($metaDesc) {
-                $document->setDescription($metaDesc);
+
+            if ($menuItemMatchesK2Item && K2_JVERSION != '15') {
+                if ($params->get('menu-meta_description')) {
+                    $metaDesc = $params->get('menu-meta_description');
+                }
             }
 
-            // Meta: Keywords
+            $document->setDescription($metaDesc);
+
+            // Set meta keywords
+            $metaKeywords = '';
+
             if ($item->metakey) {
-                $document->setMetadata('keywords', $item->metakey);
+                $metaKeywords = $item->metakey;
             } else {
                 if (isset($item->tags) && count($item->tags)) {
                     $tmp = array();
                     foreach ($item->tags as $tag) {
                         $tmp[] = $tag->name;
                     }
-                    $document->setMetadata('keywords', implode(',', $tmp));
+                    $metaKeywords = implode(',', $tmp);
                 }
             }
 
-            // Meta: Robots & author
-            if ($app->getCfg('MetaAuthor') == '1' && isset($item->author->name)) {
-                $document->setMetadata('author', $item->author->name);
+            if ($menuItemMatchesK2Item && K2_JVERSION != '15') {
+                if ($params->get('menu-meta_keywords')) {
+                    $metaKeywords = $params->get('menu-meta_keywords');
+                }
             }
 
-            $itemMetaData = class_exists('JParameter') ? new JParameter($item->metadata) : new JRegistry($item->metadata);
+            $document->setMetadata('keywords', trim($metaKeywords));
+
+            // Set meta robots & author
+            $metaRobots = '';
+            $metaAuthor = '';
+
+            if (!empty($item->author->name)) {
+                $metaAuthor = $item->author->name;
+            }
+
+            $itemMetaData = (class_exists('JParameter')) ? new JParameter($item->metadata) : new JRegistry($item->metadata);
             $itemMetaData = $itemMetaData->toArray();
-            foreach ($itemMetaData as $k => $v) {
-                if (($k == 'robots' || $k == 'author') && $v) {
-                    $document->setMetadata($k, $v);
+            if (!empty($itemMetaData['robots'])) {
+                $metaRobots = $itemMetaData['robots'];
+            }
+            if (!empty($itemMetaData['author'])) {
+                $metaAuthor = $itemMetaData['author'];
+            }
+
+            if ($menuItemMatchesK2Item && K2_JVERSION != '15') {
+                if ($params->get('robots')) {
+                    $metaRobots = $params->get('robots');
                 }
             }
 
-            // Get metadata from the menu item (for Joomla 2.5+)
-            if ($menuItemMatchesK2Item) {
-                if (K2_JVERSION != '15') {
-                    if ($params->get('menu-meta_description')) {
-                        $document->setDescription($params->get('menu-meta_description'));
-                    }
-                    if ($params->get('menu-meta_keywords')) {
-                        $document->setMetadata('keywords', $params->get('menu-meta_keywords'));
-                    }
-                    if ($params->get('robots')) {
-                        $document->setMetadata('robots', $params->get('robots'));
-                    }
-                    // Menu page display options
-                    if ($params->get('page_heading')) {
-                        $params->set('page_title', $params->get('page_heading'));
-                    }
-                    $params->set('show_page_title', $params->get('show_page_heading'));
-                }
+            $document->setMetadata('robots', $metaRobots);
+
+            if ($app->getCfg('MetaAuthor') == '1' && $metaAuthor) {
+                $document->setMetadata('author', $metaAuthor);
             }
 
             // Common for social meta tags
