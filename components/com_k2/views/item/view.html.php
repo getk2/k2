@@ -465,8 +465,10 @@ class K2ViewItem extends K2View
             }
 
             // Set <title>
-            if ($menuItemMatchesK2Item && empty($params->get('page_title'))) {
-                $params->set('page_title', $item->rawTitle);
+            if ($menuItemMatchesK2Item) {
+                if (empty($params->get('page_title'))) {
+                    $params->set('page_title', $item->rawTitle);
+                }
             } else {
                 $params->set('page_title', $item->rawTitle);
             }
@@ -474,11 +476,10 @@ class K2ViewItem extends K2View
             if (K2_JVERSION != '15') {
                 // Prepend/append site name
                 if ($app->getCfg('sitename_pagetitles', 0) == 1) {
-                    $title = JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $params->get('page_title'));
+                    $params->set('page_title', JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $params->get('page_title')));
                 } elseif ($app->getCfg('sitename_pagetitles', 0) == 2) {
-                    $title = JText::sprintf('JPAGETITLE', $params->get('page_title'), $app->getCfg('sitename'));
+                    $params->set('page_title', JText::sprintf('JPAGETITLE', $params->get('page_title'), $app->getCfg('sitename')));
                 }
-                $params->set('page_title', $title);
             }
 
             if ($menuItemMatchesK2Item && K2_JVERSION != '15') {
