@@ -491,26 +491,6 @@ class K2ViewItem extends K2View
             // Set metadata
             $metaDesc = '';
 
-            // Get metadata from the menu item (for Joomla 2.5+)
-            if ($menuItemMatchesK2Item) {
-                if (K2_JVERSION != '15') {
-                    if ($params->get('menu-meta_description')) {
-                        $document->setDescription($params->get('menu-meta_description'));
-                    }
-                    if ($params->get('menu-meta_keywords')) {
-                        $document->setMetadata('keywords', $params->get('menu-meta_keywords'));
-                    }
-                    if ($params->get('robots')) {
-                        $document->setMetadata('robots', $params->get('robots'));
-                    }
-                    // Menu page display options
-                    if ($params->get('page_heading')) {
-                        $params->set('page_title', $params->get('page_heading'));
-                    }
-                    $params->set('show_page_title', $params->get('show_page_heading'));
-                }
-            }
-
             // --- Override metadata with data from the item ---
             // Meta: Description
             if ($item->metadesc) {
@@ -547,6 +527,26 @@ class K2ViewItem extends K2View
             foreach ($itemMetaData as $k => $v) {
                 if (($k == 'robots' || $k == 'author') && $v) {
                     $document->setMetadata($k, $v);
+                }
+            }
+
+            // Get metadata from the menu item (for Joomla 2.5+)
+            if ($menuItemMatchesK2Item) {
+                if (K2_JVERSION != '15') {
+                    if ($params->get('menu-meta_description')) {
+                        $document->setDescription($params->get('menu-meta_description'));
+                    }
+                    if ($params->get('menu-meta_keywords')) {
+                        $document->setMetadata('keywords', $params->get('menu-meta_keywords'));
+                    }
+                    if ($params->get('robots')) {
+                        $document->setMetadata('robots', $params->get('robots'));
+                    }
+                    // Menu page display options
+                    if ($params->get('page_heading')) {
+                        $params->set('page_title', $params->get('page_heading'));
+                    }
+                    $params->set('show_page_title', $params->get('show_page_heading'));
                 }
             }
 
