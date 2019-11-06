@@ -491,7 +491,8 @@ class K2ViewItem extends K2View
                 $params->set('show_page_title', $params->get('show_page_heading'));
             }
 
-            $document->setTitle($params->get('page_title'));
+            $metaTitle = $params->get('page_title');
+            $document->setTitle($metaTitle);
 
             // Set meta description
             $metaDesc = '';
@@ -501,7 +502,6 @@ class K2ViewItem extends K2View
             } else {
                 $metaDesc = preg_replace("#{(.*?)}(.*?){/(.*?)}#s", '', $itemTextBeforePlugins);
                 $metaDesc = filter_var($metaDesc, FILTER_SANITIZE_STRING);
-                $metaDesc = K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150));
             }
 
             if ($menuItemMatchesK2Item && K2_JVERSION != '15') {
@@ -510,7 +510,7 @@ class K2ViewItem extends K2View
                 }
             }
 
-            $document->setDescription($metaDesc);
+            $document->setDescription(K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150)));
 
             // Set meta keywords
             $metaKeywords = '';
@@ -564,20 +564,12 @@ class K2ViewItem extends K2View
                 $document->setMetadata('author', $metaAuthor);
             }
 
-            // Common for social meta tags
-            if ($item->metadesc) {
-                $socialMetaDesc = $item->metadesc;
-            } else {
-                $socialMetaDesc = preg_replace("#{(.*?)}(.*?){/(.*?)}#s", '', $itemTextBeforePlugins);
-                $socialMetaDesc = filter_var($socialMetaDesc, FILTER_SANITIZE_STRING);
-            }
-
             // Set Facebook meta tags
             if ($params->get('facebookMetatags', 1)) {
                 $document->setMetaData('og:url', $item->absoluteURL);
                 $document->setMetaData('og:type', 'article');
-                $document->setMetaData('og:title', filter_var($item->title, FILTER_SANITIZE_STRING));
-                $document->setMetaData('og:description', K2HelperUtilities::characterLimit($socialMetaDesc, 300)); // 300 chars limit for Facebook post sharing
+                $document->setMetaData('og:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                $document->setMetaData('og:description', K2HelperUtilities::characterLimit($metaDesc, 300)); // 300 chars limit for Facebook post sharing
                 $facebookImage = 'image'.$params->get('facebookImage', 'Medium');
                 if ($item->$facebookImage) {
                     $basename = basename($item->$facebookImage);
@@ -601,8 +593,8 @@ class K2ViewItem extends K2View
                 if ($params->get('twitterUsername')) {
                     $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
                 }
-                $document->setMetaData('twitter:title', filter_var($item->title, FILTER_SANITIZE_STRING));
-                $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($socialMetaDesc, 200)); // 200 chars limit for Twitter post sharing
+                $document->setMetaData('twitter:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($metaDesc, 200)); // 200 chars limit for Twitter post sharing
                 $twitterImage = 'image'.$params->get('twitterImage', 'Medium');
                 if ($item->$twitterImage) {
                     $basename = basename($item->$twitterImage);
@@ -616,7 +608,7 @@ class K2ViewItem extends K2View
                         $image = JURI::root().'media/k2/items/cache/'.$basename;
                         $document->setMetaData('twitter:image', $image);
                         if (!$params->get('facebookMetatags')) {
-                            $document->setMetaData('image', $image); // Generic meta
+                            $document->setMetaData('image', $image); // Generic meta (if not already set in Facebook meta tags)
                         }
                         $document->setMetaData('twitter:image:alt', (!empty($item->image_caption)) ? filter_var($item->image_caption, FILTER_SANITIZE_STRING) : filter_var($item->title, FILTER_SANITIZE_STRING));
                     }
