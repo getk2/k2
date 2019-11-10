@@ -386,7 +386,7 @@
         </param>
         <param name="" type="header" default="K2_SEO" label="" description=""/>
         <param menu="hide" name="k2SeoGsdType" type="list" default="" label="K2_GSD_TYPE_IN_CAT_AND_ITEM" description="">
-            <option value="">K2_GSD_TYPE_INHERIT_FROM_SETTINGS</option>
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
             <option value="Article">K2_GSD_TYPE_ARTICLE</option>
             <option value="BlogPosting">K2_GSD_TYPE_BLOGPOST</option>
             <option value="Course">K2_GSD_TYPE_COURSE</option>
@@ -790,7 +790,7 @@
             </field>
             <field name="" type="header" default="K2_SEO" label="" description=""/>
             <field menu="hide" name="k2SeoGsdType" type="list" default="" label="K2_GSD_TYPE_IN_CAT_AND_ITEM" description="">
-                <option value="">K2_GSD_TYPE_INHERIT_FROM_SETTINGS</option>
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
                 <option value="Article">K2_GSD_TYPE_ARTICLE</option>
                 <option value="BlogPosting">K2_GSD_TYPE_BLOGPOST</option>
                 <option value="Course">K2_GSD_TYPE_COURSE</option>
