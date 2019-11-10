@@ -620,8 +620,8 @@ class K2ViewItem extends K2View
             $itemSD_Type = $item->params->get('k2SeoGsdType', 'Article');
 
             // Cleanups
-            $sdStrSearch = ['&nbsp;', '{K2Splitter}'];
-            $sdStrReplace = [' ', ' ',];
+            $sdStrSearch = ['&amp;', '&nbsp;', '{K2Splitter}'];
+            $sdStrReplace = ['&', ' ', ' ',];
             $sdPregSearch = ["#<script(.*?)</script>#is", "/\r|\n|\t/", "/\s\s+/"];
             $sdPregReplace = ['', ' ', ' '];
             $allowedTags = '<script>';
