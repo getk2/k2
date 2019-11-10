@@ -681,7 +681,7 @@ class K2ViewItem extends K2View
                     }
                 },
                 "articleSection": "'.$this->absUrl($item->category->link).'",
-                "keywords": "'.$this->filterHTML($metaKeywords).'"
+                "keywords": "'.$this->filterHTML($metaKeywords).'",
                 "description": "'.$this->filterHTML($itemSD_Description).'",
                 "articleBody": "'.$this->filterHTML($itemSD_ArticleBody).'"
             }
