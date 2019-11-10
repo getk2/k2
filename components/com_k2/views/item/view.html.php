@@ -617,7 +617,7 @@ class K2ViewItem extends K2View
             }
 
             // --- Google Structured Data ---
-            $itemSD_Type = $params->get('k2SeoGsdType', 'Article');
+            $itemSD_Type = $item->params->get('k2SeoGsdType', 'Article');
 
             // Cleanups
             $sdStrSearch = ['&nbsp;', '{K2Splitter}'];
