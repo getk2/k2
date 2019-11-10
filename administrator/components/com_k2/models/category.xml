@@ -458,6 +458,19 @@
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </param>
+        <param name="" type="header" default="K2_SEO" label="" description=""/>
+        <param menu="hide" name="k2SeoGsdType" type="list" default="" label="K2_GSD_TYPE_IN_CAT_AND_ITEM" description="">
+            <option value="">K2_GSD_TYPE_INHERIT_FROM_SETTINGS</option>
+            <option value="Article">K2_GSD_TYPE_ARTICLE</option>
+            <option value="BlogPosting">K2_GSD_TYPE_BLOGPOST</option>
+            <option value="Course">K2_GSD_TYPE_COURSE</option>
+            <option value="Event">K2_GSD_TYPE_EVENT</option>
+            <option value="Movie">K2_GSD_TYPE_MOVIE</option>
+            <option value="NewsArticle">K2_GSD_TYPE_NEWSARTICLE</option>
+            <option value="Product">K2_GSD_TYPE_PRODUCT</option>
+            <option value="Recipe">K2_GSD_TYPE_RECIPE</option>
+            <option value="Video">K2_GSD_TYPE_VIDEO</option>
+        </param>
         <param name="" type="header" default="K2_ADVANCED" label="" description=""/>
         <param name="itemK2Plugins" type="radio" default="1" label="K2_ENABLE_K2_PLUGINS" description="">
             <option value="0">K2_NO</option>
@@ -466,8 +479,8 @@
     </params>
     <!-- Metadata Information -->
     <params group="category-metadata-information" addpath="/administrator/components/com_k2/elements">
-        <param name="catMetaDesc" type="k2textarea" chars="160" default="" label="K2_DESCRIPTION" description="" rows="4" cols="25" />
-        <param name="catMetaKey" type="textarea" default="" label="K2_KEYWORDS" description="" rows="4" cols="25" />
+        <param name="catMetaDesc" type="k2textarea" chars="160" default="" label="K2_DESCRIPTION" description="" rows="4" cols="25"/>
+        <param name="catMetaKey" type="textarea" default="" label="K2_KEYWORDS" description="" rows="4" cols="25"/>
         <param name="catMetaRobots" type="list" default="" label="K2_ROBOTS" description="">
             <option value="">K2_USE_GLOBAL</option>
             <option value="index, follow">K2_METADATA_ROBOTS_INDEX_FOLLOW</option>
@@ -932,6 +945,19 @@
                 <option value="0">K2_HIDE</option>
                 <option value="1">K2_SHOW</option>
             </field>
+            <field name="" type="header" default="K2_SEO" label="" description=""/>
+            <field menu="hide" name="k2SeoGsdType" type="list" default="" label="K2_GSD_TYPE_IN_CAT_AND_ITEM" description="">
+                <option value="">K2_GSD_TYPE_INHERIT_FROM_SETTINGS</option>
+                <option value="Article">K2_GSD_TYPE_ARTICLE</option>
+                <option value="BlogPosting">K2_GSD_TYPE_BLOGPOST</option>
+                <option value="Course">K2_GSD_TYPE_COURSE</option>
+                <option value="Event">K2_GSD_TYPE_EVENT</option>
+                <option value="Movie">K2_GSD_TYPE_MOVIE</option>
+                <option value="NewsArticle">K2_GSD_TYPE_NEWSARTICLE</option>
+                <option value="Product">K2_GSD_TYPE_PRODUCT</option>
+                <option value="Recipe">K2_GSD_TYPE_RECIPE</option>
+                <option value="Video">K2_GSD_TYPE_VIDEO</option>
+            </field>
             <field name="" type="header" default="K2_ADVANCED" label="" description=""/>
             <field name="itemK2Plugins" type="radio" default="1" label="K2_ENABLE_K2_PLUGINS" description="">
                 <option value="0">K2_NO</option>
@@ -940,8 +966,8 @@
         </fieldset>
         <!-- Metadata Information -->
         <fieldset name="category-metadata-information" addfieldpath="/administrator/components/com_k2/elements">
-            <field name="catMetaDesc" type="k2textarea" chars="160" default="" label="K2_DESCRIPTION" description="" rows="4" cols="25" />
-            <field name="catMetaKey" type="textarea" default="" label="K2_KEYWORDS" description="" rows="4" cols="25" />
+            <field name="catMetaDesc" type="k2textarea" chars="160" default="" label="K2_DESCRIPTION" description="" rows="4" cols="25"/>
+            <field name="catMetaKey" type="textarea" default="" label="K2_KEYWORDS" description="" rows="4" cols="25"/>
             <field name="catMetaRobots" type="list" default="" label="K2_ROBOTS" description="">
                 <option value="">K2_USE_GLOBAL</option>
                 <option value="index, follow">K2_METADATA_ROBOTS_INDEX_FOLLOW</option>
@@ -949,7 +975,7 @@
                 <option value="noindex, follow">K2_METADATA_ROBOTS_NOINDEX_FOLLOW</option>
                 <option value="noindex, nofollow">K2_METADATA_ROBOTS_NOINDEX_NOFOLLOW</option>
             </field>
-            <field name="catMetaAuthor" type="text" default="" label="K2_AUTHOR" description="" />
+            <field name="catMetaAuthor" type="text" default="" label="K2_AUTHOR" description=""/>
         </fieldset>
     </fields>
 </form>
