@@ -640,7 +640,7 @@ class K2ViewItem extends K2View
             $itemSD_AuthorName = (!empty($item->created_by_alias)) ? $item->created_by_alias : $item->author->name;
             $itemSD_AuthorURL = (!empty($item->created_by_alias)) ? JURI::root() : $this->absUrl($item->author->link);
 
-            $itemSD_Modified = ($item->modified) ? $item->modified : $item->created;
+            $itemSD_Modified = ((int) $item->modified) ? $item->modified : $item->created;
 
             // Output structured data
             $itemSD_LDJSON = '
