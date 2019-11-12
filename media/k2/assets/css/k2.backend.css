@@ -941,7 +941,7 @@ div.commentToolbar span.k2CommentsLoader {background:url(../images/backend/loade
 .label-alt .fa {font-size:18px;display:inline-block;vertical-align:middle;margin-right:5px;}
 .oldJ .label-alt {display:block;}
 
-/* Infromation */
+/* Information */
 .isJ30 #k2InfoPage ul.k2ScrollSpyMenu {top:0;padding-top:80px;border-left:1px solid #e3e4e4;}
 
 #k2InfoPage ul.k2ScrollSpyMenu {padding:0;height:100%;padding-top:31px;z-index:1;}
@@ -1313,6 +1313,17 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ15 #footer .copyright {text-align:right;padding:0;margin:0;color:#626262;font-size:12px;}
 .isJ15 #footer .copyright::after {content:" — Joomla! 1.5";}
 .isJ15 #footer .copyright a {color:#333;}
+
+/* Scrollspy Menu */
+.isJ15 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu {display:block;position:fixed;list-style:none;margin:0;padding:0;width:320px;height:100%;z-index:1;top:142px;}
+.isJ15 #k2AdminContainer.K2AdminViewInfo #k2ContentView ul.k2ScrollSpyMenu {top:80px;}
+.isJ15 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu li {border-bottom:1px solid #e3e4e4;}
+.isJ15 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu > li:first-child {border-top:1px solid #e3e4e4;}
+.isJ15 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu li a {font-size:14px;font-weight:600;padding:16px 20px;display:block;color:#636b6e;text-decoration:none;transition:.5s all ease-out;}
+.isJ15 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu li a.active {background:#f7f7f7;}
+.isJ15 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu li a:hover {background:#1480d3;color:#fff;}
+.isJ15 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu li a .fa {float:right;margin-top:4px;}
+.isJ15 #k2AdminContainer #k2ContentView div.k2ScrollingContent {margin-left:320px;padding:20px 30px 0 30px;border-left:1px solid #e3e4e4;}
 
 /* Lists */
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters {border-collapse:collapse;border:0;}
