@@ -242,6 +242,7 @@ ul.k2TabsNavigation li.ui-tabs-selected a:hover {background-color:#fff;}
 /* Tabs */
 .k2TabsContent {background:#fff;border:1px solid #d4d7d9;padding:10px;margin-top:-1px;margin-bottom:10px;width:100%;float:left;box-sizing:border-box;}
     #k2Tabs .k2TabsContent {padding:20px;}
+    /*#k2Tabs > .k2TabsContent {min-height:480px;}*/
 
 /* Entity ID */
 div#k2ID {position:absolute;right:0;top:0;font-size:18px;font-weight:normal;padding:21px 24px;color:#0091ff;display:none;}
