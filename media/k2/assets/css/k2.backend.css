@@ -1411,6 +1411,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value[colspan="2"] .jwHeaderContainer15 {padding:20px;font-size:16px;font-weight:400;border-top:10px solid #fff;border-bottom:4px solid #96b0cb;float:none;}
 
 /* Parameters rendered from XML (lists) */
+.isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields.limitWidth {min-width:640px;max-width:60%;padding:0 20px 40px 20px;margin:0 auto;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields h3.paramHeader,
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields .k2ScrollingContent > h3 {font-size:24px;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields fieldset {padding:0 0 1px 0;margin:0 auto 20px auto;border:0;border-bottom:2px solid #dddedf;}
