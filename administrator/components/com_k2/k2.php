@@ -65,11 +65,11 @@ K2HelperHTML::loadHeadIncludes(true, true);
 
 // Container CSS class definition
 if (K2_JVERSION == '15') {
-    $k2CSSContainerClass = ' oldJ isJ15';
+    $k2CSSContainerClass = ' isJ15'; // oldJ isJ15
 } elseif (K2_JVERSION == '25') {
-    $k2CSSContainerClass = ' oldJ isJ25';
+    $k2CSSContainerClass = ' isJ25'; // oldJ isJ25
 } elseif (K2_JVERSION == '30') {
-    $k2CSSContainerClass = ' isJ25 isJ30';
+    $k2CSSContainerClass = ' isJ30'; // isJ25 isJ30
 } else {
     $k2CSSContainerClass = '';
 }
