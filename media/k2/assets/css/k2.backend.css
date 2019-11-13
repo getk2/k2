@@ -1101,7 +1101,10 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 #k2AdminContainer.inModalSelector {display:block;margin-bottom:16px;min-height:auto;}
 #k2AdminContainer.inModalSelector #k2Sidebar {display:none;}
 
-
+/* Common notice (in edit forms) */
+#k2AdminContainer #k2ContentView form .k2-generic-message {background:#fcf8e3;border:1px solid #faebcc;border-radius:3px;margin:20px auto;padding:10px;width:80%;text-align:left;}
+#k2AdminContainer #k2ContentView form .k2-generic-message > h3 {font-size:14px;font-weight:bold;color:#8a6d3b;margin:0 0 10px 0;padding:0;border:0;}
+#k2AdminContainer #k2ContentView form .k2-generic-message > p {font-size:13px;margin:0;padding:0;color:#8a6d3b;}
 
 /* --- Corrections for Joomla 3.x [start] --- */
 .isJ30 .input-append .btn {margin-left:-2px !important;}
