@@ -79,9 +79,11 @@ $context = JRequest::getCmd('context');
                     </thead>
                     <?php
                         $tfootColspan = 14;
+                        /*
                         if ($context == "modalselector") {
                             $tfootColspan--;
                         }
+                        */
                     ?>
                     <tfoot>
                         <tr>
