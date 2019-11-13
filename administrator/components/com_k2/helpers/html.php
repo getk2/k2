@@ -14,7 +14,7 @@ class K2HelperHTML
 {
     public static function activeMenu($current)
     {
-        $view = JRequest::getCmd('view');
+        $view = JRequest::getCmd('view', 'items');
         if ($current === $view) {
             return ' class="active"';
         }
