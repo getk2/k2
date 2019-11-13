@@ -1149,7 +1149,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ30 #k2AdminContainer table.admintable td.paramlist_value textarea {min-width:400px;padding-left:10px;padding-right:10px;}
 .isJ30 #k2AdminContainer table.admintable td.paramlist_value input,
 .isJ30 #k2AdminContainer table.admintable td.paramlist_value select,
-.isJ30 #k2AdminContainer table.admintable td.paramlist_value textarea {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);}
+.isJ30 #k2AdminContainer table.admintable td.paramlist_value textarea {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;}
 .isJ30 #k2AdminContainer table.admintable td.paramlist_value label {font-family:'Open Sans',sans-serif;font-size:13px;}
 .isJ30 #k2AdminContainer table.admintable td.paramlist_value input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);}
 .isJ30 #k2AdminContainer table.admintable td.paramlist_value input[type="radio"] + label {min-width:80px;width:auto;line-height:30px;height:30px;text-align:center;margin:0 -2px 0 0;padding:0 10px;color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background:#eff1f1;cursor:pointer;}
@@ -1187,7 +1187,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {min-width:400px;padding-left:10px;padding-right:10px;}
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input,
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue select,
-.isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);}
+.isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;}
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue label {font-family:'Open Sans',sans-serif;font-size:13px;}
 
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="radio"],
@@ -1231,7 +1231,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields fieldset.panelform ul li .paramValueHeader {padding:10px 0 0 0;}
 
 /* Radio buttons in sub-tables (K2 item form) */
-.k2SubTable .k2SubTableValue input[type="radio"] {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);}
+.k2SubTable .k2SubTableValue input[type="radio"] {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;}
 
 .k2SubTable .k2SubTableValue input[type="radio"],
 .k2SubTable .k2SubTableValue .controls label > input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);}
@@ -1271,6 +1271,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 
 .isJ25 body {margin:0;padding:0;font-family:'Open Sans',sans-serif;}
 .isJ25 body * :not(i) {font-family:'Open Sans',sans-serif !important;}
+.isJ25 body > p[align="center"] {display:none;}
 
 .isJ25 #border-top {border-radius:0 !important;}
 
@@ -1304,7 +1305,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ25 #content-box .border,
 .isJ25 #content-box .border .padding {border:0;margin:0;padding:0;}
 
-.isJ25 #toolbar-box {background:#f0f0f0 url(../images/backend/k2_logo_126x48.png) no-repeat 12px 50%;background-size:80px;padding:4px 16px 4px 8px;margin:0;position:fixed;z-index:109;left:0;right:0;top:78px;border-bottom:1px solid #d4d7d7;}
+.isJ25 #toolbar-box {background:#f4f4f4 url(../images/backend/k2_logo_126x48.png) no-repeat 12px 50%;background-size:80px;padding:4px 16px 4px 8px;margin:0;position:fixed;z-index:109;left:0;right:0;top:78px;border-bottom:1px solid #d4d7d7;}
 .isJ25 #toolbar-box .m {border:0;padding:0;margin:0;}
 .isJ25 #toolbar-box table.toolbar tr td {height:auto;}
 .isJ25 #toolbar-box table.toolbar tr td a {border:1px solid #b3b3b3;border-radius:4px;background:#f3f3f3;padding:6px 8px;line-height:20px;color:#333;font-size:12px;}
@@ -1321,7 +1322,9 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ25 #footer .copyright a {color:#333;}
 
 .isJ25 #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {bottom:-12px;}
-.isJ25 #k2Copyrights {bottom:42px;}
+
+.isJ25 #k2ContentView {padding-bottom:20px;}
+.isJ25 #k2Copyrights {bottom:30px;}
 
 /* Edit Forms */
 .isJ25 #k2AdminContainer #k2ContentView > form input,
@@ -1339,6 +1342,8 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ25 #k2AdminContainer #k2ContentView > form .k2Table .k2SubTableValue #k2Author {font-size:13px;margin-top:6px;}
 
 /* Lists */
+.isJ25 div#element-box div.m form table.adminlist tr td a {font-size:13px;}
+
 .isJ25 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters {border-collapse:collapse;border:0;}
 .isJ25 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td {padding:8px 8px 6px 8px;}
 .isJ25 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSearch input {width:200px;font-size:13px;line-height:20px;padding:4px 8px;border:1px solid #b3b3b3;display:inline-block;border-radius:4px 0 0 4px;position:relative;top:2px;z-index:9;}
@@ -1416,7 +1421,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ25 #k2AdminContainer table.admintable td.paramlist_value textarea {min-width:400px;padding-left:10px;padding-right:10px;}
 .isJ25 #k2AdminContainer table.admintable td.paramlist_value input,
 .isJ25 #k2AdminContainer table.admintable td.paramlist_value select,
-.isJ25 #k2AdminContainer table.admintable td.paramlist_value textarea {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);}
+.isJ25 #k2AdminContainer table.admintable td.paramlist_value textarea {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;}
 .isJ25 #k2AdminContainer table.admintable td.paramlist_value label {font-family:'Open Sans',sans-serif;font-size:13px;}
 .isJ25 #k2AdminContainer table.admintable td.paramlist_value input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);}
 .isJ25 #k2AdminContainer table.admintable td.paramlist_value input[type="radio"] + label {min-width:80px;width:auto;line-height:30px;height:30px;text-align:center;margin:0 -2px 0 0;padding:0 10px;color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background:#eff1f1;cursor:pointer;}
@@ -1454,7 +1459,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ25 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {min-width:400px;padding-left:10px;padding-right:10px;}
 .isJ25 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input,
 .isJ25 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue select,
-.isJ25 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);}
+.isJ25 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;}
 .isJ25 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue label {font-family:'Open Sans',sans-serif;font-size:13px;}
 .isJ25 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);}
 .isJ25 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="radio"] + label {min-width:80px;width:auto;line-height:30px;height:30px;text-align:center;margin:0 -2px 0 0;padding:0 10px;color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background:#eff1f1;cursor:pointer;}
@@ -1632,7 +1637,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value textarea {min-width:400px;padding-left:10px;padding-right:10px;}
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value input,
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value select,
-.isJ15 #k2AdminContainer table.admintable td.paramlist_value textarea {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);}
+.isJ15 #k2AdminContainer table.admintable td.paramlist_value textarea {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;}
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value label {font-family:'Open Sans',sans-serif;font-size:13px;}
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);}
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value input[type="radio"] + label {min-width:80px;width:auto;line-height:30px;height:30px;text-align:center;margin:0 -2px 0 0;padding:0 10px;color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background:#eff1f1;cursor:pointer;}
@@ -1670,7 +1675,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {min-width:400px;padding-left:10px;padding-right:10px;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input,
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue select,
-.isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);}
+.isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue label {font-family:'Open Sans',sans-serif;font-size:13px;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="radio"] + label {min-width:80px;width:auto;line-height:30px;height:30px;text-align:center;margin:0 -2px 0 0;padding:0 10px;color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background:#eff1f1;cursor:pointer;}
