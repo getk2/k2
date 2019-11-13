@@ -398,34 +398,11 @@ $app = JFactory::getApplication();
 
                         <?php else: /* SIGPro not present */ ?>
 
-                        <?php if (K2_JVERSION == '15'): ?>
-                        <dl id="system-message">
-                            <dt class="notice"><?php echo JText::_('K2_NOTICE'); ?></dt>
-                            <dd class="notice message fade">
-                                <ul>
-                                    <li><?php echo JText::_('K2_NOTICE_PLEASE_INSTALL_JOOMLAWORKS_SIMPLE_IMAGE_GALLERY_PRO_PLUGIN_IF_YOU_WANT_TO_USE_THE_IMAGE_GALLERY_FEATURES_OF_K2'); ?></li>
-                                </ul>
-                            </dd>
-                        </dl>
-                        <?php elseif(K2_JVERSION == '25'): ?>
-                        <div id="system-message-container">
-                            <dl id="system-message">
-                                <dt class="notice"><?php echo JText::_('K2_NOTICE'); ?></dt>
-                                <dd class="notice message">
-                                    <ul>
-                                        <li><?php echo JText::_('K2_NOTICE_PLEASE_INSTALL_JOOMLAWORKS_SIMPLE_IMAGE_GALLERY_PRO_PLUGIN_IF_YOU_WANT_TO_USE_THE_IMAGE_GALLERY_FEATURES_OF_K2'); ?></li>
-                                    </ul>
-                                </dd>
-                            </dl>
+                        <div class="k2-generic-message">
+                            <h3><?php echo JText::_('K2_NOTICE'); ?></h3>
+                            <p><?php echo JText::_('K2_NOTICE_PLEASE_INSTALL_JOOMLAWORKS_SIMPLE_IMAGE_GALLERY_PRO_PLUGIN_IF_YOU_WANT_TO_USE_THE_IMAGE_GALLERY_FEATURES_OF_K2'); ?></p>
                         </div>
-                        <?php else: ?>
-                        <div class="alert">
-                            <h4 class="alert-heading"><?php echo JText::_('K2_NOTICE'); ?></h4>
-                            <div>
-                                <p><?php echo JText::_('K2_NOTICE_PLEASE_INSTALL_JOOMLAWORKS_SIMPLE_IMAGE_GALLERY_PRO_PLUGIN_IF_YOU_WANT_TO_USE_THE_IMAGE_GALLERY_FEATURES_OF_K2'); ?></p>
-                            </div>
-                        </div>
-                        <?php endif; ?>
+
                         <?php endif; ?>
                         <?php if (count($this->K2PluginsItemGallery)): ?>
                         <div class="itemPlugins">
@@ -556,35 +533,12 @@ $app = JFactory::getApplication();
                             </div>
                         </div>
                         <?php else: /* AllVideos not present */ ?>
+
                         <!-- No AllVideos alert goes here -->
-                        <?php if (K2_JVERSION == '15'): ?>
-                        <dl id="system-message">
-                            <dt class="notice"><?php echo JText::_('K2_NOTICE'); ?></dt>
-                            <dd class="notice message fade">
-                                <ul>
-                                    <li><?php echo JText::_('K2_NOTICE_PLEASE_INSTALL_JOOMLAWORKS_ALLVIDEOS_PLUGIN_IF_YOU_WANT_TO_USE_THE_FULL_VIDEO_FEATURES_OF_K2'); ?></li>
-                                </ul>
-                            </dd>
-                        </dl>
-                        <?php elseif (K2_JVERSION == '25'): ?>
-                        <div id="system-message-container">
-                            <dl id="system-message">
-                                <dt class="notice"><?php echo JText::_('K2_NOTICE'); ?></dt>
-                                <dd class="notice message">
-                                    <ul>
-                                        <li><?php echo JText::_('K2_NOTICE_PLEASE_INSTALL_JOOMLAWORKS_ALLVIDEOS_PLUGIN_IF_YOU_WANT_TO_USE_THE_FULL_VIDEO_FEATURES_OF_K2'); ?></li>
-                                    </ul>
-                                </dd>
-                            </dl>
+                        <div class="k2-generic-message">
+                            <h3><?php echo JText::_('K2_NOTICE'); ?></h3>
+                            <p><?php echo JText::_('K2_NOTICE_PLEASE_INSTALL_JOOMLAWORKS_ALLVIDEOS_PLUGIN_IF_YOU_WANT_TO_USE_THE_FULL_VIDEO_FEATURES_OF_K2'); ?></p>
                         </div>
-                        <?php else: ?>
-                        <div class="alert">
-                            <h4 class="alert-heading"><?php echo JText::_('K2_NOTICE'); ?></h4>
-                            <div>
-                                <p><?php echo JText::_('K2_NOTICE_PLEASE_INSTALL_JOOMLAWORKS_ALLVIDEOS_PLUGIN_IF_YOU_WANT_TO_USE_THE_FULL_VIDEO_FEATURES_OF_K2'); ?></p>
-                            </div>
-                        </div>
-                        <?php endif; ?>
                         <!-- End of the alert -->
 
                         <div id="k2MediaTabs" class="k2Tabs">
@@ -676,34 +630,10 @@ $app = JFactory::getApplication();
                                 <?php endforeach; ?>
                             </div>
                             <?php else: ?>
-                            <?php if (K2_JVERSION == '15'): ?>
-                            <dl id="system-message">
-                                <dt class="notice"><?php echo JText::_('K2_NOTICE'); ?></dt>
-                                <dd class="notice message fade">
-                                    <ul>
-                                        <li><?php echo JText::_('K2_PLEASE_SELECT_A_CATEGORY_FIRST_TO_RETRIEVE_ITS_RELATED_EXTRA_FIELDS'); ?></li>
-                                    </ul>
-                                </dd>
-                            </dl>
-                            <?php elseif (K2_JVERSION == '25'): ?>
-                            <div id="system-message-container">
-                                <dl id="system-message">
-                                    <dt class="notice"><?php echo JText::_('K2_NOTICE'); ?></dt>
-                                    <dd class="notice message">
-                                        <ul>
-                                            <li><?php echo JText::_('K2_PLEASE_SELECT_A_CATEGORY_FIRST_TO_RETRIEVE_ITS_RELATED_EXTRA_FIELDS'); ?></li>
-                                        </ul>
-                                    </dd>
-                                </dl>
+                            <div class="k2-generic-message">
+                                <h3><?php echo JText::_('K2_NOTICE'); ?></h3>
+                                <p><?php echo JText::_('K2_PLEASE_SELECT_A_CATEGORY_FIRST_TO_RETRIEVE_ITS_RELATED_EXTRA_FIELDS'); ?></p>
                             </div>
-                            <?php else: ?>
-                            <div class="alert">
-                                <h4 class="alert-heading"><?php echo JText::_('K2_NOTICE'); ?></h4>
-                                <div>
-                                    <p><?php echo JText::_('K2_PLEASE_SELECT_A_CATEGORY_FIRST_TO_RETRIEVE_ITS_RELATED_EXTRA_FIELDS'); ?></p>
-                                </div>
-                            </div>
-                            <?php endif; ?>
                             <?php endif; ?>
                         </div>
                         <?php if (count($this->K2PluginsItemExtraFields)): ?>
