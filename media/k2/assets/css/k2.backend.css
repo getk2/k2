@@ -1549,7 +1549,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ15 #footer .copyright a {color:#333;}
 
 /* Joomla System Messages */
-.isJ15 #system-message {position:fixed;z-index:199;margin:0 !important;padding:0 !important;top:10px;left:0;right:0;}
+.isJ15 #system-message {position:fixed;z-index:199;margin:0 !important;padding:0 !important;top:-12px;left:0;right:0;}
 .isJ15 #system-message dt,
 .isJ15 #system-message dd {width:60%;padding:20px;margin:0 auto !important;text-align:center;}
 
