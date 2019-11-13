@@ -1301,13 +1301,14 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ25 #content-box .border .padding {border:0;margin:0;padding:0;}
 
 .isJ25 #toolbar-box {background:#f4f4f4 url(../images/backend/k2_logo_126x48.png) no-repeat 12px 50%;background-size:80px;padding:4px 16px 4px 8px;margin:0;position:fixed;z-index:109;left:0;right:0;top:78px;border-bottom:1px solid #d4d7d7;}
-.isJ25 #toolbar-box .m {border:0;padding:0;margin:0;}
-.isJ25 #toolbar-box table.toolbar tr td {height:auto;}
-.isJ25 #toolbar-box table.toolbar tr td a {border:1px solid #b3b3b3;border-radius:4px;background:#f3f3f3;padding:6px 8px;line-height:20px;color:#333;font-size:12px;}
-.isJ25 #toolbar-box table.toolbar tr td a:hover {border:1px solid #b3b3b3;background:#e6e6e6;}
-.isJ25 #toolbar-box table.toolbar tr td a span {float:left;width:20px;height:20px;background-size:cover;margin-right:8px;}
+.isJ25 #toolbar-box .m {background:none;border:0;padding:0;margin:0;min-height:inherit;}
+.isJ25 #toolbar-box .m .pagetitle {display:none;}
+.isJ25 #toolbar-box #toolbar ul li {height:auto;display:inline-block;}
+.isJ25 #toolbar-box #toolbar ul li a {border:1px solid #b3b3b3;border-radius:4px;background:#f3f3f3;padding:6px 8px;line-height:20px;color:#333;font-size:12px;}
+.isJ25 #toolbar-box #toolbar ul li a:hover {border:1px solid #b3b3b3;background:#e6e6e6;}
+.isJ25 #toolbar-box #toolbar ul li a span {float:left;width:20px;height:20px;background-size:cover;margin-right:8px;}
 
-.isJ25 #element-box {padding:138px 0 0 0;margin:0;}
+.isJ25 #element-box {padding:124px 0 0 0;margin:0;}
 .isJ25 #element-box .m {padding:0;margin:0;border:0;background:#f0f2f2;}
 .isJ25 #element-box .m .table-responsive {margin:0;padding:0;}
 
