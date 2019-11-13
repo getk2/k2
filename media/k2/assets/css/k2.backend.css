@@ -1324,7 +1324,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 /* Joomla System Messages */
 .isJ25 #system-message-container {position:fixed;z-index:199;margin:0 !important;padding:0 !important;top:10px;left:0;right:0;}
 .isJ25 #system-message-container #system-message {opacity:0.9;width:60%;margin:0 auto;}
-.isJ25 #system-message-container #system-message dd ul {padding:0 10px;margin:0;border:0;background-position:10px 50% !important;border-radius:8px;}
+.isJ25 #system-message-container #system-message dd ul {padding:0 10px;margin:0;background-position:10px 50% !important;border:2px solid #f0dc7e;border-radius:8px;}
 .isJ25 #system-message-container #system-message dd ul li {padding:10px;line-height:180%;text-align:center;}
 
 /* Edit Forms */
@@ -1549,9 +1549,10 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ15 #footer .copyright a {color:#333;}
 
 /* Joomla System Messages */
-.isJ15 #system-message {position:fixed;z-index:199;margin:0 !important;padding:0 !important;top:-12px;left:0;right:0;}
-.isJ15 #system-message dt,
-.isJ15 #system-message dd {width:60%;padding:20px;margin:0 auto !important;text-align:center;}
+.isJ15 #system-message {position:fixed;z-index:199;margin:0 !important;padding:0 !important;top:0;left:0;right:0;}
+.isJ15 #system-message dt {display:none;}
+.isJ15 #system-message dd {width:60%;padding:10px;margin:0 auto !important;text-align:center;}
+.isJ15 #system-message dd ul {border:2px solid #f0dc7e;border-radius:8px;}
 
 /* Edit Forms */
 .isJ15 #k2AdminContainer #k2ContentView > form input,
