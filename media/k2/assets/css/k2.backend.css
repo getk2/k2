@@ -1272,7 +1272,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 
 .isJ25 #border-top {border-radius:0 !important;}
 
-.isJ25 #border-top .title {font-size:14px;font-weight:600;color:#f7f7f7;}
+.isJ25 #border-top .title a {font-size:14px;font-weight:600;color:#f7f7f7;}
 .isJ25 #border-top .version {padding:26px 16px 0 0;font-size:11px;color:#f7f7f7;}
 
 .isJ25 #header-box #module-menu #menu > li,
@@ -1362,7 +1362,8 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ25 #k2AdminContainer .adminlist tbody > tr:nth-child(odd) > th,
 .isJ25 #k2AdminContainer .adminlist tbody > tr:nth-child(odd) > td {background:#f9f9f9;}
 
-.isJ25 #k2AdminContainer .adminlist tr td.k2ui-order span {margin-top:6px;}
+.isJ25 #k2AdminContainer .adminlist tr td.k2ui-order > span {margin-top:6px;display:inline-block;width:18px;text-align:center;}
+.isJ25 #k2AdminContainer .adminlist tr td.k2ui-order > span > a > span.state {display:inline-block;width:12px;height:12px;overflow:hidden;}
 .isJ25 #k2AdminContainer .adminlist tr td.k2ui-order input {border-radius:4px;padding:4px;font-size:13px;}
 
 .isJ25 #k2AdminContainer .adminlist input[type="checkbox"] {margin:0;padding:0;}
