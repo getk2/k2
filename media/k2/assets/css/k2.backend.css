@@ -1113,8 +1113,8 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
     .isJ30 div#toolbar .btn-success {min-width:100px;}
 
 /* Joomla System Messages */
-.isJ30 #system-message-container {position:fixed;z-index:1199;margin:0 !important;padding:0 !important;top:10px;left:0;right:0;}
-.isJ30 #system-message-container .alert {width:60%;padding:10px;margin:0 auto !important;text-align:center;border-radius:8px;}
+.isJ30 #system-message-container {position:fixed;z-index:1199;margin:0 auto;padding:0;width:60%;top:10px;left:20%;right:20%;}
+.isJ30 #system-message-container .alert {padding:10px;margin:0;text-align:center;border-radius:8px;}
 .isJ30 #system-message-container .alert .close {top:-10px;right:-10px;}
 
 /* Edit Forms */
@@ -1322,9 +1322,9 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ25 #k2Copyrights {bottom:30px;}
 
 /* Joomla System Messages */
-.isJ25 #system-message-container {position:fixed;z-index:199;margin:0 !important;padding:0 !important;top:10px;left:0;right:0;}
-.isJ25 #system-message-container #system-message {opacity:0.9;width:60%;margin:0 auto;}
-.isJ25 #system-message-container #system-message dd ul {padding:0 10px;margin:0;background-position:10px 50% !important;border:2px solid #f0dc7e;border-radius:8px;}
+.isJ25 #system-message-container {position:fixed;z-index:199;width:60%;margin:0 auto;padding:0;top:0;left:20%;right:20%;}
+.isJ25 #system-message-container #system-message {opacity:0.9;}
+.isJ25 #system-message-container #system-message dd ul {padding:0 10px;margin:0;background-position:10px 50%;border:2px solid #f0dc7e;border-radius:8px;}
 .isJ25 #system-message-container #system-message dd ul li {padding:10px;line-height:180%;text-align:center;}
 
 /* Edit Forms */
@@ -1549,9 +1549,9 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ15 #footer .copyright a {color:#333;}
 
 /* Joomla System Messages */
-.isJ15 #system-message {position:fixed;z-index:199;margin:0 !important;padding:0 !important;top:0;left:0;right:0;}
+.isJ15 #system-message {position:fixed;z-index:199;margin:0 auto;padding:0;width:60%;top:0;left:20%;right:20%;}
 .isJ15 #system-message dt {display:none;}
-.isJ15 #system-message dd {width:60%;padding:10px;margin:0 auto !important;text-align:center;}
+.isJ15 #system-message dd {padding:10px;margin:0;text-align:center;}
 .isJ15 #system-message dd ul {border:2px solid #f0dc7e;border-radius:8px;}
 
 /* Edit Forms */
