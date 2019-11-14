@@ -1491,10 +1491,6 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 
 
 /* --- Corrections for Joomla 1.5 [start] --- */
-.isJ15 #system-message {opacity:0.9;}
-.isJ15 #system-message dd ul {padding:0 20px;margin:0;border:0;background-position:20px 50% !important;border-radius:8px;}
-.isJ15 #system-message dd ul li {padding:10px;line-height:180%;}
-
 .isJ15 body {margin:0;padding:0;font-family:'Open Sans',sans-serif;}
 .isJ15 body * :not(i) {font-family:'Open Sans',sans-serif !important;}
 
@@ -1550,8 +1546,10 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 /* Joomla System Messages */
 .isJ15 #system-message {position:fixed;z-index:199;margin:0 auto;padding:0;width:60%;top:0;left:20%;right:20%;}
 .isJ15 #system-message dt {display:none;}
-.isJ15 #system-message dd {padding:10px;margin:0;text-align:center;}
-.isJ15 #system-message dd ul {border:2px solid #f0dc7e;border-radius:8px;}
+.isJ15 #system-message dd {padding:10px;margin:0;text-align:center;opacity:0.9;}
+.isJ15 #system-message dd ul {border:2px solid #f0dc7e;border-radius:8px;background-position:20px 50% !important;}
+.isJ15 #system-message dd.message ul {border:2px solid #96b0cb;}
+.isJ15 #system-message dd ul li {padding:0;margin:0;font-size:14px;line-height:180%;text-align:center;}
 
 /* Edit Forms */
 .isJ15 #k2AdminContainer #k2ContentView > form input,
