@@ -1464,6 +1464,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ25 #k2AdminContainer.K2AdminViewItems .adminlist tr td,
 .isJ25 #k2AdminContainer.K2AdminViewCategories .adminlist tr td {padding:5px 10px;}
 
+.isJ25 #k2AdminContainer .adminlist tr th a.saveorder {margin:0 0 0 8px;}
 .isJ25 #k2AdminContainer .adminlist tr th img {vertical-align:middle;margin-left:4px;}
 
 .isJ25 #k2AdminContainer .adminlist tbody > tr:nth-child(odd) > th,
