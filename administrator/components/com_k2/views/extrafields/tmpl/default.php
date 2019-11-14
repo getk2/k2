@@ -43,7 +43,7 @@ defined('_JEXEC') or die;
                         <th>#</th>
                         <?php endif; ?>
                         <th class="k2ui-center"><input id="k2<?php echo $this->params->get('backendListToggler', 'TogglerStandard'); ?>" type="checkbox" name="toggle" value="" /></th>
-                        <th><?php echo JHTML::_('grid.sort', 'K2_NAME', 'name', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
+                        <th class="k2ui-center"><?php echo JHTML::_('grid.sort', 'K2_NAME', 'name', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
                         <th class="k2ui-center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_GROUP', 'groupname', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
                         <?php if(K2_JVERSION != '30'): ?>
                         <th><?php echo JHTML::_('grid.sort', 'K2_ORDER', 'ordering', @$this->lists['order_Dir'], @$this->lists['order']); ?> <?php if ($this->ordering) echo JHTML::_('grid.order',  $this->rows ); ?></th>

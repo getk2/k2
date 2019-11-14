@@ -1212,6 +1212,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ30 #system-message-container {position:fixed;z-index:1199;margin:0 auto;padding:0;width:60%;top:10px;left:20%;right:20%;}
 .isJ30 #system-message-container .alert {padding:10px;margin:0;text-align:center;border-radius:8px;}
 .isJ30 #system-message-container .alert .close {top:-10px;right:-10px;}
+.isJ30 #system-message-container .alert .alert-heading {margin:0 0 8px 22px;}
 
 /* Edit Forms */
 .isJ30 #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {bottom:-5px;}
