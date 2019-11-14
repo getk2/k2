@@ -201,7 +201,7 @@ background:#e5f7fd;color:#346b93;font-size:20px;margin:0;padding:24px 16px;borde
 
 /* For Joomla 1.5 */
 /* Parameters rendered from XML (tables) */
-.isJ15 .jpane-slider > table.admintable {padding:5px;margin:0 auto 20px auto;border-collapse:separate;border-spacing:0;border:0;border-bottom:2px solid #dddedf;width:100%;background:#fff;}
+.isJ15 .jpane-slider > table.admintable {padding:5px;margin:0 auto 20px auto;border-collapse:separate;border-spacing:0;border:0;width:100%;background:#fff;}
 .isJ15 .jpane-slider > table.admintable td {font-size:13px;font-weight:400;color:#333;padding:10px;vertical-align:middle;}
 .isJ15 .jpane-slider > table.admintable td.paramlist_key {width:30%;min-width:200px;border-top:1px solid #fff;border-right:1px solid #e9e9e9;border-bottom:1px solid #e9e9e9;}
 .isJ15 .jpane-slider > table.admintable td.paramlist_key label {font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;}
@@ -232,10 +232,7 @@ background:#e5f7fd;color:#346b93;font-size:20px;margin:0;padding:24px 16px;borde
 .isJ15 .jpane-slider > table.admintable td.paramlist_value input[type="radio"][value="1"]:checked + label,
 .isJ15 .jpane-slider > table.admintable td.paramlist_value input[type="radio"][value="all"]:checked + label {background:#3fa800;color:#fff;}
 .isJ15 .jpane-slider > table.admintable td.paramlist_value[colspan="2"] {padding:0;}
-.isJ15 .jpane-slider > table.admintable td.paramlist_value[colspan="2"] .jwHeaderContainer15 {}
-
-.isJ15 .jwHeaderContainer15 {grid-column-start:span 2;
-background:#e5f7fd;color:#346b93;font-size:20px;margin:0;padding:24px 16px;border-radius:4px;border:0;font-weight:normal;float:left;width:100%;clear:both;box-sizing:border-box;}
+.isJ15 .jpane-slider > table.admintable td.paramlist_value[colspan="2"] .jwHeaderContainer15 {background:#e5f7fd;color:#346b93;font-size:20px;margin:0;padding:24px 16px;border:0;font-weight:normal;float:left;width:100%;clear:both;box-sizing:border-box;}
 
 
 

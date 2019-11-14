@@ -350,7 +350,7 @@
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </param>
-        <param name="itemRelatedImageSize" type="radio" default="" label="K2_RELATED_ITEMS_IMAGE" description="">
+        <param name="itemRelatedImageSize" type="list" default="" label="K2_RELATED_ITEMS_IMAGE" description="">
             <option value="">K2_INHERIT_FROM_CATEGORY</option>
             <option value="0">K2_NONE_SELECTED</option>
             <option value="XSmall">K2_XSMALL</option>
