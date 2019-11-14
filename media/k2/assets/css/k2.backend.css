@@ -481,7 +481,7 @@ div#k2TabContent {padding:0;}
 .isJ30 span.k2ItemFormEditorTitle {display:block;color:#58595b;font-size:20px;font-weight:bold;padding:24px 0 12px 24px;}
 .isJ30 .k2ItemFormEditor .editor {background:#f0f2f2;border-top:1px solid #d7d9d9;border-bottom:1px solid #e9ebec;}
 .isJ30 .k2ItemFormEditor .editor .btn-toolbar {padding:4px 20px;}
-input#del_image {display:block;}
+input#del_image {/*display:block;*/}
 .k2Note {display:block;padding:10px 0;color:#999;font-style:italic;font-size:11px;}
 
 /* Flatpickr Overrides */
@@ -565,7 +565,9 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 /* New attachments form */
 .itemNewAttachment {border-top:3px solid #d7d9d9;padding:20px 0;clear:both;}
 .itemNewAttachment button {background:none;float:right;border:0;font-size:16px;color:#9e0b0f;font-size:18px;}
+.itemNewAttachment button.removeAttachment:hover {background:none;border:0;}
 .itemNewAttachment .itemAdditionalField input[type="text"].existing_file {width:auto;display:inline-block;vertical-align:middle;margin-right:-10px;margin-bottom:0;}
+.isJ25 .itemNewAttachment .itemAdditionalField input[type="text"].existing_file {min-height:0;height:30px;margin-right:-8px;border-color:#c0c0c0;background:#eee;}
 /*
 .itemNewAttachment .attachmentGap {margin-bottom:20px;}
 .itemNewAttachment button + input[type="text"] {min-height:30px;line-height:40px;vertical-align:top;}
@@ -597,6 +599,10 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 @media screen and (min-width:767px) {
     .itemAdditionalField .itemAdditionalValue {width:100px;margin-bottom:0;}
     .itemAdditionalField label {display:inline-block;vertical-align:middle;}
+
+    .isJ25 .itemAdditionalField .itemAdditionalValue label {padding-top:16px;}
+    .isJ25 .itemAdditionalField label {display:inline-block;vertical-align:inherit;}
+
     .itemAdditionalField .itemAdditionalData {min-width:75%;float:left;}
     /*
     .itemNewAttachment button + input[type="text"] {margin-left:-12px;}
@@ -604,7 +610,10 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
     .itemAdditionalField .sep,
     .itemAdditionalField label.sep {display:inline-block;vertical-align:middle;margin:0 25px;}
     .itemAdditionalField input[type="text"]#existingImageValue {width:auto;display:inline-block;vertical-align:middle;margin-right:-10px;margin-bottom:0;}
+
     .isJ15 .itemAdditionalField input[type="text"]#existingImageValue {margin-right:0;}
+    .isJ25 .itemAdditionalField input[type="text"]#existingImageValue {min-height:0;height:30px;margin-right:-8px;border-color:#c0c0c0;background:#eee;}
+
     .k2ExtraFieldHeader {margin-left:120px;}
 }
 
@@ -612,7 +621,7 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 .itemAdditionalField .itemAdditionalData > button,
 .itemAdditionalField .itemAdditionalData > input[type="button"],
 .itemAdditionalField .itemAdditionalData > input[type="submit"],
-.k2Button {color:#414042;min-width:150px;padding:10px 15px;border-radius:3px;border:1px solid #dedede;border-bottom-color:#cacaca;background:#fdfdfd;white-space:normal;display:inline-block;vertical-align:middle;position:relative;font-weight:700;background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
+.k2Button {color:#414042;min-width:150px;padding:10px 15px;border-radius:3px;border:1px solid #dedede;/*border-bottom-color:#cacaca;*/background:#fdfdfd;white-space:normal;display:inline-block;vertical-align:middle;position:relative;font-weight:700;background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);/*box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;*/}
 #item_gallery_content .k2Button.modal {display:inline-block !important;position:relative !important;}
 .itemAdditionalField .itemAdditionalData > button:hover,
 .itemAdditionalField .itemAdditionalData > input[type="button"]:hover,
