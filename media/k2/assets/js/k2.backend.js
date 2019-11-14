@@ -684,7 +684,7 @@ $K2(document).ready(function() {
     $(document).ready(function() {
 
         // Standard Toggler
-        $('#jToggler, #k2TogglerStandard').click(function() {
+        $('#jToggler, #k2standard, #k2TogglerStandard').click(function() {
             var checkBoxes = $('input[id^=cb]');
             checkBoxes.prop('checked', !checkBoxes.prop('checked'));
             $(this).prop('checked', checkBoxes.is(':checked'));
