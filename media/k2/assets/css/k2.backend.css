@@ -90,11 +90,9 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .icon-48-k2,
 body.com_k2 .page-title,
 .k2Inactive,
-span.k2GalleryNotice ,
+span.k2GalleryNotice,
 .k2Active {display:inline-block;background:url('../images/backend/sprite.png') no-repeat;overflow:hidden;text-align:left;}
-#k2ExtraFieldsValidationResults:before {background:url('../images/backend/sprite.png') no-repeat;overflow:hidden;text-align:left;}
 span.k2GalleryNotice {background-position:-79px -118px;width:16px;height:16px;}
-#k2ExtraFieldsValidationResults:before {content:'';float:left;margin-right:10px;background-position:-10px -92px;width:59px;height:54px;}
 .icon-48-k2 {background-position:-10px -0px;height:36px;}
 .isJ15 .icon-48-k2,
 .isJ25 .icon-48-k2 {height:48px;}
@@ -543,7 +541,8 @@ table#tagLists tr td#tagListsRight select {width:99%;height:106px;}
 
 /* Item - Extra Fields Validation */
 #k2ExtraFieldsValidationResults {clear:both;font-weight:bold;font-size:12px;color:#369;margin:12px 0 4px;padding:16px;background-color:#d5e7fa;border-top:4px solid #96b0cb;display:none;}
-#k2ExtraFieldsValidationResults h3 {padding:0;margin:0;font-size:20px;color:#369;border:0;}
+#k2ExtraFieldsValidationResults:before {background:url('../images/backend/sprite.png') no-repeat;overflow:hidden;text-align:left;content:'';float:left;margin-right:10px;background-position:-10px -92px;width:59px;height:54px;}
+#k2AdminContainer.isEditForm #k2ContentView > form #k2ExtraFieldsValidationResults h3 {padding:0;margin:0;font-size:20px;color:#369;border:0;}
 ul#k2ExtraFieldsMissing {margin:8px;padding:0 18px;overflow:hidden;}
 ul#k2ExtraFieldsMissing li {font-weight:normal;}
 .k2Invalid {border-color:red;}
