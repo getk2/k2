@@ -1632,6 +1632,7 @@ button.fancybox-button:hover {background:none;border:0;}
 .isJ25 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li > fieldset.adminform > legend {position:relative;background:#d5e7fa;color:#369;width:100%;clear:both;box-sizing:border-box;margin:0;padding:20px;font-size:20px;font-weight:400;border-top:10px solid #fff;border-bottom:4px solid #96b0cb;}
 .isJ25 #k2AdminContainer #k2ContentView > form .xmlParamsFields fieldset.adminform > legend::after {font-family:"FontAwesome";font-size:24px;content:"\f12e";position:absolute;right:20px;top:20px;}
 
+.isJ25 #k2AdminContainer #k2ContentView > form .xmlParamsFields fieldset.panelform ul li.headerElement {background:none;}
 .isJ25 #k2AdminContainer #k2ContentView > form .xmlParamsFields fieldset.panelform ul li .paramValueHeader {padding:10px 0 0 0;}
 
 /* --- Corrections for Joomla 2.5 [finish] --- */
@@ -1721,8 +1722,8 @@ button.fancybox-button:hover {background:none;border:0;}
 .isJ15 #k2AdminContainer #k2ContentView > form #editor-xtd-buttons {display:inline-block;padding:10px 0;margin:0;}
 .isJ15 #k2AdminContainer #k2ContentView > form #editor-xtd-buttons .button2-left {margin:0;padding:0 5px 0 0;background:none;border:0;float:none;display:inline-block;}
 .isJ15 #k2AdminContainer #k2ContentView > form #editor-xtd-buttons .button2-left > div {margin:0;padding:0;background:none;border:0;}
-.isJ15 #k2AdminContainer #k2ContentView > form #editor-xtd-buttons .button2-left > div a {display:block;margin:0;padding:0 10px;text-align:center;font-size:13px;height:30px;line-height:30px;vertical-align:middle;background:#eff1f1;border-radius:3px;border:1px solid #e4e4e4;cursor:pointer;color:#8a8c8c;}
-.isJ15 #k2AdminContainer #k2ContentView > form #editor-xtd-buttons .button2-left > div a:hover {background:#1480d3;color:#eee;}
+.isJ15 #k2AdminContainer #k2ContentView > form #editor-xtd-buttons .button2-left > div a {display:block;margin:0;padding:0 10px;text-align:center;font-size:13px;height:30px;line-height:30px;vertical-align:middle;background:#eff1f1;border-radius:3px;border:1px solid #e4e4e4;cursor:pointer;color:#8a8c8c;text-decoration:none;}
+.isJ15 #k2AdminContainer #k2ContentView > form #editor-xtd-buttons .button2-left > div a:hover {background:#1480d3;border:1px solid #2371ac;color:#eee;text-decoration:none;}
 
 .isJ15 #k2AdminContainer #k2ContentView > form div[style="margin-top:-5px"] {margin:2px 0 0 0 !important;padding:10px 0;display:inline-block;min-height:22px;}
 .isJ15 #k2AdminContainer #k2ContentView > form div[style="margin-top:-5px"] .button2-left {margin:0;padding:0 5px 0 0;background:none;border:0;float:none;display:inline-block;}
