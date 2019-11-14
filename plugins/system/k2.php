@@ -652,7 +652,7 @@ class plgSystemK2 extends JPlugin
         $app = JFactory::getApplication();
         $params = JComponentHelper::getParams('com_k2');
 
-        // Fix OpenGraph meta tags
+        // OpenGraph meta tags
         if ($app->isSite() && $params->get('facebookMetatags', 1)) {
             $response = JResponse::getBody();
             $searches = array(
@@ -669,13 +669,13 @@ class plgSystemK2 extends JPlugin
                 '<meta property="og:image"',
                 '<meta property="og:description"'
             );
-            if (JString::strpos($response, 'prefix="og: http://ogp.me/ns#"') === false) {
+            if (strpos($response, 'http://ogp.me/ns#') === false) {
                 $searches[] = '<html ';
                 $searches[] = '<html>';
                 $replacements[] = '<html prefix="og: http://ogp.me/ns#" ';
                 $replacements[] = '<html prefix="og: http://ogp.me/ns#">';
             }
-            $response = JString::str_ireplace($searches, $replacements, $response);
+            $response = str_ireplace($searches, $replacements, $response);
             JResponse::setBody($response);
         }
     }
