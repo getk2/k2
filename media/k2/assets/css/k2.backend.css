@@ -1277,7 +1277,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue select {width:300px;height:30px;line-height:30px;background:#fff;}
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue select[multiple] {height:auto;}
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue button {font-family:'Open Sans',sans-serif;font-size:13px;}
-.isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {min-width:400px;padding-left:10px;padding-right:10px;}
+.isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {min-width:400px;width:auto;padding-left:10px;padding-right:10px;}
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input,
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue select,
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;}
@@ -1557,7 +1557,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ25 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue select {width:300px;height:30px;line-height:30px;background:#fff;}
 .isJ25 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue select[multiple] {height:auto;}
 .isJ25 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue button {font-family:'Open Sans',sans-serif;font-size:13px;}
-.isJ25 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {min-width:400px;padding-left:10px;padding-right:10px;}
+.isJ25 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {min-width:400px;width:auto;padding-left:10px;padding-right:10px;}
 .isJ25 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input,
 .isJ25 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue select,
 .isJ25 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;}
@@ -1663,6 +1663,9 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ15 #k2AdminContainer #k2ContentView > form .k2Table .k2SubTableValue select {height:30px;line-height:30px;font-size:13px;background:#fff;min-width:210px;border-radius:3px;}
 .isJ15 #k2AdminContainer #k2ContentView > form .k2Table .k2TableValue .k2TitleBox {padding:10px!important;}
 .isJ15 #k2AdminContainer #k2ContentView > form .k2Table .k2SubTableValue #k2Author {font-size:13px;margin-top:6px;}
+
+.isJ15 #k2AdminContainer #k2ContentView > form .mceEditor {background:#f0f0f0;display:block;padding:10px;}
+.isJ15 #k2AdminContainer #k2ContentView > form div[style="margin-top:-5px"] {margin:2px 0 0 0 !important;padding:10px 0;background:#f0f0f0;display:block;min-height:22px;}
 
 /* Lists */
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters {border-collapse:collapse;border:0;}
@@ -1782,7 +1785,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue select {width:300px;height:30px;line-height:30px;background:#fff;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue select[multiple] {height:auto;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue button {font-family:'Open Sans',sans-serif;font-size:13px;}
-.isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {min-width:400px;padding-left:10px;padding-right:10px;}
+.isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {min-width:400px;width:auto;padding-left:10px;padding-right:10px;}
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input,
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue select,
 .isJ15 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;}
