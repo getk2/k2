@@ -617,77 +617,79 @@ class K2ViewItem extends K2View
             }
 
             // --- Google Structured Data ---
-            $itemSD_Type = $item->params->get('k2SeoGsdType', 'Article');
+            if ($item->params->get('k2SeoGsdState', 1)) {
+                $itemSD_Type = $item->params->get('k2SeoGsdType', 'Article');
 
-            // Cleanups
-            $sdStrSearch = ['&amp;', '&nbsp;', '&quot;', '&#039;', '&apos;', '&lt;', '&gt;', '{K2Splitter}', '\\'];
-            $sdStrReplace = ['&', ' ', '"', '\'', '\'', '<', '>', ' ', ''];
-            $sdPregSearch = ["#<script(.*?)</script>#is", "/\r|\n|\t/", "/\s\s+/"];
-            $sdPregReplace = [' ', ' ', ' '];
-            $allowedTags = '<script>';
+                // Cleanups
+                $sdStrSearch = ['&amp;', '&nbsp;', '&quot;', '&#039;', '&apos;', '&lt;', '&gt;', '{K2Splitter}', '\\'];
+                $sdStrReplace = ['&', ' ', '"', '\'', '\'', '<', '>', ' ', ''];
+                $sdPregSearch = ["#<script(.*?)</script>#is", "/\r|\n|\t/", "/\s\s+/"];
+                $sdPregReplace = [' ', ' ', ' '];
+                $allowedTags = '<script>';
 
-            // Prepare content snippets
-            $itemSD_SiteName = (version_compare(JVERSION, '2.5', 'ge')) ? JFactory::getConfig()->get('sitename') : JFactory::getConfig()->getValue('config.sitename');
-            $itemSD_SiteName = ($params->get('k2SeoGsdOrgName')) ? $params->get('k2SeoGsdOrgName') : $itemSD_SiteName;
-            $itemSD_SiteLogo = JURI::root().trim($params->get('k2SeoGsdOrgLogo'));
+                // Prepare content snippets
+                $itemSD_SiteName = (version_compare(JVERSION, '2.5', 'ge')) ? JFactory::getConfig()->get('sitename') : JFactory::getConfig()->getValue('config.sitename');
+                $itemSD_SiteName = ($params->get('k2SeoGsdOrgName')) ? $params->get('k2SeoGsdOrgName') : $itemSD_SiteName;
+                $itemSD_SiteLogo = JURI::root().trim($params->get('k2SeoGsdOrgLogo'));
 
-            $itemSD_Description = str_replace($sdStrSearch, $sdStrReplace, strip_tags($item->introtext, $allowedTags));
-            $itemSD_ArticleBody = str_replace($sdStrSearch, $sdStrReplace, strip_tags($item->text, $allowedTags));
+                $itemSD_Description = str_replace($sdStrSearch, $sdStrReplace, strip_tags($item->introtext, $allowedTags));
+                $itemSD_ArticleBody = str_replace($sdStrSearch, $sdStrReplace, strip_tags($item->text, $allowedTags));
 
-            $itemSD_Description = preg_replace($sdPregSearch, $sdPregReplace, $itemSD_Description);
-            $itemSD_ArticleBody = preg_replace($sdPregSearch, $sdPregReplace, $itemSD_ArticleBody);
+                $itemSD_Description = preg_replace($sdPregSearch, $sdPregReplace, $itemSD_Description);
+                $itemSD_ArticleBody = preg_replace($sdPregSearch, $sdPregReplace, $itemSD_ArticleBody);
 
-            $itemSD_AuthorName = (!empty($item->created_by_alias)) ? $item->created_by_alias : $item->author->name;
-            $itemSD_AuthorURL = (!empty($item->created_by_alias)) ? JURI::root() : $this->absUrl($item->author->link);
+                $itemSD_AuthorName = (!empty($item->created_by_alias)) ? $item->created_by_alias : $item->author->name;
+                $itemSD_AuthorURL = (!empty($item->created_by_alias)) ? JURI::root() : $this->absUrl($item->author->link);
 
-            $itemSD_Modified = ((int) $item->modified) ? $item->modified : $item->created;
+                $itemSD_Modified = ((int) $item->modified) ? $item->modified : $item->created;
 
-            // Output structured data
-            $itemSD_LDJSON = '
-            {
-                "@context": "https://schema.org",
-                "@type": "'.$itemSD_Type.'",
-                "mainEntityOfPage": {
-                    "@type": "WebPage",
-                    "@id": "'.$this->absUrl($item->link).'"
-                },
-                "url": "'.$this->absUrl($item->link).'",
-                "headline": "'.$this->filterHTML($metaTitle).'",
-                "image": [
-                    "'.$this->absUrl($item->imageXLarge).'",
-                    "'.$this->absUrl($item->imageLarge).'",
-                    "'.$this->absUrl($item->imageMedium).'",
-                    "'.$this->absUrl($item->imageSmall).'",
-                    "'.$this->absUrl($item->imageXSmall).'",
-                    "'.$this->absUrl($item->imageGeneric).'"
-                ],
-                "datePublished": "'.$item->created.'",
-                "dateModified": "'.$itemSD_Modified.'",
-                "author": {
-                    "@type": "Person",
-                    "name": "'.$itemSD_AuthorName.'",
-                    "url": "'.$itemSD_AuthorURL.'"
-                },
-                "publisher": {
-                    "@type": "Organization",
-                    "name": "'.$itemSD_SiteName.'",
-                    "url": "'.JURI::root().'",
-                    "logo": {
-                        "@type": "ImageObject",
+                // Output structured data
+                $itemSD_LDJSON = '
+                {
+                    "@context": "https://schema.org",
+                    "@type": "'.$itemSD_Type.'",
+                    "mainEntityOfPage": {
+                        "@type": "WebPage",
+                        "@id": "'.$this->absUrl($item->link).'"
+                    },
+                    "url": "'.$this->absUrl($item->link).'",
+                    "headline": "'.$this->filterHTML($metaTitle).'",
+                    "image": [
+                        "'.$this->absUrl($item->imageXLarge).'",
+                        "'.$this->absUrl($item->imageLarge).'",
+                        "'.$this->absUrl($item->imageMedium).'",
+                        "'.$this->absUrl($item->imageSmall).'",
+                        "'.$this->absUrl($item->imageXSmall).'",
+                        "'.$this->absUrl($item->imageGeneric).'"
+                    ],
+                    "datePublished": "'.$item->created.'",
+                    "dateModified": "'.$itemSD_Modified.'",
+                    "author": {
+                        "@type": "Person",
+                        "name": "'.$itemSD_AuthorName.'",
+                        "url": "'.$itemSD_AuthorURL.'"
+                    },
+                    "publisher": {
+                        "@type": "Organization",
                         "name": "'.$itemSD_SiteName.'",
-                        "width": "'.$params->get('k2SeoGsdOrgLogoWidth').'",
-                        "height": "'.$params->get('k2SeoGsdOrgLogoHeight').'",
-                        "url": "'.$itemSD_SiteLogo.'"
-                    }
-                },
-                "articleSection": "'.$this->absUrl($item->category->link).'",
-                "keywords": "'.$this->filterHTML($metaKeywords).'",
-                "description": "'.$this->filterHTML($itemSD_Description).'",
-                "articleBody": "'.$this->filterHTML($itemSD_ArticleBody).'"
-            }
-            ';
+                        "url": "'.JURI::root().'",
+                        "logo": {
+                            "@type": "ImageObject",
+                            "name": "'.$itemSD_SiteName.'",
+                            "width": "'.$params->get('k2SeoGsdOrgLogoWidth').'",
+                            "height": "'.$params->get('k2SeoGsdOrgLogoHeight').'",
+                            "url": "'.$itemSD_SiteLogo.'"
+                        }
+                    },
+                    "articleSection": "'.$this->absUrl($item->category->link).'",
+                    "keywords": "'.$this->filterHTML($metaKeywords).'",
+                    "description": "'.$this->filterHTML($itemSD_Description).'",
+                    "articleBody": "'.$this->filterHTML($itemSD_ArticleBody).'"
+                }
+                ';
 
-            $document->addScriptDeclaration($itemSD_LDJSON, 'application/ld+json');
+                $document->addScriptDeclaration($itemSD_LDJSON, 'application/ld+json');
+            }
         }
 
         if ($document->getType() != 'json') {
