@@ -57,7 +57,7 @@ class modK2UserHelper
                 K2HelperPermissions::setPermissions();
             }
             if (K2HelperPermissions::canAddItem()) {
-                $profile->addLink = JRoute::_('index.php?option=com_k2&view=item&task=add&tmpl=component&context=modalselector');
+                $profile->addLink = JRoute::_('index.php?option=com_k2&view=item&task=add&tmpl=component&template=system&context=modalselector');
             }
             return $profile;
         }

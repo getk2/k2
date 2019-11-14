@@ -196,26 +196,30 @@ class K2HelperHTML
                 // Frontend
                 if ($app->isSite()) {
                     // B/C for saved old options
-                    if ($jQueryHandling) {
-                        if ($jQueryHandling == '1.7remote') {
-                            $jQueryHandling = '1.7.2';
+                    if ($option == 'com_k2' && $view == 'item' && $task == 'edit') {
+                        $document->addScript('https://code.jquery.com/jquery-1.8.3.min.js');
+                    } else {
+                        if ($jQueryHandling) {
+                            if ($jQueryHandling == '1.7remote') {
+                                $jQueryHandling = '1.7.2';
+                            }
+                            if ($jQueryHandling == '1.8remote') {
+                                $jQueryHandling = '1.8.3';
+                            }
+                            if ($jQueryHandling == '1.9remote') {
+                                $jQueryHandling = '1.9.1';
+                            }
+                            if ($jQueryHandling == '1.10remote') {
+                                $jQueryHandling = '1.10.2';
+                            }
+                            if ($jQueryHandling == '1.11remote') {
+                                $jQueryHandling = '1.11.3';
+                            }
+                            if ($jQueryHandling == '1.12remote') {
+                                $jQueryHandling = '1.12.4';
+                            }
+                            $document->addScript('https://code.jquery.com/jquery-'.$jQueryHandling.'.min.js');
                         }
-                        if ($jQueryHandling == '1.8remote') {
-                            $jQueryHandling = '1.8.3';
-                        }
-                        if ($jQueryHandling == '1.9remote') {
-                            $jQueryHandling = '1.9.1';
-                        }
-                        if ($jQueryHandling == '1.10remote') {
-                            $jQueryHandling = '1.10.2';
-                        }
-                        if ($jQueryHandling == '1.11remote') {
-                            $jQueryHandling = '1.11.3';
-                        }
-                        if ($jQueryHandling == '1.12remote') {
-                            $jQueryHandling = '1.12.4';
-                        }
-                        $document->addScript('https://code.jquery.com/jquery-'.$jQueryHandling.'.min.js');
                     }
                 }
 

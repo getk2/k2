@@ -90,7 +90,7 @@ class K2ModelItem extends K2Model
 
         // Edit link
         if (K2HelperPermissions::canEditItem($item->created_by, $item->catid)) {
-            $item->editLink = JRoute::_('index.php?option=com_k2&view=item&task=edit&cid='.$item->id.'&tmpl=component');
+            $item->editLink = JRoute::_('index.php?option=com_k2&view=item&task=edit&cid='.$item->id.'&tmpl=component&template=system');
         }
 
         // Tags

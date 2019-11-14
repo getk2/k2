@@ -33,7 +33,7 @@ class K2ViewItem extends K2View
 
         // Add link
         if (K2HelperPermissions::canAddItem()) {
-            $addLink = JRoute::_('index.php?option=com_k2&view=item&task=add&tmpl=component');
+            $addLink = JRoute::_('index.php?option=com_k2&view=item&task=add&tmpl=component&template=system');
         }
         $this->assignRef('addLink', $addLink);
 
