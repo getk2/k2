@@ -22,6 +22,7 @@ div.k2SelectorButton a {display:inline-block;margin:0;padding:0 20px;text-align:
 div.k2SelectorButton a:hover {background:#1480d3;border:1px solid #2371ac;color:#eee;text-decoration:none;}
     div.k2SingleSelect {border:0;padding:0;margin:0;}
     div.k2SingleSelect span.k2EntryText {display:inline-block;margin:2px 0;padding:4px 6px;border:1px solid #ccc;background:#eee;border-radius:2px;color:#555;}
+    .isJ25 div.k2SingleSelect span.k2EntryText {grid-column:3 / span 1;margin:2px 5px 2px 0;}
 ul.k2SortableListContainer {list-style:none;display:block;clear:both;margin:0;padding:0;width:80%;}
 ul.k2SortableListContainer li {list-style:none;margin:2px 0;padding:8px;border:1px solid #ccc;background:#eee;border-radius:2px;cursor:move;}
 ul.k2SortableListContainer li a.k2EntryRemove {cursor:pointer;margin:0 12px 0 0;font-size:14px;}
