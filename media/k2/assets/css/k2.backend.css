@@ -52,6 +52,8 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 
 /* Lists */
 .k2ui-title {} /* To be added into lists to replace .title */
+.k2ui-left {text-align:left !important;}
+.k2ui-right {text-align:right !important;}
 .k2ui-center {text-align:center !important;}
 .k2ui-nowrap {white-space:nowrap;}
 .k2ui-wrap {white-space:normal !important;max-width:120px;overflow:hidden;}
