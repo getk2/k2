@@ -484,7 +484,11 @@ div#k2TabContent {padding:0;}
 .isJ30 span.k2ItemFormEditorTitle {display:block;color:#58595b;font-size:20px;font-weight:bold;padding:24px 0 12px 24px;}
 .isJ30 .k2ItemFormEditor .editor {background:#f0f2f2;border-top:1px solid #d7d9d9;border-bottom:1px solid #e9ebec;}
 .isJ30 .k2ItemFormEditor .editor .btn-toolbar {padding:4px 20px;}
+
 input#del_image {/*display:block;*/}
+.isJ25 input#del_image,
+.isJ15 input#del_image {vertical-align:middle;}
+
 .k2Note {display:block;padding:10px 0;color:#999;font-style:italic;font-size:11px;}
 
 /* Flatpickr Overrides */
