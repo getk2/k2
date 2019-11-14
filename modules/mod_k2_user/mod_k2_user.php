@@ -80,7 +80,7 @@ if ($user->guest) {
     $viewProfileLink = JRoute::_(K2HelperRoute::getUserRoute($user->id));
     $editProfileLink = JRoute::_((K2_JVERSION != '15') ? 'index.php?option=com_users&view=profile&layout=edit&Itemid='.UsersHelperRoute::getProfileRoute() : 'index.php?option=com_user&view=user&task=edit');
     $profileLink = $editProfileLink; // B/C
-    $editCommentsLink = JRoute::_('index.php?option=com_k2&view=comments&tmpl=component&context=modalselector');
+    $editCommentsLink = JRoute::_('index.php?option=com_k2&view=comments&tmpl=component&template=system&context=modalselector');
 
     $option = K2_JVERSION != '15' ? 'com_users' : 'com_user';
     $task = K2_JVERSION != '15' ? 'user.logout' : 'logout';

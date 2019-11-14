@@ -52,7 +52,7 @@ $context = JRequest::getCmd('context');
     </div>
 <?php endif; ?>
 
-    <form action="<?php echo ($app->isSite()) ? JRoute::_('index.php?option=com_k2&view=comments&tmpl=component&context=modalselector') : JRoute::_('index.php'); ?>" method="post" name="adminForm" id="adminForm">
+    <form action="<?php echo ($app->isSite()) ? JRoute::_('index.php?option=com_k2&view=comments&tmpl=component&template=system&context=modalselector') : JRoute::_('index.php'); ?>" method="post" name="adminForm" id="adminForm">
         <table class="k2AdminTableFilters table">
             <tr>
                 <td class="k2AdminTableFiltersSearch">

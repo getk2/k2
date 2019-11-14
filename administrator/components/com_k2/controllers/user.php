@@ -20,36 +20,34 @@ class K2ControllerUser extends K2Controller
         parent::display();
     }
 
-    function save()
+    public function save()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('user');
         $model->save();
     }
 
-    function apply()
+    public function apply()
     {
         $this->save();
     }
 
-    function cancel()
+    public function cancel()
     {
         $app = JFactory::getApplication();
         $app->redirect('index.php?option=com_k2&view=users');
     }
 
-    function report()
+    public function report()
     {
-	    $app = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $model = K2Model::getInstance('User', 'K2Model');
         $model->setState('id', JRequest::getInt('id'));
         $model->reportSpammer();
-		if(JRequest::getCmd('context') == "modalselector"){
-			$app->redirect('index.php?option=com_k2&view=users&tmpl=component&context=modalselector');
-
-		} else {
-			//$this->setRedirect('index.php?option=com_k2&view=users');
-			$app->redirect('index.php?option=com_k2&view=users');
-		}
+        if (JRequest::getCmd('context') == "modalselector") {
+            $app->redirect('index.php?option=com_k2&view=users&tmpl=component&template=system&context=modalselector');
+        } else {
+            $app->redirect('index.php?option=com_k2&view=users');
+        }
     }
 }
