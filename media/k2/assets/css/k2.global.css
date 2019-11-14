@@ -69,11 +69,49 @@ ul.k2SortableListContainer li span.k2EntryText {}
 .com_modules .form-horizontal .span9 .controls textarea {width:90%;}
 
 /* For Select2 */
-.isJ15 .select2-container--default .select2-selection--multiple .select2-selection__rendered {padding:5px;}
+.isJ15 .select2-container--default .select2-selection--multiple .select2-selection__rendered,
+.isJ25 .select2-container--default .select2-selection--multiple .select2-selection__rendered {padding:5px;line-height:22px;}
 .isJ15 .select2-container--default .select2-selection--multiple .select2-selection__rendered li,
 .isJ25 .select2-container--default .select2-selection--multiple .select2-selection__rendered li {font-size:13px;padding:4px;margin:2px 5px 0 0;}
 .isJ15 .select2-container--default .select2-selection--multiple .select2-selection__rendered li span,
 .isJ25 .select2-container--default .select2-selection--multiple .select2-selection__rendered li span {margin-right:4px;}
+
+/* For Joomla 2.5 */
+.isJ25 .pane-slider > fieldset.panelform {padding:5px;margin:0;}
+.isJ25 fieldset.panelform .adminformlist > li {position:relative;display:grid;grid-template-columns:1fr 2fr auto;align-items:center;min-height:0;max-height:none;clear:both;border-radius:4px;padding:0;margin:0 0 5px 0;}
+.isJ25 fieldset.panelform .adminformlist > li:nth-child(2n-1) {background:#f7f7f7;}
+.isJ25 fieldset.panelform .adminformlist > li > label {min-width:inherit;max-width:auto;width:auto;font-size:13px;float:none;padding:10px;}
+.isJ25 fieldset.panelform .adminformlist > li > label + input,
+.isJ25 fieldset.panelform .adminformlist > li > label + select,
+.isJ25 fieldset.panelform .adminformlist > li > label + textarea,
+.isJ25 fieldset.panelform .adminformlist > li > label + fieldset,
+.isJ25 fieldset.panelform .adminformlist > li > label + div,
+.isJ25 fieldset.panelform .adminformlist > li > label + span {float:none;font-size:13px;}
+.isJ25 fieldset.panelform .adminformlist > li > label + input,
+.isJ25 fieldset.panelform .adminformlist > li > label + select,
+.isJ25 fieldset.panelform .adminformlist > li > label + textarea {border-radius:3px;padding:5px 10px;font-size:13px;}
+.isJ25 fieldset.panelform .adminformlist > li > label + select {height:28px;}
+.isJ25 fieldset.panelform .adminformlist > li > label + select[multiple="multiple"] {height:auto;}
+.isJ25 fieldset.panelform .adminformlist > li > label + div.k2SelectorButton + .k2SortableListContainer {grid-column:2 / span 1;position:relative;z-index:900;}
+.isJ25 fieldset.panelform .adminformlist > li > label + div.k2SelectorButton + .k2SortableListContainer li {padding:5px 10px;margin:2px 0;position:relative;z-index:901;}
+.isJ25 fieldset.panelform .adminformlist > li > fieldset {background:none;}
+.isJ25 fieldset.panelform .adminformlist > li > fieldset label,
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input {font-size:13px;}
+
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);}
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"] + label {min-width:80px;width:auto;line-height:30px;height:30px;text-align:center;margin:0 -2px 0 0;padding:0 10px;color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background:#eff1f1;cursor:pointer;}
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"]:first-child + label {border-radius:4px 0 0 4px;}
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"] + label:last-child {border-radius:0 4px 4px 0;}
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"]:checked + label {background:#63696f;color:#fff;} /* Generic */
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"]:checked + label:hover {background:#555;}
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"] + label:hover {background:#e8e8e8;}
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"][value="0"]:checked + label,
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"][value="none"]:checked + label {background:#bd362f;color:#fff;}
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"][value="1"]:checked + label,
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"][value="all"]:checked + label {background:#3fa800;color:#fff;}
+
+.isJ25 .jwHeaderContainer {grid-column-start:span 2;
+background:#e5f7fd;color:#346b93;font-size:20px;margin:0;padding:24px 16px;border-radius:4px;font-weight:normal;float:left;width:100%;clear:both;box-sizing:border-box;}
 
 
 
