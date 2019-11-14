@@ -1412,8 +1412,8 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ25 #k2AdminContainer.K2AdminViewInfo #k2ContentView table tr td {font-size:13px;color:#333;padding:10px;}
 
 /* Scrollspy Menu */
-.isJ25 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu {display:block;position:fixed;list-style:none;margin:0;padding:0;width:320px;height:100%;z-index:1;top:204px;}
-.isJ25 #k2AdminContainer.K2AdminViewInfo #k2ContentView ul.k2ScrollSpyMenu {top:136px;}
+.isJ25 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu {display:block;position:fixed;list-style:none;margin:0;padding:0;width:320px;height:100%;z-index:1;top:190px;}
+.isJ25 #k2AdminContainer.K2AdminViewInfo #k2ContentView ul.k2ScrollSpyMenu {top:122px;}
 .isJ25 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu li {border-bottom:1px solid #e3e4e4;}
 .isJ25 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu > li:first-child {border-top:1px solid #e3e4e4;}
 .isJ25 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu li a {font-size:14px;font-weight:600;padding:16px 20px;display:block;color:#636b6e;text-decoration:none;transition:.5s all ease-out;}
