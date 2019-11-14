@@ -70,7 +70,7 @@ $context = JRequest::getCmd('context');
                             </th>
                             <th class="hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_GROUP', 'groupname', @$this->lists['order_Dir'], @$this->lists['order']); ?></th>
                             <th><?php echo JHTML::_('grid.sort', 'K2_EMAIL', 'juser.email', @$this->lists['order_Dir'], @$this->lists['order']); ?></th>
-                            <th class="hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_LAST_VISIT', 'juser.lastvisitDate', @$this->lists['order_Dir'], @$this->lists['order']); ?></th>
+                            <th class="k2ui-center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_LAST_VISIT', 'juser.lastvisitDate', @$this->lists['order_Dir'], @$this->lists['order']); ?></th>
                             <th class="k2ui-center hidden-phone">IP</th>
                             <th class="k2ui-center hidden-phone"><?php echo JText::_('K2_IMAGE'); ?></th>
                             <th class="k2ui-center"><?php echo JText::_('K2_FLAG_AS_SPAMMER'); ?></th>
