@@ -1149,6 +1149,8 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
             #k2Sidebar ul li span {color:#608ed4;display:block;padding:8px;font-size:13px;}
         #k2Copyrights {z-index:91;position:fixed;bottom:30px;width:calc(10% - 8px);text-align:center;color:#608ed4;margin:0;padding:4px;line-height:150%;font-size:12px;border-top:1px solid #183f7b;}
             #k2Copyrights a {color:#b4cdfb;font-weight:600;}
+            .isJ15 #k2Copyrights a,
+            .isJ25 #k2Copyrights a {font-weight:400;}
             #k2Copyrights a:hover {color:#eee;text-decoration:none;}
             #k2Copyrights div {font-size:10px;line-height:130%;}
                 #k2Copyrights div a {color:#608ed4;}
