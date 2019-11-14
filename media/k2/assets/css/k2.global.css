@@ -68,6 +68,13 @@ ul.k2SortableListContainer li span.k2EntryText {}
 .com_modules .form-horizontal .span9 .controls .chzn-container-multi {width:90% !important;}
 .com_modules .form-horizontal .span9 .controls textarea {width:90%;}
 
+/* For Select2 */
+.isJ15 .select2-container--default .select2-selection--multiple .select2-selection__rendered {padding:5px;}
+.isJ15 .select2-container--default .select2-selection--multiple .select2-selection__rendered li,
+.isJ25 .select2-container--default .select2-selection--multiple .select2-selection__rendered li {font-size:13px;padding:4px;margin:2px 5px 0 0;}
+.isJ15 .select2-container--default .select2-selection--multiple .select2-selection__rendered li span,
+.isJ25 .select2-container--default .select2-selection--multiple .select2-selection__rendered li span {margin-right:4px;}
+
 
 
 /* --- Style parameters for menus --- */
