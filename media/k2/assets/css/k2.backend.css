@@ -1540,19 +1540,6 @@ button.fancybox-button:hover {background:none;border:0;}
 .isJ25 #k2AdminContainer.inModalSelector #k2ContentView form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects {padding-right:16px;}
 .isJ25 #k2AdminContainer.inModalSelector #k2ContentView form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects select {max-width:160px;height:30px;font-size:13px;}
 
-/* Settings */
-.isJ25 #k2AdminContainer.K2AdminViewSettings {width:90%;margin:0 auto;padding:10px 0 40px 0;}
-.isJ25 #k2AdminContainer.K2AdminViewSettings #k2ContentView form > fieldset {border:0;padding:20px 24px 10px 24px;margin:0 auto 20px auto;border-bottom:2px solid #dddedf;}
-.isJ25 #k2AdminContainer.K2AdminViewSettings #k2ContentView form > fieldset .configuration {font-size:30px;line-height:30px;font-weight:600;padding:0;margin:0;color:#183867;background:none;}
-.isJ25 #k2AdminContainer.K2AdminViewSettings #k2ContentView form > fieldset div button {border:1px solid #b3b3b3;border-radius:4px;background:#f3f3f3;padding:6px 18px;margin:0 0 0 4px;line-height:20px;color:#333;font-size:12px;cursor:pointer;}
-.isJ25 #k2AdminContainer.K2AdminViewSettings #k2ContentView form > fieldset div button:hover {border:1px solid #b3b3b3;background:#e6e6e6;}
-.isJ25 #k2AdminContainer.K2AdminViewSettings dl.tabs dt {margin:0 0 -1px 0;padding:8px 16px;font-size:14px;margin:0 4px 0 0;border:1px solid #dddedf;}
-.isJ25 #k2AdminContainer.K2AdminViewSettings dl.tabs dt.open {background:#fff;border-bottom:1px solid #fff;}
-.isJ25 #k2AdminContainer.K2AdminViewSettings dl.tabs dt:hover {background:#e6e6e6;}
-.isJ25 #k2AdminContainer.K2AdminViewSettings dl.tabs dt.open:hover {border-bottom:1px solid #e6e6e6;}
-.isJ25 #k2AdminContainer.K2AdminViewSettings div.current {border:1px solid #dddedf;padding:10px;}
-.isJ25 #k2AdminContainer.K2AdminViewSettings div.current dd table.admintable {border:0;}
-
 /* Information */
 .isJ25 #k2AdminContainer.K2AdminViewInfo #k2ContentView {background:#fff;}
 .isJ25 #k2AdminContainer.K2AdminViewInfo #k2ContentView table tr th,

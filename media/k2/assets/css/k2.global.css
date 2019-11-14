@@ -209,6 +209,58 @@ body .select2-container--default.select2-container--focus.select2-container--bel
 .isJ25 .jwHeaderContainer {grid-column-start:span 2;
 background:#e5f7fd;color:#346b93;font-size:20px;margin:0;padding:24px 16px;border-radius:4px;font-weight:normal;float:left;width:100%;clear:both;box-sizing:border-box;}
 
+/* For Joomla 2.5 - Component Settings */
+.isJ25 body.contentpane {width:90%;margin:0 auto;padding:10px 0 40px 0;}
+.isJ25 body.contentpane form > fieldset {border:0;padding:20px 24px 10px 24px;margin:0 auto 20px auto;border-bottom:2px solid #dddedf;}
+.isJ25 body.contentpane form > fieldset .configuration {font-size:30px;line-height:30px;font-weight:600;padding:0;margin:0;color:#183867;background:none;}
+.isJ25 body.contentpane form > fieldset div button {border:1px solid #b3b3b3;border-radius:4px;background:#f3f3f3;padding:6px 18px;margin:0 0 0 4px;line-height:20px;color:#333;font-size:12px;cursor:pointer;}
+.isJ25 body.contentpane form > fieldset div button:hover {border:1px solid #b3b3b3;background:#e6e6e6;}
+
+.isJ25 dl#config-tabs-com_k2_configuration dt.tabs {margin:0 0 -1px 0;padding:8px 16px;font-size:14px;margin:0 4px 0 0;border:1px solid #dddedf;}
+.isJ25 dl#config-tabs-com_k2_configuration dt.tabs.open {background:#fff;border-bottom:1px solid #fff;}
+.isJ25 dl#config-tabs-com_k2_configuration dt.tabs:hover {background:#e6e6e6;}
+.isJ25 dl#config-tabs-com_k2_configuration dt.tabs.open:hover {border-bottom:1px solid #e6e6e6;}
+.isJ25 dl#config-tabs-com_k2_configuration + div.current {border:1px solid #dddedf;padding:10px;}
+
+.isJ25 div.current dd .config-option-list {padding:5px;margin:0;}
+.isJ25 div.current dd .config-option-list > li {position:relative;display:grid;grid-template-columns:1fr 2fr auto auto auto;align-items:center;min-height:0;max-height:none;clear:both;border-radius:4px;padding:0;margin:0;}
+.isJ25 div.current dd .config-option-list > li > span.spacer {}
+.isJ25 div.current dd .config-option-list > li:nth-child(2n-1) {background:#f7f7f7;}
+.isJ25 div.current dd .config-option-list > li > label {min-width:inherit;max-width:auto;width:auto;font-size:13px;float:none;padding:10px;}
+.isJ25 div.current dd .config-option-list > li > label + input,
+.isJ25 div.current dd .config-option-list > li > label + select,
+.isJ25 div.current dd .config-option-list > li > label + textarea,
+.isJ25 div.current dd .config-option-list > li > label + fieldset,
+.isJ25 div.current dd .config-option-list > li > label + div,
+.isJ25 div.current dd .config-option-list > li > label + span {float:none;font-size:13px;margin:5px;}
+.isJ25 div.current dd .config-option-list > li > label + input,
+.isJ25 div.current dd .config-option-list > li > label + select,
+.isJ25 div.current dd .config-option-list > li > label + textarea {border-radius:3px;padding:5px 10px;font-size:13px;}
+.isJ25 div.current dd .config-option-list > li > label + select {height:28px;}
+.isJ25 div.current dd .config-option-list > li > label + select[multiple="multiple"] {height:auto;max-height:240px;}
+.isJ25 div.current dd .config-option-list > li > label + div.k2SelectorButton + .k2SortableListContainer {grid-column:2 / span 1;margin-bottom:10px;}
+.isJ25 div.current dd .config-option-list > li > label + div.k2SelectorButton + .k2SortableListContainer li {padding:5px 10px;margin:2px 0;}
+.isJ25 div.current dd .config-option-list > li > fieldset {background:none;}
+.isJ25 div.current dd .config-option-list > li > fieldset label,
+.isJ25 div.current dd .config-option-list > li > fieldset input {font-size:13px;}
+
+.isJ25 div.current dd .config-option-list > li > label#jform_k2SeoGsdOrgLogo-lbl + .fltlft {padding-left:46px;}
+
+.isJ25 div.current dd .config-option-list > li > fieldset input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);}
+.isJ25 div.current dd .config-option-list > li > fieldset input[type="radio"] + label {min-width:80px;width:auto;line-height:30px;height:30px;text-align:center;margin:0 -2px 0 0;padding:0 10px;color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background:#eff1f1;cursor:pointer;}
+.isJ25 div.current dd .config-option-list > li > fieldset input[type="radio"]:first-child + label {border-radius:4px 0 0 4px;}
+.isJ25 div.current dd .config-option-list > li > fieldset input[type="radio"] + label:last-child {border-radius:0 4px 4px 0;}
+.isJ25 div.current dd .config-option-list > li > fieldset input[type="radio"]:checked + label {background:#63696f;color:#fff;} /* Generic */
+.isJ25 div.current dd .config-option-list > li > fieldset input[type="radio"]:checked + label:hover {background:#555;}
+.isJ25 div.current dd .config-option-list > li > fieldset input[type="radio"] + label:hover {background:#e8e8e8;}
+.isJ25 div.current dd .config-option-list > li > fieldset input[type="radio"][value="0"]:checked + label,
+.isJ25 div.current dd .config-option-list > li > fieldset input[type="radio"][value="none"]:checked + label {background:#bd362f;color:#fff;}
+.isJ25 div.current dd .config-option-list > li > fieldset input[type="radio"][value="1"]:checked + label,
+.isJ25 div.current dd .config-option-list > li > fieldset input[type="radio"][value="all"]:checked + label {background:#3fa800;color:#fff;}
+
+.isJ25 div.current dd .config-option-list .jwHeaderContainer {grid-column-start:span 2;
+background:#e5f7fd;color:#346b93;font-size:20px;margin:0;padding:24px 16px;border-radius:4px;font-weight:normal;float:left;width:100%;clear:both;box-sizing:border-box;}
+
 
 
 /* For Joomla 1.5 */
