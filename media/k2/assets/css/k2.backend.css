@@ -1009,8 +1009,9 @@ html.isJ25 #k2AdminContainer.inModalSelector #adminForm {margin-top:78px;}
 #k2ModalContainer {padding:0;margin:0;}
     #k2ModalHeader {background:#fff;text-align:right;position:fixed;top:0;left:0;right:0;z-index:10;padding:8px;margin:0;border-bottom:4px solid #eee;}
         #k2ModalLogo {background:url(../images/backend/k2_logo_126x48.png) no-repeat 8px 50%;background-size:80px;padding:16px 0 16px 108px;margin:0;float:left;}
+        .k2ViewIsItem #k2ModalLogo {margin-top:6px;}
         .k2ViewIsItem #k2ModalLogo span {display:none;}
-        #k2ModalToolbar {display:inline-block;margin:12px 12px 0 0;border-collapse:separate;width:auto;}
+        #k2ModalToolbar {display:inline-block;margin:8px 12px 0 0;border-collapse:separate;width:auto;}
         #k2ModalToolbar td {border:none;}
         #k2ModalToolbar td.button a {display:block;padding:4px 8px;color:#fff;border:0;border-radius:4px;font-size:14px;font-weight:bold;text-decoration:none;background:#222;cursor:pointer;}
             #k2ModalToolbar #toolbar-publish a,
@@ -1023,7 +1024,7 @@ html.isJ25 #k2AdminContainer.inModalSelector #adminForm {margin-top:78px;}
             #k2ModalToolbar #toolbar-unpublish a:hover,
             #k2ModalToolbar #toolbar-close a:hover,
             #k2ModalToolbar #toolbar-cancel a:hover {background:#d62c1a;}
-#k2ModalContainer #adminForm {margin-top:86px;position:relative;z-index:9;}
+#k2ModalContainer #adminForm {margin-top:60px;position:relative;z-index:9;}
     #k2ModalContainer .k2AdminTableFilters {border:0;border-bottom:1px solid #dbdcdc;}
     #k2ModalContainer .k2AdminTableFilters tr,
     #k2ModalContainer .k2AdminTableFilters td {border:0 !important;}
@@ -1034,6 +1035,83 @@ html.isJ25 #k2AdminContainer.inModalSelector #adminForm {margin-top:78px;}
 #k2ModalPermissionsNotice p {display:inline-block;color:#fff;font-size:12px;background:#3498db;padding:8px;margin:8px auto;border-radius:4px;}
 div#k2Modal div#k2ID {top:-2px;right:160px;} /* Overrides backend position */
 div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5 */
+
+#k2ModalContainer ul.k2ScrollSpyMenu {display:block;position:fixed;list-style:none;margin:0;padding:0;width:320px;height:100%;z-index:1;top:142px;}
+#k2ModalContainer ul.k2ScrollSpyMenu li {border-bottom:1px solid #e3e4e4;}
+#k2ModalContainer ul.k2ScrollSpyMenu > li:first-child {border-top:1px solid #e3e4e4;}
+#k2ModalContainer ul.k2ScrollSpyMenu li a {font-size:14px;font-weight:600;padding:16px 20px;display:block;color:#636b6e;text-decoration:none;transition:.5s all ease-out;}
+#k2ModalContainer ul.k2ScrollSpyMenu li a.active {background:#f7f7f7;}
+#k2ModalContainer ul.k2ScrollSpyMenu li a:hover {background:#1480d3;color:#fff;}
+#k2ModalContainer ul.k2ScrollSpyMenu li a .fa {float:right;margin-top:4px;}
+#k2ModalContainer div.k2ScrollingContent {margin-left:320px;padding:20px 30px 0 30px;border-left:1px solid #e3e4e4;}
+
+/* Item - Parameters rendered from XML (lists) */
+#k2ModalContainer > form .xmlParamsFields.limitWidth {min-width:640px;max-width:60%;padding:0 20px 40px 20px;margin:0 auto;}
+#k2ModalContainer > form .xmlParamsFields h3.paramHeader,
+#k2ModalContainer > form .xmlParamsFields .k2ScrollingContent > h3 {font-size:24px;}
+#k2ModalContainer > form .xmlParamsFields fieldset {padding:0 0 1px 0;margin:0 auto 20px auto;border:0;border-bottom:2px solid #dddedf;}
+#k2ModalContainer > form .xmlParamsFields ul {padding:0;margin:0;}
+#k2ModalContainer > form .xmlParamsFields ul li {display:table;width:100%;box-sizing:border-box;}
+#k2ModalContainer > form .xmlParamsFields ul li .paramLabel {border-top:1px solid #fff;border-right:1px solid #e9e9e9;border-bottom:1px solid #e9e9e9;padding:10px;text-align:right;background:#f6f6f6;display:table-cell;width:30%;box-sizing:border-box;vertical-align:middle;font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;}
+#k2ModalContainer > form .xmlParamsFields ul li .paramLabel label {font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;color:#333;}
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue {background:#fbfbfb;border-top:1px solid #fff;border-bottom:1px solid #fbfbfb;font-size:13px;padding:10px;display:table-cell;width:70%;box-sizing:border-box;vertical-align:middle;}
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue input {width:300px;padding-left:10px;padding-right:10px;}
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue input[type="file"] {border-radius:4px;padding:8px;box-sizing:border-box;background:#eee;min-height:0;height:36px;line-height:inherit;font-size:12px;}
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue select {width:300px;height:30px;line-height:30px;background:#fff;}
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue select[multiple] {height:auto;}
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue button {font-family:'Open Sans',sans-serif;font-size:13px;}
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue textarea {min-width:400px;padding-left:10px;padding-right:10px;}
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue input,
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue select,
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue textarea {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;}
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue label {font-family:'Open Sans',sans-serif;font-size:13px;}
+
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue input[type="radio"],
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue .controls label > input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);}
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue input[type="radio"] + label,
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue .controls > label.radio,
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue .controls > label.isChecked {min-width:80px;width:auto;line-height:30px;height:30px;text-align:center;margin:0 -2px 0 0;padding:0 10px !important;color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background:#eff1f1;cursor:pointer;border:0;}
+
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue input[type="radio"]:first-child + label,
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue .controls > label.radio:first-child {border-radius:4px 0 0 4px;}
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue input[type="radio"] + label:last-child,
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue .controls > label.radio:last-child {border-radius:0 4px 4px 0;}
+
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue input[type="radio"]:checked + label,
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue .controls > label.isChecked {background:#63696f;color:#fff;} /* Generic */
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue input[type="radio"] + label:hover,
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue .controls > label.radio:hover {background:#e8e8e8;}
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue input[type="radio"]:checked + label:hover,
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue .controls > label.isChecked:hover {background:#555;}
+
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue input[type="radio"][value="0"]:checked + label,
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue input[type="radio"][value="none"]:checked + label,
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue .controls > label.isChecked[for="published0"],
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue .controls > label.isChecked[for="featured0"] {background:#bd362f;color:#fff;}
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue input[type="radio"][value="1"]:checked + label,
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue input[type="radio"][value="all"]:checked + label,
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue .controls > label.isChecked[for="published1"],
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue .controls > label.isChecked[for="featured1"] {background:#3fa800;color:#fff;}
+
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue input[type="checkbox"] {box-shadow:none;}
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue input.k2TitleBox {text-align:left;}
+
+#k2ModalContainer > form .xmlParamsFields ul li.headerElement {padding:0;}
+#k2ModalContainer > form .xmlParamsFields ul li.headerElement .paramValueHeader .jwHeaderContainer {padding:20px;margin:0;font-size:16px;font-weight:400;border-top:10px solid #fff;border-bottom:4px solid #96b0cb;border-radius:0;float:none;}
+
+#k2ModalContainer > form .xmlParamsFields ul li .paramValue fieldset.radio,
+#k2ModalContainer > form .xmlParamsFields ul li > fieldset.adminform {border:0;padding:0;margin:0;}
+#k2ModalContainer > form .xmlParamsFields ul li > fieldset.adminform > legend {position:relative;background:#d5e7fa;color:#369;width:100%;clear:both;box-sizing:border-box;margin:0;padding:20px;font-size:20px;font-weight:400;border-top:10px solid #fff;border-bottom:4px solid #96b0cb;}
+#k2ModalContainer > form .xmlParamsFields fieldset.adminform > legend::after {font-family:"FontAwesome";font-size:24px;content:"\f12e";position:absolute;right:20px;top:20px;}
+
+#k2ModalContainer > form .xmlParamsFields fieldset.panelform ul li .paramValueHeader {padding:10px 0 0 0;}
+
+#k2ModalContainer > form .additionalParams > li {border-radius:0;}
+
+/* Item - Common notice */
+#k2ModalContainer > form .k2-generic-message {background:#fcf8e3;border:1px solid #faebcc;border-radius:3px;margin:20px auto;padding:10px;width:80%;text-align:left;}
+#k2ModalContainer > form .k2-generic-message > h3 {font-size:14px;font-weight:bold;color:#8a6d3b;margin:0 0 10px 0;padding:0;border:0;}
+#k2ModalContainer > form .k2-generic-message > p {font-size:13px;margin:0;padding:0;color:#8a6d3b;}
 
 /* Comments */
 #k2ModalContainer .k2CommentsPagination {text-align:center;}
