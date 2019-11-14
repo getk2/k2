@@ -29,6 +29,22 @@ ul.k2SortableListContainer li span.k2EntryText {}
 
 
 
+/* For Select2 */
+body .select2-container {margin:5px 0;}
+body .select2-container--default.select2-container--open.select2-container--below .select2-selection--single,
+body .select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple,
+body .select2-container--default.select2-container--focus.select2-container--below .select2-selection--single,
+body .select2-container--default.select2-container--focus.select2-container--below .select2-selection--multiple {border:1px solid #3071A9;}
+
+.isJ15 .select2-container--default .select2-selection--multiple .select2-selection__rendered,
+.isJ25 .select2-container--default .select2-selection--multiple .select2-selection__rendered {padding:5px;line-height:22px;}
+.isJ15 .select2-container--default .select2-selection--multiple .select2-selection__rendered li,
+.isJ25 .select2-container--default .select2-selection--multiple .select2-selection__rendered li {font-size:13px;padding:4px;margin:2px 5px 0 0;}
+.isJ15 .select2-container--default .select2-selection--multiple .select2-selection__rendered li span,
+.isJ25 .select2-container--default .select2-selection--multiple .select2-selection__rendered li span {margin-right:4px;}
+
+
+
 /* --- Single entries for K2 Fields/Elements --- */
 .handle a.k2EntryRemove {margin:0 12px 0 0;font-size:14px;}
 
@@ -68,19 +84,6 @@ ul.k2SortableListContainer li span.k2EntryText {}
 /* Textarea & Chosen (multi-container) blocks */
 .com_modules .form-horizontal .span9 .controls .chzn-container-multi {width:90% !important;}
 .com_modules .form-horizontal .span9 .controls textarea {width:90%;}
-
-/* For Select2 */
-.select2-container--default.select2-container--open.select2-container--below .select2-selection--single,
-.select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple,
-.select2-container--default.select2-container--focus.select2-container--below .select2-selection--single,
-.select2-container--default.select2-container--focus.select2-container--below .select2-selection--multiple {border:1px solid #3071A9;}
-
-.isJ15 .select2-container--default .select2-selection--multiple .select2-selection__rendered,
-.isJ25 .select2-container--default .select2-selection--multiple .select2-selection__rendered {padding:5px;line-height:22px;}
-.isJ15 .select2-container--default .select2-selection--multiple .select2-selection__rendered li,
-.isJ25 .select2-container--default .select2-selection--multiple .select2-selection__rendered li {font-size:13px;padding:4px;margin:2px 5px 0 0;}
-.isJ15 .select2-container--default .select2-selection--multiple .select2-selection__rendered li span,
-.isJ25 .select2-container--default .select2-selection--multiple .select2-selection__rendered li span {margin-right:4px;}
 
 
 
