@@ -65,7 +65,7 @@ $context = JRequest::getCmd('context');
                             <?php else: ?>
                             <th>#</th>
                             <?php endif; ?>
-                            <th<?php echo ($context == "modalselector") ? ' class="k2VisuallyHidden"' : ''; ?>>
+                            <th<?php echo ($context == "modalselector") ? ' class="k2VisuallyHidden"' : ' class="k2ui-center"'; ?>>
                                 <input id="k2<?php echo $this->params->get('backendListToggler', 'TogglerStandard'); ?>" type="checkbox" name="toggle" value="" />
                             </th>
                             <th>

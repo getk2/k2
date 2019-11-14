@@ -719,9 +719,6 @@ table.adminFormK2 {width:100%;margin-bottom:16px;}
 #k2AdminContainer .adminlist a.editComment {color:#46afff;}
 #k2AdminContainer .adminlist a:hover {color:#46afff;}
 
-.isJ15 #k2AdminContainer .adminlist tr td,
-.isJ25 #k2AdminContainer .adminlist tr td {background:#f0f2f2;border-bottom:1px solid #dbdcdc;}
-
 .table-responsive-wrap {position:relative;}
 .table-responsive {width:100%;margin-bottom:10px;overflow-y:hidden;}
 
@@ -1459,10 +1456,11 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ25 #k2AdminContainer #k2ContentView > form .table-responsive-wrap {padding:50px 0 4px 0;}
 
 .isJ25 #k2AdminContainer .adminlist {border-collapse:collapse;}
-.isJ25 #k2AdminContainer .adminlist tr td {border-left:0;border-right:0;height:auto;}
-
 .isJ25 #k2AdminContainer .adminlist tr th,
 .isJ25 #k2AdminContainer .adminlist tr td {padding:5px 10px;font-size:13px;text-align:left;}
+.isJ25 #k2AdminContainer .adminlist tr td {background:#f0f2f2;border-bottom:1px solid #dbdcdc;border-left:0;border-right:0;height:auto;padding:10px;}
+.isJ25 #k2AdminContainer.K2AdminViewItems .adminlist tr td,
+.isJ25 #k2AdminContainer.K2AdminViewCategories .adminlist tr td {padding:5px 10px;}
 
 .isJ25 #k2AdminContainer .adminlist tr th img {vertical-align:middle;margin-left:4px;}
 
@@ -1685,10 +1683,11 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ15 #k2AdminContainer #k2ContentView > form .table-responsive-wrap {padding:50px 0 4px 0;}
 
 .isJ15 #k2AdminContainer .adminlist {border-collapse:collapse;}
-.isJ15 #k2AdminContainer .adminlist tr td {border-left:0;border-right:0;height:auto;}
-
 .isJ15 #k2AdminContainer .adminlist tr th,
 .isJ15 #k2AdminContainer .adminlist tr td {padding:5px 10px;font-size:13px;text-align:left;}
+.isJ15 #k2AdminContainer .adminlist tr td {background:#f0f2f2;border-bottom:1px solid #dbdcdc;border-left:0;border-right:0;height:auto;padding:10px;}
+.isJ15 #k2AdminContainer.K2AdminViewItems .adminlist tr td,
+.isJ15 #k2AdminContainer.K2AdminViewCategories .adminlist tr td {padding:5px 10px;}
 
 .isJ15 #k2AdminContainer .adminlist tr th img {vertical-align:middle;margin-left:4px;}
 
