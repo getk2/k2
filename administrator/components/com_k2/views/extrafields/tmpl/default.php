@@ -74,7 +74,7 @@ defined('_JEXEC') or die;
                     <?php foreach ($this->rows as $key=>$row): ?>
                     <tr class="row<?php echo ($key%2); ?>" sortable-group-id="<?php echo $row->group; ?>">
                         <?php if(K2_JVERSION == '30'): ?>
-                        <td class="k2ui-order hidden-phone">
+                        <td class="k2ui-order k2ui-center hidden-phone">
                             <span class="sortable-handler<?php echo ($this->ordering) ? '' : ' inactive tip-top' ;?>" title="<?php echo ($this->ordering) ? '' :JText::_('JORDERINGDISABLED'); ?>" rel="tooltip"><i class="icon-menu"></i></span>
                             <input type="text" style="display:none" name="order[]" size="5" value="<?php echo $row->ordering;?>" class="width-20 text-area-order" />
                         </td>
