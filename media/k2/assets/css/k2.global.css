@@ -162,7 +162,7 @@ ul.k2SortableListContainer li span.k2EntryText {}
 
 /* For Joomla 2.5 */
 .isJ25 .pane-slider > fieldset.panelform {padding:5px;margin:0;}
-.isJ25 fieldset.panelform .adminformlist > li {position:relative;display:grid;grid-template-columns:1fr 2fr auto;align-items:center;min-height:0;max-height:none;clear:both;border-radius:4px;padding:0;margin:0 0 5px 0;}
+.isJ25 fieldset.panelform .adminformlist > li {position:relative;display:grid;grid-template-columns:1fr 2fr auto;align-items:center;min-height:0;max-height:none;clear:both;border-radius:4px;padding:0;margin:0;}
 .isJ25 fieldset.panelform .adminformlist > li:nth-child(2n-1) {background:#f7f7f7;}
 .isJ25 fieldset.panelform .adminformlist > li > label {min-width:inherit;max-width:auto;width:auto;font-size:13px;float:none;padding:10px;}
 .isJ25 fieldset.panelform .adminformlist > li > label + input,
