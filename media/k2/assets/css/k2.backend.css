@@ -1475,7 +1475,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 
 .isJ25 #k2AdminContainer .adminlist tfoot tr,
 .isJ25 #k2AdminContainer .adminlist tfoot tr td {background:#fff;}
-.isJ25 #k2AdminContainer .adminlist tfoot tr td {padding-bottom:10px;}
+.isJ25 #k2AdminContainer .adminlist tfoot tr td {padding-bottom:10px;border-bottom:0;}
 .isJ25 #k2AdminContainer .adminlist .pagination {padding:0;margin:8px auto;}
 .isJ25 #k2AdminContainer .adminlist .pagination .limit select {margin-left:4px;}
 
@@ -1699,7 +1699,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ15 #k2AdminContainer .adminlist input[type="checkbox"] {margin:0;padding:0;}
 
 .isJ15 #k2AdminContainer .adminlist tfoot tr,
-.isJ15 #k2AdminContainer .adminlist tfoot tr td {background:#f0f0f0;}
+.isJ15 #k2AdminContainer .adminlist tfoot tr td {background:#f0f0f0;border-bottom:0;}
 .isJ15 #k2AdminContainer .adminlist tfoot tr td a,
 .isJ15 #k2AdminContainer .adminlist tfoot tr td input,
 .isJ15 #k2AdminContainer .adminlist tfoot tr td select {font-size:13px;}
