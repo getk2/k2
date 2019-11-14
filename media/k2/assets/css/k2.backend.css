@@ -1677,8 +1677,20 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ15 #k2AdminContainer #k2ContentView > form .k2Table .k2TableValue .k2TitleBox {padding:10px!important;}
 .isJ15 #k2AdminContainer #k2ContentView > form .k2Table .k2SubTableValue #k2Author {font-size:13px;margin-top:6px;}
 
-.isJ15 #k2AdminContainer #k2ContentView > form .mceEditor {background:#f0f0f0;display:block;padding:10px;}
-.isJ15 #k2AdminContainer #k2ContentView > form div[style="margin-top:-5px"] {margin:2px 0 0 0 !important;padding:10px 0;background:#f0f0f0;display:block;min-height:22px;}
+.isJ15 #k2AdminContainer #k2ContentView > form .mceEditor,
+.isJ15 #k2AdminContainer #k2ContentView > form .mce_editable {display:block;}
+
+.isJ15 #k2AdminContainer #k2ContentView > form #editor-xtd-buttons {display:inline-block;padding:10px 0;margin:0;}
+.isJ15 #k2AdminContainer #k2ContentView > form #editor-xtd-buttons .button2-left {margin:0;padding:0 5px 0 0;background:none;border:0;float:none;display:inline-block;}
+.isJ15 #k2AdminContainer #k2ContentView > form #editor-xtd-buttons .button2-left > div {margin:0;padding:0;background:none;border:0;}
+.isJ15 #k2AdminContainer #k2ContentView > form #editor-xtd-buttons .button2-left > div a {display:block;margin:0;padding:0 10px;text-align:center;font-size:13px;height:30px;line-height:30px;vertical-align:middle;background:#eff1f1;border-radius:3px;border:1px solid #e4e4e4;cursor:pointer;color:#8a8c8c;}
+.isJ15 #k2AdminContainer #k2ContentView > form #editor-xtd-buttons .button2-left > div a:hover {background:#1480d3;color:#eee;}
+
+.isJ15 #k2AdminContainer #k2ContentView > form div[style="margin-top:-5px"] {margin:2px 0 0 0 !important;padding:10px 0;display:inline-block;min-height:22px;}
+.isJ15 #k2AdminContainer #k2ContentView > form div[style="margin-top:-5px"] .button2-left {margin:0;padding:0 5px 0 0;background:none;border:0;float:none;display:inline-block;}
+.isJ15 #k2AdminContainer #k2ContentView > form div[style="margin-top:-5px"] .button2-left > div {margin:0;padding:0;background:none;border:0;}
+.isJ15 #k2AdminContainer #k2ContentView > form div[style="margin-top:-5px"] .button2-left > div a {display:block;margin:0;padding:0 10px;text-align:center;font-size:13px;height:30px;line-height:30px;vertical-align:middle;background:#eff1f1;border-radius:3px;border:1px solid #e4e4e4;cursor:pointer;color:#8a8c8c;}
+.isJ15 #k2AdminContainer #k2ContentView > form div[style="margin-top:-5px"] .button2-left > div a:hover {background:#1480d3;color:#eee;}
 
 /* Lists */
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters {border-collapse:collapse;border:0;}
