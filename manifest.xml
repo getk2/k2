@@ -222,7 +222,7 @@
         <param name="showK2Plugins" default="1" />
         <!-- ######################### Advanced Settings ######################### -->
         <param name="mergeEditors" default="1" />
-        <field name="backendListToggler" default="standard" />
+        <field name="backendListToggler" default="TogglerStandard" />
         <param name="attachmentsFolder" default="" />
         <param name="hideImportButton" default="0" />
         <param name="K2UserProfile" default="1" />
