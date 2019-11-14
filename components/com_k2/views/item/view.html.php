@@ -643,7 +643,7 @@ class K2ViewItem extends K2View
 
                 $itemSD_Modified = ((int) $item->modified) ? $item->modified : $item->created;
 
-                // Output structured data
+                // Output
                 $itemSD_LDJSON = '
                 {
                     "@context": "https://schema.org",
@@ -688,7 +688,12 @@ class K2ViewItem extends K2View
                 }
                 ';
 
+                // Assign
+                $item->params->set('itemGoogleStructuredData', $itemSD_LDJSON);
+
                 $document->addScriptDeclaration($itemSD_LDJSON, 'application/ld+json');
+            } else {
+                $item->params->set('itemGoogleStructuredData', null);
             }
         }
 
