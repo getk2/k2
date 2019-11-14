@@ -183,7 +183,7 @@ body .select2-container--default.select2-container--focus.select2-container--bel
 .isJ25 fieldset.panelform .adminformlist > li > label + select,
 .isJ25 fieldset.panelform .adminformlist > li > label + textarea {border-radius:3px;padding:5px 10px;font-size:13px;}
 .isJ25 fieldset.panelform .adminformlist > li > label + select {height:28px;}
-.isJ25 fieldset.panelform .adminformlist > li > label + select[multiple="multiple"] {height:auto;}
+.isJ25 fieldset.panelform .adminformlist > li > label + select[multiple="multiple"] {height:auto;max-height:240px;}
 .isJ25 fieldset.panelform .adminformlist > li > label + div.k2SelectorButton + .k2SortableListContainer {grid-column:2 / span 1;margin-bottom:10px;}
 .isJ25 fieldset.panelform .adminformlist > li > label + div.k2SelectorButton + .k2SortableListContainer li {padding:5px 10px;margin:2px 0;}
 .isJ25 fieldset.panelform .adminformlist > li > fieldset {background:none;}
