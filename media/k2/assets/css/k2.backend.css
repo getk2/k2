@@ -56,6 +56,7 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .k2ui-nowrap {white-space:nowrap;}
 .k2ui-wrap {white-space:normal !important;max-width:120px;overflow:hidden;}
 .k2ui-order {white-space:nowrap !important;text-align:right !important;width:auto !important;min-width:80px;}
+.isJ30 .k2ui-order {min-width:0;}
 .k2ui-order span {}
 .k2ui-order input {text-align:center;}
 

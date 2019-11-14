@@ -40,7 +40,7 @@ defined('_JEXEC') or die;
                             <?php echo JHtml::_('grid.sort', '<i class="icon-menu-2"></i>', 'ordering', @$this->lists['order_Dir'], @$this->lists['order'], null, 'asc', 'K2_ORDER'); ?>
                         </th>
                         <?php else: ?>
-                        <th>#</th>
+                        <th width="1%">#</th>
                         <?php endif; ?>
                         <th class="k2ui-center"><input id="k2<?php echo $this->params->get('backendListToggler', 'TogglerStandard'); ?>" type="checkbox" name="toggle" value="" /></th>
                         <th class="k2ui-left"><?php echo JHTML::_('grid.sort', 'K2_NAME', 'name', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
