@@ -17,7 +17,7 @@
 
 
 /* --- jQueryUI Sortables for K2 Fields/Elements --- */
-div.k2SelectorButton {display:block;padding:10px 0;margin:0 0 5px 0;}
+div.k2SelectorButton {display:block;padding:10px 0;margin:0;}
 div.k2SelectorButton a {display:inline-block;margin:0;padding:0 10px;text-align:center;font-size:13px;height:30px;line-height:30px;vertical-align:middle;background:#eff1f1;border-radius:3px;border:1px solid #e4e4e4;cursor:pointer;color:#8a8c8c;text-decoration:none;}
 div.k2SelectorButton a:hover {background:#1480d3;border:1px solid #2371ac;color:#eee;text-decoration:none;}
     div.k2SingleSelect {border:0;padding:0;margin:0;}
@@ -180,8 +180,8 @@ ul.k2SortableListContainer li span.k2EntryText {}
 .isJ25 fieldset.panelform .adminformlist > li > label + textarea {border-radius:3px;padding:5px 10px;font-size:13px;}
 .isJ25 fieldset.panelform .adminformlist > li > label + select {height:28px;}
 .isJ25 fieldset.panelform .adminformlist > li > label + select[multiple="multiple"] {height:auto;}
-.isJ25 fieldset.panelform .adminformlist > li > label + div.k2SelectorButton + .k2SortableListContainer {grid-column:2 / span 1;position:relative;z-index:900;}
-.isJ25 fieldset.panelform .adminformlist > li > label + div.k2SelectorButton + .k2SortableListContainer li {padding:5px 10px;margin:2px 0;position:relative;z-index:901;}
+.isJ25 fieldset.panelform .adminformlist > li > label + div.k2SelectorButton + .k2SortableListContainer {grid-column:2 / span 1;margin-bottom:10px;}
+.isJ25 fieldset.panelform .adminformlist > li > label + div.k2SelectorButton + .k2SortableListContainer li {padding:5px 10px;margin:2px 0;}
 .isJ25 fieldset.panelform .adminformlist > li > fieldset {background:none;}
 .isJ25 fieldset.panelform .adminformlist > li > fieldset label,
 .isJ25 fieldset.panelform .adminformlist > li > fieldset input {font-size:13px;}
