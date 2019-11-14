@@ -1190,6 +1190,8 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 #k2AdminContainer #k2ContentView > form .nocontent tfoot {display:none;}
 #k2AdminContainer .adminlist tr td.k2ui-nocontent {background:#efefed;padding:0;margin:0;}
     .k2ui-nocontent-message {text-align:center;font-size:40px;font-weight:300;width:auto;height:calc(100vh - 216px);box-sizing:border-box;padding-top:calc((100vh - 400px) / 2);}
+    .isJ25 .k2ui-nocontent-message {height:calc(100vh - 240px);}
+    .isJ15 .k2ui-nocontent-message {height:calc(100vh - 186px);}
     .k2ui-nocontent-message i {font-size:120px;display:block;}
 
 #k2AdminContainer.inModalSelector {display:block;margin-bottom:16px;min-height:auto;}
