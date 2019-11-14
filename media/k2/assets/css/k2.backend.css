@@ -1067,7 +1067,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
             #k2Sidebar ul li a {color:#fff;display:block;padding:8px;font-size:13px;}
             #k2Sidebar ul li a:hover {text-decoration:none;}
             #k2Sidebar ul li span {color:#608ed4;display:block;padding:8px;font-size:13px;}
-        #k2Copyrights {z-index:91;position:fixed;bottom:36px;width:calc(10% - 8px);text-align:center;color:#608ed4;margin:0;padding:4px;line-height:150%;font-size:12px;border-top:1px solid #183f7b;}
+        #k2Copyrights {z-index:91;position:fixed;bottom:30px;width:calc(10% - 8px);text-align:center;color:#608ed4;margin:0;padding:4px;line-height:150%;font-size:12px;border-top:1px solid #183f7b;}
             #k2Copyrights a {color:#b4cdfb;font-weight:600;}
             #k2Copyrights a:hover {color:#eee;text-decoration:none;}
             #k2Copyrights div {font-size:10px;line-height:130%;}
@@ -1334,7 +1334,6 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ25 #footer .copyright a {color:#333;}
 
 .isJ25 #k2ContentView {padding-bottom:20px;}
-.isJ25 #k2Copyrights {bottom:30px;}
 
 /* Joomla System Messages */
 .isJ25 #system-message-container {position:fixed;z-index:199;width:60%;margin:0 auto;padding:0;top:0;left:20%;right:20%;}
