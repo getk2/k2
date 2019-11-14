@@ -13,25 +13,32 @@ defined('_JEXEC') or die;
 ?>
 
 <form action="index.php" method="post" name="adminForm" id="adminForm">
-    <fieldset style="float:left;">
-        <legend><?php echo JText::_('K2_TARGET_JOOMLA_USER_GROUP'); ?></legend>
-        <?php echo $this->lists['group']; ?>
-    </fieldset>
-    <fieldset style="float:left;">
-        <legend><?php echo JText::_('K2_TARGET_K2_USER_GROUP'); ?></legend>
-        <?php echo $this->lists['k2group']; ?>
-    </fieldset>
-    <fieldset style="clear:both;">
-        <legend>(<?php echo count($this->rows); ?>) <?php echo JText::_('K2_USERS_BEING_MOVED'); ?></legend>
-        <ol>
-            <?php foreach ($this->rows as $row): ?>
-            <li>
-                <?php echo $row->name; ?>
-                <input type="hidden" name="cid[]" value="<?php echo $row->id; ?>" />
-            </li>
-            <?php endforeach; ?>
-        </ol>
-    </fieldset>
+    <div id="k2MoveDialogContainer">
+        <div class="k2NavTabsWrapper">
+            <h2><?php echo JText::_('K2_MOVE'); ?></h2>
+        </div>
+        <div id="k2MoveDialog">
+            <fieldset class="K2MoveDialogList">
+                <legend><?php echo JText::_('K2_TARGET_JOOMLA_USER_GROUP'); ?></legend>
+                <?php echo $this->lists['group']; ?>
+            </fieldset>
+            <fieldset class="K2MoveDialogList">
+                <legend><?php echo JText::_('K2_TARGET_K2_USER_GROUP'); ?></legend>
+                <?php echo $this->lists['k2group']; ?>
+            </fieldset>
+            <fieldset class="K2MoveDialogContents">
+                <legend>(<?php echo count($this->rows); ?>) <?php echo JText::_('K2_USERS_BEING_MOVED'); ?></legend>
+                <ol>
+                    <?php foreach ($this->rows as $row): ?>
+                    <li>
+                        <?php echo $row->name; ?>
+                        <input type="hidden" name="cid[]" value="<?php echo $row->id; ?>" />
+                    </li>
+                    <?php endforeach; ?>
+                </ol>
+            </fieldset>
+        </div>
+    </div>
     <input type="hidden" name="option" value="com_k2" />
     <input type="hidden" name="view" value="<?php echo JRequest::getVar('view'); ?>" />
     <input type="hidden" name="task" value="<?php echo JRequest::getVar('task'); ?>" />

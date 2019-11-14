@@ -747,6 +747,16 @@ z-index:100;margin:25px auto 25px -340px;font-family:'Open Sans',sans-serif;font
 .isJ25 .jw-modal-content .row .column .row .column:nth-child(2n+1) {clear:left;}
 .jw-modal-footer {padding:16px 0;background-color:#eff1f1;box-shadow:0 1px 0 rgba(0,0,0,.18);clear:both;width:100%;overflow:hidden;text-align:right;}
 
+/* Move dialog */
+#k2MoveDialogContainer .k2NavTabsWrapper {background:#f0f2f2;border-bottom:1px solid #d4d7d9;position:relative;z-index:9;}
+#k2MoveDialogContainer .k2NavTabsWrapper > h2 {display:inline-block;padding:0 120px 0 20px;color:#414042;font-weight:400;font-size:22px;line-height:24px;}
+    #k2MoveDialog {padding:20px;width:80%;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;}
+        .K2MoveDialogList {border:0;}
+        .K2MoveDialogContents {border:0;grid-column:1 / span 2;}
+    #k2MoveDialog > fieldset > legend {width:90%;font-size:30px;line-height:130%;font-weight:600;padding:20px 0 10px 4px;margin:0 0 20px;border-bottom:2px solid #dddedf;color:#183867;}
+    #k2MoveDialog > fieldset > select {width:90%;}
+    #k2MoveDialog > fieldset > ol li {font-size:13px;padding:2px;}
+
 /* Button styling */
 .jw-btn {display:inline-block;vertical-align:middle;white-space:nowrap;color:#fdfdfd;font-size:13px;line-height:1;padding:10px 30px;border-radius:3px;border:1px solid #363a3d;font-weight:700;}
 .jw-btn-save {border:1px solid #363a3d;background-color:#3fa700;box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #54db00;}
