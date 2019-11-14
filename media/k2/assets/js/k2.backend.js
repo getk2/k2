@@ -123,6 +123,9 @@ $K2(document).ready(function() {
 
         case 'comments':
             var flag = false;
+            if (K2IsAdmin) {
+                K2SitePath += 'administrator/';
+            }
             $K2('.editComment').click(function(event) {
                 event.preventDefault();
                 if (flag) {
@@ -156,9 +159,7 @@ $K2(document).ready(function() {
                 $K2('#commentText').val(value);
                 var log = $K2('#k2Comment' + commentID + ' .k2CommentsLog');
                 log.addClass('k2CommentsLoader');
-                if (K2IsAdmin) {
-                    K2SitePath += 'administrator/';
-                }
+
                 $K2.ajax({
                     url: K2SitePath + 'index.php',
                     type: 'post',
