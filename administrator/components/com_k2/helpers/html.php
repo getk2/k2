@@ -24,53 +24,105 @@ class K2HelperHTML
     {
         $params = JComponentHelper::getParams('com_k2');
         $user = JFactory::getUser();
+        $view = JRequest::getCmd('view');
 
-        $sidebarMenu = '
-        <ul>
-            <li'.self::activeMenu('items').'>
-                <a href="index.php?option=com_k2&amp;view=items">'.JText::_('K2_ITEMS').'</a>
-            </li>
-            <li'.self::activeMenu('categories').'>
-                <a href="index.php?option=com_k2&amp;view=categories">'.JText::_('K2_CATEGORIES').'</a>
-            </li>
-        ';
-        if (!$params->get('lockTags') || $user->gid > 23) {
+        $editForms = array('item', 'category', 'tag', 'user', 'usergroup', 'extrafield', 'extrafieldsgroup');
+
+        if (in_array($view, $editForms)) {
+            $sidebarMenu = '
+            <ul class="k2-disabled">
+                <li>
+                    <span>'.JText::_('K2_ITEMS').'</span>
+                </li>
+                <li>
+                    <span>'.JText::_('K2_CATEGORIES').'</span>
+                </li>
+            ';
+            if (!$params->get('lockTags') || $user->gid > 23) {
+                $sidebarMenu .= '
+                <li>
+                    <span>'.JText::_('K2_TAGS').'</span>
+                </li>
+                ';
+            }
             $sidebarMenu .= '
-            <li'.self::activeMenu('tags').'>
-                <a href="index.php?option=com_k2&amp;view=tags">'.JText::_('K2_TAGS').'</a>
-            </li>
+                <li>
+                    <span>'.JText::_('K2_COMMENTS').'</span>
+                </li>
+            ';
+            if ($user->gid > 23) {
+                $sidebarMenu .= '
+                <li>
+                    <span>'.JText::_('K2_USERS').'</span>
+                </li>
+                <li>
+                    <span>'.JText::_('K2_USER_GROUPS').'</span>
+                </li>
+                <li>
+                    <span>'.JText::_('K2_EXTRA_FIELDS').'</span>
+                </li>
+                <li>
+                    <span>'.JText::_('K2_EXTRA_FIELD_GROUPS').'</span>
+                </li>
+                ';
+            }
+            $sidebarMenu .= '
+                <li>
+                    <span>'.JText::_('K2_MEDIA_MANAGER').'</span>
+                </li>
+                <li>
+                    <span>'.JText::_('K2_INFORMATION').'</span>
+                </li>
+            </ul>
+            ';
+        } else {
+            $sidebarMenu = '
+            <ul>
+                <li'.self::activeMenu('items').'>
+                    <a href="index.php?option=com_k2&amp;view=items">'.JText::_('K2_ITEMS').'</a>
+                </li>
+                <li'.self::activeMenu('categories').'>
+                    <a href="index.php?option=com_k2&amp;view=categories">'.JText::_('K2_CATEGORIES').'</a>
+                </li>
+            ';
+            if (!$params->get('lockTags') || $user->gid > 23) {
+                $sidebarMenu .= '
+                <li'.self::activeMenu('tags').'>
+                    <a href="index.php?option=com_k2&amp;view=tags">'.JText::_('K2_TAGS').'</a>
+                </li>
+                ';
+            }
+            $sidebarMenu .= '
+                <li'.self::activeMenu('comments').'>
+                    <a href="index.php?option=com_k2&amp;view=comments">'.JText::_('K2_COMMENTS').'</a>
+                </li>
+            ';
+            if ($user->gid > 23) {
+                $sidebarMenu .= '
+                <li'.self::activeMenu('users').'>
+                    <a href="index.php?option=com_k2&amp;view=users">'.JText::_('K2_USERS').'</a>
+                </li>
+                <li'.self::activeMenu('usergroups').'>
+                    <a href="index.php?option=com_k2&amp;view=usergroups">'.JText::_('K2_USER_GROUPS').'</a>
+                </li>
+                <li'.self::activeMenu('extrafields').'>
+                    <a href="index.php?option=com_k2&amp;view=extrafields">'.JText::_('K2_EXTRA_FIELDS').'</a>
+                </li>
+                <li'.self::activeMenu('extrafieldsgroups').'>
+                    <a href="index.php?option=com_k2&amp;view=extrafieldsgroups">'.JText::_('K2_EXTRA_FIELD_GROUPS').'</a>
+                </li>
+                ';
+            }
+            $sidebarMenu .= '
+                <li'.self::activeMenu('media').'>
+                    <a href="index.php?option=com_k2&amp;view=media">'.JText::_('K2_MEDIA_MANAGER').'</a>
+                </li>
+                <li'.self::activeMenu('info').'>
+                    <a href="index.php?option=com_k2&amp;view=info">'.JText::_('K2_INFORMATION').'</a>
+                </li>
+            </ul>
             ';
         }
-        $sidebarMenu .= '
-            <li'.self::activeMenu('comments').'>
-                <a href="index.php?option=com_k2&amp;view=comments">'.JText::_('K2_COMMENTS').'</a>
-            </li>
-        ';
-        if ($user->gid > 23) {
-            $sidebarMenu .= '
-            <li'.self::activeMenu('users').'>
-                <a href="index.php?option=com_k2&amp;view=users">'.JText::_('K2_USERS').'</a>
-            </li>
-            <li'.self::activeMenu('usergroups').'>
-                <a href="index.php?option=com_k2&amp;view=usergroups">'.JText::_('K2_USER_GROUPS').'</a>
-            </li>
-            <li'.self::activeMenu('extrafields').'>
-                <a href="index.php?option=com_k2&amp;view=extrafields">'.JText::_('K2_EXTRA_FIELDS').'</a>
-            </li>
-            <li'.self::activeMenu('extrafieldsgroups').'>
-                <a href="index.php?option=com_k2&amp;view=extrafieldsgroups">'.JText::_('K2_EXTRA_FIELD_GROUPS').'</a>
-            </li>
-            ';
-        }
-        $sidebarMenu .= '
-            <li'.self::activeMenu('media').'>
-                <a href="index.php?option=com_k2&amp;view=media">'.JText::_('K2_MEDIA_MANAGER').'</a>
-            </li>
-            <li'.self::activeMenu('info').'>
-                <a href="index.php?option=com_k2&amp;view=info">'.JText::_('K2_INFORMATION').'</a>
-            </li>
-        </ul>
-        ';
 
         return $sidebarMenu;
     }

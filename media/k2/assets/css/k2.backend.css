@@ -1058,9 +1058,11 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
         #k2Sidebar ul {list-style:none;padding:0;margin:0 0 24px 0;position:fixed;width:10%;z-index:92;}
             #k2Sidebar ul li {border-left:4px solid #193867;}
             #k2Sidebar ul li:hover {background:#10213e;border-left:4px solid #10213e;}
+            #k2Sidebar ul.k2-disabled li:hover {background:inherit;border-left:4px solid #193867;}
             #k2Sidebar ul li.active {background:#10213e;border-left:4px solid #1480d3;}
-            #k2Sidebar ul li a {color:#fff;display:block;padding:8px;}
+            #k2Sidebar ul li a {color:#fff;display:block;padding:8px;font-size:13px;}
             #k2Sidebar ul li a:hover {text-decoration:none;}
+            #k2Sidebar ul li span {color:#608ed4;display:block;padding:8px;font-size:13px;}
         #k2Copyrights {z-index:91;position:fixed;bottom:36px;width:calc(10% - 8px);text-align:center;color:#608ed4;margin:0;padding:4px;line-height:150%;font-size:12px;border-top:1px solid #183f7b;}
             #k2Copyrights a {color:#b4cdfb;font-weight:600;}
             #k2Copyrights a:hover {color:#eee;text-decoration:none;}
