@@ -243,7 +243,8 @@ class K2ViewUsers extends K2View
         JToolBarHelper::title(JText::_('K2_MOVE_USERS'), 'k2.png');
 
         JToolBarHelper::custom('saveMove', 'save.png', 'save_f2.png', 'K2_SAVE', false);
-        JToolBarHelper::cancel();
+        JToolBarHelper::custom('cancelMove', 'cancel.png', 'cancel_f2.png', 'K2_CANCEL', false);
+        //JToolBarHelper::cancel();
 
         parent::display();
     }
