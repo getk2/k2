@@ -570,7 +570,8 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 .itemNewAttachment button {background:none;float:right;border:0;font-size:16px;color:#9e0b0f;font-size:18px;}
 .itemNewAttachment button.removeAttachment:hover {background:none;border:0;}
 .itemNewAttachment .itemAdditionalField input[type="text"].existing_file {width:auto;display:inline-block;vertical-align:middle;margin-right:-10px;margin-bottom:0;}
-.isJ25 .itemNewAttachment .itemAdditionalField input[type="text"].existing_file {min-height:0;height:30px;margin-right:-8px;border-color:#c0c0c0;background:#eee;}
+.isJ25 .itemNewAttachment .itemAdditionalField input[type="text"].existing_file,
+.isJ15 .itemNewAttachment .itemAdditionalField input[type="text"].existing_file {min-height:0;height:30px;margin-right:-8px;border-color:#c0c0c0;background:#eee;}
 /*
 .itemNewAttachment .attachmentGap {margin-bottom:20px;}
 .itemNewAttachment button + input[type="text"] {min-height:30px;line-height:40px;vertical-align:top;}
@@ -618,8 +619,8 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
     .itemAdditionalField label.sep {display:inline-block;vertical-align:middle;margin:0 25px;}
     .itemAdditionalField input[type="text"]#existingImageValue {width:auto;display:inline-block;vertical-align:middle;margin-right:-10px;margin-bottom:0;}
 
-    .isJ15 .itemAdditionalField input[type="text"]#existingImageValue {margin-right:0;}
-    .isJ25 .itemAdditionalField input[type="text"]#existingImageValue {min-height:0;height:30px;margin-right:-8px;border-color:#c0c0c0;background:#eee;}
+    .isJ25 .itemAdditionalField input[type="text"]#existingImageValue,
+    .isJ15 .itemAdditionalField input[type="text"]#existingImageValue {min-height:0;height:30px;margin-right:-8px;border-color:#c0c0c0;background:#eee;}
 
     .k2ExtraFieldHeader {margin-left:120px;}
 }
@@ -1432,7 +1433,8 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ25 #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {bottom:-12px;}
 
 .isJ25 #k2AdminContainer #k2ContentView > form input,
-.isJ25 #k2AdminContainer #k2ContentView > form select {border-radius:3px;padding:5px 10px;font-size:13px;}
+.isJ25 #k2AdminContainer #k2ContentView > form select,
+.isJ25 #k2AdminContainer #k2ContentView > form textarea {border-radius:3px;padding:5px 10px;font-size:13px;}
 .isJ25 #k2AdminContainer #k2ContentView > form .k2Table .k2TableLabel {padding:5px 0 10px 0;}
 .isJ25 #k2AdminContainer #k2ContentView > form .k2Table .k2SubTableLabel {padding:5px 16px 10px 0;}
 .isJ25 #k2AdminContainer #k2ContentView > form .k2Table .k2TableLabel > label,
@@ -1664,7 +1666,8 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 
 /* Edit Forms */
 .isJ15 #k2AdminContainer #k2ContentView > form input,
-.isJ15 #k2AdminContainer #k2ContentView > form select {border-radius:3px;}
+.isJ15 #k2AdminContainer #k2ContentView > form select,
+.isJ15 #k2AdminContainer #k2ContentView > form textarea {border-radius:3px;padding:5px 10px;font-size:13px;}
 .isJ15 #k2AdminContainer #k2ContentView > form .k2Table .k2TableLabel {padding:5px 0 10px 0;}
 .isJ15 #k2AdminContainer #k2ContentView > form .k2Table .k2SubTableLabel {padding:5px 16px 10px 0;}
 .isJ15 #k2AdminContainer #k2ContentView > form .k2Table .k2TableLabel > label,
