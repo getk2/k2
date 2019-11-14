@@ -156,8 +156,11 @@ $K2(document).ready(function() {
                 $K2('#commentText').val(value);
                 var log = $K2('#k2Comment' + commentID + ' .k2CommentsLog');
                 log.addClass('k2CommentsLoader');
+                if (K2IsAdmin) {
+                    K2SitePath += 'administrator/';
+                }
                 $K2.ajax({
-                    url: 'index.php',
+                    url: K2SitePath + 'index.php',
                     type: 'post',
                     dataType: 'json',
                     data: $K2('#adminForm').serialize(),
