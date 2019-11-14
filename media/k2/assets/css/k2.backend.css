@@ -1050,7 +1050,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
         teal: #1480d3
         red: #c52c6a
 */
-#k2AdminContainer.isEditForm #k2ContentView > form h3 {font-size:24px;font-weight:600;padding:20px 0 10px 4px;margin:0 auto 20px auto;border-bottom:2px solid #dddedf;color:#183867;}
+#k2AdminContainer.isEditForm #k2ContentView > form h3 {font-size:30px;line-height:130%;font-weight:600;padding:20px 0 10px 4px;margin:0 auto 20px auto;border-bottom:2px solid #dddedf;color:#183867;}
 #k2AdminContainer.isEditForm #k2ContentView > form .k2GenericForm h3 {font-size:32px;}
 
 #k2AdminContainer {font-family:'Open Sans',sans-serif;display:grid;grid-template-columns:10% 90%;min-height:calc(100vh - 116px);background:#fff;}
