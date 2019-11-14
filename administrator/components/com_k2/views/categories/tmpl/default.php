@@ -68,11 +68,11 @@ $context = JRequest::getCmd('context');
                             <th<?php echo ($context == "modalselector") ? ' class="k2VisuallyHidden"' : ' class="k2ui-center"'; ?>>
                                 <input id="k2<?php echo $this->params->get('backendListToggler', 'TogglerStandard'); ?>" type="checkbox" name="toggle" value="" />
                             </th>
-                            <th class="k2ui-right">
+                            <th>
                                 <?php echo JHTML::_('grid.sort', 'K2_TITLE', 'c.name', @$this->lists['order_Dir'], @$this->lists['order']); ?>
                             </th>
                             <?php if (K2_JVERSION != '30'): ?>
-                            <th>
+                            <th class="k2ui-right">
                                 <?php echo JHTML::_('grid.sort', 'K2_ORDER', 'c.ordering', @$this->lists['order_Dir'], @$this->lists['order']); ?> <?php echo $this->ordering ? JHTML::_('grid.order', $this->rows, 'filesave.png') : ''; ?>
                             </th>
                             <?php endif ;?>
