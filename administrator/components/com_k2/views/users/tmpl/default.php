@@ -56,7 +56,7 @@ $context = JRequest::getCmd('context');
                     <thead>
                         <tr>
                             <th class="hidden-phone">#</th>
-                            <th<?php echo ($context == "modalselector") ? ' class="k2VisuallyHidden"' : ''; ?>><input id="k2<?php echo $this->params->get('backendListToggler', 'TogglerStandard'); ?>" type="checkbox" name="toggle" value="" /></th>
+                            <th<?php echo ($context == "modalselector") ? ' class="k2VisuallyHidden"' : ' class="k2ui-center"'; ?>><input id="k2<?php echo $this->params->get('backendListToggler', 'TogglerStandard'); ?>" type="checkbox" name="toggle" value="" /></th>
                             <th><?php echo JHTML::_('grid.sort', 'K2_NAME', 'juser.name', @$this->lists['order_Dir'], @$this->lists['order']); ?></th>
                             <th class="hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_USERNAME', 'juser.username', @$this->lists['order_Dir'], @$this->lists['order']); ?></th>
                             <th class="k2ui-center"><?php echo JText::_('K2_LOGGED_IN'); ?></th>
