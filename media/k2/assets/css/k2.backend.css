@@ -492,10 +492,6 @@ input#del_image {display:block;}
 .com_k2 .numInputWrapper span.arrowDown {top:auto;bottom:9px;border-radius:0 0px 5px 0;}
 .com_k2 .numInputWrapper span.arrowUp {top:4px;border-radius:0 5px 0 0 }
 
-/* System Messages */
-.view-item #system-message-container {padding:0;}
-.view-item #system-message-container .alert {margin-bottom:0;border-radius:0;}
-
 /* Item - Free tagging */
 ul.tags {background:#fff;border:1px solid #ccc;cursor:default;min-height:48px;height:auto;display:inline-block;margin:0;padding:4px 6px;border-radius:3px;box-sizing:border-box;width:100%;}
 ul.tags li {border-radius:3px;background:#d1e8fc;color:#0f4776;line-height:14px;list-style:none;float:left;clear:none;padding:10px;margin:2px 2px 2px 0;font-size:14px;font-weight:bold;font-weight:600;vertical-align:middle;}
