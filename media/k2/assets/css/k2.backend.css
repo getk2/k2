@@ -755,7 +755,8 @@ z-index:100;margin:25px auto 25px -340px;font-family:'Open Sans',sans-serif;font
         .K2MoveDialogContents {border:0;grid-column:1 / span 2;}
     #k2MoveDialog > fieldset > legend {width:90%;font-size:30px;line-height:130%;font-weight:600;padding:20px 0 10px 4px;margin:0 0 20px;border-bottom:2px solid #dddedf;color:#183867;}
     #k2MoveDialog > fieldset > select {width:90%;}
-    #k2MoveDialog > fieldset > ol li {font-size:13px;padding:2px;}
+    #k2MoveDialog > fieldset > ol {padding:0 10px;margin:0 10px;}
+    #k2MoveDialog > fieldset > ol li {font-size:13px;padding:2px;list-style:inherit;}
 
 /* Button styling */
 .jw-btn {display:inline-block;vertical-align:middle;white-space:nowrap;color:#fdfdfd;font-size:13px;line-height:1;padding:10px 30px;border-radius:3px;border:1px solid #363a3d;font-weight:700;}
