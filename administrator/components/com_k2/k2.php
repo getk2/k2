@@ -91,7 +91,7 @@ if (in_array($view, $editForms)) {
 // Hide the K2 sidebar on POST request for Joomla 1.5
 $k2CSSSidebarStyle = '';
 if (K2_JVERSION == '15' && $_SERVER['REQUEST_METHOD'] == 'POST' && JRequest::getCmd('task') != 'move') {
-    $k2CSSSidebarStyle = ' style="display:none;"';
+    //$k2CSSSidebarStyle = ' style="display:none;"';
 }
 
 if (
