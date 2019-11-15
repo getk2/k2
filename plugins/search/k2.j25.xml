@@ -2,7 +2,7 @@
 <extension version="2.5" type="plugin" group="search" method="upgrade">
     <name>Search - K2</name>
     <author>JoomlaWorks</author>
-    <creationDate>May 22nd, 2019</creationDate>
+    <creationDate>November 15th, 2019</creationDate>
     <copyright>Copyright (c) 2006 - 2019 JoomlaWorks Ltd. All rights reserved.</copyright>
     <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
     <authorUrl>www.joomlaworks.net</authorUrl>
