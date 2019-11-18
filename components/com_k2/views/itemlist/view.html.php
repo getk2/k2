@@ -350,7 +350,7 @@ class K2ViewItemlist extends K2View
                     // Set ordering
                     $ordering = $params->get('tagOrdering');
 
-                   // Set title
+                    // Set title
                     $title = JText::_('K2_DISPLAYING_ITEMS_BY_TAG').' '.$tag->name;
 
                     // Set head feed link
@@ -375,7 +375,8 @@ class K2ViewItemlist extends K2View
                     $limit = $params->get('genericItemCount');
 
                     // Set title
-                    $title = JText::_('K2_SEARCH_RESULTS_FOR').' '.JRequest::getVar('searchword');
+                    $title = filter_var(JRequest::getVar('searchword'), FILTER_SANITIZE_STRING);
+                    $this->assignRef('title', $title);
 
                     // Set head feed link
                     $addHeadFeedLink = $params->get('genericFeedLink', 1);
@@ -417,7 +418,8 @@ class K2ViewItemlist extends K2View
                         $dateFromRequest = strtotime(JRequest::getInt('year').'-'.JRequest::getInt('month'));
                         $dateFormat = (K2_JVERSION == '15') ? '%B %Y' : 'F Y';
                     }
-                    $title = JText::_('K2_ITEMS_FILTERED_BY_DATE').' '.JHTML::_('date', $dateFromRequest, $dateFormat);
+                    $title = filter_var(JHTML::_('date', $dateFromRequest, $dateFormat), FILTER_SANITIZE_STRING);
+                    $this->assignRef('title', $title);
 
                     // Restore the original timezone
                     if (function_exists('date_default_timezone_set') && isset($originalTimezone)) {
@@ -432,7 +434,7 @@ class K2ViewItemlist extends K2View
                         // Set parameters prefix
                         $prefix = 'generic';
 
-                        $response->date = JHTML::_('date', $dateFromRequest, $dateFormat);
+                        $response->date = $title;
                     }
                     // --- JSON Output [finish] ---
 

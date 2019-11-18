@@ -13,12 +13,15 @@ defined('_JEXEC') or die;
 ?>
 
 <!-- Start K2 Generic (search/date) Layout -->
-<div id="k2Container" class="genericView<?php if($this->params->get('pageclass_sfx')) echo ' '.$this->params->get('pageclass_sfx'); ?>">
-    <?php if($this->params->get('show_page_title') || JRequest::getCmd('task')=='search' || JRequest::getCmd('task')=='date'): ?>
-    <!-- Page title -->
-    <div class="componentheading<?php echo $this->params->get('pageclass_sfx')?>">
-        <?php echo $this->escape($this->params->get('page_title')); ?>
-    </div>
+<div id="k2Container" class="genericView">
+    <?php if(JRequest::getCmd('task') == 'date'): ?>
+    <!-- Page title for date listings -->
+    <h1><?php echo JText::_('K2_ITEMS_FILTERED_BY_DATE').' '.$this->title; ?></h1>
+    <?php endif; ?>
+
+    <?php if(JRequest::getCmd('task') == 'search'): ?>
+    <!-- Page title for search results -->
+    <h1><?php echo JText::_('K2_SEARCH_RESULTS_FOR').' '.$this->title; ?></h1>
     <?php endif; ?>
 
     <?php if($this->params->get('genericFeedIcon',1) && isset($this->items) && count($this->items)): ?>
@@ -32,6 +35,7 @@ defined('_JEXEC') or die;
     <?php endif; ?>
 
     <?php if(isset($this->items) && count($this->items)): ?>
+
     <div class="genericItemList">
         <?php foreach($this->items as $item): ?>
         <!-- Start K2 Item Layout -->

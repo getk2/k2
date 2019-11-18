@@ -454,7 +454,7 @@ class K2ViewItem extends K2View
         // --- JSON Output [finish] ---
 
         // Head Stuff
-        if (!in_array($document->getType(), ['raw', 'json'])) {
+        if (!in_array($document->getType(), ['json', 'raw'])) {
             // Set canonical link
             $canonicalURL = $params->get('canonicalURL', 'relative');
             if ($canonicalURL == 'absolute') {
