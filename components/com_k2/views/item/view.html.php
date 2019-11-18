@@ -643,6 +643,19 @@ class K2ViewItem extends K2View
 
                 $itemSD_Modified = ((int) $item->modified) ? $item->modified : $item->created;
 
+                $itemSD_Images = '';
+                if(!empty($item->image)) {
+                    $itemSD_Images = '
+                    "image": [
+                        "'.$this->absUrl($item->imageXLarge).'",
+                        "'.$this->absUrl($item->imageLarge).'",
+                        "'.$this->absUrl($item->imageMedium).'",
+                        "'.$this->absUrl($item->imageSmall).'",
+                        "'.$this->absUrl($item->imageXSmall).'",
+                        "'.$this->absUrl($item->imageGeneric).'"
+                    ],';
+                }
+
                 // Output
                 $itemSD_LDJSON = '
                 {
@@ -653,15 +666,7 @@ class K2ViewItem extends K2View
                         "@id": "'.$this->absUrl($item->link).'"
                     },
                     "url": "'.$this->absUrl($item->link).'",
-                    "headline": "'.$this->filterHTML($metaTitle).'",
-                    "image": [
-                        "'.$this->absUrl($item->imageXLarge).'",
-                        "'.$this->absUrl($item->imageLarge).'",
-                        "'.$this->absUrl($item->imageMedium).'",
-                        "'.$this->absUrl($item->imageSmall).'",
-                        "'.$this->absUrl($item->imageXSmall).'",
-                        "'.$this->absUrl($item->imageGeneric).'"
-                    ],
+                    "headline": "'.$this->filterHTML($metaTitle).'",'.$itemSD_Images.'
                     "datePublished": "'.$item->created.'",
                     "dateModified": "'.$itemSD_Modified.'",
                     "author": {
