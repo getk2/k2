@@ -14,14 +14,9 @@ defined('_JEXEC') or die;
 
 <!-- Start K2 Generic (search/date) Layout -->
 <div id="k2Container" class="genericView">
-    <?php if(JRequest::getCmd('task') == 'date'): ?>
-    <!-- Page title for date listings -->
-    <h1><?php echo JText::_('K2_ITEMS_FILTERED_BY_DATE').' '.$this->title; ?></h1>
-    <?php endif; ?>
-
-    <?php if(JRequest::getCmd('task') == 'search'): ?>
-    <!-- Page title for search results -->
-    <h1><?php echo JText::_('K2_SEARCH_RESULTS_FOR').' '.$this->title; ?></h1>
+    <?php if($this->params->get('genericTitle', 1)): ?>
+    <!-- Title for date & search listings -->
+    <h1><?php echo (JRequest::getCmd('task') == 'date') ? JText::_('K2_ITEMS_FILTERED_BY_DATE') : JText::_('K2_SEARCH_RESULTS_FOR'); ?> <?php echo $this->title; ?></h1>
     <?php endif; ?>
 
     <?php if($this->params->get('genericFeedIcon',1) && isset($this->items) && count($this->items)): ?>

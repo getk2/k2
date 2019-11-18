@@ -350,8 +350,18 @@ class K2ViewItemlist extends K2View
                     // Set ordering
                     $ordering = $params->get('tagOrdering');
 
+                    // Check if the current menu item matches the displayed K2 tag
+                    $menuItemMatchesK2Tag = false;
+                    if (is_object($menuActive) && isset($menuActive->query['view']) && $menuActive->query['view'] == 'itemlist' && isset($menuActive->query['task']) && $menuActive->query['task'] == 'tag' && isset($menuActive->query['tag']) && $menuActive->query['tag'] == $tag->name) {
+                        $menuItemMatchesK2Tag = true;
+                    }
+
                     // Set title
-                    $title = JText::_('K2_DISPLAYING_ITEMS_BY_TAG').' '.$tag->name;
+                    $title = $tag->name;
+                    if ($menuItemMatchesK2Tag && !empty($params->get('page_title'))) {
+                        $title = $params->get('page_title');
+                    }
+                    $this->assignRef('title', $title);
 
                     // Set head feed link
                     $addHeadFeedLink = $params->get('tagFeedLink', 1);

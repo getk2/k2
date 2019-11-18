@@ -21,6 +21,11 @@ defined('_JEXEC') or die;
     </div>
     <?php endif; ?>
 
+    <?php if($this->params->get('tagTitle', 1)): ?>
+    <!-- Title for tag listings -->
+    <h1><?php echo JText::_('K2_DISPLAYING_ITEMS_BY_TAG'); ?> <?php echo $this->title; ?></h1>
+    <?php endif; ?>
+
     <?php if($this->params->get('tagFeedIcon',1)): ?>
     <!-- RSS feed icon -->
     <div class="k2FeedIcon">

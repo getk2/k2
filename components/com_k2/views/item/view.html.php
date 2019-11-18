@@ -41,6 +41,11 @@ class K2ViewItem extends K2View
         $model = $this->getModel();
         $item = $model->getData();
 
+        // Menu
+        $menu = $app->getMenu();
+        $menuDefault = $menu->getDefault();
+        $menuActive = $menu->getActive();
+
         // Check if item exists
         if (!is_object($item) || !$item->id) {
             JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
@@ -160,16 +165,16 @@ class K2ViewItem extends K2View
                 JPluginHelper::importPlugin('k2');
                 $dispatcher = JDispatcher::getInstance();
                 $results = $dispatcher->trigger('onK2CommentsCounter', array(
-                &$item,
-                &$params,
-                $limitstart
-            ));
+                    &$item,
+                    &$params,
+                    $limitstart
+                ));
                 $item->event->K2CommentsCounter = trim(implode("\n", $results));
                 $results = $dispatcher->trigger('onK2CommentsBlock', array(
-                &$item,
-                &$params,
-                $limitstart
-            ));
+                    &$item,
+                    &$params,
+                    $limitstart
+                ));
                 $item->event->K2CommentsBlock = trim(implode("\n", $results));
 
                 // Load K2 native comments system only if there are no plugins overriding it
@@ -401,21 +406,17 @@ class K2ViewItem extends K2View
             $item->emailLink = JRoute::_('index.php?option=com_mailto&tmpl=component&link='.MailToHelper::addLink($item->absoluteURL));
         }
 
-        // Get current menu item
-        $menus = $app->getMenu();
-        $menu = $menus->getActive();
-
         // Check if the current menu item matches the displayed K2 item
         $menuItemMatchesK2Item = false;
-        if (is_object($menu) && isset($menu->query['view']) && $menu->query['view'] == 'item' && isset($menu->query['id']) && $menu->query['id'] == $item->id) {
+        if (is_object($menuActive) && isset($menuActive->query['view']) && $menuActive->query['view'] == 'item' && isset($menuActive->query['id']) && $menuActive->query['id'] == $item->id) {
             $menuItemMatchesK2Item = true;
         }
 
         // Set pathway
         $pathway = $app->getPathWay();
-        if ($menu) {
-            if (isset($menu->query['view']) && ($menu->query['view'] != 'item' || $menu->query['id'] != $item->id)) {
-                if (!isset($menu->query['task']) || $menu->query['task'] != 'category' || $menu->query['id'] != $item->catid) {
+        if ($menuActive) {
+            if (isset($menuActive->query['view']) && ($menuActive->query['view'] != 'item' || $menuActive->query['id'] != $item->id)) {
+                if (!isset($menuActive->query['task']) || $menuActive->query['task'] != 'category' || $menuActive->query['id'] != $item->catid) {
                     $pathway->addItem($item->category->name, $item->category->link);
                 }
                 $pathway->addItem($item->rawTitle, '');
