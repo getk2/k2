@@ -419,6 +419,13 @@ defined('_JEXEC') or die;
     </div>
     <?php endif; ?>
 
+    <?php
+    /*
+    A note regarding 'Latest items from author'...
+    The $item object in the foreach loop carries most item data, so if you wish to show the image of these items just echo $item->image.
+    Do a var_dump($item) to see what's included with $item.
+    */
+    ?>
     <?php if($this->item->params->get('itemAuthorLatest') && empty($this->item->created_by_alias) && isset($this->authorLatestItems)): ?>
     <!-- Latest items from author -->
     <div class="itemAuthorLatest">
@@ -436,7 +443,7 @@ defined('_JEXEC') or die;
 
     <?php
     /*
-    A note regarding 'Related Items'...
+    A note regarding 'Related items by tag'...
     If you add:
     - the CSS rule 'overflow-x:scroll;' in the element div.itemRelated {…} in the k2.css
     - the class 'k2Scroller' to the ul element below

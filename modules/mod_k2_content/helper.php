@@ -305,7 +305,7 @@ class modK2ContentHelper
 
                 // Item image
                 if ($params->get('itemImage')) {
-                    if ($componentParams->get('imageTimestamp')) {
+                    if ($componentParams->get('imageTimestamp', 1)) {
                         $date = JFactory::getDate($item->modified);
                         $timestamp = '?t='.$date->toUnix();
                     } else {

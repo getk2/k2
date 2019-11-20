@@ -541,6 +541,8 @@ class K2ModelItemlist extends K2Model
         $limit = (int)$limit;
         $db = JFactory::getDbo();
 
+        $params = K2HelperUtilities::getParams('com_k2');
+
         $jnow = JFactory::getDate();
         $now = (K2_JVERSION == '15') ? $jnow->toMySQL() : $jnow->toSql();
         $nullDate = $db->getNullDate();
@@ -590,31 +592,29 @@ class K2ModelItemlist extends K2Model
             $item->imageLarge = '';
             $item->imageXLarge = '';
 
-            if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_XS.jpg')) {
-                $item->imageXSmall = JURI::root(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_XS.jpg';
+            $imageTimestamp = '';
+            $dateModified = ((int) $item->modified) ? $item->modified : '';
+            if ($params->get('imageTimestamp', 1) && $dateModified) {
+                $imageTimestamp = '?t='.strftime("%Y%m%d_%H%M%S", strtotime($dateModified));
             }
 
-            if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_S.jpg')) {
-                $item->imageSmall = JURI::root(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_S.jpg';
-            }
+            $imageFilenamePrefix = md5("Image".$item->id);
+            $imagePathPrefix = JUri::base(true).'/media/k2/items/cache/'.$imageFilenamePrefix;
 
-            if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_M.jpg')) {
-                $item->imageMedium = JURI::root(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_M.jpg';
-            }
+            // Check if the "generic" variant exists
+            if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.$imageFilenamePrefix.'_Generic.jpg')) {
+                $item->imageGeneric = $imagePathPrefix.'_Generic.jpg'.$imageTimestamp;
+                $item->imageXSmall  = $imagePathPrefix.'_XS.jpg'.$imageTimestamp;
+                $item->imageSmall   = $imagePathPrefix.'_S.jpg'.$imageTimestamp;
+                $item->imageMedium  = $imagePathPrefix.'_M.jpg'.$imageTimestamp;
+                $item->imageLarge   = $imagePathPrefix.'_L.jpg'.$imageTimestamp;
+                $item->imageXLarge  = $imagePathPrefix.'_XL.jpg'.$imageTimestamp;
 
-            if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_L.jpg')) {
-                $item->imageLarge = JURI::root(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_L.jpg';
-            }
-
-            if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_XL.jpg')) {
-                $item->imageXLarge = JURI::root(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_XL.jpg';
-            }
-
-            if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_Generic.jpg')) {
-                $item->imageGeneric = JURI::root(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_Generic.jpg';
+                $item->imageProperties = new stdClass;
+                $item->imageProperties->filenamePrefix = $imageFilenamePrefix;
+                $item->imageProperties->pathPrefix = $imagePathPrefix;
             }
         }
-
         return $rows;
     }
 

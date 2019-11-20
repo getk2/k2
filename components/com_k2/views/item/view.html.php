@@ -305,30 +305,34 @@ class K2ViewItem extends K2View
                 $item->nextLink = urldecode(JRoute::_(K2HelperRoute::getItemRoute($nextItem->id.':'.urlencode($nextItem->alias), $nextItem->catid.':'.urlencode($item->category->alias))));
                 $item->nextTitle = $nextItem->title;
 
-                $date = JFactory::getDate($item->modified);
-                $timestamp = '?t='.$date->toUnix();
+                // Image
+                $item->nextImageXSmall = '';
+                $item->nextImageSmall = '';
+                $item->nextImageMedium = '';
+                $item->nextImageLarge = '';
+                $item->nextImageXLarge = '';
 
-                if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$nextItem->id).'_XS.jpg')) {
-                    $item->nextImageXSmall = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$nextItem->id).'_XS.jpg'.$timestamp;
-                }
-                if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$nextItem->id).'_S.jpg')) {
-                    $item->nextImageSmall = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$nextItem->id).'_S.jpg'.$timestamp;
-                }
-
-                if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$nextItem->id).'_M.jpg')) {
-                    $item->nextImageMedium = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$nextItem->id).'_M.jpg'.$timestamp;
-                }
-
-                if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$nextItem->id).'_L.jpg')) {
-                    $item->nextImageLarge = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$nextItem->id).'_L.jpg'.$timestamp;
+                $imageTimestamp = '';
+                $dateModified = ((int) $nextItem->modified) ? $nextItem->modified : '';
+                if ($params->get('imageTimestamp', 1) && $dateModified) {
+                    $imageTimestamp = '?t='.strftime("%Y%m%d_%H%M%S", strtotime($dateModified));
                 }
 
-                if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$nextItem->id).'_XL.jpg')) {
-                    $item->nextImageXLarge = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$nextItem->id).'_XL.jpg'.$timestamp;
-                }
+                $imageFilenamePrefix = md5("Image".$nextItem->id);
+                $imagePathPrefix = JUri::base(true).'/media/k2/items/cache/'.$imageFilenamePrefix;
 
-                if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$nextItem->id).'_Generic.jpg')) {
-                    $item->nextImageGeneric = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$nextItem->id).'_Generic.jpg'.$timestamp;
+                // Check if the "generic" variant exists
+                if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.$imageFilenamePrefix.'_Generic.jpg')) {
+                    $item->nextImageGeneric = $imagePathPrefix.'_Generic.jpg'.$imageTimestamp;
+                    $item->nextImageXSmall  = $imagePathPrefix.'_XS.jpg'.$imageTimestamp;
+                    $item->nextImageMedium  = $imagePathPrefix.'_S.jpg'.$imageTimestamp;
+                    $item->nextImageMedium  = $imagePathPrefix.'_M.jpg'.$imageTimestamp;
+                    $item->nextImageLarge   = $imagePathPrefix.'_L.jpg'.$imageTimestamp;
+                    $item->nextImageXLarge  = $imagePathPrefix.'_XL.jpg'.$imageTimestamp;
+
+                    $item->nextImageProperties = new stdClass;
+                    $item->nextImageProperties->filenamePrefix = $imageFilenamePrefix;
+                    $item->nextImageProperties->pathPrefix = $imagePathPrefix;
                 }
             }
 
@@ -337,30 +341,34 @@ class K2ViewItem extends K2View
                 $item->previousLink = urldecode(JRoute::_(K2HelperRoute::getItemRoute($previousItem->id.':'.urlencode($previousItem->alias), $previousItem->catid.':'.urlencode($item->category->alias))));
                 $item->previousTitle = $previousItem->title;
 
-                $date = JFactory::getDate($item->modified);
-                $timestamp = '?t='.$date->toUnix();
+                // Image
+                $item->previousImageXSmall = '';
+                $item->previousImageSmall = '';
+                $item->previousImageMedium = '';
+                $item->previousImageLarge = '';
+                $item->previousImageXLarge = '';
 
-                if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$previousItem->id).'_XS.jpg')) {
-                    $item->previousImageXSmall = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$previousItem->id).'_XS.jpg'.$timestamp;
-                }
-                if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$previousItem->id).'_S.jpg')) {
-                    $item->previousImageSmall = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$previousItem->id).'_S.jpg'.$timestamp;
-                }
-
-                if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$previousItem->id).'_M.jpg')) {
-                    $item->previousImageMedium = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$previousItem->id).'_M.jpg'.$timestamp;
-                }
-
-                if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$previousItem->id).'_L.jpg')) {
-                    $item->previousImageLarge = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$previousItem->id).'_L.jpg'.$timestamp;
+                $imageTimestamp = '';
+                $dateModified = ((int) $previousItem->modified) ? $previousItem->modified : '';
+                if ($params->get('imageTimestamp', 1) && $dateModified) {
+                    $imageTimestamp = '?t='.strftime("%Y%m%d_%H%M%S", strtotime($dateModified));
                 }
 
-                if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$previousItem->id).'_XL.jpg')) {
-                    $item->previousImageXLarge = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$previousItem->id).'_XL.jpg'.$timestamp;
-                }
+                $imageFilenamePrefix = md5("Image".$previousItem->id);
+                $imagePathPrefix = JUri::base(true).'/media/k2/items/cache/'.$imageFilenamePrefix;
 
-                if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$previousItem->id).'_Generic.jpg')) {
-                    $item->previousImageGeneric = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$previousItem->id).'_Generic.jpg'.$timestamp;
+                // Check if the "generic" variant exists
+                if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.$imageFilenamePrefix.'_Generic.jpg')) {
+                    $item->previousImageGeneric = $imagePathPrefix.'_Generic.jpg'.$imageTimestamp;
+                    $item->previousImageXSmall  = $imagePathPrefix.'_XS.jpg'.$imageTimestamp;
+                    $item->previousImageMedium  = $imagePathPrefix.'_S.jpg'.$imageTimestamp;
+                    $item->previousImageMedium  = $imagePathPrefix.'_M.jpg'.$imageTimestamp;
+                    $item->previousImageLarge   = $imagePathPrefix.'_L.jpg'.$imageTimestamp;
+                    $item->previousImageXLarge  = $imagePathPrefix.'_XL.jpg'.$imageTimestamp;
+
+                    $item->previousImageProperties = new stdClass;
+                    $item->previousImageProperties->filenamePrefix = $imageFilenamePrefix;
+                    $item->previousImageProperties->pathPrefix = $imagePathPrefix;
                 }
             }
         }
@@ -493,7 +501,7 @@ class K2ViewItem extends K2View
                 }
             }
 
-            $metaTitle = $params->get('page_title');
+            $metaTitle = trim($params->get('page_title'));
             $document->setTitle($metaTitle);
 
             // Set meta description
@@ -512,6 +520,7 @@ class K2ViewItem extends K2View
                 }
             }
 
+            $metaDesc = trim($metaDesc);
             $document->setDescription(K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150)));
 
             // Set meta keywords
@@ -535,7 +544,8 @@ class K2ViewItem extends K2View
                 }
             }
 
-            $document->setMetadata('keywords', trim($metaKeywords));
+            $metaKeywords = trim($metaKeywords);
+            $document->setMetadata('keywords', $metaKeywords);
 
             // Set meta robots & author
             $metaRobots = '';
@@ -562,6 +572,7 @@ class K2ViewItem extends K2View
 
             $document->setMetadata('robots', $metaRobots);
 
+            $metaAuthor = trim($metaAuthor);
             if ($app->getCfg('MetaAuthor') == '1' && $metaAuthor) {
                 $document->setMetadata('author', $metaAuthor);
             }
