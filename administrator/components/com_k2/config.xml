@@ -90,6 +90,10 @@
         </param>
         <!-- ######################### Layout and view options for Tag listings ######################### -->
         <param menu="hide" name="" type="header" default="K2_LAYOUT_VIEW_OPTIONS_FOR_TAG_LISTINGS" label="" description="" />
+        <param menu="hide" name="tagName" type="radio" default="1" label="K2_TAG_NAME" description="">
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
         <param menu="hide" name="tagItemCount" type="text" default="10" size="4" label="K2_ITEM_COUNT_FOR_TAG_LISTINGS" description="" />
         <param menu="hide" name="tagItemTitle" type="radio" default="1" label="K2_ITEM_TITLE" description="">
             <option value="0">K2_HIDE</option>
@@ -150,6 +154,10 @@
         </param>
         <!-- ######################### Layout and view options for Search and Date listings ######################### -->
         <param menu="hide" name="" type="header" default="K2_LAYOUT_VIEW_OPTIONS_FOR_SEARCH_TAG_DATE_LISTINGS" label="" description="" />
+        <param menu="hide" name="genericTitle" type="radio" default="1" label="K2_GENERIC_TITLE" description="">
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
         <param menu="hide" name="genericItemCount" type="text" default="10" size="4" label="K2_ITEM_COUNT_FOR_SEARCH_TAG_DATE_LISTINGS" description="" />
         <param menu="hide" name="genericItemTitle" type="radio" default="1" label="K2_ITEM_TITLE" description="">
             <option value="0">K2_HIDE</option>
@@ -664,6 +672,10 @@
         </field>
         <!-- ######################### Layout and view options for Tag listings ######################### -->
         <field menu="hide" name="" type="header" default="K2_LAYOUT_VIEW_OPTIONS_FOR_TAG_LISTINGS" label="" description="" />
+        <field menu="hide" name="tagName" type="radio" default="1" label="K2_TAG_NAME" description="">
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </field>
         <field menu="hide" name="tagItemCount" type="text" default="10" size="4" label="K2_ITEM_COUNT_FOR_TAG_LISTINGS" description="" />
         <field menu="hide" name="tagItemTitle" type="radio" default="1" label="K2_ITEM_TITLE" description="">
             <option value="0">K2_HIDE</option>
@@ -724,6 +736,10 @@
         </field>
         <!-- ######################### Layout and view options for Search and Date listings ######################### -->
         <field menu="hide" name="" type="header" default="K2_LAYOUT_VIEW_OPTIONS_FOR_SEARCH_TAG_DATE_LISTINGS" label="" description="" />
+        <field menu="hide" name="genericTitle" type="radio" default="1" label="K2_GENERIC_TITLE" description="">
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </field>
         <field menu="hide" name="genericItemCount" type="text" default="10" size="4" label="K2_ITEM_COUNT_FOR_SEARCH_TAG_DATE_LISTINGS" description="" />
         <field menu="hide" name="genericItemTitle" type="radio" default="1" label="K2_ITEM_TITLE" description="">
             <option value="0">K2_HIDE</option>

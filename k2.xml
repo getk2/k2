@@ -133,6 +133,7 @@
                 <field name="userItemReadMore" default="1" />
                 <field name="userItemK2Plugins" default="1" />
                 <!-- ######################### Layout and view options for Tag listings ######################### -->
+                <field name="tagName" default="1" />
                 <field name="tagItemCount" default="10" />
                 <field name="tagItemTitle" default="1" />
                 <field name="tagItemTitleLinked" default="1" />
@@ -147,6 +148,7 @@
                 <field name="tagFeedLink" default="1" />
                 <field name="tagFeedIcon" default="1" />
                 <!-- ######################### Layout and view options for Search and Date listings ######################### -->
+                <field name="genericTitle" default="1" />
                 <field name="genericItemCount" default="10" />
                 <field name="genericItemTitle" default="1" />
                 <field name="genericItemTitleLinked" default="1" />

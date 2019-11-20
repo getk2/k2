@@ -127,6 +127,7 @@
         <param name="userItemReadMore" default="1" />
         <param name="userItemK2Plugins" default="1" />
         <!-- ######################### Layout and view options for Tag listings ######################### -->
+        <param name="tagName" default="1" />
         <param name="tagItemCount" default="10" />
         <param name="tagItemTitle" default="1" />
         <param name="tagItemTitleLinked" default="1" />
@@ -141,6 +142,7 @@
         <param name="tagFeedLink" default="1" />
         <param name="tagFeedIcon" default="1" />
         <!-- ######################### Layout and view options for Search and Date listings ######################### -->
+        <param name="genericTitle" default="1" />
         <param name="genericItemCount" default="10" />
         <param name="genericItemTitle" default="1" />
         <param name="genericItemTitleLinked" default="1" />
