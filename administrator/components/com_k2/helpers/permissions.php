@@ -25,7 +25,7 @@ class K2HelperPermissions
 
         // Generic access check
         if (!$user->authorise('core.manage', $option)) {
-            JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
+            JError::raiseWarning(403, JText::_('JERROR_ALERTNOAUTHOR'));
             $app->redirect('index.php');
         }
 
@@ -65,7 +65,7 @@ class K2HelperPermissions
             // Check the determined action
             if ($action) {
                 if (!$user->authorise($action, $option)) {
-                    JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
+                    JError::raiseWarning(403, JText::_('JERROR_ALERTNOAUTHOR'));
                     $app->redirect('index.php?option=com_k2');
                 }
             }

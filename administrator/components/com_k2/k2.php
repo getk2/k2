@@ -17,6 +17,7 @@ $option = JRequest::getCmd('option');
 $view = JRequest::getCmd('view', 'items');
 $task = JRequest::getCmd('task');
 $tmpl = JRequest::getCmd('tmpl');
+$context = JRequest::getCmd('context');
 
 if (K2_JVERSION == '15') {
     if (
@@ -27,7 +28,7 @@ if (K2_JVERSION == '15') {
             $view=='extrafieldsgroup' ||
             $view=='extrafieldsgroups' ||
             $view=='user' ||
-            ($view=='users' && $task != 'element') ||
+            ($view=='users' && $context != 'modal') ||
             $view=='usergroup' ||
             $view=='usergroups'
         )
@@ -53,7 +54,7 @@ if (K2_JVERSION == '15') {
             $view=='extrafieldsgroup' ||
             $view=='extrafieldsgroups' ||
             $view=='user' ||
-            ($view=='users' && $task != 'element') ||
+            ($view=='users' && $context != 'modal') ||
             $view=='usergroup' ||
             $view=='usergroups'
         )
