@@ -30,7 +30,7 @@ class K2HelperPermissions
             return;
         }
         $K2Permissions = K2Permissions::getInstance();
-        $permissions = K2_JVERSION == '15' ? new JParameter($K2UserGroup->permissions) : new JRegistry($K2UserGroup->permissions);
+        $permissions = (K2_JVERSION == '15') ? new JParameter($K2UserGroup->permissions) : new JRegistry($K2UserGroup->permissions);
         $K2Permissions->permissions = $permissions;
         if ($permissions->get('categories') == 'none') {
             return;
