@@ -84,20 +84,25 @@ class K2ControllerItem extends K2Controller
                     $output .= '<div class="itemAdditionalField"><h4 class="k2ExtraFieldHeader">'.$extraField->name.'</h4></div>';
                 } else {
                     $output .= '
-					<div class="itemAdditionalField">
-						<div class="k2Right k2FLeft itemAdditionalValue">
-							<label for="K2ExtraField_'.$extraField->id.'">'.$extraField->name.'</label>
-						</div>
-						<div class="itemAdditionalData">'.$extraFieldModel->renderExtraField($extraField, $itemID).'</div>
-					</div>
-					';
+                    <div class="itemAdditionalField">
+                        <div class="k2Right k2FLeft itemAdditionalValue">
+                            <label for="K2ExtraField_'.$extraField->id.'">'.$extraField->name.'</label>
+                        </div>
+                        <div class="itemAdditionalData">'.$extraFieldModel->renderExtraField($extraField, $itemID).'</div>
+                    </div>
+                    ';
                 }
                 $counter++;
             }
         }
 
         if ($counter == 0) {
-            $output = JText::_('K2_THIS_CATEGORY_DOESNT_HAVE_ASSIGNED_EXTRA_FIELDS');
+            $output = '
+                <div class="k2-generic-message">
+                    <h3>'.JText::_('K2_NOTICE').'</h3>
+                    <p>'.JText::_('K2_THIS_CATEGORY_DOESNT_HAVE_ASSIGNED_EXTRA_FIELDS').'</p>
+                </div>
+            ';
         }
 
         echo $output;

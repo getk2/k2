@@ -195,7 +195,12 @@ class K2ControllerItem extends K2Controller
         $output .= '</table>';
 
         if ($counter == 0) {
-            $output = JText::_('K2_THIS_CATEGORY_DOESNT_HAVE_ASSIGNED_EXTRA_FIELDS');
+            $output = '
+                <div class="k2-generic-message">
+                    <h3>'.JText::_('K2_NOTICE').'</h3>
+                    <p>'.JText::_('K2_THIS_CATEGORY_DOESNT_HAVE_ASSIGNED_EXTRA_FIELDS').'</p>
+                </div>
+            ';
         }
 
         echo $output;
