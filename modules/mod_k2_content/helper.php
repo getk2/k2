@@ -305,24 +305,33 @@ class modK2ContentHelper
 
                 // Item image
                 if ($params->get('itemImage')) {
-                    if ($componentParams->get('imageTimestamp', 1)) {
-                        $date = JFactory::getDate($item->modified);
-                        $timestamp = '?t='.$date->toUnix();
-                    } else {
-                        $timestamp = '';
+                    $item->imageXSmall = '';
+                    $item->imageSmall = '';
+                    $item->imageMedium = '';
+                    $item->imageLarge = '';
+                    $item->imageXLarge = '';
+
+                    $imageTimestamp = '';
+                    $dateModified = ((int) $item->modified) ? $item->modified : '';
+                    if ($componentParams->get('imageTimestamp', 1) && $dateModified) {
+                        $imageTimestamp = '?t='.strftime("%Y%m%d_%H%M%S", strtotime($dateModified));
                     }
 
                     $imageFilenamePrefix = md5("Image".$item->id);
                     $imagePathPrefix = JUri::base(true).'/media/k2/items/cache/'.$imageFilenamePrefix;
 
-                    // Do we have an image uploaded? (simply check one size)
+                    // Check if the "generic" variant exists
                     if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.$imageFilenamePrefix.'_Generic.jpg')) {
-                        $item->imageGeneric = $imagePathPrefix.'_Generic.jpg'.$timestamp;
-                        $item->imageXSmall  = $imagePathPrefix.'_XS.jpg'.$timestamp;
-                        $item->imageSmall   = $imagePathPrefix.'_S.jpg'.$timestamp;
-                        $item->imageMedium  = $imagePathPrefix.'_M.jpg'.$timestamp;
-                        $item->imageLarge   = $imagePathPrefix.'_L.jpg'.$timestamp;
-                        $item->imageXLarge  = $imagePathPrefix.'_XL.jpg'.$timestamp;
+                        $item->imageGeneric = $imagePathPrefix.'_Generic.jpg'.$imageTimestamp;
+                        $item->imageXSmall  = $imagePathPrefix.'_XS.jpg'.$imageTimestamp;
+                        $item->imageSmall   = $imagePathPrefix.'_S.jpg'.$imageTimestamp;
+                        $item->imageMedium  = $imagePathPrefix.'_M.jpg'.$imageTimestamp;
+                        $item->imageLarge   = $imagePathPrefix.'_L.jpg'.$imageTimestamp;
+                        $item->imageXLarge  = $imagePathPrefix.'_XL.jpg'.$imageTimestamp;
+
+                        $item->imageProperties = new stdClass;
+                        $item->imageProperties->filenamePrefix = $imageFilenamePrefix;
+                        $item->imageProperties->pathPrefix = $imagePathPrefix;
                     }
 
                     // Select the size to use
