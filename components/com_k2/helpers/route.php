@@ -162,7 +162,11 @@ class K2HelperRoute
         } elseif (K2_JVERSION == '25') {
             $items = $menus->getItems('component_id', $component->id);
         } else {
-            $items = $menus->getItems(array('component_id', 'language'), array($component->id, null)); // Grab menu items from all languages (/libraries/src/Menu/SiteMenu.php)
+            // Grab menu items from all languages (/libraries/src/Menu/SiteMenu.php)
+            $items = $menus->getItems(
+                array('component_id', 'language'),
+                array($component->id, null)
+            );
         }
         $match = null;
         foreach ($needles as $needle => $id) {
