@@ -493,7 +493,7 @@ $K2(document).ready(function() {
                     return;
                 }
                 var selectedValue = $K2(this).val();
-                var url = K2BasePath + 'index.php?option=com_k2&view=item&task=extraFields&cid=' + selectedValue + '&id=' + $K2('input[name=id]').val();
+                var url = K2BasePath + 'index.php?option=com_k2&view=item&task=extraFields&context=ajax&cid=' + selectedValue + '&id=' + $K2('input[name=id]').val();
                 $K2('#extraFieldsContainer').fadeOut('slow', function() {
                     $K2.ajax({
                         url: url,

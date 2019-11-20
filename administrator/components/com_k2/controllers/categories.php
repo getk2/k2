@@ -14,138 +14,133 @@ jimport('joomla.application.component.controller');
 
 class K2ControllerCategories extends K2Controller
 {
-
     public function display($cachable = false, $urlparams = array())
     {
         JRequest::setVar('view', 'categories');
         parent::display();
     }
 
-    function publish()
+    public function publish()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('categories');
         $model->publish();
     }
 
-    function unpublish()
+    public function unpublish()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('categories');
         $model->unpublish();
     }
 
-    function saveorder()
+    public function saveorder()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('categories');
         $model->saveorder();
         $document = JFactory::getDocument();
-        if ($document->getType() == 'raw')
-        {
+        if ($document->getType() == 'raw') {
             echo '1';
             return $this;
-        }
-        else
-        {
+        } else {
             $this->setRedirect('index.php?option=com_k2&view=categories', JText::_('K2_NEW_ORDERING_SAVED'));
         }
     }
 
-    function orderup()
+    public function orderup()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('categories');
         $model->orderup();
     }
 
-    function orderdown()
+    public function orderdown()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('categories');
         $model->orderdown();
     }
 
-    function accessregistered()
+    public function accessregistered()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('categories');
         $model->accessregistered();
     }
 
-    function accessspecial()
+    public function accessspecial()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('categories');
         $model->accessspecial();
     }
 
-    function accesspublic()
+    public function accesspublic()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('categories');
         $model->accesspublic();
     }
 
-    function trash()
+    public function trash()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('categories');
         $model->trash();
     }
 
-    function restore()
+    public function restore()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('categories');
         $model->restore();
     }
 
-    function remove()
+    public function remove()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('categories');
         $model->remove();
     }
 
-    function add()
+    public function add()
     {
         $app = JFactory::getApplication();
         $app->redirect('index.php?option=com_k2&view=category');
     }
 
-    function edit()
+    public function edit()
     {
         $app = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
         $app->redirect('index.php?option=com_k2&view=category&cid='.$cid[0]);
     }
 
-    function move()
+    public function move()
     {
         $view = $this->getView('categories', 'html');
         $view->setLayout('move');
         $view->move();
     }
 
-    function saveBatch()
+    public function saveBatch()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('categories');
         $model->saveBatch();
     }
 
-    function saveMove()
+    public function saveMove()
     {
         $model = $this->getModel('categories');
         $model->move();
     }
 
-    function copy()
+    public function copy()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('categories');
         $model->copy();
     }
-
 }

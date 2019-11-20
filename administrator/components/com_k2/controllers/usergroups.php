@@ -14,31 +14,29 @@ jimport('joomla.application.component.controller');
 
 class K2ControllerUserGroups extends K2Controller
 {
-
     public function display($cachable = false, $urlparams = array())
     {
         JRequest::setVar('view', 'usergroups');
         parent::display();
     }
 
-    function edit()
+    public function edit()
     {
         $app = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
         $app->redirect('index.php?option=com_k2&view=usergroup&cid='.$cid[0]);
     }
 
-    function add()
+    public function add()
     {
         $app = JFactory::getApplication();
         $app->redirect('index.php?option=com_k2&view=usergroup');
     }
 
-    function remove()
+    public function remove()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('userGroups');
         $model->remove();
     }
-
 }

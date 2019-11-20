@@ -14,76 +14,71 @@ jimport('joomla.application.component.controller');
 
 class K2ControllerExtraFields extends K2Controller
 {
-
     public function display($cachable = false, $urlparams = array())
     {
         JRequest::setVar('view', 'extrafields');
         parent::display();
     }
 
-    function publish()
+    public function publish()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('extraFields');
         $model->publish();
     }
 
-    function unpublish()
+    public function unpublish()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('extraFields');
         $model->unpublish();
     }
 
-    function saveorder()
+    public function saveorder()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('extraFields');
         $model->saveorder();
         $document = JFactory::getDocument();
-        if ($document->getType() == 'raw')
-        {
+        if ($document->getType() == 'raw') {
             echo '1';
             return $this;
-        }
-        else
-        {
+        } else {
             $this->setRedirect('index.php?option=com_k2&view=extrafields', JText::_('K2_NEW_ORDERING_SAVED'));
         }
     }
 
-    function orderup()
+    public function orderup()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('extraFields');
         $model->orderup();
     }
 
-    function orderdown()
+    public function orderdown()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('extraFields');
         $model->orderdown();
     }
 
-    function remove()
+    public function remove()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('extraFields');
         $model->remove();
     }
 
-    function add()
+    public function add()
     {
         $app = JFactory::getApplication();
         $app->redirect('index.php?option=com_k2&view=extrafield');
     }
 
-    function edit()
+    public function edit()
     {
         $app = JFactory::getApplication();
         $cid = JRequest::getVar('cid');
         $app->redirect('index.php?option=com_k2&view=extrafield&cid='.$cid[0]);
     }
-
 }

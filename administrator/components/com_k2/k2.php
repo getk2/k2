@@ -97,13 +97,14 @@ if (K2_JVERSION == '15' && $_SERVER['REQUEST_METHOD'] == 'POST' && JRequest::get
 
 if (
     $document->getType() != 'raw' &&
-    JRequest::getWord('task')!='deleteAttachment' &&
-    JRequest::getWord('task')!='connector' &&
-    JRequest::getWord('task')!='tag' &&
-    JRequest::getWord('task')!='tags' &&
-    JRequest::getWord('task')!='extrafields' &&
-    JRequest::getWord('task')!='download' &&
-    JRequest::getWord('task')!='saveComment'
+    $task != 'deleteAttachment' &&
+    $task != 'connector' &&
+    $task != 'tag' &&
+    $task != 'tags' &&
+    $task != 'extraFields' &&
+    $task != 'download' &&
+    $task != 'saveComment' &&
+    $context != 'ajax'
 ) {
     $k2ComponentHeader = '
     <div id="k2AdminContainer" class="K2AdminView'.ucfirst($view).$k2CSSContainerClass.'">

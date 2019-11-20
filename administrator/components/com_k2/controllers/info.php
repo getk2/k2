@@ -14,11 +14,9 @@ jimport('joomla.application.component.controller');
 
 class K2ControllerInfo extends K2Controller
 {
-
     public function display($cachable = false, $urlparams = array())
     {
         JRequest::setVar('view', 'info');
         parent::display();
     }
-
 }

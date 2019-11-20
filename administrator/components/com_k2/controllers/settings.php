@@ -14,29 +14,23 @@ jimport('joomla.application.component.controller');
 
 class K2ControllerSettings extends K2Controller
 {
-
     public function display($cachable = false, $urlparams = array())
     {
-        if (K2_JVERSION != '15')
-        {
+        if (K2_JVERSION != '15') {
             $app = JFactory::getApplication();
             $app->redirect('index.php?option=com_config&view=component&component=com_k2&path=&tmpl=component');
-        }
-        else
-        {
+        } else {
             JRequest::setVar('tmpl', 'component');
             parent::display();
         }
     }
 
-    function save()
+    public function save()
     {
         $app = JFactory::getApplication();
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('settings');
         $model->save();
         $app->redirect('index.php?option=com_k2&view=settings');
-
     }
-
 }

@@ -14,7 +14,6 @@ jimport('joomla.application.component.controller');
 
 class K2ControllerComments extends K2Controller
 {
-
     public function display($cachable = false, $urlparams = array())
     {
         require_once(JPATH_SITE.'/components/com_k2/helpers/route.php');
@@ -22,39 +21,38 @@ class K2ControllerComments extends K2Controller
         parent::display();
     }
 
-    function publish()
+    public function publish()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('comments');
         $model->publish();
     }
 
-    function unpublish()
+    public function unpublish()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('comments');
         $model->unpublish();
     }
 
-    function remove()
+    public function remove()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('comments');
         $model->remove();
     }
 
-    function deleteUnpublished()
+    public function deleteUnpublished()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('comments');
         $model->deleteUnpublished();
     }
 
-    function saveComment()
+    public function saveComment()
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('comments');
         $model->save();
     }
-
 }
