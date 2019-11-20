@@ -139,13 +139,12 @@ JLoader::register('K2Controller', JPATH_COMPONENT.'/controllers/controller.php')
 JLoader::register('K2View', JPATH_COMPONENT.'/views/view.php');
 JLoader::register('K2Model', JPATH_COMPONENT.'/models/model.php');
 
-$controller = JRequest::getWord('view', 'items');
-$controller = JString::strtolower($controller);
+$controller = strtolower($view);
 require_once(JPATH_COMPONENT.'/controllers/'.$controller.'.php');
-$classname = 'K2Controller'.$controller;
+$classname = 'K2Controller'.ucfirst($controller);
 $controller = new $classname();
 $controller->registerTask('saveAndNew', 'save');
-$controller->execute(JRequest::getWord('task'));
+$controller->execute($task);
 $controller->redirect();
 
 echo $k2ComponentFooter;
