@@ -156,21 +156,23 @@ class K2HelperRoute
     {
         $component = JComponentHelper::getComponent('com_k2');
         $app = JFactory::getApplication();
-        $menus = $app->getMenu('site', array());
+        $menu = $app->getMenu('site', array());
+
         if (K2_JVERSION == '15') {
-            $items = $menus->getItems('componentid', $component->id);
+            $items = $menu->getItems('componentid', $component->id);
         } elseif (K2_JVERSION == '25') {
-            $items = $menus->getItems('component_id', $component->id);
+            $items = $menu->getItems('component_id', $component->id);
         } else {
             /*
             // Grab menu items from all languages (/libraries/src/Menu/SiteMenu.php)
-            $items = $menus->getItems(
+            $items = $menu->getItems(
                 array('component_id', 'language'),
                 array($component->id, null)
             );
             */
-            $items = $menus->getItems('component_id', $component->id);
+            $items = $menu->getItems('component_id', $component->id);
         }
+
         $match = null;
         foreach ($needles as $needle => $id) {
             if (count($items)) {
