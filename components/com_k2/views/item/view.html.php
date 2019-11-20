@@ -125,19 +125,13 @@ class K2ViewItem extends K2View
         }
 
         // Published check
-        if (!$item->published || $item->trash) {
-            JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
-        }
-
-        if ($item->publish_up != $nullDate && $item->publish_up > $now) {
-            JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
-        }
-
-        if ($item->publish_down != $nullDate && $item->publish_down < $now) {
-            JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
-        }
-
-        if (!$item->category->published || $item->category->trash) {
+        if (
+            !$item->published ||
+            $item->trash ||
+            ($item->publish_up != $nullDate && $item->publish_up > $now) ||
+            ($item->publish_down != $nullDate && $item->publish_down < $now) ||
+            (!$item->category->published || $item->category->trash)
+        ) {
             JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
         }
 
@@ -414,12 +408,6 @@ class K2ViewItem extends K2View
             $item->emailLink = JRoute::_('index.php?option=com_mailto&tmpl=component&link='.MailToHelper::addLink($item->absoluteURL));
         }
 
-        // Check if the current menu item matches the displayed K2 item
-        $menuItemMatchesK2Item = false;
-        if (is_object($menuActive) && isset($menuActive->query['view']) && $menuActive->query['view'] == 'item' && isset($menuActive->query['id']) && $menuActive->query['id'] == $item->id) {
-            $menuItemMatchesK2Item = true;
-        }
-
         // Set pathway
         $pathway = $app->getPathWay();
         if ($menuActive) {
@@ -464,17 +452,13 @@ class K2ViewItem extends K2View
 
         // Head Stuff
         if (!in_array($document->getType(), ['json', 'raw'])) {
+            $menuItemMatch = $this->menuItemMatchesK2Entity('item', null, $item->id);
+
             // Set canonical link
-            $canonicalURL = $params->get('canonicalURL', 'relative');
-            if ($canonicalURL == 'absolute') {
-                $document->addHeadLink(substr(str_replace(JUri::root(true), '', JUri::root(false)), 0, -1).$item->link, 'canonical', 'rel');
-            }
-            if ($canonicalURL == 'relative') {
-                $document->addHeadLink($item->link, 'canonical', 'rel');
-            }
+            $this->setCanonicalUrl($item->link);
 
             // Set <title>
-            if ($menuItemMatchesK2Item) {
+            if ($menuItemMatch) {
                 if (empty($params->get('page_title'))) {
                     $params->set('page_title', $item->rawTitle);
                 }
@@ -491,7 +475,7 @@ class K2ViewItem extends K2View
                 }
 
                 // Override item title with page heading (if set)
-                if ($menuItemMatchesK2Item) {
+                if ($menuItemMatch) {
                     if ($params->get('page_heading')) {
                         $item->title = $params->get('page_heading');
                     }
@@ -505,7 +489,7 @@ class K2ViewItem extends K2View
             $document->setTitle($metaTitle);
 
             // Set meta description
-            $metaDesc = '';
+            $metaDesc = $document->getMetadata('description');
 
             if ($item->metadesc) {
                 $metaDesc = filter_var($item->metadesc, FILTER_SANITIZE_STRING);
@@ -514,7 +498,7 @@ class K2ViewItem extends K2View
                 $metaDesc = filter_var($metaDesc, FILTER_SANITIZE_STRING);
             }
 
-            if ($menuItemMatchesK2Item && K2_JVERSION != '15') {
+            if ($menuItemMatch && K2_JVERSION != '15') {
                 if ($params->get('menu-meta_description')) {
                     $metaDesc = $params->get('menu-meta_description');
                 }
@@ -524,7 +508,7 @@ class K2ViewItem extends K2View
             $document->setDescription(K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150)));
 
             // Set meta keywords
-            $metaKeywords = '';
+            $metaKeywords = trim($document->getMetadata('keywords'));
 
             if ($item->metakey) {
                 $metaKeywords = $item->metakey;
@@ -538,7 +522,7 @@ class K2ViewItem extends K2View
                 }
             }
 
-            if ($menuItemMatchesK2Item && K2_JVERSION != '15') {
+            if ($menuItemMatch && K2_JVERSION != '15') {
                 if ($params->get('menu-meta_keywords')) {
                     $metaKeywords = $params->get('menu-meta_keywords');
                 }
@@ -548,7 +532,7 @@ class K2ViewItem extends K2View
             $document->setMetadata('keywords', $metaKeywords);
 
             // Set meta robots & author
-            $metaRobots = '';
+            $metaRobots = (K2_JVERSION != '15') ? $document->getMetadata('robots') : '';
             $metaAuthor = '';
 
             if (!empty($item->author->name)) {
@@ -564,7 +548,7 @@ class K2ViewItem extends K2View
                 $metaAuthor = $itemMetaData['author'];
             }
 
-            if ($menuItemMatchesK2Item && K2_JVERSION != '15') {
+            if ($menuItemMatch && K2_JVERSION != '15') {
                 if ($params->get('robots')) {
                     $metaRobots = $params->get('robots');
                 }
@@ -620,10 +604,10 @@ class K2ViewItem extends K2View
                     if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.$basenameWithNoTimestamp)) {
                         $image = JURI::root().'media/k2/items/cache/'.$basename;
                         $document->setMetaData('twitter:image', $image);
+                        $document->setMetaData('twitter:image:alt', (!empty($item->image_caption)) ? filter_var($item->image_caption, FILTER_SANITIZE_STRING) : filter_var($item->title, FILTER_SANITIZE_STRING));
                         if (!$params->get('facebookMetatags')) {
                             $document->setMetaData('image', $image); // Generic meta (if not already set in Facebook meta tags)
                         }
-                        $document->setMetaData('twitter:image:alt', (!empty($item->image_caption)) ? filter_var($item->image_caption, FILTER_SANITIZE_STRING) : filter_var($item->title, FILTER_SANITIZE_STRING));
                     }
                 }
             }
@@ -761,5 +745,46 @@ class K2ViewItem extends K2View
     private function filterHTML($str)
     {
         return htmlspecialchars(trim($str), ENT_QUOTES, 'utf-8');
+    }
+
+    private function setCanonicalUrl($url)
+    {
+        $document = JFactory::getDocument();
+        $params = K2HelperUtilities::getParams('com_k2');
+        $canonicalURL = $params->get('canonicalURL', 'relative');
+        if ($canonicalURL == 'absolute') {
+            $url = substr(str_replace(JUri::root(true), '', JUri::root(false)), 0, -1).$url;
+        }
+        $document->addHeadLink($url, 'canonical', 'rel');
+    }
+
+    private function menuItemMatchesK2Entity($view, $task, $identifier)
+    {
+        $app = JFactory::getApplication();
+
+        // Menu
+        $menu = $app->getMenu();
+        $menuActive = $menu->getActive();
+
+        // Match
+        $matched = false;
+
+        if (isset($task)) {
+            if ($task == 'tag') {
+                if (is_object($menuActive) && isset($menuActive->query['view']) && $menuActive->query['view'] == $view && isset($menuActive->query['task']) && $menuActive->query['task'] == $task && isset($menuActive->query['tag']) && $menuActive->query['tag'] == $identifier) {
+                    $matched = true;
+                }
+            } else {
+                if (is_object($menuActive) && isset($menuActive->query['view']) && $menuActive->query['view'] == $view && isset($menuActive->query['task']) && $menuActive->query['task'] == $task && isset($menuActive->query['id']) && $menuActive->query['id'] == $identifier) {
+                    $matched = true;
+                }
+            }
+        } else {
+            if (is_object($menuActive) && isset($menuActive->query['view']) && $menuActive->query['view'] == $view && isset($menuActive->query['id']) && $menuActive->query['id'] == $identifier) {
+                $matched = true;
+            }
+        }
+
+        return $matched;
     }
 }

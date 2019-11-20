@@ -744,10 +744,6 @@ class K2ViewItemlist extends K2View
 
         // Head Stuff
         if (!in_array($document->getType(), ['feed', 'json', 'raw'])) {
-
-            //var_dump($params->get('page_title'));
-            //var_dump($menuActive);
-
             $menuItemMatch = false;
             $metaTitle = '';
 
