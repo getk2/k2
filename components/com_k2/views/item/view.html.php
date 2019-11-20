@@ -481,16 +481,16 @@ class K2ViewItem extends K2View
                 } elseif ($app->getCfg('sitename_pagetitles', 0) == 2) {
                     $params->set('page_title', JText::sprintf('JPAGETITLE', $params->get('page_title'), $app->getCfg('sitename')));
                 }
-            }
 
-            if ($menuItemMatchesK2Item && K2_JVERSION != '15') {
-                // Override page title with page heading (if set)
-                if ($params->get('page_heading')) {
-                    $params->set('page_title', $params->get('page_heading'));
+                // Override item title with page heading (if set)
+                if ($menuItemMatchesK2Item) {
+                    if ($params->get('page_heading')) {
+                        $item->title = $params->get('page_heading');
+                    }
+
+                    // B/C assignment so Joomla 2.5+ uses the 'show_page_title' parameter as Joomla 1.5 does
+                    $params->set('show_page_title', $params->get('show_page_heading'));
                 }
-
-                // B/C assignment so Joomla 2.5+ uses 'show_page_title' like Joomla 1.5
-                $params->set('show_page_title', $params->get('show_page_heading'));
             }
 
             $metaTitle = $params->get('page_title');
@@ -645,7 +645,7 @@ class K2ViewItem extends K2View
                 $itemSD_Modified = ((int) $item->modified) ? $item->modified : $item->created;
 
                 $itemSD_Images = '';
-                if(!empty($item->image)) {
+                if (!empty($item->image)) {
                     $itemSD_Images = '
                     "image": [
                         "'.$this->absUrl($item->imageXLarge).'",
