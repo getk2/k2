@@ -276,7 +276,6 @@ class K2ViewItemlist extends K2View
                     // --- JSON Output [finish] ---
 
                     break;
-
                 case 'tag':
                     // Prevent spammers from using the tag view
                     $tag = JRequest::getString('tag');
@@ -320,7 +319,6 @@ class K2ViewItemlist extends K2View
                     // --- JSON Output [finish] ---
 
                     break;
-
                 case 'user':
                     // Get user
                     $id = JRequest::getInt('id');
@@ -392,7 +390,6 @@ class K2ViewItemlist extends K2View
                     // --- JSON Output [finish] ---
 
                     break;
-
                 case 'date':
                     // Set layout
                     $this->setLayout('generic');
@@ -440,7 +437,6 @@ class K2ViewItemlist extends K2View
                     // --- JSON Output [finish] ---
 
                     break;
-
                 case 'search':
                     // Set layout
                     $this->setLayout('generic');
@@ -465,7 +461,6 @@ class K2ViewItemlist extends K2View
                     // --- JSON Output [finish] ---
 
                     break;
-
                 default:
                     $this->assignRef('user', $user);
 
@@ -754,6 +749,7 @@ class K2ViewItemlist extends K2View
             //var_dump($menuActive);
 
             $menuItemMatch = false;
+            $metaTitle = '';
 
             switch ($task) {
                 case 'category':
@@ -794,7 +790,7 @@ class K2ViewItemlist extends K2View
                     $document->setTitle($metaTitle);
 
                     // Set meta description
-                    $metaDesc = '';
+                    $metaDesc = $document->getMetadata('description');
 
                     if ($category->metaDescription) {
                         $metaDesc = filter_var($category->metaDescription, FILTER_SANITIZE_STRING);
@@ -813,7 +809,7 @@ class K2ViewItemlist extends K2View
                     $document->setDescription(K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150)));
 
                     // Set meta keywords
-                    $metaKeywords = '';
+                    $metaKeywords = $document->getMetadata('keywords');
 
                     if ($category->metaKeywords) {
                         $metaKeywords = $category->metaKeywords;
@@ -829,7 +825,7 @@ class K2ViewItemlist extends K2View
                     $document->setMetadata('keywords', $metaKeywords);
 
                     // Set meta robots & author
-                    $metaRobots = '';
+                    $metaRobots = (K2_JVERSION != '15') ? $document->getMetadata('robots') : '';
                     $metaAuthor = '';
 
                     if (!empty($category->metaRobots)) {
@@ -927,7 +923,7 @@ class K2ViewItemlist extends K2View
                     $document->setTitle($metaTitle);
 
                     // Set meta description
-                    $metaDesc = '';
+                    $metaDesc = $document->getMetadata('description');
 
                     if ($menuItemMatch && K2_JVERSION != '15') {
                         if ($params->get('menu-meta_description')) {
@@ -939,7 +935,7 @@ class K2ViewItemlist extends K2View
                     $document->setDescription(K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150)));
 
                     // Set meta keywords
-                    $metaKeywords = '';
+                    $metaKeywords = $document->getMetadata('keywords');
 
                     if ($menuItemMatch && K2_JVERSION != '15') {
                         if ($params->get('menu-meta_keywords')) {
@@ -951,7 +947,7 @@ class K2ViewItemlist extends K2View
                     $document->setMetadata('keywords', $metaKeywords);
 
                     // Set meta robots
-                    $metaRobots = '';
+                    $metaRobots = (K2_JVERSION != '15') ? $document->getMetadata('robots') : '';
 
                     if ($menuItemMatch && K2_JVERSION != '15') {
                         if ($params->get('robots')) {
@@ -1018,7 +1014,7 @@ class K2ViewItemlist extends K2View
                     $document->setTitle($metaTitle);
 
                     // Set meta description
-                    $metaDesc = '';
+                    $metaDesc = $document->getMetadata('description');
 
                     if (!empty($userObject->profile->description)) {
                         $metaDesc = filter_var($userObject->profile->description, FILTER_SANITIZE_STRING);
@@ -1034,7 +1030,7 @@ class K2ViewItemlist extends K2View
                     $document->setDescription(K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150)));
 
                     // Set meta keywords
-                    $metaKeywords = '';
+                    $metaKeywords = $document->getMetadata('keywords');
 
                     if ($menuItemMatch && K2_JVERSION != '15') {
                         if ($params->get('menu-meta_keywords')) {
@@ -1046,7 +1042,7 @@ class K2ViewItemlist extends K2View
                     $document->setMetadata('keywords', $metaKeywords);
 
                     // Set meta robots & author
-                    $metaRobots = '';
+                    $metaRobots = (K2_JVERSION != '15') ? $document->getMetadata('robots') : '';
                     $metaAuthor = '';
 
                     if (!empty($userObject->name)) {
@@ -1109,10 +1105,104 @@ class K2ViewItemlist extends K2View
                 case 'date':
                     // Set canonical link
                     $this->setCanonicalUrl($currentAbsoluteUrl);
+
+                    // Set <title>
+                    $params->set('page_title', $title);
+
+                    if (K2_JVERSION != '15') {
+                        // Prepend/append site name
+                        if ($app->getCfg('sitename_pagetitles', 0) == 1) {
+                            $params->set('page_title', JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $params->get('page_title')));
+                        } elseif ($app->getCfg('sitename_pagetitles', 0) == 2) {
+                            $params->set('page_title', JText::sprintf('JPAGETITLE', $params->get('page_title'), $app->getCfg('sitename')));
+                        }
+                    }
+
+                    $metaTitle = trim($params->get('page_title'));
+                    $document->setTitle($metaTitle);
+
+                    // Set meta description
+                    $metaDesc = ($document->getMetadata('description')) ? $document->getMetadata('description') : JText::_('K2_ITEMS_FILTERED_BY_DATE').' '.$metaTitle;
+                    $metaDesc = trim($metaDesc);
+                    $document->setDescription(K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150)));
+
+                    // Set meta keywords
+                    $metaKeywords = trim($document->getMetadata('keywords'));
+                    $document->setMetadata('keywords', $metaKeywords);
+
+                    // Set meta robots
+                    $metaRobots = (K2_JVERSION != '15') ? $document->getMetadata('robots') : '';
+                    $document->setMetadata('robots', $metaRobots);
+
+                    // Set Facebook meta tags
+                    if ($params->get('facebookMetatags', 1)) {
+                        $document->setMetaData('og:url', $currentAbsoluteUrl);
+                        $document->setMetaData('og:type', 'website');
+                        $document->setMetaData('og:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                        $document->setMetaData('og:description', K2HelperUtilities::characterLimit($metaDesc, 300)); // 300 chars limit for Facebook post sharing
+                    }
+
+                    // Set Twitter meta tags
+                    if ($params->get('twitterMetatags', 1)) {
+                        $document->setMetaData('twitter:card', 'summary');
+                        if ($params->get('twitterUsername')) {
+                            $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
+                        }
+                        $document->setMetaData('twitter:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                        $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($metaDesc, 200)); // 200 chars limit for Twitter post sharing
+                    }
+
                     break;
                 case 'search':
                     // Set canonical link
                     $this->setCanonicalUrl($currentAbsoluteUrl);
+
+                    // Set <title>
+                    $params->set('page_title', $title);
+
+                    if (K2_JVERSION != '15') {
+                        // Prepend/append site name
+                        if ($app->getCfg('sitename_pagetitles', 0) == 1) {
+                            $params->set('page_title', JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $params->get('page_title')));
+                        } elseif ($app->getCfg('sitename_pagetitles', 0) == 2) {
+                            $params->set('page_title', JText::sprintf('JPAGETITLE', $params->get('page_title'), $app->getCfg('sitename')));
+                        }
+                    }
+
+                    $metaTitle = trim($params->get('page_title'));
+                    $document->setTitle($metaTitle);
+
+                    // Set meta description
+                    $metaDesc = ($document->getMetadata('description')) ? $document->getMetadata('description') : JText::_('K2_SEARCH_RESULTS_FOR').' '.$metaTitle;
+                    $metaDesc = trim($metaDesc);
+                    $document->setDescription(K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150)));
+
+                    // Set meta keywords
+                    $metaKeywords = trim($document->getMetadata('keywords'));
+                    $document->setMetadata('keywords', $metaKeywords);
+
+                    // Set meta robots
+                    $metaRobots = (K2_JVERSION != '15') ? $document->getMetadata('robots') : '';
+                    $document->setMetadata('robots', $metaRobots);
+
+                    // Set Facebook meta tags
+                    if ($params->get('facebookMetatags', 1)) {
+                        $document->setMetaData('og:url', $currentAbsoluteUrl);
+                        $document->setMetaData('og:type', 'website');
+                        $document->setMetaData('og:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                        $document->setMetaData('og:description', K2HelperUtilities::characterLimit($metaDesc, 300)); // 300 chars limit for Facebook post sharing
+                    }
+
+                    // Set Twitter meta tags
+                    if ($params->get('twitterMetatags', 1)) {
+                        $document->setMetaData('twitter:card', 'summary');
+                        if ($params->get('twitterUsername')) {
+                            $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
+                        }
+                        $document->setMetaData('twitter:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                        $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($metaDesc, 200)); // 200 chars limit for Twitter post sharing
+                    }
+
                     break;
                 default:
                     // Set canonical link
@@ -1126,19 +1216,22 @@ class K2ViewItemlist extends K2View
             }
 
             if (!is_null($menuActive) && isset($menuActive->id)) {
-                $link .= '&Itemid='.$menuActive->id.'&format=feed&limitstart=';
+                $link .= '&format=feed&Itemid='.$menuActive->id;
             } else {
-                $link .= '&format=feed&limitstart=';
+                $link .= '&format=feed';
             }
 
             if ($addHeadFeedLink) {
+                if ($metaTitle) {
+                    $metaTitle = $metaTitle.' | ';
+                }
                 $document->addHeadLink(JRoute::_($link.'&type=rss'), 'alternate', 'rel', array(
                     'type' => 'application/rss+xml',
-                    'title' => 'RSS 2.0'
+                    'title' => $metaTitle.'RSS 2.0'
                 ));
                 $document->addHeadLink(JRoute::_($link.'&type=atom'), 'alternate', 'rel', array(
                     'type' => 'application/atom+xml',
-                    'title' => 'Atom 1.0'
+                    'title' => $metaTitle.'Atom 1.0'
                 ));
             }
 
