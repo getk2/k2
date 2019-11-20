@@ -364,6 +364,10 @@ class K2ViewItemlist extends K2View
                     // Set title
                     $title = $userObject->name;
 
+                    // Link
+                    $link = K2HelperRoute::getUserRoute($id);
+                    $this->assignRef('link', $link);
+
                     // Set head feed link
                     $addHeadFeedLink = $params->get('userFeedLink', 1);
 
@@ -977,8 +981,130 @@ class K2ViewItemlist extends K2View
 
                     break;
                 case 'user':
+                    $menuItemMatch = $this->menuItemMatchesK2Entity('itemlist', 'user', $userObject->name);
+
                     // Set canonical link
-                    $this->setCanonicalUrl($this->user->link);
+                    $this->setCanonicalUrl($link);
+
+                    // Set <title>
+                    if ($menuItemMatch) {
+                        if (empty($params->get('page_title'))) {
+                            $params->set('page_title', $userObject->name);
+                        }
+                    } else {
+                        $params->set('page_title', $userObject->name);
+                    }
+
+                    if (K2_JVERSION != '15') {
+                        // Prepend/append site name
+                        if ($app->getCfg('sitename_pagetitles', 0) == 1) {
+                            $params->set('page_title', JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $params->get('page_title')));
+                        } elseif ($app->getCfg('sitename_pagetitles', 0) == 2) {
+                            $params->set('page_title', JText::sprintf('JPAGETITLE', $params->get('page_title'), $app->getCfg('sitename')));
+                        }
+
+                        // Override item title with page heading (if set)
+                        if ($menuItemMatch) {
+                            if ($params->get('page_heading')) {
+                                $userObject->name = $params->get('page_heading');
+                            }
+
+                            // B/C assignment so Joomla 2.5+ uses the 'show_page_title' parameter as Joomla 1.5 does
+                            $params->set('show_page_title', $params->get('show_page_heading'));
+                        }
+                    }
+
+                    $metaTitle = trim($params->get('page_title'));
+                    $document->setTitle($metaTitle);
+
+                    // Set meta description
+                    $metaDesc = '';
+
+                    if (!empty($userObject->profile->description)) {
+                        $metaDesc = filter_var($userObject->profile->description, FILTER_SANITIZE_STRING);
+                    }
+
+                    if ($menuItemMatch && K2_JVERSION != '15') {
+                        if ($params->get('menu-meta_description')) {
+                            $metaDesc = $params->get('menu-meta_description');
+                        }
+                    }
+
+                    $metaDesc = trim($metaDesc);
+                    $document->setDescription(K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150)));
+
+                    // Set meta keywords
+                    $metaKeywords = '';
+
+                    if ($menuItemMatch && K2_JVERSION != '15') {
+                        if ($params->get('menu-meta_keywords')) {
+                            $metaKeywords = $params->get('menu-meta_keywords');
+                        }
+                    }
+
+                    $metaKeywords = trim($metaKeywords);
+                    $document->setMetadata('keywords', $metaKeywords);
+
+                    // Set meta robots & author
+                    $metaRobots = '';
+                    $metaAuthor = '';
+
+                    if (!empty($userObject->name)) {
+                        $metaAuthor = filter_var($userObject->name, FILTER_SANITIZE_STRING); // additional filtering (just in case)
+                    }
+
+                    if ($menuItemMatch && K2_JVERSION != '15') {
+                        if ($params->get('robots')) {
+                            $metaRobots = $params->get('robots');
+                        }
+                    }
+
+                    $document->setMetadata('robots', $metaRobots);
+
+                    $metaAuthor = trim($metaAuthor);
+                    if ($app->getCfg('MetaAuthor') == '1' && $metaAuthor) {
+                        $document->setMetadata('author', $metaAuthor);
+                    }
+
+                    // Common for Facebook & Twitter meta tags
+                    $metaImage = '';
+                    if (!empty($userObject->avatar) && strpos($userObject->avatar, 'placeholder/user.png') === false) {
+                        if (strpos($userObject->avatar, 'http://') !== false || strpos($userObject->avatar, 'https://') !== false) {
+                            $metaImage = $userObject->avatar;
+                        } else {
+                            $metaImage = substr(JURI::root(), 0, -1).str_replace(JURI::root(true), '', $userObject->avatar);
+                        }
+                    }
+
+                    // Set Facebook meta tags
+                    if ($params->get('facebookMetatags', 1)) {
+                        $document->setMetaData('og:url', $link);
+                        $document->setMetaData('og:type', 'website');
+                        $document->setMetaData('og:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                        $document->setMetaData('og:description', K2HelperUtilities::characterLimit($metaDesc, 300)); // 300 chars limit for Facebook post sharing
+                        if ($metaImage) {
+                            $document->setMetaData('og:image', $metaImage);
+                            $document->setMetaData('image', $metaImage); // Generic meta
+                        }
+                    }
+
+                    // Set Twitter meta tags
+                    if ($params->get('twitterMetatags', 1)) {
+                        $document->setMetaData('twitter:card', 'summary');
+                        if ($params->get('twitterUsername')) {
+                            $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
+                        }
+                        $document->setMetaData('twitter:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                        $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($metaDesc, 200)); // 200 chars limit for Twitter post sharing
+                        if ($metaImage) {
+                            $document->setMetaData('twitter:image', $metaImage);
+                            $document->setMetaData('twitter:image:alt', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                            if (!$params->get('facebookMetatags')) {
+                                $document->setMetaData('image', $metaImage); // Generic meta (if not already set in Facebook meta tags)
+                            }
+                        }
+                    }
+
                     break;
                 case 'date':
                     // Set canonical link
