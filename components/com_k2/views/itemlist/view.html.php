@@ -1203,6 +1203,75 @@ class K2ViewItemlist extends K2View
                 default:
                     // Set canonical link
                     $this->setCanonicalUrl($currentAbsoluteUrl);
+
+                    // Set <title>
+                    if (K2_JVERSION != '15') {
+                        // Prepend/append site name
+                        if ($app->getCfg('sitename_pagetitles', 0) == 1) {
+                            $params->set('page_title', JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $params->get('page_title')));
+                        } elseif ($app->getCfg('sitename_pagetitles', 0) == 2) {
+                            $params->set('page_title', JText::sprintf('JPAGETITLE', $params->get('page_title'), $app->getCfg('sitename')));
+                        }
+
+                        // B/C assignment so Joomla 2.5+ uses the 'show_page_title' parameter as Joomla 1.5 does
+                        $params->set('show_page_title', $params->get('show_page_heading'));
+                    }
+
+                    $metaTitle = trim($params->get('page_title'));
+                    $document->setTitle($metaTitle);
+
+                    // Set meta description
+                    $metaDesc = $document->getMetadata('description');
+
+                    if (K2_JVERSION != '15') {
+                        if ($params->get('menu-meta_description')) {
+                            $metaDesc = $params->get('menu-meta_description');
+                        }
+                    }
+
+                    $metaDesc = trim($metaDesc);
+                    $document->setDescription(K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150)));
+
+                    // Set meta keywords
+                    $metaKeywords = $document->getMetadata('keywords');
+
+                    if (K2_JVERSION != '15') {
+                        if ($params->get('menu-meta_keywords')) {
+                            $metaKeywords = $params->get('menu-meta_keywords');
+                        }
+                    }
+
+                    $metaKeywords = trim($metaKeywords);
+                    $document->setMetadata('keywords', $metaKeywords);
+
+                    // Set meta robots
+                    $metaRobots = (K2_JVERSION != '15') ? $document->getMetadata('robots') : '';
+
+                    if (K2_JVERSION != '15') {
+                        if ($params->get('robots')) {
+                            $metaRobots = $params->get('robots');
+                        }
+                    }
+
+                    $document->setMetadata('robots', $metaRobots);
+
+                    // Set Facebook meta tags
+                    if ($params->get('facebookMetatags', 1)) {
+                        $document->setMetaData('og:url', $currentAbsoluteUrl);
+                        $document->setMetaData('og:type', 'website');
+                        $document->setMetaData('og:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                        $document->setMetaData('og:description', K2HelperUtilities::characterLimit($metaDesc, 300)); // 300 chars limit for Facebook post sharing
+                    }
+
+                    // Set Twitter meta tags
+                    if ($params->get('twitterMetatags', 1)) {
+                        $document->setMetaData('twitter:card', 'summary');
+                        if ($params->get('twitterUsername')) {
+                            $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
+                        }
+                        $document->setMetaData('twitter:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                        $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($metaDesc, 200)); // 200 chars limit for Twitter post sharing
+                    }
                     break;
             }
 
