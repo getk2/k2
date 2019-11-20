@@ -46,6 +46,10 @@ class K2ViewItem extends K2View
         $menuDefault = $menu->getDefault();
         $menuActive = $menu->getActive();
 
+        // Important URLs
+        $currentAbsoluteUrl = JUri::getInstance()->toString();
+        $currentRelativeUrl = JUri::root(true).str_replace(substr(JUri::root(), 0, -1), '', $currentAbsoluteUrl);
+
         // Check if item exists
         if (!is_object($item) || !$item->id) {
             JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
