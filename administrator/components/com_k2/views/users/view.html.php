@@ -28,6 +28,8 @@ class K2ViewUsers extends K2View
         $view = JRequest::getCmd('view');
         $task = JRequest::getCmd('task');
 
+        $context = JRequest::getCmd('context');
+
         $limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'), 'int');
         $limitstart = $app->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
         $filter_order = $app->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'juser.name', 'cmd');
@@ -72,7 +74,7 @@ class K2ViewUsers extends K2View
                 } else {
                     $users[$i]->blockStatus .= '<a title="'.JText::_('K2_DISABLE').'" onclick="return listItemTask(\'cb'.$i.',\'disable\')" href="#"><img alt="'.JText::_('K2_DISABLED').'" src="images/tick.png"></a>';
                 }
-                if ($task == 'element') {
+                if ($context == 'modalselector') {
                     $users[$i]->blockStatus = strip_tags($users[$i]->blockStatus, '<img>');
                 }
             } else {
@@ -81,7 +83,7 @@ class K2ViewUsers extends K2View
                 $states = array(
                 0 => array('disable', 'K2_ENABLED', 'K2_DISABLE', 'K2_ENABLED', false, 'publish', 'publish'),
                 1 => array('enable', 'K2_DISABLED', 'K2_ENABLE', 'K2_DISABLED', false, 'unpublish', 'unpublish'));
-                $users[$i]->blockStatus = JHtml::_('jgrid.state', $states, $users[$i]->block, $i, '', $task != 'element');
+                $users[$i]->blockStatus = JHtml::_('jgrid.state', $states, $users[$i]->block, $i, '', $context != 'modalselector');
             }
         }
 

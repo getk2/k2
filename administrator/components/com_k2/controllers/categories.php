@@ -121,13 +121,6 @@ class K2ControllerCategories extends K2Controller
         $app->redirect('index.php?option=com_k2&view=category&cid='.$cid[0]);
     }
 
-    function element()
-    {
-        JRequest::setVar('view', 'categories');
-        JRequest::setVar('layout', 'element');
-        parent::display();
-    }
-
     function move()
     {
         $view = $this->getView('categories', 'html');

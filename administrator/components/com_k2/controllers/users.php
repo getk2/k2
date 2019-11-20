@@ -34,13 +34,6 @@ class K2ControllerUsers extends K2Controller
         $model->remove();
     }
 
-    public function element()
-    {
-        JRequest::setVar('view', 'users');
-        JRequest::setVar('layout', 'element');
-        parent::display();
-    }
-
     public function enable()
     {
         JRequest::checkToken() or jexit('Invalid Token');

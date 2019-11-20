@@ -55,13 +55,6 @@ class K2ControllerTags extends K2Controller
 		$app->redirect('index.php?option=com_k2&view=tag&cid='.$cid[0]);
 	}
 
-	function element()
-	{
-		JRequest::setVar('view', 'tags');
-		JRequest::setVar('layout', 'element');
-		parent::display();
-	}
-
 	function removeOrphans()
 	{
 		JRequest::checkToken() or jexit('Invalid Token');

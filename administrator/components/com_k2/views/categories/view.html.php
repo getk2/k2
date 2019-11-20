@@ -25,6 +25,8 @@ class K2ViewCategories extends K2View
 
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
+        
+        $context = JRequest::getCmd('context');
 
         $limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'), 'int');
         $limitstart = $app->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
@@ -76,7 +78,7 @@ class K2ViewCategories extends K2View
         }
 
         for ($i = 0; $i < count($categories); $i++) {
-            $categories[$i]->status = K2_JVERSION == '15' ? JHTML::_('grid.published', $categories[$i], $i) : JHtml::_('jgrid.published', $categories[$i]->published, $i, '', $filter_trash == 0 && $task != 'element');
+            $categories[$i]->status = (K2_JVERSION == '15') ? JHTML::_('grid.published', $categories[$i], $i) : JHtml::_('jgrid.published', $categories[$i]->published, $i, '', $filter_trash == 0 && $context != 'modalselector');
             if ($params->get('showItemsCounterAdmin')) {
                 $categories[$i]->numOfItems = $categoryModel->countCategoryItems($categories[$i]->id);
                 $categories[$i]->numOfTrashedItems = $categoryModel->countCategoryItems($categories[$i]->id, 1);

@@ -165,13 +165,6 @@ class K2ControllerItems extends K2Controller
 		$model->copy();
 	}
 
-	function element()
-	{
-		JRequest::setVar('view', 'items');
-		JRequest::setVar('layout', 'element');
-		parent::display();
-	}
-
 	function import()
 	{
 		$model = $this->getModel('items');

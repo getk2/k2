@@ -28,7 +28,7 @@ if (K2_JVERSION == '15') {
             $view=='extrafieldsgroup' ||
             $view=='extrafieldsgroups' ||
             $view=='user' ||
-            ($view=='users' && $context != 'modal') ||
+            ($view=='users' && $context != 'modalselector') ||
             $view=='usergroup' ||
             $view=='usergroups'
         )
@@ -54,7 +54,7 @@ if (K2_JVERSION == '15') {
             $view=='extrafieldsgroup' ||
             $view=='extrafieldsgroups' ||
             $view=='user' ||
-            ($view=='users' && $context != 'modal') ||
+            ($view=='users' && $context != 'modalselector') ||
             $view=='usergroup' ||
             $view=='usergroups'
         )

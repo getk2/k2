@@ -24,6 +24,8 @@ class K2ViewTags extends K2View
         $view = JRequest::getCmd('view');
         $task = JRequest::getCmd('task');
 
+        $context = JRequest::getCmd('context');
+
         $params = JComponentHelper::getParams('com_k2');
         $this->assignRef('params', $params);
 
@@ -46,7 +48,7 @@ class K2ViewTags extends K2View
         }
 
         foreach ($tags as $key => $tag) {
-            $tag->status = K2_JVERSION == '15' ? JHTML::_('grid.published', $tag, $key) : JHtml::_('jgrid.published', $tag->published, $key, '', $task != 'element');
+            $tag->status = (K2_JVERSION == '15') ? JHTML::_('grid.published', $tag, $key) : JHtml::_('jgrid.published', $tag->published, $key, '', $context != 'modalselector');
         }
         $this->assignRef('rows', $tags);
 
