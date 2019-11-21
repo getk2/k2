@@ -851,7 +851,7 @@ class K2ModelItem extends K2Model
         }
         $attachment->load($id);
 
-        // Frontend editing: Ensure the user has access to the item
+        // Frontend Editing: Ensure the user has access to the item
         if ($app->isSite()) {
             $item = JTable::getInstance('K2Item', 'Table');
             $item->load($attachment->itemID);

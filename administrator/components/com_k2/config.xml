@@ -202,7 +202,7 @@
     </params>
     <params group="K2_CONTENT" addpath="/administrator/components/com_k2/elements">
         <!-- ######################### RSS Feed Settings ######################### -->
-        <param menu="hide" name="" type="header" default="K2_RSS_FEEDS" label="" description="" />
+        <param menu="hide" name="" type="header" default="K2_FEEDS" label="" description="" />
         <param menu="hide" name="feedLimit" type="text" size="3" default="10" label="K2_FEED_LIMIT" description="" />
         <param menu="hide" name="feedItemImage" type="radio" default="1" label="K2_ITEM_IMAGE" description="">
             <option value="0">K2_HIDE</option>
@@ -562,7 +562,7 @@
             <option value="1">K2_YES</option>
         </param>
         <param menu="hide" name="stopForumSpamApiKey" type="text" default="" label="K2_STOP_FORUM_SPAM_API_KEY" description="K2_STOP_FORUM_SPAM_API_KEY_DESCRIPTION" />
-        <param menu="hide" name="profilePageDisplay" type="radio" default="0" label="K2_USER_PROFILES_FOR_USERS_WITH_NO_ITEMS" description="K2_USER_PROFILES_FOR_USERS_WITH_NO_ITEMS_DESCRIPTION">
+        <param menu="hide" name="profilePageDisplay" type="list" default="0" label="K2_USER_PROFILES_FOR_USERS_WITH_NO_ITEMS" description="K2_USER_PROFILES_FOR_USERS_WITH_NO_ITEMS_DESCRIPTION">
             <option value="0">K2_DISABLED</option>
             <option value="1">K2_ENABLED</option>
             <option value="2">K2_ENABLED_FOR_REGISTERED_USERS_ONLY</option>
@@ -784,7 +784,7 @@
     </fieldset>
     <fieldset name="COM_K2_CONTENT_OPTIONS" label="K2_CONTENT" addfieldpath="/administrator/components/com_k2/elements">
         <!-- ######################### RSS Feed Settings ######################### -->
-        <field menu="hide" name="" type="header" default="K2_RSS_FEEDS" label="" description="" />
+        <field menu="hide" name="" type="header" default="K2_FEEDS" label="" description="" />
         <field menu="hide" name="feedLimit" type="text" size="3" default="10" label="K2_FEED_LIMIT" description="" />
         <field menu="hide" name="feedItemImage" type="radio" default="1" label="K2_ITEM_IMAGE" description="">
             <option value="0">K2_HIDE</option>
