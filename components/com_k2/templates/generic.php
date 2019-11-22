@@ -30,10 +30,10 @@ defined('_JEXEC') or die;
     <?php endif; ?>
 
     <?php if (JRequest::getCmd('task') == 'search'): ?>
-    <form action="<?php echo $this->action; ?>" method="get" autocomplete="off" class="genericSearchForm">
-        <input type="text" value="<?php echo JText::_('K2_SEARCH'); ?>" name="searchword" class="k2-input" onblur="if (this.value=='') this.value='<?php echo JText::_('K2_SEARCH'); ?>';" onfocus="if (this.value=='<?php echo JText::_('K2_SEARCH'); ?>') this.value='';" />
+    <form action="<?php echo $this->form->action; ?>" method="get" autocomplete="off" class="genericSearchForm">
+        <input type="text" value="<?php echo $this->form->input; ?>" name="searchword" class="k2-input" onblur="if (this.value=='') this.value='<?php echo JText::_('K2_SEARCH'); ?>';" onfocus="if (this.value=='<?php echo JText::_('K2_SEARCH'); ?>') this.value='';" />
         <input type="submit" value="<?php echo JText::_('K2_SEARCH'); ?>" class="k2-submit" onclick="this.form.searchword.focus();" />
-        <?php echo $this->formAttributes; /* outputs hidden fields for form processing - do not delete */ ?>
+        <?php echo $this->form->attributes; /* outputs hidden fields for form processing - do not delete */ ?>
     </form>
     <?php endif; ?>
 

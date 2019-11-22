@@ -448,25 +448,25 @@ class K2ViewItemlist extends K2View
                     $title = filter_var(JRequest::getVar('searchword'), FILTER_SANITIZE_STRING);
                     $this->assignRef('title', $title);
 
-                    // Set search form action
-                    $action = JRoute::_(K2HelperRoute::getSearchRoute());
-                    $this->assignRef('action', $action);
-
-                    // Set search form hidden attributes
-                    $formAttributes = '';
+                    // Set search form data
+                    $form = new stdClass;
+                    $form->action = JRoute::_(K2HelperRoute::getSearchRoute());
+                    $form->input = ($title) ? $title : JText::_('K2_SEARCH');
+                    $form->attributes = '';
                     if (!$app->getCfg('sef')) {
-                        $formAttributes .= '
+                        $form->attributes .= '
                             <input type="hidden" name="option" value="com_k2" />
                             <input type="hidden" name="view" value="itemlist" />
                             <input type="hidden" name="task" value="search" />
                         ';
                     }
                     if ($params->get('searchMenuItemId', '')) {
-                        $formAttributes .= '
+                        $form->attributes .= '
                             <input type="hidden" name="Itemid" value="'.$params->get('searchMenuItemId', '').'" />
                         ';
                     }
-                    $this->assignRef('formAttributes', $formAttributes);
+
+                    $this->assignRef('form', $form);
 
                     // Set head feed link
                     $addHeadFeedLink = $params->get('genericFeedLink', 1);
