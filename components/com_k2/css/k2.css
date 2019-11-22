@@ -676,7 +676,7 @@ div.userItemReadMore {display:inline;}
 div.genericView {}
     div.genericView h1 {}
 
-    form.genericSearchForm {display:grid;grid-template-columns:4fr 1fr;grid-gap:16px;padding:16px 0;}
+    form.genericSearchForm {display:grid;grid-template-columns:4fr 1fr;grid-gap:16px;padding:16px 0 32px 0;}
         form.genericSearchForm input.k2-input {display:inline-block;width:auto;font-size:14px;line-height:100%;height:auto;padding:16px 8px;margin:0;border-radius:4px;border:1px solid #ccc;box-shadow:none;background:#fff;}
         form.genericSearchForm input.k2-submit {display:inline-block;width:auto;font-size:14px;line-height:100%;height:auto;padding:16px 8px;margin:0;border-radius:4px;border:1px solid #ccc;box-shadow:none;background:#eee;}
         form.genericSearchForm input.k2-submit:hover {background:#ddd;}

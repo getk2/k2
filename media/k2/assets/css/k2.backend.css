@@ -195,9 +195,8 @@ div.k2SubTable .k2SubTableValue input[type="radio"] {margin:2px 8px 0 0!importan
 @media screen and (min-width:1000px) {
     div.k2Table .k2TableValue {margin-left:120px;vertical-align:top;}
     div.k2Table .k2TableLabel {position:absolute;width:100px;vertical-align:top;text-align:right;}
-    div.k2SubTable .k2SubTableValue {display:inline-block;vertical-align:top;}
+    div.k2SubTable .k2SubTableValue {display:inline-block;vertical-align:top;min-width:210px;}
     div.k2SubTable .k2SubTableLabel {margin:0 0 0 20px;padding:9px 8px 0;}
-    div.k2SubTable .k2SubTableValue {width:210px;}
     .k2ViewIsCategory div.k2SubTable .k2SubTableLabel {width:150px;}
     .k2ViewIsItem div.k2SubTable .k2SubTableLabel {width:90px;}
 }

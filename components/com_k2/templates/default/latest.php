@@ -13,8 +13,8 @@ defined('_JEXEC') or die;
 ?>
 
 <!-- Start K2 Latest Layout -->
-<div id="k2Container" class="latestView<?php if($this->params->get('pageclass_sfx')) echo ' '.$this->params->get('pageclass_sfx'); ?>">
-    <?php if($this->params->get('show_page_title')): ?>
+<div id="k2Container" class="latestView<?php if ($this->params->get('pageclass_sfx')) echo ' '.$this->params->get('pageclass_sfx'); ?>">
+    <?php if ($this->params->get('show_page_title')): ?>
     <!-- Page title -->
     <div class="componentheading<?php echo $this->params->get('pageclass_sfx')?>">
         <?php echo $this->escape($this->params->get('page_title')); ?>
@@ -23,12 +23,12 @@ defined('_JEXEC') or die;
 
     <?php foreach($this->blocks as $key=>$block): ?>
     <div class="latestItemsContainer" style="width:<?php echo number_format(100/$this->params->get('latestItemsCols'), 1); ?>%;">
-        <?php if($this->source=='categories'): $category = $block; ?>
+        <?php if ($this->source=='categories'): $category = $block; ?>
 
-        <?php if($this->params->get('categoryFeed') || $this->params->get('categoryImage') || $this->params->get('categoryTitle') || $this->params->get('categoryDescription')): ?>
+        <?php if ($this->params->get('categoryFeed') || $this->params->get('categoryImage') || $this->params->get('categoryTitle') || $this->params->get('categoryDescription')): ?>
         <!-- Start K2 Category block -->
         <div class="latestItemsCategory">
-            <?php if($this->params->get('categoryFeed')): ?>
+            <?php if ($this->params->get('categoryFeed')): ?>
             <!-- RSS feed icon -->
             <div class="k2FeedIcon">
                 <a href="<?php echo $category->feed; ?>" title="<?php echo JText::_('K2_SUBSCRIBE_TO_THIS_RSS_FEED'); ?>">
@@ -66,7 +66,7 @@ defined('_JEXEC') or die;
         <?php if ($this->params->get('userFeed') || $this->params->get('userImage') || $this->params->get('userName') || $this->params->get('userDescription') || $this->params->get('userURL') || $this->params->get('userEmail')): ?>
         <!-- Start K2 User block -->
         <div class="latestItemsUser">
-            <?php if($this->params->get('userFeed')): ?>
+            <?php if ($this->params->get('userFeed')): ?>
             <!-- RSS feed icon -->
             <div class="k2FeedIcon">
                 <a href="<?php echo $user->feed; ?>" title="<?php echo JText::_('K2_SUBSCRIBE_TO_THIS_RSS_FEED'); ?>">
@@ -117,10 +117,10 @@ defined('_JEXEC') or die;
 
         <!-- Start Items list -->
         <div class="latestItemList">
-            <?php if($this->params->get('latestItemsDisplayEffect')=="first"): ?>
+            <?php if ($this->params->get('latestItemsDisplayEffect')=="first"): ?>
 
             <?php foreach ($block->items as $itemCounter=>$item): K2HelperUtilities::setDefaultImage($item, 'latest', $this->params); ?>
-            <?php if($itemCounter==0): ?>
+            <?php if ($itemCounter==0): ?>
             <?php $this->item=$item; echo $this->loadTemplate('item'); ?>
             <?php else: ?>
             <h2 class="latestItemTitleList">
@@ -144,7 +144,7 @@ defined('_JEXEC') or die;
         <!-- End Item list -->
     </div>
 
-    <?php if(($key+1)%($this->params->get('latestItemsCols'))==0): ?>
+    <?php if (($key+1)%($this->params->get('latestItemsCols'))==0): ?>
     <div class="clr"></div>
     <?php endif; ?>
 

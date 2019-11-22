@@ -139,8 +139,10 @@ class K2ViewItem extends K2View
             JError::raiseError(404, JText::_('K2_ITEM_NOT_FOUND'));
         }
 
-        // Increase hits counter
-        $model->hit($item->id);
+        // Increase item hits counter
+        if ($params->get('siteItemHits', 1)) {
+            $model->hit($item->id);
+        }
 
         // Set default image
         K2HelperUtilities::setDefaultImage($item, $view);

@@ -12,8 +12,16 @@ defined('_JEXEC') or die;
 
 ?>
 
-<!-- Start K2 Generic (search/date) Layout -->
+<!-- Start K2 Generic (date/search) Layout -->
 <div id="k2Container" class="genericView">
+    <?php if (JRequest::getCmd('task') == 'search'): ?>
+    <form action="<?php echo $this->form->action; ?>" method="get" autocomplete="off" class="genericSearchForm">
+        <input type="text" value="<?php echo $this->form->input; ?>" name="searchword" class="k2-input" placeholder="<?php echo JText::_('K2_SEARCH'); ?>" />
+        <input type="submit" value="<?php echo JText::_('K2_SEARCH'); ?>" class="k2-submit" />
+        <?php echo $this->form->attributes; /* outputs hidden fields for form processing - do not delete */ ?>
+    </form>
+    <?php endif; ?>
+
     <?php if ($this->params->get('genericTitle', 1)): ?>
     <!-- Title for date & search listings -->
     <h1><?php echo (JRequest::getCmd('task') == 'date') ? JText::_('K2_ITEMS_FILTERED_BY_DATE') : JText::_('K2_SEARCH_RESULTS_FOR'); ?> <?php echo $this->title; ?></h1>
@@ -27,14 +35,6 @@ defined('_JEXEC') or die;
         </a>
         <div class="clr"></div>
     </div>
-    <?php endif; ?>
-
-    <?php if (JRequest::getCmd('task') == 'search'): ?>
-    <form action="<?php echo $this->form->action; ?>" method="get" autocomplete="off" class="genericSearchForm">
-        <input type="text" value="<?php echo $this->form->input; ?>" name="searchword" class="k2-input" placeholder="<?php echo JText::_('K2_SEARCH'); ?>" />
-        <input type="submit" value="<?php echo JText::_('K2_SEARCH'); ?>" class="k2-submit" />
-        <?php echo $this->form->attributes; /* outputs hidden fields for form processing - do not delete */ ?>
-    </form>
     <?php endif; ?>
 
     <?php if (isset($this->items) && count($this->items)): ?>
@@ -138,9 +138,12 @@ defined('_JEXEC') or die;
     <!-- Pagination -->
     <?php if ($this->pagination->getPagesLinks()): ?>
     <div class="k2Pagination">
-        <?php echo $this->pagination->getPagesLinks(); ?>
-        <div class="clr"></div>
-        <?php echo $this->pagination->getPagesCounter(); ?>
+        <div class="k2PaginationLinks">
+            <?php echo $this->pagination->getPagesLinks(); ?>
+        </div>
+        <div class="k2PaginationCounter">
+            <?php echo $this->pagination->getPagesCounter(); ?>
+        </div>
     </div>
     <?php endif; ?>
 
@@ -153,4 +156,4 @@ defined('_JEXEC') or die;
 
     <?php endif; ?>
 </div>
-<!-- End K2 Generic (search/date) Layout -->
+<!-- End K2 Generic (date/search) Layout -->
