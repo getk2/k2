@@ -31,8 +31,8 @@ defined('_JEXEC') or die;
 
     <?php if (JRequest::getCmd('task') == 'search'): ?>
     <form action="<?php echo $this->form->action; ?>" method="get" autocomplete="off" class="genericSearchForm">
-        <input type="text" value="<?php echo $this->form->input; ?>" name="searchword" class="k2-input" onblur="if (this.value=='') this.value='<?php echo JText::_('K2_SEARCH'); ?>';" onfocus="if (this.value=='<?php echo JText::_('K2_SEARCH'); ?>') this.value='';" />
-        <input type="submit" value="<?php echo JText::_('K2_SEARCH'); ?>" class="k2-submit" onclick="this.form.searchword.focus();" />
+        <input type="text" value="<?php echo $this->form->input; ?>" name="searchword" class="k2-input" placeholder="<?php echo JText::_('K2_SEARCH'); ?>" />
+        <input type="submit" value="<?php echo JText::_('K2_SEARCH'); ?>" class="k2-submit" />
         <?php echo $this->form->attributes; /* outputs hidden fields for form processing - do not delete */ ?>
     </form>
     <?php endif; ?>
