@@ -556,6 +556,54 @@ span.catItemDateModified {display:block;text-align:right;padding:4px;margin:4px 
 
 
 /*------------------------------------------------------------------------------
+    Component - Itemlist view (tag)
+--------------------------------------------------------------------------------*/
+div.tagView {}
+
+div.tagItemList {}
+
+div.tagItemView {margin-bottom:48px;} /* this is the item container for this view */
+
+div.tagItemHeader {}
+    div.tagItemHeader span.tagItemDateCreated {color:#999;font-size:11px;}
+    div.tagItemHeader h2.tagItemTitle {padding:10px 0 4px 0;margin:0;}
+
+div.tagItemBody {padding:8px 0;margin:0;}
+
+div.tagItemImageBlock {padding:0;margin:0;float:left;}
+    span.tagItemImage {display:block;text-align:center;margin:0 8px 8px 0;}
+    span.tagItemImage img {max-width:100%;height:auto;}
+
+div.tagItemIntroText {font-size:inherit;font-weight:normal;line-height:inherit;padding:4px 0 12px 0;}
+    div.tagItemIntroText img {}
+
+div.tagItemExtraFields {}
+    div.tagItemExtraFields h4 {}
+    div.tagItemExtraFields ul {}
+        div.tagItemExtraFields ul li {}
+            div.tagItemExtraFields ul li span.tagItemExtraFieldsLabel {}
+            div.tagItemExtraFields ul li span.tagItemExtraFieldsValue {}
+
+div.tagItemCategory {display:inline;margin:0 8px 0 0;padding:0 8px 0 0;border-right:1px solid #ccc;}
+    div.tagItemCategory span {font-weight:bold;color:#555;padding:0 4px 0 0;}
+    div.tagItemCategory a {}
+
+div.tagItemTagsBlock {padding:4px 0;}
+    div.tagItemTagsBlock span {font-weight:bold;padding:0 4px 0 0;}
+    div.tagItemTagsBlock ul.tagItemTags {list-style:none;padding:0;margin:0;display:inline;}
+    div.tagItemTagsBlock ul.tagItemTags li {display:inline;list-style:none;padding:0 4px 0 0;margin:0;text-align:center;}
+    div.tagItemTagsBlock ul.tagItemTags li a:before {content:"#";}
+    div.tagItemTagsBlock ul.tagItemTags li a {}
+    div.tagItemTagsBlock ul.tagItemTags li a:hover {}
+
+/* Read more link */
+div.tagItemReadMore {display:inline;}
+    div.tagItemReadMore a {}
+    div.tagItemReadMore a:hover {}
+
+
+
+/*------------------------------------------------------------------------------
     Component - Itemlist view (user)
 --------------------------------------------------------------------------------*/
 
@@ -623,100 +671,51 @@ div.userItemReadMore {display:inline;}
 
 
 /*------------------------------------------------------------------------------
-    Component - Itemlist view (tag)
---------------------------------------------------------------------------------*/
-div.tagView {}
-
-div.tagItemList {}
-
-div.tagItemView {margin-bottom:48px;} /* this is the item container for this view */
-
-div.tagItemHeader {}
-    div.tagItemHeader span.tagItemDateCreated {color:#999;font-size:11px;}
-    div.tagItemHeader h2.tagItemTitle {padding:10px 0 4px 0;margin:0;}
-
-div.tagItemBody {padding:8px 0;margin:0;}
-
-div.tagItemImageBlock {padding:0;margin:0;float:left;}
-    span.tagItemImage {display:block;text-align:center;margin:0 8px 8px 0;}
-    span.tagItemImage img {max-width:100%;height:auto;}
-
-div.tagItemIntroText {font-size:inherit;font-weight:normal;line-height:inherit;padding:4px 0 12px 0;}
-    div.tagItemIntroText img {}
-
-div.tagItemExtraFields {}
-    div.tagItemExtraFields h4 {}
-    div.tagItemExtraFields ul {}
-        div.tagItemExtraFields ul li {}
-            div.tagItemExtraFields ul li span.tagItemExtraFieldsLabel {}
-            div.tagItemExtraFields ul li span.tagItemExtraFieldsValue {}
-
-div.tagItemCategory {display:inline;margin:0 8px 0 0;padding:0 8px 0 0;border-right:1px solid #ccc;}
-    div.tagItemCategory span {font-weight:bold;color:#555;padding:0 4px 0 0;}
-    div.tagItemCategory a {}
-
-div.tagItemTagsBlock {padding:4px 0;}
-    div.tagItemTagsBlock span {font-weight:bold;padding:0 4px 0 0;}
-    div.tagItemTagsBlock ul.tagItemTags {list-style:none;padding:0;margin:0;display:inline;}
-    div.tagItemTagsBlock ul.tagItemTags li {display:inline;list-style:none;padding:0 4px 0 0;margin:0;text-align:center;}
-    div.tagItemTagsBlock ul.tagItemTags li a:before {content:"#";}
-    div.tagItemTagsBlock ul.tagItemTags li a {}
-    div.tagItemTagsBlock ul.tagItemTags li a:hover {}
-
-/* Read more link */
-div.tagItemReadMore {display:inline;}
-    div.tagItemReadMore a {}
-    div.tagItemReadMore a:hover {}
-
-
-
-/*------------------------------------------------------------------------------
     Component - Itemlist view (generic)
 --------------------------------------------------------------------------------*/
 div.genericView {}
+    div.genericView h1 {}
 
-div.genericItemList {}
+    form.genericSearchForm {}
+        input.k2-input {}
+        input.k2-submit {}
 
-div.genericItemView {margin-bottom:48px;} /* this is the item container for this view */
+    div.genericItemList {}
 
-div.genericItemHeader {}
-    div.genericItemHeader span.genericItemDateCreated {color:#999;font-size:11px;}
-    div.genericItemHeader h2.genericItemTitle {padding:10px 0 4px 0;margin:0;}
+        div.genericItemView {margin-bottom:48px;} /* this is the item container for this view */
 
-div.genericItemBody {padding:8px 0;margin:0;}
+            div.genericItemHeader {}
+                div.genericItemHeader span.genericItemDateCreated {color:#999;font-size:11px;}
+                div.genericItemHeader h2.genericItemTitle {padding:10px 0 4px 0;margin:0;}
 
-div.genericItemImageBlock {padding:0;margin:0;float:left;}
-    span.genericItemImage {display:block;text-align:center;margin:0 8px 8px 0;}
-    span.genericItemImage img {max-width:100%;height:auto;}
+            div.genericItemBody {padding:8px 0;margin:0;}
 
-div.genericItemIntroText {font-size:inherit;font-weight:normal;line-height:inherit;padding:4px 0 12px 0;}
-    div.genericItemIntroText img {}
+            div.genericItemImageBlock {padding:0;margin:0;float:left;}
+                span.genericItemImage {display:block;text-align:center;margin:0 8px 8px 0;}
+                span.genericItemImage img {max-width:100%;height:auto;}
 
-    div.genericItemExtraFields {}
-        div.genericItemExtraFields h4 {}
-        div.genericItemExtraFields ul {}
-            div.genericItemExtraFields ul li {}
-                div.genericItemExtraFields ul li span.genericItemExtraFieldsLabel {}
-                div.genericItemExtraFields ul li span.genericItemExtraFieldsValue {}
+            div.genericItemIntroText {font-size:inherit;font-weight:normal;line-height:inherit;padding:4px 0 12px 0;}
+                div.genericItemIntroText img {}
 
-    div.genericItemCategory {display:inline;margin:0 8px 0 0;padding:0 8px 0 0;border-right:1px solid #ccc;}
-        div.genericItemCategory span {font-weight:bold;color:#555;padding:0 4px 0 0;}
-        div.genericItemCategory a {}
+            div.genericItemExtraFields {}
+                div.genericItemExtraFields h4 {}
+                div.genericItemExtraFields ul {}
+                    div.genericItemExtraFields ul li {}
+                        div.genericItemExtraFields ul li span.genericItemExtraFieldsLabel {}
+                        div.genericItemExtraFields ul li span.genericItemExtraFieldsValue {}
 
-/* Read more link */
-div.genericItemReadMore {display:inline;}
-    div.genericItemReadMore a {}
-    div.genericItemReadMore a:hover {}
+            div.genericItemCategory {display:inline;margin:0 8px 0 0;padding:0 8px 0 0;border-right:1px solid #ccc;}
+                div.genericItemCategory span {font-weight:bold;color:#555;padding:0 4px 0 0;}
+                div.genericItemCategory a {}
 
-/* No results found message */
-div#genericItemListNothingFound {padding:40px;text-align:center;}
-    div#genericItemListNothingFound p {font-size:20px;color:#999;}
+            /* Read more link */
+            div.genericItemReadMore {display:inline;}
+                div.genericItemReadMore a {}
+                div.genericItemReadMore a:hover {}
 
-/* --- Google Search (use Firebug or similar tools to inspect the generated HTML, then style accordingly --- */
-#k2GoogleSearchContainer .gsc-control {width:auto !important;}
-#k2GoogleSearchContainer .gsc-control .gsc-above-wrapper-area,
-#k2GoogleSearchContainer .gsc-control .gsc-resultsHeader,
-#k2GoogleSearchContainer .gsc-control .gsc-url-bottom {display:none !important;} /* Hide unneeded elements of the results page */
+    /* No results found message */
+    div#genericItemListNothingFound {padding:40px;text-align:center;}
+        div#genericItemListNothingFound p {font-size:20px;color:#999;}
 
 
 
