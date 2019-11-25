@@ -106,7 +106,7 @@ body.com_k2 .page-title {background-position:-10px -46px;width:auto;height:36px;
 .k2Inactive {background-image:url(../images/backend/cross.png);}
 
 /* Common image styling */
-img.k2AdminImage {border:4px solid #ddd;margin:10px 0;padding:0;display:block;}
+img.k2AdminImage {border:4px solid #ddd;margin:10px 0;padding:0;}
 img.k2UserAvatar {margin:10px 20px;}
 
 .paramHeader {padding:6px 8px;}
@@ -551,13 +551,17 @@ ul#k2ExtraFieldsMissing li {font-weight:normal;}
 /* Item - Image, Extrafields & Attachments */
 .itemAdditionalField {display:grid;grid-template-columns:180px auto;grid-gap:10px;margin:0 0 1px 0;padding:0;}
 .itemAdditionalField.fieldIsHeader > h4 {font-size:16px;color:#68696b;font-weight:300;display:block;margin:0;padding:0;}
-.itemAdditionalField .itemAdditionalValue {/*float:left;*/background:#f0f2f2;padding:10px;display:flex;align-items:center;}
+.itemAdditionalField .itemAdditionalValue {background:#f0f2f2;padding:10px;display:flex;align-items:center;}
 .itemAdditionalField .itemAdditionalValue label {font-size:13px;color:#68696b;font-weight:700;display:block;text-align:right;width:100%;padding:0;margin:0;}
 .itemAdditionalField .itemAdditionalData {padding:10px;font-size:13px;}
 .itemAdditionalField .itemAdditionalData label {font-weight:700;}
 
-.itemAdditionalField.separator {display:grid;grid-template-columns:1fr;}
-.itemAdditionalField.separator .itemAdditionalValue {background:none;text-transform:uppercase;font-size:16px;font-weight:700;color:#46afff;}
+.itemAdditionalField.separator {}
+.itemAdditionalField.separator .itemAdditionalValue,
+.itemAdditionalField.separator .itemAdditionalData {background:#fafafa;text-transform:uppercase;font-size:16px;font-weight:700;color:#46afff;}
+
+#k2TabImage .itemAdditionalField .itemAdditionalData > label {display:inline-block;margin:0;vertical-align:middle;}
+#k2TabImage .itemAdditionalField .itemAdditionalData > input[type="checkbox"] {display:inline-block;margin:0 5px 0 0;vertical-align:middle;}
 
 #extraFields {}
 #extraFields .itemAdditionalField .itemAdditionalData .k2Calendar + .btn {padding:10px 12px;}
@@ -591,8 +595,8 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 .itemAdditionalField .itemAdditionalData > button,
 .itemAdditionalField .itemAdditionalData > input[type="button"],
 .itemAdditionalField .itemAdditionalData > input[type="submit"],
-.k2Button {color:#414042;min-width:150px;padding:10px 15px;border-radius:3px;border:1px solid #dedede;background:#fdfdfd;white-space:normal;display:inline-block;vertical-align:middle;text-align:center;position:relative;font-weight:700;background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);}
-.k2Button.modal {display:inline-block !important;position:relative !important;}
+.k2Button {color:#414042;min-width:150px;padding:10px 15px;border-radius:3px;border:1px solid #dedede;background:#fdfdfd;white-space:normal;display:inline-block;vertical-align:middle;text-align:center;position:relative;font-weight:700;background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);text-decoration:none;}
+.k2Button.modal {display:inline-block !important;position:relative !important;color:#414042;}
 
 .itemAdditionalField .itemAdditionalData > button:hover,
 .itemAdditionalField .itemAdditionalData > input[type="button"]:hover,
