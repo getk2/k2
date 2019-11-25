@@ -553,7 +553,8 @@ ul#k2ExtraFieldsMissing li {font-weight:normal;}
 .itemAdditionalField.fieldIsHeader > h4 {font-size:16px;color:#68696b;font-weight:300;display:block;margin:0;padding:0;}
 .itemAdditionalField .itemAdditionalValue {/*float:left;*/background:#f0f2f2;padding:10px;display:flex;align-items:center;}
 .itemAdditionalField .itemAdditionalValue label {font-size:13px;color:#68696b;font-weight:700;display:block;text-align:right;width:100%;padding:0;margin:0;}
-.itemAdditionalField .itemAdditionalData {padding:10px;display:flex;align-items:center;}
+.itemAdditionalField .itemAdditionalData {padding:10px;display:flex;align-items:center;font-size:13px;}
+.itemAdditionalField .itemAdditionalData label {font-weight:700;}
 
 .itemAdditionalField.separator {display:grid;grid-template-columns:1fr;}
 .itemAdditionalField.separator .itemAdditionalValue {background:none;text-transform:uppercase;font-weight:700;color:#46afff;}
