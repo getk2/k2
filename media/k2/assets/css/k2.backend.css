@@ -555,6 +555,8 @@ ul#k2ExtraFieldsMissing li {font-weight:normal;}
 .itemAdditionalField .itemAdditionalValue label {font-size:13px;color:#68696b;font-weight:700;display:block;text-align:right;width:100%;padding:0;margin:0;}
 .itemAdditionalField .itemAdditionalData {padding:10px;display:flex;align-items:center;}
 
+.itemAdditionalField.separator {display:grid;grid-template-columns:1fr;text-transform:uppercase;font-weight:700;color:#46afff;}
+
 #extraFields {padding:20px 0;}
 #extraFields .itemAdditionalField .itemAdditionalData .k2Calendar + .btn {padding:10px 12px;}
 #extraFields .itemAdditionalField .itemAdditionalData .icon-calendar {margin-right:0;}
@@ -596,11 +598,13 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 .k2DocLink span {}
 
 /* Item - Gallery */
+/*
 .itemGalleryBlock {margin-bottom:20px;}
 .itemGalleryBlock label {display:block;margin-bottom:10px;}
 #itemGallery label {display:inline;}
 .itemGalleryBlock input[type="text"] {max-width:300px;}
 .itemGalleryBlock.separator {text-transform:uppercase;font-weight:700;color:#46afff;}
+*/
 span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;line-height:16px;padding:0;margin:0 0 -4px 0;display:inline-block;overflow-x:hidden;}
 
 /* Admin - Item */
