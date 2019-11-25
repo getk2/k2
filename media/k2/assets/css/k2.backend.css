@@ -105,7 +105,6 @@ body.com_k2 .page-title {background-position:-10px -46px;width:auto;height:36px;
 
 /* Common image styling */
 img.k2AdminImage {border:4px solid #ddd;margin:10px 0;padding:0;}
-img.k2UserAvatar {margin:10px 20px;}
 
 .paramHeader {padding:6px 8px;}
 
@@ -349,7 +348,7 @@ div#k2AdminContainer.isJ25 form#adminForm div.xmlParamsFields fieldset input {fl
 div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-right:1px solid #e9e9e9;color:#666;font-weight:bold;text-align:right;font-size:11px;}
 
 /* Generic form additional styling - tags, users, usergroups etc. */
-.k2GenericForm {min-width:640px;max-width:60%;padding:0 20px 40px 20px;margin:0 auto;}
+.k2GenericForm {min-width:640px;max-width:68%;padding:0 20px 40px 20px;margin:0 auto;}
 .k2GenericForm h3 {font-size:32px;font-weight:600;padding:20px 0 10px 4px;margin:0 auto 20px auto;border-bottom:2px solid #dddedf;color:#183867;}
 
 /* Additional parameters styling for the item form */
@@ -697,6 +696,11 @@ table.adminFormK2 {width:100%;margin-bottom:16px;}
 
 .table-responsive-wrap {position:relative;}
 .table-responsive {width:100%;margin-bottom:10px;overflow-y:hidden;}
+
+/* User edit form */
+.k2ImagePreview {}
+.k2ImagePreview > input {display:inline;margin:0 5px 0 0;vertical-align:middle;width:auto !important;}
+.k2ImagePreview > label {display:inline;margin:0;vertical-align:middle;}
 
 /* Minimal modal */
 .jw-modal {display:none;position:fixed;z-index:9999;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.3);}

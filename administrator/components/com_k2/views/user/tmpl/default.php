@@ -54,17 +54,16 @@ defined('_JEXEC') or die;
                 </div>
                 <div class="paramValue">
                     <input type="file" name="image" />
+                    <?php if ($this->row->image): ?>
+                    <div class="k2ImagePreview">
+                        <img class="k2AdminImage" src="<?php echo JURI::root().'media/k2/users/'.$this->row->image; ?>" alt="<?php echo $this->row->name; ?>" />
+                        <br />
+                        <input type="checkbox" name="del_image" id="del_image" />
+                        <label for="del_image"><?php echo JText::_('K2_CHECK_THIS_BOX_TO_DELETE_CURRENT_IMAGE_OR_JUST_UPLOAD_A_NEW_IMAGE_TO_REPLACE_THE_EXISTING_ONE'); ?></label>
+                    </div>
+                    <?php endif; ?>
                 </div>
             </li>
-            <?php if ($this->row->image): ?>
-            <li>
-                <img class="k2AdminImage k2UserAvatar" src="<?php echo JURI::root().'media/k2/users/'.$this->row->image; ?>" alt="<?php echo $this->row->name; ?>" />
-                <div class="paramLabel">
-                    <input type="checkbox" name="del_image" id="del_image" />
-                    <label for="del_image"><?php echo JText::_('K2_CHECK_THIS_BOX_TO_DELETE_CURRENT_IMAGE_OR_JUST_UPLOAD_A_NEW_IMAGE_TO_REPLACE_THE_EXISTING_ONE'); ?></label>
-                </div>
-            </li>
-            <?php endif; ?>
             <li>
                 <div class="paramLabel">
                     <label><?php echo JText::_('K2_URL'); ?></label>
