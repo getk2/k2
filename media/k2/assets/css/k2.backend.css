@@ -388,12 +388,16 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
 #k2app-ef-type-data input,
 #k2app-ef-type-data button,
 #k2app-ef-type-data select {margin-right:10px;}
+#k2app-ef-type-data #select_radio_fields > div {padding:5px 0 0 0;}
 #k2app-ef-type-data .k2ui-ef-notice {color:#999;}
 .k2ui-ef-row {padding:4px 0;}
     .k2ui-ef-label {min-width:90px;display:inline-block;text-align:right;padding-right:10px;}
     .k2ui-ef-row input[type="text"] {padding:5px 10px;}
     .k2ui-ef-row input[type="checkbox"] {box-shadow:none;margin:0;padding:0;}
     .k2app-ef-image-button {margin-right:10px;}
+    
+    
+    
 /*
 #k2app-ef-type-data input[type="text"] {min-height:30px;line-height:40px;}
 #k2app-ef-type-data input[type="button"],
@@ -1270,7 +1274,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramLabel {border-top:1px solid #fff;border-right:1px solid #e9e9e9;border-bottom:1px solid #e9e9e9;padding:10px;text-align:right;background:#f6f6f6;display:table-cell;width:30%;min-width:200px;box-sizing:border-box;vertical-align:middle;font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;}
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramLabel label {font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;color:#333;}
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue {background:#fbfbfb;border-top:1px solid #fff;border-bottom:1px solid #fbfbfb;font-size:13px;padding:10px;display:table-cell;width:70%;box-sizing:border-box;vertical-align:middle;}
-.isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input {width:300px;padding-left:10px;padding-right:10px;}
+.isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue > input {width:300px;padding:5px 10px;}
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="file"] {border-radius:4px;padding:8px;box-sizing:border-box;background:#eee;min-height:0;height:36px;line-height:inherit;font-size:12px;}
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue select {width:300px;height:30px;line-height:30px;background:#fff;}
 .isJ30 #k2AdminContainer #k2ContentView > form .xmlParamsFields ul li .paramValue select[multiple] {height:auto;}

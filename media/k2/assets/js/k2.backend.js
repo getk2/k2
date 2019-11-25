@@ -881,7 +881,7 @@ if (typeof(Joomla) === 'undefined') {
 
 // Extra fields
 function addOption() {
-    var div = $K2('<div/>').appendTo($K2('#select_dd_options'));
+    var div = $K2('<div/>').appendTo($K2('#select_radio_fields'));
     var input = $K2('<input/>', {
         name: 'option_name[]',
         type: 'text'
@@ -976,13 +976,13 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             });
             var br = $K2('<br/>').appendTo(target);
             var div = $K2('<div/>', {
-                id: 'select_dd_options'
+                id: 'select_radio_fields'
             }).appendTo(target);
             if (isNewField || currentType != fieldType) {
                 addOption();
             } else {
                 $K2.each(fieldValues, function(index, value) {
-                    var div = $K2('<div/>').appendTo($K2('#select_dd_options'));
+                    var div = $K2('<div/>').appendTo($K2('#select_radio_fields'));
                     var input = $K2('<input/>', {
                         name: 'option_name[]',
                         type: 'text',
@@ -1110,7 +1110,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             }
             var html = '\
                 <div class="k2ui-ef-row">\
-                    <input name="option_value[]" type="text" id="'+id+'" value="'+text+'" /> <a class="k2app-ef-image-button" href="index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID='+id+'">'+K2Language[18]+'</a> <span class="k2ui-ef-notice">('+K2Language[1]+')</span>\
+                    <input name="option_value[]" type="text" id="'+id+'" value="'+image+'" /> <a class="k2app-ef-image-button" href="index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID='+id+'">'+K2Language[18]+'</a> <span class="k2ui-ef-notice">('+K2Language[1]+')</span>\
                 </div>\
             ';
             $K2(html).appendTo(target);
