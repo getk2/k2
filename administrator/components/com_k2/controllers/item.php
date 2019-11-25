@@ -78,8 +78,8 @@ class K2ControllerItem extends K2Controller
         $extraFieldModel = $this->getModel('extraField');
         $extraFields = $extraFieldModel->getExtraFieldsByGroup($category->extraFieldsGroup);
 
-        $output = '';
         if (!empty($extraFields) && count($extraFields)) {
+            $output = '<div id="extraFields">';
             foreach ($extraFields as $extraField) {
                 if ($extraField->type == 'header') {
                     $output .= '
@@ -100,6 +100,7 @@ class K2ControllerItem extends K2Controller
                     ';
                 }
             }
+            $output .= '</div>';
         } else {
             $output = '
                 <div class="k2-generic-message">

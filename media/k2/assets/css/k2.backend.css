@@ -548,108 +548,40 @@ ul#k2ExtraFieldsMissing {margin:8px;padding:0 18px;overflow:hidden;}
 ul#k2ExtraFieldsMissing li {font-weight:normal;}
 .k2Invalid {border-color:red;}
 
-/* Item - Attachments */
+/* Item - Image, Extrafields & Attachments */
+.itemAdditionalField {display:grid;grid-template-columns:180px auto;grid-gap:10px;margin:0 0 1px 0;padding:0;}
+.itemAdditionalField.fieldIsHeader > h4 {font-size:16px;color:#68696b;font-weight:300;display:block;margin:0;padding:0;}
+.itemAdditionalField .itemAdditionalValue {/*float:left;*/background:#f0f2f2;padding:10px;display:flex;align-items:center;}
+.itemAdditionalField .itemAdditionalValue label {font-size:13px;color:#68696b;font-weight:700;display:block;text-align:right;width:100%;padding:0;margin:0;}
+.itemAdditionalField .itemAdditionalData {padding:10px;display:flex;align-items:center;}
+
+#extraFields {padding:20px 0;}
+#extraFields .itemAdditionalField .itemAdditionalData .k2Calendar + .btn {padding:10px 12px;}
+#extraFields .itemAdditionalField .itemAdditionalData .icon-calendar {margin-right:0;}
+#extraFields .itemAdditionalField .itemAdditionalData .nicEdit-main {outline:0;}
+#extraFields .itemAdditionalField.fieldIsLink .itemAdditionalData {display:grid;grid-template-columns:auto 5fr auto 8fr auto 3fr;grid-gap:10px;}
+#extraFields .itemAdditionalField.fieldIsLink .itemAdditionalData > label {text-align:right;}
+
 #itemAttachments {margin-top:15px;padding-top:10px;}
-/*
-#itemAttachments label {font-weight:bold;}
-#itemAttachments input {margin-bottom:10px;}
-#itemAttachments input.linkTitle {width:200px;}
-#itemAttachments textarea {width:200px;}
-#itemAttachments a.k2AttachmentBrowseServer {margin-right:8px;}
-*/
+
 td.k2ItemFormDateField {white-space:nowrap;}
 td.k2ItemFormDateField input {}
 td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 
-/*
-@media screen and (min-width:767px) {
-    #itemAttachments label {margin-right:10px;width:170px;float:left;clear:left;text-align:right;}
-}
-*/
-
 .itemAttachmentsTable {width:100%;margin:0 0 20px;}
 .itemAttachmentsTable th {border-bottom:3px solid #d7d9d9;border-top:0;color:#6d6f71;font-size:14px;font-weight:700;text-align:left;line-height:1;padding:12px 14px 12px 0;}
-/*.itemAttachmentsTable th.k2Center {text-align:center;}*/
 .itemAttachmentsTable td {padding:12px 14px 12px 0;font-size:13px;}
 .itemAttachmentsTable td input {padding:8px 10px 7px;border:1px solid #d7d9d9;border-radius:3px;height:auto;}
+
 .deleteAttachmentButton {font-size:18px;color:#9e0b0f;}
 .downloadAttachmentButton {padding-right:10px;font-size:18px;}
 
-/* New attachments form */
 .itemNewAttachment {border-top:3px solid #d7d9d9;padding:20px 0;clear:both;}
 .itemNewAttachment button {background:none;float:right;border:0;font-size:16px;color:#9e0b0f;font-size:18px;}
 .itemNewAttachment button.removeAttachment:hover {background:none;border:0;}
 .itemNewAttachment .itemAdditionalField input[type="text"].existing_file {width:auto;display:inline-block;vertical-align:middle;margin-right:-10px;margin-bottom:0;}
 .isJ25 .itemNewAttachment .itemAdditionalField input[type="text"].existing_file,
 .isJ15 .itemNewAttachment .itemAdditionalField input[type="text"].existing_file {min-height:0;height:30px;margin-right:-8px;border-color:#c0c0c0;background:#eee;}
-/*
-.itemNewAttachment .attachmentGap {margin-bottom:20px;}
-.itemNewAttachment button + input[type="text"] {min-height:30px;line-height:40px;vertical-align:top;}
-*/
-
-/* Item - Extrafields & Image Fields */
-#extraFields {padding-top:20px;}
-
-.itemAdditionalField {margin-bottom:25px;clear:both;width:100%;float:left;}
-
-.itemAdditionalField .itemAdditionalValue {margin-right:15px;margin-bottom:10px;}
-.itemAdditionalField label {font-size:13px;color:#68696b;font-weight:700;display:block;margin-top:0;margin-bottom:0;padding-top:5px;}
-.itemAdditionalField .sep,
-.itemAdditionalField label.sep {display:block;font-weight:700;margin:25px 0;font-size:15px;text-transform:uppercase;}
-.itemAdditionalField .itemAdditionalData {width:75%;}
-
-.isJ30 .itemAdditionalField .itemAdditionalData input[type="file"],
-.isJ30 .itemAdditionalField input[type="file"].fileUpload {height:20px;line-height:0;min-height:0;padding:12px 10px 8px;font-size:12px;}
-
-.itemAdditionalField input[type="text"],
-.itemAdditionalField input[type="email"] {width:100%;box-sizing:border-box;}
-.itemAdditionalField textarea {box-sizing:border-box;}
-.itemAdditionalField input[type="text"]#existingImageValue {width:100%;display:block;margin-bottom:15px;}
-
-#extraFields .itemAdditionalField {}
-#extraFields .itemAdditionalField.fieldIsHeader > h4 {font-size:16px;color:#68696b;font-weight:300;display:block;margin-top:0;margin-bottom:0;padding-top:5px;}
-#extraFields .itemAdditionalField .itemAdditionalValue {}
-#extraFields .itemAdditionalField .itemAdditionalData {}
-
-#extraFields .itemAdditionalField .itemAdditionalData .k2Calendar + .btn {padding:10px 12px;}
-#extraFields .itemAdditionalField .itemAdditionalData .icon-calendar {margin-right:0;}
-#extraFields .itemAdditionalField .itemAdditionalData .nicEdit-main {outline:0;}
-
-@media screen and (max-width:600px) {
-    .itemAdditionalField .itemAdditionalData {width:auto;float:none;}
-}
-
-@media screen and (min-width:767px) {
-    .itemAdditionalField .itemAdditionalValue {width:100px;margin-bottom:0;}
-    .itemAdditionalField label {display:inline-block;vertical-align:middle;}
-
-    .isJ25 .itemAdditionalField .itemAdditionalValue label {padding-top:16px;}
-    .isJ25 .itemAdditionalField label {display:inline-block;vertical-align:inherit;}
-
-    .itemAdditionalField .itemAdditionalData {min-width:75%;float:left;}
-    /*
-    .itemNewAttachment button + input[type="text"] {margin-left:-12px;}
-    */
-    .itemAdditionalField .sep,
-    .itemAdditionalField label.sep {display:inline-block;vertical-align:middle;margin:0 25px;}
-    .itemAdditionalField input[type="text"]#existingImageValue {width:auto;display:inline-block;vertical-align:middle;margin-right:-10px;margin-bottom:0;}
-
-    .isJ25 .itemAdditionalField input[type="text"]#existingImageValue,
-    .isJ15 .itemAdditionalField input[type="text"]#existingImageValue {min-height:0;height:30px;margin-right:-8px;border-color:#c0c0c0;background:#eee;}
-
-    #extraFields .itemAdditionalField.fieldIsHeader > h4 {margin-left:120px;}
-}
-
-/* Item Buttons */
-.itemAdditionalField .itemAdditionalData > button,
-.itemAdditionalField .itemAdditionalData > input[type="button"],
-.itemAdditionalField .itemAdditionalData > input[type="submit"],
-.k2Button {color:#414042;min-width:150px;padding:10px 15px;border-radius:3px;border:1px solid #dedede;background:#fdfdfd;white-space:normal;display:inline-block;vertical-align:middle;text-align:center;position:relative;font-weight:700;background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);}
-#item_gallery_content .k2Button.modal {display:inline-block !important;position:relative !important;}
-.itemAdditionalField .itemAdditionalData > button:hover,
-.itemAdditionalField .itemAdditionalData > input[type="button"]:hover,
-.itemAdditionalField .itemAdditionalData > input[type="submit"]:hover,
-.itemAdditionalField .k2Button:hover {text-decoration:none;border-color:#dedede;border-bottom-color:#cacaca;background:#fdfdfd;background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);}
 
 /* Additional item secondary fields */
 .itemAdditionalBlock {display:inline-block;vertical-align:middle;margin-right:15px;}

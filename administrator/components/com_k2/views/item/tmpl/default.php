@@ -280,7 +280,7 @@ $app = JFactory::getApplication();
                     <div class="k2TabsContent" id="k2TabImage">
 
                         <div class="itemAdditionalField">
-                            <div class="k2FLeft k2Right itemAdditionalValue">
+                            <div class="itemAdditionalValue">
                                 <label><?php echo JText::_('K2_ITEM_IMAGE'); ?></label>
                             </div>
 
@@ -297,7 +297,7 @@ $app = JFactory::getApplication();
 
                         <?php if (!empty($this->row->image)): ?>
                         <div class="itemAdditionalField">
-                            <div class="k2FLeft k2Right itemAdditionalValue">
+                            <div class="itemAdditionalValue">
                                 <label><?php echo JText::_('K2_ITEM_IMAGE_PREVIEW'); ?></label>
                             </div>
                             <div class="itemAdditionalData">
@@ -311,7 +311,7 @@ $app = JFactory::getApplication();
                         <?php endif; ?>
 
                         <div class="itemAdditionalField">
-                            <div class="k2FLeft k2Right itemAdditionalValue">
+                            <div class="itemAdditionalValue">
                                 <label><?php echo JText::_('K2_ITEM_IMAGE_CAPTION'); ?></label>
                             </div>
                             <div class="itemAdditionalData">
@@ -320,7 +320,7 @@ $app = JFactory::getApplication();
                         </div>
 
                         <div class="itemAdditionalField">
-                            <div class="k2FLeft k2Right itemAdditionalValue">
+                            <div class="itemAdditionalValue">
                                 <label><?php echo JText::_('K2_ITEM_IMAGE_CREDITS'); ?></label>
                             </div>
                             <div class="itemAdditionalData">
@@ -334,7 +334,7 @@ $app = JFactory::getApplication();
                             <?php if(!is_null($K2Plugin)): ?>
                             <div class="itemAdditionalField">
                                 <fieldset>
-                                    <div class="k2FLeft k2Right itemAdditionalValue">
+                                    <div class="itemAdditionalValue">
                                         <label><?php echo $K2Plugin->name; ?></label>
                                     </div>
                                     <div class="itemAdditionalData">
@@ -353,48 +353,69 @@ $app = JFactory::getApplication();
                     <!-- Tab image gallery -->
                     <div class="k2TabsContent" id="k2TabImageGallery">
                         <?php if ($this->lists['checkSIG']): ?>
-                        <div id="item_gallery_content" class="itemAdditionalField">
-                            <?php if($this->sigPro): ?>
-                            <div class="itemGalleryBlock">
+
+                        <?php if ($this->sigPro): ?>
+
+                        <div class="itemAdditionalField">
+                            <div class="itemAdditionalValue">
                                 <label><?php echo JText::_('K2_COM_BE_ITEM_SIGPRO_UPLOAD_NOTE'); ?></label>
+                            </div>
+                            <div class="itemAdditionalData">
                                 <a class="k2Button modal k2Selector" rel="{handler: 'iframe', size: {x: (window.innerWidth)*0.9, y: (window.innerHeight)*0.9}}" href="index.php?option=com_sigpro&view=galleries&task=create&newFolder=<?php echo $this->sigProFolder; ?>&type=k2&tmpl=component">
                                     <?php echo JText::_('K2_COM_BE_ITEM_SIGPRO_UPLOAD'); ?>
                                 </a>
                                 <br />
                                 <input name="sigProFolder" type="hidden" value="<?php echo $this->sigProFolder; ?>" />
                             </div>
-                            <div class="itemGalleryBlock separator">
+                        </div>
+                        <div class="itemAdditionalField separator">
+                            <div class="itemAdditionalValue">
                                 <?php echo JText::_('K2_OR'); ?>
                             </div>
-                            <?php endif; ?>
-                            <div class="itemGalleryBlock">
+                        </div>
+                        <?php endif; ?>
+                        <div class="itemAdditionalField">
+                            <div class="itemAdditionalValue">
                                 <label><?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_WITH_IMAGES'); ?></label>
+                            </div>
+                            <div class="itemAdditionalData">
                                 <input type="file" name="gallery" class="fileUpload k2Selector" />
                                 <span class="hasTip k2GalleryNotice" title="<?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP_HEADER'); ?>::<?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP_TEXT'); ?>">
                                     <?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP'); ?>
                                 </span>
                                 <label><?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?></label>
                             </div>
-                            <div class="itemGalleryBlock separator">
+                        </div>
+                        <div class="itemAdditionalField separator">
+                            <div class="itemAdditionalValue">
                                 <?php echo JText::_('K2_OR'); ?>
                             </div>
-                            <div class="itemGalleryBlock">
+                        </div>
+                        <div class="itemAdditionalField">
+                            <div class="itemAdditionalValue">
                                 <label><?php echo JText::_('K2_OR_ENTER_A_FLICKR_SET_URL'); ?></label>
+                            </div>
+                            <div class="itemAdditionalData">
                                 <input type="text" name="flickrGallery" size="50" value="<?php echo ($this->row->galleryType == 'flickr') ? $this->row->galleryValue : ''; ?>" />
                                 <span class="hasTip k2GalleryNotice" title="<?php echo JText::_('K2_VALID_FLICK_API_KEY_HELP_HEADER'); ?>::<?php echo JText::_('K2_VALID_FLICK_API_KEY_HELP_TEXT'); ?>">
                                     <?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP'); ?>
                                 </span>
                             </div>
-                            <?php if (!empty($this->row->gallery)): ?>
-                            <!-- Preview -->
-                            <div id="itemGallery" class="itemGalleryBlock">
+                        </div>
+                        <?php if (!empty($this->row->gallery)): ?>
+                        <!-- Preview -->
+                        <div id="itemGallery" class="itemAdditionalField">
+                            <div class="itemAdditionalValue">
+                                <label><?php echo JText::_('K2_PREVIEW'); ?></label>
+                            </div>
+                            <div class="itemAdditionalData">
                                 <?php echo $this->row->gallery; ?>
                                 <div class="clr"></div>
                                 <input type="checkbox" name="del_gallery" id="del_gallery" />
                                 <label for="del_gallery"><?php echo JText::_('K2_CHECK_THIS_BOX_TO_DELETE_CURRENT_IMAGE_GALLERY_OR_JUST_UPLOAD_A_NEW_IMAGE_GALLERY_TO_REPLACE_THE_EXISTING_ONE'); ?></label>
                             </div>
-                            <?php endif; ?>
                         </div>
+                        <?php endif; ?>
 
                         <?php else: /* SIGPro not present */ ?>
 
@@ -429,7 +450,7 @@ $app = JFactory::getApplication();
                         <?php if ($this->lists['checkAllVideos']): ?>
                         <div id="item_video_content">
                             <div class="itemAdditionalField">
-                                <div class="k2FLeft k2Right itemAdditionalValue">
+                                <div class="itemAdditionalValue">
                                     <label><?php echo JText::_('K2_MEDIA_SOURCE'); ?></label>
                                 </div>
                                 <div class="itemAdditionalData">
@@ -490,7 +511,7 @@ $app = JFactory::getApplication();
                                         </div>
                                         <div id="k2MediaTab4" class="k2TabsContent">
                                             <div class="itemAdditionalField panel" id="embedVideo">
-                                                <div class="k2FLeft k2Right itemAdditionalValue">
+                                                <div class="itemAdditionalValue">
                                                     <label><?php echo JText::_('K2_PASTE_HTML_EMBED_CODE_BELOW'); ?></label>
                                                 </div>
                                                 <div class="itemAdditionalData">
@@ -504,7 +525,7 @@ $app = JFactory::getApplication();
 
                             <?php if($this->row->video): ?>
                             <div class="itemAdditionalField">
-                                <div class="k2FLeft k2Right itemAdditionalValue">
+                                <div class="itemAdditionalValue">
                                     <label><?php echo JText::_('K2_MEDIA_PREVIEW'); ?></label>
                                 </div>
                                 <div class="itemAdditionalData">
@@ -516,7 +537,7 @@ $app = JFactory::getApplication();
                             </div>
                             <?php endif; ?>
                             <div class="itemAdditionalField">
-                                <div class="k2FLeft k2Right itemAdditionalValue">
+                                <div class="itemAdditionalValue">
                                     <label><?php echo JText::_('K2_MEDIA_CAPTION'); ?></label>
                                 </div>
                                 <div class="itemAdditionalData">
@@ -524,7 +545,7 @@ $app = JFactory::getApplication();
                                 </div>
                             </div>
                             <div class="itemAdditionalField">
-                                <div class="k2FLeft k2Right itemAdditionalValue">
+                                <div class="itemAdditionalValue">
                                     <label><?php echo JText::_('K2_MEDIA_CREDITS'); ?></label>
                                 </div>
                                 <div class="itemAdditionalData">
@@ -557,7 +578,7 @@ $app = JFactory::getApplication();
 
                         <?php if($this->row->video): ?>
                         <div class="itemAdditionalField">
-                            <div class="k2FLeft k2Right itemAdditionalValue">
+                            <div class="itemAdditionalValue">
                                 <label><?php echo JText::_('K2_MEDIA_PREVIEW'); ?></label>
                             </div>
                             <div class="itemAdditionalData">
@@ -569,7 +590,7 @@ $app = JFactory::getApplication();
                         <?php endif; ?>
 
                         <div class="itemAdditionalField">
-                            <div class="k2FLeft k2Right itemAdditionalValue">
+                            <div class="itemAdditionalValue">
                                 <label><?php echo JText::_('K2_MEDIA_CAPTION'); ?></label>
                             </div>
                             <div class="itemAdditionalData">
@@ -578,7 +599,7 @@ $app = JFactory::getApplication();
                         </div>
 
                         <div class="itemAdditionalField">
-                            <div class="k2FLeft k2Right itemAdditionalValue">
+                            <div class="itemAdditionalValue">
                                 <label><?php echo JText::_('K2_MEDIA_CREDITS'); ?></label>
                             </div>
                             <div class="itemAdditionalData">
