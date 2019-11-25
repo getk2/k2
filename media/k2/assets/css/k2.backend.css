@@ -589,7 +589,9 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 
 /* Item - Extrafields & Image Fields */
 #extraFields {padding-top:20px;}
+
 .itemAdditionalField {margin-bottom:25px;clear:both;width:100%;float:left;}
+
 .itemAdditionalField .itemAdditionalValue {margin-right:15px;margin-bottom:10px;}
 .itemAdditionalField label {font-size:13px;color:#68696b;font-weight:700;display:block;margin-top:0;margin-bottom:0;padding-top:5px;}
 .itemAdditionalField .sep,
@@ -600,15 +602,18 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 .isJ30 .itemAdditionalField input[type="file"].fileUpload {height:20px;line-height:0;min-height:0;padding:12px 10px 8px;font-size:12px;}
 
 .itemAdditionalField input[type="text"],
-.itemAdditionalField input[type="email"] {width:100%;max-width:100%;min-height:40px;line-height:40px;box-sizing:border-box;}
-.itemAdditionalField textarea {/*width:100%;max-width:100%;min-height:40px;*/box-sizing:border-box;}
+.itemAdditionalField input[type="email"] {width:100%;box-sizing:border-box;}
+.itemAdditionalField textarea {box-sizing:border-box;}
 .itemAdditionalField input[type="text"]#existingImageValue {width:100%;display:block;margin-bottom:15px;}
-.nicEdit-main {outline:0;}
-.k2ExtraFieldHeader {font-size:16px;color:#68696b;font-weight:300;display:block;margin-top:0;margin-bottom:0;padding-top:5px;}
 
-/* Padding correction for the calendar */
-#extraFieldsContainer .k2Calendar + .btn {padding:10px 12px;}
-#extraFieldsContainer .icon-calendar {margin-right:0;}
+#extraFields .itemAdditionalField {}
+#extraFields .itemAdditionalField.fieldIsHeader > h4 {font-size:16px;color:#68696b;font-weight:300;display:block;margin-top:0;margin-bottom:0;padding-top:5px;}
+#extraFields .itemAdditionalField .itemAdditionalValue {}
+#extraFields .itemAdditionalField .itemAdditionalData {}
+
+#extraFields .itemAdditionalField .itemAdditionalData .k2Calendar + .btn {padding:10px 12px;}
+#extraFields .itemAdditionalField .itemAdditionalData .icon-calendar {margin-right:0;}
+#extraFields .itemAdditionalField .itemAdditionalData .nicEdit-main {outline:0;}
 
 @media screen and (max-width:600px) {
     .itemAdditionalField .itemAdditionalData {width:auto;float:none;}
@@ -632,7 +637,7 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
     .isJ25 .itemAdditionalField input[type="text"]#existingImageValue,
     .isJ15 .itemAdditionalField input[type="text"]#existingImageValue {min-height:0;height:30px;margin-right:-8px;border-color:#c0c0c0;background:#eee;}
 
-    .k2ExtraFieldHeader {margin-left:120px;}
+    #extraFields .itemAdditionalField.fieldIsHeader > h4 {margin-left:120px;}
 }
 
 /* Item Buttons */

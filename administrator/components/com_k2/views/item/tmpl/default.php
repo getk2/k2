@@ -613,13 +613,11 @@ $app = JFactory::getApplication();
                             <?php if (count($this->extraFields)): ?>
                             <div id="extraFields">
                                 <?php foreach($this->extraFields as $extraField): ?>
-                                <div class="itemAdditionalField">
-
+                                <div class="itemAdditionalField fieldIs<?php echo ucfirst($extraField->type); ?>">
                                     <?php if($extraField->type == 'header'): ?>
-                                    <h4 class="k2ExtraFieldHeader"><?php echo $extraField->name; ?></h4>
+                                    <h4><?php echo $extraField->name; ?></h4>
                                     <?php else: ?>
-
-                                    <div class="k2Right k2FLeft itemAdditionalValue">
+                                    <div class="itemAdditionalValue">
                                         <label for="K2ExtraField_<?php echo $extraField->id; ?>"><?php echo $extraField->name; ?></label>
                                     </div>
                                     <div class="itemAdditionalData">

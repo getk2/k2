@@ -70,33 +70,37 @@ class K2ControllerItem extends K2Controller
     public function extraFields()
     {
         $app = JFactory::getApplication();
-        $itemID = JRequest::getInt('id', null);
+        $id = JRequest::getInt('id', null);
+
         $categoryModel = $this->getModel('category');
         $category = $categoryModel->getData();
+
         $extraFieldModel = $this->getModel('extraField');
         $extraFields = $extraFieldModel->getExtraFieldsByGroup($category->extraFieldsGroup);
 
-        $counter = 0;
         $output = '';
-        if (count($extraFields)) {
+        if (!empty($extraFields) && count($extraFields)) {
             foreach ($extraFields as $extraField) {
                 if ($extraField->type == 'header') {
-                    $output .= '<div class="itemAdditionalField"><h4 class="k2ExtraFieldHeader">'.$extraField->name.'</h4></div>';
+                    $output .= '
+                    <div class="itemAdditionalField fieldIs'.ucfirst($extraField->type).'">
+                        <h4>'.$extraField->name.'</h4>
+                    </div>
+                    ';
                 } else {
                     $output .= '
-                    <div class="itemAdditionalField">
-                        <div class="k2Right k2FLeft itemAdditionalValue">
+                    <div class="itemAdditionalField fieldIs'.ucfirst($extraField->type).'">
+                        <div class="itemAdditionalValue">
                             <label for="K2ExtraField_'.$extraField->id.'">'.$extraField->name.'</label>
                         </div>
-                        <div class="itemAdditionalData">'.$extraFieldModel->renderExtraField($extraField, $itemID).'</div>
+                        <div class="itemAdditionalData">
+                            '.$extraFieldModel->renderExtraField($extraField, $id).'
+                        </div>
                     </div>
                     ';
                 }
-                $counter++;
             }
-        }
-
-        if ($counter == 0) {
+        } else {
             $output = '
                 <div class="k2-generic-message">
                     <h3>'.JText::_('K2_NOTICE').'</h3>
