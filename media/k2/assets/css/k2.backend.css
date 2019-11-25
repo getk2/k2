@@ -395,16 +395,7 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
     .k2ui-ef-row input[type="text"] {padding:5px 10px;}
     .k2ui-ef-row input[type="checkbox"] {box-shadow:none;margin:0;padding:0;}
     .k2app-ef-image-button {margin-right:10px;}
-    
-    
-    
-/*
-#k2app-ef-type-data input[type="text"] {min-height:30px;line-height:40px;}
-#k2app-ef-type-data input[type="button"],
-#k2app-ef-type-data button {margin-bottom:20px;display:inline-block;vertical-align:top;margin-right:10px;color:#414042;min-width:100px;padding:10px 15px;border-radius:3px;border:1px solid #dedede;border-bottom-color:#cacaca;background:#fdfdfd;white-space:normal;position:relative;font-weight:700;background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
-#k2app-ef-type-data input[type="button"]:hover,
-#k2app-ef-type-data button:hover {background:#d4d7d9;}
-*/
+
 
 
 /* ====================================================================================================== */
