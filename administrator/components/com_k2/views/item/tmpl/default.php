@@ -357,7 +357,6 @@ $app = JFactory::getApplication();
                                 <a class="k2Button modal k2Selector" rel="{handler: 'iframe', size: {x: (window.innerWidth)*0.9, y: (window.innerHeight)*0.9}}" href="index.php?option=com_sigpro&view=galleries&task=create&newFolder=<?php echo $this->sigProFolder; ?>&type=k2&tmpl=component">
                                     <?php echo JText::_('K2_COM_BE_ITEM_SIGPRO_UPLOAD'); ?>
                                 </a>
-                                <br />
                                 <input name="sigProFolder" type="hidden" value="<?php echo $this->sigProFolder; ?>" />
                             </div>
                         </div>
@@ -377,7 +376,7 @@ $app = JFactory::getApplication();
                                 <span class="hasTip k2GalleryNotice" title="<?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP_HEADER'); ?>::<?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP_TEXT'); ?>">
                                     <?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP'); ?>
                                 </span>
-                                <label><?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?></label>
+                                <i>(<?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?>)</i>
                             </div>
                         </div>
                         <div class="itemAdditionalField separator">
