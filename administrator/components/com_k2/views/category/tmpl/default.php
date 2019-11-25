@@ -54,8 +54,10 @@ defined('_JEXEC') or die;
                         <label for="paramsinheritFrom"><?php echo JText::_('K2_INHERIT_PARAMETER_OPTIONS_FROM_CATEGORY'); ?></label>
                     </div>
                     <div class="k2SubTableValue">
-                        <?php echo $this->lists['inheritFrom']; ?> <span class="hasTip k2Notice" title="<?php echo JText::_('K2_INHERIT_PARAMETER_OPTIONS_FROM_CATEGORY'); ?>::<?php echo JText::_('K2_SETTING_THIS_OPTION_WILL_MAKE_THIS_CATEGORY_INHERIT_ALL_PARAMETERS_FROM_ANOTHER_CATEGORY_THUS_YOU_DONT_HAVE_TO_RESET_ALL_OPTIONS_IN_THIS_ONE_IF_THEY_ARE_THE_SAME_WITH_ANOTHER_CATEGORYS_THIS_SETTING_IS_VERY_USEFUL_WHEN_YOU_ARE_CREATING_CHILD_CATEGORIES_WHICH_SHARE_THE_SAME_PARAMETERS_WITH_THEIR_PARENT_CATEGORY_EG_IN_THE_CASE_OF_A_CATALOG_OR_A_NEWS_PORTALMAGAZINE'); ?>">
-                        <br /><?php echo JText::_('K2_LEARN_WHAT_THIS_MEANS'); ?></span>
+                        <?php echo $this->lists['inheritFrom']; ?>
+                        <span class="hasTip k2Notice" title="<?php echo JText::_('K2_INHERIT_PARAMETER_OPTIONS_FROM_CATEGORY'); ?>::<?php echo JText::_('K2_SETTING_THIS_OPTION_WILL_MAKE_THIS_CATEGORY_INHERIT_ALL_PARAMETERS_FROM_ANOTHER_CATEGORY_THUS_YOU_DONT_HAVE_TO_RESET_ALL_OPTIONS_IN_THIS_ONE_IF_THEY_ARE_THE_SAME_WITH_ANOTHER_CATEGORYS_THIS_SETTING_IS_VERY_USEFUL_WHEN_YOU_ARE_CREATING_CHILD_CATEGORIES_WHICH_SHARE_THE_SAME_PARAMETERS_WITH_THEIR_PARENT_CATEGORY_EG_IN_THE_CASE_OF_A_CATALOG_OR_A_NEWS_PORTALMAGAZINE'); ?>">
+                            <i class="fa fa-question-circle" aria-hidden="true"></i> <?php echo JText::_('K2_LEARN_WHAT_THIS_MEANS'); ?>
+                        </span>
                     </div>
                 </div>
                 <div class="k2SubTable k2CatTableRight">
@@ -98,21 +100,18 @@ defined('_JEXEC') or die;
             <!-- Tabs start here -->
             <div class="k2Tabs" id="k2Tabs">
                 <ul class="k2TabsNavigation">
-                    <li id="tabContent"><a href="#k2Tab1">
-                        <i class="fa fa-file-text-o"></i>
-                        <?php echo JText::_('K2_DESCRIPTION'); ?></a>
+                    <li id="tabContent">
+                        <a href="#k2TabContent"><i class="fa fa-file-text-o"></i><?php echo JText::_('K2_DESCRIPTION'); ?></a>
                     </li>
-                    <li id="tabImage"><a href="#k2Tab2">
-                        <i class="fa fa-camera"></i><?php echo JText::_('K2_IMAGE'); ?></a>
+                    <li id="tabImage">
+                        <a href="#k2TabImage"><i class="fa fa-camera"></i><?php echo JText::_('K2_IMAGE'); ?></a>
                     </li>
                 </ul>
 
                 <!-- Tab content -->
-                <div class="k2TabsContent" id="k2Tab1">
+                <div class="k2TabsContent" id="k2TabContent">
                     <div class="k2ItemFormEditor">
-                        <!--
-                        <span class="k2ItemFormEditorTitle"><?php echo JText::_('K2_CATEGORY_DESCRIPTION'); ?></span>
-                        -->
+                        <!--<span class="k2ItemFormEditorTitle"><?php echo JText::_('K2_CATEGORY_DESCRIPTION'); ?></span>-->
                         <?php echo $this->editor; ?>
                         <div class="dummyHeight"></div>
                         <div class="clr"></div>
@@ -121,9 +120,9 @@ defined('_JEXEC') or die;
                 </div>
 
                 <!-- Tab image -->
-                <div class="k2TabsContent k2TabsContentLower" id="k2Tab2">
+                <div class="k2TabsContent k2TabsContentLower" id="k2TabImage">
                     <div class="itemAdditionalField">
-                        <div class="k2FLeft k2Right itemAdditionalValue">
+                        <div class="itemAdditionalValue">
                             <label><?php echo JText::_('K2_CATEGORY_IMAGE'); ?></label>
                         </div>
                         <div class="itemAdditionalData">
@@ -136,13 +135,14 @@ defined('_JEXEC') or die;
                     </div>
                     <?php if (!empty($this->row->image)): ?>
                     <div class="itemAdditionalField">
-                        <div class="k2FLeft k2Right itemAdditionalValue">
+                        <div class="itemAdditionalValue">
                             <label><?php echo JText::_('K2_ITEM_IMAGE_PREVIEW'); ?></label>
                         </div>
                         <div class="itemAdditionalData">
                             <a data-fancybox="images" data-caption="<?php echo $this->row->name; ?>" href="<?php echo JURI::root(true); ?>/media/k2/categories/<?php echo $this->row->image; ?>" title="<?php echo JText::_('K2_CLICK_ON_IMAGE_TO_PREVIEW_IN_ORIGINAL_SIZE'); ?>">
                                 <img src="<?php echo JURI::root(true); ?>/media/k2/categories/<?php echo $this->row->image; ?>" alt="<?php echo $this->row->name; ?>" class="k2AdminImage" />
                             </a>
+                            <br />
                             <input type="checkbox" name="del_image" id="del_image" />
                             <label for="del_image"><?php echo JText::_('K2_CHECK_THIS_BOX_TO_DELETE_CURRENT_IMAGE_OR_JUST_UPLOAD_A_NEW_IMAGE_TO_REPLACE_THE_EXISTING_ONE'); ?></label>
                         </div>
