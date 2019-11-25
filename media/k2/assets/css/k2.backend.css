@@ -585,19 +585,19 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 .itemNewAttachment button.removeAttachment:hover {background:none;border:0;}
 .itemNewAttachment .itemAdditionalField input[type="text"].existing_file {width:auto;display:inline-block;vertical-align:middle;margin-right:-10px;margin-bottom:0;}
 .isJ25 .itemNewAttachment .itemAdditionalField input[type="text"].existing_file,
-.isJ15 .itemNewAttachment .itemAdditionalField input[type="text"].existing_file {min-height:0;height:30px;margin-right:-8px;border-color:#c0c0c0;background:#eee;}
+.isJ15 .itemNewAttachment .itemAdditionalField input[type="text"].existing_file {min-height:0;margin-right:-8px;border-color:#c0c0c0;background:#eee;}
 
 /* Field Buttons */
 .itemAdditionalField .itemAdditionalData > button,
 .itemAdditionalField .itemAdditionalData > input[type="button"],
 .itemAdditionalField .itemAdditionalData > input[type="submit"],
-.itemAdditionalField .itemAdditionalData .k2Button {color:#414042;min-width:150px;padding:10px 15px;border-radius:3px;border:1px solid #dedede;background:#fdfdfd;white-space:normal;display:inline-block;vertical-align:middle;text-align:center;position:relative;font-weight:700;background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);}
-.itemAdditionalField .itemAdditionalData .k2Button.modal {display:inline-block !important;position:relative !important;}
+.k2Button {color:#414042;min-width:150px;padding:10px 15px;border-radius:3px;border:1px solid #dedede;background:#fdfdfd;white-space:normal;display:inline-block;vertical-align:middle;text-align:center;position:relative;font-weight:700;background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);}
+.k2Button.modal {display:inline-block !important;position:relative !important;}
 
 .itemAdditionalField .itemAdditionalData > button:hover,
 .itemAdditionalField .itemAdditionalData > input[type="button"]:hover,
 .itemAdditionalField .itemAdditionalData > input[type="submit"]:hover,
-.itemAdditionalField .itemAdditionalData .k2Button:hover {text-decoration:none;border-color:#dedede;border-bottom-color:#cacaca;background:#fdfdfd;background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);}
+.k2Button:hover {text-decoration:none;border-color:#dedede;border-bottom-color:#cacaca;background:#fdfdfd;background:linear-gradient(to bottom,#fdfdfd 0%,#f5f5f5 100%);}
 
 /* Additional item secondary fields */
 .itemAdditionalBlock {display:inline-block;vertical-align:middle;margin-right:15px;}
