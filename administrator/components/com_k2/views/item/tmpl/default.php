@@ -278,12 +278,10 @@ $app = JFactory::getApplication();
                     <?php if ($this->params->get('showImageTab')): ?>
                     <!-- Tab image -->
                     <div class="k2TabsContent" id="k2TabImage">
-
                         <div class="itemAdditionalField">
                             <div class="itemAdditionalValue">
                                 <label><?php echo JText::_('K2_ITEM_IMAGE'); ?></label>
                             </div>
-
                             <div class="itemAdditionalData">
                                 <input type="file" name="image" class="fileUpload k2Selector" />
                                 <i>(<?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?>)</i>
@@ -294,7 +292,6 @@ $app = JFactory::getApplication();
                                 <input type="button" value="<?php echo JText::_('K2_BROWSE_SERVER'); ?>" id="k2ImageBrowseServer" />
                             </div>
                         </div>
-
                         <?php if (!empty($this->row->image)): ?>
                         <div class="itemAdditionalField">
                             <div class="itemAdditionalValue">
@@ -304,12 +301,12 @@ $app = JFactory::getApplication();
                                 <a data-fancybox="images" data-caption="<?php echo $this->row->title; ?>" href="<?php echo $this->row->image; ?>" title="<?php echo JText::_('K2_CLICK_ON_IMAGE_TO_PREVIEW_IN_ORIGINAL_SIZE'); ?>">
                                     <img class="k2AdminImage" src="<?php echo $this->row->thumb; ?>" alt="<?php echo $this->row->title; ?>" />
                                 </a>
+                                <br />
                                 <input type="checkbox" name="del_image" id="del_image" />
                                 <label for="del_image"><?php echo JText::_('K2_CHECK_THIS_BOX_TO_DELETE_CURRENT_IMAGE_OR_JUST_UPLOAD_A_NEW_IMAGE_TO_REPLACE_THE_EXISTING_ONE'); ?></label>
                             </div>
                         </div>
                         <?php endif; ?>
-
                         <div class="itemAdditionalField">
                             <div class="itemAdditionalValue">
                                 <label><?php echo JText::_('K2_ITEM_IMAGE_CAPTION'); ?></label>
@@ -318,7 +315,6 @@ $app = JFactory::getApplication();
                                 <input type="text" name="image_caption" size="30" class="text_area" value="<?php echo $this->row->image_caption; ?>" />
                             </div>
                         </div>
-
                         <div class="itemAdditionalField">
                             <div class="itemAdditionalValue">
                                 <label><?php echo JText::_('K2_ITEM_IMAGE_CREDITS'); ?></label>
@@ -327,7 +323,6 @@ $app = JFactory::getApplication();
                                 <input type="text" name="image_credits" size="30" class="text_area" value="<?php echo $this->row->image_credits; ?>" />
                             </div>
                         </div>
-
                         <?php if (count($this->K2PluginsItemImage)): ?>
                         <div class="itemPlugins">
                             <?php foreach($this->K2PluginsItemImage as $K2Plugin): ?>
@@ -353,9 +348,7 @@ $app = JFactory::getApplication();
                     <!-- Tab image gallery -->
                     <div class="k2TabsContent" id="k2TabImageGallery">
                         <?php if ($this->lists['checkSIG']): ?>
-
                         <?php if ($this->sigPro): ?>
-
                         <div class="itemAdditionalField">
                             <div class="itemAdditionalValue">
                                 <label><?php echo JText::_('K2_COM_BE_ITEM_SIGPRO_UPLOAD_NOTE'); ?></label>
@@ -372,6 +365,7 @@ $app = JFactory::getApplication();
                             <div class="itemAdditionalValue">
                                 <?php echo JText::_('K2_OR'); ?>
                             </div>
+                            <div class="itemAdditionalData"></div>
                         </div>
                         <?php endif; ?>
                         <div class="itemAdditionalField">
@@ -390,6 +384,7 @@ $app = JFactory::getApplication();
                             <div class="itemAdditionalValue">
                                 <?php echo JText::_('K2_OR'); ?>
                             </div>
+                            <div class="itemAdditionalData"></div>
                         </div>
                         <div class="itemAdditionalField">
                             <div class="itemAdditionalValue">
@@ -416,14 +411,11 @@ $app = JFactory::getApplication();
                             </div>
                         </div>
                         <?php endif; ?>
-
                         <?php else: /* SIGPro not present */ ?>
-
                         <div class="k2-generic-message">
                             <h3><?php echo JText::_('K2_NOTICE'); ?></h3>
                             <p><?php echo JText::_('K2_NOTICE_PLEASE_INSTALL_JOOMLAWORKS_SIMPLE_IMAGE_GALLERY_PRO_PLUGIN_IF_YOU_WANT_TO_USE_THE_IMAGE_GALLERY_FEATURES_OF_K2'); ?></p>
                         </div>
-
                         <?php endif; ?>
                         <?php if (count($this->K2PluginsItemGallery)): ?>
                         <div class="itemPlugins">
