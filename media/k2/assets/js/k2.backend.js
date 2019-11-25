@@ -1143,11 +1143,11 @@ function initExtraFieldsEditor() {
         }
         if (typeof tinymce != 'undefined') {
             // Get Joomla 3.x TinyMCE editor options
-            if (Joomla.optionsStorage.plg_editor_tinymce) {
+            if (K2JVersion === '30' && typeof Joomla.optionsStorage.plg_editor_tinymce !== 'undefined') {
                 editorOptions = Joomla.optionsStorage.plg_editor_tinymce.tinyMCE.default;
             }
             // Get JCE editor options
-            if (typeof WFEditor != 'undefined') {
+            if (typeof WFEditor !== 'undefined') {
                 editorOptions = WFEditor.settings;
             }
             editorOptions.selector = '#' + id;
