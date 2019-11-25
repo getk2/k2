@@ -374,7 +374,7 @@ $app = JFactory::getApplication();
                             <div class="itemAdditionalData">
                                 <input type="file" name="gallery" class="fileUpload k2Selector" />
                                 <span class="hasTip k2GalleryNotice" title="<?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP_HEADER'); ?>::<?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP_TEXT'); ?>">
-                                    <?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP'); ?>
+                                    <i class="fa fa-question-circle" aria-hidden="true"></i>
                                 </span>
                                 <i>(<?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?>)</i>
                             </div>
@@ -392,7 +392,7 @@ $app = JFactory::getApplication();
                             <div class="itemAdditionalData">
                                 <input type="text" name="flickrGallery" size="50" value="<?php echo ($this->row->galleryType == 'flickr') ? $this->row->galleryValue : ''; ?>" />
                                 <span class="hasTip k2GalleryNotice" title="<?php echo JText::_('K2_VALID_FLICK_API_KEY_HELP_HEADER'); ?>::<?php echo JText::_('K2_VALID_FLICK_API_KEY_HELP_TEXT'); ?>">
-                                    <?php echo JText::_('K2_UPLOAD_A_ZIP_FILE_HELP'); ?>
+                                    <i class="fa fa-question-circle" aria-hidden="true"></i>
                                 </span>
                             </div>
                         </div>
@@ -466,7 +466,7 @@ $app = JFactory::getApplication();
                                                     </a>
                                                 </div>
                                                 <div class="itemAdditionalBlock sep">
-                                                    <label><?php echo JText::_('K2_OR'); ?></label>
+                                                    <?php echo JText::_('K2_OR'); ?>
                                                 </div>
                                                 <div class="itemAdditionalBlock">
                                                     <label><?php echo JText::_('K2_PASTE_REMOTE_VIDEO_URL'); ?></label>

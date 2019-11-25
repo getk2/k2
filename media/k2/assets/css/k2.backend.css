@@ -90,9 +90,7 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .icon-48-k2,
 body.com_k2 .page-title,
 .k2Inactive,
-span.k2GalleryNotice,
 .k2Active {display:inline-block;background:url('../images/backend/sprite.png') no-repeat;overflow:hidden;text-align:left;}
-span.k2GalleryNotice {background-position:-79px -118px;width:16px;height:16px;}
 .icon-48-k2 {background-position:-10px -0px;height:36px;}
 .isJ15 .icon-48-k2,
 .isJ25 .icon-48-k2 {height:48px;}
@@ -611,8 +609,8 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 
 /* Additional item secondary fields */
 .itemAdditionalBlock {display:inline-block;vertical-align:middle;margin-right:15px;}
-.itemAdditionalBlock.sep {margin:0 25px 0 0;color:#2f98f3;}
-.itemAdditionalBlock label {font-weight:700;padding:0;}
+.itemAdditionalBlock.sep {margin:0 15px 0 0;font-size:13px;font-weight:700;text-transform:uppercase;}
+.itemAdditionalBlock label {font-weight:700;padding:0;margin-bottom:0;}
 .itemAdditionalBlock input[type="text"],
 .itemAdditionalBlock input[type="email"],
 .itemAdditionalBlock textarea {margin-bottom:0;}
@@ -629,7 +627,7 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 .itemGalleryBlock input[type="text"] {max-width:300px;}
 .itemGalleryBlock.separator {text-transform:uppercase;font-weight:700;color:#46afff;}
 */
-span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;line-height:16px;padding:0;margin:0 0 -4px 0;display:inline-block;overflow-x:hidden;}
+span.k2GalleryNotice {cursor:pointer;font-size:14px;padding:0;margin:0 5px;}
 
 /* Admin - Item */
 .itemPlugins {margin-top:20px;clear:both;}
@@ -659,12 +657,12 @@ span.k2GalleryNotice {cursor:pointer;text-indent:-99px;width:16px;height:16px;li
 
 /* Lists - filters */
 #k2AdminContainer .k2AdminTableFilters {margin-bottom:0;width:100%;border-left:1px solid #dbdcdc;}
-#k2AdminContainer .k2AdminTableFilters .chzn-container {margin-bottom:5px;}
 #k2AdminContainer .k2AdminTableFilters tr td {background:#fff;padding-top:15px;}
+#k2AdminContainer .k2AdminTableFilters .chzn-container {margin-bottom:5px;}
 
-/* Filters on smaller viewports */
 #k2AdminContainer .k2AdminTableFiltersSelects,
 #k2AdminContainer .k2AdminTableFiltersSearch {display:block;width:100%;box-sizing:border-box;}
+#k2AdminContainer .k2AdminTableFiltersSelects {padding:8px 8px 8px 0;}
 #k2AdminContainer .k2AdminTableFiltersSelects select {max-width:48%;}
 
 @media screen and (min-width:920px) {
