@@ -555,7 +555,8 @@ ul#k2ExtraFieldsMissing li {font-weight:normal;}
 .itemAdditionalField .itemAdditionalValue label {font-size:13px;color:#68696b;font-weight:700;display:block;text-align:right;width:100%;padding:0;margin:0;}
 .itemAdditionalField .itemAdditionalData {padding:10px;display:flex;align-items:center;}
 
-.itemAdditionalField.separator {display:grid;grid-template-columns:1fr;text-transform:uppercase;font-weight:700;color:#46afff;}
+.itemAdditionalField.separator {display:grid;grid-template-columns:1fr;}
+.itemAdditionalField.separator .itemAdditionalValue {background:none;text-transform:uppercase;font-weight:700;color:#46afff;}
 
 #extraFields {padding:20px 0;}
 #extraFields .itemAdditionalField .itemAdditionalData .k2Calendar + .btn {padding:10px 12px;}
