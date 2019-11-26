@@ -804,7 +804,9 @@ $K2(document).ready(function() {
     });
 
     $(window).on('load', function() {
-        $('.flatpickr-calendar select').chosen('destroy');
+        if (typeof $.fn.chosen !== 'undefined') {
+            $('.flatpickr-calendar select').chosen('destroy');
+        }
     });
 })(jQuery);
 
