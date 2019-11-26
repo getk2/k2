@@ -651,7 +651,6 @@ $K2(document).ready(function() {
  * JS encapsulated behind the "jQuery" object - added in K2 v2.8.0+
  */
 (function($) {
-
     // --- Helper Functions ---
     // Character count (usually placed on a textarea element)
     $.fn.k2CharCount = function(el, max) {
@@ -686,7 +685,6 @@ $K2(document).ready(function() {
 
     // -- Load everything up ---
     $(document).ready(function() {
-
         // Adjust list top offset based on filters height
         if ($('.k2AdminTableFilters').length) {
             var filterHeight = $('.k2AdminTableFilters').first().height();
@@ -803,9 +801,11 @@ $K2(document).ready(function() {
                 }
             });
         }
-
     });
 
+    $(window).on('load', function() {
+        $('.flatpickr-calendar select').chosen('destroy');
+    });
 })(jQuery);
 
 
@@ -907,12 +907,12 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
 
         case 'textfield':
             var text;
-            if(!isNewField && currentType == fieldType) {
+            if (!isNewField && currentType == fieldType) {
                 text = (fieldValues[0].value ? fieldValues[0].value : '');
             }
             var html = '\
                 <div class="k2ui-ef-row">\
-                    <input name="option_value[]" type="text" value="'+text+'" /><span class="k2ui-ef-notice">('+K2Language[1]+')</span>\
+                    <input name="option_value[]" type="text" value="' + text + '" /><span class="k2ui-ef-notice">(' + K2Language[1] + ')</span>\
                 </div>\
             ';
             $K2(html).appendTo(target);
@@ -920,7 +920,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
 
         case 'textarea':
             var textarea, rows, cols, editorValue, editorChecked;
-            if(!isNewField && currentType == fieldType) {
+            if (!isNewField && currentType == fieldType) {
                 textarea = fieldValues[0].value;
                 rows = (fieldValues[0].rows ? fieldValues[0].rows : '');
                 cols = (fieldValues[0].cols ? fieldValues[0].cols : '');
@@ -928,21 +928,21 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                 editorChecked = (editorValue ? ' checked' : '');
             }
             var html = '\
-                <textarea name="option_value[]" cols="40" rows="10">'+textarea+'</textarea>\
+                <textarea name="option_value[]" cols="40" rows="10">' + textarea + '</textarea>\
                 <div class="k2ui-ef-row">\
-                    <span class="k2ui-ef-label">'+K2Language[16]+'</span>\
-                    <input name="option_cols[]" type="text" value="'+cols+'" />\
+                    <span class="k2ui-ef-label">' + K2Language[16] + '</span>\
+                    <input name="option_cols[]" type="text" value="' + cols + '" />\
                 </div>\
                 <div class="k2ui-ef-row">\
-                    <span class="k2ui-ef-label">'+K2Language[17]+'</span>\
-                    <input name="option_rows[]" type="text" value="'+rows+'" />\
+                    <span class="k2ui-ef-label">' + K2Language[17] + '</span>\
+                    <input name="option_rows[]" type="text" value="' + rows + '" />\
                 </div>\
                 <div class="k2ui-ef-row">\
-                    <span class="k2ui-ef-label">'+K2Language[3]+'</span>\
-                    <input name="option_editor[]" type="checkbox" value="1"'+editorChecked+' />\
+                    <span class="k2ui-ef-label">' + K2Language[3] + '</span>\
+                    <input name="option_editor[]" type="checkbox" value="1"' + editorChecked + ' />\
                 </div>\
                 <div class="k2ui-ef-row">\
-                    <span class="k2ui-ef-notice">('+K2Language[4]+')</span>\
+                    <span class="k2ui-ef-notice">(' + K2Language[4] + ')</span>\
                 </div>\
             ';
             $K2(html).appendTo(target);
@@ -950,15 +950,15 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
 
         case 'labels':
             var label;
-            if(!isNewField && currentType == fieldType) {
+            if (!isNewField && currentType == fieldType) {
                 label = (fieldValues[0].value ? fieldValues[0].value : '');
             }
             var html = '\
                 <div class="k2ui-ef-row">\
-                    <input name="option_value[]" type="text" value="'+label+'" />\
+                    <input name="option_value[]" type="text" value="' + label + '" />\
                 </div>\
                 <div class="k2ui-ef-row">\
-                    <span class="k2ui-ef-notice">'+K2Language[2]+' ('+K2Language[1]+')</span>\
+                    <span class="k2ui-ef-notice">' + K2Language[2] + ' (' + K2Language[1] + ')</span>\
                 </div>\
             ';
             $K2(html).appendTo(target);
@@ -1086,18 +1086,18 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
         case 'date':
             var label,
                 time = $K2.now();
-            if(!isNewField && currentType == fieldType) {
+            if (!isNewField && currentType == fieldType) {
                 label = (fieldValues[0].value ? fieldValues[0].value : '');
             }
             var html = '\
                 <div class="k2ui-ef-row">\
-                    <input name="option_value[]" type="text" id="k2DateField'+time+'" value="'+label+'" autocomplete="off" /><span class="k2ui-ef-notice">('+K2Language[1]+')</span>\
+                    <input name="option_value[]" type="text" id="k2DateField' + time + '" value="' + label + '" autocomplete="off" /><span class="k2ui-ef-notice">(' + K2Language[1] + ')</span>\
                 </div>\
             ';
             $K2(html).appendTo(target);
 
             // Load Flatpickr
-            $K2('#k2DateField'+time).flatpickr({
+            $K2('#k2DateField' + time).flatpickr({
                 allowInput: true
             });
             break;
@@ -1105,12 +1105,12 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
         case 'image':
             var id = 'K2ExtraFieldImage_' + new Date().getTime(),
                 image;
-            if(!isNewField && currentType == fieldType) {
+            if (!isNewField && currentType == fieldType) {
                 image = (fieldValues[0].value ? fieldValues[0].value : '');
             }
             var html = '\
                 <div class="k2ui-ef-row">\
-                    <input name="option_value[]" type="text" id="'+id+'" value="'+image+'" /> <a class="k2app-ef-image-button" href="index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID='+id+'">'+K2Language[18]+'</a> <span class="k2ui-ef-notice">('+K2Language[1]+')</span>\
+                    <input name="option_value[]" type="text" id="' + id + '" value="' + image + '" /> <a class="k2app-ef-image-button" href="index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID=' + id + '">' + K2Language[18] + '</a> <span class="k2ui-ef-notice">(' + K2Language[1] + ')</span>\
                 </div>\
             ';
             $K2(html).appendTo(target);
@@ -1118,13 +1118,13 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
 
         case 'header':
             var header;
-            if(!isNewField && currentType == fieldType) {
+            if (!isNewField && currentType == fieldType) {
                 header = (fieldValues[0].value ? fieldValues[0].value : '');
             }
             var html = '\
                 <div class="k2ui-ef-row">\
                     <div> - </div>\
-                    <input name="option_value[]" type="hidden" value="'+header+'" />\
+                    <input name="option_value[]" type="hidden" value="' + header + '" />\
                 </div>\
             ';
             $K2(html).appendTo(target);
@@ -1133,7 +1133,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
         default:
             var html = '\
                 <div class="k2ui-ef-row">\
-                    <span class="k2ui-ef-notice">('+K2Language[15]+')</span>\
+                    <span class="k2ui-ef-notice">(' + K2Language[15] + ')</span>\
                 </div>\
             ';
             $K2(html).appendTo(target);

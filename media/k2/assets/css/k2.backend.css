@@ -490,12 +490,9 @@ input#del_image {}
 .k2Note {display:block;padding:10px 0;color:#999;font-style:italic;font-size:11px;}
 
 /* Flatpickr Overrides */
-.com_k2 input.numInput {height:auto;}
-.com_k2 .flatpickr-calendar.showTimeInput.hasTime .flatpickr-time {padding:2px 10px 0px;}
-.com_k2 .flatpickr-time.hasSeconds .numInputWrapper {padding:0 5px;}
-.com_k2 .numInputWrapper span {max-height:35%;right:5px;}
-.com_k2 .numInputWrapper span.arrowDown {top:auto;bottom:9px;border-radius:0 0px 5px 0;}
-.com_k2 .numInputWrapper span.arrowUp {top:4px;border-radius:0 5px 0 0 }
+.com_k2 .numInputWrapper:hover {background:none;}
+.com_k2 input.numInput {height:auto;margin:0;}
+.com_k2 .flatpickr-time .flatpickr-am-pm {height:28px;line-height:28px;margin:0;padding:0;}
 
 /* Item - Free tagging */
 ul.tags {background:#fff;border:1px solid #ccc;cursor:default;min-height:48px;height:auto;display:inline-block;margin:0;padding:4px 6px;border-radius:3px;box-sizing:border-box;width:100%;}

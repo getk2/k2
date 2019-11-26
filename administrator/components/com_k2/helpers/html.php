@@ -173,6 +173,9 @@ class K2HelperHTML
         $view = strtolower(JRequest::getWord('view', 'items'));
         $task = JRequest::getCmd('task');
 
+        $getSiteLanguage = JFactory::getLanguage();
+        $languageTag = substr($getSiteLanguage->getTag(), 0, 2);
+
         $jQueryHandling = $params->get('jQueryHandling', '1.9.1');
 
         if ($document->getType() == 'html') {
@@ -299,9 +302,19 @@ class K2HelperHTML
 
                 // Flatpickr
                 if ($view == 'item' || $view == 'extrafield') {
-                    $document->addStyleSheet('https://cdn.jsdelivr.net/npm/flatpickr@4.5.2/dist/flatpickr.min.css');
-                    $document->addScript('https://cdn.jsdelivr.net/npm/flatpickr@4.5.2/dist/flatpickr.min.js');
-                    $document->addCustomTag('<!--[if IE 9]><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/flatpickr@4.5.2/dist/ie.css" /><![endif]-->');
+                    $document->addStyleSheet('https://cdn.jsdelivr.net/npm/flatpickr@4.6.3/dist/flatpickr.min.css');
+                    $document->addScript('https://cdn.jsdelivr.net/npm/flatpickr@4.6.3/dist/flatpickr.min.js');
+                    if ($languageTag != 'en') {
+                        if ($languageTag == 'el') {
+                            $languageTag = 'gr';
+                        }
+                        $document->addScript('https://cdn.jsdelivr.net/npm/flatpickr@4.6.3/dist/l10n/'.$languageTag.'.js');
+                        $document->addScriptDeclaration('
+                            /* K2 - Flatpickr Localization */
+                            flatpickr.localize(flatpickr.l10ns.'.$languageTag.');
+                        ');
+                    }
+                    $document->addCustomTag('<!--[if IE 9]><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.3/dist/ie.css" /><![endif]-->');
                 }
 
                 // Magnific Popup
@@ -316,8 +329,8 @@ class K2HelperHTML
 
                 // Fancybox
                 if ($view == 'item' || $view == 'items' || $view == 'categories' || $view == 'users') {
-                    $document->addStyleSheet('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.5/dist/jquery.fancybox.min.css');
-                    $document->addScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.5/dist/jquery.fancybox.min.js');
+                    $document->addStyleSheet('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css');
+                    $document->addScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js');
                 }
 
                 // CSS
