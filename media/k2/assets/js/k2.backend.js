@@ -685,14 +685,6 @@ $K2(document).ready(function() {
 
     // -- Load everything up ---
     $(document).ready(function() {
-        // Adjust list top offset based on filters height
-        if ($('.k2AdminTableFilters').length) {
-            var filterHeight = $('.k2AdminTableFilters').first().height();
-            if (filterHeight > 70) {
-                $('#k2ContentView > form .table-responsive-wrap').css('padding-top', filterHeight - 28);
-            }
-        }
-
         // Standard Toggler
         $('#jToggler, #k2standard, #k2TogglerStandard').click(function() {
             var checkBoxes = $('input[id^=cb]');
@@ -804,9 +796,18 @@ $K2(document).ready(function() {
     });
 
     $(window).on('load', function() {
+        // Disable Chosen for Flatpickr instances
         if (typeof $.fn.chosen !== 'undefined') {
             if ($('.flatpickr-calendar').length) {
                 $('.flatpickr-calendar select').chosen('destroy');
+            }
+        }
+
+        // Adjust list top offset based on filters height
+        if ($('.k2AdminTableFilters').length) {
+            var filterHeight = $('.k2AdminTableFilters').first().height();
+            if (filterHeight > 70) {
+                $('#k2ContentView > form .table-responsive-wrap').css('padding-top', filterHeight - 28);
             }
         }
     });
