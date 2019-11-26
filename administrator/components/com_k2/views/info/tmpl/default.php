@@ -91,7 +91,7 @@ defined('_JEXEC') or die;
                                     </tr>
                                     <tr>
                                         <td><a target="_blank" href="https://github.com/select2/select2">Select2</a></td>
-                                        <td>4.0.5</td>
+                                        <td>4.0.12</td>
                                         <td><?php echo JText::_('K2_INFO_REPLACEMENT_FOR_SELECT_BOXES'); ?></td>
                                         <td>MIT</td>
                                     </tr>
@@ -103,13 +103,13 @@ defined('_JEXEC') or die;
                                     </tr>
                                     <tr>
                                         <td><a target="_blank" href="https://github.com/fancyapps/fancybox">fancyBox</a></td>
-                                        <td>3.5.5</td>
+                                        <td>3.5.7</td>
                                         <td><?php echo JText::_('K2_INFO_RESPONSIVE_LIGHTBOX_DIALOG_SCRIPT'); ?></td>
                                         <td>GNU/GPL v3</td>
                                     </tr>
                                     <tr>
                                         <td><a target="_blank" href="https://github.com/flatpickr/flatpickr">flatpickr</a></td>
-                                        <td>4.5.2</td>
+                                        <td>4.6.3</td>
                                         <td><?php echo JText::_('K2_INFO_DATETIME_PICKER'); ?></td>
                                         <td>MIT</td>
                                     </tr>

@@ -19,8 +19,8 @@ class K2ElementK2Users extends K2Element
 		$fieldName = (K2_JVERSION != '15') ? $name.'[]' : $control_name.'['.$name.'][]';
 
 		$document = JFactory::getDocument();
-		$document->addStyleSheet('https://cdn.jsdelivr.net/npm/select2@4.0.5/dist/css/select2.min.css');
-		$document->addScript('https://cdn.jsdelivr.net/npm/select2@4.0.5/dist/js/select2.min.js');
+		$document->addStyleSheet('https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css');
+		$document->addScript('https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js');
 		$document->addScriptDeclaration('
 			$K2(document).ready(function() {
 				if(typeof($K2(".k2UsersElement").chosen) == "function") {
