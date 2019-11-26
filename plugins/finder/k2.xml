@@ -7,7 +7,7 @@
     <license>https://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
     <authorUrl>www.joomlaworks.net</authorUrl>
-    <version>2.10.1</version>
+    <version>2.10.2</version>
     <description>PLG_FINDER_K2_DESCRIPTION</description>
     <files>
         <file plugin="k2">k2.php</file>

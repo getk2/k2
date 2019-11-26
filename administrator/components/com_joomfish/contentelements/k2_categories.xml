@@ -2,7 +2,7 @@
 <joomfish type="contentelement">
   <name>K2 Categories</name>
   <author>JoomlaWorks</author>
-  <version>2.10.1</version>
+  <version>2.10.2</version>
   <description>Definitions for K2 Categories</description>
   <reference>
   	<table name="k2_categories">
