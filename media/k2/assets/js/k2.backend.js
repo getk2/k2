@@ -959,7 +959,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             }
             var html = '\
                 <div class="k2ui-ef-row">\
-                    <input value="' + K2Language[5] + '" type="button" id="k2app-ef-add-option" class="k2Button" />\
+                    <a id="k2app-ef-add-option" class="k2Button" href="#add">' + K2Language[5] + '</a>\
                 </div>\
                 <div id="select_radio_fields">\
             ';
@@ -968,16 +968,18 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                     <div class="k2ui-ef-row">\
                         <input name="option_name[]" type="text" value="" />\
                         <input name="option_value[]" type="hidden" value="" />\
-                        <input value="' + K2Language[0] + '" type="button" class="k2app-ef-remove-option k2Button" />\
+                        <a class="k2app-ef-remove-option k2Button" href="#remove">' + K2Language[0] + '</a>\
                     </div>\
                 ';
             } else {
-                $K2.each(fieldValues, function(index, e) {
+                $K2.each(fieldValues, function(i, e) {
+                    name = (e.name ? e.name : '');
+                    value = (e.value ? e.value : '');
                     html += '\
                         <div class="k2ui-ef-row">\
-                            <input name="option_name[]" type="text" value="' + e.name + '" />\
-                            <input name="option_value[]" type="hidden" value="' + e.value + '" />\
-                            <input value="' + K2Language[0] + '" type="button" class="k2app-ef-remove-option k2Button" />\
+                            <input name="option_name[]" type="text" value="' + name + '" />\
+                            <input name="option_value[]" type="hidden" value="' + value + '" />\
+                            <a class="k2app-ef-remove-option k2Button" href="#remove">' + K2Language[0] + '</a>\
                         </div>\
                     ';
                 });
@@ -986,40 +988,38 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                 </div>\
             ';
             $K2(html).appendTo(target);
-            if ($K2('.k2app-ef-remove-option').length == 1) {
-                $K2('.k2app-ef-remove-option').first().addClass('k2ButtonDisabled');
-            }
-            $K2('#k2app-ef-add-option').on('click', function() {
+
+            $K2('#k2ContentView').on('click', '.k2app-ef-remove-option', function(e) {
+                e.preventDefault();
+                if ($K2('.k2app-ef-remove-option').length > 1) {
+                    $K2('.k2app-ef-remove-option').each(function() {
+                        if ($K2(this).hasClass('k2ButtonDisabled')) {
+                            $K2(this).removeClass('k2ButtonDisabled');
+                        }
+                    });
+                    $K2(this).parent().remove();
+                } else {
+                    $K2('.k2app-ef-remove-option').first().parent().find('input[type="text"]').attr('value', '');
+                    $K2('.k2app-ef-remove-option').first().parent().find('input[type="hidden"]').attr('value', '');
+                    $K2('.k2app-ef-remove-option').first().addClass('k2ButtonDisabled');
+                }
+            });
+
+            $K2('#k2app-ef-add-option').on('click', function(e) {
+                e.preventDefault();
                 var copy = $K2('#select_radio_fields .k2ui-ef-row').first().clone();
                 $K2(copy).find('input[type="text"]').attr('value', '');
                 $K2(copy).find('input[type="hidden"]').attr('value', '');
                 $K2(copy).appendTo($K2('#select_radio_fields'));
-
-                $K2('.k2app-ef-remove-option').on('click', function() {
-                    if ($K2('.k2app-ef-remove-option').length > 1) {
-                        $K2(this).parent().remove();
-                    } else {
-                        $K2('.k2app-ef-remove-option').first().addClass('k2ButtonDisabled');
-                    }
-                });
-
-                if ($K2('.k2app-ef-remove-option').length) {
-                    if ($K2('.k2app-ef-remove-option').length > 1) {
-                        $K2('.k2app-ef-remove-option').each(function() {
-                            if ($(this).hasClass('k2ButtonDisabled')) {
-                                $(this).removeClass('k2ButtonDisabled');
-                            }
-                        });
-                    } else {
-                        $K2('.k2app-ef-remove-option').first().addClass('k2ButtonDisabled');
-                    }
-                }
-            });
-
-            $K2('.k2app-ef-remove-option').on('click', function() {
                 if ($K2('.k2app-ef-remove-option').length > 1) {
-                    $K2(this).parent().remove();
+                    $K2('.k2app-ef-remove-option').each(function() {
+                        if ($K2(this).hasClass('k2ButtonDisabled')) {
+                            $K2(this).removeClass('k2ButtonDisabled');
+                        }
+                    });
                 } else {
+                    $K2('.k2app-ef-remove-option').first().parent().find('input[type="text"]').attr('value', '');
+                    $K2('.k2app-ef-remove-option').first().parent().find('input[type="hidden"]').attr('value', '');
                     $K2('.k2app-ef-remove-option').first().addClass('k2ButtonDisabled');
                 }
             });
