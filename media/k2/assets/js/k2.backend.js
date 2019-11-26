@@ -793,6 +793,14 @@ $K2(document).ready(function() {
                 }
             });
         }
+
+        // Hide system messages (if any)
+        var msgContainer = $('#system-message-container');
+        if (msgContainer) {
+            $(msgContainer).delay(5000).fadeOut(500, function() {
+                $(this).html('');
+            });
+        }
     });
 
     $(window).on('load', function() {
