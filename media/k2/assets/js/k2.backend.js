@@ -807,7 +807,7 @@ $K2(document).ready(function() {
         if ($('.k2AdminTableFilters').length) {
             var filterHeight = $('.k2AdminTableFilters').first().height();
             if (filterHeight > 70) {
-                $('#k2ContentView > form .table-responsive-wrap').css('padding-top', filterHeight - 28);
+                $('#k2ContentView > form .table-responsive-wrap').css('padding-top', filterHeight);
             }
         }
     });
