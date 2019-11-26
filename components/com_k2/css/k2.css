@@ -138,6 +138,8 @@ a.k2ReadMore:hover {}
 
 /* --- Pagination --- */
 div.k2Pagination {padding:8px;margin:24px 0 4px 0;text-align:center;}
+    div.k2PaginationLinks {}
+    div.k2PaginationCounter {}
 div.k2Pagination ul {text-align:center;}
 div.k2Pagination ul li {display:inline-block;margin:0;padding:0;}
 div.k2Pagination ul li a {display:inline-block;padding:4px 8px;margin:0 8px;border:1px solid #ddd;border-radius:4px;vertical-align:middle;background:#fff;text-decoration:none;}
