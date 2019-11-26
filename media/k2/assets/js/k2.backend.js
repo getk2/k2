@@ -795,7 +795,7 @@ $K2(document).ready(function() {
         }
 
         // Hide system messages (if any)
-        var msgContainer = $('#system-message-container');
+        var msgContainer = $('#system-message-container') || $('#system-message');
         if (msgContainer) {
             $(msgContainer).delay(5000).fadeOut(500, function() {
                 $(this).html('');

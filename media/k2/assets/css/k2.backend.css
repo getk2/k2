@@ -1421,12 +1421,13 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ25 #k2ContentView {padding-bottom:20px;}
 
 /* Joomla System Messages */
-.isJ25 #system-message-container {position:fixed;z-index:199;width:60%;margin:0 auto;padding:0;top:0;left:20%;right:20%;}
-.isJ25 #system-message-container #system-message {opacity:0.9;}
-.isJ25 #system-message-container #system-message dd ul {padding:0 10px;margin:0;background-position:10px 50%;border:2px solid #f0dc7e;border-radius:8px;}
-.isJ25 #system-message-container #system-message dd.message ul {border:2px solid #96b0cb;}
-.isJ25 #system-message-container #system-message dd.notice ul {border:2px solid #f0dc7e;}
-.isJ25 #system-message-container #system-message dd ul li {padding:10px;line-height:180%;text-align:center;font-size:14px;}
+.isJ25 #system-message-container {}
+.isJ25 #system-message-container #system-message {position:fixed;z-index:9999;top:56px;right:56px;background:#fff;margin:0;padding:0;border-radius:4px;box-shadow:0 1px 4px 0 #999;min-width:280px;text-align:left;border:0;}
+.isJ25 #system-message-container #system-message dd {padding:10px;margin:0;border-left:4px solid #5fca4a;text-indent:0;}
+.isJ25 #system-message-container #system-message dd.message {padding:10px;margin:0;border-left:4px solid #5fca4a;}
+.isJ25 #system-message-container #system-message dd.notice {padding:10px;margin:0;border-left:4px solid f0c33c;}
+.isJ25 #system-message-container #system-message dd > ul {padding:0;margin:0;background:none;border:0;}
+.isJ25 #system-message-container #system-message dd > ul li {padding:5px;margin:0;background:none;border:0;color:#333;display:block;width:100%;box-sizing:border-box;font-size:13px;line-height:150%;text-align:left;}
 
 /* Edit Forms */
 .isJ25 #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {bottom:-12px;}
@@ -1670,12 +1671,12 @@ button.fancybox-button:hover {background:none;border:0;}
 .isJ15 #footer .copyright a {color:#333;}
 
 /* Joomla System Messages */
-.isJ15 #system-message {position:fixed;z-index:199;margin:0 auto;padding:0;width:60%;top:0;left:20%;right:20%;}
+.isJ15 #system-message {}
 .isJ15 #system-message dt {display:none;}
-.isJ15 #system-message dd {padding:10px;margin:0;text-align:center;opacity:0.9;}
-.isJ15 #system-message dd ul {border:2px solid #f0dc7e;border-radius:8px;background-position:20px 50% !important;}
-.isJ15 #system-message dd.message ul {border:2px solid #96b0cb;}
-.isJ15 #system-message dd ul li {padding:0;margin:0;font-size:14px;line-height:180%;text-align:center;}
+.isJ15 #system-message dd {position:fixed;z-index:9999;top:56px;right:56px;background:#fff;margin:0;padding:10px;border-radius:4px;box-shadow:0 1px 4px 0 #999;min-width:280px;text-align:left;border:0;text-indent:0;border-left:4px solid #5fca4a;}
+.isJ15 #system-message dd ul {padding:0;margin:0;background:none;border:0;}
+.isJ15 #system-message dd.message ul {padding:0;margin:0;background:none;border:0;}
+.isJ15 #system-message dd ul li {padding:5px;margin:0;background:none;border:0;color:#333;display:block;width:100%;box-sizing:border-box;font-size:13px;line-height:150%;}
 
 /* Edit Forms */
 .isJ15 #k2AdminContainer #k2ContentView > form input,
