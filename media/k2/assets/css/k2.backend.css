@@ -593,6 +593,8 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 .k2Button.modal {display:inline-block !important;position:relative !important;color:#414042;}
 .k2Button:link {color:#414042;}
 
+.k2ButtonDisabled {color:#999;}
+
 .itemAdditionalField .itemAdditionalData > button:hover,
 .itemAdditionalField .itemAdditionalData > input[type="button"]:hover,
 .itemAdditionalField .itemAdditionalData > input[type="submit"]:hover,
