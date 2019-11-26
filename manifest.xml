@@ -104,173 +104,156 @@
         </languages>
     </administration>
     <params>
-        <!-- ######################### CSS Settings ######################### -->
-        <param name="enable_css" default="1" />
-        <param name="jQueryHandling" default="1.9.1" />
-        <!-- ######################### Layout and view options for user (blog/profile) pages ######################### -->
-        <param name="userName" default="1" />
-        <param name="userImage" default="1" />
-        <param name="userDescription" default="1" />
-        <param name="userURL" default="1" />
-        <param name="userEmail" default="0" />
-        <param name="userFeedLink" default="1" />
-        <param name="userFeedIcon" default="1" />
-        <param name="userItemCount" default="10" />
-        <param name="userItemTitle" default="1" />
-        <param name="userItemTitleLinked" default="1" />
-        <param name="userItemDateCreated" default="1" />
-        <param name="userItemImage" default="1" />
-        <param name="userItemIntroText" default="1" />
-        <param name="userItemCategory" default="1" />
-        <param name="userItemTags" default="1" />
-        <param name="userItemCommentsAnchor" default="1" />
-        <param name="userItemReadMore" default="1" />
-        <param name="userItemK2Plugins" default="1" />
-        <!-- ######################### Layout and view options for Tag listings ######################### -->
-        <param name="tagName" default="1" />
-        <param name="tagItemCount" default="10" />
-        <param name="tagItemTitle" default="1" />
-        <param name="tagItemTitleLinked" default="1" />
-        <param name="tagItemDateCreated" default="1" />
-        <param name="tagItemImage" default="1" />
-        <param name="tagItemIntroText" default="1" />
-        <param name="tagItemCategory" default="1" />
-        <param name="tagItemTags" default="1" />
-        <param name="tagItemReadMore" default="1" />
-        <param name="tagItemExtraFields" default="0" />
-        <param name="tagOrdering" default="" />
-        <param name="tagFeedLink" default="1" />
-        <param name="tagFeedIcon" default="1" />
-        <!-- ######################### Layout and view options for Search and Date listings ######################### -->
-        <param name="genericTitle" default="1" />
-        <param name="genericItemCount" default="10" />
-        <param name="genericItemTitle" default="1" />
-        <param name="genericItemTitleLinked" default="1" />
-        <param name="genericItemDateCreated" default="1" />
-        <param name="genericItemImage" default="1" />
-        <param name="genericItemIntroText" default="1" />
-        <param name="genericItemCategory" default="1" />
-        <param name="genericItemReadMore" default="1" />
-        <param name="genericItemExtraFields" default="0" />
-        <param name="genericFeedLink" default="1" />
-        <param name="genericFeedIcon" default="1" />
-        <!-- ######################### RSS Feed Settings ######################### -->
-        <param name="feedLimit" default="10" />
-        <param name="feedItemImage" default="1" />
-        <param name="feedImgSize" default="S" />
-        <param name="feedItemIntroText" default="1" />
-        <param name="feedTextWordLimit" default="" />
-        <param name="feedItemFullText" default="1" />
-        <param name="feedItemTags" default="0" />
-        <param name="feedItemVideo" default="0" />
-        <param name="feedItemGallery" default="0" />
-        <param name="feedItemAttachments" default="0" />
-        <param name="feedBogusEmail" default="" />
-        <!-- ######################### Content Cleanup Settings ######################### -->
-        <param name="introTextCleanup" default="0" />
-        <param name="introTextCleanupExcludeTags" default="" />
-        <param name="introTextCleanupTagAttr" default="" />
-        <param name="fullTextCleanup" default="0" />
-        <param name="fullTextCleanupExcludeTags" default="" />
-        <param name="fullTextCleanupTagAttr" default="" />
-        <param name="xssFiltering" default="0" />
-        <!-- ######################### Extra Fields Settings ######################### -->
-        <param name="linkPopupWidth" default="900" />
-        <param name="linkPopupHeight" default="600" />
-        <!-- ######################### Image Settings ######################### -->
-        <param name="imagesQuality" default="100" />
-        <param name="itemImageXS" default="100" />
-        <param name="itemImageS" default="200" />
-        <param name="itemImageM" default="400" />
-        <param name="itemImageL" default="600" />
-        <param name="itemImageXL" default="900" />
-        <param name="itemImageGeneric" default="300" />
-        <param name="catImageWidth" default="100" />
+        <param name="adminSearch" default="simple" />
+        <param name="attachmentsFolder" default="" />
+        <param name="backendListToggler" default="TogglerStandard" />
+        <param name="canonicalURL" default="relative" />
         <param name="catImageDefault" default="1" />
-        <param name="userImageWidth" default="100" />
-        <param name="userImageDefault" default="1" />
+        <param name="catImageWidth" default="100" />
         <param name="commenterImgWidth" default="48" />
-        <param name="onlineImageEditor" default="picozu" />
-        <param name="imageTimestamp" default="1" />
-        <param name="imageMemoryLimit" default="" />
-        <!-- ######################### Social Settings ######################### -->
-        <param name="socialButtonCode" default="" />
-        <param name="facebookMetatags" default="1" />
-        <param name="facebookImage" default="Medium" />
-        <param name="twitterUsername" default="" />
-        <param name="twitterMetatags" default="1" />
-        <param name="twitterImage" default="Medium" />
-        <!-- ######################### Comments ######################### -->
         <param name="comments" default="1" />
-        <param name="commentsOrdering" default="DESC" />
-        <param name="commentsLimit" default="10" />
+        <param name="commentsFormNotes" default="1" />
+        <param name="commentsFormNotesText" default="" />
         <param name="commentsFormPosition" default="below" />
+        <param name="commentsLimit" default="10" />
+        <param name="commentsOrdering" default="DESC" />
         <param name="commentsPublishing" default="0" />
         <param name="commentsReporting" default="2" />
         <param name="commentsReportRecipient" default="" />
-        <param name="inlineCommentsModeration" default="0" />
-        <param name="gravatar" default="1" />
-        <param name="recaptcha" default="0" />
-        <param name="recaptchaForRegistered" default="1" />
-        <param name="commentsFormNotes" default="1" />
-        <param name="commentsFormNotesText" default="" />
-        <!-- ######################### Frontend Editing ######################### -->
-        <param name="frontendEditing" default="1" />
-        <param name="showImageTab" default="1" />
-        <param name="showImageGalleryTab" default="1" />
-        <param name="showVideoTab" default="1" />
-        <param name="showExtraFieldsTab" default="1" />
-        <param name="showAttachmentsTab" default="1" />
-        <param name="showK2Plugins" default="1" />
-        <!-- ######################### Advanced Settings ######################### -->
-        <param name="mergeEditors" default="1" />
-        <field name="backendListToggler" default="TogglerStandard" />
-        <param name="attachmentsFolder" default="" />
-        <param name="hideImportButton" default="0" />
-        <param name="K2UserProfile" default="1" />
-        <param name="K2UserGroup" default="" />
-        <param name="redirect" default="" />
-        <param name="adminSearch" default="simple" />
         <param name="cookieDomain" default="" />
-        <param name="gatherStatistics" default="1" />
-        <!-- ######################### Tag System Settings ######################### -->
-        <param name="taggingSystem" default="1" />
-        <param name="lockTags" default="0" />
-        <param name="showTagFilter" default="0" />
-        <param name="k2TagNorm" default="0" />
-        <param name="k2TagNormCase" default="lower" />
-        <param name="k2TagNormAdditionalReplacements" default="" />
-        <!-- ######################### Anti-spam Settings ######################### -->
-        <param name="recaptcha_public_key" default="" />
-        <param name="recaptcha_private_key" default="" />
-        <param name="recaptcha_theme" default="clean" />
-        <param name="recaptchaOnRegistration" default="0" />
-        <param name="stopForumSpam" default="0" />
-        <param name="stopForumSpamApiKey" default="" />
-        <field name="profilePageDisplay" default="" />
-        <!-- ######################### Performance Settings ######################### -->
-        <param name="showItemsCounterAdmin" default="1" />
-        <param name="showChildCatItems" default="1" />
         <param name="disableCompactOrdering" default="0" />
-        <!-- ######################### SEO Settings ######################### -->
-        <param name="canonicalURL" default="relative" />
-        <param name="metaDescLimit" default="150" />
-        <param name="SEFReplacements" default="" />
-        <!-- ######################### Advanced SEF Settings ######################### -->
+        <param name="enable_css" default="1" />
+        <param name="facebookImage" default="Medium" />
+        <param name="facebookMetatags" default="1" />
+        <param name="feedBogusEmail" default="" />
+        <param name="feedImgSize" default="S" />
+        <param name="feedItemAttachments" default="0" />
+        <param name="feedItemFullText" default="1" />
+        <param name="feedItemGallery" default="0" />
+        <param name="feedItemImage" default="1" />
+        <param name="feedItemIntroText" default="1" />
+        <param name="feedItemTags" default="0" />
+        <param name="feedItemVideo" default="0" />
+        <param name="feedLimit" default="10" />
+        <param name="feedTextWordLimit" default="" />
+        <param name="frontendEditing" default="1" />
+        <param name="fullTextCleanup" default="0" />
+        <param name="fullTextCleanupExcludeTags" default="" />
+        <param name="fullTextCleanupTagAttr" default="" />
+        <param name="gatherStatistics" default="1" />
+        <param name="genericFeedIcon" default="1" />
+        <param name="genericFeedLink" default="1" />
+        <param name="genericItemCategory" default="1" />
+        <param name="genericItemCount" default="10" />
+        <param name="genericItemDateCreated" default="1" />
+        <param name="genericItemExtraFields" default="0" />
+        <param name="genericItemImage" default="1" />
+        <param name="genericItemIntroText" default="1" />
+        <param name="genericItemReadMore" default="1" />
+        <param name="genericItemTitle" default="1" />
+        <param name="genericItemTitleLinked" default="1" />
+        <param name="genericTitle" default="1" />
+        <param name="gravatar" default="1" />
+        <param name="hideImportButton" default="0" />
+        <param name="imageMemoryLimit" default="" />
+        <param name="imagesQuality" default="100" />
+        <param name="imageTimestamp" default="1" />
+        <param name="inlineCommentsModeration" default="0" />
+        <param name="introTextCleanup" default="0" />
+        <param name="introTextCleanupExcludeTags" default="" />
+        <param name="introTextCleanupTagAttr" default="" />
+        <param name="itemImageGeneric" default="300" />
+        <param name="itemImageL" default="600" />
+        <param name="itemImageM" default="400" />
+        <param name="itemImageS" default="200" />
+        <param name="itemImageXL" default="900" />
+        <param name="itemImageXS" default="100" />
+        <param name="jQueryHandling" default="1.9.1" />
         <param name="k2Sef" default="0" />
+        <param name="k2SefCatIdTitleAliasSep" default="dash" />
+        <param name="k2SefInsertCatId" default="1" />
+        <param name="k2SefInsertItemId" default="1" />
+        <param name="k2SefItemIdTitleAliasSep" default="dash" />
         <param name="k2SefLabelCat" default="content" />
-        <param name="k2SefLabelTag" default="tag" />
-        <param name="k2SefLabelUser" default="author" />
-        <param name="k2SefLabelSearch" default="search" />
         <param name="k2SefLabelDate" default="date" />
         <param name="k2SefLabelItem" default="0" />
         <param name="k2SefLabelItemCustomPrefix" default="" />
-        <param name="k2SefInsertItemId" default="1" />
-        <param name="k2SefItemIdTitleAliasSep" default="dash" />
-        <param name="k2SefUseItemTitleAlias" default="1" />
-        <param name="k2SefInsertCatId" default="1" />
-        <param name="k2SefCatIdTitleAliasSep" default="dash" />
+        <param name="k2SefLabelSearch" default="search" />
+        <param name="k2SefLabelTag" default="tag" />
+        <param name="k2SefLabelUser" default="author" />
         <param name="k2SefUseCatTitleAlias" default="1" />
+        <param name="k2SefUseItemTitleAlias" default="1" />
+        <param name="k2TagNorm" default="0" />
+        <param name="k2TagNormAdditionalReplacements" default="" />
+        <param name="k2TagNormCase" default="lower" />
+        <param name="K2UserGroup" default="" />
+        <param name="K2UserProfile" default="1" />
+        <param name="linkPopupHeight" default="600" />
+        <param name="linkPopupWidth" default="900" />
+        <param name="lockTags" default="0" />
+        <param name="mergeEditors" default="1" />
+        <param name="metaDescLimit" default="150" />
+        <param name="profilePageDisplay" default="" />
+        <param name="recaptcha_private_key" default="" />
+        <param name="recaptcha_public_key" default="" />
+        <param name="recaptcha_theme" default="clean" />
+        <param name="recaptcha" default="0" />
+        <param name="recaptchaForRegistered" default="1" />
+        <param name="recaptchaOnRegistration" default="0" />
+        <param name="redirect" default="" />
+        <param name="SEFReplacements" default="" />
+        <param name="showAttachmentsTab" default="1" />
+        <param name="showChildCatItems" default="1" />
+        <param name="showExtraFieldsTab" default="1" />
+        <param name="showImageGalleryTab" default="1" />
+        <param name="showImageTab" default="1" />
+        <param name="showItemsCounterAdmin" default="1" />
+        <param name="showK2Plugins" default="1" />
+        <param name="showTagFilter" default="0" />
+        <param name="showVideoTab" default="1" />
+        <param name="siteItemHits" default="1" />
+        <param name="socialButtonCode" default="" />
+        <param name="stopForumSpam" default="0" />
+        <param name="stopForumSpamApiKey" default="" />
+        <param name="tagFeedIcon" default="1" />
+        <param name="tagFeedLink" default="1" />
+        <param name="taggingSystem" default="1" />
+        <param name="tagItemCategory" default="1" />
+        <param name="tagItemCount" default="10" />
+        <param name="tagItemDateCreated" default="1" />
+        <param name="tagItemExtraFields" default="0" />
+        <param name="tagItemImage" default="1" />
+        <param name="tagItemIntroText" default="1" />
+        <param name="tagItemReadMore" default="1" />
+        <param name="tagItemTags" default="1" />
+        <param name="tagItemTitle" default="1" />
+        <param name="tagItemTitleLinked" default="1" />
+        <param name="tagName" default="1" />
+        <param name="tagOrdering" default="" />
+        <param name="twitterImage" default="Medium" />
+        <param name="twitterMetatags" default="1" />
+        <param name="twitterUsername" default="" />
+        <param name="userDescription" default="1" />
+        <param name="userEmail" default="0" />
+        <param name="userFeedIcon" default="1" />
+        <param name="userFeedLink" default="1" />
+        <param name="userImage" default="1" />
+        <param name="userImageDefault" default="1" />
+        <param name="userImageWidth" default="100" />
+        <param name="userItemCategory" default="1" />
+        <param name="userItemCommentsAnchor" default="1" />
+        <param name="userItemCount" default="10" />
+        <param name="userItemDateCreated" default="1" />
+        <param name="userItemImage" default="1" />
+        <param name="userItemIntroText" default="1" />
+        <param name="userItemK2Plugins" default="1" />
+        <param name="userItemReadMore" default="1" />
+        <param name="userItemTags" default="1" />
+        <param name="userItemTitle" default="1" />
+        <param name="userItemTitleLinked" default="1" />
+        <param name="userName" default="1" />
+        <param name="userURL" default="1" />
+        <param name="xssFiltering" default="0" />
     </params>
     <modules>
         <module module="mod_k2_comments" client="site" />
