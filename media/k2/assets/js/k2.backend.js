@@ -989,7 +989,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             ';
             $K2(html).appendTo(target);
 
-            $K2('#k2ContentView').on('click', '.k2app-ef-remove-option', function(e) {
+            $K2('#select_radio_fields').on('click', '.k2app-ef-remove-option', function(e) {
                 e.preventDefault();
                 if ($K2('.k2app-ef-remove-option').length > 1) {
                     $K2('.k2app-ef-remove-option').each(function() {
