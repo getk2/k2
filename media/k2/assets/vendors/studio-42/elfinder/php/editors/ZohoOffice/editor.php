@@ -4,7 +4,7 @@ class elFinderEditorZohoOffice extends elFinderEditor
 {
     private static $curlTimeout = 20;
 
-    protected $allowed = array('init', 'save');
+    protected $allowed = array('init', 'save', 'chk');
 
     private $urls = array(
         'writer' => 'https://writer.zoho.com/writer/remotedoc.im',
@@ -45,7 +45,26 @@ class elFinderEditorZohoOffice extends elFinderEditor
         if (!empty($this->args['target'])) {
             $fp = $cfile = null;
             $hash = $this->args['target'];
+            /** @var elFinderVolumeDriver $srcVol */
             if (($srcVol = $this->elfinder->getVolume($hash)) && ($file = $srcVol->file($hash))) {
+                $cdata = empty($this->args['cdata']) ? '' : $this->args['cdata'];
+                $cookie = $this->elfinder->getFetchCookieFile();
+                $save = false;
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, elFinder::getConnectorUrl() . '?cmd=editor&name=ZohoOffice&method=chk&args[target]=' . rawurlencode($hash) . $cdata);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                if ($cookie) {
+                    curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie);
+                    curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie);
+                }
+                $res = curl_exec($ch);
+                curl_close($ch);
+                if ($res) {
+                    if ($data = json_decode($res, true)) {
+                        $save = !empty($data['cansave']);
+                    }
+                }
+
                 if ($size = $file['size']) {
                     $src = $srcVol->open($hash);
                     $fp = tmpfile();
@@ -59,7 +78,7 @@ class elFinderEditorZohoOffice extends elFinderEditor
                             $cfile->setPostFilename($file['name']);
                             $cfile->setMimeType($file['mime']);
                         } else {
-                            $cfile = '@'.$srcFile;
+                            $cfile = '@' . $srcFile;
                         }
                     }
                 }
@@ -68,7 +87,6 @@ class elFinderEditorZohoOffice extends elFinderEditor
                 if (!$format) {
                     $format = substr($file['name'], strrpos($file['name'], '.') * -1);
                 }
-                $cdata = empty($this->args['cdata']) ? '' : $this->args['cdata'];
                 $lang = $this->args['lang'];
                 if ($lang === 'jp') {
                     $lang = 'ja';
@@ -78,12 +96,14 @@ class elFinderEditorZohoOffice extends elFinderEditor
                     'apikey' => ELFINDER_ZOHO_OFFICE_APIKEY,
                     'output' => 'url',
                     'mode' => 'normaledit',
-                    'filename' => rawurlencode($file['name']),
+                    'filename' => $file['name'],
                     'id' => $hash,
                     'format' => $format,
-                    'lang' => $lang,
-                    'saveurl' => elFinder::getConnectorUrl().'?cmd=editor&name=ZohoOffice&method=save'.$cdata,
+                    'lang' => $lang
                 );
+                if ($save) {
+                    $data['saveurl'] = elFinder::getConnectorUrl() . '?cmd=editor&name=ZohoOffice&method=save' . $cdata;
+                }
                 if ($cfile) {
                     $data['content'] = $cfile;
                 }
@@ -105,7 +125,12 @@ class elFinderEditorZohoOffice extends elFinderEditor
                         list(, $url) = explode('URL=', $res);
                         preg_match('/URL=([^\s]+)/', $res, $m);
 
-                        return array('zohourl' => $m[1]);
+                        $ret = array('zohourl' => $m[1]);
+                        if (!$save) {
+                            $ret['warning'] = 'exportToSave';
+                        }
+
+                        return $ret;
                     } else {
                         $error = $res;
                     }
@@ -122,8 +147,9 @@ class elFinderEditorZohoOffice extends elFinderEditor
 
     public function save()
     {
-        if (isset($_POST) && ! empty($_POST['id'])) {
+        if (isset($_POST) && !empty($_POST['id'])) {
             $hash = $_POST['id'];
+            /** @var elFinderVolumeDriver $volume */
             if ($volume = $this->elfinder->getVolume($hash)) {
                 $content = file_get_contents($_FILES['content']['tmp_name']);
                 if ($volume->putContents($hash, $content)) {
@@ -132,5 +158,18 @@ class elFinderEditorZohoOffice extends elFinderEditor
             }
         }
         return array('raw' => true, 'error' => '', 'header' => 'HTTP/1.1 500 Internal Server Error');
+    }
+
+    public function chk()
+    {
+        $hash = $this->args['target'];
+        $res = false;
+        /** @var elFinderVolumeDriver $volume */
+        if ($volume = $this->elfinder->getVolume($hash)) {
+            if ($file = $volume->file($hash)) {
+                $res = (bool)$file['write'];
+            }
+        }
+        return array('cansave' => $res);
     }
 }

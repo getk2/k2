@@ -79,7 +79,7 @@ defined('_JEXEC') or die;
                                     </tr>
                                     <tr>
                                         <td><a target="_blank" href="https://github.com/Studio-42/elFinder">elFinder</a></td>
-                                        <td>2.1.42</td>
+                                        <td>2.1.50</td>
                                         <td><?php echo JText::_('K2_INFO_FILE_MANAGER'); ?></td>
                                         <td>BSD</td>
                                     </tr>

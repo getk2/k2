@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Abstract class of editor plugins.
  *
@@ -12,6 +13,20 @@ class elFinderEditor
      * @var array
      */
     protected $allowed = array();
+
+    /**
+     * elFinder instance
+     *
+     * @var object elFinder instance
+     */
+    protected $elfinder;
+
+    /**
+     * Arguments
+     *
+     * @var array argValues
+     */
+    protected $args;
 
     /**
      * Constructor.
@@ -52,13 +67,13 @@ class elFinderEditor
     /**
      * Return $this->args value of the key
      *
-     * @param      string  $key    target key
-     * @param      string  $empty  empty value
+     * @param      string $key   target key
+     * @param      string $empty empty value
      *
      * @return     mixed
      */
     public function argValue($key, $empty = '')
     {
-        return isset($this->args[$key])? $this->args[$key] : $empty;
+        return isset($this->args[$key]) ? $this->args[$key] : $empty;
     }
 }
