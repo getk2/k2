@@ -21,8 +21,8 @@ class K2HelperRoute
     private static $cache = array(
         'item' => array(),
         'category' => array(),
-        'user' => array(),
-        'tag' => array()
+        'tag' => array(),
+        'user' => array()
     );
 
     public static function getItemRoute($id, $catid = 0)
@@ -55,6 +55,22 @@ class K2HelperRoute
             $link .= '&Itemid='.$item->id;
         }
         self::$cache['category'][$key] = $link;
+        return $link;
+    }
+
+    public static function getTagRoute($tag)
+    {
+        $key = $tag;
+        if (isset(self::$cache['tag'][$key])) {
+            return self::$cache['tag'][$key];
+        }
+
+        $needles = array('tag' => $tag);
+        $link = 'index.php?option=com_k2&view=itemlist&task=tag&tag='.urlencode($tag);
+        if ($item = K2HelperRoute::_findItem($needles)) {
+            $link .= '&Itemid='.$item->id;
+        }
+        self::$cache['tag'][$key] = $link;
         return $link;
     }
 
@@ -110,22 +126,6 @@ class K2HelperRoute
         return $link;
     }
 
-    public static function getTagRoute($tag)
-    {
-        $key = $tag;
-        if (isset(self::$cache['tag'][$key])) {
-            return self::$cache['tag'][$key];
-        }
-
-        $needles = array('tag' => $tag);
-        $link = 'index.php?option=com_k2&view=itemlist&task=tag&tag='.urlencode($tag);
-        if ($item = K2HelperRoute::_findItem($needles)) {
-            $link .= '&Itemid='.$item->id;
-        }
-        self::$cache['tag'][$key] = $link;
-        return $link;
-    }
-
     public static function getDateRoute($year, $month, $day = null, $catid = null)
     {
         $needles = array('year' => $year);
@@ -160,16 +160,7 @@ class K2HelperRoute
 
         if (K2_JVERSION == '15') {
             $items = $menu->getItems('componentid', $component->id);
-        } elseif (K2_JVERSION == '25') {
-            $items = $menu->getItems('component_id', $component->id);
         } else {
-            /*
-            // Grab menu items from all languages (/libraries/src/Menu/SiteMenu.php)
-            $items = $menu->getItems(
-                array('component_id', 'language'),
-                array($component->id, null)
-            );
-            */
             $items = $menu->getItems('component_id', $component->id);
         }
 
