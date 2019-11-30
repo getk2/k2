@@ -336,8 +336,10 @@ class modK2ContentHelper
 
                     // Select the size to use
                     $image = 'image'.$params->get('itemImgSize', 'Small');
-                    if (isset($item->$image)) {
+                    if (!empty($item->$image)) {
                         $item->image = $item->$image;
+                    } else {
+                        $item->image = null;
                     }
                 }
 
