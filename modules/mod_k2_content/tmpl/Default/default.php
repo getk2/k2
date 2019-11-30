@@ -69,7 +69,7 @@ defined('_JEXEC') or die;
 
             <?php if($params->get('itemImage') || $params->get('itemIntroText')): ?>
             <div class="moduleItemIntrotext">
-                <?php if($params->get('itemImage') && isset($item->image)): ?>
+                <?php if($params->get('itemImage') && !empty($item->image)): ?>
                 <a class="moduleItemImage" href="<?php echo $item->link; ?>" title="<?php echo JText::_('K2_CONTINUE_READING'); ?> &quot;<?php echo K2HelperUtilities::cleanHtml($item->title); ?>&quot;">
                     <img src="<?php echo $item->image; ?>" alt="<?php echo K2HelperUtilities::cleanHtml($item->title); ?>" />
                 </a>

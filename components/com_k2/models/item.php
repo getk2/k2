@@ -415,8 +415,8 @@ class K2ModelItem extends K2Model
         $row->featured = $item->featured;
         //$row->ordering = $item->ordering;
         //$row->featured_ordering = $item->featured_ordering;
-        $row->image = isset($item->image) ? $item->image : '';
-        $row->imageWidth = isset($item->imageWidth) ? $item->imageWidth : '';
+        $row->image = (!empty($item->image)) ? $item->image : '';
+        $row->imageWidth = (!empty($item->imageWidth)) ? $item->imageWidth : '';
         $row->image_caption = $item->image_caption;
         $row->image_credits = $item->image_credits;
         $row->imageXSmall = $item->imageXSmall;
