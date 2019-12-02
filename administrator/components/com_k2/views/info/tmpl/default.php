@@ -109,7 +109,7 @@ defined('_JEXEC') or die;
                                     </tr>
                                     <tr>
                                         <td><a target="_blank" href="https://github.com/flatpickr/flatpickr">flatpickr</a></td>
-                                        <td>4.6.3</td>
+                                        <td>4.5.7</td>
                                         <td><?php echo JText::_('K2_INFO_DATETIME_PICKER'); ?></td>
                                         <td>MIT</td>
                                     </tr>
