@@ -297,7 +297,7 @@
             <option value="1">K2_ENABLE</option>
         </param>
         <param menu="hide" name="k2SeoGsdOrgName" type="text" default="" label="K2_GSD_ORG_NAME" description="K2_GSD_ORG_NAME_DESC"/>
-        <param menu="hide" name="k2SeoGsdOrgLogo" type="media" label="K2_GSD_ORG_LOGO_FOR_J15" description="K2_GSD_ORG_LOGO_FOR_J15_DESC"/>
+        <param menu="hide" name="k2SeoGsdOrgLogo" type="text" label="K2_GSD_ORG_LOGO_FOR_J15" description="K2_GSD_ORG_LOGO_FOR_J15_DESC"/>
         <param menu="hide" name="k2SeoGsdOrgLogoWidth" type="text" default="" label="K2_GSD_ORG_LOGO_WIDTH" description=""/>
         <param menu="hide" name="k2SeoGsdOrgLogoHeight" type="text" default="" label="K2_GSD_ORG_LOGO_HEIGHT" description=""/>
         <param menu="hide" name="k2SeoGsdType" type="list" default="Article" label="K2_GSD_TYPE" description="K2_GSD_TYPE_DESC">
