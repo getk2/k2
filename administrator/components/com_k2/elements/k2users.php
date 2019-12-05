@@ -14,14 +14,14 @@ require_once(JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
 class K2ElementK2Users extends K2Element
 {
-	function fetchElement($name, $value, &$node, $control_name)
-	{
-		$fieldName = (K2_JVERSION != '15') ? $name.'[]' : $control_name.'['.$name.'][]';
+    public function fetchElement($name, $value, &$node, $control_name)
+    {
+        $fieldName = (K2_JVERSION != '15') ? $name.'[]' : $control_name.'['.$name.'][]';
 
-		$document = JFactory::getDocument();
-		$document->addStyleSheet('https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css');
-		$document->addScript('https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js');
-		$document->addScriptDeclaration('
+        $document = JFactory::getDocument();
+        $document->addStyleSheet('https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css');
+        $document->addScript('https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js');
+        $document->addScriptDeclaration('
 			$K2(document).ready(function() {
 				if(typeof($K2(".k2UsersElement").chosen) == "function") {
 					$K2(".k2UsersElement").chosen("destroy");
@@ -54,25 +54,24 @@ class K2ElementK2Users extends K2Element
 			});
 		');
 
-		$options = array();
-		if(is_array($value) && count($value))
-		{
-			$db = JFactory::getDbo();
-			$query = "SELECT id AS value, name AS text FROM #__users WHERE id IN(".implode(',', $value).")";
-			$db->setQuery($query);
-			$options = $db->loadObjectList();
-		}
+        $options = array();
+        if (is_array($value) && count($value)) {
+            $db = JFactory::getDbo();
+            $query = "SELECT id AS value, name AS text FROM #__users WHERE id IN(".implode(',', $value).")";
+            $db->setQuery($query);
+            $options = $db->loadObjectList();
+        }
 
-		return JHTML::_('select.genericlist', $options, $fieldName, 'class="k2UsersElement" multiple="multiple" size="15"', 'value', 'text', $value);
-	}
+        return JHTML::_('select.genericlist', $options, $fieldName, 'class="k2UsersElement" multiple="multiple" size="15"', 'value', 'text', $value);
+    }
 }
 
 class JFormFieldK2Users extends K2ElementK2Users
 {
-	var $type = 'k2users';
+    public $type = 'k2users';
 }
 
 class JElementK2Users extends K2ElementK2Users
 {
-	var $_name = 'k2users';
+    public $_name = 'k2users';
 }

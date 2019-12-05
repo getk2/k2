@@ -14,11 +14,11 @@ require_once(JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
 class K2ElementItemForm extends K2Element
 {
-    function fetchElement($name, $value, &$node, $control_name)
+    public function fetchElement($name, $value, &$node, $control_name)
     {
-		if(version_compare(JVERSION, '3.5', 'ge')) {
-			JHtml::_('behavior.framework');
-		}
+        if (version_compare(JVERSION, '3.5', 'ge')) {
+            JHtml::_('behavior.framework');
+        }
         $document = JFactory::getDocument();
         $document->addScriptDeclaration("
         	/* Mootools Snippet */
@@ -42,7 +42,7 @@ class K2ElementItemForm extends K2Element
         return '';
     }
 
-    function fetchTooltip($label, $description, &$node, $control_name, $name)
+    public function fetchTooltip($label, $description, &$node, $control_name, $name)
     {
         return '';
     }
@@ -50,10 +50,10 @@ class K2ElementItemForm extends K2Element
 
 class JFormFielditemform extends K2ElementItemForm
 {
-    var $type = 'itemform';
+    public $type = 'itemform';
 }
 
 class JElementitemform extends K2ElementItemForm
 {
-    var $_name = 'itemform';
+    public $_name = 'itemform';
 }

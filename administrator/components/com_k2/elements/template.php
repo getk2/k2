@@ -22,43 +22,32 @@ class K2ElementTemplate extends K2Element
         $componentPath = JPATH_SITE.'/components/com_k2/templates';
         $componentFolders = JFolder::folders($componentPath);
         $db = JFactory::getDbo();
-        if (K2_JVERSION != '15')
-        {
+        if (K2_JVERSION != '15') {
             $query = "SELECT template FROM #__template_styles WHERE client_id = 0 AND home = 1";
-        }
-        else
-        {
+        } else {
             $query = "SELECT template FROM #__templates_menu WHERE client_id = 0 AND menuid = 0";
         }
         $db->setQuery($query);
         $defaultemplate = $db->loadResult();
 
-        if (JFolder::exists(JPATH_SITE.'/templates/'.$defaultemplate.'/html/com_k2/templates'))
-        {
+        if (JFolder::exists(JPATH_SITE.'/templates/'.$defaultemplate.'/html/com_k2/templates')) {
             $templatePath = JPATH_SITE.'/templates/'.$defaultemplate.'/html/com_k2/templates';
-        }
-        else
-        {
+        } else {
             $templatePath = JPATH_SITE.'/templates/'.$defaultemplate.'/html/com_k2';
         }
 
-        if (JFolder::exists($templatePath))
-        {
+        if (JFolder::exists($templatePath)) {
             $templateFolders = JFolder::folders($templatePath);
             $folders = @array_merge($templateFolders, $componentFolders);
             $folders = @array_unique($folders);
-        }
-        else
-        {
+        } else {
             $folders = $componentFolders;
         }
 
         $exclude = 'default';
         $options = array();
-        foreach ($folders as $folder)
-        {
-            if (preg_match(chr(1).$exclude.chr(1), $folder))
-            {
+        foreach ($folders as $folder) {
+            if (preg_match(chr(1).$exclude.chr(1), $folder)) {
                 continue;
             }
             $options[] = JHTML::_('select.option', $folder, $folder);
@@ -72,10 +61,10 @@ class K2ElementTemplate extends K2Element
 
 class JFormFieldTemplate extends K2ElementTemplate
 {
-    var $type = 'template';
+    public $type = 'template';
 }
 
 class JElementTemplate extends K2ElementTemplate
 {
-    var $_name = 'template';
+    public $_name = 'template';
 }

@@ -14,7 +14,7 @@ require_once(JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
 class K2ElementCategoriesMultiple extends K2Element
 {
-    function fetchElement($name, $value, &$node, $control_name)
+    public function fetchElement($name, $value, &$node, $control_name)
     {
         $document = JFactory::getDocument();
 
@@ -23,12 +23,9 @@ class K2ElementCategoriesMultiple extends K2Element
         $db->setQuery($query);
         $mitems = $db->loadObjectList();
         $children = array();
-        if ($mitems)
-        {
-            foreach ($mitems as $v)
-            {
-                if (K2_JVERSION != '15')
-                {
+        if ($mitems) {
+            foreach ($mitems as $v) {
+                if (K2_JVERSION != '15') {
                     $v->title = $v->name;
                     $v->parent_id = $v->parent;
                 }
@@ -41,15 +38,13 @@ class K2ElementCategoriesMultiple extends K2Element
         $list = JHTML::_('menu.treerecurse', 0, '', array(), $children, 9999, 0, 0);
         $mitems = array();
 
-        foreach ($list as $item)
-        {
+        foreach ($list as $item) {
             $item->treename = JString::str_ireplace('&#160;', '- ', $item->treename);
             $mitems[] = JHTML::_('select.option', $item->id, '   '.$item->treename);
         }
 
         $doc = JFactory::getDocument();
-        if (K2_JVERSION != '15')
-        {
+        if (K2_JVERSION != '15') {
             $js = "
 			\$K2(document).ready(function(){
 
@@ -84,9 +79,7 @@ class K2ElementCategoriesMultiple extends K2Element
 
 			});
 			";
-        }
-        else
-        {
+        } else {
             $js = "
 			\$K2(document).ready(function(){
 
@@ -120,12 +113,9 @@ class K2ElementCategoriesMultiple extends K2Element
 			";
         }
 
-        if (K2_JVERSION != '15')
-        {
+        if (K2_JVERSION != '15') {
             $fieldName = $name.'[]';
-        }
-        else
-        {
+        } else {
             $fieldName = $control_name.'['.$name.'][]';
         }
 
@@ -137,10 +127,10 @@ class K2ElementCategoriesMultiple extends K2Element
 
 class JFormFieldCategoriesMultiple extends K2ElementCategoriesMultiple
 {
-    var $type = 'categoriesmultiple';
+    public $type = 'categoriesmultiple';
 }
 
 class JElementCategoriesMultiple extends K2ElementCategoriesMultiple
 {
-    var $_name = 'categoriesmultiple';
+    public $_name = 'categoriesmultiple';
 }

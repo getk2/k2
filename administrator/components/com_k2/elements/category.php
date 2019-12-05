@@ -14,19 +14,16 @@ require_once(JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
 class K2ElementCategory extends K2Element
 {
-    function fetchElement($name, $value, &$node, $control_name)
+    public function fetchElement($name, $value, &$node, $control_name)
     {
         $db = JFactory::getDbo();
         $query = 'SELECT m.* FROM #__k2_categories m WHERE trash = 0 ORDER BY parent, ordering';
         $db->setQuery($query);
         $mitems = $db->loadObjectList();
         $children = array();
-        if ($mitems)
-        {
-            foreach ($mitems as $v)
-            {
-                if (K2_JVERSION != '15')
-                {
+        if ($mitems) {
+            foreach ($mitems as $v) {
+                if (K2_JVERSION != '15') {
                     $v->title = $v->name;
                     $v->parent_id = $v->parent;
                 }
@@ -41,10 +38,9 @@ class K2ElementCategory extends K2Element
         $mitems = array();
         $option = JRequest::getCmd('option');
         $prefix = ($option == 'com_joomfish') ? 'refField_' : '';
-        if ($name == 'categories' || $name == 'jform[params][categories]')
-        {
-            if(version_compare(JVERSION, '3.5', 'ge')) {
-              JHtml::_('behavior.framework');
+        if ($name == 'categories' || $name == 'jform[params][categories]') {
+            if (version_compare(JVERSION, '3.5', 'ge')) {
+                JHtml::_('behavior.framework');
             }
             $doc = JFactory::getDocument();
             $js = "
@@ -127,8 +123,7 @@ class K2ElementCategory extends K2Element
 			}
 			";
 
-            if (K2_JVERSION != '15')
-            {
+            if (K2_JVERSION != '15') {
                 $js = "
 				function disableParams(){
 					$('jform_params_num_leading_items').setProperty('disabled','disabled');
@@ -216,41 +211,33 @@ class K2ElementCategory extends K2Element
             $doc->addScriptDeclaration($js);
         }
 
-        foreach ($list as $item)
-        {
+        foreach ($list as $item) {
             $item->treename = JString::str_ireplace('&#160;', '- ', $item->treename);
             @$mitems[] = JHTML::_('select.option', $item->id, $item->treename);
         }
 
-        if (K2_JVERSION != '15')
-        {
+        if (K2_JVERSION != '15') {
             $fieldName = $name.'[]';
-        }
-        else
-        {
+        } else {
             $fieldName = $control_name.'['.$name.'][]';
         }
 
-        if ($name == 'categories' || $name == 'jform[params][categories]')
-        {
+        if ($name == 'categories' || $name == 'jform[params][categories]') {
             $onChange = 'onchange="setTask();"';
-        }
-        else
-        {
+        } else {
             $onChange = '';
         }
 
         return JHTML::_('select.genericlist', $mitems, $fieldName, $onChange.' class="inputbox" style="width:90%;" multiple="multiple" size="15"', 'value', 'text', $value);
-
     }
 }
 
 class JFormFieldCategory extends K2ElementCategory
 {
-    var $type = 'category';
+    public $type = 'category';
 }
 
 class JElementCategory extends K2ElementCategory
 {
-    var $_name = 'category';
+    public $_name = 'category';
 }

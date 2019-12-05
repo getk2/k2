@@ -14,20 +14,16 @@ require_once(JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
 class K2ElementCategories extends K2Element
 {
-
-    function fetchElement($name, $value, &$node, $control_name)
+    public function fetchElement($name, $value, &$node, $control_name)
     {
         $db = JFactory::getDbo();
         $query = 'SELECT m.* FROM #__k2_categories m WHERE trash = 0 ORDER BY parent, ordering';
         $db->setQuery($query);
         $mitems = $db->loadObjectList();
         $children = array();
-        if ($mitems)
-        {
-            foreach ($mitems as $v)
-            {
-                if (K2_JVERSION != '15')
-                {
+        if ($mitems) {
+            foreach ($mitems as $v) {
+                if (K2_JVERSION != '15') {
                     $v->title = $v->name;
                     $v->parent_id = $v->parent;
                 }
@@ -41,38 +37,28 @@ class K2ElementCategories extends K2Element
         $mitems = array();
         $mitems[] = JHTML::_('select.option', '0', JText::_('K2_NONE_ONSELECTLISTS'));
 
-        foreach ($list as $item)
-        {
+        foreach ($list as $item) {
             $item->treename = JString::str_ireplace('&#160;', ' -', $item->treename);
             $mitems[] = JHTML::_('select.option', $item->id, $item->treename);
         }
 
         $attributes = 'class="inputbox"';
-        if (K2_JVERSION != '15')
-        {
+        if (K2_JVERSION != '15') {
             $attribute = K2_JVERSION == '25' ? $node->getAttribute('multiple') : $node->attributes()->multiple;
-            if ($attribute)
-            {
+            if ($attribute) {
                 $attributes .= ' multiple="multiple" size="10"';
             }
-        }
-        else
-        {
-            if ($node->attributes('multiple'))
-            {
+        } else {
+            if ($node->attributes('multiple')) {
                 $attributes .= ' multiple="multiple" size="10"';
             }
         }
 
-        if (K2_JVERSION != '15')
-        {
+        if (K2_JVERSION != '15') {
             $fieldName = $name;
-        }
-        else
-        {
+        } else {
             $fieldName = $control_name.'['.$name.']';
-            if ($node->attributes('multiple'))
-            {
+            if ($node->attributes('multiple')) {
                 $fieldName .= '[]';
             }
         }
@@ -83,10 +69,10 @@ class K2ElementCategories extends K2Element
 
 class JFormFieldCategories extends K2ElementCategories
 {
-    var $type = 'categories';
+    public $type = 'categories';
 }
 
 class JElementCategories extends K2ElementCategories
 {
-    var $_name = 'categories';
+    public $_name = 'categories';
 }

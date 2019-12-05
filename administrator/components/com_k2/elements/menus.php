@@ -14,7 +14,7 @@ require_once(JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
 class K2ElementMenus extends K2Element
 {
-    function fetchElement($name, $value, &$node, $control_name)
+    public function fetchElement($name, $value, &$node, $control_name)
     {
         $fieldName = (K2_JVERSION != '15') ? $name : $control_name.'['.$name.']';
         $db = JFactory::getDbo();
@@ -23,8 +23,7 @@ class K2ElementMenus extends K2Element
         $menus = $db->loadObjectList();
         $options = array();
         $options[] = JHTML::_('select.option', '', JText::_('K2_NONE_ONSELECTLISTS'));
-        foreach ($menus as $menu)
-        {
+        foreach ($menus as $menu) {
             $options[] = JHTML::_('select.option', $menu->menutype, $menu->title);
         }
         return JHTML::_('select.genericlist', $options, $fieldName, 'class="inputbox"', 'value', 'text', $value);
@@ -33,10 +32,10 @@ class K2ElementMenus extends K2Element
 
 class JFormFieldMenus extends K2ElementMenus
 {
-    var $type = 'menus';
+    public $type = 'menus';
 }
 
 class JElementMenus extends K2ElementMenus
 {
-    var $_name = 'menus';
+    public $_name = 'menus';
 }
