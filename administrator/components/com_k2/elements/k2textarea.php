@@ -14,41 +14,34 @@ require_once(JPATH_ADMINISTRATOR.'/components/com_k2/elements/base.php');
 
 class K2ElementK2textarea extends K2Element
 {
-    function fetchElement($name, $value, &$node, $control_name)
+    public function fetchElement($name, $value, &$node, $control_name)
     {
-		// Attributes
-        if (version_compare(JVERSION, '1.5.0', 'gt'))
-        {
-			$fieldName = $name;
-            if($node->attributes()->chars)
-            {
-	            $chars = $node->attributes()->chars;
+        // Attributes
+        if (version_compare(JVERSION, '1.6.0', 'ge')) {
+            $fieldName = $name;
+            if ($node->attributes()->chars) {
+                $chars = $node->attributes()->chars;
             }
-            if($node->attributes()->cols)
-            {
-	            $cols = $node->attributes()->cols;
+            if ($node->attributes()->cols) {
+                $cols = $node->attributes()->cols;
             }
-            if($node->attributes()->rows)
-            {
-	            $rows = $node->attributes()->rows;
+            if ($node->attributes()->rows) {
+                $rows = $node->attributes()->rows;
             }
-        }
-        else
-        {
-	        $fieldName = $control_name.'['.$name.']';
-            if($node->attributes('chars')){
-	            $chars = $node->attributes('chars');
+        } else {
+            $fieldName = $control_name.'['.$name.']';
+            if ($node->attributes('chars')) {
+                $chars = $node->attributes('chars');
             }
-            if($node->attributes('cols')){
-	            $cols = $node->attributes('cols');
+            if ($node->attributes('cols')) {
+                $cols = $node->attributes('cols');
             }
-            if($node->attributes('rows')){
-	            $rows = $node->attributes('rows');
+            if ($node->attributes('rows')) {
+                $rows = $node->attributes('rows');
             }
         }
-        if(!$value)
-        {
-          $value = '';
+        if (!$value) {
+            $value = '';
         }
 
         // Output
@@ -58,10 +51,10 @@ class K2ElementK2textarea extends K2Element
 
 class JFormFieldK2textarea extends K2ElementK2textarea
 {
-    var $type = 'k2textarea';
+    public $type = 'k2textarea';
 }
 
 class JElementK2textarea extends K2ElementK2textarea
 {
-    var $_name = 'k2textarea';
+    public $_name = 'k2textarea';
 }

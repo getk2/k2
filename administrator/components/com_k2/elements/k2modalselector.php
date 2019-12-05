@@ -20,7 +20,7 @@ class K2ElementK2modalselector extends K2Element
 
         // Attributes
         $fieldID = 'fieldID_'.md5($name);
-        if (version_compare(JVERSION, '1.5.0', 'gt')) {
+        if (version_compare(JVERSION, '1.6.0', 'ge')) {
             if ($node->attributes()->scope) {
                 $scope = $node->attributes()->scope;
             } else {
