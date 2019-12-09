@@ -1646,13 +1646,16 @@ button.fancybox-button:hover {background:none;border:0;}
     .k2ui-hide-on-mobile {display:none;}
 
     /* Grid */
-    .isJ30 div#toolbar {position:relative;z-index:9;padding:12px 12px 12px 160px;background-position:44px 50%;}
+    .isJ30 .btn-subhead {width:80%;margin:10px auto;}
+    .isJ30 div#toolbar {position:relative;z-index:9;padding:10px;background:none;width:94%;margin:auto;display:grid;grid-template-columns:1fr 1fr;grid-gap:10px;}
+    .isJ30 div#toolbar .btn-wrapper {margin:0;padding:0;display:block;box-sizing:border-box;}
+    .isJ30 div#toolbar .btn-wrapper .btn {width:100% !important;margin:0;padding:0;box-sizing:border-box;}
     #k2AdminContainer {display:block;position:relative;z-index:88;}
         #k2Sidebar {position:relative;z-index:997;width:100%;background:transparent url(../images/backend/k2_logo_126x48.png) no-repeat 54px 14px;background-size:80px;}
-        #k2Sidebar #k2ui-menu-control {position:relative;top:0;left:10px;z-index:998;display:block;font-family:monospace;font-size:40px;line-height:40px;padding:5px;margin:0;background:none;border:0;color:#000;}
+        #k2Sidebar #k2ui-menu-control {position:relative;top:0;left:10px;z-index:998;display:block;font-family:monospace;font-size:40px;line-height:40px;padding:5px;margin:0;background:none;border:0;color:#000;outline:0;}
         #k2Sidebar ul,
         #k2Sidebar #k2Copyrights {display:none;}
-        #k2Sidebar ul {position:relative;z-index:999;width:auto;background:#193867;}
+        #k2Sidebar ul {position:absolute;z-index:999;width:100%;background:#193867;}
         #k2ContentView {position:relative;z-index:89;}
 
     /* Joomla normalizations */
