@@ -89,12 +89,6 @@ if (in_array($view, $editForms)) {
     $k2CSSContainerClass .= ' isEditForm';
 }
 
-// Hide the K2 sidebar on POST request for Joomla 1.5
-$k2CSSSidebarStyle = '';
-if (K2_JVERSION == '15' && $_SERVER['REQUEST_METHOD'] == 'POST' && JRequest::getCmd('task') != 'move') {
-    //$k2CSSSidebarStyle = ' style="display:none;"';
-}
-
 if (
     $document->getType() != 'raw' &&
     $task != 'deleteAttachment' &&
@@ -108,7 +102,8 @@ if (
 ) {
     $k2ComponentHeader = '
     <div id="k2AdminContainer" class="K2AdminView'.ucfirst($view).$k2CSSContainerClass.'">
-        <div id="k2Sidebar"'.$k2CSSSidebarStyle.'>
+        <div id="k2Sidebar" style="visibility:hidden;">
+            <button aria-expanded="false" aria-controls="menu" id="k2ui-menu-control">&#8801;</button>
             '.K2HelperHTML::sidebarMenu().'
             <div id="k2Copyrights">
                 <a target="_blank" href="https://getk2.org/">K2 v'.K2_CURRENT_VERSION.K2_BUILD.'</a>

@@ -879,7 +879,8 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 #k2AdminContainer.isEditForm #k2ContentView > form .k2GenericForm h3 {font-size:32px;}
 
 #k2AdminContainer {font-family:'Open Sans',sans-serif;display:grid;grid-template-columns:10% 90%;min-height:calc(100vh - 116px);background:#fff;}
-    #k2Sidebar {background:#193867;position:relative;z-index:90;/*border-right:4px solid #10213e;*/}
+    #k2Sidebar {background:#193867;position:relative;z-index:90;visibility:visible !important;}
+        #k2Sidebar #k2ui-menu-control {display:none;}
         #k2Sidebar ul {list-style:none;padding:0;margin:0 0 24px 0;position:fixed;width:10%;z-index:92;}
             #k2Sidebar ul li {border-left:4px solid #193867;}
             #k2Sidebar ul li:hover {background:#10213e;border-left:4px solid #10213e;}
@@ -948,13 +949,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
     .isJ30 div#toolbar .btn-wrapper {margin:0 4px 0 0;}
     .isJ30 div#toolbar .btn-success {min-width:100px;}
 
-/* Joomla System Messages
-.isJ30 #system-message-container {position:fixed;z-index:1199;margin:0 auto;padding:0;width:60%;top:10px;left:20%;right:20%;}
-.isJ30 #system-message-container .alert {padding:10px;margin:0;text-align:center;border-radius:8px;}
-.isJ30 #system-message-container .alert .close {top:-10px;right:-10px;}
-.isJ30 #system-message-container .alert .alert-heading {margin:0 0 8px 22px;}
-*/
-
+/* Joomla System Messages */
 .isJ30 #system-message-container {}
 .isJ30 #system-message-container .alert {position:fixed;z-index:9999;top:56px;right:56px;background:#fff;margin:0;padding:10px;border-radius:4px;box-shadow:0 1px 4px 0 #999;min-width:280px;max-width:400px;text-align:left;border:0;}
 .isJ30 #system-message-container .alert-success {border-left:4px solid #5fca4a;}
