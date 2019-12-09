@@ -651,30 +651,6 @@ span.k2GalleryNotice {cursor:pointer;font-size:14px;padding:0;margin:0 5px;}
 .isJ30 .row-fluid .span2 {max-width:12%;}
 .isJ30 .row-fluid .span10 {margin-left:0;width:88%;}
 
-/* Lists - filters */
-#k2AdminContainer .k2AdminTableFilters {margin-bottom:0;width:100%;border-left:1px solid #dbdcdc;}
-#k2AdminContainer .k2AdminTableFilters tr td {background:#fff;padding-top:15px;}
-#k2AdminContainer .k2AdminTableFilters .chzn-container {margin-bottom:5px;}
-
-#k2AdminContainer .k2AdminTableFiltersSelects,
-#k2AdminContainer .k2AdminTableFiltersSearch {display:block;width:100%;box-sizing:border-box;}
-#k2AdminContainer .k2AdminTableFiltersSelects {padding:8px 8px 8px 0;}
-#k2AdminContainer .k2AdminTableFiltersSelects select {max-width:48%;}
-
-@media screen and (min-width:920px) {
-    #k2AdminContainer .k2AdminTableFiltersSelects,
-    #k2AdminContainer .k2AdminTableFiltersSearch {display:table-cell;width:auto;}
-    #k2AdminContainer .k2AdminTableFilters tr td {border-bottom:1px solid #dbdcdc;border-top:0;}
-    table.k2AdminTableFilters tr td.k2AdminTableFiltersSelects {text-align:right;}
-    #k2AdminContainer .k2AdminTableFiltersSelects select {max-width:none;}
-}
-
-/* Legacy styling */
-table.k2AdminTableFilters {width:100%;}
-table.k2AdminTableFilters tr td.k2AdminTableFiltersSearch {white-space:nowrap;}
-table.k2AdminTableFilters tr td.k2AdminTableFiltersSelects .chzn-container {text-align:left;}
-table.k2AdminTableFilters tr td.k2AdminTableFiltersSelects select {margin:1px 0 5px 0;}
-
 /* Edit Forms */
 table.adminFormK2 {width:100%;margin-bottom:16px;}
 
@@ -1143,35 +1119,44 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
             #k2Copyrights a:hover {color:#eee;text-decoration:none;}
             #k2Copyrights div {font-size:10px;line-height:130%;}
                 #k2Copyrights div a {color:#608ed4;}
-        @media screen and (max-height:546px) {#k2Copyrights div {display:none;}}
-        @media screen and (max-height:500px) {#k2Copyrights {display:none;}}
 
     #k2ContentView {}
+        /* Filters */
+
+            /*
+            @media screen and (min-width:920px) {
+                #k2ContentView .k2AdminTableFiltersSelects,
+                #k2ContentView .k2AdminTableFiltersSearch {display:table-cell;width:auto;}
+                #k2ContentView .k2AdminTableFilters tr td {}
+                table.k2AdminTableFilters tr td.k2AdminTableFiltersSelects {}
+                #k2ContentView .k2AdminTableFiltersSelects select {max-width:none;}
+            }
+            */
         #k2ContentView > form {margin:0;position:relative;}
-        #k2ContentView > form .k2AdminTableFilters {position:fixed;width:90%;z-index:99;background:rgba(255, 255, 255, 0.8);}
-        #k2ContentView > form .k2AdminTableFilters tr td {background:none;}
-        #k2ContentView > form .table-responsive-wrap {padding-top:62px;}
-        @media screen and (max-width:1388px) {
-            .K2AdminViewItems #k2ContentView > form .table-responsive-wrap {padding-top:90px;}
-        }
-        @media screen and (max-width:1018px) {
-            .K2AdminViewCategories #k2ContentView > form .table-responsive-wrap {padding-top:90px;}
-        }
-        @media screen and (max-width:934px) {
-            #k2ContentView > form .table-responsive-wrap {padding-top:90px;}
-            .K2AdminViewItems #k2ContentView > form .table-responsive-wrap {padding-top:118px;}
-        }
-        html #k2AdminContainer.K2AdminViewExtrafieldsgroups #k2ContentView > form .table-responsive-wrap,
-        html #k2AdminContainer.K2AdminViewUsergroups #k2ContentView > form .table-responsive-wrap {padding-top:0;}
+        #k2ContentView > form .k2AdminTableFilters {position:fixed;left:10%;right:0;z-index:99;background:rgba(255, 255, 255, 0.8);margin-bottom:0;border-left:1px solid #dbdcdc;width:90%;box-sizing:border-box;}
+        #k2ContentView > form .k2AdminTableFilters tr td {background:none;padding:0;margin:0;vertical-align:middle;padding:10px;}
+            #k2ContentView .k2AdminTableFiltersSearch,
+            #k2ContentView .k2AdminTableFiltersSelects {border-top:0;border-bottom:1px solid #dbdcdc;}
 
-        #k2AdminContainer .k2AdminTableFilters .chzn-container {width:180px !important;}
-            #k2AdminContainer .k2AdminTableFilters #filter_trash_chzn {width:100px !important;}
-            #k2AdminContainer .k2AdminTableFilters #filter_featured_chzn,
-            #k2AdminContainer .k2AdminTableFilters #filter_state_chzn {width:150px !important;}
-            #k2AdminContainer .k2AdminTableFilters #language_chzn {width:120px !important;}
+            #k2ContentView .k2AdminTableFiltersSearch {white-space:nowrap;}
+                #k2ContentView .k2AdminTableFiltersSearch .input-append,
+                #k2ContentView .k2AdminTableFiltersSearch .input-prepend {margin:0;}
 
+            #k2ContentView .k2AdminTableFiltersSelects {text-align:right;}
+            #k2ContentView .k2AdminTableFiltersSelects select {max-width:48%;margin:1px 0 5px 0;}
+            #k2ContentView .k2AdminTableFiltersSelects .chzn-container {margin-bottom:0;text-align:left;width:180px !important;}
+            #k2ContentView .k2AdminTableFiltersSelects #filter_featured_chzn,
+            #k2ContentView .k2AdminTableFiltersSelects #filter_state_chzn {width:150px !important;}
+            #k2ContentView .k2AdminTableFiltersSelects #filter_trash_chzn {width:100px !important;}
+            #k2ContentView .k2AdminTableFiltersSelects #language_chzn {width:120px !important;}
+
+        /* List entries & edit forms */
+        #k2ContentView > form .table-responsive-wrap {padding-top:50px;}
+        #k2AdminContainer.K2AdminViewExtrafieldsgroups #k2ContentView > form .table-responsive-wrap,
+        #k2AdminContainer.K2AdminViewUsergroups #k2ContentView > form .table-responsive-wrap {padding-top:0;}
+
+        /* Edit forms */
         .isJ30 #k2AdminContainer.isEditForm #k2ContentView {padding-bottom:40px;}
-
         .k2AliasValue {display:block;color:#999;font-size:11px;}
 
 /* No content message */
@@ -1475,7 +1460,7 @@ button.fancybox-button:hover {background:none;border:0;}
 .isJ25 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects {padding-right:16px;}
 .isJ25 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects select {max-width:160px;height:30px;font-size:13px;}
 
-.isJ25 #k2AdminContainer #k2ContentView > form .table-responsive-wrap {padding:50px 0 4px 0;}
+.isJ25 #k2AdminContainer #k2ContentView > form .table-responsive-wrap {padding:38px 0 4px 0;}
 
 .isJ25 #k2AdminContainer .adminlist {border-collapse:collapse;}
 .isJ25 #k2AdminContainer .adminlist tr th,
@@ -1718,7 +1703,7 @@ button.fancybox-button:hover {background:none;border:0;}
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects {padding-right:16px;}
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects select {max-width:160px;height:30px;font-size:13px;}
 
-.isJ15 #k2AdminContainer #k2ContentView > form .table-responsive-wrap {padding:50px 0 4px 0;}
+.isJ15 #k2AdminContainer #k2ContentView > form .table-responsive-wrap {padding:38px 0 4px 0;}
 
 .isJ15 #k2AdminContainer .adminlist {border-collapse:collapse;}
 .isJ15 #k2AdminContainer .adminlist tr th,
@@ -1873,12 +1858,31 @@ button.fancybox-button:hover {background:none;border:0;}
 
 
 
+/* --- Short desktop view [start] --- */
+
+/* Grid (sidebar) */
+@media screen and (max-height:546px) {#k2Copyrights div {display:none;}}
+@media screen and (max-height:500px) {#k2Copyrights {display:none;}}
+
+/* --- Short desktop view [finish] --- */
+
+
+
 /* --- Responsive (smartphones & tablets) [start] --- */
+
 .k2ui-show-on-mobile {display:none;}
 
 @media screen and (max-width:768px) {
     .k2ui-show-on-mobile {display:block;}
     .k2ui-hide-on-mobile {display:none;}
+
+    /* Grid */
+    #toolbar {position:absolute;display:none;}
+    #k2AdminContainer {display:block;position:relative;}
+        #k2Sidebar {position:absolute;display:none;}
+        #k2ContentView {}
+        #k2ContentView > form .k2AdminTableFilters {width:auto;}
+
 }
 
 /* --- Responsive (smartphones & tablets) [finish] --- */

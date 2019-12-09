@@ -179,28 +179,58 @@ $context = JRequest::getCmd('context');
                             </td>
                             <td class="k2ui-center<?php echo ($context == "modalselector") ? ' k2ui-not-visible' : ''; ?>"><?php echo @JHTML::_('grid.checkedout', $row, $key); ?></td>
                             <td>
-                                <?php if ($context == "modalselector"): ?>
-                                <?php
-                                if (JRequest::getCmd('output') == 'list') {
-                                    $onClick = 'window.parent.k2ModalSelector(\''.$row->id.'\', \''.str_replace(array("'", "\""), array("\\'", ""), $row->title).'\', \''.JRequest::getCmd('fid').'\', \''.JRequest::getVar('fname').'\', \''.JRequest::getCmd('output').'\'); return false;';
-                                } else {
-                                    $onClick = 'window.parent.k2ModalSelector(\''.$row->id.'\', \''.str_replace(array("'", "\""), array("\\'", ""), $row->title).'\', \''.JRequest::getCmd('fid').'\', \''.JRequest::getVar('fname').'\'); return false;';
-                                }
-                                ?>
-                                <a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ENTRY'); ?>" href="#" onclick="<?php echo $onClick; ?>">
+                                <div class="k2ui-list-title">
+                                    <?php if ($context == "modalselector"): ?>
+                                    <?php
+                                    if (JRequest::getCmd('output') == 'list') {
+                                        $onClick = 'window.parent.k2ModalSelector(\''.$row->id.'\', \''.str_replace(array("'", "\""), array("\\'", ""), $row->title).'\', \''.JRequest::getCmd('fid').'\', \''.JRequest::getVar('fname').'\', \''.JRequest::getCmd('output').'\'); return false;';
+                                    } else {
+                                        $onClick = 'window.parent.k2ModalSelector(\''.$row->id.'\', \''.str_replace(array("'", "\""), array("\\'", ""), $row->title).'\', \''.JRequest::getCmd('fid').'\', \''.JRequest::getVar('fname').'\'); return false;';
+                                    }
+                                    ?>
+                                    <a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ENTRY'); ?>" href="#" onclick="<?php echo $onClick; ?>">
+                                        <?php echo $row->title; ?>
+                                    </a>
+                                    <?php else: ?>
+                                    <?php if ($this->table->isCheckedOut($this->user->get('id'), $row->checked_out)): ?>
+                                    <i class="fa fa-lock" aria-hidden="true"></i> <?php echo $row->title; ?>
+                                    <?php else: ?>
+                                    <?php if (!$this->filter_trash): ?>
+                                    <a href="<?php echo JRoute::_('index.php?option=com_k2&view=item&cid='.$row->id); ?>"><?php echo $row->title; ?></a>
+                                    <?php else: ?>
                                     <?php echo $row->title; ?>
-                                </a>
-                                <?php else: ?>
-                                <?php if ($this->table->isCheckedOut($this->user->get('id'), $row->checked_out)): ?>
-                                <i class="fa fa-lock" aria-hidden="true"></i> <?php echo $row->title; ?>
-                                <?php else: ?>
-                                <?php if (!$this->filter_trash): ?>
-                                <a href="<?php echo JRoute::_('index.php?option=com_k2&view=item&cid='.$row->id); ?>"><?php echo $row->title; ?></a>
-                                <?php else: ?>
-                                <?php echo $row->title; ?>
-                                <?php endif; ?>
-                                <?php endif; ?>
-                                <?php endif; ?>
+                                    <?php endif; ?>
+                                    <?php endif; ?>
+                                    <?php endif; ?>
+                                </div>
+
+                                <div class="k2ui-show-on-mobile">
+                                    <div class="k2ui-list-mobile-attribute">
+                                        <?php echo JText::_('K2_CATEGORY'); ?>:
+                                        <?php if ($context == "modalselector"): ?>
+                                        <?php echo $row->category; ?>
+                                        <?php else: ?>
+                                        <a href="<?php echo JRoute::_('index.php?option=com_k2&view=category&cid='.$row->catid); ?>"><?php echo $row->category; ?></a>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="k2ui-list-mobile-attribute">
+                                        <?php echo JText::_('K2_AUTHOR'); ?>:
+                                        <?php if ($this->user->gid > 23 && $context != "modalselector"): ?>
+                                        <a href="<?php echo JRoute::_('index.php?option=com_k2&view=user&cid='.$row->created_by); ?>"><?php echo $row->author; ?></a>
+                                        <?php else: ?>
+                                        <?php echo $row->author; ?>
+                                        <?php endif; ?>
+
+                                        <?php if (!empty($row->moderator)): ?>
+                                        | <?php echo JText::_('K2_LAST_MODIFIED_BY'); ?>:
+                                        <?php if ($this->user->gid > 23 && $context != "modalselector"): ?>
+                                        <a href="<?php echo JRoute::_('index.php?option=com_k2&view=user&cid='.$row->modified_by); ?>"><?php echo $row->moderator; ?></a>
+                                        <?php else: ?>
+                                        <?php echo $row->moderator; ?>
+                                        <?php endif; ?>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
                             </td>
                             <td class="k2ui-center"><?php echo $row->featuredStatus; ?></td>
                             <td class="k2ui-center"><?php echo $row->status; ?></td>
