@@ -942,7 +942,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ30 .radio,
 .isJ30 .checkbox {padding-left:0 !important;}
 .isJ30 header.header {display:none;}
-.isJ30 div#toolbar {background:url(../images/backend/k2_logo_126x48.png) no-repeat 12px 50%;background-size:80px;padding:12px 12px 12px calc(10% + 12px);margin:0;min-height:26px;position:fixed;z-index:99;left:0;right:0;}
+.isJ30 div#toolbar {background:url(../images/backend/k2_logo_126x48.png) no-repeat 12px 50%;background-size:80px;padding:12px 12px 12px calc(10% + 12px);margin:0;min-height:26px;z-index:99;/*position:fixed;left:0;right:0;*/}
     .isJ30 div#toolbar .btn-wrapper {margin:0 4px 0 0;}
     .isJ30 div#toolbar .btn-success {min-width:100px;}
 
@@ -1626,13 +1626,24 @@ button.fancybox-button:hover {background:none;border:0;}
 
 .k2ui-show-on-mobile {display:none;}
 
+@media screen and (max-width:1260px) {
+    .isJ30 div#toolbar .btn-wrapper {margin:0 0 4px 0;float:none;}
+    .isJ30 div#toolbar #toolbar-options,
+    .isJ30 div#toolbar #toolbar-help {float:none;}
+}
+
+@media screen and (max-width:1024px) {
+    #k2ContentView > form .k2AdminTableFilters {position:relative;width:100%;left:0;right:0;z-index:99;}
+    #k2ContentView > form .k2AdminTableFilters tr td {display:block;clear:both;text-align:center;}
+    #k2ContentView > form .k2AdminTableData {padding-top:0;}
+}
+
 @media screen and (max-width:768px) {
     .k2ui-show-on-mobile {display:block;}
     .k2ui-hide-on-mobile {display:none;}
 
     /* Grid */
     .isJ30 div#toolbar {position:relative;z-index:9;padding:12px 12px 12px 160px;background-position:44px 50%;}
-    .isJ30 div#toolbar .btn-wrapper {margin:0 0 4px 0;}
     #k2AdminContainer {display:block;position:relative;z-index:88;}
         #k2Sidebar {position:absolute;z-index:997;width:50%;}
         #k2Sidebar #k2ui-menu-control {position:absolute;top:0;left:10px;z-index:998;display:block;font-family:monospace;font-size:40px;line-height:40px;padding:5px;margin:0;background:none;border:0;color:#000;}
@@ -1640,9 +1651,6 @@ button.fancybox-button:hover {background:none;border:0;}
         #k2Sidebar #k2Copyrights {display:none;}
         #k2Sidebar ul {position:relative;z-index:999;width:auto;}
         #k2ContentView {position:relative;z-index:89;}
-        #k2ContentView > form .k2AdminTableFilters {position:relative;width:100%;left:0;right:0;z-index:99;}
-        #k2ContentView > form .k2AdminTableFilters tr td {display:block;clear:both;text-align:center;}
-        #k2ContentView > form .k2AdminTableData {padding-top:0;}
 
     /* Joomla normalizations */
     #status {margin:0;}

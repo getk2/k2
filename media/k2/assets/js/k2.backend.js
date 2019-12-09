@@ -804,19 +804,15 @@ $K2(document).ready(function() {
             }
         });
 
-        // Responsive menu
+        // Responsive
         if ($('#k2ui-menu-control').css('display') == 'block') {
             $('#k2ui-menu-control').on('click', function() {
                 $('#k2Sidebar ul').toggle();
             });
-            if ($('.isJ30 div#toolbar').length) {
-                var toolbarHeight = $('.isJ30 div#toolbar').height();
-                $('#k2Sidebar #k2ui-menu-control').css('top', (-1 * toolbarHeight / 2) - 40);
-            }
         }
     });
 
-    $(window).on('load', function() {
+    function doOnReloadOrResize() {
         // Disable Chosen for Flatpickr instances
         if (typeof $.fn.chosen !== 'undefined') {
             if ($('.flatpickr-calendar').length) {
@@ -824,13 +820,33 @@ $K2(document).ready(function() {
             }
         }
 
+        // Responsive
+        if ($('#k2ui-menu-control').css('display') == 'block') {
+            if ($('.isJ30 div#toolbar').length) {
+                var toolbarHeight = $('.isJ30 div#toolbar').height();
+                $('#k2Sidebar #k2ui-menu-control').css('top', (-1 * toolbarHeight / 2) - 40);
+            }
+        }
+
         // Adjust list top offset based on filters height
         if ($('.k2AdminTableFilters').length) {
             var filterHeight = $('.k2AdminTableFilters').first().height();
-            if (filterHeight > 60 && $('#k2ui-menu-control').css('display') != 'block') {
+            if (filterHeight > 60 && $('#k2AdminContainer').width() > 1024 && $('#k2ui-menu-control').css('display') != 'block') {
                 $('#k2ContentView > form .k2AdminTableData').css('padding-top', filterHeight);
             }
         }
+    }
+
+    var resizeTimer;
+    $(window).on('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            doOnReloadOrResize();
+        }, 250);
+    });
+
+    $(window).on('load', function() {
+        doOnReloadOrResize();
     });
 })(jQuery);
 
