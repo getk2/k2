@@ -1159,7 +1159,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ25 #footer .copyright::after {content:" — Joomla! 2.5";}
 .isJ25 #footer .copyright a {color:#333;}
 
-.isJ25 #k2ContentView {padding-bottom:20px;}
+.isJ25 #k2ContentView {padding:0;}
 
 /* Joomla System Messages */
 .isJ25 #system-message-container {}
@@ -1408,6 +1408,8 @@ button.fancybox-button:hover {background:none;border:0;}
 .isJ15 #footer .copyright {text-align:right;padding:0;margin:0;color:#626262;font-size:12px;}
 .isJ15 #footer .copyright::after {content:" — Joomla! 1.5";}
 .isJ15 #footer .copyright a {color:#333;}
+
+.isJ15 #k2ContentView {padding:0;}
 
 /* Joomla System Messages */
 .isJ15 #system-message {}
