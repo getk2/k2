@@ -1657,6 +1657,8 @@ button.fancybox-button:hover {background:none;border:0;}
         #k2Sidebar #k2Copyrights {display:none;}
         #k2Sidebar ul {position:absolute;z-index:999;width:100%;background:#193867;}
         #k2ContentView {position:relative;z-index:89;}
+        #k2ContentView .k2AdminTableFiltersSelects {padding:10px;}
+            #k2ContentView .k2AdminTableFiltersSelects select {min-height:inherit;height:auto;}
 
     /* Joomla normalizations */
     #status {margin:0;}
