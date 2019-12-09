@@ -798,7 +798,7 @@ $K2(document).ready(function() {
         var msgContainers = ['#system-message-container', '#system-message'];
         $(msgContainers).each(function(i) {
             if ($(msgContainers[i])) {
-                $(msgContainers[i]).delay(5000).fadeOut(500, function() {
+                $(msgContainers[i]).delay(3000).fadeOut(500, function() {
                     $(this).html('');
                 });
             }
