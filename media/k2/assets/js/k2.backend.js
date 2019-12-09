@@ -809,6 +809,10 @@ $K2(document).ready(function() {
             $('#k2ui-menu-control').on('click', function() {
                 $('#k2Sidebar ul').toggle();
             });
+            if ($('.isJ30 div#toolbar').length) {
+                var toolbarHeight = $('.isJ30 div#toolbar').height();
+                $('#k2Sidebar #k2ui-menu-control').css('top', (-1 * toolbarHeight / 2) - 40);
+            }
         }
     });
 
