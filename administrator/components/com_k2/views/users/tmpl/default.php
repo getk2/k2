@@ -68,11 +68,11 @@ $context = JRequest::getCmd('context');
                             <?php endif; ?>
                         </th>
                         <th class="k2ui-hide-on-mobile"><?php echo JHTML::_('grid.sort', 'K2_GROUP', 'groupname', @$this->lists['order_Dir'], @$this->lists['order']); ?></th>
-                        <th><?php echo JHTML::_('grid.sort', 'K2_EMAIL', 'juser.email', @$this->lists['order_Dir'], @$this->lists['order']); ?></th>
+                        <th class="k2ui-hide-on-mobile"><?php echo JHTML::_('grid.sort', 'K2_EMAIL', 'juser.email', @$this->lists['order_Dir'], @$this->lists['order']); ?></th>
                         <th class="k2ui-center k2ui-hide-on-mobile"><?php echo JHTML::_('grid.sort', 'K2_LAST_VISIT', 'juser.lastvisitDate', @$this->lists['order_Dir'], @$this->lists['order']); ?></th>
                         <th class="k2ui-center k2ui-hide-on-mobile">IP</th>
                         <th class="k2ui-center k2ui-hide-on-mobile"><?php echo JText::_('K2_IMAGE'); ?></th>
-                        <th class="k2ui-center"><?php echo JText::_('K2_FLAG_AS_SPAMMER'); ?></th>
+                        <th class="k2ui-center k2ui-hide-on-mobile"><?php echo JText::_('K2_FLAG_AS_SPAMMER'); ?></th>
                         <th class="k2ui-center k2ui-hide-on-mobile"><?php echo JHTML::_('grid.sort', 'K2_ID', 'juser.id', @$this->lists['order_Dir'], @$this->lists['order']); ?></th>
                     </tr>
                 </thead>
