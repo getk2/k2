@@ -1874,7 +1874,10 @@ button.fancybox-button:hover {background:none;border:0;}
 
 
 /* --- Responsive (smartphones & tablets) [start] --- */
+.k2ui-show-on-mobile {display:none;}
+
 @media screen and (max-width:768px) {
+    .k2ui-show-on-mobile {display:block;}
     .k2ui-hide-on-mobile {display:none;}
 }
 
