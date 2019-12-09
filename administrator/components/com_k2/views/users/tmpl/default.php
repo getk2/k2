@@ -119,13 +119,22 @@ $context = JRequest::getCmd('context');
                             <?php else: ?>
                             <a href="<?php echo $row->link; ?>"><?php echo $row->name; ?></a>
                             <?php endif; ?>
+
+                            <div class="k2ui-show-on-mobile">
+                                <div class="k2ui-list-mobile-attribute">
+                                    <?php echo JText::_('K2_USERNAME'); ?>: <?php echo $row->username; ?>
+                                </div>
+                                <div class="k2ui-list-mobile-attribute">
+                                    <?php echo JText::_('K2_EMAIL'); ?>: <?php echo $row->email; ?>
+                                </div>
+                            </div>
                         </td>
                         <td class="k2ui-hide-on-mobile"><?php echo $row->username; ?></td>
                         <td class="k2ui-center"><?php echo $row->loggedInStatus; ?></td>
                         <td class="k2ui-center"><?php echo $row->blockStatus; ?></td>
                         <td class="k2ui-hide-on-mobile"><?php echo $row->usertype; ?></td>
                         <td class="k2ui-hide-on-mobile"><?php echo $row->groupname; ?></td>
-                        <td><?php echo $row->email; ?></td>
+                        <td class="k2ui-hide-on-mobile"><?php echo $row->email; ?></td>
                         <td class="k2ui-center k2ui-nowrap k2ui-hide-on-mobile">
                             <?php echo ($row->lvisit) ? JHTML::_('date', $row->lvisit, $this->dateFormat) : JText::_('K2_NEVER'); ?>
                         </td>
@@ -141,7 +150,7 @@ $context = JRequest::getCmd('context');
                             </a>
                             <?php endif; ?>
                         </td>
-                        <td class="k2ui-center">
+                        <td class="k2ui-center k2ui-hide-on-mobile">
                             <?php if (!$row->block): ?>
                             <?php if ($context == "modalselector"): ?>
                             <a class="k2ReportUserButton k2IsIcon" href="<?php echo JRoute::_('index.php?option=com_k2&view=user&task=report&tmpl=component&context=modalselector&id='.$row->id); ?>">
