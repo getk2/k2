@@ -896,7 +896,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
             #k2Copyrights div {font-size:10px;line-height:130%;}
                 #k2Copyrights div a {color:#608ed4;}
 
-    #k2ContentView {margin:0;padding:0 0 10px 0;}
+    #k2ContentView {margin:0;padding:0 0 15px 0;}
     .isJ30 #k2AdminContainer.isEditForm #k2ContentView {padding-bottom:40px;}
 
         #k2ContentView > form {margin:0;padding:0;position:relative;}
