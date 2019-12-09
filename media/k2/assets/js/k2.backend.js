@@ -803,6 +803,13 @@ $K2(document).ready(function() {
                 });
             }
         });
+
+        // Responsive menu
+        if ($('#k2ui-menu-control').css('display') == 'block') {
+            $('#k2ui-menu-control').on('click', function() {
+                $('#k2Sidebar ul').toggle();
+            });
+        }
     });
 
     $(window).on('load', function() {
@@ -816,7 +823,7 @@ $K2(document).ready(function() {
         // Adjust list top offset based on filters height
         if ($('.k2AdminTableFilters').length) {
             var filterHeight = $('.k2AdminTableFilters').first().height();
-            if (filterHeight > 60) {
+            if (filterHeight > 60 && $('#k2ui-menu-control').css('display') != 'block') {
                 $('#k2ContentView > form .k2AdminTableData').css('padding-top', filterHeight);
             }
         }

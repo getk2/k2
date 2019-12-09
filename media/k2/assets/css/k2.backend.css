@@ -423,7 +423,6 @@ ul.tags li.tagAdd input#search-field {border:none;height:35px;min-height:0;line-
 p.k2TagsNotice {display:block;font-size:11px;font-weight:bold;font-weight:600;margin:0;padding:0;color:#999;}
 
 .ui-autocomplete {position:absolute;margin:0;padding:0;list-style:none;border:1px solid #eee;background-color:white;border-right-color:#ddd;border-bottom-color:#ddd;text-align:left;z-index:50;}
-* html .ui-autocomplete {width:1px;} /* without this the menu expands to 100% in IE6 */
 
 .ui-menu {list-style:none;padding:2px;margin:0;margin-top:-3px;display:block;float:left;}
 .ui-menu .ui-menu-item {margin:0;padding:0;zoom:0;float:left;clear:left;width:99%;}
@@ -594,8 +593,7 @@ table.adminFormK2 {width:100%;margin-bottom:16px;}
 .jw-modal-main {padding-top:40px;}
 .jw-modal-header {color:#fff;padding:25px 20px;font-size:20px;font-weight:300;letter-spacing:-1px;background-color:#63696f;box-shadow:0 1px 0 rgba(0,0,0,.18);overflow:hidden;}
 .jw-modal-header h3 {margin:0;font-size:20px;}
-.jw-modal-content {position:absolute;left:50%;width:680px;border:1px solid rgba(0,0,0,.8);background-color:#fdfdfd;box-shadow:0 0 29px rgba(0,0,0,.16);
-z-index:100;margin:25px auto 25px -340px;font-family:'Open Sans',sans-serif;font-smoothing:antialiased;}
+.jw-modal-content {position:absolute;left:50%;width:680px;border:1px solid rgba(0,0,0,.8);background-color:#fdfdfd;box-shadow:0 0 29px rgba(0,0,0,.16);margin:25px auto 25px -340px;font-family:'Open Sans',sans-serif;font-smoothing:antialiased;}
 .isJ25 .jw-modal-content .row .column .row .column > select {width:90%;}
 .isJ25 .jw-modal-content .row .column .row .column > select#batchCategory {height:96px;}
 .isJ25 .jw-modal-content .row .column .row .column:nth-child(2n+1) {clear:left;}
@@ -663,7 +661,6 @@ div.isJ25 div.current {background:#fff;}
 
 /* Admin - Item - Autocomplete */
 .ui-autocomplete {position:absolute;margin:0;padding:0;list-style:none;border:1px solid #eee;background-color:white;border-right-color:#ddd;border-bottom-color:#ddd;text-align:left;z-index:50;}
-* html .ui-autocomplete {width:1px;} /* without this, the menu expands to 100% in IE6 */
 
 .ui-menu {list-style:none;padding:2px;margin:0; margin-top:-3px;display:block;float:left;}
 .ui-menu .ui-menu-item {margin:0;padding:0;zoom:0;float:left;clear:left;width:99%;}
@@ -1635,10 +1632,18 @@ button.fancybox-button:hover {background:none;border:0;}
 
     /* Grid */
     #toolbar {position:absolute;display:none;}
-    #k2AdminContainer {display:block;position:relative;}
-        #k2Sidebar {position:absolute;display:none;}
-        #k2ContentView {}
-        #k2ContentView > form .k2AdminTableFilters {width:100%;left:0;right:0;}
+    #k2AdminContainer {display:block;position:relative;z-index:88;}
+        #k2Sidebar {position:absolute;z-index:997;width:50%;}
+        #k2Sidebar #k2ui-menu-control {position:absolute;top:-54px;left:10px;z-index:998;display:block;font-family:monospace;font-size:40px;line-height:40px;padding:5px;margin:0;background:none;border:0;color:#000;}
+        #k2Sidebar ul,
+        #k2Sidebar #k2Copyrights {display:none;}
+        #k2Sidebar ul {position:relative;z-index:999;width:auto;}
+        #k2ContentView {position:relative;z-index:89;}
+        #k2ContentView > form .k2AdminTableFilters {position:relative;width:100%;left:0;right:0;z-index:99;}
+        #k2ContentView > form .k2AdminTableData {padding-top:0;}
+
+    /* Joomla normalizations */
+    #status {margin:0;}
 
 }
 
