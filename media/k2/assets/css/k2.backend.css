@@ -1646,19 +1646,27 @@ button.fancybox-button:hover {background:none;border:0;}
     .k2ui-hide-on-mobile {display:none;}
 
     /* Grid */
+    .isJ30 body {background:#f0f2f2;}
     .isJ30 .btn-subhead {width:80%;margin:10px auto;}
     .isJ30 div#toolbar {position:relative;z-index:9;padding:10px;background:none;width:94%;margin:auto;display:grid;grid-template-columns:1fr 1fr;grid-gap:10px;}
     .isJ30 div#toolbar .btn-wrapper {margin:0;padding:0;display:block;box-sizing:border-box;}
     .isJ30 div#toolbar .btn-wrapper .btn {width:100% !important;margin:0;padding:0;box-sizing:border-box;}
     #k2AdminContainer {display:block;position:relative;z-index:88;}
-        #k2Sidebar {position:relative;z-index:997;width:100%;background:transparent url(../images/backend/k2_logo_126x48.png) no-repeat 10px 10px;background-size:72px;min-height:42px;}
-        #k2Sidebar #k2ui-menu-control {position:absolute;top:0;right:10px;z-index:998;display:block;font-family:monospace;font-size:40px;line-height:32px;padding:5px;margin:0;background:none;border:0;color:#000;outline:0;}
+        #k2Sidebar {position:relative;z-index:997;width:100%;background:transparent url(../images/backend/k2_logo_126x48.png) no-repeat 12px 8px;background-size:72px;min-height:42px;}
+        #k2Sidebar #k2ui-menu-control {position:absolute;top:10px;right:12px;z-index:998;display:block;font-family:monospace;font-size:40px;line-height:24px;height:24px;padding:0;margin:0;background:none;border:0;color:#000;outline:0;}
         #k2Sidebar ul,
         #k2Sidebar #k2Copyrights {display:none;}
         #k2Sidebar ul {position:absolute;top:42px;z-index:999;width:100%;background:#193867;}
         #k2ContentView {position:relative;z-index:89;}
         #k2ContentView .k2AdminTableFiltersSelects {padding:10px;}
             #k2ContentView .k2AdminTableFiltersSelects select {min-height:inherit;height:auto;}
+            .k2GenericForm {min-width:inherit;max-width:none;padding:0 10px 20px;}
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramLabel,
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue {display:block;width:auto;text-align:left;}
+            #k2app-ef-add-option {width:calc(100% - 16px);height:28px;line-height:28px;}
+            #k2app-ef-type-data input,
+            #k2app-ef-type-data button,
+            #k2app-ef-type-data select {margin:0 5px 5px 0;width:calc(100% - 20px);}
 
     /* Joomla normalizations */
     #status {margin:0;}
