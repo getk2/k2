@@ -36,7 +36,7 @@ $context = JRequest::getCmd('context');
         <table class="k2AdminTableFilters table">
             <tr>
                 <td class="k2AdminTableFiltersSearch">
-                    <label class="visually-hidden"><?php echo JText::_('K2_FILTER'); ?></label>
+                    <label class="k2ui-not-visible"><?php echo JText::_('K2_FILTER'); ?></label>
                     <div class="btn-wrapper input-append">
                         <input type="text" name="search" value="<?php echo htmlspecialchars($this->lists['search'], ENT_QUOTES, 'UTF-8'); ?>" class="text_area" title="<?php echo JText::_('K2_FILTER_BY_TITLE'); ?>" placeholder="<?php echo JText::_('K2_FILTER'); ?>" />
                         <button id="k2SubmitButton" class="btn"><?php echo JText::_('K2_GO'); ?></button>
@@ -78,7 +78,7 @@ $context = JRequest::getCmd('context');
                                 #
                                 <?php endif; ?>
                             </th>
-                            <th class="k2ui-center<?php echo ($context == "modalselector") ? ' k2VisuallyHidden' : ''; ?>">
+                            <th class="k2ui-center<?php echo ($context == "modalselector") ? ' k2ui-not-visible' : ''; ?>">
                                 <input id="k2<?php echo $this->params->get('backendListToggler', 'TogglerStandard'); ?>" type="checkbox" name="toggle" value="" />
                             </th>
                             <th class="title">
@@ -177,7 +177,7 @@ $context = JRequest::getCmd('context');
                                 <?php echo $key+1; ?>
                                 <?php endif; ?>
                             </td>
-                            <td class="k2ui-center<?php echo ($context == "modalselector") ? ' k2VisuallyHidden' : ''; ?>"><?php echo @JHTML::_('grid.checkedout', $row, $key); ?></td>
+                            <td class="k2ui-center<?php echo ($context == "modalselector") ? ' k2ui-not-visible' : ''; ?>"><?php echo @JHTML::_('grid.checkedout', $row, $key); ?></td>
                             <td>
                                 <?php if ($context == "modalselector"): ?>
                                 <?php

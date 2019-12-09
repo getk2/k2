@@ -47,8 +47,9 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 .k2TitleAliasBox {width:60%;font-size:12px;}
 .k2TextBox {background:#fff;padding:4px;}
 .k2ListItemDisabled {cursor:pointer;color:#0B55C4;} /* used in popup lists */
-.k2VisuallyHidden,
-.visually-hidden {position:absolute;overflow:hidden;clip:rect(0, 0, 0, 0);}
+
+/* Display */
+.k2ui-not-visible {position:absolute;overflow:hidden;clip:rect(0, 0, 0, 0);}
 
 /* Forms */
 .k2DateTimePickerControl i.fa-calendar {margin-left:-24px;}

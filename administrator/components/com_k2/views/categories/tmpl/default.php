@@ -36,7 +36,7 @@ $context = JRequest::getCmd('context');
         <table class="k2AdminTableFilters table">
             <tr>
                 <td class="k2AdminTableFiltersSearch">
-                    <label class="visually-hidden"><?php echo JText::_('K2_FILTER'); ?></label>
+                    <label class="k2ui-not-visible"><?php echo JText::_('K2_FILTER'); ?></label>
                     <div class="btn-wrapper input-append">
                         <input type="text" name="search" value="<?php echo htmlspecialchars($this->lists['search'], ENT_QUOTES, 'UTF-8'); ?>" class="text_area" title="<?php echo JText::_('K2_FILTER_BY_TITLE'); ?>" placeholder="<?php echo JText::_('K2_FILTER'); ?>" />
                         <button id="k2SubmitButton" class="btn"><?php echo JText::_('K2_GO'); ?></button>
@@ -65,7 +65,7 @@ $context = JRequest::getCmd('context');
                             <?php else: ?>
                             <th>#</th>
                             <?php endif; ?>
-                            <th<?php echo ($context == "modalselector") ? ' class="k2VisuallyHidden"' : ' class="k2ui-center"'; ?>>
+                            <th<?php echo ($context == "modalselector") ? ' class="k2ui-not-visible"' : ' class="k2ui-center"'; ?>>
                                 <input id="k2<?php echo $this->params->get('backendListToggler', 'TogglerStandard'); ?>" type="checkbox" name="toggle" value="" />
                             </th>
                             <th>
@@ -144,7 +144,7 @@ $context = JRequest::getCmd('context');
                             <?php else: ?>
                             <td><?php echo $key+1; ?></td>
                             <?php endif; ?>
-                            <td class="k2ui-center<?php echo ($context == "modalselector") ? ' k2VisuallyHidden' : ''; ?>">
+                            <td class="k2ui-center<?php echo ($context == "modalselector") ? ' k2ui-not-visible' : ''; ?>">
                                 <?php if (!$this->filter_trash || $row->trash) {
                                     $row->checked_out = 0;
                                     echo @JHTML::_('grid.checkedout', $row, $key);
