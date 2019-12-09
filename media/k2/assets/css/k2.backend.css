@@ -1648,11 +1648,11 @@ button.fancybox-button:hover {background:none;border:0;}
     /* Grid */
     .isJ30 div#toolbar {position:relative;z-index:9;padding:12px 12px 12px 160px;background-position:44px 50%;}
     #k2AdminContainer {display:block;position:relative;z-index:88;}
-        #k2Sidebar {position:absolute;z-index:997;width:50%;}
-        #k2Sidebar #k2ui-menu-control {position:absolute;top:0;left:10px;z-index:998;display:block;font-family:monospace;font-size:40px;line-height:40px;padding:5px;margin:0;background:none;border:0;color:#000;}
+        #k2Sidebar {position:relative;z-index:997;width:100%;background:transparent url(../images/backend/k2_logo_126x48.png) no-repeat 54px 14px;background-size:80px;}
+        #k2Sidebar #k2ui-menu-control {position:relative;top:0;left:10px;z-index:998;display:block;font-family:monospace;font-size:40px;line-height:40px;padding:5px;margin:0;background:none;border:0;color:#000;}
         #k2Sidebar ul,
         #k2Sidebar #k2Copyrights {display:none;}
-        #k2Sidebar ul {position:relative;z-index:999;width:auto;}
+        #k2Sidebar ul {position:relative;z-index:999;width:auto;background:#193867;}
         #k2ContentView {position:relative;z-index:89;}
 
     /* Joomla normalizations */

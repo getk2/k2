@@ -821,12 +821,14 @@ $K2(document).ready(function() {
         }
 
         // Responsive
+        /*
         if ($('#k2ui-menu-control').css('display') == 'block') {
             if ($('.isJ30 div#toolbar').length) {
                 var toolbarHeight = $('.isJ30 div#toolbar').height();
                 $('#k2Sidebar #k2ui-menu-control').css('top', (-1 * toolbarHeight / 2) - 40);
             }
         }
+        */
 
         // Adjust list top offset based on filters height
         if ($('.k2AdminTableFilters').length) {
