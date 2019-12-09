@@ -1663,6 +1663,7 @@ button.fancybox-button:hover {background:none;border:0;}
             .k2GenericForm {min-width:inherit;max-width:none;padding:0 10px 20px;}
             .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramLabel,
             .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue {display:block;width:auto;text-align:left;}
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {min-width:inherit;}
             #k2app-ef-add-option {width:calc(100% - 16px);height:28px;line-height:28px;}
             #k2app-ef-type-data input,
             #k2app-ef-type-data button,
