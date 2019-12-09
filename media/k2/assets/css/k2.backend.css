@@ -1122,29 +1122,19 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 
     #k2ContentView {}
         /* Filters */
-
-            /*
-            @media screen and (min-width:920px) {
-                #k2ContentView .k2AdminTableFiltersSelects,
-                #k2ContentView .k2AdminTableFiltersSearch {display:table-cell;width:auto;}
-                #k2ContentView .k2AdminTableFilters tr td {}
-                table.k2AdminTableFilters tr td.k2AdminTableFiltersSelects {}
-                #k2ContentView .k2AdminTableFiltersSelects select {max-width:none;}
-            }
-            */
         #k2ContentView > form {margin:0;position:relative;}
         #k2ContentView > form .k2AdminTableFilters {position:fixed;left:10%;right:0;z-index:99;background:rgba(255, 255, 255, 0.8);margin-bottom:0;border-left:1px solid #dbdcdc;width:90%;box-sizing:border-box;}
-        #k2ContentView > form .k2AdminTableFilters tr td {background:none;padding:0;margin:0;vertical-align:middle;padding:10px;}
+        #k2ContentView > form .k2AdminTableFilters tr td {background:none;padding:0;margin:0;vertical-align:middle;padding:0 10px;}
             #k2ContentView .k2AdminTableFiltersSearch,
             #k2ContentView .k2AdminTableFiltersSelects {border-top:0;border-bottom:1px solid #dbdcdc;}
 
-            #k2ContentView .k2AdminTableFiltersSearch {white-space:nowrap;}
+            #k2ContentView .k2AdminTableFiltersSearch {white-space:nowrap;padding:10px;}
                 #k2ContentView .k2AdminTableFiltersSearch .input-append,
                 #k2ContentView .k2AdminTableFiltersSearch .input-prepend {margin:0;}
 
             #k2ContentView .k2AdminTableFiltersSelects {text-align:right;}
             #k2ContentView .k2AdminTableFiltersSelects select {max-width:48%;margin:1px 0 5px 0;}
-            #k2ContentView .k2AdminTableFiltersSelects .chzn-container {margin-bottom:0;text-align:left;width:180px !important;}
+            #k2ContentView .k2AdminTableFiltersSelects .chzn-container {margin:10px 0;text-align:left;width:180px !important;}
             #k2ContentView .k2AdminTableFiltersSelects #filter_featured_chzn,
             #k2ContentView .k2AdminTableFiltersSelects #filter_state_chzn {width:150px !important;}
             #k2ContentView .k2AdminTableFiltersSelects #filter_trash_chzn {width:100px !important;}
