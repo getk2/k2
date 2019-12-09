@@ -31,10 +31,10 @@ $document->addScriptDeclaration("
             <table class="adminlist table table-striped<?php if(isset($this->rows) && count($this->rows) == 0): ?> nocontent<?php endif; ?>" id="k2ExtraFieldGroupsList">
                 <thead>
                     <tr>
-                        <th class="k2ui-center hidden-phone">#</th>
+                        <th class="k2ui-center k2ui-hide-on-mobile">#</th>
                         <th class="k2ui-center"><input id="k2<?php echo $this->params->get('backendListToggler', 'TogglerStandard'); ?>" type="checkbox" name="toggle" value="" /></th>
                         <th><?php echo JText::_('K2_GROUP_NAME'); ?></th>
-                        <th class="hidden-phone"><?php echo JText::_('K2_ASSIGNED_CATEGORIES'); ?></th>
+                        <th class="k2ui-hide-on-mobile"><?php echo JText::_('K2_ASSIGNED_CATEGORIES'); ?></th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -53,10 +53,10 @@ $document->addScriptDeclaration("
                     <?php if(isset($this->rows) && count($this->rows) > 0): ?>
                     <?php foreach ($this->rows as $key=>$row): ?>
                     <tr class="row<?php echo ($key%2); ?>">
-                        <td class="k2ui-center hidden-phone"><?php echo $key+1; ?></td>
+                        <td class="k2ui-center k2ui-hide-on-mobile"><?php echo $key+1; ?></td>
                         <td class="k2ui-center"><?php $row->checked_out = 0; echo @JHTML::_('grid.checkedout', $row, $key ); ?></td>
                         <td><a href="<?php echo JRoute::_('index.php?option=com_k2&view=extrafieldsgroup&cid='.$row->id); ?>"><?php echo $row->name; ?></a></td>
-                        <td class="hidden-phone"><?php echo $row->categories; ?></td>
+                        <td class="k2ui-hide-on-mobile"><?php echo $row->categories; ?></td>
                     </tr>
                     <?php endforeach; ?>
                     <?php else: ?>

@@ -31,11 +31,11 @@ $document->addScriptDeclaration("
             <table class="adminlist table table-striped<?php if (isset($this->rows) && count($this->rows) == 0): ?> nocontent<?php endif; ?>" id="k2UserGroupsList">
                 <thead>
                     <tr>
-                        <th class="k2ui-center hidden-phone">#</th>
+                        <th class="k2ui-center k2ui-hide-on-mobile">#</th>
                         <th class="k2ui-center"><input id="k2<?php echo $this->params->get('backendListToggler', 'TogglerStandard'); ?>" type="checkbox" name="toggle" value="" /></th>
                         <th class="title"><?php echo JHTML::_('grid.sort', 'K2_NAME', 'name', @$this->lists['order_Dir'], @$this->lists['order']); ?></th>
-                        <th class="k2ui-center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_USER_COUNT', 'numOfUsers', @$this->lists['order_Dir'], @$this->lists['order']); ?></th>
-                        <th class="k2ui-center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_ID', 'id', @$this->lists['order_Dir'], @$this->lists['order']); ?></th>
+                        <th class="k2ui-center k2ui-hide-on-mobile"><?php echo JHTML::_('grid.sort', 'K2_USER_COUNT', 'numOfUsers', @$this->lists['order_Dir'], @$this->lists['order']); ?></th>
+                        <th class="k2ui-center k2ui-hide-on-mobile"><?php echo JHTML::_('grid.sort', 'K2_ID', 'id', @$this->lists['order_Dir'], @$this->lists['order']); ?></th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -54,11 +54,11 @@ $document->addScriptDeclaration("
                     <?php if (isset($this->rows) && count($this->rows) > 0): ?>
                     <?php foreach ($this->rows as $key => $row): ?>
                     <tr class="row<?php echo($key%2); ?>">
-                        <td class="k2ui-center hidden-phone"><?php echo $key+1; ?></td>
+                        <td class="k2ui-center k2ui-hide-on-mobile"><?php echo $key+1; ?></td>
                         <td class="k2ui-center"><?php $row->checked_out = 0; echo @JHTML::_('grid.checkedout', $row, $key); ?></td>
                         <td><a href="<?php echo JRoute::_('index.php?option=com_k2&view=usergroup&cid='.$row->id); ?>"><?php echo $row->name; ?></a></td>
-                        <td class="k2ui-center hidden-phone"><?php echo $row->numOfUsers; ?></td>
-                        <td class="k2ui-center hidden-phone"><?php echo $row->id; ?></td>
+                        <td class="k2ui-center k2ui-hide-on-mobile"><?php echo $row->numOfUsers; ?></td>
+                        <td class="k2ui-center k2ui-hide-on-mobile"><?php echo $row->id; ?></td>
                     </tr>
                     <?php endforeach; ?>
                     <?php else: ?>

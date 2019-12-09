@@ -1870,6 +1870,15 @@ button.fancybox-button:hover {background:none;border:0;}
 
 /* --- Corrections for Joomla 1.5 [finish] --- */
 
+
+
+/* --- Responsive (smartphones & tablets) [start] --- */
+@media screen and (max-width:768px) {
+    .k2ui-hide-on-mobile {display:none;}
+}
+
+/* --- Responsive (smartphones & tablets) [finish] --- */
+
 /* --- Added in K2 v2.10 [finish] --- */
 
 /* End */

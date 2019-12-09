@@ -23,7 +23,7 @@ defined('_JEXEC') or die;
                     <button id="k2ResetButton" class="btn"><?php echo JText::_('K2_RESET'); ?></button>
                 </div>
             </td>
-            <td class="k2AdminTableFiltersSelects hidden-phone">
+            <td class="k2AdminTableFiltersSelects k2ui-hide-on-mobile">
                 <?php echo $this->lists['type']; ?>
                 <?php echo $this->lists['group']; ?>
                 <?php echo $this->lists['state']; ?>
@@ -36,7 +36,7 @@ defined('_JEXEC') or die;
                 <thead>
                     <tr>
                         <?php if(K2_JVERSION == '30'): ?>
-                        <th width="1%" class="k2ui-center hidden-phone">
+                        <th width="1%" class="k2ui-center k2ui-hide-on-mobile">
                             <?php echo JHtml::_('grid.sort', '<i class="icon-menu-2"></i>', 'ordering', @$this->lists['order_Dir'], @$this->lists['order'], null, 'asc', 'K2_ORDER'); ?>
                         </th>
                         <?php else: ?>
@@ -44,13 +44,13 @@ defined('_JEXEC') or die;
                         <?php endif; ?>
                         <th class="k2ui-center"><input id="k2<?php echo $this->params->get('backendListToggler', 'TogglerStandard'); ?>" type="checkbox" name="toggle" value="" /></th>
                         <th class="k2ui-left"><?php echo JHTML::_('grid.sort', 'K2_NAME', 'name', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
-                        <th class="k2ui-center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_GROUP', 'groupname', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
+                        <th class="k2ui-center k2ui-hide-on-mobile"><?php echo JHTML::_('grid.sort', 'K2_GROUP', 'groupname', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
                         <?php if(K2_JVERSION != '30'): ?>
                         <th><?php echo JHTML::_('grid.sort', 'K2_ORDER', 'ordering', @$this->lists['order_Dir'], @$this->lists['order']); ?> <?php if ($this->ordering) echo JHTML::_('grid.order',  $this->rows ); ?></th>
                         <?php endif; ?>
-                        <th class="k2ui-center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_TYPE', 'type', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
+                        <th class="k2ui-center k2ui-hide-on-mobile"><?php echo JHTML::_('grid.sort', 'K2_TYPE', 'type', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
                         <th class="k2ui-center"><?php echo JHTML::_('grid.sort', 'K2_PUBLISHED', 'published', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
-                        <th class="k2ui-center hidden-phone"><?php echo JHTML::_('grid.sort', 'K2_ID', 'exf.id', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
+                        <th class="k2ui-center k2ui-hide-on-mobile"><?php echo JHTML::_('grid.sort', 'K2_ID', 'exf.id', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
                     </tr>
                 </thead>
                 <?php
@@ -74,7 +74,7 @@ defined('_JEXEC') or die;
                     <?php foreach ($this->rows as $key=>$row): ?>
                     <tr class="row<?php echo ($key%2); ?>" sortable-group-id="<?php echo $row->group; ?>">
                         <?php if(K2_JVERSION == '30'): ?>
-                        <td class="k2ui-order k2ui-center hidden-phone">
+                        <td class="k2ui-order k2ui-center k2ui-hide-on-mobile">
                             <span class="sortable-handler<?php echo ($this->ordering) ? '' : ' inactive tip-top' ;?>" title="<?php echo ($this->ordering) ? '' :JText::_('JORDERINGDISABLED'); ?>" rel="tooltip"><i class="icon-menu"></i></span>
                             <input type="text" style="display:none" name="order[]" size="5" value="<?php echo $row->ordering;?>" class="width-20 text-area-order" />
                         </td>
@@ -86,7 +86,7 @@ defined('_JEXEC') or die;
                             <a href="<?php echo JRoute::_('index.php?option=com_k2&view=extrafield&cid='.$row->id); ?>"><?php echo $row->name; ?></a>
                             <span class="k2AliasValue"><?php echo JText::_('K2_ALIAS'); ?>: <?php echo $row->alias; ?></span>
                         </td>
-                        <td class="k2ui-center hidden-phone"><?php echo $row->groupname; ?></td>
+                        <td class="k2ui-center k2ui-hide-on-mobile"><?php echo $row->groupname; ?></td>
                         <?php if(K2_JVERSION != '30'): ?>
                         <td class="k2ui-order">
                             <span><?php echo $this->page->orderUpIcon($key, ($row->group == @$this->rows[$key-1]->group), 'orderup', 'Move Up', $this->ordering); ?></span>
@@ -94,9 +94,9 @@ defined('_JEXEC') or die;
                             <input type="text" name="order[]" size="5" value="<?php echo $row->ordering; ?>"<?php echo ($this->ordering) ?  '' : ' disabled="disabled"'; ?> class="text_area" />
                         </td>
                         <?php endif; ?>
-                        <td class="k2ui-center hidden-phone"><?php echo JText::_('K2_EXTRA_FIELD_'.JString::strtoupper($row->type)); ?></td>
+                        <td class="k2ui-center k2ui-hide-on-mobile"><?php echo JText::_('K2_EXTRA_FIELD_'.JString::strtoupper($row->type)); ?></td>
                         <td class="k2ui-center"><?php echo $row->status; ?></td>
-                        <td class="k2ui-center hidden-phone"><?php echo $row->id; ?></td>
+                        <td class="k2ui-center k2ui-hide-on-mobile"><?php echo $row->id; ?></td>
                     </tr>
                     <?php endforeach; ?>
                     <?php else: ?>
