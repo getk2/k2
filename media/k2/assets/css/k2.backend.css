@@ -1210,7 +1210,7 @@ button.fancybox-button:hover {background:none;border:0;}
 
 .isJ25 #k2ContentView > form .k2AdminTableFilters tr td {padding:8px 8px 6px 16px;}
 .isJ25 #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSearch input {width:200px;font-size:13px;line-height:20px;padding:4px 8px;border:1px solid #b3b3b3;display:inline-block;border-radius:4px 0 0 4px;position:relative;top:2px;z-index:9;}
-.isJ25 #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSearch button {border-radius:0 4px 4px 0;border:1px solid #b3b3b3;margin:0 0 0 -6px;padding:4px 12px;font-size:13px;line-height:22px;text-align:center;vertical-align:middle;color:#333;background:#f3f3f3;display:inline-block;position:relative;z-index:8;}
+.isJ25 #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSearch button {border-radius:0 4px 4px 0;border:1px solid #b3b3b3;margin:0 0 0 -6px;padding:4px 12px;font-size:13px;line-height:20px;text-align:center;vertical-align:middle;color:#333;background:#f3f3f3;display:inline-block;position:relative;z-index:8;}
 .isJ25 #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects {padding-right:16px;}
 .isJ25 #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects select {max-width:160px;height:30px;font-size:13px;margin:0;}
 
@@ -1453,7 +1453,7 @@ button.fancybox-button:hover {background:none;border:0;}
 /* Lists */
 .isJ15 #k2ContentView > form .k2AdminTableFilters tr td {padding:8px 8px 6px 16px;}
 .isJ15 #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSearch input {width:200px;font-size:13px;line-height:20px;padding:4px 8px;border:1px solid #b3b3b3;display:inline-block;border-radius:4px 0 0 4px;position:relative;top:2px;z-index:9;}
-.isJ15 #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSearch button {border-radius:0 4px 4px 0;border:1px solid #b3b3b3;margin:0 0 0 -6px;padding:4px 12px;font-size:13px;line-height:22px;text-align:center;vertical-align:middle;color:#333;background:#f3f3f3;display:inline-block;position:relative;z-index:8;}
+.isJ15 #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSearch button {border-radius:0 4px 4px 0;border:1px solid #b3b3b3;margin:0 0 0 -6px;padding:4px 12px;font-size:13px;line-height:20px;text-align:center;vertical-align:middle;color:#333;background:#f3f3f3;display:inline-block;position:relative;z-index:8;}
 .isJ15 #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects {padding-right:16px;}
 .isJ15 #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects select {max-width:160px;height:30px;font-size:13px;margin:0;}
 
