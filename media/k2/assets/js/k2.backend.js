@@ -817,7 +817,7 @@ $K2(document).ready(function() {
         if ($('.k2AdminTableFilters').length) {
             var filterHeight = $('.k2AdminTableFilters').first().height();
             if (filterHeight > 60) {
-                $('#k2ContentView > form .table-responsive-wrap').css('padding-top', filterHeight);
+                $('#k2ContentView > form .k2AdminTableData').css('padding-top', filterHeight);
             }
         }
     });

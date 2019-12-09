@@ -581,8 +581,7 @@ table.adminFormK2 {width:100%;margin-bottom:16px;}
 #k2AdminContainer .adminlist a.editComment {color:#46afff;}
 #k2AdminContainer .adminlist a:hover {color:#46afff;}
 
-.table-responsive-wrap {position:relative;}
-.table-responsive {width:100%;margin-bottom:10px;overflow-y:hidden;}
+.k2AdminTableData {position:relative;width:100%;padding:0;margin:0;overflow-y:hidden;}
 
 /* User edit form */
 .k2ImagePreview {}
@@ -744,7 +743,7 @@ html.isJ25 #k2AdminContainer.inModalSelector #adminForm {margin-top:78px;}
 #k2AdminContainer.inModalSelector .k2AdminTableFilters {border:0;border-bottom:1px solid #dbdcdc;}
 #k2AdminContainer.inModalSelector .k2AdminTableFilters tr,
 #k2AdminContainer.inModalSelector .k2AdminTableFilters td {border:0 !important;}
-#k2AdminContainer.inModalSelector .table-responsive-wrap .table-responsive table {border:0;}
+#k2AdminContainer.inModalSelector .k2AdminTableData table {border:0;}
 #k2AdminFooter.inModalSelector {margin:8px auto;}
 #k2ModalSelectorHeader {background:#fff url(../images/backend/k2_logo_126x48.png) no-repeat 8px 50%;background-size:80px;padding:16px 0 16px 108px;margin:0;position:fixed;top:0;left:0;right:0;z-index:10;border-bottom:4px solid #eee;}
 
@@ -917,9 +916,9 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
                 #k2ContentView .k2AdminTableFiltersSelects #language_chzn {width:120px !important;}
 
         /* List entries & edit forms */
-        #k2ContentView > form .table-responsive-wrap {padding-top:50px;}
-        #k2AdminContainer.K2AdminViewExtrafieldsgroups #k2ContentView > form .table-responsive-wrap,
-        #k2AdminContainer.K2AdminViewUsergroups #k2ContentView > form .table-responsive-wrap {padding-top:0;}
+        #k2ContentView > form .k2AdminTableData {padding-top:50px;}
+        #k2AdminContainer.K2AdminViewExtrafieldsgroups #k2ContentView > form .k2AdminTableData,
+        #k2AdminContainer.K2AdminViewUsergroups #k2ContentView > form .k2AdminTableData {padding-top:0;}
 
         /* Edit forms */
         .k2AliasValue {display:block;color:#999;font-size:11px;}
@@ -1162,7 +1161,6 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 
 .isJ25 #element-box {padding:124px 0 0 0;margin:0;}
 .isJ25 #element-box .m {padding:0;margin:0;border:0;background:#f0f2f2;}
-.isJ25 #element-box .m .table-responsive {margin:0;padding:0;}
 
 .isJ25 #footer {background:#ebebeb;padding:4px 10px;margin:0;border-top:1px solid #dedede;box-shadow:0 0 3px rgba(0, 0, 0, 0.08);position:fixed;z-index:199;bottom:0;left:0;right:0;}
 .isJ25 #footer .copyright {text-align:right;padding:0;margin:0;color:#626262;font-size:12px;}
@@ -1225,7 +1223,7 @@ button.fancybox-button:hover {background:none;border:0;}
 .isJ25 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects {padding-right:16px;}
 .isJ25 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects select {max-width:160px;height:30px;font-size:13px;}
 
-.isJ25 #k2AdminContainer #k2ContentView > form .table-responsive-wrap {padding:38px 0 4px 0;}
+.isJ25 #k2AdminContainer #k2ContentView > form .k2AdminTableData {padding:38px 0 4px 0;}
 
 .isJ25 #k2AdminContainer .adminlist {border-collapse:collapse;}
 .isJ25 #k2AdminContainer .adminlist tr th,
@@ -1414,7 +1412,6 @@ button.fancybox-button:hover {background:none;border:0;}
 
 .isJ15 #element-box {padding-top:122px;}
 .isJ15 #element-box .m {padding:0 0 20px 0;margin:0;border:0;background:#f0f2f2;}
-.isJ15 #element-box .m .table-responsive {margin:0;padding:0;}
 
 .isJ15 #footer {background:#ebebeb;padding:4px 10px;margin:0;border-top:1px solid #dedede;box-shadow:0 0 3px rgba(0, 0, 0, 0.08);position:fixed;z-index:199;bottom:0;left:0;right:0;}
 .isJ15 #footer .copyright {text-align:right;padding:0;margin:0;color:#626262;font-size:12px;}
@@ -1468,7 +1465,7 @@ button.fancybox-button:hover {background:none;border:0;}
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects {padding-right:16px;}
 .isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects select {max-width:160px;height:30px;font-size:13px;}
 
-.isJ15 #k2AdminContainer #k2ContentView > form .table-responsive-wrap {padding:38px 0 4px 0;}
+.isJ15 #k2AdminContainer #k2ContentView > form .k2AdminTableData {padding:38px 0 4px 0;}
 
 .isJ15 #k2AdminContainer .adminlist {border-collapse:collapse;}
 .isJ15 #k2AdminContainer .adminlist tr th,

@@ -664,7 +664,7 @@ $app = JFactory::getApplication();
                     <?php if ($this->params->get('showAttachmentsTab')): ?>
                     <!-- Tab attachements -->
                     <div class="k2TabsContent" id="k2TabAttachments">
-                        <div class="itemAttachments table-responsive">
+                        <div class="itemAttachments">
                             <?php if ($this->row->attachments && count($this->row->attachments)): ?>
                             <table class="itemAttachmentsTable">
                                 <tr>
