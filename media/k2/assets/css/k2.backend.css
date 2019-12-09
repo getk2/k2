@@ -1641,6 +1641,7 @@ button.fancybox-button:hover {background:none;border:0;}
         #k2Sidebar ul {position:relative;z-index:999;width:auto;}
         #k2ContentView {position:relative;z-index:89;}
         #k2ContentView > form .k2AdminTableFilters {position:relative;width:100%;left:0;right:0;z-index:99;}
+        #k2ContentView > form .k2AdminTableFilters tr td {display:block;clear:both;text-align:center;}
         #k2ContentView > form .k2AdminTableData {padding-top:0;}
 
     /* Joomla normalizations */
