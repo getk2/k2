@@ -1681,6 +1681,8 @@ button.fancybox-button:hover {background:none;border:0;}
             .k2GenericForm {min-width:inherit;max-width:none;padding:0 10px 20px 10px;}
 
             .itemPluginsContent {padding:0 5px;}
+
+            .itemPlugins .itemAdditionalField .itemAdditionalData {width:auto !important;}
             .itemPlugins .itemAdditionalData > input:not([type="checkbox"]) {width:calc(100% - 14px) !important;}
             .itemPlugins .itemAdditionalData > select {width:calc(100% - 8px) !important;}
 
