@@ -355,12 +355,6 @@ $K2(document).ready(function() {
             break;
 
         case 'category':
-            /*
-            $K2('#k2Accordion').accordion({
-                collapsible: true,
-                autoHeight: false
-            });
-            */
             $K2('.k2Tabs').tabs();
             $K2('#k2ImageBrowseServer').click(function(event) {
                 event.preventDefault();
@@ -400,12 +394,6 @@ $K2(document).ready(function() {
             break;
 
         case 'item':
-            /*
-            $K2('#k2Accordion').accordion({
-                collapsible: true,
-                autoHeight: false
-            });
-            */
             $K2('.k2Tabs').tabs();
             if (typeof(K2ActiveMediaTab) === 'undefined') {
                 $K2('#k2MediaTabs').tabs();
