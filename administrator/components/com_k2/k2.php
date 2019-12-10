@@ -64,6 +64,9 @@ if (K2_JVERSION == '15') {
 }
 
 $document = JFactory::getDocument();
+
+$document->setMetadata('theme-color', '#10223e');
+
 K2HelperHTML::loadHeadIncludes(true, true);
 
 // Container CSS class definition
@@ -116,6 +119,7 @@ if (
     ';
     $k2ComponentFooter = '
         </div>
+        '.K2HelperHTML::mobileMenu().'
     </div>
 
     <!-- K2 Update Service -->

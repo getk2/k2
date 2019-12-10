@@ -1624,7 +1624,8 @@ button.fancybox-button:hover {background:none;border:0;}
 
 /* --- Responsive (smartphones & tablets) [start] --- */
 
-.k2ui-show-on-mobile {display:none;}
+.k2ui-show-on-mobile,
+#k2AdminMobileMenu {display:none;}
 
 @media screen and (max-width:1260px) {
     .isJ30 div#toolbar .btn-wrapper {margin:0 0 4px 0;float:none;}
@@ -1671,7 +1672,18 @@ button.fancybox-button:hover {background:none;border:0;}
             #k2app-ef-type-data select {margin:0 5px 5px 0;width:calc(100% - 20px);}
 
     /* Joomla normalizations */
-    #status {margin:0;}
+    #status {margin:0;padding-bottom:100px !important;}
+
+    /* Mobile app-like menu */
+    #k2AdminMobileMenu {display:block;position:fixed;bottom:0;left:0;right:0;z-index:999;background:#fff;box-shadow:0 -1px 3px 0 #777;}
+    #k2AdminMobileMenu ul {list-style:none;display:grid;grid-template-columns:repeat(5, 1fr);grid-gap:0;padding:0;margin:0;}
+    #k2AdminMobileMenu ul li {display:block;padding:0;margin:0;}
+        #k2AdminMobileMenu ul li.k2ui-add {background:#f0f2f2;}
+    #k2AdminMobileMenu ul li a {display:block;text-align:center;color:#555;padding:5px;margin:0;}
+    #k2AdminMobileMenu ul li a:hover {color:#46afff;text-decoration:none;}
+        #k2AdminMobileMenu ul li.active a {color:#46afff;}
+    #k2AdminMobileMenu ul li a i {font-size:24px;line-height:30px;font-weight:normal;}
+    #k2AdminMobileMenu ul li a span {display:block;font-size:12px;line-height:20px;height:20px;padding:0;margin:0;font-weight:400;white-space:nowrap;}
 }
 
 /* --- Responsive (smartphones & tablets) [finish] --- */

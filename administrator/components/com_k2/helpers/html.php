@@ -28,6 +28,8 @@ class K2HelperHTML
 
         $editForms = array('item', 'category', 'tag', 'user', 'usergroup', 'extrafield', 'extrafieldsgroup');
 
+        $sidebarMenu = '';
+
         if (in_array($view, $editForms)) {
             $sidebarMenu = '
             <ul class="k2-disabled">
@@ -125,6 +127,49 @@ class K2HelperHTML
         }
 
         return $sidebarMenu;
+    }
+
+    public static function mobileMenu()
+    {
+        $params = JComponentHelper::getParams('com_k2');
+        $user = JFactory::getUser();
+        $view = JRequest::getCmd('view');
+
+        $editForms = array('item', 'category', 'tag', 'user', 'usergroup', 'extrafield', 'extrafieldsgroup');
+
+        $mobileMenu = '';
+
+        if (!in_array($view, $editForms)) {
+            $mobileMenu = '
+            <div id="k2AdminMobileMenu">
+                <ul>
+                    <li'.self::activeMenu('items').'>
+                        <a href="index.php?option=com_k2&amp;view=items"><i class="fa fa-list-alt" aria-hidden="true"></i><span>'.JText::_('K2_ITEMS').'</span></a>
+                    </li>
+                    <li'.self::activeMenu('categories').'>
+                        <a href="index.php?option=com_k2&amp;view=categories"><i class="fa fa-folder-open-o" aria-hidden="true"></i><span>'.JText::_('K2_CATEGORIES').'</span></a>
+                    </li>
+                    <li class="k2ui-add">
+                        <a href="index.php?option=com_k2&amp;view=item"><i class="fa fa-plus-square-o" aria-hidden="true"></i><span>'.JText::_('K2_ADD_ITEM').'</span></a>
+                    </li>
+            ';
+            if (!$params->get('lockTags') || $user->gid > 23) {
+                $mobileMenu .= '
+                    <li'.self::activeMenu('tags').'>
+                        <a href="index.php?option=com_k2&amp;view=tags"><i class="fa fa-tags" aria-hidden="true"></i><span>'.JText::_('K2_TAGS').'</span></a>
+                    </li>
+                ';
+            }
+            $mobileMenu .= '
+                    <li'.self::activeMenu('comments').'>
+                        <a href="index.php?option=com_k2&amp;view=comments"><i class="fa fa-comments-o" aria-hidden="true"></i><span>'.JText::_('K2_COMMENTS').'</span></a>
+                    </li>
+                </ul>
+            </div>
+            ';
+        }
+
+        return $mobileMenu;
     }
 
     public static function subMenu()
