@@ -456,7 +456,7 @@ ul#k2ExtraFieldsMissing li {font-weight:normal;}
 .itemAdditionalField {display:grid;grid-template-columns:180px auto;margin:0 0 1px 0;padding:0;}
 .itemAdditionalField.fieldIsHeader > h4 {font-size:16px;color:#68696b;font-weight:300;display:block;margin:0;padding:0;}
 .itemAdditionalField .itemAdditionalValue {background:#f0f2f2;padding:10px;display:flex;align-items:center;}
-.itemAdditionalField .itemAdditionalValue label {font-size:13px;color:#68696b;font-weight:700;display:block;text-align:right;width:100%;padding:0;margin:0;}
+.itemAdditionalField .itemAdditionalValue label {font-size:13px;color:#68696b;font-weight:600;display:block;text-align:right;width:100%;padding:0;margin:0;}
 .itemAdditionalField .itemAdditionalData {padding:10px;font-size:13px;}
 .itemAdditionalField .itemAdditionalData label {font-weight:700;}
 
@@ -1667,6 +1667,8 @@ button.fancybox-button:hover {background:none;border:0;}
             #k2FormTopNav ul.k2NavTabs {display:grid;grid-template-columns:1fr 1fr 1fr;grid-gap:0;}
             #k2FormTopNav ul.k2NavTabs li {text-align:center;}
             #k2FormTopNav ul.k2NavTabs li a {padding:16px 8px;white-space:nowrap;}
+
+            #k2Tabs .k2TabsContent {padding:5px;}
 
             .k2GenericForm {min-width:inherit;max-width:none;padding:0 10px 20px 10px;}
 
