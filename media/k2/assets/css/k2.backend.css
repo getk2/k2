@@ -1749,6 +1749,13 @@ button.fancybox-button:hover {background:none;border:0;}
             #k2app-ef-type-data button,
             #k2app-ef-type-data select {margin:0 5px 5px 0;width:calc(100% - 20px);}
 
+            /* Batch Operations Modal */
+            .jw-modal {padding:0;margin:0;z-index:9998;}
+            .jw-modal .jw-modal-content {padding:0;margin:20px 10px;top:0;left:0;z-index:9999;width:auto;}
+            .jw-modal .jw-modal-content .column .column {padding:10px;margin:0 !important;}
+            .jw-modal .jw-modal-content .column .column input[type="text"],
+            .jw-modal .jw-modal-content .column .column select {width:100%;}
+
     /* Joomla normalizations */
     #editor-xtd-buttons {display:grid;grid-template-columns:auto auto;grid-gap:5px;width:100%;}
     #editor-xtd-buttons a.btn {margin:0;}
