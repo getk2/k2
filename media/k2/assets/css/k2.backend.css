@@ -1648,7 +1648,7 @@ button.fancybox-button:hover {background:none;border:0;}
     .k2ui-hide-on-mobile {display:none;}
 
     /* Grid */
-    .isJ30 body {background:#f0f2f2;}
+    .isJ30 body {background:#f0f2f2;overflow-x:hidden;}
     .isJ30 .btn-subhead {width:80%;margin:10px auto;}
     .isJ30 div#toolbar {position:relative;z-index:9;padding:10px;background:none;width:94%;margin:auto;display:grid;grid-template-columns:1fr 1fr;grid-gap:10px;}
     .isJ30 div#toolbar .btn-wrapper {margin:0;padding:0;display:block;box-sizing:border-box;}
@@ -1665,7 +1665,7 @@ button.fancybox-button:hover {background:none;border:0;}
             #k2ContentView .k2AdminTableFiltersSelects select {min-height:inherit;height:auto;}
 
             #k2FormTopNav .k2NavTabsWrapper > h2 {display:block;text-align:center;background:#fff;padding:10px 0 12px;margin:-44px 0 0 0;width:100%;}
-            #k2FormTopNav ul.k2NavTabs {display:grid;grid-template-columns:1fr 1fr 1fr;grid-gap:0;}
+            #k2FormTopNav ul.k2NavTabs {display:grid;grid-template-columns:repeat(3, auto);grid-gap:0;}
             #k2FormTopNav ul.k2NavTabs li {text-align:center;}
             #k2FormTopNav ul.k2NavTabs li a {padding:16px 8px;white-space:nowrap;}
 
@@ -1688,6 +1688,10 @@ button.fancybox-button:hover {background:none;border:0;}
             .k2ViewIsItem #k2MediaTabs ul.k2TabsNavigation li {display:flex;align-items:center;}
             .k2ViewIsItem #k2MediaTabs ul.k2TabsNavigation li a {white-space:normal;text-align:center;margin:auto;}
 
+            .k2ViewIsItem #k2MediaTabs .panel {text-align:center;}
+            .k2ViewIsItem #k2MediaTabs .itemAdditionalBlock {margin:0 0 10px 0;padding:0;display:block;text-align:center;}
+            .k2ViewIsItem #k2MediaTabs #Video_from_provider br {display:none;}
+
             .k2GenericForm {min-width:inherit;max-width:none;padding:0 10px 20px 10px;}
 
             .itemPluginsContent {padding:0 5px;}
@@ -1695,6 +1699,14 @@ button.fancybox-button:hover {background:none;border:0;}
             .itemPlugins .itemAdditionalField .itemAdditionalData {width:auto !important;}
             .itemPlugins .itemAdditionalData > input:not([type="checkbox"]) {width:calc(100% - 14px) !important;}
             .itemPlugins .itemAdditionalData > select {width:calc(100% - 8px) !important;}
+
+            .itemAttachmentsTable {display:block;overflow-x:auto;padding:10px 0;}
+            .itemAttachmentsTable tr th,
+            .itemAttachmentsTable tr td {padding:5px;}
+
+            .itemNewAttachment {position:relative;}
+            .itemNewAttachment button {position:absolute;top:30px;right:2px;float:none;}
+            .itemNewAttachment .itemAdditionalField input[type="text"].existing_file {margin:0;padding:0;visibility:hidden;}
 
             .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramLabel {display:block;width:auto;text-align:left;border-right:0;padding:0;}
             .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue {display:block;width:auto;text-align:left;margin-bottom:10px;}
