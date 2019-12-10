@@ -1663,10 +1663,22 @@ button.fancybox-button:hover {background:none;border:0;}
         #k2ContentView .k2AdminTableFiltersSelects {padding:10px;}
             #k2ContentView .k2AdminTableFiltersSelects select {min-height:inherit;height:auto;}
             .k2GenericForm {min-width:inherit;max-width:none;padding:0 10px 20px 10px;}
-            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramLabel,
-            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue {display:block;width:auto;text-align:left;}
-            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue textarea {min-width:inherit;width:calc(100% - 20px);}
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramLabel {display:block;width:auto;text-align:left;border-right:0;padding:0;}
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue {display:block;width:auto;text-align:left;margin-bottom:10px;}
+
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue > input:not([type="checkbox"]),
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue > textarea {min-width:inherit;width:calc(100% - 22px);}
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue > select {min-width:inherit;width:100%;}
             .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue .js-editor-tinymce {margin-left:-10px;min-width:inherit;width:calc(100% - 10px);}
+
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="radio"] + label,
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue .controls > label.radio,
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue .controls > label.isChecked {min-width:60px;}
+
+            .isJ30 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu {display:none;}
+            .isJ30 #k2AdminContainer #k2ContentView div.k2ScrollingContent {width:auto;margin:0;padding:0 10px 20px 10px;}
+            .isJ30 #k2ContentView > form .xmlParamsFields.limitWidth {min-width:inherit;max-width:none;width:auto;margin:0;padding:0 10px 20px 10px;}
+
             #k2app-ef-add-option {width:calc(100% - 16px);height:28px;line-height:28px;}
             #k2app-ef-type-data input,
             #k2app-ef-type-data button,
