@@ -1658,6 +1658,7 @@ button.fancybox-button:hover {background:none;border:0;}
         #k2Sidebar ul,
         #k2Sidebar #k2Copyrights {display:none;}
         #k2Sidebar ul {position:absolute;top:42px;z-index:999;width:100%;background:#193867;}
+        #k2Sidebar ul li a {padding:8px 16px;border-bottom:1px solid #1a2f52;}
         #k2ContentView {position:relative;z-index:89;}
         #k2ContentView .k2AdminTableFiltersSelects {padding:10px;}
             #k2ContentView .k2AdminTableFiltersSelects select {min-height:inherit;height:auto;}
