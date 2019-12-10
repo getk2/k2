@@ -1709,9 +1709,14 @@ button.fancybox-button:hover {background:none;border:0;}
             .itemAdditionalField .itemAdditionalData select,
             .itemAdditionalField .itemAdditionalData textarea {width:100%;width:calc(100% - 22px);margin-bottom:5px;}
             .itemAdditionalField .itemAdditionalData input[type="button"] {width:calc(100% - 8px);}
-            #k2TabImage .itemAdditionalField .itemAdditionalData > label {display:inline;}
-            .itemAdditionalField .itemAdditionalData .sep {display:block;clear:both;padding:10px;font-weight:700;}
+            .itemAdditionalField .itemAdditionalData .k2Button {width:calc(100% - 18px);}
+            #k2TabImage .itemAdditionalField .itemAdditionalData > label,
+            #k2TabImageGallery .itemAdditionalField .itemAdditionalData > label {display:inline;}
+            .itemAdditionalField .itemAdditionalData .sep {display:block;clear:both;text-align:center;padding:10px;font-weight:700;font-size:18px;text-transform:uppercase;}
             .itemAdditionalField .itemAdditionalData .k2AdminImage {display:block;width:calc(100% - 8px);}
+
+            .itemAdditionalField.separator .itemAdditionalValue {width:auto;background:none;border:0;margin:0;padding:0;}
+            .itemAdditionalField.separator .itemAdditionalData {visibility:hidden;}
 
             .isJ30 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu {display:none;}
             .isJ30 #k2AdminContainer #k2ContentView div.k2ScrollingContent {width:auto;margin:0;padding:0 10px 20px 10px;}
