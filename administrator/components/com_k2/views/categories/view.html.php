@@ -164,7 +164,7 @@ class K2ViewCategories extends K2View
         array_unshift($categoriesTree, JHtml::_('select.option', '0', JText::_('K2_NONE_ONSELECTLISTS')));
         array_unshift($categoriesTree, JHtml::_('select.option', '', JText::_('K2_LEAVE_UNCHANGED')));
 
-        $lists['batchCategories'] = JHTML::_('select.genericlist', $categoriesTree, 'batchCategory', 'class="inputbox" size="8"', 'value', 'text', null);
+        $lists['batchCategories'] = JHTML::_('select.genericlist', $categoriesTree, 'batchCategory', '', 'value', 'text', null);
 
         $lists['batchAccess'] = version_compare(JVERSION, '2.5', 'ge') ? JHTML::_('access.level', 'batchAccess', null, '', array(JHtml::_('select.option', '', JText::_('K2_LEAVE_UNCHANGED')))) : str_replace('size="3"', "", JHTML::_('list.accesslevel', ''));
 
