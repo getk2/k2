@@ -1751,6 +1751,7 @@ button.fancybox-button:hover {background:none;border:0;}
 
             /* Batch Operations Modal */
             .jw-modal {padding:0;margin:0;z-index:9998;}
+            .jw-modal .jw-modal-content .subheader-alt {padding:5px 0;margin:0 0 5px 0;}
             .jw-modal .jw-modal-content {padding:0;margin:20px 10px;top:0;left:0;z-index:9999;width:auto;}
             .jw-modal .jw-modal-content .column .column {padding:10px;margin:0 !important;}
             .jw-modal .jw-modal-content .column .column input[type="text"],
