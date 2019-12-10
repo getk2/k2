@@ -1662,7 +1662,14 @@ button.fancybox-button:hover {background:none;border:0;}
         #k2ContentView {position:relative;z-index:89;}
         #k2ContentView .k2AdminTableFiltersSelects {padding:10px;}
             #k2ContentView .k2AdminTableFiltersSelects select {min-height:inherit;height:auto;}
+
+            #k2FormTopNav .k2NavTabsWrapper > h2 {display:block;text-align:center;background:#fff;padding:10px 0;margin:-44px 0 0 0;width:100%;}
+            #k2FormTopNav ul.k2NavTabs {display:grid;grid-template-columns:1fr 1fr 1fr;grid-gap:0;}
+            #k2FormTopNav ul.k2NavTabs li {text-align:center;}
+            #k2FormTopNav ul.k2NavTabs li a {padding:16px 8px;white-space:nowrap;}
+
             .k2GenericForm {min-width:inherit;max-width:none;padding:0 10px 20px 10px;}
+
             .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramLabel {display:block;width:auto;text-align:left;border-right:0;padding:0;}
             .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue {display:block;width:auto;text-align:left;margin-bottom:10px;}
 
@@ -1674,6 +1681,16 @@ button.fancybox-button:hover {background:none;border:0;}
             .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="radio"] + label,
             .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue .controls > label.radio,
             .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue .controls > label.isChecked {min-width:60px;}
+
+            .itemAdditionalField {grid-template-columns:1fr;}
+            .itemAdditionalField .itemAdditionalValue {border-top:1px solid #fff;border-bottom:1px solid #e9e9e9;}
+            .itemAdditionalField .itemAdditionalValue label {text-align:left;}
+            .itemAdditionalField .itemAdditionalData {margin-bottom:10px;line-height:150%;background:#fbfbfb;border-top:1px solid #fff;border-bottom:1px solid #fbfbfb;}
+            .itemAdditionalField .itemAdditionalData input:not([type="checkbox"]),
+            .itemAdditionalField .itemAdditionalData select,
+            .itemAdditionalField .itemAdditionalData textarea {width:100%;width:calc(100% - 22px);margin-bottom:5px;}
+            .itemAdditionalField .itemAdditionalData input[type="button"] {width:calc(100% - 8px);}
+            .itemAdditionalField .itemAdditionalData .sep {display:block;clear:both;padding:10px;font-weight:700;}
 
             .isJ30 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu {display:none;}
             .isJ30 #k2AdminContainer #k2ContentView div.k2ScrollingContent {width:auto;margin:0;padding:0 10px 20px 10px;}
