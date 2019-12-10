@@ -1678,6 +1678,16 @@ button.fancybox-button:hover {background:none;border:0;}
             #k2Tabs ul.k2TabsNavigation li a {display:block;text-align:center;}
             #k2Tabs .k2TabsContent {padding:10px 5px;}
 
+            .k2ViewIsItem #k2Tabs ul.k2TabsNavigation {display:grid;grid-template-columns:repeat(3, 1fr);grid-gap:5px;padding:5px;margin:0;border:1px solid #d4d7d9;}
+            .k2ViewIsItem #k2Tabs ul.k2TabsNavigation li {width:auto;margin:0;padding:5px;display:block;background:#fefefe;border-radius:3px;border:1px solid #d4d7d9;}
+            .k2ViewIsItem #k2Tabs ul.k2TabsNavigation li.ui-tabs-selected {background:#f0f2f2;}
+            .k2ViewIsItem #k2Tabs ul.k2TabsNavigation li a {white-space:nowrap;border:0;margin:0;padding:0;background:none;display:block;}
+            .k2ViewIsItem #k2Tabs .k2TabsContent {border-top:0;}
+
+            .k2ViewIsItem #k2MediaTabs ul.k2TabsNavigation {grid-template-columns:repeat(2, 1fr);grid-template-rows:1fr 1fr;}
+            .k2ViewIsItem #k2MediaTabs ul.k2TabsNavigation li {display:flex;align-items:center;}
+            .k2ViewIsItem #k2MediaTabs ul.k2TabsNavigation li a {white-space:normal;text-align:center;margin:auto;}
+
             .k2GenericForm {min-width:inherit;max-width:none;padding:0 10px 20px 10px;}
 
             .itemPluginsContent {padding:0 5px;}
