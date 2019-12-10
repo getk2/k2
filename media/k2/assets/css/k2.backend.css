@@ -1673,6 +1673,8 @@ button.fancybox-button:hover {background:none;border:0;}
 
             .k2GenericForm {min-width:inherit;max-width:none;padding:0 10px 20px 10px;}
 
+            .itemPluginsContent {padding:0 5px;}
+
             .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramLabel {display:block;width:auto;text-align:left;border-right:0;padding:0;}
             .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue {display:block;width:auto;text-align:left;margin-bottom:10px;}
 
@@ -1709,7 +1711,11 @@ button.fancybox-button:hover {background:none;border:0;}
             #k2app-ef-type-data select {margin:0 5px 5px 0;width:calc(100% - 20px);}
 
     /* Joomla normalizations */
-    #status {margin:0;padding-bottom:100px !important;}
+    #status {margin:0;}
+    .k2ViewIsItems #status,
+    .k2ViewIsCategories #status,
+    .k2ViewIsTags #status,
+    .k2ViewIsComments #status {padding-bottom:100px !important;}
 
     /* Mobile app-like menu */
     #k2AdminMobileMenu {display:block;position:fixed;bottom:0;left:0;right:0;z-index:999;background:#fff;box-shadow:0 -1px 3px 0 #777;}

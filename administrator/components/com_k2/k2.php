@@ -118,6 +118,7 @@ if (
         <div id="k2ContentView">
     ';
     $k2ComponentFooter = '
+            <div class="k2clr"></div>
         </div>
         '.K2HelperHTML::mobileMenu().'
     </div>
