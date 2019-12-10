@@ -16,6 +16,7 @@ a:active,a:focus {outline:0;}
 hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding:0;margin:4px 0;}
 
 .isJ30 body {padding-right:0;padding-left:0;}
+
 .com_k2 select[multiple],
 .com_k2 select[size],
 .com_k2 select {min-height:40px;height:40px;max-width:100%;}
@@ -1668,12 +1669,20 @@ button.fancybox-button:hover {background:none;border:0;}
             #k2FormTopNav ul.k2NavTabs li {text-align:center;}
             #k2FormTopNav ul.k2NavTabs li a {padding:16px 8px;white-space:nowrap;}
 
+            div.k2Table .k2TableValue input:not([type="checkbox"]),
+            div.k2Table .k2TableValue select,
+            div.k2SubTable .k2SubTableValue input:not([type="checkbox"]),
+            div.k2SubTable .k2SubTableValue select {width:100%;}
+                span.k2Notice {display:block;text-align:right;padding:5px 0;}
+
             #k2Tabs ul.k2TabsNavigation li a {display:block;text-align:center;}
             #k2Tabs .k2TabsContent {padding:10px 5px;}
 
             .k2GenericForm {min-width:inherit;max-width:none;padding:0 10px 20px 10px;}
 
             .itemPluginsContent {padding:0 5px;}
+            .itemPlugins .itemAdditionalData > input:not([type="checkbox"]) {width:calc(100% - 14px) !important;}
+            .itemPlugins .itemAdditionalData > select {width:calc(100% - 8px) !important;}
 
             .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramLabel {display:block;width:auto;text-align:left;border-right:0;padding:0;}
             .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue {display:block;width:auto;text-align:left;margin-bottom:10px;}
@@ -1700,6 +1709,7 @@ button.fancybox-button:hover {background:none;border:0;}
             .itemAdditionalField .itemAdditionalData input[type="button"] {width:calc(100% - 8px);}
             #k2TabImage .itemAdditionalField .itemAdditionalData > label {display:inline;}
             .itemAdditionalField .itemAdditionalData .sep {display:block;clear:both;padding:10px;font-weight:700;}
+            .itemAdditionalField .itemAdditionalData .k2AdminImage {display:block;width:calc(100% - 8px);}
 
             .isJ30 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu {display:none;}
             .isJ30 #k2AdminContainer #k2ContentView div.k2ScrollingContent {width:auto;margin:0;padding:0 10px 20px 10px;}
@@ -1711,6 +1721,9 @@ button.fancybox-button:hover {background:none;border:0;}
             #k2app-ef-type-data select {margin:0 5px 5px 0;width:calc(100% - 20px);}
 
     /* Joomla normalizations */
+    #editor-xtd-buttons {display:grid;grid-template-columns:auto auto;grid-gap:5px;width:100%;}
+    #editor-xtd-buttons a.btn {margin:0;}
+
     #status {margin:0;}
     .k2ViewIsItems #status,
     .k2ViewIsCategories #status,
