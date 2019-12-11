@@ -564,7 +564,7 @@ table.adminFormK2 {width:100%;margin-bottom:16px;}
 /* Minimal modal */
 .k2ui-modal {display:none;position:fixed;z-index:9999;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);}
 .k2ui-modal.k2ui-modal-open {display:block;}
-    .k2ui-modal-content-wrapper {position:absolute;left:50%;width:680px;background:#fdfdfd;box-shadow:0 0 20px rgba(0,0,0,0.2);margin:25px auto 25px -340px;}
+    .k2ui-modal-content-wrapper {position:absolute;left:50%;width:440px;background:#fdfdfd;box-shadow:0 0 20px rgba(0,0,0,0.2);margin:25px auto 25px -220px;}
         .k2ui-modal-content {width:100%;padding:0;margin:0;}
             .k2ui-modal-header {color:#fff;padding:10px;font-size:20px;font-weight:300;background:#10213e;box-shadow:0 1px 0 rgba(0,0,0,.18);overflow:hidden;}
                 .k2ui-modal-header h3 {margin:0;font-size:20px;}
@@ -581,7 +581,7 @@ table.adminFormK2 {width:100%;margin-bottom:16px;}
                     .k2ui-batch-actions .k2ui-row input[type="radio"] + label:hover {background:#e8e8e8;}
             .k2ui-batch-options {padding:10px;}
                 .k2ui-batch-options .k2ui-row {text-align:center;padding-bottom:10px;}
-                    .k2ui-batch-options .k2ui-row label {}
+                    .k2ui-batch-options .k2ui-row label {display:block;font-size:14px;padding-bottom:5px;}
                     .k2ui-batch-options .k2ui-row select {width:80%;}
                 .k2ui-batch-options .k2ui-row:last-child {padding:0;}
             .k2ui-modal-footer {padding:10px;background-color:#eff1f1;text-align:right;}
