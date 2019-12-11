@@ -331,6 +331,8 @@ input#del_image {}
 
 /* Item - Free tagging */
 ul.tags {background:#fff;border:1px solid #ccc;cursor:default;margin:0;padding:5px 10px 0 10px;border-radius:3px;width:60%;}
+.isJ25 ul.tags::after,
+.isJ15 ul.tags::after {content:"";display:block;clear:both;}
 ul.tags li {border-radius:3px;background:#d1e8fc;color:#0f4776;list-style:none;float:left;clear:none;padding:5px 10px;margin:0 5px 5px 0;font-size:13px;font-weight:600;vertical-align:middle;}
 ul.tags li.tagAdded {position:relative;padding:5px 30px 5px 10px;}
     ul.tags li span.tagRemove {font-size:12px;font-family:"Lucida Grande";color:#0b4373;cursor:pointer;background:#a9c6e2;position:absolute;top:0;right:0;padding:5px 0;margin:0;border-radius:0 3px 3px 0;width:20px;text-align:center;}
