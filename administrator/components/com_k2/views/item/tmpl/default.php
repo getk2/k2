@@ -66,19 +66,19 @@ $app = JFactory::getApplication();
                     <div class="k2ui-field-label">
                         <label for="title"><?php echo JText::_('K2_TITLE'); ?></label>
                     </div>
-                    <div class="k2ui-field-value">
-                        <input class="k2ui-title" type="text" name="title" id="title" maxlength="250" value="<?php echo $this->row->title; ?>" />
+                    <div class="k2ui-field-value k2ui-title">
+                        <input type="text" name="title" id="title" maxlength="250" value="<?php echo $this->row->title; ?>" />
                     </div>
                     <div class="k2ui-field-label">
                         <label for="alias"><?php echo JText::_('K2_TITLE_ALIAS'); ?></label>
                     </div>
-                    <div class="k2ui-field-value">
-                        <input class="k2ui-title-alias" type="text" name="alias" id="alias" maxlength="250" value="<?php echo $this->row->alias; ?>" />
+                    <div class="k2ui-field-value k2ui-title-alias">
+                        <input type="text" name="alias" id="alias" maxlength="250" value="<?php echo $this->row->alias; ?>" />
                     </div>
                     <div class="k2ui-field-label">
                         <label><?php echo JText::_('K2_CATEGORY'); ?></label>
                     </div>
-                    <div class="k2ui-field-value">
+                    <div class="k2ui-field-value k2ui-category">
                         <?php echo $this->lists['categories']; ?>
                     </div>
                     <div class="k2ui-field-label">

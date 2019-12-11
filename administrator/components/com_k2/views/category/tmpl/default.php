@@ -34,14 +34,14 @@ defined('_JEXEC') or die;
                 <div class="k2ui-field-label">
                     <label for="name"><?php echo JText::_('K2_TITLE'); ?></label>
                 </div>
-                <div class="k2ui-field-value">
-                    <input class="k2ui-title" type="text" name="name" id="name" value="<?php echo $this->row->name; ?>" maxlength="250" />
+                <div class="k2ui-field-value k2ui-title">
+                    <input type="text" name="name" id="name" value="<?php echo $this->row->name; ?>" maxlength="250" />
                 </div>
                 <div class="k2ui-field-label">
                     <label for="alias"><?php echo JText::_('K2_TITLE_ALIAS'); ?></label>
                 </div>
-                <div class="k2ui-field-value">
-                    <input class="k2ui-title-alias" type="text" name="alias" value="<?php echo $this->row->alias; ?>" maxlength="250" />
+                <div class="k2ui-field-value k2ui-title-alias">
+                    <input type="text" name="alias" value="<?php echo $this->row->alias; ?>" maxlength="250" />
                 </div>
             </div>
             <div class="k2ui-table-additional">

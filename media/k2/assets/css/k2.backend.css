@@ -170,8 +170,9 @@ div.controls label.radio {display:inline-block;}
     .k2ui-field-value textarea,
     .k2ui-field-value button {padding:5px 10px;margin:0;height:auto;line-height:inherit;border-radius:3px;}
     .k2ui-field-value textarea {padding:5px 10px;margin:0;border-radius:3px;}
-    .k2ui-field-value .k2ui-title {width:90%;height:40px;line-height:40px;font-size:20px;}
-    .k2ui-field-value .k2ui-title-alias {width:60%;}
+    .k2ui-field-value.k2ui-title input {width:90%;height:40px;line-height:40px;font-size:20px;}
+    .k2ui-field-value.k2ui-title-alias input {width:60%;}
+    .k2ui-field-value.k2ui-category #catid_chzn {width:30%;}
     .k2ui-field-value .k2ui-notice {margin-top:5px;cursor:pointer;font-size:12px;font-weight:600;}
 
 .k2ui-column {}
