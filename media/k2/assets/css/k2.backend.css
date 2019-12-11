@@ -248,7 +248,7 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
 
 /* Generic form additional styling - tags, users, usergroups etc. */
 .k2GenericForm {min-width:640px;max-width:68%;padding:0 20px 40px 20px;margin:0 auto;}
-.k2GenericForm h3 {font-size:32px;font-weight:600;padding:20px 0 10px 4px;margin:0 auto 20px auto;border-bottom:2px solid #dddedf;color:#183867;}
+.k2GenericForm h3 {font-size:32px;font-weight:600;line-height:120%;padding:20px 0 10px 4px;margin:0 auto 20px auto;border-bottom:2px solid #dddedf;color:#183867;}
 
 /* Extra fields */
 #groupContainer {display:block;}
@@ -832,7 +832,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 /* No content message */
 #k2ContentView > form .nocontent tfoot {display:none;}
 #k2AdminContainer .adminlist tr td.k2ui-nocontent {background:#efefed;padding:0;margin:0;}
-    .k2ui-nocontent-message {text-align:center;font-size:40px;font-weight:300;width:auto;height:calc(100vh - 216px);box-sizing:border-box;padding-top:calc((100vh - 400px) / 2);}
+    .k2ui-nocontent-message {text-align:center;font-size:40px;font-weight:300;line-height:120%;width:auto;height:calc(100vh - 216px);box-sizing:border-box;padding-top:calc((100vh - 400px) / 2);}
     .isJ25 .k2ui-nocontent-message {height:calc(100vh - 240px);}
     .isJ15 .k2ui-nocontent-message {height:calc(100vh - 186px);}
     .k2ui-nocontent-message i {font-size:120px;display:block;}
@@ -1552,6 +1552,10 @@ button.fancybox-button:hover {background:none;border:0;}
             .k2ViewIsItem #k2MediaTabs #Video_from_provider br {display:none;}
 
             .k2GenericForm {min-width:inherit;max-width:none;padding:0 10px 20px 10px;}
+            .k2ViewIsInfo.isJ30 #k2AdminContainer #k2ContentView div.k2ScrollingContent.k2GenericForm {box-sizing:border-box;width:auto;}
+            .k2ViewIsInfo.isJ30 #k2AdminContainer #k2ContentView div.k2ScrollingContent.k2GenericForm table {}
+            .k2ViewIsInfo.isJ30 #k2AdminContainer #k2ContentView div.k2ScrollingContent.k2GenericForm table tr th,
+            .k2ViewIsInfo.isJ30 #k2AdminContainer #k2ContentView div.k2ScrollingContent.k2GenericForm table tr td {padding:8px 2px;}
 
             .itemPluginsContent {padding:0 5px;}
 
@@ -1603,7 +1607,7 @@ button.fancybox-button:hover {background:none;border:0;}
             .itemAdditionalField.separator .itemAdditionalData {visibility:hidden;}
 
             .isJ30 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu {display:none;}
-            .isJ30 #k2AdminContainer #k2ContentView div.k2ScrollingContent {width:auto;margin:0;padding:0 10px 20px 10px;}
+            .isJ30 #k2AdminContainer #k2ContentView div.k2ScrollingContent {width:auto;margin:0;padding:0 10px 20px 10px;border:0;}
             .isJ30 #k2ContentView > form .xmlParamsFields.limitWidth {min-width:inherit;max-width:none;width:auto;margin:0;padding:0 10px 20px 10px;}
 
             #k2app-ef-add-option {width:calc(100% - 16px);height:28px;line-height:28px;}
