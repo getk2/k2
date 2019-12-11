@@ -1241,9 +1241,9 @@ function addAttachment() {
     var timestamp = new Date().getTime();
     $K2('\
     <div class="itemNewAttachment">\
-        <button class="removeAttachment k2FRight" title="' + K2Language[0] + '" value=""><i class="fa fa-ban"></i></button>\
+        <button class="removeAttachment k2ui-float-right" title="' + K2Language[0] + '" value=""><i class="fa fa-ban"></i></button>\
         <div class="itemAdditionalField">\
-            <div class="k2FLeft k2Right itemAdditionalValue">\
+            <div class="k2ui-float-left k2Right itemAdditionalValue">\
                 <label>' + K2Language[6] + '</label>\
             </div>\
             <div class="itemAdditionalData">\
@@ -1255,7 +1255,7 @@ function addAttachment() {
             </div>\
         </div>\
         <div class="itemAdditionalField">\
-            <div class="k2FLeft k2Right itemAdditionalValue">\
+            <div class="k2ui-float-left k2Right itemAdditionalValue">\
                 <label>' + K2Language[1] + '</label>\
             </div>\
             <div class="itemAdditionalData">\
@@ -1263,7 +1263,7 @@ function addAttachment() {
             </div>\
         </div>\
         <div class="itemAdditionalField">\
-            <div class="k2FLeft k2Right itemAdditionalValue">\
+            <div class="k2ui-float-left k2Right itemAdditionalValue">\
                 <label>' + K2Language[2] + '</label>\
             </div>\
             <div class="itemAdditionalData">\

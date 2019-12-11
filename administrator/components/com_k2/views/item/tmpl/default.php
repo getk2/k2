@@ -764,33 +764,33 @@ $app = JFactory::getApplication();
                             <a id="iteminfo"></a>
                             <ul class="additionalParams">
                                 <li>
-                                    <label class="k2FLeft"><?php echo JText::_('K2_ITEM_ID'); ?></label>
-                                    <label class="k2FRight"><?php echo $this->row->id; ?></label>
+                                    <label class="k2ui-float-left"><?php echo JText::_('K2_ITEM_ID'); ?></label>
+                                    <label class="k2ui-float-right"><?php echo $this->row->id; ?></label>
                                 </li>
                                 <li>
-                                    <label class="k2FLeft"><?php echo JText::_('K2_PUBLISHED'); ?></label>
-                                    <label class="k2FRight"><?php echo ($this->row->published > 0) ? JText::_('K2_YES') : JText::_('K2_NO'); ?></label>
+                                    <label class="k2ui-float-left"><?php echo JText::_('K2_PUBLISHED'); ?></label>
+                                    <label class="k2ui-float-right"><?php echo ($this->row->published > 0) ? JText::_('K2_YES') : JText::_('K2_NO'); ?></label>
                                 </li>
                                 <li>
-                                    <label class="k2FLeft"><?php echo JText::_('K2_FEATURED'); ?></label>
-                                    <label class="k2FRight"><?php echo ($this->row->featured > 0) ? JText::_('K2_YES'): JText::_('K2_NO'); ?></label>
+                                    <label class="k2ui-float-left"><?php echo JText::_('K2_FEATURED'); ?></label>
+                                    <label class="k2ui-float-right"><?php echo ($this->row->featured > 0) ? JText::_('K2_YES'): JText::_('K2_NO'); ?></label>
                                 </li>
                                 <li>
-                                    <label class="k2FLeft"><?php echo JText::_('K2_CREATED_DATE'); ?></label>
-                                    <label class="k2FRight"><?php echo $this->lists['created']; ?></label>
+                                    <label class="k2ui-float-left"><?php echo JText::_('K2_CREATED_DATE'); ?></label>
+                                    <label class="k2ui-float-right"><?php echo $this->lists['created']; ?></label>
                                 </li>
                                 <li>
-                                    <label class="k2FLeft"><?php echo JText::_('K2_CREATED_BY'); ?></label>
-                                    <label class="k2FRight"><?php echo $this->row->author; ?></label>
+                                    <label class="k2ui-float-left"><?php echo JText::_('K2_CREATED_BY'); ?></label>
+                                    <label class="k2ui-float-right"><?php echo $this->row->author; ?></label>
                                 </li>
                                 <li>
-                                    <label class="k2FLeft"><?php echo JText::_('K2_MODIFIED_DATE'); ?></label>
-                                    <label class="k2FRight"><?php echo $this->lists['modified']; ?></label>
+                                    <label class="k2ui-float-left"><?php echo JText::_('K2_MODIFIED_DATE'); ?></label>
+                                    <label class="k2ui-float-right"><?php echo $this->lists['modified']; ?></label>
                                 </li>
                                 <?php if($this->row->moderator): ?>
                                 <li>
-                                    <label class="k2FLeft"><?php echo JText::_('K2_MODIFIED_BY'); ?></label>
-                                    <label class="k2FRight"><?php echo $this->row->moderator; ?></label>
+                                    <label class="k2ui-float-left"><?php echo JText::_('K2_MODIFIED_BY'); ?></label>
+                                    <label class="k2ui-float-right"><?php echo $this->row->moderator; ?></label>
                                 </li>
                                 <?php endif; ?>
                             </ul>
