@@ -213,7 +213,7 @@ div#k2ID strong {color:#a8c5dd;}
 #k2FormTopNav {padding:0;}
 #k2FormTopNav .k2NavTabsWrapper {background:#f0f2f2;border-bottom:1px solid #d4d7d9;position:relative;z-index:9;}
 #k2FormTopNav .k2NavTabsWrapper > h2 {display:inline-block;padding:0 120px 0 20px;color:#414042;font-weight:400;font-size:22px;line-height:24px;}
-#k2FormTopNav ul.k2NavTabs {margin:0;padding:0;text-align:left;white-space:nowrap;display:inline-block;}
+#k2FormTopNav ul.k2NavTabs {margin:0;padding:0;text-align:left;display:inline-block;/*white-space:nowrap;*/}
 #k2FormTopNav ul.k2NavTabs li {list-style:none;display:inline-block;margin:0;padding:0;color:#414042;}
 #k2FormTopNav ul.k2NavTabs li a {display:block;font-size:14px;text-decoration:none;font-weight:normal;outline:0;padding:21px 10px;margin:0;border-right:1px solid #d4d7d9;color:#414042;}
 #k2FormTopNav ul.k2NavTabs li a:hover {text-decoration:none;color:#0091ff;}
@@ -849,7 +849,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ30 .input-append .btn {margin-left:-2px !important;}
 
 .isJ30 header.header {display:none;}
-.isJ30 div#toolbar {background:url(../images/backend/k2_logo_126x48.png) no-repeat 12px 50%;background-size:80px;padding:12px 12px 12px calc(10% + 12px);margin:0;min-height:26px;z-index:99;/*position:fixed;left:0;right:0;*/}
+.isJ30 div#toolbar {background:url(../images/backend/k2_logo_126x48.png) no-repeat 12px 50%;background-size:80px;padding:12px 12px 12px calc(10% + 12px);margin:0;min-height:26px;z-index:99;}
     .isJ30 div#toolbar .btn-wrapper {margin:0 4px 0 0;}
     .isJ30 div#toolbar .btn-success {min-width:100px;}
 
@@ -1531,7 +1531,8 @@ button.fancybox-button:hover {background:none;border:0;}
             #k2FormTopNav .k2NavTabsWrapper > h2 {display:block;text-align:center;background:#fff;padding:10px 0 12px;margin:-44px 0 0 0;width:100%;}
             #k2FormTopNav ul.k2NavTabs {display:grid;grid-template-columns:repeat(3, auto);grid-gap:0;}
             #k2FormTopNav ul.k2NavTabs li {text-align:center;}
-            #k2FormTopNav ul.k2NavTabs li a {padding:16px 8px;white-space:nowrap;}
+            #k2FormTopNav ul.k2NavTabs li a {padding:10px 5px;font-size:13px;/*white-space:nowrap;*/}
+            #k2FormTopNav ul.k2NavTabs li a i {display:block;font-size:20px;margin:0 0 5px 0;}
 
             #k2Tabs ul.k2TabsNavigation li a {display:block;text-align:center;}
             #k2Tabs .k2TabsContent {padding:10px 5px;}
@@ -1647,7 +1648,11 @@ button.fancybox-button:hover {background:none;border:0;}
 }
 
 @media screen and (max-width:480px) {
+    .k2ui-batch-options .k2ui-row {padding-bottom:10px;}
+
     /* Joomla normalizations */
+    .isJ30 #system-message-container .alert {top:40px;right:10px;min-width:280px;max-width:400px;}
+
     .isJ30 div#toolbar {position:relative;z-index:9;padding:10px;background:none;width:94%;margin:auto;display:grid;grid-template-columns:1fr 1fr;grid-gap:10px;}
     .isJ30 div#toolbar .btn-wrapper {margin:0;padding:0;display:block;box-sizing:border-box;}
     .isJ30 div#toolbar .btn-wrapper .btn {width:100% !important;margin:0;padding:0;box-sizing:border-box;}
