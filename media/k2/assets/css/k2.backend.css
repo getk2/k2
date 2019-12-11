@@ -1615,7 +1615,8 @@ button.fancybox-button:hover {background:none;border:0;}
     /* Joomla normalizations */
     .isJ30 body {background:#f0f2f2;overflow-x:hidden;}
     .isJ30 .btn-subhead {width:80%;margin:10px auto;}
-    .isJ30 div#toolbar {position:relative;z-index:9;padding:10px;background:none;width:94%;margin:auto;text-align:center;}
+    .isJ30 .subhead-collapse {position:relative;z-index:298;}
+    .isJ30 div#toolbar {position:relative;z-index:299;padding:10px;background-image:none;width:94%;margin:auto;text-align:center;}
 
     #editor-xtd-buttons {display:grid;grid-template-columns:auto auto;grid-gap:5px;width:100%;}
     #editor-xtd-buttons a.btn {margin:0;}
