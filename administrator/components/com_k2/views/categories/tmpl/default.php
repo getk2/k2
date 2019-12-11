@@ -232,9 +232,9 @@ $context = JRequest::getCmd('context');
         </div>
 
         <!-- Batch Operations Modal -->
-        <div id="k2BatchOperations" class="jw-modal">
-            <div class="jw-modal-content">
-                <div class="jw-modal-header">
+        <div id="k2BatchOperations" class="k2ui-modal">
+            <div class="k2ui-modal-content">
+                <div class="k2ui-modal-header">
                     <div class="row row-nomax">
                         <h3 class="k2FLeft"><?php echo JText::_('K2_BATCH_OPERATIONS'); ?></h3>
                         <span class="k2FRight">
@@ -283,14 +283,14 @@ $context = JRequest::getCmd('context');
                         </div>
                     </div>
                 </div>
-                <div class="jw-modal-footer text-right">
+                <div class="k2ui-modal-footer text-right">
                     <div class="column large-9 small-centered">
                         <?php if (K2_JVERSION == '15'): ?>
                         <button class="jw-btn jw-btn-save" onclick="javascript:submitbutton('saveBatch')"><?php echo JText::_('K2_APPLY'); ?></button>
                         <?php else: ?>
                         <button class="jw-btn jw-btn-save" onclick="Joomla.submitbutton('saveBatch')" class="btn btn-small"><?php echo JText::_('K2_APPLY'); ?></button>
                         <?php endif; ?>
-                        <button class="jw-btn jw-btn-close" onclick="$K2('.jw-modal-open').removeClass('jw-modal-open'); return false;"><?php echo JText::_('K2_CANCEL'); ?></button>
+                        <button class="jw-btn jw-btn-close" onclick="$K2('.k2ui-modal-open').removeClass('k2ui-modal-open'); return false;"><?php echo JText::_('K2_CANCEL'); ?></button>
                     </div>
                 </div>
             </div>
