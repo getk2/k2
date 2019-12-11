@@ -128,17 +128,11 @@ div.isJ25 table.admintable td.key label {margin:0;padding:0;}
 /* Common for Joomla 3.x */
 body.com_k2 .container-fluid {padding:0!important;}
 body.com_k2 .page-title {padding-left:100px;}
-@media (max-width:767px) {
-    body.com_k2 .page-title {padding-left:0;text-indent:-800px}
-}
 div.controls label.radio {display:inline-block;}
 .isJ30 table.adminlist tfoot tr td .pagination {text-align:center;}
 
 /* Footer */
 #k2AdminFooter {text-align:center;margin:20px auto 4px auto;width:100%;clear:both;float:left;}
-@media screen and (min-width:767px) {
-    #k2AdminFooter {margin-bottom:45px;}
-}
 
 /* Form Cells */
 div.k2Table {margin:0 0 20px 0;}
@@ -155,35 +149,6 @@ div.k2SubTable .k2SubTableValue input[type="radio"] {margin:2px 8px 0 0!importan
 
 .k2TableValue,
 .k2SubTableValue {margin-bottom:15px;}
-
-@media screen and (max-width:1240px) {
-    .k2TableRightTop {margin-top:20px;}
-}
-@media screen and (min-width:1240px) {
-    div.k2TableInline {display:inline-block;}
-    div.k2TableLeft {float:left;}
-    div.k2TableRight {float:right;text-align:right;}
-    div.k2TableRight .chzn-container {text-align:left;}
-    .k2ViewIsItem div.k2SubTable .k2SubTableLabel:first-child {margin-left:0;width:auto;}
-    .k2ItemTableRightPad {padding-left:16px;}
-}
-@media screen and (min-width:1000px) {
-    div.k2Table .k2TableValue {margin-left:120px;vertical-align:top;}
-    div.k2Table .k2TableLabel {position:absolute;width:100px;vertical-align:top;text-align:right;}
-    div.k2SubTable .k2SubTableValue {display:inline-block;vertical-align:top;min-width:210px;}
-    div.k2SubTable .k2SubTableLabel {margin:0 0 0 20px;padding:9px 8px 0;}
-    .k2ViewIsCategory div.k2SubTable .k2SubTableLabel {width:150px;}
-    .k2ViewIsItem div.k2SubTable .k2SubTableLabel {width:90px;}
-}
-@media screen and (min-width:767px) {
-    div.k2Table .k2TableLabel {display:block;padding:10px 0;}
-    .k2ViewIsItem div.k2SubTable .k2SubTableLabel:first-child {margin-left:-107px;}
-    /* Category specific styling */
-    .k2CategoryForm div.k2Table .k2TableLabel > label {width:125px;max-width:125px;}
-    .k2CategoryForm div.k2Table .k2TableValue {margin-left:145px;}
-    label[for="title"] {font-size:18px;}
-    label[for="tags"] {padding:20px 0 0 0;}
-}
 
 /* Generic Tabs Layout */
 .ui-tabs-hide {display:none;}
@@ -204,27 +169,9 @@ ul.k2TabsNavigation li.ui-tabs-selected a i {color:#0091ff;}
 ul.k2TabsNavigation li.ui-tabs-selected a:hover {background-color:#fff;}
 #k2MediaTabs ul.k2TabsNavigation li {width:100%;font-size:12px;}
 
-@media screen and (min-width:480px) {
-    ul.k2TabsNavigation li {width:32.3333%;}
-}
-@media screen and (min-width:600px) {
-    ul.k2TabsNavigation li {width:auto;}
-}
-@media screen and (min-width:800px) {
-    ul.k2TabsNavigation li a i {display:inline-block;}
-    ul.k2TabsNavigation li a {padding:10px 21px;}
-    #k2MediaTabs ul.k2TabsNavigation li {width:50%;}
-}
-
-/* Media Tabs */
-@media screen and (min-width:1024px) {
-    #k2MediaTabs ul.k2TabsNavigation li {width:auto;font-size:16px;}
-}
-
 /* Tabs */
 .k2TabsContent {background:#fff;border:1px solid #d4d7d9;padding:10px;margin-top:-1px;margin-bottom:10px;width:100%;float:left;box-sizing:border-box;}
     #k2Tabs .k2TabsContent {padding:20px;}
-    /*#k2Tabs > .k2TabsContent {min-height:480px;}*/
 
 /* Entity ID */
 div#k2ID {position:absolute;right:0;top:0;font-size:18px;font-weight:normal;padding:21px 24px;color:#0091ff;display:none;}
@@ -245,14 +192,6 @@ div#k2ID strong {color:#a8c5dd;}
 #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {content:"\f0d8";font-family:"FontAwesome";font-style:normal;font-weight:normal;text-decoration:inherit;color:#fff;font-size:32px;position:absolute;bottom:-5px;left:50%;margin-left:-16px;width:32px;text-shadow:0px -1px 1px #ccc;}
 #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a i {color:#0091ff;}
 
-@media screen and (min-width:640px) {
-    #k2FormTopNav ul.k2NavTabs li a {font-size:18px;padding:21px 24px;}
-    #k2FormTopNav ul.k2NavTabs li a i {display:inline-block;}
-}
-@media screen and (min-width:500px) {
-    div#k2ID {display:block;}
-    #k2FormTopNav ul.k2NavTabs li a {}
-}
 div.k2NavTabContent {padding:20px;}
 
 /* XML Parameter Rendering */
@@ -271,14 +210,6 @@ form#adminForm {}
 .isJ30 .xmlParamsFields .paramLabel input[type="checkbox"] {margin-left:20px;display:inline-block;vertical-align:middle;position:relative;top:-2px;}
 .isJ30 .xmlParamsFields .paramLabel input[type="checkbox"] + label {padding-left:5px;}
 .isJ30 .xmlParamsFields .paramValue input {margin:0;}
-
-@media screen and (min-width:767px) {
-    .xmlParamsFields .paramValue {width:auto;}
-    .k2ScrollingContent > h3,
-    .k2NavTabContent h3 {font-size:24px;}
-    .xmlParamsFields .paramValue input[type="text"],
-    .xmlParamsFields .paramValue textarea {/*float:right;*/}
-}
 
 div#k2AdminContainer.isJ25 form#adminForm div.xmlParamsFields fieldset input {float:none!important;}
 div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-right:1px solid #e9e9e9;color:#666;font-weight:bold;text-align:right;font-size:11px;}
@@ -627,13 +558,7 @@ body#com_k2 {}
 /* Fix user group permissions category drop-down glitches under Joomla 3.0 */
 #paramscategories_chzn li {padding:3px 20px 3px 5px;}
 
-@media screen and (max-width:600px) {
-    .isJ30 .k2ItemFormEditor .editor .btn {display:block;margin:0 0 15px!important;text-align:left;}
-    .isJ30 .k2ItemFormEditor .editor .btn-group {display:block;}
-    .isJ30 .k2ItemFormEditor .editor .btn-toolbar {box-sizing:border-box;}
-    .isJ30 .k2ItemFormEditor .editor .btn-toolbar.pull-right {float:none;width:100%;padding-top:0;margin-top:-10px;}
-    .isJ30 .k2ItemFormEditor .editor .btn-toolbar.pull-left {float:none;}
-}
+
 
 /* -------------- View Styling -------------- */
 
