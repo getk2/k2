@@ -30,69 +30,62 @@ defined('_JEXEC') or die;
 
         <!-- BASIC [start] -->
         <div class="k2NavTabContent" id="k2TabBasic">
-            <div class="k2Table">
-                <div class="k2TableLabel">
+            <div class="k2ui-table-basic">
+                <div class="k2ui-field-label">
                     <label for="name"><?php echo JText::_('K2_TITLE'); ?></label>
                 </div>
-                <div class="k2TableValue">
-                    <input class="text_area k2TitleBox" type="text" name="name" id="name" value="<?php echo $this->row->name; ?>" maxlength="250" />
+                <div class="k2ui-field-value">
+                    <input class="k2ui-title" type="text" name="name" id="name" value="<?php echo $this->row->name; ?>" maxlength="250" />
                 </div>
-                <div class="k2TableLabel">
+                <div class="k2ui-field-label">
                     <label for="alias"><?php echo JText::_('K2_TITLE_ALIAS'); ?></label>
                 </div>
-                <div class="k2TableValue">
-                    <input class="text_area k2TitleAliasBox" type="text" name="alias" value="<?php echo $this->row->alias; ?>" maxlength="250" />
+                <div class="k2ui-field-value">
+                    <input class="k2ui-title-alias" type="text" name="alias" value="<?php echo $this->row->alias; ?>" maxlength="250" />
                 </div>
-                <div class="k2SubTable k2CatTableLeft">
-                    <div class="k2SubTableLabel">
-                        <label for="parent"><?php echo JText::_('K2_PARENT_CATEGORY'); ?></label>
-                    </div>
-                    <div class="k2SubTableValue">
-                        <?php echo $this->lists['parent']; ?>
-                    </div>
-                    <div class="k2SubTableLabel">
-                        <label for="paramsinheritFrom"><?php echo JText::_('K2_INHERIT_PARAMETER_OPTIONS_FROM_CATEGORY'); ?></label>
-                    </div>
-                    <div class="k2SubTableValue">
-                        <?php echo $this->lists['inheritFrom']; ?>
-                        <span class="hasTip k2Notice" title="<?php echo JText::_('K2_INHERIT_PARAMETER_OPTIONS_FROM_CATEGORY'); ?>::<?php echo JText::_('K2_SETTING_THIS_OPTION_WILL_MAKE_THIS_CATEGORY_INHERIT_ALL_PARAMETERS_FROM_ANOTHER_CATEGORY_THUS_YOU_DONT_HAVE_TO_RESET_ALL_OPTIONS_IN_THIS_ONE_IF_THEY_ARE_THE_SAME_WITH_ANOTHER_CATEGORYS_THIS_SETTING_IS_VERY_USEFUL_WHEN_YOU_ARE_CREATING_CHILD_CATEGORIES_WHICH_SHARE_THE_SAME_PARAMETERS_WITH_THEIR_PARENT_CATEGORY_EG_IN_THE_CASE_OF_A_CATALOG_OR_A_NEWS_PORTALMAGAZINE'); ?>">
-                            <i class="fa fa-question-circle" aria-hidden="true"></i> <?php echo JText::_('K2_LEARN_WHAT_THIS_MEANS'); ?>
-                        </span>
-                    </div>
+            </div>
+            <div class="k2ui-table-additional">
+                <div class="k2ui-field-label">
+                    <label for="parent"><?php echo JText::_('K2_PARENT_CATEGORY'); ?></label>
                 </div>
-                <div class="k2SubTable k2CatTableRight">
-                    <div class="k2SubTableLabel">
-                        <label for="extraFieldsGroup"><?php echo JText::_('K2_ASSOCIATED_EXTRA_FIELDS_GROUP');  ?></label>
-                    </div>
-                    <div class="k2SubTableValue">
-                        <?php echo $this->lists['extraFieldsGroup']; ?>
-                    </div>
-
-                    <div class="k2SubTableLabel">
-                        <label><?php echo JText::_('K2_PUBLISHED'); ?></label>
-                    </div>
-                    <div class="k2SubTableValue">
-                        <?php echo $this->lists['published']; ?>
+                <div class="k2ui-field-value">
+                    <?php echo $this->lists['parent']; ?>
+                </div>
+                <div class="k2ui-field-label">
+                    <label for="paramsinheritFrom"><?php echo JText::_('K2_INHERIT_PARAMETER_OPTIONS_FROM_CATEGORY'); ?></label>
+                </div>
+                <div class="k2ui-field-value">
+                    <?php echo $this->lists['inheritFrom']; ?>
+                    <div class="hasTip k2ui-notice" title="<?php echo JText::_('K2_INHERIT_PARAMETER_OPTIONS_FROM_CATEGORY'); ?>::<?php echo JText::_('K2_SETTING_THIS_OPTION_WILL_MAKE_THIS_CATEGORY_INHERIT_ALL_PARAMETERS_FROM_ANOTHER_CATEGORY_THUS_YOU_DONT_HAVE_TO_RESET_ALL_OPTIONS_IN_THIS_ONE_IF_THEY_ARE_THE_SAME_WITH_ANOTHER_CATEGORYS_THIS_SETTING_IS_VERY_USEFUL_WHEN_YOU_ARE_CREATING_CHILD_CATEGORIES_WHICH_SHARE_THE_SAME_PARAMETERS_WITH_THEIR_PARENT_CATEGORY_EG_IN_THE_CASE_OF_A_CATALOG_OR_A_NEWS_PORTALMAGAZINE'); ?>">
+                        <i class="fa fa-question-circle" aria-hidden="true"></i> <?php echo JText::_('K2_LEARN_WHAT_THIS_MEANS'); ?>
                     </div>
                 </div>
-                <div class="clr"></div>
-                <div class="k2SubTable k2CatTableLeft">
-                    <div class="k2SubTableLabel">
-                        <label for="access"><?php echo JText::_('K2_ACCESS_LEVEL'); ?></label>
-                    </div>
-                    <div class="k2SubTableValue">
-                        <?php echo $this->lists['access']; ?>
-                    </div>
-
-                    <?php if(isset($this->lists['language'])): ?>
-                    <div class="k2SubTableLabel">
-                        <label><?php echo JText::_('K2_LANGUAGE'); ?></label>
-                    </div>
-                    <div class="k2SubTableValue">
-                        <?php echo $this->lists['language']; ?>
-                    </div>
-                    <?php endif; ?>
+                <div class="k2ui-field-label">
+                    <label for="extraFieldsGroup"><?php echo JText::_('K2_ASSOCIATED_EXTRA_FIELDS_GROUP');  ?></label>
                 </div>
+                <div class="k2ui-field-value">
+                    <?php echo $this->lists['extraFieldsGroup']; ?>
+                </div>
+                <div class="k2ui-field-label">
+                    <label><?php echo JText::_('K2_PUBLISHED'); ?></label>
+                </div>
+                <div class="k2ui-field-value k2ui-button-set">
+                    <?php echo $this->lists['published']; ?>
+                </div>
+                <div class="k2ui-field-label">
+                    <label for="access"><?php echo JText::_('K2_ACCESS_LEVEL'); ?></label>
+                </div>
+                <div class="k2ui-field-value">
+                    <?php echo $this->lists['access']; ?>
+                </div>
+                <?php if(isset($this->lists['language'])): ?>
+                <div class="k2ui-field-label">
+                    <label><?php echo JText::_('K2_LANGUAGE'); ?></label>
+                </div>
+                <div class="k2ui-field-value">
+                    <?php echo $this->lists['language']; ?>
+                </div>
+                <?php endif; ?>
             </div>
 
             <div class="clr"></div>

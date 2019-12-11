@@ -56,6 +56,26 @@ hr.sep {line-height:0;height:0;border:none;border-bottom:1px dotted #ccc;padding
 /* Forms */
 .k2DateTimePickerControl i.fa-calendar {margin-left:-24px;}
 
+.k2ui-button-set input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);padding:0;margin:0;}
+.k2ui-button-set label,
+.k2ui-button-set .controls label {min-width:80px;width:auto;line-height:30px;height:30px;text-align:center;margin:0 -2px 0 0;padding:0 10px;color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background:#eff1f1;cursor:pointer;border:0;font-size:13px;}
+
+.k2ui-button-set input[type="radio"]:first-child + label,
+.k2ui-button-set label:first-child {border-radius:4px 0 0 4px;}
+.k2ui-button-set label:last-child {border-radius:0 4px 4px 0;}
+.k2ui-button-set input[type="radio"]:checked + label {background:#63696f;color:#fff;}
+.k2ui-button-set input[type="radio"]:checked + label:hover {background:#555;}
+.k2ui-button-set input[type="radio"] + label:hover {background:#e8e8e8;}
+
+.k2ui-button-set input[type="radio"][value="0"]:checked + label,
+.k2ui-button-set input[type="radio"][value="none"]:checked + label,
+.k2ui-button-set label.isChecked[for="published0"],
+.k2ui-button-set label.isChecked[for="featured0"] {background:#bd362f;color:#fff;}
+.k2ui-button-set input[type="radio"][value="1"]:checked + label,
+.k2ui-button-set input[type="radio"][value="all"]:checked + label,
+.k2ui-button-set label.isChecked[for="published1"],
+.k2ui-button-set label.isChecked[for="featured1"] {background:#3fa800;color:#fff;}
+
 /* Lists */
 .k2ui-title {} /* To be added into lists to replace .title */
 .k2ui-left {text-align:left !important;}
@@ -112,7 +132,7 @@ div.controls label.radio input[type="radio"] {}
 */
 
 div#k2AdminContainer h1 {padding:0 0 8px 0;margin:0;}
-span.k2Notice {cursor:pointer;font-weight:bold;margin-left:5px;}
+.k2Notice {cursor:pointer;font-weight:bold;}
 .k2LimitBox {float:left;margin:0 10px 0 0;}
 
 /* Fixes pagination issue for the limitbox */
@@ -134,52 +154,32 @@ div.controls label.radio {display:inline-block;}
 /* Footer */
 #k2AdminFooter {text-align:center;margin:20px auto 4px auto;width:100%;clear:both;float:left;}
 
-/* Form Cells */
-div.k2Table {margin:0 0 20px 0;}
-div.k2Table .k2TableLabel > label {font-weight:normal;color:#777;}
-div.k2Table .k2TableValue {}
-div.k2Table .k2TableValue input[type="text"] {min-height:40px;line-height:40px;box-sizing:border-box;padding:5px 10px;border-radius:3px;}
-div.k2Table .k2TableValue:after {content:" ";display:block;margin-bottom:8px;}
-div.k2SubTable {margin-bottom:15px;}
-div.k2SubTable .k2SubTableLabel {display:inline-block;text-align:right;vertical-align:top;}
-div.k2SubTable .k2SubTableLabel > label {font-weight:normal;color:#777;}
+/* Edit Forms */
+.k2ui-table-basic {display:grid;grid-template-columns:100px auto;grid-gap:20px;margin-bottom:20px;align-items:center;}
+.k2ui-table-additional {display:grid;grid-template-columns:100px auto repeat(2, auto auto);grid-gap:20px;margin-bottom:20px;align-items:center;}
+.k2ui-table-publishing-meta {display:grid;grid-template-columns:3fr 2fr 2fr;grid-gap:20px;margin-bottom:20px;}
 
-div.k2SubTable .k2SubTableValue label {padding-left:4px!important;}
-div.k2SubTable .k2SubTableValue input[type="radio"] {margin:2px 8px 0 0!important;}
+.k2ui-field-label {}
+.k2ui-field-label label {display:block;text-align:right;margin:0;padding:0;}
+.k2ui-field-label label[for="title"],
+.k2ui-field-label label[for="name"] {font-size:18px;}
 
-.k2TableValue,
-.k2SubTableValue {margin-bottom:15px;}
+.k2ui-field-value {}
+    .k2ui-field-value input[type="text"],
+    .k2ui-field-value select:not([multiple]),
+    .k2ui-field-value textarea,
+    .k2ui-field-value button {padding:5px 10px;margin:0;height:auto;line-height:inherit;border-radius:3px;}
+    .k2ui-field-value textarea {padding:5px 10px;margin:0;border-radius:3px;}
+    .k2ui-field-value .k2ui-title {width:90%;height:40px;line-height:40px;font-size:20px;}
+    .k2ui-field-value .k2ui-title-alias {width:50%;}
+    .k2ui-field-value .k2ui-notice {margin-top:5px;cursor:pointer;font-size:12px;font-weight:600;}
 
-/* Merge to responsive rules at the bottom [start] */
-@media screen and (max-width:1240px) {
-    .k2TableRightTop {margin-top:20px;}
-}
-@media screen and (min-width:1240px) {
-    div.k2TableInline {display:inline-block;}
-    div.k2TableLeft {float:left;}
-    div.k2TableRight {float:right;text-align:right;}
-    div.k2TableRight .chzn-container {text-align:left;}
-    .k2ViewIsItem div.k2SubTable .k2SubTableLabel:first-child {margin-left:0;width:auto;}
-    .k2ItemTableRightPad {padding-left:16px;}
-}
-@media screen and (min-width:1000px) {
-    div.k2Table .k2TableValue {margin-left:120px;vertical-align:top;}
-    div.k2Table .k2TableLabel {position:absolute;width:100px;vertical-align:top;text-align:right;}
-    div.k2SubTable .k2SubTableValue {display:inline-block;vertical-align:top;min-width:210px;}
-    div.k2SubTable .k2SubTableLabel {/*margin:0 0 0 20px;padding:9px 8px 0;*/}
-    .k2ViewIsCategory div.k2SubTable .k2SubTableLabel {/*width:150px;*/width:125px;margin:0;padding:4px 16px 0 0;}
-    .k2ViewIsItem div.k2SubTable .k2SubTableLabel {width:90px;}
-}
-@media screen and (min-width:767px) {
-    div.k2Table .k2TableLabel {display:block;padding:10px 0;}
-    .k2ViewIsItem div.k2SubTable .k2SubTableLabel:first-child {margin-left:-107px;}
-    /* Category specific styling */
-    .k2CategoryForm div.k2Table .k2TableLabel > label {width:125px;max-width:125px;}
-    .k2CategoryForm div.k2Table .k2TableValue {margin-left:145px;}
-    label[for="title"] {font-size:18px;}
-    label[for="tags"] {padding:20px 0 0 0;}
-}
-/* Merge to responsive rules at the bottom [finish] */
+.k2ui-column {}
+    .k2ui-table-details {border-radius:3px;margin:0;padding:0;list-style:none;}
+    .k2ui-table-details li {background:#ededed;padding:10px;margin:0;display:grid;grid-template-columns:1fr 3fr;grid-gap:10px;}
+    .k2ui-table-details li:nth-child(2n-2) {background:#f7f7f7;}
+    .k2ui-table-details li span {font-size:13px;color:#777778;padding:0;margin:0;}
+    .k2ui-table-details li span + span {font-weight:700;text-align:right;}
 
 /* Generic Tabs Layout */
 .ui-tabs-hide {display:none;}
@@ -220,7 +220,7 @@ div#k2ID strong {color:#a8c5dd;}
 #k2FormTopNav ul.k2NavTabs li a i {margin-right:10px;}
 #k2FormTopNav ul.k2NavTabs li a:hover i {color:#0091ff;}
 #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a {position:relative;color:#122747;}
-#k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {content:"\f0d8";font-family:"FontAwesome";font-style:normal;font-weight:normal;text-decoration:inherit;color:#fff;font-size:32px;position:absolute;bottom:-5px;left:50%;margin-left:-16px;width:32px;text-shadow:0px -1px 1px #ccc;}
+#k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {content:"\f0d8";font-family:"FontAwesome";font-style:normal;font-weight:normal;text-decoration:inherit;color:#fff;font-size:32px;position:absolute;bottom:-5px;left:50%;margin-left:-16px;width:32px;text-shadow:0 -1px 1px #ccc;}
 #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a i {color:#0091ff;}
 
 div.k2NavTabContent {padding:20px;}
@@ -248,24 +248,6 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
 /* Generic form additional styling - tags, users, usergroups etc. */
 .k2GenericForm {min-width:640px;max-width:68%;padding:0 20px 40px 20px;margin:0 auto;}
 .k2GenericForm h3 {font-size:32px;font-weight:600;padding:20px 0 10px 4px;margin:0 auto 20px auto;border-bottom:2px solid #dddedf;color:#183867;}
-
-/* Additional parameters styling for the item form */
-.additionalParams {border-bottom:2px solid #f1f1f1;border-radius:3px;position:relative;overflow:hidden;margin:0;padding:0;}
-.additionalParams > li {background:#ededed;padding-top:3px;padding-bottom:4px;display:block;overflow:hidden;padding:5px 12px 5px 25px;border-radius:3px;font-size:16px;}
-.additionalParams > li:nth-child(2n-2) {background:#f7f7f7;}
-.additionalParams label {font-size:13px;font-weight:700;color:#777778;padding:10px 0;line-height:1;margin:0;}
-
-/* Hits */
-.itemHits {text-align:center;color:#296d86;text-transform:uppercase;font-size:12px;font-weight:700;padding-top:20px;overflow:hidden;background:#2fbbec;border-radius:3px;}
-.itemHits span {color:#fff;font-weight:300;font-size:70px;line-height:1;display:block;margin-bottom:15px;}
-.itemHitsReset {background:#ededed;padding:8px;border-radius:0 0 3px 3px;}
-#resetHitsButton {border-radius:3px;display:block;width:100%;font-weight:700;max-width:none;padding:5px 0;font-size:11px;color:#414042;border-color:#d4d7d9;background-color:#f0f2f2;box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
-
-/* Rating */
-.itemRating {text-align:center;color:#8d6e3c;text-transform:uppercase;font-size:12px;font-weight:700;padding-top:20px;background:#f7be59;border-radius:3px;}
-.itemRating span {color:#fff;font-weight:300;font-size:30px;line-height:1;display:block;margin:11px 0;}
-.itemRatingReset {background:#ededed;padding:8px;border-radius:0 0 3px 3px;margin-top:15px;}
-#resetRatingButton {border-radius:3px;display:block;width:100%;font-weight:700;max-width:none;padding:5px 0;font-size:11px;color:#414042;border-color:#d4d7d9;background-color:#f0f2f2;box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
 
 /* Extra fields */
 #groupContainer {display:block;}
@@ -308,14 +290,13 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
 .form-horizontal .control-group:nth-child(2n-2) {background:#f7f7f7;}
 .form-horizontal .controls > .radio:first-child,
 .form-horizontal .controls > .checkbox:first-child {padding-top:10px;}
-.k2Table .controls > .radio:first-child,
-.k2Table .controls > .checkbox:first-child,
-.k2GenericForm .controls > .radio:first-child,
-.k2GenericForm .controls > .checkbox:first-child {padding-top:0px;}
 .form-horizontal .controls fieldset {padding:10px 0;}
 .form-horizontal .controls .chzn-container {margin:15px 0;}
 .form-horizontal .controls input[type="text"],
 .form-horizontal .controls textarea {margin:10px 0 15px 0;}
+
+.k2GenericForm .controls > .radio:first-child,
+.k2GenericForm .controls > .checkbox:first-child {padding-top:0;}
 
 .tab-pane {padding-top:25px;}
 
@@ -326,9 +307,10 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
 #permissions-sliders {border-radius:3px;}
 
 /* Item - Overrides */
-.K2AdminViewItem {}
-#k2Author {font-weight:bold;color:#333;display:inline-block;margin-top:10px;margin-right:10px;}
+#k2Author {font-weight:bold;margin-right:10px;}
+
 div#k2TabContent {padding:0;}
+
 .isJ30 span.k2ItemFormEditorTitle {display:block;color:#58595b;font-size:20px;font-weight:bold;padding:24px 0 12px 24px;}
 .isJ30 .k2ItemFormEditor .editor {background:#f0f2f2;border-top:1px solid #d7d9d9;border-bottom:1px solid #e9ebec;}
 .isJ30 .k2ItemFormEditor .editor .btn-toolbar {padding:4px 20px;}
@@ -346,16 +328,17 @@ input#del_image {}
 .com_k2 .flatpickr-time .flatpickr-am-pm {height:28px;line-height:28px;margin:0;padding:0;}
 
 /* Item - Free tagging */
-ul.tags {background:#fff;border:1px solid #ccc;cursor:default;min-height:48px;height:auto;display:inline-block;margin:0;padding:4px 6px;border-radius:3px;box-sizing:border-box;width:100%;}
-ul.tags li {border-radius:3px;background:#d1e8fc;color:#0f4776;line-height:14px;list-style:none;float:left;clear:none;padding:10px;margin:2px 2px 2px 0;font-size:14px;font-weight:bold;font-weight:600;vertical-align:middle;}
-ul.tags li span.tagRemove {font-size:12px;font-family:"Lucida Grande";color:#0b4373;cursor:pointer;margin-left:8px;}
-ul.tags li span.tagRemove:hover {color:#505050;cursor:pointer;}
-ul.tags li input {border:none;padding-top:2px;background:none;font-size:12px;font-weight:normal;font-family:"Lucida Grande";float:left;clear:none;box-shadow:none;}
-ul.tags li input:focus {background:none;}
-ul.tags li input.tagsLoading {background:url(../images/backend/loader.gif) no-repeat 50% 50%;}
+ul.tags {background:#fff;border:1px solid #ccc;cursor:default;margin:0;padding:5px 10px 0 10px;border-radius:3px;width:60%;}
+ul.tags li {border-radius:3px;background:#d1e8fc;color:#0f4776;list-style:none;float:left;clear:none;padding:5px 10px;margin:0 5px 5px 0;font-size:13px;font-weight:600;vertical-align:middle;}
+ul.tags li.tagAdded {position:relative;padding:5px 30px 5px 10px;}
+    ul.tags li span.tagRemove {font-size:12px;font-family:"Lucida Grande";color:#0b4373;cursor:pointer;background:#a9c6e2;position:absolute;top:0;right:0;padding:5px 0;margin:0;border-radius:0 3px 3px 0;width:20px;text-align:center;}
+    ul.tags li span.tagRemove:hover {}
+ul.tags li.tagAdd {background:none;padding:0;margin:0;}
+    ul.tags li input {border:none;background:none;float:none;clear:none;box-shadow:none;font-size:13px;font-weight:600;padding:5px 10px;margin:0 5px 5px 0;min-width:100px;}
+    ul.tags li input:focus {background:none;}
+    ul.tags li input.tagsLoading {background:url(../images/backend/loader.gif) no-repeat 50% 50%;}
 ul.tags li.clr {clear:both;height:0;line-height:0;border:none;float:none;background:none;padding:0;margin:0;}
-ul.tags li.tagAdd {border:none;padding:0;background:none;height:35px;}
-ul.tags li.tagAdd input#search-field {border:none;height:35px;min-height:0;line-height:35px;}ul.tags li.tagAdd input {border:none;}
+
 p.k2TagsNotice {display:block;font-size:11px;font-weight:bold;font-weight:600;margin:0;padding:0;color:#999;}
 
 .ui-autocomplete {position:absolute;margin:0;padding:0;list-style:none;border:1px solid #eee;background-color:white;border-right-color:#ddd;border-bottom-color:#ddd;text-align:left;z-index:50;}
@@ -461,20 +444,22 @@ td.k2ItemFormDateField img.calendar {vertical-align:bottom;margin-left:2px;}
 .itemAdditionalBlock textarea {margin-bottom:0;}
 
 .k2DocLink {font-weight:700;margin-top:15px;}
-.k2DocLink a {}
-.k2DocLink span {}
 
 /* Item - Gallery */
-/*
-.itemGalleryBlock {margin-bottom:20px;}
-.itemGalleryBlock label {display:block;margin-bottom:10px;}
-#itemGallery label {display:inline;}
-.itemGalleryBlock input[type="text"] {max-width:300px;}
-.itemGalleryBlock.separator {text-transform:uppercase;font-weight:700;color:#46afff;}
-*/
 span.k2GalleryNotice {cursor:pointer;font-size:14px;padding:0;margin:0 5px;}
 
-/* Admin - Item */
+/* Item - Hits & Rating */
+.itemHits {text-align:center;color:#296d86;text-transform:uppercase;font-size:12px;font-weight:700;padding-top:20px;margin-bottom:20px;overflow:hidden;background:#2fbbec;border-radius:3px;}
+.itemHits span {color:#fff;font-weight:300;font-size:70px;line-height:1;display:block;margin-bottom:15px;}
+.itemHitsReset {background:#ededed;padding:8px;border-radius:0 0 3px 3px;}
+#resetHitsButton {border-radius:3px;display:block;width:100%;font-weight:700;max-width:none;padding:5px 0;font-size:11px;color:#414042;border-color:#d4d7d9;background-color:#f0f2f2;box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
+
+.itemRating {text-align:center;color:#8d6e3c;text-transform:uppercase;font-size:12px;font-weight:700;padding-top:20px;margin-bottom:20px;background:#f7be59;border-radius:3px;}
+.itemRating span {color:#fff;font-weight:300;font-size:30px;line-height:1;display:block;margin:11px 0;}
+.itemRatingReset {background:#ededed;padding:8px;border-radius:0 0 3px 3px;margin-top:15px;}
+#resetRatingButton {border-radius:3px;display:block;width:100%;font-weight:700;max-width:none;padding:5px 0;font-size:11px;color:#414042;border-color:#d4d7d9;background-color:#f0f2f2;box-shadow:0 1px 1px rgba(65,64,66,.14),inset 0 1px 0 #fff;}
+
+/* Item - Plugins */
 .itemPlugins {margin-top:20px;clear:both;}
 .itemPlugins label {font-size:13px;color:#68696b;font-weight:700;display:block;margin-top:0;margin-bottom:0;padding-top:5px;padding-bottom:10px;}
 .itemPluginsContent {padding:0 20px;}
@@ -575,7 +560,7 @@ table.adminFormK2 {width:100%;margin-bottom:16px;}
 
 /* Joomla 1.5 */
 html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs {border-top:1px solid #d4d7d9;}
-html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {content:"\f0d8";font-family:"FontAwesome";font-style:normal;font-weight:normal;text-decoration:inherit;color:#fff;font-size:32px;position:absolute;bottom:-12px;left:50%;margin-left:-16px;width:32px;text-shadow:0px -1px 1px #ccc;}
+html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {content:"\f0d8";font-family:"FontAwesome";font-style:normal;font-weight:normal;text-decoration:inherit;color:#fff;font-size:32px;position:absolute;bottom:-12px;left:50%;margin-left:-16px;width:32px;text-shadow:0 -1px 1px #ccc;}
 
 /* Joomla 3.x specific */
 html.isJ30 {}
@@ -860,8 +845,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 
 /* --- Corrections for Joomla 3.x [start] --- */
 .isJ30 .input-append .btn {margin-left:-2px !important;}
-.isJ30 .radio,
-.isJ30 .checkbox {padding-left:0 !important;}
+
 .isJ30 header.header {display:none;}
 .isJ30 div#toolbar {background:url(../images/backend/k2_logo_126x48.png) no-repeat 12px 50%;background-size:80px;padding:12px 12px 12px calc(10% + 12px);margin:0;min-height:26px;z-index:99;/*position:fixed;left:0;right:0;*/}
     .isJ30 div#toolbar .btn-wrapper {margin:0 4px 0 0;}
@@ -895,7 +879,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ30 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu li a.active {background:#f7f7f7;}
 .isJ30 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu li a:hover {background:#1480d3;color:#fff;}
 .isJ30 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu li a .fa {float:right;margin-top:4px;}
-.isJ30 #k2AdminContainer #k2ContentView div.k2ScrollingContent {margin-left:320px;padding:20px 30px 0 30px;border-left:1px solid #e3e4e4;}
+.isJ30 #k2AdminContainer #k2ContentView div.k2ScrollingContent {margin-left:320px;padding:20px 30px 40px 30px;border-left:1px solid #e3e4e4;}
 
 /* Parameters rendered from XML (tables) */
 .isJ30 #k2AdminContainer table.admintable {padding:0 0 1px 0;margin:0 auto 20px auto;border-collapse:separate;border-spacing:0;border:0;border-bottom:2px solid #dddedf;width:100%;}
@@ -994,36 +978,6 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 
 .isJ30 #k2ContentView > form .xmlParamsFields fieldset.panelform ul li .paramValueHeader {padding:10px 0 0 0;}
 
-/* Radio buttons in sub-tables (K2 item form) */
-.k2SubTable .k2SubTableValue input[type="radio"] {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;}
-
-.k2SubTable .k2SubTableValue input[type="radio"],
-.k2SubTable .k2SubTableValue .controls label > input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);}
-.k2SubTable .k2SubTableValue input[type="radio"] + label,
-.k2SubTable .k2SubTableValue .controls > label.radio,
-.k2SubTable .k2SubTableValue .controls > label.isChecked {min-width:80px;width:auto;line-height:30px;height:30px;text-align:center;margin:0 -2px 0 0;padding:0 10px !important;color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background:#eff1f1;cursor:pointer;border:0;}
-
-.k2SubTable .k2SubTableValue input[type="radio"]:first-child + label,
-.k2SubTable .k2SubTableValue .controls > label.radio:first-child {border-radius:4px 0 0 4px;}
-.k2SubTable .k2SubTableValue input[type="radio"] + label:last-child,
-.k2SubTable .k2SubTableValue .controls > label.radio:last-child {border-radius:0 4px 4px 0;}
-
-.k2SubTable .k2SubTableValue input[type="radio"]:checked + label,
-.k2SubTable .k2SubTableValue .controls > label.isChecked {background:#63696f;color:#fff;} /* Generic */
-.k2SubTable .k2SubTableValue input[type="radio"] + label:hover,
-.k2SubTable .k2SubTableValue .controls > label.radio:hover {background:#e8e8e8;}
-.k2SubTable .k2SubTableValue input[type="radio"]:checked + label:hover,
-.k2SubTable .k2SubTableValue .controls > label.isChecked:hover {background:#555;}
-
-.k2SubTable .k2SubTableValue input[type="radio"][value="0"]:checked + label,
-.k2SubTable .k2SubTableValue input[type="radio"][value="none"]:checked + label,
-.k2SubTable .k2SubTableValue .controls > label.isChecked[for="published0"],
-.k2SubTable .k2SubTableValue .controls > label.isChecked[for="featured0"] {background:#bd362f;color:#fff;}
-.k2SubTable .k2SubTableValue input[type="radio"][value="1"]:checked + label,
-.k2SubTable .k2SubTableValue input[type="radio"][value="all"]:checked + label,
-.k2SubTable .k2SubTableValue .controls > label.isChecked[for="published1"],
-.k2SubTable .k2SubTableValue .controls > label.isChecked[for="featured1"] {background:#3fa800;color:#fff;}
-
 /* --- Corrections for Joomla 3.x [finish] --- */
 
 
@@ -1099,17 +1053,6 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ25 #k2ContentView > form input,
 .isJ25 #k2ContentView > form select,
 .isJ25 #k2ContentView > form textarea {border-radius:3px;padding:5px 10px;font-size:13px;}
-.isJ25 #k2ContentView > form .k2Table .k2TableLabel {padding:5px 0 10px 0;}
-.isJ25 #k2ContentView > form .k2Table .k2SubTableLabel {padding:5px 16px 10px 0;}
-.isJ25 #k2ContentView > form .k2Table .k2TableLabel > label,
-.isJ25 #k2ContentView > form .k2Table .k2SubTableLabel > label {font-size:13px;display:block;}
-.isJ25 #k2ContentView > form .k2Table .k2TableLabel > label[for="title"] {font-size:18px;}
-.isJ25 #k2ContentView > form .k2Table .k2TableValue input,
-.isJ25 #k2ContentView > form .k2Table .k2SubTableValue input {min-height:inherit;height:30px;line-height:30px;padding:10px;font-size:13px;}
-.isJ25 #k2ContentView > form .k2Table .k2TableValue select,
-.isJ25 #k2ContentView > form .k2Table .k2SubTableValue select {height:30px;line-height:30px;font-size:13px;background:#fff;min-width:210px;border-radius:3px;}
-.isJ25 #k2ContentView > form .k2Table .k2TableValue .k2TitleBox {padding:10px!important;}
-.isJ25 #k2ContentView > form .k2Table .k2SubTableValue #k2Author {font-size:13px;margin-top:6px;}
 
 .isJ25 #k2ContentView > form .mceEditor,
 .isJ25 #k2ContentView > form .mce_editable {display:block;}
@@ -1347,17 +1290,6 @@ button.fancybox-button:hover {background:none;border:0;}
 .isJ15 #k2ContentView > form input,
 .isJ15 #k2ContentView > form select,
 .isJ15 #k2ContentView > form textarea {border-radius:3px;padding:5px 10px;font-size:13px;}
-.isJ15 #k2ContentView > form .k2Table .k2TableLabel {padding:5px 0 10px 0;}
-.isJ15 #k2ContentView > form .k2Table .k2SubTableLabel {padding:5px 16px 10px 0;}
-.isJ15 #k2ContentView > form .k2Table .k2TableLabel > label,
-.isJ15 #k2ContentView > form .k2Table .k2SubTableLabel > label {font-size:13px;display:block;}
-.isJ15 #k2ContentView > form .k2Table .k2TableLabel > label[for="title"] {font-size:18px;}
-.isJ15 #k2ContentView > form .k2Table .k2TableValue input,
-.isJ15 #k2ContentView > form .k2Table .k2SubTableValue input {min-height:inherit;height:30px;line-height:30px;padding:10px;font-size:13px;}
-.isJ15 #k2ContentView > form .k2Table .k2TableValue select,
-.isJ15 #k2ContentView > form .k2Table .k2SubTableValue select {height:30px;line-height:30px;font-size:13px;background:#fff;min-width:210px;border-radius:3px;}
-.isJ15 #k2ContentView > form .k2Table .k2TableValue .k2TitleBox {padding:10px!important;}
-.isJ15 #k2ContentView > form .k2Table .k2SubTableValue #k2Author {font-size:13px;margin-top:6px;}
 
 .isJ15 #k2ContentView > form .mceEditor,
 .isJ15 #k2ContentView > form .mce_editable {display:block;}
@@ -1592,12 +1524,6 @@ button.fancybox-button:hover {background:none;border:0;}
             #k2FormTopNav ul.k2NavTabs {display:grid;grid-template-columns:repeat(3, auto);grid-gap:0;}
             #k2FormTopNav ul.k2NavTabs li {text-align:center;}
             #k2FormTopNav ul.k2NavTabs li a {padding:16px 8px;white-space:nowrap;}
-
-            div.k2Table .k2TableValue input:not([type="checkbox"]),
-            div.k2Table .k2TableValue select,
-            div.k2SubTable .k2SubTableValue input:not([type="checkbox"]),
-            div.k2SubTable .k2SubTableValue select {width:100%;}
-                span.k2Notice {display:block;text-align:right;padding:5px 0;margin:0;}
 
             #k2Tabs ul.k2TabsNavigation li a {display:block;text-align:center;}
             #k2Tabs .k2TabsContent {padding:10px 5px;}

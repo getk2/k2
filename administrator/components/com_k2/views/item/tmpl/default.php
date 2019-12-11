@@ -62,50 +62,29 @@ $app = JFactory::getApplication();
 
             <!-- BASIC [start] -->
             <div class="k2NavTabContent" id="k2TabBasic">
-                <div class="k2Table">
-                    <div class="k2TableLabel">
+                <div class="k2ui-table-basic">
+                    <div class="k2ui-field-label">
                         <label for="title"><?php echo JText::_('K2_TITLE'); ?></label>
                     </div>
-                    <div class="k2TableValue">
-                        <input class="text_area k2TitleBox" type="text" name="title" id="title" maxlength="250" value="<?php echo $this->row->title; ?>" />
+                    <div class="k2ui-field-value">
+                        <input class="k2ui-title" type="text" name="title" id="title" maxlength="250" value="<?php echo $this->row->title; ?>" />
                     </div>
-
-                    <div class="k2TableLabel">
+                    <div class="k2ui-field-label">
                         <label for="alias"><?php echo JText::_('K2_TITLE_ALIAS'); ?></label>
                     </div>
-                    <div class="k2TableValue">
-                        <input class="text_area k2TitleAliasBox" type="text" name="alias" id="alias" maxlength="250" value="<?php echo $this->row->alias; ?>" />
+                    <div class="k2ui-field-value">
+                        <input class="k2ui-title-alias" type="text" name="alias" id="alias" maxlength="250" value="<?php echo $this->row->alias; ?>" />
                     </div>
-
-                    <div class="k2TableLabel">
+                    <div class="k2ui-field-label">
                         <label><?php echo JText::_('K2_CATEGORY'); ?></label>
                     </div>
-                    <div class="k2TableValue">
+                    <div class="k2ui-field-value">
                         <?php echo $this->lists['categories']; ?>
-
-                        <?php if($app->isAdmin() || ($app->isSite() && $this->permissions->get('publish'))): ?>
-                        <div class="k2SubTable k2TableRight k2TableRightTop">
-                            <div class="k2SubTableLabel">
-                                <label for="featured"><?php echo JText::_('K2_IS_IT_FEATURED'); ?></label>
-                            </div>
-                            <div class="k2SubTableValue">
-                                <?php echo $this->lists['featured']; ?>
-                            </div>
-
-                            <div class="k2SubTableLabel">
-                                <label><?php echo JText::_('K2_PUBLISHED'); ?></label>
-                            </div>
-                            <div class="k2SubTableValue">
-                                <?php echo $this->lists['published']; ?>
-                            </div>
-                        </div>
-                        <?php endif; ?>
                     </div>
-
-                    <div class="k2TableLabel">
+                    <div class="k2ui-field-label">
                         <label for="tags"><?php echo JText::_('K2_TAGS'); ?></label>
                     </div>
-                    <div class="k2TableValue">
+                    <div class="k2ui-field-value">
                         <?php if($this->params->get('taggingSystem')): ?>
                         <!-- Free tagging -->
                         <ul class="tags">
@@ -137,7 +116,6 @@ $app = JFactory::getApplication();
                             <?php echo JText::_('K2_WRITE_A_TAG_AND_PRESS_ADD_TO_INSERT_IT_TO_THE_AVAILABLE_TAGS_LISTNEW_TAGS_ARE_APPENDED_AT_THE_BOTTOM_OF_THE_AVAILABLE_TAGS_LIST_LEFT'); ?>
                         </span>
                         <?php endif; ?>
-
                         <table cellspacing="0" cellpadding="0" border="0" id="tagLists">
                             <tr>
                                 <td id="tagListsLeft">
@@ -158,50 +136,56 @@ $app = JFactory::getApplication();
                         </table>
                         <?php endif; ?>
                     </div>
-
-                    <div class="k2TableLabel">
+                </div>
+                <div class="k2ui-table-additional">
+                    <?php if($app->isAdmin() || ($app->isSite() && $this->permissions->get('publish'))): ?>
+                    <div class="k2ui-field-label">
+                        <label><?php echo JText::_('K2_PUBLISHED'); ?></label>
+                    </div>
+                    <div class="k2ui-field-value k2ui-button-set">
+                        <?php echo $this->lists['published']; ?>
+                    </div>
+                    <div class="k2ui-field-label">
+                        <label for="featured"><?php echo JText::_('K2_IS_IT_FEATURED'); ?></label>
+                    </div>
+                    <div class="k2ui-field-value k2ui-button-set">
+                        <?php echo $this->lists['featured']; ?>
+                    </div>
+                    <?php endif; ?>
+                    <div class="k2ui-field-label">
+                        <label><?php echo JText::_('K2_ACCESS_LEVEL'); ?></label>
+                    </div>
+                    <div class="k2ui-field-value">
+                        <?php echo $this->lists['access']; ?>
+                    </div>
+                    <div class="k2ui-field-label">
                         <label><?php echo JText::_('K2_AUTHOR'); ?></label>
                     </div>
-                    <div class="k2TableValue">
-                        <div class="k2SubTable k2TableInline">
-                            <div class="k2SubTableValue">
-                                <span id="k2Author">
-                                    <?php echo $this->row->author; ?>
-                                    <input type="hidden" name="created_by" value="<?php echo $this->row->created_by; ?>" />
-                                </span>
-                                <?php if($app->isAdmin() || ($app->isSite() && $this->permissions->get('editAll'))): ?>
-                                <a data-k2-modal="iframe" class="k2Selector" href="index.php?option=com_k2&amp;view=users&amp;tmpl=component&amp;context=modalselector&amp;fid=k2Author&amp;fname=created_by">
-                                    <i class="fa fa-pencil"></i>
-                                </a>
-
-                                <?php endif; ?>
-                            </div>
-
-                            <div class="k2SubTableLabel">
-                                <label><?php echo JText::_('K2_AUTHOR_ALIAS'); ?></label>
-                            </div>
-                            <div class="k2SubTableValue">
-                                <input class="text_area" type="text" name="created_by_alias" maxlength="250" value="<?php echo $this->row->created_by_alias; ?>" />
-                            </div>
-                        </div>
-
-                        <div class="k2SubTable k2ItemTableRight k2ItemTableRightPad">
-                            <div class="k2SubTableLabel">
-                                <label><?php echo JText::_('K2_ACCESS_LEVEL'); ?></label>
-                            </div>
-                            <div class="k2SubTableValue">
-                                <?php echo $this->lists['access']; ?>
-                            </div>
-                            <?php if(isset($this->lists['language'])): ?>
-                            <div class="k2SubTableLabel">
-                                <label><?php echo JText::_('K2_LANGUAGE'); ?></label>
-                            </div>
-                            <div class="k2SubTableValue">
-                                <?php echo $this->lists['language']; ?>
-                            </div>
-                            <?php endif; ?>
-                        </div>
+                    <div class="k2ui-field-value">
+                        <span id="k2Author">
+                            <?php echo $this->row->author; ?>
+                            <input type="hidden" name="created_by" value="<?php echo $this->row->created_by; ?>" />
+                        </span>
+                        <?php if($app->isAdmin() || ($app->isSite() && $this->permissions->get('editAll'))): ?>
+                        <a data-k2-modal="iframe" class="k2Selector" href="index.php?option=com_k2&amp;view=users&amp;tmpl=component&amp;context=modalselector&amp;fid=k2Author&amp;fname=created_by">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                        <?php endif; ?>
                     </div>
+                    <div class="k2ui-field-label">
+                        <label><?php echo JText::_('K2_AUTHOR_ALIAS'); ?></label>
+                    </div>
+                    <div class="k2ui-field-value">
+                        <input class="text_area" type="text" name="created_by_alias" maxlength="250" value="<?php echo $this->row->created_by_alias; ?>" />
+                    </div>
+                    <?php if(isset($this->lists['language'])): ?>
+                    <div class="k2ui-field-label">
+                        <label><?php echo JText::_('K2_LANGUAGE'); ?></label>
+                    </div>
+                    <div class="k2ui-field-value">
+                        <?php echo $this->lists['language']; ?>
+                    </div>
+                    <?php endif; ?>
                 </div>
 
                 <!-- Required extra field warning -->
@@ -733,17 +717,6 @@ $app = JFactory::getApplication();
                     <?php endif; ?>
                 </div>
                 <!-- Sub-tabs for BASIC [finish] -->
-
-                <input type="hidden" name="isSite" value="<?php echo (int) $app->isSite(); ?>" />
-                <?php if($app->isSite()): ?>
-                <input type="hidden" name="lang" value="<?php echo JRequest::getCmd('lang'); ?>" />
-                <?php endif; ?>
-                <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
-                <input type="hidden" name="option" value="com_k2" />
-                <input type="hidden" name="view" value="item" />
-                <input type="hidden" name="task" value="<?php echo JRequest::getVar('task'); ?>" />
-                <input type="hidden" name="Itemid" value="<?php echo JRequest::getInt('Itemid'); ?>" />
-                <?php echo JHTML::_('form.token'); ?>
             </div>
             <!-- BASIC [finish] -->
 
@@ -759,44 +732,43 @@ $app = JFactory::getApplication();
                 <div class="k2ScrollingContent">
                     <?php if($this->row->id): ?>
                     <h3><?php echo JText::_('K2_ITEM_INFO'); ?></h3>
-                    <div class="row-resposive">
-                        <div class="col col6">
+                    <div class="k2ui-table-publishing-meta">
+                        <div class="k2ui-column">
                             <a id="iteminfo"></a>
-                            <ul class="additionalParams">
+                            <ul class="k2ui-table-details">
                                 <li>
-                                    <label class="k2ui-float-left"><?php echo JText::_('K2_ITEM_ID'); ?></label>
-                                    <label class="k2ui-float-right"><?php echo $this->row->id; ?></label>
+                                    <span><?php echo JText::_('K2_ITEM_ID'); ?></span>
+                                    <span><?php echo $this->row->id; ?></span>
                                 </li>
                                 <li>
-                                    <label class="k2ui-float-left"><?php echo JText::_('K2_PUBLISHED'); ?></label>
-                                    <label class="k2ui-float-right"><?php echo ($this->row->published > 0) ? JText::_('K2_YES') : JText::_('K2_NO'); ?></label>
+                                    <span><?php echo JText::_('K2_PUBLISHED'); ?></span>
+                                    <span><?php echo ($this->row->published > 0) ? JText::_('K2_YES') : JText::_('K2_NO'); ?></span>
                                 </li>
                                 <li>
-                                    <label class="k2ui-float-left"><?php echo JText::_('K2_FEATURED'); ?></label>
-                                    <label class="k2ui-float-right"><?php echo ($this->row->featured > 0) ? JText::_('K2_YES'): JText::_('K2_NO'); ?></label>
+                                    <span><?php echo JText::_('K2_FEATURED'); ?></span>
+                                    <span><?php echo ($this->row->featured > 0) ? JText::_('K2_YES'): JText::_('K2_NO'); ?></span>
                                 </li>
                                 <li>
-                                    <label class="k2ui-float-left"><?php echo JText::_('K2_CREATED_DATE'); ?></label>
-                                    <label class="k2ui-float-right"><?php echo $this->lists['created']; ?></label>
+                                    <span><?php echo JText::_('K2_CREATED_DATE'); ?></span>
+                                    <span><?php echo $this->lists['created']; ?></span>
                                 </li>
                                 <li>
-                                    <label class="k2ui-float-left"><?php echo JText::_('K2_CREATED_BY'); ?></label>
-                                    <label class="k2ui-float-right"><?php echo $this->row->author; ?></label>
+                                    <span><?php echo JText::_('K2_CREATED_BY'); ?></span>
+                                    <span><?php echo $this->row->author; ?></span>
                                 </li>
                                 <li>
-                                    <label class="k2ui-float-left"><?php echo JText::_('K2_MODIFIED_DATE'); ?></label>
-                                    <label class="k2ui-float-right"><?php echo $this->lists['modified']; ?></label>
+                                    <span><?php echo JText::_('K2_MODIFIED_DATE'); ?></span>
+                                    <span><?php echo $this->lists['modified']; ?></span>
                                 </li>
                                 <?php if($this->row->moderator): ?>
                                 <li>
-                                    <label class="k2ui-float-left"><?php echo JText::_('K2_MODIFIED_BY'); ?></label>
-                                    <label class="k2ui-float-right"><?php echo $this->row->moderator; ?></label>
+                                    <span><?php echo JText::_('K2_MODIFIED_BY'); ?></span>
+                                    <span><?php echo $this->row->moderator; ?></span>
                                 </li>
                                 <?php endif; ?>
                             </ul>
                         </div>
-
-                        <div class="col col3">
+                        <div class="k2ui-column">
                             <div class="itemHits">
                                 <?php echo JText::_('K2_HITS'); ?>
                                 <span><?php echo $this->row->hits; ?></span>
@@ -807,8 +779,7 @@ $app = JFactory::getApplication();
                                 <?php endif; ?>
                             </div>
                         </div>
-
-                        <div class="col col3">
+                        <div class="k2ui-column">
                             <div class="itemRating">
                                 <?php echo JText::_('K2_RATING'); ?>
                                 <?php if($this->row->ratingCount): ?>
@@ -986,6 +957,17 @@ $app = JFactory::getApplication();
             <?php endif; ?>
         </div>
         <!-- Top Nav Tabs END here -->
+
+        <input type="hidden" name="isSite" value="<?php echo (int) $app->isSite(); ?>" />
+        <?php if($app->isSite()): ?>
+        <input type="hidden" name="lang" value="<?php echo JRequest::getCmd('lang'); ?>" />
+        <?php endif; ?>
+        <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
+        <input type="hidden" name="option" value="com_k2" />
+        <input type="hidden" name="view" value="item" />
+        <input type="hidden" name="task" value="<?php echo JRequest::getVar('task'); ?>" />
+        <input type="hidden" name="Itemid" value="<?php echo JRequest::getInt('Itemid'); ?>" />
+        <?php echo JHTML::_('form.token'); ?>
     </form>
 
 <?php if($app->isSite()): ?>
