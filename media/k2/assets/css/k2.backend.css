@@ -580,7 +580,7 @@ table.adminFormK2 {width:100%;margin-bottom:16px;}
                     .k2ui-batch-actions .k2ui-row input[type="radio"]:checked + label:hover {background:#555;}
                     .k2ui-batch-actions .k2ui-row input[type="radio"] + label:hover {background:#e8e8e8;}
             .k2ui-batch-options {padding:10px;}
-                .k2ui-batch-options .k2ui-row {text-align:center;padding-bottom:10px;}
+                .k2ui-batch-options .k2ui-row {text-align:center;padding-bottom:20px;}
                     .k2ui-batch-options .k2ui-row label {display:block;font-size:14px;padding-bottom:5px;}
                     .k2ui-batch-options .k2ui-row select {width:80%;}
                 .k2ui-batch-options .k2ui-row:last-child {padding:0;}
