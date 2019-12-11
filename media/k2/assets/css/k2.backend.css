@@ -1471,20 +1471,14 @@ button.fancybox-button:hover {background:none;border:0;}
 
 
 
-/* --- Short desktop view [start] --- */
-
-/* Grid (sidebar) */
-@media screen and (max-height:546px) {#k2Copyrights div {display:none;}}
-@media screen and (max-height:500px) {#k2Copyrights {display:none;}}
-
-/* --- Short desktop view [finish] --- */
-
-
-
 /* --- Responsive (smartphones & tablets) [start] --- */
 
 .k2ui-show-on-mobile,
 #k2AdminMobileMenu {display:none;}
+
+/* Short desktop */
+@media screen and (max-height:546px) {#k2Copyrights div {display:none;}}
+@media screen and (max-height:500px) {#k2Copyrights {display:none;}}
 
 @media screen and (max-width:1260px) {
     .isJ30 div#toolbar .btn-wrapper {margin:0 0 4px 0;float:none;}
@@ -1499,9 +1493,7 @@ button.fancybox-button:hover {background:none;border:0;}
     #k2ContentView > form .k2AdminTableData,
     .isJ25 #k2ContentView > form .k2AdminTableData,
     .isJ15 #k2ContentView > form .k2AdminTableData {padding-top:0;}
-}
 
-@media screen and (max-width:768px) {
     .k2ui-show-on-mobile {display:block;}
     .k2ui-hide-on-mobile {display:none;}
 
@@ -1520,11 +1512,6 @@ button.fancybox-button:hover {background:none;border:0;}
         .k2ui-field-value .k2ui-notice {text-align:right;}
 
     /* Grid */
-    .isJ30 body {background:#f0f2f2;overflow-x:hidden;}
-    .isJ30 .btn-subhead {width:80%;margin:10px auto;}
-    .isJ30 div#toolbar {position:relative;z-index:9;padding:10px;background:none;width:94%;margin:auto;display:grid;grid-template-columns:1fr 1fr;grid-gap:10px;}
-    .isJ30 div#toolbar .btn-wrapper {margin:0;padding:0;display:block;box-sizing:border-box;}
-    .isJ30 div#toolbar .btn-wrapper .btn {width:100% !important;margin:0;padding:0;box-sizing:border-box;}
     #k2AdminContainer {display:block;position:relative;}
         #k2Sidebar {z-index:197;width:100%;background:transparent url(../images/backend/k2_logo_126x48.png) no-repeat 12px 8px;background-size:72px;min-height:42px;}
         #k2Sidebar #k2ui-menu-control {position:absolute;top:10px;right:12px;z-index:198;display:block;font-family:monospace;font-size:40px;line-height:24px;height:24px;padding:0;margin:0;background:none;border:0;color:#000;outline:0;}
@@ -1535,6 +1522,9 @@ button.fancybox-button:hover {background:none;border:0;}
         #k2ContentView {}
         #k2ContentView .k2AdminTableFiltersSelects {padding:10px;}
             #k2ContentView .k2AdminTableFiltersSelects select {min-height:inherit;height:auto;}
+
+            .k2ui-list-title {font-size:15px;padding-bottom:10px;}
+            .k2ui-list-mobile-attribute {padding-bottom:10px;}
 
             #k2FormTopNav .k2NavTabsWrapper > h2 {display:block;text-align:center;background:#fff;padding:10px 0 12px;margin:-44px 0 0 0;width:100%;}
             #k2FormTopNav ul.k2NavTabs {display:grid;grid-template-columns:repeat(3, auto);grid-gap:0;}
@@ -1623,10 +1613,14 @@ button.fancybox-button:hover {background:none;border:0;}
             .k2ui-modal .k2ui-modal-content-wrapper {padding:0;margin:20px 10px;top:0;left:0;z-index:9999;width:calc(100% - 20px);}
 
     /* Joomla normalizations */
+    .isJ30 body {background:#f0f2f2;overflow-x:hidden;}
+    .isJ30 .btn-subhead {width:80%;margin:10px auto;}
+    .isJ30 div#toolbar {position:relative;z-index:9;padding:10px;background:none;width:94%;margin:auto;text-align:center;}
+
     #editor-xtd-buttons {display:grid;grid-template-columns:auto auto;grid-gap:5px;width:100%;}
     #editor-xtd-buttons a.btn {margin:0;}
 
-    #status {margin:0;}
+    #status {margin:0;position:relative;z-index:inherit;}
     .k2ViewIsItems #status,
     .k2ViewIsCategories #status,
     .k2ViewIsTags #status,
@@ -1642,6 +1636,13 @@ button.fancybox-button:hover {background:none;border:0;}
         #k2AdminMobileMenu ul li.active a {color:#46afff;}
     #k2AdminMobileMenu ul li a i {font-size:24px;line-height:30px;font-weight:normal;}
     #k2AdminMobileMenu ul li a span {display:block;font-size:12px;line-height:20px;height:20px;padding:0;margin:0;font-weight:400;white-space:nowrap;}
+}
+
+@media screen and (max-width:480px) {
+    /* Joomla normalizations */
+    .isJ30 div#toolbar {position:relative;z-index:9;padding:10px;background:none;width:94%;margin:auto;display:grid;grid-template-columns:1fr 1fr;grid-gap:10px;}
+    .isJ30 div#toolbar .btn-wrapper {margin:0;padding:0;display:block;box-sizing:border-box;}
+    .isJ30 div#toolbar .btn-wrapper .btn {width:100% !important;margin:0;padding:0;box-sizing:border-box;}
 }
 
 /* --- Responsive (smartphones & tablets) [finish] --- */
