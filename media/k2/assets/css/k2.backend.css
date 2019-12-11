@@ -112,7 +112,7 @@ div.controls label.radio input[type="radio"] {}
 */
 
 div#k2AdminContainer h1 {padding:0 0 8px 0;margin:0;}
-span.k2Notice {cursor:pointer;font-weight:bold;}
+span.k2Notice {cursor:pointer;font-weight:bold;margin-left:5px;}
 .k2LimitBox {float:left;margin:0 10px 0 0;}
 
 /* Fixes pagination issue for the limitbox */
@@ -166,8 +166,8 @@ div.k2SubTable .k2SubTableValue input[type="radio"] {margin:2px 8px 0 0!importan
     div.k2Table .k2TableValue {margin-left:120px;vertical-align:top;}
     div.k2Table .k2TableLabel {position:absolute;width:100px;vertical-align:top;text-align:right;}
     div.k2SubTable .k2SubTableValue {display:inline-block;vertical-align:top;min-width:210px;}
-    div.k2SubTable .k2SubTableLabel {margin:0 0 0 20px;padding:9px 8px 0;}
-    .k2ViewIsCategory div.k2SubTable .k2SubTableLabel {width:150px;}
+    div.k2SubTable .k2SubTableLabel {/*margin:0 0 0 20px;padding:9px 8px 0;*/}
+    .k2ViewIsCategory div.k2SubTable .k2SubTableLabel {/*width:150px;*/width:125px;margin:0;padding:4px 16px 0 0;}
     .k2ViewIsItem div.k2SubTable .k2SubTableLabel {width:90px;}
 }
 @media screen and (min-width:767px) {
@@ -938,6 +938,8 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ30 #k2ContentView > form .xmlParamsFields fieldset {padding:0 0 1px 0;margin:0 auto 20px auto;border:0;border-bottom:2px solid #dddedf;}
 .isJ30 #k2ContentView > form .xmlParamsFields ul {padding:0;margin:0;}
 .isJ30 #k2ContentView > form .xmlParamsFields ul li {display:table;width:100%;box-sizing:border-box;}
+.isJ30 #k2ContentView > form .xmlParamsFields ul.chzn-choices {padding:5px;}
+.isJ30 #k2ContentView > form .xmlParamsFields ul.chzn-choices li {display:inherit;width:auto;box-sizing:content-box;}
 .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramLabel {border-top:1px solid #fff;border-right:1px solid #e9e9e9;border-bottom:1px solid #e9e9e9;padding:10px;text-align:right;background:#f6f6f6;display:table-cell;width:30%;min-width:200px;box-sizing:border-box;vertical-align:middle;font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;}
 .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramLabel label {font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;color:#333;}
 .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue {background:#fbfbfb;border-top:1px solid #fff;border-bottom:1px solid #fbfbfb;font-size:13px;padding:10px;display:table-cell;width:70%;box-sizing:border-box;vertical-align:middle;}
@@ -1595,7 +1597,7 @@ button.fancybox-button:hover {background:none;border:0;}
             div.k2Table .k2TableValue select,
             div.k2SubTable .k2SubTableValue input:not([type="checkbox"]),
             div.k2SubTable .k2SubTableValue select {width:100%;}
-                span.k2Notice {display:block;text-align:right;padding:5px 0;}
+                span.k2Notice {display:block;text-align:right;padding:5px 0;margin:0;}
 
             #k2Tabs ul.k2TabsNavigation li a {display:block;text-align:center;}
             #k2Tabs .k2TabsContent {padding:10px 5px;}
