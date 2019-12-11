@@ -2,7 +2,7 @@
 <install type="module" client="site" version="1.5" method="upgrade">
     <name>K2 Tools</name>
     <author>JoomlaWorks</author>
-    <creationDate>November 26th, 2019</creationDate>
+    <creationDate>December 11th, 2019</creationDate>
     <copyright>Copyright (c) 2006 - 2019 JoomlaWorks Ltd. All rights reserved.</copyright>
     <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
     <authorUrl>www.joomlaworks.net</authorUrl>
