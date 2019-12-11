@@ -154,8 +154,8 @@ div.k2SubTable .k2SubTableValue input[type="radio"] {margin:2px 8px 0 0!importan
 .ui-tabs-hide {display:none;}
 div.k2Tabs {clear:both;padding:10px 0;}
 ul.k2TabsNavigation {margin:0;padding:0;text-align:left;list-style:none;}
-ul.k2TabsNavigation li {display:inline-block;margin:0 -2px 0 0;padding:0;width:49%}
-ul.k2TabsNavigation li a {display:block;padding:10px;margin:0;background:#f0f2f2;font-size:14px;text-decoration:none;font-weight:normal;outline:0;border-radius:3px 3px 0 0;color:#6d6f71;border-bottom:1px solid #d4d7d9;}
+ul.k2TabsNavigation li {display:inline-block;margin:0 -2px 0 0;padding:0;}
+ul.k2TabsNavigation li a {display:block;padding:10px 20px;margin:0;background:#f0f2f2;font-size:14px;text-decoration:none;font-weight:normal;outline:0;border-radius:3px 3px 0 0;color:#6d6f71;border-bottom:1px solid #d4d7d9;}
 ul.k2TabsNavigation li a:hover {text-decoration:none;background-color:#f6f6f6;}
 ul.k2TabsNavigation li a i {margin-right:8px;color:#6d6f71;display:none;}
 
@@ -167,7 +167,7 @@ ul.k2TabsNavigation li a i {margin-right:8px;color:#6d6f71;display:none;}
 ul.k2TabsNavigation li.ui-tabs-selected a {padding:10px 20px;background:#fff;color:#58595b;border:1px solid #d4d7d9;border-bottom:1px solid #fff;}
 ul.k2TabsNavigation li.ui-tabs-selected a i {color:#0091ff;}
 ul.k2TabsNavigation li.ui-tabs-selected a:hover {background-color:#fff;}
-#k2MediaTabs ul.k2TabsNavigation li {width:100%;font-size:12px;}
+#k2MediaTabs ul.k2TabsNavigation li {font-size:12px;}
 
 /* Tabs */
 .k2TabsContent {background:#fff;border:1px solid #d4d7d9;padding:10px;margin-top:-1px;margin-bottom:10px;width:100%;float:left;box-sizing:border-box;}
