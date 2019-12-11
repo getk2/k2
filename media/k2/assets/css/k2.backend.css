@@ -1512,8 +1512,12 @@ button.fancybox-button:hover {background:none;border:0;}
     .k2ui-column {margin-bottom:20px;}
 
     .k2ui-field-label {padding:5px 0;}
-        .k2ui-field-label label {text-align:left;}
+        .k2ui-field-label label {text-align:left;font-weight:600;}
     .k2ui-field-value {padding:5px 0 10px 0;}
+        .k2ui-field-value input[type="text"],
+        .k2ui-field-value ul.tags {width:calc(100% - 22px);}
+        .k2ui-field-value select {width:100%;}
+        .k2ui-field-value .k2ui-notice {text-align:right;}
 
     /* Grid */
     .isJ30 body {background:#f0f2f2;overflow-x:hidden;}
