@@ -150,36 +150,38 @@ $context = JRequest::getCmd('context');
                             } ?>
                         </td>
                         <td>
-                            <?php if ($this->filter_trash): ?>
-                            <?php if ($row->trash): ?>
-                            <strong><?php echo $row->treename; ?> (<?php echo $row->numOfTrashedItems; ?>)</strong>
-                            <?php else: ?>
-                            <?php echo $row->treename; ?> (<?php echo $row->numOfItems.' '.JText::_('K2_ACTIVE'); ?> / <?php echo $row->numOfTrashedItems.' '.JText::_('K2_TRASHED'); ?>)
-                            <?php endif; ?>
-                            <?php else: ?>
-                            <?php if ($context == "modalselector"): ?>
-                            <?php
-                            if (JRequest::getCmd('output') == 'list') {
-                                $onClick = 'window.parent.k2ModalSelector(\''.$row->id.'\', \''.str_replace(array("'", "\""), array("\\'", ""), $row->treename).'\', \''.JRequest::getCmd('fid').'\', \''.JRequest::getVar('fname').'\', \''.JRequest::getCmd('output').'\'); return false;';
-                            } else {
-                                $onClick = 'window.parent.k2ModalSelector(\''.$row->id.'\', \''.str_replace(array("'", "\""), array("\\'", ""), $row->treename).'\', \''.JRequest::getCmd('fid').'\', \''.JRequest::getVar('fname').'\'); return false;';
-                            }
-                            ?>
-                            <a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ENTRY'); ?>" href="#" onclick="<?php echo $onClick; ?>">
-                                <?php echo $row->treename; ?>
-                                <?php if ($this->params->get('showItemsCounterAdmin')): ?>
-                                <span class="small">(<?php echo $row->numOfItems.' '.JText::_('K2_ACTIVE'); ?> / <?php echo $row->numOfTrashedItems.' '.JText::_('K2_TRASHED'); ?>)</span>
+                            <div class="k2ui-list-title">
+                                <?php if ($this->filter_trash): ?>
+                                <?php if ($row->trash): ?>
+                                <strong><?php echo $row->treename; ?> (<?php echo $row->numOfTrashedItems; ?>)</strong>
+                                <?php else: ?>
+                                <?php echo $row->treename; ?> (<?php echo $row->numOfItems.' '.JText::_('K2_ACTIVE'); ?> / <?php echo $row->numOfTrashedItems.' '.JText::_('K2_TRASHED'); ?>)
                                 <?php endif; ?>
-                            </a>
-                            <?php else: ?>
-                            <a href="<?php echo JRoute::_('index.php?option=com_k2&view=category&cid='.$row->id); ?>">
-                                <?php echo $row->treename; ?>
-                                <?php if ($this->params->get('showItemsCounterAdmin')): ?>
-                                <span class="small">(<?php echo $row->numOfItems.' '.JText::_('K2_ACTIVE'); ?> / <?php echo $row->numOfTrashedItems.' '.JText::_('K2_TRASHED'); ?>)</span>
+                                <?php else: ?>
+                                <?php if ($context == "modalselector"): ?>
+                                <?php
+                                if (JRequest::getCmd('output') == 'list') {
+                                    $onClick = 'window.parent.k2ModalSelector(\''.$row->id.'\', \''.str_replace(array("'", "\""), array("\\'", ""), $row->treename).'\', \''.JRequest::getCmd('fid').'\', \''.JRequest::getVar('fname').'\', \''.JRequest::getCmd('output').'\'); return false;';
+                                } else {
+                                    $onClick = 'window.parent.k2ModalSelector(\''.$row->id.'\', \''.str_replace(array("'", "\""), array("\\'", ""), $row->treename).'\', \''.JRequest::getCmd('fid').'\', \''.JRequest::getVar('fname').'\'); return false;';
+                                }
+                                ?>
+                                <a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ENTRY'); ?>" href="#" onclick="<?php echo $onClick; ?>">
+                                    <?php echo $row->treename; ?>
+                                    <?php if ($this->params->get('showItemsCounterAdmin')): ?>
+                                    <span class="small">(<?php echo $row->numOfItems.' '.JText::_('K2_ACTIVE'); ?> / <?php echo $row->numOfTrashedItems.' '.JText::_('K2_TRASHED'); ?>)</span>
+                                    <?php endif; ?>
+                                </a>
+                                <?php else: ?>
+                                <a href="<?php echo JRoute::_('index.php?option=com_k2&view=category&cid='.$row->id); ?>">
+                                    <?php echo $row->treename; ?>
+                                    <?php if ($this->params->get('showItemsCounterAdmin')): ?>
+                                    <span class="small">(<?php echo $row->numOfItems.' '.JText::_('K2_ACTIVE'); ?> / <?php echo $row->numOfTrashedItems.' '.JText::_('K2_TRASHED'); ?>)</span>
+                                    <?php endif; ?>
+                                </a>
                                 <?php endif; ?>
-                            </a>
-                            <?php endif; ?>
-                            <?php endif; ?>
+                                <?php endif; ?>
+                            </div>
                         </td>
                         <?php if (K2_JVERSION != '30'): ?>
                         <td class="k2ui-order">
