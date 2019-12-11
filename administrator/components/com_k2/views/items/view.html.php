@@ -280,7 +280,7 @@ class K2ViewItems extends K2View
             JToolBarHelper::custom('copy', 'copy.png', 'copy_f2.png', 'K2_COPY', true);
             // Batch button in modal
             if (K2_JVERSION == '30') {
-                $batchButton = '<a id="K2BatchButton" class="btn btn-small" href="#"><i class="icon-edit "></i>'.JText::_('K2_BATCH').'</a>';
+                $batchButton = '<a id="K2BatchButton" class="btn btn-small" href="#"><i class="icon-edit"></i>'.JText::_('K2_BATCH').'</a>';
             } else {
                 $batchButton = '<a id="K2BatchButton" href="#"><span class="icon-32-edit" title="'.JText::_('K2_BATCH').'"></span>'.JText::_('K2_BATCH').'</a>';
             }
@@ -291,7 +291,7 @@ class K2ViewItems extends K2View
                 $buttonUrl = JURI::base().'index.php?option=com_k2&amp;view=items&amp;task=import';
                 $buttonText = JText::_('K2_IMPORT_JOOMLA_CONTENT');
                 if (K2_JVERSION == '30') {
-                    $button = '<a id="K2ImportContentButton" class="btn btn-small" href="'.$buttonUrl.'"><i class="icon-archive "></i>'.$buttonText.'</a>';
+                    $button = '<a id="K2ImportContentButton" class="btn btn-small" href="'.$buttonUrl.'"><i class="icon-archive"></i>'.$buttonText.'</a>';
                 } else {
                     $button = '<a id="K2ImportContentButton" href="'.$buttonUrl.'"><span class="icon-32-archive" title="'.$buttonText.'"></span>'.$buttonText.'</a>';
                 }

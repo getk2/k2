@@ -196,7 +196,7 @@ class K2ViewCategories extends K2View
             JToolBarHelper::trash('trash');
             JToolBarHelper::custom('copy', 'copy.png', 'copy_f2.png', 'K2_COPY', true);
             if (K2_JVERSION == '30') {
-                $batchButton = '<a id="K2BatchButton" class="btn btn-small" href="#"><i class="icon-edit "></i>'.JText::_('K2_BATCH').'</a>';
+                $batchButton = '<a id="K2BatchButton" class="btn btn-small" href="#"><i class="icon-edit"></i>'.JText::_('K2_BATCH').'</a>';
             } else {
                 $batchButton = '<a id="K2BatchButton" href="#"><span class="icon-32-edit" title="'.JText::_('K2_BATCH').'"></span>'.JText::_('K2_BATCH').'</a>';
             }

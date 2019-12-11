@@ -64,13 +64,16 @@ class K2ViewUser extends K2View
         JToolBarHelper::cancel();
 
         if (K2_JVERSION != '15') {
-            $buttonUrl = JURI::base().'index.php?option=com_users&view=user&task=user.edit&id='.$user->userID;
+            $editJoomlaUserButtonUrl = JURI::base().'index.php?option=com_users&view=user&task=user.edit&id='.$user->userID;
         } else {
-            $buttonUrl = JURI::base().'index.php?option=com_users&view=user&task=edit&cid[]='.$user->userID;
+            $editJoomlaUserButtonUrl = JURI::base().'index.php?option=com_users&view=user&task=edit&cid[]='.$user->userID;
         }
-        $buttonText = JText::_('K2_EDIT_JOOMLA_USER');
-        $button = '<a target="_blank" href="'.$buttonUrl.'"><span class="icon-32-edit" title="'.$buttonText.'"></span>'.$buttonText.'</a>';
-        $toolbar->prependButton('Custom', $button);
+        if (K2_JVERSION == '30') {
+            $editJoomlaUserButton = '<a data-k2-modal="iframe" href="'.$editJoomlaUserButtonUrl.'" class="btn btn-small"><i class="icon-edit"></i>'.JText::_('K2_EDIT_JOOMLA_USER').'</a>';
+        } else {
+            $editJoomlaUserButton = '<a data-k2-modal="iframe" href="'.$editJoomlaUserButtonUrl.'"><span class="icon-32-edit" title="'.JText::_('K2_EDIT_JOOMLA_USER').'"></span>'.JText::_('K2_EDIT_JOOMLA_USER').'</a>';
+        }
+        $toolbar->prependButton('Custom', $editJoomlaUserButton);
 
         parent::display($tpl);
     }
