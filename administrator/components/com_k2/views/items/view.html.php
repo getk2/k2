@@ -219,20 +219,20 @@ class K2ViewItems extends K2View
         // Batch Operations
         $categoriesModel = K2Model::getInstance('Categories', 'K2Model');
         $categories = $categoriesModel->categoriesTree(null, true, false);
-        array_unshift($categories, JHtml::_('select.option', '', JText::_('K2_LEAVE_UNCHANGED')));
+        array_unshift($categories, JHtml::_('select.option', '', '- '.JText::_('K2_LEAVE_UNCHANGED').' -'));
         $lists['batchCategories'] = JHTML::_('select.genericlist', $categories, 'batchCategory', '', 'value', 'text');
-        $lists['batchAccess'] = version_compare(JVERSION, '2.5', 'ge') ? JHTML::_('access.level', 'batchAccess', null, '', array(JHtml::_('select.option', '', JText::_('K2_LEAVE_UNCHANGED')))) : str_replace('size="3"', "", JHTML::_('list.accesslevel', $item));
+        $lists['batchAccess'] = version_compare(JVERSION, '2.5', 'ge') ? JHTML::_('access.level', 'batchAccess', null, '', array(JHtml::_('select.option', '', '- '.JText::_('K2_LEAVE_UNCHANGED').' -'))) : str_replace('size="3"', "", JHTML::_('list.accesslevel', $item));
 
         if (version_compare(JVERSION, '2.5.0', 'ge')) {
             $languages = JHTML::_('contentlanguage.existing', true, true);
-            array_unshift($languages, JHtml::_('select.option', '', JText::_('K2_LEAVE_UNCHANGED')));
+            array_unshift($languages, JHtml::_('select.option', '', '- '.JText::_('K2_LEAVE_UNCHANGED').' -'));
             $lists['batchLanguage'] = JHTML::_('select.genericlist', $languages, 'batchLanguage', '', 'value', 'text', null);
         }
 
         $model = $this->getModel('items');
         $authors = $model->getItemsAuthors();
         $options = array();
-        $options[] = JHTML::_('select.option', '', JText::_('K2_LEAVE_UNCHANGED'));
+        $options[] = JHTML::_('select.option', '', '- '.JText::_('K2_LEAVE_UNCHANGED').' -');
         foreach ($authors as $author) {
             $name = $author->name;
             if ($author->block) {

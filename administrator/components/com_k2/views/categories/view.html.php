@@ -25,7 +25,7 @@ class K2ViewCategories extends K2View
 
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
-        
+
         $context = JRequest::getCmd('context');
 
         $limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'), 'int');
@@ -153,7 +153,7 @@ class K2ViewCategories extends K2View
         $extraFieldsModel = K2Model::getInstance('ExtraFields', 'K2Model');
         $extraFieldsGroups = $extraFieldsModel->getGroups(true); // Fetch entire extra field group list
         $options = array();
-        $options[] = JHTML::_('select.option', '', JText::_('K2_LEAVE_UNCHANGED'));
+        $options[] = JHTML::_('select.option', '', '- '.JText::_('K2_LEAVE_UNCHANGED').' -');
         $options[] = JHTML::_('select.option', '0', JText::_('K2_NONE_ONSELECTLISTS'));
         foreach ($extraFieldsGroups as $extraFieldsGroup) {
             $name = $extraFieldsGroup->name;
@@ -162,15 +162,15 @@ class K2ViewCategories extends K2View
         $lists['batchExtraFieldsGroups'] = JHTML::_('select.genericlist', $options, 'batchExtraFieldsGroups', '', 'value', 'text', null);
 
         array_unshift($categoriesTree, JHtml::_('select.option', '0', JText::_('K2_NONE_ONSELECTLISTS')));
-        array_unshift($categoriesTree, JHtml::_('select.option', '', JText::_('K2_LEAVE_UNCHANGED')));
+        array_unshift($categoriesTree, JHtml::_('select.option', '', '- '.JText::_('K2_LEAVE_UNCHANGED').' -'));
 
         $lists['batchCategories'] = JHTML::_('select.genericlist', $categoriesTree, 'batchCategory', '', 'value', 'text', null);
 
-        $lists['batchAccess'] = version_compare(JVERSION, '2.5', 'ge') ? JHTML::_('access.level', 'batchAccess', null, '', array(JHtml::_('select.option', '', JText::_('K2_LEAVE_UNCHANGED')))) : str_replace('size="3"', "", JHTML::_('list.accesslevel', ''));
+        $lists['batchAccess'] = version_compare(JVERSION, '2.5', 'ge') ? JHTML::_('access.level', 'batchAccess', null, '', array(JHtml::_('select.option', '', '- '.JText::_('K2_LEAVE_UNCHANGED').' -'))) : str_replace('size="3"', "", JHTML::_('list.accesslevel', ''));
 
         if (version_compare(JVERSION, '2.5.0', 'ge')) {
             $languages = JHTML::_('contentlanguage.existing', true, true);
-            array_unshift($languages, JHtml::_('select.option', '', JText::_('K2_LEAVE_UNCHANGED')));
+            array_unshift($languages, JHtml::_('select.option', '', '- '.JText::_('K2_LEAVE_UNCHANGED').' -'));
             $lists['batchLanguage'] = JHTML::_('select.genericlist', $languages, 'batchLanguage', '', 'value', 'text', null);
         }
 
