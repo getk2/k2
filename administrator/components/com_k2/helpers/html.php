@@ -134,12 +134,13 @@ class K2HelperHTML
         $params = JComponentHelper::getParams('com_k2');
         $user = JFactory::getUser();
         $view = JRequest::getCmd('view');
+        $context = JRequest::getCmd('context');
 
         $editForms = array('item', 'category', 'tag', 'user', 'usergroup', 'extrafield', 'extrafieldsgroup', 'media');
 
         $mobileMenu = '';
 
-        if (!in_array($view, $editForms)) {
+        if (!in_array($view, $editForms) && $context != 'modalselector') {
             $mobileMenu = '
             <div id="k2AdminMobileMenu">
                 <ul>
