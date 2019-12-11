@@ -1626,6 +1626,11 @@ button.fancybox-button:hover {background:none;border:0;}
     .k2ViewIsTags #status,
     .k2ViewIsComments #status {padding-bottom:100px !important;}
 
+    /*
+    .isJ25 #toolbar-box,
+    .isJ15 #toolbar-box {padding-top:32px;background-image:none;}
+    */
+
     /* Mobile app-like menu */
     #k2AdminMobileMenu {display:block;position:fixed;bottom:0;left:0;right:0;z-index:999;background:#fff;box-shadow:0 -1px 3px 0 #777;}
     #k2AdminMobileMenu ul {list-style:none;display:grid;grid-template-columns:repeat(5, 1fr);grid-gap:0;padding:0;margin:0;}
