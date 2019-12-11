@@ -569,7 +569,7 @@ span.k2GalleryNotice {cursor:pointer;font-size:14px;padding:0;margin:0 5px;}
 table.adminFormK2 {width:100%;margin-bottom:16px;}
 
 /* Lists - Items */
-#k2AdminContainer .adminlist {margin-bottom:0;/*border-left:1px solid #dbdcdc;*/}
+#k2AdminContainer .adminlist {margin-bottom:0;}
 #k2AdminContainer .adminlist input[type="checkbox"] {margin-top:0;}
 #k2AdminContainer .adminlist thead tr th {background:#fff;border-bottom:1px solid #dbdcdc;vertical-align:middle;}
 #k2AdminContainer .adminlist tbody tr td {padding-top:10px;padding-bottom:10px;color:#666;vertical-align:middle;}
@@ -577,7 +577,7 @@ table.adminFormK2 {width:100%;margin-bottom:16px;}
 
 #k2AdminContainer .adminlist thead tr th a {font-size:12px;}
 
-#k2AdminContainer .adminlist a {text-decoration:none;color:#040707;/*font-weight:600;*/}
+#k2AdminContainer .adminlist a {text-decoration:none;color:#040707;}
 #k2AdminContainer .adminlist a.editComment {color:#46afff;}
 #k2AdminContainer .adminlist a:hover {color:#46afff;}
 
@@ -591,7 +591,7 @@ table.adminFormK2 {width:100%;margin-bottom:16px;}
 /* Minimal modal */
 .jw-modal {display:none;position:fixed;z-index:9999;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.3);}
 .jw-modal.jw-modal-open {display:block;}
-.jw-modal-content {position:absolute;left:50%;width:680px;background:#fdfdfd;box-shadow:0 0 29px rgba(0,0,0,.16);margin:25px auto 25px -340px;font-family:'Open Sans',sans-serif;font-smoothing:antialiased;}
+.jw-modal-content {position:absolute;left:50%;width:680px;background:#fdfdfd;box-shadow:0 0 29px rgba(0,0,0,.16);margin:25px auto 25px -340px;font-family:'Open Sans',sans-serif;}
 
 .jw-modal-main {padding-top:40px;}
 .jw-modal-header {color:#fff;padding:10px;font-size:20px;font-weight:300;background:#10213e;box-shadow:0 1px 0 rgba(0,0,0,.18);overflow:hidden;}
@@ -601,7 +601,7 @@ table.adminFormK2 {width:100%;margin-bottom:16px;}
 .isJ25 .jw-modal-content .row .column .row .column > select#batchCategory {height:96px;}
 .isJ25 .jw-modal-content .row .column .row .column:nth-child(2n+1) {clear:left;}
 
-.jw-modal-footer {padding:16px 0;background-color:#eff1f1;box-shadow:0 1px 0 rgba(0,0,0,.18);clear:both;width:100%;overflow:hidden;text-align:right;}
+.jw-modal-footer {padding:16px 0;background-color:#eff1f1;clear:both;width:100%;overflow:hidden;text-align:right;}
 
 /* Move dialog */
 #k2MoveDialogContainer .k2NavTabsWrapper {background:#f0f2f2;border-bottom:1px solid #d4d7d9;position:relative;z-index:9;}
