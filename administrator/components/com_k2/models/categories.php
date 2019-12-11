@@ -204,10 +204,7 @@ class K2ModelCategories extends K2Model
                 }
                 if ($params->get('adminSearch') == 'full') {
                     foreach ($quoted as $quotedWord) {
-                        $query .= " AND ( ".
-                            "LOWER(name) LIKE ".$quotedWord." ".
-                            "OR LOWER(description) LIKE ".$quotedWord." ".
-                            " )";
+                        $query .= " AND (LOWER(name) LIKE ".$quotedWord." OR LOWER(description) LIKE ".$quotedWord.")";
                     }
                 } else {
                     foreach ($quoted as $quotedWord) {
@@ -220,10 +217,7 @@ class K2ModelCategories extends K2Model
                 $quoted = $db->Quote('%'.$escaped.'%', false);
 
                 if ($params->get('adminSearch') == 'full') {
-                    $query .= " AND ( ".
-                        "LOWER(name) LIKE ".$quoted." ".
-                        "OR LOWER(description) LIKE ".$quoted." ".
-                        " )";
+                    $query .= " AND (LOWER(name) LIKE ".$quoted." OR LOWER(description) LIKE ".$quoted.")";
                 } else {
                     $query .= " AND LOWER(name) LIKE ".$quoted;
                 }

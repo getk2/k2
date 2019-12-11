@@ -1524,6 +1524,8 @@ button.fancybox-button:hover {background:none;border:0;}
             #k2ContentView .k2AdminTableFiltersSelects select {min-height:inherit;height:auto;}
 
             .k2ui-list-title {font-size:15px;padding-bottom:10px;}
+            .k2ViewIsCategories .k2ui-list-title {padding-bottom:0;}
+            .k2ViewIsCategories .k2ui-list-title a span {display:block;margin-top:5px;padding:0;}
             .k2ui-list-mobile-attribute {padding-bottom:10px;}
 
             #k2FormTopNav .k2NavTabsWrapper > h2 {display:block;text-align:center;background:#fff;padding:10px 0 12px;margin:-44px 0 0 0;width:100%;}
