@@ -642,12 +642,12 @@ div.commentToolbar span.k2CommentsLoader {background:url(../images/backend/loade
 /* ====================================================================================== */
 
 /* Modal Selector */
-#k2AdminContainer.inModalSelector #adminForm {margin-top:56px;position:relative;z-index:9;}
+#k2AdminContainer.inModalSelector #adminForm {margin-top:64px;position:relative;z-index:9;}
 html.isJ15 #k2AdminContainer.inModalSelector #adminForm,
 html.isJ25 #k2AdminContainer.inModalSelector #adminForm {margin-top:78px;}
 #k2AdminContainer.inModalSelector .k2AdminTableFilters {border:0;border-bottom:1px solid #dbdcdc;}
 #k2AdminContainer.inModalSelector .k2AdminTableFilters tr,
-#k2AdminContainer.inModalSelector .k2AdminTableFilters td {border:0 !important;}
+#k2AdminContainer.inModalSelector .k2AdminTableFilters tr td {border:0 !important;}
 #k2AdminContainer.inModalSelector .k2AdminTableData table {border:0;}
 #k2AdminFooter.inModalSelector {margin:8px auto;}
 #k2ModalSelectorHeader {background:#fff url(../images/backend/k2_logo_126x48.png) no-repeat 8px 50%;background-size:80px;padding:16px 0 16px 108px;margin:0;position:fixed;top:0;left:0;right:0;z-index:10;border-bottom:4px solid #eee;}
@@ -1653,6 +1653,10 @@ button.fancybox-button:hover {background:none;border:0;}
 
 @media screen and (max-width:480px) {
     .k2ui-batch-options .k2ui-row {padding-bottom:10px;}
+
+    /* Modal Selector */
+    #k2AdminContainer.inModalSelector #adminForm {margin-top:66px;}
+    #k2AdminContainer.inModalSelector .k2AdminTableFilters tr td {display:block;text-align:center;}
 
     /* Joomla normalizations */
     .isJ30 #system-message-container .alert {top:40px;right:10px;min-width:280px;max-width:400px;}
