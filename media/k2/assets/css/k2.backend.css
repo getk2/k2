@@ -1657,6 +1657,8 @@ button.fancybox-button:hover {background:none;border:0;}
     /* Modal Selector */
     #k2AdminContainer.inModalSelector #adminForm {margin-top:66px;}
     #k2AdminContainer.inModalSelector .k2AdminTableFilters tr td {display:block;text-align:center;}
+    #k2AdminContainer.inModalSelector .k2AdminTableFilters .k2AdminTableFiltersSearch,
+    #k2AdminContainer.inModalSelector .k2AdminTableFilters .k2AdminTableFiltersSelects {padding:10px 0;}
 
     /* Joomla normalizations */
     .isJ30 #system-message-container .alert {top:40px;right:10px;min-width:280px;max-width:400px;}
