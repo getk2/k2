@@ -135,7 +135,7 @@ class K2HelperHTML
         $user = JFactory::getUser();
         $view = JRequest::getCmd('view');
 
-        $editForms = array('item', 'category', 'tag', 'user', 'usergroup', 'extrafield', 'extrafieldsgroup');
+        $editForms = array('item', 'category', 'tag', 'user', 'usergroup', 'extrafield', 'extrafieldsgroup', 'media');
 
         $mobileMenu = '';
 
