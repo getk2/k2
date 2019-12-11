@@ -150,6 +150,37 @@ div.k2SubTable .k2SubTableValue input[type="radio"] {margin:2px 8px 0 0!importan
 .k2TableValue,
 .k2SubTableValue {margin-bottom:15px;}
 
+/* Merge to responsive rules at the bottom [start] */
+@media screen and (max-width:1240px) {
+    .k2TableRightTop {margin-top:20px;}
+}
+@media screen and (min-width:1240px) {
+    div.k2TableInline {display:inline-block;}
+    div.k2TableLeft {float:left;}
+    div.k2TableRight {float:right;text-align:right;}
+    div.k2TableRight .chzn-container {text-align:left;}
+    .k2ViewIsItem div.k2SubTable .k2SubTableLabel:first-child {margin-left:0;width:auto;}
+    .k2ItemTableRightPad {padding-left:16px;}
+}
+@media screen and (min-width:1000px) {
+    div.k2Table .k2TableValue {margin-left:120px;vertical-align:top;}
+    div.k2Table .k2TableLabel {position:absolute;width:100px;vertical-align:top;text-align:right;}
+    div.k2SubTable .k2SubTableValue {display:inline-block;vertical-align:top;min-width:210px;}
+    div.k2SubTable .k2SubTableLabel {margin:0 0 0 20px;padding:9px 8px 0;}
+    .k2ViewIsCategory div.k2SubTable .k2SubTableLabel {width:150px;}
+    .k2ViewIsItem div.k2SubTable .k2SubTableLabel {width:90px;}
+}
+@media screen and (min-width:767px) {
+    div.k2Table .k2TableLabel {display:block;padding:10px 0;}
+    .k2ViewIsItem div.k2SubTable .k2SubTableLabel:first-child {margin-left:-107px;}
+    /* Category specific styling */
+    .k2CategoryForm div.k2Table .k2TableLabel > label {width:125px;max-width:125px;}
+    .k2CategoryForm div.k2Table .k2TableValue {margin-left:145px;}
+    label[for="title"] {font-size:18px;}
+    label[for="tags"] {padding:20px 0 0 0;}
+}
+/* Merge to responsive rules at the bottom [finish] */
+
 /* Generic Tabs Layout */
 .ui-tabs-hide {display:none;}
 div.k2Tabs {clear:both;padding:10px 0;}
@@ -186,7 +217,7 @@ div#k2ID strong {color:#a8c5dd;}
 #k2FormTopNav ul.k2NavTabs li a {display:block;font-size:14px;text-decoration:none;font-weight:normal;outline:0;padding:21px 10px;margin:0;border-right:1px solid #d4d7d9;color:#414042;}
 #k2FormTopNav ul.k2NavTabs li a:hover {text-decoration:none;color:#0091ff;}
 #k2FormTopNav ul.k2NavTabs li:last-child a {border-right:0;}
-#k2FormTopNav ul.k2NavTabs li a i {font-size:18px;margin-right:12px;color:#9cbcd3;display:none;}
+#k2FormTopNav ul.k2NavTabs li a i {margin-right:10px;}
 #k2FormTopNav ul.k2NavTabs li a:hover i {color:#0091ff;}
 #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a {position:relative;color:#122747;}
 #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {content:"\f0d8";font-family:"FontAwesome";font-style:normal;font-weight:normal;text-decoration:inherit;color:#fff;font-size:32px;position:absolute;bottom:-5px;left:50%;margin-left:-16px;width:32px;text-shadow:0px -1px 1px #ccc;}
