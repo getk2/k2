@@ -806,7 +806,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
         #k2ContentView > form {margin:0;padding:0;position:relative;}
 
         /* Filters */
-        #k2ContentView > form .k2AdminTableFilters {position:fixed;left:10%;right:0;z-index:99;background:rgba(255, 255, 255, 0.8);margin-bottom:0;border-collapse:collapse;border:0;border-bottom:1px solid #dbdcdc;width:90%;box-sizing:border-box;}
+        #k2ContentView > form .k2AdminTableFilters {position:fixed;left:10%;right:0;z-index:99;background:rgba(255, 255, 255, 0.9);margin-bottom:0;border-collapse:collapse;border:0;border-bottom:1px solid #dbdcdc;width:90%;box-sizing:border-box;}
         #k2ContentView > form .k2AdminTableFilters tr td {background:none;vertical-align:middle;border:0;}
             #k2ContentView .k2AdminTableFiltersSearch {white-space:nowrap;padding:10px;}
                 #k2ContentView .k2AdminTableFiltersSearch .input-append,
@@ -1276,7 +1276,7 @@ button.fancybox-button:hover {background:none;border:0;}
 .isJ15 #footer .copyright::after {content:" — Joomla! 1.5";}
 .isJ15 #footer .copyright a {color:#333;}
 
-.isJ15 #k2ContentView {padding:0;}
+.isJ15 #k2ContentView {padding:0;background:#f0f0f0;}
 .isJ15 #k2ContentView > form .k2ui-field-value select:not([multiple]) {height:30px;}
 
 /* Joomla System Messages */
@@ -1320,7 +1320,7 @@ button.fancybox-button:hover {background:none;border:0;}
 .isJ15 #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects {padding-right:16px;}
 .isJ15 #k2ContentView > form .k2AdminTableFilters tr td.k2AdminTableFiltersSelects select {max-width:160px;height:30px;font-size:13px;margin:0;}
 
-.isJ15 #k2ContentView > form .k2AdminTableData {padding:50px 0 4px 0;}
+.isJ15 #k2ContentView > form .k2AdminTableData {padding:46px 0 4px 0;}
 
 .isJ15 #k2AdminContainer .adminlist {border-collapse:collapse;}
 .isJ15 #k2AdminContainer .adminlist tr th,
