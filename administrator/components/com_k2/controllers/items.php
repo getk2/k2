@@ -114,8 +114,38 @@ class K2ControllerItems extends K2Controller
     public function featured()
     {
         JRequest::checkToken() or jexit('Invalid Token');
-        $model = $this->getModel('items');
-        $model->featured();
+        $app = JFactory::getApplication();
+
+        $ids = JRequest::getVar('cid', [], 'default', 'array');
+        $ids = array_values(
+            array_unique(
+                array_filter(
+                    array_map('intval', $ids),
+                    function ($value)
+                    {
+                        return (int) $value > 0;
+                    }
+                )
+            )
+        );
+
+        if ($ids)
+        {
+            $model = $this->getModel('item');
+
+            foreach ($ids as $id)
+            {
+                $model->toggleFeatured($id);
+            }
+
+            $app->enqueueMessage(JText::_('K2_ITEMS_CHANGED'));
+        }
+
+        if (JRequest::getCmd('context') == "modalselector") {
+            $app->redirect('index.php?option=com_k2&view=items&tmpl=component&context=modalselector');
+        } else {
+            $app->redirect('index.php?option=com_k2&view=items');
+        }
     }
 
     public function trash()

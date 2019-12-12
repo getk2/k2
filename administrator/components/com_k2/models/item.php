@@ -851,7 +851,7 @@ class K2ModelItem extends K2Model
         }
         $attachment->load($id);
 
-        // Frontend Editing: Ensure the user has access to the item
+        // Frontend editing: Ensure the user has access to the item
         if ($app->isSite()) {
             $item = JTable::getInstance('K2Item', 'Table');
             $item->load($attachment->itemID);
@@ -1105,5 +1105,148 @@ class K2ModelItem extends K2Model
         }
 
         return $text;
+    }
+
+    /**
+     * Set an item as featured.
+     *
+     * @param   integer  $id  Item identifier
+     *
+     * @return  boolean
+     */
+    public function setFeatured($id)
+    {
+        $row = \JTable::getInstance('K2Item', 'Table');
+
+        if (!$row->load($id))
+        {
+            $this->setError(\JText::_('K2_NOT_FOUND'));
+
+            return false;
+        }
+
+        $isNew = false;
+        $row->featured = 1;
+        $row->featured_ordering = $row->getNextOrder("featured = 1 AND trash = 0", 'featured_ordering');
+
+        $this->triggerBeforeSaveEvents($row, $isNew);
+
+        if (!$row->store())
+        {
+            \JError::raiseError(500, $row->getError());
+
+            return false;
+        }
+
+        $this->triggerAfterSaveEvents($row, $isNew);
+
+        return true;
+    }
+
+    /**
+     * Set an item as featured.
+     *
+     * @param   integer  $id  Item identifier
+     *
+     * @return  boolean
+     */
+    public function setUnfeatured($id)
+    {
+        $row = \JTable::getInstance('K2Item', 'Table');
+
+        if (!$row->load($id))
+        {
+            $this->setError(\JText::_('K2_NOT_FOUND'));
+
+            return false;
+        }
+
+        $isNew = false;
+        $row->featured = 0;
+
+        $this->triggerBeforeSaveEvents($row, $isNew);
+
+        if (!$row->store())
+        {
+            \JError::raiseError(500, $row->getError());
+
+            return false;
+        }
+
+        $this->triggerAfterSaveEvents($row, $isNew);
+
+        return true;
+    }
+
+    /**
+     * Toggle featured status for an item.
+     *
+     * @param   integer  $id  Item identifier.
+     *
+     * @return  boolean
+     */
+    public function toggleFeatured($id)
+    {
+        $row = \JTable::getInstance('K2Item', 'Table');
+
+        if (!$row->load($id))
+        {
+            $this->setError(\JText::_('K2_NOT_FOUND'));
+
+            return false;
+        }
+
+        if ($row->featured === '0')
+        {
+            return $this->setFeatured($id);
+        }
+
+        return $this->setUnfeatured($id);
+    }
+
+    /**
+     * Trigger before save events for a table.
+     *
+     * @param   JTable  $row     Table instance before being saved.
+     * @param   boolean  $isNew  Is this a new row?
+     *
+     * @return  void
+     */
+    private function triggerAfterSaveEvents(&$row, $isNew)
+    {
+        $this->triggerEvent('onAfterK2Save', [&$row, $isNew]);
+
+        if (K2_JVERSION != '15')
+        {
+            $this->triggerEvent('onContentAfterSave', ['com_k2.item', &$row, $isNew]);
+        }
+        else
+        {
+            $this->triggerEvent('onAfterContentSave', [&$row, $isNew]);
+        }
+
+        $this->triggerEvent('onFinderAfterSave', ['com_k2.item', $row, $isNew], ['finder']);
+    }
+
+    /**
+     * Trigger before save events for a table.
+     *
+     * @param   JTable  $row     Table instance before being saved.
+     * @param   boolean  $isNew  Is this a new row?
+     *
+     * @return  void
+     */
+    private function triggerBeforeSaveEvents(&$row, $isNew)
+    {
+        $results = $this->triggerEvent('onBeforeK2Save', [&$row, $isNew]);
+
+        if (in_array(false, $results, true)) {
+            \JError::raiseError(500, $row->getError());
+
+            return false;
+        }
+
+        $this->triggerEvent('onContentBeforeSave', ['com_k2.item', $row, $isNew]);
+        $this->triggerEvent('onFinderBeforeSave', ['com_k2.item', $row, $isNew], ['finder']);
     }
 }

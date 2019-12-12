@@ -16,6 +16,14 @@ class plgSystemK2 extends JPlugin
 {
     public function onAfterInitialise()
     {
+        \JLoader::registerNamespace(
+            'K2',
+            JPATH_ADMINISTRATOR . '/components/com_k2/lib/src',
+            false,
+            false,
+            'psr4'
+        );
+
         // Determine Joomla version
         if (version_compare(JVERSION, '3.0', 'ge')) {
             define('K2_JVERSION', '30');
