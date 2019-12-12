@@ -160,7 +160,7 @@ div.controls label.radio {display:inline-block;}
 .k2ui-table-publishing-meta {display:grid;grid-template-columns:3fr 2fr 2fr;grid-gap:20px;margin-bottom:20px;}
 
 .k2ui-field-label {}
-.k2ui-field-label label {display:block;text-align:right;margin:0;padding:0;}
+.k2ui-field-label label {display:block;text-align:right;margin:0;padding:0;font-size:13px;}
 .k2ui-field-label label[for="title"],
 .k2ui-field-label label[for="name"] {font-size:18px;}
 
@@ -1291,6 +1291,8 @@ button.fancybox-button:hover {background:none;border:0;}
 .isJ15 #k2ContentView > form #k2FormTopNav ul.k2NavTabs {border-top:0;}
 .isJ15 #k2ContentView > form #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {content:"\f0d8";font-family:"FontAwesome";font-style:normal;font-weight:normal;text-decoration:inherit;color:#fff;font-size:32px;position:absolute;bottom:-12px;left:50%;margin-left:-16px;width:32px;text-shadow:0 -1px 1px #ccc;}
 
+.isJ15 ul.tags li span.tagRemove {padding:5px 0 6px 0;}
+
 .isJ15 #k2ContentView > form input,
 .isJ15 #k2ContentView > form select,
 .isJ15 #k2ContentView > form textarea {border-radius:3px;padding:5px 10px;font-size:13px;}
@@ -1381,7 +1383,7 @@ button.fancybox-button:hover {background:none;border:0;}
 .isJ15 #k2AdminContainer.K2AdminViewInfo #k2ContentView table tr td {font-size:13px;color:#333;padding:10px;}
 
 /* Scrollspy Menu */
-.isJ15 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu {display:block;position:fixed;list-style:none;margin:0;padding:0;width:320px;height:100%;z-index:1;top:188px;}
+.isJ15 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu {display:block;position:fixed;list-style:none;margin:0;padding:0;width:320px;height:100%;z-index:1;top:182px;}
 .isJ15 #k2AdminContainer.K2AdminViewInfo #k2ContentView ul.k2ScrollSpyMenu {top:120px;}
 .isJ15 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu li {border-bottom:1px solid #e3e4e4;}
 .isJ15 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu > li:first-child {border-top:1px solid #e3e4e4;}
