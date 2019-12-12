@@ -562,10 +562,6 @@ table.adminFormK2 {width:100%;margin-bottom:16px;}
 /* ====================================================================================================== */
 /* ====================================================================================================== */
 
-/* Joomla 1.5 */
-html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs {border-top:1px solid #d4d7d9;}
-html.isJ15 div#element-box div.m div#k2AdminContainer #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {content:"\f0d8";font-family:"FontAwesome";font-style:normal;font-weight:normal;text-decoration:inherit;color:#fff;font-size:32px;position:absolute;bottom:-12px;left:50%;margin-left:-16px;width:32px;text-shadow:0 -1px 1px #ccc;}
-
 /* Joomla 3.x specific */
 html.isJ30 {}
 body#com_k2 {}
@@ -1291,6 +1287,10 @@ button.fancybox-button:hover {background:none;border:0;}
 .isJ15 #system-message dd ul li {padding:5px;margin:0;background:none;border:0;color:#333;display:block;width:100%;box-sizing:border-box;font-size:13px;line-height:150%;}
 
 /* Edit Forms */
+.isJ15 #k2ContentView > form #k2FormTopNav .k2NavTabsWrapper {margin-top:-4px;}
+.isJ15 #k2ContentView > form #k2FormTopNav ul.k2NavTabs {border-top:0;}
+.isJ15 #k2ContentView > form #k2FormTopNav ul.k2NavTabs li.ui-tabs-selected a:before {content:"\f0d8";font-family:"FontAwesome";font-style:normal;font-weight:normal;text-decoration:inherit;color:#fff;font-size:32px;position:absolute;bottom:-12px;left:50%;margin-left:-16px;width:32px;text-shadow:0 -1px 1px #ccc;}
+
 .isJ15 #k2ContentView > form input,
 .isJ15 #k2ContentView > form select,
 .isJ15 #k2ContentView > form textarea {border-radius:3px;padding:5px 10px;font-size:13px;}
