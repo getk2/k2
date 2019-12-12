@@ -1277,6 +1277,7 @@ button.fancybox-button:hover {background:none;border:0;}
 .isJ15 #footer .copyright a {color:#333;}
 
 .isJ15 #k2ContentView {padding:0;background:#f0f0f0;}
+.isJ15 .inModalSelector #k2ContentView {background:#fff;}
 .isJ15 #k2ContentView > form .k2ui-field-value select:not([multiple]) {height:30px;}
 
 /* Joomla System Messages */
