@@ -140,7 +140,7 @@ class K2HelperHTML
 
         $mobileMenu = '';
 
-        if (!in_array($view, $editForms) && $context != 'modalselector') {
+        if (!in_array($view, $editForms) && $context != 'modalselector' && $view != 'settings') {
             $mobileMenu = '
             <div id="k2AdminMobileMenu">
                 <ul>
