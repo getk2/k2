@@ -1300,10 +1300,15 @@ class K2ViewItemlist extends K2View
                 $link = JURI::getInstance()->toString();
             }
 
+            $joiner = '?';
+            if (strpos($link, '?') !== false) {
+                $joiner = '&';
+            }
+
             if (!is_null($menuActive) && isset($menuActive->id)) {
-                $link .= '&format=feed&Itemid='.$menuActive->id;
+                $link .= $joiner.'format=feed&Itemid='.$menuActive->id;
             } else {
-                $link .= '&format=feed';
+                $link .= $joiner.'format=feed';
             }
 
             if ($addHeadFeedLink) {
