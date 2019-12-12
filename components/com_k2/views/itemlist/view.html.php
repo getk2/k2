@@ -1304,17 +1304,24 @@ class K2ViewItemlist extends K2View
             if (strpos($link, '?') !== false) {
                 $joiner = '&';
             }
+            $link .= $joiner.'format=feed';
 
+            /*
             if (!is_null($menuActive) && isset($menuActive->id)) {
                 $link .= $joiner.'format=feed&Itemid='.$menuActive->id;
             } else {
                 $link .= $joiner.'format=feed';
             }
+            */
 
             if ($addHeadFeedLink) {
                 if ($metaTitle) {
                     $metaTitle = $metaTitle.' | ';
                 }
+                $document->addHeadLink(JRoute::_($link), 'alternate', 'rel', array(
+                    'type' => 'application/rss+xml',
+                    'title' => $metaTitle.''.JText::_('K2_FEED')
+                ));
                 $document->addHeadLink(JRoute::_($link.'&type=rss'), 'alternate', 'rel', array(
                     'type' => 'application/rss+xml',
                     'title' => $metaTitle.'RSS 2.0'
