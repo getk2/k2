@@ -916,7 +916,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ30 #k2AdminContainer table.admintable td.paramlist_value[colspan="2"] .jwHeaderContainer {padding:20px;font-size:16px;font-weight:400;border-top:10px solid #fff;border-bottom:4px solid #96b0cb;float:none;}
 
 /* Parameters rendered from XML (lists) */
-.isJ30 #k2ContentView > form .xmlParamsFields.limitWidth {min-width:640px;max-width:60%;padding:0 20px 40px 20px;margin:0 auto;}
+.isJ30 #k2ContentView > form .xmlParamsFields.limitWidth {min-width:640px;max-width:60%;padding:20px 30px 40px 30px;margin:0 auto;}
 .isJ30 #k2ContentView > form .xmlParamsFields h3.paramHeader,
 .isJ30 #k2ContentView > form .xmlParamsFields .k2ScrollingContent > h3 {font-size:24px;}
 .isJ30 #k2ContentView > form .xmlParamsFields fieldset {padding:0 0 1px 0;margin:0 auto 20px auto;border:0;border-bottom:2px solid #dddedf;}
@@ -1176,7 +1176,7 @@ button.fancybox-button:hover {background:none;border:0;}
 .isJ25 #k2AdminContainer table.admintable td.paramlist_value[colspan="2"] .jwHeaderContainer15 {padding:20px;font-size:16px;font-weight:400;border-top:10px solid #fff;border-bottom:4px solid #96b0cb;float:none;}
 
 /* Parameters rendered from XML (lists) */
-.isJ25 #k2ContentView > form .xmlParamsFields.limitWidth {min-width:640px;max-width:60%;padding:0 20px 40px 20px;margin:0 auto;}
+.isJ25 #k2ContentView > form .xmlParamsFields.limitWidth {min-width:640px;max-width:60%;padding:20px 30px 40px 30px;margin:0 auto;}
 .isJ25 #k2ContentView > form .xmlParamsFields h3.paramHeader,
 .isJ25 #k2ContentView > form .xmlParamsFields .k2ScrollingContent > h3 {font-size:24px;}
 .isJ25 #k2ContentView > form .xmlParamsFields fieldset {padding:0;margin:0 auto;border:0;border-bottom:0;}
@@ -1430,7 +1430,7 @@ button.fancybox-button:hover {background:none;border:0;}
 .isJ15 #k2AdminContainer table.admintable td.paramlist_value[colspan="2"] .jwHeaderContainer15 {background:#e5f7fd;color:#346b93;font-size:20px;margin:0;padding:24px 16px;border:0;font-weight:normal;float:left;width:100%;clear:both;box-sizing:border-box;}
 
 /* Parameters rendered from XML (lists) */
-.isJ15 #k2ContentView > form .xmlParamsFields.limitWidth {min-width:640px;max-width:60%;padding:0 20px 40px 20px;margin:0 auto;}
+.isJ15 #k2ContentView > form .xmlParamsFields.limitWidth {min-width:640px;max-width:60%;padding:20px 30px 40px 30px;margin:0 auto;}
 .isJ15 #k2ContentView > form .xmlParamsFields h3.paramHeader,
 .isJ15 #k2ContentView > form .xmlParamsFields .k2ScrollingContent > h3 {font-size:24px;}
 .isJ15 #k2ContentView > form .xmlParamsFields fieldset {padding:0 0 1px 0;margin:0 auto 20px auto;border:0;}
@@ -1575,23 +1575,23 @@ button.fancybox-button:hover {background:none;border:0;}
             .itemNewAttachment button {position:absolute;top:30px;right:2px;float:none;}
             .itemNewAttachment .itemAdditionalField input[type="text"].existing_file {margin:0;padding:0;visibility:hidden;}
 
-            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramLabel {display:block;width:auto;text-align:left;border-right:0;padding:0;}
-            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue {display:block;width:auto;text-align:left;margin-bottom:10px;}
+            #k2ContentView > form .xmlParamsFields ul li .paramLabel {display:block;width:auto;text-align:left;border-right:0;padding:0;}
+            #k2ContentView > form .xmlParamsFields ul li .paramValue {display:block;width:auto;text-align:left;margin-bottom:10px;}
 
-            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue > input:not([type="checkbox"]),
-            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue > textarea {min-width:inherit;width:calc(100% - 22px);}
-            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue > select {min-width:inherit;width:100%;}
-            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue .js-editor-tinymce {margin-left:-10px;min-width:inherit;width:calc(100% - 10px);}
+            #k2ContentView > form .xmlParamsFields ul li .paramValue > input:not([type="checkbox"]),
+            #k2ContentView > form .xmlParamsFields ul li .paramValue > textarea {min-width:inherit;width:calc(100% - 22px);}
+            #k2ContentView > form .xmlParamsFields ul li .paramValue > select {min-width:inherit;width:100%;}
+            #k2ContentView > form .xmlParamsFields ul li .paramValue .js-editor-tinymce {margin-left:-10px;min-width:inherit;width:calc(100% - 10px);}
 
-            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="radio"] + label,
-            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue .controls > label.radio,
-            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue .controls > label.isChecked {min-width:60px;}
+            #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="radio"] + label,
+            #k2ContentView > form .xmlParamsFields ul li .paramValue .controls > label.radio,
+            #k2ContentView > form .xmlParamsFields ul li .paramValue .controls > label.isChecked {min-width:60px;}
 
-            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue.k2DateTimePickerControl {}
-            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue.k2DateTimePickerControl i.fa-calendar {display:none;}
+            #k2ContentView > form .xmlParamsFields ul li .paramValue.k2DateTimePickerControl {}
+            #k2ContentView > form .xmlParamsFields ul li .paramValue.k2DateTimePickerControl i.fa-calendar {display:none;}
 
-            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue fieldset.radio,
-            .isJ30 #k2ContentView > form .xmlParamsFields ul li > fieldset.adminform {text-align:center;}
+            #k2ContentView > form .xmlParamsFields ul li .paramValue fieldset.radio,
+            #k2ContentView > form .xmlParamsFields ul li > fieldset.adminform {text-align:center;}
 
             .itemAdditionalField {grid-template-columns:1fr;}
             .itemAdditionalField .itemAdditionalValue {border-top:1px solid #fff;border-bottom:1px solid #e9e9e9;}
@@ -1610,9 +1610,9 @@ button.fancybox-button:hover {background:none;border:0;}
             .itemAdditionalField.separator .itemAdditionalValue {width:auto;background:none;border:0;margin:0;padding:0;}
             .itemAdditionalField.separator .itemAdditionalData {visibility:hidden;}
 
-            .isJ30 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu {display:none;}
-            .isJ30 #k2AdminContainer #k2ContentView div.k2ScrollingContent {width:auto;margin:0;padding:0 10px 20px 10px;border:0;}
-            .isJ30 #k2ContentView > form .xmlParamsFields.limitWidth {min-width:inherit;max-width:none;width:auto;margin:0;padding:0 10px 20px 10px;}
+            #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu {display:none;}
+            #k2AdminContainer #k2ContentView div.k2ScrollingContent {width:auto;margin:0;padding:0 10px 20px 10px;border:0;}
+            #k2ContentView > form .xmlParamsFields.limitWidth {min-width:inherit;max-width:none;width:auto;margin:0;padding:0 10px 20px 10px;}
 
             #k2app-ef-add-option {width:calc(100% - 16px);height:28px;line-height:28px;}
             #k2app-ef-type-data input,
