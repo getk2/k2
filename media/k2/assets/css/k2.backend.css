@@ -163,6 +163,7 @@ div.controls label.radio {display:inline-block;}
 .k2ui-field-label label {display:block;text-align:right;margin:0;padding:0;font-size:13px;}
 .k2ui-field-label label[for="title"],
 .k2ui-field-label label[for="name"] {font-size:18px;}
+.k2ui-field-label label .k2ui-notice {margin-top:5px;cursor:pointer;font-size:12px;font-weight:400;color:#999;}
 
 .k2ui-field-value {}
     .k2ui-field-value input[type="text"],
@@ -173,7 +174,6 @@ div.controls label.radio {display:inline-block;}
     .k2ui-field-value.k2ui-title input {width:90%;height:40px;line-height:40px;font-size:20px;}
     .k2ui-field-value.k2ui-title-alias input {width:60%;}
     .k2ui-field-value.k2ui-category .chzn-container {width:30% !important;}
-    .k2ui-field-value .k2ui-notice {margin-top:5px;cursor:pointer;font-size:12px;font-weight:600;}
 
 .k2ui-column {}
     .k2ui-table-details {border-radius:3px;margin:0;padding:0;list-style:none;}
@@ -1277,6 +1277,7 @@ button.fancybox-button:hover {background:none;border:0;}
 .isJ15 #footer .copyright a {color:#333;}
 
 .isJ15 #k2ContentView {padding:0;}
+.isJ15 #k2ContentView > form .k2ui-field-value select:not([multiple]) {height:30px;}
 
 /* Joomla System Messages */
 .isJ15 #system-message {}
@@ -1513,7 +1514,6 @@ button.fancybox-button:hover {background:none;border:0;}
         .k2ui-field-value input[type="text"],
         .k2ui-field-value ul.tags {width:calc(100% - 22px);}
         .k2ui-field-value select {width:100%;}
-        .k2ui-field-value .k2ui-notice {text-align:right;}
 
     /* Grid */
     #k2AdminContainer {display:block;position:relative;}

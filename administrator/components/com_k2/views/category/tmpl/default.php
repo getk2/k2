@@ -52,13 +52,13 @@ defined('_JEXEC') or die;
                     <?php echo $this->lists['parent']; ?>
                 </div>
                 <div class="k2ui-field-label">
-                    <label for="paramsinheritFrom"><?php echo JText::_('K2_INHERIT_PARAMETER_OPTIONS_FROM_CATEGORY'); ?></label>
+                    <label for="paramsinheritFrom" class="hasTip" title="<?php echo JText::_('K2_INHERIT_PARAMETER_OPTIONS_FROM_CATEGORY'); ?>::<?php echo JText::_('K2_SETTING_THIS_OPTION_WILL_MAKE_THIS_CATEGORY_INHERIT_ALL_PARAMETERS_FROM_ANOTHER_CATEGORY_THUS_YOU_DONT_HAVE_TO_RESET_ALL_OPTIONS_IN_THIS_ONE_IF_THEY_ARE_THE_SAME_WITH_ANOTHER_CATEGORYS_THIS_SETTING_IS_VERY_USEFUL_WHEN_YOU_ARE_CREATING_CHILD_CATEGORIES_WHICH_SHARE_THE_SAME_PARAMETERS_WITH_THEIR_PARENT_CATEGORY_EG_IN_THE_CASE_OF_A_CATALOG_OR_A_NEWS_PORTALMAGAZINE'); ?>">
+                        <?php echo JText::_('K2_INHERIT_PARAMETER_OPTIONS_FROM_CATEGORY'); ?>
+                        <div class="k2ui-notice"><?php echo JText::_('K2_LEARN_WHAT_THIS_MEANS'); ?> <i class="fa fa-question-circle" aria-hidden="true"></i></div>
+                    </label>
                 </div>
                 <div class="k2ui-field-value">
                     <?php echo $this->lists['inheritFrom']; ?>
-                    <div class="hasTip k2ui-notice" title="<?php echo JText::_('K2_INHERIT_PARAMETER_OPTIONS_FROM_CATEGORY'); ?>::<?php echo JText::_('K2_SETTING_THIS_OPTION_WILL_MAKE_THIS_CATEGORY_INHERIT_ALL_PARAMETERS_FROM_ANOTHER_CATEGORY_THUS_YOU_DONT_HAVE_TO_RESET_ALL_OPTIONS_IN_THIS_ONE_IF_THEY_ARE_THE_SAME_WITH_ANOTHER_CATEGORYS_THIS_SETTING_IS_VERY_USEFUL_WHEN_YOU_ARE_CREATING_CHILD_CATEGORIES_WHICH_SHARE_THE_SAME_PARAMETERS_WITH_THEIR_PARENT_CATEGORY_EG_IN_THE_CASE_OF_A_CATALOG_OR_A_NEWS_PORTALMAGAZINE'); ?>">
-                        <i class="fa fa-question-circle" aria-hidden="true"></i> <?php echo JText::_('K2_LEARN_WHAT_THIS_MEANS'); ?>
-                    </div>
                 </div>
                 <div class="k2ui-field-label">
                     <label for="extraFieldsGroup"><?php echo JText::_('K2_ASSOCIATED_EXTRA_FIELDS_GROUP');  ?></label>
