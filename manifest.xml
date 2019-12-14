@@ -171,12 +171,12 @@
         <param name="jQueryHandling" default="1.9.1" />
         <param name="k2Sef" default="0" />
         <param name="k2SefCatIdTitleAliasSep" default="dash" />
-        <param name="k2SefInsertCatId" default="1" />
-        <param name="k2SefInsertItemId" default="1" />
+        <param name="k2SefInsertCatId" default="0" />
+        <param name="k2SefInsertItemId" default="0" />
         <param name="k2SefItemIdTitleAliasSep" default="dash" />
-        <param name="k2SefLabelCat" default="content" />
+        <param name="k2SefLabelCat" default="" />
         <param name="k2SefLabelDate" default="date" />
-        <param name="k2SefLabelItem" default="0" />
+        <param name="k2SefLabelItem" default="1" />
         <param name="k2SefLabelItemCustomPrefix" default="" />
         <param name="k2SefLabelSearch" default="search" />
         <param name="k2SefLabelTag" default="tag" />

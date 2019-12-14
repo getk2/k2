@@ -178,12 +178,12 @@
                 <field name="jQueryHandling" default="1.9.1" />
                 <field name="k2Sef" default="0" />
                 <field name="k2SefCatIdTitleAliasSep" default="dash" />
-                <field name="k2SefInsertCatId" default="1" />
-                <field name="k2SefInsertItemId" default="1" />
+                <field name="k2SefInsertCatId" default="0" />
+                <field name="k2SefInsertItemId" default="0" />
                 <field name="k2SefItemIdTitleAliasSep" default="dash" />
-                <field name="k2SefLabelCat" default="content" />
+                <field name="k2SefLabelCat" default="" />
                 <field name="k2SefLabelDate" default="date" />
-                <field name="k2SefLabelItem" default="0" />
+                <field name="k2SefLabelItem" default="1" />
                 <field name="k2SefLabelItemCustomPrefix" default="" />
                 <field name="k2SefLabelSearch" default="search" />
                 <field name="k2SefLabelTag" default="tag" />
