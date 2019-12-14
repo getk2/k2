@@ -401,6 +401,9 @@ ul#k2ExtraFieldsMissing li {font-weight:normal;}
 #extraFields .itemAdditionalField.fieldIsLink .itemAdditionalData {display:grid;grid-template-columns:auto 5fr auto 8fr auto 3fr;grid-gap:10px;}
 #extraFields .itemAdditionalField.fieldIsLink .itemAdditionalData > label {text-align:right;line-height:30px;}
 
+#extraFields .itemAdditionalField .itemAdditionalData .controls label.radio {margin:0;padding:5px 10px 10px 5px;display:inline-block;min-height:inherit;height:auto;line-height:inherit;white-space:nowrap;}
+#extraFields .itemAdditionalField .itemAdditionalData .controls label.radio input[type="radio"] {margin:2px 5px 0 0;padding:0;width:auto;}
+
 #itemAttachments {margin-top:15px;padding-top:10px;}
 
 td.k2ItemFormDateField {white-space:nowrap;}
