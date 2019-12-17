@@ -297,7 +297,8 @@ class K2ViewItemlist extends K2View
 
                     // Set title
                     $title = $tag->name;
-                    if ($this->menuItemMatchesK2Entity('itemlist', 'tag', $tag->name) && !empty($params->get('page_title'))) {
+                    $page_title = $params->get('page_title');
+                    if ($this->menuItemMatchesK2Entity('itemlist', 'tag', $tag->name) && !empty($page_title)) {
                         $title = $params->get('page_title');
                     }
                     $this->assignRef('title', $title);
@@ -776,7 +777,8 @@ class K2ViewItemlist extends K2View
 
                     // Set <title>
                     if ($menuItemMatch) {
-                        if (empty($params->get('page_title'))) {
+                        $page_title = $params->get('page_title');
+                        if (empty($page_title)) {
                             $params->set('page_title', $title);
                         }
                     } else {
@@ -909,7 +911,8 @@ class K2ViewItemlist extends K2View
 
                     // Set <title>
                     if ($menuItemMatch) {
-                        if (empty($params->get('page_title'))) {
+                        $page_title = $params->get('page_title');
+                        if (empty($page_title)) {
                             $params->set('page_title', $tag->name);
                         }
                     } else {
@@ -1000,7 +1003,8 @@ class K2ViewItemlist extends K2View
 
                     // Set <title>
                     if ($menuItemMatch) {
-                        if (empty($params->get('page_title'))) {
+                        $page_title = $params->get('page_title');
+                        if (empty($page_title)) {
                             $params->set('page_title', $userObject->name);
                         }
                     } else {

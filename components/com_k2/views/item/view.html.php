@@ -465,7 +465,8 @@ class K2ViewItem extends K2View
 
             // Set <title>
             if ($menuItemMatch) {
-                if (empty($params->get('page_title'))) {
+                $page_title = $params->get('page_title');
+                if (empty($page_title)) {
                     $params->set('page_title', $item->rawTitle);
                 }
             } else {
