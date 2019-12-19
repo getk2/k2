@@ -24,6 +24,10 @@ if ($params->get('k2Sef')) {
         // Get the menu
         $menu = JFactory::getApplication()->getMenu();
 
+        // Load the itemlist model
+        require_once(JPATH_SITE.'/components/com_k2/models/itemlist.php');
+        $itemlistModel = new K2ModelItemlist;
+
         // Detect the active menu item
         if (empty($query['Itemid'])) {
             $menuItem = $menu->getActive();
@@ -100,35 +104,52 @@ if ($params->get('k2Sef')) {
 
         // Item view
         if (isset($segments[0]) && $segments[0] == 'item' && @$segments[1] != 'add') {
-            // Enabled category prefix  for items
+            // Enabled category prefix for items
             if ($params->get('k2SefLabelItem')) {
                 // Tasks available for an item
                 $itemTasks = array('edit', 'download');
 
                 // If it's a task pick the next key
                 if (in_array($segments[1], $itemTasks)) {
-                    $ItemId = $segments[2];
+                    $itemID = $segments[2];
                 } else {
-                    $ItemId = $segments[1];
+                    $itemID = $segments[1];
                 }
+
+                // Get the item ID
+                $parts = explode(':', $itemID);
+                $id = (int) $parts[0];
 
                 // Replace the item with the category slug
                 if ($params->get('k2SefLabelItem') == '1') {
-
-                    // Remove the id from the slug
                     if ($params->get('k2SefInsertCatId') == '0') {
+                        $segments[0] = getItemProps($id, true)->slug;
 
-                        // Try to split the slug
-                        $segments[0] = getCategorySlug((int)$ItemId);
-                        $temp        = @explode('-', $segments[0]);
-
-                        // If the slug contained an item id do not use it
-                        if (count($temp) > 1) {
-                            @$segments[0] = $temp[1];
+                        $slug = $segments[0];
+                        $slugs = array();
+                        $categories = getCategoryPath(getCategoryProps($slug)->id);
+                        if (count($categories)) {
+                            $slugs[] = $slug;
+                            foreach ($categories as $catid) {
+                                $slugs[] = getCategoryProps($catid)->alias;
+                            }
+                            $slug = implode('/', array_reverse($slugs));
                         }
+                        $segments[0] = $slug;
                     } else {
-                        // Apply the link including the id
-                        $segments[0] = getCategorySlug((int)$ItemId);
+                        $segments[0] = getItemProps($id, true)->catid.'-'.getItemProps($id, true)->slug;
+
+                        $slug = getItemProps($id, true)->slug;
+                        $slugs = array();
+                        $categories = getCategoryPath(getCategoryProps($slug)->id);
+                        if (count($categories)) {
+                            $slugs[] = $slug;
+                            foreach ($categories as $catid) {
+                                $slugs[] = getCategoryProps($catid)->id.'-'.getCategoryProps($catid)->alias;
+                            }
+                            $slug = implode('/', array_reverse($slugs));
+                        }
+                        $segments[0] = $slug;
                     }
                 } else {
                     $segments[0] = $params->get('k2SefLabelItemCustomPrefix');
@@ -143,7 +164,7 @@ if ($params->get('k2Sef')) {
             if ($params->get('k2SefInsertItemId')) {
                 if ($params->get('k2SefUseItemTitleAlias')) {
                     if ($params->get('k2SefItemIdTitleAliasSep') == 'slash') {
-                        $segments[1] = JString::str_ireplace(':', '/', $segments[1]);
+                        $segments[1] = str_replace(':', '/', $segments[1]);
                     }
                 } else {
                     $temp = @explode(':', $segments[1]);
@@ -166,29 +187,42 @@ if ($params->get('k2Sef')) {
             if (isset($segments[1])) {
                 switch ($segments[1]) {
                     case 'category':
-                        $segments[0] = $params->get('k2SefLabelCat', 'content');
+                        $segments[0] = $params->get('k2SefLabelCat', '');
+
                         unset($segments[1]);
+
+                        $parts = @explode(':', $segments[2]);
+                        $catid = (!empty($parts[0])) ? (int) $parts[0] : '';
+                        $slug = (!empty($parts[1])) ? $parts[1] : '';
+
+                        $slugs = array();
+                        $categories = getCategoryPath($catid);
+                        if (count($categories)) {
+                            $slugs[] = $slug;
+                            foreach ($categories as $catid) {
+                                $slugs[] = getCategoryProps($catid)->alias;
+                            }
+                            $slug = implode('/', array_reverse($slugs));
+                        }
+
                         // Handle category id and alias
                         if ($params->get('k2SefInsertCatId')) {
                             if ($params->get('k2SefUseCatTitleAlias')) {
                                 if ($params->get('k2SefCatIdTitleAliasSep') == 'slash') {
-                                    $segments[2] = JString::str_ireplace(':', '/', $segments[2]);
+                                    $segments[2] = str_replace(':', '/', $segments[2]);
                                 }
                             } else {
-                                $temp = @explode(':', $segments[2]);
-                                $segments[2] = (int)$temp[0];
+                                $segments[2] = $catid;
                             }
                         } else {
-                            // Try to split the slug
-                            $temp = @explode(':', $segments[2]);
                             unset($segments[2]);
-
-                            // If the slug contained an item id do not use it
-                            if (count($temp) > 1) {
-                                @$segments[1] = $temp[1];
+                            if ($segments[0] == '') {
+                                unset($segments[1]);
+                                $segments[0] = $slug;
+                            } else {
+                                $segments[1] = $slug;
                             }
                         }
-
                         break;
                     case 'tag':
                         $segments[0] = $params->get('k2SefLabelTag', 'tag');
@@ -212,6 +246,7 @@ if ($params->get('k2Sef')) {
                 }
             }
         }
+
         // Return reordered segments array
         return array_values($segments);
     }
@@ -225,10 +260,10 @@ if ($params->get('k2Sef')) {
         $params = JComponentHelper::getParams('com_k2');
 
         $reservedViews = array('item', 'itemlist', 'media', 'users', 'comments', 'latest');
-
+        $categoryPath = '';
         if (!in_array($segments[0], $reservedViews)) {
             // Category view
-            if ($segments[0] == $params->get('k2SefLabelCat', 'content')) {
+            if ($segments[0] == $params->get('k2SefLabelCat')) {
                 $segments[0] = 'itemlist';
                 array_splice($segments, 1, 0, 'category');
             }
@@ -252,6 +287,19 @@ if ($params->get('k2Sef')) {
                 $segments[0] = 'itemlist';
                 array_splice($segments, 1, 0, 'search');
             }
+            // Category path, without a prefix
+            elseif (
+                $segments[0] == getCategoryProps($segments[0])->alias &&
+                str_replace(':', '-', array_reverse($segments)[0]) != @getItemProps(str_replace(':', '-', array_reverse($segments)[0]))->alias
+            ) {
+                if (count($segments) > 1) {
+                    $categoryPath = implode('/', $segments);
+                } else {
+                    $categoryPath = $segments[0];
+                }
+                $segments[0] = 'itemlist';
+                array_splice($segments, 1, 0, 'category');
+            }
             // Item view
             else {
                 // Replace the category prefix with item
@@ -264,9 +312,9 @@ if ($params->get('k2Sef')) {
                 }
                 // Reinsert item id to the item alias
                 if (!$params->get('k2SefInsertItemId') && @$segments[1] != 'download' && @$segments[1] != 'edit') {
-                    $segments[1] = str_replace(':', '-', $segments[1]);
-                    $ItemId = getItemId($segments[1]);
-                    $segments[1] = $ItemId.':'.$segments[1];
+                    $alias = str_replace(':', '-', array_reverse($segments)[0]);
+                    $id = getItemProps($alias)->id;
+                    $segments[1] = $id.':'.$alias;
                 }
             }
         }
@@ -276,19 +324,32 @@ if ($params->get('k2Sef')) {
         if (!isset($segments[1])) {
             $segments[1] = '';
         }
+
         $vars['task'] = $segments[1];
+
         if ($segments[0] == 'itemlist') {
             switch ($segments[1]) {
-
                 case 'category':
-                    if (isset($segments[2])) {
-                        // Reinsert item id to the item alias
+                    if (isset($segments[2]) && empty($segments[3])) {
+                        // Re-insert category id to the category slug
                         if (!$params->get('k2SefInsertCatId')) {
                             $segments[2] = str_replace(':', '-', $segments[2]);
-                            $catId = getCatId($segments[2]);
+                            $catId = getCategoryProps($segments[2])->id;
                             $segments[2] = $catId.':'.$segments[2];
                         }
                         $vars['id'] = $segments[2];
+                    } else {
+                        if (strpos($categoryPath, '/') !== false) {
+                            // Nested category path
+                            $categoryPath = str_replace('-', ':', $categoryPath);
+                            $categories = explode('/', $categoryPath);
+                            $last = array_reverse($categories)[0];
+                            $last = str_replace(':', '-', $last);
+                            $vars['id'] = getCategoryProps($last)->id.':'.$last;
+                        } else {
+                            // Single category path
+                            $vars['id'] = ($categoryPath) ? getCategoryProps($categoryPath)->id.':'.$categoryPath : null;
+                        }
                     }
                     break;
 
@@ -348,55 +409,77 @@ if ($params->get('k2Sef')) {
         return $vars;
     }
 
-    function getCategorySlug($ItemId = null)
+    /* --- Helpers --- */
+    function getItemProps($id_or_slug = null, $getCategoryProps = false)
     {
-        $slug = null;
-
         $db = JFactory::getDbo();
-        $query = "SELECT items.id, categories.id AS catid, CASE WHEN CHAR_LENGTH(categories.alias) THEN CONCAT_WS('-', categories.id, categories.alias) ELSE categories.id END AS catslug FROM #__k2_items AS items INNER JOIN #__k2_categories AS categories ON items.catid = categories.id WHERE items.id = ".(int)$ItemId;
-        $db->setQuery($query);
 
-        try {
-            if ($result = $db->loadObject()) {
-                $slug = $result->catslug;
+        $item = null;
+
+        if ($getCategoryProps) {
+            if (is_int($id_or_slug)) {
+                $query = "SELECT i.id AS id, i.alias AS alias, c.id AS catid, c.alias AS slug
+                    FROM #__k2_items AS i
+                    INNER JOIN #__k2_categories AS c
+                        ON i.catid = c.id
+                    WHERE i.id = {$id_or_slug} AND i.published = 1";
+            } else {
+                $escaped = (K2_JVERSION == '15') ? $db->getEscaped($id_or_slug, true) : $db->escape($id_or_slug, true);
+                $quoted = $db->Quote($escaped, false);
+                $query = "SELECT i.id AS id, i.alias AS alias, c.id AS catid, c.alias AS slug
+                    FROM #__k2_items AS i
+                    INNER JOIN #__k2_categories AS c
+                        ON i.catid = c.id
+                    WHERE i.alias = {$quoted} AND i.published = 1";
             }
-        } catch (Exception $e) {
-            $this->setError($e->getMessage());
-
-            return false;
+        } else {
+            if (is_int($id_or_slug)) {
+                $query = "SELECT id, alias FROM #__k2_items WHERE published = 1 AND id = {$id_or_slug}";
+            } else {
+                $escaped = (K2_JVERSION == '15') ? $db->getEscaped($id_or_slug, true) : $db->escape($id_or_slug, true);
+                $quoted = $db->Quote($escaped, false);
+                $query = "SELECT id, alias FROM #__k2_items WHERE published = 1 AND alias = {$quoted}";
+            }
+        }
+        $db->setQuery($query);
+        if ($result = $db->loadObject()) {
+            $item = $result;
         }
 
-        return $slug;
+        return $item;
     }
 
-    function getItemId($alias)
+    function getCategoryProps($id_or_slug = null)
     {
-        $id = null;
         $db = JFactory::getDbo();
-        $query = "SELECT id FROM #__k2_items WHERE alias = ".$db->quote($alias);
-        $db->setQuery($query);
-        try {
-            $id = $db->loadResult();
-        } catch (Exception $e) {
-            $this->setError($e->getMessage());
-            return false;
+
+        $category = null;
+
+        if (is_numeric($id_or_slug)) {
+            $query = "SELECT id, alias, parent FROM #__k2_categories WHERE published = 1 AND id = {$id_or_slug}";
+        } else {
+            $escaped = (K2_JVERSION == '15') ? $db->getEscaped($id_or_slug, true) : $db->escape($id_or_slug, true);
+            $quoted = $db->Quote($escaped, false);
+            $query = "SELECT id, alias, parent FROM #__k2_categories WHERE published = 1 AND alias = {$quoted}";
         }
-        return $id;
+
+        $db->setQuery($query);
+
+        if ($result = $db->loadObject()) {
+            $category = $result;
+        }
+        return $category;
     }
 
-    function getCatId($alias)
+    function getCategoryPath($id, $path = array())
     {
-        $id = null;
-        $db = JFactory::getDbo();
-        $query = "SELECT id FROM #__k2_categories WHERE alias = ".$db->quote($alias);
-        $db->setQuery($query);
-        try {
-            $id = $db->loadResult();
-        } catch (Exception $e) {
-            $this->setError($e->getMessage());
-            return false;
+        $parent = getCategoryProps($id)->parent;
+        if ($parent) {
+            $path[] = $parent;
+            return getCategoryPath($parent, $path);
+        } else {
+            return $path;
         }
-        return $id;
     }
 } else {
     function K2BuildRoute(&$query)
