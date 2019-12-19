@@ -37,10 +37,15 @@ if ($itemCustomLinkURL && $itemCustomLinkURL!='http://' && $itemCustomLinkURL!='
 } elseif ($itemCustomLinkMenuItem) {
     $menu = JMenu::getInstance('site');
     $menuLink = $menu->getItem($itemCustomLinkMenuItem);
-    if (!$itemCustomLinkTitle) {
-        $itemCustomLinkTitle = (K2_JVERSION != '15') ? $menuLink->title : $menuLink->name;
+    if (!empty($menuLink)) {
+        if (!$itemCustomLinkTitle) {
+            $itemCustomLinkTitle = (K2_JVERSION != '15') ? $menuLink->title : $menuLink->name;
+        }
+        $itemCustomLinkURL = JRoute::_('index.php?&Itemid='.$menuLink->id);
+    } else {
+        $itemCustomLinkTitle = '';
+        $itemCustomLinkURL = '';
     }
-    $itemCustomLinkURL = JRoute::_('index.php?&Itemid='.$menuLink->id);
 }
 
 // Make params backwards compatible
