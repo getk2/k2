@@ -182,7 +182,7 @@ if ($params->get('k2Sef')) {
                 }
             }
         }
-        // Itemlist view. Check for prefix segments
+        // Itemlist view (check for prefix segments)
         elseif (isset($segments[0]) && $segments[0] == 'itemlist') {
             if (isset($segments[1])) {
                 switch ($segments[1]) {
