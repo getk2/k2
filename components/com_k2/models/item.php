@@ -192,25 +192,21 @@ class K2ModelItem extends K2Model
         $item->image_caption = htmlspecialchars($item->image_caption, ENT_QUOTES);
 
         // Author
-        $metaAuthor = K2_JVERSION != '15' && $app->getCfg('MetaAuthor');
-        if ($metaAuthor || ($view == 'item' && ($item->params->get('itemAuthorBlock') || $item->params->get('itemAuthor'))) ||  ($view == 'itemlist' && ($task == '' || $task == 'category') && ($item->params->get('catItemAuthorBlock') || $item->params->get('catItemAuthor'))) || ($view == 'itemlist' && $task == 'user') || ($view == 'relatedByTag')) {
-            if (!empty($item->created_by_alias)) {
-                $item->author = new stdClass;
-                $item->author->name = $item->created_by_alias;
-                $item->author->avatar = K2HelperUtilities::getAvatar('alias');
-                $item->author->link = JURI::root();
-            } else {
-                $author = JFactory::getUser($item->created_by);
-                $item->author = $author;
-                $item->author->link = JRoute::_(K2HelperRoute::getUserRoute($item->created_by));
-                $item->author->profile = $this->getUserProfile($item->created_by);
-                $item->author->avatar = K2HelperUtilities::getAvatar($author->id, $author->email, $params->get('userImageWidth'));
-            }
-
-            if (!isset($item->author->profile) || is_null($item->author->profile)) {
-                $item->author->profile = new JObject;
-                $item->author->profile->gender = null;
-            }
+        if (!empty($item->created_by_alias)) {
+            $item->author = new stdClass;
+            $item->author->name = $item->created_by_alias;
+            $item->author->link = JURI::root();
+            $item->author->avatar = K2HelperUtilities::getAvatar('alias');
+        } else {
+            $author = JFactory::getUser($item->created_by);
+            $item->author = $author;
+            $item->author->link = JRoute::_(K2HelperRoute::getUserRoute($item->created_by));
+            $item->author->avatar = K2HelperUtilities::getAvatar($author->id, $author->email, $params->get('userImageWidth'));
+            $item->author->profile = $this->getUserProfile($item->created_by);
+        }
+        if (empty($item->author->profile)) {
+            $item->author->profile = new JObject;
+            $item->author->profile->gender = null;
         }
 
         // Num of comments
