@@ -430,7 +430,7 @@ class K2ModelItem extends K2Model
                     $attachmentToSave->itemID = $row->id;
                     $attachmentToSave->filename = $filename;
                     $attachmentToSave->title = (empty($attachment['title'])) ? $filename : $attachment['title'];
-                    $attachmentToSave->titleAttribute = (empty($attachment['title_attibute'])) ? $filename : $attachment['title_attibute'];
+                    $attachmentToSave->titleAttribute = (empty($attachment['title_attribute'])) ? $filename : $attachment['title_attribute'];
                     $attachmentToSave->store();
                 } else {
                     $handle = new Upload($attFiles['tmp_name'][$key]['upload']);
@@ -448,7 +448,7 @@ class K2ModelItem extends K2Model
                         $attachmentToSave->itemID = $row->id;
                         $attachmentToSave->filename = $dstName;
                         $attachmentToSave->title = (empty($attachment['title'])) ? $filename : $attachment['title'];
-                        $attachmentToSave->titleAttribute = (empty($attachment['title_attibute'])) ? $filename : $attachment['title_attibute'];
+                        $attachmentToSave->titleAttribute = (empty($attachment['title_attribute'])) ? $filename : $attachment['title_attribute'];
                         $attachmentToSave->store();
                     } else {
                         $app->enqueueMessage($handle->error, 'error');
