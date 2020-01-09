@@ -672,14 +672,14 @@ class K2ModelItem extends K2Model
                         $tagID = false;
                         $K2Tag = JTable::getInstance('K2Tag', 'Table');
                         $K2Tag->name = $tag;
-                        // Tag has been filtred and does not exist
+                        // Tag has been filtered and does not exist
                         if ($K2Tag->check()) {
                             $K2Tag->published = 1;
                             if ($K2Tag->store()) {
                                 $tagID = $K2Tag->id;
                             }
                         }
-                        // Tag has been filtred and exists so try to find it's id
+                        // Tag has been filtered and it exists so try to find its ID
                         elseif ($K2Tag->name) {
                             $query = "SELECT id FROM #__k2_tags WHERE name=".$db->Quote($K2Tag->name);
                             $db->setQuery($query);
