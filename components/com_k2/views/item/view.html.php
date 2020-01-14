@@ -759,10 +759,12 @@ class K2ViewItem extends K2View
         $document = JFactory::getDocument();
         $params = K2HelperUtilities::getParams('com_k2');
         $canonicalURL = $params->get('canonicalURL', 'relative');
-        if ($canonicalURL == 'absolute') {
-            $url = substr(str_replace(JUri::root(true), '', JUri::root(false)), 0, -1).$url;
+        if ($canonicalURL) {
+            if ($canonicalURL == 'absolute') {
+                $url = substr(str_replace(JUri::root(true), '', JUri::root(false)), 0, -1).$url;
+            }
+            $document->addHeadLink($url, 'canonical', 'rel');
         }
-        $document->addHeadLink($url, 'canonical', 'rel');
     }
 
     private function menuItemMatchesK2Entity($view, $task, $identifier)
