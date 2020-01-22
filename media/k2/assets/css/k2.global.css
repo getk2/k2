@@ -206,8 +206,7 @@ body .select2-container--default.select2-container--focus.select2-container--bel
 .isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"][value="1"]:checked + label,
 .isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"][value="all"]:checked + label {background:#3fa800;color:#fff;}
 
-.isJ25 .jwHeaderContainer {grid-column-start:span 2;
-background:#e5f7fd;color:#346b93;font-size:20px;margin:0;padding:24px 16px;border-radius:4px;font-weight:normal;float:left;width:100%;clear:both;box-sizing:border-box;}
+.isJ25 .jwHeaderContainer {grid-column-start:span 2;background:#e5f7fd;color:#346b93;font-size:20px;margin:0;padding:24px 16px;border-radius:4px;font-weight:normal;float:left;width:100%;clear:both;box-sizing:border-box;}
 
 /* For Joomla 2.5 - Component Settings */
 .isJ25 body.contentpane {width:90%;margin:0 auto;padding:10px 0 40px 0;}
