@@ -33,6 +33,9 @@ class K2ModelItemlist extends K2Model
             $params->set('googleSearch', 0);
         }
 
+        // For Falang
+        $falang_driver = JPluginHelper::getPlugin('system', 'falangdriver');
+
         $jnow = JFactory::getDate();
         $now = (K2_JVERSION == '15') ? $jnow->toMySQL() : $jnow->toSql();
         /*
@@ -125,8 +128,6 @@ class K2ModelItemlist extends K2Model
                 $query .= " AND i.created_by={$id} AND i.created_by_alias=''";
                 $categories = $params->get('userCategoriesFilter', null);
                 if (is_array($categories)) {
-                    //$categories = array_filter($categories);
-                    //JArrayHelper::toInteger($categories);
                     if (count($categories)) {
                         sort($categories);
                         $query .= " AND c.id IN(".implode(',', $categories).")";
@@ -173,7 +174,9 @@ class K2ModelItemlist extends K2Model
 
             case 'tag':
                 $tag = JRequest::getString('tag');
+
                 jimport('joomla.filesystem.file');
+
                 if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/joomfish.php') && $task == 'tag') {
                     $registry = JFactory::getConfig();
                     $lang = (K2_JVERSION == '30') ? $registry->get('jflang') : $registry->getValue('config.jflang');
@@ -337,6 +340,15 @@ class K2ModelItemlist extends K2Model
         $rows = $db->loadObjectList();
 
         if (count($rows)) {
+            // For Falang
+            if (!empty($falang_driver)) {
+                $db->setQuery($query, $limitstart, $limit);
+                $db->loadResult(false);
+                $db->setQuery('SELECT FOUND_ROWS();');
+                $this->getTotal = $db->loadResult(false);
+                return $rows;
+            }
+
             $db->setQuery('SELECT FOUND_ROWS();');
             $this->getTotal = $db->loadResult();
         }
@@ -392,48 +404,6 @@ class K2ModelItemlist extends K2Model
         $categories = array_unique($categories);
         $K2CategoryTreeInstances[$clientID][$key] = $categories;
         return $categories;
-    }
-
-    // Deprecated function, left for compatibility reasons
-    public function getCategoryChildren($catid, $clear = false)
-    {
-        static $array = array();
-        if ($clear) {
-            $array = array();
-        }
-        $user = JFactory::getUser();
-        $aid = (int)$user->get('aid');
-        $catid = (int)$catid;
-        $db = JFactory::getDbo();
-        $query = "SELECT * FROM #__k2_categories WHERE parent={$catid} AND published=1 AND trash=0 AND access<={$aid} ORDER BY ordering";
-        $db->setQuery($query);
-        $rows = $db->loadObjectList();
-
-        foreach ($rows as $row) {
-            array_push($array, $row->id);
-            if ($this->hasChildren($row->id)) {
-                $this->getCategoryChildren($row->id);
-            }
-        }
-        return $array;
-    }
-
-    // Deprecated function, left for compatibility reasons
-    public function hasChildren($id)
-    {
-        $user = JFactory::getUser();
-        $aid = (int)$user->get('aid');
-        $id = (int)$id;
-        $db = JFactory::getDbo();
-        $query = "SELECT * FROM #__k2_categories WHERE parent={$id} AND published=1 AND trash=0 AND access<={$aid} ";
-        $db->setQuery($query);
-        $rows = $db->loadObjectList();
-
-        if (count($rows)) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     public function getCategoryFirstChildren($catid, $ordering = null)
@@ -963,5 +933,47 @@ class K2ModelItemlist extends K2Model
             }
         }
         return null;
+    }
+
+    // Deprecated function, left for compatibility reasons
+    public function getCategoryChildren($catid, $clear = false)
+    {
+        static $array = array();
+        if ($clear) {
+            $array = array();
+        }
+        $user = JFactory::getUser();
+        $aid = (int)$user->get('aid');
+        $catid = (int)$catid;
+        $db = JFactory::getDbo();
+        $query = "SELECT * FROM #__k2_categories WHERE parent={$catid} AND published=1 AND trash=0 AND access<={$aid} ORDER BY ordering";
+        $db->setQuery($query);
+        $rows = $db->loadObjectList();
+
+        foreach ($rows as $row) {
+            array_push($array, $row->id);
+            if ($this->hasChildren($row->id)) {
+                $this->getCategoryChildren($row->id);
+            }
+        }
+        return $array;
+    }
+
+    // Deprecated function, left for compatibility reasons
+    public function hasChildren($id)
+    {
+        $user = JFactory::getUser();
+        $aid = (int)$user->get('aid');
+        $id = (int)$id;
+        $db = JFactory::getDbo();
+        $query = "SELECT * FROM #__k2_categories WHERE parent={$id} AND published=1 AND trash=0 AND access<={$aid} ";
+        $db->setQuery($query);
+        $rows = $db->loadObjectList();
+
+        if (count($rows)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
