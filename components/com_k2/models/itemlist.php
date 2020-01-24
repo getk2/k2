@@ -26,6 +26,7 @@ class K2ModelItemlist extends K2Model
         $task = JRequest::getCmd('task');
         $limitstart = JRequest::getInt('limitstart', 0);
         $limit = JRequest::getInt('limit', 10);
+        $config = JFactory::getConfig();
 
         $params = K2HelperUtilities::getParams('com_k2');
 
@@ -178,8 +179,7 @@ class K2ModelItemlist extends K2Model
                 jimport('joomla.filesystem.file');
 
                 if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/joomfish.php') && $task == 'tag') {
-                    $registry = JFactory::getConfig();
-                    $lang = (K2_JVERSION == '30') ? $registry->get('jflang') : $registry->getValue('config.jflang');
+                    $lang = (K2_JVERSION == '30') ? $config->get('jflang') : $config->getValue('config.jflang');
 
                     $sql = "SELECT reference_id
                         FROM #__jf_content AS jfc
@@ -193,8 +193,7 @@ class K2ModelItemlist extends K2Model
                 }
 
                 if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_falang/falang.php') && $task == 'tag') {
-                    $registry = JFactory::getConfig();
-                    $lang = (K2_JVERSION == '30') ? $registry->get('jflang') : $registry->getValue('config.jflang');
+                    $lang = (K2_JVERSION == '30') ? $config->get('jflang') : $config->getValue('config.jflang');
 
                     $sql = "SELECT reference_id
                         FROM #__falang_content AS fc
@@ -225,7 +224,6 @@ class K2ModelItemlist extends K2Model
 
                 $categories = $params->get('categoriesFilter', null);
                 if (is_array($categories)) {
-                    JArrayHelper::toInteger($categories);
                     sort($categories);
                     $query .= " AND c.id IN(".implode(',', $categories).")";
                 }
