@@ -1264,7 +1264,7 @@ class K2ModelItem extends K2Model
                         }
                         $value = '';
                         foreach ($labels as $label) {
-                            $label = JString::trim($label);
+                            $label = trim($label);
                             if ($label != '') {
                                 $label = str_replace('-', ' ', $label);
                                 $value .= '<a href="'.JRoute::_('index.php?option=com_k2&view=itemlist&task=search&searchword=' . urlencode($label)) . '">'.$label.'</a>';
@@ -1327,8 +1327,8 @@ class K2ModelItem extends K2Model
                                 }
                                 break;
                         }
-                        $object->value[0] = JString::trim($object->value[0]);
-                        $object->value[1] = JString::trim($object->value[1]);
+                        $object->value[0] = trim($object->value[0]);
+                        $object->value[1] = trim($object->value[1]);
 
                         if ($object->value[1] && $object->value[1] != 'http://' && $object->value[1] != 'https://') {
                             if ($object->value[0] == '') {
@@ -1338,6 +1338,7 @@ class K2ModelItem extends K2Model
                             $rows[$i]->text = $object->value[0];
                             $rows[$i]->attributes = $attributes;
                             $value = '<a href="'.$object->value[1].'" '.$attributes.'>'.$object->value[0].'</a>';
+                            $rawValue = $object->value[1];
                         } else {
                             $value = false;
                         }
@@ -1366,8 +1367,8 @@ class K2ModelItem extends K2Model
                 }
             }
 
-            if (JString::trim($value) != '') {
-                if (JString::trim($rawValue) != '') {
+            if (trim($value) != '') {
+                if (trim($rawValue) != '') {
                     $rows[$i]->rawValue = $rawValue;
                 }
                 $rows[$i]->value = $value;
