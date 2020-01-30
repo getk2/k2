@@ -1459,9 +1459,17 @@ class K2ViewItemlist extends K2View
     private function setCanonicalUrl($url)
     {
         $document = JFactory::getDocument();
+        $limitstart = JRequest::getInt('limitstart', 0);
         $params = K2HelperUtilities::getParams('com_k2');
         $canonicalURL = $params->get('canonicalURL', 'relative');
         if ($canonicalURL) {
+            if ($limitstart) {
+                $joiner = '?';
+                if (strpos($url, '?') !== false) {
+                    $joiner = '&';
+                }
+                $url = $url.''.$joiner.'start='.$limitstart;
+            }
             if ($canonicalURL == 'absolute') {
                 $url = substr(str_replace(JUri::root(true), '', JUri::root(false)), 0, -1).$url;
             }
