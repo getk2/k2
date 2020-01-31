@@ -355,6 +355,11 @@ class K2ViewItem extends K2View
             $item->ratingSum = 0;
             $item->ratingCount = 0;
         }
+		$document->addScriptDeclaration('
+            jQuery(function () {
+            	jQuery(".itemAttachmentsTable tbody").sortable({handle: ".sortable-handler"}).disableSelection();
+            });
+');
 
         // Tags
         if ($user->gid < 24 && $params->get('lockTags')) {
