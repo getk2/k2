@@ -761,7 +761,7 @@ class K2ViewItem extends K2View
         $canonicalURL = $params->get('canonicalURL', 'relative');
         if ($canonicalURL) {
             if ($canonicalURL == 'absolute') {
-                $url = substr(str_replace(JUri::root(true), '', JUri::root(false)), 0, -1).$url;
+                $url = substr(str_replace(JUri::root(true), '', JUri::root(false)), 0, -1).JRoute::_($url);
             }
             $document->addHeadLink($url, 'canonical', 'rel');
         }

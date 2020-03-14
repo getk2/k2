@@ -1471,7 +1471,7 @@ class K2ViewItemlist extends K2View
                 $url = $url.''.$joiner.'start='.$limitstart;
             }
             if ($canonicalURL == 'absolute') {
-                $url = substr(str_replace(JUri::root(true), '', JUri::root(false)), 0, -1).$url;
+                $url = substr(str_replace(JUri::root(true), '', JUri::root(false)), 0, -1).JRoute::_($url);
             }
             $document->addHeadLink($url, 'canonical', 'rel');
         }
