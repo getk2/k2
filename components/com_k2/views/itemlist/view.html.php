@@ -776,6 +776,7 @@ class K2ViewItemlist extends K2View
 
                     // Set canonical link
                     $this->setCanonicalUrl($category->link);
+                    $link = $category->link;
 
                     // Set <title>
                     if ($menuItemMatch) {
@@ -1127,6 +1128,7 @@ class K2ViewItemlist extends K2View
                 case 'date':
                     // Set canonical link
                     $this->setCanonicalUrl($currentRelativeUrl);
+                    $link = $currentRelativeUrl;
 
                     // Set <title>
                     $params->set('page_title', $title);
@@ -1178,6 +1180,7 @@ class K2ViewItemlist extends K2View
                 case 'search':
                     // Set canonical link
                     $this->setCanonicalUrl($currentRelativeUrl);
+                    $link = $currentRelativeUrl;
 
                     // Set <title>
                     $params->set('page_title', $title);
@@ -1229,6 +1232,7 @@ class K2ViewItemlist extends K2View
                 default:
                     // Set canonical link
                     $this->setCanonicalUrl($currentRelativeUrl);
+                    $link = $currentRelativeUrl;
 
                     // Set <title>
                     if (K2_JVERSION != '15') {
@@ -1301,22 +1305,19 @@ class K2ViewItemlist extends K2View
                     break;
             }
 
-            // Feed URLs
-            if ($task != 'tag') {
-                $link = JURI::getInstance()->toString();
-            }
-
+            // Feed URLs (use the $link variable set previously)
+            $feedLink = $link;
             $joiner = '?';
-            if (strpos($link, '?') !== false) {
+            if (strpos($feedLink, '?') !== false) {
                 $joiner = '&';
             }
-            $link .= $joiner.'format=feed';
+            $feedLink .= $joiner.'format=feed';
 
             /*
             if (!is_null($menuActive) && isset($menuActive->id)) {
-                $link .= $joiner.'format=feed&Itemid='.$menuActive->id;
+                $feedLink .= $joiner.'format=feed&Itemid='.$menuActive->id;
             } else {
-                $link .= $joiner.'format=feed';
+                $feedLink .= $joiner.'format=feed';
             }
             */
 
@@ -1324,22 +1325,22 @@ class K2ViewItemlist extends K2View
                 if ($metaTitle) {
                     $metaTitle = $metaTitle.' | ';
                 }
-                $document->addHeadLink(JRoute::_($link), 'alternate', 'rel', array(
+                $document->addHeadLink(JRoute::_($feedLink), 'alternate', 'rel', array(
                     'type' => 'application/rss+xml',
                     'title' => $metaTitle.''.JText::_('K2_FEED')
                 ));
-                $document->addHeadLink(JRoute::_($link.'&type=rss'), 'alternate', 'rel', array(
+                $document->addHeadLink(JRoute::_($feedLink.'&type=rss'), 'alternate', 'rel', array(
                     'type' => 'application/rss+xml',
                     'title' => $metaTitle.'RSS 2.0'
                 ));
-                $document->addHeadLink(JRoute::_($link.'&type=atom'), 'alternate', 'rel', array(
+                $document->addHeadLink(JRoute::_($feedLink.'&type=atom'), 'alternate', 'rel', array(
                     'type' => 'application/atom+xml',
                     'title' => $metaTitle.'Atom 1.0'
                 ));
             }
 
-            $feed = JRoute::_($link);
-            $this->assignRef('feed', $feed);
+            $feedLink = JRoute::_($feedLink);
+            $this->assignRef('feed', $feedLink);
         }
 
         if (!in_array($document->getType(), ['feed', 'json'])) {
