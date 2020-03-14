@@ -319,7 +319,7 @@ class K2ViewLatest extends K2View
         $params = K2HelperUtilities::getParams('com_k2');
         $canonicalURL = $params->get('canonicalURL', 'relative');
         if ($canonicalURL == 'absolute') {
-            $url = substr(str_replace(JUri::root(true), '', JUri::root(false)), 0, -1).JRoute::_($url);
+            $url = substr(str_replace(JUri::root(true), '', JUri::root(false)), 0, -1).$url;
         }
         $document->addHeadLink($url, 'canonical', 'rel');
     }

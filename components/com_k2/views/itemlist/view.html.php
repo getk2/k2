@@ -305,6 +305,7 @@ class K2ViewItemlist extends K2View
 
                     // Link
                     $link = K2HelperRoute::getTagRoute($tag->name);
+                    $link = JRoute::_($link);
                     $this->assignRef('link', $link);
 
                     // Set head feed link
@@ -365,6 +366,7 @@ class K2ViewItemlist extends K2View
 
                     // Link
                     $link = K2HelperRoute::getUserRoute($id);
+                    $link = JRoute::_($link);
                     $this->assignRef('link', $link);
 
                     // Set head feed link
@@ -1124,7 +1126,7 @@ class K2ViewItemlist extends K2View
                     break;
                 case 'date':
                     // Set canonical link
-                    $this->setCanonicalUrl($currentAbsoluteUrl);
+                    $this->setCanonicalUrl($currentRelativeUrl);
 
                     // Set <title>
                     $params->set('page_title', $title);
@@ -1175,7 +1177,7 @@ class K2ViewItemlist extends K2View
                     break;
                 case 'search':
                     // Set canonical link
-                    $this->setCanonicalUrl($currentAbsoluteUrl);
+                    $this->setCanonicalUrl($currentRelativeUrl);
 
                     // Set <title>
                     $params->set('page_title', $title);
@@ -1226,7 +1228,7 @@ class K2ViewItemlist extends K2View
                     break;
                 default:
                     // Set canonical link
-                    $this->setCanonicalUrl($currentAbsoluteUrl);
+                    $this->setCanonicalUrl($currentRelativeUrl);
 
                     // Set <title>
                     if (K2_JVERSION != '15') {
@@ -1471,7 +1473,7 @@ class K2ViewItemlist extends K2View
                 $url = $url.''.$joiner.'start='.$limitstart;
             }
             if ($canonicalURL == 'absolute') {
-                $url = substr(str_replace(JUri::root(true), '', JUri::root(false)), 0, -1).JRoute::_($url);
+                $url = substr(str_replace(JUri::root(true), '', JUri::root(false)), 0, -1).$url;
             }
             $document->addHeadLink($url, 'canonical', 'rel');
         }
