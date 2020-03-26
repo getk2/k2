@@ -354,6 +354,8 @@ p.k2TagsNotice {display:block;font-size:11px;font-weight:bold;font-weight:600;ma
 .ui-menu .ui-menu-item a.ui-state-active {margin:-1px;background-color:#444;color:#fff;}
 
 /* Item - Selection based tagging */
+#newTagButton {height:30px;padding:4 12px;}
+
 #tagsLog {display:inline-block;margin-left:10px;font-weight:600;color:#999;}
 #tagsLog.tagsLoading {background:url(../images/backend/loader.gif) no-repeat 50% 50%;width:16px;height:16px;}
 
@@ -363,7 +365,7 @@ table#tagLists tr td span {display:block;font-weight:600;padding-bottom:4px;}
 table#tagLists tr td#tagListsLeft {width:40%;}
 table#tagLists tr td#tagListsLeft select {width:99%;height:106px;}
 table#tagLists tr td#tagListsButtons {vertical-align:middle;width:20%;}
-table#tagLists tr td#tagListsButtons input {width:99%;height:32px;}
+table#tagLists tr td#tagListsButtons input {width:99%;height:30px;}
 table#tagLists tr td#tagListsRight {width:40%;}
 table#tagLists tr td#tagListsRight select {width:99%;height:106px;}
 
