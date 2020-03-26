@@ -363,7 +363,7 @@ table#tagLists tr td span {display:block;font-weight:600;padding-bottom:4px;}
 table#tagLists tr td#tagListsLeft {width:40%;}
 table#tagLists tr td#tagListsLeft select {width:99%;height:106px;}
 table#tagLists tr td#tagListsButtons {vertical-align:middle;width:20%;}
-table#tagLists tr td#tagListsButtons input {width:99%;}
+table#tagLists tr td#tagListsButtons input {width:99%;height:32px;}
 table#tagLists tr td#tagListsRight {width:40%;}
 table#tagLists tr td#tagListsRight select {width:99%;height:106px;}
 
