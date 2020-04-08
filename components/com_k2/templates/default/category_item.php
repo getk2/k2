@@ -120,13 +120,20 @@ K2HelperUtilities::setDefaultImage($this->item, 'itemlist', $this->params);
         </div>
         <?php endif; ?>
 
-        <?php if($this->item->params->get('catItemIntroText')): ?>
-        <!-- Item introtext -->
-        <div class="catItemIntroText">
-            <?php echo $this->item->introtext; ?>
-        </div>
-        <?php endif; ?>
 
+        <?php if($this->item->params->get('catItemFullText')): ?>
+            <!-- Item fulltext -->
+            <div class="catItemFullText">
+                <?php echo $this->item->fulltext; ?>
+            </div>
+        <?php else: ?>
+            <?php if($this->item->params->get('catItemIntroText')): ?>
+            <!-- Item introtext -->
+            <div class="catItemIntroText">
+                <?php echo $this->item->introtext; ?>
+            </div>
+            <?php endif; ?>
+        <?php endif; ?>
         <div class="clr"></div>
 
         <?php if($this->item->params->get('catItemExtraFields') && isset($this->item->extra_fields) && count($this->item->extra_fields)): ?>

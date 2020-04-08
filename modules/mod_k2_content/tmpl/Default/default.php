@@ -81,6 +81,14 @@ defined('_JEXEC') or die;
             </div>
             <?php endif; ?>
 
+            <?php if($params->get('itemFullText')): ?>
+                <div class="moduleItemFulltext">
+                <?php if($params->get('itemFullText')): ?>
+                    <?php echo $item->fulltext; ?>
+                <?php endif; ?>
+                </div>
+            <?php endif; ?>
+
             <?php if($params->get('itemExtraFields') && isset($item->extra_fields) && count($item->extra_fields)): ?>
             <div class="moduleItemExtraFields">
                 <b><?php echo JText::_('K2_ADDITIONAL_INFO'); ?></b>

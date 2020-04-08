@@ -98,6 +98,10 @@
             <option value="1">K2_SHOW</option>
         </param>
         <param name="itemIntroTextWordLimit" type="text" size="4" default="" label="K2_INTROTEXT_WORD_LIMIT" description="K2_LEAVE_BLANK_TO_DISABLE_IF_YOU_ENABLE_THIS_OPTION_ALL_HTML_TAGS_FROM_THE_TEXT_WILL_BE_CLEANED_UP_TO_MAKE_SURE_THE_HTML_STRUCTURE_OF_THE_SITE_DOES_NOT_BRAKE"/>
+        <param name="itemFullText" type="radio" default="0" label="K2_FULLTEXT" description="">
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
         <param name="itemImage" type="radio" default="1" label="K2_IMAGE" description="">
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>

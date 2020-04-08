@@ -303,8 +303,12 @@ class modK2ContentHelper
                 }
 
                 // Introtext
+
                 $item->text = '';
-                if ($params->get('itemIntroText')) {
+                if ($params->get('itemFullText')) {
+                        $item->text .= $item->fulltext;
+                }
+                else if ($params->get('itemIntroText')) {
                     // Word limit
                     if ($params->get('itemIntroTextWordLimit')) {
                         $item->text .= K2HelperUtilities::wordLimit($item->introtext, $params->get('itemIntroTextWordLimit'));
@@ -518,6 +522,7 @@ class modK2ContentHelper
                         }
                     }
                 }
+
 
                 // Restore the intotext variable after plugins are executed
                 $item->introtext = $item->text;

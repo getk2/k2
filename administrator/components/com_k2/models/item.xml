@@ -42,6 +42,11 @@
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </param>
+        <param name="catItemFullText" type="radio" default="" label="K2_FULLTEXT" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
         <param name="catItemExtraFields" type="radio" default="" label="K2_EXTRA_FIELDS" description="">
             <option value="">K2_INHERIT_FROM_CATEGORY</option>
             <option value="0">K2_HIDE</option>
@@ -442,6 +447,11 @@
                 <option value="1">K2_SHOW</option>
             </field>
             <field name="catItemIntroText" type="radio" default="" label="K2_INTROTEXT" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="catItemFullText" type="radio" default="" label="K2_FULLTEXT" description="">
                 <option value="">K2_INHERIT_FROM_CATEGORY</option>
                 <option value="0">K2_HIDE</option>
                 <option value="1">K2_SHOW</option>

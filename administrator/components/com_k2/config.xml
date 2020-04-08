@@ -117,6 +117,10 @@
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </param>
+        <param menu="hide" name="userItemFullText" type="radio" default="0" label="K2_ITEM_FULLTEXT" description="">
+	    <option value="0">K2_HIDE</option>
+	    <option value="1">K2_SHOW</option>
+	</param>
         <param menu="hide" name="userItemCategory" type="radio" default="1" label="K2_ITEM_CATEGORY" description="">
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
@@ -164,6 +168,10 @@
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </param>
+	<param menu="hide" name="genericItemFullText" type="radio" default="0" label="K2_ITEM_FULLTEXT" description="">
+	    <option value="0">K2_HIDE</option>
+	    <option value="1">K2_SHOW</option>
+	</param>
         <param menu="hide" name="genericItemCategory" type="radio" default="1" label="K2_ITEM_CATEGORY" description="">
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
@@ -706,6 +714,10 @@
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </field>
+        <field menu="hide" name="userItemFullText" type="radio" default="0" label="K2_ITEM_FULLTEXT" description="">
+	    <option value="0">K2_HIDE</option>
+	    <option value="1">K2_SHOW</option>
+	</field>
         <field menu="hide" name="userItemCategory" type="radio" default="1" label="K2_ITEM_CATEGORY" description="">
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
@@ -750,6 +762,10 @@
             <option value="1">K2_SHOW</option>
         </field>
         <field menu="hide" name="genericItemIntroText" type="radio" default="1" label="K2_ITEM_INTROTEXT" description="">
+	    <option value="0">K2_HIDE</option>
+	    <option value="1">K2_SHOW</option>
+	</field>
+	<field menu="hide" name="genericItemFullText" type="radio" default="0" label="K2_ITEM_FULLTEXT" description="">
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </field>

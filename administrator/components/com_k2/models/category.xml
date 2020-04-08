@@ -179,6 +179,10 @@
             <option value="1">K2_SHOW</option>
         </param>
         <param name="catItemIntroTextWordLimit" type="text" default="" size="4" label="K2_INTROTEXT_WORD_LIMIT" description="K2_IF_THIS_OPTION_IS_ENABLED_ALL_HTML_TAGS_IN_THE_INTROTEXT_WILL_BE_CLEANED_UP_TO_MAKE_SURE_THE_SITE_MARKUP_WILL_NOT_BREAK"/>
+        <param name="catItemFullText" type="radio" default="0" label="K2_FULLTEXT" description="">
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
         <param name="catItemExtraFields" type="radio" default="0" label="K2_EXTRA_FIELDS" description="">
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
@@ -666,6 +670,10 @@
                 <option value="1">K2_SHOW</option>
             </field>
             <field name="catItemIntroTextWordLimit" type="text" default="" size="4" label="K2_INTROTEXT_WORD_LIMIT" description="K2_IF_THIS_OPTION_IS_ENABLED_ALL_HTML_TAGS_IN_THE_INTROTEXT_WILL_BE_CLEANED_UP_TO_MAKE_SURE_THE_SITE_MARKUP_WILL_NOT_BREAK"/>
+            <field name="catItemFullText" type="radio" default="0" label="K2_FULLTEXT" description="">
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
             <field name="catItemExtraFields" type="radio" default="0" label="K2_EXTRA_FIELDS" description="">
                 <option value="0">K2_HIDE</option>
                 <option value="1">K2_SHOW</option>
