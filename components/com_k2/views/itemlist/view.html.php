@@ -282,8 +282,22 @@ class K2ViewItemlist extends K2View
                     $db->setQuery('SELECT id, name FROM #__k2_tags WHERE name = '.$db->quote($tag));
                     $tag = $db->loadObject();
                     if (!$tag || !$tag->id) {
-                        JError::raiseError(404, JText::_('K2_NOT_FOUND'));
-                        return false;
+                        jimport('joomla.filesystem.file');
+
+                        if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/joomfish.php')) {
+                            $db->setQuery('SELECT id, value FROM #__jf_content WHERE value = '.$db->quote($tag));
+                            $tag = $db->loadObject();
+                        }
+
+                        if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_falang/falang.php')) {
+                            $db->setQuery('SELECT id, value FROM #__falang_content WHERE value = '.$db->quote($tag));
+                            $tag = $db->loadObject();
+                        }
+
+                        if (!$tag || !$tag->id) {
+                            JError::raiseError(404, JText::_('K2_NOT_FOUND'));
+                            return false;
+                        }
                     }
 
                     // Set layout
