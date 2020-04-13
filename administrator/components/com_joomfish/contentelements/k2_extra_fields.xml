@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <joomfish type="contentelement">
-	<name>K2 Extra Fields</name>
-	<author>JoomlaWorks</author>
-	<version>2.10.3</version>
-	<description>Definitions for K2 Extra Fields</description>
-	<reference>
-		<table name="k2_extra_fields">
-			<field type="referenceid" name="id" translate="0">ID</field>
-			<field type="titletext" name="name" translate="1">Title</field>
-			<field type="text" name="type" translate="0">Type</field>
-			<field type="text" name="group" translate="0">Group</field>
-		</table>
-	</reference>
+    <name>K2 Extra Fields</name>
+    <author>JoomlaWorks</author>
+    <version>2.10.3</version>
+    <description>Definitions for K2 Extra Fields</description>
+    <reference>
+        <table name="k2_extra_fields">
+            <field type="referenceid" name="id" translate="0">ID</field>
+            <field type="titletext" name="name" translate="1">Title</field>
+            <field type="text" name="type" translate="0">Type</field>
+            <field type="text" name="group" translate="0">Group</field>
+        </table>
+    </reference>
 </joomfish>

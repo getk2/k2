@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <joomfish type="contentelement">
-  <name>K2 Tags</name>
-  <author>JoomlaWorks</author>
-  <version>2.10.3</version>
-  <description>Definitions for K2 Tags</description>
-  <reference>
-  	<table name="k2_tags">
-  		<field type="referenceid" name="id" translate="0">ID</field>
-			<field type="titletext" name="name" length="50" maxlength="255" translate="1">Name</field>
-  	</table>
-  </reference>
+    <name>K2 Tags</name>
+    <author>JoomlaWorks</author>
+    <version>2.10.3</version>
+    <description>Definitions for K2 Tags</description>
+    <reference>
+        <table name="k2_tags">
+            <field type="referenceid" name="id" translate="0">ID</field>
+            <field type="titletext" name="name" length="50" maxlength="255" translate="1">Name</field>
+        </table>
+    </reference>
 </joomfish>

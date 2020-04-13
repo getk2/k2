@@ -7,8 +7,8 @@
  * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
-// Don't allow direct linking
-defined('JPATH_BASE') or die('Direct Access to this location is not allowed.');
+// no direct access
+defined('_JEXEC') or die;
 
 class translationK2_categoryFilter extends translationFilter
 {

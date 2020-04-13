@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <joomfish type="contentelement">
-  <name>K2 Users</name>
-  <author>JoomlaWorks</author>
-  <version>2.10.3</version>
-  <description>Definitions for K2 Users</description>
-  <reference>
-  	<table name="k2_users">
-  		<field type="referenceid" name="id" translate="0">ID</field>
-			<field type="titletext" name="userID" translate="0">Joomla user ID</field>
-			<field type="htmltext" name="description" translate="1" ebuttons="image,pagebreak,readmore">Description</field>
-  	</table>
-  </reference>
+    <name>K2 Users</name>
+    <author>JoomlaWorks</author>
+    <version>2.10.3</version>
+    <description>Definitions for K2 Users</description>
+    <reference>
+        <table name="k2_users">
+            <field type="referenceid" name="id" translate="0">ID</field>
+            <field type="titletext" name="userID" translate="0">Joomla user ID</field>
+            <field type="htmltext" name="description" translate="1" ebuttons="image,pagebreak,readmore">Description</field>
+        </table>
+    </reference>
 </joomfish>
