@@ -1119,16 +1119,16 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                         }
                     });
                 });
-                var label = $K2('<label/>').html(K2Language[13]).appendTo(target);
-                var input = $K2('<input/>', {
-                    name: 'K2ResetCSV',
-                    type: 'checkbox'
-                }).appendTo(target);
-                var br = $K2('<br/>', {
-                    'class': 'clr'
-                }).appendTo(target);
+
+                var html = '\
+                    <hr />\
+                    <div class="k2ui-ef-row">\
+                        <input style="vertical-align:baseline;" name="K2ResetCSV" type="checkbox" value="" /><label style="display:inline;margin:0;">' + K2Language[13] + '</label> <span class="k2ui-ef-notice">(' + K2Language[1] + ')</span>\
+                    </div>\
+                ';
+                $K2(html).appendTo(target);
             }
-            var notice = $K2('<span class="k2ui-ef-notice"/>').html('(' + K2Language[1] + ')').appendTo(target);
+
             break;
 
         case 'date':
