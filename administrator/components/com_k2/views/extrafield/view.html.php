@@ -65,7 +65,7 @@ class K2ViewExtraField extends K2View
         if (!$extraField->id) {
             $extraField->published = 1;
             $extraField->alias = '';
-            $extraField->required = 1;
+            $extraField->required = 0;
             $extraField->showNull = 0;
             $extraField->displayInFrontEnd = 1;
         } else {
