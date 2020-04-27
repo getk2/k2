@@ -919,7 +919,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
     switch (fieldType) {
 
         case 'textfield':
-            var text;
+            var text = '';
             if (!isNewField && currentType == fieldType) {
                 text = (fieldValues[0].value ? fieldValues[0].value : '');
             }
@@ -932,7 +932,11 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             break;
 
         case 'textarea':
-            var textarea, rows, cols, editorValue, editorChecked;
+            var textarea = '',
+                rows = '',
+                cols = '',
+                editorValue = '',
+                editorChecked = '';
             if (!isNewField && currentType == fieldType) {
                 textarea = fieldValues[0].value;
                 rows = (fieldValues[0].rows ? fieldValues[0].rows : '');
@@ -962,7 +966,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             break;
 
         case 'labels':
-            var label;
+            var label = '';
             if (!isNewField && currentType == fieldType) {
                 label = (fieldValues[0].value ? fieldValues[0].value : '');
             }
@@ -980,7 +984,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
         case 'select':
         case 'multipleSelect':
         case 'radio':
-            var label;
+            var label = '';
             if (!isNewField && currentType == fieldType) {
                 label = (fieldValues[0].value ? fieldValues[0].value : '');
             }
@@ -1054,7 +1058,9 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             break;
 
         case 'link':
-            var linkText, linkUrl, linkTarget;
+            var linkText = '',
+                linkUrl = '',
+                linkTarget = '';
             if (!isNewField && currentType == fieldType) {
                 linkText = (fieldValues[0].name ? fieldValues[0].name : '');
                 linkUrl = (fieldValues[0].value ? fieldValues[0].value : '');
@@ -1122,7 +1128,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             break;
 
         case 'date':
-            var label,
+            var label = '',
                 time = $K2.now();
             if (!isNewField && currentType == fieldType) {
                 label = (fieldValues[0].value ? fieldValues[0].value : '');
@@ -1143,7 +1149,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
 
         case 'image':
             var id = 'K2ExtraFieldImage_' + new Date().getTime(),
-                image;
+                image = '';
             if (!isNewField && currentType == fieldType) {
                 image = (fieldValues[0].value ? fieldValues[0].value : '');
             }
@@ -1156,7 +1162,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             break;
 
         case 'header':
-            var header;
+            var header = '';
             if (!isNewField && currentType == fieldType) {
                 header = (fieldValues[0].value ? fieldValues[0].value : '');
             }

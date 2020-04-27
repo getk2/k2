@@ -24,6 +24,8 @@ class K2ViewItem extends K2View
         $view = JRequest::getWord('view');
         $task = JRequest::getWord('task');
 
+        $config = JFactory::getConfig();
+
         $db = JFactory::getDbo();
         $jnow = JFactory::getDate();
         $now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
@@ -435,12 +437,11 @@ class K2ViewItem extends K2View
 
             // Site
             $response->site = new stdClass();
+
             $uri = JURI::getInstance();
+
             $response->site->url = $uri->toString(array('scheme', 'host', 'port'));
-
-            $config = JFactory::getConfig();
-            $response->site->name = K2_JVERSION == '30' ? $config->get('sitename') : $config->getValue('config.sitename');
-
+            $response->site->name = (K2_JVERSION == '30') ? $config->get('sitename') : $config->getValue('config.sitename');
             $response->item = $row;
 
             $json = json_encode($response);
@@ -455,6 +456,11 @@ class K2ViewItem extends K2View
             }
         }
         // --- JSON Output [finish] ---
+
+        // Last-Modified HTTP header
+        $itemCreatedOrModifiedDate = ((int) $item->modified) ? $item->modified : $item->created;
+        $itemCreatedOrModifiedDate = strftime("%a, %d %b %Y %H:%M:%S GMT", strtotime($itemCreatedOrModifiedDate));
+        JResponse::setHeader('Last-Modified', $itemCreatedOrModifiedDate);
 
         // Head Stuff
         if (!in_array($document->getType(), ['json', 'raw'])) {
@@ -631,7 +637,7 @@ class K2ViewItem extends K2View
                 $allowedTags = '<script>';
 
                 // Prepare content snippets
-                $itemSD_SiteName = (version_compare(JVERSION, '2.5', 'ge')) ? JFactory::getConfig()->get('sitename') : JFactory::getConfig()->getValue('config.sitename');
+                $itemSD_SiteName = (version_compare(JVERSION, '2.5', 'ge')) ? $config->get('sitename') : $config->getValue('config.sitename');
                 $itemSD_SiteName = ($params->get('k2SeoGsdOrgName')) ? $params->get('k2SeoGsdOrgName') : $itemSD_SiteName;
                 $itemSD_SiteLogo = JURI::root().trim($params->get('k2SeoGsdOrgLogo'));
 
