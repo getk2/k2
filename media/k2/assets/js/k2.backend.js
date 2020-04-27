@@ -1101,17 +1101,21 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                 type: 'hidden'
             }).appendTo(target);
             if (!isNewField && currentType == fieldType) {
-                inputValue.val($K2.parseJSON(fieldValues[0].value));
+                var csvAsJson = fieldValues[0].value;
+
+                inputValue.val(JSON.stringify(csvAsJson));
+
                 var table = $K2('<table/>', {
                     'class': 'csvTable'
                 }).appendTo(target);
-                $K2(fieldValues[0].value).each(function(row, index) {
+
+                $K2(csvAsJson).each(function(index, row) {
                     var tr = $K2('<tr/>').appendTo(table);
-                    row.each(function(cell) {
+                    row.each(function(c, cell) {
                         if (index > 0) {
-                            var td = $K2('<td/>').html(cell).appendTo(tr);
+                            var td = $K2('<td/>').html(c).appendTo(tr);
                         } else {
-                            var th = $K2('<th/>').html(cell).appendTo(tr);
+                            var th = $K2('<th/>').html(c).appendTo(tr);
                         }
                     });
                 });
