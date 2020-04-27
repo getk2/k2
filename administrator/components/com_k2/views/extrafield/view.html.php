@@ -105,6 +105,8 @@ class K2ViewExtraField extends K2View
 
         $extraFieldModel = K2Model::getInstance('ExtraFields', 'K2Model');
         $uniqueGroups = $extraFieldModel->getGroups(true);
+
+        $groups[] = JHTML::_('select.option', '', '- '.JText::_('K2_PLEASE_SELECT_A_GROUP_OR_CREATE_A_NEW_ONE').' -');
         foreach ($uniqueGroups as $group) {
             $groups[] = JHTML::_('select.option', $group->id, $group->name);
         }
