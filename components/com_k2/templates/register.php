@@ -111,7 +111,7 @@ defined('_JEXEC') or die;
                     <label id="imagemsg" for="image"><?php echo JText::_( 'K2_USER_IMAGE_AVATAR' ); ?></label>
                 </td>
                 <td>
-                    <input type="file" id="image" name="image" />
+                    <input type="file" id="image" name="image" accept="image/*" />
                     <?php if ($this->K2User->image): ?>
                     <img class="k2AdminImage" src="<?php echo JURI::root().'media/k2/users/'.$this->K2User->image; ?>" alt="<?php echo $this->user->name; ?>" />
                     <input type="checkbox" name="del_image" id="del_image" />

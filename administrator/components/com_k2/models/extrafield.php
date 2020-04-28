@@ -312,7 +312,7 @@ class K2ModelExtraField extends K2Model
                 if ($active) {
                     $attributes = '';
                 }
-                $output = '<input type="file" id="K2ExtraField_'.$extraField->id.'" name="K2ExtraField_'.$extraField->id.'[]" '.$attributes.' />';
+                $output = '<input type="file" id="K2ExtraField_'.$extraField->id.'" name="K2ExtraField_'.$extraField->id.'[]" accept=".csv" '.$attributes.' />';
                 if (is_array($active) && count($active)) {
                     $output .= '<input type="hidden" name="K2CSV_'.$extraField->id.'" value="'.htmlspecialchars(json_encode($active)).'" />';
                     $output .= '<table class="csvTable">';

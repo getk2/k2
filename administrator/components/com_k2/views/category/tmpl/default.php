@@ -119,7 +119,7 @@ defined('_JEXEC') or die;
                             <label><?php echo JText::_('K2_CATEGORY_IMAGE'); ?></label>
                         </div>
                         <div class="itemAdditionalData">
-                            <input type="file" name="image" class="fileUpload k2Selector" />
+                            <input type="file" name="image" class="fileUpload k2Selector" accept="image/*" />
                             <i>(<?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?>)</i>
                             <span class="sep"><?php echo JText::_('K2_OR'); ?></span>
                             <input type="text" name="existingImage" id="existingImageValue" class="text_area" readonly />
