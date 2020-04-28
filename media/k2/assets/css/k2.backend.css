@@ -268,7 +268,11 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
     .k2ui-ef-row input[type="checkbox"] {box-shadow:none;margin:0 5px 0 0;padding:0;vertical-align:baseline;}
     .k2ui-ef-row label {display:inline;margin:0;}
     .k2app-ef-image-button {margin-right:10px;}
-.k2ui-ef-csv {}
+.k2ui-ef-csv {display:block;width:420px;height:600px;margin:10px 0;overflow:auto;resize:both;}
+    .k2ui-ef-csv tr th {border:1px solid #d4d7d9;padding:5px;background:#fff;font-weight:bold;text-align:left;}
+    .k2ui-ef-csv tr td {border:1px solid #d4d7d9;padding:5px;text-align:left;}
+    .k2ui-ef-csv tr:nth-child(odd) > td {background:#f9f9f9;}
+    .k2ui-ef-csv tr:nth-child(even) > td {background:#f0f2f2;}
 
 
 
