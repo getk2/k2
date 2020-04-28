@@ -6,9 +6,6 @@
  * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
-/* Import Open Sans */
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese");
-
 /* Common */
 a:active,a:focus {outline:0;}
 .clr,
@@ -359,13 +356,13 @@ p.k2TagsNotice {display:block;font-size:11px;font-weight:bold;font-weight:600;ma
 .ui-autocomplete {position:absolute;margin:0;padding:0;list-style:none;border:1px solid #eee;background-color:white;border-right-color:#ddd;border-bottom-color:#ddd;text-align:left;z-index:50;}
 
 .ui-menu {list-style:none;padding:2px;margin:0;margin-top:-3px;display:block;float:left;}
-.ui-menu .ui-menu-item {margin:0;padding:0;zoom:0;float:left;clear:left;width:99%;}
-.ui-menu .ui-menu-item a {text-decoration:none;display:block;padding:.2em .4em;line-height:1.5;zoom:1;font-weight:bold;}
+.ui-menu .ui-menu-item {margin:0;padding:0;float:left;clear:left;width:99%;}
+.ui-menu .ui-menu-item a {text-decoration:none;display:block;padding:.2em .4em;line-height:1.5;font-weight:bold;}
 .ui-menu .ui-menu-item a.ui-state-hover,
 .ui-menu .ui-menu-item a.ui-state-active {margin:-1px;background-color:#444;color:#fff;}
 
 /* Item - Selection based tagging */
-#newTagButton {height:30px;padding:4 12px;}
+#newTagButton {height:30px;padding:4px 12px;}
 
 #tagsLog {display:inline-block;margin-left:10px;font-weight:600;color:#999;}
 #tagsLog.tagsLoading {background:url(../images/backend/loader.gif) no-repeat 50% 50%;width:16px;height:16px;}
@@ -607,8 +604,8 @@ div.isJ25 div.current {background:#fff;}
 .ui-autocomplete {position:absolute;margin:0;padding:0;list-style:none;border:1px solid #eee;background-color:white;border-right-color:#ddd;border-bottom-color:#ddd;text-align:left;z-index:50;}
 
 .ui-menu {list-style:none;padding:2px;margin:0; margin-top:-3px;display:block;float:left;}
-.ui-menu .ui-menu-item {margin:0;padding:0;zoom:0;float:left;clear:left;width:99%;}
-.ui-menu .ui-menu-item a {text-decoration:none;display:block;padding:.2em .4em;line-height:1.5;zoom:1;font-weight:bold;}
+.ui-menu .ui-menu-item {margin:0;padding:0;float:left;clear:left;width:99%;}
+.ui-menu .ui-menu-item a {text-decoration:none;display:block;padding:.2em .4em;line-height:1.5;font-weight:bold;}
 .ui-menu .ui-menu-item a.ui-state-hover,
 .ui-menu .ui-menu-item a.ui-state-active {margin:-1px;background-color:#444;color:#fff;}
 
@@ -1063,7 +1060,7 @@ div#k2Modal div#editor-xtd-buttons .button2-left {display:inline;} /* Joomla 1.5
 .isJ25 #system-message-container #system-message {position:fixed;z-index:9999;top:56px;right:56px;background:#fff;margin:0;padding:0;border-radius:4px;box-shadow:0 1px 4px 0 #999;min-width:280px;max-width:400px;text-align:left;border:0;}
 .isJ25 #system-message-container #system-message dd {padding:10px;margin:0;border-left:4px solid #5fca4a;text-indent:0;}
 .isJ25 #system-message-container #system-message dd.message {padding:10px;margin:0;border-left:4px solid #5fca4a;}
-.isJ25 #system-message-container #system-message dd.notice {padding:10px;margin:0;border-left:4px solid f0c33c;}
+.isJ25 #system-message-container #system-message dd.notice {padding:10px;margin:0;border-left:4px solid #f0c33c;}
 .isJ25 #system-message-container #system-message dd > ul {padding:0;margin:0;background:none;border:0;}
 .isJ25 #system-message-container #system-message dd > ul li {padding:5px;margin:0;background:none;border:0;color:#333;display:block;width:100%;box-sizing:border-box;font-size:13px;line-height:150%;text-align:left;}
 
