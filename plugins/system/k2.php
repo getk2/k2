@@ -294,7 +294,7 @@ class plgSystemK2 extends JPlugin
                     if ($extraFieldType == 'select' || $extraFieldType == 'multipleSelect' || $extraFieldType == 'radio') {
                         $object->set('value', $i + 1);
                     } elseif ($extraFieldType == 'link') {
-                        if (substr($values[$i], 0, 7) == 'http://') {
+                        if (substr($values[$i], 0, 4) == 'http') {
                             $values[$i] = $values[$i];
                         } else {
                             $values[$i] = 'http://'.$values[$i];
