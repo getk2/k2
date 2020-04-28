@@ -462,6 +462,9 @@ class K2ViewItem extends K2View
         $itemCreatedOrModifiedDate = strftime("%a, %d %b %Y %H:%M:%S GMT", strtotime($itemCreatedOrModifiedDate));
         JResponse::setHeader('Last-Modified', $itemCreatedOrModifiedDate);
 
+        // Etag HTTP header
+        JResponse::setHeader('ETag', md5($item->alias.'_'.$itemCreatedOrModifiedDate));
+
         // Head Stuff
         if (!in_array($document->getType(), ['json', 'raw'])) {
             $menuItemMatch = $this->menuItemMatchesK2Entity('item', null, $item->id);
