@@ -1100,7 +1100,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                 name: 'option_value[]',
                 type: 'hidden'
             }).appendTo(target);
-            if (!isNewField && currentType == fieldType) {
+            if (!isNewField && currentType == fieldType && fieldValues[0].value) {
                 var csvAsJson = fieldValues[0].value;
 
                 inputValue.val(JSON.stringify(csvAsJson));
