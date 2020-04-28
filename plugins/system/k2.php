@@ -683,33 +683,56 @@ class plgSystemK2 extends JPlugin
     public function onAfterRender()
     {
         $app = JFactory::getApplication();
-        $params = JComponentHelper::getParams('com_k2');
 
-        // OpenGraph meta tags
-        if ($app->isSite() && $params->get('facebookMetatags', 1)) {
+
+        if ($app->isSite()) {
+            $params = JComponentHelper::getParams('com_k2');
+            $config = JFactory::getConfig();
+
             $response = JResponse::getBody();
-            $searches = array(
-                '<meta name="og:url"',
-                '<meta name="og:title"',
-                '<meta name="og:type"',
-                '<meta name="og:image"',
-                '<meta name="og:description"'
-            );
-            $replacements = array(
-                '<meta property="og:url"',
-                '<meta property="og:title"',
-                '<meta property="og:type"',
-                '<meta property="og:image"',
-                '<meta property="og:description"'
-            );
-            if (strpos($response, 'http://ogp.me/ns#') === false) {
-                $searches[] = '<html ';
-                $searches[] = '<html>';
-                $replacements[] = '<html prefix="og: http://ogp.me/ns#" ';
-                $replacements[] = '<html prefix="og: http://ogp.me/ns#">';
+
+            // Set caching HTTP headers
+            if (K2_JVERSION == '15') {
+                $caching = $config->getValue('config.caching');
+            } else {
+                $caching = $config->get('caching');
             }
-            $response = str_ireplace($searches, $replacements, $response);
-            JResponse::setBody($response);
+            if ($caching) {
+                preg_match("#<script type=\"application/x\-k2\-headers\">(.*?)</script>#is", $response, $getK2CacheHeaders);
+                $getK2CacheHeaders = json_decode(trim($getK2CacheHeaders[1]));
+                if (is_object($getK2CacheHeaders)) {
+                    JResponse::allowCache(true);
+                    foreach ($getK2CacheHeaders as $type => $value) {
+                        JResponse::setHeader($type, $value, true);
+                    }
+                }
+            }
+
+            // OpenGraph meta tags
+            if ($params->get('facebookMetatags', 1)) {
+                $searches = array(
+                    '<meta name="og:url"',
+                    '<meta name="og:title"',
+                    '<meta name="og:type"',
+                    '<meta name="og:image"',
+                    '<meta name="og:description"'
+                );
+                $replacements = array(
+                    '<meta property="og:url"',
+                    '<meta property="og:title"',
+                    '<meta property="og:type"',
+                    '<meta property="og:image"',
+                    '<meta property="og:description"'
+                );
+                if (strpos($response, 'http://ogp.me/ns#') === false) {
+                    $searches[] = '<html ';
+                    $searches[] = '<html>';
+                    $replacements[] = '<html prefix="og: http://ogp.me/ns#" ';
+                    $replacements[] = '<html prefix="og: http://ogp.me/ns#">';
+                }
+                $response = str_ireplace($searches, $replacements, $response);
+                JResponse::setBody($response);
+            }
         }
     }
 

@@ -469,6 +469,16 @@ class K2ViewItem extends K2View
         // Etag HTTP header
         JResponse::setHeader('ETag', md5($item->alias.'_'.$itemCreatedOrModifiedDate));
 
+        // Append as custom script tag to bypass Joomla cache shortcomings
+        if (K2_JVERSION == '15') {
+            $caching = $config->getValue('config.caching');
+        } else {
+            $caching = $config->get('caching');
+        }
+        if ($caching) {
+            $document->addScriptDeclaration('{"Last-Modified": "'.$itemCreatedOrModifiedDate.'", "ETag": "'.md5($item->alias.'_'.$itemCreatedOrModifiedDate).'"}', 'application/x-k2-headers');
+        }
+
         // --- Insert additional HTTP headers [finish] ---
 
         // Head Stuff
