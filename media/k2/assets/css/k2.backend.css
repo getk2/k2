@@ -411,6 +411,7 @@ ul#k2ExtraFieldsMissing li {font-weight:normal;}
 #extraFields .itemAdditionalField .itemAdditionalData .icon-calendar {margin-right:0;}
 #extraFields .itemAdditionalField .itemAdditionalData .nicEdit-main {outline:0;}
 #extraFields .itemAdditionalField .itemAdditionalData input {padding:5px 8px;}
+#extraFields .itemAdditionalField .itemAdditionalData > textarea {width:90%;}
 #extraFields .itemAdditionalField.fieldIsLink .itemAdditionalData {display:grid;grid-template-columns:auto 5fr auto 8fr auto 3fr;grid-gap:10px;}
 #extraFields .itemAdditionalField.fieldIsLink .itemAdditionalData > label {text-align:right;line-height:30px;}
 

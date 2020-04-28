@@ -1223,10 +1223,12 @@ function initExtraFieldsEditor() {
         } else {
             new nicEditor({
                 fullPanel: true,
-                maxHeight: 200,
-                width: '100%',
                 iconsPath: K2SitePath + 'media/k2/assets/vendors/bkirchoff/nicedit/nicEditorIcons.gif'
-            }).panelInstance($K2(this).attr('id'));
+            }).panelInstance(id);
+            // Properly resize nicEdit
+            $K2('.nicEdit-panelContain').parent().css('width', 'calc(90% + 12px)');
+            $K2('.nicEdit-panelContain').parent().next().css({'width': 'calc(90% + 12px)', 'min-height': '200px'});
+            $K2('.nicEdit-main').css('width', 'calc(90% + 12px)');
         }
     });
 }
