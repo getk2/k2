@@ -1159,7 +1159,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
             }
             var html = '\
                 <div class="k2ui-ef-row">\
-                    <input name="option_value[]" type="text" id="' + id + '" value="' + image + '" /> <a class="k2app-ef-image-button" href="index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID=' + id + '">' + K2Language[18] + '</a> <span class="k2ui-ef-notice">(' + K2Language[1] + ')</span>\
+                    <input name="option_value[]" type="text" id="' + id + '" value="' + image + '" /> <a class="k2app-ef-image-button k2Button" href="index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID=' + id + '">' + K2Language[18] + '</a> <span class="k2ui-ef-notice">(' + K2Language[1] + ')</span>\
                 </div>\
             ';
             $K2(html).appendTo(target);

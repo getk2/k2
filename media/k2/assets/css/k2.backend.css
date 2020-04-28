@@ -267,7 +267,7 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
         .k2ui-ef-row input[type="text"] {padding:5px 10px;}
         .k2ui-ef-row input[type="checkbox"] {box-shadow:none;margin:0 5px 0 0;padding:0;vertical-align:baseline;}
         .k2ui-ef-row label {display:inline;margin:0;}
-        .k2app-ef-image-button {margin-right:10px;}
+        .k2app-ef-image-button.k2Button,
         .k2app-ef-remove-option.k2Button {padding:5px 8px;}
         .k2ui-ef-csv {display:block;width:420px;height:600px;margin:10px 0;overflow:auto;resize:both;}
             .k2ui-ef-csv tr th {border:1px solid #d4d7d9;padding:5px;background:#fff;font-weight:bold;text-align:left;}
@@ -388,7 +388,8 @@ ul#k2ExtraFieldsMissing li {font-weight:normal;}
 
 /* Item - Image, Extrafields & Attachments */
 .itemAdditionalField {display:grid;grid-template-columns:180px auto;margin:0 0 1px 0;padding:0;}
-.itemAdditionalField.fieldIsHeader > h4 {font-size:16px;color:#68696b;font-weight:300;display:block;margin:0;padding:0;}
+.itemAdditionalField.fieldIsHeader {display:block;}
+.itemAdditionalField.fieldIsHeader > h4 {font-size:24px;line-height:130%;font-weight:600;padding:20px 0 10px 4px;margin:0 auto 20px auto;border-bottom:2px solid #dddedf;color:#183867;width:100%;text-align:left;}
 .itemAdditionalField .itemAdditionalValue {background:#f0f2f2;padding:10px;display:flex;align-items:center;}
 .itemAdditionalField .itemAdditionalValue label {font-size:13px;color:#68696b;font-weight:600;display:block;text-align:right;width:100%;padding:0;margin:0;}
 .itemAdditionalField .itemAdditionalData {padding:10px;font-size:13px;}
