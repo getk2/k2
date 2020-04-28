@@ -457,13 +457,19 @@ class K2ViewItem extends K2View
         }
         // --- JSON Output [finish] ---
 
-        // Last-Modified HTTP header
+        // --- Insert additional HTTP headers [start] ---
+        JResponse::allowCache(true);
+
         $itemCreatedOrModifiedDate = ((int) $item->modified) ? $item->modified : $item->created;
         $itemCreatedOrModifiedDate = strftime("%a, %d %b %Y %H:%M:%S GMT", strtotime($itemCreatedOrModifiedDate));
+
+        // Last-Modified HTTP header
         JResponse::setHeader('Last-Modified', $itemCreatedOrModifiedDate);
 
         // Etag HTTP header
         JResponse::setHeader('ETag', md5($item->alias.'_'.$itemCreatedOrModifiedDate));
+
+        // --- Insert additional HTTP headers [finish] ---
 
         // Head Stuff
         if (!in_array($document->getType(), ['json', 'raw'])) {
