@@ -1106,7 +1106,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                 inputValue.val(JSON.stringify(csvAsJson));
 
                 var table = $K2('<table/>', {
-                    'class': 'csvTable'
+                    'class': 'k2ui-ef-csv'
                 }).appendTo(target);
 
                 $K2(csvAsJson).each(function(index, row) {
