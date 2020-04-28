@@ -89,7 +89,7 @@ class K2ModelExtraField extends K2Model
                 if (!empty($csvFile) && JFile::getExt($file['name']) == 'csv') {
                     $handle = @fopen($csvFile, 'r');
                     $csvData = array();
-                    while (($data = fgetcsv($handle, 1000)) !== false) {
+                    while (($data = fgetcsv($handle, 0)) !== false) {
                         $csvData[] = $data;
                     }
                     fclose($handle);
@@ -296,11 +296,11 @@ class K2ModelExtraField extends K2Model
                 break;
 
             case 'link':
-                $output = '<label>'.JText::_('K2_TEXT').'</label>';
-                $output .= '<input type="text" name="K2ExtraField_'.$extraField->id.'[]" value="'.htmlspecialchars($active[0], ENT_QUOTES, 'UTF-8').'" />';
-                $output .= '<label>'.JText::_('K2_URL').'</label>';
-                $output .= '<input type="text" name="K2ExtraField_'.$extraField->id.'[]" id="K2ExtraField_'.$extraField->id.'"  value="'.htmlspecialchars($active[1], ENT_QUOTES, 'UTF-8').'" '.$attributes.'/>';
-                $output .= '<label>'.JText::_('K2_OPEN_IN').'</label>';
+                $output = '
+                    <label>'.JText::_('K2_TEXT').'</label><input type="text" name="K2ExtraField_'.$extraField->id.'[]" value="'.htmlspecialchars($active[0], ENT_QUOTES, 'UTF-8').'" />
+                    <label>'.JText::_('K2_URL').'</label><input type="text" name="K2ExtraField_'.$extraField->id.'[]" id="K2ExtraField_'.$extraField->id.'"  value="'.htmlspecialchars($active[1], ENT_QUOTES, 'UTF-8').'" '.$attributes.'/>
+                    <label>'.JText::_('K2_OPEN_IN').'</label>';
+
                 $targetOptions[] = JHTML::_('select.option', 'same', JText::_('K2_SAME_WINDOW'));
                 $targetOptions[] = JHTML::_('select.option', 'new', JText::_('K2_NEW_WINDOW'));
                 $targetOptions[] = JHTML::_('select.option', 'popup', JText::_('K2_CLASSIC_JAVASCRIPT_POPUP'));
@@ -314,8 +314,7 @@ class K2ModelExtraField extends K2Model
                 }
                 $output = '<input type="file" id="K2ExtraField_'.$extraField->id.'" name="K2ExtraField_'.$extraField->id.'[]" accept=".csv" '.$attributes.' />';
                 if (is_array($active) && count($active)) {
-                    $output .= '<input type="hidden" name="K2CSV_'.$extraField->id.'" value="'.htmlspecialchars(json_encode($active)).'" />';
-                    $output .= '<table class="csvTable">';
+                    $output .= '<input type="hidden" name="K2CSV_'.$extraField->id.'" value="'.htmlspecialchars(json_encode($active)).'" /><table class="k2ui-ef-csv">';
                     foreach ($active as $key => $row) {
                         $output .= '<tr>';
                         foreach ($row as $cell) {
@@ -323,9 +322,7 @@ class K2ModelExtraField extends K2Model
                         }
                         $output .= '</tr>';
                     }
-                    $output .= '</table>';
-                    $output .= '<label>'.JText::_('K2_DELETE_CSV_DATA').'</label>';
-                    $output .= '<input type="checkbox" name="K2ResetCSV_'.$extraField->id.'" />';
+                    $output .= '</table><hr /><div class="k2ui-ef-row"><input type="checkbox" name="K2ResetCSV_'.$extraField->id.'" /><label>'.JText::_('K2_DELETE_CSV_DATA').'</label></div>';
                 }
                 break;
 

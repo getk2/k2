@@ -1123,7 +1123,7 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                 var html = '\
                     <hr />\
                     <div class="k2ui-ef-row">\
-                        <input style="vertical-align:baseline;" name="K2ResetCSV" type="checkbox" value="" /><label style="display:inline;margin:0;">' + K2Language[13] + '</label> <span class="k2ui-ef-notice">(' + K2Language[1] + ')</span>\
+                        <input name="K2ResetCSV" type="checkbox" value="" /><label>' + K2Language[13] + '</label> <span class="k2ui-ef-notice">(' + K2Language[1] + ')</span>\
                     </div>\
                 ';
                 $K2(html).appendTo(target);
