@@ -267,8 +267,8 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
         .k2ui-ef-row input[type="text"] {padding:5px 10px;}
         .k2ui-ef-row input[type="checkbox"] {box-shadow:none;margin:0 5px 0 0;padding:0;vertical-align:baseline;}
         .k2ui-ef-row label {display:inline;margin:0;}
-        .k2app-ef-image-button.k2Button,
         .k2app-ef-remove-option.k2Button {padding:5px 8px;}
+        .k2app-ef-image-button.k2Button {padding:5px 8px;margin-left:5px;}
         .k2ui-ef-csv {display:block;width:420px;height:600px;margin:10px 0;overflow:auto;resize:both;}
             .k2ui-ef-csv tr th {border:1px solid #d4d7d9;padding:5px;background:#fff;font-weight:bold;text-align:left;}
             .k2ui-ef-csv tr td {border:1px solid #d4d7d9;padding:5px;text-align:left;}
@@ -410,10 +410,11 @@ ul#k2ExtraFieldsMissing li {font-weight:normal;}
 #extraFields .itemAdditionalField .itemAdditionalData .k2Calendar + .btn {padding:10px 12px;}
 #extraFields .itemAdditionalField .itemAdditionalData .icon-calendar {margin-right:0;}
 #extraFields .itemAdditionalField .itemAdditionalData .nicEdit-main {outline:0;}
+#extraFields .itemAdditionalField .itemAdditionalData input {padding:5px 8px;}
 #extraFields .itemAdditionalField.fieldIsLink .itemAdditionalData {display:grid;grid-template-columns:auto 5fr auto 8fr auto 3fr;grid-gap:10px;}
 #extraFields .itemAdditionalField.fieldIsLink .itemAdditionalData > label {text-align:right;line-height:30px;}
 
-#extraFields .itemAdditionalField .itemAdditionalData .controls label.radio {margin:0;padding:5px 10px 10px 5px;display:inline-block;min-height:inherit;height:auto;line-height:inherit;white-space:nowrap;}
+#extraFields .itemAdditionalField .itemAdditionalData .controls label.radio {margin:0;padding:10px;display:inline-block;min-height:inherit;height:auto;line-height:inherit;white-space:nowrap;}
 #extraFields .itemAdditionalField .itemAdditionalData .controls label.radio input[type="radio"] {margin:2px 5px 0 0;padding:0;width:auto;}
 
 #itemAttachments {margin-top:15px;padding-top:10px;}
