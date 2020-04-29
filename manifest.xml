@@ -217,7 +217,7 @@
         <param name="stopForumSpamApiKey" default="" />
         <param name="tagFeedIcon" default="1" />
         <param name="tagFeedLink" default="1" />
-        <param name="taggingSystem" default="1" />
+        <param name="taggingSystem" default="free" />
         <param name="tagItemCategory" default="1" />
         <param name="tagItemCount" default="10" />
         <param name="tagItemDateCreated" default="1" />

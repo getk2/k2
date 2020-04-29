@@ -540,9 +540,9 @@
             <option value="0">K2_NO</option>
             <option value="1">K2_YES</option>
         </param>
-        <param menu="hide" name="taggingSystem" type="radio" default="1" label="K2_TAGGING_SYSTEM" description="">
-            <option value="0">K2_SELECTIONBASED_TAGGING</option>
-            <option value="1">K2_FREE_TAGGING_WITH_AUTO_COMPLETE</option>
+        <param menu="hide" name="taggingSystem" type="radio" default="free" label="K2_TAGGING_SYSTEM" description="">
+            <option value="selection">K2_SELECTIONBASED_TAGGING</option>
+            <option value="free">K2_FREE_TAGGING_WITH_AUTO_COMPLETE</option>
         </param>
         <param menu="hide" name="lockTags" type="radio" default="0" label="K2_LOCK_TAGS" description="K2_SWITCH_TO_SELECTION_BASED_TAGGING_FOR_MANAGERS_AND_BELOW_PREVENTING_THEM_FROM_CREATING_NEW_TAGS">
             <option value="0">K2_NO</option>
@@ -1129,9 +1129,9 @@
             <option value="0">K2_NO</option>
             <option value="1">K2_YES</option>
         </field>
-        <field menu="hide" name="taggingSystem" type="radio" default="1" label="K2_TAGGING_SYSTEM" description="" class="k2ui-no-coloring">
-            <option value="0">K2_SELECTIONBASED_TAGGING</option>
-            <option value="1">K2_FREE_TAGGING_WITH_AUTO_COMPLETE</option>
+        <field menu="hide" name="taggingSystem" type="radio" default="free" label="K2_TAGGING_SYSTEM" description="">
+            <option value="selection">K2_SELECTIONBASED_TAGGING</option>
+            <option value="free">K2_FREE_TAGGING_WITH_AUTO_COMPLETE</option>
         </field>
         <field menu="hide" name="lockTags" type="radio" default="0" label="K2_LOCK_TAGS" description="K2_SWITCH_TO_SELECTION_BASED_TAGGING_FOR_MANAGERS_AND_BELOW_PREVENTING_THEM_FROM_CREATING_NEW_TAGS">
             <option value="0">K2_NO</option>

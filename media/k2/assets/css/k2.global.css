@@ -201,15 +201,6 @@ body .select2-container--default.select2-container--focus.select2-container--bel
 .com_config .form-horizontal .span10 .controls fieldset > label.isChecked[for="published1"],
 .com_config .form-horizontal .span10 .controls fieldset > label.isChecked[for="featured1"] {background:#3fa800;color:#fff;}
 
-.com_config .form-horizontal .span10 .controls fieldset.k2ui-no-coloring input[type="radio"][value="0"]:checked + label,
-.com_config .form-horizontal .span10 .controls fieldset.k2ui-no-coloring input[type="radio"][value="none"]:checked + label,
-.com_config .form-horizontal .span10 .controls fieldset.k2ui-no-coloring > label.isChecked[for="published0"],
-.com_config .form-horizontal .span10 .controls fieldset.k2ui-no-coloring > label.isChecked[for="featured0"] {background:#63696f;color:#fff;}
-.com_config .form-horizontal .span10 .controls fieldset.k2ui-no-coloring input[type="radio"][value="1"]:checked + label,
-.com_config .form-horizontal .span10 .controls fieldset.k2ui-no-coloring input[type="radio"][value="all"]:checked + label,
-.com_config .form-horizontal .span10 .controls fieldset.k2ui-no-coloring > label.isChecked[for="published1"],
-.com_config .form-horizontal .span10 .controls fieldset.k2ui-no-coloring > label.isChecked[for="featured1"] {background:#555;color:#fff;}
-
 
 
 /* For Joomla 2.5 */

@@ -651,14 +651,14 @@ class K2ModelItem extends K2Model
 
         // Tags
         if ($user->gid < 24 && $params->get('lockTags')) {
-            $params->set('taggingSystem', 0);
+            $params->set('taggingSystem', 'selected');
         }
         $db = JFactory::getDbo();
         $query = "DELETE FROM #__k2_tags_xref WHERE itemID={intval($row->id)}";
         $db->setQuery($query);
         $db->query();
 
-        if ($params->get('taggingSystem')) {
+        if ($params->get('taggingSystem') == 'free') {
             if ($user->gid < 24 && $params->get('lockTags')) {
                 JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
             }

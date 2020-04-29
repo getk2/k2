@@ -224,7 +224,7 @@
                 <field name="stopForumSpamApiKey" default="" />
                 <field name="tagFeedIcon" default="1" />
                 <field name="tagFeedLink" default="1" />
-                <field name="taggingSystem" default="1" />
+                <field name="taggingSystem" default="free" />
                 <field name="tagItemCategory" default="1" />
                 <field name="tagItemCount" default="10" />
                 <field name="tagItemDateCreated" default="1" />

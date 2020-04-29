@@ -85,7 +85,7 @@ $app = JFactory::getApplication();
                         <label for="tags"><?php echo JText::_('K2_TAGS'); ?></label>
                     </div>
                     <div class="k2ui-field-value">
-                        <?php if($this->params->get('taggingSystem')): ?>
+                        <?php if($this->params->get('taggingSystem') == 'free'): ?>
                         <!-- Free tagging -->
                         <ul class="tags">
                             <?php if(isset($this->row->tags) && count($this->row->tags)): ?>

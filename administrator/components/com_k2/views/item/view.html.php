@@ -358,7 +358,7 @@ class K2ViewItem extends K2View
 
         // Tags
         if ($user->gid < 24 && $params->get('lockTags')) {
-            $params->set('taggingSystem', 0);
+            $params->set('taggingSystem', 'selected');
         }
 
         $tags = $model->getAvailableTags($item->id);
