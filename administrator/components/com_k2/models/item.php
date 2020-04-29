@@ -651,7 +651,7 @@ class K2ModelItem extends K2Model
 
         // Tags
         if ($user->gid < 24 && $params->get('lockTags')) {
-            $params->set('taggingSystem', 'selected');
+            $params->set('taggingSystem', 'selection');
         }
         $db = JFactory::getDbo();
         $query = "DELETE FROM #__k2_tags_xref WHERE itemID={intval($row->id)}";

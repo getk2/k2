@@ -357,7 +357,7 @@ class K2HelperHTML
                 } else {
                     JHTML::_('behavior.tooltip');
                     if (version_compare(JVERSION, '3.0.0', 'ge')) {
-                        if ($view == 'item' && $params->get('taggingSystem') == 'selected') {
+                        if ($view == 'item' && $params->get('taggingSystem') == 'selection') {
                             JHtml::_('formbehavior.chosen', 'select:not(#selectedTags, #tags)');
                         } else {
                             JHtml::_('formbehavior.chosen', 'select');
