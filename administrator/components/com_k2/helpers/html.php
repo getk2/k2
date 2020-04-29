@@ -122,6 +122,25 @@ class K2HelperHTML
                 <li'.self::activeMenu('info').'>
                     <a href="index.php?option=com_k2&amp;view=info">'.JText::_('K2_INFORMATION').'</a>
                 </li>
+            ';
+            if ($user->gid > 23) {
+                if (K2_JVERSION == '15') {
+                    $settingsURL = 'index.php?option=com_k2&view=settings';
+                    $settingsURLAttributes = ' class="modal" rel="{handler: \'iframe\', size: {x: (window.innerWidth) * 0.7, y: (window.innerHeight) * 0.9}}"';
+                } elseif (K2_JVERSION == '25') {
+                    $settingsURL = 'index.php?option=com_config&view=component&component=com_k2&path=&tmpl=component';
+                    $settingsURLAttributes = ' class="modal" rel="{handler: \'iframe\', size: {x: (window.innerWidth) * 0.7, y: (window.innerHeight) * 0.9}}"';
+                } else {
+                    $settingsURL = 'index.php?option=com_config&view=component&component=com_k2&path=&return='.urlencode(base64_encode(JFactory::getURI()->toString()));
+                    $settingsURLAttributes = '';
+                }
+                $sidebarMenu .= '
+                <li>
+                    <a href="'.$settingsURL.'"'.$settingsURLAttributes.'>'.JText::_('K2_SETTINGS').'</a>
+                </li>
+                ';
+            }
+            $sidebarMenu .= '
             </ul>
             ';
         }
