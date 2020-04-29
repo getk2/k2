@@ -511,12 +511,11 @@ table.adminFormK2 {width:100%;margin-bottom:16px;}
 
 /* Lists - Items */
 #k2AdminContainer .adminlist {margin-bottom:0;}
-#k2AdminContainer .adminlist input[type="checkbox"] {margin-top:0;}
-#k2AdminContainer .adminlist thead tr th {background:#fff;border:0;border-bottom:1px solid #dbdcdc;vertical-align:middle;}
-#k2AdminContainer .adminlist tbody tr td {padding-top:10px;padding-bottom:10px;color:#666;vertical-align:middle;}
-#k2AdminContainer .adminlist tfoot tr td {background:#fff;border-bottom:0;border-top:1px solid #dbdcdc;padding-bottom:24px;}
-
-#k2AdminContainer .adminlist thead tr th a {font-size:12px;}
+    #k2AdminContainer .adminlist input[type="checkbox"] {margin-top:0;}
+    #k2AdminContainer .adminlist thead tr th {background:#fff;border:0;border-bottom:1px solid #dbdcdc;vertical-align:middle;}
+        #k2AdminContainer .adminlist thead tr th a {font-size:12px;}
+    #k2AdminContainer .adminlist tbody tr td {padding-top:10px;padding-bottom:10px;color:#666;vertical-align:middle;}
+    #k2AdminContainer .adminlist tfoot tr td {background:#fff;border-bottom:0;border-top:1px solid #dbdcdc;padding-bottom:24px;}
 
 #k2AdminContainer .adminlist a {text-decoration:none;color:#040707;}
 #k2AdminContainer .adminlist a.editComment {color:#46afff;}
