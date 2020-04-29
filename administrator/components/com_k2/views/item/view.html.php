@@ -357,6 +357,11 @@ class K2ViewItem extends K2View
         }
 
         // Tags
+        if ($params->get('taggingSystem') === '0' || $params->get('taggingSystem') === '1') {
+            // B/C - Convert old options
+            $whichTaggingSystem = ($params->get('taggingSystem')) ? 'free' : 'selection';
+            $params->set('taggingSystem', $whichTaggingSystem);
+        }
         if ($user->gid < 24 && $params->get('lockTags')) {
             $params->set('taggingSystem', 'selection');
         }

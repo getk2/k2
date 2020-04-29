@@ -357,6 +357,11 @@ class K2HelperHTML
                 } else {
                     JHTML::_('behavior.tooltip');
                     if (version_compare(JVERSION, '3.0.0', 'ge')) {
+                        if ($params->get('taggingSystem') === '0' || $params->get('taggingSystem') === '1') {
+                            // B/C - Convert old options
+                            $whichTaggingSystem = ($params->get('taggingSystem')) ? 'free' : 'selection';
+                            $params->set('taggingSystem', $whichTaggingSystem);
+                        }
                         if ($view == 'item' && $params->get('taggingSystem') == 'selection') {
                             JHtml::_('formbehavior.chosen', 'select:not(#selectedTags, #tags)');
                         } else {
