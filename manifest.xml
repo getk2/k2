@@ -212,6 +212,7 @@
         <param name="showTagFilter" default="0" />
         <param name="showVideoTab" default="1" />
         <param name="siteItemHits" default="1" />
+        <param name="siteItemlistLimit" default="100" />
         <param name="socialButtonCode" default="" />
         <param name="stopForumSpam" default="0" />
         <param name="stopForumSpamApiKey" default="" />

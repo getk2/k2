@@ -545,8 +545,9 @@ class K2ViewItemlist extends K2View
                 $limit = JRequest::getInt('limit');
             }
             // Protect from large limit requests
-            if ($limit > 100) {
-                $limit = 100;
+            $siteItemlistLimit = (int) $params->get('siteItemlistLimit', 100);
+            if ($siteItemlistLimit && $limit > $siteItemlistLimit) {
+                $limit = $siteItemlistLimit;
             }
             JRequest::setVar('limit', $limit);
 

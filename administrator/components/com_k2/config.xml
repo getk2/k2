@@ -582,6 +582,7 @@
             <option value="0">K2_NO</option>
             <option value="1">K2_YES</option>
         </param>
+        <param menu="hide" name="siteItemlistLimit" type="text" default="100" label="K2_CONFIGURE_ITEMLIST_LIMIT" description="K2_CONFIGURE_ITEMLIST_LIMIT_DESC"/>
         <param menu="hide" name="attachmentsFolder" type="text" default="" size="40" label="K2_CHANGE_ROOT_ATTACHMENTS_FOLDER" description="K2_ENTER_THE_RELATIVE_PATH_TO_THE_FOLDER_FOR_STORING_ATTACHMENTS_LEAVE_THIS_BLANK_TO_USE_THE_DEFAULT_K2_ATTACHMENTS_FOLDER_MEDIAK2ATTACHMENTS_IF_YOU_CHANGE_THIS_SETTING_AT_ANY_POINT_REMEMBER_TO_MOVE_YOUR_FILES_FROM_THE_OLD_FOLDER_TO_THE_NEWLY_CREATED_ONE"/>
         <param menu="hide" name="cookieDomain" type="text" default="" label="K2_COOKIE_DOMAIN" description="K2_SET_THE_DOMAIN_OF_YOUR_SITE_HERE_AND_K2_WILL_CREATE_A_COOKIE_CONTAINING_THE_USER_ID_FOR_LOGGED_IN_USERS"/>
         <param menu="hide" name="gatherStatistics" type="radio" default="1" label="K2_ENABLE_ANONYMOUS_SYSTEM_STATISTICS_GATHERING" description="K2_ENABLE_ANONYMOUS_SYSTEM_STATISTICS_GATHERING_DESC">
@@ -1171,6 +1172,7 @@
             <option value="0">K2_NO</option>
             <option value="1">K2_YES</option>
         </field>
+        <field menu="hide" name="siteItemlistLimit" type="text" default="100" label="K2_CONFIGURE_ITEMLIST_LIMIT" description="K2_CONFIGURE_ITEMLIST_LIMIT_DESC"/>
         <field menu="hide" name="attachmentsFolder" type="text" default="" size="40" label="K2_CHANGE_ROOT_ATTACHMENTS_FOLDER" description="K2_ENTER_THE_RELATIVE_PATH_TO_THE_FOLDER_FOR_STORING_ATTACHMENTS_LEAVE_THIS_BLANK_TO_USE_THE_DEFAULT_K2_ATTACHMENTS_FOLDER_MEDIAK2ATTACHMENTS_IF_YOU_CHANGE_THIS_SETTING_AT_ANY_POINT_REMEMBER_TO_MOVE_YOUR_FILES_FROM_THE_OLD_FOLDER_TO_THE_NEWLY_CREATED_ONE"/>
         <field menu="hide" name="cookieDomain" type="text" default="" label="K2_COOKIE_DOMAIN" description="K2_SET_THE_DOMAIN_OF_YOUR_SITE_HERE_AND_K2_WILL_CREATE_A_COOKIE_CONTAINING_THE_USER_ID_FOR_LOGGED_IN_USERS"/>
         <field menu="hide" name="gatherStatistics" type="radio" default="1" label="K2_ENABLE_ANONYMOUS_SYSTEM_STATISTICS_GATHERING" description="K2_ENABLE_ANONYMOUS_SYSTEM_STATISTICS_GATHERING_DESC">

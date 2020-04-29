@@ -219,6 +219,7 @@
                 <field name="showTagFilter" default="0" />
                 <field name="showVideoTab" default="1" />
                 <field name="siteItemHits" default="1" />
+                <field name="siteItemlistLimit" default="100" />
                 <field name="socialButtonCode" default="" />
                 <field name="stopForumSpam" default="0" />
                 <field name="stopForumSpamApiKey" default="" />
