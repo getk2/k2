@@ -26,9 +26,9 @@ class plgSystemK2 extends JPlugin
         }
 
         // Define K2 version & build here
-        define('K2_CURRENT_VERSION', '2.10.3');
-        define('K2_BUILD_ID', '20200429');
-        define('K2_BUILD', ''); // Use '' for stable or "<br />[Dev Build '.K2_BUILD_ID.']" for the developer build
+        define('K2_CURRENT_VERSION', '2.10.4');
+        define('K2_BUILD_ID', '20200430');
+        define('K2_BUILD', '<br />[Dev Build '.K2_BUILD_ID.']'); // Use '' for stable or "<br />[Dev Build '.K2_BUILD_ID.']" for the developer build
 
         // Define the DS constant (for backwards compatibility with old template overrides & 3rd party K2 extensions)
         if (!defined('DS')) {
@@ -699,11 +699,13 @@ class plgSystemK2 extends JPlugin
             }
             if ($caching) {
                 preg_match("#<script type=\"application/x\-k2\-headers\">(.*?)</script>#is", $response, $getK2CacheHeaders);
-                $getK2CacheHeaders = json_decode(trim($getK2CacheHeaders[1]));
-                if (is_object($getK2CacheHeaders)) {
-                    JResponse::allowCache(true);
-                    foreach ($getK2CacheHeaders as $type => $value) {
-                        JResponse::setHeader($type, $value, true);
+                if (is_array($getK2CacheHeaders) && !empty($getK2CacheHeaders[1])) {
+                    $getK2CacheHeaders = json_decode(trim($getK2CacheHeaders[1]));
+                    if (is_object($getK2CacheHeaders)) {
+                        JResponse::allowCache(true);
+                        foreach ($getK2CacheHeaders as $type => $value) {
+                            JResponse::setHeader($type, $value, true);
+                        }
                     }
                 }
             }
