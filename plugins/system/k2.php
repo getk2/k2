@@ -684,7 +684,6 @@ class plgSystemK2 extends JPlugin
     {
         $app = JFactory::getApplication();
 
-
         if ($app->isSite()) {
             $params = JComponentHelper::getParams('com_k2');
             $config = JFactory::getConfig();
