@@ -44,7 +44,6 @@ class plgSystemK2 extends JPlugin
 
         // Get application & K2 component params
         $app = JFactory::getApplication();
-        $document = JFactory::getDocument();
         $user = JFactory::getUser();
         $config = JFactory::getConfig();
         $params = JComponentHelper::getParams('com_k2');
@@ -64,50 +63,6 @@ class plgSystemK2 extends JPlugin
         JLoader::register('K2View', JPATH_ADMINISTRATOR.'/components/com_k2/views/view.php');
         JLoader::register('K2HelperHTML', JPATH_ADMINISTRATOR.'/components/com_k2/helpers/html.php');
         JLoader::register('K2HelperUtilities', JPATH_SITE.'/components/com_k2/helpers/utilities.php');
-
-        // Define the default Itemid for users and tags (to be removed)
-        //define('K2_USERS_ITEMID', $params->get('defaultUsersItemid'));
-        //define('K2_TAGS_ITEMID', $params->get('defaultTagsItemid'));
-
-        // Use proper headers for JSON/JSONP
-        if (JRequest::getCmd('format') == 'json') {
-            if (K2_JVERSION == '15') {
-                $document->setMimeEncoding('application/json');
-                $document->setType('json');
-            }
-
-            if (JRequest::getCmd('callback')) {
-                $document->setMimeEncoding('application/javascript');
-            }
-        }
-
-        // --- Custom HTTP headers [start] ---
-
-        // Check caching state in Joomla
-        $cacheTime = 0;
-        if (K2_JVERSION == '15') {
-            $caching = $config->getValue('config.caching');
-            $cacheTime = $config->getValue('config.cachetime');
-        } else {
-            $caching = $config->get('caching');
-            $cacheTime = $config->get('cachetime');
-        }
-        $cacheTTL = $cacheTime * 60;
-
-        if ($user->guest) {
-            if ($caching) {
-                JResponse::allowCache(true);
-                JResponse::setHeader('Cache-Control', 'public, max-age='.$cacheTTL.', stale-while-revalidate='.($cacheTTL*2).', stale-if-error='.($cacheTTL*5), true);
-                JResponse::setHeader('Expires', gmdate('D, d M Y H:i:s', time()+$cacheTTL).' GMT', true);
-                JResponse::setHeader('Pragma', 'public', true);
-            }
-            JResponse::setHeader('X-Logged-In', 'False', true);
-        } else {
-            JResponse::setHeader('X-Logged-In', 'True', true);
-        }
-        JResponse::setHeader('X-Content-Powered-By', 'K2 v'.K2_CURRENT_VERSION.' (by JoomlaWorks)', true);
-
-        // --- Custom HTTP headers [finish] ---
 
         // Define JoomFish compatibility version.
         if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/joomfish.php')) {
@@ -268,6 +223,7 @@ class plgSystemK2 extends JPlugin
                 } else {
                     JHTML::_('behavior.framework');
                 }
+                $document = JFactory::getDocument();
                 $document->addScriptDeclaration("
                     window.addEvent('domready', function(){
                         var target = $$('table.adminform');
@@ -685,17 +641,50 @@ class plgSystemK2 extends JPlugin
         $app = JFactory::getApplication();
 
         if ($app->isSite()) {
-            $params = JComponentHelper::getParams('com_k2');
             $config = JFactory::getConfig();
-
+            $document = JFactory::getDocument();
+            $user = JFactory::getUser();
+            $params = JComponentHelper::getParams('com_k2');
             $response = JResponse::getBody();
 
-            // Set caching HTTP headers
+            // Use proper headers for JSON/JSONP
+            if (JRequest::getCmd('format') == 'json') {
+                if (K2_JVERSION == '15') {
+                    $document->setMimeEncoding('application/json');
+                    $document->setType('json');
+                }
+
+                if (JRequest::getCmd('callback')) {
+                    $document->setMimeEncoding('application/javascript');
+                }
+            }
+
+            // Check caching state in Joomla
+            $cacheTime = 0;
             if (K2_JVERSION == '15') {
                 $caching = $config->getValue('config.caching');
+                $cacheTime = $config->getValue('config.cachetime');
             } else {
                 $caching = $config->get('caching');
+                $cacheTime = $config->get('cachetime');
             }
+            $cacheTTL = $cacheTime * 60;
+
+            // Set caching HTTP headers
+            if ($user->guest) {
+                if ($caching) {
+                    JResponse::allowCache(true);
+                    JResponse::setHeader('Cache-Control', 'public, max-age='.$cacheTTL.', stale-while-revalidate='.($cacheTTL*2).', stale-if-error='.($cacheTTL*5), true);
+                    JResponse::setHeader('Expires', gmdate('D, d M Y H:i:s', time()+$cacheTTL).' GMT', true);
+                    JResponse::setHeader('Pragma', 'public', true);
+                }
+                JResponse::setHeader('X-Logged-In', 'False', true);
+            } else {
+                JResponse::setHeader('X-Logged-In', 'True', true);
+            }
+            JResponse::setHeader('X-Content-Powered-By', 'K2 v'.K2_CURRENT_VERSION.' (by JoomlaWorks)', true);
+
+            // Set additional caching HTTP headers defined as custom script tag in the <head>
             if ($caching) {
                 preg_match("#<script type=\"application/x\-k2\-headers\">(.*?)</script>#is", $response, $getK2CacheHeaders);
                 if (is_array($getK2CacheHeaders) && !empty($getK2CacheHeaders[1])) {
