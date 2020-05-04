@@ -97,11 +97,6 @@ if ($params->get('k2Sef')) {
             unset($query['day']);
         }
 
-        if (isset($query['task'])) {
-            $segments[] = $query['task'];
-            unset($query['task']);
-        }
-
         // Item view
         if (isset($segments[0]) && $segments[0] == 'item' && @$segments[1] != 'add') {
             // Enabled category prefix for items
