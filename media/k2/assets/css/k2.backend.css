@@ -203,7 +203,7 @@ ul.k2TabsNavigation li.ui-tabs-selected a:hover {background-color:#fff;}
     #k2Tabs .k2TabsContent {padding:20px;}
 
 /* Entity ID */
-div#k2ID {position:absolute;right:0;top:0;font-size:18px;font-weight:normal;padding:21px 24px;color:#0091ff;display:none;}
+div#k2ID {position:absolute;z-index:10;right:0;top:0;font-size:18px;font-weight:normal;padding:21px 24px;color:#0091ff;}
 div#k2ID strong {color:#a8c5dd;}
 
 /* Top Nav Tabs */
@@ -1561,6 +1561,8 @@ button.fancybox-button:hover {background:none;border:0;}
 
             #k2Tabs ul.k2TabsNavigation li a {display:block;text-align:center;}
             #k2Tabs .k2TabsContent {padding:10px 5px;}
+
+            div#k2ID {top:114px;}
 
             .k2ViewIsItem #k2Tabs ul.k2TabsNavigation {display:grid;grid-template-columns:repeat(3, 1fr);grid-gap:5px;padding:5px;margin:0;border:1px solid #d4d7d9;}
             .k2ViewIsItem #k2Tabs ul.k2TabsNavigation li {width:auto;margin:0;padding:5px;display:block;background:#fefefe;border-radius:3px;border:1px solid #d4d7d9;}
