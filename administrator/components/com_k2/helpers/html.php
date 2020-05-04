@@ -75,6 +75,15 @@ class K2HelperHTML
                 <li>
                     <span>'.JText::_('K2_INFORMATION').'</span>
                 </li>
+            ';
+            if ($user->gid > 23) {
+                $sidebarMenu .= '
+                <li>
+                    <span>'.JText::_('K2_SETTINGS').'</span>
+                </li>
+                ';
+            }
+            $sidebarMenu .= '
             </ul>
             ';
         } else {
