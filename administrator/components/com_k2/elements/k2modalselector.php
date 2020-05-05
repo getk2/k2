@@ -42,11 +42,7 @@ class K2ElementK2modalselector extends K2Element
                 $scope = 'items';
             }
             if ($scope == 'items' || $scope == 'categories' || $scope == 'users' || $scope == 'tags') {
-                if (defined('K2_PLUGIN_API')) {
-                    $fieldName = 'plugins['.$control_name.'['.$name.']][]';
-                } else {
-                    $fieldName = $control_name.'['.$name.'][]';
-                }
+                $fieldName = $control_name.'['.$name.'][]';
             } else {
                 $fieldName = $control_name.'['.$name.']';
             }
