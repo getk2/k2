@@ -484,6 +484,8 @@ span.k2GalleryNotice {cursor:pointer;font-size:14px;padding:0;margin:0 5px;}
 .itemPlugins {margin-top:20px;clear:both;}
 .itemPlugins label {font-size:13px;color:#68696b;font-weight:700;display:block;margin-top:0;margin-bottom:0;padding-top:5px;padding-bottom:10px;}
 .itemPluginsContent {padding:0 20px;}
+.isJ15 .itemPluginsContent,
+.isJ25 .itemPluginsContent {margin-bottom:40px;}
 
 /* Admin - Media Manager */
 .K2AdminViewMedia {/*border-left:1px solid #d3d3d3;border-bottom:1px solid #d3d3d3;*/}
