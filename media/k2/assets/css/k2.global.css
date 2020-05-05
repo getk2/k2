@@ -44,6 +44,8 @@ body .select2-container--default.select2-container--focus.select2-container--bel
 .isJ25 .select2-container--default .select2-selection--multiple .select2-selection__rendered li {font-size:13px;padding:4px;margin:2px 5px 0 0;}
 .isJ15 .select2-container--default .select2-selection--multiple .select2-selection__rendered li span,
 .isJ25 .select2-container--default .select2-selection--multiple .select2-selection__rendered li span {margin-right:4px;}
+.isJ15 .select2-container--default .select2-selection--multiple .select2-selection__rendered li.select2-search.select2-search--inline,
+.isJ25 .select2-container--default .select2-selection--multiple .select2-selection__rendered li.select2-search.select2-search--inline {visibility:hidden;}
 
 
 
