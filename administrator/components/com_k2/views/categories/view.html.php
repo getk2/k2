@@ -52,7 +52,7 @@ class K2ViewCategories extends K2View
 
         // JS
         $document->addScriptDeclaration("
-            var K2SelectItemsError = '".JText::_('K2_SELECT_SOME_ITEMS_FIRST')."';
+            var K2SelectItemsError = '".JText::_('K2_SELECT_SOME_ITEMS_FIRST', true)."';
 
             Joomla.submitbutton = function(pressbutton) {
                 if (pressbutton == 'trash') {
