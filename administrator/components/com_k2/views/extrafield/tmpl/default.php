@@ -24,7 +24,7 @@ defined('_JEXEC') or die;
         <ul class="adminformlist">
             <li>
                 <div class="paramLabel">
-                    <?php echo JText::_('K2_NAME'); ?>
+                    <label for="name"><?php echo JText::_('K2_NAME'); ?></label>
                 </div>
                 <div class="paramValue">
                     <input class="text_area k2TitleBox" type="text" name="name" id="name" value="<?php echo $this->row->name; ?>" size="50" maxlength="250" />
@@ -32,15 +32,15 @@ defined('_JEXEC') or die;
             </li>
             <li>
                 <div class="paramLabel">
-                    <?php echo JText::_('K2_ALIAS'); ?>
+                    <label for="alias"><?php echo JText::_('K2_ALIAS'); ?></label>
                 </div>
                 <div class="paramValue">
-                    <input id="alias" type="text" name="alias" value="<?php echo $this->row->alias; ?>" />
+                    <input type="text" name="alias" id="alias" value="<?php echo $this->row->alias; ?>" />
                 </div>
             </li>
             <li>
                 <div class="paramLabel">
-                    <?php echo JText::_('K2_PUBLISHED'); ?>
+                    <label><?php echo JText::_('K2_PUBLISHED'); ?></label>
                 </div>
                 <div class="paramValue">
                     <?php echo $this->lists['published']; ?>
@@ -48,7 +48,7 @@ defined('_JEXEC') or die;
             </li>
             <li>
                 <div class="paramLabel">
-                    <?php echo JText::_('K2_GROUP'); ?>
+                    <label><?php echo JText::_('K2_GROUP'); ?></label>
                 </div>
                 <div class="paramValue">
                     <?php echo $this->lists['group']; ?>
@@ -59,7 +59,7 @@ defined('_JEXEC') or die;
             </li>
             <li>
                 <div class="paramLabel">
-                    <?php echo JText::_('K2_TYPE'); ?>
+                    <label><?php echo JText::_('K2_TYPE'); ?></label>
                 </div>
                 <div class="paramValue">
                     <?php echo $this->lists['type']; ?>
@@ -67,7 +67,7 @@ defined('_JEXEC') or die;
             </li>
             <li id="k2app-ef-header-flag" <?php if($this->row->type == 'header') echo ' style="display:none;"'; ?>>
                 <div class="paramLabel">
-                    <?php echo JText::_('K2_REQUIRED'); ?>
+                    <label><?php echo JText::_('K2_REQUIRED'); ?></label>
                 </div>
                 <div class="paramValue">
                     <input id="required-no" type="radio" name="required" value="0" <?php if(!$this->row->required) echo ' checked="checked"'; ?> />
@@ -78,7 +78,7 @@ defined('_JEXEC') or die;
             </li>
             <li id="k2ExtraFieldsShowNullFlag" <?php if($this->row->type != 'select' && $this->row->type != 'multipleSelect') echo ' style="display: none;"'; ?>>
                 <div class="paramLabel">
-                    <?php echo JText::_('K2_SHOW_NULL'); ?>
+                    <label><?php echo JText::_('K2_SHOW_NULL'); ?></label>
                 </div>
                 <div class="paramValue">
                     <input id="showNull-no" type="radio" name="showNull" value="0" <?php if(!$this->row->showNull) echo ' checked="checked"'; ?> />
@@ -89,7 +89,7 @@ defined('_JEXEC') or die;
             </li>
             <li id="k2ExtraFieldsDisplayInFrontEndFlag" <?php if($this->row->type != 'header') echo ' style="display:none;"'; ?>>
                 <div class="paramLabel">
-                    <?php echo JText::_('K2_DISPLAY_IN_THE_FRONTEND'); ?>
+                    <label><?php echo JText::_('K2_DISPLAY_IN_THE_FRONTEND'); ?></label>
                 </div>
                 <div class="paramValue">
                     <input id="displayInFrontEnd-no" type="radio" name="displayInFrontEnd" value="0" <?php if(!$this->row->displayInFrontEnd) echo ' checked="checked"'; ?> />
@@ -100,7 +100,7 @@ defined('_JEXEC') or die;
             </li>
             <li>
                 <div class="paramLabel">
-                    <?php echo JText::_('K2_DEFAULT_VALUES'); ?>
+                    <label><?php echo JText::_('K2_DEFAULT_VALUES'); ?></label>
                 </div>
                 <div class="paramValue">
                     <div id="k2app-ef-type-data"></div>

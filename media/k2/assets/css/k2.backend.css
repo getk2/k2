@@ -1652,9 +1652,9 @@ button.fancybox-button:hover {background:none;border:0;}
             .itemAdditionalField.separator .itemAdditionalValue {width:auto;background:none;border:0;margin:0;padding:0;}
             .itemAdditionalField.separator .itemAdditionalData {visibility:hidden;}
 
-            #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu {display:none;}
-            #k2AdminContainer #k2ContentView div.k2ScrollingContent {width:auto;margin:0;padding:0 10px 20px 10px;border:0;}
-            #k2ContentView > form .xmlParamsFields.limitWidth {min-width:inherit;max-width:none;width:auto;margin:0;padding:0 10px 20px 10px;}
+            .isJ30 #k2AdminContainer #k2ContentView ul.k2ScrollSpyMenu {display:none;}
+            .isJ30 #k2AdminContainer #k2ContentView div.k2ScrollingContent {width:auto;margin:0;padding:0 10px 20px 10px;border:0;}
+            .isJ30 #k2ContentView > form .xmlParamsFields.limitWidth {min-width:inherit;max-width:none;width:auto;margin:0;padding:0 10px 20px 10px;}
 
             #k2app-ef-add-option {width:calc(100% - 16px);height:28px;line-height:28px;}
             #k2app-ef-type-data input,

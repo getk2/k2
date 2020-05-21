@@ -39,7 +39,7 @@ $document->addScriptDeclaration("
         <ul class="adminformlist">
             <li>
                 <div class="paramLabel">
-                    <?php echo JText::_('K2_GROUP_NAME'); ?>
+                    <label for="name"><?php echo JText::_('K2_GROUP_NAME'); ?></label>
                 </div>
                 <div class="paramValue">
                     <input class="text_area k2TitleBox" type="text" name="name" id="name" value="<?php echo $this->row->name; ?>" size="50" maxlength="250" />

@@ -146,6 +146,11 @@ body .select2-container--default.select2-container--focus.select2-container--bel
     .com_config .form-horizontal .span10 .control-group .control-label {width:45% !important;}
     .com_config .form-horizontal .span10 .control-group .controls {margin-left:47% !important;}
 }
+@media screen and (max-width:480px) {
+    .com_config .form-horizontal .span10 .control-group:nth-child(2n-1) {background:none;}
+    .com_config .form-horizontal .span10 .control-group .control-label {background:#f6f6f6;}
+    .com_config .form-horizontal .span10 .control-group .controls {background:#fbfbfb;margin-bottom:10px;}
+}
 .com_config .form-horizontal .span10 .control-group-header {background:#e5f7fd;margin-top:32px !important;}
 .com_config .form-horizontal .span10 .control-group-header .control-label,
 .com_config .form-horizontal .span10 .control-group-header .controls {padding:0 !important;margin:0 !important;}
