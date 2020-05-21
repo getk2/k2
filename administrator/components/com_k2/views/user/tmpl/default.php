@@ -84,10 +84,12 @@ defined('_JEXEC') or die;
             <?php foreach ($this->K2Plugins as $K2Plugin): ?>
             <?php if (!is_null($K2Plugin)): ?>
             <li>
-                <fieldset class="adminform">
-                    <legend><?php echo $K2Plugin->name; ?></legend>
-                    <?php echo $K2Plugin->fields; ?>
-                </fieldset>
+                <div class="userPlugins pluginIs<?php echo preg_replace('/[^\p{L}\p{N}_]/u', '', ucwords(strtolower($K2Plugin->name))); ?>">
+                    <h3><?php echo $K2Plugin->name; ?></h3>
+                    <div class="userPluginFields">
+                        <?php echo $K2Plugin->fields; ?>
+                    </div>
+                </div>
             </li>
             <?php endif; ?>
             <?php endforeach; ?>
