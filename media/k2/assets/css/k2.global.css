@@ -81,6 +81,12 @@ body .select2-container--default.select2-container--focus.select2-container--bel
     .com_modules .form-horizontal .span9 .control-group .control-label {width:45% !important;}
     .com_modules .form-horizontal .span9 .control-group .controls {margin-left:47% !important;}
 }
+@media screen and (max-width:480px) {
+    .com_modules .form-horizontal .span9 .control-group:nth-child(2n-1) {background:none;}
+    .com_modules .form-horizontal .span9 .control-group .control-label {border-bottom:1px solid #e9e9e9;padding:10px;text-align:left;background:#f6f6f6;display:table-cell;width:30%;min-width:200px;box-sizing:border-box;vertical-align:middle;font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;}
+    .com_modules .form-horizontal .span9 .control-group .control-label label {font-weight:600;}
+    .com_modules .form-horizontal .span9 .control-group .controls {background:#fbfbfb;margin-bottom:10px;}
+}
 .com_modules .form-horizontal .span9 .control-group-header {background:#e5f7fd;margin-top:32px !important;}
 .com_modules .form-horizontal .span9 .control-group-header .control-label,
 .com_modules .form-horizontal .span9 .control-group-header .controls {padding:0 !important;margin:0 !important;}
