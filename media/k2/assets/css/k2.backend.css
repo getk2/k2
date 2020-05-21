@@ -1701,6 +1701,7 @@ button.fancybox-button:hover {background:none;border:0;}
     .k2ui-batch-options .k2ui-row {padding-bottom:10px;}
 
     .k2GenericForm h3 {font-size:24px;}
+    .k2GenericForm .userPlugins .userPluginFields {padding-bottom:2px;}
 
     /* Modal Selector */
     #k2AdminContainer.inModalSelector #adminForm {margin-top:66px;}
