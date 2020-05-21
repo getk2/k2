@@ -45,10 +45,6 @@ $app = JFactory::getApplication();
 
         <!-- Top Nav Tabs START here -->
         <div id="k2FormTopNav" class="k2Tabs">
-            <?php if($this->row->id): ?>
-            <div id="k2ID"><strong><?php echo JText::_('K2_ID'); ?></strong> <?php echo $this->row->id; ?></div>
-            <?php endif; ?>
-
             <div class="k2NavTabsWrapper">
                 <h2><?php echo JText::_('K2_EDIT_ITEM'); ?></h2>
                 <ul class="k2NavTabs">
@@ -62,6 +58,10 @@ $app = JFactory::getApplication();
 
             <!-- BASIC [start] -->
             <div class="k2NavTabContent" id="k2TabBasic">
+                <?php if($this->row->id): ?>
+                <div id="k2ID"><strong><?php echo JText::_('K2_ID'); ?></strong> <?php echo $this->row->id; ?></div>
+                <?php endif; ?>
+
                 <div class="k2ui-table-basic">
                     <div class="k2ui-field-label">
                         <label for="title"><?php echo JText::_('K2_TITLE'); ?></label>
