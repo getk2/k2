@@ -61,7 +61,7 @@ class K2ElementModuleTemplate extends K2Element
             $fieldName = $control_name.'['.$name.']';
         }
 
-        return JHTML::_('select.genericlist', $options, $fieldName, 'class="inputbox"', 'value', 'text', $value, $control_name.$name);
+        return JHTML::_('select.genericlist', $options, $fieldName, 'class="inputbox"', 'value', 'text', $value);
     }
 }
 
