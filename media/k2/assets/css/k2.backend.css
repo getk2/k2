@@ -250,11 +250,12 @@ div.paramValueSpacer {background:#f6f6f6;border-bottom:1px solid #e9e9e9;border-
 .k2GenericForm .userPlugins {}
 .k2GenericForm .userPlugins h3 {}
 .k2GenericForm .userPlugins .userPluginFields {background:#fbfbfb;}
-.k2GenericForm .userPlugins .userPluginFields > label {display:inline-block;width:30%;min-width:200px;clear:left;border-top:1px solid #fff;border-right:1px solid #e9e9e9;border-bottom:1px solid #e9e9e9;padding:10px;margin:0;text-align:right;background:#f6f6f6;box-sizing:border-box;vertical-align:middle;font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;}
+.k2GenericForm .userPlugins .userPluginFields > label {clear:left;display:inline-block;width:30%;min-width:200px;border-top:1px solid #fff;border-right:1px solid #e9e9e9;border-bottom:1px solid #e9e9e9;padding:10px;margin:0;text-align:right;background:#f6f6f6;box-sizing:border-box;vertical-align:middle;font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;}
 .k2GenericForm .userPlugins .userPluginFields > label + select,
-.k2GenericForm .userPlugins .userPluginFields > label + input {display:inline-block;width:65%;margin:5px;}
+.k2GenericForm .userPlugins .userPluginFields > label + input[type="text"],
+.k2GenericForm .userPlugins .userPluginFields > label + textarea {display:inline-block;width:65%;margin:5px;}
 .k2GenericForm .userPlugins .userPluginFields > label + select + .chzn-container {display:inline-block;margin:5px;}
-.k2GenericForm .userPlugins .userPluginFields > .jwHeaderContainer {clear:both;}
+.k2GenericForm .userPlugins .userPluginFields > .jwHeaderContainer {clear:both;border-radius:0;}
 
 /* Extra fields */
 #groupContainer {display:block;}
@@ -1587,7 +1588,16 @@ button.fancybox-button:hover {background:none;border:0;}
             .k2ViewIsItem #k2MediaTabs .itemAdditionalBlock {margin:0 0 10px 0;padding:0;display:block;text-align:center;}
             .k2ViewIsItem #k2MediaTabs #Video_from_provider br {display:none;}
 
+            #k2AdminContainer.isEditForm #k2ContentView > form .k2GenericForm h3 {font-size:24px;}
+
             .k2GenericForm {min-width:inherit;max-width:none;padding:0 10px 20px 10px;}
+
+            .k2GenericForm .userPlugins .userPluginFields > label {display:block;width:auto;text-align:left;border-right:0;}
+            .k2GenericForm .userPlugins .userPluginFields > label + select,
+            .k2GenericForm .userPlugins .userPluginFields > label + input[type="text"],
+            .k2GenericForm .userPlugins .userPluginFields > label + textarea {display:block;width:calc(100% - 34px);margin:10px;}
+            .k2GenericForm .userPlugins .userPluginFields > label + select + .chzn-container {display:block;}
+
             .k2ViewIsInfo.isJ30 #k2AdminContainer #k2ContentView div.k2ScrollingContent.k2GenericForm {box-sizing:border-box;width:auto;}
             .k2ViewIsInfo.isJ30 #k2AdminContainer #k2ContentView div.k2ScrollingContent.k2GenericForm table {}
             .k2ViewIsInfo.isJ30 #k2AdminContainer #k2ContentView div.k2ScrollingContent.k2GenericForm table tr th,
@@ -1605,23 +1615,25 @@ button.fancybox-button:hover {background:none;border:0;}
             .itemNewAttachment button {position:absolute;top:30px;right:2px;float:none;}
             .itemNewAttachment .itemAdditionalField input[type="text"].existing_file {margin:0;padding:0;visibility:hidden;}
 
-            #k2ContentView > form .xmlParamsFields ul li .paramLabel {display:block;width:auto;text-align:left;border-right:0;padding:0;}
-            #k2ContentView > form .xmlParamsFields ul li .paramValue {display:block;width:auto;text-align:left;margin-bottom:10px;}
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramLabel {display:block;width:auto;text-align:left;border-right:0;padding:0;}
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramLabel label {padding:10px;}
 
-            #k2ContentView > form .xmlParamsFields ul li .paramValue > input:not([type="checkbox"]),
-            #k2ContentView > form .xmlParamsFields ul li .paramValue > textarea {min-width:inherit;width:calc(100% - 22px);}
-            #k2ContentView > form .xmlParamsFields ul li .paramValue > select {min-width:inherit;width:100%;}
-            #k2ContentView > form .xmlParamsFields ul li .paramValue .js-editor-tinymce {margin-left:-10px;min-width:inherit;width:calc(100% - 10px);}
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue {display:block;width:auto;text-align:left;margin-bottom:10px;}
 
-            #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="radio"] + label,
-            #k2ContentView > form .xmlParamsFields ul li .paramValue .controls > label.radio,
-            #k2ContentView > form .xmlParamsFields ul li .paramValue .controls > label.isChecked {min-width:60px;}
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue > input:not([type="checkbox"]),
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue > textarea {min-width:inherit;width:calc(100% - 22px);}
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue > select {min-width:inherit;width:100%;}
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue .js-editor-tinymce {margin-left:-10px;min-width:inherit;width:calc(100% - 10px);}
 
-            #k2ContentView > form .xmlParamsFields ul li .paramValue.k2DateTimePickerControl {}
-            #k2ContentView > form .xmlParamsFields ul li .paramValue.k2DateTimePickerControl i.fa-calendar {display:none;}
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue input[type="radio"] + label,
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue .controls > label.radio,
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue .controls > label.isChecked {min-width:60px;}
 
-            #k2ContentView > form .xmlParamsFields ul li .paramValue fieldset.radio,
-            #k2ContentView > form .xmlParamsFields ul li > fieldset.adminform {text-align:center;}
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue.k2DateTimePickerControl {}
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue.k2DateTimePickerControl i.fa-calendar {display:none;}
+
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li .paramValue fieldset.radio,
+            .isJ30 #k2ContentView > form .xmlParamsFields ul li > fieldset.adminform {text-align:center;}
 
             .itemAdditionalField {grid-template-columns:1fr;}
             .itemAdditionalField .itemAdditionalValue {border-top:1px solid #fff;border-bottom:1px solid #e9e9e9;}
