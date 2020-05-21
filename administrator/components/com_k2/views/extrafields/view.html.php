@@ -126,8 +126,8 @@ class K2ViewExtraFields extends K2View
                 table = document.getElementById("sortTable");
                 direction = document.getElementById("directionTable");
                 order = table.options[table.selectedIndex].value;
-                if (order != \''.$this->lists['order'].'\') {
-                    dirn = \'asc\';
+                if (order != "'.$this->lists['order'].'") {
+                    dirn = "asc";
 				} else {
                 	dirn = direction.options[direction.selectedIndex].value;
 				}

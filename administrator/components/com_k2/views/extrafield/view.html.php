@@ -45,15 +45,15 @@ class K2ViewExtraField extends K2View
             ];
             Joomla.submitbutton = function(pressbutton) {
                 if (pressbutton == "cancel") {
-                    submitform( pressbutton );
+                    submitform(pressbutton);
                     return;
                 }
                 if ($K2.trim($K2("#group").val()) == "") {
-                    alert( "'.JText::_('K2_PLEASE_SELECT_A_GROUP_OR_CREATE_A_NEW_ONE', true).'" );
+                    alert("'.JText::_('K2_PLEASE_SELECT_A_GROUP_OR_CREATE_A_NEW_ONE', true).'");
                 } else if ($K2.trim($K2("#name").val()) == "") {
-                    alert( "'.JText::_('K2_NAME_CANNOT_BE_EMPTY', true).'" );
+                    alert("'.JText::_('K2_NAME_CANNOT_BE_EMPTY', true).'");
                 } else if ($K2("#type").val() == "0") {
-                    alert( "'.JText::_('K2_PLEASE_SELECT_THE_TYPE_OF_THE_EXTRA_FIELD', true).'" );
+                    alert("'.JText::_('K2_PLEASE_SELECT_THE_TYPE_OF_THE_EXTRA_FIELD', true).'");
                 } else {
                     submitform(pressbutton);
                 }

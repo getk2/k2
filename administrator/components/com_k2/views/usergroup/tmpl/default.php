@@ -10,28 +10,13 @@
 // no direct access
 defined('_JEXEC') or die;
 
-$document = JFactory::getDocument();
-$document->addScriptDeclaration("
-    Joomla.submitbutton = function(pressbutton){
-        if (pressbutton == 'cancel') {
-            submitform( pressbutton );
-            return;
-        }
-        if (\$K2.trim(\$K2('#name').val()) == '') {
-            alert( '".JText::_('K2_GROUP_NAME_CANNOT_BE_EMPTY', true)."' );
-        } else {
-            submitform( pressbutton );
-        }
-    };
-");
-
 ?>
 
 <form action="index.php" method="post" name="adminForm" id="adminForm">
     <div class="k2GenericForm">
         <div class="xmlParamsFields">
             <h3>
-                <?php if($this->row->id): ?>
+                <?php if ($this->row->id): ?>
                 <?php echo JText::_('K2_EDIT_USER_GROUP'); ?>
                 <?php else: ?>
                 <?php echo JText::_('K2_ADD_USER_GROUP'); ?>
@@ -40,7 +25,7 @@ $document->addScriptDeclaration("
             <ul class="adminformlist">
                 <li>
                     <div class="paramLabel">
-                        <label><?php echo JText::_('K2_GROUP_NAME'); ?></label>
+                        <label for="name"><?php echo JText::_('K2_GROUP_NAME'); ?></label>
                     </div>
                     <div class="paramValue">
                         <input class="text_area k2TitleBox" type="text" name="name" id="name" value="<?php echo $this->row->name; ?>" size="50" maxlength="250" />
@@ -50,16 +35,16 @@ $document->addScriptDeclaration("
         </div>
         <div class="xmlParamsFields">
             <h3 class="paramHeader"><?php echo JText::_('K2_ASSIGN_PERMISSIONS_FOR_THIS_GROUP'); ?></h3>
-            <?php if(K2_JVERSION == '15'): ?>
+            <?php if (K2_JVERSION == '15'): ?>
             <?php echo $this->form->render('params'); ?>
             <?php else: ?>
             <fieldset class="panelform">
                 <ul class="adminformlist">
                     <?php foreach($this->form->getFieldset('user-permissions') as $field): ?>
                     <li>
-                        <?php if($field->type=='header'): ?>
+                        <?php if ($field->type=='header'): ?>
                         <div class="paramValueHeader"><?php echo $field->input; ?></div>
-                        <?php elseif($field->type=='Spacer'): ?>
+                        <?php elseif ($field->type=='Spacer'): ?>
                         <div class="paramValueSpacer">&nbsp;</div>
                         <div class="clr"></div>
                         <?php else: ?>
@@ -80,11 +65,11 @@ $document->addScriptDeclaration("
                     <li>
                         <div class="paramLabel"><label><?php echo JText::_('K2_FILTER'); ?></label></div>
                         <div class="paramValue">
-                            <input id="categories-all" type="radio" name="categories" value="all" <?php if($this->categories == 'all') echo ' checked="checked"'; ?> />
+                            <input id="categories-all" type="radio" name="categories" value="all" <?php if ($this->categories == 'all') echo ' checked="checked"'; ?> />
                             <label for="categories-all"><?php echo JText::_('K2_ALL'); ?></label>
-                            <input id="categories-none" type="radio" name="categories" value="none" <?php if($this->categories == 'none') echo ' checked="checked"'; ?> />
+                            <input id="categories-none" type="radio" name="categories" value="none" <?php if ($this->categories == 'none') echo ' checked="checked"'; ?> />
                             <label for="categories-none"><?php echo JText::_('K2_NONE'); ?></label>
-                            <input id="categories-select" type="radio" name="categories" value="select" <?php if($this->categories != 'all' && $this->categories != 'none') echo ' checked="checked"'; ?> />
+                            <input id="categories-select" type="radio" name="categories" value="select" <?php if ($this->categories != 'all' && $this->categories != 'none') echo ' checked="checked"'; ?> />
                             <label for="categories-select"><?php echo JText::_('K2_SELECT_FROM_LIST'); ?></label>
                         </div>
                         <div class="clr"></div>

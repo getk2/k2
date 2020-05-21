@@ -45,14 +45,13 @@ class K2ViewCategory extends K2View
         // JS
         $document->addScriptDeclaration("
             var K2BasePath = '".JURI::base(true)."/';
-
-            Joomla.submitbutton = function(pressbutton){
+            Joomla.submitbutton = function(pressbutton) {
                 if (pressbutton == 'cancel') {
                     submitform(pressbutton);
                     return;
                 }
                 if (\$K2.trim(\$K2('#name').val()) == '') {
-                    alert( '".JText::_('K2_A_CATEGORY_MUST_AT_LEAST_HAVE_A_TITLE', true)."' );
+                    alert('".JText::_('K2_A_CATEGORY_MUST_AT_LEAST_HAVE_A_TITLE', true)."');
                 } else {
                     ".$onSave."
                     submitform(pressbutton);

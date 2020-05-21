@@ -523,21 +523,21 @@ class K2ViewItem extends K2View
                 '".JText::_('K2_BROWSE_SERVER', true)."'
             ];
 
-            Joomla.submitbutton = function(pressbutton){
+            Joomla.submitbutton = function(pressbutton) {
                 if (pressbutton == 'cancel') {
-                    submitform( pressbutton );
+                    submitform(pressbutton);
                     return;
                 }
                 if (\$K2.trim(\$K2('#title').val()) == '') {
-                    alert( '".JText::_('K2_ITEM_MUST_HAVE_A_TITLE', true)."' );
+                    alert('".JText::_('K2_ITEM_MUST_HAVE_A_TITLE', true)."');
                 } else if (\$K2.trim(\$K2('#catid').val()) == '0') {
-                    alert( '".JText::_('K2_PLEASE_SELECT_A_CATEGORY', true)."' );
+                    alert('".JText::_('K2_PLEASE_SELECT_A_CATEGORY', true)."');
                 } else {
                     syncExtraFieldsEditor();
                     var validation = validateExtraFields();
                     if(validation === true) {
                         \$K2('#selectedTags option').attr('selected', 'selected');
-                        submitform( pressbutton );
+                        submitform(pressbutton);
                     }
                 }
             };

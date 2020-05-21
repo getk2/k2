@@ -64,6 +64,22 @@ class K2ViewUserGroup extends K2View
         JToolBarHelper::custom('saveAndNew', $saveNewIcon, 'save_f2.png', 'K2_SAVE_AND_NEW', false);
         JToolBarHelper::cancel();
 
+        // JS
+        $document = JFactory::getDocument();
+        $document->addScriptDeclaration("
+            Joomla.submitbutton = function(pressbutton) {
+                if (pressbutton == 'cancel') {
+                    submitform(pressbutton);
+                    return;
+                }
+                if (\$K2.trim(\$K2('#name').val()) == '') {
+                    alert('".JText::_('K2_GROUP_NAME_CANNOT_BE_EMPTY', true)."');
+                } else {
+                    submitform(pressbutton);
+                }
+            };
+        ");
+
         parent::display($tpl);
     }
 }

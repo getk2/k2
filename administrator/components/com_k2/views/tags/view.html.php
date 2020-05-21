@@ -73,10 +73,10 @@ class K2ViewTags extends K2View
             Joomla.submitbutton = function(pressbutton) {
                 if (pressbutton == 'remove') {
                     if (confirm('".JText::_('K2_ARE_YOU_SURE_YOU_WANT_TO_DELETE_SELECTED_TAGS', true)."')){
-                        submitform( pressbutton );
+                        submitform(pressbutton);
                     }
                 } else {
-                    submitform( pressbutton );
+                    submitform(pressbutton);
                 }
             };
         ");

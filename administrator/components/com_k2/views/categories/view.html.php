@@ -53,11 +53,10 @@ class K2ViewCategories extends K2View
         // JS
         $document->addScriptDeclaration("
             var K2SelectItemsError = '".JText::_('K2_SELECT_SOME_ITEMS_FIRST', true)."';
-
             Joomla.submitbutton = function(pressbutton) {
                 if (pressbutton == 'trash') {
                     var answer = confirm('".JText::_('K2_WARNING_YOU_ARE_ABOUT_TO_TRASH_THE_SELECTED_CATEGORIES_THEIR_CHILDREN_CATEGORIES_AND_ALL_THEIR_INCLUDED_ITEMS', true)."')
-                    if (answer){
+                    if (answer) {
                         submitform(pressbutton);
                     } else {
                         return;
@@ -229,8 +228,8 @@ class K2ViewCategories extends K2View
                     table = document.getElementById("sortTable");
                     direction = document.getElementById("directionTable");
                     order = table.options[table.selectedIndex].value;
-                    if (order != \''.$this->lists['order'].'\') {
-                        dirn = \'asc\';
+                    if (order != "'.$this->lists['order'].'") {
+                        dirn = "asc";
                     } else {
                         dirn = direction.options[direction.selectedIndex].value;
                     }

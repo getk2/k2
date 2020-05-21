@@ -10,21 +10,6 @@
 // no direct access
 defined('_JEXEC') or die;
 
-$document = JFactory::getDocument();
-$document->addScriptDeclaration("
-    Joomla.submitbutton = function(pressbutton){
-        if (pressbutton == 'cancel') {
-            submitform( pressbutton );
-            return;
-        }
-        if (\$K2.trim(\$K2('#name').val()) == '') {
-            alert( '".JText::_('K2_GROUP_NAME_CANNOT_BE_EMPTY', true)."' );
-        } else {
-            submitform( pressbutton );
-        }
-    };
-");
-
 ?>
 
 <form action="index.php" enctype="multipart/form-data" method="post" name="adminForm" id="adminForm">

@@ -64,7 +64,7 @@ class K2ViewInfo extends K2View
         parent::display($tpl);
     }
 
-    public function get_server_software()
+    private function get_server_software()
     {
         if (isset($_SERVER['SERVER_SOFTWARE'])) {
             return $_SERVER['SERVER_SOFTWARE'];
