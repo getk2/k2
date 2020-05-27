@@ -1209,7 +1209,7 @@ class K2ViewItemlist extends K2View
                         }
                     }
 
-                    $metaTitle = trim($params->get('page_title'));
+                    $metaTitle = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', html_entity_decode($params->get('page_title'))));
                     $document->setTitle($metaTitle);
 
                     // Set meta description

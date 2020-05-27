@@ -819,21 +819,23 @@ class K2ModelItemlist extends K2Model
                 }
 
                 foreach ($searchwords as $searchword) {
-                    $escaped = (K2_JVERSION == '15') ? $db->getEscaped($searchword, true) : $db->escape($searchword, true);
-                    $quoted = $db->Quote('%'.$escaped.'%', false);
+                    if (strlen($searchword) > 2) {
+                        $escaped = (K2_JVERSION == '15') ? $db->getEscaped($searchword, true) : $db->escape($searchword, true);
+                        $quoted = $db->Quote('%'.$escaped.'%', false);
 
-                    $sql .= " AND (
-                        LOWER(i.title) LIKE ".$quoted." OR
-                        LOWER(i.introtext) LIKE ".$quoted." OR
-                        LOWER(i.`fulltext`) LIKE ".$quoted." OR
-                        LOWER(i.extra_fields_search) LIKE ".$quoted." OR
-                        LOWER(i.image_caption) LIKE ".$quoted." OR
-                        LOWER(i.image_credits) LIKE ".$quoted." OR
-                        LOWER(i.video_caption) LIKE ".$quoted." OR
-                        LOWER(i.video_credits) LIKE ".$quoted." OR
-                        LOWER(i.metadesc) LIKE ".$quoted." OR
-                        LOWER(i.metakey) LIKE ".$quoted."
-                    )";
+                        $sql .= " AND (
+                            LOWER(i.title) LIKE ".$quoted." OR
+                            LOWER(i.introtext) LIKE ".$quoted." OR
+                            LOWER(i.`fulltext`) LIKE ".$quoted." OR
+                            LOWER(i.extra_fields_search) LIKE ".$quoted." OR
+                            LOWER(i.image_caption) LIKE ".$quoted." OR
+                            LOWER(i.image_credits) LIKE ".$quoted." OR
+                            LOWER(i.video_caption) LIKE ".$quoted." OR
+                            LOWER(i.video_credits) LIKE ".$quoted." OR
+                            LOWER(i.metadesc) LIKE ".$quoted." OR
+                            LOWER(i.metakey) LIKE ".$quoted."
+                        )";
+                    }
                 }
             }
         }
