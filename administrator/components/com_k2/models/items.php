@@ -66,11 +66,11 @@ class K2ModelItems extends K2Model
             $search = trim(str_replace('"', '', $search));
 
             // Escape remaining string
-            $escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
+            $escaped = (K2_JVERSION == '15') ? $db->getEscaped($search, true) : $db->escape($search, true);
 
             // Full phrase or set of words
-            if (strpos($escaped, ' ')!==false && !$exact) {
-                $escaped=explode(' ', $escaped);
+            if (strpos($escaped, ' ') !== false && !$exact) {
+                $escaped = explode(' ', $escaped);
                 $quoted = array();
                 foreach ($escaped as $key=>$escapedWord) {
                     $quoted[] = $db->Quote('%'.$escapedWord.'%', false);
