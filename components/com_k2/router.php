@@ -24,10 +24,6 @@ if ($params->get('k2Sef')) {
         // Get the menu
         $menu = JFactory::getApplication()->getMenu();
 
-        // Load the itemlist model
-        require_once(JPATH_SITE.'/components/com_k2/models/itemlist.php');
-        $itemlistModel = new K2ModelItemlist;
-
         // Detect the active menu item
         if (empty($query['Itemid'])) {
             $menuItem = $menu->getActive();
