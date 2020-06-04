@@ -25,7 +25,6 @@
 // | This script is free to use, don't abuse.                               |
 // +------------------------------------------------------------------------+
 
-
 /**
  * Class upload
  *
@@ -1831,8 +1830,10 @@ class upload {
         $this->forbidden = array();
         $this->allowed = array(
             'application/arj',
+            'application/csv',
             'application/excel',
             'application/gnutar',
+            'application/haansoftxlsx',
             'application/mspowerpoint',
             'application/msword',
             'application/octet-stream',
@@ -1843,36 +1844,36 @@ class upload {
             'application/powerpoint',
             'application/rar',
             'application/rtf',
-            'application/vnd.ms-excel',
             'application/vnd.ms-excel.addin.macroEnabled.12',
             'application/vnd.ms-excel.sheet.binary.macroEnabled.12',
             'application/vnd.ms-excel.sheet.macroEnabled.12',
             'application/vnd.ms-excel.template.macroEnabled.12',
+            'application/vnd.ms-excel',
             'application/vnd.ms-office',
             'application/vnd.ms-officetheme',
-            'application/vnd.ms-powerpoint',
             'application/vnd.ms-powerpoint.addin.macroEnabled.12',
             'application/vnd.ms-powerpoint.presentation.macroEnabled.12',
             'application/vnd.ms-powerpoint.slide.macroEnabled.12',
             'application/vnd.ms-powerpoint.slideshow.macroEnabled.12',
             'application/vnd.ms-powerpoint.template.macroEnabled.12',
-            'application/vnd.ms-word',
+            'application/vnd.ms-powerpoint',
             'application/vnd.ms-word.document.macroEnabled.12',
             'application/vnd.ms-word.template.macroEnabled.12',
+            'application/vnd.ms-word',
             'application/vnd.oasis.opendocument.chart',
             'application/vnd.oasis.opendocument.database',
             'application/vnd.oasis.opendocument.formula',
-            'application/vnd.oasis.opendocument.graphics',
             'application/vnd.oasis.opendocument.graphics-template',
+            'application/vnd.oasis.opendocument.graphics',
             'application/vnd.oasis.opendocument.image',
-            'application/vnd.oasis.opendocument.presentation',
             'application/vnd.oasis.opendocument.presentation-template',
-            'application/vnd.oasis.opendocument.spreadsheet',
+            'application/vnd.oasis.opendocument.presentation',
             'application/vnd.oasis.opendocument.spreadsheet-template',
-            'application/vnd.oasis.opendocument.text',
+            'application/vnd.oasis.opendocument.spreadsheet',
             'application/vnd.oasis.opendocument.text-master',
             'application/vnd.oasis.opendocument.text-template',
             'application/vnd.oasis.opendocument.text-web',
+            'application/vnd.oasis.opendocument.text',
             'application/vnd.openofficeorg.extension',
             'application/vnd.openxmlformats-officedocument.presentationml.presentation',
             'application/vnd.openxmlformats-officedocument.presentationml.slide',
@@ -1881,40 +1882,45 @@ class upload {
             'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
             'application/vnd.openxmlformats-officedocument.spreadsheetml.template',
             'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
             'application/vnd.openxmlformats-officedocument.wordprocessingml.template',
+            'application/vnd.rar',
             'application/vocaltec-media-file',
             'application/wordperfect',
             'application/x-bittorrent',
             'application/x-bzip',
             'application/x-bzip2',
             'application/x-compressed',
+            'application/x-csv',
             'application/x-excel',
             'application/x-gzip',
             'application/x-latex',
             'application/x-midi',
-            'application/xml',
             'application/x-msexcel',
-            'application/x-rar',
             'application/x-rar-compressed',
+            'application/x-rar',
             'application/x-rtf',
             'application/x-shockwave-flash',
             'application/x-sit',
             'application/x-stuffit',
             'application/x-troff-msvideo',
-            'application/x-zip',
             'application/x-zip-compressed',
+            'application/x-zip',
+            'application/xml',
             'application/zip',
             'audio/*',
             'image/*',
             'multipart/x-gzip',
             'multipart/x-zip',
+            'text/comma-separated-values',
+            'text/csv',
             'text/plain',
-            'text/rtf',
             'text/richtext',
+            'text/rtf',
+            'text/x-c',
+            'text/x-comma-separated-values',
+            'text/x-csv',
             'text/xml',
             'video/*',
-            'text/csv'
         );
 
         $this->mime_types = array(
@@ -3109,10 +3115,10 @@ class upload {
                 $this->log .= '- file name body prepend : ' . $this->file_name_body_pre . '<br />';
             }
             if ($this->file_safe_name) { // formats the name
-	            $this->file_dst_name_body = trim(preg_replace(array('/[^\p{L}\p{N}\p{P}\p{M}\-_]/u', '/\.[\.]+/', "/(\"|\'|\“|\”)+/"), array('_', '.', '_'), $this->file_dst_name_body)); // Much better!
-	            //$this->file_dst_name_body = utf8_encode(strtr(utf8_decode($this->file_dst_name_body), utf8_decode('ŠŽšžŸÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïñòóôõöøùúûüýÿ'), 'SZszYAAAAAACEEEEIIIINOOOOOOUUUUYaaaaaaceeeeiiiinoooooouuuuyy'));
-	            //$this->file_dst_name_body = strtr($this->file_dst_name_body, array('Þ' => 'TH', 'þ' => 'th', 'Ð' => 'DH', 'ð' => 'dh', 'ß' => 'ss', 'Œ' => 'OE', 'œ' => 'oe', 'Æ' => 'AE', 'æ' => 'ae', 'µ' => 'u'));
-	            //$this->file_dst_name_body = preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $this->file_dst_name_body);
+                $this->file_dst_name_body = trim(preg_replace(array('/[^\p{L}\p{N}\p{P}\p{M}\-_]/u', '/\.[\.]+/', "/(\"|\'|\“|\”)+/"), array('_', '.', '_'), $this->file_dst_name_body)); // Much better!
+                //$this->file_dst_name_body = utf8_encode(strtr(utf8_decode($this->file_dst_name_body), utf8_decode('ŠŽšžŸÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïñòóôõöøùúûüýÿ'), 'SZszYAAAAAACEEEEIIIINOOOOOOUUUUYaaaaaaceeeeiiiinoooooouuuuyy'));
+                //$this->file_dst_name_body = strtr($this->file_dst_name_body, array('Þ' => 'TH', 'þ' => 'th', 'Ð' => 'DH', 'ð' => 'dh', 'ß' => 'ss', 'Œ' => 'OE', 'œ' => 'oe', 'Æ' => 'AE', 'æ' => 'ae', 'µ' => 'u'));
+                //$this->file_dst_name_body = preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $this->file_dst_name_body);
                 $this->log .= '- file name safe format<br />';
             }
 
@@ -5005,5 +5011,3 @@ class upload {
         return true;
     }
 }
-
-?>

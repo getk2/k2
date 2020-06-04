@@ -258,7 +258,7 @@ class K2ModelItem extends K2Model
                 $handle->file_auto_rename = false;
                 $handle->file_overwrite = true;
                 $handle->file_new_name_body = md5("Image".$row->id);
-                $handle->Process($savepath);
+                $handle->process($savepath);
 
                 $filename = $handle->file_dst_name_body;
                 $savepath = JPATH_SITE.'/media/k2/items/cache';
@@ -277,7 +277,7 @@ class K2ModelItem extends K2Model
                     $imageWidth = $params->get('itemImageXL', '800');
                 }
                 $handle->image_x = $imageWidth;
-                $handle->Process($savepath);
+                $handle->process($savepath);
 
                 // Large image
                 $handle->image_resize = true;
@@ -293,7 +293,7 @@ class K2ModelItem extends K2Model
                     $imageWidth = $params->get('itemImageL', '600');
                 }
                 $handle->image_x = $imageWidth;
-                $handle->Process($savepath);
+                $handle->process($savepath);
 
                 // Medium image
                 $handle->image_resize = true;
@@ -309,7 +309,7 @@ class K2ModelItem extends K2Model
                     $imageWidth = $params->get('itemImageM', '400');
                 }
                 $handle->image_x = $imageWidth;
-                $handle->Process($savepath);
+                $handle->process($savepath);
 
                 // Small image
                 $handle->image_resize = true;
@@ -325,7 +325,7 @@ class K2ModelItem extends K2Model
                     $imageWidth = $params->get('itemImageS', '200');
                 }
                 $handle->image_x = $imageWidth;
-                $handle->Process($savepath);
+                $handle->process($savepath);
 
                 // XSmall image
                 $handle->image_resize = true;
@@ -341,7 +341,7 @@ class K2ModelItem extends K2Model
                     $imageWidth = $params->get('itemImageXS', '100');
                 }
                 $handle->image_x = $imageWidth;
-                $handle->Process($savepath);
+                $handle->process($savepath);
 
                 // Generic image
                 $handle->image_resize = true;
@@ -353,10 +353,10 @@ class K2ModelItem extends K2Model
                 $handle->file_new_name_body = $filename.'_Generic';
                 $imageWidth = $params->get('itemImageGeneric', '300');
                 $handle->image_x = $imageWidth;
-                $handle->Process($savepath);
+                $handle->process($savepath);
 
                 if ($files['image']['error'] == 0) {
-                    $handle->Clean();
+                    $handle->clean();
                 }
             } else {
                 $app->enqueueMessage(JText::_('K2_IMAGE_WAS_NOT_UPLOADED'), 'notice');
@@ -417,6 +417,7 @@ class K2ModelItem extends K2Model
                     $src = JPATH_SITE.'/'.JPath::clean($attachment['existing']);
                     $filename = basename($src);
                     $dest = $savepath.'/'.$filename;
+
                     if (JFile::exists($dest)) {
                         $existingFileName = JFile::getName($dest);
                         $ext = JFile::getExt($existingFileName);
@@ -425,7 +426,9 @@ class K2ModelItem extends K2Model
                         $filename = $newFilename;
                         $dest = $savepath.'/'.$newFilename;
                     }
+
                     JFile::copy($src, $dest);
+
                     $attachmentToSave = JTable::getInstance('K2Attachment', 'Table');
                     $attachmentToSave->itemID = $row->id;
                     $attachmentToSave->filename = $filename;
@@ -436,14 +439,19 @@ class K2ModelItem extends K2Model
                     $handle = new Upload($attFiles['tmp_name'][$key]['upload']);
                     $filename = $attFiles['name'][$key]['upload'];
                     if ($handle->uploaded) {
-                        $handle->file_new_name_body = JFile::stripExt($filename);
                         $handle->file_auto_rename = true;
+                        $handle->file_new_name_body = JFile::stripExt($filename);
+                        $handle->file_new_name_ext = JFile::getExt($filename);
                         $handle->file_safe_name = true;
-                        $handle->allowed[] = 'application/x-zip';
-                        $handle->allowed[] = 'application/download';
-                        $handle->Process($savepath);
+                        $handle->forbidden = array(
+                            "application/java-archive",
+                            "application/x-httpd-php",
+                            "application/x-sh",
+                        );
+                        $handle->process($savepath);
                         $dstName = $handle->file_dst_name;
-                        $handle->Clean();
+                        $handle->clean();
+
                         $attachmentToSave = JTable::getInstance('K2Attachment', 'Table');
                         $attachmentToSave->itemID = $row->id;
                         $attachmentToSave->filename = $dstName;
@@ -469,26 +477,23 @@ class K2ModelItem extends K2Model
             $handle->file_auto_rename = true;
             $savepath = JPATH_ROOT.'/media/k2/galleries';
             $handle->allowed = array(
-                "application/download",
-                "application/rar",
-                "application/x-rar-compressed",
-                "application/arj",
                 "application/gnutar",
+                "application/gzip",
                 "application/x-bzip",
                 "application/x-bzip2",
                 "application/x-compressed",
+                "application/x-gtar",
                 "application/x-gzip",
+                "application/x-tar",
                 "application/x-zip-compressed",
                 "application/zip",
-                "multipart/x-zip",
                 "multipart/x-gzip",
-                "application/x-unknown",
-                "application/x-zip"
+                "multipart/x-zip",
             );
 
             if ($handle->uploaded) {
-                $handle->Process($savepath);
-                $handle->Clean();
+                $handle->process($savepath);
+                $handle->clean();
 
                 if (JFolder::exists($savepath.'/'.$row->id)) {
                     JFolder::delete($savepath.'/'.$row->id);
@@ -511,7 +516,7 @@ class K2ModelItem extends K2Model
                     $row->gallery = '{gallery}'.$row->id.'{/gallery}';
                 }
                 JFile::delete($savepath.'/'.$handle->file_dst_name);
-                $handle->Clean();
+                $handle->clean();
             } else {
                 $app->enqueueMessage($handle->error, 'error');
                 $app->redirect('index.php?option=com_k2&view=items');
@@ -887,9 +892,6 @@ class K2ModelItem extends K2Model
         $file = $savepath.'/'.$attachment->filename;
 
         if (JFile::exists($file)) {
-            require_once(JPATH_SITE.'/media/k2/assets/vendors/verot/class.upload.php/src/class.upload.php');
-            $handle = new Upload($file);
-
             // Trigger K2 plugins
             $dispatcher->trigger('onK2AfterDownload', array(&$attachment, &$params));
 
@@ -900,13 +902,13 @@ class K2ModelItem extends K2Model
             $filename = basename($file);
             ob_end_clean();
             JResponse::clearHeaders();
-            JResponse::setHeader('Pragma', 'public', true);
-            JResponse::setHeader('Expires', '0', true);
             JResponse::setHeader('Cache-Control', 'must-revalidate, post-check=0, pre-check=0', true);
-            JResponse::setHeader('Content-Type', $handle->file_src_mime, true);
             JResponse::setHeader('Content-Disposition', 'attachment; filename="'.$filename.'";', true);
-            JResponse::setHeader('Content-Transfer-Encoding', 'binary', true);
             JResponse::setHeader('Content-Length', $len, true);
+            JResponse::setHeader('Content-Transfer-Encoding', 'binary', true);
+            JResponse::setHeader('Content-Type', 'application/octet-stream', true);
+            JResponse::setHeader('Expires', '0', true);
+            JResponse::setHeader('Pragma', 'public', true);
             JResponse::sendHeaders();
             readfile($file);
         } else {
