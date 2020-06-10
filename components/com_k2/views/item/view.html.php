@@ -327,7 +327,7 @@ class K2ViewItem extends K2View
                 if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.$imageFilenamePrefix.'_Generic.jpg')) {
                     $item->nextImageGeneric = $imagePathPrefix.'_Generic.jpg'.$imageTimestamp;
                     $item->nextImageXSmall  = $imagePathPrefix.'_XS.jpg'.$imageTimestamp;
-                    $item->nextImageMedium  = $imagePathPrefix.'_S.jpg'.$imageTimestamp;
+                    $item->nextImageSmall   = $imagePathPrefix.'_S.jpg'.$imageTimestamp;
                     $item->nextImageMedium  = $imagePathPrefix.'_M.jpg'.$imageTimestamp;
                     $item->nextImageLarge   = $imagePathPrefix.'_L.jpg'.$imageTimestamp;
                     $item->nextImageXLarge  = $imagePathPrefix.'_XL.jpg'.$imageTimestamp;
@@ -363,7 +363,7 @@ class K2ViewItem extends K2View
                 if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.$imageFilenamePrefix.'_Generic.jpg')) {
                     $item->previousImageGeneric = $imagePathPrefix.'_Generic.jpg'.$imageTimestamp;
                     $item->previousImageXSmall  = $imagePathPrefix.'_XS.jpg'.$imageTimestamp;
-                    $item->previousImageMedium  = $imagePathPrefix.'_S.jpg'.$imageTimestamp;
+                    $item->previousImageSmall   = $imagePathPrefix.'_S.jpg'.$imageTimestamp;
                     $item->previousImageMedium  = $imagePathPrefix.'_M.jpg'.$imageTimestamp;
                     $item->previousImageLarge   = $imagePathPrefix.'_L.jpg'.$imageTimestamp;
                     $item->previousImageXLarge  = $imagePathPrefix.'_XL.jpg'.$imageTimestamp;
