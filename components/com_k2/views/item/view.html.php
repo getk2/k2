@@ -276,8 +276,8 @@ class K2ViewItem extends K2View
 
         // Author's latest items
         if ($item->params->get('itemAuthorLatest') && $item->created_by_alias == '') {
-            $model = $this->getModel('itemlist');
-            $authorLatestItems = $model->getAuthorLatest($item->id, $item->params->get('itemAuthorLatestLimit'), $item->created_by);
+            $itemlistModel = $this->getModel('itemlist');
+            $authorLatestItems = $itemlistModel->getAuthorLatest($item->id, $item->params->get('itemAuthorLatestLimit'), $item->created_by);
             if (count($authorLatestItems)) {
                 for ($i = 0; $i < count($authorLatestItems); $i++) {
                     $authorLatestItems[$i]->link = urldecode(JRoute::_(K2HelperRoute::getItemRoute($authorLatestItems[$i]->id.':'.urlencode($authorLatestItems[$i]->alias), $authorLatestItems[$i]->catid.':'.urlencode($authorLatestItems[$i]->categoryalias))));
@@ -288,8 +288,8 @@ class K2ViewItem extends K2View
 
         // Related items
         if ($item->params->get('itemRelated') && isset($item->tags) && count($item->tags)) {
-            $model = $this->getModel('itemlist');
-            $relatedItems = $model->getRelatedItems($item->id, $item->tags, $item->params);
+            $itemlistModel = $this->getModel('itemlist');
+            $relatedItems = $itemlistModel->getRelatedItems($item->id, $item->tags, $item->params);
             if (count($relatedItems)) {
                 for ($i = 0; $i < count($relatedItems); $i++) {
                     $relatedItems[$i]->link = urldecode(JRoute::_(K2HelperRoute::getItemRoute($relatedItems[$i]->id.':'.urlencode($relatedItems[$i]->alias), $relatedItems[$i]->catid.':'.urlencode($relatedItems[$i]->categoryalias))));
@@ -300,8 +300,6 @@ class K2ViewItem extends K2View
 
         // Navigation (previous and next item)
         if ($item->params->get('itemNavigation')) {
-            $model = $this->getModel('item');
-
             $nextItem = $model->getNextItem($item->id, $item->catid, $item->ordering);
             if (!is_null($nextItem)) {
                 $item->nextLink = urldecode(JRoute::_(K2HelperRoute::getItemRoute($nextItem->id.':'.urlencode($nextItem->alias), $nextItem->catid.':'.urlencode($item->category->alias))));
