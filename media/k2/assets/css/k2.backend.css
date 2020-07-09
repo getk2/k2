@@ -697,7 +697,7 @@ html.isJ25 #k2AdminContainer.inModalSelector #adminForm {margin-top:78px;}
             #k2ModalToolbar #toolbar-unpublish a:hover,
             #k2ModalToolbar #toolbar-close a:hover,
             #k2ModalToolbar #toolbar-cancel a:hover {background:#d62c1a;}
-#k2ModalContainer #adminForm {margin-top:60px;position:relative;z-index:9;}
+#k2ModalContainer #adminForm {margin-top:80px;position:relative;z-index:9;}
     #k2ModalContainer .k2AdminTableFilters {border:0;border-bottom:1px solid #dbdcdc;}
     #k2ModalContainer .k2AdminTableFilters tr,
     #k2ModalContainer .k2AdminTableFilters td {border:0 !important;}
