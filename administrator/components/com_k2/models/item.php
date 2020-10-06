@@ -178,6 +178,8 @@ class K2ModelItem extends K2Model
                     $allVideosTagSuffix = '';
                     if (strpos($fileurl, 'http') !== false) {
                         $allVideosTagSuffix = 'remote';
+                    } else {
+                        $fileurl = str_replace('.'.$filetype, '', $fileurl);
                     }
                     $row->video = '{'.$filetype.$allVideosTagSuffix.'}'.$fileurl.'{/'.$filetype.$allVideosTagSuffix.'}';
                 }
