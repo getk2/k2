@@ -545,8 +545,11 @@ class K2ModelItem extends K2Model
                 $item->videoType = 'embedded';
             } else {
                 $item->videoType = 'allvideos';
-                $params->set('afolder', 'media/k2/audio');
-                $params->set('vfolder', 'media/k2/videos');
+
+                if (substr($item->video, 0, 1) !== '{') {
+                    $params->set('afolder', 'media/k2/audio');
+                    $params->set('vfolder', 'media/k2/videos');
+                }
 
                 if ($view == 'item') {
                     $params->set('vwidth', $item->params->get('itemVideoWidth'));
