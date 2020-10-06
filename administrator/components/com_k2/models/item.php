@@ -175,12 +175,13 @@ class K2ModelItem extends K2Model
                 if (JRequest::getVar('remoteVideo')) {
                     $fileurl = JRequest::getVar('remoteVideo');
                     $filetype = JFile::getExt($fileurl);
-                    $allVideosTagSuffix = '';
-                    if (strpos($fileurl, 'http') !== false) {
-                        $allVideosTagSuffix = 'remote';
-                    } else {
+                    $allVideosTagSuffix = 'remote';
+                    /*
+                    if (strpos($fileurl, 'http') === false) {
+                        $allVideosTagSuffix = '';
                         $fileurl = str_replace('.'.$filetype, '', $fileurl);
                     }
+                    */
                     $row->video = '{'.$filetype.$allVideosTagSuffix.'}'.$fileurl.'{/'.$filetype.$allVideosTagSuffix.'}';
                 }
 
