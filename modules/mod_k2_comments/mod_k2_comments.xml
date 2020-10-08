@@ -101,6 +101,6 @@
             <option value="1">K2_USE_GLOBAL</option>
             <option value="0">K2_NO_CACHING</option>
         </param>
-        <param name="cache_time" type="text" default="900" label="K2_CACHE_TIME" description="K2_THE_TIME_IN_SECONDS_BEFORE_THE_MODULE_IS_RECACHED"/>
+        <param name="cache_time" type="text" default="" label="K2_CACHE_TIME" description="K2_THE_TIME_IN_SECONDS_BEFORE_THE_MODULE_IS_RECACHED"/>
     </params>
 </install>
