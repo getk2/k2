@@ -292,9 +292,9 @@ div.itemAttachmentsBlock {padding:4px;border-bottom:1px dotted #ccc;}
 div.itemAuthorBlock {background:#fafafa;border:1px solid #ddd;border-radius:4px;margin:0 0 16px 0;padding:8px;}
     div.itemAuthorBlock img.itemAuthorAvatar {float:left;display:block;background:#fff;padding:4px;border:1px solid #ddd;margin:0 8px 0 0;border-radius:50%;}
     div.itemAuthorBlock div.itemAuthorDetails {margin:0;padding:4px 0 0 0;}
-    div.itemAuthorBlock div.itemAuthorDetails h3.authorName {margin:0 0 4px 0;padding:0;}
-    div.itemAuthorBlock div.itemAuthorDetails h3.authorName a {font-size:16px;}
-    div.itemAuthorBlock div.itemAuthorDetails h3.authorName a:hover {}
+    div.itemAuthorBlock div.itemAuthorDetails h3.itemAuthorName {margin:0 0 4px 0;padding:0;}
+    div.itemAuthorBlock div.itemAuthorDetails h3.itemAuthorName a {font-size:16px;}
+    div.itemAuthorBlock div.itemAuthorDetails h3.itemAuthorName a:hover {}
     div.itemAuthorBlock div.itemAuthorDetails p {}
     div.itemAuthorBlock div.itemAuthorDetails span.itemAuthorUrl {font-weight:bold;color:#555;}
     div.itemAuthorBlock div.itemAuthorDetails span.itemAuthorEmail {font-weight:bold;color:#555;}
