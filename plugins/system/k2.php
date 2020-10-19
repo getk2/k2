@@ -430,6 +430,9 @@ class plgSystemK2 extends JPlugin
         if (($option == 'com_user' && $view == 'register') || ($option == 'com_users' && $view == 'registration')) {
             if ($params->get('recaptchaOnRegistration') && $params->get('recaptcha_public_key')) {
                 if ($params->get('recaptchaV2')) {
+                    if (K2_JVERSION != '30') {
+                        $document->addScript(JURI::root(true).'/media/k2/assets/js/k2.rc.patch.js?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
+                    }
                     $document->addScript('https://www.google.com/recaptcha/api.js?onload=onK2RecaptchaLoaded&render=explicit');
                     $document->addScriptDeclaration('
                     /* K2 - Google reCAPTCHA */
