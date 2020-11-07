@@ -127,7 +127,7 @@ class K2HelperUtilities
     // Cleanup HTML entities
     public static function cleanHtml($text)
     {
-        return htmlentities($text, ENT_QUOTES, 'UTF-8');
+        return htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
     }
 
     // Gender
