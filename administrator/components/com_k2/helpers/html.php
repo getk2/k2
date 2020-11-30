@@ -274,7 +274,7 @@ class K2HelperHTML
                 if ($app->isSite()) {
                     // B/C for saved old options
                     if ($option == 'com_k2' && $view == 'item' && $task == 'edit') {
-                        $document->addScript('https://code.jquery.com/jquery-1.8.3.min.js');
+                        $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js');
                     } else {
                         if ($jQueryHandling) {
                             if ($jQueryHandling == '1.7remote') {
@@ -295,7 +295,7 @@ class K2HelperHTML
                             if ($jQueryHandling == '1.12remote') {
                                 $jQueryHandling = '1.12.4';
                             }
-                            $document->addScript('https://code.jquery.com/jquery-'.$jQueryHandling.'.min.js');
+                            $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/'.$jQueryHandling.'/jquery.min.js');
                         }
                     }
                 }
@@ -303,9 +303,9 @@ class K2HelperHTML
                 // Backend
                 if ($app->isAdmin()) {
                     if (($option == 'com_k2' && ($view == 'item' || $view == 'category')) || $option == 'com_menus') {
-                        $document->addScript('https://code.jquery.com/jquery-1.8.3.min.js');
+                        $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js');
                     } else {
-                        $document->addScript('https://code.jquery.com/jquery-1.12.4.min.js');
+                        $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js');
                     }
                 }
             }
@@ -314,13 +314,13 @@ class K2HelperHTML
             if ($jQueryUI) {
                 // Load version 1.8.24 for tabs & sortables (called the "old" way)...
                 if (($option == 'com_k2' && ($view == 'item' || $view == 'category')) || $option == 'com_menus') {
-                    $document->addScript('https://code.jquery.com/ui/1.8.24/jquery-ui.min.js');
+                    $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js');
                 }
 
                 // Load latest version for the "media" view & modules only
                 if (($option == 'com_k2' && $view == 'media') || $option == 'com_modules' || $option == 'com_advancedmodules') {
-                    $document->addStyleSheet('https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.min.css');
-                    $document->addScript('https://code.jquery.com/ui/1.12.1/jquery-ui.min.js');
+                    $document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css');
+                    $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js');
                 }
             }
 
