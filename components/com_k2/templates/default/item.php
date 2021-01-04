@@ -471,7 +471,7 @@ defined('_JEXEC') or die;
                 <div class="itemRelAuthor"><?php echo JText::_("K2_BY"); ?> <a rel="author" href="<?php echo $item->author->link; ?>"><?php echo $item->author->name; ?></a></div>
                 <?php endif; ?>
 
-                <?php if($this->item->params->get('itemRelatedImageSize')): ?>
+                <?php if($this->item->params->get('itemRelatedImageSize') && !empty($item->image)): ?>
                 <img style="width:<?php echo $item->imageWidth; ?>px;height:auto;" class="itemRelImg" src="<?php echo $item->image; ?>" alt="<?php echo K2HelperUtilities::cleanHtml($item->title); ?>" />
                 <?php endif; ?>
 
