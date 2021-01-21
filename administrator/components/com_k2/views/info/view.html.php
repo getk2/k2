@@ -1,10 +1,10 @@
 <?php
 /**
- * @version    2.8.x
+ * @version    2.10.x
  * @package    K2
- * @author     JoomlaWorks http://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
- * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @author     JoomlaWorks https://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2020 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
 // no direct access
@@ -14,8 +14,7 @@ jimport('joomla.application.component.view');
 
 class K2ViewInfo extends K2View
 {
-
-    function display($tpl = null)
+    public function display($tpl = null)
     {
         jimport('joomla.filesystem.file');
         $user = JFactory::getUser();
@@ -52,14 +51,11 @@ class K2ViewInfo extends K2View
 
         JToolBarHelper::title(JText::_('K2_INFORMATION'), 'k2.png');
 
-        if (K2_JVERSION != '15')
-        {
-            JToolBarHelper::preferences('com_k2', 580, 800, 'K2_PARAMETERS');
-        }
-        else
-        {
+        if (K2_JVERSION != '15') {
+            JToolBarHelper::preferences('com_k2', '(window.innerHeight) * 0.9', '(window.innerWidth) * 0.7', 'K2_SETTINGS');
+        } else {
             $toolbar = JToolBar::getInstance('toolbar');
-            $toolbar->appendButton('Popup', 'config', 'K2_PARAMETERS', 'index.php?option=com_k2&view=settings', 800, 580);
+            $toolbar->appendButton('Popup', 'config', 'K2_SETTINGS', 'index.php?option=com_k2&view=settings', '(window.innerWidth) * 0.7', '(window.innerHeight) * 0.9');
         }
 
         $this->loadHelper('html');
@@ -68,20 +64,14 @@ class K2ViewInfo extends K2View
         parent::display($tpl);
     }
 
-    function get_server_software()
+    private function get_server_software()
     {
-        if (isset($_SERVER['SERVER_SOFTWARE']))
-        {
+        if (isset($_SERVER['SERVER_SOFTWARE'])) {
             return $_SERVER['SERVER_SOFTWARE'];
-        }
-        else if (($sf = getenv('SERVER_SOFTWARE')))
-        {
+        } elseif (($sf = getenv('SERVER_SOFTWARE'))) {
             return $sf;
-        }
-        else
-        {
+        } else {
             return JText::_('K2_NA');
         }
     }
-
 }

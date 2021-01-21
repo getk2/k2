@@ -1,29 +1,29 @@
 <?xml version="1.0"?>
 <joomfish type="contentelement">
-	<name>K2 Items</name>
-	<author>JoomlaWorks</author>
-	<version>2.8.1</version>
-	<description>Definitions for K2 Items</description>
-	<reference>
-		<table name="k2_items">
-			<field type="referenceid" name="id" translate="0">ID</field>
-			<field type="titletext" name="title" length="50" maxlength="255" translate="1">Title</field>
-			<field type="htmltext" name="introtext" translate="1" ebuttons="readmore,pagebreak">Intro text</field>
-			<field type="htmltext" name="fulltext" translate="1" ebuttons="readmore,pagebreak">Full text</field>
-			<field type="text" name="image_caption" translate="1">Image caption</field>
-			<field type="text" name="image_credits" maxlength="255" translate="1">Image credits</field>
-			<field type="text" name="video_caption" translate="1">Video caption</field>
-			<field type="text" name="video_credits" maxlength="255" translate="1">Video credits</field>
-			<field type="text" name="extra_fields" maxlength="255" translate="1">Extra fields</field>
-			<field type="text" name="extra_fields_search" maxlength="255" translate="1">Extra fields search</field>
-			<field type="text" name="metakey" length="50" maxlength="250" translate="1">Meta keywords</field>
-			<field type="textarea" name="metadesc" rows="5" columns="80" translate="1">Meta description</field>
-		</table>
-	</reference>
-	<translationfilters>
-		<K2_category>catid</K2_category>
-		<keyword>title</keyword>
-		<author>created_by</author>
-		<published>published</published>
-	</translationfilters>
+    <name>K2 Items</name>
+    <author>JoomlaWorks</author>
+    <version>2.10.3</version>
+    <description>Definitions for K2 Items</description>
+    <reference>
+        <table name="k2_items">
+            <field type="referenceid" name="id" translate="0">ID</field>
+            <field type="titletext" name="title" length="50" maxlength="255" translate="1">Title</field>
+            <field type="htmltext" name="introtext" translate="1" ebuttons="readmore,pagebreak">Intro text</field>
+            <field type="htmltext" name="fulltext" translate="1" ebuttons="readmore,pagebreak">Full text</field>
+            <field type="text" name="image_caption" translate="1">Image caption</field>
+            <field type="text" name="image_credits" maxlength="255" translate="1">Image credits</field>
+            <field type="text" name="video_caption" translate="1">Video caption</field>
+            <field type="text" name="video_credits" maxlength="255" translate="1">Video credits</field>
+            <field type="text" name="extra_fields" maxlength="255" translate="1">Extra fields</field>
+            <field type="text" name="extra_fields_search" maxlength="255" translate="1">Extra fields search</field>
+            <field type="text" name="metakey" length="50" maxlength="250" translate="1">Meta keywords</field>
+            <field type="textarea" name="metadesc" rows="5" columns="80" translate="1">Meta description</field>
+        </table>
+    </reference>
+    <translationfilters>
+        <K2_category>catid</K2_category>
+        <keyword>title</keyword>
+        <author>created_by</author>
+        <published>published</published>
+    </translationfilters>
 </joomfish>

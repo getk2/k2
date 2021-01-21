@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <joomfish type="contentelement">
-  <name>K2 Item attachments</name>
-  <author>JoomlaWorks</author>
-  <version>2.8.1</version>
-  <description>Definitions for K2 Item attachments</description>
-  <reference>
-  	<table name="k2_attachments">
-  		<field type="referenceid" name="id" translate="0">ID</field>
-		<field type="titletext" name="title" length="50" maxlength="255" translate="1">Title</field>
-		<field type="text" name="titleAttribute" length="50" maxlength="255" translate="1">Title attribute</field>
-  	</table>
-  </reference>
+    <name>K2 Item attachments</name>
+    <author>JoomlaWorks</author>
+    <version>2.10.3</version>
+    <description>Definitions for K2 Item attachments</description>
+    <reference>
+        <table name="k2_attachments">
+            <field type="referenceid" name="id" translate="0">ID</field>
+            <field type="titletext" name="title" length="50" maxlength="255" translate="1">Title</field>
+            <field type="text" name="titleAttribute" length="50" maxlength="255" translate="1">Title attribute</field>
+        </table>
+    </reference>
 </joomfish>

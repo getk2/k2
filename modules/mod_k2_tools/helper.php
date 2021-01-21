@@ -1,10 +1,10 @@
 <?php
 /**
- * @version    2.8.x
+ * @version    2.10.x
  * @package    K2
- * @author     JoomlaWorks http://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
- * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @author     JoomlaWorks https://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2020 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
 // no direct access
@@ -20,7 +20,7 @@ class modK2ToolsHelper
 
     public static function getAuthors(&$params)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $componentParams = JComponentHelper::getParams('com_k2');
         $where = '';
         $cid = $params->get('authors_module_category');
@@ -41,28 +41,32 @@ class modK2ToolsHelper
 
         if (K2_JVERSION != '15') {
             $languageCheck = '';
-            if ($application->getLanguageFilter()) {
+            if ($app->getLanguageFilter()) {
                 $languageTag = JFactory::getLanguage()->getTag();
                 $languageCheck = "AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').")";
             }
-            $query = "SELECT DISTINCT created_by FROM #__k2_items
-	        WHERE {$where} published=1
-	        AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." )
-	        AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." )
-	        AND trash=0
-	        AND access IN(".implode(',', $user->getAuthorisedViewLevels()).")
-	        AND created_by_alias=''
-			{$languageCheck}
-	        AND EXISTS (SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") {$languageCheck})";
+            $query = "SELECT created_by
+	            FROM #__k2_items
+	            WHERE {$where} published=1
+		            AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." )
+		            AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." )
+		            AND trash=0
+		            AND access IN(".implode(',', $user->getAuthorisedViewLevels()).")
+		            AND created_by_alias=''
+		            {$languageCheck}
+		            AND EXISTS (SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") {$languageCheck})
+	            GROUP BY created_by";
         } else {
-            $query = "SELECT DISTINCT created_by FROM #__k2_items
-	        WHERE {$where} published=1
-	        AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." )
-	        AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." )
-	        AND trash=0
-	        AND access<={$aid}
-	        AND created_by_alias=''
-	        AND EXISTS (SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND access<={$aid} )";
+            $query = "SELECT created_by
+	            FROM #__k2_items
+	            WHERE {$where} published=1
+		            AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." )
+		            AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." )
+		            AND trash=0
+		            AND access<={$aid}
+		            AND created_by_alias=''
+		            AND EXISTS (SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND access<={$aid})
+	            GROUP BY created_by";
         }
 
         $db->setQuery($query);
@@ -84,27 +88,27 @@ class modK2ToolsHelper
 
                 if (K2_JVERSION != '15') {
                     $languageCheck = '';
-                    if ($application->getLanguageFilter()) {
+                    if ($app->getLanguageFilter()) {
                         $languageTag = JFactory::getLanguage()->getTag();
                         $languageCheck = "AND i.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") AND c.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').")";
                     }
                     $query = "SELECT i.*, c.alias as categoryalias FROM #__k2_items as i
-			        LEFT JOIN #__k2_categories c ON c.id = i.catid
-			        WHERE i.created_by = ".(int)$author->id."
-			        AND i.published = 1
-			        AND i.access IN(".implode(',', $user->getAuthorisedViewLevels()).")
-			        AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
-			        AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )
-			        AND i.trash = 0 AND created_by_alias='' AND c.published = 1 AND c.access IN(".implode(',', $user->getAuthorisedViewLevels()).") AND c.trash = 0 {$languageCheck} ORDER BY created DESC";
+                    LEFT JOIN #__k2_categories c ON c.id = i.catid
+                    WHERE i.created_by = ".(int)$author->id."
+                    AND i.published = 1
+                    AND i.access IN(".implode(',', $user->getAuthorisedViewLevels()).")
+                    AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
+                    AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )
+                    AND i.trash = 0 AND created_by_alias='' AND c.published = 1 AND c.access IN(".implode(',', $user->getAuthorisedViewLevels()).") AND c.trash = 0 {$languageCheck} ORDER BY created DESC";
                 } else {
                     $query = "SELECT i.*, c.alias as categoryalias FROM #__k2_items as i
-			        LEFT JOIN #__k2_categories c ON c.id = i.catid
-			        WHERE i.created_by = ".(int)$author->id."
-			        AND i.published = 1
-			        AND i.access <= {$aid}
-			        AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
-			        AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )
-			        AND i.trash = 0 AND created_by_alias='' AND c.published = 1 AND c.access <= {$aid} AND c.trash = 0 ORDER BY created DESC";
+                    LEFT JOIN #__k2_categories c ON c.id = i.catid
+                    WHERE i.created_by = ".(int)$author->id."
+                    AND i.published = 1
+                    AND i.access <= {$aid}
+                    AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
+                    AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )
+                    AND i.trash = 0 AND created_by_alias='' AND c.published = 1 AND c.access <= {$aid} AND c.trash = 0 ORDER BY created DESC";
                 }
 
                 $db->setQuery($query, 0, 1);
@@ -119,7 +123,7 @@ class modK2ToolsHelper
                 if ($params->get('authorItemsCounter')) {
                     if (K2_JVERSION != '15') {
                         $languageCheck = '';
-                        if ($application->getLanguageFilter()) {
+                        if ($app->getLanguageFilter()) {
                             $languageTag = JFactory::getLanguage()->getTag();
                             $languageCheck = "AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').")";
                         }
@@ -139,7 +143,7 @@ class modK2ToolsHelper
 
     public static function getArchive(&$params)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $user = JFactory::getUser();
         $aid = (int)$user->get('aid');
         $db = JFactory::getDbo();
@@ -149,10 +153,10 @@ class modK2ToolsHelper
 
         $nullDate = $db->getNullDate();
 
-        $query = "SELECT DISTINCT MONTH(created) as m, YEAR(created) as y FROM #__k2_items  WHERE published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) AND trash=0";
+        $query = "SELECT DISTINCT MONTH(created) as m, YEAR(created) as y FROM #__k2_items WHERE published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) AND trash=0";
         if (K2_JVERSION != '15') {
             $query .= " AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
-            if ($application->getLanguageFilter()) {
+            if ($app->getLanguageFilter()) {
                 $languageTag = JFactory::getLanguage()->getTag();
                 $query .= " AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") ";
             }
@@ -207,7 +211,7 @@ class modK2ToolsHelper
 
     public static function tagCloud(&$params)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $user = JFactory::getUser();
         $aid = (int)$user->get('aid');
         $db = JFactory::getDbo();
@@ -261,7 +265,7 @@ class modK2ToolsHelper
         }
 
         if (K2_JVERSION != '15') {
-            if ($application->getLanguageFilter()) {
+            if ($app->getLanguageFilter()) {
                 $languageTag = JFactory::getLanguage()->getTag();
                 $query .= " AND c.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") AND i.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") ";
             }
@@ -275,12 +279,13 @@ class modK2ToolsHelper
         }
 
         $query = "SELECT tag.name, tag.id
-        FROM #__k2_tags as tag
-        LEFT JOIN #__k2_tags_xref AS xref ON xref.tagID = tag.id
-        WHERE xref.itemID IN (".implode(',', $IDs).")
-        AND tag.published = 1";
+            FROM #__k2_tags as tag
+            LEFT JOIN #__k2_tags_xref AS xref ON xref.tagID = tag.id
+            WHERE xref.itemID IN (".implode(',', $IDs).")
+            	AND tag.published = 1";
         $db->setQuery($query);
         $rows = $db->loadObjectList();
+
         $cloud = array();
         if (count($rows)) {
             foreach ($rows as $tag) {
@@ -355,7 +360,7 @@ class modK2ToolsHelper
 
     public static function hasChildren($id)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $user = JFactory::getUser();
         $aid = (int)$user->get('aid');
         $id = (int)$id;
@@ -363,7 +368,7 @@ class modK2ToolsHelper
         $query = "SELECT * FROM #__k2_categories  WHERE parent={$id} AND published=1 AND trash=0 ";
         if (K2_JVERSION != '15') {
             $query .= " AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
-            if ($application->getLanguageFilter()) {
+            if ($app->getLanguageFilter()) {
                 $languageTag = JFactory::getLanguage()->getTag();
                 $query .= " AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") ";
             }
@@ -391,7 +396,7 @@ class modK2ToolsHelper
         if ($begin) {
             $output = '';
         }
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $root_id = (int)$params->get('root_id');
         $end_level = $params->get('end_level', null);
         $id = (int)$id;
@@ -434,7 +439,7 @@ class modK2ToolsHelper
 
         if (K2_JVERSION != '15') {
             $query .= " AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
-            if ($application->getLanguageFilter()) {
+            if ($app->getLanguageFilter()) {
                 $languageTag = JFactory::getLanguage()->getTag();
                 $query .= " AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") ";
             }
@@ -482,7 +487,7 @@ class modK2ToolsHelper
 
     public static function treeselectbox(&$params, $id = 0, $level = 0)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $root_id = (int)$params->get('root_id2');
         $option = JRequest::getCmd('option');
         $view = JRequest::getCmd('view');
@@ -499,7 +504,7 @@ class modK2ToolsHelper
 
         if (K2_JVERSION != '15') {
             $query .= " AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
-            if ($application->getLanguageFilter()) {
+            if ($app->getLanguageFilter()) {
                 $languageTag = JFactory::getLanguage()->getTag();
                 $query .= " AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") ";
             }
@@ -519,10 +524,10 @@ class modK2ToolsHelper
         if ($level == 0) {
             echo '
 <div class="k2CategorySelectBlock '.$params->get('moduleclass_sfx').'">
-	<form action="'.JRoute::_('index.php').'" method="get">
-		<select name="category" onchange="window.location=this.form.category.value;">
-			<option value="'.JURI::base(true).'/">'.JText::_('K2_SELECT_CATEGORY').'</option>
-			';
+    <form action="'.JRoute::_('index.php').'" method="get">
+        <select name="category" onchange="window.location=this.form.category.value;">
+            <option value="'.JURI::base(true).'/">'.JText::_('K2_SELECT_CATEGORY').'</option>
+            ';
         }
         $indent = "";
         for ($i = 0; $i < $level; $i++) {
@@ -545,11 +550,11 @@ class modK2ToolsHelper
 
         if ($level == 0) {
             echo '
-			</select>
-			<input name="option" value="com_k2" type="hidden" />
-			<input name="view" value="itemlist" type="hidden" />
-			<input name="task" value="category" type="hidden" />
-			<input name="Itemid" value="'.JRequest::getInt('Itemid').'" type="hidden" />';
+            </select>
+            <input name="option" value="com_k2" type="hidden" />
+            <input name="view" value="itemlist" type="hidden" />
+            <input name="task" value="category" type="hidden" />
+            <input name="Itemid" value="'.JRequest::getInt('Itemid').'" type="hidden" />';
 
             // For Joom!Fish compatibility
             if (JRequest::getCmd('lang')) {
@@ -557,15 +562,15 @@ class modK2ToolsHelper
             }
 
             echo '
-	</form>
+    </form>
 </div>
-			';
+            ';
         }
     }
 
     public static function breadcrumbs($params)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $array = array();
         $view = JRequest::getCmd('view');
         $id = JRequest::getInt('id');
@@ -576,7 +581,7 @@ class modK2ToolsHelper
         $user = JFactory::getUser();
         $aid = (int)$user->get('aid');
 
-        $menu = $application->getMenu();
+        $menu = $app->getMenu();
         $active = $menu->getActive();
 
         if ($option == 'com_k2') {
@@ -585,7 +590,7 @@ class modK2ToolsHelper
                 case 'item':
                     if (K2_JVERSION != '15') {
                         $languageCheck = '';
-                        if ($application->getLanguageFilter()) {
+                        if ($app->getLanguageFilter()) {
                             $languageTag = JFactory::getLanguage()->getTag();
                             $languageCheck = " AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") ";
                         }
@@ -627,7 +632,7 @@ class modK2ToolsHelper
                         $query = "SELECT * FROM #__k2_categories  WHERE id={$id} AND published=1 AND trash=0 ";
                         if (K2_JVERSION != '15') {
                             $query .= " AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
-                            if ($application->getLanguageFilter()) {
+                            if ($app->getLanguageFilter()) {
                                 $languageTag = JFactory::getLanguage()->getTag();
                                 $query .= " AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") ";
                             }
@@ -670,8 +675,8 @@ class modK2ToolsHelper
 
     public static function getSitePath()
     {
-        $application = JFactory::getApplication();
-        $pathway = $application->getPathway();
+        $app = JFactory::getApplication();
+        $pathway = $app->getPathway();
         $items = $pathway->getPathway();
         $count = count($items);
         $path = array();
@@ -691,7 +696,7 @@ class modK2ToolsHelper
             return self::$paths[$catid];
         }
 
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $user = JFactory::getUser();
         $aid = (int)$user->get('aid');
         $catid = (int)$catid;
@@ -700,7 +705,7 @@ class modK2ToolsHelper
 
         if (K2_JVERSION != '15') {
             $query .= " AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
-            if ($application->getLanguageFilter()) {
+            if ($app->getLanguageFilter()) {
                 $languageTag = JFactory::getLanguage()->getTag();
                 $query .= " AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") ";
             }
@@ -727,7 +732,7 @@ class modK2ToolsHelper
     public static function getCategoryChildren($catid)
     {
         static $array = array();
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $user = JFactory::getUser();
         $aid = (int)$user->get('aid');
         $catid = (int)$catid;
@@ -735,7 +740,7 @@ class modK2ToolsHelper
         $query = "SELECT * FROM #__k2_categories WHERE parent={$catid} AND published=1 AND trash=0 ";
         if (K2_JVERSION != '15') {
             $query .= " AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
-            if ($application->getLanguageFilter()) {
+            if ($app->getLanguageFilter()) {
                 $languageTag = JFactory::getLanguage()->getTag();
                 $query .= " AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") ";
             }
@@ -761,7 +766,7 @@ class modK2ToolsHelper
 
     public static function countArchiveItems($month, $year, $catid = 0)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $user = JFactory::getUser();
         $aid = (int)$user->get('aid');
         $month = (int)$month;
@@ -776,7 +781,7 @@ class modK2ToolsHelper
         $query = "SELECT COUNT(*) FROM #__k2_items WHERE MONTH(created)={$month} AND YEAR(created)={$year} AND published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) AND trash=0 ";
         if (K2_JVERSION != '15') {
             $query .= " AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
-            if ($application->getLanguageFilter()) {
+            if ($app->getLanguageFilter()) {
                 $languageTag = JFactory::getLanguage()->getTag();
                 $query .= " AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") ";
             }
@@ -793,7 +798,7 @@ class modK2ToolsHelper
 
     public static function countCategoryItems($id)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $user = JFactory::getUser();
         $aid = (int)$user->get('aid');
         $id = (int)$id;
@@ -807,7 +812,7 @@ class modK2ToolsHelper
         $query = "SELECT COUNT(*) FROM #__k2_items WHERE catid={$id} AND published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) AND trash=0 ";
         if (K2_JVERSION != '15') {
             $query .= " AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
-            if ($application->getLanguageFilter()) {
+            if ($app->getLanguageFilter()) {
                 $languageTag = JFactory::getLanguage()->getTag();
                 $query .= " AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") ";
             }
@@ -859,6 +864,29 @@ class modK2ToolsHelper
         } else {
             return $cal->getCurrentMonthView();
         }
+    }
+
+    public function calendarNavigation()
+    {
+        $app = JFactory::getApplication();
+
+        $month = JRequest::getInt('month');
+        $year = JRequest::getInt('year');
+
+        $months = array(JText::_('K2_JANUARY'), JText::_('K2_FEBRUARY'), JText::_('K2_MARCH'), JText::_('K2_APRIL'), JText::_('K2_MAY'), JText::_('K2_JUNE'), JText::_('K2_JULY'), JText::_('K2_AUGUST'), JText::_('K2_SEPTEMBER'), JText::_('K2_OCTOBER'), JText::_('K2_NOVEMBER'), JText::_('K2_DECEMBER'), );
+        $days = array(JText::_('K2_SUN'), JText::_('K2_MON'), JText::_('K2_TUE'), JText::_('K2_WED'), JText::_('K2_THU'), JText::_('K2_FRI'), JText::_('K2_SAT'), );
+
+        $cal = new MyCalendar;
+        $cal->setMonthNames($months);
+        $cal->setDayNames($days);
+        $cal->category = JRequest::getInt('catid');
+        $cal->setStartDay(1);
+        if (($month) && ($year)) {
+            echo $cal->getMonthView($month, $year);
+        } else {
+            echo $cal->getCurrentMonthView();
+        }
+        $app->close();
     }
 
     public static function renderCustomCode($params)
@@ -921,7 +949,7 @@ class MyCalendar extends Calendar
     {
         if (is_null($this->cache)) {
             $this->cache = array();
-            $application = JFactory::getApplication();
+            $app = JFactory::getApplication();
             $user = JFactory::getUser();
             $aid = $user->get('aid');
             $db = JFactory::getDbo();
@@ -934,7 +962,7 @@ class MyCalendar extends Calendar
             $languageCheck = '';
             if (K2_JVERSION != '15') {
                 $accessCheck = " access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
-                if ($application->getLanguageFilter()) {
+                if ($app->getLanguageFilter()) {
                     $languageTag = JFactory::getLanguage()->getTag();
                     $languageCheck = " AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") ";
                 }

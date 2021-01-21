@@ -1,10 +1,10 @@
 <?php
 /**
- * @version    2.8.x
+ * @version    2.10.x
  * @package    K2
- * @author     JoomlaWorks http://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
- * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @author     JoomlaWorks https://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2020 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
 // no direct access
@@ -26,8 +26,9 @@ class plgSystemK2 extends JPlugin
         }
 
         // Define K2 version & build here
-        define('K2_CURRENT_VERSION', '2.8.1');
-        define('K2_BUILD', ' [Dev Build]'); // Use '' for stable or ' [Dev Build YYYYMMDD]' for the developer build
+        define('K2_CURRENT_VERSION', '2.10.4');
+        define('K2_BUILD_ID', '20210104');
+        define('K2_BUILD', '<br />[Dev Build '.K2_BUILD_ID.']'); // Use '' for stable or "<br />[Dev Build '.K2_BUILD_ID.']" for the developer build
 
         // Define the DS constant (for backwards compatibility with old template overrides & 3rd party K2 extensions)
         if (!defined('DS')) {
@@ -42,14 +43,16 @@ class plgSystemK2 extends JPlugin
         jimport('joomla.application.component.view');
 
         // Get application & K2 component params
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
+        $user = JFactory::getUser();
+        $config = JFactory::getConfig();
         $params = JComponentHelper::getParams('com_k2');
 
         // Load the K2 classes
         JLoader::register('K2Table', JPATH_ADMINISTRATOR.'/components/com_k2/tables/table.php');
         JLoader::register('K2Controller', JPATH_BASE.'/components/com_k2/controllers/controller.php');
         JLoader::register('K2Model', JPATH_ADMINISTRATOR.'/components/com_k2/models/model.php');
-        if ($application->isSite()) {
+        if ($app->isSite()) {
             K2Model::addIncludePath(JPATH_SITE.'/components/com_k2/models');
         } else {
             // Fix warning under Joomla 1.5 caused by conflict in model names
@@ -60,19 +63,6 @@ class plgSystemK2 extends JPlugin
         JLoader::register('K2View', JPATH_ADMINISTRATOR.'/components/com_k2/views/view.php');
         JLoader::register('K2HelperHTML', JPATH_ADMINISTRATOR.'/components/com_k2/helpers/html.php');
         JLoader::register('K2HelperUtilities', JPATH_SITE.'/components/com_k2/helpers/utilities.php');
-
-        // Define the default Itemid for users and tags (to be removed)
-        //define('K2_USERS_ITEMID', $params->get('defaultUsersItemid'));
-        //define('K2_TAGS_ITEMID', $params->get('defaultTagsItemid'));
-
-        // Custom HTTP headers
-        $user = JFactory::getUser();
-        if (!$user->guest) {
-            JResponse::setHeader('X-Logged-In', 'True', true);
-        } else {
-            JResponse::setHeader('X-Logged-In', 'False', true);
-        }
-        JResponse::setHeader('X-Content-Powered-By', 'K2 v'.K2_CURRENT_VERSION.' (by JoomlaWorks)', true);
 
         // Define JoomFish compatibility version.
         if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/joomfish.php')) {
@@ -91,12 +81,12 @@ class plgSystemK2 extends JPlugin
         }
 
         // Backend only
-        if (!$application->isAdmin()) {
+        if (!$app->isAdmin()) {
             return;
         }
 
         // K2 Metrics
-        if ($application->isAdmin() && $params->get('gatherStatistics', 1)) {
+        if ($app->isAdmin() && $params->get('gatherStatistics', 1)) {
             $option = JRequest::getCmd('option');
             $view = JRequest::getCmd('view');
             $viewsToRun = array('items', 'categories', 'tags', 'comments', 'users', 'usergroups', 'extrafields', 'extrafieldsgroups', '');
@@ -235,12 +225,12 @@ class plgSystemK2 extends JPlugin
                 }
                 $document = JFactory::getDocument();
                 $document->addScriptDeclaration("
-					window.addEvent('domready', function(){
-						var target = $$('table.adminform');
-						target.setProperty('id', 'adminform');
-						var div = new Element('div', {'id': 'K2ExtraFields'}).setHTML('".preg_replace($pattern, '', $output)."').injectInside($('adminform'));
-					});
-				");
+                    window.addEvent('domready', function(){
+                        var target = $$('table.adminform');
+                        target.setProperty('id', 'adminform');
+                        var div = new Element('div', {'id': 'K2ExtraFields'}).setHTML('".preg_replace($pattern, '', $output)."').injectInside($('adminform'));
+                    });
+                ");
             }
 
             if (($task == 'translate.apply' || $task == 'translate.save') && $type == 'k2_extra_fields') {
@@ -253,14 +243,14 @@ class plgSystemK2 extends JPlugin
                 $names = JRequest::getVar('option_name');
                 $target = JRequest::getVar('option_target');
 
-                for ($i = 0; $i < sizeof($values); $i++) {
+                for ($i = 0; $i < count($values); $i++) {
                     $object = new JObject;
                     $object->set('name', $names[$i]);
 
                     if ($extraFieldType == 'select' || $extraFieldType == 'multipleSelect' || $extraFieldType == 'radio') {
                         $object->set('value', $i + 1);
                     } elseif ($extraFieldType == 'link') {
-                        if (substr($values[$i], 0, 7) == 'http://') {
+                        if (substr($values[$i], 0, 4) == 'http') {
                             $values[$i] = $values[$i];
                         } else {
                             $values[$i] = 'http://'.$values[$i];
@@ -369,12 +359,12 @@ class plgSystemK2 extends JPlugin
                 }
                 $document = JFactory::getDocument();
                 $document->addScriptDeclaration("
-					window.addEvent('domready', function(){
-						var target = $$('table.adminform');
-						target.setProperty('id', 'adminform');
-						var div = new Element('div', {'id': 'K2ExtraFields'}).setHTML('".preg_replace($pattern, '', $output)."').injectInside($('adminform'));
-					});
-				");
+                    window.addEvent('domready', function(){
+                        var target = $$('table.adminform');
+                        target.setProperty('id', 'adminform');
+                        var div = new Element('div', {'id': 'K2ExtraFields'}).setHTML('".preg_replace($pattern, '', $output)."').injectInside($('adminform'));
+                    });
+                ");
             }
         }
         // --- JoomFish integration [finish] ---
@@ -384,19 +374,19 @@ class plgSystemK2 extends JPlugin
 
     public function onAfterRoute()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $document = JFactory::getDocument();
         $user = JFactory::getUser();
 
         $params = JComponentHelper::getParams('com_k2');
 
-        $basepath = ($application->isSite()) ? JPATH_SITE : JPATH_ADMINISTRATOR;
+        $basepath = ($app->isSite()) ? JPATH_SITE : JPATH_ADMINISTRATOR;
         JPlugin::loadLanguage('com_k2', $basepath);
         if (K2_JVERSION != '15') {
             JPlugin::loadLanguage('com_k2.dates', JPATH_ADMINISTRATOR, null, true);
         }
 
-        if ($application->isAdmin() || (JRequest::getCmd('option') == 'com_k2' && (JRequest::getCmd('task') == 'add' || JRequest::getCmd('task') == 'edit'))) {
+        if ($app->isAdmin() || (JRequest::getCmd('option') == 'com_k2' && (JRequest::getCmd('task') == 'add' || JRequest::getCmd('task') == 'edit'))) {
             return;
         }
 
@@ -406,9 +396,9 @@ class plgSystemK2 extends JPlugin
 
     public function onAfterDispatch()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
 
-        if ($application->isAdmin()) {
+        if ($app->isAdmin()) {
             return;
         }
 
@@ -425,6 +415,10 @@ class plgSystemK2 extends JPlugin
         $layout = JRequest::getCmd('layout');
         $user = JFactory::getUser();
 
+        // Import plugins
+        JPluginHelper::importPlugin('k2');
+        $dispatcher = JDispatcher::getInstance();
+
         if (K2_JVERSION != '15') {
             $active = JFactory::getApplication()->getMenu()->getActive();
             if (isset($active->query['layout'])) {
@@ -436,34 +430,37 @@ class plgSystemK2 extends JPlugin
         if (($option == 'com_user' && $view == 'register') || ($option == 'com_users' && $view == 'registration')) {
             if ($params->get('recaptchaOnRegistration') && $params->get('recaptcha_public_key')) {
                 if ($params->get('recaptchaV2')) {
+                    if (K2_JVERSION != '30') {
+                        $document->addScript(JURI::root(true).'/media/k2/assets/js/k2.rc.patch.js?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
+                    }
                     $document->addScript('https://www.google.com/recaptcha/api.js?onload=onK2RecaptchaLoaded&render=explicit');
                     $document->addScriptDeclaration('
-					/* K2 - Google reCAPTCHA */
-					function onK2RecaptchaLoaded(){
-						grecaptcha.render("recaptcha", {"sitekey": "'.$params->get('recaptcha_public_key').'"});
-					}
-					');
+                    /* K2 - Google reCAPTCHA */
+                    function onK2RecaptchaLoaded(){
+                        grecaptcha.render("recaptcha", {"sitekey": "'.$params->get('recaptcha_public_key').'"});
+                    }
+                    ');
                     $recaptchaClass = 'k2-recaptcha-v2';
                 } else {
                     $document->addScript('https://www.google.com/recaptcha/api/js/recaptcha_ajax.js');
                     $document->addScriptDeclaration('
-						function showRecaptcha(){
-							Recaptcha.create("'.$params->get('recaptcha_public_key').'", "recaptcha", {
-								theme: "'.$params->get('recaptcha_theme', 'clean').'"
-							});
-						}
-						$K2(document).ready(function() {
-							showRecaptcha();
-						});
-					');
+                        function showRecaptcha(){
+                            Recaptcha.create("'.$params->get('recaptcha_public_key').'", "recaptcha", {
+                                theme: "'.$params->get('recaptcha_theme', 'clean').'"
+                            });
+                        }
+                        $K2(document).ready(function() {
+                            showRecaptcha();
+                        });
+                    ');
                     $recaptchaClass = 'k2-recaptcha-v1';
                 }
             }
 
             if (!$user->guest) {
-                $application->enqueueMessage(JText::_('K2_YOU_ARE_ALREADY_REGISTERED_AS_A_MEMBER'), 'notice');
-                $application->redirect(JURI::root());
-                $application->close();
+                $app->enqueueMessage(JText::_('K2_YOU_ARE_ALREADY_REGISTERED_AS_A_MEMBER'), 'notice');
+                $app->redirect(JURI::root());
+                $app->close();
             }
             if (K2_JVERSION != '15') {
                 require_once(JPATH_SITE.'/components/com_users/controller.php');
@@ -475,8 +472,8 @@ class plgSystemK2 extends JPlugin
 
             $view = $controller->getView($view, 'html');
             $view->addTemplatePath(JPATH_SITE.'/components/com_k2/templates');
-            $view->addTemplatePath(JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates');
-            $view->addTemplatePath(JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2');
+            $view->addTemplatePath(JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2/templates');
+            $view->addTemplatePath(JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2');
             // Allow temporary template loading with ?template=
             $template = JRequest::getCmd('template');
             if (isset($template)) {
@@ -506,8 +503,6 @@ class plgSystemK2 extends JPlugin
             $view->assignRef('K2Params', $params);
             $view->assignRef('recaptchaClass', $recaptchaClass);
 
-            JPluginHelper::importPlugin('k2');
-            $dispatcher = JDispatcher::getInstance();
             $K2Plugins = $dispatcher->trigger('onRenderAdminForm', array(
                 &$K2User,
                 'user'
@@ -518,7 +513,7 @@ class plgSystemK2 extends JPlugin
             if (K2_JVERSION != '15') {
                 $view->assignRef('user', $user);
             }
-            $pathway = $application->getPathway();
+            $pathway = $app->getPathway();
             $pathway->setPathway(null);
 
             $nameFieldName = K2_JVERSION != '15' ? 'jform[name]' : 'name';
@@ -550,8 +545,8 @@ class plgSystemK2 extends JPlugin
                 } else {
                     $url = 'index.php?option=com_user&view=login&return='.base64_encode($uri->toString());
                 }
-                $application->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
-                $application->redirect(JRoute::_($url, false));
+                $app->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
+                $app->redirect(JRoute::_($url, false));
             }
 
             if (K2_JVERSION != '15') {
@@ -564,8 +559,8 @@ class plgSystemK2 extends JPlugin
 
             $view = $controller->getView($view, 'html');
             $view->addTemplatePath(JPATH_SITE.'/components/com_k2/templates');
-            $view->addTemplatePath(JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2/templates');
-            $view->addTemplatePath(JPATH_SITE.'/templates/'.$application->getTemplate().'/html/com_k2');
+            $view->addTemplatePath(JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2/templates');
+            $view->addTemplatePath(JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2');
             // Allow temporary template loading with ?template=
             $template = JRequest::getCmd('template');
             if (isset($template)) {
@@ -602,8 +597,6 @@ class plgSystemK2 extends JPlugin
 
             $view->assignRef('lists', $lists);
 
-            JPluginHelper::importPlugin('k2');
-            $dispatcher = JDispatcher::getInstance();
             $K2Plugins = $dispatcher->trigger('onRenderAdminForm', array(
                 &$K2User,
                 'user'
@@ -648,40 +641,100 @@ class plgSystemK2 extends JPlugin
 
     public function onAfterRender()
     {
-        $application = JFactory::getApplication();
-        $params = JComponentHelper::getParams('com_k2');
+        $app = JFactory::getApplication();
 
-        // Fix OpenGraph meta tags
-        if ($application->isSite() && $params->get('facebookMetatags', 1)) {
+        if ($app->isSite()) {
+            $config = JFactory::getConfig();
+            $document = JFactory::getDocument();
+            $user = JFactory::getUser();
+            $params = JComponentHelper::getParams('com_k2');
             $response = JResponse::getBody();
-            $searches = array(
-                '<meta name="og:url"',
-                '<meta name="og:title"',
-                '<meta name="og:type"',
-                '<meta name="og:image"',
-                '<meta name="og:description"'
-            );
-            $replacements = array(
-                '<meta property="og:url"',
-                '<meta property="og:title"',
-                '<meta property="og:type"',
-                '<meta property="og:image"',
-                '<meta property="og:description"'
-            );
-            if (JString::strpos($response, 'prefix="og: http://ogp.me/ns#"') === false) {
-                $searches[] = '<html ';
-                $searches[] = '<html>';
-                $replacements[] = '<html prefix="og: http://ogp.me/ns#" ';
-                $replacements[] = '<html prefix="og: http://ogp.me/ns#">';
+
+            // Use proper headers for JSON/JSONP
+            if (JRequest::getCmd('format') == 'json') {
+                if (K2_JVERSION == '15') {
+                    $document->setMimeEncoding('application/json');
+                    $document->setType('json');
+                }
+
+                if (JRequest::getCmd('callback')) {
+                    $document->setMimeEncoding('application/javascript');
+                }
             }
-            $response = JString::str_ireplace($searches, $replacements, $response);
-            JResponse::setBody($response);
+
+            // Check caching state in Joomla
+            $cacheTime = 0;
+            if (K2_JVERSION == '15') {
+                $caching = $config->getValue('config.caching');
+                $cacheTime = $config->getValue('config.cachetime');
+            } else {
+                $caching = $config->get('caching');
+                $cacheTime = $config->get('cachetime');
+            }
+            $cacheTTL = $cacheTime * 60;
+
+            // Set caching HTTP headers
+            if ($user->guest) {
+                if ($caching) {
+                    JResponse::allowCache(true);
+                    JResponse::setHeader('Cache-Control', 'public, max-age='.$cacheTTL.', stale-while-revalidate='.($cacheTTL*2).', stale-if-error='.($cacheTTL*5), true);
+                    JResponse::setHeader('Expires', gmdate('D, d M Y H:i:s', time()+$cacheTTL).' GMT', true);
+                    JResponse::setHeader('Pragma', 'public', true);
+                }
+                JResponse::setHeader('X-Logged-In', 'False', true);
+            } else {
+                JResponse::setHeader('X-Logged-In', 'True', true);
+            }
+            JResponse::setHeader('X-Content-Powered-By', 'K2 v'.K2_CURRENT_VERSION.' (by JoomlaWorks)', true);
+
+            // Set additional caching HTTP headers defined as custom script tag in the <head>
+            if ($caching) {
+                preg_match("#<script type=\"application/x\-k2\-headers\">(.*?)</script>#is", $response, $getK2CacheHeaders);
+                if (is_array($getK2CacheHeaders) && !empty($getK2CacheHeaders[1])) {
+                    $getK2CacheHeaders = json_decode(trim($getK2CacheHeaders[1]));
+                    if (is_object($getK2CacheHeaders)) {
+                        JResponse::allowCache(true);
+                        foreach ($getK2CacheHeaders as $type => $value) {
+                            JResponse::setHeader($type, $value, true);
+                        }
+                    }
+                }
+            }
+
+            // OpenGraph meta tags
+            if ($params->get('facebookMetatags', 1)) {
+                $searches = array(
+                    '<meta name="og:url"',
+                    '<meta name="og:title"',
+                    '<meta name="og:type"',
+                    '<meta name="og:image"',
+                    '<meta name="og:description"'
+                );
+                $replacements = array(
+                    '<meta property="og:url"',
+                    '<meta property="og:title"',
+                    '<meta property="og:type"',
+                    '<meta property="og:image"',
+                    '<meta property="og:description"'
+                );
+                if (strpos($response, 'http://ogp.me/ns#') === false) {
+                    $searches[] = '<html ';
+                    $searches[] = '<html>';
+                    $replacements[] = '<html prefix="og: http://ogp.me/ns#" ';
+                    $replacements[] = '<html prefix="og: http://ogp.me/ns#">';
+                }
+                $response = str_ireplace($searches, $replacements, $response);
+                JResponse::setBody($response);
+            }
         }
     }
+
+
 
     /* ============================================ */
     /* ============= Helper Functions ============= */
     /* ============================================ */
+
     public function getSearchValue($id, $currentValue)
     {
         JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
@@ -709,7 +762,7 @@ class plgSystemK2 extends JPlugin
 
     public function renderOriginal($extraField, $itemID)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
         $item = JTable::getInstance('K2Item', 'Table');
         $item->load($itemID);
@@ -760,7 +813,7 @@ class plgSystemK2 extends JPlugin
 
     public function renderTranslated($extraField, $itemID)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
         $item = JTable::getInstance('K2Item', 'Table');
         $item->load($itemID);
@@ -807,7 +860,6 @@ class plgSystemK2 extends JPlugin
         $output = '';
 
         switch ($extraField->type) {
-
             case 'textfield':
                 $output = '<div><strong>'.$extraField->name.'</strong><br /><input type="text" name="K2ExtraField_'.$extraField->id.'" value="'.$active.'" /></div><br /><br />';
                 break;

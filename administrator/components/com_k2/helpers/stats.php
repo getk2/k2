@@ -1,10 +1,10 @@
 <?php
 /**
- * @version    2.8.x
+ * @version    2.10.x
  * @package    K2
- * @author     JoomlaWorks http://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
- * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @author     JoomlaWorks https://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2020 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
 // no direct access
@@ -31,7 +31,10 @@ class K2HelperStats
 		}
 
 		$document = JFactory::getDocument();
+		
+		// For IE8/9 only (to be removed in K2 v3.x)
 		$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.4/jquery.xdomainrequest.min.js');
+		
 		$document->addScriptDeclaration("
 	    	/* K2 - Metrics */
 	        (function(\$){

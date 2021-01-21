@@ -1,10 +1,10 @@
 <?php
 /**
- * @version     2.8.x
- * @package     K2
- * @author      JoomlaWorks http://www.joomlaworks.net
- * @copyright   Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
- * @license     GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @version    2.10.x
+ * @package    K2
+ * @author     JoomlaWorks https://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2020 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
 defined('JPATH_BASE') or die ;
@@ -16,42 +16,30 @@ require_once JPATH_ADMINISTRATOR.'/components/com_finder/helpers/indexer/adapter
 
 class plgFinderK2 extends FinderIndexerAdapter
 {
-
     protected $context = 'K2';
-
     protected $extension = 'com_k2';
-
     protected $layout = 'item';
-
     protected $type_title = 'K2 Item';
-
     protected $table = '#__k2_items';
-
     protected $state_field = 'published';
 
     public function __construct(&$subject, $config)
     {
         parent::__construct($subject, $config);
-        if (PHP_SAPI === 'cli')
-        {
-          JPluginHelper::importPlugin('system', 'k2');
-          JEventDispatcher::getInstance()->trigger('onAfterInitialise');
+        if (PHP_SAPI === 'cli') {
+            JPluginHelper::importPlugin('system', 'k2');
+            JEventDispatcher::getInstance()->trigger('onAfterInitialise');
         }
         $this->loadLanguage();
     }
 
     public function onFinderAfterDelete($context, $table)
     {
-        if ($context == 'com_k2.item')
-        {
+        if ($context == 'com_k2.item') {
             $id = $table->id;
-        }
-        elseif ($context == 'com_finder.index')
-        {
+        } elseif ($context == 'com_finder.index') {
             $id = $table->link_id;
-        }
-        else
-        {
+        } else {
             return true;
         }
         // Remove the items.
@@ -60,12 +48,10 @@ class plgFinderK2 extends FinderIndexerAdapter
 
     public function onFinderAfterSave($context, $row, $isNew)
     {
-        // We only want to handle articles here
-        if ($context == 'com_k2.item')
-        {
+        // We only want to handle items here
+        if ($context == 'com_k2.item') {
             // Check if the access levels are different
-            if (!$isNew && $this->old_access != $row->access)
-            {
+            if (!$isNew && $this->old_access != $row->access) {
                 // Process the change.
                 $this->itemAccessChange($row);
             }
@@ -75,14 +61,12 @@ class plgFinderK2 extends FinderIndexerAdapter
         }
 
         // Check for access changes in the category
-        if ($context == 'com_k2.category')
-        {
+        if ($context == 'com_k2.category') {
             // Update the state
             $this->categoryStateChange(array($row->id), $row->published);
 
             // Check if the access levels are different
-            if (!$isNew && $this->old_cataccess != $row->access)
-            {
+            if (!$isNew && $this->old_cataccess != $row->access) {
                 $this->categoryAccessChange($row);
             }
         }
@@ -92,22 +76,18 @@ class plgFinderK2 extends FinderIndexerAdapter
 
     public function onFinderBeforeSave($context, $row, $isNew)
     {
-        // We only want to handle articles here
-        if ($context == 'com_k2.item')
-        {
+        // We only want to handle items here
+        if ($context == 'com_k2.item') {
             // Query the database for the old access level if the item isn't new
-            if (!$isNew)
-            {
+            if (!$isNew) {
                 $this->checkItemAccess($row);
             }
         }
 
         // Check for access levels from the category
-        if ($context == 'com_k2.category')
-        {
+        if ($context == 'com_k2.category') {
             // Query the database for the old access level if the item isn't new
-            if (!$isNew)
-            {
+            if (!$isNew) {
                 $this->checkCategoryAccess($row);
             }
         }
@@ -118,23 +98,19 @@ class plgFinderK2 extends FinderIndexerAdapter
     public function onFinderChangeState($context, $pks, $value)
     {
         // Items
-        if ($context == 'com_k2.item')
-        {
+        if ($context == 'com_k2.item') {
             $this->itemStateChange($pks, $value);
         }
         // Categories
-        if ($context == 'com_k2.category')
-        {
+        if ($context == 'com_k2.category') {
             $this->categoryStateChange($pks, $value);
         }
-
     }
 
     protected function index(FinderIndexerResult $item, $format = 'html')
     {
         // Check if the extension is enabled
-        if (JComponentHelper::isEnabled($this->extension) == false)
-        {
+        if (JComponentHelper::isEnabled($this->extension) == false) {
             return;
         }
 
@@ -161,8 +137,7 @@ class plgFinderK2 extends FinderIndexerAdapter
         $title = $this->getItemMenuTitle($item->url);
 
         // Adjust the title if necessary.
-        if (!empty($title) && $this->params->get('use_menu_title', true))
-        {
+        if (!empty($title) && $this->params->get('use_menu_title', true)) {
             $item->title = $title;
         }
 
@@ -177,12 +152,11 @@ class plgFinderK2 extends FinderIndexerAdapter
         $item->addInstruction(FinderIndexer::META_CONTEXT, 'created_by_alias');
         $item->addInstruction(FinderIndexer::META_CONTEXT, 'extra_fields_search');
 
-        // Translate the state. Articles should only be published if the category is published.
+        // Translate the state. Items should only be published if the category is published.
         $item->state = $this->translateState($item->state, $item->cat_state);
 
-        // Translate the trash state. Articles should only be accesible if the category is accessible.
-        if ($item->trash || $item->cat_trash)
-        {
+        // Translate the trash state. Items should only be accesible if the category is accessible.
+        if ($item->trash || $item->cat_trash) {
             $item->state = 0;
         }
 
@@ -190,8 +164,7 @@ class plgFinderK2 extends FinderIndexerAdapter
         $item->addTaxonomy('Type', 'K2 Item');
 
         // Add the author taxonomy data.
-        if (!empty($item->author) || !empty($item->created_by_alias))
-        {
+        if (!empty($item->author) || !empty($item->created_by_alias)) {
             $item->addTaxonomy('Author', !empty($item->created_by_alias) ? $item->created_by_alias : $item->author);
         }
 
@@ -208,12 +181,9 @@ class plgFinderK2 extends FinderIndexerAdapter
         FinderIndexerHelper::getContentExtras($item);
 
         // Index the item.
-        if (method_exists('FinderIndexer', 'getInstance'))
-        {
+        if (method_exists('FinderIndexer', 'getInstance')) {
             FinderIndexer::getInstance()->index($item);
-        }
-        else
-        {
+        } else {
             FinderIndexer::index($item);
         }
     }
@@ -289,8 +259,7 @@ class plgFinderK2 extends FinderIndexerAdapter
         $items = $this->db->loadObjectList();
 
         // Adjust the access level for each item within the category.
-        foreach ($items as $item)
-        {
+        foreach ($items as $item) {
             // Set the access level.
             $temp = max($item->access, $row->access);
 
@@ -301,5 +270,4 @@ class plgFinderK2 extends FinderIndexerAdapter
             $this->reindex($item->id);
         }
     }
-
 }

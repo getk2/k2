@@ -1,786 +1,812 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-  <name>K2_ITEM_EDIT_FORM</name>
-  <params group="item-view-options-listings" addpath="/administrator/components/com_k2/elements">
-    <param name="catItemTitle" type="radio" default="" label="K2_TITLE" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="catItemTitleLinked" type="radio" default="" label="K2_LINK_ON_TITLE" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="catItemFeaturedNotice" type="radio" default="" label="K2_FEATURED_NOTICE_NEXT_TO_TITLE" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="catItemAuthor" type="radio" default="" label="K2_AUTHOR" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="catItemDateCreated" type="radio" default="" label="K2_ITEM_CREATED_DATE_AND_TIME" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="catItemRating" type="radio" default="" label="K2_RATING_VOTING" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="catItemImage" type="radio" default="" label="K2_IMAGE" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="catItemIntroText" type="radio" default="" label="K2_INTROTEXT" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="catItemExtraFields" type="radio" default="" label="K2_EXTRA_FIELDS" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="catItemHits" type="radio" default="" label="K2_HITS" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="catItemCategory" type="radio" default="" label="K2_CATEGORY" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="catItemTags" type="radio" default="" label="K2_TAGS" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="catItemAttachments" type="radio" default="" label="K2_ATTACHMENTS" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="catItemAttachmentsCounter" type="radio" default="" label="K2_ATTACHMENTS_COUNTER" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="catItemVideo" type="radio" default="" label="K2_MEDIA" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="catItemVideoWidth" type="text" default="" size="4" label="K2_VIDEO_WIDTH" description=""/>
-    <param name="catItemVideoHeight" type="text" default="" size="4" label="K2_VIDEO_HEIGHT" description=""/>
-    <param name="catItemAudioWidth" type="text" default="" size="4" label="K2_AUDIO_WIDTH" description=""/>
-    <param name="catItemAudioHeight" type="text" default="" size="4" label="K2_AUDIO_HEIGHT" description=""/>
-    <param name="catItemVideoAutoPlay" type="radio" default="" label="K2_MEDIA_AUTOPLAY" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_NO</option>
-      <option value="1">K2_YES</option>
-    </param>
-    <param name="catItemImageGallery" type="radio" default="" label="K2_IMAGE_GALLERY" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="catItemImageGalleryWidth" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAIL_WIDTH" description=""/>
-    <param name="catItemImageGalleryHeight" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAIL_HEIGHT" description=""/>
-    <param name="catItemDateModified" type="radio" default="" label="K2_ITEM_MODIFIED_DATE_AND_TIME" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="catItemReadMore" type="radio" default="" label="K2_READ_MORE_LINK" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="catItemCommentsAnchor" type="radio" default="" label="K2_ANCHOR_LINK_WITH_COMMENTS_COUNTER_TO_ITEMS_COMMENT_FORM" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="" type="header" default="K2_ADVANCED" label="" description=""/>
-    <param name="catItemK2Plugins" type="radio" default="" label="K2_ENABLE_K2_PLUGINS" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_NO</option>
-      <option value="1">K2_YES</option>
-    </param>
-  </params>
-  <params group="item-view-options" addpath="/administrator/components/com_k2/elements">
-    <param name="itemDateCreated" type="radio" default="" label="K2_ITEM_CREATED_DATE_AND_TIME" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemTitle" type="radio" default="" label="K2_TITLE" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemFeaturedNotice" type="radio" default="" label="K2_FEATURED_NOTICE_NEXT_TO_TITLE" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemAuthor" type="radio" default="" label="K2_AUTHOR" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemFontResizer" type="radio" default="" label="K2_FONT_RESIZER" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemPrintButton" type="radio" default="" label="K2_PRINT_BUTTON" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemEmailButton" type="radio" default="" label="K2_EMAIL_BUTTON" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemSocialButton" type="radio" default="" label="K2_SOCIAL_BUTTON_LIKE_SHARETHIS_ADDTHIS_ETC" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemVideoAnchor" type="radio" default="" label="K2_ANCHOR_LINK_TO_VIDEO" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemImageGalleryAnchor" type="radio" default="" label="K2_ANCHOR_LINK_TO_IMAGE_GALLERY" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemCommentsAnchor" type="radio" default="" label="K2_ANCHOR_LINK_WITH_COMMENTS_COUNTER_TO_COMMENT_FORM" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemRating" type="radio" default="" label="K2_RATING_VOTING" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemImage" type="radio" default="" label="K2_IMAGE" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemImgSize" type="radio" default="" label="K2_IMAGE_SIZE" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="XSmall">K2_XSMALL</option>
-      <option value="Small">K2_SMALL</option>
-      <option value="Medium">K2_MEDIUM</option>
-      <option value="Large">K2_LARGE</option>
-      <option value="XLarge">K2_XLARGE</option>
-    </param>
-    <param name="itemImageMainCaption" type="radio" default="" label="K2_IMAGE_CAPTION" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemImageMainCredits" type="radio" default="" label="K2_IMAGE_CREDITS" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemIntroText" type="radio" default="" label="K2_INTROTEXT" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemFullText" type="radio" default="" label="K2_FULLTEXT" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemExtraFields" type="radio" default="" label="K2_EXTRA_FIELDS" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemDateModified" type="radio" default="" label="K2_ITEM_MODIFIED_DATE_AND_TIME" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemHits" type="radio" default="" label="K2_HITS_PAGE_VIEWS" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemCategory" type="radio" default="" label="K2_CATEGORY" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemTags" type="radio" default="" label="K2_TAGS" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemAttachments" type="radio" default="" label="K2_ATTACHMENTS" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemAttachmentsCounter" type="radio" default="" label="K2_ATTACHMENTS_COUNTER" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemVideo" type="radio" default="" label="K2_MEDIA" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemVideoWidth" type="text" default="" size="4" label="K2_VIDEO_WIDTH" description=""/>
-    <param name="itemVideoHeight" type="text" default="" size="4" label="K2_VIDEO_HEIGHT" description=""/>
-    <param name="itemAudioWidth" type="text" default="" size="4" label="K2_AUDIO_WIDTH" description=""/>
-    <param name="itemAudioHeight" type="text" default="" size="4" label="K2_AUDIO_HEIGHT" description=""/>
-    <param name="itemVideoAutoPlay" type="radio" default="" label="K2_MEDIA_AUTOPLAY" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_NO</option>
-      <option value="1">K2_YES</option>
-    </param>
-    <param name="itemVideoCaption" type="radio" default="" label="K2_MEDIA_CAPTION" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemVideoCredits" type="radio" default="" label="K2_MEDIA_CREDITS" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemImageGallery" type="radio" default="" label="K2_IMAGE_GALLERY" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemImageGalleryWidth" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAIL_WIDTH" description=""/>
-    <param name="itemImageGalleryHeight" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAIL_HEIGHT" description=""/>
-    <param name="itemNavigation" type="radio" default="" label="K2_ITEM_NAVIGATION" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemComments" type="radio" default="" label="K2_COMMENTS" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-		<param name="" type="header" default="K2_SOCIAL_SHARING" label="" description=""/>
-    <param name="itemTwitterButton" type="radio" default="" label="K2_TWITTER_SHARE" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemFacebookButton" type="radio" default="" label="K2_FACEBOOK_SHARE" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemGooglePlusOneButton" type="radio" default="" label="K2_GOOGLEPLUSONE_SHARE" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="" type="header" default="K2_AUTHOR_OPTIONS" label="" description=""/>
-    <param name="itemAuthorBlock" type="radio" default="" label="K2_DISPLAY_EXTENDED_AUTHOR_INFO" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemAuthorImage" type="radio" default="" label="K2_AUTHOR_IMAGE" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemAuthorDescription" type="radio" default="" label="K2_AUTHOR_DESCRIPTION" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemAuthorURL" type="radio" default="" label="K2_AUTHOR_URL" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemAuthorEmail" type="radio" default="" label="K2_AUTHOR_EMAIL" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-    </param>
-    <param name="itemAuthorLatest" type="radio" default="" label="K2_LATEST_ITEMS_FROM_AUTHOR" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_HIDE</option>
-      <option value="1">K2_SHOW</option>
-		</param>
-		<param name="itemAuthorLatestLimit" type="text" default="" size="4" label="K2_LIMIT_FOR_LATEST_ITEMS_FROM_AUTHOR" description="K2_LEAVE_BLANK_TO_INHERIT_FROM_CATEGORY"/>
-		<param name="" type="header" default="K2_RELATED_ITEMS" label="" description=""/>
-		<param name="itemRelated" type="radio" default="" label="K2_RELATED_ITEMS_BY_TAG" description="">
-			<option value="">K2_INHERIT_FROM_CATEGORY</option>
-		  <option value="0">K2_HIDE</option>
-		  <option value="1">K2_SHOW</option>
-		</param>
-		<param name="itemRelatedLimit" type="text" default="" size="4" label="K2_RELATED_ITEMS_LIMIT" description=""/>
-		<param name="itemRelatedTitle" type="radio" default="" label="K2_RELATED_ITEMS_TITLE" description="">
-		  <option value="">K2_INHERIT_FROM_CATEGORY</option>
-		  <option value="0">K2_HIDE</option>
-		  <option value="1">K2_SHOW</option>
-		</param>
-		<param name="itemRelatedCategory" type="radio" default="" label="K2_RELATED_ITEMS_CATEGORY" description="">
-		  <option value="">K2_INHERIT_FROM_CATEGORY</option>
-		  <option value="0">K2_HIDE</option>
-		  <option value="1">K2_SHOW</option>
-		</param>
-		<param name="itemRelatedImageSize" type="radio" default="" label="K2_RELATED_ITEMS_IMAGE" description="">
-			<option value="">K2_INHERIT_FROM_CATEGORY</option>
-			<option value="0">K2_NONE_SELECTED</option>
-		  <option value="XSmall">K2_XSMALL</option>
-		  <option value="Small">K2_SMALL</option>
-		  <option value="Medium">K2_MEDIUM</option>
-		  <option value="Large">K2_LARGE</option>
-		  <option value="XLarge">K2_XLARGE</option>
-		</param>
-		<param name="itemRelatedIntrotext" type="radio" default="" label="K2_RELATED_ITEMS_INTROTEXT" description="">
-		  <option value="">K2_INHERIT_FROM_CATEGORY</option>
-		  <option value="0">K2_HIDE</option>
-		  <option value="1">K2_SHOW</option>
-		</param>
-		<param name="itemRelatedFulltext" type="radio" default="" label="K2_RELATED_ITEMS_FULLTEXT" description="">
-		  <option value="">K2_INHERIT_FROM_CATEGORY</option>
-		  <option value="0">K2_HIDE</option>
-		  <option value="1">K2_SHOW</option>
-		</param>
-		<param name="itemRelatedAuthor" type="radio" default="" label="K2_RELATED_ITEMS_AUTHOR" description="">
-		  <option value="">K2_INHERIT_FROM_CATEGORY</option>
-		  <option value="0">K2_HIDE</option>
-		  <option value="1">K2_SHOW</option>
-		</param>
-		<param name="itemRelatedMedia" type="radio" default="" label="K2_RELATED_ITEMS_MEDIA" description="">
-		  <option value="">K2_INHERIT_FROM_CATEGORY</option>
-		  <option value="0">K2_HIDE</option>
-		  <option value="1">K2_SHOW</option>
-		</param>
-		<param name="itemRelatedImageGallery" type="radio" default="" label="K2_RELATED_ITEMS_IMAGE_GALLERY" description="">
-		  <option value="">K2_INHERIT_FROM_CATEGORY</option>
-		  <option value="0">K2_HIDE</option>
-		  <option value="1">K2_SHOW</option>
-		</param>
-    <param name="" type="header" default="K2_ADVANCED" label="" description=""/>
-    <param name="itemK2Plugins" type="radio" default="" label="K2_ENABLE_K2_PLUGINS" description="">
-      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-      <option value="0">K2_NO</option>
-      <option value="1">K2_YES</option>
-    </param>
-  </params>
-  <fields name="params">
-    <fieldset name="item-view-options-listings" addfieldpath="/administrator/components/com_k2/elements">
-      <field name="catItemTitle" type="radio" default="" label="K2_TITLE" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="catItemTitleLinked" type="radio" default="" label="K2_LINK_ON_TITLE" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="catItemFeaturedNotice" type="radio" default="" label="K2_FEATURED_NOTICE_NEXT_TO_TITLE" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="catItemAuthor" type="radio" default="" label="K2_AUTHOR" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="catItemDateCreated" type="radio" default="" label="K2_ITEM_CREATED_DATE_AND_TIME" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="catItemRating" type="radio" default="" label="K2_RATING_VOTING" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="catItemImage" type="radio" default="" label="K2_IMAGE" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="catItemIntroText" type="radio" default="" label="K2_INTROTEXT" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="catItemExtraFields" type="radio" default="" label="K2_EXTRA_FIELDS" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="catItemHits" type="radio" default="" label="K2_HITS" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="catItemCategory" type="radio" default="" label="K2_CATEGORY" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="catItemTags" type="radio" default="" label="K2_TAGS" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="catItemAttachments" type="radio" default="" label="K2_ATTACHMENTS" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="catItemAttachmentsCounter" type="radio" default="" label="K2_ATTACHMENTS_COUNTER" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="catItemVideo" type="radio" default="" label="K2_MEDIA" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="catItemVideoWidth" type="text" default="" size="4" label="K2_VIDEO_WIDTH" description=""/>
-      <field name="catItemVideoHeight" type="text" default="" size="4" label="K2_VIDEO_HEIGHT" description=""/>
-      <field name="catItemAudioWidth" type="text" default="" size="4" label="K2_AUDIO_WIDTH" description=""/>
-      <field name="catItemAudioHeight" type="text" default="" size="4" label="K2_AUDIO_HEIGHT" description=""/>
-      <field name="catItemVideoAutoPlay" type="radio" default="" label="K2_MEDIA_AUTOPLAY" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_NO</option>
-        <option value="1">K2_YES</option>
-      </field>
-      <field name="catItemImageGallery" type="radio" default="" label="K2_IMAGE_GALLERY" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="catItemImageGalleryWidth" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAIL_WIDTH" description=""/>
-      <field name="catItemImageGalleryHeight" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAIL_HEIGHT" description=""/>
-      <field name="catItemDateModified" type="radio" default="" label="K2_ITEM_MODIFIED_DATE_AND_TIME" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="catItemReadMore" type="radio" default="" label="K2_READ_MORE_LINK" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="catItemCommentsAnchor" type="radio" default="" label="K2_ANCHOR_LINK_WITH_COMMENTS_COUNTER_TO_ITEMS_COMMENT_FORM" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="" type="header" default="K2_ADVANCED" label="" description=""/>
-      <field name="catItemK2Plugins" type="radio" default="" label="K2_ENABLE_K2_PLUGINS" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_NO</option>
-        <option value="1">K2_YES</option>
-      </field>
-    </fieldset>
-    <fieldset name="item-view-options" addfieldpath="/administrator/components/com_k2/elements">
-      <field name="itemDateCreated" type="radio" default="" label="K2_ITEM_CREATED_DATE_AND_TIME" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemTitle" type="radio" default="" label="K2_TITLE" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemFeaturedNotice" type="radio" default="" label="K2_FEATURED_NOTICE_NEXT_TO_TITLE" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemAuthor" type="radio" default="" label="K2_AUTHOR" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemFontResizer" type="radio" default="" label="K2_FONT_RESIZER" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemPrintButton" type="radio" default="" label="K2_PRINT_BUTTON" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemEmailButton" type="radio" default="" label="K2_EMAIL_BUTTON" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemSocialButton" type="radio" default="" label="K2_SOCIAL_BUTTON_LIKE_SHARETHIS_ADDTHIS_ETC" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemVideoAnchor" type="radio" default="" label="K2_ANCHOR_LINK_TO_VIDEO" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemImageGalleryAnchor" type="radio" default="" label="K2_ANCHOR_LINK_TO_IMAGE_GALLERY" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemCommentsAnchor" type="radio" default="" label="K2_ANCHOR_LINK_WITH_COMMENTS_COUNTER_TO_COMMENT_FORM" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemRating" type="radio" default="" label="K2_RATING_VOTING" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemImage" type="radio" default="" label="K2_IMAGE" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemImgSize" type="list" default="" label="K2_IMAGE_SIZE" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="XSmall">K2_XSMALL</option>
-        <option value="Small">K2_SMALL</option>
-        <option value="Medium">K2_MEDIUM</option>
-        <option value="Large">K2_LARGE</option>
-        <option value="XLarge">K2_XLARGE</option>
-      </field>
-      <field name="itemImageMainCaption" type="radio" default="" label="K2_IMAGE_CAPTION" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemImageMainCredits" type="radio" default="" label="K2_IMAGE_CREDITS" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemIntroText" type="radio" default="" label="K2_INTROTEXT" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemFullText" type="radio" default="" label="K2_FULLTEXT" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemExtraFields" type="radio" default="" label="K2_EXTRA_FIELDS" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemDateModified" type="radio" default="" label="K2_ITEM_MODIFIED_DATE_AND_TIME" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemHits" type="radio" default="" label="K2_HITS_PAGE_VIEWS" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemCategory" type="radio" default="" label="K2_CATEGORY" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemTags" type="radio" default="" label="K2_TAGS" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemAttachments" type="radio" default="" label="K2_ATTACHMENTS" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemAttachmentsCounter" type="radio" default="" label="K2_ATTACHMENTS_COUNTER" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemVideo" type="radio" default="" label="K2_MEDIA" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemVideoWidth" type="text" default="" size="4" label="K2_VIDEO_WIDTH" description=""/>
-      <field name="itemVideoHeight" type="text" default="" size="4" label="K2_VIDEO_HEIGHT" description=""/>
-      <field name="itemAudioWidth" type="text" default="" size="4" label="K2_AUDIO_WIDTH" description=""/>
-      <field name="itemAudioHeight" type="text" default="" size="4" label="K2_AUDIO_HEIGHT" description=""/>
-      <field name="itemVideoAutoPlay" type="radio" default="" label="K2_MEDIA_AUTOPLAY" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_NO</option>
-        <option value="1">K2_YES</option>
-      </field>
-      <field name="itemVideoCaption" type="radio" default="" label="K2_MEDIA_CAPTION" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemVideoCredits" type="radio" default="" label="K2_MEDIA_CREDITS" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemImageGallery" type="radio" default="" label="K2_IMAGE_GALLERY" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemImageGalleryWidth" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAIL_WIDTH" description=""/>
-      <field name="itemImageGalleryHeight" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAIL_HEIGHT" description=""/>
-      <field name="itemNavigation" type="radio" default="" label="K2_ITEM_NAVIGATION" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemComments" type="radio" default="" label="K2_COMMENTS" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-			<field name="" type="header" default="K2_SOCIAL_SHARING" label="" description=""/>
-	    <field name="itemTwitterButton" type="radio" default="" label="K2_TWITTER_SHARE" description="">
-	      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-	      <option value="0">K2_HIDE</option>
-	      <option value="1">K2_SHOW</option>
-	    </field>
-	    <field name="itemFacebookButton" type="radio" default="" label="K2_FACEBOOK_SHARE" description="">
-	      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-	      <option value="0">K2_HIDE</option>
-	      <option value="1">K2_SHOW</option>
-	    </field>
-	    <field name="itemGooglePlusOneButton" type="radio" default="" label="K2_GOOGLEPLUSONE_SHARE" description="">
-	      <option value="">K2_INHERIT_FROM_CATEGORY</option>
-	      <option value="0">K2_HIDE</option>
-	      <option value="1">K2_SHOW</option>
-	    </field>
-      <field name="" type="header" default="K2_AUTHOR_OPTIONS" label="" description=""/>
-      <field name="itemAuthorBlock" type="radio" default="" label="K2_DISPLAY_EXTENDED_AUTHOR_INFO" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemAuthorImage" type="radio" default="" label="K2_AUTHOR_IMAGE" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemAuthorDescription" type="radio" default="" label="K2_AUTHOR_DESCRIPTION" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemAuthorURL" type="radio" default="" label="K2_AUTHOR_URL" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemAuthorEmail" type="radio" default="" label="K2_AUTHOR_EMAIL" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemAuthorLatest" type="radio" default="" label="K2_LATEST_ITEMS_FROM_AUTHOR" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_HIDE</option>
-        <option value="1">K2_SHOW</option>
-      </field>
-      <field name="itemAuthorLatestLimit" type="text" default="" size="4" label="K2_LIMIT_FOR_LATEST_ITEMS_FROM_AUTHOR" description="K2_LEAVE_BLANK_TO_INHERIT_FROM_CATEGORY"/>
-			<field name="" type="header" default="K2_RELATED_ITEMS" label="" description=""/>
-			<field name="itemRelated" type="radio" default="" label="K2_RELATED_ITEMS_BY_TAG" description="">
-				<option value="">K2_INHERIT_FROM_CATEGORY</option>
-			  <option value="0">K2_HIDE</option>
-			  <option value="1">K2_SHOW</option>
-			</field>
-			<field name="itemRelatedLimit" type="text" default="" size="4" label="K2_RELATED_ITEMS_LIMIT" description=""/>
-			<field name="itemRelatedTitle" type="radio" default="" label="K2_RELATED_ITEMS_TITLE" description="">
-			  <option value="">K2_INHERIT_FROM_CATEGORY</option>
-			  <option value="0">K2_HIDE</option>
-			  <option value="1">K2_SHOW</option>
-			</field>
-			<field name="itemRelatedCategory" type="radio" default="" label="K2_RELATED_ITEMS_CATEGORY" description="">
-			  <option value="">K2_INHERIT_FROM_CATEGORY</option>
-			  <option value="0">K2_HIDE</option>
-			  <option value="1">K2_SHOW</option>
-			</field>
-			<field name="itemRelatedImageSize" type="list" default="" label="K2_RELATED_ITEMS_IMAGE" description="">
-				<option value="">K2_INHERIT_FROM_CATEGORY</option>
-				<option value="0">K2_NONE_SELECTED</option>
-			  <option value="XSmall">K2_XSMALL</option>
-			  <option value="Small">K2_SMALL</option>
-			  <option value="Medium">K2_MEDIUM</option>
-			  <option value="Large">K2_LARGE</option>
-			  <option value="XLarge">K2_XLARGE</option>
-			</field>
-			<field name="itemRelatedIntrotext" type="radio" default="" label="K2_RELATED_ITEMS_INTROTEXT" description="">
-			  <option value="">K2_INHERIT_FROM_CATEGORY</option>
-			  <option value="0">K2_HIDE</option>
-			  <option value="1">K2_SHOW</option>
-			</field>
-			<field name="itemRelatedFulltext" type="radio" default="" label="K2_RELATED_ITEMS_FULLTEXT" description="">
-			  <option value="">K2_INHERIT_FROM_CATEGORY</option>
-			  <option value="0">K2_HIDE</option>
-			  <option value="1">K2_SHOW</option>
-			</field>
-			<field name="itemRelatedAuthor" type="radio" default="" label="K2_RELATED_ITEMS_AUTHOR" description="">
-			  <option value="">K2_INHERIT_FROM_CATEGORY</option>
-			  <option value="0">K2_HIDE</option>
-			  <option value="1">K2_SHOW</option>
-			</field>
-			<field name="itemRelatedMedia" type="radio" default="" label="K2_RELATED_ITEMS_MEDIA" description="">
-			  <option value="">K2_INHERIT_FROM_CATEGORY</option>
-			  <option value="0">K2_HIDE</option>
-			  <option value="1">K2_SHOW</option>
-			</field>
-			<field name="itemRelatedImageGallery" type="radio" default="" label="K2_RELATED_ITEMS_IMAGE_GALLERY" description="">
-			  <option value="">K2_INHERIT_FROM_CATEGORY</option>
-			  <option value="0">K2_HIDE</option>
-			  <option value="1">K2_SHOW</option>
-			</field>
-      <field name="" type="header" default="K2_ADVANCED" label="" description=""/>
-      <field name="itemK2Plugins" type="radio" default="" label="K2_ENABLE_K2_PLUGINS" description="">
-        <option value="">K2_INHERIT_FROM_CATEGORY</option>
-        <option value="0">K2_NO</option>
-        <option value="1">K2_YES</option>
-      </field>
-    </fieldset>
-  </fields>
+    <name>K2_ITEM_EDIT_FORM</name>
+    <params group="item-view-options-listings" addpath="/administrator/components/com_k2/elements">
+        <param name="catItemTitle" type="radio" default="" label="K2_TITLE" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="catItemTitleLinked" type="radio" default="" label="K2_LINK_ON_TITLE" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="catItemFeaturedNotice" type="radio" default="" label="K2_FEATURED_NOTICE_NEXT_TO_TITLE" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="catItemAuthor" type="radio" default="" label="K2_AUTHOR" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="catItemDateCreated" type="radio" default="" label="K2_ITEM_CREATED_DATE_AND_TIME" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="catItemRating" type="radio" default="" label="K2_RATING_VOTING" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="catItemImage" type="radio" default="" label="K2_IMAGE" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="catItemIntroText" type="radio" default="" label="K2_INTROTEXT" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="catItemExtraFields" type="radio" default="" label="K2_EXTRA_FIELDS" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="catItemHits" type="radio" default="" label="K2_HITS" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="catItemCategory" type="radio" default="" label="K2_CATEGORY" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="catItemTags" type="radio" default="" label="K2_TAGS" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="catItemAttachments" type="radio" default="" label="K2_ATTACHMENTS" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="catItemAttachmentsCounter" type="radio" default="" label="K2_ATTACHMENTS_COUNTER" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="catItemVideo" type="radio" default="" label="K2_MEDIA" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="catItemVideoWidth" type="text" default="" size="4" label="K2_VIDEO_WIDTH" description=""/>
+        <param name="catItemVideoHeight" type="text" default="" size="4" label="K2_VIDEO_HEIGHT" description=""/>
+        <param name="catItemAudioWidth" type="text" default="" size="4" label="K2_AUDIO_WIDTH" description=""/>
+        <param name="catItemAudioHeight" type="text" default="" size="4" label="K2_AUDIO_HEIGHT" description=""/>
+        <param name="catItemVideoAutoPlay" type="radio" default="" label="K2_MEDIA_AUTOPLAY" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_NO</option>
+            <option value="1">K2_YES</option>
+        </param>
+        <param name="catItemImageGallery" type="radio" default="" label="K2_IMAGE_GALLERY" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="catItemImageGalleryWidth" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAIL_WIDTH" description=""/>
+        <param name="catItemImageGalleryHeight" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAIL_HEIGHT" description=""/>
+        <param name="catItemDateModified" type="radio" default="" label="K2_ITEM_MODIFIED_DATE_AND_TIME" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="catItemReadMore" type="radio" default="" label="K2_READ_MORE_LINK" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="catItemCommentsAnchor" type="radio" default="" label="K2_ANCHOR_LINK_WITH_COMMENTS_COUNTER_TO_ITEMS_COMMENT_FORM" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="" type="header" default="K2_ADVANCED" label="" description=""/>
+        <param name="catItemK2Plugins" type="radio" default="" label="K2_ENABLE_K2_PLUGINS" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_NO</option>
+            <option value="1">K2_YES</option>
+        </param>
+    </params>
+    <params group="item-view-options" addpath="/administrator/components/com_k2/elements">
+        <param name="itemDateCreated" type="radio" default="" label="K2_ITEM_CREATED_DATE_AND_TIME" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemTitle" type="radio" default="" label="K2_TITLE" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemFeaturedNotice" type="radio" default="" label="K2_FEATURED_NOTICE_NEXT_TO_TITLE" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemAuthor" type="radio" default="" label="K2_AUTHOR" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemFontResizer" type="radio" default="" label="K2_FONT_RESIZER" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemPrintButton" type="radio" default="" label="K2_PRINT_BUTTON" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemEmailButton" type="radio" default="" label="K2_EMAIL_BUTTON" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemSocialButton" type="radio" default="" label="K2_SOCIAL_BUTTON_LIKE_SHARETHIS_ADDTHIS_ETC" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemVideoAnchor" type="radio" default="" label="K2_ANCHOR_LINK_TO_VIDEO" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemImageGalleryAnchor" type="radio" default="" label="K2_ANCHOR_LINK_TO_IMAGE_GALLERY" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemCommentsAnchor" type="radio" default="" label="K2_ANCHOR_LINK_WITH_COMMENTS_COUNTER_TO_COMMENT_FORM" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemRating" type="radio" default="" label="K2_RATING_VOTING" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemImage" type="radio" default="" label="K2_IMAGE" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemImgSize" type="list" default="" label="K2_IMAGE_SIZE" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="XSmall">K2_XSMALL</option>
+            <option value="Small">K2_SMALL</option>
+            <option value="Medium">K2_MEDIUM</option>
+            <option value="Large">K2_LARGE</option>
+            <option value="XLarge">K2_XLARGE</option>
+        </param>
+        <param name="itemImageMainCaption" type="radio" default="" label="K2_IMAGE_CAPTION" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemImageMainCredits" type="radio" default="" label="K2_IMAGE_CREDITS" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemIntroText" type="radio" default="" label="K2_INTROTEXT" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemFullText" type="radio" default="" label="K2_FULLTEXT" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemExtraFields" type="radio" default="" label="K2_EXTRA_FIELDS" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemDateModified" type="radio" default="" label="K2_ITEM_MODIFIED_DATE_AND_TIME" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemHits" type="radio" default="" label="K2_HITS_PAGE_VIEWS" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemCategory" type="radio" default="" label="K2_CATEGORY" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemTags" type="radio" default="" label="K2_TAGS" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemAttachments" type="radio" default="" label="K2_ATTACHMENTS" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemAttachmentsCounter" type="radio" default="" label="K2_ATTACHMENTS_COUNTER" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemVideo" type="radio" default="" label="K2_MEDIA" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemVideoWidth" type="text" default="" size="4" label="K2_VIDEO_WIDTH" description=""/>
+        <param name="itemVideoHeight" type="text" default="" size="4" label="K2_VIDEO_HEIGHT" description=""/>
+        <param name="itemAudioWidth" type="text" default="" size="4" label="K2_AUDIO_WIDTH" description=""/>
+        <param name="itemAudioHeight" type="text" default="" size="4" label="K2_AUDIO_HEIGHT" description=""/>
+        <param name="itemVideoAutoPlay" type="radio" default="" label="K2_MEDIA_AUTOPLAY" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_NO</option>
+            <option value="1">K2_YES</option>
+        </param>
+        <param name="itemVideoCaption" type="radio" default="" label="K2_MEDIA_CAPTION" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemVideoCredits" type="radio" default="" label="K2_MEDIA_CREDITS" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemImageGallery" type="radio" default="" label="K2_IMAGE_GALLERY" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemImageGalleryWidth" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAIL_WIDTH" description=""/>
+        <param name="itemImageGalleryHeight" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAIL_HEIGHT" description=""/>
+        <param name="itemNavigation" type="radio" default="" label="K2_ITEM_NAVIGATION" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemComments" type="radio" default="" label="K2_COMMENTS" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="" type="header" default="K2_SOCIAL_SHARING" label="" description=""/>
+        <param name="itemTwitterButton" type="radio" default="" label="K2_TWITTER_SHARE" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemFacebookButton" type="radio" default="" label="K2_FACEBOOK_SHARE" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemLinkedInButton" type="radio" default="" label="K2_LINKEDIN_SHARE" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="" type="header" default="K2_AUTHOR_OPTIONS" label="" description=""/>
+        <param name="itemAuthorBlock" type="radio" default="" label="K2_DISPLAY_EXTENDED_AUTHOR_INFO" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemAuthorImage" type="radio" default="" label="K2_AUTHOR_IMAGE" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemAuthorDescription" type="radio" default="" label="K2_AUTHOR_DESCRIPTION" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemAuthorURL" type="radio" default="" label="K2_AUTHOR_URL" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemAuthorEmail" type="radio" default="" label="K2_AUTHOR_EMAIL" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemAuthorLatest" type="radio" default="" label="K2_LATEST_ITEMS_FROM_AUTHOR" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemAuthorLatestLimit" type="text" default="" size="4" label="K2_LIMIT_FOR_LATEST_ITEMS_FROM_AUTHOR" description="K2_LEAVE_BLANK_TO_INHERIT_FROM_CATEGORY"/>
+        <param name="" type="header" default="K2_RELATED_ITEMS" label="" description=""/>
+        <param name="itemRelated" type="radio" default="" label="K2_RELATED_ITEMS_BY_TAG" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemRelatedLimit" type="text" default="" size="4" label="K2_RELATED_ITEMS_LIMIT" description=""/>
+        <param name="itemRelatedTitle" type="radio" default="" label="K2_RELATED_ITEMS_TITLE" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemRelatedCategory" type="radio" default="" label="K2_RELATED_ITEMS_CATEGORY" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemRelatedImageSize" type="list" default="" label="K2_RELATED_ITEMS_IMAGE" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_NONE_SELECTED</option>
+            <option value="XSmall">K2_XSMALL</option>
+            <option value="Small">K2_SMALL</option>
+            <option value="Medium">K2_MEDIUM</option>
+            <option value="Large">K2_LARGE</option>
+            <option value="XLarge">K2_XLARGE</option>
+        </param>
+        <param name="itemRelatedIntrotext" type="radio" default="" label="K2_RELATED_ITEMS_INTROTEXT" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemRelatedFulltext" type="radio" default="" label="K2_RELATED_ITEMS_FULLTEXT" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemRelatedAuthor" type="radio" default="" label="K2_RELATED_ITEMS_AUTHOR" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemRelatedMedia" type="radio" default="" label="K2_RELATED_ITEMS_MEDIA" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="itemRelatedImageGallery" type="radio" default="" label="K2_RELATED_ITEMS_IMAGE_GALLERY" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_HIDE</option>
+            <option value="1">K2_SHOW</option>
+        </param>
+        <param name="" type="header" default="K2_SEO" label="" description=""/>
+        <param menu="hide" name="k2SeoGsdType" type="list" default="" label="K2_GSD_TYPE_IN_CAT_AND_ITEM" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="Article">K2_GSD_TYPE_ARTICLE</option>
+            <option value="BlogPosting">K2_GSD_TYPE_BLOGPOST</option>
+            <option value="Course">K2_GSD_TYPE_COURSE</option>
+            <option value="Event">K2_GSD_TYPE_EVENT</option>
+            <option value="Movie">K2_GSD_TYPE_MOVIE</option>
+            <option value="NewsArticle">K2_GSD_TYPE_NEWSARTICLE</option>
+            <option value="Product">K2_GSD_TYPE_PRODUCT</option>
+            <option value="Recipe">K2_GSD_TYPE_RECIPE</option>
+            <option value="Video">K2_GSD_TYPE_VIDEO</option>
+        </param>
+        <param name="" type="header" default="K2_ADVANCED" label="" description=""/>
+        <param name="itemK2Plugins" type="radio" default="" label="K2_ENABLE_K2_PLUGINS" description="">
+            <option value="">K2_INHERIT_FROM_CATEGORY</option>
+            <option value="0">K2_NO</option>
+            <option value="1">K2_YES</option>
+        </param>
+    </params>
+    <fields name="params">
+        <fieldset name="item-view-options-listings" addfieldpath="/administrator/components/com_k2/elements">
+            <field name="catItemTitle" type="radio" default="" label="K2_TITLE" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="catItemTitleLinked" type="radio" default="" label="K2_LINK_ON_TITLE" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="catItemFeaturedNotice" type="radio" default="" label="K2_FEATURED_NOTICE_NEXT_TO_TITLE" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="catItemAuthor" type="radio" default="" label="K2_AUTHOR" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="catItemDateCreated" type="radio" default="" label="K2_ITEM_CREATED_DATE_AND_TIME" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="catItemRating" type="radio" default="" label="K2_RATING_VOTING" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="catItemImage" type="radio" default="" label="K2_IMAGE" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="catItemIntroText" type="radio" default="" label="K2_INTROTEXT" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="catItemExtraFields" type="radio" default="" label="K2_EXTRA_FIELDS" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="catItemHits" type="radio" default="" label="K2_HITS" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="catItemCategory" type="radio" default="" label="K2_CATEGORY" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="catItemTags" type="radio" default="" label="K2_TAGS" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="catItemAttachments" type="radio" default="" label="K2_ATTACHMENTS" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="catItemAttachmentsCounter" type="radio" default="" label="K2_ATTACHMENTS_COUNTER" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="catItemVideo" type="radio" default="" label="K2_MEDIA" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="catItemVideoWidth" type="text" default="" size="4" label="K2_VIDEO_WIDTH" description=""/>
+            <field name="catItemVideoHeight" type="text" default="" size="4" label="K2_VIDEO_HEIGHT" description=""/>
+            <field name="catItemAudioWidth" type="text" default="" size="4" label="K2_AUDIO_WIDTH" description=""/>
+            <field name="catItemAudioHeight" type="text" default="" size="4" label="K2_AUDIO_HEIGHT" description=""/>
+            <field name="catItemVideoAutoPlay" type="radio" default="" label="K2_MEDIA_AUTOPLAY" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_NO</option>
+                <option value="1">K2_YES</option>
+            </field>
+            <field name="catItemImageGallery" type="radio" default="" label="K2_IMAGE_GALLERY" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="catItemImageGalleryWidth" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAIL_WIDTH" description=""/>
+            <field name="catItemImageGalleryHeight" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAIL_HEIGHT" description=""/>
+            <field name="catItemDateModified" type="radio" default="" label="K2_ITEM_MODIFIED_DATE_AND_TIME" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="catItemReadMore" type="radio" default="" label="K2_READ_MORE_LINK" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="catItemCommentsAnchor" type="radio" default="" label="K2_ANCHOR_LINK_WITH_COMMENTS_COUNTER_TO_ITEMS_COMMENT_FORM" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="" type="header" default="K2_ADVANCED" label="" description=""/>
+            <field name="catItemK2Plugins" type="radio" default="" label="K2_ENABLE_K2_PLUGINS" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_NO</option>
+                <option value="1">K2_YES</option>
+            </field>
+        </fieldset>
+        <fieldset name="item-view-options" addfieldpath="/administrator/components/com_k2/elements">
+            <field name="itemDateCreated" type="radio" default="" label="K2_ITEM_CREATED_DATE_AND_TIME" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemTitle" type="radio" default="" label="K2_TITLE" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemFeaturedNotice" type="radio" default="" label="K2_FEATURED_NOTICE_NEXT_TO_TITLE" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemAuthor" type="radio" default="" label="K2_AUTHOR" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemFontResizer" type="radio" default="" label="K2_FONT_RESIZER" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemPrintButton" type="radio" default="" label="K2_PRINT_BUTTON" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemEmailButton" type="radio" default="" label="K2_EMAIL_BUTTON" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemSocialButton" type="radio" default="" label="K2_SOCIAL_BUTTON_LIKE_SHARETHIS_ADDTHIS_ETC" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemVideoAnchor" type="radio" default="" label="K2_ANCHOR_LINK_TO_VIDEO" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemImageGalleryAnchor" type="radio" default="" label="K2_ANCHOR_LINK_TO_IMAGE_GALLERY" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemCommentsAnchor" type="radio" default="" label="K2_ANCHOR_LINK_WITH_COMMENTS_COUNTER_TO_COMMENT_FORM" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemRating" type="radio" default="" label="K2_RATING_VOTING" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemImage" type="radio" default="" label="K2_IMAGE" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemImgSize" type="list" default="" label="K2_IMAGE_SIZE" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="XSmall">K2_XSMALL</option>
+                <option value="Small">K2_SMALL</option>
+                <option value="Medium">K2_MEDIUM</option>
+                <option value="Large">K2_LARGE</option>
+                <option value="XLarge">K2_XLARGE</option>
+            </field>
+            <field name="itemImageMainCaption" type="radio" default="" label="K2_IMAGE_CAPTION" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemImageMainCredits" type="radio" default="" label="K2_IMAGE_CREDITS" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemIntroText" type="radio" default="" label="K2_INTROTEXT" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemFullText" type="radio" default="" label="K2_FULLTEXT" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemExtraFields" type="radio" default="" label="K2_EXTRA_FIELDS" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemDateModified" type="radio" default="" label="K2_ITEM_MODIFIED_DATE_AND_TIME" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemHits" type="radio" default="" label="K2_HITS_PAGE_VIEWS" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemCategory" type="radio" default="" label="K2_CATEGORY" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemTags" type="radio" default="" label="K2_TAGS" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemAttachments" type="radio" default="" label="K2_ATTACHMENTS" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemAttachmentsCounter" type="radio" default="" label="K2_ATTACHMENTS_COUNTER" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemVideo" type="radio" default="" label="K2_MEDIA" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemVideoWidth" type="text" default="" size="4" label="K2_VIDEO_WIDTH" description=""/>
+            <field name="itemVideoHeight" type="text" default="" size="4" label="K2_VIDEO_HEIGHT" description=""/>
+            <field name="itemAudioWidth" type="text" default="" size="4" label="K2_AUDIO_WIDTH" description=""/>
+            <field name="itemAudioHeight" type="text" default="" size="4" label="K2_AUDIO_HEIGHT" description=""/>
+            <field name="itemVideoAutoPlay" type="radio" default="" label="K2_MEDIA_AUTOPLAY" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_NO</option>
+                <option value="1">K2_YES</option>
+            </field>
+            <field name="itemVideoCaption" type="radio" default="" label="K2_MEDIA_CAPTION" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemVideoCredits" type="radio" default="" label="K2_MEDIA_CREDITS" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemImageGallery" type="radio" default="" label="K2_IMAGE_GALLERY" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemImageGalleryWidth" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAIL_WIDTH" description=""/>
+            <field name="itemImageGalleryHeight" type="text" default="" size="4" label="K2_IMAGE_GALLERY_THUMBNAIL_HEIGHT" description=""/>
+            <field name="itemNavigation" type="radio" default="" label="K2_ITEM_NAVIGATION" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemComments" type="radio" default="" label="K2_COMMENTS" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="" type="header" default="K2_SOCIAL_SHARING" label="" description=""/>
+            <field name="itemTwitterButton" type="radio" default="" label="K2_TWITTER_SHARE" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemFacebookButton" type="radio" default="" label="K2_FACEBOOK_SHARE" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemLinkedInButton" type="radio" default="" label="K2_LINKEDIN_SHARE" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="" type="header" default="K2_AUTHOR_OPTIONS" label="" description=""/>
+            <field name="itemAuthorBlock" type="radio" default="" label="K2_DISPLAY_EXTENDED_AUTHOR_INFO" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemAuthorImage" type="radio" default="" label="K2_AUTHOR_IMAGE" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemAuthorDescription" type="radio" default="" label="K2_AUTHOR_DESCRIPTION" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemAuthorURL" type="radio" default="" label="K2_AUTHOR_URL" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemAuthorEmail" type="radio" default="" label="K2_AUTHOR_EMAIL" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemAuthorLatest" type="radio" default="" label="K2_LATEST_ITEMS_FROM_AUTHOR" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemAuthorLatestLimit" type="text" default="" size="4" label="K2_LIMIT_FOR_LATEST_ITEMS_FROM_AUTHOR" description="K2_LEAVE_BLANK_TO_INHERIT_FROM_CATEGORY"/>
+            <field name="" type="header" default="K2_RELATED_ITEMS" label="" description=""/>
+            <field name="itemRelated" type="radio" default="" label="K2_RELATED_ITEMS_BY_TAG" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemRelatedLimit" type="text" default="" size="4" label="K2_RELATED_ITEMS_LIMIT" description=""/>
+            <field name="itemRelatedTitle" type="radio" default="" label="K2_RELATED_ITEMS_TITLE" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemRelatedCategory" type="radio" default="" label="K2_RELATED_ITEMS_CATEGORY" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemRelatedImageSize" type="list" default="" label="K2_RELATED_ITEMS_IMAGE" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_NONE_SELECTED</option>
+                <option value="XSmall">K2_XSMALL</option>
+                <option value="Small">K2_SMALL</option>
+                <option value="Medium">K2_MEDIUM</option>
+                <option value="Large">K2_LARGE</option>
+                <option value="XLarge">K2_XLARGE</option>
+            </field>
+            <field name="itemRelatedIntrotext" type="radio" default="" label="K2_RELATED_ITEMS_INTROTEXT" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemRelatedFulltext" type="radio" default="" label="K2_RELATED_ITEMS_FULLTEXT" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemRelatedAuthor" type="radio" default="" label="K2_RELATED_ITEMS_AUTHOR" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemRelatedMedia" type="radio" default="" label="K2_RELATED_ITEMS_MEDIA" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="itemRelatedImageGallery" type="radio" default="" label="K2_RELATED_ITEMS_IMAGE_GALLERY" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_HIDE</option>
+                <option value="1">K2_SHOW</option>
+            </field>
+            <field name="" type="header" default="K2_SEO" label="" description=""/>
+            <field menu="hide" name="k2SeoGsdType" type="list" default="" label="K2_GSD_TYPE_IN_CAT_AND_ITEM" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="Article">K2_GSD_TYPE_ARTICLE</option>
+                <option value="BlogPosting">K2_GSD_TYPE_BLOGPOST</option>
+                <option value="Course">K2_GSD_TYPE_COURSE</option>
+                <option value="Event">K2_GSD_TYPE_EVENT</option>
+                <option value="Movie">K2_GSD_TYPE_MOVIE</option>
+                <option value="NewsArticle">K2_GSD_TYPE_NEWSARTICLE</option>
+                <option value="Product">K2_GSD_TYPE_PRODUCT</option>
+                <option value="Recipe">K2_GSD_TYPE_RECIPE</option>
+                <option value="Video">K2_GSD_TYPE_VIDEO</option>
+            </field>
+            <field name="" type="header" default="K2_ADVANCED" label="" description=""/>
+            <field name="itemK2Plugins" type="radio" default="" label="K2_ENABLE_K2_PLUGINS" description="">
+                <option value="">K2_INHERIT_FROM_CATEGORY</option>
+                <option value="0">K2_NO</option>
+                <option value="1">K2_YES</option>
+            </field>
+        </fieldset>
+    </fields>
 </form>

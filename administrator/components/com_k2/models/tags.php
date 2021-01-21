@@ -1,10 +1,10 @@
 <?php
 /**
- * @version    2.8.x
+ * @version    2.10.x
  * @package    K2
- * @author     JoomlaWorks http://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
- * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @author     JoomlaWorks https://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2020 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
 // no direct access
@@ -18,16 +18,16 @@ class K2ModelTags extends K2Model
 {
 	function getData()
 	{
-		$application = JFactory::getApplication();
+		$app = JFactory::getApplication();
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
 		$db = JFactory::getDbo();
-		$limit = $application->getUserStateFromRequest('global.list.limit', 'limit', $application->getCfg('list_limit'), 'int');
-		$limitstart = $application->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
-		$filter_order = $application->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'id', 'cmd');
-		$filter_order_Dir = $application->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', 'DESC', 'word');
-		$filter_state = $application->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
-		$search = $application->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
+		$limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'), 'int');
+		$limitstart = $app->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
+		$filter_order = $app->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'id', 'cmd');
+		$filter_order_Dir = $app->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', 'DESC', 'word');
+		$filter_state = $app->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
+		$search = $app->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
 		$search = JString::strtolower($search);
 		$search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
 
@@ -64,18 +64,18 @@ class K2ModelTags extends K2Model
 
 	function getTotal()
 	{
-		$application = JFactory::getApplication();
+		$app = JFactory::getApplication();
 		$option = JRequest::getCmd('option');
 		$view = JRequest::getCmd('view');
 		$db = JFactory::getDbo();
-		$limit = $application->getUserStateFromRequest('global.list.limit', 'limit', $application->getCfg('list_limit'), 'int');
-		$limitstart = $application->getUserStateFromRequest($option.'.limitstart', 'limitstart', 0, 'int');
-		$filter_state = $application->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', 1, 'int');
-		$search = $application->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
+		$limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'), 'int');
+		$limitstart = $app->getUserStateFromRequest($option.'.limitstart', 'limitstart', 0, 'int');
+		$filter_state = $app->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', 1, 'int');
+		$search = $app->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
 		$search = JString::strtolower($search);
 		$search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
 
-		$query = "SELECT COUNT(*) FROM #__k2_tags WHERE id>0";
+		$query = "SELECT COUNT(*) FROM #__k2_tags WHERE id > 0";
 
 		if ($filter_state > -1)
 		{
@@ -95,7 +95,7 @@ class K2ModelTags extends K2Model
 
 	function publish()
 	{
-		$application = JFactory::getApplication();
+		$app = JFactory::getApplication();
 		$cid = JRequest::getVar('cid');
 		foreach ($cid as $id)
 		{
@@ -107,15 +107,15 @@ class K2ModelTags extends K2Model
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
 		if(JRequest::getCmd('context') == "modalselector"){
-			$application->redirect('index.php?option=com_k2&view=tags&tmpl=component&context=modalselector');
+			$app->redirect('index.php?option=com_k2&view=tags&tmpl=component&context=modalselector');
 		} else {
-			$application->redirect('index.php?option=com_k2&view=tags');
+			$app->redirect('index.php?option=com_k2&view=tags');
 		}
 	}
 
 	function unpublish()
 	{
-		$application = JFactory::getApplication();
+		$app = JFactory::getApplication();
 		$cid = JRequest::getVar('cid');
 		foreach ($cid as $id)
 		{
@@ -127,15 +127,15 @@ class K2ModelTags extends K2Model
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
 		if(JRequest::getCmd('context') == "modalselector"){
-			$application->redirect('index.php?option=com_k2&view=tags&tmpl=component&context=modalselector');
+			$app->redirect('index.php?option=com_k2&view=tags&tmpl=component&context=modalselector');
 		} else {
-			$application->redirect('index.php?option=com_k2&view=tags');
+			$app->redirect('index.php?option=com_k2&view=tags');
 		}
 	}
 
 	function remove()
 	{
-		$application = JFactory::getApplication();
+		$app = JFactory::getApplication();
 		$db = JFactory::getDbo();
 		$cid = JRequest::getVar('cid');
 		foreach ($cid as $id)
@@ -146,8 +146,8 @@ class K2ModelTags extends K2Model
 		}
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
-		$application->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
-		$application->redirect('index.php?option=com_k2&view=tags');
+		$app->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
+		$app->redirect('index.php?option=com_k2&view=tags');
 	}
 
 	function getFilter()
@@ -171,10 +171,10 @@ class K2ModelTags extends K2Model
 	function removeOrphans()
 	{
 		$db = JFactory::getDbo();
-		$db->setQuery("DELETE FROM #__k2_tags WHERE id NOT IN (SELECT DISTINCT tagID FROM #__k2_tags_xref)");
+		$db->setQuery("DELETE FROM #__k2_tags WHERE id NOT IN (SELECT tagID FROM #__k2_tags_xref GROUP BY tagID)");
 		$db->query();
-		$application = JFactory::getApplication();
-		$application->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
-		$application->redirect('index.php?option=com_k2&view=tags');
+		$app = JFactory::getApplication();
+		$app->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
+		$app->redirect('index.php?option=com_k2&view=tags');
 	}
 }

@@ -1,23 +1,16 @@
 elFinder
 ========
 
-**WARNING: IF YOU HAVE OLDER (IN PARTICULAR 2.1.20 OR EARLIER) VERSIONS OF ELFINDER ON PUBLIC SERVERS, IT MAY CAUSE SERIOUS DAMAGE TO YOUR SERVER AND VISITED USER. YOU SHOULD UPDATE TO THE LATEST VERSION OR REMOVE IT FROM THE SERVER.**
+**WARNING: IF YOU HAVE OLDER (IN PARTICULAR 2.1.48 OR EARLIER) VERSIONS OF ELFINDER ON PUBLIC SERVERS, IT MAY CAUSE SERIOUS DAMAGE TO YOUR SERVER AND VISITED USER. YOU SHOULD UPDATE TO THE LATEST VERSION OR REMOVE IT FROM THE SERVER.**
 
-<pre>
-      _ ______ _           _           
-     | |  ____(_)         | |          
-  ___| | |__   _ _ __   __| | ___ _ __ 
- / _ \ |  __| | | '_ \ / _` |/ _ \ '__|
-|  __/ | |    | | | | | (_| |  __/ |   
- \___|_|_|    |_|_| |_|\__,_|\___|_|   
-</pre>
+[![elFinder file manager for the Web](https://studio-42.github.io/elFinder/images/elFinderScr.png "elFinder file manager for the Web")](https://studio-42.github.io/elFinder/)
 
 elFinder is an open-source file manager for web, written in JavaScript using
 jQuery UI. Creation is inspired by simplicity and convenience of Finder program
 used in Mac OS X operating system.
 
-[![Download now!](http://studio-42.github.io/elFinder/images/download-icon.png)](https://github.com/Studio-42/elFinder/releases/latest)
-[![Packagist License](https://poser.pugx.org/studio-42/elfinder/license.png)](http://choosealicense.com/licenses/bsd-3-clause/)
+[![Download now!](https://studio-42.github.io/elFinder/images/download-icon.png)](https://github.com/Studio-42/elFinder/releases/latest)
+[![Packagist License](https://poser.pugx.org/studio-42/elfinder/license.png)](https://choosealicense.com/licenses/bsd-3-clause/)
 [![Latest Stable Version](https://poser.pugx.org/studio-42/elfinder/version.png)](https://packagist.org/packages/studio-42/elfinder)
 [![Total Downloads](https://poser.pugx.org/studio-42/elfinder/d/total.png)](https://packagist.org/packages/studio-42/elfinder)
 [![CDNJS version](https://img.shields.io/cdnjs/v/elfinder.svg)](https://cdnjs.com/libraries/elfinder)
@@ -54,7 +47,8 @@ Features
    upload, create folder/file, rename, etc.)
  * High performance server backend and light client UI
  * Multi-root support
- * Local file system, MySQL, FTP volume storage drivers
+ * Local file system, MySQL, FTP, Box, Dropbox, GoogleDrive and OneDrive volume storage drivers
+ * Support AWS S3, Azure, Digital Ocean Spaces and more with [League\Flysystem](https://github.com/barryvdh/elfinder-flysystem-driver) Flysystem driver
  * Cloud storage (Box, Dropbox, GoogleDrive and OneDrive) drivers
  * Background file/folder upload with Drag & Drop HTML5 support
  * Chunked file upload for large file
@@ -92,17 +86,20 @@ Requirements
 ------------
 ### jQuery / jQuery UI
  * jQuery 1.8.0+
- * jQuery UI 1.9.0+ (require selectable, draggable, droppable and resizable)
+ * jQuery UI 1.9.0+
+    * Required: draggable, droppable, resizable, selectable, button and slider
+    * Recommend: sorter (To make sortable the List column and the Places)
 
 **However, we recommend newest version.**
 
 ### Client
- * Modern browser. elFinder was tested in Internet Explorer 8
-   and newest Firefox, Chrome, IE, Edge and Opera
+ * Modern browsers both of desktop or mobile. elFinder was tested in newest Chrome, Edge, Firefox, IE and Opera
+     - **Caution**: Web App mode ("apple-mobile-web-app-capable" meta tag) on iOS is not work perfectly in elFinder
 
 ### Server
  * Any web server
  * PHP 5.2+ (Recommend PHP 5.4 or higher) And for thumbnails - GD / Imagick module / convert(imagemagick) require
+     * Recommend PHP 7.1 or higher to supports non-ASCII character of file path/name on the Windows server
 
 Installation
 ------------
@@ -127,7 +124,7 @@ Installation
 Downloads
 ------------
 **Stable releases** ([Changelog](https://github.com/Studio-42/elFinder/blob/master/Changelog))
- + [elFinder 2.1.31](https://github.com/Studio-42/elFinder/archive/2.1.31.zip)
+ + [elFinder 2.1.50](https://github.com/Studio-42/elFinder/archive/2.1.50.zip)
  + [elFinder 2.0.9](https://github.com/Studio-42/elFinder/archive/2.0.9.zip) (deprecated)
 
 **Nightly builds**
@@ -160,13 +157,14 @@ You can create or modify the language file to use translation tool. Please refer
  * [ASP.NET Core](https://github.com/gordon-matt/elFinder.NetCore)
  * [ASP.NET](https://github.com/leniel/elFinder.Net)
  * [Java Servlet](https://github.com/trustsystems/elfinder-java-connector)
- * [JavaScript/Efw](https://github.com/efwGrp/efw3.X/blob/master/help/api_efw_tag.md#elfinder-tag)
+ * [JavaScript/Efw](https://github.com/efwGrp/efw3.X/blob/master/help/tag.elfinder.md)
+ * [Nodejs](https://github.com/dekyfin/elfinder-node)
  * [Python](https://github.com/Studio-42/elfinder-python)
  * [Ruby/Rails](https://github.com/phallstrom/el_finder)
 
 3rd party Volume Drivers
 --------------------
- * [League\Flysystem (PHP)](https://github.com/barryvdh/elfinder-flysystem-driver) (for elFinder 2.1+)
+ * [League\Flysystem (PHP)](https://github.com/barryvdh/elfinder-flysystem-driver) (for elFinder 2.1+) driver for the [Flysystem](https://github.com/thephpleague/flysystem)
 
 3rd party Themes
 --------------------
@@ -202,10 +200,11 @@ Support
 Authors
 -------
 
+ * Current main developer: Naoki Sawada <hypweb+elfinder@gmail.com>
  * Chief developer: Dmitry "dio" Levashov <dio@std42.ru>
  * Maintainer: Troex Nevelin <troex@fury.scancode.ru>
- * Developers: Alexey Sukhotin <strogg@yandex.ru>, Naoki Sawada <hypweb@gmail.com>
- * Icons: [PixelMixer](http://pixelmixer.ru), [Yusuke Kamiyamane](http://p.yusukekamiyamane.com)
+ * Developers: Alexey Sukhotin <strogg@yandex.ru>, Naoki Sawada <hypweb+elfinder@gmail.com>
+ * Icons: PixelMixer, [Yusuke Kamiyamane](http://p.yusukekamiyamane.com), [Icons8](https://icons8.com)
 
 We hope our tools will be helpful for you.
 

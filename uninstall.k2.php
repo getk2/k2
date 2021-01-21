@@ -1,17 +1,17 @@
 <?php
 /**
- * @version    2.8.x
+ * @version    2.10.x
  * @package    K2
- * @author     JoomlaWorks http://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
- * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @author     JoomlaWorks https://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2020 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
 // no direct access
 defined('_JEXEC') or die;
 
-if (version_compare(JVERSION, '1.6.0', '<'))
-{
+// Un-installer for Joomla 1.5
+if (version_compare(JVERSION, '1.6.0', '<')) {
     jimport('joomla.installer.installer');
 
     // Load K2 language file
@@ -22,23 +22,18 @@ if (version_compare(JVERSION, '1.6.0', '<'))
     $status->modules = array();
     $status->plugins = array();
 
+    // Remove K2 modules
     $modules = $this->manifest->getElementByPath('modules');
-    $plugins = $this->manifest->getElementByPath('plugins');
-
-    if (is_a($modules, 'JSimpleXMLElement') && count($modules->children()))
-    {
-        foreach ($modules->children() as $module)
-        {
+    if (is_a($modules, 'JSimpleXMLElement') && count($modules->children())) {
+        foreach ($modules->children() as $module) {
             $mname = $module->attributes('module');
             $client = $module->attributes('client');
             $db = JFactory::getDbo();
             $query = "SELECT `id` FROM `#__modules` WHERE module = ".$db->Quote($mname)."";
             $db->setQuery($query);
             $modules = $db->loadResultArray();
-            if (count($modules))
-            {
-                foreach ($modules as $module)
-                {
+            if (count($modules)) {
+                foreach ($modules as $module) {
                     $installer = new JInstaller;
                     $result = $installer->uninstall('module', $module, 0);
                 }
@@ -46,24 +41,22 @@ if (version_compare(JVERSION, '1.6.0', '<'))
             $status->modules[] = array('name' => $mname, 'client' => $client, 'result' => $result);
         }
     }
-    if (is_a($plugins, 'JSimpleXMLElement') && count($plugins->children()))
-    {
-        foreach ($plugins->children() as $plugin)
-        {
+
+    // Remove K2 plugins
+    $plugins = $this->manifest->getElementByPath('plugins');
+    if (is_a($plugins, 'JSimpleXMLElement') && count($plugins->children())) {
+        foreach ($plugins->children() as $plugin) {
             $pname = $plugin->attributes('plugin');
             $pgroup = $plugin->attributes('group');
-            if ($pgroup == 'finder')
-            {
+            if ($pgroup == 'finder') {
                 continue;
             }
             $db = JFactory::getDbo();
             $query = 'SELECT `id` FROM #__plugins WHERE element = '.$db->Quote($pname).' AND folder = '.$db->Quote($pgroup);
             $db->setQuery($query);
             $plugins = $db->loadResultArray();
-            if (count($plugins))
-            {
-                foreach ($plugins as $plugin)
-                {
+            if (count($plugins)) {
+                foreach ($plugins as $plugin) {
                     $installer = new JInstaller;
                     $result = $installer->uninstall('plugin', $plugin, 0);
                 }
@@ -71,24 +64,21 @@ if (version_compare(JVERSION, '1.6.0', '<'))
             $status->plugins[] = array('name' => $pname, 'group' => $pgroup, 'result' => $result);
         }
     }
-    if (JFolder::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/contentelements'))
-    {
-        $elements = $this->manifest->getElementByPath('joomfish/files');
-        if(is_array($elements))
-        {
-            foreach ($elements as $element)
-            {
-                if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/contentelements/'.$element->data()))
-                {
+
+    // Remove JoomFish elements
+    if (JFolder::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/contentelements')) {
+        $elements = $this->manifest->getElementByPath('joomfish/file');
+        if (is_array($elements)) {
+            foreach ($elements as $element) {
+                if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/contentelements/'.$element->data())) {
                     JFile::delete(JPATH_ADMINISTRATOR.'/components/com_joomfish/contentelements/'.$element->data());
                 }
             }
         }
     }
-}
-?>
-<?php if (version_compare(JVERSION, '1.6.0', '<')): ?>
-<?php $rows = 0; ?>
+
+    $rows = 0; ?>
+<img src="https://cdn.joomlaworks.org/joomla/extensions/k2/app/k2_logo.png" alt="K2" align="right" />
 <h2><?php echo JText::_('K2_REMOVAL_STATUS'); ?></h2>
 <table class="adminlist">
 	<thead>
@@ -138,4 +128,5 @@ if (version_compare(JVERSION, '1.6.0', '<'))
 		<?php endif; ?>
 	</tbody>
 </table>
-<?php endif; ?>
+<?php
+}

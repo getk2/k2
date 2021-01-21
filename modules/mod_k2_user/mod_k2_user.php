@@ -1,20 +1,19 @@
 <?php
 /**
- * @version    2.8.x
+ * @version    2.10.x
  * @package    K2
- * @author     JoomlaWorks http://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
- * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @author     JoomlaWorks https://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2020 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
 // no direct access
 defined('_JEXEC') or die;
 
-if (K2_JVERSION != '15')
-{
+if (K2_JVERSION != '15') {
     $language = JFactory::getLanguage();
     $language->load('com_k2.dates', JPATH_ADMINISTRATOR, null, true);
-	require_once JPATH_SITE.'/components/com_users/helpers/route.php';
+    require_once JPATH_SITE.'/components/com_users/helpers/route.php';
 }
 
 require_once(dirname(__FILE__).'/helper.php');
@@ -35,21 +34,16 @@ $componentParams = JComponentHelper::getParams('com_k2');
 $K2CommentsEnabled = $componentParams->get('comments');
 
 // User avatar
-if ($userAvatarWidthSelect == 'inherit')
-{
+if ($userAvatarWidthSelect == 'inherit') {
     $avatarWidth = $componentParams->get('userImageWidth');
-}
-else
-{
+} else {
     $avatarWidth = $userAvatarWidth;
 }
 
 // Load the right template
-if ($user->guest)
-{
+if ($user->guest) {
     // OpenID stuff (do not edit)
-    if (JPluginHelper::isEnabled('authentication', 'openid'))
-    {
+    if (JPluginHelper::isEnabled('authentication', 'openid')) {
         $lang->load('plg_authentication_openid', JPATH_ADMINISTRATOR);
         $document = JFactory::getDocument();
         $document->addScriptDeclaration("
@@ -75,21 +69,18 @@ if ($user->guest)
     $task = K2_JVERSION != '15' ? 'user.login' : 'login';
 
     require(JModuleHelper::getLayoutPath('mod_k2_user', 'login'));
-}
-else
-{
+} else {
     $user->profile = modK2UserHelper::getProfile($params);
     $user->numOfComments = modK2UserHelper::countUserComments($user->id);
     $menu = modK2UserHelper::getMenu($params);
 
-    if(is_object($user->profile) && isset($user->profile->addLink))
-    {
-		$addItemLink = $user->profile->addLink;
+    if (is_object($user->profile) && isset($user->profile->addLink)) {
+        $addItemLink = $user->profile->addLink;
     }
     $viewProfileLink = JRoute::_(K2HelperRoute::getUserRoute($user->id));
     $editProfileLink = JRoute::_((K2_JVERSION != '15') ? 'index.php?option=com_users&view=profile&layout=edit&Itemid='.UsersHelperRoute::getProfileRoute() : 'index.php?option=com_user&view=user&task=edit');
     $profileLink = $editProfileLink; // B/C
-    $editCommentsLink = JRoute::_('index.php?option=com_k2&view=comments&tmpl=component&context=modalselector');
+    $editCommentsLink = JRoute::_('index.php?option=com_k2&view=comments&tmpl=component&template=system&context=modalselector');
 
     $option = K2_JVERSION != '15' ? 'com_users' : 'com_user';
     $task = K2_JVERSION != '15' ? 'user.logout' : 'logout';

@@ -1,10 +1,10 @@
 <?php
 /**
- * @version    2.8.x
+ * @version    2.10.x
  * @package    K2
- * @author     JoomlaWorks http://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
- * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @author     JoomlaWorks https://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2020 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
 // no direct access
@@ -18,21 +18,41 @@ class modK2ContentHelper
     public static function getItems(&$params, $format = 'html')
     {
         jimport('joomla.filesystem.file');
-        $application = JFactory::getApplication();
-        $limit = $params->get('itemCount', 5);
-        $cid = $params->get('category_id', null);
-        $ordering = $params->get('itemsOrdering', '');
-        $componentParams = JComponentHelper::getParams('com_k2');
-        $limitstart = JRequest::getInt('limitstart');
 
-        $user = JFactory::getUser();
-        $aid = $user->get('aid');
+        $app = JFactory::getApplication();
         $db = JFactory::getDbo();
 
         $jnow = JFactory::getDate();
-        $now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
+        $now = (K2_JVERSION != '15') ? $jnow->toSql() : $jnow->toMySQL();
         $nullDate = $db->getNullDate();
 
+        $componentParams = JComponentHelper::getParams('com_k2');
+
+        $limit = $params->get('itemCount', 5);
+        $cid = $params->get('category_id', null);
+        $ordering = $params->get('itemsOrdering', '');
+        $limitstart = JRequest::getInt('limitstart');
+
+        // Get ACL
+        $user = JFactory::getUser();
+        if (K2_JVERSION != '15') {
+            $userLevels = array_unique($user->getAuthorisedViewLevels());
+            $aclCheck = 'IN('.implode(',', $userLevels).')';
+        } else {
+            $aid = $user->get('aid');
+            $aclCheck = '<= '.$user->get('aid');
+        }
+
+        // Get language on Joomla 2.5+
+        $languageFilter = '';
+        if (K2_JVERSION != '15') {
+            if ($app->getLanguageFilter()) {
+                $languageTag = JFactory::getLanguage()->getTag();
+                $languageFilter = $db->Quote($languageTag).", ".$db->Quote('*');
+            }
+        }
+
+        // Sources (prepare the DB query)
         if ($params->get('source') == 'specific') {
             $value = $params->get('items');
             $current = array();
@@ -46,45 +66,38 @@ class modK2ContentHelper
             $items = array();
 
             foreach ($current as $id) {
-                $query = "SELECT i.*, c.name AS categoryname,c.id AS categoryid, c.alias AS categoryalias, c.params AS categoryparams
-				FROM #__k2_items as i
-				LEFT JOIN #__k2_categories c ON c.id = i.catid
-				WHERE i.published = 1 ";
-                if (K2_JVERSION != '15') {
-                    $query .= " AND i.access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
-                } else {
-                    $query .= " AND i.access<={$aid} ";
+                $query = "SELECT i.*, c.name AS categoryname, c.id AS categoryid, c.alias AS categoryalias, c.params AS categoryparams
+                    FROM #__k2_items AS i
+                    LEFT JOIN #__k2_categories AS c ON c.id = i.catid
+                    WHERE i.published = 1
+                        AND i.access {$aclCheck}
+                        AND i.trash = 0
+                        AND c.published = 1
+                        AND c.access {$aclCheck}
+                        AND c.trash = 0
+                        AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now).")
+                        AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now).")
+                        AND i.id={$id}";
+
+                if ($languageFilter) {
+                    $query .= " AND i.language IN ({$languageFilter}) AND c.language IN ({$languageFilter})";
                 }
-                $query .= " AND i.trash = 0 AND c.published = 1 ";
-                if (K2_JVERSION != '15') {
-                    $query .= " AND c.access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
-                } else {
-                    $query .= " AND c.access<={$aid} ";
-                }
-                $query .= " AND c.trash = 0
-				AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
-				AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )
-				AND i.id={$id}";
-                if (K2_JVERSION != '15') {
-                    if ($application->getLanguageFilter()) {
-                        $languageTag = JFactory::getLanguage()->getTag();
-                        $query .= " AND c.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") AND i.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').")";
-                    }
-                }
+
                 $db->setQuery($query);
                 $item = $db->loadObject();
+
                 if ($item) {
                     $items[] = $item;
                 }
             }
         } else {
-            $query = "SELECT DISTINCT i.*,";
+            $query = "SELECT i.*,";
 
             if ($ordering == 'modified') {
-                $query .= " CASE WHEN i.modified = 0 THEN i.created ELSE i.modified END as lastChanged,";
+                $query .= " CASE WHEN i.modified = 0 THEN i.created ELSE i.modified END AS lastChanged,";
             }
 
-            $query .= "c.name AS categoryname,c.id AS categoryid, c.alias AS categoryalias, c.params AS categoryparams";
+            $query .= " c.name AS categoryname, c.id AS categoryid, c.alias AS categoryalias, c.params AS categoryparams";
 
             if ($ordering == 'best') {
                 $query .= ", (r.rating_sum/r.rating_count) AS rating";
@@ -94,14 +107,14 @@ class modK2ContentHelper
                 $query .= ", COUNT(comments.id) AS numOfComments";
             }
 
-            $query .= " FROM #__k2_items as i RIGHT JOIN #__k2_categories c ON c.id = i.catid";
+            $query .= " FROM #__k2_items AS i RIGHT JOIN #__k2_categories AS c ON c.id = i.catid";
 
             if ($ordering == 'best') {
-                $query .= " LEFT JOIN #__k2_rating r ON r.itemID = i.id";
+                $query .= " LEFT JOIN #__k2_rating AS r ON r.itemID = i.id";
             }
 
             if ($ordering == 'comments') {
-                $query .= " LEFT JOIN #__k2_comments comments ON comments.itemID = i.id";
+                $query .= " LEFT JOIN #__k2_comments AS comments ON comments.itemID = i.id";
             }
 
             $tagsFilter = $params->get('tags');
@@ -109,36 +122,28 @@ class modK2ContentHelper
                 $query .= " INNER JOIN #__k2_tags_xref tags_xref ON tags_xref.itemID = i.id";
             }
 
-            if (K2_JVERSION != '15') {
-                $query .= " WHERE i.published = 1 AND i.access IN(".implode(',', $user->getAuthorisedViewLevels()).") AND i.trash = 0 AND c.published = 1 AND c.access IN(".implode(',', $user->getAuthorisedViewLevels()).")  AND c.trash = 0";
-            } else {
-                $query .= " WHERE i.published = 1 AND i.access <= {$aid} AND i.trash = 0 AND c.published = 1 AND c.access <= {$aid} AND c.trash = 0";
-            }
+            $query .= " WHERE i.published = 1
+                AND i.access {$aclCheck}
+                AND i.trash = 0
+                AND c.published = 1
+                AND c.access {$aclCheck}
+                AND c.trash = 0
+                AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now).")
+                AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now).")";
 
-            $query .= " AND ( i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )";
-            $query .= " AND ( i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )";
-
-            if ($params->get('catfilter')) {
-                if (!is_null($cid)) {
+            if ($params->get('catfilter') && !is_null($cid)) {
+                if ($params->get('getChildren')) {
+                    $itemListModel = K2Model::getInstance('Itemlist', 'K2Model');
+                    $categories = $itemListModel->getCategoryTree($cid);
+                    sort($categories);
+                    $sql = @implode(',', $categories);
+                    $query .= " AND i.catid IN ({$sql})";
+                } else {
                     if (is_array($cid)) {
-                        if ($params->get('getChildren')) {
-                            $itemListModel = K2Model::getInstance('Itemlist', 'K2Model');
-                            $categories = $itemListModel->getCategoryTree($cid);
-                            $sql = @implode(',', $categories);
-                            $query .= " AND i.catid IN ({$sql})";
-                        } else {
-                            JArrayHelper::toInteger($cid);
-                            $query .= " AND i.catid IN(".implode(',', $cid).")";
-                        }
+                        sort($cid);
+                        $query .= " AND i.catid IN(".implode(',', $cid).")";
                     } else {
-                        if ($params->get('getChildren')) {
-                            $itemListModel = K2Model::getInstance('Itemlist', 'K2Model');
-                            $categories = $itemListModel->getCategoryTree($cid);
-                            $sql = @implode(',', $categories);
-                            $query .= " AND i.catid IN ({$sql})";
-                        } else {
-                            $query .= " AND i.catid=".(int)$cid;
-                        }
+                        $query .= " AND i.catid = ".(int) $cid;
                     }
                 }
             }
@@ -165,15 +170,12 @@ class modK2ContentHelper
                 $query .= " AND (i.video IS NOT NULL AND i.video!='')";
             }
 
-            if ($ordering == 'comments') {
-                $query .= " AND comments.published = 1";
+            if ($languageFilter) {
+                $query .= " AND i.language IN ({$languageFilter}) AND c.language IN ({$languageFilter})";
             }
 
-            if (K2_JVERSION != '15') {
-                if ($application->getLanguageFilter()) {
-                    $languageTag = JFactory::getLanguage()->getTag();
-                    $query .= " AND c.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") AND i.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').")";
-                }
+            if ($ordering == 'comments') {
+                $query .= " AND comments.published = 1";
             }
 
             switch ($ordering) {
@@ -212,9 +214,12 @@ class modK2ContentHelper
 
                 case 'hits':
                     if ($params->get('popularityRange')) {
-                        $datenow = JFactory::getDate();
-                        $date = K2_JVERSION == '15' ? $datenow->toMySQL() : $datenow->toSql();
-                        $query .= " AND i.created > DATE_SUB('{$date}',INTERVAL ".$params->get('popularityRange')." DAY) ";
+                        if ($params->get('popularityRange') == 'today') {
+                            $date = $jnow->toFormat('%Y-%m-%d').' 00:00:00';
+                            $query .= " AND i.publish_up > '{$date}'";
+                        } else {
+                            $query .= " AND i.created > DATE_SUB('{$now}', INTERVAL ".$params->get('popularityRange')." DAY)";
+                        }
                     }
                     $orderby = 'i.hits DESC';
                     break;
@@ -229,11 +234,8 @@ class modK2ContentHelper
 
                 case 'comments':
                     if ($params->get('popularityRange')) {
-                        $datenow = JFactory::getDate();
-                        $date = K2_JVERSION == '15' ? $datenow->toMySQL() : $datenow->toSql();
-                        $query .= " AND i.created > DATE_SUB('{$date}',INTERVAL ".$params->get('popularityRange')." DAY) ";
+                        $query .= " AND i.created > DATE_SUB('{$now}', INTERVAL ".$params->get('popularityRange')." DAY)";
                     }
-                    $query .= " GROUP BY i.id ";
                     $orderby = 'numOfComments DESC';
                     break;
 
@@ -250,122 +252,49 @@ class modK2ContentHelper
                     break;
             }
 
-            $query .= " ORDER BY ".$orderby;
+            if ($tagsFilter && is_array($tagsFilter) && count($tagsFilter)) {
+                $query .= ' GROUP BY i.id';
+            }
+
+            $query .= ' ORDER BY '.$orderby;
+
             $db->setQuery($query, 0, $limit);
             $items = $db->loadObjectList();
         }
 
+        // Render the query results
         $model = K2Model::getInstance('Item', 'K2Model');
+
+        // Import plugins
+        if ($params->get('JPlugins', 1)) {
+            JPluginHelper::importPlugin('content');
+        }
+        if ($params->get('K2Plugins', 1)) {
+            JPluginHelper::importPlugin('k2');
+        }
+        $dispatcher = JDispatcher::getInstance();
 
         if (count($items)) {
             foreach ($items as $item) {
-                $item->event = new stdClass;
 
-                //Clean title
-                $item->title = JFilterOutput::ampReplace($item->title);
-
-                //Images
-                if ($params->get('itemImage')) {
-                    $date = JFactory::getDate($item->modified);
-                    $timestamp = '?t='.$date->toUnix();
-
-                    if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_XS.jpg')) {
-                        $item->imageXSmall = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_XS.jpg';
-                        if ($componentParams->get('imageTimestamp')) {
-                            $item->imageXSmall .= $timestamp;
-                        }
-                    }
-
-                    if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_S.jpg')) {
-                        $item->imageSmall = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_S.jpg';
-                        if ($componentParams->get('imageTimestamp')) {
-                            $item->imageSmall .= $timestamp;
-                        }
-                    }
-
-                    if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_M.jpg')) {
-                        $item->imageMedium = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_M.jpg';
-                        if ($componentParams->get('imageTimestamp')) {
-                            $item->imageMedium .= $timestamp;
-                        }
-                    }
-
-                    if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_L.jpg')) {
-                        $item->imageLarge = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_L.jpg';
-                        if ($componentParams->get('imageTimestamp')) {
-                            $item->imageLarge .= $timestamp;
-                        }
-                    }
-
-                    if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_XL.jpg')) {
-                        $item->imageXLarge = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_XL.jpg';
-                        if ($componentParams->get('imageTimestamp')) {
-                            $item->imageXLarge .= $timestamp;
-                        }
-                    }
-
-                    if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_Generic.jpg')) {
-                        $item->imageGeneric = JURI::base(true).'/media/k2/items/cache/'.md5("Image".$item->id).'_Generic.jpg';
-                        if ($componentParams->get('imageTimestamp')) {
-                            $item->imageGeneric .= $timestamp;
-                        }
-                    }
-
-                    $image = 'image'.$params->get('itemImgSize', 'Small');
-                    if (isset($item->$image)) {
-                        $item->image = $item->$image;
-                    }
-                }
-
-                //Read more link
+                // Item (read more...) link
                 $item->link = urldecode(JRoute::_(K2HelperRoute::getItemRoute($item->id.':'.urlencode($item->alias), $item->catid.':'.urlencode($item->categoryalias))));
 
-                //Tags
-                if ($params->get('itemTags')) {
-                    $tags = $model->getItemTags($item->id);
-                    for ($i = 0; $i < sizeof($tags); $i++) {
-                        $tags[$i]->link = JRoute::_(K2HelperRoute::getTagRoute($tags[$i]->name));
-                    }
-                    $item->tags = $tags;
-                }
-
-                //Category link
+                // Category link
                 if ($params->get('itemCategory')) {
                     $item->categoryLink = urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($item->catid.':'.urlencode($item->categoryalias))));
                 }
 
-                //Extra fields
-                if ($params->get('itemExtraFields')) {
-                    $item->extra_fields = $model->getItemExtraFields($item->extra_fields, $item);
-                }
+                // Title cleanup
+                $item->title = JFilterOutput::ampReplace($item->title);
 
-                //Comments counter
-                if ($params->get('itemCommentsCounter')) {
-                    $item->numOfComments = $model->countItemComments($item->id);
-                }
-
-                //Attachments
-                if ($params->get('itemAttachments')) {
-                    $item->attachments = $model->getItemAttachments($item->id);
-                }
-
-                //Import plugins
-                if ($format != 'feed') {
-                    $dispatcher = JDispatcher::getInstance();
-                    JPluginHelper::importPlugin('content');
-                }
-
-                //Video
-                if ($params->get('itemVideo') && $format != 'feed') {
-                    $params->set('vfolder', 'media/k2/videos');
-                    $params->set('afolder', 'media/k2/audio');
-                    $item->text = $item->video;
-                    if (K2_JVERSION == '15') {
-                        $dispatcher->trigger('onPrepareContent', array(&$item, &$params, $limitstart));
-                    } else {
-                        $dispatcher->trigger('onContentPrepare', array('mod_k2_content.', &$item, &$params, $limitstart));
+                // Tags
+                if ($params->get('itemTags')) {
+                    $tags = $model->getItemTags($item->id);
+                    for ($i = 0; $i < count($tags); $i++) {
+                        $tags[$i]->link = JRoute::_(K2HelperRoute::getTagRoute($tags[$i]->name));
                     }
-                    $item->video = $item->text;
+                    $item->tags = $tags;
                 }
 
                 // Introtext
@@ -379,24 +308,147 @@ class modK2ContentHelper
                     }
                 }
 
+                // Item image
+                if ($params->get('itemImage')) {
+                    $item->imageXSmall = '';
+                    $item->imageSmall = '';
+                    $item->imageMedium = '';
+                    $item->imageLarge = '';
+                    $item->imageXLarge = '';
+
+                    $imageTimestamp = '';
+                    $dateModified = ((int) $item->modified) ? $item->modified : '';
+                    if ($componentParams->get('imageTimestamp', 1) && $dateModified) {
+                        $imageTimestamp = '?t='.strftime("%Y%m%d_%H%M%S", strtotime($dateModified));
+                    }
+
+                    $imageFilenamePrefix = md5("Image".$item->id);
+                    $imagePathPrefix = JUri::base(true).'/media/k2/items/cache/'.$imageFilenamePrefix;
+
+                    // Check if the "generic" variant exists
+                    if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.$imageFilenamePrefix.'_Generic.jpg')) {
+                        $item->imageGeneric = $imagePathPrefix.'_Generic.jpg'.$imageTimestamp;
+                        $item->imageXSmall  = $imagePathPrefix.'_XS.jpg'.$imageTimestamp;
+                        $item->imageSmall   = $imagePathPrefix.'_S.jpg'.$imageTimestamp;
+                        $item->imageMedium  = $imagePathPrefix.'_M.jpg'.$imageTimestamp;
+                        $item->imageLarge   = $imagePathPrefix.'_L.jpg'.$imageTimestamp;
+                        $item->imageXLarge  = $imagePathPrefix.'_XL.jpg'.$imageTimestamp;
+
+                        $item->imageProperties = new stdClass;
+                        $item->imageProperties->filenamePrefix = $imageFilenamePrefix;
+                        $item->imageProperties->pathPrefix = $imagePathPrefix;
+                    }
+
+                    // Select the size to use
+                    $image = 'image'.$params->get('itemImgSize', 'Small');
+                    if (!empty($item->$image)) {
+                        $item->image = $item->$image;
+                    } else {
+                        $item->image = null;
+                    }
+                }
+
+                // Video
+                if ($params->get('itemVideo') && $format != 'feed') {
+                    $params->set('vfolder', 'media/k2/videos');
+                    $params->set('afolder', 'media/k2/audio');
+
+                    // Create temp object to parse plugins
+                    $mediaTempText = new JObject();
+                    $mediaTempText->text = $item->video;
+                    if ($params->get('JPlugins', 1)) {
+                        if (K2_JVERSION == '15') {
+                            $dispatcher->trigger('onPrepareContent', array(
+                            &$mediaTempText,
+                            &$params,
+                            $limitstart
+                        ));
+                        } else {
+                            $dispatcher->trigger('onContentPrepare', array(
+                            'mod_k2_content.item-media',
+                            &$mediaTempText,
+                            &$params,
+                            $limitstart
+                        ));
+                        }
+                    }
+                    if ($params->get('K2Plugins', 1)) {
+                        $dispatcher->trigger('onK2PrepareContent', array(
+                        &$mediaTempText,
+                        &$params,
+                        $limitstart
+                    ));
+                    }
+                    $item->video = $mediaTempText->text;
+                }
+
+                // Extra fields
+                if ($params->get('itemExtraFields')) {
+                    $item->extra_fields = $model->getItemExtraFields($item->extra_fields, $item);
+
+                    // Plugin rendering in extra fields
+                    if (is_array($item->extra_fields)) {
+                        foreach ($item->extra_fields as $key => $extraField) {
+                            if ($extraField->type == 'textarea' || $extraField->type == 'textfield') {
+                                // Create temp object to parse plugins
+                                $extraFieldTempText = new JObject();
+                                $extraFieldTempText->text = $extraField->value;
+                                if ($params->get('JPlugins', 1)) {
+                                    if (K2_JVERSION == '15') {
+                                        $dispatcher->trigger('onPrepareContent', array(
+                                            &$extraFieldTempText,
+                                            &$params,
+                                            $limitstart
+                                        ));
+                                    } else {
+                                        $dispatcher->trigger('onContentPrepare', array(
+                                            'mod_k2_content.item-extrafields',
+                                            &$extraFieldTempText,
+                                            &$params,
+                                            $limitstart
+                                        ));
+                                    }
+                                }
+                                if ($params->get('K2Plugins', 1)) {
+                                    $dispatcher->trigger('onK2PrepareContent', array(
+                                        &$extraFieldTempText,
+                                        &$params,
+                                        $limitstart
+                                    ));
+                                }
+                                $extraField->value = $extraFieldTempText->text;
+                            }
+                        }
+                    }
+                }
+
+                // Attachments
+                if ($params->get('itemAttachments')) {
+                    $item->attachments = $model->getItemAttachments($item->id);
+                }
+
+                // Comments counter
+                if ($params->get('itemCommentsCounter')) {
+                    $item->numOfComments = $model->countItemComments($item->id);
+                }
+
+                // Plugins
                 if ($format != 'feed') {
-                    $params->set('parsedInModule', 1);
-                    // for plugins to know when they are parsed inside this module
+                    $params->set('parsedInModule', 1); // for plugins to know when they are parsed inside this module
 
                     $item->event = new stdClass;
+
                     $item->event->BeforeDisplay = '';
                     $item->event->AfterDisplay = '';
                     $item->event->AfterDisplayTitle = '';
                     $item->event->BeforeDisplayContent = '';
                     $item->event->AfterDisplayContent = '';
 
+                    // Joomla Plugins
                     if ($params->get('JPlugins', 1)) {
-                        //Plugins
                         if (K2_JVERSION != '15') {
                             $item->event->BeforeDisplay = '';
                             $item->event->AfterDisplay = '';
-
-                            $dispatcher->trigger('onContentPrepare', array('mod_k2_content', &$item, &$params, $limitstart));
 
                             $results = $dispatcher->trigger('onContentAfterTitle', array('mod_k2_content', &$item, &$params, $limitstart));
                             $item->event->AfterDisplayTitle = trim(implode("\n", $results));
@@ -406,6 +458,8 @@ class modK2ContentHelper
 
                             $results = $dispatcher->trigger('onContentAfterDisplay', array('mod_k2_content', &$item, &$params, $limitstart));
                             $item->event->AfterDisplayContent = trim(implode("\n", $results));
+
+                            $dispatcher->trigger('onContentPrepare', array('mod_k2_content', &$item, &$params, $limitstart));
                         } else {
                             $results = $dispatcher->trigger('onBeforeDisplay', array(&$item, &$params, $limitstart));
                             $item->event->BeforeDisplay = trim(implode("\n", $results));
@@ -425,7 +479,8 @@ class modK2ContentHelper
                             $dispatcher->trigger('onPrepareContent', array(&$item, &$params, $limitstart));
                         }
                     }
-                    //Init K2 plugin events
+
+                    // Initialize K2 plugin events
                     $item->event->K2BeforeDisplay = '';
                     $item->event->K2AfterDisplay = '';
                     $item->event->K2AfterDisplayTitle = '';
@@ -433,9 +488,8 @@ class modK2ContentHelper
                     $item->event->K2AfterDisplayContent = '';
                     $item->event->K2CommentsCounter = '';
 
+                    // K2 Plugins
                     if ($params->get('K2Plugins', 1)) {
-                        //K2 plugins
-                        JPluginHelper::importPlugin('k2');
                         $results = $dispatcher->trigger('onK2BeforeDisplay', array(&$item, &$params, $limitstart));
                         $item->event->K2BeforeDisplay = trim(implode("\n", $results));
 
@@ -460,13 +514,13 @@ class modK2ContentHelper
                     }
                 }
 
-                // Restore the intotext variable after plugins execution
+                // Restore the intotext variable after plugins are executed
                 $item->introtext = $item->text;
 
-                //Clean the plugin tags
+                // Remove the plugin tags
                 $item->introtext = preg_replace("#{(.*?)}(.*?){/(.*?)}#s", '', $item->introtext);
 
-                //Author
+                // Author (user)
                 if ($params->get('itemAuthor')) {
                     if (!empty($item->created_by_alias)) {
                         $item->author = $item->created_by_alias;
@@ -475,13 +529,14 @@ class modK2ContentHelper
                         if ($params->get('itemAuthorAvatar')) {
                             $item->authorAvatar = K2HelperUtilities::getAvatar('alias');
                         }
-                        $item->authorLink = Juri::root(true);
+                        $item->authorLink = JUri::root(true);
                     } else {
                         $author = JFactory::getUser($item->created_by);
                         $item->author = $author->name;
 
                         $query = "SELECT `description`, `gender` FROM #__k2_users WHERE userID=".(int)$author->id;
                         $db->setQuery($query, 0, 1);
+
                         $result = $db->loadObject();
                         if ($result) {
                             $item->authorGender = $result->gender;
@@ -494,16 +549,16 @@ class modK2ContentHelper
                         if ($params->get('itemAuthorAvatar')) {
                             $item->authorAvatar = K2HelperUtilities::getAvatar($author->id, $author->email, $componentParams->get('userImageWidth'));
                         }
-                        //Author Link
+
                         $item->authorLink = JRoute::_(K2HelperRoute::getUserRoute($item->created_by));
                     }
                 }
 
-                // Author avatar
+                // Author (user) avatar
                 if ($params->get('itemAuthorAvatar') && !isset($item->authorAvatar)) {
                     if (!empty($item->created_by_alias)) {
                         $item->authorAvatar = K2HelperUtilities::getAvatar('alias');
-                        $item->authorLink = Juri::root(true);
+                        $item->authorLink = JUri::root(true);
                     } else {
                         $jAuthor = JFactory::getUser($item->created_by);
                         $item->authorAvatar = K2HelperUtilities::getAvatar($jAuthor->id, $jAuthor->email, $componentParams->get('userImageWidth'));
@@ -511,27 +566,7 @@ class modK2ContentHelper
                     }
                 }
 
-                // Extra fields plugins
-                if (is_array($item->extra_fields)) {
-                    foreach ($item->extra_fields as $key => $extraField) {
-                        if ($extraField->type == 'textarea' || $extraField->type == 'textfield') {
-                            $tmp = new JObject();
-                            $tmp->text = $extraField->value;
-                            if ($params->get('JPlugins', 1)) {
-                                if (K2_JVERSION != '15') {
-                                    $dispatcher->trigger('onContentPrepare', array('mod_k2_content', &$tmp, &$params, $limitstart));
-                                } else {
-                                    $dispatcher->trigger('onPrepareContent', array(&$tmp, &$params, $limitstart));
-                                }
-                            }
-                            if ($params->get('K2Plugins', 1)) {
-                                $dispatcher->trigger('onK2PrepareContent', array(&$tmp, &$params, $limitstart));
-                            }
-                            $extraField->value = $tmp->text;
-                        }
-                    }
-                }
-
+                // Populate the output array
                 $rows[] = $item;
             }
 

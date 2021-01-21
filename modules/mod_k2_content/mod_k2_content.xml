@@ -2,12 +2,12 @@
 <install type="module" client="site" version="1.5" method="upgrade">
     <name>K2 Content</name>
     <author>JoomlaWorks</author>
-    <creationDate>February 9th, 2018</creationDate>
-    <copyright>Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.</copyright>
+    <creationDate>April 27th, 2020</creationDate>
+    <copyright>Copyright (c) 2006 - 2020 JoomlaWorks Ltd. All rights reserved.</copyright>
     <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
     <authorUrl>www.joomlaworks.net</authorUrl>
-    <version>2.8.1</version>
-    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <version>2.10.3</version>
+    <license>https://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <description>K2_MOD_K2_CONTENT_DESCRIPTION</description>
     <files>
         <filename module="mod_k2_content">mod_k2_content.php</filename>
@@ -54,8 +54,9 @@
             <option value="1">K2_SHOW</option>
             <option value="2">K2_SHOW_ONLY_FEATURED_ITEMS</option>
         </param>
-        <param name="popularityRange" type="list" default="" label="K2_TIME_RANGE_IF_ORDERING_IS_SET_TO_MOST_POPULAR_OR_MOST_COMMENTED" description="">
+        <param name="popularityRange" type="list" default="" label="K2_TIME_RANGE_IF_ORDERING_IS_SET_TO_MOST_POPULAR_OR_MOST_COMMENTED" description="K2_TIME_RANGE_IF_ORDERING_IS_SET_TO_MOST_POPULAR_OR_MOST_COMMENTED_DESC">
             <option value="">K2_ALL_TIME</option>
+            <option value="today">K2_TODAY</option>
             <option value="1">K2_1_DAY</option>
             <option value="3">K2_3_DAYS</option>
             <option value="7">K2_1_WEEK</option>
@@ -75,7 +76,7 @@
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </param>
-        <param name="itemAuthor" type="radio" default="1" label="K2_USER_AUTHOR" description="">
+        <param name="itemAuthor" type="radio" default="1" label="K2_USER_AUTHOR" description="K2_MOD_K2_CONTENT_USER_AUTHOR_DESC">
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </param>
@@ -96,7 +97,7 @@
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
         </param>
-        <param name="itemIntroTextWordLimit" type="text" size="4" default="" label="K2_INTROTEXT_WORD_LIMIT" description="K2_LEAVE_BLANK_TO_DIASBLE_IF_YOU_ENABLE_THIS_OPTION_ALL_HTML_TAGS_FROM_THE_TEXT_WILL_BE_CLEANED_UP_TO_MAKE_SURE_THE_HTML_STRUCTURE_OF_THE_SITE_DOES_NOT_BRAKE"/>
+        <param name="itemIntroTextWordLimit" type="text" size="4" default="" label="K2_INTROTEXT_WORD_LIMIT" description="K2_LEAVE_BLANK_TO_DISABLE_IF_YOU_ENABLE_THIS_OPTION_ALL_HTML_TAGS_FROM_THE_TEXT_WILL_BE_CLEANED_UP_TO_MAKE_SURE_THE_HTML_STRUCTURE_OF_THE_SITE_DOES_NOT_BRAKE"/>
         <param name="itemImage" type="radio" default="1" label="K2_IMAGE" description="">
             <option value="0">K2_HIDE</option>
             <option value="1">K2_SHOW</option>
@@ -179,6 +180,6 @@
             <option value="1">K2_USE_GLOBAL</option>
             <option value="0">K2_NO_CACHING</option>
         </param>
-        <param name="cache_time" type="text" default="900" label="K2_CACHE_TIME" description="K2_THE_TIME_IN_SECONDS_BEFORE_THE_MODULE_IS_RECACHED"/>
+        <param name="cache_time" type="text" default="" label="K2_CACHE_TIME" description="K2_THE_TIME_IN_SECONDS_BEFORE_THE_MODULE_IS_RECACHED"/>
     </params>
 </install>

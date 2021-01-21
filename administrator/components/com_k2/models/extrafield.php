@@ -1,10 +1,10 @@
 <?php
 /**
- * @version    2.8.x
+ * @version    2.10.x
  * @package    K2
- * @author     JoomlaWorks http://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
- * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @author     JoomlaWorks https://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2020 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
 // no direct access
@@ -26,11 +26,11 @@ class K2ModelExtraField extends K2Model
 
     public function save()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $row = JTable::getInstance('K2ExtraField', 'Table');
         if (!$row->bind(JRequest::get('post'))) {
-            $application->enqueueMessage($row->getError(), 'error');
-            $application->redirect('index.php?option=com_k2&view=extrafields');
+            $app->enqueueMessage($row->getError(), 'error');
+            $app->redirect('index.php?option=com_k2&view=extrafields');
         }
 
         $isNewGroup = JRequest::getInt('isNew');
@@ -62,7 +62,7 @@ class K2ModelExtraField extends K2Model
             $alias = '';
         }
         $lastOptionId = 1;
-        for ($i = 0; $i < sizeof($values); $i++) {
+        for ($i = 0; $i < count($values); $i++) {
             $object = new JObject;
             $object->set('name', $names[$i]);
 
@@ -89,7 +89,7 @@ class K2ModelExtraField extends K2Model
                 if (!empty($csvFile) && JFile::getExt($file['name']) == 'csv') {
                     $handle = @fopen($csvFile, 'r');
                     $csvData = array();
-                    while (($data = fgetcsv($handle, 1000)) !== false) {
+                    while (($data = fgetcsv($handle, 0)) !== false) {
                         $csvData[] = $data;
                     }
                     fclose($handle);
@@ -125,13 +125,13 @@ class K2ModelExtraField extends K2Model
         $row->value = json_encode($objects);
 
         if (!$row->check()) {
-            $application->enqueueMessage($row->getError(), 'error');
-            $application->redirect('index.php?option=com_k2&view=extrafield&cid='.$row->id);
+            $app->enqueueMessage($row->getError(), 'error');
+            $app->redirect('index.php?option=com_k2&view=extrafield&cid='.$row->id);
         }
 
         if (!$row->store()) {
-            $application->enqueueMessage($row->getError(), 'error');
-            $application->redirect('index.php?option=com_k2&view=extrafields');
+            $app->enqueueMessage($row->getError(), 'error');
+            $app->redirect('index.php?option=com_k2&view=extrafields');
         }
 
         $params = JComponentHelper::getParams('com_k2');
@@ -157,8 +157,8 @@ class K2ModelExtraField extends K2Model
                 $link = 'index.php?option=com_k2&view=extrafields';
                 break;
         }
-        $application->enqueueMessage($msg);
-        $application->redirect($link);
+        $app->enqueueMessage($msg);
+        $app->redirect($link);
     }
 
     public function getExtraFieldsByGroup($group)
@@ -173,7 +173,7 @@ class K2ModelExtraField extends K2Model
 
     public function renderExtraField($extraField, $itemID = null)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
 
         if (!is_null($itemID)) {
             $item = JTable::getInstance('K2Item', 'Table');
@@ -208,7 +208,7 @@ class K2ModelExtraField extends K2Model
 
         if (isset($item)) {
             $currentValues = json_decode($item->extra_fields);
-            if (count($currentValues)) {
+            if ($currentValues && count($currentValues)) {
                 foreach ($currentValues as $value) {
                     if ($value->id == $extraField->id) {
                         if ($extraField->type == 'textarea') {
@@ -296,11 +296,11 @@ class K2ModelExtraField extends K2Model
                 break;
 
             case 'link':
-                $output = '<label>'.JText::_('K2_TEXT').'</label>';
-                $output .= '<input type="text" name="K2ExtraField_'.$extraField->id.'[]" value="'.htmlspecialchars($active[0], ENT_QUOTES, 'UTF-8').'" />';
-                $output .= '<label>'.JText::_('K2_URL').'</label>';
-                $output .= '<input type="text" name="K2ExtraField_'.$extraField->id.'[]" id="K2ExtraField_'.$extraField->id.'"  value="'.htmlspecialchars($active[1], ENT_QUOTES, 'UTF-8').'" '.$attributes.'/>';
-                $output .= '<label>'.JText::_('K2_OPEN_IN').'</label>';
+                $output = '
+                    <label>'.JText::_('K2_TEXT').'</label><input type="text" name="K2ExtraField_'.$extraField->id.'[]" value="'.htmlspecialchars($active[0], ENT_QUOTES, 'UTF-8').'" />
+                    <label>'.JText::_('K2_URL').'</label><input type="text" name="K2ExtraField_'.$extraField->id.'[]" id="K2ExtraField_'.$extraField->id.'"  value="'.htmlspecialchars($active[1], ENT_QUOTES, 'UTF-8').'" '.$attributes.'/>
+                    <label>'.JText::_('K2_OPEN_IN').'</label>';
+
                 $targetOptions[] = JHTML::_('select.option', 'same', JText::_('K2_SAME_WINDOW'));
                 $targetOptions[] = JHTML::_('select.option', 'new', JText::_('K2_NEW_WINDOW'));
                 $targetOptions[] = JHTML::_('select.option', 'popup', JText::_('K2_CLASSIC_JAVASCRIPT_POPUP'));
@@ -312,10 +312,9 @@ class K2ModelExtraField extends K2Model
                 if ($active) {
                     $attributes = '';
                 }
-                $output = '<input type="file" id="K2ExtraField_'.$extraField->id.'" name="K2ExtraField_'.$extraField->id.'[]" '.$attributes.' />';
+                $output = '<input type="file" id="K2ExtraField_'.$extraField->id.'" class="fileUpload k2Selector" name="K2ExtraField_'.$extraField->id.'[]" accept=".csv" '.$attributes.' />';
                 if (is_array($active) && count($active)) {
-                    $output .= '<input type="hidden" name="K2CSV_'.$extraField->id.'" value="'.htmlspecialchars(json_encode($active)).'" />';
-                    $output .= '<table class="csvTable">';
+                    $output .= '<input type="hidden" name="K2CSV_'.$extraField->id.'" value="'.htmlspecialchars(json_encode($active)).'" /><table class="k2ui-ef-csv">';
                     foreach ($active as $key => $row) {
                         $output .= '<tr>';
                         foreach ($row as $cell) {
@@ -323,9 +322,7 @@ class K2ModelExtraField extends K2Model
                         }
                         $output .= '</tr>';
                     }
-                    $output .= '</table>';
-                    $output .= '<label>'.JText::_('K2_DELETE_CSV_DATA').'</label>';
-                    $output .= '<input type="checkbox" name="K2ResetCSV_'.$extraField->id.'" />';
+                    $output .= '</table><hr /><div class="k2ui-ef-row"><input type="checkbox" name="K2ResetCSV_'.$extraField->id.'" /><label>'.JText::_('K2_DELETE_CSV_DATA').'</label></div>';
                 }
                 break;
 
@@ -338,7 +335,7 @@ class K2ModelExtraField extends K2Model
                 $output = '<input class="'.$cssClass.'" type="text" data-k2-datetimepicker="{allowInput:true}" name="K2ExtraField_'.$extraField->id.'" id="K2ExtraField_'.$extraField->id.'" value="'.$active.'" />';
                 break;
             case 'image':
-                $output = '<input type="text" name="K2ExtraField_'.$extraField->id.'" id="K2ExtraField_'.$extraField->id.'" value="'.$active.'" '.$attributes.' /><a class="k2ExtraFieldImageButton" href="'.JURI::base(true).'/index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID=K2ExtraField_'.$extraField->id.'">'.JText::_('K2_SELECT').'</a>';
+                $output = '<input type="text" name="K2ExtraField_'.$extraField->id.'" id="K2ExtraField_'.$extraField->id.'" value="'.$active.'" '.$attributes.' /><a class="k2app-ef-image-button k2Button" href="'.JURI::base(true).'/index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID=K2ExtraField_'.$extraField->id.'">'.JText::_('K2_SELECT').'</a>';
                 break;
             case 'header':
                 $output = '';

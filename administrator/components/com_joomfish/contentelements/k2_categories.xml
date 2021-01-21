@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <joomfish type="contentelement">
-  <name>K2 Categories</name>
-  <author>JoomlaWorks</author>
-  <version>2.8.1</version>
-  <description>Definitions for K2 Categories</description>
-  <reference>
-  	<table name="k2_categories">
-			<field type="referenceid" name="id" translate="0">ID</field>
-			<field type="titletext" name="name" length="50" maxlength="255" translate="1">Name</field>
-			<field type="htmltext" name="description" translate="1" ebuttons="image">Description</field>
-  	</table>
-  </reference>
+    <name>K2 Categories</name>
+    <author>JoomlaWorks</author>
+    <version>2.10.3</version>
+    <description>Definitions for K2 Categories</description>
+    <reference>
+        <table name="k2_categories">
+            <field type="referenceid" name="id" translate="0">ID</field>
+            <field type="titletext" name="name" length="50" maxlength="255" translate="1">Name</field>
+            <field type="htmltext" name="description" translate="1" ebuttons="image">Description</field>
+        </table>
+    </reference>
 </joomfish>

@@ -1,10 +1,10 @@
 <?php
 /**
- * @version    2.8.x
+ * @version    2.10.x
  * @package    K2
- * @author     JoomlaWorks http://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
- * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @author     JoomlaWorks https://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2020 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
 // no direct access
@@ -14,23 +14,18 @@ jimport('joomla.application.component.view');
 
 class K2ViewMedia extends K2View
 {
-    function display($tpl = null)
+    public function display($tpl = null)
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         $user = JFactory::getUser();
         $document = JFactory::getDocument();
         $type = JRequest::getCmd('type');
         $fieldID = JRequest::getCmd('fieldID');
-        if ($type == 'video')
-        {
+        if ($type == 'video') {
             $mimes = "'video','audio'";
-        }
-        elseif ($type == 'image')
-        {
+        } elseif ($type == 'image') {
             $mimes = "'image'";
-        }
-        else
-        {
+        } else {
             $mimes = '';
         }
         $token = version_compare(JVERSION, '2.5', 'ge') ? JSession::getFormToken() : JUtility::getToken();
@@ -40,18 +35,14 @@ class K2ViewMedia extends K2View
         $this->assignRef('fieldID', $fieldID);
         $this->assignRef('token', $token);
 
-        if ($application->isAdmin())
-        {
-	        // Toolbar
-	        JToolBarHelper::title(JText::_('K2_MEDIA_MANAGER'), 'k2.png');
-            if (K2_JVERSION != '15')
-            {
-                JToolBarHelper::preferences('com_k2', 580, 800, 'K2_PARAMETERS');
-            }
-            else
-            {
-	            $toolbar = JToolBar::getInstance('toolbar');
-                $toolbar->appendButton('Popup', 'config', 'K2_PARAMETERS', 'index.php?option=com_k2&view=settings', 800, 580);
+        if ($app->isAdmin()) {
+            // Toolbar
+            JToolBarHelper::title(JText::_('K2_MEDIA_MANAGER'), 'k2.png');
+            if (K2_JVERSION != '15') {
+                JToolBarHelper::preferences('com_k2', '(window.innerHeight) * 0.9', '(window.innerWidth) * 0.7', 'K2_SETTINGS');
+            } else {
+                $toolbar = JToolBar::getInstance('toolbar');
+                $toolbar->appendButton('Popup', 'config', 'K2_SETTINGS', 'index.php?option=com_k2&view=settings', '(window.innerWidth) * 0.7', '(window.innerHeight) * 0.9');
             }
 
             $this->loadHelper('html');

@@ -1,26 +1,29 @@
 /**
- * @version    2.8.x
+ * @version    2.10.x
  * @package    K2
- * @author     JoomlaWorks http://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
- * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @author     JoomlaWorks https://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2020 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
 /* --- Common --- */
 .k2clr {clear:both;height:0;line-height:0;border:none;float:none;background:none;padding:0;margin:0;}
-#k2AlertContainer {position:fixed;top:0;left:0;right:0;z-index:99999;}
-	#k2AlertMessage {width:40%;background:#42a640;color:#fff;font-size:18px;text-align:center;margin:0 auto;padding:20px;box-sizing:border-box;border-bottom:4px solid #358534;}
-		a#k2AlertClose {color:#358534;font-family:monospace;font-size:24px;font-weight:bold;display:block;width:16px;height:16px;margin:0 0 10px 10px;float:right;text-decoration:none;}
-		a#k2AlertClose:hover {color:#2b752a;}
-		#k2AlertMessage span {display:block;width:92%;margin:auto;}
+#k2AlertContainer {position:fixed;z-index:99999;top:0;left:30%;right:30%;width:40%;margin:0 auto;}
+    #k2AlertMessage {background:#42a640;color:#fff;font-size:18px;text-align:center;margin:0 auto;padding:20px;box-sizing:border-box;border-bottom:4px solid #358534;}
+        a#k2AlertClose {color:#358534;font-family:monospace;font-size:24px;font-weight:bold;display:block;width:16px;height:16px;margin:0 0 10px 10px;float:right;text-decoration:none;}
+        a#k2AlertClose:hover {color:#2b752a;}
+        #k2AlertMessage span {display:block;width:92%;margin:auto;}
 
 
 
 /* --- jQueryUI Sortables for K2 Fields/Elements --- */
-div.k2SelectorButton {display:block;border-bottom:1px dotted #ccc;padding:8px 0;margin:0 0 8px 0;}
-div.k2SelectorButton a {}
-	div.k2SingleSelect {border:0;padding:0;margin:0;}
-	div.k2SingleSelect span.k2EntryText {display:inline-block;margin:2px 0;padding:4px 6px;border:1px solid #ccc;background:#eee;border-radius:2px;color:#555;}
+div.k2SelectorButton {display:block;padding:10px 0;margin:0;}
+div.k2SelectorButton a {display:inline-block;margin:0;padding:0 20px;text-align:center;font-size:13px;height:30px;line-height:30px;vertical-align:middle;background:#eff1f1;border-radius:3px;border:1px solid #e4e4e4;cursor:pointer;color:#333;text-decoration:none;}
+div.k2SelectorButton a:hover {background:#1480d3;border:1px solid #2371ac;color:#eee;text-decoration:none;}
+    div.k2SingleSelect {border:0;padding:0;margin:0;}
+    .isJ30 div.k2SingleSelect {margin:5px 0 0 0;}
+    div.k2SingleSelect span.k2EntryText {display:inline-block;margin:2px 0;padding:4px 6px;border:1px solid #ccc;background:#eee;border-radius:2px;color:#555;}
+    .isJ25 div.k2SingleSelect span.k2EntryText {grid-column:3 / span 1;margin:2px 5px 2px 0;}
 ul.k2SortableListContainer {list-style:none;display:block;clear:both;margin:0;padding:0;width:80%;}
 ul.k2SortableListContainer li {list-style:none;margin:2px 0;padding:8px;border:1px solid #ccc;background:#eee;border-radius:2px;cursor:move;}
 ul.k2SortableListContainer li a.k2EntryRemove {cursor:pointer;margin:0 12px 0 0;font-size:14px;}
@@ -28,9 +31,32 @@ ul.k2SortableListContainer li span.k2EntryText {}
 
 
 
+/* For Select2 */
+body .select2-container {margin:5px 0;}
+body .select2-container--default.select2-container--open.select2-container--below .select2-selection--single,
+body .select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple,
+body .select2-container--default.select2-container--focus.select2-container--below .select2-selection--single,
+body .select2-container--default.select2-container--focus.select2-container--below .select2-selection--multiple {border:1px solid #3071A9;}
+
+.isJ15 .select2-container--default .select2-selection--multiple .select2-selection__rendered,
+.isJ25 .select2-container--default .select2-selection--multiple .select2-selection__rendered {padding:5px;line-height:22px;}
+.isJ15 .select2-container--default .select2-selection--multiple .select2-selection__rendered li,
+.isJ25 .select2-container--default .select2-selection--multiple .select2-selection__rendered li {font-size:13px;padding:4px;margin:2px 5px 0 0;}
+.isJ15 .select2-container--default .select2-selection--multiple .select2-selection__rendered li span,
+.isJ25 .select2-container--default .select2-selection--multiple .select2-selection__rendered li span {margin-right:4px;}
+.isJ15 .select2-container--default .select2-selection--multiple .select2-selection__rendered li.select2-search.select2-search--inline,
+.isJ25 .select2-container--default .select2-selection--multiple .select2-selection__rendered li.select2-search.select2-search--inline {visibility:hidden;}
+
+
+
+/* --- Single entries for K2 Fields/Elements --- */
+.handle a.k2EntryRemove {margin:0 12px 0 0;font-size:14px;}
+
+
+
 /* --- Header Element --- */
 .jwHeaderContainer {background:#e5f7fd;color:#346b93;font-size:20px;margin:0;padding:24px 16px;border-radius:4px;}
-.jwHeaderContainer15 {background:#d5e7fa;color:#369;font-size:13px;margin:0;padding:10px;border-bottom:2px solid #96b0cb;font-weight:bold;float:left;width:100%;clear:both;}
+.jwHeaderContainer15 {/*background:#d5e7fa;color:#369;font-size:13px;margin:0;padding:10px;border-bottom:2px solid #96b0cb;font-weight:bold;float:left;width:100%;clear:both;box-sizing:border-box;*/}
 .jwHeaderContent {}
 .jwHeaderClr {clear:both;height:0;line-height:0;border:none;float:none;background:none;padding:0;margin:0;}
 
@@ -48,12 +74,18 @@ ul.k2SortableListContainer li span.k2EntryText {}
 
 /* Resize parameter columns */
 @media all and (min-width:771px) {
-	.com_modules .form-horizontal .span9 .control-group .control-label {width:30% !important;}
-	.com_modules .form-horizontal .span9 .control-group .controls {margin-left:32% !important;}
+    .com_modules .form-horizontal .span9 .control-group .control-label {width:30% !important;}
+    .com_modules .form-horizontal .span9 .control-group .controls {margin-left:32% !important;}
 }
 @media all and (min-width:481px) and (max-width:770px){
-	.com_modules .form-horizontal .span9 .control-group .control-label {width:45% !important;}
-	.com_modules .form-horizontal .span9 .control-group .controls {margin-left:47% !important;}
+    .com_modules .form-horizontal .span9 .control-group .control-label {width:45% !important;}
+    .com_modules .form-horizontal .span9 .control-group .controls {margin-left:47% !important;}
+}
+@media screen and (max-width:480px) {
+    .com_modules .form-horizontal .span9 .control-group:nth-child(2n-1) {background:none;}
+    .com_modules .form-horizontal .span9 .control-group .control-label {border-bottom:1px solid #e9e9e9;padding:10px;text-align:left;background:#f6f6f6;display:table-cell;width:30%;min-width:200px;box-sizing:border-box;vertical-align:middle;font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;}
+    .com_modules .form-horizontal .span9 .control-group .control-label label {font-weight:600;}
+    .com_modules .form-horizontal .span9 .control-group .controls {background:#fbfbfb;margin-bottom:10px;}
 }
 .com_modules .form-horizontal .span9 .control-group-header {background:#e5f7fd;margin-top:32px !important;}
 .com_modules .form-horizontal .span9 .control-group-header .control-label,
@@ -77,12 +109,12 @@ ul.k2SortableListContainer li span.k2EntryText {}
 
 /* Resize parameter columns */
 @media all and (min-width:771px) {
-	.com_menus .form-horizontal #attrib-basic .control-group .control-label {width:30% !important;}
-	.com_menus .form-horizontal #attrib-basic .control-group .controls {margin-left:32% !important;}
+    .com_menus .form-horizontal #attrib-basic .control-group .control-label {width:30% !important;}
+    .com_menus .form-horizontal #attrib-basic .control-group .controls {margin-left:32% !important;}
 }
 @media all and (min-width:481px) and (max-width:770px){
-	.com_menus .form-horizontal #attrib-basic .control-group .control-label {width:45% !important;}
-	.com_menus .form-horizontal #attrib-basic .control-group .controls {margin-left:47% !important;}
+    .com_menus .form-horizontal #attrib-basic .control-group .control-label {width:45% !important;}
+    .com_menus .form-horizontal #attrib-basic .control-group .controls {margin-left:47% !important;}
 }
 .com_menus .form-horizontal #attrib-basic .control-group-header {background:#e5f7fd;margin-top:32px !important;}
 .com_menus .form-horizontal #attrib-basic .control-group-header .control-label,
@@ -113,12 +145,18 @@ ul.k2SortableListContainer li span.k2EntryText {}
 
 /* Resize parameter columns */
 @media all and (min-width:771px) {
-	.com_config .form-horizontal .span10 .control-group .control-label {width:30% !important;}
-	.com_config .form-horizontal .span10 .control-group .controls {margin-left:32% !important;}
+    .com_config .form-horizontal .span10 .control-group .control-label {width:30% !important;}
+    .com_config .form-horizontal .span10 .control-group .controls {margin-left:32% !important;}
 }
 @media all and (min-width:481px) and (max-width:770px){
-	.com_config .form-horizontal .span10 .control-group .control-label {width:45% !important;}
-	.com_config .form-horizontal .span10 .control-group .controls {margin-left:47% !important;}
+    .com_config .form-horizontal .span10 .control-group .control-label {width:45% !important;}
+    .com_config .form-horizontal .span10 .control-group .controls {margin-left:47% !important;}
+}
+@media screen and (max-width:480px) {
+    .com_config .form-horizontal .span10 .control-group:nth-child(2n-1) {background:none;}
+    .com_config .form-horizontal .span10 .control-group .control-label {border-bottom:1px solid #e9e9e9;padding:10px;text-align:left;background:#f6f6f6;display:table-cell;width:30%;min-width:200px;box-sizing:border-box;vertical-align:middle;font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;}
+    .com_config .form-horizontal .span10 .control-group .control-label label {font-weight:600;}
+    .com_config .form-horizontal .span10 .control-group .controls {background:#fbfbfb;margin-bottom:10px;}
 }
 .com_config .form-horizontal .span10 .control-group-header {background:#e5f7fd;margin-top:32px !important;}
 .com_config .form-horizontal .span10 .control-group-header .control-label,
@@ -128,12 +166,184 @@ ul.k2SortableListContainer li span.k2EntryText {}
 .com_config .form-horizontal .span10 .controls .chzn-container-multi {width:90% !important;}
 .com_config .form-horizontal .span10 .controls textarea {width:90%;}
 
-/* Radio/Checkbox Buttons */
+/* Radio/Checkbox Buttons
 .com_config .form-horizontal .span10 .controls fieldset.radio label {display:inline-block !important;margin:0 !important;padding:0 16px 0 2px !important;}
 .com_config .form-horizontal .span10 .controls fieldset.radio,
 .com_config .form-horizontal .span10 .controls fieldset.checkbox {padding:0 !important;margin:4px 0 0 0 !important;}
 .com_config .form-horizontal .span10 .controls fieldset.radio input[type="radio"],
 .com_config .form-horizontal .span10 .controls fieldset.radio .checkbox input[type="checkbox"] {display:inline-block !important;float:none !important;margin:-2px 0 0 0 !important;}
+*/
+
+/* Everything else */
+.com_config .form-horizontal .span10 .controls fieldset {margin:0;padding:0;display:table-cell;width:70%;box-sizing:border-box;vertical-align:middle;text-align:left;}
+
+.com_config .form-horizontal .span10 .controls fieldset > input {width:300px;padding:5px 10px;}
+.com_config .form-horizontal .span10 .controls fieldset input[type="file"] {border-radius:4px;padding:8px;box-sizing:border-box;background:#eee;min-height:0;height:36px;line-height:inherit;font-size:12px;}
+.com_config .form-horizontal .span10 .controls fieldset select {width:300px;height:30px;line-height:30px;background:#fff;}
+.com_config .form-horizontal .span10 .controls fieldset select[multiple] {height:auto;}
+.com_config .form-horizontal .span10 .controls fieldset button {font-family:'Open Sans',sans-serif;font-size:13px;}
+.com_config .form-horizontal .span10 .controls fieldset textarea {min-width:400px;width:auto;padding-left:10px;padding-right:10px;}
+.com_config .form-horizontal .span10 .controls fieldset input,
+.com_config .form-horizontal .span10 .controls fieldset select,
+.com_config .form-horizontal .span10 .controls fieldset textarea {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;}
+.com_config .form-horizontal .span10 .controls fieldset label {font-family:'Open Sans',sans-serif;font-size:13px;}
+
+.com_config .form-horizontal .span10 .controls fieldset input[type="radio"],
+.com_config .form-horizontal .span10 .controls fieldset label > input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);}
+.com_config .form-horizontal .span10 .controls fieldset input[type="radio"] + label,
+.com_config .form-horizontal .span10 .controls fieldset > label.radio,
+.com_config .form-horizontal .span10 .controls fieldset > label.isChecked {min-width:80px;width:auto;line-height:30px;height:30px;text-align:center;margin:0 -2px 0 0;padding:0 10px !important;color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background:#eff1f1;cursor:pointer;border:0;}
+
+.com_config .form-horizontal .span10 .controls fieldset input[type="radio"]:first-child + label,
+.com_config .form-horizontal .span10 .controls fieldset > label.radio:first-child {border-radius:4px 0 0 4px;}
+.com_config .form-horizontal .span10 .controls fieldset input[type="radio"] + label:last-child,
+.com_config .form-horizontal .span10 .controls fieldset > label.radio:last-child {border-radius:0 4px 4px 0;}
+
+.com_config .form-horizontal .span10 .controls fieldset input[type="radio"]:checked + label,
+.com_config .form-horizontal .span10 .controls fieldset > label.isChecked {background:#63696f;color:#fff;} /* Generic */
+.com_config .form-horizontal .span10 .controls fieldset input[type="radio"] + label:hover,
+.com_config .form-horizontal .span10 .controls fieldset > label.radio:hover {background:#e8e8e8;}
+.com_config .form-horizontal .span10 .controls fieldset input[type="radio"]:checked + label:hover,
+.com_config .form-horizontal .span10 .controls fieldset > label.isChecked:hover {background:#555;}
+
+.com_config .form-horizontal .span10 .controls fieldset input[type="radio"][value="0"]:checked + label,
+.com_config .form-horizontal .span10 .controls fieldset input[type="radio"][value="none"]:checked + label,
+.com_config .form-horizontal .span10 .controls fieldset > label.isChecked[for="published0"],
+.com_config .form-horizontal .span10 .controls fieldset > label.isChecked[for="featured0"] {background:#bd362f;color:#fff;}
+.com_config .form-horizontal .span10 .controls fieldset input[type="radio"][value="1"]:checked + label,
+.com_config .form-horizontal .span10 .controls fieldset input[type="radio"][value="all"]:checked + label,
+.com_config .form-horizontal .span10 .controls fieldset > label.isChecked[for="published1"],
+.com_config .form-horizontal .span10 .controls fieldset > label.isChecked[for="featured1"] {background:#3fa800;color:#fff;}
+
+
+
+/* For Joomla 2.5 */
+.isJ25 .pane-slider > fieldset.panelform {padding:5px;margin:0;}
+.isJ25 fieldset.panelform .adminformlist > li {position:relative;display:grid;grid-template-columns:1fr 2fr auto auto auto;align-items:center;min-height:0;max-height:none;clear:both;border-radius:4px;padding:0;margin:0;}
+.isJ25 fieldset.panelform .adminformlist > li > span.spacer {}
+.isJ25 fieldset.panelform .adminformlist > li:nth-child(2n-1) {background:#f7f7f7;}
+.isJ25 fieldset.panelform .adminformlist > li > label {min-width:inherit;max-width:auto;width:auto;font-size:13px;float:none;padding:10px;}
+.isJ25 fieldset.panelform .adminformlist > li > label + input,
+.isJ25 fieldset.panelform .adminformlist > li > label + select,
+.isJ25 fieldset.panelform .adminformlist > li > label + textarea,
+.isJ25 fieldset.panelform .adminformlist > li > label + fieldset,
+.isJ25 fieldset.panelform .adminformlist > li > label + div,
+.isJ25 fieldset.panelform .adminformlist > li > label + span {float:none;font-size:13px;}
+.isJ25 fieldset.panelform .adminformlist > li > label + input,
+.isJ25 fieldset.panelform .adminformlist > li > label + select,
+.isJ25 fieldset.panelform .adminformlist > li > label + textarea {border-radius:3px;padding:5px 10px;font-size:13px;}
+.isJ25 fieldset.panelform .adminformlist > li > label + select {height:28px;}
+.isJ25 fieldset.panelform .adminformlist > li > label + select[multiple="multiple"] {height:auto;max-height:240px;}
+.isJ25 fieldset.panelform .adminformlist > li > label + div.k2SelectorButton + .k2SortableListContainer {grid-column:2 / span 1;margin-bottom:10px;}
+.isJ25 fieldset.panelform .adminformlist > li > label + div.k2SelectorButton + .k2SortableListContainer li {padding:5px 10px;margin:2px 0;}
+.isJ25 fieldset.panelform .adminformlist > li > fieldset {background:none;}
+.isJ25 fieldset.panelform .adminformlist > li > fieldset label,
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input {font-size:13px;}
+
+.isJ25 fieldset.panelform .adminformlist > li > label#jform_params_menu_image-lbl + .fltlft {padding-left:46px;}
+
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);}
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"] + label {min-width:80px;width:auto;line-height:30px;height:30px;text-align:center;margin:0 -2px 0 0;padding:0 10px;color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background:#eff1f1;cursor:pointer;}
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"]:first-child + label {border-radius:4px 0 0 4px;}
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"] + label:last-child {border-radius:0 4px 4px 0;}
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"]:checked + label {background:#63696f;color:#fff;} /* Generic */
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"]:checked + label:hover {background:#555;}
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"] + label:hover {background:#e8e8e8;}
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"][value="0"]:checked + label,
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"][value="none"]:checked + label {background:#bd362f;color:#fff;}
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"][value="1"]:checked + label,
+.isJ25 fieldset.panelform .adminformlist > li > fieldset input[type="radio"][value="all"]:checked + label {background:#3fa800;color:#fff;}
+
+.isJ25 .jwHeaderContainer {grid-column-start:span 2;background:#e5f7fd;color:#346b93;font-size:20px;margin:0;padding:24px 16px;border-radius:4px;font-weight:normal;float:left;width:100%;clear:both;box-sizing:border-box;}
+
+/* For Joomla 2.5 - Component Settings */
+.isJ25 body.contentpane {width:90%;margin:0 auto;padding:10px 0 40px 0;}
+.isJ25 body.contentpane form > fieldset {border:0;padding:20px 24px 10px 24px;margin:0 auto 20px auto;border-bottom:2px solid #dddedf;}
+.isJ25 body.contentpane form > fieldset .configuration {font-size:30px;line-height:30px;font-weight:600;padding:0;margin:0;color:#183867;background:none;}
+.isJ25 body.contentpane form > fieldset div button {border:1px solid #b3b3b3;border-radius:4px;background:#f3f3f3;padding:6px 18px;margin:0 0 0 4px;line-height:20px;color:#333;font-size:12px;cursor:pointer;}
+.isJ25 body.contentpane form > fieldset div button:hover {border:1px solid #b3b3b3;background:#e6e6e6;}
+
+.isJ25 dl#config-tabs-com_k2_configuration dt.tabs {margin:0 0 -1px 0;padding:8px 16px;font-size:14px;margin:0 4px 0 0;border:1px solid #dddedf;}
+.isJ25 dl#config-tabs-com_k2_configuration dt.tabs.open {background:#fff;border-bottom:1px solid #fff;}
+.isJ25 dl#config-tabs-com_k2_configuration dt.tabs:hover {background:#e6e6e6;}
+.isJ25 dl#config-tabs-com_k2_configuration dt.tabs.open:hover {border-bottom:1px solid #e6e6e6;}
+.isJ25 dl#config-tabs-com_k2_configuration + div.current {border:1px solid #dddedf;padding:10px;}
+
+.isJ25 div.current dd .config-option-list {padding:5px;margin:0;}
+.isJ25 div.current dd .config-option-list > li {position:relative;display:grid;grid-template-columns:1fr 2fr auto auto auto;align-items:center;min-height:0;max-height:none;clear:both;border-radius:4px;padding:0;margin:0;}
+.isJ25 div.current dd .config-option-list > li > span.spacer {}
+.isJ25 div.current dd .config-option-list > li:nth-child(2n-1) {background:#f7f7f7;}
+.isJ25 div.current dd .config-option-list > li > label {min-width:inherit;max-width:auto;width:auto;font-size:13px;float:none;padding:10px;}
+.isJ25 div.current dd .config-option-list > li > label + input,
+.isJ25 div.current dd .config-option-list > li > label + select,
+.isJ25 div.current dd .config-option-list > li > label + textarea,
+.isJ25 div.current dd .config-option-list > li > label + fieldset,
+.isJ25 div.current dd .config-option-list > li > label + div,
+.isJ25 div.current dd .config-option-list > li > label + span {float:none;font-size:13px;margin:5px;}
+.isJ25 div.current dd .config-option-list > li > label + input,
+.isJ25 div.current dd .config-option-list > li > label + select,
+.isJ25 div.current dd .config-option-list > li > label + textarea {border-radius:3px;padding:5px 10px;font-size:13px;}
+.isJ25 div.current dd .config-option-list > li > label + select {height:28px;}
+.isJ25 div.current dd .config-option-list > li > label + select[multiple="multiple"] {height:auto;max-height:240px;}
+.isJ25 div.current dd .config-option-list > li > label + div.k2SelectorButton + .k2SortableListContainer {grid-column:2 / span 1;margin-bottom:10px;}
+.isJ25 div.current dd .config-option-list > li > label + div.k2SelectorButton + .k2SortableListContainer li {padding:5px 10px;margin:2px 0;}
+.isJ25 div.current dd .config-option-list > li > fieldset {background:none;}
+.isJ25 div.current dd .config-option-list > li > fieldset label,
+.isJ25 div.current dd .config-option-list > li > fieldset input {font-size:13px;}
+
+.isJ25 div.current dd .config-option-list > li > label#jform_k2SeoGsdOrgLogo-lbl + .fltlft {padding-left:46px;}
+
+.isJ25 div.current dd .config-option-list > li > fieldset input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);}
+.isJ25 div.current dd .config-option-list > li > fieldset input[type="radio"] + label {min-width:80px;width:auto;line-height:30px;height:30px;text-align:center;margin:0 -2px 0 0;padding:0 10px;color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background:#eff1f1;cursor:pointer;}
+.isJ25 div.current dd .config-option-list > li > fieldset input[type="radio"]:first-child + label {border-radius:4px 0 0 4px;}
+.isJ25 div.current dd .config-option-list > li > fieldset input[type="radio"] + label:last-child {border-radius:0 4px 4px 0;}
+.isJ25 div.current dd .config-option-list > li > fieldset input[type="radio"]:checked + label {background:#63696f;color:#fff;} /* Generic */
+.isJ25 div.current dd .config-option-list > li > fieldset input[type="radio"]:checked + label:hover {background:#555;}
+.isJ25 div.current dd .config-option-list > li > fieldset input[type="radio"] + label:hover {background:#e8e8e8;}
+.isJ25 div.current dd .config-option-list > li > fieldset input[type="radio"][value="0"]:checked + label,
+.isJ25 div.current dd .config-option-list > li > fieldset input[type="radio"][value="none"]:checked + label {background:#bd362f;color:#fff;}
+.isJ25 div.current dd .config-option-list > li > fieldset input[type="radio"][value="1"]:checked + label,
+.isJ25 div.current dd .config-option-list > li > fieldset input[type="radio"][value="all"]:checked + label {background:#3fa800;color:#fff;}
+
+.isJ25 div.current dd .config-option-list .jwHeaderContainer {grid-column-start:span 2;
+background:#e5f7fd;color:#346b93;font-size:20px;margin:0;padding:24px 16px;border-radius:4px;font-weight:normal;float:left;width:100%;clear:both;box-sizing:border-box;}
+
+
+
+/* For Joomla 1.5 */
+/* Parameters rendered from XML (tables) */
+.isJ15 .jpane-slider > table.admintable {padding:5px;margin:0 auto;border-collapse:separate;border-spacing:0;border:0;width:100%;background:#fff;}
+.isJ15 .jpane-slider > table.admintable td {font-size:13px;font-weight:400;color:#333;padding:10px;vertical-align:middle;}
+.isJ15 .jpane-slider > table.admintable td.paramlist_key {width:30%;min-width:200px;border-top:1px solid #fff;border-right:1px solid #e9e9e9;border-bottom:1px solid #e9e9e9;}
+.isJ15 .jpane-slider > table.admintable td.paramlist_key label {font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;}
+.isJ15 .jpane-slider > table.admintable td.paramlist_value {background:#fbfbfb;border-top:1px solid #fff;border-bottom:1px solid #fbfbfb;font-size:13px;}
+.isJ15 .jpane-slider > table.admintable td.paramlist_value input {width:300px;padding:5px 10px;}
+.isJ15 .jpane-slider > table.admintable td.paramlist_value input[type="file"] {border-radius:4px;padding:8px;box-sizing:border-box;background:#eee;}
+.isJ15 .jpane-slider > table.admintable td.paramlist_value select {width:300px;height:30px;line-height:30px;background:#fff;}
+.isJ15 .jpane-slider > table.admintable td.paramlist_value select[multiple] {height:auto;}
+.isJ15 .jpane-slider > table.admintable td.paramlist_value button {font-family:'Open Sans',sans-serif;font-size:13px;}
+.isJ15 .jpane-slider > table.admintable td.paramlist_value textarea {min-width:400px;padding-left:10px;padding-right:10px;}
+.isJ15 .jpane-slider > table.admintable td.paramlist_value > input,
+.isJ15 .jpane-slider > table.admintable td.paramlist_value > select,
+.isJ15 .jpane-slider > table.admintable td.paramlist_value > textarea {font-family:'Open Sans',sans-serif;font-size:13px;border-radius:4px;border:1px solid #ccc;}
+.isJ15 .jpane-slider > table.admintable td.paramlist_value label {font-family:'Open Sans',sans-serif;font-size:13px;}
+.isJ15 .jpane-slider > table.admintable td.paramlist_value input[type="radio"] {opacity:0;position:absolute;clip:rect(0,0,0,0);}
+.isJ15 .jpane-slider > table.admintable td.paramlist_value input[type="radio"] + label {min-width:80px;width:auto;line-height:30px;height:30px;text-align:center;margin:0 -2px 0 0;padding:0 10px;color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background:#eff1f1;cursor:pointer;}
+
+.isJ15 .jpane-slider > table.admintable td.paramlist_value input[type="checkbox"] {box-shadow:none;}
+
+.isJ15 .jpane-slider > table.admintable td.paramlist_value input[type="radio"]:first-child + label {border-radius:4px 0 0 4px;}
+.isJ15 .jpane-slider > table.admintable td.paramlist_value input[type="radio"] + label:last-child {border-radius:0 4px 4px 0;}
+
+.isJ15 .jpane-slider > table.admintable td.paramlist_value input[type="radio"]:checked + label {background:#63696f;color:#fff;} /* Generic */
+.isJ15 .jpane-slider > table.admintable td.paramlist_value input[type="radio"]:checked + label:hover {background:#555;}
+.isJ15 .jpane-slider > table.admintable td.paramlist_value input[type="radio"] + label:hover {background:#e8e8e8;}
+.isJ15 .jpane-slider > table.admintable td.paramlist_value input[type="radio"][value="0"]:checked + label,
+.isJ15 .jpane-slider > table.admintable td.paramlist_value input[type="radio"][value="none"]:checked + label {background:#bd362f;color:#fff;}
+.isJ15 .jpane-slider > table.admintable td.paramlist_value input[type="radio"][value="1"]:checked + label,
+.isJ15 .jpane-slider > table.admintable td.paramlist_value input[type="radio"][value="all"]:checked + label {background:#3fa800;color:#fff;}
+.isJ15 .jpane-slider > table.admintable td.paramlist_value[colspan="2"] {padding:0;}
+.isJ15 .jpane-slider > table.admintable td.paramlist_value[colspan="2"] .jwHeaderContainer15 {background:#e5f7fd;color:#346b93;font-size:20px;margin:0;padding:24px 16px;border:0;font-weight:normal;float:left;width:100%;clear:both;box-sizing:border-box;}
 
 
 

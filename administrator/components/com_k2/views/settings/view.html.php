@@ -1,10 +1,10 @@
 <?php
 /**
- * @version    2.8.x
+ * @version    2.10.x
  * @package    K2
- * @author     JoomlaWorks http://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
- * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @author     JoomlaWorks https://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2020 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
 // no direct access
@@ -14,20 +14,20 @@ jimport('joomla.application.component.view');
 
 class K2ViewSettings extends K2View
 {
-	function display($tpl = null)
-	{
-		JHTML::_('behavior.tooltip');
+    public function display($tpl = null)
+    {
+        JHTML::_('behavior.tooltip');
 
-		jimport('joomla.html.pane');
+        jimport('joomla.html.pane');
 
-		$model = $this->getModel();
+        $model = $this->getModel();
 
-		$params = $model->getParams();
-		$this->assignRef('params', $params);
+        $params = $model->getParams();
+        $this->assignRef('params', $params);
 
-		$pane = JPane::getInstance('Tabs');
-		$this->assignRef('pane', $pane);
+        $pane = JPane::getInstance('Tabs');
+        $this->assignRef('pane', $pane);
 
-		parent::display($tpl);
-	}
+        parent::display($tpl);
+    }
 }

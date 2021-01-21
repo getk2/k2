@@ -1,19 +1,18 @@
 <?php
 /**
-* @version		2.8.x
-* @package		K2
-* @author		JoomlaWorks http://www.joomlaworks.net
-* @copyright	Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
-* @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
-*/
+ * @version    2.10.x
+ * @package    K2
+ * @author     JoomlaWorks https://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2020 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
+ */
 
 // no direct access
 defined('_JEXEC') or die;
 
 // Quick and dirty fix for Joomla 3.0 missing CSS tabs when creating tabs using the API.
 // Should be removed when Joomla fixes that...
-if (K2_JVERSION == '30')
-{
+if (K2_JVERSION == '30') {
 	$document = JFactory::getDocument();
 	$document->addStyleDeclaration('
 		dl.tabs {float:left;margin:10px 0 -1px 0;z-index:50;}

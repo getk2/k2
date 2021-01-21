@@ -1,10 +1,10 @@
 <?php
 /**
- * @version    2.8.x
+ * @version    2.10.x
  * @package    K2
- * @author     JoomlaWorks http://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
- * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @author     JoomlaWorks https://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2020 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
 // no direct access
@@ -14,59 +14,50 @@ jimport('joomla.application.component.controller');
 
 class K2ControllerTags extends K2Controller
 {
+    public function display($cachable = false, $urlparams = array())
+    {
+        JRequest::setVar('view', 'tags');
+        parent::display();
+    }
 
-	public function display($cachable = false, $urlparams = array())
-	{
-		JRequest::setVar('view', 'tags');
-		parent::display();
-	}
+    public function publish()
+    {
+        JRequest::checkToken() or jexit('Invalid Token');
+        $model = $this->getModel('tags');
+        $model->publish();
+    }
 
-	function publish()
-	{
-		JRequest::checkToken() or jexit('Invalid Token');
-		$model = $this->getModel('tags');
-		$model->publish();
-	}
+    public function unpublish()
+    {
+        JRequest::checkToken() or jexit('Invalid Token');
+        $model = $this->getModel('tags');
+        $model->unpublish();
+    }
 
-	function unpublish()
-	{
-		JRequest::checkToken() or jexit('Invalid Token');
-		$model = $this->getModel('tags');
-		$model->unpublish();
-	}
+    public function remove()
+    {
+        JRequest::checkToken() or jexit('Invalid Token');
+        $model = $this->getModel('tags');
+        $model->remove();
+    }
 
-	function remove()
-	{
-		JRequest::checkToken() or jexit('Invalid Token');
-		$model = $this->getModel('tags');
-		$model->remove();
-	}
+    public function add()
+    {
+        $app = JFactory::getApplication();
+        $app->redirect('index.php?option=com_k2&view=tag');
+    }
 
-	function add()
-	{
-		$application = JFactory::getApplication();
-		$application->redirect('index.php?option=com_k2&view=tag');
-	}
+    public function edit()
+    {
+        $app = JFactory::getApplication();
+        $cid = JRequest::getVar('cid');
+        $app->redirect('index.php?option=com_k2&view=tag&cid='.$cid[0]);
+    }
 
-	function edit()
-	{
-		$application = JFactory::getApplication();
-		$cid = JRequest::getVar('cid');
-		$application->redirect('index.php?option=com_k2&view=tag&cid='.$cid[0]);
-	}
-
-	function element()
-	{
-		JRequest::setVar('view', 'tags');
-		JRequest::setVar('layout', 'element');
-		parent::display();
-	}
-
-	function removeOrphans()
-	{
-		JRequest::checkToken() or jexit('Invalid Token');
-		$model = $this->getModel('tags');
-		$model->removeOrphans();
-	}
-
+    public function removeOrphans()
+    {
+        JRequest::checkToken() or jexit('Invalid Token');
+        $model = $this->getModel('tags');
+        $model->removeOrphans();
+    }
 }

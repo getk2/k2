@@ -1,10 +1,10 @@
 <?php
 /**
- * @version    2.8.x
+ * @version    2.10.x
  * @package    K2
- * @author     JoomlaWorks http://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
- * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @author     JoomlaWorks https://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2020 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
 // no direct access
@@ -26,23 +26,36 @@ class K2ModelCategory extends K2Model
 
     public function save()
     {
-        $application = JFactory::getApplication();
+        $app = JFactory::getApplication();
         jimport('joomla.filesystem.file');
         require_once(JPATH_SITE.'/media/k2/assets/vendors/verot/class.upload.php/src/class.upload.php');
         $row = JTable::getInstance('K2Category', 'Table');
         $params = JComponentHelper::getParams('com_k2');
 
+        // Plugin Events
+        JPluginHelper::importPlugin('k2');
+        JPluginHelper::importPlugin('content');
+        JPluginHelper::importPlugin('finder');
+        $dispatcher = JDispatcher::getInstance();
+
         if (!$row->bind(JRequest::get('post'))) {
-            $application->enqueueMessage($row->getError(), 'error');
-            $application->redirect('index.php?option=com_k2&view=categories');
+            $app->enqueueMessage($row->getError(), 'error');
+            $app->redirect('index.php?option=com_k2&view=categories');
         }
 
         $isNew = ($row->id) ? false : true;
 
-        // Trigger the finder before save event
-        $dispatcher = JDispatcher::getInstance();
-        JPluginHelper::importPlugin('finder');
-        $results = $dispatcher->trigger('onFinderBeforeSave', array('com_k2.category', $row, $isNew));
+        // Trigger K2 plugins
+        $result = $dispatcher->trigger('onBeforeK2Save', array(&$row, $isNew));
+
+        if (in_array(false, $result, true)) {
+            JError::raiseError(500, $row->getError());
+            return false;
+        }
+
+        // Trigger content & finder plugins before the save event
+        $dispatcher->trigger('onContentBeforeSave', array('com_k2.category', $row, $isNew));
+        $dispatcher->trigger('onFinderBeforeSave', array('com_k2.category', $row, $isNew));
 
         $row->description = JRequest::getVar('description', '', 'post', 'string', 2);
         if ($params->get('xssFiltering')) {
@@ -55,13 +68,13 @@ class K2ModelCategory extends K2Model
         }
 
         if (!$row->check()) {
-            $application->enqueueMessage($row->getError(), 'error');
-            $application->redirect('index.php?option=com_k2&view=category&cid='.$row->id);
+            $app->enqueueMessage($row->getError(), 'error');
+            $app->redirect('index.php?option=com_k2&view=category&cid='.$row->id);
         }
 
         if (!$row->store()) {
-            $application->enqueueMessage($row->getError(), 'error');
-            $application->redirect('index.php?option=com_k2&view=categories');
+            $app->enqueueMessage($row->getError(), 'error');
+            $app->redirect('index.php?option=com_k2&view=categories');
         }
 
         if (!$params->get('disableCompactOrdering')) {
@@ -98,8 +111,8 @@ class K2ModelCategory extends K2Model
                     $handle->Clean();
                 }
             } else {
-                $application->enqueueMessage($handle->error, 'error');
-                $application->redirect('index.php?option=com_k2&view=categories');
+                $app->enqueueMessage($handle->error, 'error');
+                $app->redirect('index.php?option=com_k2&view=categories');
             }
             $row->image = $handle->file_dst_name;
         }
@@ -114,17 +127,23 @@ class K2ModelCategory extends K2Model
         }
 
         if (!$row->store()) {
-            $application->enqueueMessage($row->getError(), 'error');
-            $application->redirect('index.php?option=com_k2&view=categories');
+            $app->enqueueMessage($row->getError(), 'error');
+            $app->redirect('index.php?option=com_k2&view=categories');
         }
-
-        // Trigger the finder after save event
-        $dispatcher = JDispatcher::getInstance();
-        JPluginHelper::importPlugin('finder');
-        $results = $dispatcher->trigger('onFinderAfterSave', array('com_k2.category', $row, $isNew));
 
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
+
+        // Trigger K2 plugins
+        $dispatcher->trigger('onAfterK2Save', array(&$row, $isNew));
+
+        // Trigger content & finder plugins after the save event
+        if (K2_JVERSION != '15') {
+            $dispatcher->trigger('onContentAfterSave', array('com_k2.category', &$row, $isNew));
+        } else {
+            $dispatcher->trigger('onAfterContentSave', array(&$row, $isNew));
+        }
+        $results = $dispatcher->trigger('onFinderAfterSave', array('com_k2.category', $row, $isNew));
 
         switch (JRequest::getCmd('task')) {
             case 'apply':
@@ -141,8 +160,8 @@ class K2ModelCategory extends K2Model
                 $link = 'index.php?option=com_k2&view=categories';
                 break;
         }
-        $application->enqueueMessage($msg);
-        $application->redirect($link);
+        $app->enqueueMessage($msg);
+        $app->redirect($link);
     }
 
     public function countCategoryItems($catid, $trash = 0)
