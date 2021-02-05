@@ -177,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `#__k2_users` (
     `group` int(11) NOT NULL DEFAULT '0',
     `description` text NOT NULL,
     `image` varchar(255) DEFAULT NULL,
-    `gender` enum('m','f') NOT NULL DEFAULT 'm',
+    `gender` enum('m','f','n') NOT NULL DEFAULT 'n',
     `url` varchar(255) DEFAULT NULL,
     `ip` varchar(45) NOT NULL,
     `hostname` varchar(255) NOT NULL,

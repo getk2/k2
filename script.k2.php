@@ -267,9 +267,19 @@ class Com_K2InstallerScript
         $fields = $db->getTableColumns('#__k2_users');
         if (!array_key_exists('ip', $fields)) {
             $query = "ALTER TABLE `#__k2_users`
-	            ADD `ip` VARCHAR(45) NOT NULL ,
-	            ADD `hostname` VARCHAR(255) NOT NULL ,
-	            ADD `notes` TEXT NOT NULL";
+                ADD `ip` VARCHAR(45) NOT NULL ,
+                ADD `hostname` VARCHAR(255) NOT NULL ,
+                ADD `notes` TEXT NOT NULL";
+            $db->setQuery($query);
+            $db->query();
+        }
+
+        // Users - add new ENUM option for "gender"
+        $query = "SELECT DISTINCT gender FROM #__k2_users";
+        $db->setQuery($query);
+        $enumOptions = $db->loadColumn();
+        if (count($enumOptions) < 3) {
+            $query = "ALTER TABLE #__k2_users MODIFY COLUMN `gender` enum('m','f','n') NOT NULL DEFAULT 'n'";
             $db->setQuery($query);
             $db->query();
         }
@@ -291,10 +301,10 @@ class Com_K2InstallerScript
 
         // Log for updates
         $query = "CREATE TABLE IF NOT EXISTS `#__k2_log` (
-		        `status` int(11) NOT NULL,
-		        `response` text NOT NULL,
-		        `timestamp` datetime NOT NULL
-	        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;";
+                `status` int(11) NOT NULL,
+                `response` text NOT NULL,
+                `timestamp` datetime NOT NULL
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;";
         $db->setQuery($query);
         $db->query();
 

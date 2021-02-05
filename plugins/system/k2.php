@@ -27,7 +27,7 @@ class plgSystemK2 extends JPlugin
 
         // Define K2 version & build here
         define('K2_CURRENT_VERSION', '2.10.4');
-        define('K2_BUILD_ID', '20210104');
+        define('K2_BUILD_ID', '20210205');
         define('K2_BUILD', '<br />[Dev Build '.K2_BUILD_ID.']'); // Use '' for stable or "<br />[Dev Build '.K2_BUILD_ID.']" for the developer build
 
         // Define the DS constant (for backwards compatibility with old template overrides & 3rd party K2 extensions)
@@ -485,7 +485,7 @@ class plgSystemK2 extends JPlugin
             $K2User = new JObject;
 
             $K2User->description = '';
-            $K2User->gender = 'm';
+            $K2User->gender = 'n';
             $K2User->image = '';
             $K2User->url = '';
             $K2User->plugins = '';
@@ -495,6 +495,7 @@ class plgSystemK2 extends JPlugin
             $view->assignRef('editor', $editor);
 
             $lists = array();
+            $genderOptions[] = JHTML::_('select.option', 'n', JText::_('K2_NOT_SPECIFIED'));
             $genderOptions[] = JHTML::_('select.option', 'm', JText::_('K2_MALE'));
             $genderOptions[] = JHTML::_('select.option', 'f', JText::_('K2_FEMALE'));
             $lists['gender'] = JHTML::_('select.radiolist', $genderOptions, 'gender', '', 'value', 'text', $K2User->gender);
@@ -574,7 +575,7 @@ class plgSystemK2 extends JPlugin
             if (!is_object($K2User)) {
                 $K2User = new Jobject;
                 $K2User->description = '';
-                $K2User->gender = 'm';
+                $K2User->gender = 'n';
                 $K2User->url = '';
                 $K2User->image = null;
             }
@@ -591,6 +592,7 @@ class plgSystemK2 extends JPlugin
             $view->assignRef('editor', $editor);
 
             $lists = array();
+            $genderOptions[] = JHTML::_('select.option', 'n', JText::_('K2_NOT_SPECIFIED'));
             $genderOptions[] = JHTML::_('select.option', 'm', JText::_('K2_MALE'));
             $genderOptions[] = JHTML::_('select.option', 'f', JText::_('K2_FEMALE'));
             $lists['gender'] = JHTML::_('select.radiolist', $genderOptions, 'gender', '', 'value', 'text', $K2User->gender);

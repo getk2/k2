@@ -48,7 +48,7 @@ class K2ModelItemlist extends K2Model
         */
         $nullDate = $db->getNullDate();
 
-        $query = "SELECT SQL_CALC_FOUND_ROWS i.*,";
+        $query = "/* Frontend */ SELECT SQL_CALC_FOUND_ROWS i.*,";
 
         if ($ordering == 'modified') {
             $query .= " CASE WHEN i.modified = 0 THEN i.created ELSE i.modified END AS lastChanged,";
@@ -60,7 +60,14 @@ class K2ModelItemlist extends K2Model
             $query .= ", (r.rating_sum/r.rating_count) AS rating";
         }
 
-        $query .= " FROM #__k2_items AS i RIGHT JOIN #__k2_categories AS c ON c.id = i.catid";
+        $query .= " FROM #__k2_items AS i";
+
+        // Enforce certain INDEX when filtering by dates
+        if ($ordering == 'date' || $ordering == 'rdate') {
+            $query .= " USE INDEX (idx_item)";
+        }
+
+        $query .= " INNER JOIN #__k2_categories AS c ON c.id = i.catid";
 
         if ($ordering == 'best') {
             $query .= " LEFT JOIN #__k2_rating AS r ON r.itemID = i.id";
@@ -96,6 +103,9 @@ class K2ModelItemlist extends K2Model
         if (!($task == 'user' && !$user->guest && $user->id == JRequest::getInt('id'))) {
             $query .= " AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now).")";
             $query .= " AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now).")";
+            /*
+            $query .= " AND (i.publish_up IS NULL OR i.publish_up <= NOW()) AND (i.publish_down IS NULL OR i.publish_down >= NOW())";
+            */
         }
 
         // Build query depending on task

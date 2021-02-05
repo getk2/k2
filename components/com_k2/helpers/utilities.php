@@ -133,7 +133,7 @@ class K2HelperUtilities
     // Gender
     public static function writtenBy($gender)
     {
-        if (is_null($gender)) {
+        if (empty($gender) || $gender == 'n') {
             return JText::_('K2_WRITTEN_BY');
         }
         if ($gender == 'm') {
