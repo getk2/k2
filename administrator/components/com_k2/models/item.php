@@ -671,7 +671,7 @@ class K2ModelItem extends K2Model
             $params->set('taggingSystem', 'selection');
         }
         $db = JFactory::getDbo();
-        $query = "DELETE FROM #__k2_tags_xref WHERE itemID={intval($row->id)}";
+        $query = "DELETE FROM #__k2_tags_xref WHERE itemID=".(int) $row->id;
         $db->setQuery($query);
         $db->query();
 
@@ -703,7 +703,7 @@ class K2ModelItem extends K2Model
                             $tagID = $db->loadResult();
                         }
                         if ($tagID) {
-                            $query = "INSERT INTO #__k2_tags_xref (`id`, `tagID`, `itemID`) VALUES (NULL, {intval($tagID)}, {intval($row->id)})";
+                            $query = "INSERT INTO #__k2_tags_xref (`id`, `tagID`, `itemID`) VALUES (NULL, ".(int) $tagID.", ".(int) $row->id.")";
                             $db->setQuery($query);
                             $db->query();
                         }
@@ -714,7 +714,7 @@ class K2ModelItem extends K2Model
             $tags = JRequest::getVar('selectedTags', null, 'POST', 'array');
             if (is_array($tags) && count($tags)) {
                 foreach ($tags as $tagID) {
-                    $query = "INSERT INTO #__k2_tags_xref (`id`, `tagID`, `itemID`) VALUES (NULL, {intval($tagID)}, {intval($row->id)})";
+                    $query = "INSERT INTO #__k2_tags_xref (`id`, `tagID`, `itemID`) VALUES (NULL, ".(int) $tagID.", ".(int) $row->id.")";
                     $db->setQuery($query);
                     $db->query();
                 }

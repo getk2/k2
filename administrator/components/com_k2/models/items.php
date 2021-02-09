@@ -775,7 +775,7 @@ class K2ModelItems extends K2Model
 
             // Target tags
             foreach ($sourceTags as $tag) {
-                $query = "INSERT INTO #__k2_tags_xref (`id`, `tagID`, `itemID`) VALUES (NULL, {intval($tag->tagID)}, {intval($row->id)})";
+                $query = "INSERT INTO #__k2_tags_xref (`id`, `tagID`, `itemID`) VALUES (NULL, ".(int) $tag->tagID.", ".(int) $row->id.")";
                 $db->setQuery($query);
                 $db->query();
             }
