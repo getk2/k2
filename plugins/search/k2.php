@@ -149,7 +149,7 @@ class plgSearchK2 extends JPlugin
                     CASE WHEN CHAR_LENGTH(c.alias) THEN CONCAT_WS(':', c.id, c.alias) ELSE c.id END as catslug
                 FROM #__k2_items AS i
                 INNER JOIN #__k2_categories AS c ON c.id = i.catid
-                WHERE {$where}
+                WHERE ({$where})
                     AND i.trash = 0
                     AND i.published = 1
                     AND i.access {$accessCheck}
