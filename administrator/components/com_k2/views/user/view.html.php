@@ -34,6 +34,7 @@ class K2ViewUser extends K2View
         $this->assignRef('editor', $editor);
 
         $lists = array();
+        $genderOptions[] = JHTML::_('select.option', 'n', JText::_('K2_NOT_SPECIFIED'));
         $genderOptions[] = JHTML::_('select.option', 'm', JText::_('K2_MALE'));
         $genderOptions[] = JHTML::_('select.option', 'f', JText::_('K2_FEMALE'));
         $lists['gender'] = JHTML::_('select.radiolist', $genderOptions, 'gender', '', 'value', 'text', $user->gender);

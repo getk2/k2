@@ -158,9 +158,19 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
     $fields = $db->getTableFields('#__k2_users');
     if (!array_key_exists('ip', $fields['#__k2_users'])) {
         $query = "ALTER TABLE `#__k2_users`
-	        ADD `ip` VARCHAR(45) NOT NULL ,
-	        ADD `hostname` VARCHAR(255) NOT NULL ,
-	        ADD `notes` TEXT NOT NULL";
+            ADD `ip` VARCHAR(45) NOT NULL ,
+            ADD `hostname` VARCHAR(255) NOT NULL ,
+            ADD `notes` TEXT NOT NULL";
+        $db->setQuery($query);
+        $db->query();
+    }
+
+    // Users - add new ENUM option for "gender"
+    $query = "SELECT DISTINCT gender FROM #__k2_users";
+    $db->setQuery($query);
+    $enumOptions = $db->loadColumn();
+    if (count($enumOptions) < 3) {
+        $query = "ALTER TABLE #__k2_users MODIFY COLUMN `gender` enum('m','f','n') NOT NULL DEFAULT 'n'";
         $db->setQuery($query);
         $db->query();
     }
@@ -181,10 +191,10 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
 
     // Log for updates
     $query = "CREATE TABLE IF NOT EXISTS `#__k2_log` (
-			`status` int(11) NOT NULL,
-			`response` text NOT NULL,
-			`timestamp` datetime NOT NULL
-		) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;";
+            `status` int(11) NOT NULL,
+            `response` text NOT NULL,
+            `timestamp` datetime NOT NULL
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;";
     $db->setQuery($query);
     $db->query();
 
@@ -194,7 +204,7 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
     $db->query();
 
     /*
-	// TO DO: Use the following info to remove FULLTEXT attributes from the items & tags tables
+    // TO DO: Use the following info to remove FULLTEXT attributes from the items & tags tables
     $query = "SHOW INDEX FROM #__k2_items";
     $db->setQuery($query);
     $indexes = $db->loadObjectList();

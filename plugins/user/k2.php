@@ -68,12 +68,14 @@ class plgUserK2 extends JPlugin
                 $row->set('group', $params->get('K2UserGroup', 1));
             } else {
                 $row->set('group', null);
-                $row->set('gender', JRequest::getVar('gender'));
+                $row->set('gender', JRequest::getVar('gender', 'n'));
                 $row->set('url', JRequest::getString('url'));
             }
+            /*
             if ($row->gender != 'm' && $row->gender != 'f') {
-                $row->gender = 'm';
+                $row->gender = 'n';
             }
+            */
             $row->url = JString::str_ireplace(' ', '', $row->url);
             $row->url = JString::str_ireplace('"', '', $row->url);
             $row->url = JString::str_ireplace('<', '', $row->url);

@@ -46,27 +46,27 @@ class modK2ToolsHelper
                 $languageCheck = "AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').")";
             }
             $query = "SELECT created_by
-	            FROM #__k2_items
-	            WHERE {$where} published=1
-		            AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." )
-		            AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." )
-		            AND trash=0
-		            AND access IN(".implode(',', $user->getAuthorisedViewLevels()).")
-		            AND created_by_alias=''
-		            {$languageCheck}
-		            AND EXISTS (SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") {$languageCheck})
-	            GROUP BY created_by";
+                FROM #__k2_items
+                WHERE {$where} published=1
+                    AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." )
+                    AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." )
+                    AND trash=0
+                    AND access IN(".implode(',', $user->getAuthorisedViewLevels()).")
+                    AND created_by_alias=''
+                    {$languageCheck}
+                    AND EXISTS (SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") {$languageCheck})
+                GROUP BY created_by";
         } else {
             $query = "SELECT created_by
-	            FROM #__k2_items
-	            WHERE {$where} published=1
-		            AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." )
-		            AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." )
-		            AND trash=0
-		            AND access<={$aid}
-		            AND created_by_alias=''
-		            AND EXISTS (SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND access<={$aid})
-	            GROUP BY created_by";
+                FROM #__k2_items
+                WHERE {$where} published=1
+                    AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." )
+                    AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." )
+                    AND trash=0
+                    AND access<={$aid}
+                    AND created_by_alias=''
+                    AND EXISTS (SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND access<={$aid})
+                GROUP BY created_by";
         }
 
         $db->setQuery($query);
@@ -282,7 +282,7 @@ class modK2ToolsHelper
             FROM #__k2_tags as tag
             LEFT JOIN #__k2_tags_xref AS xref ON xref.tagID = tag.id
             WHERE xref.itemID IN (".implode(',', $IDs).")
-            	AND tag.published = 1";
+                AND tag.published = 1";
         $db->setQuery($query);
         $rows = $db->loadObjectList();
 
@@ -894,14 +894,11 @@ class modK2ToolsHelper
         jimport('joomla.filesystem.file');
         $document = JFactory::getDocument();
         if ($params->get('parsePhp')) {
-            $filename = tempnam(JPATH_SITE.'/cache/mod_k2_tools', 'tmp');
             $customCode = $params->get('customCode');
-            JFile::write($filename, $customCode);
             ob_start();
-            include($filename);
+            eval(' ?>'.$customCode.'<?php ');
             $output = ob_get_contents();
             ob_end_clean();
-            JFile::delete($filename);
         } else {
             $output = $params->get('customCode');
         }

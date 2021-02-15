@@ -739,10 +739,10 @@ class K2ViewItemlist extends K2View
 
         // Pathway
         $pathway = $app->getPathWay();
-        if (!isset($menuActive->query['task'])) {
-            $menuActive->query['task'] = '';
-        }
-        if ($menuActive) {
+        if (!empty($menuActive)) {
+            if (!isset($menuActive->query['task'])) {
+                $menuActive->query['task'] = '';
+            }
             switch ($task) {
                 case 'category':
                     if ($menuActive->query['task'] != 'category' || $menuActive->query['id'] != JRequest::getInt('id')) {
