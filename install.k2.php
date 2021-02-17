@@ -129,18 +129,22 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
     $query = "SHOW INDEX FROM #__k2_items";
     $db->setQuery($query);
     $itemIndices = $db->loadObjectList();
-    $idxItemExists = false;
+    $itemKeys_item = false;
+    $itemKeys_idx_item = false;
     foreach ($itemIndices as $index) {
         if ($index->Key_name == 'item') {
-            $query = "ALTER TABLE #__k2_items DROP INDEX `item`";
-            $db->setQuery($query);
-            $db->query();
+            $itemKeys_item = true;
         }
         if ($index->Key_name == 'idx_item') {
-            $idxItemExists = true;
+            $itemKeys_idx_item = true;
         }
     }
-    if (!$idxItemExists) {
+    if ($itemKeys_item) {
+        $query = "ALTER TABLE #__k2_items DROP INDEX `item`";
+        $db->setQuery($query);
+        $db->query();
+    }
+    if (!$itemKeys_idx_item) {
         $query = "ALTER TABLE #__k2_items ADD INDEX `idx_item` (`published`,`publish_up`,`publish_down`,`trash`,`access`)";
         $db->setQuery($query);
         $db->query();
