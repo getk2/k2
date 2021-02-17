@@ -240,6 +240,11 @@ class Com_K2InstallerScript
         $itemIndices = $db->loadObjectList();
         $idxItemExists = false;
         foreach ($itemIndices as $index) {
+            if ($index->Key_name == 'item') {
+                $query = "ALTER TABLE #__k2_items DROP INDEX `item`";
+                $db->setQuery($query);
+                $db->query();
+            }
             if ($index->Key_name == 'idx_item') {
                 $idxItemExists = true;
             }
