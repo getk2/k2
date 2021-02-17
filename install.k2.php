@@ -126,6 +126,21 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
         $db->query();
     }
 
+    $query = "SHOW INDEX FROM #__k2_items";
+    $db->setQuery($query);
+    $itemIndices = $db->loadObjectList();
+    $idxItemExists = false;
+    foreach ($itemIndices as $index) {
+        if ($index->Key_name == 'idx_item') {
+            $idxItemExists = true;
+        }
+    }
+    if (!$idxItemExists) {
+        $query = "ALTER TABLE #__k2_items ADD INDEX `idx_item` (`published`,`publish_up`,`publish_down`,`trash`,`access`)";
+        $db->setQuery($query);
+        $db->query();
+    }
+
     // Categories
     $fields = $db->getTableFields('#__k2_categories');
     if (!array_key_exists('language', $fields['#__k2_categories'])) {
