@@ -192,7 +192,7 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
     // Users - add new ENUM option for "gender"
     $query = "SELECT DISTINCT gender FROM #__k2_users";
     $db->setQuery($query);
-    $enumOptions = $db->loadColumn();
+    $enumOptions = $db->loadResultArray();
     if (count($enumOptions) < 3) {
         $query = "ALTER TABLE #__k2_users MODIFY COLUMN `gender` enum('m','f','n') NOT NULL DEFAULT 'n'";
         $db->setQuery($query);
