@@ -235,6 +235,30 @@ class Com_K2InstallerScript
             $db->query();
         }
 
+        $query = "SHOW INDEX FROM #__k2_items";
+        $db->setQuery($query);
+        $itemIndices = $db->loadObjectList();
+        $itemKeys_item = false;
+        $itemKeys_idx_item = false;
+        foreach ($itemIndices as $index) {
+            if ($index->Key_name == 'item') {
+                $itemKeys_item = true;
+            }
+            if ($index->Key_name == 'idx_item') {
+                $itemKeys_idx_item = true;
+            }
+        }
+        if ($itemKeys_item) {
+            $query = "ALTER TABLE #__k2_items DROP INDEX `item`";
+            $db->setQuery($query);
+            $db->query();
+        }
+        if (!$itemKeys_idx_item) {
+            $query = "ALTER TABLE #__k2_items ADD INDEX `idx_item` (`published`,`publish_up`,`publish_down`,`trash`,`access`)";
+            $db->setQuery($query);
+            $db->query();
+        }
+
         // Categories
         $fields = $db->getTableColumns('#__k2_categories');
         if (!array_key_exists('language', $fields)) {

@@ -215,7 +215,7 @@ class modK2ContentHelper
                 case 'hits':
                     if ($params->get('popularityRange')) {
                         if ($params->get('popularityRange') == 'today') {
-                            $date = $jnow->toFormat('%Y-%m-%d').' 00:00:00';
+                            $date = (K2_JVERSION != '15') ? $jnow->format('%Y-%m-%d').' 00:00:00' : $jnow->toFormat('%Y-%m-%d').' 00:00:00';
                             $query .= " AND i.publish_up > '{$date}'";
                         } else {
                             $query .= " AND i.created > DATE_SUB('{$now}', INTERVAL ".$params->get('popularityRange')." DAY)";
