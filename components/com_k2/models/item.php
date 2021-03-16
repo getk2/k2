@@ -723,7 +723,17 @@ class K2ModelItem extends K2Model
         $item->event->K2BeforeDisplayContent = '';
         $item->event->K2AfterDisplayContent = '';
 
-        if (($view == 'item' && $item->params->get('itemK2Plugins')) || ($view == 'itemlist' && ($task == '' || $task == 'category') && $item->params->get('catItemK2Plugins')) || ($view == 'itemlist' && $task == 'user' && $item->params->get('userItemK2Plugins')) || ($view == 'itemlist' && ($task == 'search' || $task == 'tag' || $task == 'date'))) {
+        if (
+            $item->params->get('itemK2Plugins') ||
+            $item->params->get('catItemK2Plugins') ||
+            $item->params->get('userItemK2Plugins')
+            /*
+            ($view == 'item' && $item->params->get('itemK2Plugins')) ||
+            ($view == 'itemlist' && ($task == '' || $task == 'category') && $item->params->get('catItemK2Plugins')) ||
+            ($view == 'itemlist' && $task == 'user' && $item->params->get('userItemK2Plugins')) ||
+            ($view == 'itemlist' && ($task == 'search' || $task == 'tag' || $task == 'date'))
+            */
+        ) {
             $results = $dispatcher->trigger('onK2BeforeDisplay', array(
                 &$item,
                 &$params,
