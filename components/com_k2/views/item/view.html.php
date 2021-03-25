@@ -301,7 +301,7 @@ class K2ViewItem extends K2View
         // Navigation (previous and next item)
         if ($item->params->get('itemNavigation')) {
             // Previous Item
-            $previousItem = $model->getPreviousItem($item->id, $item->catid, $item->ordering);
+            $previousItem = $model->getPreviousItem($item->id, $item->catid, $item->ordering, $item->params->get('catOrdering'));
             if (!is_null($previousItem)) {
                 $item->previous = $model->prepareItem($previousItem, 'item', '');
                 $item->previous = $model->execPlugins($item->previous, 'item', '');
@@ -342,7 +342,7 @@ class K2ViewItem extends K2View
             }
 
             // Next Item
-            $nextItem = $model->getNextItem($item->id, $item->catid, $item->ordering);
+            $nextItem = $model->getNextItem($item->id, $item->catid, $item->ordering, $item->params->get('catOrdering'));
             if (!is_null($nextItem)) {
                 $item->next = $model->prepareItem($nextItem, 'item', '');
                 $item->next = $model->execPlugins($item->next, 'item', '');
