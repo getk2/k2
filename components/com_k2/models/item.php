@@ -370,9 +370,13 @@ class K2ModelItem extends K2Model
                 foreach ($attachments as $attachment) {
                     $item->description .= '<li><a title="'.htmlentities($attachment->titleAttribute, ENT_QUOTES, 'UTF-8').'" href="'.$attachment->link.'">'.$attachment->title.'</a></li>';
                 }
-                $item->description .= '<ul></div>';
+                $item->description .= '</ul></div>';
             }
         }
+
+        // Cleanup new lines
+        $item->description = preg_replace("#(\r|\n|\r\n)#is", ' ', $item->description);
+        $item->description = preg_replace("#(\t|\s+)#is", ' ', $item->description);
 
         // Author
         if (!empty($item->created_by_alias)) {
