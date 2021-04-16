@@ -779,7 +779,11 @@ class K2ViewItem extends K2View
 
     private function absUrl($relUrl)
     {
-        return substr(JURI::root(), 0, -1).str_replace(JURI::root(true), '', $relUrl);
+        if (substr($relUrl, 0, 4) != 'http') {
+            return substr(JURI::root(), 0, -1).str_replace(JURI::root(true), '', $relUrl);
+        } else {
+            return $relUrl;
+        }
     }
 
     private function filterHTML($str)
