@@ -3,7 +3,7 @@
  * @version    2.10.x
  * @package    K2
  * @author     JoomlaWorks https://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2020 JoomlaWorks Ltd. All rights reserved.
+ * @copyright  Copyright (c) 2006 - 2021 JoomlaWorks Ltd. All rights reserved.
  * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
@@ -300,46 +300,15 @@ class K2ViewItem extends K2View
 
         // Navigation (previous and next item)
         if ($item->params->get('itemNavigation')) {
-            $nextItem = $model->getNextItem($item->id, $item->catid, $item->ordering);
-            if (!is_null($nextItem)) {
-                $item->nextLink = urldecode(JRoute::_(K2HelperRoute::getItemRoute($nextItem->id.':'.urlencode($nextItem->alias), $nextItem->catid.':'.urlencode($item->category->alias))));
-                $item->nextTitle = $nextItem->title;
-
-                // Image
-                $item->nextImageXSmall = '';
-                $item->nextImageSmall = '';
-                $item->nextImageMedium = '';
-                $item->nextImageLarge = '';
-                $item->nextImageXLarge = '';
-
-                $imageTimestamp = '';
-                $dateModified = ((int) $nextItem->modified) ? $nextItem->modified : '';
-                if ($params->get('imageTimestamp', 1) && $dateModified) {
-                    $imageTimestamp = '?t='.strftime("%Y%m%d_%H%M%S", strtotime($dateModified));
-                }
-
-                $imageFilenamePrefix = md5("Image".$nextItem->id);
-                $imagePathPrefix = JUri::base(true).'/media/k2/items/cache/'.$imageFilenamePrefix;
-
-                // Check if the "generic" variant exists
-                if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.$imageFilenamePrefix.'_Generic.jpg')) {
-                    $item->nextImageGeneric = $imagePathPrefix.'_Generic.jpg'.$imageTimestamp;
-                    $item->nextImageXSmall  = $imagePathPrefix.'_XS.jpg'.$imageTimestamp;
-                    $item->nextImageSmall   = $imagePathPrefix.'_S.jpg'.$imageTimestamp;
-                    $item->nextImageMedium  = $imagePathPrefix.'_M.jpg'.$imageTimestamp;
-                    $item->nextImageLarge   = $imagePathPrefix.'_L.jpg'.$imageTimestamp;
-                    $item->nextImageXLarge  = $imagePathPrefix.'_XL.jpg'.$imageTimestamp;
-
-                    $item->nextImageProperties = new stdClass;
-                    $item->nextImageProperties->filenamePrefix = $imageFilenamePrefix;
-                    $item->nextImageProperties->pathPrefix = $imagePathPrefix;
-                }
-            }
-
-            $previousItem = $model->getPreviousItem($item->id, $item->catid, $item->ordering);
+            // Previous Item
+            $previousItem = $model->getPreviousItem($item->id, $item->catid, $item->ordering, $item->params->get('catOrdering'));
             if (!is_null($previousItem)) {
-                $item->previousLink = urldecode(JRoute::_(K2HelperRoute::getItemRoute($previousItem->id.':'.urlencode($previousItem->alias), $previousItem->catid.':'.urlencode($item->category->alias))));
-                $item->previousTitle = $previousItem->title;
+                $item->previous = $model->prepareItem($previousItem, 'item', '');
+                $item->previous = $model->execPlugins($item->previous, 'item', '');
+
+                // B/C
+                $item->previousLink = $item->previous->link;
+                $item->previousTitle = $item->previous->title;
 
                 // Image
                 $item->previousImageXSmall = '';
@@ -369,6 +338,47 @@ class K2ViewItem extends K2View
                     $item->previousImageProperties = new stdClass;
                     $item->previousImageProperties->filenamePrefix = $imageFilenamePrefix;
                     $item->previousImageProperties->pathPrefix = $imagePathPrefix;
+                }
+            }
+
+            // Next Item
+            $nextItem = $model->getNextItem($item->id, $item->catid, $item->ordering, $item->params->get('catOrdering'));
+            if (!is_null($nextItem)) {
+                $item->next = $model->prepareItem($nextItem, 'item', '');
+                $item->next = $model->execPlugins($item->next, 'item', '');
+
+                // B/C
+                $item->nextLink = $item->next->link;
+                $item->nextTitle = $item->next->title;
+
+                // Image
+                $item->nextImageXSmall = '';
+                $item->nextImageSmall = '';
+                $item->nextImageMedium = '';
+                $item->nextImageLarge = '';
+                $item->nextImageXLarge = '';
+
+                $imageTimestamp = '';
+                $dateModified = ((int) $nextItem->modified) ? $nextItem->modified : '';
+                if ($params->get('imageTimestamp', 1) && $dateModified) {
+                    $imageTimestamp = '?t='.strftime("%Y%m%d_%H%M%S", strtotime($dateModified));
+                }
+
+                $imageFilenamePrefix = md5("Image".$nextItem->id);
+                $imagePathPrefix = JUri::base(true).'/media/k2/items/cache/'.$imageFilenamePrefix;
+
+                // Check if the "generic" variant exists
+                if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.$imageFilenamePrefix.'_Generic.jpg')) {
+                    $item->nextImageGeneric = $imagePathPrefix.'_Generic.jpg'.$imageTimestamp;
+                    $item->nextImageXSmall  = $imagePathPrefix.'_XS.jpg'.$imageTimestamp;
+                    $item->nextImageSmall   = $imagePathPrefix.'_S.jpg'.$imageTimestamp;
+                    $item->nextImageMedium  = $imagePathPrefix.'_M.jpg'.$imageTimestamp;
+                    $item->nextImageLarge   = $imagePathPrefix.'_L.jpg'.$imageTimestamp;
+                    $item->nextImageXLarge  = $imagePathPrefix.'_XL.jpg'.$imageTimestamp;
+
+                    $item->nextImageProperties = new stdClass;
+                    $item->nextImageProperties->filenamePrefix = $imageFilenamePrefix;
+                    $item->nextImageProperties->pathPrefix = $imagePathPrefix;
                 }
             }
         }
@@ -769,7 +779,11 @@ class K2ViewItem extends K2View
 
     private function absUrl($relUrl)
     {
-        return substr(JURI::root(), 0, -1).str_replace(JURI::root(true), '', $relUrl);
+        if (substr($relUrl, 0, 4) != 'http') {
+            return substr(JURI::root(), 0, -1).str_replace(JURI::root(true), '', $relUrl);
+        } else {
+            return $relUrl;
+        }
     }
 
     private function filterHTML($str)

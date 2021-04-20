@@ -3,7 +3,7 @@
  * @version    2.10.x
  * @package    K2
  * @author     JoomlaWorks https://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2020 JoomlaWorks Ltd. All rights reserved.
+ * @copyright  Copyright (c) 2006 - 2021 JoomlaWorks Ltd. All rights reserved.
  * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
@@ -370,9 +370,13 @@ class K2ModelItem extends K2Model
                 foreach ($attachments as $attachment) {
                     $item->description .= '<li><a title="'.htmlentities($attachment->titleAttribute, ENT_QUOTES, 'UTF-8').'" href="'.$attachment->link.'">'.$attachment->title.'</a></li>';
                 }
-                $item->description .= '<ul></div>';
+                $item->description .= '</ul></div>';
             }
         }
+
+        // Cleanup new lines
+        $item->description = preg_replace("#(\r|\n|\r\n)#is", ' ', $item->description);
+        $item->description = preg_replace("#(\t|\s+)#is", ' ', $item->description);
 
         // Author
         if (!empty($item->created_by_alias)) {
@@ -1545,7 +1549,7 @@ class K2ModelItem extends K2Model
         return $row;
     }
 
-    public function getPreviousItem($id, $catid, $ordering)
+    public function getPreviousItem($id, $catid, $ordering, $catOrdering)
     {
         $app = JFactory::getApplication();
         $user = JFactory::getUser();
@@ -1572,38 +1576,39 @@ class K2ModelItem extends K2Model
             }
         }
 
-        if ($ordering == "0") {
-            $query = "SELECT *
-                FROM #__k2_items
-                WHERE id < {$id}
-                    AND catid = {$catid}
-                    AND published = 1
-                    AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now).")
-                    AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now).")
-                    {$accessCondition}
-                    AND trash = 0
-                    {$languageCondition}
-                ORDER BY ordering DESC";
-        } else {
+        $query = "SELECT *
+            FROM #__k2_items
+            WHERE id < {$id}
+                AND catid = {$catid}
+                AND published = 1
+                AND trash = 0
+                AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now).")
+                AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now).")
+                {$accessCondition}
+                {$languageCondition}
+            ORDER BY id DESC";
+
+        if ($catOrdering == 'order') {
             $query = "SELECT *
                 FROM #__k2_items
                 WHERE id != {$id}
                     AND catid = {$catid}
                     AND ordering < {$ordering}
                     AND published = 1
+                    AND trash = 0
                     AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now).")
                     AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now).")
                     {$accessCondition}
-                    AND trash = 0
                     {$languageCondition}
                 ORDER BY ordering DESC";
         }
+
         $db->setQuery($query, 0, 1);
         $row = $db->loadObject();
         return $row;
     }
 
-    public function getNextItem($id, $catid, $ordering)
+    public function getNextItem($id, $catid, $ordering, $catOrdering)
     {
         $app = JFactory::getApplication();
         $user = JFactory::getUser();
@@ -1630,32 +1635,33 @@ class K2ModelItem extends K2Model
             }
         }
 
-        if ($ordering == "0") {
-            $query = "SELECT *
-                FROM #__k2_items
-                WHERE id > {$id}
-                    AND catid = {$catid}
-                    AND published = 1
-                    AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now).")
-                    AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now).")
-                    {$accessCondition}
-                    AND trash = 0
-                    {$languageCondition}
-                ORDER BY ordering ASC";
-        } else {
+        $query = "SELECT *
+            FROM #__k2_items
+            WHERE id > {$id}
+                AND catid = {$catid}
+                AND published = 1
+                AND trash = 0
+                AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now).")
+                AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now).")
+                {$accessCondition}
+                {$languageCondition}
+            ORDER BY id ASC";
+
+        if ($catOrdering == 'order') {
             $query = "SELECT *
                 FROM #__k2_items
                 WHERE id != {$id}
                     AND catid = {$catid}
                     AND ordering > {$ordering}
                     AND published = 1
+                    AND trash = 0
                     AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now).")
                     AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now).")
                     {$accessCondition}
-                    AND trash = 0
                     {$languageCondition}
                 ORDER BY ordering ASC";
         }
+
         $db->setQuery($query, 0, 1);
         $row = $db->loadObject();
         return $row;
