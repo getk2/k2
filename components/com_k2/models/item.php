@@ -263,7 +263,7 @@ class K2ModelItem extends K2Model
         // Item image
         if ($params->get('feedItemImage') && JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_'.$params->get('feedImgSize').'.jpg')) {
             $altText = ($item->image_caption) ? $item->image_caption : $item->title;
-            $item->description .= '<div class="K2FeedImage"><img src="'.JURI::root().'media/k2/items/cache/'.md5('Image'.$item->id).'_'.$params->get('feedImgSize').'.jpg" alt="'.$altText.'" /></div>';
+            $item->description .= '<div class="K2FeedImage"><img src="'.JURI::root().'media/k2/items/cache/'.md5('Image'.$item->id).'_'.$params->get('feedImgSize').'.jpg" alt="'.K2HelperUtilities::cleanHtml($altText).'" /></div>';
 
             // Set an image enclosure object
             $item->enclosure = new JFeedEnclosure();
