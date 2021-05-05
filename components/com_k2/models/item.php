@@ -294,7 +294,7 @@ class K2ModelItem extends K2Model
                 foreach ($tags as $tag) {
                     $item->description .= '<li>'.$tag->name.'</li>';
                 }
-                $item->description .= '<ul></div>';
+                $item->description .= '</ul></div>';
             }
         }
 
