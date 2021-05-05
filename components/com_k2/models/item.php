@@ -368,7 +368,7 @@ class K2ModelItem extends K2Model
             if (isset($attachments) && count($attachments)) {
                 $item->description .= '<div class="K2FeedAttachments"><ul>';
                 foreach ($attachments as $attachment) {
-                    $item->description .= '<li><a title="'.htmlentities($attachment->titleAttribute, ENT_QUOTES, 'UTF-8').'" href="'.$attachment->link.'">'.$attachment->title.'</a></li>';
+                    $item->description .= '<li><a href="'.$attachment->link.'" title="'.K2HelperUtilities::cleanHtml($attachment->titleAttribute).'">'.$attachment->title.'</a></li>';
                 }
                 $item->description .= '</ul></div>';
             }
