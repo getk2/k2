@@ -74,6 +74,7 @@ class TableK2Item extends K2Table
             $this->alias = $this->title;
         }
 
+        /* Offload the alias processing block to a simplified external function/method call */
         if (K2_JVERSION == '15') {
             if (JPluginHelper::isEnabled('system', 'unicodeslug') || JPluginHelper::isEnabled('system', 'jw_unicodeSlugsExtended')) {
                 $this->alias = JFilterOutput::stringURLSafe($this->alias);
@@ -145,7 +146,7 @@ class TableK2Item extends K2Table
             }
         }
 
-        // Check if the item alias already exists. If so warn the user and append the item ID to it.
+        // Check if the item alias already exists, warn the user if it does and append the item ID to it.
         $params = JComponentHelper::getParams('com_k2');
         if ($params->get('k2Sef') && !$params->get('k2SefInsertItemId')) {
             $db = JFactory::getDbo();
