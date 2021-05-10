@@ -104,7 +104,7 @@ class K2HelperRoute
             }
             $alias = preg_replace('/[^\p{L}\p{N}]/u', '', $alias);
             if (trim($alias) == '') {
-                // I mean, what are the fucking odds, right?
+                // I mean, what are the freaking odds, right?
                 $alias = hash('md5', $user->name);
             }
         }
@@ -164,40 +164,47 @@ class K2HelperRoute
             self::$cache['menu_items'] = $items;
         }
 
+        $parsedItems = array();
+
+        if (count($items)) {
+            foreach ($items as $item) {
+                // Find K2 menu items pointing to multiple K2 categories
+                if (@$item->query['view'] == 'itemlist' && @$item->query['task'] == '') {
+                    if (!isset(self::$cache['multicat_menu_items'][$item->id])) {
+                        if (K2_JVERSION == '15') {
+                            $menuparams = explode("\n", $item->params);
+                            foreach ($menuparams as $param) {
+                                if (strpos($param, 'categories=') === 0) {
+                                    $array = explode('categories=', $param);
+                                    $item->K2Categories = explode('|', $array[1]);
+                                }
+                            }
+                            if (!isset($item->K2Categories)) {
+                                $item->K2Categories = array();
+                            }
+                        } else {
+                            $menuparams = json_decode($item->params);
+                            $item->K2Categories = isset($menuparams->categories) ? $menuparams->categories : array();
+                        }
+
+                        self::$cache['multicat_menu_items'][$item->id] = $item->K2Categories;
+
+                        if (count($item->K2Categories) === 0) {
+                            // Push all K2 itemlist menu items without specific categories assigned into an array
+                            // Later we pick the one with the highest menu item ID [TBC with static selection under SEO settings]
+                            self::$cache['fallback_menu_items'][$item->id] = $item;
+                        }
+                    }
+                }
+                $parsedItems[] = $item;
+            }
+        }
+
         $match = null;
 
         foreach ($needles as $needle => $id) {
-            if (count($items)) {
-                // First pass
-                foreach ($items as $item) {
-                    // Find K2 menu items pointing to multiple K2 categories
-                    if (@$item->query['view'] == 'itemlist' && @$item->query['task'] == '') {
-                        if (!isset(self::$cache['multicat_menu_items'][$item->id])) {
-                            if (K2_JVERSION == '15') {
-                                $menuparams = explode("\n", $item->params);
-                                foreach ($menuparams as $param) {
-                                    if (strpos($param, 'categories=') === 0) {
-                                        $array = explode('categories=', $param);
-                                        $item->K2Categories = explode('|', $array[1]);
-                                    }
-                                }
-                                if (!isset($item->K2Categories)) {
-                                    $item->K2Categories = array();
-                                }
-                            } else {
-                                $menuparams = json_decode($item->params);
-                                $item->K2Categories = isset($menuparams->categories) ? $menuparams->categories : array();
-                            }
-
-                            self::$cache['multicat_menu_items'][$item->id] = $item->K2Categories;
-
-                            if (count($item->K2Categories) === 0) {
-                                // Push all K2 itemlist menu items without specific categories assigned into an array
-                                // Later we pick the one with the highest menu item ID [TBC with static selection under SEO settings]
-                                self::$cache['fallback_menu_items'][$item->id] = $item;
-                            }
-                        }
-                    }
+            if (count($parsedItems)) {
+                foreach ($parsedItems as $item) {
                     if ($needle == 'category' || $needle == 'user') {
                         if ((@$item->query['task'] == $needle) && (@$item->query['id'] == $id)) {
                             $match = $item;
@@ -221,7 +228,7 @@ class K2HelperRoute
 
                 // Second pass for K2 menu items pointing to multiple K2 categories - attempt to find menu item that includes a given category's ID
                 if (is_null($match) && $needle == 'category') {
-                    foreach ($items as $item) {
+                    foreach ($parsedItems as $item) {
                         if (@$item->query['view'] == 'itemlist' && @$item->query['task'] == '') {
                             if (isset(self::$cache['multicat_menu_items'][$item->id]) && count(self::$cache['multicat_menu_items'][$item->id])) {
                                 foreach (self::$cache['multicat_menu_items'][$item->id] as $catid) {
