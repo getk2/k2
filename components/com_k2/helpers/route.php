@@ -122,7 +122,7 @@ class K2HelperRoute
         if (isset(self::$cache['date'][$key])) {
             return self::$cache['date'][$key];
         }
-        $needles = array('year' => $year);
+        $needles = array('date' => (int) $year.$month.$day);
         $link = 'index.php?option=com_k2&view=itemlist&task=date&year='.$year.'&month='.$month;
         if ($day) {
             $link .= '&day='.$day;

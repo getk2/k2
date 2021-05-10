@@ -620,7 +620,7 @@ class K2ViewItemlist extends K2View
                 $feedItem->link = $item->link;
                 $feedItem->title = $item->title;
                 $feedItem->description = $item->description;
-                $feedItem->date = ($ordering == 'modified') ? $item->modified : $item->created;
+                $feedItem->date = (isset($ordering) && $ordering == 'modified') ? $item->modified : $item->created;
                 $feedItem->category = $item->category->name;
                 $feedItem->author = $item->author->name;
                 if ($params->get('feedBogusEmail')) {
