@@ -77,7 +77,7 @@ switch ($module_usage) {
 
     case '6':
         $categoryFilter = modK2ToolsHelper::getSearchCategoryFilter($params);
-        $action = JRoute::_(K2HelperRoute::getSearchRoute());
+        $action = JRoute::_(K2HelperRoute::getSearchRoute($searchItemId));
         require(JModuleHelper::getLayoutPath('mod_k2_tools', 'search'));
         break;
 

@@ -137,11 +137,13 @@ class K2HelperRoute
         return $link;
     }
 
-    public static function getSearchRoute()
+    public static function getSearchRoute($Itemid = '')
     {
         $needles = array('search' => 'search');
         $link = 'index.php?option=com_k2&view=itemlist&task=search';
-        if ($item = self::findMenuItem($needles)) {
+        if ($Itemid) {
+            $link .= '&Itemid='.$Itemid;
+        } elseif ($item = self::findMenuItem($needles)) {
             $link .= '&Itemid='.$item->id;
         }
         return $link;
