@@ -54,9 +54,18 @@ defined('_JEXEC') or die;
                 </div>
                 <div class="paramValue">
                     <input type="file" name="image" accept="image/*" />
-                    <?php if ($this->row->image): ?>
+                    <?php if ($this->row->image):
+                        $avatarTimestamp = '';
+                        $avatarFile = JPATH_SITE.'/media/k2/users/'.$this->row->image;
+                        if (file_exists($avatarFile) && filemtime($avatarFile)) {
+                            $avatarTimestamp = '?t='.date("Ymd_Hi", filemtime($avatarFile));
+                        }
+                        $avatar = JURI::root(true).'/media/k2/users/'.$this->row->image.$avatarTimestamp;
+                    ?>
                     <div class="k2ImagePreview">
-                        <img class="k2AdminImage" src="<?php echo JURI::root().'media/k2/users/'.$this->row->image; ?>" alt="<?php echo $this->row->name; ?>" />
+                        <a href="<?php echo $avatar; ?>" title="<?php echo JText::_('K2_PREVIEW_IMAGE'); ?>" data-fancybox="gallery" data-caption="<?php echo $this->row->name; ?>">
+                            <img class="k2AdminImage" src="<?php echo $avatar; ?>" alt="<?php echo $this->row->name; ?>" />
+                        </a>
                         <br />
                         <input type="checkbox" name="del_image" id="del_image" />
                         <label for="del_image"><?php echo JText::_('K2_CHECK_THIS_BOX_TO_DELETE_CURRENT_IMAGE_OR_JUST_UPLOAD_A_NEW_IMAGE_TO_REPLACE_THE_EXISTING_ONE'); ?></label>
