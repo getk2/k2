@@ -51,7 +51,12 @@ class K2HelperUtilities
                     $avatar = JURI::root(true).'/'.$avatarPath;
                 }
             } else {
-                $avatar = JURI::root(true).'/media/k2/users/'.$avatar;
+                $avatarTimestamp = '';
+                $avatarFile = JPATH_SITE.'/media/k2/users/'.$avatar;
+                if (file_exists($avatarFile) && filemtime($avatarFile)) {
+                    $avatarTimestamp = '?t='.date("Ymd_Hi", filemtime($avatarFile));
+                }
+                $avatar = JURI::root(true).'/media/k2/users/'.$avatar.$avatarTimestamp;
             }
         }
 
