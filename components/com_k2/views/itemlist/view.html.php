@@ -295,8 +295,12 @@ class K2ViewItemlist extends K2View
                         }
 
                         if (!$tag || !$tag->id) {
-                            JError::raiseError(404, JText::_('K2_NOT_FOUND'));
-                            return false;
+                            if ($document->getType() == 'feed' || $document->getType() == 'json') {
+                                $app->redirect(JUri::root());
+                            } else {
+                                JError::raiseError(410, JText::_('K2_NOT_FOUND'));
+                                return false;
+                            }
                         }
                     }
 
