@@ -2,7 +2,7 @@
 <extension type="component" version="2.5" method="upgrade">
     <name>COM_K2</name>
     <author>JoomlaWorks</author>
-    <creationDate>April 16th, 2021</creationDate>
+    <creationDate>June 29th, 2021</creationDate>
     <copyright>Copyright (c) 2006 - 2021 JoomlaWorks Ltd. All rights reserved.</copyright>
     <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
     <authorUrl>www.joomlaworks.net</authorUrl>
