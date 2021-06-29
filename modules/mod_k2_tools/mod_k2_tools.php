@@ -92,4 +92,12 @@ switch ($module_usage) {
         $customcode = modK2ToolsHelper::renderCustomCode($params);
         require(JModuleHelper::getLayoutPath('mod_k2_tools', 'customcode'));
         break;
+
+    case '9':
+        $selectedTags = (array) $params->get('selectedTags');
+        $selectedTagsLimit = (int) $params->get('selectedTagsLimit', 0);
+        if (count($selectedTags)) {
+            require(JModuleHelper::getLayoutPath('mod_k2_tools', 'selected_tags'));
+        }
+        break;
 }

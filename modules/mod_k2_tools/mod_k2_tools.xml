@@ -26,6 +26,7 @@
             <option value="6">K2_SEARCH_BOX</option>
             <option value="7">K2_TAG_CLOUD</option>
             <option value="8">K2_CUSTOM_CODE</option>
+            <option value="9">K2_SELECTED_TAGS</option>
         </param>
         <!-- Archive Settings -->
         <param name="" type="header" default="K2_ARCHIVE_SETTINGS" label="" description="" />
@@ -132,6 +133,10 @@
             <option value="0">K2_NO</option>
             <option value="1">K2_YES</option>
         </param>
+        <!-- Selected Tags -->
+        <param name="" type="header" default="K2_SELECTED_TAGS" label="" description=""/>
+        <param name="selectedTags" type="k2modalselector" scope="tags" default="" label="K2_TAG_SELECTOR" description=""/>
+        <param name="selectedTagsLimit" type="text" default="" size="4" label="K2_SELECTED_TAGS_LIMIT" description="K2_SELECTED_TAGS_LIMIT_DESC"/>
     </params>
     <params group="advanced">
         <param name="cache" type="list" default="1" label="K2_CACHING" description="K2_SELECT_WHETHER_TO_CACHE_THE_CONTENT_OF_THIS_MODULE">
