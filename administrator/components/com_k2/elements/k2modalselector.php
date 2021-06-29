@@ -143,7 +143,7 @@ class K2ElementK2modalselector extends K2Element
             if ($scope == 'tag') {
                 if ($value) {
                     $db = JFactory::getDbo();
-                    $query = 'SELECT * FROM #__k2_tags WHERE name='.$db->Quote(urldecode($value));
+                    $query = 'SELECT * FROM #__k2_tags WHERE name='.$db->Quote($value);
                     $db->setQuery($query);
                     $row = $db->loadObject();
                     $entryName = $row->name;
