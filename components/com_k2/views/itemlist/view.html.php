@@ -314,6 +314,7 @@ class K2ViewItemlist extends K2View
                     $ordering = $params->get('tagOrdering');
 
                     // Set title
+                    $this->assignRef('name', $tag->name);
                     $title = $tag->name;
                     $page_title = $params->get('page_title');
                     if ($this->menuItemMatchesK2Entity('itemlist', 'tag', $tag->name) && !empty($page_title)) {
