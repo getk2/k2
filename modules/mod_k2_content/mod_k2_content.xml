@@ -2,11 +2,11 @@
 <install type="module" client="site" version="1.5" method="upgrade">
     <name>K2 Content</name>
     <author>JoomlaWorks</author>
-    <creationDate>June 29th, 2021</creationDate>
+    <creationDate>November 11th, 2021</creationDate>
     <copyright>Copyright (c) 2006 - 2021 JoomlaWorks Ltd. All rights reserved.</copyright>
     <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
     <authorUrl>www.joomlaworks.net</authorUrl>
-    <version>2.10.4</version>
+    <version>2.11.0</version>
     <license>https://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <description>K2_MOD_K2_CONTENT_DESCRIPTION</description>
     <files>

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version    2.10.x
+ * @version    2.11.x
  * @package    K2
  * @author     JoomlaWorks https://www.joomlaworks.net
  * @copyright  Copyright (c) 2006 - 2021 JoomlaWorks Ltd. All rights reserved.
@@ -26,8 +26,8 @@ class plgSystemK2 extends JPlugin
         }
 
         // Define K2 version & build here
-        define('K2_CURRENT_VERSION', '2.10.4');
-        define('K2_BUILD_ID', '20210629');
+        define('K2_CURRENT_VERSION', '2.11.0');
+        define('K2_BUILD_ID', '20211111');
         define('K2_BUILD', '<br />[Dev Build '.K2_BUILD_ID.']'); // Use '' for stable or "<br />[Dev Build '.K2_BUILD_ID.']" for the developer build
 
         // Define the DS constant (for backwards compatibility with old template overrides & 3rd party K2 extensions)
