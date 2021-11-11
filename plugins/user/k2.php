@@ -112,8 +112,9 @@ class plgUserK2 extends JPlugin
             }
 
             if (JRequest::getBool('del_image')) {
-                if (JFile::exists(JPATH_ROOT.'/media/k2/users/'.$row->image)) {
-                    JFile::delete(JPATH_ROOT.'/media/k2/users/'.$row->image);
+                $currentImage = basename($row->image);
+                if (JFile::exists(JPATH_ROOT.'/media/k2/users/'.$currentImage)) {
+                    JFile::delete(JPATH_ROOT.'/media/k2/users/'.$currentImage);
                 }
                 $image = '';
             }
