@@ -1,6 +1,6 @@
 <?php
 /**
- * @version    2.10.x
+ * @version    2.11.x
  * @package    K2
  * @author     JoomlaWorks https://www.joomlaworks.net
  * @copyright  Copyright (c) 2006 - 2021 JoomlaWorks Ltd. All rights reserved.
@@ -295,8 +295,12 @@ class K2ViewItemlist extends K2View
                         }
 
                         if (!$tag || !$tag->id) {
-                            JError::raiseError(404, JText::_('K2_NOT_FOUND'));
-                            return false;
+                            if ($document->getType() == 'feed' || $document->getType() == 'json') {
+                                $app->redirect(JUri::root());
+                            } else {
+                                JError::raiseError(410, JText::_('K2_NOT_FOUND'));
+                                return false;
+                            }
                         }
                     }
 
@@ -310,6 +314,7 @@ class K2ViewItemlist extends K2View
                     $ordering = $params->get('tagOrdering');
 
                     // Set title
+                    $this->assignRef('name', $tag->name);
                     $title = $tag->name;
                     $page_title = $params->get('page_title');
                     if ($this->menuItemMatchesK2Entity('itemlist', 'tag', $tag->name) && !empty($page_title)) {
@@ -620,7 +625,7 @@ class K2ViewItemlist extends K2View
                 $feedItem->link = $item->link;
                 $feedItem->title = $item->title;
                 $feedItem->description = $item->description;
-                $feedItem->date = ($ordering == 'modified') ? $item->modified : $item->created;
+                $feedItem->date = (isset($ordering) && $ordering == 'modified') ? $item->modified : $item->created;
                 $feedItem->category = $item->category->name;
                 $feedItem->author = $item->author->name;
                 if ($params->get('feedBogusEmail')) {

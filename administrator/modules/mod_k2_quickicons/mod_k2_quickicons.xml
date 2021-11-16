@@ -2,11 +2,11 @@
 <install type="module" client="administrator" method="upgrade" version="1.5" position="icon">
     <name>K2 Quick Icons (admin)</name>
     <author>JoomlaWorks</author>
-    <creationDate>April 16th, 2021</creationDate>
+    <creationDate>November 11th, 2021</creationDate>
     <copyright>Copyright (c) 2006 - 2021 JoomlaWorks Ltd. All rights reserved.</copyright>
     <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
     <authorUrl>www.joomlaworks.net</authorUrl>
-    <version>2.10.4</version>
+    <version>2.11.0</version>
     <description>K2_QUICKICONS_FOR_USE_IN_THE_JOOMLA_CONTROL_PANEL_DASHBOARD_PAGE</description>
     <files>
         <filename module="mod_k2_quickicons">mod_k2_quickicons.php</filename>

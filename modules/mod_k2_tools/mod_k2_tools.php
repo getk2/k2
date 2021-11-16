@@ -1,6 +1,6 @@
 <?php
 /**
- * @version    2.10.x
+ * @version    2.11.x
  * @package    K2
  * @author     JoomlaWorks https://www.joomlaworks.net
  * @copyright  Copyright (c) 2006 - 2021 JoomlaWorks Ltd. All rights reserved.
@@ -77,7 +77,7 @@ switch ($module_usage) {
 
     case '6':
         $categoryFilter = modK2ToolsHelper::getSearchCategoryFilter($params);
-        $action = JRoute::_(K2HelperRoute::getSearchRoute());
+        $action = JRoute::_(K2HelperRoute::getSearchRoute($searchItemId));
         require(JModuleHelper::getLayoutPath('mod_k2_tools', 'search'));
         break;
 
@@ -91,5 +91,13 @@ switch ($module_usage) {
     case '8':
         $customcode = modK2ToolsHelper::renderCustomCode($params);
         require(JModuleHelper::getLayoutPath('mod_k2_tools', 'customcode'));
+        break;
+
+    case '9':
+        $selectedTags = (array) $params->get('selectedTags');
+        $selectedTagsLimit = (int) $params->get('selectedTagsLimit', 0);
+        if (count($selectedTags)) {
+            require(JModuleHelper::getLayoutPath('mod_k2_tools', 'selected_tags'));
+        }
         break;
 }

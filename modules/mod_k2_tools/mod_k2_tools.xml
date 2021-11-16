@@ -2,11 +2,11 @@
 <install type="module" client="site" version="1.5" method="upgrade">
     <name>K2 Tools</name>
     <author>JoomlaWorks</author>
-    <creationDate>April 16th, 2021</creationDate>
+    <creationDate>November 11th, 2021</creationDate>
     <copyright>Copyright (c) 2006 - 2021 JoomlaWorks Ltd. All rights reserved.</copyright>
     <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
     <authorUrl>www.joomlaworks.net</authorUrl>
-    <version>2.10.4</version>
+    <version>2.11.0</version>
     <license>https://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <description>K2_TOOLS</description>
     <files>
@@ -26,6 +26,7 @@
             <option value="6">K2_SEARCH_BOX</option>
             <option value="7">K2_TAG_CLOUD</option>
             <option value="8">K2_CUSTOM_CODE</option>
+            <option value="9">K2_SELECTED_TAGS</option>
         </param>
         <!-- Archive Settings -->
         <param name="" type="header" default="K2_ARCHIVE_SETTINGS" label="" description="" />
@@ -132,6 +133,10 @@
             <option value="0">K2_NO</option>
             <option value="1">K2_YES</option>
         </param>
+        <!-- Selected Tags -->
+        <param name="" type="header" default="K2_SELECTED_TAGS" label="" description=""/>
+        <param name="selectedTags" type="k2modalselector" scope="tags" default="" label="K2_TAG_SELECTOR" description=""/>
+        <param name="selectedTagsLimit" type="text" default="" size="4" label="K2_SELECTED_TAGS_LIMIT" description="K2_SELECTED_TAGS_LIMIT_DESC"/>
     </params>
     <params group="advanced">
         <param name="cache" type="list" default="1" label="K2_CACHING" description="K2_SELECT_WHETHER_TO_CACHE_THE_CONTENT_OF_THIS_MODULE">

@@ -1,5 +1,5 @@
 /**
- * @version    2.10.x
+ * @version    2.11.x
  * @package    K2
  * @author     JoomlaWorks https://www.joomlaworks.net
  * @copyright  Copyright (c) 2006 - 2021 JoomlaWorks Ltd. All rights reserved.
@@ -1027,6 +1027,13 @@ div.k2TagCloudBlock a:hover {padding:4px;float:left;display:block;background:#13
 
 /* --- Custom Code --- */
 div.k2CustomCodeBlock {}
+
+/* --- Selected Tags --- */
+.k2SelectedTagsBlock {}
+.k2SelectedTagsBlock ul {list-style:none;padding:8px 0;margin:0;}
+.k2SelectedTagsBlock ul li {display:inline-block;}
+.k2SelectedTagsBlock ul li a {display:inline-block;padding:4px 8px;font-size:1.12rem;}
+.k2SelectedTagsBlock ul li a:before {content:"#";margin:0;}
 
 
 

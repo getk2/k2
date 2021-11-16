@@ -1,6 +1,6 @@
 <?php
 /**
- * @version    2.10.x
+ * @version    2.11.x
  * @package    K2
  * @author     JoomlaWorks https://www.joomlaworks.net
  * @copyright  Copyright (c) 2006 - 2021 JoomlaWorks Ltd. All rights reserved.
@@ -81,6 +81,7 @@ class TableK2Category extends K2Table
             $this->alias = $this->name;
         }
 
+        /* Offload the alias processing block to a simplified external function/method call */
         if (K2_JVERSION == '15') {
             if (JPluginHelper::isEnabled('system', 'unicodeslug') || JPluginHelper::isEnabled('system', 'jw_unicodeSlugsExtended')) {
                 $this->alias = JFilterOutput::stringURLSafe($this->alias);

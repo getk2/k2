@@ -1,6 +1,6 @@
 <?php
 /**
- * @version    2.10.x
+ * @version    2.11.x
  * @package    K2
  * @author     JoomlaWorks https://www.joomlaworks.net
  * @copyright  Copyright (c) 2006 - 2021 JoomlaWorks Ltd. All rights reserved.
@@ -33,7 +33,6 @@ class K2ModelUser extends K2Model
     {
         $app = JFactory::getApplication();
         jimport('joomla.filesystem.file');
-        require_once(JPATH_SITE.'/media/k2/assets/vendors/verot/class.upload.php/src/class.upload.php');
         $row = JTable::getInstance('K2User', 'Table');
         $params = JComponentHelper::getParams('com_k2');
 
@@ -62,10 +61,12 @@ class K2ModelUser extends K2Model
 
         $file = JRequest::get('files');
 
+        require_once(JPATH_SITE.'/media/k2/assets/vendors/verot/class.upload.php/src/class.upload.php');
         $savepath = JPATH_ROOT.'/media/k2/users/';
 
-        if ($file['image']['error'] == 0 && !JRequest::getBool('del_image')) {
+        if (isset($file['image']) && $file['image']['error'] == 0 && !JRequest::getBool('del_image')) {
             $handle = new Upload($file['image']);
+            $handle->allowed = array('image/*');
             if ($handle->uploaded) {
                 $handle->file_auto_rename = false;
                 $handle->file_overwrite = true;
@@ -85,8 +86,9 @@ class K2ModelUser extends K2Model
         if (JRequest::getBool('del_image')) {
             $current = JTable::getInstance('K2User', 'Table');
             $current->load($row->id);
-            if (JFile::exists(JPATH_ROOT.'/media/k2/users/'.$current->image)) {
-                JFile::delete(JPATH_ROOT.'/media/k2/users/'.$current->image);
+            $currentImage = basename($current->image);
+            if (JFile::exists(JPATH_ROOT.'/media/k2/users/'.$currentImage)) {
+                JFile::delete(JPATH_ROOT.'/media/k2/users/'.$currentImage);
             }
             $row->image = '';
         }

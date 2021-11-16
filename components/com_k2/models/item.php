@@ -1,6 +1,6 @@
 <?php
 /**
- * @version    2.10.x
+ * @version    2.11.x
  * @package    K2
  * @author     JoomlaWorks https://www.joomlaworks.net
  * @copyright  Copyright (c) 2006 - 2021 JoomlaWorks Ltd. All rights reserved.
@@ -263,7 +263,7 @@ class K2ModelItem extends K2Model
         // Item image
         if ($params->get('feedItemImage') && JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_'.$params->get('feedImgSize').'.jpg')) {
             $altText = ($item->image_caption) ? $item->image_caption : $item->title;
-            $item->description .= '<div class="K2FeedImage"><img src="'.JURI::root().'media/k2/items/cache/'.md5('Image'.$item->id).'_'.$params->get('feedImgSize').'.jpg" alt="'.$altText.'" /></div>';
+            $item->description .= '<div class="K2FeedImage"><img src="'.JURI::root().'media/k2/items/cache/'.md5('Image'.$item->id).'_'.$params->get('feedImgSize').'.jpg" alt="'.K2HelperUtilities::cleanHtml($altText).'" /></div>';
 
             // Set an image enclosure object
             $item->enclosure = new JFeedEnclosure();
@@ -294,7 +294,7 @@ class K2ModelItem extends K2Model
                 foreach ($tags as $tag) {
                     $item->description .= '<li>'.$tag->name.'</li>';
                 }
-                $item->description .= '<ul></div>';
+                $item->description .= '</ul></div>';
             }
         }
 
@@ -368,7 +368,7 @@ class K2ModelItem extends K2Model
             if (isset($attachments) && count($attachments)) {
                 $item->description .= '<div class="K2FeedAttachments"><ul>';
                 foreach ($attachments as $attachment) {
-                    $item->description .= '<li><a title="'.htmlentities($attachment->titleAttribute, ENT_QUOTES, 'UTF-8').'" href="'.$attachment->link.'">'.$attachment->title.'</a></li>';
+                    $item->description .= '<li><a href="'.$attachment->link.'" title="'.K2HelperUtilities::cleanHtml($attachment->titleAttribute).'">'.$attachment->title.'</a></li>';
                 }
                 $item->description .= '</ul></div>';
             }
