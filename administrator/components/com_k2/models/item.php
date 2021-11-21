@@ -417,6 +417,16 @@ class K2ModelItem extends K2Model
 
         $attPost = JRequest::getVar('attachment', null, 'POST', 'array');
         $attFiles = JRequest::getVar('attachment', null, 'FILES', 'array');
+        $attOrderings = JRequest::getVar('attachmentordering', null, 'POST', 'array');
+		$existingAtts = $this->getAttachments($row->id);
+		foreach ($existingAtts as $key => $attachment){
+			$attOrder = array_search($attachment->id, $attOrderings);
+			$attachment->ordering = $attOrder;
+			$existingAtts[$key] = $attachment;
+			$db->setQuery("UPDATE #__k2_attachments SET `ordering` = " . $db->Quote($attOrder) . ' WHERE `id` = ' . $attachment->id)->execute(); // update attachment ordering on item save
+		}
+
+		$attOrderingI = count($existingAtts);
 
         if (is_array($attPost) && count($attPost)) {
             foreach ($attPost as $key => $attachment) { /* Use the POST array's key as reference */
@@ -441,6 +451,7 @@ class K2ModelItem extends K2Model
                     $attachmentToSave->filename = $filename;
                     $attachmentToSave->title = (empty($attachment['title'])) ? $filename : $attachment['title'];
                     $attachmentToSave->titleAttribute = (empty($attachment['title_attribute'])) ? $filename : $attachment['title_attribute'];
+                    $attachmentToSave->ordering = $attOrderingI;
                     $attachmentToSave->store();
                 } else {
                     $handle = new Upload($attFiles['tmp_name'][$key]['upload']);
@@ -464,12 +475,14 @@ class K2ModelItem extends K2Model
                         $attachmentToSave->filename = $dstName;
                         $attachmentToSave->title = (empty($attachment['title'])) ? $filename : $attachment['title'];
                         $attachmentToSave->titleAttribute = (empty($attachment['title_attribute'])) ? $filename : $attachment['title_attribute'];
+                        $attachmentToSave->ordering = $attOrderingI;
                         $attachmentToSave->store();
                     } else {
                         $app->enqueueMessage($handle->error, 'error');
                         $app->redirect('index.php?option=com_k2&view=items');
                     }
                 }
+                $attOrderingI++;
             }
         }
 
@@ -927,7 +940,7 @@ class K2ModelItem extends K2Model
     public function getAttachments($itemID)
     {
         $db = JFactory::getDbo();
-        $query = "SELECT * FROM #__k2_attachments WHERE itemID=".(int)$itemID;
+        $query = "SELECT * FROM #__k2_attachments WHERE itemID=".(int)$itemID." ORDER BY ordering ASC";
         $db->setQuery($query);
         $rows = $db->loadObjectList();
         foreach ($rows as $row) {

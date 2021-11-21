@@ -1427,7 +1427,7 @@ class K2ModelItem extends K2Model
             return $K2ItemAttachmentsInstances[$itemID];
         }
         $db = JFactory::getDbo();
-        $query = "SELECT * FROM #__k2_attachments WHERE itemID=".$itemID;
+        $query = "SELECT * FROM #__k2_attachments WHERE itemID=".$itemID." ORDER BY ordering ASC";
         $db->setQuery($query);
         $rows = $db->loadObjectList();
         foreach ($rows as $row) {

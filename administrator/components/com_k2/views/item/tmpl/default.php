@@ -636,31 +636,40 @@ $app = JFactory::getApplication();
                         <div class="itemAttachments">
                             <?php if ($this->row->attachments && count($this->row->attachments)): ?>
                             <table class="itemAttachmentsTable">
-                                <tr>
-                                    <th><?php echo JText::_('K2_FILENAME'); ?></th>
-                                    <th><?php echo JText::_('K2_TITLE'); ?></th>
-                                    <th><?php echo JText::_('K2_TITLE_ATTRIBUTE'); ?></th>
-                                    <th><?php echo JText::_('K2_DOWNLOADS'); ?></th>
-                                    <th class="k2Center"><?php echo JText::_('K2_OPERATIONS'); ?></th>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th class="k2ui-center k2ui-hide-on-mobile" width="1%"><i class="icon-menu-2"></i></th>
+                                        <th><?php echo JText::_('K2_FILENAME'); ?></th>
+                                        <th><?php echo JText::_('K2_TITLE'); ?></th>
+                                        <th><?php echo JText::_('K2_TITLE_ATTRIBUTE'); ?></th>
+                                        <th><?php echo JText::_('K2_DOWNLOADS'); ?></th>
+                                        <th class="k2Center"><?php echo JText::_('K2_OPERATIONS'); ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                 <?php foreach($this->row->attachments as $attachment): ?>
-                                <tr>
-                                    <td class="attachment_entry"><?php echo $attachment->filename; ?></td>
-                                    <td><?php echo $attachment->title; ?></td>
-                                    <td><?php echo $attachment->titleAttribute; ?></td>
-                                    <td><?php echo $attachment->hits; ?></td>
-                                    <td class="k2Center">
-                                        <a class="downloadAttachmentButton" href="<?php echo $attachment->link; ?>" title="<?php echo JText::_('K2_DOWNLOAD'); ?>">
-                                            <i class="fa fa-download"></i>
-                                            <span class="hidden"><?php echo JText::_('K2_DOWNLOAD'); ?></span>
-                                        </a>
-                                        <a class="deleteAttachmentButton" title="<?php echo JText::_('K2_DELETE'); ?>" href="<?php echo JURI::base(true); ?>/index.php?option=com_k2&amp;view=item&amp;task=deleteAttachment&amp;id=<?php echo $attachment->id?>&amp;cid=<?php echo $this->row->id; ?>">
-                                            <i class="fa fa-remove"></i>
-                                            <span class="hidden"><?php echo JText::_('K2_DELETE'); ?></span>
-                                        </a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td class="k2ui-center k2ui-hide-on-mobile">
+                                            <span class="sortable-handler"><i class="icon-menu"></i></span>
+                                            <input type="hidden" name="attachmentordering[]" value="<?php echo $attachment->id; ?>" />
+                                        </td>
+                                        <td class="attachment_entry"><?php echo $attachment->filename; ?></td>
+                                        <td><?php echo $attachment->title; ?></td>
+                                        <td><?php echo $attachment->titleAttribute; ?></td>
+                                        <td><?php echo $attachment->hits; ?></td>
+                                        <td class="k2Center">
+                                            <a class="downloadAttachmentButton" href="<?php echo $attachment->link; ?>" title="<?php echo JText::_('K2_DOWNLOAD'); ?>">
+                                                <i class="fa fa-download"></i>
+                                                <span class="hidden"><?php echo JText::_('K2_DOWNLOAD'); ?></span>
+                                            </a>
+                                            <a class="deleteAttachmentButton" title="<?php echo JText::_('K2_DELETE'); ?>" href="<?php echo JURI::base(true); ?>/index.php?option=com_k2&amp;view=item&amp;task=deleteAttachment&amp;id=<?php echo $attachment->id?>&amp;cid=<?php echo $this->row->id; ?>">
+                                                <i class="fa fa-remove"></i>
+                                                <span class="hidden"><?php echo JText::_('K2_DELETE'); ?></span>
+                                            </a>
+                                        </td>
+                                    </tr>
                                 <?php endforeach; ?>
+                                </tbody>
                             </table>
                             <?php endif; ?>
                         </div>
