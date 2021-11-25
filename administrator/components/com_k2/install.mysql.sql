@@ -170,6 +170,10 @@ CREATE TABLE IF NOT EXISTS `#__k2_user_groups` (
     KEY `idx_name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;
 
+INSERT IGNORE INTO #__k2_user_groups (`id`, `name`, `permissions`) VALUES
+    ('', 'Registered', '{\"comment\":\"1\",\"frontEdit\":\"0\",\"add\":\"0\",\"editOwn\":\"0\",\"editAll\":\"0\",\"publish\":\"0\",\"inheritance\":0,\"categories\":\"all\"}'),
+    ('', 'Site Owner', '{\"comment\":\"1\",\"frontEdit\":\"1\",\"add\":\"1\",\"editOwn\":\"1\",\"editAll\":\"1\",\"publish\":\"1\",\"inheritance\":1,\"categories\":\"all\"}');
+
 CREATE TABLE IF NOT EXISTS `#__k2_users` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `userID` int(11) NOT NULL,
