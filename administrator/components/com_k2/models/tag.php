@@ -81,10 +81,10 @@ class K2ModelTag extends K2Model
         $tag = str_replace('.', '', $tag);
 
         $response = new stdClass;
-        $response->set('name', $tag);
+        $response->name = $tag;
 
         if (empty($tag)) {
-            $response->set('msg', JText::_('K2_YOU_NEED_TO_ENTER_A_TAG', true));
+            $response->msg = JText::_('K2_YOU_NEED_TO_ENTER_A_TAG', true);
             echo json_encode($response);
             $app->close();
         }
@@ -95,7 +95,7 @@ class K2ModelTag extends K2Model
         $result = $db->loadResult();
 
         if ($result > 0) {
-            $response->set('msg', JText::_('K2_TAG_ALREADY_EXISTS', true));
+            $response->msg = JText::_('K2_TAG_ALREADY_EXISTS', true);
             echo json_encode($response);
             $app->close();
         }
@@ -108,9 +108,9 @@ class K2ModelTag extends K2Model
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
 
-        $response->set('id', $row->id);
-        $response->set('status', 'success');
-        $response->set('msg', JText::_('K2_TAG_ADDED_TO_AVAILABLE_TAGS_LIST', true));
+        $response->id = $row->id;
+        $response->status = 'success';
+        $response->msg = JText::_('K2_TAG_ADDED_TO_AVAILABLE_TAGS_LIST', true);
         echo json_encode($response);
 
         $app->close();

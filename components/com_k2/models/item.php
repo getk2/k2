@@ -398,7 +398,6 @@ class K2ModelItem extends K2Model
     public function prepareJSONItem($item)
     {
         $row = new stdClass;
-        unset($row->_errors);
         $row->id = $item->id;
         $row->title = $item->title;
         $row->alias = $item->alias;

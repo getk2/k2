@@ -119,11 +119,10 @@ class plgSystemK2 extends JPlugin
                 $variables = JRequest::get('post');
 
                 foreach ($variables as $key => $value) {
-                    if (( bool )JString::stristr($key, 'K2ExtraField_')) {
+                    if ((bool) stristr($key, 'K2ExtraField_')) {
                         $object = new stdClass;
-                        $object->set('id', JString::substr($key, 13));
-                        $object->set('value', $value);
-                        unset($object->_errors);
+                        $object->id = substr($key, 13);
+                        $object->value = $value;
                         $objects[] = $object;
                     }
                 }
@@ -245,23 +244,22 @@ class plgSystemK2 extends JPlugin
 
                 for ($i = 0; $i < count($values); $i++) {
                     $object = new stdClass;
-                    $object->set('name', $names[$i]);
+                    $object->name = $names[$i];
 
                     if ($extraFieldType == 'select' || $extraFieldType == 'multipleSelect' || $extraFieldType == 'radio') {
-                        $object->set('value', $i + 1);
+                        $object->value = $i + 1;
                     } elseif ($extraFieldType == 'link') {
                         if (substr($values[$i], 0, 4) == 'http') {
                             $values[$i] = $values[$i];
                         } else {
                             $values[$i] = 'http://'.$values[$i];
                         }
-                        $object->set('value', $values[$i]);
+                        $object->value = $values[$i];
                     } else {
-                        $object->set('value', $values[$i]);
+                        $object->value = $values[$i];
                     }
 
-                    $object->set('target', $target[$i]);
-                    unset($object->_errors);
+                    $object->target = $target[$i];
                     $objects[] = $object;
                 }
 

@@ -64,15 +64,15 @@ class K2ModelExtraField extends K2Model
         $lastOptionId = 1;
         for ($i = 0; $i < count($values); $i++) {
             $object = new stdClass;
-            $object->set('name', $names[$i]);
+            $object->name = $names[$i];
 
             if ($row->type == 'select' || $row->type == 'multipleSelect' || $row->type == 'radio') {
                 if (!empty($values[$i])) {
-                    $object->set('value', $values[$i]);
+                    $object->value = $values[$i];
                     $lastOptionId = intval($values[$i]);
                 } else {
                     $lastOptionId ++;
-                    $object->set('value', $lastOptionId);
+                    $object->value = $lastOptionId;
                 }
             } elseif ($row->type == 'link') {
                 if (trim($values[$i]) != '') {
@@ -82,7 +82,7 @@ class K2ModelExtraField extends K2Model
                         $values[$i] = 'http://'.$values[$i];
                     }
                 }
-                $object->set('value', trim($values[$i]));
+                $object->value = trim($values[$i]);
             } elseif ($row->type == 'csv') {
                 $file = JRequest::getVar('csv_file', null, 'FILES');
                 $csvFile = $file['tmp_name'];
@@ -93,32 +93,31 @@ class K2ModelExtraField extends K2Model
                         $csvData[] = $data;
                     }
                     fclose($handle);
-                    $object->set('value', $csvData);
+                    $object->value = $csvData;
                 } else {
-                    $object->set('value', json_decode($values[$i]));
+                    $object->value = json_decode($values[$i]);
                     if (JRequest::getBool('K2ResetCSV')) {
-                        $object->set('value', null);
+                        $object->value = null;
                     }
                 }
             } elseif ($row->type == 'textarea') {
-                $object->set('value', $values[$i]);
-                $object->set('editor', $editor[$i]);
-                $object->set('rows', $rows[$i]);
-                $object->set('cols', $cols[$i]);
+                $object->value = $values[$i];
+                $object->editor = $editor[$i];
+                $object->rows = $rows[$i];
+                $object->cols = $cols[$i];
             } elseif ($row->type == 'image') {
-                $object->set('value', $values[$i]);
+                $object->value = $values[$i];
             } elseif ($row->type == 'header') {
-                $object->set('value', JRequest::getString('name'));
-                $object->set('displayInFrontEnd', $displayInFrontEnd);
+                $object->value = JRequest::getString('name');
+                $object->displayInFrontEnd = $displayInFrontEnd;
             } else {
-                $object->set('value', $values[$i]);
+                $object->value = $values[$i];
             }
 
-            $object->set('target', $target[$i]);
-            $object->set('alias', $alias);
-            $object->set('required', $required);
-            $object->set('showNull', $showNull);
-            unset($object->_errors);
+            $object->target = $target[$i];
+            $object->alias = $alias;
+            $object->required = $required;
+            $object->showNull = $showNull;
             $objects[] = $object;
         }
 

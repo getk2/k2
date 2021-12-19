@@ -617,7 +617,6 @@ class K2ModelItem extends K2Model
                         $value = trim($value);
                     }
                     $object->value = $value;
-                    unset($object->_errors);
                     $objects[] = $object;
                 }
             }
@@ -642,7 +641,6 @@ class K2ModelItem extends K2Model
                             $object->value = null;
                         }
                     }
-                    unset($object->_errors);
                     $objects[] = $object;
                 }
             }

@@ -437,6 +437,8 @@ class K2ViewItem extends K2View
 
         // --- JSON Output [start] ---
         if ($document->getType() == 'json') {
+            $uri = JURI::getInstance();
+
             // Build the output object
             $row = $model->prepareJSONItem($item);
 
@@ -445,9 +447,6 @@ class K2ViewItem extends K2View
 
             // Site
             $response->site = new stdClass();
-
-            $uri = JURI::getInstance();
-
             $response->site->url = $uri->toString(array('scheme', 'host', 'port'));
             $response->site->name = (K2_JVERSION == '30') ? $config->get('sitename') : $config->getValue('config.sitename');
             $response->item = $row;

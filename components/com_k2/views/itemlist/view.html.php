@@ -84,11 +84,9 @@ class K2ViewItemlist extends K2View
         }
         if ($document->getType() == 'json') {
             // Prepare JSON output
-            $response = new stdClass;
-            unset($response->_errors);
-
-            $response->site = new stdClass();
             $uri = JURI::getInstance();
+            $response = new stdClass;
+            $response->site = new stdClass();
             $response->site->url = $uri->toString(array('scheme', 'host', 'port'));
             $response->site->name = (K2_JVERSION == '30') ? $config->get('sitename') : $config->getValue('config.sitename');
 
@@ -258,7 +256,6 @@ class K2ViewItemlist extends K2View
 
                         // Prepare the JSON category object
                         $row = new stdClass;
-                        unset($row->_errors);
                         $row->id = $category->id;
                         $row->alias = $category->alias;
                         $row->link = $category->link;
@@ -398,7 +395,6 @@ class K2ViewItemlist extends K2View
 
                         // Prepare the JSON user object
                         $row = new stdClass;
-                        unset($row->_errors);
                         $row->name = $userObject->name;
                         $row->avatar = $userObject->avatar;
                         $row->profile = $userObject->profile;

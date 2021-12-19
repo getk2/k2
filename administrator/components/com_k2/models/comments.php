@@ -391,7 +391,6 @@ class K2ModelComments extends K2Model {
 		$response = new stdClass;
 		$response->comment = $row->commentText;
 		$response->message = JText::_('K2_COMMENT_SAVED');
-		unset($response->_errors);
 		echo json_encode($response);
 		$app->close();
 	}
