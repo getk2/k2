@@ -118,10 +118,10 @@ class K2ModelCategory extends K2Model
         }
 
         if (JRequest::getBool('del_image')) {
-            $currentRow = JTable::getInstance('K2Category', 'Table');
-            $currentRow->load($row->id);
-            if (JFile::exists(JPATH_ROOT.'/media/k2/categories/'.$currentRow->image)) {
-                JFile::delete(JPATH_ROOT.'/media/k2/categories/'.$currentRow->image);
+            $savedRow = JTable::getInstance('K2Category', 'Table');
+            $savedRow->load($row->id);
+            if (JFile::exists(JPATH_ROOT.'/media/k2/categories/'.$savedRow->image)) {
+                JFile::delete(JPATH_ROOT.'/media/k2/categories/'.$savedRow->image);
             }
             $row->image = '';
         }

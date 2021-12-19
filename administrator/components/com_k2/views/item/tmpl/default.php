@@ -428,6 +428,7 @@ $app = JFactory::getApplication();
                                             <div class="panel" id="Upload_video">
                                                 <input type="file" name="video" class="fileUpload k2Selector" accept="video/*,audio/*" />
                                                 <i>(<?php echo JText::_('K2_MAX_UPLOAD_SIZE'); ?>: <?php echo ini_get('upload_max_filesize'); ?>)</i>
+                                                <input type="hidden" name="uploadedVideo" value="<?php echo $this->lists['uploadedVideo']; ?>" />
                                             </div>
                                         </div>
                                         <div id="k2MediaTab2" class="k2TabsContent">

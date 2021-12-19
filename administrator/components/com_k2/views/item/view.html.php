@@ -184,54 +184,54 @@ class K2ViewItem extends K2View
         $lists['checkSIG'] = $model->checkSIG();
         $lists['checkAllVideos'] = $model->checkAllVideos();
 
+        // Media (incl. tab offset)
         $remoteVideo = false;
         $providerVideo = false;
         $embedVideo = false;
 
-        // Tab offset
-        if (stristr($item->video, 'remote}') !== false) {
+        if (!$remoteVideo && !$providerVideo && !$embedVideo) {
+            $options['startOffset'] = 0;
+        }
+
+        if (!empty($item->video) && stristr($item->video, 'remote}') !== false) {
             $remoteVideo = true;
             $options['startOffset'] = 1;
         }
+        $lists['remoteVideo'] = ($remoteVideo) ? preg_replace('%\{[a-z0-9-_]*\}(.*)\{/[a-z0-9-_]*\}%i', '\1', $item->video) : '';
+        $lists['remoteVideoType'] = ($remoteVideo) ? preg_replace('%\{([a-z0-9-_]*)\}.*\{/[a-z0-9-_]*\}%i', '\1', $item->video) : '';
 
         $providers = $model->getVideoProviders();
-
+        $providersOptions = array();
         if (count($providers)) {
             foreach ($providers as $provider) {
                 $providersOptions[] = JHTML::_('select.option', $provider, ucfirst($provider));
-                if (stristr($item->video, "{{$provider}}") !== false) {
+                if (!empty($item->video) && stristr($item->video, "{{$provider}}") !== false) {
                     $providerVideo = true;
                     $options['startOffset'] = 2;
                 }
             }
         }
-
-        if (JString::substr($item->video, 0, 1) !== '{') {
-            $embedVideo = true;
-            $options['startOffset'] = 3;
-        }
-
-        $lists['uploadedVideo'] = (!$remoteVideo && !$providerVideo && !$embedVideo) ? true : false;
-        if ($lists['uploadedVideo'] || $item->video == '') {
-            $options['startOffset'] = 0;
-        }
-
-        $lists['remoteVideo'] = ($remoteVideo) ? preg_replace('%\{[a-z0-9-_]*\}(.*)\{/[a-z0-9-_]*\}%i', '\1', $item->video) : '';
-        $lists['remoteVideoType'] = ($remoteVideo) ? preg_replace('%\{([a-z0-9-_]*)\}.*\{/[a-z0-9-_]*\}%i', '\1', $item->video) : '';
         $lists['providerVideo'] = ($providerVideo) ? preg_replace('%\{[a-z0-9-_]*\}(.*)\{/[a-z0-9-_]*\}%i', '\1', $item->video) : '';
         $lists['providerVideoType'] = ($providerVideo) ? preg_replace('%\{([a-z0-9-_]*)\}.*\{/[a-z0-9-_]*\}%i', '\1', $item->video) : '';
-        $lists['embedVideo'] = ($embedVideo) ? $item->video : '';
-
-        if (isset($providersOptions)) {
+        if (count($providersOptions)) {
             $lists['providers'] = JHTML::_('select.genericlist', $providersOptions, 'videoProvider', '', 'value', 'text', $lists['providerVideoType']);
         }
 
+        if (!empty($item->video) && JString::substr($item->video, 0, 1) !== '{') {
+            $embedVideo = true;
+            $options['startOffset'] = 3;
+        }
+        $lists['embedVideo'] = ($embedVideo) ? $item->video : '';
+
+        $lists['uploadedVideo'] = (!empty($item->video) && !$remoteVideo && !$providerVideo && !$embedVideo) ? $item->video : '';
+
+        // Load plugins
         JPluginHelper::importPlugin('content', 'jw_sigpro');
         JPluginHelper::importPlugin('content', 'jw_allvideos');
 
         $dispatcher = JDispatcher::getInstance();
 
-        // Detect gallery type
+        // For SIGPro
         if (JString::strpos($item->gallery, 'http://') || JString::strpos($item->gallery, 'https://')) {
             $item->galleryType = 'flickr';
             $item->galleryValue = JString::substr($item->gallery, 9);
@@ -240,7 +240,6 @@ class K2ViewItem extends K2View
             $item->galleryType = 'server';
             $item->galleryValue = '';
         }
-
         $params->set('galleries_rootfolder', 'media/k2/galleries');
         $item->text = $item->gallery;
         if (K2_JVERSION == '15') {
@@ -259,6 +258,7 @@ class K2ViewItem extends K2View
         }
         $item->gallery = $item->text;
 
+        // For AllVideos
         if (!$embedVideo) {
             $params->set('vfolder', 'media/k2/videos');
             $params->set('afolder', 'media/k2/audio');
@@ -288,6 +288,7 @@ class K2ViewItem extends K2View
             $item->video = $item->text;
         }
 
+        // Author
         if (isset($item->created_by)) {
             $author = JUser::getInstance($item->created_by);
             $item->author = $author->name;
@@ -298,13 +299,13 @@ class K2ViewItem extends K2View
             $moderator = JUser::getInstance($item->modified_by);
             $item->moderator = $moderator->name;
         }
-
         if ($item->id) {
             $active = $item->created_by;
         } else {
             $active = $user->id;
         }
 
+        // Category
         $categories_option[] = JHTML::_('select.option', 0, JText::_('K2_SELECT_CATEGORY'));
         $categories = $categoriesModel->categoriesTree(null, true, false);
         if ($app->isSite()) {
