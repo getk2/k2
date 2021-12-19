@@ -169,34 +169,6 @@ class K2ModelItem extends K2Model
         $dispatcher->trigger('onContentBeforeSave', array('com_k2.item', $row, $isNew));
         $dispatcher->trigger('onFinderBeforeSave', array('com_k2.item', $row, $isNew));
 
-        // Try to save the video if there is no need to wait for item ID
-        if (!JRequest::getBool('del_video')) {
-            if (!isset($files['video'])) {
-                if (JRequest::getVar('remoteVideo')) {
-                    $fileurl = JRequest::getVar('remoteVideo');
-                    $filetype = JFile::getExt($fileurl);
-                    $allVideosTagSuffix = 'remote';
-                    /*
-                    if (strpos($fileurl, 'http') === false) {
-                        $allVideosTagSuffix = '';
-                        $fileurl = str_replace('.'.$filetype, '', $fileurl);
-                    }
-                    */
-                    $row->video = '{'.$filetype.$allVideosTagSuffix.'}'.$fileurl.'{/'.$filetype.$allVideosTagSuffix.'}';
-                }
-
-                if (JRequest::getVar('videoID')) {
-                    $provider = JRequest::getWord('videoProvider');
-                    $videoID = JRequest::getVar('videoID');
-                    $row->video = '{'.$provider.'}'.$videoID.'{/'.$provider.'}';
-                }
-
-                if (JRequest::getVar('embedVideo', '', 'post', 'string', JREQUEST_ALLOWRAW)) {
-                    $row->video = JRequest::getVar('embedVideo', '', 'post', 'string', JREQUEST_ALLOWRAW);
-                }
-            }
-        }
-
         // JoomFish front-end editing compatibility
         if ($app->isSite() && JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/joomfish.php')) {
             if (version_compare(phpversion(), '5.0') < 0) {
@@ -474,6 +446,8 @@ class K2ModelItem extends K2Model
         }
 
         // Gallery
+        $row->gallery = '';
+
         $flickrGallery = JRequest::getVar('flickrGallery');
         if ($flickrGallery) {
             $row->gallery = '{gallery}'.$flickrGallery.'{/gallery}';
@@ -541,6 +515,8 @@ class K2ModelItem extends K2Model
         }
 
         // Media
+        $row->video = '';
+
         if (!JRequest::getBool('del_video')) {
             if (isset($files['video']) && $files['video']['error'] == 0) {
                 $filetype = JFile::getExt($files['video']['name']);
@@ -581,6 +557,23 @@ class K2ModelItem extends K2Model
                 $filetype = JFile::getExt($files['video']['name']);
 
                 $row->video = '{'.$filetype.'}'.$row->id.'{/'.$filetype.'}';
+            } else {
+                if (JRequest::getVar('remoteVideo')) {
+                    $fileurl = JRequest::getVar('remoteVideo');
+                    $filetype = JFile::getExt($fileurl);
+                    $allVideosTagSuffix = 'remote';
+                    $row->video = '{'.$filetype.$allVideosTagSuffix.'}'.$fileurl.'{/'.$filetype.$allVideosTagSuffix.'}';
+                }
+
+                if (JRequest::getVar('videoID')) {
+                    $provider = JRequest::getWord('videoProvider');
+                    $videoID = JRequest::getVar('videoID');
+                    $row->video = '{'.$provider.'}'.$videoID.'{/'.$provider.'}';
+                }
+
+                if (JRequest::getVar('embedVideo', '', 'post', 'string', JREQUEST_ALLOWRAW)) {
+                    $row->video = JRequest::getVar('embedVideo', '', 'post', 'string', JREQUEST_ALLOWRAW);
+                }
             }
         } else {
             $current = JTable::getInstance('K2Item', 'Table');
@@ -741,19 +734,17 @@ class K2ModelItem extends K2Model
             }
         }
 
-        $query = "UPDATE #__k2_items SET image_caption = ".$db->Quote($row->image_caption).", image_credits = ".$db->Quote($row->image_credits).", video_caption = ".$db->Quote($row->video_caption).", video_credits = ".$db->Quote($row->video_credits).", ";
-
-        if (!is_null($row->video)) {
-            $query .= " video = ".$db->Quote($row->video).", ";
-        }
-        if (!is_null($row->gallery)) {
-            $query .= " gallery = ".$db->Quote($row->gallery).", ";
-        }
-
+        $query = "UPDATE #__k2_items SET
+            image_caption = ".$db->Quote($row->image_caption).",
+            image_credits = ".$db->Quote($row->image_credits).",
+            video_caption = ".$db->Quote($row->video_caption).",
+            video_credits = ".$db->Quote($row->video_credits).",
+            video = ".$db->Quote($row->video).",
+            gallery = ".$db->Quote($row->gallery);
         if ($params->get('showExtraFieldsTab') || $app->isAdmin()) {
-            $query .= " extra_fields = ".$db->Quote($row->extra_fields).", extra_fields_search = ".$db->Quote($row->extra_fields_search).", ";
+            $query .= ", extra_fields = ".$db->Quote($row->extra_fields).", extra_fields_search = ".$db->Quote($row->extra_fields_search);
         }
-        $query .= " published = ".$db->Quote($row->published)." WHERE id = ".$row->id;
+        $query .= ", published = ".$db->Quote($row->published)." WHERE id = ".$row->id;
 
         $db->setQuery($query);
 
