@@ -412,8 +412,12 @@ ul#k2ExtraFieldsMissing li {font-weight:normal;}
 .itemAdditionalField.separator .itemAdditionalData {background:#fafafa;}
 .itemAdditionalField.separator .itemAdditionalValue {display:block;text-align:center;width:100%;text-transform:uppercase;font-size:18px;font-weight:700;}
 
-#k2TabImage .itemAdditionalField .itemAdditionalData > label {display:inline-block;margin:0;vertical-align:middle;}
-#k2TabImage .itemAdditionalField .itemAdditionalData > input[type="checkbox"] {display:inline-block;margin:0 5px 0 0;vertical-align:middle;}
+#k2TabImage .itemAdditionalField .itemAdditionalData > label,
+#k2TabImageGallery .itemAdditionalField .itemAdditionalData > label,
+#k2TabMedia .itemAdditionalField .itemAdditionalData > label {display:inline-block;margin:0;vertical-align:middle;}
+#k2TabImage .itemAdditionalField .itemAdditionalData > input[type="checkbox"],
+#k2TabImageGallery .itemAdditionalField .itemAdditionalData > input[type="checkbox"],
+#k2TabMedia .itemAdditionalField .itemAdditionalData > input[type="checkbox"] {display:inline-block;margin:0 5px 0 0;vertical-align:middle;}
 
 #extraFields {}
 #extraFields .itemAdditionalField .itemAdditionalData .k2Calendar + .btn {padding:10px 12px;}
