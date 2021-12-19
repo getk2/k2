@@ -63,7 +63,7 @@ class K2ModelExtraField extends K2Model
         }
         $lastOptionId = 1;
         for ($i = 0; $i < count($values); $i++) {
-            $object = new JObject;
+            $object = new stdClass;
             $object->set('name', $names[$i]);
 
             if ($row->type == 'select' || $row->type == 'multipleSelect' || $row->type == 'radio') {

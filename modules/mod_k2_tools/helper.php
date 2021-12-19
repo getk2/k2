@@ -906,7 +906,7 @@ class modK2ToolsHelper
             $dispatcher = JDispatcher::getInstance();
             if ($params->get('JPlugins')) {
                 JPluginHelper::importPlugin('content');
-                $row = new JObject();
+                $row = new stdClass;
                 $row->text = $output;
                 if (K2_JVERSION != '15') {
                     $dispatcher->trigger('onContentPrepare', array(
@@ -924,7 +924,7 @@ class modK2ToolsHelper
             }
             if ($params->get('K2Plugins')) {
                 JPluginHelper::importPlugin('k2');
-                $row = new JObject();
+                $row = new stdClass;
                 $row->text = $output;
                 $dispatcher->trigger('onK2PrepareContent', array(
                     &$row,

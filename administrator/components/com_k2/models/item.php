@@ -614,7 +614,7 @@ class K2ModelItem extends K2Model
             $variables = JRequest::get('post', 2);
             foreach ($variables as $key => $value) {
                 if (( bool )JString::stristr($key, 'K2ExtraField_')) {
-                    $object = new JObject;
+                    $object = new stdClass;
                     $object->set('id', JString::substr($key, 13));
                     if (is_string($value)) {
                         $value = trim($value);
@@ -628,7 +628,7 @@ class K2ModelItem extends K2Model
             $csvFiles = JRequest::get('files');
             foreach ($csvFiles as $key => $file) {
                 if ((bool) JString::stristr($key, 'K2ExtraField_')) {
-                    $object = new JObject;
+                    $object = new stdClass;
                     $object->set('id', JString::substr($key, 13));
                     $csvFile = $file['tmp_name'][0];
                     if (!empty($csvFile) && JFile::getExt($file['name'][0]) == 'csv') {

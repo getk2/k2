@@ -205,7 +205,7 @@ class K2ModelItem extends K2Model
             $item->author->profile = $this->getUserProfile($item->created_by);
         }
         if (empty($item->author->profile)) {
-            $item->author->profile = new JObject;
+            $item->author->profile = new stdClass;
             $item->author->profile->gender = null;
         }
 
@@ -304,7 +304,7 @@ class K2ModelItem extends K2Model
             $params->set('enabledownload', '0');
 
             // Create temp object to parse plugins
-            $galleryTempText = new JObject();
+            $galleryTempText = new stdClass;
             $galleryTempText->text = $item->gallery;
             if (K2_JVERSION == '15') {
                 $dispatcher->trigger('onPrepareContent', array(
@@ -337,7 +337,7 @@ class K2ModelItem extends K2Model
                 $params->set('afolder', 'media/k2/audio');
 
                 // Create temp object to parse plugins
-                $mediaTempText = new JObject();
+                $mediaTempText = new stdClass;
                 $mediaTempText->text = $item->video;
                 if (K2_JVERSION == '15') {
                     $dispatcher->trigger('onPrepareContent', array(
@@ -397,7 +397,7 @@ class K2ModelItem extends K2Model
 
     public function prepareJSONItem($item)
     {
-        $row = new JObject();
+        $row = new stdClass;
         unset($row->_errors);
         $row->id = $item->id;
         $row->title = $item->title;
@@ -517,7 +517,7 @@ class K2ModelItem extends K2Model
                 }
 
                 // Create temp object to parse plugins
-                $galleryTempText = new JObject();
+                $galleryTempText = new stdClass;
                 $galleryTempText->text = $item->gallery;
                 if (K2_JVERSION == '15') {
                     $dispatcher->trigger('onPrepareContent', array(
@@ -567,7 +567,7 @@ class K2ModelItem extends K2Model
                 }
 
                 // Create temp object to parse plugins
-                $mediaTempText = new JObject();
+                $mediaTempText = new stdClass;
                 $mediaTempText->text = $item->video;
                 if (K2_JVERSION == '15') {
                     $dispatcher->trigger('onPrepareContent', array(
@@ -792,7 +792,7 @@ class K2ModelItem extends K2Model
                 foreach ($item->extra_fields as $key => $extraField) {
                     if ($extraField->type == 'textarea' || $extraField->type == 'textfield') {
                         // Create temp object to parse plugins
-                        $extraFieldTempText = new JObject();
+                        $extraFieldTempText = new stdClass;
                         $extraFieldTempText->text = $extraField->value;
                         if (K2_JVERSION == '15') {
                             $dispatcher->trigger('onPrepareContent', array(
@@ -962,7 +962,7 @@ class K2ModelItem extends K2Model
         $params = K2HelperUtilities::getParams('com_k2');
         $user = JFactory::getUser();
         $config = JFactory::getConfig();
-        $response = new JObject();
+        $response = new stdClass;
 
         // Get item
         $item = JTable::getInstance('K2Item', 'Table');

@@ -388,7 +388,7 @@ class K2ModelComments extends K2Model {
 		$row->store();
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
-		$response = new JObject;
+		$response = new stdClass;
 		$response->comment = $row->commentText;
 		$response->message = JText::_('K2_COMMENT_SAVED');
 		unset($response->_errors);

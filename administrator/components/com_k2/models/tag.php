@@ -80,7 +80,7 @@ class K2ModelTag extends K2Model
         $tag = str_replace('-', '', $tag);
         $tag = str_replace('.', '', $tag);
 
-        $response = new JObject;
+        $response = new stdClass;
         $response->set('name', $tag);
 
         if (empty($tag)) {

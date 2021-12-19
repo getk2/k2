@@ -84,7 +84,7 @@ class K2ViewItemlist extends K2View
         }
         if ($document->getType() == 'json') {
             // Prepare JSON output
-            $response = new JObject();
+            $response = new stdClass;
             unset($response->_errors);
 
             $response->site = new stdClass();
@@ -257,7 +257,7 @@ class K2ViewItemlist extends K2View
                         $prefix = 'cat';
 
                         // Prepare the JSON category object
-                        $row = new JObject();
+                        $row = new stdClass;
                         unset($row->_errors);
                         $row->id = $category->id;
                         $row->alias = $category->alias;
@@ -397,7 +397,7 @@ class K2ViewItemlist extends K2View
                         $prefix = 'user';
 
                         // Prepare the JSON user object
-                        $row = new JObject();
+                        $row = new stdClass;
                         unset($row->_errors);
                         $row->name = $userObject->name;
                         $row->avatar = $userObject->avatar;

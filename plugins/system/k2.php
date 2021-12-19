@@ -120,7 +120,7 @@ class plgSystemK2 extends JPlugin
 
                 foreach ($variables as $key => $value) {
                     if (( bool )JString::stristr($key, 'K2ExtraField_')) {
-                        $object = new JObject;
+                        $object = new stdClass;
                         $object->set('id', JString::substr($key, 13));
                         $object->set('value', $value);
                         unset($object->_errors);
@@ -244,7 +244,7 @@ class plgSystemK2 extends JPlugin
                 $target = JRequest::getVar('option_target');
 
                 for ($i = 0; $i < count($values); $i++) {
-                    $object = new JObject;
+                    $object = new stdClass;
                     $object->set('name', $names[$i]);
 
                     if ($extraFieldType == 'select' || $extraFieldType == 'multipleSelect' || $extraFieldType == 'radio') {
@@ -482,7 +482,7 @@ class plgSystemK2 extends JPlugin
 
             $view->setLayout('register');
 
-            $K2User = new JObject;
+            $K2User = new stdClass;
 
             $K2User->description = '';
             $K2User->gender = 'n';
@@ -573,7 +573,7 @@ class plgSystemK2 extends JPlugin
             $model = K2Model::getInstance('Itemlist', 'K2Model');
             $K2User = $model->getUserProfile($user->id);
             if (!is_object($K2User)) {
-                $K2User = new Jobject;
+                $K2User = new stdClass;
                 $K2User->description = '';
                 $K2User->gender = 'n';
                 $K2User->url = '';

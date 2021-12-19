@@ -893,7 +893,7 @@ class K2ModelItemlist extends K2Model
                     JError::raiseError(404, JText::_('K2_NOT_FOUND'));
             }
 
-            $result = new JObject;
+            $result = new stdClass;
             $result->items = $items;
             $result->title = $module->title;
             $result->module = $module->module;

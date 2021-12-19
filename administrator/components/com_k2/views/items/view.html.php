@@ -203,7 +203,7 @@ class K2ViewItems extends K2View
         if ($params->get('showTagFilter')) {
             $tagsModel = K2Model::getInstance('Tags', 'K2Model');
             $options = $tagsModel->getFilter();
-            $option = new JObject();
+            $option = new stdClass;
             $option->id = 0;
             $option->name = JText::_('K2_SELECT_TAG');
             array_unshift($options, $option);

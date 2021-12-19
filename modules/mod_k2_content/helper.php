@@ -354,7 +354,7 @@ class modK2ContentHelper
                     $params->set('afolder', 'media/k2/audio');
 
                     // Create temp object to parse plugins
-                    $mediaTempText = new JObject();
+                    $mediaTempText = new stdClass;
                     $mediaTempText->text = $item->video;
                     if ($params->get('JPlugins', 1)) {
                         if (K2_JVERSION == '15') {
@@ -391,7 +391,7 @@ class modK2ContentHelper
                         foreach ($item->extra_fields as $key => $extraField) {
                             if ($extraField->type == 'textarea' || $extraField->type == 'textfield') {
                                 // Create temp object to parse plugins
-                                $extraFieldTempText = new JObject();
+                                $extraFieldTempText = new stdClass;
                                 $extraFieldTempText->text = $extraField->value;
                                 if ($params->get('JPlugins', 1)) {
                                     if (K2_JVERSION == '15') {
