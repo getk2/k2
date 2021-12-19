@@ -741,7 +741,7 @@ class K2ModelItem extends K2Model
             }
         }
 
-        $query = "UPDATE #__k2_items SET video_caption = ".$db->Quote($row->video_caption).", video_credits = ".$db->Quote($row->video_credits).", ";
+        $query = "UPDATE #__k2_items SET image_caption = ".$db->Quote($row->image_caption).", image_credits = ".$db->Quote($row->image_credits).", video_caption = ".$db->Quote($row->video_caption).", video_credits = ".$db->Quote($row->video_credits).", ";
 
         if (!is_null($row->video)) {
             $query .= " video = ".$db->Quote($row->video).", ";
