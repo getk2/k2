@@ -99,7 +99,7 @@ class Com_K2InstallerScript
             }
         }
 
-        // Cleanups
+        // File Cleanups
         if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_k2/admin.k2.php')) {
             JFile::delete(JPATH_ADMINISTRATOR.'/components/com_k2/admin.k2.php');
         }
@@ -111,6 +111,21 @@ class Com_K2InstallerScript
         $query = "DELETE FROM #__k2_users WHERE userID = 0";
         $db->setQuery($query);
         $db->query();
+
+        // User groups (set first 2 user groups)
+        $query = "SELECT COUNT(*) FROM #__k2_user_groups";
+        $db->setQuery($query);
+        $userGroupCount = $db->loadResult();
+
+        if ($userGroupCount == 0) {
+            $query = "INSERT INTO #__k2_user_groups (`id`, `name`, `permissions`) VALUES('', 'Registered', '{\"comment\":\"1\",\"frontEdit\":\"0\",\"add\":\"0\",\"editOwn\":\"0\",\"editAll\":\"0\",\"publish\":\"0\",\"editPublished\":\"0\",\"inheritance\":\"0\",\"categories\":\"all\"}')";
+            $db->setQuery($query);
+            $db->query();
+
+            $query = "INSERT INTO #__k2_user_groups (`id`, `name`, `permissions`) VALUES('', 'Site Owner', '{\"comment\":\"1\",\"frontEdit\":\"1\",\"add\":\"1\",\"editOwn\":\"1\",\"editAll\":\"1\",\"publish\":\"1\",\"editPublished\":\"1\",\"inheritance\":\"1\",\"categories\":\"all\"}')";
+            $db->setQuery($query);
+            $db->query();
+        }
 
         /*
         // TO DO: Check main folders for 0755 first and then apply this fix
@@ -311,14 +326,14 @@ class Com_K2InstallerScript
         // User groups (set first 2 user groups)
         $query = "SELECT COUNT(*) FROM #__k2_user_groups";
         $db->setQuery($query);
-        $num = $db->loadResult();
+        $userGroupCount = $db->loadResult();
 
-        if ($num == 0) {
-            $query = "INSERT INTO #__k2_user_groups (`id`, `name`, `permissions`) VALUES('', 'Registered', '{\"comment\":\"1\",\"frontEdit\":\"0\",\"add\":\"0\",\"editOwn\":\"0\",\"editAll\":\"0\",\"publish\":\"0\",\"inheritance\":0,\"categories\":\"all\"}')";
+        if ($userGroupCount == 0) {
+            $query = "INSERT INTO #__k2_user_groups (`id`, `name`, `permissions`) VALUES('', 'Registered', '{\"comment\":\"1\",\"frontEdit\":\"0\",\"add\":\"0\",\"editOwn\":\"0\",\"editAll\":\"0\",\"publish\":\"0\",\"editPublished\":\"0\",\"inheritance\":\"0\",\"categories\":\"all\"}')";
             $db->setQuery($query);
             $db->query();
 
-            $query = "INSERT INTO #__k2_user_groups (`id`, `name`, `permissions`) VALUES('', 'Site Owner', '{\"comment\":\"1\",\"frontEdit\":\"1\",\"add\":\"1\",\"editOwn\":\"1\",\"editAll\":\"1\",\"publish\":\"1\",\"inheritance\":1,\"categories\":\"all\"}')";
+            $query = "INSERT INTO #__k2_user_groups (`id`, `name`, `permissions`) VALUES('', 'Site Owner', '{\"comment\":\"1\",\"frontEdit\":\"1\",\"add\":\"1\",\"editOwn\":\"1\",\"editAll\":\"1\",\"publish\":\"1\",\"editPublished\":\"1\",\"inheritance\":\"1\",\"categories\":\"all\"}')";
             $db->setQuery($query);
             $db->query();
         }

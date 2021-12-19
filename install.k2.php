@@ -83,7 +83,7 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
         }
     }
 
-    // Cleanups
+    // File Cleanups
     if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_k2/admin.k2.php')) {
         JFile::delete(JPATH_ADMINISTRATOR.'/components/com_k2/admin.k2.php');
     }
@@ -202,13 +202,13 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
     // User groups (set first 2 user groups)
     $query = "SELECT COUNT(*) FROM #__k2_user_groups";
     $db->setQuery($query);
-    $num = $db->loadResult();
-    if ($num == 0) {
-        $query = "INSERT INTO #__k2_user_groups (`id`, `name`, `permissions`) VALUES('', 'Registered', 'frontEdit=0\nadd=0\neditOwn=0\neditAll=0\npublish=0\ncomment=1\ninheritance=0\ncategories=all\n\n')";
+    $userGroupCount = $db->loadResult();
+    if ($userGroupCount == 0) {
+        $query = "INSERT INTO #__k2_user_groups (`id`, `name`, `permissions`) VALUES('', 'Registered', 'comment=1\nfrontEdit=0\nadd=0\neditOwn=0\neditAll=0\npublish=0\neditPublished=0\ninheritance=0\ncategories=all\n\n')";
         $db->setQuery($query);
         $db->Query();
 
-        $query = "INSERT INTO #__k2_user_groups (`id`, `name`, `permissions`) VALUES('', 'Site Owner', 'frontEdit=1\nadd=1\neditOwn=1\neditAll=1\npublish=1\ncomment=1\ninheritance=1\ncategories=all\n\n')";
+        $query = "INSERT INTO #__k2_user_groups (`id`, `name`, `permissions`) VALUES('', 'Site Owner', 'comment=1\nfrontEdit=1\nadd=1\neditOwn=1\neditAll=1\npublish=1\neditPublished=1\ninheritance=1\ncategories=all\n\n')";
         $db->setQuery($query);
         $db->Query();
     }
