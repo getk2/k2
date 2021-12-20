@@ -47,7 +47,6 @@ class K2ViewUserGroup extends K2View
         require_once JPATH_ADMINISTRATOR.'/components/com_k2/models/categories.php';
         $categoriesModel = K2Model::getInstance('Categories', 'K2Model');
         $categories = $categoriesModel->categoriesTree(null, true);
-        $categories_options = @array_merge($categories_option, $categories);
         $lists['categories'] = JHTML::_('select.genericlist', $categories, 'params[categories][]', 'multiple="multiple" size="15"', 'value', 'text', $appliedCategories);
         $lists['inheritance'] = JHTML::_('select.booleanlist', 'params[inheritance]', null, $inheritance);
         $this->assignRef('lists', $lists);
