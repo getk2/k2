@@ -55,6 +55,9 @@
                     <option value="0">K2_NO_CACHING</option>
                 </field>
                 <field name="cache_time" type="text" default="" label="K2_CACHE_TIME" description="K2_THE_TIME_IN_SECONDS_BEFORE_THE_MODULE_IS_RECACHED" />
+                <field name="cachemode" type="hidden" default="static">
+                    <option value="static"></option>
+                </field>
             </fieldset>
         </fields>
     </config>
