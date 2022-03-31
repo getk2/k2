@@ -48,7 +48,7 @@ class K2ModelItemlist extends K2Model
         */
         $nullDate = $db->getNullDate();
 
-        $query = "/* Frontend */ SELECT SQL_CALC_FOUND_ROWS i.*,";
+        $query = "/* Frontend / K2 / Items */ SELECT SQL_CALC_FOUND_ROWS i.*,";
 
         if ($ordering == 'modified') {
             $query .= " CASE WHEN i.modified = 0 THEN i.created ELSE i.modified END AS lastChanged,";
