@@ -40,7 +40,7 @@ class K2ModelItems extends K2Model
         $tag = $app->getUserStateFromRequest($option.$view.'tag', 'tag', 0, 'int');
         $language = $app->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
 
-        $query = "SELECT SQL_CALC_FOUND_ROWS i.*, g.name AS groupname, c.name AS category, v.name AS author, w.name AS moderator, u.name AS editor
+        $query = "/* Backend / K2 / Items */ SELECT SQL_CALC_FOUND_ROWS i.*, g.name AS groupname, c.name AS category, v.name AS author, w.name AS moderator, u.name AS editor
             FROM #__k2_items AS i
             LEFT JOIN #__k2_categories AS c ON c.id = i.catid
             LEFT JOIN #__groups AS g ON g.id = i.access
