@@ -2,7 +2,7 @@
  * Japanese translation
  * @author Tomoaki Yoshida <info@yoshida-studio.jp>
  * @author Naoki Sawada <hypweb+elfinder@gmail.com>
- * @version 2019-07-27
+ * @version 2021-06-02
  */
 (function(root, factory) {
 	if (typeof define === 'function' && define.amd) {
@@ -116,6 +116,7 @@
 			'errServerError'       : 'サーバー側でエラーが発生しました。', // from v2.1.25 added 16.6.2017
 			'errEmpty'             : 'フォルダ"$1"を空にすることができません。', // from v2.1.25 added 22.6.2017
 			'moreErrors'           : 'さらに $1 件のエラーがあります。', // from v2.1.44 added 9.12.2018
+			'errMaxMkdirs'         : '一度に作成できるフォルダーは $1 個までです。', // from v2.1.58 added 20.6.2021
 
 			/******************************* commands names ********************************/
 			'cmdarchive'   : 'アーカイブ作成',
@@ -443,6 +444,7 @@
 			'clearBrowserData': 'ブラウザに保存された設定を初期化する', // from v2.1.26 added 28.6.2017
 			'toolbarPref'     : 'ツールバー設定', // from v2.1.27 added 2.8.2017
 			'charsLeft'       : '... 残り $1 文字',  // from v2.1.29 added 30.8.2017
+			'linesLeft'       : '... 残り $1 行',  // from v2.1.52 added 16.1.2020
 			'sum'             : '合計', // from v2.1.29 added 28.9.2017
 			'roughFileSize'   : '大まかなファイルサイズ', // from v2.1.30 added 2.11.2017
 			'autoFocusDialog' : 'マウスオーバーでダイアログの要素にフォーカスする',  // from v2.1.30 added 2.11.2017

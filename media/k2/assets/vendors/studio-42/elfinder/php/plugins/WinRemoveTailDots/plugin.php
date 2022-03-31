@@ -1,50 +1,10 @@
 <?php
-
 /**
- * elFinder Plugin Sanitizer
- * Sanitizer of file-name and file-path etc.
- * ex. binding, configure on connector options
- *    $opts = array(
- *        'bind' => array(
- *            'upload.pre mkdir.pre mkfile.pre rename.pre archive.pre ls.pre' => array(
- *                'Plugin.Sanitizer.cmdPreprocess'
- *            ),
- *            'upload.presave paste.copyfrom' => array(
- *                'Plugin.Sanitizer.onUpLoadPreSave'
- *            )
- *        ),
- *        // global configure (optional)
- *        'plugin' => array(
- *            'Sanitizer' => array(
- *                'enable' => true,
- *                'targets'  => array('\\','/',':','*','?','"','<','>','|'), // target chars
- *                'replace'  => '_', // replace to this
- *                'callBack' => null // Or @callable sanitize function
- *            )
- *        ),
- *        // each volume configure (optional)
- *        'roots' => array(
- *            array(
- *                'driver' => 'LocalFileSystem',
- *                'path'   => '/path/to/files/',
- *                'URL'    => 'http://localhost/to/files/'
- *                'plugin' => array(
- *                    'Sanitizer' => array(
- *                        'enable' => true,
- *                        'targets'  => array('\\','/',':','*','?','"','<','>','|'), // target chars
- *                        'replace'  => '_', // replace to this
- *                        'callBack' => null // Or @callable sanitize function
- *                    )
- *                )
- *            )
- *        )
- *    );
- *
- * @package elfinder
- * @author  Naoki Sawada
- * @license New BSD
+ * This class describes elFinder plugin window remove tail dots.
+ * This plugin is automatically loaded on the Windows server
+ * and enabled in the LocalFileSystem driver.
  */
-class elFinderPluginSanitizer extends elFinderPlugin
+class elFinderPluginWinRemoveTailDots extends elFinderPlugin
 {
     private $replaced = array();
     private $keyMap = array(
@@ -56,11 +16,9 @@ class elFinderPluginSanitizer extends elFinderPlugin
     public function __construct($opts)
     {
         $defaults = array(
-            'enable' => true,  // For control by volume driver
-            'targets' => array('\\', '/', ':', '*', '?', '"', '<', '>', '|'), // target chars
-            'replace' => '_',   // replace to this
-            'callBack' => null   // Or callable sanitize function
+            'enable' => false,  // For control by volume driver
         );
+
         $this->opts = array_merge($defaults, $opts);
     }
 
@@ -88,16 +46,16 @@ class elFinderPluginSanitizer extends elFinderPlugin
                             $_names = explode('/', $name);
                             $_res = array();
                             foreach ($_names as $_name) {
-                                $_res[] = $this->sanitizeFileName($_name, $opts);
+                                $_res[] = $this->normalize($_name, $opts);
                             }
                             $this->replaced[$cmd][$name] = $args[$key][$i] = join('/', $_res);
                         } else {
-                            $this->replaced[$cmd][$name] = $args[$key][$i] = $this->sanitizeFileName($name, $opts);
+                            $this->replaced[$cmd][$name] = $args[$key][$i] = $this->normalize($name, $opts);
                         }
                     }
                 } else if ($args[$key] !== '') {
                     $name = $args[$key];
-                    $this->replaced[$cmd][$name] = $args[$key] = $this->sanitizeFileName($name, $opts);
+                    $this->replaced[$cmd][$name] = $args[$key] = $this->normalize($name, $opts);
                 }
             }
         }
@@ -143,15 +101,14 @@ class elFinderPluginSanitizer extends elFinderPlugin
         if (!$opts['enable']) {
             return false;
         }
-        $name = $this->sanitizeFileName($name, $opts);
+
+        $name = $this->normalize($name, $opts);
         return true;
     }
 
-    protected function sanitizeFileName($filename, $opts)
+    protected function normalize($str, $opts)
     {
-        if (!empty($opts['callBack']) && is_callable($opts['callBack'])) {
-            return call_user_func_array($opts['callBack'], array($filename, $opts));
-        }
-        return str_replace($opts['targets'], $opts['replace'], $filename);
+        $str = rtrim($str, '.');
+        return $str;
     }
-}
+} // END class elFinderPluginWinRemoveTailDots

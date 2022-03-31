@@ -3,7 +3,7 @@
  * @author Dmitry "dio" Levashov <dio@std42.ru>
  * @author Andrew Berezovsky <andrew.berezovsky@gmail.com>
  * @author Alex Yashkin <alex@yashkin.by>
- * @version 2019-03-06
+ * @version 2022-01-02
  */
 (function(root, factory) {
 	if (typeof define === 'function' && define.amd) {
@@ -18,9 +18,9 @@
 		translator : 'Dmitry "dio" Levashov &lt;dio@std42.ru&gt;, Andrew Berezovsky &lt;andrew.berezovsky@gmail.com&gt;, Alex Yashkin &lt;alex@yashkin.by&gt;',
 		language   : 'Русский язык',
 		direction  : 'ltr',
-		dateFormat : 'd M Y H:i', // will show like: 06 Мар 2019 16:56
-		fancyDateFormat : '$1 H:i', // will show like: Сегодня 16:56
-		nonameDateFormat : 'ymd-His', // noname upload will show like: 190306-165630
+		dateFormat : 'd M Y H:i', // will show like: 02 Янв 2022 19:53
+		fancyDateFormat : '$1 H:i', // will show like: Сегодня 19:53
+		nonameDateFormat : 'ymd-His', // noname upload will show like: 220102-195313
 		messages   : {
 
 			/********************************** errors **********************************/
@@ -117,6 +117,7 @@
 			'errServerError'       : 'Возникла ошибка на стороне сервера.', // from v2.1.25 added 16.6.2017
 			'errEmpty'             : 'Невозможно очистить папку "$1".', // from v2.1.25 added 22.6.2017
 			'moreErrors'           : 'Еще ошибок: $1', // from v2.1.44 added 9.12.2018
+			'errMaxMkdirs'         : 'Вы можете создать за один раз папок: $1.', // from v2.1.58 added 20.6.2021
 
 			/******************************* commands names ********************************/
 			'cmdarchive'   : 'Создать архив',
@@ -304,6 +305,7 @@
 			'confirmNonUTF8'  : 'Невозможно определить кодировку файла. Необходима предварительная конвертация файла в UTF-8 для дальнейшего редактирования.<br/>Выберите кодировку файла.', // from v2.1.19 added 28.11.2016
 			'confirmNotSave'  : 'Произошли изменения.<br/>Если не сохраните изменения, то потеряете их.', // from v2.1 added 15.7.2015
 			'confirmTrash'    : 'Вы уверены, что хотите переместить файлы в корзину?', //from v2.1.24 added 29.4.2017
+			'confirmMove'     : 'Вы уверены, что хотите переместить файлы в "$1"?', //from v2.1.50 added 27.7.2019
 			'apllyAll'        : 'Применить для всех',
 			'name'            : 'Имя',
 			'size'            : 'Размер',
@@ -443,6 +445,7 @@
 			'clearBrowserData': 'Сбросить настройки для этого браузера', // from v2.1.26 added 28.6.2017
 			'toolbarPref'     : 'Настройки панели', // from v2.1.27 added 2.8.2017
 			'charsLeft'       : '... еще символов: $1.',  // from v2.1.29 added 30.8.2017
+			'linesLeft'       : '... еще строк: $1.',  // from v2.1.52 added 16.1.2020
 			'sum'             : 'Общий размер', // from v2.1.29 added 28.9.2017
 			'roughFileSize'   : 'Приблизительный размер файла', // from v2.1.30 added 2.11.2017
 			'autoFocusDialog' : 'Фокус на элементе диалога при наведении мыши',  // from v2.1.30 added 2.11.2017

@@ -1,9 +1,9 @@
 /**
- * française translation
+ * Traduction canadienne française (identique à la traduction française)
  * @author Régis Guyomarch <regisg@gmail.com>
  * @author Benoit Delachaux <benorde33@gmail.com>
  * @author Jonathan Grunder <jonathan.grunder@gmail.com>
- * @version 2019-06-11
+ * @version 2019-10-15
  */
 (function(root, factory) {
 	if (typeof define === 'function' && define.amd) {
@@ -14,13 +14,13 @@
 		factory(root.elFinder);
 	}
 }(this, function(elFinder) {
-	elFinder.prototype.i18.fr = {
+	elFinder.prototype.i18.fr_CA = {
 		translator : 'Régis Guyomarch &lt;regisg@gmail.com&gt;, Benoit Delachaux &lt;benorde33@gmail.com&gt;, Jonathan Grunder &lt;jonathan.grunder@gmail.com&gt;',
 		language   : 'française',
 		direction  : 'ltr',
-		dateFormat : 'd/M/Y H:i', // will show like: 11/Jun/2019 19:33
-		fancyDateFormat : '$1 H:i', // will show like: Aujourd'hui 19:33
-		nonameDateFormat : 'ymd-His', // noname upload will show like: 190611-193346
+		dateFormat : 'd/M/Y H:i', // will show like: 15/Oct/2019 14:47
+		fancyDateFormat : '$1 H:i', // will show like: Aujourd'hui 14:47
+		nonameDateFormat : 'ymd-His', // noname upload will show like: 191015-144704
 		messages   : {
 
 			/********************************** errors **********************************/
@@ -184,7 +184,7 @@
 			'btnAll'    : 'Tous',       // from v2.1 added 22.5.2015
 			'btnMime'   : 'Type MIME', // from v2.1 added 22.5.2015
 			'btnFileName':'Nom du fichier',  // from v2.1 added 22.5.2015
-			'btnSaveClose': 'Sauvegarder & Fermer', // from v2.1 added 12.6.2015
+			'btnSaveClose': 'Enregistrer & Ferme', // from v2.1 added 12.6.2015
 			'btnBackup' : 'Sauvegarde', // fromv2.1 added 28.11.2015
 			'btnRename'    : 'Renommer',      // from v2.1.24 added 6.4.2017
 			'btnRenameAll' : 'Renommer (tous)', // from v2.1.24 added 6.4.2017
@@ -254,7 +254,7 @@
 			'April'       : 'Avril',
 			'May'         : 'Mai',
 			'June'        : 'Juin',
-			'July'        : 'Juillet',
+			'July'        : 'Huillet',
 			'August'      : 'Août',
 			'September'   : 'Septembre',
 			'October'     : 'Octobre',
@@ -304,6 +304,7 @@
 			'confirmNonUTF8'  : 'Impossible de détecter l\'encodage de ce fichier. Pour être modifié, il doit être temporairement convertit en UTF-8.<br/>Veuillez s\'il vous plaît sélectionner un encodage pour ce fichier.', // from v2.1.19 added 28.11.2016
 			'confirmNotSave'  : 'Ce fichier a été modifié.<br/>Les données seront perdues si les changements ne sont pas sauvegardés.', // from v2.1 added 15.7.2015
 			'confirmTrash'    : 'Êtes-vous certain de vouloir déplacer les éléments vers la corbeille?', //from v2.1.24 added 29.4.2017
+			'confirmMove'     : 'Are you sure you want to move items to "$1"?', //from v2.1.50 added 27.7.2019
 			'apllyAll'        : 'Appliquer à tous',
 			'name'            : 'Nom',
 			'size'            : 'Taille',
@@ -348,8 +349,8 @@
 			'homepage'        : 'Page du projet',
 			'docs'            : 'Documentation',
 			'github'          : 'Forkez-nous sur Github',
-			'twitter'         : 'Suivez nous sur Twitter',
-			'facebook'        : 'Joignez-nous sur Facebook',
+			'twitter'         : 'Suivez nous sur twitter',
+			'facebook'        : 'Joignez-nous facebook',
 			'team'            : 'Équipe',
 			'chiefdev'        : 'Développeur en chef',
 			'developer'       : 'Développeur',
@@ -425,7 +426,7 @@
 			'8pxgrid'         : 'Grille 8px', // from v2.1.16 added 4.10.2016
 			'enabled'         : 'Actif', // from v2.1.16 added 4.10.2016
 			'disabled'        : 'Inactif', // from v2.1.16 added 4.10.2016
-			'emptyIncSearch'  : 'Aucun résultat trouvé.\\Appuyez sur [Entrée] pour développer la cible de recherche.', // from v2.1.16 added 5.10.2016
+			'emptyIncSearch'  : 'Aucun résultat trouvé.\\AAppuyez sur [Entrée] pour développer la cible de recherche.', // from v2.1.16 added 5.10.2016
 			'emptyLetSearch'  : 'Aucun résultat trouvé pour la recherche par première lettre.', // from v2.1.23 added 24.3.2017
 			'textLabel'       : 'Label texte', // from v2.1.17 added 13.10.2016
 			'minsLeft'        : '$1 mins restantes', // from v2.1.17 added 13.11.2016
@@ -438,7 +439,7 @@
 			'TextArea'        : 'Zone de texte', // from v2.1.25 added 14.6.2017
 			'folderToEmpty'   : 'Vider le dossier "$1".', // from v2.1.25 added 22.6.2017
 			'filderIsEmpty'   : 'Il n\'y a pas d\'élément dans le dossier "$1".', // from v2.1.25 added 22.6.2017
-			'preference'      : 'Préférences', // from v2.1.26 added 28.6.2017
+			'preference'      : 'Préférence', // from v2.1.26 added 28.6.2017
 			'language'        : 'Configuration de langue', // from v2.1.26 added 28.6.2017
 			'clearBrowserData': 'Initialisation des configurations sauvegardées dans ce navigateur', // from v2.1.26 added 28.6.2017
 			'toolbarPref'     : 'Paramètres de la barre d\'outils', // from v2.1.27 added 2.8.2017
@@ -576,3 +577,4 @@
 		}
 	};
 }));
+
