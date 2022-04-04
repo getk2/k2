@@ -13,10 +13,10 @@ defined('_JEXEC') or die;
 ?>
 
 <!-- K2 user register form -->
-<?php if(isset($this->message)) $this->display('message'); ?>
+<?php if (isset($this->message)) $this->display('message'); ?>
 
 <form action="<?php echo version_compare(JVERSION, '3.0', 'ge') ? JRoute::_('index.php?option=com_users&task=registration.register') : JURI::root(true).'/index.php'; ?>" enctype="multipart/form-data" method="post" id="josForm" name="josForm" class="form-validate">
-    <?php if($this->params->def('show_page_title',1)): ?>
+    <?php if ($this->params->def('show_page_title',1)): ?>
     <div class="componentheading<?php echo $this->escape($this->params->get('pageclass_sfx')); ?>">
         <?php echo $this->escape($this->params->get('page_title')); ?>
     </div>
@@ -55,7 +55,7 @@ defined('_JEXEC') or die;
                     *
                 </td>
             </tr>
-            <?php if(version_compare(JVERSION, '1.6', 'ge')): ?>
+            <?php if (version_compare(JVERSION, '1.6', 'ge')): ?>
             <tr>
                 <td class="key">
                     <label id="email2msg" for="email2"><?php echo JText::_('K2_CONFIRM_EMAIL'); ?></label>
@@ -103,7 +103,11 @@ defined('_JEXEC') or die;
                     <label id="descriptionmsg" for="description"><?php echo JText::_('K2_DESCRIPTION'); ?></label>
                 </td>
                 <td>
+                    <?php if ($this->K2Params->get('K2ProfileEditor')): ?>
                     <?php echo $this->editor; ?>
+                    <?php else: ?>
+                    <textarea id="description" class="k2-plain-text-editor" name="description"></textarea>
+                    <?php endif; ?>
                 </td>
             </tr>
             <tr>
@@ -127,7 +131,7 @@ defined('_JEXEC') or die;
                     <input type="text" size="50" value="<?php echo $this->K2User->url; ?>" name="url" id="url" />
                 </td>
             </tr>
-            <?php if(count(array_filter($this->K2Plugins))): ?>
+            <?php if (count(array_filter($this->K2Plugins))): ?>
             <!-- K2 Plugin attached fields -->
             <tr>
                 <th colspan="2" class="k2ProfileHeading">
@@ -135,7 +139,7 @@ defined('_JEXEC') or die;
                 </th>
             </tr>
             <?php foreach ($this->K2Plugins as $K2Plugin): ?>
-            <?php if(!is_null($K2Plugin)): ?>
+            <?php if (!is_null($K2Plugin)): ?>
             <tr>
                 <td colspan="2">
                     <?php echo $K2Plugin->fields; ?>
@@ -146,9 +150,9 @@ defined('_JEXEC') or die;
             <?php endif; ?>
 
             <!-- Joomla 3.x JForm implementation -->
-            <?php if(isset($this->form)): ?>
+            <?php if (isset($this->form)): ?>
             <?php foreach ($this->form->getFieldsets() as $fieldset): // Iterate through the form fieldsets and display each one.?>
-            <?php if($fieldset->name != 'default'): ?>
+            <?php if ($fieldset->name != 'default'): ?>
             <?php $fields = $this->form->getFieldset($fieldset->name); ?>
             <?php if (isset($fields) && count($fields)): ?>
             <?php if (isset($fieldset->label)): // If the fieldset has a label set, display it as the legend.?>
@@ -158,7 +162,7 @@ defined('_JEXEC') or die;
                 </th>
             </tr>
             <?php endif;?>
-            <?php foreach($fields as $field): // Iterate through the fields in the set and display them.?>
+            <?php foreach ($fields as $field): // Iterate through the fields in the set and display them.?>
             <?php if ($field->hidden): // If the field is hidden, just display the input.?>
             <tr>
                 <td colspan="2"><?php echo $field->input;?></td>
@@ -181,7 +185,7 @@ defined('_JEXEC') or die;
             <?php endif; ?>
         </table>
 
-        <?php if($this->K2Params->get('recaptchaOnRegistration') && $this->K2Params->get('recaptcha_public_key')): ?>
+        <?php if ($this->K2Params->get('recaptchaOnRegistration') && $this->K2Params->get('recaptcha_public_key')): ?>
         <div id="recaptcha" class="<?php echo $this->recaptchaClass; ?>"></div>
         <?php endif; ?>
 

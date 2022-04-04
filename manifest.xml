@@ -169,6 +169,7 @@
         <param name="itemImageXL" default="900" />
         <param name="itemImageXS" default="100" />
         <param name="jQueryHandling" default="1.9.1" />
+        <param name="K2ProfileEditor" default="0" />
         <param name="k2Sef" default="0" />
         <param name="k2SefCatIdTitleAliasSep" default="dash" />
         <param name="k2SefInsertCatId" default="0" />

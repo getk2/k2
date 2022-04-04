@@ -176,6 +176,7 @@
                 <field name="itemImageXL" default="900" />
                 <field name="itemImageXS" default="100" />
                 <field name="jQueryHandling" default="1.9.1" />
+                <field name="K2ProfileEditor" default="0" />
                 <field name="k2Sef" default="0" />
                 <field name="k2SefCatIdTitleAliasSep" default="dash" />
                 <field name="k2SefInsertCatId" default="0" />
