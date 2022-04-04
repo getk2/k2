@@ -45,7 +45,8 @@ class K2ViewComments extends K2View
             $document->addScriptDeclaration('
                 function onK2RecaptchaLoaded() {
                     grecaptcha.render("recaptcha", {
-                        "sitekey": "'.$item->params->get('recaptcha_public_key').'"
+                        "sitekey": "'.$item->params->get('recaptcha_public_key').'",
+                        "theme": "'.$item->params->get('recaptcha_theme', 'light').'"
                     });
                 }
             ');

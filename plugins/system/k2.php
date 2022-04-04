@@ -433,7 +433,10 @@ class plgSystemK2 extends JPlugin
                 $document->addScript('https://www.google.com/recaptcha/api.js?onload=onK2RecaptchaLoaded&render=explicit');
                 $document->addScriptDeclaration('
                 function onK2RecaptchaLoaded() {
-                    grecaptcha.render("recaptcha", {"sitekey": "'.$params->get('recaptcha_public_key').'"});
+                    grecaptcha.render("recaptcha", {
+                        "sitekey": "'.$params->get('recaptcha_public_key').'",
+                        "theme": "'.$params->get('recaptcha_theme', 'light').'"
+                    });
                 }
                 ');
                 $recaptchaClass = 'k2-recaptcha-v2';
@@ -485,7 +488,7 @@ class plgSystemK2 extends JPlugin
             $view->assignRef('lists', $lists);
             $view->assignRef('K2Params', $params);
             $view->assignRef('recaptchaClass', $recaptchaClass);
-            
+
             // B/C code for reCAPTCHA
             $view->assignRef('recaptchaV2', true);
 

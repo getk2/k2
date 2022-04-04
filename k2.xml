@@ -203,7 +203,7 @@
                 <field name="profilePageDisplay" default="" />
                 <field name="recaptcha_private_key" default="" />
                 <field name="recaptcha_public_key" default="" />
-                <field name="recaptcha_theme" default="" />
+                <field name="recaptcha_theme" default="light" />
                 <field name="recaptcha" default="0" />
                 <field name="recaptchaForRegistered" default="1" />
                 <field name="recaptchaOnRegistration" default="0" />
