@@ -426,6 +426,10 @@ class plgSystemK2 extends JPlugin
 
         // Extend user forms with K2 fields
         if (($option == 'com_user' && $view == 'register') || ($option == 'com_users' && $view == 'registration')) {
+
+            // B/C code for reCAPTCHA
+            $params->set('recaptchaV2', true);
+
             if ($params->get('recaptchaOnRegistration') && $params->get('recaptcha_public_key')) {
                 if (K2_JVERSION != '30') {
                     $document->addScript(JURI::root(true).'/media/k2/assets/js/k2.rc.patch.js?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
@@ -488,9 +492,6 @@ class plgSystemK2 extends JPlugin
             $view->assignRef('lists', $lists);
             $view->assignRef('K2Params', $params);
             $view->assignRef('recaptchaClass', $recaptchaClass);
-
-            // B/C code for reCAPTCHA
-            $view->assignRef('recaptchaV2', true);
 
             $K2Plugins = $dispatcher->trigger('onRenderAdminForm', array(
                 &$K2User,
