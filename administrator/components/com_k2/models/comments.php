@@ -416,29 +416,12 @@ class K2ModelComments extends K2Model {
             return false;
         }
     	if (($params->get('antispam') == 'recaptcha' || $params->get('antispam') == 'both') && $user->guest) {
-
-				if($params->get('recaptchaV2'))
-				{
-					require_once JPATH_SITE.'/components/com_k2/helpers/utilities.php';
-					if (!K2HelperUtilities::verifyRecaptcha())
-					{
-						$this->setError(JText::_('K2_COULD_NOT_VERIFY_THAT_YOU_ARE_NOT_A_ROBOT'));
-						return false;
-					}
-				}
-				else
-				{
-					if(!function_exists('_recaptcha_qsencode'))
-					{
-						require_once(JPATH_SITE.'/media/k2/assets/vendors/google/recaptcha_legacy/recaptcha.php');
-					}
-					$privatekey = $params->get('recaptcha_private_key');
-					$resp = recaptcha_check_answer($privatekey, $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
-					if (!$resp->is_valid) {
-						$this->setError(JText::_('K2_THE_WORDS_YOU_TYPED_DID_NOT_MATCH_THE_ONES_DISPLAYED_PLEASE_TRY_AGAIN'));
-						return false;
-					}
-				}
+			require_once JPATH_SITE.'/components/com_k2/helpers/utilities.php';
+			if (!K2HelperUtilities::verifyRecaptcha())
+			{
+				$this->setError(JText::_('K2_COULD_NOT_VERIFY_THAT_YOU_ARE_NOT_A_ROBOT'));
+				return false;
+			}
 		}
 
 		$app = JFactory::getApplication();

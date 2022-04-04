@@ -69,10 +69,12 @@ span.siteRoot {display:none;}
 .largerFontSize {font-size:150%;line-height:140%;}
 
 /* --- ReCaptcha --- */
+/*
 .recaptchatable .recaptcha_image_cell,
 #recaptcha_table {background-color:#fff !important;}
 #recaptcha_table {border-color:#ccc !important;}
 #recaptcha_response_field {border-color:#ccc !important;background-color:#fff !important;}
+*/
 .k2-recaptcha-v2 {margin-top:12px;}
 
 /* --- Icon Font Support --- */

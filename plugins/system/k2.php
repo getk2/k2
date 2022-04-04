@@ -427,32 +427,16 @@ class plgSystemK2 extends JPlugin
         // Extend user forms with K2 fields
         if (($option == 'com_user' && $view == 'register') || ($option == 'com_users' && $view == 'registration')) {
             if ($params->get('recaptchaOnRegistration') && $params->get('recaptcha_public_key')) {
-                if ($params->get('recaptchaV2')) {
-                    if (K2_JVERSION != '30') {
-                        $document->addScript(JURI::root(true).'/media/k2/assets/js/k2.rc.patch.js?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
-                    }
-                    $document->addScript('https://www.google.com/recaptcha/api.js?onload=onK2RecaptchaLoaded&render=explicit');
-                    $document->addScriptDeclaration('
-                    /* K2 - Google reCAPTCHA */
-                    function onK2RecaptchaLoaded(){
-                        grecaptcha.render("recaptcha", {"sitekey": "'.$params->get('recaptcha_public_key').'"});
-                    }
-                    ');
-                    $recaptchaClass = 'k2-recaptcha-v2';
-                } else {
-                    $document->addScript('https://www.google.com/recaptcha/api/js/recaptcha_ajax.js');
-                    $document->addScriptDeclaration('
-                        function showRecaptcha(){
-                            Recaptcha.create("'.$params->get('recaptcha_public_key').'", "recaptcha", {
-                                theme: "'.$params->get('recaptcha_theme', 'clean').'"
-                            });
-                        }
-                        $K2(document).ready(function() {
-                            showRecaptcha();
-                        });
-                    ');
-                    $recaptchaClass = 'k2-recaptcha-v1';
+                if (K2_JVERSION != '30') {
+                    $document->addScript(JURI::root(true).'/media/k2/assets/js/k2.rc.patch.js?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
                 }
+                $document->addScript('https://www.google.com/recaptcha/api.js?onload=onK2RecaptchaLoaded&render=explicit');
+                $document->addScriptDeclaration('
+                function onK2RecaptchaLoaded() {
+                    grecaptcha.render("recaptcha", {"sitekey": "'.$params->get('recaptcha_public_key').'"});
+                }
+                ');
+                $recaptchaClass = 'k2-recaptcha-v2';
             }
 
             if (!$user->guest) {
@@ -501,6 +485,9 @@ class plgSystemK2 extends JPlugin
             $view->assignRef('lists', $lists);
             $view->assignRef('K2Params', $params);
             $view->assignRef('recaptchaClass', $recaptchaClass);
+            
+            // B/C code for reCAPTCHA
+            $view->assignRef('recaptchaV2', true);
 
             $K2Plugins = $dispatcher->trigger('onRenderAdminForm', array(
                 &$K2User,

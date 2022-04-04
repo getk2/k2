@@ -1227,7 +1227,10 @@ function initExtraFieldsEditor() {
             }).panelInstance(id);
             // Properly resize nicEdit
             $K2('.nicEdit-panelContain').parent().css('width', 'calc(90% + 12px)');
-            $K2('.nicEdit-panelContain').parent().next().css({'width': 'calc(90% + 12px)', 'min-height': '200px'});
+            $K2('.nicEdit-panelContain').parent().next().css({
+                'width': 'calc(90% + 12px)',
+                'min-height': '200px'
+            });
             $K2('.nicEdit-main').css('width', 'calc(90% + 12px)');
         }
     });

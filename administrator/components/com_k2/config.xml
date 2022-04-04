@@ -447,16 +447,10 @@
         <param menu="hide" name="" type="header" default="K2_ANTI_SPAM_SETTINGS" label="" description=""/>
         <param menu="hide" name="recaptcha_public_key" type="text" default="" size="40" label="K2_RECAPTCHA_PUBLIC_KEY" description="K2_RECAPTCHA_KEY_DESC"/>
         <param menu="hide" name="recaptcha_private_key" type="password" default="" size="40" label="K2_RECAPTCHA_PRIVATE_KEY" description="K2_RECAPTCHA_KEY_DESC"/>
-        <param menu="hide" name="recaptcha_theme" type="list" default="clean" label="K2_RECAPTCHA_THEME" description="K2_SELECT_THE_RECAPTCHA_THEME">
-            <option value="red">K2_RED</option>
-            <option value="white">K2_WHITE</option>
-            <option value="blackglass">K2_BLACKGLASS</option>
-            <option value="clean">K2_CLEAN</option>
-            <option value="custom">K2_CUSTOM</option>
-        </param>
-        <param menu="hide" name="recaptchaV2" type="radio" default="1" label="K2_RECAPTCHA_VERSION_2">
-            <option value="0">K2_NO</option>
-            <option value="1">K2_YES</option>
+        <param menu="hide" name="recaptcha_theme" type="list" default="" label="K2_RECAPTCHA_THEME" description="K2_SELECT_THE_RECAPTCHA_THEME">
+            <option value="">K2_RC_DEFAULT_THEME</option>
+            <option value="light">K2_RC_LIGHT_THEME</option>
+            <option value="dark">K2_RC_DARK_THEME</option>
         </param>
         <param menu="hide" name="recaptchaOnRegistration" type="radio" default="0" label="K2_ENABLE_RECAPTCHA_ON_REGISTRATION_FORM" description="K2_ENABLE_RECAPTCHA_ON_REGISTRATION_FORM_DESC">
             <option value="0">K2_NO</option>
@@ -1037,16 +1031,10 @@
         <field menu="hide" name="" type="header" default="K2_ANTI_SPAM_SETTINGS" label="" description=""/>
         <field menu="hide" name="recaptcha_public_key" type="text" default="" size="40" label="K2_RECAPTCHA_PUBLIC_KEY" description="K2_RECAPTCHA_KEY_DESC"/>
         <field menu="hide" name="recaptcha_private_key" type="password" default="" size="40" label="K2_RECAPTCHA_PRIVATE_KEY" description="K2_RECAPTCHA_KEY_DESC"/>
-        <field menu="hide" name="recaptcha_theme" type="list" default="clean" label="K2_RECAPTCHA_THEME" description="K2_SELECT_THE_RECAPTCHA_THEME">
-            <option value="red">K2_RED</option>
-            <option value="white">K2_WHITE</option>
-            <option value="blackglass">K2_BLACKGLASS</option>
-            <option value="clean">K2_CLEAN</option>
-            <option value="custom">K2_CUSTOM</option>
-        </field>
-        <field menu="hide" name="recaptchaV2" type="radio" default="1" label="K2_RECAPTCHA_VERSION_2">
-            <option value="0">K2_NO</option>
-            <option value="1">K2_YES</option>
+        <field menu="hide" name="recaptcha_theme" type="list" default="" label="K2_RECAPTCHA_THEME" description="K2_SELECT_THE_RECAPTCHA_THEME">
+            <option value="">K2_RC_DEFAULT_THEME</option>
+            <option value="light">K2_RC_LIGHT_THEME</option>
+            <option value="dark">K2_RC_DARK_THEME</option>
         </field>
         <field menu="hide" name="recaptchaOnRegistration" type="radio" default="0" label="K2_ENABLE_RECAPTCHA_ON_REGISTRATION_FORM" description="K2_ENABLE_RECAPTCHA_ON_REGISTRATION_FORM_DESC">
             <option value="0">K2_NO</option>

@@ -196,7 +196,7 @@
         <param name="profilePageDisplay" default="" />
         <param name="recaptcha_private_key" default="" />
         <param name="recaptcha_public_key" default="" />
-        <param name="recaptcha_theme" default="clean" />
+        <param name="recaptcha_theme" default="" />
         <param name="recaptcha" default="0" />
         <param name="recaptchaForRegistered" default="1" />
         <param name="recaptchaOnRegistration" default="0" />

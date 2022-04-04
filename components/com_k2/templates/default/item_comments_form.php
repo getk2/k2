@@ -39,9 +39,6 @@ defined('_JEXEC') or die;
     <input class="inputbox" type="text" name="commentURL" id="commentURL" value="<?php echo JText::_('K2_ENTER_YOUR_SITE_URL'); ?>" onblur="if(this.value=='') this.value='<?php echo JText::_('K2_ENTER_YOUR_SITE_URL'); ?>';" onfocus="if(this.value=='<?php echo JText::_('K2_ENTER_YOUR_SITE_URL'); ?>') this.value='';" />
 
     <?php if($this->params->get('recaptcha') && ($this->user->guest || $this->params->get('recaptchaForRegistered', 1))): ?>
-    <?php if(!$this->params->get('recaptchaV2')): ?>
-    <label class="formRecaptcha"><?php echo JText::_('K2_ENTER_THE_TWO_WORDS_YOU_SEE_BELOW'); ?></label>
-    <?php endif; ?>
     <div id="recaptcha" class="<?php echo $this->recaptchaClass; ?>"></div>
     <?php endif; ?>
 

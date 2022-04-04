@@ -201,34 +201,15 @@ class plgUserK2 extends JPlugin
         $params = JComponentHelper::getParams('com_k2');
         $session = JFactory::getSession();
         if ($params->get('K2UserProfile') && $isNew && $params->get('recaptchaOnRegistration') && $app->isSite() && !$session->get('socialConnectData')) {
-            if ($params->get('recaptchaV2')) {
-                require_once JPATH_SITE.'/components/com_k2/helpers/utilities.php';
-                if (!K2HelperUtilities::verifyRecaptcha()) {
-                    if (K2_JVERSION != '15') {
-                        $url = 'index.php?option=com_users&view=registration';
-                    } else {
-                        $url = 'index.php?option=com_user&view=register';
-                    }
-                    $app->enqueueMessage(JText::_('K2_COULD_NOT_VERIFY_THAT_YOU_ARE_NOT_A_ROBOT'), 'error');
-                    $app->redirect($url);
+            require_once JPATH_SITE.'/components/com_k2/helpers/utilities.php';
+            if (!K2HelperUtilities::verifyRecaptcha()) {
+                if (K2_JVERSION != '15') {
+                    $url = 'index.php?option=com_users&view=registration';
+                } else {
+                    $url = 'index.php?option=com_user&view=register';
                 }
-            } else {
-                if (!function_exists('_recaptcha_qsencode')) {
-                    require_once(JPATH_SITE.'/media/k2/assets/vendors/google/recaptcha_legacy/recaptcha.php');
-                }
-                $privatekey = $params->get('recaptcha_private_key');
-                $recaptcha_challenge_field = isset($_POST["recaptcha_challenge_field"]) ? $_POST["recaptcha_challenge_field"] : '';
-                $recaptcha_response_field = isset($_POST["recaptcha_response_field"]) ? $_POST["recaptcha_response_field"] : '';
-                $resp = recaptcha_check_answer($privatekey, $_SERVER["REMOTE_ADDR"], $recaptcha_challenge_field, $recaptcha_response_field);
-                if (!$resp->is_valid) {
-                    if (K2_JVERSION != '15') {
-                        $url = 'index.php?option=com_users&view=registration';
-                    } else {
-                        $url = 'index.php?option=com_user&view=register';
-                    }
-                    $app->enqueueMessage(JText::_('K2_THE_WORDS_YOU_TYPED_DID_NOT_MATCH_THE_ONES_DISPLAYED_PLEASE_TRY_AGAIN'), 'error');
-                    $app->redirect($url);
-                }
+                $app->enqueueMessage(JText::_('K2_COULD_NOT_VERIFY_THAT_YOU_ARE_NOT_A_ROBOT'), 'error');
+                $app->redirect($url);
             }
         }
     }

@@ -1,5 +1,5 @@
 /*
- * Patch for Recaptcha with Mootools 1.2 Compatibility Layer
+ * Patch for reCAPTCHA with Mootools 1.2 Compatibility Layer
  *
  * @author James Sleeman <james@gogo.co.nz>
  * @see https://github.com/google/recaptcha/issues/374
