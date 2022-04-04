@@ -140,14 +140,6 @@ defined('_JEXEC') or die;
             </a>
         </div>
     </div>
-    <div class="icon-wrapper">
-        <div class="icon">
-            <a data-k2-modal="iframe" href="https://joomlareader.com/" title="<?php echo JText::_('K2_JOOMLA_NEWS_FROM_AROUND_THE_WORLD'); ?>">
-                <i class="dashicon joomlareader"></i>
-                <span><?php echo JText::_('K2_JOOMLAREADER'); ?></span>
-            </a>
-        </div>
-    </div>
     <?php endif; ?>
     <div style="clear: both;"></div>
 </div>
