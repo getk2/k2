@@ -447,7 +447,7 @@
         <param menu="hide" name="" type="header" default="K2_ANTI_SPAM_SETTINGS" label="" description=""/>
         <param menu="hide" name="recaptcha_public_key" type="text" default="" size="40" label="K2_RECAPTCHA_PUBLIC_KEY" description="K2_RECAPTCHA_KEY_DESC"/>
         <param menu="hide" name="recaptcha_private_key" type="password" default="" size="40" label="K2_RECAPTCHA_PRIVATE_KEY" description="K2_RECAPTCHA_KEY_DESC"/>
-        <param menu="hide" name="recaptcha_theme" type="list" default="light" label="K2_RECAPTCHA_THEME" description="K2_SELECT_THE_RECAPTCHA_THEME">
+        <param menu="hide" name="recaptcha_theme" type="list" default="light" label="K2_RECAPTCHA_THEME" description="">
             <option value="light">K2_RC_LIGHT_THEME</option>
             <option value="dark">K2_RC_DARK_THEME</option>
         </param>
@@ -1030,7 +1030,7 @@
         <field menu="hide" name="" type="header" default="K2_ANTI_SPAM_SETTINGS" label="" description=""/>
         <field menu="hide" name="recaptcha_public_key" type="text" default="" size="40" label="K2_RECAPTCHA_PUBLIC_KEY" description="K2_RECAPTCHA_KEY_DESC"/>
         <field menu="hide" name="recaptcha_private_key" type="password" default="" size="40" label="K2_RECAPTCHA_PRIVATE_KEY" description="K2_RECAPTCHA_KEY_DESC"/>
-        <field menu="hide" name="recaptcha_theme" type="list" default="light" label="K2_RECAPTCHA_THEME" description="K2_SELECT_THE_RECAPTCHA_THEME">
+        <field menu="hide" name="recaptcha_theme" type="list" default="light" label="K2_RECAPTCHA_THEME" description="">
             <option value="light">K2_RC_LIGHT_THEME</option>
             <option value="dark">K2_RC_DARK_THEME</option>
         </field>
