@@ -2,7 +2,7 @@
 <extension version="2.5" type="plugin" group="finder" method="upgrade">
     <name>plg_finder_k2</name>
     <author>JoomlaWorks</author>
-    <creationDate>March 31st, 2022</creationDate>
+    <creationDate>April 4th, 2022</creationDate>
     <copyright>Copyright (c) 2006 - 2022 JoomlaWorks Ltd. All rights reserved.</copyright>
     <license>https://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>

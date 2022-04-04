@@ -2,7 +2,7 @@
 <install type="module" client="site" version="1.5" method="upgrade">
     <name>K2 User</name>
     <author>JoomlaWorks</author>
-    <creationDate>March 31st, 2022</creationDate>
+    <creationDate>April 4th, 2022</creationDate>
     <copyright>Copyright (c) 2006 - 2022 JoomlaWorks Ltd. All rights reserved.</copyright>
     <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
     <authorUrl>www.joomlaworks.net</authorUrl>
