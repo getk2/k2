@@ -27,7 +27,7 @@ class plgSystemK2 extends JPlugin
 
         // Define K2 version & build here
         define('K2_CURRENT_VERSION', '2.11.0');
-        define('K2_BUILD_ID', '20220404');
+        define('K2_BUILD_ID', '20220405');
         define('K2_BUILD', '<br />[Dev Build '.K2_BUILD_ID.']'); // Use '' for stable or "<br />[Dev Build '.K2_BUILD_ID.']" for the developer build
 
         // Define the DS constant (for backwards compatibility with old template overrides & 3rd party K2 extensions)
@@ -429,7 +429,6 @@ class plgSystemK2 extends JPlugin
 
         // Extend user forms with K2 fields
         if (($option == 'com_user' && $view == 'register') || ($option == 'com_users' && $view == 'registration')) {
-
             if ($params->get('recaptchaOnRegistration') && $params->get('recaptcha_public_key')) {
                 if (K2_JVERSION != '30') {
                     $document->addScript(JURI::root(true).'/media/k2/assets/js/k2.rc.patch.js?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
