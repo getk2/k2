@@ -424,11 +424,11 @@ class plgSystemK2 extends JPlugin
             }
         }
 
+        // B/C code for reCAPTCHA
+        $params->set('recaptchaV2', true);
+
         // Extend user forms with K2 fields
         if (($option == 'com_user' && $view == 'register') || ($option == 'com_users' && $view == 'registration')) {
-
-            // B/C code for reCAPTCHA
-            $params->set('recaptchaV2', true);
 
             if ($params->get('recaptchaOnRegistration') && $params->get('recaptcha_public_key')) {
                 if (K2_JVERSION != '30') {
