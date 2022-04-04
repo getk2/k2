@@ -479,8 +479,12 @@ class plgSystemK2 extends JPlugin
             $K2User->url = '';
             $K2User->plugins = '';
 
-            $wysiwyg = JFactory::getEditor();
-            $editor = $wysiwyg->display('description', $K2User->description, '100%', '250px', '', '', false);
+            if ($params->get('K2ProfileEditor')) {
+                $wysiwyg = JFactory::getEditor();
+                $editor = $wysiwyg->display('description', $K2User->description, '100%', '250px', '', '', false);
+            } else {
+                $editor = '<textarea id="description" class="k2-plain-text-editor" name="description"></textarea>';
+            }
             $view->assignRef('editor', $editor);
 
             $lists = array();
@@ -576,8 +580,13 @@ class plgSystemK2 extends JPlugin
                     'plugins'
                 ));
             }
-            $wysiwyg = JFactory::getEditor();
-            $editor = $wysiwyg->display('description', $K2User->description, '100%', '250px', '', '', false);
+
+            if ($params->get('K2ProfileEditor')) {
+                $wysiwyg = JFactory::getEditor();
+                $editor = $wysiwyg->display('description', $K2User->description, '100%', '250px', '', '', false);
+            } else {
+                $editor = '<textarea id="description" class="k2-plain-text-editor" name="description"></textarea>';
+            }
             $view->assignRef('editor', $editor);
 
             $lists = array();
@@ -595,6 +604,7 @@ class plgSystemK2 extends JPlugin
             $view->assignRef('K2Plugins', $K2Plugins);
 
             $view->assignRef('K2User', $K2User);
+            $view->assignRef('K2Params', $params);
 
             // Asssign some variables depending on Joomla version
             $nameFieldName = K2_JVERSION != '15' ? 'jform[name]' : 'name';

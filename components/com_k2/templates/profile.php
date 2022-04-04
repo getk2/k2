@@ -96,11 +96,7 @@ defined('_JEXEC') or die;
                     <label id="descriptionmsg" for="description"><?php echo JText::_('K2_DESCRIPTION'); ?></label>
                 </td>
                 <td>
-                    <?php if ($this->K2Params->get('K2ProfileEditor')): ?>
                     <?php echo $this->editor; ?>
-                    <?php else: ?>
-                    <textarea id="description" class="k2-plain-text-editor" name="description"></textarea>
-                    <?php endif; ?>
                 </td>
             </tr>
             <tr>
