@@ -283,7 +283,11 @@
             <option value="1">K2_YES</option>
         </param>
         <param menu="hide" name="twitterUsername" type="text" default="" label="K2_YOUR_TWITTER_USERNAME" description="K2_ENTER_YOUR_TWITTER_USERNAME_ACCOUNT_TO_ENABLE_TWITTER_BUTTON_PERSONALIZATION"/>
-        <param menu="hide" name="twitterImage" type="list" default="Medium" label="K2_TWITTER_IMAGE_SIZE" description="K2_TWITTER_IMAGE_SIZE_DESC">
+        <param menu="hide" name="twitterCardType" type="radio" default="summary" label="K2_TWITTER_CARD_TYPE" description="">
+            <option value="summary">K2_TWITTER_CARD_SUMMARY</option>
+            <option value="summary_large_image">K2_TWITTER_CARD_SUMMARY_LARGE_IMAGE</option>
+        </param>
+        <param menu="hide" name="twitterImage" type="list" default="Large" label="K2_TWITTER_IMAGE_SIZE" description="K2_TWITTER_IMAGE_SIZE_DESC">
             <option value="XSmall">K2_XSMALL</option>
             <option value="Small">K2_SMALL</option>
             <option value="Medium">K2_MEDIUM</option>
@@ -870,7 +874,11 @@
             <option value="1">K2_YES</option>
         </field>
         <field menu="hide" name="twitterUsername" type="text" default="" label="K2_YOUR_TWITTER_USERNAME" description="K2_ENTER_YOUR_TWITTER_USERNAME_ACCOUNT_TO_ENABLE_TWITTER_BUTTON_PERSONALIZATION"/>
-        <field menu="hide" name="twitterImage" type="list" default="Medium" label="K2_TWITTER_IMAGE_SIZE" description="K2_TWITTER_IMAGE_SIZE_DESC">
+        <field menu="hide" name="twitterCardType" type="radio" default="summary" label="K2_TWITTER_CARD_TYPE" description="">
+            <option value="summary">K2_TWITTER_CARD_SUMMARY</option>
+            <option value="summary_large_image">K2_TWITTER_CARD_SUMMARY_LARGE_IMAGE</option>
+        </field>
+        <field menu="hide" name="twitterImage" type="list" default="Large" label="K2_TWITTER_IMAGE_SIZE" description="K2_TWITTER_IMAGE_SIZE_DESC">
             <option value="XSmall">K2_XSMALL</option>
             <option value="Small">K2_SMALL</option>
             <option value="Medium">K2_MEDIUM</option>

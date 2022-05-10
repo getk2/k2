@@ -239,7 +239,8 @@
                 <field name="tagItemTitleLinked" default="1" />
                 <field name="tagName" default="1" />
                 <field name="tagOrdering" default="" />
-                <field name="twitterImage" default="Medium" />
+                <field name="twitterCardType" default="summary" />
+                <field name="twitterImage" default="Large" />
                 <field name="twitterMetatags" default="1" />
                 <field name="twitterUsername" default="" />
                 <field name="userDescription" default="1" />

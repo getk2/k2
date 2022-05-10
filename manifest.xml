@@ -232,7 +232,8 @@
         <param name="tagItemTitleLinked" default="1" />
         <param name="tagName" default="1" />
         <param name="tagOrdering" default="" />
-        <param name="twitterImage" default="Medium" />
+        <param name="twitterCardType" default="summary" />
+        <param name="twitterImage" default="Large" />
         <param name="twitterMetatags" default="1" />
         <param name="twitterUsername" default="" />
         <param name="userDescription" default="1" />
