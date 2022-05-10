@@ -918,7 +918,7 @@ class K2ViewItemlist extends K2View
 
                     // Set Twitter meta tags
                     if ($params->get('twitterMetatags', 1)) {
-                        $document->setMetaData('twitter:card', 'summary');
+                        $document->setMetaData('twitter:card', $params->get('twitterCardType', 'summary'));
                         if ($params->get('twitterUsername')) {
                             $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
                         }
@@ -988,7 +988,10 @@ class K2ViewItemlist extends K2View
                     $document->setDescription(K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150)));
 
                     // Set meta keywords
-                    $metaKeywords = $document->getMetadata('keywords');
+                    $metaKeywords = $tag->name;
+                    if ($document->getMetadata('keywords', '')) {
+                        $metaKeywords .= ', '.$document->getMetadata('keywords');
+                    }
 
                     if ($menuItemMatch && K2_JVERSION != '15') {
                         if ($params->get('menu-meta_keywords')) {
@@ -1032,6 +1035,8 @@ class K2ViewItemlist extends K2View
                 case 'user':
                     $menuItemMatch = $this->menuItemMatchesK2Entity('itemlist', 'user', $userObject->name);
 
+                    $filteredUserName = filter_var($userObject->name, FILTER_SANITIZE_STRING);
+
                     // Set canonical link
                     $this->setCanonicalUrl($link);
 
@@ -1039,10 +1044,10 @@ class K2ViewItemlist extends K2View
                     if ($menuItemMatch) {
                         $page_title = $params->get('page_title');
                         if (empty($page_title)) {
-                            $params->set('page_title', $userObject->name);
+                            $params->set('page_title', $filteredUserName);
                         }
                     } else {
-                        $params->set('page_title', $userObject->name);
+                        $params->set('page_title', $filteredUserName);
                     }
 
                     if (K2_JVERSION != '15') {
@@ -1068,7 +1073,10 @@ class K2ViewItemlist extends K2View
                     $document->setTitle($metaTitle);
 
                     // Set meta description
-                    $metaDesc = $document->getMetadata('description');
+                    $metaDesc = JText::_('K2_USER_VIEW_DEFAULT_METADESC').' &quot;'.$filteredUserName.'&quot;';
+                    if ($document->getMetadata('description', '')) {
+                        $metaDesc .= ' - '.$document->getMetadata('description');
+                    }
 
                     if (!empty($userObject->profile->description)) {
                         $metaDesc = filter_var($userObject->profile->description, FILTER_SANITIZE_STRING);
@@ -1097,11 +1105,6 @@ class K2ViewItemlist extends K2View
 
                     // Set meta robots & author
                     $metaRobots = (K2_JVERSION != '15') ? $document->getMetadata('robots') : '';
-                    $metaAuthor = '';
-
-                    if (!empty($userObject->name)) {
-                        $metaAuthor = filter_var($userObject->name, FILTER_SANITIZE_STRING); // additional filtering (just in case)
-                    }
 
                     if ($menuItemMatch && K2_JVERSION != '15') {
                         if ($params->get('robots')) {
@@ -1111,7 +1114,7 @@ class K2ViewItemlist extends K2View
 
                     $document->setMetadata('robots', $metaRobots);
 
-                    $metaAuthor = trim($metaAuthor);
+                    $metaAuthor = trim($filteredUserName);
                     if ($app->getCfg('MetaAuthor') == '1' && $metaAuthor) {
                         $document->setMetadata('author', $metaAuthor);
                     }
@@ -1140,7 +1143,7 @@ class K2ViewItemlist extends K2View
 
                     // Set Twitter meta tags
                     if ($params->get('twitterMetatags', 1)) {
-                        $document->setMetaData('twitter:card', 'summary');
+                        $document->setMetaData('twitter:card', $params->get('twitterCardType', 'summary'));
                         if ($params->get('twitterUsername')) {
                             $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
                         }
