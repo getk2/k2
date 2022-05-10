@@ -973,7 +973,7 @@ class K2ViewItemlist extends K2View
                     $document->setTitle($metaTitle);
 
                     // Set meta description
-                    $metaDesc = JText::_('K2_TAG_VIEW_DEFAULT_METADESC').' &quot;'.$tag->name.'&quot;';
+                    $metaDesc = JText::_('K2_TAG_VIEW_DEFAULT_METADESC').' \''.$tag->name.'\'';
                     if ($document->getMetadata('description', '')) {
                         $metaDesc .= ' - '.$document->getMetadata('description');
                     }
@@ -1073,7 +1073,7 @@ class K2ViewItemlist extends K2View
                     $document->setTitle($metaTitle);
 
                     // Set meta description
-                    $metaDesc = JText::_('K2_USER_VIEW_DEFAULT_METADESC').' &quot;'.$filteredUserName.'&quot;';
+                    $metaDesc = JText::_('K2_USER_VIEW_DEFAULT_METADESC').' \''.$filteredUserName.'\'';
                     if ($document->getMetadata('description', '')) {
                         $metaDesc .= ' - '.$document->getMetadata('description');
                     }
