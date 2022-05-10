@@ -86,7 +86,7 @@ class K2ViewItemlist extends K2View
             // Prepare JSON output
             $uri = JURI::getInstance();
             $response = new stdClass;
-            $response->site = new stdClass();
+            $response->site = new stdClass;
             $response->site->url = $uri->toString(array('scheme', 'host', 'port'));
             $response->site->name = (K2_JVERSION == '30') ? $config->get('sitename') : $config->getValue('config.sitename');
 
@@ -615,11 +615,23 @@ class K2ViewItemlist extends K2View
             // --- Feed Output [start] ---
             if ($document->getType() == 'feed') {
                 $item = $itemModel->prepareFeedItem($items[$i]);
-                $item->title = html_entity_decode($this->escape($item->title));
+
+                // Manipulate tag rendering in the feed URL
+                if (JRequest::getBool('tagsontitle', false) && !empty($item->tags) && count($item->tags)) {
+
+                    // Limit no. of rendered tags in the title (if set)
+                    $tagLimit = JRequest::getInt('taglimit', 0);
+                    if ($tagLimit && $tagLimit > count($item->tags)) {
+                        $item->tags = array_slice($item->tags, 0, $tagLimit);
+                    }
+
+                    // Append tags to the title
+                    $item->title = html_entity_decode($this->escape($item->title.' '.implode(' ', $item->tags)));
+                }
 
                 $feedItem = new JFeedItem();
                 $feedItem->link = $item->link;
-                $feedItem->title = $item->title;
+                $feedItem->title = html_entity_decode($this->escape($item->title));
                 $feedItem->description = $item->description;
                 $feedItem->date = (isset($ordering) && $ordering == 'modified') ? $item->modified : $item->created;
                 $feedItem->category = $item->category->name;

@@ -429,10 +429,10 @@ class K2ViewItem extends K2View
             $row = $model->prepareJSONItem($item);
 
             // Output
-            $response = new stdClass();
+            $response = new stdClass;
 
             // Site
-            $response->site = new stdClass();
+            $response->site = new stdClass;
             $response->site->url = $uri->toString(array('scheme', 'host', 'port'));
             $response->site->name = (K2_JVERSION == '30') ? $config->get('sitename') : $config->getValue('config.sitename');
             $response->item = $row;
@@ -579,6 +579,13 @@ class K2ViewItem extends K2View
                 }
             }
 
+            // Use a large image preview for Google Discover
+            if ($metaRobots == '') {
+                $metaRobots = 'max-image-preview:large';
+            } else {
+                $metaRobots .= ', max-image-preview:large';
+            }
+
             $document->setMetadata('robots', $metaRobots);
 
             $metaAuthor = trim($metaAuthor);
@@ -611,7 +618,7 @@ class K2ViewItem extends K2View
 
             // Set Twitter meta tags
             if ($params->get('twitterMetatags', 1)) {
-                $document->setMetaData('twitter:card', 'summary');
+                $document->setMetaData('twitter:card', $params->get('twitterCardType', 'summary'));
                 if ($params->get('twitterUsername')) {
                     $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
                 }
