@@ -973,7 +973,10 @@ class K2ViewItemlist extends K2View
                     $document->setTitle($metaTitle);
 
                     // Set meta description
-                    $metaDesc = $document->getMetadata('description');
+                    $metaDesc = JText::_('K2_TAG_VIEW_DEFAULT_METADESC').' &quot;'.$tag->name.'&quot;';
+                    if ($document->getMetadata('description', '')) {
+                        $metaDesc .= ' - '.$document->getMetadata('description');
+                    }
 
                     if ($menuItemMatch && K2_JVERSION != '15') {
                         if ($params->get('menu-meta_description')) {
