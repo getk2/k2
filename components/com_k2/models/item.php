@@ -287,14 +287,21 @@ class K2ModelItem extends K2Model
         }
 
         // Item Tags
+        $item->tags = array();
         if ($params->get('feedItemTags')) {
             $tags = $this->getItemTags($item->id);
-            if (isset($tags) && count($tags)) {
+            if (is_array($tags) && count($tags)) {
+                foreach ($tags as $tag) {
+                    $item->tags[] = '#'.str_replace(' ', '_', $tag->name);
+                }
+                $item->description .= '<div class="K2FeedTags">'.implode(' ', $item->tags).'</div>';
+                /*
                 $item->description .= '<div class="K2FeedTags"><ul>';
                 foreach ($tags as $tag) {
                     $item->description .= '<li>'.$tag->name.'</li>';
                 }
                 $item->description .= '</ul></div>';
+                */
             }
         }
 
@@ -457,7 +464,7 @@ class K2ModelItem extends K2Model
                 $row->author->profile->url = htmlspecialchars($row->author->profile->url, ENT_QUOTES, 'UTF-8');
             }
         }
-        $row->numOfComments = $item->numOfComments;
+        $row->numOfComments = (!empty($item->numOfComments)) ? $item->numOfComments : null;
         $row->events = $item->event;
         $row->language = $item->language;
         return $row;
