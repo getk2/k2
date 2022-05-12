@@ -31,7 +31,11 @@ class modK2ContentHelper
         $limit = $params->get('itemCount', 5);
         $cid = $params->get('category_id', null);
         $ordering = $params->get('itemsOrdering', '');
-        $limitstart = JRequest::getInt('limitstart');
+        
+        $limitstart = $params->get('limitStart', 0);
+        if (JRequest::getVar('limitstart') !== null) {
+            $limitstart = JRequest::getInt('limitstart');
+        }
 
         // Get ACL
         $user = JFactory::getUser();
