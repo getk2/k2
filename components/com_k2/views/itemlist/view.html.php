@@ -621,7 +621,7 @@ class K2ViewItemlist extends K2View
 
                     // Limit no. of rendered tags in the title (if set)
                     $tagLimit = JRequest::getInt('taglimit', 0);
-                    if ($tagLimit && $tagLimit > count($item->tags)) {
+                    if ($tagLimit && $tagLimit < count($item->tags)) {
                         $item->tags = array_slice($item->tags, 0, $tagLimit);
                     }
 
