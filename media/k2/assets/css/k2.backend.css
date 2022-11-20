@@ -562,12 +562,12 @@ table.adminFormK2 {width:100%;margin-bottom:16px;}
                     .k2ui-batch-actions .k2ui-row input[type="radio"]:checked + label {background:#63696f;color:#fff;} /* Generic */
                     .k2ui-batch-actions .k2ui-row input[type="radio"]:checked + label:hover {background:#555;}
                     .k2ui-batch-actions .k2ui-row input[type="radio"] + label:hover {background:#e8e8e8;}
-                .k2ui-batch-actions .k2ui-row .chzn-container .chzn-results {text-align:left;}
             .k2ui-batch-options {padding:10px;}
                 .k2ui-batch-options .k2ui-row {text-align:center;padding-bottom:20px;}
                     .k2ui-batch-options .k2ui-row label {display:block;font-size:14px;padding-bottom:5px;}
                     .k2ui-batch-options .k2ui-row select {width:80%;}
                 .k2ui-batch-options .k2ui-row:last-child {padding:0;}
+                    .k2ui-batch-options .k2ui-row .chzn-container .chzn-results {text-align:left;}
             .k2ui-modal-footer {padding:10px;background-color:#eff1f1;text-align:right;}
                 .k2ui-modal-footer button {}
                 .k2ui-btn {min-width:80px;width:auto;line-height:30px;height:30px;text-align:center;margin:0 0 0 10px;padding:0 10px !important;color:#8a8c8c;display:inline-block;vertical-align:middle;white-space:nowrap;background:#eff1f1;cursor:pointer;border:0;border-radius:4px;font-size:13px;}
