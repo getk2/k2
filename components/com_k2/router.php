@@ -280,6 +280,7 @@ if ($params->get('k2Sef')) {
             }
             // Category path, without a prefix
             elseif (
+                isset(getCategoryProps($segments[0])->alias) &&
                 $segments[0] == getCategoryProps($segments[0])->alias &&
                 str_replace(':', '-', array_reverse($segments)[0]) != @getItemProps(str_replace(':', '-', array_reverse($segments)[0]))->alias
             ) {
