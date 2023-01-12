@@ -1,5 +1,8 @@
 <?php
 
+// no direct access
+defined('_JEXEC') or die;
+
 // +------------------------------------------------------------------------+
 // | class.upload.php                                                       |
 // +------------------------------------------------------------------------+
@@ -35,7 +38,6 @@
  */
 class upload
 {
-
     /**
      * Class version
      *
@@ -1703,7 +1705,6 @@ class upload
      */
     public function init()
     {
-
         // overiddable variables
         $this->file_new_name_body       = null;     // replace the name body
         $this->file_name_body_add       = null;     // append to the name body
@@ -2044,7 +2045,7 @@ class upload
      */
     public function upload($file, $lang = 'en_GB')
     {
-        $this->version            = '0.34dev';
+        $this->version            = '0.34dev'; // Modified by JoomlaWorks
 
         $this->file_src_name      = '';
         $this->file_src_name_body = '';
@@ -3300,13 +3301,13 @@ class upload
                     $this->processed = false;
                     $this->error = $this->translate('temp_file_missing');
                 }
-                // if we haven't a temp file, and that we do check on uploads, we use is_uploaded_file()
+            // if we haven't a temp file, and that we do check on uploads, we use is_uploaded_file()
             } elseif (!$this->no_upload_check) {
                 if (!is_uploaded_file($this->file_src_pathname)) {
                     $this->processed = false;
                     $this->error = $this->translate('source_missing');
                 }
-                // otherwise, if we don't check on uploaded files (local file for instance), we use file_exists()
+            // otherwise, if we don't check on uploaded files (local file for instance), we use file_exists()
             } else {
                 if (!file_exists($this->file_src_pathname)) {
                     $this->processed = false;
@@ -3394,42 +3395,42 @@ class upload
                 if (is_array($exif) && isset($exif['Orientation'])) {
                     $orientation = $exif['Orientation'];
                     switch ($orientation) {
-                      case 1:
-                        $this->log .= '- EXIF orientation = 1 : default<br />';
-                        break;
-                      case 2:
-                        $auto_flip = 'v';
-                        $this->log .= '- EXIF orientation = 2 : vertical flip<br />';
-                        break;
-                      case 3:
-                        $auto_rotate = 180;
-                        $this->log .= '- EXIF orientation = 3 : 180 rotate left<br />';
-                        break;
-                      case 4:
-                        $auto_flip = 'h';
-                        $this->log .= '- EXIF orientation = 4 : horizontal flip<br />';
-                        break;
-                      case 5:
-                        $auto_flip = 'h';
-                        $auto_rotate = 90;
-                        $this->log .= '- EXIF orientation = 5 : horizontal flip + 90 rotate right<br />';
-                        break;
-                      case 6:
-                        $auto_rotate = 90;
-                        $this->log .= '- EXIF orientation = 6 : 90 rotate right<br />';
-                        break;
-                      case 7:
-                        $auto_flip = 'v';
-                        $auto_rotate = 90;
-                        $this->log .= '- EXIF orientation = 7 : vertical flip + 90 rotate right<br />';
-                        break;
-                      case 8:
-                        $auto_rotate = 270;
-                        $this->log .= '- EXIF orientation = 8 : 90 rotate left<br />';
-                        break;
-                      default:
-                        $this->log .= '- EXIF orientation = '.$orientation.' : unknown<br />';
-                        break;
+                        case 1:
+                            $this->log .= '- EXIF orientation = 1 : default<br />';
+                            break;
+                        case 2:
+                            $auto_flip = 'v';
+                            $this->log .= '- EXIF orientation = 2 : vertical flip<br />';
+                            break;
+                        case 3:
+                            $auto_rotate = 180;
+                            $this->log .= '- EXIF orientation = 3 : 180 rotate left<br />';
+                            break;
+                        case 4:
+                            $auto_flip = 'h';
+                            $this->log .= '- EXIF orientation = 4 : horizontal flip<br />';
+                            break;
+                        case 5:
+                            $auto_flip = 'h';
+                            $auto_rotate = 90;
+                            $this->log .= '- EXIF orientation = 5 : horizontal flip + 90 rotate right<br />';
+                            break;
+                        case 6:
+                            $auto_rotate = 90;
+                            $this->log .= '- EXIF orientation = 6 : 90 rotate right<br />';
+                            break;
+                        case 7:
+                            $auto_flip = 'v';
+                            $auto_rotate = 90;
+                            $this->log .= '- EXIF orientation = 7 : vertical flip + 90 rotate right<br />';
+                            break;
+                        case 8:
+                            $auto_rotate = 270;
+                            $this->log .= '- EXIF orientation = 8 : 90 rotate left<br />';
+                            break;
+                        default:
+                            $this->log .= '- EXIF orientation = '.$orientation.' : unknown<br />';
+                            break;
                     }
                 } else {
                     $this->log .= '- EXIF data is invalid or missing<br />';
@@ -3481,7 +3482,6 @@ class upload
             }
 
             if ($image_manipulation) {
-
                 // make sure GD doesn't complain too much
                 @ini_set("gd.jpeg_ignore_warning", 1);
 
@@ -3563,7 +3563,6 @@ class upload
                 }
 
                 if ($this->processed && $image_src) {
-
                     // we have to set image_convert if it is not already
                     if (empty($this->image_convert)) {
                         $this->log .= '- setting destination file type to ' . $this->image_src_type . '<br />';
@@ -4206,7 +4205,7 @@ class upload
                         if (!empty($this->image_border_color)) {
                             list($red, $green, $blue) = $this->getcolors($this->image_border_color);
                         }
-                        $opacity = (is_numeric($this->image_border_opacity) ? (int) (127 - $this->image_border_opacity / 100 * 127): 0);
+                        $opacity = (is_numeric($this->image_border_opacity) ? (int) (127 - $this->image_border_opacity / 100 * 127) : 0);
                         // we now create an image, that we fill with the border color
                         $tmp = $this->imagecreatenew($this->image_dst_x, $this->image_dst_y);
                         $background = imagecolorallocatealpha($tmp, $red, $green, $blue, $opacity);
@@ -4323,7 +4322,7 @@ class upload
                         $this->image_dst_y = $this->image_dst_y + ($nb * 2);
                         $tmp = $this->imagecreatenew($this->image_dst_x, $this->image_dst_y);
                         imagecopy($tmp, $image_dst, $nb, $nb, 0, 0, $this->image_dst_x - ($nb * 2), $this->image_dst_y - ($nb * 2));
-                        $opacity = (is_numeric($this->image_frame_opacity) ? (int) (127 - $this->image_frame_opacity / 100 * 127): 0);
+                        $opacity = (is_numeric($this->image_frame_opacity) ? (int) (127 - $this->image_frame_opacity / 100 * 127) : 0);
                         for ($i=0; $i<$nb; $i++) {
                             list($red, $green, $blue) = $this->getcolors($vars[$i]);
                             $c = imagecolorallocatealpha($tmp, $red, $green, $blue, $opacity);
@@ -4725,7 +4724,7 @@ class upload
                                             $filter,
                                             $this->image_text_font,
                                             $k * ($line_width  + ($k > 0 && $k < (sizeof($text)) ? $this->image_text_line_spacing : 0)),
-                                            $text_height - (2 * $this->image_text_padding_y) - ($this->image_text_alignment == 'l' ? 0 : (($t_height - strlen($v) * $char_width) / ($this->image_text_alignment == 'r' ? 1 : 2))) ,
+                                            $text_height - (2 * $this->image_text_padding_y) - ($this->image_text_alignment == 'l' ? 0 : (($t_height - strlen($v) * $char_width) / ($this->image_text_alignment == 'r' ? 1 : 2))),
                                             $v,
                                             $text_color
                                         );

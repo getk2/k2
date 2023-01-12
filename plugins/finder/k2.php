@@ -1,13 +1,14 @@
 <?php
 /**
- * @version    2.11.x
+ * @version    2.11 (rolling release)
  * @package    K2
  * @author     JoomlaWorks https://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2023 JoomlaWorks Ltd. All rights reserved.
- * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
+ * @copyright  Copyright (c) 2009 - 2023 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL: https://gnu.org/licenses/gpl.html
  */
 
-defined('JPATH_BASE') or die ;
+// no direct access
+defined('_JEXEC') or die;
 
 jimport('joomla.application.component.helper');
 
