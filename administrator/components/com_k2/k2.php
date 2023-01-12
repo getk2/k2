@@ -124,7 +124,7 @@ if (
     </div>
 
     <!-- K2 Update Service -->
-    <script type="text/javascript">var K2_INSTALLED_VERSION = \''.K2_CURRENT_VERSION.'\';</script>
+    <script type="text/javascript">var K2_INSTALLED_VERSION = \''.K2_CURRENT_VERSION.'.'.K2_BUILD_ID.'\';</script>
     <script type="text/javascript" src="https://getk2.org/app/update.js?t='.date('Ymd').'"></script>
     ';
 } else {

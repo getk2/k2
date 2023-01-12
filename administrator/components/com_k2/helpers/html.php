@@ -355,14 +355,14 @@ class K2HelperHTML
 
                 // NicEdit
                 if ($option == 'com_k2' && $view == 'item') {
-                    $document->addScript(JURI::root(true).'/media/k2/assets/vendors/bkirchoff/nicedit/nicEdit.js?v='.K2_CURRENT_VERSION);
+                    $document->addScript(JURI::root(true).'/media/k2/assets/vendors/bkirchoff/nicedit/nicEdit.js?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
                 }
 
                 // Media (elFinder)
                 if ($view == 'media') {
-                    $document->addStyleSheet(JURI::root(true).'/media/k2/assets/vendors/studio-42/elfinder/css/elfinder.min.css?v='.K2_CURRENT_VERSION);
-                    $document->addStyleSheet(JURI::root(true).'/media/k2/assets/vendors/studio-42/elfinder/css/theme.css?v='.K2_CURRENT_VERSION);
-                    $document->addScript(JURI::root(true).'/media/k2/assets/vendors/studio-42/elfinder/js/elfinder.min.js?v='.K2_CURRENT_VERSION);
+                    $document->addStyleSheet(JURI::root(true).'/media/k2/assets/vendors/studio-42/elfinder/css/elfinder.min.css?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
+                    $document->addStyleSheet(JURI::root(true).'/media/k2/assets/vendors/studio-42/elfinder/css/theme.css?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
+                    $document->addScript(JURI::root(true).'/media/k2/assets/vendors/studio-42/elfinder/js/elfinder.min.js?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
                 } else {
                     JHTML::_('behavior.tooltip');
                     if (version_compare(JVERSION, '3.0.0', 'ge')) {
@@ -452,9 +452,9 @@ class K2HelperHTML
 
                     // k2.css
                     if (isset($template) && JFile::exists(JPATH_SITE.'/templates/'.$template.'/css/k2.css')) {
-                        $document->addStyleSheet(JURI::root(true).'/templates/'.$template.'/css/k2.css?v='.K2_CURRENT_VERSION);
+                        $document->addStyleSheet(JURI::root(true).'/templates/'.$template.'/css/k2.css?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
                     } elseif (JFile::exists(JPATH_SITE.'/templates/'.$app->getTemplate().'/css/k2.css')) {
-                        $document->addStyleSheet(JURI::root(true).'/templates/'.$app->getTemplate().'/css/k2.css?v='.K2_CURRENT_VERSION);
+                        $document->addStyleSheet(JURI::root(true).'/templates/'.$app->getTemplate().'/css/k2.css?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
                     } else {
                         $document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.css?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
                     }
@@ -462,9 +462,9 @@ class K2HelperHTML
                     // k2.print.css
                     if (JRequest::getInt('print') == 1) {
                         if (isset($template) && JFile::exists(JPATH_SITE.'/templates/'.$template.'/css/k2.print.css')) {
-                            $document->addStyleSheet(JURI::root(true).'/templates/'.$template.'/css/k2.print.css?v='.K2_CURRENT_VERSION, 'text/css', 'print');
+                            $document->addStyleSheet(JURI::root(true).'/templates/'.$template.'/css/k2.print.css?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID, 'text/css', 'print');
                         } elseif (JFile::exists(JPATH_SITE.'/templates/'.$app->getTemplate().'/css/k2.print.css')) {
-                            $document->addStyleSheet(JURI::root(true).'/templates/'.$app->getTemplate().'/css/k2.print.css?v='.K2_CURRENT_VERSION, 'text/css', 'print');
+                            $document->addStyleSheet(JURI::root(true).'/templates/'.$app->getTemplate().'/css/k2.print.css?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID, 'text/css', 'print');
                         } else {
                             $document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.print.css?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID, 'text/css', 'print');
                         }
