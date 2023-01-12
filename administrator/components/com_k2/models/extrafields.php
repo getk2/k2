@@ -312,7 +312,7 @@ class K2ModelExtraFields extends K2Model
     public function removeGroups()
     {
         $app = JFactory::getApplication();
-        $db = &JFactory::getDbo();
+        $db = JFactory::getDbo();
         $cid = JRequest::getVar('cid');
         JArrayHelper::toInteger($cid);
         foreach ($cid as $id) {
@@ -323,7 +323,7 @@ class K2ModelExtraFields extends K2Model
             $db->query();
             $row->delete($id);
         }
-        $cache = &JFactory::getCache('com_k2');
+        $cache = JFactory::getCache('com_k2');
         $cache->clean();
         $app->enqueueMessage(JText::_('K2_DELETE_COMPLETED'));
         $app->redirect('index.php?option=com_k2&view=extrafieldsgroups');

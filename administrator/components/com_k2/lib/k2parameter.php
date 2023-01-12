@@ -13,9 +13,13 @@ defined('_JEXEC') or die;
 if (K2_JVERSION == '30') {
     class K2Parameter
     {
-        public function __construct($data, $path = '', $namespace)
+        public $namespace = null;
+
+        public function __construct($data, $path, $namespace)
         {
-            $this->namespace = $namespace;
+            if ($namespace) {
+                $this->namespace = $namespace;
+            }
             $this->values = new JRegistry($data);
         }
 
@@ -31,12 +35,11 @@ if (K2_JVERSION == '30') {
      * Parameter handler
      *
      * @package     Joomla.Framework
-     * @subpackage      Parameter
+     * @subpackage  Parameter
      * @since       1.5
      */
     class K2Parameter extends JParameter
     {
-
         /**
          * optional namespace
          *
@@ -50,12 +53,12 @@ if (K2_JVERSION == '30') {
          * Constructor
          *
          * @access  protected
-         * @param   string The raw parms text
+         * @param   string The raw params text
          * @param   string Path to the xml setup file
          * @param   string Namespace to the xml setup file
          * @since   1.5
          */
-        public function __construct($data, $path = '', $namespace)
+        public function __construct($data, $path, $namespace)
         {
             parent::__construct('_default');
 
@@ -96,8 +99,7 @@ if (K2_JVERSION == '30') {
                 return parent::get($this->namespace.$key, $default);
             }
             $value = $this->getValue($group.'.'.$this->namespace.$key);
-            $result = (empty($value) && ($value !== 0) && ($value !== '0')) ? $default : $value;
-            //if($group != '_default') { echo ($group); }
+            $result = (empty($value) && $value !== 0 && $value !== '0') ? $default : $value; // double-check and cleanup
             return $result;
         }
 
@@ -111,10 +113,10 @@ if (K2_JVERSION == '30') {
          */
         public function getParam(&$node, $control_name = 'params', $group = '_default')
         {
-            //get the type of the parameter
+            // get the type of the parameter
             $type = $node->attributes('type');
 
-            //remove any occurance of a mos_ prefix
+            // remove any occurance of a mos_ prefix
             $type = str_replace('mos_', '', $type);
 
             $element = $this->loadElement($type);
@@ -128,10 +130,10 @@ if (K2_JVERSION == '30') {
                 return $result;
             }
 
-            //get value
+            // get value
             $value = $this->get($node->attributes('name'), $node->attributes('default'), $group);
 
-            //set name
+            // set name
             $node->_attributes['name'] = $this->namespace.$node->_attributes['name'];
 
             return $element->render($node, $value, $control_name);
@@ -152,8 +154,6 @@ if (K2_JVERSION == '30') {
 
             // Explode the registry path into an array
             if ($nodes = explode('.', $regpath)) {
-                // Get the namespace
-                //$namespace = array_shift($nodes);
                 $count = count($nodes);
                 if ($count < 2) {
                     $namespace = $this->_defaultNameSpace;
@@ -166,7 +166,6 @@ if (K2_JVERSION == '30') {
                     $ns = &$this->_registry[$namespace]['data'];
                     $pathNodes = $count - 1;
 
-                    //for ($i = 0; $i < $pathNodes; $i ++) {
                     for ($i = 1; $i < $pathNodes; $i++) {
                         if ((isset($ns->$nodes[$i]))) {
                             $ns = &$ns->$nodes[$i];

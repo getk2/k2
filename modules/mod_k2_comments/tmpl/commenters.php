@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 ?>
 
 <div id="k2ModuleBox<?php echo $module->id; ?>" class="k2TopCommentersBlock<?php if($params->get('moduleclass_sfx')) echo ' '.$params->get('moduleclass_sfx'); ?>">
-    <?php if(count($commenters)): ?>
+    <?php if(isset($commenters) && count($commenters)): ?>
     <ul>
         <?php foreach ($commenters as $key=>$commenter): ?>
         <li class="<?php echo ($key%2) ? "odd" : "even"; if(count($commenters)==$key+1) echo ' lastItem'; ?>">

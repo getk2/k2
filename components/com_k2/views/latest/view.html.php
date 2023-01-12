@@ -308,6 +308,7 @@ class K2ViewLatest extends K2View
         // Assign data
         $this->assignRef('params', $params);
         $this->assignRef('source', $source);
+        $this->assignRef('user', $user);
 
         // Display
         parent::display($tpl);

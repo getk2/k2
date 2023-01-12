@@ -129,7 +129,7 @@ class modK2CommentsHelper
                 $row->itemLink = urldecode(JRoute::_(K2HelperRoute::getItemRoute($row->itemID.':'.urlencode($row->alias), $row->catid.':'.urlencode($row->catalias))));
                 $row->link = $row->itemLink."#comment{$row->id}";
 
-                // Categoty link
+                // Category link
                 $row->catLink = urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($row->catid.':'.urlencode($row->catalias))));
 
                 // User
