@@ -65,7 +65,7 @@ K2HelperUtilities::setDefaultImage($this->item, 'itemlist', $this->params);
         <?php if($this->item->params->get('catItemAuthor')): ?>
         <!-- Item Author -->
         <span class="catItemAuthor">
-            <?php echo K2HelperUtilities::writtenBy($this->item->author->profile->gender); ?>
+            <?php echo (!empty($this->item->author->profile->gender)) ? K2HelperUtilities::writtenBy($this->item->author->profile->gender) : ''; ?>
             <?php if(isset($this->item->author->link) && $this->item->author->link): ?>
             <a rel="author" href="<?php echo $this->item->author->link; ?>"><?php echo $this->item->author->name; ?></a>
             <?php else: ?>

@@ -63,8 +63,8 @@ defined('_JEXEC') or die;
         <?php if($this->item->params->get('itemAuthor')): ?>
         <!-- Item Author -->
         <span class="itemAuthor">
-            <?php echo K2HelperUtilities::writtenBy($this->item->author->profile->gender); ?>
-            <?php if(empty($this->item->created_by_alias)): ?>
+            <?php echo (!empty($this->item->author->profile->gender)) ? K2HelperUtilities::writtenBy($this->item->author->profile->gender) : ''; ?>
+            <?php if(isset($this->item->author->link) && $this->item->author->link): ?>
             <a rel="author" href="<?php echo $this->item->author->link; ?>"><?php echo $this->item->author->name; ?></a>
             <?php else: ?>
             <?php echo $this->item->author->name; ?>
