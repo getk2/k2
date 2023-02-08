@@ -984,6 +984,7 @@ class K2ModelItem extends K2Model
         if (!is_null($itemID)) {
             $query .= " WHERE tags.id NOT IN (SELECT tagID FROM #__k2_tags_xref WHERE itemID=".(int) $itemID.")";
         }
+        $query .= " ORDER BY name ASC";
         $db->setQuery($query);
         $rows = $db->loadObjectList();
         return $rows;
