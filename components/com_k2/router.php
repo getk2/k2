@@ -121,10 +121,10 @@ if ($params->get('k2Sef')) {
                         $categories = getCategoryPath(getCategoryProps($slug)->id);
                         if (count($categories)) {
                             $slugs[] = $slug;
-                            foreach ($categories as $catid) {
-                                $slugs[] = getCategoryProps($catid)->alias;
+                            foreach ($categories as $category) {
+                                $slugs[] = $category->alias;
                             }
-                            $slug = implode('/', array_reverse($slugs));
+                            $slug = implode('/', $slugs);
                         }
                         $segments[0] = $slug;
                     } else {
@@ -135,10 +135,10 @@ if ($params->get('k2Sef')) {
                         $categories = getCategoryPath(getCategoryProps($slug)->id);
                         if (count($categories)) {
                             $slugs[] = $slug;
-                            foreach ($categories as $catid) {
-                                $slugs[] = getCategoryProps($catid)->id.'-'.getCategoryProps($catid)->alias;
+                            foreach ($categories as $category) {
+                                $slugs[] = $category->id.'-'.$category->alias;
                             }
-                            $slug = implode('/', array_reverse($slugs));
+                            $slug = implode('/', $slugs);
                         }
                         $segments[0] = $slug;
                     }
@@ -190,10 +190,10 @@ if ($params->get('k2Sef')) {
                         $categories = getCategoryPath($catid);
                         if (count($categories)) {
                             $slugs[] = $slug;
-                            foreach ($categories as $catid) {
-                                $slugs[] = getCategoryProps($catid)->alias;
+                            foreach ($categories as $category) {
+                                $slugs[] = $category->alias;
                             }
-                            $slug = implode('/', array_reverse($slugs));
+                            $slug = implode('/', $slugs);
                         }
 
                         // Handle category id and alias
@@ -244,92 +244,95 @@ if ($params->get('k2Sef')) {
 
     function k2ParseRoute($segments)
     {
-
         // Initialize
         $vars = array();
 
         $params = JComponentHelper::getParams('com_k2');
 
+        $request_url_parts = [];
+        foreach ($segments as $segment) {
+            $request_url_parts[] = str_replace(':', '-', $segment);
+        }
+        $lastSegment = end($request_url_parts);
+        $lastSegmentParts = explode('-', $lastSegment);
+        $request_url = implode('/', $request_url_parts);
+
         $reservedViews = array('item', 'itemlist', 'media', 'users', 'comments', 'latest');
         $categoryPath = '';
-        if (!in_array($segments[0], $reservedViews)) {
+        if (!in_array($request_url_parts[0], $reservedViews)) {
             // Category view
-            if ($segments[0] == $params->get('k2SefLabelCat')) {
-                $segments[0] = 'itemlist';
-                array_splice($segments, 1, 0, 'category');
+            if ($request_url_parts[0] == $params->get('k2SefLabelCat')) {
+                $request_url_parts[0] = 'itemlist';
+                array_splice($request_url_parts, 1, 0, 'category');
             }
             // Tag view
-            elseif ($segments[0] == $params->get('k2SefLabelTag', 'tag')) {
-                $segments[0] = 'itemlist';
-                array_splice($segments, 1, 0, 'tag');
+            elseif ($request_url_parts[0] == $params->get('k2SefLabelTag', 'tag')) {
+                $request_url_parts[0] = 'itemlist';
+                array_splice($request_url_parts, 1, 0, 'tag');
             }
             // User view
-            elseif ($segments[0] == $params->get('k2SefLabelUser', 'author')) {
-                $segments[0] = 'itemlist';
-                array_splice($segments, 1, 0, 'user');
+            elseif ($request_url_parts[0] == $params->get('k2SefLabelUser', 'author')) {
+                $request_url_parts[0] = 'itemlist';
+                array_splice($request_url_parts, 1, 0, 'user');
             }
             // Date view
-            elseif ($segments[0] == $params->get('k2SefLabelDate', 'date')) {
-                $segments[0] = 'itemlist';
-                array_splice($segments, 1, 0, 'date');
+            elseif ($request_url_parts[0] == $params->get('k2SefLabelDate', 'date')) {
+                $request_url_parts[0] = 'itemlist';
+                array_splice($request_url_parts, 1, 0, 'date');
             }
             // Search view
-            elseif ($segments[0] == $params->get('k2SefLabelSearch', 'search')) {
-                $segments[0] = 'itemlist';
-                array_splice($segments, 1, 0, 'search');
+            elseif ($request_url_parts[0] == $params->get('k2SefLabelSearch', 'search')) {
+                $request_url_parts[0] = 'itemlist';
+                array_splice($request_url_parts, 1, 0, 'search');
             }
             // Category path, without a prefix
-            elseif (
-                isset(getCategoryProps($segments[0])->alias) &&
-                $segments[0] == getCategoryProps($segments[0])->alias &&
-                str_replace(':', '-', array_reverse($segments)[0]) != @getItemProps(str_replace(':', '-', array_reverse($segments)[0]))->alias
-            ) {
-                if (count($segments) > 1) {
-                    $categoryPath = implode('/', $segments);
+            elseif (array_reverse($request_url_parts)[0] != @getItemProps(array_reverse($request_url_parts)[0])->alias) {
+                if (count($request_url_parts) > 1) {
+                    $categoryPath = implode('/', $request_url_parts);
                 } else {
-                    $categoryPath = $segments[0];
+                    $categoryPath = $request_url_parts[0];
                 }
-                $segments[0] = 'itemlist';
-                array_splice($segments, 1, 0, 'category');
+                $request_url_parts[0] = 'itemlist';
+                array_splice($request_url_parts, 1, 0, 'category');
             }
             // Item view
             else {
                 // Replace the category prefix with item
                 if ($params->get('k2SefLabelItem')) {
-                    $segments[0] = 'item';
+                    $request_url_parts[0] = 'item';
                 }
                 // Reinsert the removed item segment
                 else {
-                    array_splice($segments, 0, 0, 'item');
+                    array_splice($request_url_parts, 0, 0, 'item');
                 }
                 // Reinsert item id to the item alias
-                if (!$params->get('k2SefInsertItemId') && @$segments[1] != 'download' && @$segments[1] != 'edit') {
-                    $alias = str_replace(':', '-', array_reverse($segments)[0]);
+                if (!$params->get('k2SefInsertItemId') && @$request_url_parts[1] != 'download' && @$request_url_parts[1] != 'edit') {
+                    $alias = array_reverse($request_url_parts)[0];
                     $id = getItemProps($alias)->id;
-                    $segments[1] = $id.':'.$alias;
+                    $request_url_parts[1] = $id.':'.$alias;
                 }
             }
         }
 
-        $vars['view'] = $segments[0];
+        $vars['view'] = $request_url_parts[0];
 
-        if (!isset($segments[1])) {
-            $segments[1] = '';
+        if (!isset($request_url_parts[1])) {
+            $request_url_parts[1] = '';
         }
 
-        $vars['task'] = $segments[1];
+        $vars['task'] = $request_url_parts[1];
 
-        if ($segments[0] == 'itemlist') {
-            switch ($segments[1]) {
+        if ($request_url_parts[0] == 'itemlist') {
+            switch ($request_url_parts[1]) {
                 case 'category':
-                    if (isset($segments[2]) && empty($segments[3])) {
+                    if (isset($request_url_parts[2]) && empty($request_url_parts[3])) {
                         // Re-insert category id to the category slug
                         if (!$params->get('k2SefInsertCatId')) {
-                            $segments[2] = str_replace(':', '-', $segments[2]);
-                            $catId = getCategoryProps($segments[2])->id;
-                            $segments[2] = $catId.':'.$segments[2];
+                            $request_url_parts[2] = $request_url_parts[2];
+                            $catId = getCategoryProps($request_url_parts[2])->id;
+                            $request_url_parts[2] = $catId.':'.$request_url_parts[2];
                         }
-                        $vars['id'] = $segments[2];
+                        $vars['id'] = $request_url_parts[2];
                     } else {
                         if (strpos($categoryPath, '/') !== false) {
                             // Nested category path
@@ -346,56 +349,56 @@ if ($params->get('k2Sef')) {
                     break;
 
                 case 'tag':
-                    if (isset($segments[2])) {
-                        $vars['tag'] = $segments[2];
+                    if (isset($request_url_parts[2])) {
+                        $vars['tag'] = $request_url_parts[2];
                     }
                     break;
 
                 case 'user':
-                    if (isset($segments[2])) {
-                        $vars['id'] = $segments[2];
+                    if (isset($request_url_parts[2])) {
+                        $vars['id'] = $request_url_parts[2];
                     }
                     break;
 
                 case 'date':
-                    if (isset($segments[2])) {
-                        $vars['year'] = $segments[2];
+                    if (isset($request_url_parts[2])) {
+                        $vars['year'] = $request_url_parts[2];
                     }
-                    if (isset($segments[3])) {
-                        $vars['month'] = $segments[3];
+                    if (isset($request_url_parts[3])) {
+                        $vars['month'] = $request_url_parts[3];
                     }
-                    if (isset($segments[4])) {
-                        $vars['day'] = $segments[4];
+                    if (isset($request_url_parts[4])) {
+                        $vars['day'] = $request_url_parts[4];
                     }
                     break;
             }
-        } elseif ($segments[0] == 'item') {
-            switch ($segments[1]) {
+        } elseif ($request_url_parts[0] == 'item') {
+            switch ($request_url_parts[1]) {
                 case 'add':
                 case 'edit':
-                    if (isset($segments[2])) {
-                        $vars['cid'] = $segments[2];
+                    if (isset($request_url_parts[2])) {
+                        $vars['cid'] = $request_url_parts[2];
                     }
                     break;
 
                 case 'download':
-                    if (isset($segments[2])) {
-                        $vars['id'] = $segments[2];
+                    if (isset($request_url_parts[2])) {
+                        $vars['id'] = $request_url_parts[2];
                     }
                     break;
 
                 default:
-                    $vars['id'] = $segments[1];
-                    if (isset($segments[2])) {
-                        $vars['id'] .= ':'.str_replace(':', '-', $segments[2]);
+                    $vars['id'] = $request_url_parts[1];
+                    if (isset($request_url_parts[2])) {
+                        $vars['id'] .= ':'.$request_url_parts[2];
                     }
                     unset($vars['task']);
                     break;
             }
         }
 
-        if ($segments[0] == 'comments' && isset($segments[1]) && $segments[1] == 'reportSpammer') {
-            $vars['id'] = $segments[2];
+        if ($request_url_parts[0] == 'comments' && isset($request_url_parts[1]) && $request_url_parts[1] == 'reportSpammer') {
+            $vars['id'] = $request_url_parts[2];
         }
 
         return $vars;
@@ -465,13 +468,20 @@ if ($params->get('k2Sef')) {
 
     function getCategoryPath($id, $path = array())
     {
-        $parent = getCategoryProps($id)->parent;
-        if ($parent) {
-            $path[] = $parent;
-            return getCategoryPath($parent, $path);
+        $category = getCategoryProps($id);
+        if ($category->parent) {
+            $path[] = [
+                'id' => $id,
+                'alias' => $category->alias
+            ];
+            return getCategoryPath($category->parent, $path);
         } else {
-            return $path;
+            $path[] = [
+                'id' => $id,
+                'alias' => $category->alias
+            ];
         }
+        return array_reverse($path);
     }
 } else {
     function K2BuildRoute(&$query)
@@ -573,7 +583,6 @@ if ($params->get('k2Sef')) {
 
         if ($segments[0] == 'itemlist') {
             switch ($segments[1]) {
-
                 case 'category':
                     if (isset($segments[2])) {
                         $vars['id'] = $segments[2];
@@ -606,7 +615,6 @@ if ($params->get('k2Sef')) {
             }
         } elseif ($segments[0] == 'item') {
             switch ($segments[1]) {
-
                 case 'add':
                 case 'edit':
                     if (isset($segments[2])) {
