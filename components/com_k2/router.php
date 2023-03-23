@@ -111,36 +111,48 @@ if ($params->get('k2Sef')) {
                 $parts = explode(':', $itemID);
                 $id = (int) $parts[0];
 
-                // Replace the item with the category slug
+                // Replace "item" with the category slug
                 if ($params->get('k2SefLabelItem') == '1') {
                     if ($params->get('k2SefInsertCatId') == '0') {
+                        // Single category path
                         $segments[0] = getItemProps($id, true)->slug;
 
-                        $slug = $segments[0];
+                        /*
+                        // Full category path
                         $slugs = array();
                         $categories = getCategoryPath(getCategoryProps($slug)->id);
                         if (count($categories)) {
                             $slugs[] = $slug;
                             foreach ($categories as $category) {
-                                $slugs[] = $category->alias;
+                                $slugs[] = $category['alias'];
                             }
-                            $slug = implode('/', $slugs);
+                            $segments[0] = implode('/', $slugs);
                         }
-                        $segments[0] = $slug;
+                        */
                     } else {
-                        $segments[0] = getItemProps($id, true)->catid.'-'.getItemProps($id, true)->slug;
+                        // Single category path
+                        if ($params->get('k2SefUseCatTitleAlias')) {
+                            if ($params->get('k2SefCatIdTitleAliasSep') == 'slash') {
+                                $segments[0] = getItemProps($id, true)->catid.'/'.getItemProps($id, true)->slug;
+                            } else {
+                                $segments[0] = getItemProps($id, true)->catid.'-'.getItemProps($id, true)->slug;
+                            }
+                        } else {
+                            $segments[0] = getItemProps($id, true)->catid;
+                        }
 
-                        $slug = getItemProps($id, true)->slug;
+                        /*
+                        // Full category path
                         $slugs = array();
                         $categories = getCategoryPath(getCategoryProps($slug)->id);
                         if (count($categories)) {
                             $slugs[] = $slug;
                             foreach ($categories as $category) {
-                                $slugs[] = $category->id.'-'.$category->alias;
+                                $slugs[] = $category['id'].'-'.$category['alias'];
                             }
-                            $slug = implode('/', $slugs);
+                            $segments[0] = implode('/', $slugs);
                         }
-                        $segments[0] = $slug;
+                        */
                     }
                 } else {
                     $segments[0] = $params->get('k2SefLabelItemCustomPrefix');
@@ -178,8 +190,7 @@ if ($params->get('k2Sef')) {
             if (isset($segments[1])) {
                 switch ($segments[1]) {
                     case 'category':
-                        $segments[0] = $params->get('k2SefLabelCat', '');
-
+                        $segments[0] = $params->get('k2SefLabelCat', 'category');
                         unset($segments[1]);
 
                         $parts = @explode(':', $segments[2]);
@@ -189,11 +200,13 @@ if ($params->get('k2Sef')) {
                         $slugs = array();
                         $categories = getCategoryPath($catid);
                         if (count($categories)) {
-                            $slugs[] = $slug;
                             foreach ($categories as $category) {
-                                $slugs[] = $category->alias;
+                                $slugs[] = $category['alias'];
                             }
-                            $slug = implode('/', $slugs);
+                            // Single category path
+                            $slug = end($slugs);
+                            // Full category path
+                            //$slug = implode('/', $slugs);
                         }
 
                         // Handle category id and alias
@@ -214,6 +227,7 @@ if ($params->get('k2Sef')) {
                                 $segments[1] = $slug;
                             }
                         }
+
                         break;
                     case 'tag':
                         $segments[0] = $params->get('k2SefLabelTag', 'tag');
@@ -263,6 +277,11 @@ if ($params->get('k2Sef')) {
             // Category view
             if ($request_url_parts[0] == $params->get('k2SefLabelCat')) {
                 $request_url_parts[0] = 'itemlist';
+                if (count($request_url_parts) > 1) {
+                    $categoryPath = implode('/', $request_url_parts);
+                } else {
+                    $categoryPath = $request_url_parts[0];
+                }
                 array_splice($request_url_parts, 1, 0, 'category');
             }
             // Tag view
@@ -286,7 +305,14 @@ if ($params->get('k2Sef')) {
                 array_splice($request_url_parts, 1, 0, 'search');
             }
             // Category path, without a prefix
-            elseif (array_reverse($request_url_parts)[0] != @getItemProps(array_reverse($request_url_parts)[0])->alias) {
+            elseif (
+                isset(getCategoryProps($request_url_parts[0])->alias) &&
+                $request_url_parts[0] == getCategoryProps($request_url_parts[0])->alias &&
+                (
+                    array_reverse($request_url_parts)[0] != @getItemProps(array_reverse($request_url_parts)[0])->alias &&
+                    array_reverse($request_url_parts)[0] != @getItemProps((int) array_reverse($request_url_parts)[0])->id
+                )
+            ) {
                 if (count($request_url_parts) > 1) {
                     $categoryPath = implode('/', $request_url_parts);
                 } else {
