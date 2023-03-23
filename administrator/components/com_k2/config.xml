@@ -325,8 +325,8 @@
         <!-- Advanced SEF -->
         <param menu="hide" name="" type="header" default="K2_ADVANCED_SEF_SETTINGS" label="" description=""/>
         <param menu="hide" name="k2Sef" type="radio" default="0" label="K2_ADVANCED_SEF" description="K2_ADVANCED_SEF_DESC">
-            <option value="0">K2_NO</option>
-            <option value="1">K2_YES</option>
+            <option value="0">K2_DISABLE</option>
+            <option value="1">K2_ENABLE</option>
         </param>
         <param menu="hide" name="k2SefLabelItem" type="list" default="1" label="K2_SEF_URL_CATEGORY_PREFIX_FOR_ITEMS" description="K2_SEF_URL_CATEGORY_PREFIX_FOR_ITEMS_DESC">
             <option value="1">K2_SEF_USE_ITEM_CATEGORY</option>
@@ -916,15 +916,16 @@
         <!-- Advanced SEF -->
         <field menu="hide" name="" type="header" default="K2_ADVANCED_SEF_SETTINGS" label="" description=""/>
         <field menu="hide" name="k2Sef" type="radio" default="0" label="K2_ADVANCED_SEF" description="K2_ADVANCED_SEF_DESC">
-            <option value="0">K2_NO</option>
-            <option value="1">K2_YES</option>
+            <option value="0">K2_DISABLE</option>
+            <option value="1">K2_ENABLE</option>
         </field>
+        <field menu="hide" name="" type="header" class="small-header" default="K2_SEF_URL_OPTIONS_FOR_ITEM_URLS" label="" description=""/>
         <field menu="hide" name="k2SefLabelItem" type="list" default="1" label="K2_SEF_URL_CATEGORY_PREFIX_FOR_ITEMS" description="K2_SEF_URL_CATEGORY_PREFIX_FOR_ITEMS_DESC">
             <option value="1">K2_SEF_USE_ITEM_CATEGORY</option>
             <option value="2">K2_SEF_USE_CUSTOM_PREFIX</option>
             <option value="0">K2_NONE</option>
         </field>
-        <field menu="hide" name="k2SefLabelItemCustomPrefix" type="text" default="" label="K2_SEF_ITEM_URL_CUSTOM_PREFIX" description="K2_SEF_ITEM_URL_CUSTOM_PREFIX_DESC"/>
+        <field showon="k2SefLabelItem:2" menu="hide" name="k2SefLabelItemCustomPrefix" type="text" default="" label="K2_SEF_ITEM_URL_CUSTOM_PREFIX" description="K2_SEF_ITEM_URL_CUSTOM_PREFIX_DESC"/>
         <field menu="hide" name="k2SefInsertItemId" type="radio" default="0" label="K2_SEF_USE_ITEM_ID_IN_URL" description="K2_SEF_USE_ITEM_ID_IN_URL_DESC">
             <option value="0">K2_NO</option>
             <option value="1">K2_YES</option>
@@ -937,6 +938,7 @@
             <option value="dash">K2_USE_A_DASH</option>
             <option value="slash">K2_USE_A_FORWARD_SLASH</option>
         </field>
+        <field menu="hide" name="" type="header" class="small-header" default="K2_SEF_URL_OPTIONS_FOR_CATEGORY_URLS" label="" description=""/>
         <field menu="hide" name="k2SefLabelCat" type="text" default="" label="K2_SEF_URL_PREFIX_FOR_CATEGORIES" description="K2_SEF_URL_PREFIX_FOR_CATEGORIES_DESC"/>
         <field menu="hide" name="k2SefInsertCatId" type="radio" default="0" label="K2_SEF_USE_CAT_ID_IN_URL" description="K2_SEF_USE_CAT_ID_IN_URL_DESC">
             <option value="0">K2_NO</option>
@@ -950,6 +952,7 @@
             <option value="dash">K2_USE_A_DASH</option>
             <option value="slash">K2_USE_A_FORWARD_SLASH</option>
         </field>
+        <field menu="hide" name="" type="header" class="small-header" default="K2_SEF_URL_OPTIONS_FOR_OTHER_URLS" label="" description=""/>
         <field menu="hide" name="k2SefLabelTag" type="text" default="tag" label="K2_SEF_URL_PREFIX_FOR_TAGS" description="K2_SEF_URL_PREFIX_FOR_TAGS_DESC"/>
         <field menu="hide" name="k2SefLabelUser" type="text" default="author" label="K2_SEF_URL_PREFIX_FOR_USERSAUTHORS" description="K2_SEF_URL_PREFIX_FOR_USERSAUTHORS_DESC"/>
         <field menu="hide" name="k2SefLabelDate" type="text" default="date" label="K2_SEF_URL_PREFIX_FOR_DATE_LISTINGS" description="K2_SEF_URL_PREFIX_FOR_DATE_LISTINGS_DESC"/>

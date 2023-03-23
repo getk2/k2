@@ -59,6 +59,8 @@ body .select2-container--default.select2-container--focus.select2-container--bel
 .jwHeaderContainer15 {/*background:#d5e7fa;color:#369;font-size:13px;margin:0;padding:10px;border-bottom:2px solid #96b0cb;font-weight:bold;float:left;width:100%;clear:both;box-sizing:border-box;*/}
 .jwHeaderContent {}
 .jwHeaderClr {clear:both;height:0;line-height:0;border:none;float:none;background:none;padding:0;margin:0;}
+.jwHeaderContainer.small-header,
+.jwHeaderContainer15.small-header {padding:12px 16px;background:#e1e1e1;color:#000;}
 
 
 
