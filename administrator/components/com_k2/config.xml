@@ -922,6 +922,7 @@
         <field menu="hide" name="" type="header" class="small-header" default="K2_SEF_URL_OPTIONS_FOR_ITEM_URLS" label="" description=""/>
         <field menu="hide" name="k2SefLabelItem" type="list" default="1" label="K2_SEF_URL_CATEGORY_PREFIX_FOR_ITEMS" description="K2_SEF_URL_CATEGORY_PREFIX_FOR_ITEMS_DESC">
             <option value="1">K2_SEF_USE_ITEM_CATEGORY</option>
+            <!--<option value="3">K2_SEF_USE_ITEM_CATEGORY_FULL_PATH</option>-->
             <option value="2">K2_SEF_USE_CUSTOM_PREFIX</option>
             <option value="0">K2_NONE</option>
         </field>
@@ -934,7 +935,7 @@
             <option value="0">K2_NO</option>
             <option value="1">K2_YES</option>
         </field>
-        <field menu="hide" name="k2SefItemIdTitleAliasSep" type="list" default="dash" label="K2_SEF_ITEM_ID_TITLE_ALIAS_SEPARATOR" description="K2_SEF_ITEM_ID_TITLE_ALIAS_SEPARATOR_DESC">
+        <field showon="k2SefInsertItemId:1[AND]k2SefUseItemTitleAlias:1" menu="hide" name="k2SefItemIdTitleAliasSep" type="list" default="dash" label="K2_SEF_ITEM_ID_TITLE_ALIAS_SEPARATOR" description="K2_SEF_ITEM_ID_TITLE_ALIAS_SEPARATOR_DESC">
             <option value="dash">K2_USE_A_DASH</option>
             <option value="slash">K2_USE_A_FORWARD_SLASH</option>
         </field>
@@ -948,7 +949,7 @@
             <option value="0">K2_NO</option>
             <option value="1">K2_YES</option>
         </field>
-        <field menu="hide" name="k2SefCatIdTitleAliasSep" type="list" default="dash" label="K2_SEF_CAT_ID_TITLE_ALIAS_SEPARATOR" description="K2_SEF_CAT_ID_TITLE_ALIAS_SEPARATOR_DESC">
+        <field showon="k2SefInsertCatId:1[AND]k2SefUseCatTitleAlias:1" menu="hide" name="k2SefCatIdTitleAliasSep" type="list" default="dash" label="K2_SEF_CAT_ID_TITLE_ALIAS_SEPARATOR" description="K2_SEF_CAT_ID_TITLE_ALIAS_SEPARATOR_DESC">
             <option value="dash">K2_USE_A_DASH</option>
             <option value="slash">K2_USE_A_FORWARD_SLASH</option>
         </field>

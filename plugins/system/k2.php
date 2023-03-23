@@ -26,9 +26,7 @@ class plgSystemK2 extends JPlugin
         }
 
         // Define K2 version & build here
-        define('K2_CURRENT_VERSION', '2.11');
-        define('K2_BUILD_ID', '20230323');
-        define('K2_BUILD', '<br />[Build '.K2_BUILD_ID.']');
+        define('K2_CURRENT_VERSION', '2.11.20230324');
 
         // Define the DS constant (for backwards compatibility with old template overrides & 3rd party K2 extensions)
         if (!defined('DS')) {

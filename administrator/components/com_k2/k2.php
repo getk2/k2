@@ -109,7 +109,7 @@ if (
             <button aria-expanded="false" aria-controls="menu" id="k2ui-menu-control">&#8801;</button>
             '.K2HelperHTML::sidebarMenu().'
             <div id="k2Copyrights">
-                <a target="_blank" href="https://getk2.org/">K2 v'.K2_CURRENT_VERSION.K2_BUILD.'</a>
+                <a target="_blank" href="https://getk2.org/">K2 v'.K2_CURRENT_VERSION.'</a>
                 <div>
                     Copyright &copy; 2006-'.date('Y').' <a target="_blank" href="https://www.joomlaworks.net/">JoomlaWorks Ltd.</a>
                 </div>
@@ -124,8 +124,8 @@ if (
     </div>
 
     <!-- K2 Update Service -->
-    <script type="text/javascript">var K2_INSTALLED_VERSION = \''.K2_CURRENT_VERSION.'.'.K2_BUILD_ID.'\';</script>
-    <script type="text/javascript" src="https://getk2.org/app/update.js?t='.date('Ymd').'"></script>
+    <script type="text/javascript">var K2_INSTALLED_VERSION = \''.K2_CURRENT_VERSION.'\';</script>
+    <script type="text/javascript" src="https://getk2.org/app/update.js?t='.date('Ymd_H').'"></script>
     ';
 } else {
     $k2ComponentHeader = '';

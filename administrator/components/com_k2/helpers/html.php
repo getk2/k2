@@ -351,18 +351,18 @@ class K2HelperHTML
                     var K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST = '".JText::_('K2_THE_ENTRY_WAS_ADDED_IN_THE_LIST', true)."';
 
                 ");
-                $document->addScript(JURI::root(true).'/media/k2/assets/js/k2.backend.js?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID.'&sitepath='.JURI::root(true).'/');
+                $document->addScript(JURI::root(true).'/media/k2/assets/js/k2.backend.js?v='.K2_CURRENT_VERSION.'&sitepath='.JURI::root(true).'/');
 
                 // NicEdit
                 if ($option == 'com_k2' && $view == 'item') {
-                    $document->addScript(JURI::root(true).'/media/k2/assets/vendors/bkirchoff/nicedit/nicEdit.js?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
+                    $document->addScript(JURI::root(true).'/media/k2/assets/vendors/bkirchoff/nicedit/nicEdit.js?v='.K2_CURRENT_VERSION);
                 }
 
                 // Media (elFinder)
                 if ($view == 'media') {
-                    $document->addStyleSheet(JURI::root(true).'/media/k2/assets/vendors/studio-42/elfinder/css/elfinder.min.css?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
-                    $document->addStyleSheet(JURI::root(true).'/media/k2/assets/vendors/studio-42/elfinder/css/theme.css?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
-                    $document->addScript(JURI::root(true).'/media/k2/assets/vendors/studio-42/elfinder/js/elfinder.min.js?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
+                    $document->addStyleSheet(JURI::root(true).'/media/k2/assets/vendors/studio-42/elfinder/css/elfinder.min.css?v='.K2_CURRENT_VERSION);
+                    $document->addStyleSheet(JURI::root(true).'/media/k2/assets/vendors/studio-42/elfinder/css/theme.css?v='.K2_CURRENT_VERSION);
+                    $document->addScript(JURI::root(true).'/media/k2/assets/vendors/studio-42/elfinder/js/elfinder.min.js?v='.K2_CURRENT_VERSION);
                 } else {
                     JHTML::_('behavior.tooltip');
                     if (version_compare(JVERSION, '3.0.0', 'ge')) {
@@ -418,10 +418,10 @@ class K2HelperHTML
                 }
                 if ($option == 'com_k2') {
                     $document->addStyleSheet('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
-                    $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.backend.css?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
+                    $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.backend.css?v='.K2_CURRENT_VERSION);
                 }
                 if ($adminModuleIncludes) {
-                    $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.global.css?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
+                    $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.global.css?v='.K2_CURRENT_VERSION);
                 }
             }
 
@@ -440,7 +440,7 @@ class K2HelperHTML
                 }
 
                 // JS
-                $document->addScript(JURI::root(true).'/media/k2/assets/js/k2.frontend.js?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID.'&sitepath='.JURI::root(true).'/');
+                $document->addScript(JURI::root(true).'/media/k2/assets/js/k2.frontend.js?v='.K2_CURRENT_VERSION.'&sitepath='.JURI::root(true).'/');
 
                 // Add related CSS to the <head>
                 if ($params->get('enable_css')) {
@@ -452,21 +452,21 @@ class K2HelperHTML
 
                     // k2.css
                     if (isset($template) && JFile::exists(JPATH_SITE.'/templates/'.$template.'/css/k2.css')) {
-                        $document->addStyleSheet(JURI::root(true).'/templates/'.$template.'/css/k2.css?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
+                        $document->addStyleSheet(JURI::root(true).'/templates/'.$template.'/css/k2.css?v='.K2_CURRENT_VERSION);
                     } elseif (JFile::exists(JPATH_SITE.'/templates/'.$app->getTemplate().'/css/k2.css')) {
-                        $document->addStyleSheet(JURI::root(true).'/templates/'.$app->getTemplate().'/css/k2.css?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
+                        $document->addStyleSheet(JURI::root(true).'/templates/'.$app->getTemplate().'/css/k2.css?v='.K2_CURRENT_VERSION);
                     } else {
-                        $document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.css?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
+                        $document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.css?v='.K2_CURRENT_VERSION);
                     }
 
                     // k2.print.css
                     if (JRequest::getInt('print') == 1) {
                         if (isset($template) && JFile::exists(JPATH_SITE.'/templates/'.$template.'/css/k2.print.css')) {
-                            $document->addStyleSheet(JURI::root(true).'/templates/'.$template.'/css/k2.print.css?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID, 'text/css', 'print');
+                            $document->addStyleSheet(JURI::root(true).'/templates/'.$template.'/css/k2.print.css?v='.K2_CURRENT_VERSION, 'text/css', 'print');
                         } elseif (JFile::exists(JPATH_SITE.'/templates/'.$app->getTemplate().'/css/k2.print.css')) {
-                            $document->addStyleSheet(JURI::root(true).'/templates/'.$app->getTemplate().'/css/k2.print.css?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID, 'text/css', 'print');
+                            $document->addStyleSheet(JURI::root(true).'/templates/'.$app->getTemplate().'/css/k2.print.css?v='.K2_CURRENT_VERSION, 'text/css', 'print');
                         } else {
-                            $document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.print.css?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID, 'text/css', 'print');
+                            $document->addStyleSheet(JURI::root(true).'/components/com_k2/css/k2.print.css?v='.K2_CURRENT_VERSION, 'text/css', 'print');
                         }
                     }
                 }

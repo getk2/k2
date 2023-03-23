@@ -46,7 +46,7 @@ $componentParams = JComponentHelper::getParams('com_k2');
 // Load CSS & JS
 K2HelperHTML::loadHeadIncludes(true, false, true, false);
 if ($modCSSStyling) {
-    $document->addStyleSheet(JURI::base(true).'/modules/'.$mod_name.'/tmpl/css/style.css?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
+    $document->addStyleSheet(JURI::base(true).'/modules/'.$mod_name.'/tmpl/css/style.css?v='.K2_CURRENT_VERSION);
 }
 
 // Output content with template
