@@ -190,7 +190,11 @@ if ($params->get('k2Sef')) {
             if (isset($segments[1])) {
                 switch ($segments[1]) {
                     case 'category':
-                        $segments[0] = $params->get('k2SefLabelCat', 'category');
+                        $k2SefLabelCat_fallback = 'category';
+                        if ($params->get('k2SefUseCatTitleAlias')) {
+                            $k2SefLabelCat_fallback = '';
+                        }
+                        $segments[0] = $params->get('k2SefLabelCat', $k2SefLabelCat_fallback);
                         unset($segments[1]);
 
                         $parts = @explode(':', $segments[2]);
