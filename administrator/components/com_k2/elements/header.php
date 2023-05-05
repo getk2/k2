@@ -16,6 +16,7 @@ class K2ElementHeader extends K2Element
 {
     public function fetchElement($name, $value, &$node, $control_name)
     {
+        $additionalCssClass = '';
         if (version_compare(JVERSION, '2.5.0', 'ge')) {
             if ($node->attributes()->class) {
                 $additionalCssClass = ' '.$node->attributes()->class;

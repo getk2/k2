@@ -25,7 +25,7 @@
         </sql>
     </uninstall>
     <updateservers>
-        <server type="extension" priority="1" name="K2 Updates">http://getk2.org/app/update.xml</server>
+        <server type="extension" priority="1" name="K2">http://getk2.org/app/update.xml</server>
     </updateservers>
     <files folder="components/com_k2">
         <folder>controllers</folder>
