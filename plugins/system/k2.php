@@ -118,7 +118,7 @@ class plgSystemK2 extends JPlugin
 
                 foreach ($variables as $key => $value) {
                     if ((bool) stristr($key, 'K2ExtraField_')) {
-                        $object = new stdClass;
+                        $object = new stdClass();
                         $object->id = substr($key, 13);
                         $object->value = $value;
                         $objects[] = $object;
@@ -241,7 +241,7 @@ class plgSystemK2 extends JPlugin
                 $target = JRequest::getVar('option_target');
 
                 for ($i = 0; $i < count($values); $i++) {
-                    $object = new stdClass;
+                    $object = new stdClass();
                     $object->name = $names[$i];
 
                     if ($extraFieldType == 'select' || $extraFieldType == 'multipleSelect' || $extraFieldType == 'radio') {
@@ -429,7 +429,9 @@ class plgSystemK2 extends JPlugin
         if (($option == 'com_user' && $view == 'register') || ($option == 'com_users' && $view == 'registration')) {
             if ($params->get('recaptchaOnRegistration') && $params->get('recaptcha_public_key')) {
                 if (K2_JVERSION != '30') {
-                    $document->addScript(JURI::root(true).'/media/k2/assets/js/k2.rc.patch.js?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
+                    if (JPluginHelper::isEnabled('system', mtupgrade) !== false) {
+                        $document->addScript(JURI::root(true).'/media/k2/assets/js/k2.rc.patch.js?v='.K2_CURRENT_VERSION.'&b='.K2_BUILD_ID);
+                    }
                 }
                 $document->addScript('https://www.google.com/recaptcha/api.js?onload=onK2RecaptchaLoaded&render=explicit');
                 $document->addScriptDeclaration('
@@ -450,10 +452,10 @@ class plgSystemK2 extends JPlugin
             }
             if (K2_JVERSION != '15') {
                 require_once(JPATH_SITE.'/components/com_users/controller.php');
-                $controller = new UsersController;
+                $controller = new UsersController();
             } else {
                 require_once(JPATH_SITE.'/components/com_user/controller.php');
-                $controller = new UserController;
+                $controller = new UserController();
             }
 
             $view = $controller->getView($view, 'html');
@@ -468,7 +470,7 @@ class plgSystemK2 extends JPlugin
 
             $view->setLayout('register');
 
-            $K2User = new stdClass;
+            $K2User = new stdClass();
 
             $K2User->description = '';
             $K2User->gender = 'n';
@@ -542,10 +544,10 @@ class plgSystemK2 extends JPlugin
 
             if (K2_JVERSION != '15') {
                 require_once(JPATH_SITE.'/components/com_users/controller.php');
-                $controller = new UsersController;
+                $controller = new UsersController();
             } else {
                 require_once(JPATH_SITE.'/components/com_user/controller.php');
-                $controller = new UserController;
+                $controller = new UserController();
             }
 
             $view = $controller->getView($view, 'html');
@@ -563,7 +565,7 @@ class plgSystemK2 extends JPlugin
             $model = K2Model::getInstance('Itemlist', 'K2Model');
             $K2User = $model->getUserProfile($user->id);
             if (!is_object($K2User)) {
-                $K2User = new stdClass;
+                $K2User = new stdClass();
                 $K2User->description = '';
                 $K2User->gender = 'n';
                 $K2User->url = '';
