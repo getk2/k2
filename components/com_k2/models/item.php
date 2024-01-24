@@ -79,6 +79,8 @@ class K2ModelItem extends K2Model
         $iparams = class_exists('JParameter') ? new JParameter($item->params) : new JRegistry($item->params);
         $item->params = version_compare(PHP_VERSION, '5.0.0', '>=') ? clone $params : $params;
 
+        $categoryTheme = $cparams->get('theme');
+
         if ($cparams->get('inheritFrom')) {
             $masterCategoryID = $cparams->get('inheritFrom');
             $masterCategory = JTable::getInstance('K2Category', 'Table');
@@ -87,6 +89,11 @@ class K2ModelItem extends K2Model
         }
         $item->params->merge($cparams);
         $item->params->merge($iparams);
+
+        // Allow sub-template (theme) overriding per category, even when all parameters are inherited from another category
+        if ($categoryTheme) {
+            $item->params->set('theme', $categoryTheme);
+        }
 
         // Edit link
         if (K2HelperPermissions::canEditItem($item->created_by, $item->catid)) {
