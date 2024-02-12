@@ -38,4 +38,4 @@ More at: https://getk2.org
 
 ***
 
-Copyright &copy; 2009 - 2023 [JoomlaWorks Ltd.](https://www.joomlaworks.net)
+Copyright &copy; 2009 - 2024 [JoomlaWorks Ltd.](https://www.joomlaworks.net)
