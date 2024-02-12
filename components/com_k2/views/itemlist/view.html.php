@@ -85,8 +85,8 @@ class K2ViewItemlist extends K2View
         if ($document->getType() == 'json') {
             // Prepare JSON output
             $uri = JURI::getInstance();
-            $response = new stdClass;
-            $response->site = new stdClass;
+            $response = new stdClass();
+            $response->site = new stdClass();
             $response->site->url = $uri->toString(array('scheme', 'host', 'port'));
             $response->site->name = (K2_JVERSION == '30') ? $config->get('sitename') : $config->getValue('config.sitename');
 
@@ -188,7 +188,7 @@ class K2ViewItemlist extends K2View
                     $category->description = $category->text;
 
                     // Category K2 plugins
-                    $category->event = new stdClass;
+                    $category->event = new stdClass();
 
                     $category->event->K2CategoryDisplay = '';
                     $results = $dispatcher->trigger('onK2CategoryDisplay', array(
@@ -255,7 +255,7 @@ class K2ViewItemlist extends K2View
                         $prefix = 'cat';
 
                         // Prepare the JSON category object
-                        $row = new stdClass;
+                        $row = new stdClass();
                         $row->id = $category->id;
                         $row->alias = $category->alias;
                         $row->link = $category->link;
@@ -276,7 +276,7 @@ class K2ViewItemlist extends K2View
                 case 'tag':
                     // Prevent spammers from using the tag view
                     $tag = JRequest::getString('tag');
-                    $db->setQuery('SELECT id, name FROM #__k2_tags WHERE name = '.$db->quote($tag));
+                    $db->setQuery('SELECT id, name, description FROM #__k2_tags WHERE name = '.$db->quote($tag));
                     $tag = $db->loadObject();
                     if (!$tag || !$tag->id) {
                         jimport('joomla.filesystem.file');
@@ -319,6 +319,9 @@ class K2ViewItemlist extends K2View
                     }
                     $this->assignRef('title', $title);
 
+                    // Set description
+                    $this->assignRef('description', strip_tags($tag->description));
+
                     // Link
                     $link = K2HelperRoute::getTagRoute($tag->name);
                     $link = JRoute::_($link);
@@ -354,7 +357,7 @@ class K2ViewItemlist extends K2View
                     $userObject->avatar = K2HelperUtilities::getAvatar($userObject->id, $userObject->email, $params->get('userImageWidth'));
 
                     // User K2 plugins
-                    $userObject->event = new stdClass;
+                    $userObject->event = new stdClass();
 
                     $userObject->event->K2UserDisplay = '';
                     if (is_object($userObject->profile) && $userObject->profile->id > 0) {
@@ -394,7 +397,7 @@ class K2ViewItemlist extends K2View
                         $prefix = 'user';
 
                         // Prepare the JSON user object
-                        $row = new stdClass;
+                        $row = new stdClass();
                         $row->name = $userObject->name;
                         $row->avatar = $userObject->avatar;
                         $row->profile = $userObject->profile;
@@ -467,7 +470,7 @@ class K2ViewItemlist extends K2View
                     $this->assignRef('title', $title);
 
                     // Set search form data
-                    $form = new stdClass;
+                    $form = new stdClass();
                     $form->action = JRoute::_(K2HelperRoute::getSearchRoute());
                     $form->input = ($title) ? $title : JText::_('K2_SEARCH');
                     $form->attributes = '';
@@ -982,6 +985,10 @@ class K2ViewItemlist extends K2View
                         if ($params->get('menu-meta_description')) {
                             $metaDesc = $params->get('menu-meta_description');
                         }
+                    }
+
+                    if (!empty($tag->description)) {
+                        $metaDesc = $tag->description;
                     }
 
                     $metaDesc = trim($metaDesc);

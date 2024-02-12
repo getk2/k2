@@ -156,6 +156,7 @@ CREATE TABLE IF NOT EXISTS `#__k2_tags_xref` (
 CREATE TABLE IF NOT EXISTS `#__k2_tags` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `name` varchar(255) NOT NULL,
+    `description` text NOT NULL,
     `published` smallint(6) NOT NULL DEFAULT '0',
     PRIMARY KEY (`id`),
     KEY `idx_name` (`name`),

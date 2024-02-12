@@ -80,7 +80,7 @@ class K2ModelTag extends K2Model
         $tag = str_replace('-', '', $tag);
         $tag = str_replace('.', '', $tag);
 
-        $response = new stdClass;
+        $response = new stdClass();
         $response->name = $tag;
 
         if (empty($tag)) {
@@ -135,7 +135,7 @@ class K2ModelTag extends K2Model
         } else {
             $query = "SELECT name FROM #__k2_tags WHERE name LIKE ".$word;
             $db->setQuery($query);
-            $result = K2_JVERSION == '30' ? $db->loadColumn() : $db->loadResultArray();
+            $result = (K2_JVERSION == '30') ? $db->loadColumn() : $db->loadResultArray();
         }
 
         echo json_encode($result);

@@ -178,6 +178,14 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
         $db->query();
     }
 
+    // Tags
+    $fields = $db->getTableFields('#__k2_tags');
+    if (!array_key_exists('description', $fields['#__k2_tags'])) {
+        $query = "ALTER TABLE #__k2_tags ADD `description` text NOT NULL";
+        $db->setQuery($query);
+        $db->query();
+    }
+
     // Users
     $fields = $db->getTableFields('#__k2_users');
     if (!array_key_exists('ip', $fields['#__k2_users'])) {

@@ -39,6 +39,14 @@ defined('_JEXEC') or die;
                     <?php echo $this->lists['published']; ?>
                 </div>
             </li>
+            <li>
+                <div class="paramLabel">
+                    <label for="name"><?php echo JText::_('K2_DESCRIPTION'); ?></label>
+                </div>
+                <div class="paramValue">
+                    <textarea name="description" rows="5" cols="50" class="textarea"><?php echo $this->row->description; ?></textarea>
+                </div>
+            </li>
         </ul>
     </div>
 

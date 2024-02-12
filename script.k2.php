@@ -302,6 +302,14 @@ class Com_K2InstallerScript
             $db->query();
         }
 
+        // Tags
+        $fields = $db->getTableColumns('#__k2_tags');
+        if (!array_key_exists('description', $fields)) {
+            $query = "ALTER TABLE #__k2_tags ADD `description` text NOT NULL";
+            $db->setQuery($query);
+            $db->query();
+        }
+
         // Users
         $fields = $db->getTableColumns('#__k2_users');
         if (!array_key_exists('ip', $fields)) {

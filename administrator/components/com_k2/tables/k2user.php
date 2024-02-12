@@ -35,7 +35,7 @@ class TableK2User extends K2Table
     public function check()
     {
         if (trim($this->url) != '' && substr($this->url, 0, 4) != 'http') {
-            $this->url = 'http://'.$this->url;
+            $this->url = 'https://'.$this->url;
         }
         return true;
     }
