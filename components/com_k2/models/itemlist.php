@@ -48,7 +48,11 @@ class K2ModelItemlist extends K2Model
         */
         $nullDate = $db->getNullDate();
 
-        $query = "/* Frontend / K2 / Items */ SELECT SQL_CALC_FOUND_ROWS i.*,";
+        $query = "/* Frontend / K2 / Items */ SELECT /*+ MAX_EXECUTION_TIME(30000) */ SQL_CALC_FOUND_ROWS i.*,";
+
+        if ($task == 'search') {
+            $query = "/* Frontend / K2 / Items */ SELECT /*+ MAX_EXECUTION_TIME(90000) */ SQL_CALC_FOUND_ROWS i.*,";
+        }
 
         if ($ordering == 'modified') {
             $query .= " CASE WHEN i.modified = 0 THEN i.created ELSE i.modified END AS lastChanged,";
@@ -588,7 +592,7 @@ class K2ModelItemlist extends K2Model
                 $item->imageLarge   = $imagePathPrefix.'_L.jpg'.$imageTimestamp;
                 $item->imageXLarge  = $imagePathPrefix.'_XL.jpg'.$imageTimestamp;
 
-                $item->imageProperties = new stdClass;
+                $item->imageProperties = new stdClass();
                 $item->imageProperties->filenamePrefix = $imageFilenamePrefix;
                 $item->imageProperties->pathPrefix = $imagePathPrefix;
             }
@@ -868,7 +872,7 @@ class K2ModelItemlist extends K2Model
 
                 case 'mod_k2_content':
                     require_once(JPATH_SITE.'/modules/mod_k2_content/helper.php');
-                    $helper = new modK2ContentHelper;
+                    $helper = new modK2ContentHelper();
                     $items = $helper->getItems($params, $format);
                     break;
 
@@ -878,7 +882,7 @@ class K2ModelItemlist extends K2Model
                     }
 
                     require_once(JPATH_SITE.'/modules/mod_k2_comments/helper.php');
-                    $helper = new modK2CommentsHelper;
+                    $helper = new modK2CommentsHelper();
                     $items = $helper->getLatestComments($params);
 
                     foreach ($items as $item) {
@@ -893,7 +897,7 @@ class K2ModelItemlist extends K2Model
                     JError::raiseError(404, JText::_('K2_NOT_FOUND'));
             }
 
-            $result = new stdClass;
+            $result = new stdClass();
             $result->items = $items;
             $result->title = $module->title;
             $result->module = $module->module;
