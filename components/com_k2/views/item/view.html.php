@@ -321,7 +321,7 @@ class K2ViewItem extends K2View
                     $item->previousImageLarge   = $imagePathPrefix.'_L.jpg'.$imageTimestamp;
                     $item->previousImageXLarge  = $imagePathPrefix.'_XL.jpg'.$imageTimestamp;
 
-                    $item->previousImageProperties = new stdClass;
+                    $item->previousImageProperties = new stdClass();
                     $item->previousImageProperties->filenamePrefix = $imageFilenamePrefix;
                     $item->previousImageProperties->pathPrefix = $imagePathPrefix;
                 }
@@ -362,7 +362,7 @@ class K2ViewItem extends K2View
                     $item->nextImageLarge   = $imagePathPrefix.'_L.jpg'.$imageTimestamp;
                     $item->nextImageXLarge  = $imagePathPrefix.'_XL.jpg'.$imageTimestamp;
 
-                    $item->nextImageProperties = new stdClass;
+                    $item->nextImageProperties = new stdClass();
                     $item->nextImageProperties->filenamePrefix = $imageFilenamePrefix;
                     $item->nextImageProperties->pathPrefix = $imagePathPrefix;
                 }
@@ -429,10 +429,10 @@ class K2ViewItem extends K2View
             $row = $model->prepareJSONItem($item);
 
             // Output
-            $response = new stdClass;
+            $response = new stdClass();
 
             // Site
-            $response->site = new stdClass;
+            $response->site = new stdClass();
             $response->site->url = $uri->toString(array('scheme', 'host', 'port'));
             $response->site->name = (K2_JVERSION == '30') ? $config->get('sitename') : $config->getValue('config.sitename');
             $response->item = $row;
@@ -695,8 +695,8 @@ class K2ViewItem extends K2View
                     },
                     "url": "'.$this->absUrl($item->link).'",
                     "headline": "'.$this->filterHTML($metaTitle).'",'.$itemSD_Images.'
-                    "datePublished": "'.$item->created.'",
-                    "dateModified": "'.$itemSD_Modified.'",
+                    "datePublished": "'.$this->dateToIso8601($item->created).'",
+                    "dateModified": "'.$this->dateToIso8601($itemSD_Modified).'",
                     "author": {
                         "@type": "Person",
                         "name": "'.$itemSD_AuthorName.'",
@@ -824,5 +824,18 @@ class K2ViewItem extends K2View
         }
 
         return $matched;
+    }
+
+    private function dateToIso8601($dateString)
+    {
+        if (K2_JVERSION != '15') {
+            return JHtml::_('date', $dateString, 'c');
+        } else {
+            $config = JFactory::getConfig();
+            $timezone = $config->getValue('config.offset');
+            $date = new JDate($dateString);
+            $date->setOffset($timezone);
+            return $date->toISO8601(true);
+        }
     }
 }
