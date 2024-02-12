@@ -10,15 +10,11 @@
 // no direct access
 defined('_JEXEC') or die;
 
-if (K2_JVERSION != '15')
-{
+if (K2_JVERSION != '15') {
     $user = JFactory::getUser();
-    if ($user->authorise('core.admin', 'com_k2'))
-    {
+    if ($user->authorise('core.admin', 'com_k2')) {
         $user->gid = 1000;
-    }
-    else
-    {
+    } else {
         $user->gid = 1;
     }
 }
@@ -37,17 +33,14 @@ K2HelperPermissions::checkPermissions();
 $controller = JRequest::getWord('view', 'itemlist');
 $task = JRequest::getWord('task');
 
-if ($controller == 'media')
-{
+if ($controller == 'media') {
     $controller = 'item';
-    if ($task != 'connector')
-    {
+    if ($task != 'connector') {
         $task = 'media';
     }
 }
 
-if ($controller == 'users')
-{
+if ($controller == 'users') {
     $controller = 'item';
     $task = 'users';
 }
@@ -55,21 +48,18 @@ if ($controller == 'users')
 jimport('joomla.filesystem.file');
 jimport('joomla.html.parameter');
 
-if (JFile::exists(JPATH_COMPONENT.'/controllers/'.$controller.'.php'))
-{
+if (JFile::exists(JPATH_COMPONENT.'/controllers/'.$controller.'.php')) {
     $classname = 'K2Controller'.$controller;
-    if(!class_exists($classname))
+    if (!class_exists($classname)) {
         require_once(JPATH_COMPONENT.'/controllers/'.$controller.'.php');
+    }
     $controller = new $classname();
     $controller->execute($task);
     $controller->redirect();
-}
-else
-{
+} else {
     JError::raiseError(404, JText::_('K2_NOT_FOUND'));
 }
 
-if (JRequest::getCmd('format') != 'json')
-{
+if (JRequest::getCmd('format') != 'json') {
     echo "\n<!-- JoomlaWorks \"K2\" (v".K2_CURRENT_VERSION.") | Learn more about K2 at https://getk2.org -->\n\n";
 }

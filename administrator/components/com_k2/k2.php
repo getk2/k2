@@ -117,16 +117,21 @@ if (
         </div>
         <div id="k2ContentView">
     ';
+
     $k2ComponentFooter = '
             <div class="k2clr"></div>
         </div>
         '.K2HelperHTML::mobileMenu().'
     </div>
-
-    <!-- K2 Update Service -->
-    <script type="text/javascript">var K2_INSTALLED_VERSION = \''.K2_CURRENT_VERSION.'\';</script>
-    <script type="text/javascript" src="https://getk2.org/app/update.js?t='.date('Ymd_H').'"></script>
     ';
+
+    if ($user->gid > 24) {
+        $k2ComponentFooter .= '
+            <!-- K2 Update Service -->
+            <script type="text/javascript">var K2_INSTALLED_VERSION = \''.K2_CURRENT_VERSION.'\';</script>
+            <script type="text/javascript" src="https://getk2.org/app/update.js?t='.date('Ymd_H').'"></script>
+        ';
+    }
 } else {
     $k2ComponentHeader = '';
     $k2ComponentFooter = '';
