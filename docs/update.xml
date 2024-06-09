@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<updates>
+    <update>
+        <name>K2</name>
+        <description>K2, the powerful content extension for Joomla (by JoomlaWorks)</description>
+        <element>com_k2</element>
+        <type>component</type>
+        <version>2.11.20240609</version>
+        <infourl title="K2 - Release Notes">https://github.com/getk2/k2/commits/master</infourl>
+        <downloads>
+            <downloadurl type="full" format="zip">https://getk2.org/downloads/?f=K2_Rolling_Release.zip</downloadurl>
+        </downloads>
+        <tags>
+            <tag>stable</tag>
+        </tags>
+        <maintainer>JoomlaWorks Ltd.</maintainer>
+        <maintainerurl>https://getk2.org/</maintainerurl>
+        <section>Updates</section>
+        <targetplatform name="joomla" version="3.[0123456789]" />
+        <client_id>1</client_id>
+    </update>
+    <update>
+        <name>K2</name>
+        <description>K2, the powerful content extension for Joomla (by JoomlaWorks)</description>
+        <element>com_k2</element>
+        <type>component</type>
+        <version>2.11.20240609</version>
+        <infourl title="K2 - Release Notes">https://github.com/getk2/k2/commits/master</infourl>
+        <downloads>
+            <downloadurl type="full" format="zip">http://getk2.org/downloads/?f=K2_Rolling_Release.zip</downloadurl>
+        </downloads>
+        <tags>
+            <tag>stable</tag>
+        </tags>
+        <maintainer>JoomlaWorks Ltd.</maintainer>
+        <maintainerurl>https://getk2.org/</maintainerurl>
+        <section>Updates</section>
+        <targetplatform name="joomla" version="2.5" />
+        <client_id>1</client_id>
+    </update>
+</updates>

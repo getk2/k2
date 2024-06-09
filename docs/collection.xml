@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extensionset name="K2" description="K2 Extensions List">
+   <extension name="K2" element="com_k2" type="component" version="1.6" detailsurl="https://getk2.org/app/update.xml"/>
+</extensionset>
