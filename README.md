@@ -31,6 +31,12 @@ You can find the latest stable release on: https://getk2.org
 
 If you are looking for the latest developer build (a snapshot from this Github repository) just use Github's "Download ZIP" button.
 
+### Changelog
+Since June 2024, we have moved the changelog from our blog to GitHub, here:
+
+https://github.com/getk2/k2/blob/master/CHANGELOG.md
+
+
 ### Resources
 The K2 Community is the ultimate destination for everything K2! From discussions in the Community Forum to Extensions & Templates in the "K2 Extensions Directory", as well as a wealth of video tutorials, documentation, tips & a showcase of Joomla sites built with K2.
 
