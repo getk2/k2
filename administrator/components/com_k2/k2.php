@@ -111,7 +111,7 @@ if (
             <div id="k2Copyrights">
                 <a target="_blank" href="https://getk2.org/">K2 v'.K2_CURRENT_VERSION.'</a>
                 <div>
-                    Copyright &copy; 2006-'.date('Y').' <a target="_blank" href="https://www.joomlaworks.net/">JoomlaWorks Ltd.</a>
+                    Copyright &copy; 2006-'.date('Y').'<br /><a target="_blank" href="https://www.joomlaworks.net/">JoomlaWorks Ltd.</a>
                 </div>
             </div>
         </div>
