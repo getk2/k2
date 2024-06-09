@@ -6,7 +6,7 @@
         <element>com_k2</element>
         <type>component</type>
         <version>2.11.20240609</version>
-        <infourl title="K2 - Release Notes">https://github.com/getk2/k2/commits/master</infourl>
+        <infourl title="K2 - Changelog">https://github.com/getk2/k2/blob/master/CHANGELOG.md</infourl>
         <downloads>
             <downloadurl type="full" format="zip">https://getk2.org/downloads/?f=K2_Rolling_Release.zip</downloadurl>
         </downloads>
@@ -25,7 +25,7 @@
         <element>com_k2</element>
         <type>component</type>
         <version>2.11.20240609</version>
-        <infourl title="K2 - Release Notes">https://github.com/getk2/k2/commits/master</infourl>
+        <infourl title="K2 - Changelog">https://github.com/getk2/k2/blob/master/CHANGELOG.md</infourl>
         <downloads>
             <downloadurl type="full" format="zip">http://getk2.org/downloads/?f=K2_Rolling_Release.zip</downloadurl>
         </downloads>
