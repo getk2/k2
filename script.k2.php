@@ -286,6 +286,21 @@ class Com_K2InstallerScript
             $db->query();
         }
 
+        $query = "SHOW INDEX FROM #__k2_categories";
+        $db->setQuery($query);
+        $indexes = $db->loadObjectList();
+        $indexExists = false;
+        foreach ($indexes as $index) {
+            if ($index->Key_name == 'category') {
+                $indexExists = true;
+            }
+        }
+        if (!$indexExists) {
+            $query = "ALTER TABLE #__k2_categories ADD INDEX `idx_category` (`published`,`access`,`trash`)";
+            $db->setQuery($query);
+            $db->query();
+        }
+
         // Comments (add index for comments count)
         $query = "SHOW INDEX FROM #__k2_comments";
         $db->setQuery($query);
