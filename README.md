@@ -17,6 +17,7 @@ K2 was actually built on these 4 principles: feature-rich content in Joomla, eas
 
 **And best of all? K2 is totally free to use!**
 
+
 ### Some facts about K2
 * It has been downloaded more than 4 million times since March 2009.
 * Actively powers dozens of thousands of Joomla sites worldwide ([metrics](https://metrics.getk2.org) gathered since v2.7.0).
@@ -26,10 +27,12 @@ K2 was actually built on these 4 principles: feature-rich content in Joomla, eas
 * K2 is used in some of the top Joomla websites worldwide by organizations like the Harvard University, The National Institute of Technology in Brazil, the UK's NHS, Top Gear, Groupama, Amnesty International, ActionAid, The High Court of Australia, Arturia, Cyrus Audio and many, many more.
 * K2 is compatible with Joomla versions 1.5, 2.5 and 3.x on PHP versions 5, 7 & 8.
 
-### Downloading K2
-You can find the latest stable release on: https://getk2.org
 
-If you are looking for the latest developer build (a snapshot from this Github repository) just use Github's "Download ZIP" button.
+### Download K2
+You can download the latest rolling release here:
+
+https://getk2.org/downloads/?f=K2_Rolling_Release.zip
+
 
 ### Changelog
 Since June 2024, we have moved the changelog from our blog to GitHub, here:
@@ -40,7 +43,7 @@ https://github.com/getk2/k2/blob/master/CHANGELOG.md
 ### Resources
 The K2 Community is the ultimate destination for everything K2! From discussions in the Community Forum to Extensions & Templates in the "K2 Extensions Directory", as well as a wealth of video tutorials, documentation, tips & a showcase of Joomla sites built with K2.
 
-More at: https://getk2.org
+More info at: https://getk2.org
 
 ***
 
