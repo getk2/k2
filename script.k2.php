@@ -291,7 +291,7 @@ class Com_K2InstallerScript
         $indexes = $db->loadObjectList();
         $indexExists = false;
         foreach ($indexes as $index) {
-            if ($index->Key_name == 'category') {
+            if ($index->Key_name == 'idx_category') {
                 $indexExists = true;
             }
         }
