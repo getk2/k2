@@ -1,4 +1,4 @@
-![K2](https://getk2.org/downloads/logo/k2_logo.png)
+![K2](https://updates.getk2.org/images/k2_logo.png)
 ***
 
 You've already been there... Joomla is a great content management system. In fact it's considered one of the best in the world. But the default article system in Joomla is both spartan and confusing to configure and template in newer versions! In Joomla 1.5 it was just a title and your content body. In Joomla 2.5 article images where introduced as separate fields (but without any auto-resizing) and in Joomla 3.x tags where introduced as a separate component. Have you seen the options to configure all these?

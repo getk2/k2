@@ -129,7 +129,7 @@ if (
         $k2ComponentFooter .= '
             <!-- K2 Update Service -->
             <script type="text/javascript">var K2_INSTALLED_VERSION = \''.K2_CURRENT_VERSION.'\';</script>
-            <script type="text/javascript" src="https://getk2.org/app/update.js?t='.date('Ymd_H').'"></script>
+            <script type="text/javascript" src="https://updates.getk2.org/update.js?t='.date('Ymd_H').'"></script>
         ';
     }
 } else {

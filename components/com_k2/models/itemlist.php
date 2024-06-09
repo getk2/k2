@@ -71,7 +71,7 @@ class K2ModelItemlist extends K2Model
             $query .= " USE INDEX (idx_item)";
         }
 
-        $query .= " INNER JOIN #__k2_categories AS c ON c.id = i.catid";
+        $query .= " INNER JOIN #__k2_categories AS c USE INDEX (category) ON c.id = i.catid";
 
         if ($ordering == 'best') {
             $query .= " LEFT JOIN #__k2_rating AS r ON r.itemID = i.id";
@@ -623,7 +623,7 @@ class K2ModelItemlist extends K2Model
 
         $query = "SELECT itemID
             FROM #__k2_tags_xref
-            WHERE tagID IN ({$sql})
+            WHERE tagID IN({$sql})
                 AND itemID != {$itemID}
             GROUP BY itemID";
         $db->setQuery($query);

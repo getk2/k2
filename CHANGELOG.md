@@ -1,4 +1,4 @@
-![K2](https://getk2.org/downloads/logo/k2_logo.png)
+![K2](https://updates.getk2.org/images/k2_logo.png)
 ***
 
 # Changelog
