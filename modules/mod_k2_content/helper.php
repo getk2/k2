@@ -54,21 +54,15 @@ class modK2ContentHelper
 
         // Sources (prepare the DB query)
         if ($params->get('source') == 'specific') {
-            $value = $params->get('items');
-            $current = array();
-            if (is_string($value) && !empty($value)) {
-                $current[] = $value;
+            $specificItems = (array) $params->get('items');
+            if (count($specificItems) == 0) {
+                return;
             }
-            if (is_array($value)) {
-                $current = $value;
-            }
-
-            $items = array();
-
-            foreach ($current as $id) {
-                $query = "SELECT i.*, c.name AS categoryname, c.id AS categoryid, c.alias AS categoryalias, c.params AS categoryparams
+            $ids = implode(',', $specificItems);
+            $items = [];
+            $query = "/* Frontend / mod_k2_content */ SELECT i.*, c.name AS categoryname, c.id AS categoryid, c.alias AS categoryalias, c.params AS categoryparams
                     FROM #__k2_items AS i
-                    LEFT JOIN #__k2_categories AS c ON c.id = i.catid
+                    INNER JOIN #__k2_categories AS c ON c.id = i.catid
                     WHERE i.published = 1
                         AND i.access {$aclCheck}
                         AND i.trash = 0
@@ -77,21 +71,17 @@ class modK2ContentHelper
                         AND c.trash = 0
                         AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now).")
                         AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now).")
-                        AND i.id={$id}";
+                        AND i.id IN({$ids})";
 
-                if ($languageFilter) {
-                    $query .= " AND i.language IN ({$languageFilter}) AND c.language IN ({$languageFilter})";
-                }
-
-                $db->setQuery($query);
-                $item = $db->loadObject();
-
-                if ($item) {
-                    $items[] = $item;
-                }
+            if ($languageFilter) {
+                $query .= " AND i.language IN({$languageFilter}) AND c.language IN({$languageFilter})";
             }
+            $query .= " ORDER BY FIELD(i.id,{$ids})";
+            // TO DO: Set limit for specific items - $db->setQuery($query, 0, $limit);
+            $db->setQuery($query);
+            $items = $db->loadObjectList();
         } else {
-            $query = "SELECT i.*,";
+            $query = "/* Frontend / mod_k2_content */ SELECT i.*,";
 
             if ($ordering == 'modified') {
                 $query .= " CASE WHEN i.modified = 0 THEN i.created ELSE i.modified END AS lastChanged,";
@@ -107,7 +97,7 @@ class modK2ContentHelper
                 $query .= ", COUNT(comments.id) AS numOfComments";
             }
 
-            $query .= " FROM #__k2_items AS i RIGHT JOIN #__k2_categories AS c ON c.id = i.catid";
+            $query .= " FROM #__k2_items AS i INNER JOIN #__k2_categories AS c ON c.id = i.catid";
 
             if ($ordering == 'best') {
                 $query .= " LEFT JOIN #__k2_rating AS r ON r.itemID = i.id";
@@ -137,7 +127,7 @@ class modK2ContentHelper
                     $categories = $itemListModel->getCategoryTree($cid);
                     sort($categories);
                     $sql = @implode(',', $categories);
-                    $query .= " AND i.catid IN ({$sql})";
+                    $query .= " AND i.catid IN({$sql})";
                 } else {
                     if (is_array($cid)) {
                         sort($cid);
@@ -171,7 +161,7 @@ class modK2ContentHelper
             }
 
             if ($languageFilter) {
-                $query .= " AND i.language IN ({$languageFilter}) AND c.language IN ({$languageFilter})";
+                $query .= " AND i.language IN({$languageFilter}) AND c.language IN({$languageFilter})";
             }
 
             if ($ordering == 'comments') {
@@ -354,7 +344,7 @@ class modK2ContentHelper
                         $item->imageLarge   = $imagePathPrefix.'_L.jpg'.$imageTimestamp;
                         $item->imageXLarge  = $imagePathPrefix.'_XL.jpg'.$imageTimestamp;
 
-                        $item->imageProperties = new stdClass;
+                        $item->imageProperties = new stdClass();
                         $item->imageProperties->filenamePrefix = $imageFilenamePrefix;
                         $item->imageProperties->pathPrefix = $imagePathPrefix;
                     }
@@ -374,7 +364,7 @@ class modK2ContentHelper
                     $params->set('afolder', 'media/k2/audio');
 
                     // Create temp object to parse plugins
-                    $mediaTempText = new stdClass;
+                    $mediaTempText = new stdClass();
                     $mediaTempText->text = $item->video;
                     if ($params->get('JPlugins', 1)) {
                         if (K2_JVERSION == '15') {
@@ -411,7 +401,7 @@ class modK2ContentHelper
                         foreach ($item->extra_fields as $key => $extraField) {
                             if ($extraField->type == 'textarea' || $extraField->type == 'textfield') {
                                 // Create temp object to parse plugins
-                                $extraFieldTempText = new stdClass;
+                                $extraFieldTempText = new stdClass();
                                 $extraFieldTempText->text = $extraField->value;
                                 if ($params->get('JPlugins', 1)) {
                                     if (K2_JVERSION == '15') {
@@ -456,7 +446,7 @@ class modK2ContentHelper
                 if ($format != 'feed') {
                     $params->set('parsedInModule', 1); // for plugins to know when they are parsed inside this module
 
-                    $item->event = new stdClass;
+                    $item->event = new stdClass();
 
                     $item->event->BeforeDisplay = '';
                     $item->event->AfterDisplay = '';
@@ -594,3 +584,4 @@ class modK2ContentHelper
         }
     }
 }
+

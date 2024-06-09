@@ -15,8 +15,8 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
     jimport('joomla.installer.installer');
 
     // Load K2 language file
-    $lang = JFactory::getLanguage();
-    $lang->load('com_k2');
+    $language = JFactory::getLanguage();
+    $language->load('com_k2');
 
     $status = new stdClass;
     $status->modules = array();
