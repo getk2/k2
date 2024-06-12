@@ -320,7 +320,8 @@ class K2ViewItemlist extends K2View
                     $this->assignRef('title', $title);
 
                     // Set description
-                    $this->assignRef('description', strip_tags($tag->description));
+                    $tagDescription = strip_tags($tag->description);
+                    $this->assignRef('description', $tagDescription);
 
                     // Link
                     $link = K2HelperRoute::getTagRoute($tag->name);
