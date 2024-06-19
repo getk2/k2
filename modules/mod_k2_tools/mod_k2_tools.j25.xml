@@ -98,7 +98,7 @@
                     <option value="1">K2_YES</option>
                 </field>
                 <field showon="module_usage:6" name="text" type="text" default="" label="K2_SEARCH_BOX_DEFAULT_TEXT" description="K2_THE_TEXT_TO_DISPLAY_BY_DEFAULT_IN_THE_SEARCH_BOX"/>
-                <field showon="module_usage:X" name="button" type="radio" default="0" label="K2_SHOW_SEARCH_BUTTON" description="" class="btn-group btn-group-yesno">
+                <field showon="module_usage:6" name="button" type="radio" default="0" label="K2_SHOW_SEARCH_BUTTON" description="" class="btn-group btn-group-yesno">
                     <option value="0">K2_NO</option>
                     <option value="1">K2_YES</option>
                 </field>
