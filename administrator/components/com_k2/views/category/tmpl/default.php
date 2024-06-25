@@ -151,7 +151,7 @@ defined('_JEXEC') or die;
             <div class="itemPlugins">
                 <?php foreach ($this->K2Plugins as $K2Plugin): ?>
                 <?php if(!is_null($K2Plugin)): ?>
-                <fieldset class="adminform">
+                <fieldset class="adminform k2Plugin-<?php echo preg_replace('/[^\p{L}\p{N}_]/u', '', ucwords(strtolower($K2Plugin->name))); ?>">
                     <legend><?php echo $K2Plugin->name; ?></legend>
                     <?php echo $K2Plugin->fields; ?>
                 </fieldset>

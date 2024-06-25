@@ -93,7 +93,7 @@ defined('_JEXEC') or die;
             <?php foreach ($this->K2Plugins as $K2Plugin): ?>
             <?php if (!is_null($K2Plugin)): ?>
             <li>
-                <div class="userPlugins pluginIs<?php echo preg_replace('/[^\p{L}\p{N}_]/u', '', ucwords(strtolower($K2Plugin->name))); ?>">
+                <div class="userPlugins k2Plugin-<?php echo preg_replace('/[^\p{L}\p{N}_]/u', '', ucwords(strtolower($K2Plugin->name))); ?>">
                     <h3><?php echo $K2Plugin->name; ?></h3>
                     <div class="userPluginFields">
                         <?php echo $K2Plugin->fields; ?>

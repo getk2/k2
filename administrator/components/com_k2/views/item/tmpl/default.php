@@ -246,9 +246,11 @@ $app = JFactory::getApplication();
                         <div class="itemPlugins itemPluginsContent">
                             <?php foreach($this->K2PluginsItemContent as $K2Plugin): ?>
                             <?php if(!is_null($K2Plugin)): ?>
-                            <h3><?php echo $K2Plugin->name; ?></h3>
-                            <div class="itemAdditionalData">
-                                <?php echo $K2Plugin->fields; ?>
+                            <div class="itemPlugin k2Plugin-<?php echo preg_replace('/[^\p{L}\p{N}_]/u', '', ucwords(strtolower($K2Plugin->name))); ?>">
+                                <h3><?php echo $K2Plugin->name; ?></h3>
+                                <div class="itemAdditionalData">
+                                    <?php echo $K2Plugin->fields; ?>
+                                </div>
                             </div>
                             <?php endif; ?>
                             <?php endforeach; ?>
@@ -309,9 +311,11 @@ $app = JFactory::getApplication();
                         <div class="itemPlugins itemPluginsImage">
                             <?php foreach($this->K2PluginsItemImage as $K2Plugin): ?>
                             <?php if(!is_null($K2Plugin)): ?>
-                            <h3><?php echo $K2Plugin->name; ?></h3>
-                            <div class="itemAdditionalData">
-                                <?php echo $K2Plugin->fields; ?>
+                            <div class="itemPlugin k2Plugin-<?php echo preg_replace('/[^\p{L}\p{N}_]/u', '', ucwords(strtolower($K2Plugin->name))); ?>">
+                                <h3><?php echo $K2Plugin->name; ?></h3>
+                                <div class="itemAdditionalData">
+                                    <?php echo $K2Plugin->fields; ?>
+                                </div>
                             </div>
                             <?php endif; ?>
                             <?php endforeach; ?>
@@ -396,9 +400,11 @@ $app = JFactory::getApplication();
                         <div class="itemPlugins itemPluginsImageGallery">
                             <?php foreach($this->K2PluginsItemGallery as $K2Plugin): ?>
                             <?php if(!is_null($K2Plugin)): ?>
-                            <h3><?php echo $K2Plugin->name; ?></h3>
-                            <div class="itemAdditionalData">
-                                <?php echo $K2Plugin->fields; ?>
+                            <div class="itemPlugin k2Plugin-<?php echo preg_replace('/[^\p{L}\p{N}_]/u', '', ucwords(strtolower($K2Plugin->name))); ?>">
+                                <h3><?php echo $K2Plugin->name; ?></h3>
+                                <div class="itemAdditionalData">
+                                    <?php echo $K2Plugin->fields; ?>
+                                </div>
                             </div>
                             <?php endif; ?>
                             <?php endforeach; ?>
@@ -577,9 +583,11 @@ $app = JFactory::getApplication();
                         <div class="itemPlugins itemPluginsMedia">
                             <?php foreach($this->K2PluginsItemVideo as $K2Plugin): ?>
                             <?php if(!is_null($K2Plugin)): ?>
-                            <h3><?php echo $K2Plugin->name; ?></h3>
-                            <div class="itemAdditionalData">
-                                <?php echo $K2Plugin->fields; ?>
+                            <div class="itemPlugin k2Plugin-<?php echo preg_replace('/[^\p{L}\p{N}_]/u', '', ucwords(strtolower($K2Plugin->name))); ?>">
+                                <h3><?php echo $K2Plugin->name; ?></h3>
+                                <div class="itemAdditionalData">
+                                    <?php echo $K2Plugin->fields; ?>
+                                </div>
                             </div>
                             <?php endif; ?>
                             <?php endforeach; ?>
@@ -620,9 +628,11 @@ $app = JFactory::getApplication();
                         <div class="itemPlugins itemPluginsExtraFields">
                             <?php foreach($this->K2PluginsItemExtraFields as $K2Plugin): ?>
                             <?php if(!is_null($K2Plugin)): ?>
-                            <h3><?php echo $K2Plugin->name; ?></h3>
-                            <div class="itemAdditionalData">
-                                <?php echo $K2Plugin->fields; ?>
+                            <div class="itemPlugin k2Plugin-<?php echo preg_replace('/[^\p{L}\p{N}_]/u', '', ucwords(strtolower($K2Plugin->name))); ?>">
+                                <h3><?php echo $K2Plugin->name; ?></h3>
+                                <div class="itemAdditionalData">
+                                    <?php echo $K2Plugin->fields; ?>
+                                </div>
                             </div>
                             <?php endif; ?>
                             <?php endforeach; ?>
@@ -675,9 +685,11 @@ $app = JFactory::getApplication();
                         <div class="itemPlugins itemPluginsAttachments">
                             <?php foreach($this->K2PluginsItemAttachments as $K2Plugin): ?>
                             <?php if(!is_null($K2Plugin)): ?>
-                            <h3><?php echo $K2Plugin->name; ?></h3>
-                            <div class="itemAdditionalData">
-                                <?php echo $K2Plugin->fields; ?>
+                            <div class="itemPlugin k2Plugin-<?php echo preg_replace('/[^\p{L}\p{N}_]/u', '', ucwords(strtolower($K2Plugin->name))); ?>">
+                                <h3><?php echo $K2Plugin->name; ?></h3>
+                                <div class="itemAdditionalData">
+                                    <?php echo $K2Plugin->fields; ?>
+                                </div>
                             </div>
                             <?php endif; ?>
                             <?php endforeach; ?>
@@ -692,9 +704,11 @@ $app = JFactory::getApplication();
                         <div class="itemPlugins itemPluginsPlugins">
                             <?php foreach($this->K2PluginsItemOther as $K2Plugin): ?>
                             <?php if(!is_null($K2Plugin)): ?>
-                            <h3><?php echo $K2Plugin->name; ?></h3>
-                            <div class="itemAdditionalData">
-                                <?php echo $K2Plugin->fields; ?>
+                            <div class="itemPlugin k2Plugin-<?php echo preg_replace('/[^\p{L}\p{N}_]/u', '', ucwords(strtolower($K2Plugin->name))); ?>">
+                                <h3><?php echo $K2Plugin->name; ?></h3>
+                                <div class="itemAdditionalData">
+                                    <?php echo $K2Plugin->fields; ?>
+                                </div>
                             </div>
                             <?php endif; ?>
                             <?php endforeach; ?>
