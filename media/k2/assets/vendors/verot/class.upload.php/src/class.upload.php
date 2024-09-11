@@ -3101,7 +3101,7 @@ class upload
                 }
                 // if the file is text based, or has a dangerous extension, we rename it as .txt
                 if ((((substr($this->file_src_mime, 0, 5) == 'text/' && $this->file_src_mime != 'text/rtf') || strpos($this->file_src_mime, 'javascript') !== false)  && (substr($file_src_name, -4) != '.txt'))
-                    || preg_match('/\.(asp|cgi|js|ph3|ph4|ph5|ph7|phar|php|php3|php4|php5|php6|php7|pht|phps|phtml|pl|py)$/i', $this->file_src_name)
+                    || preg_match('/\.(asp|cgi|js|ph3|ph4|ph5|ph7|phar|php|php3|php4|php5|php6|php7|pht|phps|phtml|pl|py)/i', $this->file_src_name)
                     || $this->file_force_extension && empty($file_src_name_ext)) {
                     $this->file_src_mime = 'text/plain';
                     if ($this->file_src_name_ext) {
