@@ -3,6 +3,9 @@
 
 # Changelog
 
+### v2.11.20241016 - October 16th, 2024
+- Ensure "moduleID" is a cache modifier/differentiator in itemlist views. This resolves issues where 2 or more URLs containing different "moduleID" parameters where cached as the same.
+
 ### v2.11.20240911 - September 11th, 2024
 - Fixed reported vulnerability in the third-party PHP library "class.upload.php" (https://github.com/getk2/k2/issues/561)
 
