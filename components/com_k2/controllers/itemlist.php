@@ -29,22 +29,23 @@ class K2ControllerItemlist extends K2Controller
             $cache = false;
         }
         if (K2_JVERSION != '15') {
+            $urlparams['amp'] = 'INT';
+            $urlparams['day'] = 'INT';
+            $urlparams['id'] = 'INT';
+            $urlparams['Itemid'] = 'INT';
+            $urlparams['lang'] = 'CMD';
             $urlparams['limit'] = 'UINT';
             $urlparams['limitstart'] = 'UINT';
-            $urlparams['id'] = 'INT';
-            $urlparams['tag'] = 'STRING';
-            $urlparams['searchword'] = 'STRING';
-            $urlparams['day'] = 'INT';
-            $urlparams['year'] = 'INT';
-            $urlparams['month'] = 'INT';
-            $urlparams['print'] = 'INT';
-            $urlparams['lang'] = 'CMD';
-            $urlparams['Itemid'] = 'INT';
-            $urlparams['ordering'] = 'CMD';
             $urlparams['m'] = 'INT';
-            $urlparams['amp'] = 'INT';
-            $urlparams['tmpl'] = 'CMD';
+            $urlparams['moduleID'] = 'INT';
+            $urlparams['month'] = 'INT';
+            $urlparams['ordering'] = 'CMD';
+            $urlparams['print'] = 'INT';
+            $urlparams['searchword'] = 'STRING';
+            $urlparams['tag'] = 'STRING';
             $urlparams['template'] = 'CMD';
+            $urlparams['tmpl'] = 'CMD';
+            $urlparams['year'] = 'INT';
         }
         parent::display($cache, $urlparams);
     }
