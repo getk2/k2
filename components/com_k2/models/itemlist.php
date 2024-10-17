@@ -48,7 +48,7 @@ class K2ModelItemlist extends K2Model
         */
         $nullDate = $db->getNullDate();
 
-        $query = "/* Frontend / K2 / Items */ SELECT /*+ MAX_EXECUTION_TIME(30000) */ SQL_CALC_FOUND_ROWS i.*,";
+        $query = "/* Frontend / K2 / Items */ SELECT /*+ MAX_EXECUTION_TIME(60000) */ SQL_CALC_FOUND_ROWS i.*,";
 
         if ($task == 'search') {
             $query = "/* Frontend / K2 / Items */ SELECT /*+ MAX_EXECUTION_TIME(90000) */ SQL_CALC_FOUND_ROWS i.*,";
