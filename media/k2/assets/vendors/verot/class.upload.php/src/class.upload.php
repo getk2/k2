@@ -2767,6 +2767,7 @@ class upload
         if ($size === null) {
             return null;
         }
+        $size = (string) $size; // cast to string so it doesn't throw a warning in PHP 8.2+
         $last = strtolower($size[strlen($size)-1]);
         $size = (int) $size;
         switch ($last) {
