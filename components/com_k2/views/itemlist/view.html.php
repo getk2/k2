@@ -150,6 +150,9 @@ class K2ViewItemlist extends K2View
                     // Merge params
                     $cparams = (class_exists('JParameter')) ? new JParameter($category->params) : new JRegistry($category->params);
 
+                    // Get selected theme (if set in the category)
+                    $ctheme = $cparams->get('theme');
+
                     // Get the meta information before merging params since we do not want them to be inherited
                     $category->metaDescription = $cparams->get('catMetaDesc');
                     $category->metaKeywords = $cparams->get('catMetaKey');
@@ -162,6 +165,11 @@ class K2ViewItemlist extends K2View
                         $cparams = (class_exists('JParameter')) ? new JParameter($masterCategory->params) : new JRegistry($masterCategory->params);
                     }
                     $params->merge($cparams);
+
+                    // Override inherited theme
+                    if ($ctheme) {
+                        $params->set('theme', $ctheme);
+                    }
 
                     // Category link
                     $category->link = urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($category->id.':'.urlencode($category->alias))));

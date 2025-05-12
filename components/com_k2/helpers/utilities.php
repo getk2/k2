@@ -132,6 +132,7 @@ class K2HelperUtilities
     // Cleanup HTML entities
     public static function cleanHtml($text)
     {
+        $text = trim(preg_replace('/\s+/u', ' ', $text));
         return htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
     }
 
