@@ -6,6 +6,8 @@
 ### v2.11.20250512 - May 12th, 2025
 - Better handling for K2 items that would normally return a 404 when the alias does not match an actual K2 item (with K2 Advanced SEF enabled).
 - Fix PHP warnings that relate to class.upload.php & the "related items" block in the item view.
+- Extra white space trimming in HTML attributes
+- K2 Categories: Allow overriding inherited template (theme) on a per category basis. This change in K2 allows you to bypass template inheritance ONLY, when a category already inherits the parameters of another category. Just set a different template under the "Display Settings" tab, option "Select a template" and the category will override the template from the inherited category but allow all other options to stay inherited.
 
 ### v2.11.20241016 - October 16th, 2024
 - Ensure "moduleID" is a cache modifier/differentiator in itemlist views. This resolves issues where 2 or more URLs containing different "moduleID" parameters where cached as the same.
