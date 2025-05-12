@@ -338,8 +338,10 @@ if ($params->get('k2Sef')) {
                 // Reinsert item id to the item alias
                 if (!$params->get('k2SefInsertItemId') && @$request_url_parts[1] != 'download' && @$request_url_parts[1] != 'edit') {
                     $alias = array_reverse($request_url_parts)[0];
-                    $id = getItemProps($alias)->id;
-                    $request_url_parts[1] = $id.':'.$alias;
+                    $id = (is_object(getItemProps($alias)) && !empty(getItemProps($alias)->id)) ? getItemProps($alias)->id : null;
+                    if ($id) {
+                        $request_url_parts[1] = $id.':'.$alias;
+                    }
                 }
             }
         }
