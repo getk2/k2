@@ -5,6 +5,7 @@
 
 ### v2.11.20250512 - May 12th, 2025
 - Better handling for K2 items that would normally return a 404 when the alias does not match an actual K2 item (with K2 Advanced SEF enabled).
+- Fix PHP warnings that relate to class.upload.php & the "related items" block in the item view.
 
 ### v2.11.20241016 - October 16th, 2024
 - Ensure "moduleID" is a cache modifier/differentiator in itemlist views. This resolves issues where 2 or more URLs containing different "moduleID" parameters where cached as the same.

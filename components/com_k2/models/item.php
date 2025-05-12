@@ -116,6 +116,7 @@ class K2ModelItem extends K2Model
         }
 
         // Image
+        $item->imageGeneric = '';
         $item->imageXSmall = '';
         $item->imageSmall = '';
         $item->imageMedium = '';
