@@ -74,7 +74,7 @@ if ($params->get('k2Sef')) {
         }
 
         if (isset($query['tag'])) {
-            $segments[] = $query['tag'];
+            $segments[] = urlencode($query['tag']);
             unset($query['tag']);
         }
 
@@ -573,7 +573,7 @@ if ($params->get('k2Sef')) {
 
         if (isset($query['tag'])) {
             $tag = $query['tag'];
-            $segments[] = $tag;
+            $segments[] = urlencode($tag);
             unset($query['tag']);
         }
 
