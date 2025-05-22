@@ -22,7 +22,7 @@ K2 was actually built on these 4 principles: feature-rich content in Joomla, eas
 * It has been downloaded more than 4 million times since March 2009.
 * Actively powers dozens of thousands of Joomla sites worldwide ([metrics](https://metrics.getk2.org) gathered since v2.7.0).
 * Almost all Joomla template clubs provide K2 specific styling and/or display K2 as part of their demo sites.
-* There are hundreds of extensions supporting or integrating K2 in the Joomla Extensions Directory - see: https://extensions.joomla.org/instant-search/?searchall=k2&q=k2
+* There are hundreds of extensions supporting or integrating K2 in the Joomla Extensions Directory - see: [https://extensions.joomla.org/instant-search/?searchall=k2&q=k2](https://extensions.joomla.org/instant-search/?jed_live%5Bquery%5D=k2)
 * The first version of the Joomla Magazine and JoomlaGov.info (the directory for government websites built with Joomla) are powered by K2.
 * K2 is used in some of the top Joomla websites worldwide by organizations like the Harvard University, The National Institute of Technology in Brazil, the UK's NHS, Top Gear, Groupama, Amnesty International, ActionAid, The High Court of Australia, Arturia, Cyrus Audio and many, many more.
 * K2 is FULLY compatible with Joomla versions 1.5, 2.5 and 3.x on PHP versions 5, 7 & 8.
