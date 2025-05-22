@@ -25,7 +25,7 @@ K2 was actually built on these 4 principles: feature-rich content in Joomla, eas
 * There are hundreds of extensions supporting or integrating K2 in the Joomla Extensions Directory - see: https://extensions.joomla.org/instant-search/?searchall=k2&q=k2
 * The first version of the Joomla Magazine and JoomlaGov.info (the directory for government websites built with Joomla) are powered by K2.
 * K2 is used in some of the top Joomla websites worldwide by organizations like the Harvard University, The National Institute of Technology in Brazil, the UK's NHS, Top Gear, Groupama, Amnesty International, ActionAid, The High Court of Australia, Arturia, Cyrus Audio and many, many more.
-* K2 is compatible with Joomla versions 1.5, 2.5 and 3.x on PHP versions 5, 7 & 8.
+* K2 is FULLY compatible with Joomla versions 1.5, 2.5 and 3.x on PHP versions 5, 7 & 8.
 
 
 ### Download K2
@@ -40,11 +40,17 @@ Since June 2024, we have moved the changelog from our blog to GitHub, here:
 https://github.com/getk2/k2/blob/master/CHANGELOG.md
 
 
+### Discussion Board (Support Forum)
+Since May 2025, we have moved the K2 support forum to GitHub, here:
+
+https://github.com/getk2/k2/discussions
+
+
 ### Resources
-The K2 Community is the ultimate destination for everything K2! From discussions in the Community Forum to Extensions & Templates in the "K2 Extensions Directory", as well as a wealth of video tutorials, documentation, tips & a showcase of Joomla sites built with K2.
+The main K2 site features K2-specific extensions, translations, video tutorials, documentation, tips & a showcase of Joomla sites built with K2.
 
 More info at: https://getk2.org
 
 ***
 
-Copyright &copy; 2009 - 2024 [JoomlaWorks Ltd.](https://www.joomlaworks.net)
+Copyright &copy; 2009 - 2025 [JoomlaWorks Ltd.](https://www.joomlaworks.net)
