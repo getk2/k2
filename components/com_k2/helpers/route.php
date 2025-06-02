@@ -182,7 +182,7 @@ class K2HelperRoute
                                 }
                             }
                             if (!isset($item->K2Categories)) {
-                                $item->K2Categories = array();
+                                $item->K2Categories = [];
                             }
                         } else {
                             $menuparams = json_decode($item->params);
@@ -191,7 +191,7 @@ class K2HelperRoute
 
                         self::$cache['multicat_menu_items'][$item->id] = $item->K2Categories;
 
-                        if (count($item->K2Categories) === 0) {
+                        if (is_array($item->K2Categories) && count($item->K2Categories) === 0) {
                             // Push all K2 itemlist menu items without specific categories assigned into an array
                             // Later we pick the one with the highest menu item ID [TBC with static selection under SEO settings]
                             self::$cache['fallback_menu_items'][$item->id] = $item;
@@ -232,7 +232,7 @@ class K2HelperRoute
                 if (is_null($match) && $needle == 'category') {
                     foreach ($parsedItems as $item) {
                         if (@$item->query['view'] == 'itemlist' && @$item->query['task'] == '') {
-                            if (isset(self::$cache['multicat_menu_items'][$item->id]) && count(self::$cache['multicat_menu_items'][$item->id])) {
+                            if (!empty(self::$cache['multicat_menu_items'][$item->id]) && is_array(self::$cache['multicat_menu_items'][$item->id]) && count(self::$cache['multicat_menu_items'][$item->id])) {
                                 foreach (self::$cache['multicat_menu_items'][$item->id] as $catid) {
                                     if ($id == (int) $catid) {
                                         $match = $item;
@@ -284,3 +284,4 @@ class K2HelperRoute
         return $match;
     }
 }
+
