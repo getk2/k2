@@ -28,11 +28,20 @@ class K2ModelTag extends K2Model
     {
         $app = JFactory::getApplication();
         $row = JTable::getInstance('K2Tag', 'Table');
+    
+        // Plugin Events
+        JPluginHelper::importPlugin('k2');
+        $dispatcher = JDispatcher::getInstance();
 
         if (!$row->bind(JRequest::get('post'))) {
             $app->enqueueMessage($row->getError(), 'error');
             $app->redirect('index.php?option=com_k2&view=tags');
         }
+        
+        $isNew = ($row->id) ? false : true;
+        
+        // Trigger K2 plugins
+        $dispatcher->trigger('onBeforeK2Save', array(&$row, $isNew));
 
         if (!$row->check()) {
             $app->enqueueMessage($row->getError(), 'error');
@@ -46,6 +55,9 @@ class K2ModelTag extends K2Model
 
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
+        
+        // Trigger K2 plugins
+        $dispatcher->trigger('onAfterK2Save', array(&$row, $isNew));
 
         switch (JRequest::getCmd('task')) {
             case 'apply':
