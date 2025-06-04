@@ -1,6 +1,8 @@
 ![K2](https://updates.getk2.org/images/k2_logo.png)
 ***
 
+The latest K2 release is always available from: https://getk2.org/downloads/?f=K2_Rolling_Release.zip
+
 # Changelog
 
 ### v2.12.20250604 - June 4th, 2025
