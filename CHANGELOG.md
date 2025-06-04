@@ -3,6 +3,11 @@
 
 # Changelog
 
+### v2.12.20250604 - June 4th, 2025
+- Properly encode tags when building SEF URLs
+- Fix warnings when executing CLI scripts that handle K2 data that require using the K2 router
+- Added onBeforeK2Save & onAfterK2Save plugin events on the tag edit form - this was long overdue and will complement an upcoming plugin to log all content actions in K2 to the Joomla User Actions Log component.
+
 ### v2.11.20250512 - May 12th, 2025
 - Better handling for K2 items that would normally return a 404 when the alias does not match an actual K2 item (with K2 Advanced SEF enabled).
 - Fix PHP warnings that relate to class.upload.php & the "related items" block in the item view.

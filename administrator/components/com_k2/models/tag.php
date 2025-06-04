@@ -1,9 +1,9 @@
 <?php
 /**
- * @version    2.11 (rolling release)
+ * @version    2.12 (rolling release)
  * @package    K2
  * @author     JoomlaWorks https://www.joomlaworks.net
- * @copyright  Copyright (c) 2009 - 2024 JoomlaWorks Ltd. All rights reserved.
+ * @copyright  Copyright (c) 2009 - 2025 JoomlaWorks Ltd. All rights reserved.
  * @license    GNU/GPL: https://gnu.org/licenses/gpl.html
  */
 
@@ -28,7 +28,7 @@ class K2ModelTag extends K2Model
     {
         $app = JFactory::getApplication();
         $row = JTable::getInstance('K2Tag', 'Table');
-    
+
         // Plugin Events
         JPluginHelper::importPlugin('k2');
         $dispatcher = JDispatcher::getInstance();
@@ -37,9 +37,9 @@ class K2ModelTag extends K2Model
             $app->enqueueMessage($row->getError(), 'error');
             $app->redirect('index.php?option=com_k2&view=tags');
         }
-        
+
         $isNew = ($row->id) ? false : true;
-        
+
         // Trigger K2 plugins
         $dispatcher->trigger('onBeforeK2Save', array(&$row, $isNew));
 
@@ -55,7 +55,7 @@ class K2ModelTag extends K2Model
 
         $cache = JFactory::getCache('com_k2');
         $cache->clean();
-        
+
         // Trigger K2 plugins
         $dispatcher->trigger('onAfterK2Save', array(&$row, $isNew));
 

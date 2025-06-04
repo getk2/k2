@@ -1,9 +1,9 @@
 <?php
 /**
- * @version    2.11 (rolling release)
+ * @version    2.12 (rolling release)
  * @package    K2
  * @author     JoomlaWorks https://www.joomlaworks.net
- * @copyright  Copyright (c) 2009 - 2024 JoomlaWorks Ltd. All rights reserved.
+ * @copyright  Copyright (c) 2009 - 2025 JoomlaWorks Ltd. All rights reserved.
  * @license    GNU/GPL: https://gnu.org/licenses/gpl.html
  */
 
@@ -27,7 +27,7 @@ class TableK2ExtraField extends K2Table
     {
         parent::__construct('#__k2_extra_fields', 'id', $db);
     }
-	
+
     function check()
     {
     	$this->name = JString::trim($this->name);
