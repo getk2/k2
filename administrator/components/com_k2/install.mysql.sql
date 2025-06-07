@@ -113,6 +113,7 @@ CREATE TABLE IF NOT EXISTS `#__k2_items` (
     `language` char(7) NOT NULL,
     PRIMARY KEY (`id`),
     KEY `idx_items_common` (`catid`,`published`,`access`,`trash`,`publish_up`,`publish_down`,`id`),
+    KEY `idx_items_common_backend` (`trash`,`id`),
     KEY `idx_items_authors` (`created_by`,`created_by_alias`,`published`,`access`,`trash`,`publish_up`,`publish_down`,`id`),
     KEY `idx_access` (`access`),
     KEY `idx_catid` (`catid`),

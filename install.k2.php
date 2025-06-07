@@ -176,6 +176,7 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
     $itemKeys_item = false;
     $itemKeys_idx_item = false;
     $itemKeys_idx_items_common = false;
+    $itemKeys_idx_items_common_backend = false;
     $itemKeys_idx_items_authors = false;
 
     foreach ($itemIndices as $index) {
@@ -187,6 +188,9 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
         }
         if ($index->Key_name == 'idx_items_common') {
             $itemKeys_idx_items_common = true;
+        }
+        if ($index->Key_name == 'idx_items_common_backend') {
+            $itemKeys_idx_items_common_backend = true;
         }
         if ($index->Key_name == 'idx_items_authors') {
             $itemKeys_idx_items_authors = true;
@@ -205,6 +209,11 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
     }
     if (!$itemKeys_idx_items_common) {
         $query = "ALTER TABLE #__k2_items ADD INDEX `idx_items_common` (`catid`,`published`,`access`,`trash`,`publish_up`,`publish_down`,`id`)";
+        $db->setQuery($query);
+        $db->query();
+    }
+    if (!$itemKeys_idx_items_common_backend) {
+        $query = "ALTER TABLE #__k2_items ADD INDEX `idx_items_common_backend` (`trash`,`id`)";
         $db->setQuery($query);
         $db->query();
     }
