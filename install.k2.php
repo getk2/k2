@@ -94,62 +94,6 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
     // --- DB updates ---
     $db = JFactory::getDbo();
 
-    // Items
-    $fields = $db->getTableFields('#__k2_items');
-    if (!array_key_exists('featured_ordering', $fields['#__k2_items'])) {
-        $query = "ALTER TABLE #__k2_items ADD `featured_ordering` INT(11) NOT NULL default '0' AFTER `featured`";
-        $db->setQuery($query);
-        $db->query();
-    }
-    if (!array_key_exists('language', $fields['#__k2_items'])) {
-        $query = "ALTER TABLE #__k2_items ADD `language` CHAR(7) NOT NULL";
-        $db->setQuery($query);
-        $db->query();
-
-        $query = "ALTER TABLE #__k2_items ADD INDEX (`language`)";
-        $db->setQuery($query);
-        $db->query();
-    }
-    if ($fields['#__k2_items']['introtext'] == 'text') {
-        $query = "ALTER TABLE #__k2_items MODIFY `introtext` MEDIUMTEXT";
-        $db->setQuery($query);
-        $db->query();
-    }
-    if ($fields['#__k2_items']['fulltext'] == 'text') {
-        $query = "ALTER TABLE #__k2_items MODIFY `fulltext` MEDIUMTEXT";
-        $db->setQuery($query);
-        $db->query();
-    }
-    if ($fields['#__k2_items']['video'] != 'text') {
-        $query = "ALTER TABLE #__k2_items MODIFY `video` TEXT";
-        $db->setQuery($query);
-        $db->query();
-    }
-
-    $query = "SHOW INDEX FROM #__k2_items";
-    $db->setQuery($query);
-    $itemIndices = $db->loadObjectList();
-    $itemKeys_item = false;
-    $itemKeys_idx_item = false;
-    foreach ($itemIndices as $index) {
-        if ($index->Key_name == 'item') {
-            $itemKeys_item = true;
-        }
-        if ($index->Key_name == 'idx_item') {
-            $itemKeys_idx_item = true;
-        }
-    }
-    if ($itemKeys_item) {
-        $query = "ALTER TABLE #__k2_items DROP INDEX `item`";
-        $db->setQuery($query);
-        $db->query();
-    }
-    if (!$itemKeys_idx_item) {
-        $query = "ALTER TABLE #__k2_items ADD INDEX `idx_item` (`published`,`publish_up`,`publish_down`,`trash`,`access`)";
-        $db->setQuery($query);
-        $db->query();
-    }
-
     // Categories
     $fields = $db->getTableFields('#__k2_categories');
     if (!array_key_exists('language', $fields['#__k2_categories'])) {
@@ -193,10 +137,102 @@ if (version_compare(JVERSION, '1.6.0', '<')) {
         $db->query();
     }
 
+    // Items
+    $fields = $db->getTableFields('#__k2_items');
+    if (!array_key_exists('featured_ordering', $fields['#__k2_items'])) {
+        $query = "ALTER TABLE #__k2_items ADD `featured_ordering` INT(11) NOT NULL default '0' AFTER `featured`";
+        $db->setQuery($query);
+        $db->query();
+    }
+    if (!array_key_exists('language', $fields['#__k2_items'])) {
+        $query = "ALTER TABLE #__k2_items ADD `language` CHAR(7) NOT NULL";
+        $db->setQuery($query);
+        $db->query();
+
+        $query = "ALTER TABLE #__k2_items ADD INDEX (`language`)";
+        $db->setQuery($query);
+        $db->query();
+    }
+    if ($fields['#__k2_items']['introtext'] == 'text') {
+        $query = "ALTER TABLE #__k2_items MODIFY `introtext` MEDIUMTEXT";
+        $db->setQuery($query);
+        $db->query();
+    }
+    if ($fields['#__k2_items']['fulltext'] == 'text') {
+        $query = "ALTER TABLE #__k2_items MODIFY `fulltext` MEDIUMTEXT";
+        $db->setQuery($query);
+        $db->query();
+    }
+    if ($fields['#__k2_items']['video'] != 'text') {
+        $query = "ALTER TABLE #__k2_items MODIFY `video` TEXT";
+        $db->setQuery($query);
+        $db->query();
+    }
+
+    $query = "SHOW INDEX FROM #__k2_items";
+    $db->setQuery($query);
+    $itemIndices = $db->loadObjectList();
+
+    $itemKeys_item = false;
+    $itemKeys_idx_item = false;
+    $itemKeys_idx_items_common = false;
+    $itemKeys_idx_items_authors = false;
+
+    foreach ($itemIndices as $index) {
+        if ($index->Key_name == 'item') {
+            $itemKeys_item = true;
+        }
+        if ($index->Key_name == 'idx_item') {
+            $itemKeys_idx_item = true;
+        }
+        if ($index->Key_name == 'idx_items_common') {
+            $itemKeys_idx_items_common = true;
+        }
+        if ($index->Key_name == 'idx_items_authors') {
+            $itemKeys_idx_items_authors = true;
+        }
+    }
+
+    if ($itemKeys_item) {
+        $query = "ALTER TABLE #__k2_items DROP INDEX `item`";
+        $db->setQuery($query);
+        $db->query();
+    }
+    if ($itemKeys_idx_item) {
+        $query = "ALTER TABLE #__k2_items DROP INDEX `idx_item`";
+        $db->setQuery($query);
+        $db->query();
+    }
+    if (!$itemKeys_idx_items_common) {
+        $query = "ALTER TABLE #__k2_items ADD INDEX `idx_items_common` (`catid`,`published`,`access`,`trash`,`publish_up`,`publish_down`,`id`)";
+        $db->setQuery($query);
+        $db->query();
+    }
+    if (!$itemKeys_idx_items_authors) {
+        $query = "ALTER TABLE #__k2_items ADD INDEX `idx_items_authors` (`created_by`,`created_by_alias`,`published`,`access`,`trash`,`publish_up`,`publish_down`,`id`)";
+        $db->setQuery($query);
+        $db->query();
+    }
+
     // Tags
     $fields = $db->getTableFields('#__k2_tags');
     if (!array_key_exists('description', $fields['#__k2_tags'])) {
         $query = "ALTER TABLE #__k2_tags ADD `description` text NOT NULL";
+        $db->setQuery($query);
+        $db->query();
+    }
+
+    $query = "SHOW INDEX FROM #__k2_tags_xref";
+    $db->setQuery($query);
+    $tagXrefIndices = $db->loadObjectList();
+    $tagXrefKey_idx_tags_xref_common = false;
+    foreach ($tagXrefIndices as $index) {
+        if ($index->Key_name == 'idx_tags_xref_common') {
+            $tagXrefKey_idx_tags_xref_common = true;
+        }
+    }
+    if (!$tagXrefKey_idx_tags_xref_common) {
+        $query = "ALTER TABLE #__k2_tags_xref ADD INDEX `idx_tags_xref_common` (`tagID`,`itemID`)";
         $db->setQuery($query);
         $db->query();
     }

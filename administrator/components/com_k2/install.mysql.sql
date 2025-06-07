@@ -112,6 +112,8 @@ CREATE TABLE IF NOT EXISTS `#__k2_items` (
     `plugins` mediumtext NOT NULL,
     `language` char(7) NOT NULL,
     PRIMARY KEY (`id`),
+    KEY `idx_items_common` (`catid`,`published`,`access`,`trash`,`publish_up`,`publish_down`,`id`),
+    KEY `idx_items_authors` (`created_by`,`created_by_alias`,`published`,`access`,`trash`,`publish_up`,`publish_down`,`id`),
     KEY `idx_access` (`access`),
     KEY `idx_catid` (`catid`),
     KEY `idx_created_by` (`created_by`),
@@ -119,7 +121,6 @@ CREATE TABLE IF NOT EXISTS `#__k2_items` (
     KEY `idx_featured_ordering` (`featured_ordering`),
     KEY `idx_featured` (`featured`),
     KEY `idx_hits` (`hits`),
-    KEY `idx_item` (`published`,`publish_up`,`publish_down`,`trash`,`access`),
     KEY `idx_language` (`language`),
     KEY `idx_ordering` (`ordering`),
     KEY `idx_published` (`published`),
@@ -149,6 +150,7 @@ CREATE TABLE IF NOT EXISTS `#__k2_tags_xref` (
     `tagID` int(11) NOT NULL,
     `itemID` int(11) NOT NULL,
     PRIMARY KEY (`id`),
+    KEY `idx_tags_xref_common` (`tagID`,`itemID`),
     KEY `idx_tagID` (`tagID`),
     KEY `idx_itemID` (`itemID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;

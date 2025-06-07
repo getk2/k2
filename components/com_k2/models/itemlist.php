@@ -66,14 +66,7 @@ class K2ModelItemlist extends K2Model
         }
 
         // --- Query containing FROM to WHERE ---
-        $query = " FROM #__k2_items AS i";
-
-        // Enforce certain INDEX when filtering by dates
-        if ($ordering == 'date' || $ordering == 'rdate') {
-            $query .= " USE INDEX (idx_item)";
-        }
-
-        $query .= " INNER JOIN #__k2_categories AS c ON c.id = i.catid";
+        $query = " FROM #__k2_items AS i INNER JOIN #__k2_categories AS c ON c.id = i.catid";
 
         if ($ordering == 'best') {
             $query .= " LEFT JOIN #__k2_rating AS r ON r.itemID = i.id";
