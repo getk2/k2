@@ -154,6 +154,11 @@ class K2ModelItems extends K2Model
             $query .= " AND (i.language = ".$db->Quote($language)." OR i.language = '*')";
         }
 
+        if (K2_JVERSION != '15') {
+            $query = str_ireplace('#__groups', '#__viewlevels', $query);
+            $query = str_ireplace('g.name', 'g.title', $query);
+        }
+
         // --- Query containing GROUP BY and ORDER BY ---
         $queryEnd = '';
 
@@ -165,11 +170,6 @@ class K2ModelItems extends K2Model
 
         // --- Final query ---
         $combinedQuery = $queryStart.$query.$queryEnd;
-
-        if (K2_JVERSION != '15') {
-            $combinedQuery = str_ireplace('#__groups', '#__viewlevels', $combinedQuery);
-            $combinedQuery = str_ireplace('g.name', 'g.title', $combinedQuery);
-        }
 
         // Plugin Events
         JPluginHelper::importPlugin('k2');
