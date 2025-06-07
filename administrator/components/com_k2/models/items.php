@@ -40,9 +40,12 @@ class K2ModelItems extends K2Model
         $tag = $app->getUserStateFromRequest($option.$view.'tag', 'tag', 0, 'int');
         $language = $app->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
 
-        $query = "/* Backend / K2 / Items */ SELECT SQL_CALC_FOUND_ROWS i.*, g.name AS groupname, c.name AS category, v.name AS author, w.name AS moderator, u.name AS editor
-            FROM #__k2_items AS i
-            LEFT JOIN #__k2_categories AS c ON c.id = i.catid
+        // --- Query containing initial SELECT ---
+        $queryStart = "/* Backend / K2 / Items */ SELECT i.*, g.name AS groupname, c.name AS category, v.name AS author, w.name AS moderator, u.name AS editor";
+
+        // --- Query containing FROM to WHERE ---
+        $query = " FROM #__k2_items AS i
+            INNER JOIN #__k2_categories AS c ON c.id = i.catid
             LEFT JOIN #__groups AS g ON g.id = i.access
             LEFT JOIN #__users AS u ON u.id = i.checked_out
             LEFT JOIN #__users AS v ON v.id = i.created_by
@@ -151,15 +154,21 @@ class K2ModelItems extends K2Model
             $query .= " AND (i.language = ".$db->Quote($language)." OR i.language = '*')";
         }
 
+        // --- Query containing GROUP BY and ORDER BY ---
+        $queryEnd = '';
+
         if ($filter_order == 'i.ordering') {
-            $query .= " ORDER BY i.catid, i.ordering {$filter_order_Dir}";
+            $queryEnd .= " ORDER BY i.catid, i.ordering {$filter_order_Dir}";
         } else {
-            $query .= " ORDER BY {$filter_order} {$filter_order_Dir}";
+            $queryEnd .= " ORDER BY {$filter_order} {$filter_order_Dir}";
         }
 
+        // --- Final query ---
+        $combinedQuery = $queryStart.$query.$queryEnd;
+
         if (K2_JVERSION != '15') {
-            $query = str_ireplace('#__groups', '#__viewlevels', $query);
-            $query = str_ireplace('g.name', 'g.title', $query);
+            $combinedQuery = str_ireplace('#__groups', '#__viewlevels', $combinedQuery);
+            $combinedQuery = str_ireplace('g.name', 'g.title', $combinedQuery);
         }
 
         // Plugin Events
@@ -167,13 +176,15 @@ class K2ModelItems extends K2Model
         $dispatcher = JDispatcher::getInstance();
 
         // Trigger K2 plugins
-        $dispatcher->trigger('onK2BeforeSetQuery', array(&$query));
+        $dispatcher->trigger('onK2BeforeSetQuery', array(&$combinedQuery));
 
-        $db->setQuery($query, $limitstart, $limit);
+        $db->setQuery($combinedQuery, $limitstart, $limit);
         $rows = $db->loadObjectList();
 
+        // --- Row counter ---
         if (count($rows)) {
-            $db->setQuery('SELECT FOUND_ROWS();');
+            $countQuery = "/* Backend / K2 / Items Count */ SELECT COUNT(*)".$query;
+            $db->setQuery($countQuery);
             $this->getTotal = $db->loadResult();
         }
 
