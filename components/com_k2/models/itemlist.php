@@ -258,7 +258,7 @@ class K2ModelItemlist extends K2Model
         $queryEnd = '';
 
         if ($task == 'tag') {
-            $$queryEnd .= ' GROUP BY i.id';
+            $queryEnd .= ' GROUP BY i.id';
         }
 
         // Set ordering
