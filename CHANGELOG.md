@@ -5,6 +5,9 @@ The latest K2 release is always available from: https://getk2.org/downloads/?f=K
 
 # Changelog
 
+### v2.12.20250608 - June 8th, 2025
+- Major performance improvements in SQL queries for itemlist views (categories, tags, users etc.). These changes make K2 further resilient to aggressive (but legitimate) bots/crawlers (like GoogleBot, BingBot, AI crawlers and so on).
+
 ### v2.12.20250604 - June 4th, 2025
 - Properly encode tags when building SEF URLs
 - Fix warnings when executing CLI scripts that handle K2 data that require using the K2 router
