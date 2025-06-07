@@ -43,6 +43,10 @@ class K2ModelItems extends K2Model
         // --- Query containing initial SELECT ---
         $queryStart = "/* Backend / K2 / Items */ SELECT i.*, g.name AS groupname, c.name AS category, v.name AS author, w.name AS moderator, u.name AS editor";
 
+        if (K2_JVERSION != '15') {
+            $queryStart = str_ireplace('g.name', 'g.title', $queryStart);
+        }
+
         // --- Query containing FROM to WHERE ---
         $query = " FROM #__k2_items AS i
             INNER JOIN #__k2_categories AS c ON c.id = i.catid
@@ -50,6 +54,10 @@ class K2ModelItems extends K2Model
             LEFT JOIN #__users AS u ON u.id = i.checked_out
             LEFT JOIN #__users AS v ON v.id = i.created_by
             LEFT JOIN #__users AS w ON w.id = i.modified_by";
+
+        if (K2_JVERSION != '15') {
+            $query = str_ireplace('#__groups', '#__viewlevels', $query);
+        }
 
         if ($params->get('showTagFilter') && $tag) {
             $query .= " LEFT JOIN #__k2_tags_xref AS tags_xref ON tags_xref.itemID = i.id";
@@ -59,7 +67,7 @@ class K2ModelItems extends K2Model
 
         if ($search) {
             // Detect exact search phrase using double quotes in search string
-            if (substr($search, 0, 1)=='"' && substr($search, -1)=='"') {
+            if (substr($search, 0, 1) == '"' && substr($search, -1) == '"') {
                 $exact = true;
             } else {
                 $exact = false;
@@ -75,7 +83,7 @@ class K2ModelItems extends K2Model
             if (strpos($escaped, ' ') !== false && !$exact) {
                 $escaped = explode(' ', $escaped);
                 $quoted = array();
-                foreach ($escaped as $key=>$escapedWord) {
+                foreach ($escaped as $key => $escapedWord) {
                     $quoted[] = $db->Quote('%'.$escapedWord.'%', false);
                 }
                 if ($params->get('adminSearch') == 'full') {
@@ -152,11 +160,6 @@ class K2ModelItems extends K2Model
 
         if ($language) {
             $query .= " AND (i.language = ".$db->Quote($language)." OR i.language = '*')";
-        }
-
-        if (K2_JVERSION != '15') {
-            $query = str_ireplace('#__groups', '#__viewlevels', $query);
-            $query = str_ireplace('g.name', 'g.title', $query);
         }
 
         // --- Query containing GROUP BY and ORDER BY ---
@@ -908,7 +911,7 @@ class K2ModelItems extends K2Model
             $preserveItemIDs = true;
         }
 
-        $xml = new JSimpleXML;
+        $xml = new JSimpleXML();
         $xml->loadFile(JPATH_COMPONENT.'/models/category.xml');
         $categoryParams = class_exists('JParameter') ? new JParameter('') : new JRegistry('');
 
@@ -921,7 +924,7 @@ class K2ModelItems extends K2Model
         }
         $categoryParams = $categoryParams->toString();
 
-        $xml = new JSimpleXML;
+        $xml = new JSimpleXML();
         $xml->loadFile(JPATH_COMPONENT.'/models/item.xml');
         $itemParams = class_exists('JParameter') ? new JParameter('') : new JRegistry('');
 
@@ -1272,7 +1275,7 @@ class K2ModelItems extends K2Model
 
                 $item->tags = array();
                 if (class_exists('JHelperTags')) {
-                    $tagsHelper = new JHelperTags;
+                    $tagsHelper = new JHelperTags();
                     $tagsHelper->getItemTags('com_content.article', $item->id);
                     $tags = $tagsHelper->itemTags;
                     foreach ($tags as $tag) {
