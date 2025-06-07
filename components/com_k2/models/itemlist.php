@@ -48,41 +48,36 @@ class K2ModelItemlist extends K2Model
         */
         $nullDate = $db->getNullDate();
 
-        $query = "/* Frontend / K2 / Items */ SELECT /*+ MAX_EXECUTION_TIME(60000) */ SQL_CALC_FOUND_ROWS i.*,";
+        // --- Query containing initial SELECT ---
+        $queryStart = "/* Frontend / K2 / Items */ SELECT /*+ MAX_EXECUTION_TIME(60000) */ i.*,";
 
         if ($task == 'search') {
-            $query = "/* Frontend / K2 / Items */ SELECT /*+ MAX_EXECUTION_TIME(90000) */ SQL_CALC_FOUND_ROWS i.*,";
+            $queryStart = "/* Frontend / K2 / Items */ SELECT /*+ MAX_EXECUTION_TIME(90000) */ i.*,";
         }
 
         if ($ordering == 'modified') {
-            $query .= " CASE WHEN i.modified = 0 THEN i.created ELSE i.modified END AS lastChanged,";
+            $queryStart .= " CASE WHEN i.modified = 0 THEN i.created ELSE i.modified END AS lastChanged,";
         }
 
-        $query .= " c.name AS categoryname, c.id AS categoryid, c.alias AS categoryalias, c.params AS categoryparams";
+        $queryStart .= " c.name AS categoryname, c.id AS categoryid, c.alias AS categoryalias, c.params AS categoryparams";
 
         if ($ordering == 'best') {
-            $query .= ", (r.rating_sum/r.rating_count) AS rating";
+            $queryStart .= ", (r.rating_sum/r.rating_count) AS rating";
         }
 
-        $query .= " FROM #__k2_items AS i";
+        // --- Query containing FROM to WHERE ---
+        $query = " FROM #__k2_items AS i";
 
         // Enforce certain INDEX when filtering by dates
         if ($ordering == 'date' || $ordering == 'rdate') {
             $query .= " USE INDEX (idx_item)";
         }
 
-        $query .= " INNER JOIN #__k2_categories AS c USE INDEX (idx_category) ON c.id = i.catid";
+        $query .= " INNER JOIN #__k2_categories AS c ON c.id = i.catid";
 
         if ($ordering == 'best') {
             $query .= " LEFT JOIN #__k2_rating AS r ON r.itemID = i.id";
         }
-
-        /*
-        // Changed the query for the tag case for better performance
-        if ($task == 'tag') {
-            $query .= " LEFT JOIN #__k2_tags_xref AS tags_xref ON tags_xref.itemID = i.id LEFT JOIN #__k2_tags AS tags ON tags.id = tags_xref.tagID";
-        }
-        */
 
         if ($task == 'user' && !$user->guest && $user->id == JRequest::getInt('id')) {
             $query .= " WHERE";
@@ -105,8 +100,8 @@ class K2ModelItemlist extends K2Model
         }
 
         if (!($task == 'user' && !$user->guest && $user->id == JRequest::getInt('id'))) {
-            $query .= " AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now).")";
-            $query .= " AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now).")";
+            $query .= " AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= NOW())";
+            $query .= " AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= NOW())";
             /*
             $query .= " AND (i.publish_up IS NULL OR i.publish_up <= NOW()) AND (i.publish_down IS NULL OR i.publish_down >= NOW())";
             */
@@ -228,14 +223,6 @@ class K2ModelItemlist extends K2Model
 
                 $query .= " AND i.id IN(SELECT itemID FROM #__k2_tags_xref WHERE tagID=".(int)$result.")";
 
-                /*
-                if (isset($result) && $result > 0) {
-                    $query .= " AND (tags.id) = {$result}";
-                } else {
-                    $query .= " AND (tags.name) = ".$db->Quote($tag);
-                }
-                */
-
                 $categories = $params->get('categoriesFilter', null);
                 if (is_array($categories)) {
                     sort($categories);
@@ -272,6 +259,13 @@ class K2ModelItemlist extends K2Model
             } elseif (JRequest::getInt('featured') == '2') {
                 $query .= " AND i.featured = 1";
             }
+        }
+
+        // --- Query containing GROUP BY and ORDER BY ---
+        $queryEnd = '';
+
+        if ($task == 'tag') {
+            $$queryEnd .= ' GROUP BY i.id';
         }
 
         // Set ordering
@@ -338,30 +332,26 @@ class K2ModelItemlist extends K2Model
                 break;
         }
 
-        if ($task == 'tag') {
-            $query .= ' GROUP BY i.id';
-        }
+        $queryEnd .= ' ORDER BY '.$orderby;
 
-        $query .= ' ORDER BY '.$orderby;
+        // --- Final query ---
+        $combinedQuery = $queryStart.$query.$queryEnd;
 
         JPluginHelper::importPlugin('k2');
         $dispatcher = JDispatcher::getInstance();
-        $dispatcher->trigger('onK2BeforeSetQuery', array(&$query));
+        $dispatcher->trigger('onK2BeforeSetQuery', array(&$combinedQuery));
 
-        $db->setQuery($query, $limitstart, $limit);
+        $db->setQuery($combinedQuery, $limitstart, $limit);
         $rows = $db->loadObjectList();
 
+        // --- Row counter ---
         if (count($rows)) {
-            // For Falang
-            if (!empty($falang_driver)) {
-                $db->setQuery($query, $limitstart, $limit);
-                $db->loadResult(false);
-                $db->setQuery('SELECT FOUND_ROWS();');
-                $this->getTotal = $db->loadResult(false);
-                return $rows;
+            if ($task == 'tag') {
+                $countQuery = "/* Frontend / K2 / Items Count */ SELECT COUNT(DISTINCT i.id)".$query;
+            } else {
+                $countQuery = "/* Frontend / K2 / Items Count */ SELECT COUNT(*)".$query;
             }
-
-            $db->setQuery('SELECT FOUND_ROWS();');
+            $db->setQuery($countQuery);
             $this->getTotal = $db->loadResult();
         }
 
@@ -493,7 +483,7 @@ class K2ModelItemlist extends K2Model
             $query .= " AND access<=".$aid;
         }
 
-        $query .= " AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now).") AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now).")";
+        $query .= " AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= NOW()) AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= NOW())";
         $db->setQuery($query);
         $total = $db->loadResult();
         return $total;
@@ -534,8 +524,8 @@ class K2ModelItemlist extends K2Model
             LEFT JOIN #__k2_categories c ON c.id = i.catid
             WHERE i.id != {$itemID}
                 AND i.published = 1
-                AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now).")
-                AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now).")";
+                AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= NOW())
+                AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= NOW())";
 
         if (K2_JVERSION != '15') {
             $query .= " AND i.access IN(".implode(',', $user->getAuthorisedViewLevels()).")";
@@ -641,8 +631,8 @@ class K2ModelItemlist extends K2Model
             LEFT JOIN #__k2_categories AS c ON c.id = i.catid
             WHERE i.published = 1
                 AND i.trash = 0
-                AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now).")
-                AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now).")";
+                AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= NOW())
+                AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= NOW())";
 
         if (K2_JVERSION != '15') {
             $query .= " AND i.access IN(".implode(',', $user->getAuthorisedViewLevels()).")";
