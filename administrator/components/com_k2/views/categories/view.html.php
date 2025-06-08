@@ -30,25 +30,27 @@ class K2ViewCategories extends K2View
 
         $limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'), 'int');
         $limitstart = $app->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
+
         $filter_order = $app->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'c.ordering', 'cmd');
         $filter_order_Dir = $app->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', '', 'word');
         $filter_trash = $app->getUserStateFromRequest($option.$view.'filter_trash', 'filter_trash', 0, 'int');
         $filter_category = $app->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
         $filter_state = $app->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
+
         $language = $app->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
         $search = $app->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
         $search = trim(preg_replace('/[^\p{L}\p{N}\s\-.,:!?\'"()]/u', '', $search));
+
         $model = $this->getModel();
+        $categories = $model->getData();
         $total = $model->getTotal();
+
         $task = JRequest::getCmd('task');
         if ($limitstart > $total - $limit) {
             $limitstart = max(0, (int)(ceil($total / $limit) - 1) * $limit);
             JRequest::setVar('limitstart', $limitstart);
         }
-
-        $categories = $model->getData();
-        $categoryModel = K2Model::getInstance('Category', 'K2Model');
 
         // JS
         $document->addScriptDeclaration("
@@ -76,6 +78,7 @@ class K2ViewCategories extends K2View
             }
         }
 
+        $categoryModel = K2Model::getInstance('Category', 'K2Model');
         for ($i = 0; $i < count($categories); $i++) {
             $categories[$i]->status = (K2_JVERSION == '15') ? JHTML::_('grid.published', $categories[$i], $i) : JHtml::_('jgrid.published', $categories[$i]->published, $i, '', $filter_trash == 0 && $context != 'modalselector');
             if ($params->get('showItemsCounterAdmin')) {
@@ -218,7 +221,7 @@ class K2ViewCategories extends K2View
         $ordering = (($this->lists['order'] == 'c.ordering' || $this->lists['order'] == 'c.parent, c.ordering') && (!$this->filter_trash));
         $this->assignRef('ordering', $ordering);
 
-        // Joomla 3.0 drag-n-drop sorting variables
+        // Joomla 3.x drag-n-drop sorting variables
         if (K2_JVERSION == '30') {
             if ($ordering) {
                 JHtml::_('sortablelist.sortable', 'k2CategoriesList', 'adminForm', strtolower($this->lists['order_Dir']), 'index.php?option=com_k2&view=categories&task=saveorder&format=raw');

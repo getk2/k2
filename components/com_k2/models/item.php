@@ -1536,8 +1536,8 @@ class K2ModelItem extends K2Model
                 AND published = 1
                 AND trash = 0
                 {$orderCondition}
-                AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= NOW())
-                AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= NOW())
+                AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now).")
+                AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now).")
                 {$accessCondition}
                 {$languageCondition}
             ORDER BY ordering {$dirSorting}";
@@ -1580,8 +1580,8 @@ class K2ModelItem extends K2Model
                 AND catid = {$catid}
                 AND published = 1
                 AND trash = 0
-                AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= NOW())
-                AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= NOW())
+                AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now).")
+                AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now).")
                 {$accessCondition}
                 {$languageCondition}
             ORDER BY id DESC";
@@ -1594,8 +1594,8 @@ class K2ModelItem extends K2Model
                     AND ordering < {$ordering}
                     AND published = 1
                     AND trash = 0
-                    AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= NOW())
-                    AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= NOW())
+                    AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now).")
+                    AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now).")
                     {$accessCondition}
                     {$languageCondition}
                 ORDER BY ordering DESC";
@@ -1639,8 +1639,8 @@ class K2ModelItem extends K2Model
                 AND catid = {$catid}
                 AND published = 1
                 AND trash = 0
-                AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= NOW())
-                AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= NOW())
+                AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now).")
+                AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now).")
                 {$accessCondition}
                 {$languageCondition}
             ORDER BY id ASC";
@@ -1653,8 +1653,8 @@ class K2ModelItem extends K2Model
                     AND ordering > {$ordering}
                     AND published = 1
                     AND trash = 0
-                    AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= NOW())
-                    AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= NOW())
+                    AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now).")
+                    AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now).")
                     {$accessCondition}
                     {$languageCondition}
                 ORDER BY ordering ASC";

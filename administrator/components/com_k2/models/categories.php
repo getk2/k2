@@ -30,30 +30,43 @@ class K2ModelCategories extends K2Model
         $search = $app->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
         $search = trim(preg_replace('/[^\p{L}\p{N}\s\-.,:!?\'"()]/u', '', $search));
+        $language = $app->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
+
+        $filter_category = $app->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
         $filter_order = $app->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'c.ordering', 'cmd');
         $filter_order_Dir = $app->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', '', 'word');
-        $filter_trash = $app->getUserStateFromRequest($option.$view.'filter_trash', 'filter_trash', 0, 'int');
         $filter_state = $app->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
-        $language = $app->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
-        $filter_category = $app->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
+        $filter_trash = $app->getUserStateFromRequest($option.$view.'filter_trash', 'filter_trash', 0, 'int');
 
-        $queryStart = "/* Backend / K2 / Categories */ SELECT c.*, g.name AS groupname, exfg.name as extra_fields_group";
-        if (K2_JVERSION != '15') {
-            $queryStart = JString::str_ireplace('g.name AS groupname', 'g.title AS groupname', $queryStart);
-        }
-
-        $query = " FROM #__k2_categories as c
+        $queryStart = "/* Backend / K2 / Categories */ SELECT c.*, g.name AS groupname, exfg.name as extra_fields_group
+            FROM #__k2_categories as c
             LEFT JOIN #__groups AS g ON g.id = c.access
             LEFT JOIN #__k2_extra_fields_groups AS exfg ON exfg.id = c.extraFieldsGroup
             WHERE c.id > 0";
         if (K2_JVERSION != '15') {
-            $query = JString::str_ireplace('#__groups', '#__viewlevels', $query);
+            $queryStart = JString::str_ireplace('g.name AS groupname', 'g.title AS groupname', $queryStart);
+            $queryStart = JString::str_ireplace('#__groups', '#__viewlevels', $queryStart);
         }
 
+        $query = '';
+
+        if ($filter_category) {
+            K2Model::addIncludePath(JPATH_SITE.'/components/com_k2/models');
+            $ItemlistModel = K2Model::getInstance('Itemlist', 'K2Model');
+            $tree = $ItemlistModel->getCategoryTree($filter_category);
+            $query .= " AND c.id IN (".implode(',', $tree).")";
+        }
+        if ($filter_state > -1) {
+            $query .= " AND c.published = {$filter_state}";
+        }
         if (!$filter_trash) {
             $query .= " AND c.trash = 0";
         }
+        if ($language) {
+            $query .= " AND (c.language = ".$db->Quote($language)." OR c.language = '*')";
+        }
 
+        // Search
         if ($search) {
 
             // Detect exact search phrase using double quotes in search string
@@ -101,42 +114,30 @@ class K2ModelCategories extends K2Model
             }
         }
 
-        if ($filter_state > -1) {
-            $query .= " AND c.published={$filter_state}";
-        }
-        if ($language) {
-            $query .= " AND (c.language = ".$db->Quote($language)." OR c.language = '*')";
-        }
-
-        if ($filter_category) {
-            K2Model::addIncludePath(JPATH_SITE.'/components/com_k2/models');
-            $ItemlistModel = K2Model::getInstance('Itemlist', 'K2Model');
-            $tree = $ItemlistModel->getCategoryTree($filter_category);
-            $query .= " AND c.id IN (".implode(',', $tree).")";
-        }
-
         $queryEnd = " ORDER BY {$filter_order} {$filter_order_Dir}";
 
         // --- Final query ---
         $combinedQuery = $queryStart.$query.$queryEnd;
-
-        $db->setQuery($combinedQuery, $limitstart, $limit);
+        $db->setQuery($combinedQuery);
         $rows = $db->loadObjectList();
 
         // --- Row counter ---
         if (count($rows)) {
-            $countQuery = "/* Backend / K2 / Categories Count */ SELECT COUNT(*)".$query;
+            $countQuery = "/* Backend / K2 / Categories Count */ SELECT COUNT(c.id) FROM #__k2_categories as c WHERE c.id > 0".$query;
             $db->setQuery($countQuery);
-            $this->getTotal = $db->loadResult();
+            $this->getTotal = (int) $db->loadResult();
         }
 
-        // Continue to build the categories tree
+        // --- Continue to build the categories tree ---
+
+        // For B/C - need to double check usage
         if (K2_JVERSION != '15') {
             foreach ($rows as $row) {
                 $row->parent_id = $row->parent;
                 $row->title = $row->name;
             }
         }
+
         $categories = array();
 
         if ($search) {
@@ -155,13 +156,13 @@ class K2ModelCategories extends K2Model
             }
             $categories = $this->indentRows($rows, $root);
         }
-        if (isset($categories)) {
-            $total = count($categories);
-        } else {
-            $total = 0;
-        }
+
+        // Pagination
         jimport('joomla.html.pagination');
+        $total = count($categories);
         $pageNav = new JPagination($total, $limitstart, $limit);
+
+        // Display category inheritance
         $categories = @array_slice($categories, $pageNav->limitstart, $pageNav->limit);
         foreach ($categories as $category) {
             $category->parameters = class_exists('JParameter') ? new JParameter($category->params) : new JRegistry($category->params);
@@ -172,6 +173,7 @@ class K2ModelCategories extends K2Model
                 $category->inheritFrom = '';
             }
         }
+
         return $categories;
     }
 

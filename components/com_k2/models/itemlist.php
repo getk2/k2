@@ -93,11 +93,8 @@ class K2ModelItemlist extends K2Model
         }
 
         if (!($task == 'user' && !$user->guest && $user->id == JRequest::getInt('id'))) {
-            $query .= " AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= NOW())";
-            $query .= " AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= NOW())";
-            /*
-            $query .= " AND (i.publish_up IS NULL OR i.publish_up <= NOW()) AND (i.publish_down IS NULL OR i.publish_down >= NOW())";
-            */
+            $query .= " AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now).")";
+            $query .= " AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now).")";
         }
 
         // Build query depending on task
@@ -476,7 +473,7 @@ class K2ModelItemlist extends K2Model
             $query .= " AND access<=".$aid;
         }
 
-        $query .= " AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= NOW()) AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= NOW())";
+        $query .= " AND (publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now).") AND (publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now).")";
         $db->setQuery($query);
         $total = $db->loadResult();
         return $total;
@@ -517,8 +514,8 @@ class K2ModelItemlist extends K2Model
             LEFT JOIN #__k2_categories c ON c.id = i.catid
             WHERE i.id != {$itemID}
                 AND i.published = 1
-                AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= NOW())
-                AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= NOW())";
+                AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now).")
+                AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now).")";
 
         if (K2_JVERSION != '15') {
             $query .= " AND i.access IN(".implode(',', $user->getAuthorisedViewLevels()).")";
@@ -624,8 +621,8 @@ class K2ModelItemlist extends K2Model
             LEFT JOIN #__k2_categories AS c ON c.id = i.catid
             WHERE i.published = 1
                 AND i.trash = 0
-                AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= NOW())
-                AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= NOW())";
+                AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now).")
+                AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now).")";
 
         if (K2_JVERSION != '15') {
             $query .= " AND i.access IN(".implode(',', $user->getAuthorisedViewLevels()).")";
