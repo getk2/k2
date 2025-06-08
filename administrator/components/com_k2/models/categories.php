@@ -16,6 +16,8 @@ JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 
 class K2ModelCategories extends K2Model
 {
+    private $getTotal;
+
     public function getData()
     {
         $app = JFactory::getApplication();
@@ -35,16 +37,27 @@ class K2ModelCategories extends K2Model
         $language = $app->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
         $filter_category = $app->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
 
-        $query = "SELECT c.*, g.name AS groupname, exfg.name as extra_fields_group FROM #__k2_categories as c LEFT JOIN #__groups AS g ON g.id = c.access LEFT JOIN #__k2_extra_fields_groups AS exfg ON exfg.id = c.extraFieldsGroup WHERE c.id>0";
+        $queryStart = "/* Backend / K2 / Categories */ SELECT c.*, g.name AS groupname, exfg.name as extra_fields_group";
+        if (K2_JVERSION != '15') {
+            $queryStart = JString::str_ireplace('g.name AS groupname', 'g.title AS groupname', $queryStart);
+        }
+
+        $query = " FROM #__k2_categories as c
+            LEFT JOIN #__groups AS g ON g.id = c.access
+            LEFT JOIN #__k2_extra_fields_groups AS exfg ON exfg.id = c.extraFieldsGroup
+            WHERE c.id > 0";
+        if (K2_JVERSION != '15') {
+            $query = JString::str_ireplace('#__groups', '#__viewlevels', $query);
+        }
 
         if (!$filter_trash) {
-            $query .= " AND c.trash=0";
+            $query .= " AND c.trash = 0";
         }
 
         if ($search) {
 
             // Detect exact search phrase using double quotes in search string
-            if (substr($search, 0, 1)=='"' && substr($search, -1)=='"') {
+            if (substr($search, 0, 1) == '"' && substr($search, -1) == '"') {
                 $exact = true;
             } else {
                 $exact = false;
@@ -57,19 +70,20 @@ class K2ModelCategories extends K2Model
             $escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
 
             // Full phrase or set of words
-            if (strpos($escaped, ' ')!==false && !$exact) {
-                $escaped=explode(' ', $escaped);
+            if (strpos($escaped, ' ') !== false && !$exact) {
+                $escaped = explode(' ', $escaped);
                 $quoted = array();
-                foreach ($escaped as $key=>$escapedWord) {
+                foreach ($escaped as $key => $escapedWord) {
                     $quoted[] = $db->Quote('%'.$escapedWord.'%', false);
                 }
                 if ($params->get('adminSearch') == 'full') {
+                    $searchPerTerm = [];
+                    $query .= " AND (";
                     foreach ($quoted as $quotedWord) {
-                        $query .= " AND ( ".
-                            "LOWER(c.name) LIKE ".$quotedWord." ".
-                            "OR LOWER(c.description) LIKE ".$quotedWord." ".
-                            " )";
+                        $query .= "LOWER(c.name) LIKE ".$quotedWord." OR LOWER(c.description) LIKE ".$quotedWord;
                     }
+                    $query .= implode(' OR ', $searchPerTerm);
+                    $query .= ")";
                 } else {
                     foreach ($quoted as $quotedWord) {
                         $query .= " AND LOWER(c.name) LIKE ".$quotedWord;
@@ -79,12 +93,8 @@ class K2ModelCategories extends K2Model
             // Single word or exact phrase to search for (wrapped in double quotes in the search block)
             else {
                 $quoted = $db->Quote('%'.$escaped.'%', false);
-
                 if ($params->get('adminSearch') == 'full') {
-                    $query .= " AND ( ".
-                        "LOWER(c.name) LIKE ".$quoted." ".
-                        "OR LOWER(c.description) LIKE ".$quoted." ".
-                        " )";
+                    $query .= " AND (LOWER(c.name) LIKE ".$quoted." OR LOWER(c.description) LIKE ".$quoted.")";
                 } else {
                     $query .= " AND LOWER(c.name) LIKE ".$quoted;
                 }
@@ -105,15 +115,22 @@ class K2ModelCategories extends K2Model
             $query .= " AND c.id IN (".implode(',', $tree).")";
         }
 
-        $query .= " ORDER BY {$filter_order} {$filter_order_Dir}";
+        $queryEnd = " ORDER BY {$filter_order} {$filter_order_Dir}";
 
-        if (K2_JVERSION != '15') {
-            $query = JString::str_ireplace('#__groups', '#__viewlevels', $query);
-            $query = JString::str_ireplace('g.name AS groupname', 'g.title AS groupname', $query);
+        // --- Final query ---
+        $combinedQuery = $queryStart.$query.$queryEnd;
+
+        $db->setQuery($combinedQuery, $limitstart, $limit);
+        $rows = $db->loadObjectList();
+
+        // --- Row counter ---
+        if (count($rows)) {
+            $countQuery = "/* Backend / K2 / Categories Count */ SELECT COUNT(*)".$query;
+            $db->setQuery($countQuery);
+            $this->getTotal = $db->loadResult();
         }
 
-        $db->setQuery($query);
-        $rows = $db->loadObjectList();
+        // Continue to build the categories tree
         if (K2_JVERSION != '15') {
             foreach ($rows as $row) {
                 $row->parent_id = $row->parent;
@@ -160,88 +177,7 @@ class K2ModelCategories extends K2Model
 
     public function getTotal()
     {
-        $app = JFactory::getApplication();
-        $params = JComponentHelper::getParams('com_k2');
-        $option = JRequest::getCmd('option');
-        $view = JRequest::getCmd('view');
-        $db = JFactory::getDbo();
-        $limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'), 'int');
-        $limitstart = $app->getUserStateFromRequest($option.'.limitstart', 'limitstart', 0, 'int');
-        $search = $app->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
-        $search = JString::strtolower($search);
-        $search = trim(preg_replace('/[^\p{L}\p{N}\s\"\-_]/u', '', $search));
-        $filter_trash = $app->getUserStateFromRequest($option.$view.'filter_trash', 'filter_trash', 0, 'int');
-        $filter_state = $app->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', 1, 'int');
-        $language = $app->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
-        $filter_category = $app->getUserStateFromRequest($option.$view.'filter_category', 'filter_category', 0, 'int');
-
-        $query = "SELECT COUNT(*) FROM #__k2_categories WHERE id>0";
-
-        if (!$filter_trash) {
-            $query .= " AND trash=0";
-        }
-
-        if ($search) {
-            // Detect exact search phrase using double quotes in search string
-            if (substr($search, 0, 1)=='"' && substr($search, -1)=='"') {
-                $exact = true;
-            } else {
-                $exact = false;
-            }
-
-            // Now completely strip double quotes
-            $search = trim(str_replace('"', '', $search));
-
-            // Escape remaining string
-            $escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
-
-            // Full phrase or set of words
-            if (strpos($escaped, ' ')!==false && !$exact) {
-                $escaped=explode(' ', $escaped);
-                $quoted = array();
-                foreach ($escaped as $key=>$escapedWord) {
-                    $quoted[] = $db->Quote('%'.$escapedWord.'%', false);
-                }
-                if ($params->get('adminSearch') == 'full') {
-                    foreach ($quoted as $quotedWord) {
-                        $query .= " AND (LOWER(name) LIKE ".$quotedWord." OR LOWER(description) LIKE ".$quotedWord.")";
-                    }
-                } else {
-                    foreach ($quoted as $quotedWord) {
-                        $query .= " AND LOWER(name) LIKE ".$quotedWord;
-                    }
-                }
-            }
-            // Single word or exact phrase to search for (wrapped in double quotes in the search block)
-            else {
-                $quoted = $db->Quote('%'.$escaped.'%', false);
-
-                if ($params->get('adminSearch') == 'full') {
-                    $query .= " AND (LOWER(name) LIKE ".$quoted." OR LOWER(description) LIKE ".$quoted.")";
-                } else {
-                    $query .= " AND LOWER(name) LIKE ".$quoted;
-                }
-            }
-        }
-
-        if ($filter_state > -1) {
-            $query .= " AND published={$filter_state}";
-        }
-
-        if ($language) {
-            $query .= " AND (language = ".$db->Quote($language)." OR language = '*')";
-        }
-
-        if ($filter_category) {
-            K2Model::addIncludePath(JPATH_SITE.'/components/com_k2/models');
-            $ItemlistModel = K2Model::getInstance('Itemlist', 'K2Model');
-            $tree = $ItemlistModel->getCategoryTree($filter_category);
-            $query .= " AND id IN (".implode(',', $tree).")";
-        }
-
-        $db->setQuery($query);
-        $total = $db->loadResult();
-        return $total;
+        return $this->getTotal;
     }
 
     public function indentRows(&$rows, $root = 0)
@@ -580,7 +516,7 @@ class K2ModelCategories extends K2Model
         }
         if (!isset($row->parent)) {
             if (is_null($row)) {
-                $row = new stdClass;
+                $row = new stdClass();
             }
             $row->parent = 0;
         }

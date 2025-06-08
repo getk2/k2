@@ -87,8 +87,10 @@ class K2ModelItems extends K2Model
                     $quoted[] = $db->Quote('%'.$escapedWord.'%', false);
                 }
                 if ($params->get('adminSearch') == 'full') {
+                    $searchPerTerm = [];
+                    $query .= " AND (";
                     foreach ($quoted as $quotedWord) {
-                        $query .= " AND (
+                        $searchPerTerm[] = "
                             LOWER(i.title) LIKE ".$quotedWord." OR
                             LOWER(i.introtext) LIKE ".$quotedWord." OR
                             LOWER(i.`fulltext`) LIKE ".$quotedWord." OR
@@ -99,8 +101,10 @@ class K2ModelItems extends K2Model
                             LOWER(i.video_credits) LIKE ".$quotedWord." OR
                             LOWER(i.metadesc) LIKE ".$quotedWord." OR
                             LOWER(i.metakey) LIKE ".$quotedWord."
-                        )";
+                        ";
                     }
+                    $query .= implode(' OR ', $searchPerTerm);
+                    $query .= ")";
                 } else {
                     foreach ($quoted as $quotedWord) {
                         $query .= " AND LOWER(i.title) LIKE ".$quotedWord;

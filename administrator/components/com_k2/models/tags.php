@@ -42,7 +42,7 @@ class K2ModelTags extends K2Model
 		if ($search)
 		{
 			$escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
-			$conditions[] = "LOWER( name ) LIKE ".$db->Quote('%'.$escaped.'%', false);
+			$conditions[] = "LOWER(name) LIKE ".$db->Quote('%'.$escaped.'%', false);
 		}
 
 		if (count($conditions))
@@ -85,7 +85,7 @@ class K2ModelTags extends K2Model
 		if ($search)
 		{
 			$escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
-			$query .= " AND LOWER( name ) LIKE ".$db->Quote('%'.$escaped.'%', false);
+			$query .= " AND LOWER(name) LIKE ".$db->Quote('%'.$escaped.'%', false);
 		}
 
 		$db->setQuery($query);

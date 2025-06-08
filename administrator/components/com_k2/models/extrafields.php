@@ -41,7 +41,7 @@ class K2ModelExtraFields extends K2Model
 
         if ($search) {
             $escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
-            $query .= " AND LOWER( exf.name ) LIKE ".$db->Quote('%'.$escaped.'%', false);
+            $query .= " AND LOWER(exf.name) LIKE ".$db->Quote('%'.$escaped.'%', false);
         }
 
         if ($filter_type) {
@@ -90,7 +90,7 @@ class K2ModelExtraFields extends K2Model
 
         if ($search) {
             $escaped = K2_JVERSION == '15' ? $db->getEscaped($search, true) : $db->escape($search, true);
-            $query .= " AND LOWER( name ) LIKE ".$db->Quote('%'.$escaped.'%', false);
+            $query .= " AND LOWER(name) LIKE ".$db->Quote('%'.$escaped.'%', false);
         }
 
         if ($filter_type) {

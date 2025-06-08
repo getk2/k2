@@ -811,16 +811,18 @@ class K2ModelItemlist extends K2Model
 
                 $searchwords = explode(' ', $search);
                 if (count($searchwords)) {
+                    // Already an array
                 } else {
                     $searchwords = [$search];
                 }
 
+                $searchPerTerm = [];
+                $sql .= " AND (";
                 foreach ($searchwords as $searchword) {
                     if (strlen($searchword) > 2) {
                         $escaped = (K2_JVERSION == '15') ? $db->getEscaped($searchword, true) : $db->escape($searchword, true);
                         $quoted = $db->Quote('%'.$escaped.'%', false);
-
-                        $sql .= " AND (
+                        $searchPerTerm[] = "
                             LOWER(i.title) LIKE ".$quoted." OR
                             LOWER(i.introtext) LIKE ".$quoted." OR
                             LOWER(i.`fulltext`) LIKE ".$quoted." OR
@@ -831,9 +833,11 @@ class K2ModelItemlist extends K2Model
                             LOWER(i.video_credits) LIKE ".$quoted." OR
                             LOWER(i.metadesc) LIKE ".$quoted." OR
                             LOWER(i.metakey) LIKE ".$quoted."
-                        )";
+                        ";
                     }
                 }
+                $sql .= implode(' OR ', $searchPerTerm);
+                $sql .= ")";
             }
         }
 
