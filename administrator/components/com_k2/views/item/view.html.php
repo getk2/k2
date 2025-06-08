@@ -143,15 +143,15 @@ class K2ViewItem extends K2View
             } else {
                 $textValue = $item->introtext;
             }
-            $text = $wysiwyg->display('text', $textValue, '100%', '400px', '', '');
+            $text = $wysiwyg->display('text', $textValue, '100%', '600px', '', '');
             $this->assignRef('text', $text);
             if (K2_JVERSION == '30') {
                 $onSave = $wysiwyg->save('text');
             }
         } else {
-            $introtext = $wysiwyg->display('introtext', $item->introtext, '100%', '400px', '', '', array('readmore'));
+            $introtext = $wysiwyg->display('introtext', $item->introtext, '100%', '300px', '', '', array('readmore'));
             $this->assignRef('introtext', $introtext);
-            $fulltext = $wysiwyg->display('fulltext', $item->fulltext, '100%', '400px', '', '', array('readmore'));
+            $fulltext = $wysiwyg->display('fulltext', $item->fulltext, '100%', '600px', '', '', array('readmore'));
             $this->assignRef('fulltext', $fulltext);
             if (K2_JVERSION == '30') {
                 $onSave = $wysiwyg->save('introtext');
