@@ -38,7 +38,7 @@ class K2ViewItems extends K2View
         $filter_state = $app->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
         $search = $app->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
-        $search = trim(preg_replace('/[^\p{L}\p{N}\s\-_.,!?\'"():*]/u', '', $search));
+        $search = trim(preg_replace('/[^\p{L}\p{N}\s\-.,:!?\'"()]/u', '', $search));
         $tag = $app->getUserStateFromRequest($option.$view.'tag', 'tag', 0, 'int');
         $language = $app->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
 

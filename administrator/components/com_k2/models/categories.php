@@ -29,7 +29,7 @@ class K2ModelCategories extends K2Model
         $limitstart = $app->getUserStateFromRequest($option.$view.'.limitstart', 'limitstart', 0, 'int');
         $search = $app->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
-        $search = trim(preg_replace('/[^\p{L}\p{N}\s\-_.,!?\'"():*]/u', '', $search));
+        $search = trim(preg_replace('/[^\p{L}\p{N}\s\-.,:!?\'"()]/u', '', $search));
         $filter_order = $app->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'c.ordering', 'cmd');
         $filter_order_Dir = $app->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', '', 'word');
         $filter_trash = $app->getUserStateFromRequest($option.$view.'filter_trash', 'filter_trash', 0, 'int');
