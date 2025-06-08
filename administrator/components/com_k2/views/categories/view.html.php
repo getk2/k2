@@ -38,7 +38,7 @@ class K2ViewCategories extends K2View
         $language = $app->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
         $search = $app->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
-        $search = trim(preg_replace('/[^\p{L}\p{N}\s\"\-_]/u', '', $search));
+        $search = trim(preg_replace('/[^\p{L}\p{N}\s\-_.,!?\'"():*]/u', '', $search));
         $model = $this->getModel();
         $total = $model->getTotal();
         $task = JRequest::getCmd('task');
