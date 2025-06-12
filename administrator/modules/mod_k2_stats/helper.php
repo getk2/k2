@@ -71,6 +71,7 @@ class modK2StatsHelper
     {
         $statistics = new stdClass;
         $statistics->numOfItems = self::countItems();
+        $statistics->numOfDraftItems = self::countDraftItems(); // New 2025 count Draft
         $statistics->numOfTrashedItems = self::countTrashedItems();
         $statistics->numOfFeaturedItems = self::countFeaturedItems();
         $statistics->numOfComments = self::countComments();
@@ -86,6 +87,16 @@ class modK2StatsHelper
     {
         $db = JFactory::getDbo();
         $query = "SELECT COUNT(*) FROM #__k2_items";
+        $db->setQuery($query);
+        $result = $db->loadResult();
+        return $result;
+    }
+
+    // 2025 Count Drafts
+    public static function countDraftItems()
+    {
+        $db = JFactory::getDbo();
+        $query = "SELECT COUNT(*) FROM #__k2_items WHERE published=0 AND trash=0";
         $db->setQuery($query);
         $result = $db->loadResult();
         return $result;
