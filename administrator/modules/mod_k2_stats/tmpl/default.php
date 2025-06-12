@@ -142,7 +142,7 @@ jimport('joomla.html.pane');
 	<tbody>
 		<tr>
 			<td><?php echo JText::_('K2_ITEMS'); ?></td>
-			<td><?php echo $statistics->numOfItems; ?> (<?php echo $statistics->numOfDraftItems; ?> <?php echo JText::_('K2_DRAFTS'); ?> - <?php echo $statistics->numOfFeaturedItems.' '.JText::_('K2_FEATURED').' - '.$statistics->numOfTrashedItems.' '.JText::_('K2_TRASHED'); ?>)</td>
+			<td><?php echo $statistics->numOfItems; ?> (<?php echo $statistics->numOfDraftItems; ?> <?php echo JText::_('K2_DRAFTS'); ?> - <?php echo $statistics->numOfFeaturedItems; ?> <?php echo JText::_('K2_FEATURED'); ?> - <?php echo $statistics->numOfTrashedItems; ?> <?php echo JText::_('K2_TRASHED'); ?>)</td>
 		</tr>
 		<tr>
 			<td><?php echo JText::_('K2_CATEGORIES'); ?></td>

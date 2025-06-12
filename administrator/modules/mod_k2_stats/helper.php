@@ -69,11 +69,11 @@ class modK2StatsHelper
 
     public static function getStatistics()
     {
-        $statistics = new stdClass;
+        $statistics = new stdClass();
         $statistics->numOfItems = self::countItems();
-        $statistics->numOfDraftItems = self::countDraftItems(); // New 2025 count Draft
-        $statistics->numOfTrashedItems = self::countTrashedItems();
+        $statistics->numOfDraftItems = self::countDraftItems();
         $statistics->numOfFeaturedItems = self::countFeaturedItems();
+        $statistics->numOfTrashedItems = self::countTrashedItems();
         $statistics->numOfComments = self::countComments();
         $statistics->numOfCategories = self::countCategories();
         $statistics->numOfTrashedCategories = self::countTrashedCategories();
@@ -92,7 +92,6 @@ class modK2StatsHelper
         return $result;
     }
 
-    // 2025 Count Drafts
     public static function countDraftItems()
     {
         $db = JFactory::getDbo();
@@ -102,19 +101,19 @@ class modK2StatsHelper
         return $result;
     }
 
-    public static function countTrashedItems()
+    public static function countFeaturedItems()
     {
         $db = JFactory::getDbo();
-        $query = "SELECT COUNT(*) FROM #__k2_items WHERE trash=1";
+        $query = "SELECT COUNT(*) FROM #__k2_items WHERE featured=1";
         $db->setQuery($query);
         $result = $db->loadResult();
         return $result;
     }
 
-    public static function countFeaturedItems()
+    public static function countTrashedItems()
     {
         $db = JFactory::getDbo();
-        $query = "SELECT COUNT(*) FROM #__k2_items WHERE featured=1";
+        $query = "SELECT COUNT(*) FROM #__k2_items WHERE trash=1";
         $db->setQuery($query);
         $result = $db->loadResult();
         return $result;
