@@ -26,7 +26,7 @@ class plgSystemK2 extends JPlugin
         }
 
         // Define K2 version & build here
-        define('K2_CURRENT_VERSION', '2.12.20250608');
+        define('K2_CURRENT_VERSION', '2.12.20250620');
 
         // Define the DS constant (for backwards compatibility with old template overrides & 3rd party K2 extensions)
         if (!defined('DS')) {
@@ -222,7 +222,7 @@ class plgSystemK2 extends JPlugin
                 }
                 $document = JFactory::getDocument();
                 $document->addScriptDeclaration("
-                    window.addEvent('domready', function(){
+                    window.addEvent('domready', function() {
                         var target = $$('table.adminform');
                         target.setProperty('id', 'adminform');
                         var div = new Element('div', {'id': 'K2ExtraFields'}).setHTML('".preg_replace($pattern, '', $output)."').injectInside($('adminform'));
@@ -355,7 +355,7 @@ class plgSystemK2 extends JPlugin
                 }
                 $document = JFactory::getDocument();
                 $document->addScriptDeclaration("
-                    window.addEvent('domready', function(){
+                    window.addEvent('domready', function() {
                         var target = $$('table.adminform');
                         target.setProperty('id', 'adminform');
                         var div = new Element('div', {'id': 'K2ExtraFields'}).setHTML('".preg_replace($pattern, '', $output)."').injectInside($('adminform'));

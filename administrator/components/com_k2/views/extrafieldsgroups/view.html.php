@@ -65,7 +65,7 @@ class K2ViewExtraFieldsGroups extends K2View
         $document->addScriptDeclaration("
             Joomla.submitbutton = function(pressbutton) {
                 if (pressbutton == 'remove') {
-                    if (confirm('".JText::_('K2_WARNING_ARE_YOU_SURE_YOU_WANT_TO_DELETE_SELECTED_EXTRA_FIELDS_GROUPS_DELETING_THE_GROUPS_WILL_ALSO_DELETE_THE_ASSIGNED_EXTRA_FIELDS', true)."')){
+                    if (confirm('".JText::_('K2_WARNING_ARE_YOU_SURE_YOU_WANT_TO_DELETE_SELECTED_EXTRA_FIELDS_GROUPS_DELETING_THE_GROUPS_WILL_ALSO_DELETE_THE_ASSIGNED_EXTRA_FIELDS', true)."')) {
                         submitform(pressbutton);
                     }
                 } else {

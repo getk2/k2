@@ -28,13 +28,13 @@ jimport('joomla.html.pane');
 
 ?>
 
-<?php if(K2_JVERSION != '30') $pane = JPane::getInstance('Tabs'); ?>
+<?php if (K2_JVERSION != '30') $pane = JPane::getInstance('Tabs'); ?>
 
 <div class="clr"></div>
 
 <?php echo (K2_JVERSION == '30') ? JHtml::_('tabs.start') : $pane->startPane('myPane'); ?>
 
-<?php if($params->get('latestItems', 1)): ?>
+<?php if ($params->get('latestItems', 1)): ?>
 <?php echo (K2_JVERSION == '30') ? JHtml::_('tabs.panel', JText::_('K2_LATEST_ITEMS'), 'latestItemsTab') : $pane->startPanel(JText::_('K2_LATEST_ITEMS'), 'latestItemsTab'); ?>
 <table class="adminlist table table-striped">
 	<thead>
@@ -54,10 +54,10 @@ jimport('joomla.html.pane');
 		<?php endforeach; ?>
 	</tbody>
 </table>
-<?php if(K2_JVERSION != '30') echo $pane->endPanel(); ?>
+<?php if (K2_JVERSION != '30') echo $pane->endPanel(); ?>
 <?php endif; ?>
 
-<?php if($params->get('popularItems', 1)): ?>
+<?php if ($params->get('popularItems', 1)): ?>
 <?php echo (K2_JVERSION == '30') ? JHtml::_('tabs.panel', JText::_('K2_POPULAR_ITEMS'), 'popularItemsTab') : $pane->startPanel(JText::_('K2_POPULAR_ITEMS'), 'popularItemsTab'); ?>
 <table class="adminlist table table-striped">
 	<thead>
@@ -79,10 +79,10 @@ jimport('joomla.html.pane');
 		<?php endforeach; ?>
 	</tbody>
 </table>
-<?php if(K2_JVERSION != '30') echo $pane->endPanel(); ?>
+<?php if (K2_JVERSION != '30') echo $pane->endPanel(); ?>
 <?php endif; ?>
 
-<?php if($params->get('mostCommentedItems', 1)): ?>
+<?php if ($params->get('mostCommentedItems', 1)): ?>
 <?php echo (K2_JVERSION == '30') ? JHtml::_('tabs.panel', JText::_('K2_MOST_COMMENTED_ITEMS'), 'mostCommentedItemsTab') : $pane->startPanel(JText::_('K2_MOST_COMMENTED_ITEMS'), 'mostCommentedItemsTab'); ?>
 <table class="adminlist table table-striped">
 	<thead>
@@ -104,10 +104,10 @@ jimport('joomla.html.pane');
 		<?php endforeach; ?>
 	</tbody>
 </table>
-<?php if(K2_JVERSION != '30') echo $pane->endPanel(); ?>
+<?php if (K2_JVERSION != '30') echo $pane->endPanel(); ?>
 <?php endif; ?>
 
-<?php if($params->get('latestComments', 1)): ?>
+<?php if ($params->get('latestComments', 1)): ?>
 <?php echo (K2_JVERSION == '30') ? JHtml::_('tabs.panel', JText::_('K2_LATEST_COMMENTS'), 'latestCommentsTab') : $pane->startPanel(JText::_('K2_LATEST_COMMENTS'), 'latestCommentsTab'); ?>
 <table class="adminlist table table-striped">
 	<thead>
@@ -127,10 +127,10 @@ jimport('joomla.html.pane');
 		<?php endforeach; ?>
 	</tbody>
 </table>
-<?php if(K2_JVERSION != '30') echo $pane->endPanel(); ?>
+<?php if (K2_JVERSION != '30') echo $pane->endPanel(); ?>
 <?php endif; ?>
 
-<?php if($params->get('statistics', 1)): ?>
+<?php if ($params->get('statistics', 1)): ?>
 <?php echo (K2_JVERSION == '30') ? JHtml::_('tabs.panel', JText::_('K2_STATISTICS'), 'statsTab') : $pane->startPanel(JText::_('K2_STATISTICS'), 'statsTab'); ?>
 <table class="adminlist table table-striped">
 	<thead>
@@ -166,7 +166,7 @@ jimport('joomla.html.pane');
 		</tr>
 	</tbody>
 </table>
-<?php if(K2_JVERSION != '30') echo $pane->endPanel(); ?>
+<?php if (K2_JVERSION != '30') echo $pane->endPanel(); ?>
 <?php endif; ?>
 
 <?php echo K2_JVERSION != '30'? $pane->endPane() : JHtml::_('tabs.end'); ?>

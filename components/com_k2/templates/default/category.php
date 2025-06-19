@@ -16,7 +16,7 @@ defined('_JEXEC') or die;
 <div id="k2Container" class="itemListView<?php if ($this->params->get('pageclass_sfx')) echo ' '.$this->params->get('pageclass_sfx'); ?>">
     <?php if ($this->params->get('show_page_title')): ?>
     <!-- Page title -->
-    <div class="componentheading<?php echo $this->params->get('pageclass_sfx')?>">
+    <div class="componentheading<?php echo $this->params->get('pageclass_sfx'); ?>">
         <?php echo $this->escape($this->params->get('page_title')); ?>
     </div>
     <?php endif; ?>
@@ -48,7 +48,7 @@ defined('_JEXEC') or die;
 
             <?php if ($this->params->get('catImage') && $this->category->image): ?>
             <!-- Category image -->
-            <img alt="<?php echo K2HelperUtilities::cleanHtml($this->category->name); ?>" src="<?php echo $this->category->image; ?>" style="width:<?php echo $this->params->get('catImageWidth'); ?>px; height:auto;" />
+            <img alt="<?php echo K2HelperUtilities::cleanHtml($this->category->name); ?>" src="<?php echo $this->category->image; ?>" style="width:<?php echo $this->params->get('catImageWidth'); ?>px;height:auto;" />
             <?php endif; ?>
 
             <?php if ($this->params->get('catTitle')): ?>

@@ -15,7 +15,7 @@ $context = JRequest::getCmd('context');
 
 ?>
 
-<?php if($app->isSite() || $context == "modalselector"): ?>
+<?php if ($app->isSite() || $context == "modalselector"): ?>
 <!-- Modal View -->
 <div id="k2ModalContainer">
     <div id="k2ModalHeader">
@@ -47,11 +47,11 @@ $context = JRequest::getCmd('context');
             </tr>
         </table>
         <div class="k2AdminTableData">
-            <table class="adminlist table table-striped<?php if(isset($this->rows) && count($this->rows) == 0): ?> nocontent<?php endif; ?>" id="k2TagsList">
+            <table class="adminlist table table-striped<?php if (isset($this->rows) && count($this->rows) == 0): ?> nocontent<?php endif; ?>" id="k2TagsList">
                 <thead>
                     <tr>
                         <th class="k2ui-center k2ui-hide-on-mobile">#</th>
-                        <th class="k2ui-center<?php if($context == "modalselector") echo ' k2ui-not-visible'; ?>"><input id="k2<?php echo $this->params->get('backendListToggler', 'TogglerStandard'); ?>" type="checkbox" name="toggle" value="" /></th>
+                        <th class="k2ui-center<?php if ($context == "modalselector") echo ' k2ui-not-visible'; ?>"><input id="k2<?php echo $this->params->get('backendListToggler', 'TogglerStandard'); ?>" type="checkbox" name="toggle" value="" /></th>
                         <th><?php echo JHTML::_('grid.sort', 'K2_NAME', 'name', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
                         <th class="k2ui-center"><?php echo JHTML::_('grid.sort', 'K2_PUBLISHED', 'published', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
                         <th class="k2ui-center k2ui-hide-on-mobile"><?php echo JHTML::_('grid.sort', 'K2_ITEMS', 'numOfItems', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
@@ -61,7 +61,7 @@ $context = JRequest::getCmd('context');
                 <tfoot>
                     <tr>
                         <td colspan="6">
-                            <?php if(K2_JVERSION == '30'): ?>
+                            <?php if (K2_JVERSION == '30'): ?>
                             <div class="k2LimitBox">
                                 <?php echo $this->page->getLimitBox(); ?>
                             </div>
@@ -71,15 +71,15 @@ $context = JRequest::getCmd('context');
                     </tr>
                 </tfoot>
                 <tbody>
-                    <?php if(isset($this->rows) && count($this->rows) > 0): ?>
+                    <?php if (isset($this->rows) && count($this->rows) > 0): ?>
                     <?php foreach ($this->rows as $key => $row): ?>
                     <tr class="row<?php echo ($key%2); ?>">
                         <td class="k2ui-center k2ui-hide-on-mobile"><?php echo $key+1; ?></td>
-                        <td class="k2ui-center<?php if($context == "modalselector") echo ' k2ui-not-visible'; ?>"><?php $row->checked_out = 0; echo @JHTML::_('grid.checkedout', $row, $key ); ?></td>
+                        <td class="k2ui-center<?php if ($context == "modalselector") echo ' k2ui-not-visible'; ?>"><?php $row->checked_out = 0; echo @JHTML::_('grid.checkedout', $row, $key ); ?></td>
                         <td>
-                            <?php if($context == "modalselector"): ?>
+                            <?php if ($context == "modalselector"): ?>
                             <?php
-                            if(JRequest::getCmd('output') == 'list'){
+                            if (JRequest::getCmd('output') == 'list') {
                                 $onClick = 'window.parent.k2ModalSelector(\''.$row->name.'\', \''.str_replace(array("'", "\""), array("\\'", ""), $row->name).'\', \''.JRequest::getCmd('fid').'\', \''.JRequest::getVar('fname').'\', \''.JRequest::getCmd('output').'\'); return false;';
                             } else {
                                 $onClick = 'window.parent.k2ModalSelector(\''.$row->name.'\', \''.str_replace(array("'", "\""), array("\\'", ""), $row->name).'\', \''.JRequest::getCmd('fid').'\', \''.JRequest::getVar('fname').'\'); return false;';
@@ -113,7 +113,7 @@ $context = JRequest::getCmd('context');
         <input type="hidden" name="filter_order" value="<?php echo $this->lists['order']; ?>" />
         <input type="hidden" name="filter_order_Dir" value="<?php echo $this->lists['order_Dir']; ?>" />
         <input type="hidden" name="boxchecked" value="0" />
-        <?php if($context == "modalselector"): ?>
+        <?php if ($context == "modalselector"): ?>
         <input type="hidden" name="context" value="modalselector" />
         <input type="hidden" name="tmpl" value="component" />
         <input type="hidden" name="fid" value="<?php echo JRequest::getCmd('fid'); ?>" />
@@ -123,6 +123,6 @@ $context = JRequest::getCmd('context');
         <?php echo JHTML::_('form.token'); ?>
     </form>
 
-<?php if($app->isSite() || $context == "modalselector"): ?>
+<?php if ($app->isSite() || $context == "modalselector"): ?>
 </div>
 <?php endif; ?>

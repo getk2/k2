@@ -14,7 +14,7 @@ $app = JFactory::getApplication();
 
 ?>
 
-<?php if($app->isSite()): ?>
+<?php if ($app->isSite()): ?>
 <!-- Frontend Item Editing (Modal View) -->
 <div id="k2ModalContainer">
     <div id="k2ModalHeader">
@@ -37,7 +37,7 @@ $app = JFactory::getApplication();
 <?php endif; ?>
 
     <form action="<?php echo JRoute::_('index.php'); ?>" enctype="multipart/form-data" method="post" name="adminForm" id="adminForm">
-        <?php if($app->isSite() && !$this->permissions->get('publish') && !$this->row->published): ?>
+        <?php if ($app->isSite() && !$this->permissions->get('publish') && !$this->row->published): ?>
         <div id="k2ModalPermissionsNotice">
             <p><?php echo JText::_('K2_FRONTEND_PERMISSIONS_NOTICE'); ?></p>
         </div>
@@ -50,7 +50,7 @@ $app = JFactory::getApplication();
                 <ul class="k2NavTabs">
                     <li id="tabContent"><a href="#k2TabBasic"><i class="fa fa-home"></i><?php echo JText::_('K2_BASIC'); ?></a></li>
                     <li id="tabContent"><a href="#k2TabPubAndMeta"><i class="fa fa-info-circle"></i><?php echo JText::_('K2_PUBLISHING_AND_METADATA'); ?></a></li>
-                    <?php if($app->isAdmin()): ?>
+                    <?php if ($app->isAdmin()): ?>
                     <li id="tabContent"><a href="#k2TabDisplaySet"><i class="fa fa-desktop"></i><?php echo JText::_('K2_DISPLAY_SETTINGS'); ?></a></li>
                     <?php endif; ?>
                 </ul>
@@ -58,7 +58,7 @@ $app = JFactory::getApplication();
 
             <!-- BASIC [start] -->
             <div class="k2NavTabContent" id="k2TabBasic">
-                <?php if($this->row->id): ?>
+                <?php if ($this->row->id): ?>
                 <div id="k2ID"><strong><?php echo JText::_('K2_ID'); ?></strong> <?php echo $this->row->id; ?></div>
                 <?php endif; ?>
 
@@ -85,10 +85,10 @@ $app = JFactory::getApplication();
                         <label for="tags"><?php echo JText::_('K2_TAGS'); ?></label>
                     </div>
                     <div class="k2ui-field-value">
-                        <?php if($this->params->get('taggingSystem') == 'free'): ?>
+                        <?php if ($this->params->get('taggingSystem') == 'free'): ?>
                         <!-- Free tagging -->
                         <ul class="tags">
-                            <?php if(isset($this->row->tags) && count($this->row->tags)): ?>
+                            <?php if (isset($this->row->tags) && count($this->row->tags)): ?>
                             <?php foreach($this->row->tags as $tag): ?>
                             <li class="tagAdded">
                                 <?php echo $tag->name; ?>
@@ -107,7 +107,7 @@ $app = JFactory::getApplication();
                         </p>
                         <?php else: ?>
                         <!-- Selection based tagging -->
-                        <?php if( !$this->params->get('lockTags') || $this->user->gid>23): ?>
+                        <?php if ( !$this->params->get('lockTags') || $this->user->gid>23): ?>
                         <input type="text" name="tag" id="tag" />
                         <input type="button" id="newTagButton" class="k2Selector" value="<?php echo JText::_('K2_ADD'); ?>" />
                         <div id="tagsLog"></div>
@@ -138,7 +138,7 @@ $app = JFactory::getApplication();
                     </div>
                 </div>
                 <div class="k2ui-table-additional">
-                    <?php if($app->isAdmin() || ($app->isSite() && $this->permissions->get('publish'))): ?>
+                    <?php if ($app->isAdmin() || ($app->isSite() && $this->permissions->get('publish'))): ?>
                     <div class="k2ui-field-label">
                         <label><?php echo JText::_('K2_PUBLISHED'); ?></label>
                     </div>
@@ -166,7 +166,7 @@ $app = JFactory::getApplication();
                             <?php echo $this->row->author; ?>
                             <input type="hidden" name="created_by" value="<?php echo $this->row->created_by; ?>" />
                         </span>
-                        <?php if($app->isAdmin() || ($app->isSite() && $this->permissions->get('editAll'))): ?>
+                        <?php if ($app->isAdmin() || ($app->isSite() && $this->permissions->get('editAll'))): ?>
                         <a data-k2-modal="iframe" class="k2Selector" href="index.php?option=com_k2&amp;view=users&amp;tmpl=component&amp;context=modalselector&amp;fid=k2Author&amp;fname=created_by">
                             <i class="fa fa-pencil"></i>
                         </a>
@@ -178,7 +178,7 @@ $app = JFactory::getApplication();
                     <div class="k2ui-field-value">
                         <input class="text_area" type="text" name="created_by_alias" maxlength="250" value="<?php echo $this->row->created_by_alias; ?>" />
                     </div>
-                    <?php if(isset($this->lists['language'])): ?>
+                    <?php if (isset($this->lists['language'])): ?>
                     <div class="k2ui-field-label">
                         <label><?php echo JText::_('K2_LANGUAGE'); ?></label>
                     </div>
@@ -215,14 +215,14 @@ $app = JFactory::getApplication();
                         <?php if ($this->params->get('showAttachmentsTab')): ?>
                         <li id="tabAttachments"><a href="#k2TabAttachments"><i class="fa fa-file-o"></i><?php echo JText::_('K2_ATTACHMENTS'); ?></a></li>
                         <?php endif; ?>
-                        <?php if(count(array_filter($this->K2PluginsItemOther)) && $this->params->get('showK2Plugins')): ?>
+                        <?php if (count(array_filter($this->K2PluginsItemOther)) && $this->params->get('showK2Plugins')): ?>
                         <li id="tabPlugins"><a href="#k2TabPlugins"><i class="fa fa-wrench"></i><?php echo JText::_('K2_PLUGINS'); ?></a></li>
                         <?php endif; ?>
                     </ul>
 
                     <!-- Tab content -->
                     <div class="k2TabsContent" id="k2TabContent">
-                        <?php if($this->params->get('mergeEditors')): ?>
+                        <?php if ($this->params->get('mergeEditors')): ?>
                         <div class="k2ItemFormEditor">
                             <?php echo $this->text; ?>
                             <div class="dummyHeight"></div>
@@ -245,7 +245,7 @@ $app = JFactory::getApplication();
                         <?php if (count($this->K2PluginsItemContent)): ?>
                         <div class="itemPlugins itemPluginsContent">
                             <?php foreach($this->K2PluginsItemContent as $K2Plugin): ?>
-                            <?php if(!is_null($K2Plugin)): ?>
+                            <?php if (!is_null($K2Plugin)): ?>
                             <div class="itemPlugin k2Plugin-<?php echo preg_replace('/[^\p{L}\p{N}_]/u', '', ucwords(strtolower($K2Plugin->name))); ?>">
                                 <h3><?php echo $K2Plugin->name; ?></h3>
                                 <div class="itemAdditionalData">
@@ -310,7 +310,7 @@ $app = JFactory::getApplication();
                         <?php if (count($this->K2PluginsItemImage)): ?>
                         <div class="itemPlugins itemPluginsImage">
                             <?php foreach($this->K2PluginsItemImage as $K2Plugin): ?>
-                            <?php if(!is_null($K2Plugin)): ?>
+                            <?php if (!is_null($K2Plugin)): ?>
                             <div class="itemPlugin k2Plugin-<?php echo preg_replace('/[^\p{L}\p{N}_]/u', '', ucwords(strtolower($K2Plugin->name))); ?>">
                                 <h3><?php echo $K2Plugin->name; ?></h3>
                                 <div class="itemAdditionalData">
@@ -399,7 +399,7 @@ $app = JFactory::getApplication();
                         <?php if (count($this->K2PluginsItemGallery)): ?>
                         <div class="itemPlugins itemPluginsImageGallery">
                             <?php foreach($this->K2PluginsItemGallery as $K2Plugin): ?>
-                            <?php if(!is_null($K2Plugin)): ?>
+                            <?php if (!is_null($K2Plugin)): ?>
                             <div class="itemPlugin k2Plugin-<?php echo preg_replace('/[^\p{L}\p{N}_]/u', '', ucwords(strtolower($K2Plugin->name))); ?>">
                                 <h3><?php echo $K2Plugin->name; ?></h3>
                                 <div class="itemAdditionalData">
@@ -441,7 +441,7 @@ $app = JFactory::getApplication();
                                             <div class="panel" id="Remote_video">
                                                 <div class="itemAdditionalBlock">
                                                     <a id="k2MediaBrowseServer" class="k2Button" href="index.php?option=com_k2&amp;view=media&amp;type=video&amp;tmpl=component&amp;fieldID=remoteVideo">
-                                                        <?php echo JText::_('K2_BROWSE_VIDEOS_ON_SERVER')?>
+                                                        <?php echo JText::_('K2_BROWSE_VIDEOS_ON_SERVER'); ?>
                                                     </a>
                                                 </div>
                                                 <div class="itemAdditionalBlock sep">
@@ -493,7 +493,7 @@ $app = JFactory::getApplication();
                                 </div>
                             </div>
 
-                            <?php if($this->row->video): ?>
+                            <?php if ($this->row->video): ?>
                             <div class="itemAdditionalField">
                                 <div class="itemAdditionalValue">
                                     <label><?php echo JText::_('K2_MEDIA_PREVIEW'); ?></label>
@@ -546,7 +546,7 @@ $app = JFactory::getApplication();
                             </div>
                         </div>
 
-                        <?php if($this->row->video): ?>
+                        <?php if ($this->row->video): ?>
                         <div class="itemAdditionalField">
                             <div class="itemAdditionalValue">
                                 <label><?php echo JText::_('K2_MEDIA_PREVIEW'); ?></label>
@@ -582,7 +582,7 @@ $app = JFactory::getApplication();
                         <?php if (count($this->K2PluginsItemVideo)): ?>
                         <div class="itemPlugins itemPluginsMedia">
                             <?php foreach($this->K2PluginsItemVideo as $K2Plugin): ?>
-                            <?php if(!is_null($K2Plugin)): ?>
+                            <?php if (!is_null($K2Plugin)): ?>
                             <div class="itemPlugin k2Plugin-<?php echo preg_replace('/[^\p{L}\p{N}_]/u', '', ucwords(strtolower($K2Plugin->name))); ?>">
                                 <h3><?php echo $K2Plugin->name; ?></h3>
                                 <div class="itemAdditionalData">
@@ -604,7 +604,7 @@ $app = JFactory::getApplication();
                             <div id="extraFields">
                                 <?php foreach($this->extraFields as $extraField): ?>
                                 <div class="itemAdditionalField fieldIs<?php echo ucfirst($extraField->type); ?>">
-                                    <?php if($extraField->type == 'header'): ?>
+                                    <?php if ($extraField->type == 'header'): ?>
                                     <h4><?php echo $extraField->name; ?></h4>
                                     <?php else: ?>
                                     <div class="itemAdditionalValue">
@@ -627,7 +627,7 @@ $app = JFactory::getApplication();
                         <?php if (count($this->K2PluginsItemExtraFields)): ?>
                         <div class="itemPlugins itemPluginsExtraFields">
                             <?php foreach($this->K2PluginsItemExtraFields as $K2Plugin): ?>
-                            <?php if(!is_null($K2Plugin)): ?>
+                            <?php if (!is_null($K2Plugin)): ?>
                             <div class="itemPlugin k2Plugin-<?php echo preg_replace('/[^\p{L}\p{N}_]/u', '', ucwords(strtolower($K2Plugin->name))); ?>">
                                 <h3><?php echo $K2Plugin->name; ?></h3>
                                 <div class="itemAdditionalData">
@@ -684,7 +684,7 @@ $app = JFactory::getApplication();
                         <?php if (count($this->K2PluginsItemAttachments)): ?>
                         <div class="itemPlugins itemPluginsAttachments">
                             <?php foreach($this->K2PluginsItemAttachments as $K2Plugin): ?>
-                            <?php if(!is_null($K2Plugin)): ?>
+                            <?php if (!is_null($K2Plugin)): ?>
                             <div class="itemPlugin k2Plugin-<?php echo preg_replace('/[^\p{L}\p{N}_]/u', '', ucwords(strtolower($K2Plugin->name))); ?>">
                                 <h3><?php echo $K2Plugin->name; ?></h3>
                                 <div class="itemAdditionalData">
@@ -698,12 +698,12 @@ $app = JFactory::getApplication();
                     </div>
                     <?php endif; ?>
 
-                    <?php if(count(array_filter($this->K2PluginsItemOther)) && $this->params->get('showK2Plugins')): ?>
+                    <?php if (count(array_filter($this->K2PluginsItemOther)) && $this->params->get('showK2Plugins')): ?>
                     <!-- Tab other plugins -->
                     <div class="k2TabsContent" id="k2TabPlugins">
                         <div class="itemPlugins itemPluginsPlugins">
                             <?php foreach($this->K2PluginsItemOther as $K2Plugin): ?>
-                            <?php if(!is_null($K2Plugin)): ?>
+                            <?php if (!is_null($K2Plugin)): ?>
                             <div class="itemPlugin k2Plugin-<?php echo preg_replace('/[^\p{L}\p{N}_]/u', '', ucwords(strtolower($K2Plugin->name))); ?>">
                                 <h3><?php echo $K2Plugin->name; ?></h3>
                                 <div class="itemAdditionalData">
@@ -723,14 +723,14 @@ $app = JFactory::getApplication();
             <!-- META [start] -->
             <div class="k2NavTabContent" id="k2TabPubAndMeta">
                 <ul class="k2ScrollSpyMenu">
-                    <?php if($this->row->id): ?>
+                    <?php if ($this->row->id): ?>
                     <li><a href="#iteminfo"><?php echo JText::_('K2_ITEM_INFO'); ?></a></li>
                     <?php endif; ?>
                     <li><a href="#publishing"><?php echo JText::_('K2_PUBLISHING'); ?></a></li>
                     <li><a href="#metadata"><?php echo JText::_('K2_METADATA'); ?></a></li>
                 </ul>
                 <div class="k2ScrollingContent">
-                    <?php if($this->row->id): ?>
+                    <?php if ($this->row->id): ?>
                     <h3><?php echo JText::_('K2_ITEM_INFO'); ?></h3>
                     <div class="k2ui-table-publishing-meta">
                         <div class="k2ui-column">
@@ -760,7 +760,7 @@ $app = JFactory::getApplication();
                                     <span><?php echo JText::_('K2_MODIFIED_DATE'); ?></span>
                                     <span><?php echo $this->lists['modified']; ?></span>
                                 </li>
-                                <?php if($this->row->moderator): ?>
+                                <?php if ($this->row->moderator): ?>
                                 <li>
                                     <span><?php echo JText::_('K2_MODIFIED_BY'); ?></span>
                                     <span><?php echo $this->row->moderator; ?></span>
@@ -772,7 +772,7 @@ $app = JFactory::getApplication();
                             <div class="itemHits">
                                 <?php echo JText::_('K2_HITS'); ?>
                                 <span><?php echo $this->row->hits; ?></span>
-                                <?php if($this->row->hits): ?>
+                                <?php if ($this->row->hits): ?>
                                 <div class="itemHitsReset">
                                     <input id="resetHitsButton" type="button" value="<?php echo JText::_('K2_RESET'); ?>" class="button" name="resetHits" />
                                 </div>
@@ -782,7 +782,7 @@ $app = JFactory::getApplication();
                         <div class="k2ui-column">
                             <div class="itemRating">
                                 <?php echo JText::_('K2_RATING'); ?>
-                                <?php if($this->row->ratingCount): ?>
+                                <?php if ($this->row->ratingCount): ?>
                                 <span><?php echo number_format(($this->row->ratingSum/$this->row->ratingCount), 2); ?>/5.00</span>
                                 <?php else: ?>
                                 <span>0.00/5.00</span>
@@ -871,7 +871,7 @@ $app = JFactory::getApplication();
             </div>
             <!-- META [finish] -->
 
-            <?php if($app->isAdmin()): ?>
+            <?php if ($app->isAdmin()): ?>
             <!-- DISPLAY SETTINGS [start] -->
             <div class="k2NavTabContent" id="k2TabDisplaySet">
                 <ul class="k2ScrollSpyMenu">
@@ -884,12 +884,12 @@ $app = JFactory::getApplication();
                     <div class="xmlParamsFields">
                         <fieldset class="panelform">
                             <ul class="adminformlist">
-                                <?php if(version_compare( JVERSION, '1.6.0', 'ge' )): ?>
+                                <?php if (version_compare( JVERSION, '1.6.0', 'ge' )): ?>
                                 <?php foreach($this->form->getFieldset('item-view-options-listings') as $field): ?>
-                                <li<?php if($field->type=='header') echo ' class="headerElement"'; ?>>
-                                    <?php if($field->type=='header'): ?>
+                                <li<?php if ($field->type=='header') echo ' class="headerElement"'; ?>>
+                                    <?php if ($field->type=='header'): ?>
                                     <div class="paramValueHeader"><?php echo $field->input; ?></div>
-                                    <?php elseif($field->type=='Spacer'): ?>
+                                    <?php elseif ($field->type=='Spacer'): ?>
                                     <div class="paramValueSpacer">&nbsp;</div>
                                     <div class="clr"></div>
                                     <?php else: ?>
@@ -901,8 +901,8 @@ $app = JFactory::getApplication();
                                 <?php endforeach; ?>
                                 <?php else: ?>
                                 <?php foreach($this->form->getParams('params', 'item-view-options-listings') as $param): ?>
-                                <li<?php if((string)$param[1]=='' || $param[5] == '') echo ' class="headerElement"'; ?>>
-                                    <?php if((string)$param[1]=='' || $param[5] == ''): ?>
+                                <li<?php if ((string)$param[1]=='' || $param[5] == '') echo ' class="headerElement"'; ?>>
+                                    <?php if ((string)$param[1]=='' || $param[5] == ''): ?>
                                     <div class="paramValueHeader"><?php echo $param[1]; ?></div>
                                     <?php else: ?>
                                     <div class="paramLabel"><?php echo $param[0]; ?></div>
@@ -920,12 +920,12 @@ $app = JFactory::getApplication();
                     <div class="xmlParamsFields">
                         <fieldset class="panelform">
                             <ul class="adminformlist">
-                                <?php if(version_compare( JVERSION, '1.6.0', 'ge' )): ?>
+                                <?php if (version_compare( JVERSION, '1.6.0', 'ge' )): ?>
                                 <?php foreach($this->form->getFieldset('item-view-options') as $field): ?>
-                                <li<?php if($field->type=='header') echo ' class="headerElement"'; ?>>
-                                    <?php if($field->type=='header'): ?>
+                                <li<?php if ($field->type=='header') echo ' class="headerElement"'; ?>>
+                                    <?php if ($field->type=='header'): ?>
                                     <div class="paramValueHeader"><?php echo $field->input; ?></div>
-                                    <?php elseif($field->type=='Spacer'): ?>
+                                    <?php elseif ($field->type=='Spacer'): ?>
                                     <div class="paramValueSpacer">&nbsp;</div>
                                     <div class="clr"></div>
                                     <?php else: ?>
@@ -937,8 +937,8 @@ $app = JFactory::getApplication();
                                 <?php endforeach; ?>
                                 <?php else: ?>
                                 <?php foreach($this->form->getParams('params', 'item-view-options') as $param): ?>
-                                <li<?php if((string)$param[1]=='' || $param[5] == '') echo ' class="headerElement"'; ?>>
-                                    <?php if((string)$param[1]=='' || $param[5] == ''): ?>
+                                <li<?php if ((string)$param[1]=='' || $param[5] == '') echo ' class="headerElement"'; ?>>
+                                    <?php if ((string)$param[1]=='' || $param[5] == ''): ?>
                                     <div class="paramValueHeader"><?php echo $param[1]; ?></div>
                                     <?php else: ?>
                                     <div class="paramLabel"><?php echo $param[0]; ?></div>
@@ -959,7 +959,7 @@ $app = JFactory::getApplication();
         <!-- Top Nav Tabs END here -->
 
         <input type="hidden" name="isSite" value="<?php echo (int) $app->isSite(); ?>" />
-        <?php if($app->isSite()): ?>
+        <?php if ($app->isSite()): ?>
         <input type="hidden" name="lang" value="<?php echo JRequest::getCmd('lang'); ?>" />
         <?php endif; ?>
         <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
@@ -970,6 +970,6 @@ $app = JFactory::getApplication();
         <?php echo JHTML::_('form.token'); ?>
     </form>
 
-<?php if($app->isSite()): ?>
+<?php if ($app->isSite()): ?>
 </div>
 <?php endif; ?>

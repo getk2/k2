@@ -79,7 +79,7 @@ body .select2-container--default.select2-container--focus.select2-container--bel
     .com_modules .form-horizontal .span9 .control-group .control-label {width:30% !important;}
     .com_modules .form-horizontal .span9 .control-group .controls {margin-left:32% !important;}
 }
-@media all and (min-width:481px) and (max-width:770px){
+@media all and (min-width:481px) and (max-width:770px) {
     .com_modules .form-horizontal .span9 .control-group .control-label {width:45% !important;}
     .com_modules .form-horizontal .span9 .control-group .controls {margin-left:47% !important;}
 }
@@ -114,7 +114,7 @@ body .select2-container--default.select2-container--focus.select2-container--bel
     .com_menus .form-horizontal #attrib-basic .control-group .control-label {width:30% !important;}
     .com_menus .form-horizontal #attrib-basic .control-group .controls {margin-left:32% !important;}
 }
-@media all and (min-width:481px) and (max-width:770px){
+@media all and (min-width:481px) and (max-width:770px) {
     .com_menus .form-horizontal #attrib-basic .control-group .control-label {width:45% !important;}
     .com_menus .form-horizontal #attrib-basic .control-group .controls {margin-left:47% !important;}
 }
@@ -150,7 +150,7 @@ body .select2-container--default.select2-container--focus.select2-container--bel
     .com_config .form-horizontal .span10 .control-group .control-label {width:30% !important;}
     .com_config .form-horizontal .span10 .control-group .controls {margin-left:32% !important;}
 }
-@media all and (min-width:481px) and (max-width:770px){
+@media all and (min-width:481px) and (max-width:770px) {
     .com_config .form-horizontal .span10 .control-group .control-label {width:45% !important;}
     .com_config .form-horizontal .span10 .control-group .controls {margin-left:47% !important;}
 }

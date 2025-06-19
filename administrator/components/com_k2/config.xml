@@ -233,7 +233,7 @@
     <!-- ######################### Images ######################### -->
     <params group="K2_IMAGES" addpath="/administrator/components/com_k2/elements">
         <param menu="hide" name="" type="header" default="K2_IMAGE_SETTINGS" label="" description=""/>
-        <param menu="hide" name="imagesQuality" type="text" default="100" size="4" label="K2_QUALITY_USED_WHEN_PROCESSING_IMAGES" description=""/>
+        <param menu="hide" name="imagesQuality" type="text" default="90" size="4" label="K2_QUALITY_USED_WHEN_PROCESSING_IMAGES" description=""/>
         <param menu="hide" name="itemImageXS" type="text" default="100" size="4" label="K2_ITEM_XSMALL_IMAGE_WIDTH_IN_PX" description=""/>
         <param menu="hide" name="itemImageS" type="text" default="200" size="4" label="K2_ITEM_SMALL_IMAGE_WIDTH_IN_PX" description=""/>
         <param menu="hide" name="itemImageM" type="text" default="400" size="4" label="K2_ITEM_MEDIUM_IMAGE_WIDTH_IN_PX" description=""/>
@@ -824,7 +824,7 @@
     <!-- ######################### Images ######################### -->
     <fieldset name="COM_K2_IMAGES" label="K2_IMAGES" addfieldpath="/administrator/components/com_k2/elements">
         <field menu="hide" name="" type="header" default="K2_IMAGE_SETTINGS" label="" description=""/>
-        <field menu="hide" name="imagesQuality" type="text" default="100" size="4" label="K2_QUALITY_USED_WHEN_PROCESSING_IMAGES" description=""/>
+        <field menu="hide" name="imagesQuality" type="text" default="90" size="4" label="K2_QUALITY_USED_WHEN_PROCESSING_IMAGES" description=""/>
         <field menu="hide" name="itemImageXS" type="text" default="100" size="4" label="K2_ITEM_XSMALL_IMAGE_WIDTH_IN_PX" description=""/>
         <field menu="hide" name="itemImageS" type="text" default="200" size="4" label="K2_ITEM_SMALL_IMAGE_WIDTH_IN_PX" description=""/>
         <field menu="hide" name="itemImageM" type="text" default="400" size="4" label="K2_ITEM_MEDIUM_IMAGE_WIDTH_IN_PX" description=""/>

@@ -19,7 +19,7 @@ $user = JFactory::getUser();
 <div id="k2Container" class="userView<?php if ($this->params->get('pageclass_sfx')) echo ' '.$this->params->get('pageclass_sfx'); ?>">
     <?php if ($this->params->get('show_page_title') && $this->params->get('page_title')!=$this->user->name): ?>
     <!-- Page title -->
-    <div class="componentheading<?php echo $this->params->get('pageclass_sfx')?>">
+    <div class="componentheading<?php echo $this->params->get('pageclass_sfx'); ?>">
         <?php echo $this->escape($this->params->get('page_title')); ?>
     </div>
     <?php endif; ?>
@@ -46,7 +46,7 @@ $user = JFactory::getUser();
         <?php endif; ?>
 
         <?php if ($this->params->get('userImage') && !empty($this->user->avatar)): ?>
-        <img src="<?php echo $this->user->avatar; ?>" alt="<?php echo htmlspecialchars($this->user->name, ENT_QUOTES, 'UTF-8'); ?>" style="width:<?php echo $this->params->get('userImageWidth'); ?>px; height:auto;" />
+        <img src="<?php echo $this->user->avatar; ?>" alt="<?php echo htmlspecialchars($this->user->name, ENT_QUOTES, 'UTF-8'); ?>" style="width:<?php echo $this->params->get('userImageWidth'); ?>px;height:auto;" />
         <?php endif; ?>
 
         <?php if ($this->params->get('userName')): ?>
@@ -149,7 +149,7 @@ $user = JFactory::getUser();
                 <div class="userItemImageBlock">
                     <span class="userItemImage">
                         <a href="<?php echo $item->link; ?>" title="<?php if (!empty($item->image_caption)) echo K2HelperUtilities::cleanHtml($item->image_caption); else echo K2HelperUtilities::cleanHtml($item->title); ?>">
-                            <img src="<?php echo $item->imageGeneric; ?>" alt="<?php if (!empty($item->image_caption)) echo K2HelperUtilities::cleanHtml($item->image_caption); else echo K2HelperUtilities::cleanHtml($item->title); ?>" style="width:<?php echo $this->params->get('itemImageGeneric'); ?>px; height:auto;" />
+                            <img src="<?php echo $item->imageGeneric; ?>" alt="<?php if (!empty($item->image_caption)) echo K2HelperUtilities::cleanHtml($item->image_caption); else echo K2HelperUtilities::cleanHtml($item->title); ?>" style="width:<?php echo $this->params->get('itemImageGeneric'); ?>px;height:auto;" />
                         </a>
                     </span>
                     <div class="clr"></div>

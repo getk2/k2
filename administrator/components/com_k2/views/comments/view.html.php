@@ -54,25 +54,25 @@ class K2ViewComments extends K2View
 
 			Joomla.submitbutton = function(pressbutton) {
 				if (pressbutton == 'remove') {
-					if (document.adminForm.boxchecked.value==0){
+					if (document.adminForm.boxchecked.value==0) {
 						alert('".JText::_('K2_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST_TO_DELETE', true)."');
 						return false;
 					}
-					if (confirm('".JText::_('K2_ARE_YOU_SURE_YOU_WANT_TO_DELETE_SELECTED_COMMENTS', true)."')){
+					if (confirm('".JText::_('K2_ARE_YOU_SURE_YOU_WANT_TO_DELETE_SELECTED_COMMENTS', true)."')) {
 						submitform(pressbutton);
 					}
 				} else if (pressbutton == 'deleteUnpublished') {
-					if (confirm('".JText::_('K2_THIS_WILL_PERMANENTLY_DELETE_ALL_UNPUBLISHED_COMMENTS_ARE_YOU_SURE', true)."')){
+					if (confirm('".JText::_('K2_THIS_WILL_PERMANENTLY_DELETE_ALL_UNPUBLISHED_COMMENTS_ARE_YOU_SURE', true)."')) {
 						submitform(pressbutton);
 					}
 				} else if (pressbutton == 'publish') {
-					if (document.adminForm.boxchecked.value==0){
+					if (document.adminForm.boxchecked.value==0) {
 						alert('".JText::_('K2_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST_TO_PUBLISH', true)."');
 						return false;
 					}
 					submitform(pressbutton);
 				} else if (pressbutton == 'unpublish') {
-					if (document.adminForm.boxchecked.value==0){
+					if (document.adminForm.boxchecked.value==0) {
 						alert('".JText::_('K2_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST_TO_UNPUBLISH', true)."');
 						return false;
 					}

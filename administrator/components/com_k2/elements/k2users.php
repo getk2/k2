@@ -23,7 +23,7 @@ class K2ElementK2Users extends K2Element
         $document->addScript('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js');
         $document->addScriptDeclaration('
 			$K2(document).ready(function() {
-				if(typeof($K2(".k2UsersElement").chosen) == "function") {
+				if (typeof($K2(".k2UsersElement").chosen) == "function") {
 					$K2(".k2UsersElement").chosen("destroy");
 				}
 				$K2(".k2UsersElement").select2({

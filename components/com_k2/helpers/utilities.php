@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @version    2.12 (rolling release)
  * @package    K2
@@ -53,7 +54,7 @@ class K2HelperUtilities
             } else {
                 $avatarTimestamp = '';
                 $avatarFile = JPATH_SITE.'/media/k2/users/'.$avatar;
-                if (file_exists($avatarFile) && filemtime($avatarFile)) {
+                if (is_file($avatarFile) && filemtime($avatarFile)) {
                     $avatarTimestamp = '?t='.date("Ymd_Hi", filemtime($avatarFile));
                 }
                 $avatar = JURI::root(true).'/media/k2/users/'.$avatar.$avatarTimestamp;
@@ -69,14 +70,18 @@ class K2HelperUtilities
 
     public static function getCategoryImage($image, $params)
     {
-        jimport('joomla.filesystem.file');
         $app = JFactory::getApplication();
         $categoryImage = null;
         if (!empty($image)) {
-            $categoryImage = JURI::root(true).'/media/k2/categories/'.$image;
+            $catImageTimestamp = '';
+            $catImageFile = JPATH_SITE.'/media/k2/categories/'.$image;
+            if (is_file($catImageFile) && filemtime($catImageFile)) {
+                $catImageTimestamp = '?t='.date("Ymd_Hi", filemtime($catImageFile));
+            }
+            $categoryImage = JURI::root(true).'/media/k2/categories/'.$image.$catImageTimestamp;
         } else {
             if ($params->get('catImageDefault')) {
-                if (JFile::exists(JPATH_SITE.'/templates/'.$app->getTemplate().'/images/placeholder/category.png')) {
+                if (is_file(JPATH_SITE.'/templates/'.$app->getTemplate().'/images/placeholder/category.png')) {
                     $categoryImage = JURI::root(true).'/templates/'.$app->getTemplate().'/images/placeholder/category.png';
                 } else {
                     $categoryImage = JURI::root(true).'/components/com_k2/images/placeholder/category.png';

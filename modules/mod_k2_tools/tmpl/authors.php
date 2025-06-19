@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 ?>
 
-<div id="k2ModuleBox<?php echo $module->id; ?>" class="k2AuthorsListBlock<?php if($params->get('moduleclass_sfx')) echo ' '.$params->get('moduleclass_sfx'); ?>">
+<div id="k2ModuleBox<?php echo $module->id; ?>" class="k2AuthorsListBlock<?php if ($params->get('moduleclass_sfx')) echo ' '.$params->get('moduleclass_sfx'); ?>">
     <ul>
         <?php foreach ($authors as $author): ?>
         <li>
@@ -32,7 +32,7 @@ defined('_JEXEC') or die;
             <?php if ($params->get('authorLatestItem')): ?>
             <a class="abAuthorLatestItem" href="<?php echo $author->latest->link; ?>" title="<?php echo K2HelperUtilities::cleanHtml($author->latest->title); ?>">
                 <?php echo $author->latest->title; ?>
-                <span class="abAuthorCommentsCount">(<?php echo $author->latest->numOfComments; ?> <?php if($author->latest->numOfComments=='1') echo JText::_('K2_MODK2TOOLS_COMMENT'); else echo JText::_('K2_MODK2TOOLS_COMMENTS'); ?>)</span>
+                <span class="abAuthorCommentsCount">(<?php echo $author->latest->numOfComments; ?> <?php if ($author->latest->numOfComments=='1') echo JText::_('K2_MODK2TOOLS_COMMENT'); else echo JText::_('K2_MODK2TOOLS_COMMENTS'); ?>)</span>
             </a>
             <?php endif; ?>
         </li>

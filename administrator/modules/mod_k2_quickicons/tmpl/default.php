@@ -14,7 +14,7 @@ defined('_JEXEC') or die;
 
 <div class="clr"></div>
 
-<?php if($modLogo): ?>
+<?php if ($modLogo): ?>
 <div id="k2QuickIconsTitle">
     <a class="dashicon k2logo" href="<?php echo JRoute::_('index.php?option=com_k2&amp;view=items&amp;filter_featured=-1&amp;filter_trash=0'); ?>" title="<?php echo JText::_('K2_DASHBOARD'); ?>">
         <span>K2</span>
@@ -22,7 +22,7 @@ defined('_JEXEC') or die;
 </div>
 <?php endif; ?>
 
-<div id="k2QuickIcons<?php if(K2_JVERSION=='15') echo '15'; ?>" <?php if(!$modLogo): ?> class="k2NoLogo" <?php endif; ?>>
+<div id="k2QuickIcons<?php if (K2_JVERSION=='15') echo '15'; ?>" <?php if (!$modLogo): ?> class="k2NoLogo" <?php endif; ?>>
     <div class="icon-wrapper">
         <div class="icon">
             <a href="<?php echo JRoute::_('index.php?option=com_k2&amp;view=item'); ?>">
@@ -71,7 +71,7 @@ defined('_JEXEC') or die;
             </a>
         </div>
     </div>
-    <?php if(!$componentParams->get('lockTags') || $user->gid>23): ?>
+    <?php if (!$componentParams->get('lockTags') || $user->gid>23): ?>
     <div class="icon-wrapper">
         <div class="icon">
             <a href="<?php echo JRoute::_('index.php?option=com_k2&amp;view=tags'); ?>">

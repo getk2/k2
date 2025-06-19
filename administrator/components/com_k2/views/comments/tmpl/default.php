@@ -15,7 +15,7 @@ $context = JRequest::getCmd('context');
 
 ?>
 
-<?php if($app->isSite() || $context == "modalselector"): ?>
+<?php if ($app->isSite() || $context == "modalselector"): ?>
 <!-- Frontend Comments Moderation (Modal View) -->
 <div id="k2ModalContainer">
     <div id="k2ModalHeader">
@@ -66,14 +66,14 @@ $context = JRequest::getCmd('context');
                 <td class="k2AdminTableFiltersSelects k2ui-hide-on-mobile">
                     <?php echo $this->lists['state']; ?>
                     <?php echo $this->lists['categories']; ?>
-                    <?php if($app->isAdmin()): ?>
+                    <?php if ($app->isAdmin()): ?>
                     <?php echo $this->lists['authors']; ?>
                     <?php endif; ?>
                 </td>
             </tr>
         </table>
         <div class="k2AdminTableData">
-            <table class="adminlist table table-striped<?php if(isset($this->rows) && count($this->rows) == 0): ?> nocontent<?php endif; ?>" id="k2CommentsList">
+            <table class="adminlist table table-striped<?php if (isset($this->rows) && count($this->rows) == 0): ?> nocontent<?php endif; ?>" id="k2CommentsList">
                 <thead>
                     <tr>
                         <th class="k2ui-center k2ui-hide-on-mobile">
@@ -124,7 +124,7 @@ $context = JRequest::getCmd('context');
                     <tr>
                         <td colspan="14">
                             <div class="k2CommentsPagination">
-                                <?php if(K2_JVERSION == '30'): ?>
+                                <?php if (K2_JVERSION == '30'): ?>
                                 <div class="k2LimitBox">
                                     <?php echo $this->page->getLimitBox(); ?>
                                 </div>
@@ -135,7 +135,7 @@ $context = JRequest::getCmd('context');
                     </tr>
                 </tfoot>
                 <tbody>
-                    <?php if(isset($this->rows) && count($this->rows) > 0): ?>
+                    <?php if (isset($this->rows) && count($this->rows) > 0): ?>
                     <?php foreach ($this->rows as $key=>$row): ?>
                     <tr class="row<?php echo ($key%2); ?>">
                         <td class="k2ui-center k2ui-hide-on-mobile">
@@ -162,9 +162,9 @@ $context = JRequest::getCmd('context');
                             <?php echo $row->status; ?>
                         </td>
                         <td class="k2ui-hide-on-mobile">
-                            <?php if($app->isAdmin() && $row->userID): ?>
+                            <?php if ($app->isAdmin() && $row->userID): ?>
                             <a href="<?php echo $this->userEditLink.$row->userID;?>"><?php echo $row->userName; ?></a>
-                            <?php else :?>
+                            <?php else: ?>
                             <?php echo $row->userName; ?>
                             <?php endif; ?>
                         </td>
@@ -172,21 +172,21 @@ $context = JRequest::getCmd('context');
                             <a href="mailto:<?php echo JFilterOutput::cleanText($row->commentEmail); ?>" title="<?php echo JFilterOutput::cleanText($row->commentEmail); ?>"><i class="fa fa-envelope-o" aria-hidden="true"></i></a> <a target="_blank" href="https://hunter.io/email-verifier/<?php echo JFilterOutput::cleanText($row->commentEmail); ?>" title="<?php echo JText::_('K2_TEST_EMAIL_ADRESS_VALID'); ?>: <?php echo JFilterOutput::cleanText($row->commentEmail); ?>"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
                         </td>
                         <td class="k2ui-wrap k2ui-hide-on-mobile">
-                            <?php if($row->commentURL): ?>
+                            <?php if ($row->commentURL): ?>
                             <a target="_blank" href="<?php echo JFilterOutput::cleanText($row->commentURL); ?>" title="<?php echo JFilterOutput::cleanText($row->commentURL); ?>">
                                 <i class="fa fa-globe" aria-hidden="true"></i>
                             </a>
                             <?php endif; ?>
                         </td>
                         <td class="k2ui-center k2ui-hide-on-mobile">
-                            <?php if($row->commenterLastVisitIP): ?>
+                            <?php if ($row->commenterLastVisitIP): ?>
                             <a target="_blank" href="https://ipalyzer.com/<?php echo $row->commenterLastVisitIP; ?>">
                                 <?php echo $row->commenterLastVisitIP; ?>
                             </a>
                             <?php endif; ?>
                         </td>
                         <td class="k2ui-center">
-                            <?php if($row->reportUserLink): ?>
+                            <?php if ($row->reportUserLink): ?>
                             <a class="k2ReportUserButton k2IsIcon" href="<?php echo $row->reportUserLink; ?>"><i class="fa fa-ban" aria-hidden="true"></i></a>
                             <?php endif; ?>
                         </td>
@@ -230,16 +230,16 @@ $context = JRequest::getCmd('context');
         <input type="hidden" name="isSite" value="<?php echo (int) $app->isSite(); ?>" />
         <input type="hidden" name="option" value="com_k2" />
         <input type="hidden" name="view" value="<?php echo JRequest::getCmd('view'); ?>" />
-        <?php if($context == "modalselector"): ?>
+        <?php if ($context == "modalselector"): ?>
         <input type="hidden" name="context" value="modalselector" />
         <input type="hidden" name="tmpl" value="component" />
-        <?php if($app->isSite()): ?>
+        <?php if ($app->isSite()): ?>
         <input type="hidden" name="template" value="system" />
         <?php endif; ?>
         <?php endif; ?>
         <?php echo JHTML::_('form.token'); ?>
     </form>
 
-<?php if($app->isSite() || $context == "modalselector"): ?>
+<?php if ($app->isSite() || $context == "modalselector"): ?>
 </div>
 <?php endif; ?>

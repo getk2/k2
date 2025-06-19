@@ -336,7 +336,7 @@ class K2HelperHTML
                     K2JVersion = '".K2_JVERSION."';
 
                     // Set Joomla version as class in the 'html' tag
-                    (function(){
+                    (function() {
                         var addedClass = '".$cssClass."';
                         if (document.getElementsByTagName('html')[0].className !== '') {
                             document.getElementsByTagName('html')[0].className += ' '+addedClass;

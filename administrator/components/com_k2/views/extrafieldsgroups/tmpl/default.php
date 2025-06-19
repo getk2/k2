@@ -14,7 +14,7 @@ defined('_JEXEC') or die;
 
 <form action="index.php" method="post" name="adminForm" id="adminForm">
     <div class="k2AdminTableData">
-        <table class="adminlist table table-striped<?php if(isset($this->rows) && count($this->rows) == 0): ?> nocontent<?php endif; ?>" id="k2ExtraFieldGroupsList">
+        <table class="adminlist table table-striped<?php if (isset($this->rows) && count($this->rows) == 0): ?> nocontent<?php endif; ?>" id="k2ExtraFieldGroupsList">
             <thead>
                 <tr>
                     <th class="k2ui-center k2ui-hide-on-mobile">#</th>
@@ -26,7 +26,7 @@ defined('_JEXEC') or die;
             <tfoot>
                 <tr>
                     <td colspan="4">
-                        <?php if(K2_JVERSION == '30'): ?>
+                        <?php if (K2_JVERSION == '30'): ?>
                         <div class="k2LimitBox">
                             <?php echo $this->page->getLimitBox(); ?>
                         </div>
@@ -36,7 +36,7 @@ defined('_JEXEC') or die;
                 </tr>
             </tfoot>
             <tbody>
-                <?php if(isset($this->rows) && count($this->rows) > 0): ?>
+                <?php if (isset($this->rows) && count($this->rows) > 0): ?>
                 <?php foreach ($this->rows as $key=>$row): ?>
                 <tr class="row<?php echo ($key%2); ?>">
                     <td class="k2ui-center k2ui-hide-on-mobile"><?php echo $key+1; ?></td>

@@ -37,7 +37,7 @@ class K2HelperStats
 
 		$document->addScriptDeclaration("
 	    	/* K2 - Metrics */
-	        (function(\$){
+	        (function(\$) {
 				function K2LogResult(xhr) {
 					\$.ajax({
 						type: 'POST',
@@ -52,7 +52,7 @@ class K2HelperStats
 						}
 					});
 				}
-		        \$(document).ready(function(){
+		        \$(document).ready(function() {
 					\$.ajax({
 						crossDomain: true,
 						type: 'POST',
@@ -101,14 +101,14 @@ class K2HelperStats
 	{
 		$configuration = JFactory::getConfig();
 		$type = version_compare(JVERSION, '2.5', 'ge') ? $configuration->get('dbtype') : $configuration->getValue('config.dbtype');
-		if($type == 'mysql' || $type == 'mysqli' || $type == 'pdomysql')
+		if ($type == 'mysql' || $type == 'mysqli' || $type == 'pdomysql')
 		{
 			$db = JFactory::getDbo();
 			$query = 'SELECT version();';
 			$db->setQuery($query);
 			$result = $db->loadResult();
 			$result = strtolower($result);
-			if(strpos($result, 'mariadb') !== false)
+			if (strpos($result, 'mariadb') !== false)
 			{
 				$type = 'mariadb';
 			}

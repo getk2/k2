@@ -401,7 +401,7 @@ defined('_JEXEC') or die;
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <?php if(version_compare(JVERSION,'2.5.0','ge')): ?>
+                                    <?php if (version_compare(JVERSION,'2.5.0','ge')): ?>
                                     <tr>
                                         <td><strong>Finder - K2</strong></td>
                                         <td>
@@ -494,7 +494,7 @@ defined('_JEXEC') or die;
                                             <strong><?php echo JText::_('K2_ALLVIDEOS_PLUGIN'); ?></strong>
                                         </td>
                                         <td>
-                                            <?php if (JFile::exists(JPATH_PLUGINS.'/content/jw_allvideos.php') || JFile::exists(JPATH_PLUGINS.'/content/jw_allvideos/jw_allvideos.php')) :?>
+                                            <?php if (JFile::exists(JPATH_PLUGINS.'/content/jw_allvideos.php') || JFile::exists(JPATH_PLUGINS.'/content/jw_allvideos/jw_allvideos.php')): ?>
                                             <span class="green"><?php echo JText::_('K2_INSTALLED'); ?></span>
                                             <?php else: ?>
                                             <span class="red"><?php echo JText::_('K2_NOT_INSTALLED'); ?></span>

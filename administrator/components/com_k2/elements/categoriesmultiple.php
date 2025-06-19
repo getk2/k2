@@ -46,9 +46,9 @@ class K2ElementCategoriesMultiple extends K2Element
         $doc = JFactory::getDocument();
         if (K2_JVERSION != '15') {
             $js = "
-			\$K2(document).ready(function(){
+			\$K2(document).ready(function() {
 
-				\$K2('#jform_params_catfilter0').click(function(){
+				\$K2('#jform_params_catfilter0').click(function() {
 					\$K2('#jformparamscategory_id').attr('disabled', 'disabled');
 					\$K2('#jformparamscategory_id option').each(function() {
 						\$K2(this).attr('selected', 'selected');
@@ -56,7 +56,7 @@ class K2ElementCategoriesMultiple extends K2Element
 					\$K2('#jformparamscategory_id').trigger('liszt:updated');
 				});
 
-				\$K2('#jform_params_catfilter1').click(function(){
+				\$K2('#jform_params_catfilter1').click(function() {
 					\$K2('#jformparamscategory_id').removeAttr('disabled');
 					\$K2('#jformparamscategory_id option').each(function() {
 						\$K2(this).removeAttr('selected');
@@ -81,16 +81,16 @@ class K2ElementCategoriesMultiple extends K2Element
 			";
         } else {
             $js = "
-			\$K2(document).ready(function(){
+			\$K2(document).ready(function() {
 
-				\$K2('#paramscatfilter0').click(function(){
+				\$K2('#paramscatfilter0').click(function() {
 					\$K2('#paramscategory_id').attr('disabled', 'disabled');
 					\$K2('#paramscategory_id option').each(function() {
 						\$K2(this).attr('selected', 'selected');
 					});
 				});
 
-				\$K2('#paramscatfilter1').click(function(){
+				\$K2('#paramscatfilter1').click(function() {
 					\$K2('#paramscategory_id').removeAttr('disabled');
 					\$K2('#paramscategory_id option').each(function() {
 						\$K2(this).removeAttr('selected');

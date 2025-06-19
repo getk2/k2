@@ -5,6 +5,14 @@ The latest K2 release is always available from: https://getk2.org/downloads/?f=K
 
 # Changelog
 
+### v2.12.20250620 - June 20th, 2025
+- Further improvements in the performance of the items list in the K2 backend (that build on the work of the previous release).
+- Updated the PHP class used to process uploads and image file conversions to its latest version ([class.upload.php](https://github.com/verot/class.upload.php) @ 10/09/2024) which adds support for WebP image handling in K2 in comparison to the older copy K2 had. Since WebP images are now ubiquitous, category and user image uploads will now be converted to WebP by default. Item images will be tackled in future releases.
+- Uploaded category images maintain the category ID as their name, however we now add a timestamp at the end of the rendered file so any server or CDN caches can be bypassed when updating the image of a category.
+- Default quality for image uploading is now set to 90% (for items, categories, users). As always it can be overridden in K2's settings.
+- Video uploads in K2 will now use the actual file name of the uploaded media (cleaned and normalized), instead of the item's ID. That data was either way stored in the database, so it will affect new or updated uploads only (if you already run a K2 site).
+- The stats module in the Joomla backend dashboard will now list the unpublished (but not trashed) items as drafts, useful for sites that moderate content. Thanks to @raramuridesign for this.
+
 ### v2.12.20250608 - June 8th, 2025
 - Major performance improvements in SQL queries for itemlist views (categories, tags, users etc.). These changes make K2 further resilient to aggressive (but legitimate) bots/crawlers (like GoogleBot, BingBot, AI crawlers and so on).
 

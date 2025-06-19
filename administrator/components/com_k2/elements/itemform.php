@@ -23,17 +23,17 @@ class K2ElementItemForm extends K2Element
         $document->addScriptDeclaration("
         	/* Mootools Snippet */
 			window.addEvent('domready', function() {
-				if($('request-options')) {
+				if ($('request-options')) {
 					$$('.panel')[0].setStyle('display', 'none');
 				}
-				if($('jform_browserNav')) {
+				if ($('jform_browserNav')) {
 					$('jform_browserNav').setProperty('value', 2);
 					$('jform_browserNav').getElements('option')[0].destroy();
 				}
-				if($('browserNav')) {
+				if ($('browserNav')) {
 					$('browserNav').setProperty('value', 2);
 					options = $('browserNav').getElements('option');
-					if(options.length == 3) {
+					if (options.length == 3) {
 						options[0].remove();
 					}
 				}

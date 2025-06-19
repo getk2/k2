@@ -15,7 +15,7 @@ $context = JRequest::getCmd('context');
 
 ?>
 
-<?php if($app->isSite() || $context == "modalselector"): ?>
+<?php if ($app->isSite() || $context == "modalselector"): ?>
 <!-- Modal View -->
 <div id="k2ModalContainer">
     <div id="k2ModalHeader">
@@ -373,6 +373,6 @@ $context = JRequest::getCmd('context');
         <?php echo JHTML::_('form.token'); ?>
     </form>
 
-<?php if($app->isSite() || $context == "modalselector"): ?>
+<?php if ($app->isSite() || $context == "modalselector"): ?>
 </div>
 <?php endif; ?>

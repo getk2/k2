@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @version    2.12 (rolling release)
  * @package    K2
@@ -30,7 +31,6 @@ class K2ModelItem extends K2Model
         jimport('joomla.filesystem.file');
         jimport('joomla.filesystem.folder');
         jimport('joomla.filesystem.archive');
-        require_once(JPATH_SITE.'/media/k2/assets/vendors/verot/class.upload.php/src/class.upload.php');
         $db = JFactory::getDbo();
         $user = JFactory::getUser();
         $row = JTable::getInstance('K2Item', 'Table');
@@ -259,6 +259,9 @@ class K2ModelItem extends K2Model
         // File Uploads
         $files = JRequest::get('files');
 
+        // Load class.upload.php
+        require_once JPATH_SITE.'/media/k2/assets/vendors/verot/class.upload.php/src/class.upload.php';
+
         // Image
         if ((int) $params->get('imageMemoryLimit')) {
             ini_set('memory_limit', (int) $params->get('imageMemoryLimit').'M');
@@ -273,134 +276,154 @@ class K2ModelItem extends K2Model
                 $image = JPATH_SITE.'/'.JPath::clean($existingImage);
             }
 
-            $handle = new Upload($image);
-            $handle->allowed = array('image/*');
-            $handle->forbidden = array('image/tiff');
+            try {
+                $handle = new \Verot\Upload\Upload($image);
+                $handle->allowed = array('image/*');
+                $handle->forbidden = array('image/bmp', 'image/tiff');
 
-            if ($handle->file_is_image && $handle->uploaded) {
-                // Image params
-                $category = JTable::getInstance('K2Category', 'Table');
-                $category->load($row->catid);
-                $cparams = class_exists('JParameter') ? new JParameter($category->params) : new JRegistry($category->params);
+                if ($handle->uploaded) {
 
-                if ($cparams->get('inheritFrom')) {
-                    $masterCategoryID = $cparams->get('inheritFrom');
-                    $db->setQuery("SELECT * FROM #__k2_categories WHERE id=".(int) $masterCategoryID, 0, 1);
-                    $masterCategory = $db->loadObject();
-                    $cparams = class_exists('JParameter') ? new JParameter($masterCategory->params) : new JRegistry($masterCategory->params);
+                    // Image params
+                    $category = JTable::getInstance('K2Category', 'Table');
+                    $category->load($row->catid);
+                    $cparams = class_exists('JParameter') ? new JParameter($category->params) : new JRegistry($category->params);
+                    if ($cparams->get('inheritFrom')) {
+                        $masterCategoryID = $cparams->get('inheritFrom');
+                        $db->setQuery("SELECT * FROM #__k2_categories WHERE id=".(int) $masterCategoryID, 0, 1);
+                        $masterCategory = $db->loadObject();
+                        $cparams = class_exists('JParameter') ? new JParameter($masterCategory->params) : new JRegistry($masterCategory->params);
+                    }
+                    $params->merge($cparams);
+
+                    // --- Original image
+                    $savepath = JPATH_SITE.'/media/k2/items/src';
+
+                    $handle->file_auto_rename = false;
+                    $handle->file_new_name_body = md5("Image".$row->id);
+                    $handle->file_overwrite = true;
+                    $handle->image_convert = 'jpg';
+                    $handle->jpeg_quality = 100;
+
+                    $handle->process($savepath);
+
+                    // --- Resized images
+                    $savepath = JPATH_SITE.'/media/k2/items/cache';
+                    $filename = $handle->file_dst_name_body;
+
+                    // XLarge image
+                    $handle->file_auto_rename = false;
+                    $handle->file_new_name_body = $filename.'_XL';
+                    $handle->file_overwrite = true;
+                    $handle->image_convert = 'jpg';
+                    $handle->image_ratio_y = true;
+                    $handle->image_resize = true;
+                    $handle->jpeg_quality = $params->get('imagesQuality', '90');
+
+                    if (JRequest::getInt('itemImageXL')) {
+                        $imageWidth = JRequest::getInt('itemImageXL');
+                    } else {
+                        $imageWidth = $params->get('itemImageXL', '900');
+                    }
+                    $handle->image_x = $imageWidth;
+
+                    $handle->process($savepath);
+
+                    // Large image
+                    $handle->file_auto_rename = false;
+                    $handle->file_new_name_body = $filename.'_L';
+                    $handle->file_overwrite = true;
+                    $handle->image_convert = 'jpg';
+                    $handle->image_ratio_y = true;
+                    $handle->image_resize = true;
+                    $handle->jpeg_quality = $params->get('imagesQuality', '90');
+
+                    if (JRequest::getInt('itemImageL')) {
+                        $imageWidth = JRequest::getInt('itemImageL');
+                    } else {
+                        $imageWidth = $params->get('itemImageL', '600');
+                    }
+                    $handle->image_x = $imageWidth;
+
+                    $handle->process($savepath);
+
+                    // Medium image
+                    $handle->file_auto_rename = false;
+                    $handle->file_new_name_body = $filename.'_M';
+                    $handle->file_overwrite = true;
+                    $handle->image_convert = 'jpg';
+                    $handle->image_ratio_y = true;
+                    $handle->image_resize = true;
+                    $handle->jpeg_quality = $params->get('imagesQuality', '90');
+
+                    if (JRequest::getInt('itemImageM')) {
+                        $imageWidth = JRequest::getInt('itemImageM');
+                    } else {
+                        $imageWidth = $params->get('itemImageM', '400');
+                    }
+                    $handle->image_x = $imageWidth;
+
+                    $handle->process($savepath);
+
+                    // Small image
+                    $handle->file_auto_rename = false;
+                    $handle->file_new_name_body = $filename.'_S';
+                    $handle->file_overwrite = true;
+                    $handle->image_convert = 'jpg';
+                    $handle->image_ratio_y = true;
+                    $handle->image_resize = true;
+                    $handle->jpeg_quality = $params->get('imagesQuality', '90');
+
+                    if (JRequest::getInt('itemImageS')) {
+                        $imageWidth = JRequest::getInt('itemImageS');
+                    } else {
+                        $imageWidth = $params->get('itemImageS', '200');
+                    }
+                    $handle->image_x = $imageWidth;
+
+                    $handle->process($savepath);
+
+                    // XSmall image
+                    $handle->file_auto_rename = false;
+                    $handle->file_new_name_body = $filename.'_XS';
+                    $handle->file_overwrite = true;
+                    $handle->image_convert = 'jpg';
+                    $handle->image_ratio_y = true;
+                    $handle->image_resize = true;
+                    $handle->jpeg_quality = $params->get('imagesQuality', '90');
+
+                    if (JRequest::getInt('itemImageXS')) {
+                        $imageWidth = JRequest::getInt('itemImageXS');
+                    } else {
+                        $imageWidth = $params->get('itemImageXS', '100');
+                    }
+                    $handle->image_x = $imageWidth;
+
+                    $handle->process($savepath);
+
+                    // Generic image
+                    $handle->file_auto_rename = false;
+                    $handle->file_new_name_body = $filename.'_Generic';
+                    $handle->file_overwrite = true;
+                    $handle->image_convert = 'jpg';
+                    $handle->image_ratio_y = true;
+                    $handle->image_resize = true;
+                    $handle->jpeg_quality = $params->get('imagesQuality', '90');
+
+                    $imageWidth = $params->get('itemImageGeneric', '300');
+                    $handle->image_x = $imageWidth;
+
+                    $handle->process($savepath);
+
+                    if ($handle->processed) {
+                        if ($files['image']['error'] == 0) {
+                            $handle->clean();
+                        }
+                    } else {
+                        throw new \RuntimeException($handle->error);
+                    }
                 }
-
-                $params->merge($cparams);
-
-                // Original image
-                $savepath = JPATH_SITE.'/media/k2/items/src';
-                $handle->image_convert = 'jpg';
-                $handle->jpeg_quality = 100;
-                $handle->file_auto_rename = false;
-                $handle->file_overwrite = true;
-                $handle->file_new_name_body = md5("Image".$row->id);
-                $handle->process($savepath);
-
-                $filename = $handle->file_dst_name_body;
-                $savepath = JPATH_SITE.'/media/k2/items/cache';
-
-                // XLarge image
-                $handle->image_resize = true;
-                $handle->image_ratio_y = true;
-                $handle->image_convert = 'jpg';
-                $handle->jpeg_quality = $params->get('imagesQuality');
-                $handle->file_auto_rename = false;
-                $handle->file_overwrite = true;
-                $handle->file_new_name_body = $filename.'_XL';
-                if (JRequest::getInt('itemImageXL')) {
-                    $imageWidth = JRequest::getInt('itemImageXL');
-                } else {
-                    $imageWidth = $params->get('itemImageXL', '800');
-                }
-                $handle->image_x = $imageWidth;
-                $handle->process($savepath);
-
-                // Large image
-                $handle->image_resize = true;
-                $handle->image_ratio_y = true;
-                $handle->image_convert = 'jpg';
-                $handle->jpeg_quality = $params->get('imagesQuality');
-                $handle->file_auto_rename = false;
-                $handle->file_overwrite = true;
-                $handle->file_new_name_body = $filename.'_L';
-                if (JRequest::getInt('itemImageL')) {
-                    $imageWidth = JRequest::getInt('itemImageL');
-                } else {
-                    $imageWidth = $params->get('itemImageL', '600');
-                }
-                $handle->image_x = $imageWidth;
-                $handle->process($savepath);
-
-                // Medium image
-                $handle->image_resize = true;
-                $handle->image_ratio_y = true;
-                $handle->image_convert = 'jpg';
-                $handle->jpeg_quality = $params->get('imagesQuality');
-                $handle->file_auto_rename = false;
-                $handle->file_overwrite = true;
-                $handle->file_new_name_body = $filename.'_M';
-                if (JRequest::getInt('itemImageM')) {
-                    $imageWidth = JRequest::getInt('itemImageM');
-                } else {
-                    $imageWidth = $params->get('itemImageM', '400');
-                }
-                $handle->image_x = $imageWidth;
-                $handle->process($savepath);
-
-                // Small image
-                $handle->image_resize = true;
-                $handle->image_ratio_y = true;
-                $handle->image_convert = 'jpg';
-                $handle->jpeg_quality = $params->get('imagesQuality');
-                $handle->file_auto_rename = false;
-                $handle->file_overwrite = true;
-                $handle->file_new_name_body = $filename.'_S';
-                if (JRequest::getInt('itemImageS')) {
-                    $imageWidth = JRequest::getInt('itemImageS');
-                } else {
-                    $imageWidth = $params->get('itemImageS', '200');
-                }
-                $handle->image_x = $imageWidth;
-                $handle->process($savepath);
-
-                // XSmall image
-                $handle->image_resize = true;
-                $handle->image_ratio_y = true;
-                $handle->image_convert = 'jpg';
-                $handle->jpeg_quality = $params->get('imagesQuality');
-                $handle->file_auto_rename = false;
-                $handle->file_overwrite = true;
-                $handle->file_new_name_body = $filename.'_XS';
-                if (JRequest::getInt('itemImageXS')) {
-                    $imageWidth = JRequest::getInt('itemImageXS');
-                } else {
-                    $imageWidth = $params->get('itemImageXS', '100');
-                }
-                $handle->image_x = $imageWidth;
-                $handle->process($savepath);
-
-                // Generic image
-                $handle->image_resize = true;
-                $handle->image_ratio_y = true;
-                $handle->image_convert = 'jpg';
-                $handle->jpeg_quality = $params->get('imagesQuality');
-                $handle->file_auto_rename = false;
-                $handle->file_overwrite = true;
-                $handle->file_new_name_body = $filename.'_Generic';
-                $imageWidth = $params->get('itemImageGeneric', '300');
-                $handle->image_x = $imageWidth;
-                $handle->process($savepath);
-
-                if ($files['image']['error'] == 0) {
-                    $handle->clean();
-                }
-            } else {
-                $app->enqueueMessage(JText::_('K2_IMAGE_WAS_NOT_UPLOADED'), 'notice');
+            } catch (\Exception $e) {
+                $app->enqueueMessage(JText::_('K2_COULD_NOT_UPLOAD_YOUR_IMAGE').$e->getMessage(), 'error');
             }
         }
 
@@ -450,52 +473,69 @@ class K2ModelItem extends K2Model
         }
 
         if (isset($files['gallery']) && $files['gallery']['error'] == 0 && !JRequest::getBool('del_gallery')) {
-            $handle = new Upload($files['gallery']);
-            $handle->file_auto_rename = true;
-            $savepath = JPATH_ROOT.'/media/k2/galleries';
-            $handle->allowed = array(
-                "application/gnutar",
-                "application/gzip",
-                "application/x-bzip",
-                "application/x-bzip2",
-                "application/x-compressed",
-                "application/x-gtar",
-                "application/x-gzip",
-                "application/x-tar",
-                "application/x-zip-compressed",
-                "application/zip",
-                "multipart/x-gzip",
-                "multipart/x-zip",
-            );
+            try {
+                $savepath = JPATH_ROOT.'/media/k2/galleries';
 
-            if ($handle->uploaded) {
-                $handle->process($savepath);
-                $handle->clean();
+                $handle = new \Verot\Upload\Upload($files['gallery']);
+                $handle->allowed = array(
+                    "application/gnutar",
+                    "application/gzip",
+                    "application/x-bzip",
+                    "application/x-bzip2",
+                    "application/x-compressed",
+                    "application/x-gtar",
+                    "application/x-gzip",
+                    "application/x-tar",
+                    "application/x-zip-compressed",
+                    "application/zip",
+                    "multipart/x-gzip",
+                    "multipart/x-zip",
+                );
+                $handle->file_auto_rename = true;
 
-                if (JFolder::exists($savepath.'/'.$row->id)) {
-                    JFolder::delete($savepath.'/'.$row->id);
-                }
-
-                if (!JArchive::extract($savepath.'/'.$handle->file_dst_name, $savepath.'/'.$row->id)) {
-                    $app->enqueueMessage(JText::_('K2_GALLERY_UPLOAD_ERROR_CANNOT_EXTRACT_ARCHIVE'), 'error');
-                    $app->redirect('index.php?option=com_k2&view=items');
-                } else {
-                    $imageDir = $savepath.'/'.$row->id;
-                    $galleryDir = opendir($imageDir);
-                    while ($filename = readdir($galleryDir)) {
-                        if ($filename != "." && $filename != "..") {
-                            $file = str_replace(" ", "_", $filename);
-                            $safefilename = JFile::makeSafe($file);
-                            rename($imageDir.'/'.$filename, $imageDir.'/'.$safefilename);
-                        }
+                if ($handle->uploaded) {
+                    $handle->process($savepath);
+                    if (!$handle->processed) {
+                        throw new \RuntimeException($handle->error);
                     }
-                    closedir($galleryDir);
-                    $row->gallery = '{gallery}'.$row->id.'{/gallery}';
+
+                    if (JFolder::exists($savepath.'/'.$row->id)) {
+                        JFolder::delete($savepath.'/'.$row->id);
+                    }
+
+                    if (!JArchive::extract($savepath.'/'.$handle->file_dst_name, $savepath.'/'.$row->id)) {
+                        $app->enqueueMessage(JText::_('K2_GALLERY_UPLOAD_ERROR_CANNOT_EXTRACT_ARCHIVE'), 'error');
+                        $app->redirect('index.php?option=com_k2&view=items');
+                    } else {
+                        $imageDir = $savepath.'/'.$row->id;
+                        $galleryDir = opendir($imageDir);
+                        while ($filename = readdir($galleryDir)) {
+                            if ($filename != "." && $filename != "..") {
+                                $ext = strtolower(JFile::getExt($filename));
+                                $allowedExts = array('gif', 'jpg', 'jpeg', 'png', 'webp');
+                                if (in_array($ext, $allowedExts)) {
+                                    $file = str_replace(" ", "_", $filename);
+                                    $safefilename = JFile::makeSafe($file);
+                                    rename($imageDir.'/'.$filename, $imageDir.'/'.$safefilename);
+                                }
+                            }
+                        }
+                        closedir($galleryDir);
+                        $row->gallery = '{gallery}'.$row->id.'{/gallery}';
+                    }
+                    $archivePath = $savepath.'/'.$handle->file_dst_name;
+                    if (JFile::exists($archivePath)) {
+                        JFile::delete($archivePath);
+                    }
+
+                    if ($handle->processed) {
+                        $handle->clean();
+                    } else {
+                        throw new \RuntimeException($handle->error);
+                    }
                 }
-                JFile::delete($savepath.'/'.$handle->file_dst_name);
-                $handle->clean();
-            } else {
-                $app->enqueueMessage($handle->error, 'error');
+            } catch (\Exception $e) {
+                $app->enqueueMessage($e->getMessage(), 'error');
                 $app->redirect('index.php?option=com_k2&view=items');
             }
         }
@@ -560,7 +600,19 @@ class K2ModelItem extends K2Model
 
         // Upload media
         if (isset($files['video']) && $files['video']['error'] == 0 && !JRequest::getBool('del_video')) {
+            $filename_suffix = ($row->modified) ? $row->modified : $row->created;
+            $filename = JFile::stripExt($files['video']['name']);
+            if (class_exists('Transliterator')) {
+                $tlSetup = Transliterator::create('Any-Latin; Latin-ASCII');
+                $filename = $tlSetup->transliterate($filename);
+                $filename = strtolower($filename);
+            }
+            $filename = preg_replace('/[^\p{L}\p{N}_]/u', '_', trim($filename));
+            $filename = $filename.'_'.JHTML::_('date', $filename_suffix, 'Ymd_Hi');
+            $filename = preg_replace('/_+/', '_', $filename);
+
             $filetype = JFile::getExt($files['video']['name']);
+
             if (!in_array($filetype, $validExtensions)) {
                 $app->enqueueMessage(JText::_('K2_INVALID_VIDEO_FILE'), 'error');
                 $app->redirect('index.php?option=com_k2&view=items');
@@ -570,11 +622,10 @@ class K2ModelItem extends K2Model
             } else {
                 $savepath = JPATH_ROOT.'/media/k2/audio';
             }
-            $filename = JFile::stripExt($files['video']['name']);
-            JFile::upload($files['video']['tmp_name'], $savepath.'/'.$row->id.'.'.$filetype);
-            $filetype = JFile::getExt($files['video']['name']);
 
-            $row->video = '{'.$filetype.'}'.$row->id.'{/'.$filetype.'}';
+            JFile::upload($files['video']['tmp_name'], $savepath.'/'.$filename.'.'.$filetype);
+
+            $row->video = '{'.$filetype.'}'.$filename.'{/'.$filetype.'}';
         }
 
         // Delete media
@@ -692,30 +743,39 @@ class K2ModelItem extends K2Model
                     $attachmentToSave->titleAttribute = (empty($attachment['title_attribute'])) ? $filename : $attachment['title_attribute'];
                     $attachmentToSave->store();
                 } else {
-                    $handle = new Upload($attFiles['tmp_name'][$key]['upload']);
-                    $filename = $attFiles['name'][$key]['upload'];
-                    if ($handle->uploaded) {
-                        $handle->file_auto_rename = true;
-                        $handle->file_new_name_body = JFile::stripExt($filename);
-                        $handle->file_new_name_ext = JFile::getExt($filename);
-                        $handle->file_safe_name = true;
-                        $handle->forbidden = array(
-                            "application/java-archive",
-                            "application/x-httpd-php",
-                            "application/x-sh",
-                        );
-                        $handle->process($savepath);
-                        $dstName = $handle->file_dst_name;
-                        $handle->clean();
+                    try {
+                        $handle = new \Verot\Upload\Upload($attFiles['tmp_name'][$key]['upload']);
+                        $filename = $attFiles['name'][$key]['upload'];
+                        if ($handle->uploaded) {
+                            $handle->file_auto_rename = true;
+                            $handle->file_new_name_body = JFile::stripExt($filename);
+                            $handle->file_new_name_ext = JFile::getExt($filename);
+                            $handle->file_safe_name = true;
+                            $handle->forbidden = array(
+                                "application/java-archive",
+                                "application/x-httpd-php",
+                                "application/x-sh",
+                            );
 
-                        $attachmentToSave = JTable::getInstance('K2Attachment', 'Table');
-                        $attachmentToSave->itemID = $row->id;
-                        $attachmentToSave->filename = $dstName;
-                        $attachmentToSave->title = (empty($attachment['title'])) ? $filename : $attachment['title'];
-                        $attachmentToSave->titleAttribute = (empty($attachment['title_attribute'])) ? $filename : $attachment['title_attribute'];
-                        $attachmentToSave->store();
-                    } else {
-                        $app->enqueueMessage($handle->error, 'error');
+                            $handle->process($savepath);
+
+                            if ($handle->processed) {
+                                $dstName = $handle->file_dst_name;
+
+                                $attachmentToSave = JTable::getInstance('K2Attachment', 'Table');
+                                $attachmentToSave->itemID = $row->id;
+                                $attachmentToSave->filename = $dstName;
+                                $attachmentToSave->title = (empty($attachment['title'])) ? $filename : $attachment['title'];
+                                $attachmentToSave->titleAttribute = (empty($attachment['title_attribute'])) ? $filename : $attachment['title_attribute'];
+                                $attachmentToSave->store();
+
+                                $handle->clean();
+                            } else {
+                                throw new \RuntimeException($handle->error);
+                            }
+                        }
+                    } catch (\Exception $e) {
+                        $app->enqueueMessage($e->getMessage(), 'error');
                         $app->redirect('index.php?option=com_k2&view=items');
                     }
                 }

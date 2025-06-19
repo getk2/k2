@@ -45,25 +45,25 @@ class K2ElementK2Category extends K2Element
             $doc = JFactory::getDocument();
             $js = "
             /* Mootools Snippet */
-			window.addEvent('domready', function(){
+			window.addEvent('domready', function() {
 				setTask();
 			});
 
 			function setTask() {
 				var counter=0;
 				$$('#".$prefix."paramscategories option').each(function(el) {
-					if (el.selected){
+					if (el.selected) {
 						value=el.value;
 						counter++;
 					}
 				});
-				if (counter>1 || counter==0){
+				if (counter>1 || counter==0) {
 					$('urlparamsid').setProperty('value','');
 					$('urlparamstask').setProperty('value','');
 					$('".$prefix."paramssingleCatOrdering').setProperty('disabled', 'disabled');
 					enableParams();
 				}
-				if (counter==1){
+				if (counter==1) {
 					$('urlparamsid').setProperty('value',value);
 					$('urlparamstask').setProperty('value','category');
 					$('".$prefix."paramssingleCatOrdering').removeProperty('disabled');
@@ -71,7 +71,7 @@ class K2ElementK2Category extends K2Element
 				}
 			}
 
-			function disableParams(){
+			function disableParams() {
 				$('".$prefix."paramsnum_leading_items').setProperty('disabled','disabled');
 				$('".$prefix."paramsnum_leading_columns').setProperty('disabled','disabled');
 				$('".$prefix."paramsleadingImgSize').setProperty('disabled','disabled');
@@ -97,7 +97,7 @@ class K2ElementK2Category extends K2Element
 				$('".$prefix."paramstheme').setProperty('disabled','disabled');
 			}
 
-			function enableParams(){
+			function enableParams() {
 				$('".$prefix."paramsnum_leading_items').removeProperty('disabled');
 				$('".$prefix."paramsnum_leading_columns').removeProperty('disabled');
 				$('".$prefix."paramsleadingImgSize').removeProperty('disabled');
@@ -127,7 +127,7 @@ class K2ElementK2Category extends K2Element
             if (K2_JVERSION != '15') {
                 $js = "
                 /* Mootools Snippet */
-				function disableParams(){
+				function disableParams() {
 					$('jform_params_num_leading_items').setProperty('disabled','disabled');
 					$('jform_params_num_leading_columns').setProperty('disabled','disabled');
 					$('jform_params_leadingImgSize').setProperty('disabled','disabled');
@@ -153,7 +153,7 @@ class K2ElementK2Category extends K2Element
 					$('jformparamstheme').setProperty('disabled','disabled');
 				}
 
-				function enableParams(){
+				function enableParams() {
 					$('jform_params_num_leading_items').removeProperty('disabled');
 					$('jform_params_num_leading_columns').removeProperty('disabled');
 					$('jform_params_leadingImgSize').removeProperty('disabled');
@@ -182,18 +182,18 @@ class K2ElementK2Category extends K2Element
 				function setTask() {
 					var counter=0;
 					$$('#jformparamscategories option').each(function(el) {
-						if (el.selected){
+						if (el.selected) {
 							value=el.value;
 							counter++;
 						}
 					});
-					if (counter>1 || counter==0){
+					if (counter>1 || counter==0) {
 						$('jform_request_id').setProperty('value','');
 						$('jform_request_task').setProperty('value','');
 						$('jform_params_singleCatOrdering').setProperty('disabled', 'disabled');
 						enableParams();
 					}
-					if (counter==1){
+					if (counter==1) {
 						$('jform_request_id').setProperty('value',value);
 						$('jform_request_task').setProperty('value','category');
 						$('jform_params_singleCatOrdering').removeProperty('disabled');
@@ -201,8 +201,8 @@ class K2ElementK2Category extends K2Element
 					}
 				}
 
-				window.addEvent('domready', function(){
-					if($('request-options')) {
+				window.addEvent('domready', function() {
+					if ($('request-options')) {
 						$$('.panel')[0].setStyle('display', 'none');
 					}
 					setTask();

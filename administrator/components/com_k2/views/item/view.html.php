@@ -536,7 +536,7 @@ class K2ViewItem extends K2View
                 } else {
                     syncExtraFieldsEditor();
                     var validation = validateExtraFields();
-                    if(validation === true) {
+                    if (validation === true) {
                         \$K2('#selectedTags option').attr('selected', 'selected');
                         submitform(pressbutton);
                     }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @version    2.12 (rolling release)
  * @package    K2
@@ -28,7 +29,6 @@ class K2ModelCategory extends K2Model
     {
         $app = JFactory::getApplication();
         jimport('joomla.filesystem.file');
-        require_once(JPATH_SITE.'/media/k2/assets/vendors/verot/class.upload.php/src/class.upload.php');
         $row = JTable::getInstance('K2Category', 'Table');
         $params = JComponentHelper::getParams('com_k2');
 
@@ -87,8 +87,6 @@ class K2ModelCategory extends K2Model
 
         $files = JRequest::get('files');
 
-        $savepath = JPATH_ROOT.'/media/k2/categories/';
-
         $existingImage = JRequest::getVar('existingImage');
         if (($files['image']['error'] == 0 || $existingImage) && !JRequest::getBool('del_image')) {
             if ($files['image']['error'] == 0) {
@@ -97,24 +95,39 @@ class K2ModelCategory extends K2Model
                 $image = JPATH_SITE.'/'.JPath::clean($existingImage);
             }
 
-            $handle = new Upload($image);
-            if ($handle->uploaded) {
-                $handle->file_auto_rename = false;
-                $handle->jpeg_quality = $params->get('imagesQuality', '85');
-                $handle->file_overwrite = true;
-                $handle->file_new_name_body = $row->id;
-                $handle->image_resize = true;
-                $handle->image_ratio_y = true;
-                $handle->image_x = $params->get('catImageWidth', '100');
-                $handle->Process($savepath);
-                if ($files['image']['error'] == 0) {
-                    $handle->Clean();
+            require_once JPATH_SITE.'/media/k2/assets/vendors/verot/class.upload.php/src/class.upload.php';
+            $savepath = JPATH_ROOT.'/media/k2/categories/';
+
+            try {
+                $handle = new \Verot\Upload\Upload($image);
+                $handle->allowed = array('image/*');
+                $handle->forbidden = array('image/bmp', 'image/tiff');
+
+                if ($handle->uploaded) {
+                    $handle->file_auto_rename = false;
+                    $handle->file_new_name_body = $row->id;
+                    $handle->file_overwrite = true;
+                    $handle->image_convert = 'webp';
+                    $handle->image_ratio_y = true;
+                    $handle->image_resize = true;
+                    $handle->image_x = $params->get('catImageWidth', '100');
+                    $handle->webp_quality = $params->get('imagesQuality', '90');
+
+                    $handle->process($savepath);
+
+                    if ($handle->processed) {
+                        if ($files['image']['error'] == 0) {
+                            $handle->clean();
+                        }
+                        $row->image = $handle->file_dst_name;
+                    } else {
+                        throw new \RuntimeException($handle->error);
+                    }
                 }
-            } else {
-                $app->enqueueMessage($handle->error, 'error');
+            } catch (\Exception $e) {
+                $app->enqueueMessage(JText::_('K2_COULD_NOT_UPLOAD_YOUR_IMAGE').$e->getMessage(), 'error');
                 $app->redirect('index.php?option=com_k2&view=categories');
             }
-            $row->image = $handle->file_dst_name;
         }
 
         if (JRequest::getBool('del_image')) {

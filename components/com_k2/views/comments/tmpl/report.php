@@ -28,7 +28,7 @@ defined('_JEXEC') or die;
         <label for="reportReason"><?php echo JText::_('K2_REPORT_REASON'); ?></label>
         <textarea name="reportReason" id="reportReason" cols="60" rows="10"></textarea>
 
-        <?php if($this->params->get('recaptcha') && $this->user->guest): ?>
+        <?php if ($this->params->get('recaptcha') && $this->user->guest): ?>
         <div id="recaptcha" class="<?php echo $this->recaptchaClass; ?>"></div>
         <?php endif; ?>
 

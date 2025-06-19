@@ -31,10 +31,10 @@ defined('_JEXEC') or die;
         </tr>
     </table>
     <div class="k2AdminTableData">
-        <table class="adminlist table table-striped<?php if(isset($this->rows) && count($this->rows) == 0): ?> nocontent<?php endif; ?>" id="k2ExtraFieldsList">
+        <table class="adminlist table table-striped<?php if (isset($this->rows) && count($this->rows) == 0): ?> nocontent<?php endif; ?>" id="k2ExtraFieldsList">
             <thead>
                 <tr>
-                    <?php if(K2_JVERSION == '30'): ?>
+                    <?php if (K2_JVERSION == '30'): ?>
                     <th width="1%" class="k2ui-center k2ui-hide-on-mobile">
                         <?php echo JHtml::_('grid.sort', '<i class="icon-menu-2"></i>', 'ordering', @$this->lists['order_Dir'], @$this->lists['order'], null, 'asc', 'K2_ORDER'); ?>
                     </th>
@@ -44,7 +44,7 @@ defined('_JEXEC') or die;
                     <th class="k2ui-center"><input id="k2<?php echo $this->params->get('backendListToggler', 'TogglerStandard'); ?>" type="checkbox" name="toggle" value="" /></th>
                     <th class="k2ui-left"><?php echo JHTML::_('grid.sort', 'K2_NAME', 'name', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
                     <th class="k2ui-center k2ui-hide-on-mobile"><?php echo JHTML::_('grid.sort', 'K2_GROUP', 'groupname', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
-                    <?php if(K2_JVERSION != '30'): ?>
+                    <?php if (K2_JVERSION != '30'): ?>
                     <th><?php echo JHTML::_('grid.sort', 'K2_ORDER', 'ordering', @$this->lists['order_Dir'], @$this->lists['order']); ?> <?php if ($this->ordering) echo JHTML::_('grid.order',  $this->rows ); ?></th>
                     <?php endif; ?>
                     <th class="k2ui-center k2ui-hide-on-mobile"><?php echo JHTML::_('grid.sort', 'K2_TYPE', 'type', @$this->lists['order_Dir'], @$this->lists['order'] ); ?></th>
@@ -54,12 +54,12 @@ defined('_JEXEC') or die;
             </thead>
             <?php
                 $tfootColspan = 7;
-                if(K2_JVERSION != '30') $tfootColspan++;
+                if (K2_JVERSION != '30') $tfootColspan++;
             ?>
             <tfoot>
                 <tr>
                     <td colspan="<?php echo $tfootColspan; ?>">
-                        <?php if(K2_JVERSION == '30'): ?>
+                        <?php if (K2_JVERSION == '30'): ?>
                         <div class="k2LimitBox">
                             <?php echo $this->page->getLimitBox(); ?>
                         </div>
@@ -69,10 +69,10 @@ defined('_JEXEC') or die;
                 </tr>
             </tfoot>
             <tbody>
-                <?php if(isset($this->rows) && count($this->rows) > 0): ?>
+                <?php if (isset($this->rows) && count($this->rows) > 0): ?>
                 <?php foreach ($this->rows as $key=>$row): ?>
                 <tr class="row<?php echo ($key%2); ?>" sortable-group-id="<?php echo $row->group; ?>">
-                    <?php if(K2_JVERSION == '30'): ?>
+                    <?php if (K2_JVERSION == '30'): ?>
                     <td class="k2ui-order k2ui-center k2ui-hide-on-mobile">
                         <span class="sortable-handler<?php echo ($this->ordering) ? '' : ' inactive tip-top' ;?>" title="<?php echo ($this->ordering) ? '' :JText::_('JORDERINGDISABLED'); ?>" rel="tooltip"><i class="icon-menu"></i></span>
                         <input type="text" style="display:none" name="order[]" size="5" value="<?php echo $row->ordering;?>" class="width-20 text-area-order" />
@@ -86,7 +86,7 @@ defined('_JEXEC') or die;
                         <span class="k2AliasValue"><?php echo JText::_('K2_ALIAS'); ?>: <?php echo $row->alias; ?></span>
                     </td>
                     <td class="k2ui-center k2ui-hide-on-mobile"><?php echo $row->groupname; ?></td>
-                    <?php if(K2_JVERSION != '30'): ?>
+                    <?php if (K2_JVERSION != '30'): ?>
                     <td class="k2ui-order">
                         <span><?php echo $this->page->orderUpIcon($key, ($row->group == @$this->rows[$key-1]->group), 'orderup', 'Move Up', $this->ordering); ?></span>
                         <span><?php echo $this->page->orderDownIcon($key, count($this->rows), ($row->group == @$this->rows[$key+1]->group), 'orderdown', 'Move Down', $this->ordering); ?></span>

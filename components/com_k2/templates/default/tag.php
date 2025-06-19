@@ -16,7 +16,7 @@ defined('_JEXEC') or die;
 <div id="k2Container" class="tagView<?php if ($this->params->get('pageclass_sfx')) echo ' '.$this->params->get('pageclass_sfx'); ?>">
     <?php if ($this->params->get('show_page_title')): ?>
     <!-- Page title -->
-    <div class="componentheading<?php echo $this->params->get('pageclass_sfx')?>">
+    <div class="componentheading<?php echo $this->params->get('pageclass_sfx'); ?>">
         <?php echo $this->escape($this->params->get('page_title')); ?>
     </div>
     <?php endif; ?>
@@ -72,7 +72,7 @@ defined('_JEXEC') or die;
                 <div class="tagItemImageBlock">
                     <span class="tagItemImage">
                         <a href="<?php echo $item->link; ?>" title="<?php if (!empty($item->image_caption)) echo K2HelperUtilities::cleanHtml($item->image_caption); else echo K2HelperUtilities::cleanHtml($item->title); ?>">
-                            <img src="<?php echo $item->imageGeneric; ?>" alt="<?php if (!empty($item->image_caption)) echo K2HelperUtilities::cleanHtml($item->image_caption); else echo K2HelperUtilities::cleanHtml($item->title); ?>" style="width:<?php echo $item->params->get('itemImageGeneric'); ?>px; height:auto;" />
+                            <img src="<?php echo $item->imageGeneric; ?>" alt="<?php if (!empty($item->image_caption)) echo K2HelperUtilities::cleanHtml($item->image_caption); else echo K2HelperUtilities::cleanHtml($item->title); ?>" style="width:<?php echo $item->params->get('itemImageGeneric'); ?>px;height:auto;" />
                         </a>
                     </span>
                     <div class="clr"></div>

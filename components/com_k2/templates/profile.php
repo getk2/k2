@@ -167,7 +167,7 @@ defined('_JEXEC') or die;
             <tr>
                 <td colspan="2"><?php echo $field->input;?></td>
             </tr>
-            <?php else:?>
+            <?php else: ?>
             <tr>
                 <td class="key">
                     <?php echo $field->label; ?>

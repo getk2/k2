@@ -15,7 +15,7 @@ defined('_JEXEC') or die;
 <form action="index.php" enctype="multipart/form-data" method="post" name="adminForm" id="adminForm">
     <div class="xmlParamsFields k2GenericForm">
         <h3>
-            <?php if($this->row->id): ?>
+            <?php if ($this->row->id): ?>
             <?php echo JText::_('K2_EDIT_TAG'); ?>
             <?php else: ?>
             <?php echo JText::_('K2_ADD_NEW_TAG'); ?>

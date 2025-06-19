@@ -106,7 +106,7 @@ class K2ModelTags extends K2Model
 		}
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
-		if(JRequest::getCmd('context') == "modalselector"){
+		if (JRequest::getCmd('context') == "modalselector") {
 			$app->redirect('index.php?option=com_k2&view=tags&tmpl=component&context=modalselector');
 		} else {
 			$app->redirect('index.php?option=com_k2&view=tags');
@@ -126,7 +126,7 @@ class K2ModelTags extends K2Model
 		}
 		$cache = JFactory::getCache('com_k2');
 		$cache->clean();
-		if(JRequest::getCmd('context') == "modalselector"){
+		if (JRequest::getCmd('context') == "modalselector") {
 			$app->redirect('index.php?option=com_k2&view=tags&tmpl=component&context=modalselector');
 		} else {
 			$app->redirect('index.php?option=com_k2&view=tags');
