@@ -48,8 +48,8 @@ class K2ModelItems extends K2Model
         }
 
         // --- Query containing FROM to WHERE ---
-        $query = " FROM #__k2_items AS i
-            INNER JOIN #__k2_categories AS c ON c.id = i.catid
+        $query = " FROM #__k2_items AS i FORCE INDEX (idx_items_common_backend)
+            STRAIGHT_JOIN #__k2_categories AS c ON c.id = i.catid
             LEFT JOIN #__groups AS g ON g.id = i.access
             LEFT JOIN #__users AS u ON u.id = i.checked_out
             LEFT JOIN #__users AS v ON v.id = i.created_by
@@ -63,7 +63,7 @@ class K2ModelItems extends K2Model
             $query .= " LEFT JOIN #__k2_tags_xref AS tags_xref ON tags_xref.itemID = i.id";
         }
 
-        $query .= " WHERE i.trash={$filter_trash}";
+        $query .= " WHERE i.trash = {$filter_trash}";
 
         if ($search) {
             // Detect exact search phrase using double quotes in search string
@@ -135,11 +135,11 @@ class K2ModelItems extends K2Model
         }
 
         if ($filter_state > -1) {
-            $query .= " AND i.published={$filter_state}";
+            $query .= " AND i.published = {$filter_state}";
         }
 
         if ($filter_featured > -1) {
-            $query .= " AND i.featured={$filter_featured}";
+            $query .= " AND i.featured = {$filter_featured}";
         }
 
         if ($filter_category > 0) {
@@ -150,12 +150,12 @@ class K2ModelItems extends K2Model
                 $sql = @implode(',', $categories);
                 $query .= " AND i.catid IN ({$sql})";
             } else {
-                $query .= " AND i.catid={$filter_category}";
+                $query .= " AND i.catid = {$filter_category}";
             }
         }
 
         if ($filter_author > 0) {
-            $query .= " AND i.created_by={$filter_author}";
+            $query .= " AND i.created_by = {$filter_author}";
         }
 
         if ($params->get('showTagFilter') && $tag) {
