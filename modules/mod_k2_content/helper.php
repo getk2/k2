@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @version    2.x (rolling release)
  * @package    K2
@@ -129,11 +130,20 @@ class modK2ContentHelper
                     $sql = @implode(',', $categories);
                     $query .= " AND i.catid IN({$sql})";
                 } else {
-                    if (is_array($cid)) {
-                        sort($cid);
-                        $query .= " AND i.catid IN(".implode(',', $cid).")";
+                    if ($params->get('catFilterInclusion', 'include') == 'include') {
+                        if (is_array($cid)) {
+                            sort($cid);
+                            $query .= " AND i.catid IN(".implode(',', $cid).")";
+                        } else {
+                            $query .= " AND i.catid = ".(int) $cid;
+                        }
                     } else {
-                        $query .= " AND i.catid = ".(int) $cid;
+                        if (is_array($cid)) {
+                            sort($cid);
+                            $query .= " AND i.catid NOT IN(".implode(',', $cid).")";
+                        } else {
+                            $query .= " AND i.catid != ".(int) $cid;
+                        }
                     }
                 }
             }

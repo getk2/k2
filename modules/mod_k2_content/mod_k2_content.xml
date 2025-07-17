@@ -28,6 +28,10 @@
             <option value="0">K2_ALL</option>
             <option value="1">K2_SELECT</option>
         </param>
+        <param name="catFilterInclusion" type="radio" default="include" label="K2_INCLUDE_OR_EXCLUDE" description="">
+            <option value="include">K2_INCLUDE</option>
+            <option value="exclude">K2_EXCLUDE</option>
+        </param>
         <param name="category_id" type="categoriesmultiple" default="" label="K2_SELECT_ONE_OR_MORE_CATEGORIES" description="K2_SELECT_ONE_ORE_MORE_CATEGORIES_FOR_WHICH_YOU_WANT_TO_FILTER_AN_ITEMS_LIST_SELECT_NONE_TO_FETCH_ITEMS_FROM_ALL_CATEGORIES"/>
         <param name="getChildren" type="radio" default="0" label="K2_FETCH_ITEMS_FROM_CHILDREN_CATEGORIES" description="">
             <option value="0">K2_NO</option>
