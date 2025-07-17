@@ -466,7 +466,7 @@ class K2ModelItem extends K2Model
             if (isset($item->author->profile)) {
                 unset($item->author->profile->plugins);
             }
-            $row->author->profile = $item->author->profile;
+            $row->author->profile = (!empty($item->author->profile)) ? $item->author->profile : '';
             if (isset($row->author->profile->url)) {
                 $row->author->profile->url = htmlspecialchars($row->author->profile->url, ENT_QUOTES, 'utf-8');
             }
