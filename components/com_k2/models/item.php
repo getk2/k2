@@ -460,11 +460,9 @@ class K2ModelItem extends K2Model
         $row->numOfvotes = isset($item->numOfvotes) ? $item->numOfvotes : '';
         if (isset($item->author)) {
             $row->author = new stdClass;
-            //$row->author->id = $item->author->id;
             $row->author->name = $item->author->name;
-            //$row->author->username = $item->author->username;
-            $row->author->link = $item->author->link;
-            $row->author->avatar = $item->author->avatar;
+            $row->author->link = (!empty($item->author->link)) ? $item->author->link : '';
+            $row->author->avatar = (!empty($item->author->avatar)) ? $item->author->avatar : '';
             if (isset($item->author->profile)) {
                 unset($item->author->profile->plugins);
             }
