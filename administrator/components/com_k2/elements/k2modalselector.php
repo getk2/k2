@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @version    2.x (rolling release)
  * @package    K2
@@ -85,7 +86,6 @@ class K2ElementK2modalselector extends K2Element
                 $entryImage = '';
 
                 if ($scope == 'items') {
-                    $entryClass = ' k2EntryItem';
                     $row = JTable::getInstance('K2Item', 'Table');
                     $row->load($value);
                     $entryName = $row->title;
@@ -95,6 +95,13 @@ class K2ElementK2modalselector extends K2Element
                         $entryImage = '<img src="'.JURI::root(true).'/media/k2/items/cache/'.md5("Image".$row->id).'_XS.jpg" />';
                     } else {
                         $entryImage = '<img src="'.JURI::root(true).'/media/k2/assets/images/backend/placeholder.svg" />';
+                    }
+                    $entryClass = ' k2EntryItem';
+                    if ($row->published == 0) {
+                        $entryClass .= ' k2EntryItemUnpublished';
+                    }
+                    if ($row->trashed == 1) {
+                        $entryClass .= ' k2EntryItemTrashed';
                     }
                 }
                 if ($scope == 'categories') {
