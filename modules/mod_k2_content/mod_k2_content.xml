@@ -21,6 +21,8 @@
             <option value="filter">K2_RETRIEVE_ITEMS_FROM_CATEGORIES</option>
             <option value="specific">K2_SELECT_SPECIFIC_ITEMS</option>
         </param>
+        <param name="" type="header" default="K2_SELECT_SPECIFIC_ITEMS" label="" description=""/>
+        <param name="items" type="k2modalselector" scope="items" default="" label="K2_ITEM_SELECTOR" description=""/>
         <param name="" type="header" default="K2_RETRIEVE_ITEMS_FROM_CATEGORIES" label="" description=""/>
         <param name="catfilter" type="radio" default="0" label="K2_CATEGORY_FILTER" description="">
             <option value="0">K2_ALL</option>
@@ -69,8 +71,6 @@
             <option value="0">K2_NO</option>
             <option value="1">K2_YES</option>
         </param>
-        <param name="" type="header" default="K2_SELECT_SPECIFIC_ITEMS" label="" description=""/>
-        <param name="items" type="k2modalselector" scope="items" default="" label="K2_ITEM_SELECTOR" description=""/>
         <param name="" type="header" default="K2_ITEM_VIEW_OPTIONS_COMMON_FOR_EITHER_SOURCE" label="" description=""/>
         <param name="itemTitle" type="radio" default="1" label="K2_TITLE" description="">
             <option value="0">K2_HIDE</option>

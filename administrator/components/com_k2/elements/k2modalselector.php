@@ -58,6 +58,13 @@ class K2ElementK2modalselector extends K2Element
             $saved = $value;
         }
 
+        // Date format
+        if (K2_JVERSION != '15') {
+            $dateFormat = JText::_('K2_J16_DATE_FORMAT');
+        } else {
+            $dateFormat = JText::_('K2_DATE_FORMAT');
+        }
+
         // Output
         $output = '';
 
@@ -73,11 +80,22 @@ class K2ElementK2modalselector extends K2Element
             ';
 
             foreach ($saved as $value) {
+                $entryClass = '';
+                $entryDate = '';
+                $entryImage = '';
+
                 if ($scope == 'items') {
+                    $entryClass = ' k2EntryItem';
                     $row = JTable::getInstance('K2Item', 'Table');
                     $row->load($value);
                     $entryName = $row->title;
                     $entryValue = $row->id;
+                    $entryDate = '<br /><b>'.JHTML::_('date', $row->created, $dateFormat).'</b>';
+                    if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$row->id).'_XS.jpg')) {
+                        $entryImage = '<img src="'.JURI::root(true).'/media/k2/items/cache/'.md5("Image".$row->id).'_XS.jpg" />';
+                    } else {
+                        $entryImage = '<img src="'.JURI::root(true).'/media/k2/assets/images/backend/placeholder.svg" />';
+                    }
                 }
                 if ($scope == 'categories') {
                     $row = JTable::getInstance('K2Category', 'Table');
@@ -99,7 +117,7 @@ class K2ElementK2modalselector extends K2Element
                     $entryValue = htmlspecialchars($row->name, ENT_QUOTES, 'utf-8');
                 }
 
-                $output .= '<li class="handle"><a class="k2EntryRemove" href="#" title="'.JText::_('K2_REMOVE_THIS_ENTRY').'"><i class="fa fa-trash-o"></i></a><span class="k2EntryText">'.$entryName.'</span><input type="hidden" name="'.$fieldName.'" value="'.$entryValue.'" /></li>';
+                $output .= '<li class="handle'.$entryClass.'"><span class="k2EntryImage">'.$entryImage.'</span><a class="k2EntryRemove" href="#" title="'.JText::_('K2_REMOVE_THIS_ENTRY').'"><i class="fa fa-trash-o"></i></a><span class="k2EntryText">'.$entryName.$entryDate.'</span><input type="hidden" name="'.$fieldName.'" value="'.$entryValue.'" /></li>';
             }
             $output .= '
             </ul>
