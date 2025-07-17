@@ -11,6 +11,7 @@ The latest K2 release is always available from: https://getk2.org/downloads/?f=K
 - Add include/exclude filter for categories in the K2 Content & K2 Comments modules (to be expanded in other places were categories are selected).
 - Visual aid for unpublished and/or trashed items wherever there is multiple item selection (e.g. in the K2 Content module).
 - Added cleaning of "&nbsp;" in item titles (on render time).
+- Fixed PHP warnings in the K2 item model (frontend).
 
 ### v2.12.20250620 - June 20th, 2025
 - Further improvements in the performance of the items list in the K2 backend (that build on the work of the previous release).
