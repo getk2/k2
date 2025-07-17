@@ -100,7 +100,7 @@ class K2ElementK2modalselector extends K2Element
                     if ($row->published == 0) {
                         $entryClass .= ' k2EntryItemUnpublished';
                     }
-                    if ($row->trashed == 1) {
+                    if ($row->trash == 1) {
                         $entryClass .= ' k2EntryItemTrashed';
                     }
                 }
