@@ -6,9 +6,10 @@ The latest K2 release is always available from: https://getk2.org/downloads/?f=K
 # Changelog
 
 ### v2.13 - July 17th, 2025
-- Moving to a new simpler version naming
-- New backend layout of selected items in the K2 Content module, which also brings that section higher (to make it more usable for content editors)
-- Added cleaning of "&nbsp;" in item titles (on render time)
+- Moving (back) to a new simpler version naming.
+- New backend layout of selected items in the K2 Content module, which also brings that section higher (to make it more usable for content editors).
+- Add include/exclude filter for categories in the K2 Content module (to be expanded in other places were categories are selected).
+- Added cleaning of "&nbsp;" in item titles (on render time).
 
 ### v2.12.20250620 - June 20th, 2025
 - Further improvements in the performance of the items list in the K2 backend (that build on the work of the previous release).
