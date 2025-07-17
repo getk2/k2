@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @version    2.x (rolling release)
  * @package    K2
@@ -75,10 +76,18 @@ class modK2CommentsHelper
                 AND c.published = 1";
 
         if ($params->get('catfilter') && !is_null($cid)) {
-            if (is_array($cid)) {
-                $query .= " AND i.catid IN(".implode(',', $cid).")";
+            if ($params->get('catFilterInclusion', 'include') == 'include') {
+                if (is_array($cid)) {
+                    $query .= " AND i.catid IN(".implode(',', $cid).")";
+                } else {
+                    $query .= " AND i.catid = ".(int)$cid;
+                }
             } else {
-                $query .= " AND i.catid = ".(int)$cid;
+                if (is_array($cid)) {
+                    $query .= " AND i.catid ΝΟΤ IN(".implode(',', $cid).")";
+                } else {
+                    $query .= " AND i.catid != ".(int)$cid;
+                }
             }
         }
 
