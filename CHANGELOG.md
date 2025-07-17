@@ -5,6 +5,10 @@ The latest K2 release is always available from: https://getk2.org/downloads/?f=K
 
 # Changelog
 
+### v2.13 - July 17th, 2025
+- Moving to a new simpler version naming
+- Added cleaning of "&nbsp;" in item titles (on render time)
+
 ### v2.12.20250620 - June 20th, 2025
 - Further improvements in the performance of the items list in the K2 backend (that build on the work of the previous release).
 - Updated the PHP class used to process uploads and image file conversions to its latest version ([class.upload.php](https://github.com/verot/class.upload.php) @ 10/09/2024) which adds support for WebP image handling in K2 in comparison to the older copy K2 had. Since WebP images are now ubiquitous, category and user image uploads will now be converted to WebP by default. Item images will be tackled in future releases.
