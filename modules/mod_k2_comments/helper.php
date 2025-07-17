@@ -84,7 +84,7 @@ class modK2CommentsHelper
                 }
             } else {
                 if (is_array($cid)) {
-                    $query .= " AND i.catid ΝΟΤ IN(".implode(',', $cid).")";
+                    $query .= " AND i.catid NOT IN(".implode(',', $cid).")";
                 } else {
                     $query .= " AND i.catid != ".(int)$cid;
                 }
