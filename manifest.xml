@@ -2,11 +2,11 @@
 <install type="component" version="1.5" method="upgrade">
     <name>K2</name>
     <author>JoomlaWorks</author>
-    <creationDate>July 17th, 2025</creationDate>
+    <creationDate>July 18th, 2025</creationDate>
     <copyright>Copyright (c) 2009 - 2025 JoomlaWorks Ltd. All rights reserved.</copyright>
     <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
     <authorUrl>https://www.joomlaworks.net</authorUrl>
-    <version>2.13</version>
+    <version>2.14</version>
     <license>https://gnu.org/licenses/gpl.html</license>
     <description>Thank you for installing K2 by JoomlaWorks, the powerful content extension for Joomla</description>
     <installfile>install.k2.php</installfile>

@@ -5,6 +5,10 @@ The latest K2 release is always available from: https://getk2.org/downloads/?f=K
 
 # Changelog
 
+### v2.14 - July 18th, 2025
+- Added new onK2ItemRender plugin event which is triggered anywhere the K2 item model is used (e.g. in itemlist view, the K2 Content module etc.). Such an event could be used e.g. for a custom K2 plugin that changes the URL of an item on runtime (e.g. for advertorials or sponsored content) allowing to link directly to external content.
+- Added the option to sort selected items in the K2 Content module by touch, which now makes the module fully mobile/tablet-friendly.
+
 ### v2.13 - July 17th, 2025
 - Moving (back) to a new simpler version naming.
 - New backend layout of selected items in the K2 Content module, which also brings that section higher (to make it more usable for content editors).
