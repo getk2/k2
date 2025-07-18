@@ -408,6 +408,13 @@ class K2ModelItem extends K2Model
             $item->author->profile = $this->getUserProfile($item->created_by);
         }
 
+        // Plugin event to override everything
+        $dispatcher->trigger('onK2ItemRender', array(
+            &$item,
+            &$params,
+            $limitstart
+        ));
+
         return $item;
     }
 
@@ -831,6 +838,14 @@ class K2ModelItem extends K2Model
                 }
             }
         }
+
+        // Plugin event to override everything
+        $dispatcher->trigger('onK2ItemRender', array(
+            &$item,
+            &$params,
+            $limitstart
+        ));
+
         return $item;
     }
 
