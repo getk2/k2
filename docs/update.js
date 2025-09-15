@@ -74,7 +74,7 @@
     };
 
     /* === K2 App === */
-    var K2_LATEST_VERSION = '2.14';
+    var K2_LATEST_VERSION = '2.15';
     var K2_RELEASE_NOTES = 'https://github.com/getk2/k2/blob/master/CHANGELOG.md';
 
     if (kookie.read('K2_hideUpdateMessage')) return;

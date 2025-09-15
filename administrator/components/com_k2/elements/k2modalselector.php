@@ -124,7 +124,11 @@ class K2ElementK2modalselector extends K2Element
                     $entryValue = htmlspecialchars($row->name, ENT_QUOTES, 'utf-8');
                 }
 
-                $output .= '<li class="handle'.$entryClass.'"><span class="k2EntryImage">'.$entryImage.'</span><a class="k2EntryRemove" href="#" title="'.JText::_('K2_REMOVE_THIS_ENTRY').'"><i class="fa fa-trash-o"></i></a><span class="k2EntryText">'.$entryName.$entryDate.'</span><input type="hidden" name="'.$fieldName.'" value="'.$entryValue.'" /></li>';
+                $output .= '<li class="handle'.$entryClass.'">';
+                if ($entryImage) {
+                    $output .= '<span class="k2EntryImage">'.$entryImage.'</span>';
+                }
+                $output .= '<a class="k2EntryRemove" href="#" title="'.JText::_('K2_REMOVE_THIS_ENTRY').'"><i class="fa fa-trash-o"></i></a><span class="k2EntryText">'.$entryName.$entryDate.'</span><input type="hidden" name="'.$fieldName.'" value="'.$entryValue.'" /></li>';
             }
             $output .= '
             </ul>
