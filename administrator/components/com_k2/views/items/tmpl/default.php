@@ -187,7 +187,7 @@ $context = JRequest::getCmd('context');
                                     $onClick = 'window.parent.k2ModalSelector(\''.$row->id.'\', \''.str_replace(array("'", "\""), array("\\'", ""), $row->title).'\', \''.JRequest::getCmd('fid').'\', \''.JRequest::getVar('fname').'\'); return false;';
                                 }
                                 ?>
-                                <a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ENTRY'); ?>" href="#" onclick="<?php echo $onClick; ?>">
+                                <a class="k2ListItemDisabled" title="<?php echo JText::_('K2_CLICK_TO_ADD_THIS_ENTRY'); ?>" href="#" onclick="<?php echo $onClick; ?>" data-id="<?php echo $row->id; ?>" data-alias="<?php echo $row->alias; ?>" data-catid="<?php echo $row->catid; ?>">
                                     <?php echo $row->title; ?>
                                 </a>
                                 <?php else: ?>

@@ -1304,7 +1304,7 @@ class K2ModelItem extends K2Model
                         }
                     } elseif ($rows[$i]->type == 'multipleSelect') {
                         foreach (json_decode($rows[$i]->value) as $option) {
-                            if (@in_array($option->value, $object->value)) {
+                            if (in_array($option->value, (array) $object->value)) {
                                 $values[] = $option->name;
                             }
                         }

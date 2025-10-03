@@ -5,6 +5,11 @@ The latest K2 release is always available from: https://getk2.org/downloads/?f=K
 
 # Changelog
 
+### v2.16 - October 3rd, 2025
+- Frontend/Item: multi-select value rendering in extra fields should always be an array
+- Backend/Items: add hidden data attributes in item links when invoked through a modal so item data can be retrieved programmatically if required
+- Backend/Tags: add hidden data attributes in tag links when invoked through a modal so tag data can be retrieved programmatically if required
+
 ### v2.15 - September 15th, 2025
 - Backend/Modules: Fixed the layout display of selected tags in the K2 Tools module
 
