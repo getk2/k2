@@ -54,3 +54,5 @@ More info at: https://getk2.org
 ***
 
 Copyright &copy; 2009 - 2025 [JoomlaWorks Ltd.](https://www.joomlaworks.net)
+
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/getk2/k2)
