@@ -395,7 +395,7 @@ ul#k2ExtraFieldsMissing {margin:8px;padding:0 18px;overflow:hidden;}
 ul#k2ExtraFieldsMissing li {font-weight:normal;}
 .k2Invalid {border-color:red;}
 
-/* Item - Image, Extrafields & Attachments */
+/* Item - Image, Media, Extra Fields & Attachments */
 .itemAdditionalField {display:grid;grid-template-columns:180px auto;margin:0 0 1px 0;padding:0;}
 .itemAdditionalField.fieldIsHeader {display:block;}
 .itemAdditionalField.fieldIsHeader > h4 {font-size:24px;line-height:130%;font-weight:600;padding:20px 0 10px 4px;margin:0 auto 20px auto;border-bottom:2px solid #dddedf;color:#183867;width:100%;text-align:left;}
@@ -404,7 +404,6 @@ ul#k2ExtraFieldsMissing li {font-weight:normal;}
 .itemAdditionalField .itemAdditionalData {padding:10px;font-size:13px;}
 .itemAdditionalField .itemAdditionalData label {font-weight:700;}
 
-.isJ30 .itemAdditionalField .itemAdditionalData input {margin-bottom:0;}
 .itemAdditionalField .itemAdditionalData #existingImageValue {vertical-align:middle;margin-right:-8px;}
 
 .itemAdditionalField.separator {}
@@ -418,6 +417,9 @@ ul#k2ExtraFieldsMissing li {font-weight:normal;}
 #k2TabImage .itemAdditionalField .itemAdditionalData > input[type="checkbox"],
 #k2TabImageGallery .itemAdditionalField .itemAdditionalData > input[type="checkbox"],
 #k2TabMedia .itemAdditionalField .itemAdditionalData > input[type="checkbox"] {display:inline-block;margin:0 5px 0 0;vertical-align:middle;}
+
+.isJ30 .itemAdditionalField .itemAdditionalData input {margin-bottom:0;}
+.isJ30 .itemAdditionalField .itemAdditionalData input[type="text"] {width:auto;}
 
 #extraFields {}
 #extraFields .itemAdditionalField .itemAdditionalData .k2Calendar + .btn {padding:10px 12px;}

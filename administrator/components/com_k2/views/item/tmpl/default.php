@@ -414,7 +414,7 @@ $app = JFactory::getApplication();
                     <?php endif; ?>
 
                     <?php if ($this->params->get('showVideoTab')): ?>
-                    <!-- Tab video -->
+                    <!-- Tab media -->
                     <div class="k2TabsContent" id="k2TabMedia">
                         <?php if ($this->lists['checkAllVideos']): ?>
                         <div id="item_video_content">
@@ -423,7 +423,7 @@ $app = JFactory::getApplication();
                                     <label><?php echo JText::_('K2_MEDIA_SOURCE'); ?></label>
                                 </div>
                                 <div class="itemAdditionalData">
-                                    <div id="k2MediaTabs" class="k2Tabs">
+                                    <div id="k2MediaTabs" class="k2MediaTabs k2Tabs">
                                         <ul class="k2TabsNavigation">
                                             <li><a href="#k2MediaTab1"><?php echo JText::_('K2_UPLOAD'); ?></a></li>
                                             <li><a href="#k2MediaTab2"><?php echo JText::_('K2_BROWSE_SERVERUSE_REMOTE_MEDIA'); ?></a></li>
@@ -463,8 +463,6 @@ $app = JFactory::getApplication();
                                                 <div class="itemAdditionalBlock">
                                                     <?php echo $this->lists['providers']; ?>
                                                 </div>
-                                                <br />
-                                                <br />
                                                 <div class="itemAdditionalBlock">
                                                     <label><?php echo JText::_('K2_AND_ENTER_MEDIA_URL_OR_ID'); ?></label>
                                                 </div>
@@ -472,7 +470,7 @@ $app = JFactory::getApplication();
                                                     <input type="text" size="50" name="videoID" value="<?php echo $this->lists['providerVideo'] ?>" />
                                                 </div>
                                                 <div class="k2Right k2DocLink">
-                                                    <a data-k2-modal="iframe" href="https://www.joomlaworks.net/allvideos-documentation">
+                                                    <a target="_blank" href="https://www.joomlaworks.net/support/docs/allvideos">
                                                         <i class="fa fa-info"></i>
                                                         <span><?php echo JText::_('K2_READ_THE_ALLVIDEOS_DOCUMENTATION_FOR_MORE'); ?></span>
                                                     </a>

@@ -5,6 +5,9 @@ The latest K2 release is always available from: https://getk2.org/downloads/?f=K
 
 # Changelog
 
+### v2.17 - December 24th, 2025
+- Minor UI updates in the item form. Also corrected the link to AllVideos' documentation.
+
 ### v2.16 - October 3rd, 2025
 - Frontend/Item: multi-select value rendering in extra fields should always be an array
 - Backend/Items: add hidden data attributes in item links when invoked through a modal so item data can be retrieved programmatically if required
