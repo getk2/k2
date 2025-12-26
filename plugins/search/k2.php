@@ -28,7 +28,7 @@ class plgSearchK2 extends JPlugin
     public function onSearchAreas()
     {
         JPlugin::loadLanguage('plg_search_k2', JPATH_ADMINISTRATOR);
-        static $areas = array('k2' => 'K2_ITEMS');
+        static $areas = ['k2' => 'K2_ITEMS'];
         return $areas;
     }
 
@@ -36,100 +36,77 @@ class plgSearchK2 extends JPlugin
     {
         JPlugin::loadLanguage('plg_search_k2', JPATH_ADMINISTRATOR);
         jimport('joomla.html.parameter');
-        $app = JFactory::getApplication();
-        $db = JFactory::getDbo();
+        $app  = JFactory::getApplication();
+        $db   = JFactory::getDbo();
         $jnow = JFactory::getDate();
-        $now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
+        $now  = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
 
         $nullDate = $db->getNullDate();
-        $user = JFactory::getUser();
+        $user     = JFactory::getUser();
         if (K2_JVERSION != '15') {
-            $accessCheck = " IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
+            $accessCheck = " IN(" . implode(',', $user->getAuthorisedViewLevels()) . ") ";
         } else {
-            $aid = $user->get('aid');
+            $aid         = $user->get('aid');
             $accessCheck = " <= {$aid} ";
         }
-        $tagIDs = array();
-        $itemIDs = array();
+        $tagIDs  = [];
+        $itemIDs = [];
 
-        require_once(JPATH_SITE.'/administrator/components/com_search/helpers/search.php');
-        require_once(JPATH_SITE.'/components/com_k2/helpers/route.php');
+        require_once JPATH_SITE . '/administrator/components/com_search/helpers/search.php';
+        require_once JPATH_SITE . '/components/com_k2/helpers/route.php';
+        require_once JPATH_SITE . '/media/k2/assets/helpers/global.php';
 
         $searchText = $text;
+        $where      = '';
+        $rows       = [];
+        $results    = [];
+
         if (is_array($areas)) {
-            if (!array_intersect($areas, array_keys($this->onSearchAreas()))) {
-                return array();
+            if (! array_intersect($areas, array_keys($this->onSearchAreas()))) {
+                return [];
             }
         }
 
-        $plugin = JPluginHelper::getPlugin('search', 'k2');
+        $plugin       = JPluginHelper::getPlugin('search', 'k2');
         $pluginParams = class_exists('JParameter') ? new JParameter($plugin->params) : new JRegistry($plugin->params);
 
         $limit = $pluginParams->def('search_limit', 50);
-
-        $text = JString::trim($text);
-        if ($text == '') {
-            return array();
-        }
-
-        $rows = array();
-
         if ($limit > 0) {
-            if ($phrase == 'exact') {
-                $text = JString::trim($text, '"');
-                $escaped = (K2_JVERSION == '15') ? $db->getEscaped($text, true) : $db->escape($text, true);
-                $quoted = $db->Quote('%'.$escaped.'%', false);
-                $where = "(
-                    LOWER(i.title) LIKE ".$quoted." OR
-                    LOWER(i.introtext) LIKE ".$quoted." OR
-                    LOWER(i.`fulltext`) LIKE ".$quoted." OR
-                    LOWER(i.extra_fields_search) LIKE ".$quoted." OR
-                    LOWER(i.image_caption) LIKE ".$quoted." OR
-                    LOWER(i.image_credits) LIKE ".$quoted." OR
-                    LOWER(i.video_caption) LIKE ".$quoted." OR
-                    LOWER(i.video_credits) LIKE ".$quoted." OR
-                    LOWER(i.metadesc) LIKE ".$quoted." OR
-                    LOWER(i.metakey) LIKE ".$quoted."
-                )";
-            } else {
-                $words = explode(' ', $text);
-                $wheres = array();
-                foreach ($words as $word) {
-                    $escaped = (K2_JVERSION == '15') ? $db->getEscaped($word, true) : $db->escape($word, true);
-                    $quoted = $db->Quote('%'.$escaped.'%', false);
-                    $wheres[] = "(
-                        LOWER(i.title) LIKE ".$quoted." OR
-                        LOWER(i.introtext) LIKE ".$quoted." OR
-                        LOWER(i.`fulltext`) LIKE ".$quoted." OR
-                        LOWER(i.extra_fields_search) LIKE ".$quoted." OR
-                        LOWER(i.image_caption) LIKE ".$quoted." OR
-                        LOWER(i.image_credits) LIKE ".$quoted." OR
-                        LOWER(i.video_caption) LIKE ".$quoted." OR
-                        LOWER(i.video_credits) LIKE ".$quoted." OR
-                        LOWER(i.metadesc) LIKE ".$quoted." OR
-                        LOWER(i.metakey) LIKE ".$quoted."
-                    )";
-                }
-                $where = '(' . implode(($phrase == 'all' ? ') AND (' : ') OR ('), $wheres) . ')';
+            $text = JString::trim($text);
+            if ($text == '') {
+                return [];
             }
+
+            $where .= K2GlobalHelper::search($search, [
+                'i.title',
+                'i.introtext',
+                'i.`fulltext`',
+                'i.extra_fields_search',
+                'i.image_caption',
+                'i.image_credits',
+                'i.video_caption',
+                'i.video_credits',
+                'i.metadesc',
+                'i.metakey',
+            ]);
 
             if ($pluginParams->get('search_tags')) {
                 $tagQuery = JString::strtolower($text);
-                $escaped = (K2_JVERSION == '15') ? $db->getEscaped($tagQuery, true) : $db->escape($tagQuery, true);
-                $quoted = $db->Quote('%'.$escaped.'%', false);
-                $query = "SELECT id FROM #__k2_tags WHERE published = 1 AND LOWER(name) LIKE ".$quoted;
+                $escaped  = (K2_JVERSION == '15') ? $db->getEscaped($tagQuery, true) : $db->escape($tagQuery, true);
+                $quoted   = $db->Quote('%' . $escaped . '%', false);
+                $query    = "SELECT id FROM #__k2_tags WHERE published = 1 AND LOWER(name) LIKE " . $quoted;
                 $db->setQuery($query);
                 $tagIDs = (K2_JVERSION == '30') ? $db->loadColumn() : $db->loadResultArray();
                 if (count($tagIDs)) {
                     sort($tagIDs);
-                    $query = "SELECT itemID FROM #__k2_tags_xref WHERE tagID IN (".implode(',', $tagIDs).")";
+                    $query = "SELECT itemID FROM #__k2_tags_xref WHERE tagID IN (" . implode(',', $tagIDs) . ")";
                     $db->setQuery($query);
                     $itemIDs = (K2_JVERSION == '30') ? $db->loadColumn() : $db->loadResultArray();
                     $itemIDs = array_unique($itemIDs);
                     if (count($itemIDs)) {
-                        //JArrayHelper::toInteger($itemIDs);
                         sort($itemIDs);
-                        $where .= " OR i.id IN (".implode(',', $itemIDs).")";
+                        // Trim the last closing parenthesis and add OR condition for items with matching tags to close the AND (...) clause
+                        $where = substr($where, 0, strlen($where) - 1) . " OR i.id IN (" . implode(',', $itemIDs) . "))";
                     }
                 }
             }
@@ -149,19 +126,20 @@ class plgSearchK2 extends JPlugin
                     CASE WHEN CHAR_LENGTH(c.alias) THEN CONCAT_WS(':', c.id, c.alias) ELSE c.id END as catslug
                 FROM #__k2_items AS i
                 INNER JOIN #__k2_categories AS c ON c.id = i.catid
-                WHERE ({$where})
-                    AND i.trash = 0
+                WHERE i.trash = 0
                     AND i.published = 1
                     AND i.access {$accessCheck}
                     AND c.published = 1
                     AND c.access {$accessCheck}
                     AND c.trash = 0
-                    AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now).")
-                    AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now).")";
+                    AND (i.publish_up = " . $db->Quote($nullDate) . " OR i.publish_up <= " . $db->Quote($now) . ")
+                    AND (i.publish_down = " . $db->Quote($nullDate) . " OR i.publish_down >= " . $db->Quote($now) . ")
+                    {$where}
+            ";
 
             if (K2_JVERSION != '15' && $app->isSite() && $app->getLanguageFilter()) {
                 $languageTag = JFactory::getLanguage()->getTag();
-                $query .= " AND c.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") AND i.language IN (".$db->Quote($languageTag).", ".$db->Quote('*').")";
+                $query .= " AND c.language IN (" . $db->Quote($languageTag) . ", " . $db->Quote('*') . ") AND i.language IN (" . $db->Quote($languageTag) . ", " . $db->Quote('*') . ")";
             }
 
             switch ($ordering) {
@@ -199,18 +177,19 @@ class plgSearchK2 extends JPlugin
             $rows[] = $list;
         }
 
-        $results = array();
+        $results = [];
+
         if (count($rows)) {
             foreach ($rows as $row) {
-                $new_row = array();
+                $new_row = [];
                 foreach ($row as $key => $item) {
                     $item->browsernav = '';
-                    $item->tag = $searchText;
-                    if (searchHelper::checkNoHTML($item, $searchText, array('text', 'title', 'metakey', 'metadesc', 'section', 'image_caption', 'image_credits', 'video_caption', 'video_credits', 'extra_fields_search', 'tag'))) {
+                    $item->tag        = $searchText;
+                    if (searchHelper::checkNoHTML($item, $searchText, ['text', 'title', 'metakey', 'metadesc', 'section', 'image_caption', 'image_credits', 'video_caption', 'video_credits', 'extra_fields_search', 'tag'])) {
                         $new_row[] = $item;
                     }
                 }
-                $results = array_merge($results, (array)$new_row);
+                $results = array_merge($results, (array) $new_row);
             }
         }
 

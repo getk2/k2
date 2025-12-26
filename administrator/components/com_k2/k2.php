@@ -63,6 +63,8 @@ if (K2_JVERSION == '15') {
     }
 }
 
+JLoader::register('K2GlobalHelper', JPATH_SITE.'/media/k2/assets/helpers/global.php');
+
 $document = JFactory::getDocument();
 
 $document->setMetadata('theme-color', '#10223e');

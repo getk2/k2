@@ -26,6 +26,7 @@ JLoader::register('K2Model', JPATH_COMPONENT_ADMINISTRATOR.'/models/model.php');
 JLoader::register('K2HelperRoute', JPATH_COMPONENT.'/helpers/route.php');
 JLoader::register('K2HelperPermissions', JPATH_COMPONENT.'/helpers/permissions.php');
 JLoader::register('K2HelperUtilities', JPATH_COMPONENT.'/helpers/utilities.php');
+JLoader::register('K2GlobalHelper', JPATH_SITE.'/media/k2/assets/helpers/global.php');
 
 K2HelperPermissions::setPermissions();
 K2HelperPermissions::checkPermissions();

@@ -5,6 +5,9 @@ The latest K2 release is always available from: https://getk2.org/downloads/?f=K
 
 # Changelog
 
+### v2.18 - December 26th, 2025
+- This version lays the groundwork for a unified search functionality in K2 and improved search in future versions, in the form of FULLTEXT based search in MySQL/MariaDB as well as integrations with external search engines like Elasticsearch, Meilisearch and so on. All search functionality has been offloaded to a new class which is used in the frontend, backend as well as the K2 search plugin (for when using Joomla's global search).
+
 ### v2.17 - December 24th, 2025
 - Minor UI updates in the item form. Also corrected the link to AllVideos' documentation.
 
