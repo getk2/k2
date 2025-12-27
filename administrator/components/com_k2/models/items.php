@@ -102,7 +102,7 @@ class K2ModelItems extends K2Model
                 K2Model::addIncludePath(JPATH_SITE . '/components/com_k2/models');
                 $itemListModel = K2Model::getInstance('Itemlist', 'K2Model');
                 $categories    = $itemListModel->getCategoryTree($filter_category);
-                $sql           = @implode(',', $categories);
+                $sql           = (is_array($categories) && count($categories)) ? implode(',', $categories) : '0';
                 $query .= " AND i.catid IN ({$sql})";
             } else {
                 $query .= " AND i.catid = {$filter_category}";

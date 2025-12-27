@@ -338,7 +338,7 @@ class modK2ToolsHelper
                     if ($params->get('getChildren')) {
                         $itemListModel = K2Model::getInstance('Itemlist', 'K2Model');
                         $categories = $itemListModel->getCategoryTree($cid);
-                        $result = @implode(',', $categories);
+                        $result = (is_array($categories) && count($categories)) ? implode(',', $categories) : '0';
                     } else {
                         JArrayHelper::toInteger($cid);
                         $result = implode(',', $cid);
@@ -347,7 +347,7 @@ class modK2ToolsHelper
                     if ($params->get('getChildren')) {
                         $itemListModel = K2Model::getInstance('Itemlist', 'K2Model');
                         $categories = $itemListModel->getCategoryTree($cid);
-                        $result = @implode(',', $categories);
+                        $result = (is_array($categories) && count($categories)) ? implode(',', $categories) : '0';
                     } else {
                         $result = (int)$cid;
                     }

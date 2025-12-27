@@ -127,7 +127,7 @@ class modK2ContentHelper
                     $itemListModel = K2Model::getInstance('Itemlist', 'K2Model');
                     $categories = $itemListModel->getCategoryTree($cid);
                     sort($categories);
-                    $sql = @implode(',', $categories);
+                    $sql = (is_array($categories) && count($categories)) ? implode(',', $categories) : '0';
                     $query .= " AND i.catid IN({$sql})";
                 } else {
                     if ($params->get('catFilterInclusion', 'include') == 'include') {

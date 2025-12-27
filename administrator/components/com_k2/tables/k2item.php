@@ -152,14 +152,16 @@ class TableK2Item extends K2Table
             $db = JFactory::getDbo();
             if ($this->id) {
                 $db->setQuery("SELECT id FROM #__k2_items WHERE alias = ".$db->quote($this->alias)." AND id != ".(int)$this->id);
-                $result = count($db->loadObjectList());
+                $resultList = $db->loadObjectList();
+                $result = is_array($resultList) ? count($resultList) : 0;
                 if ($result > 0) {
                     $this->alias .= '-'.(int)$this->id;
                     $app->enqueueMessage(JText::_('K2_WARNING_DUPLICATE_TITLE_ALIAS_DETECTED'), 'notice');
                 }
             } else {
                 $db->setQuery("SELECT id FROM #__k2_items WHERE alias = ".$db->quote($this->alias));
-                $result = count($db->loadObjectList());
+                $resultList = $db->loadObjectList();
+                $result = is_array($resultList) ? count($resultList) : 0;
                 if ($result > 0) {
                     $this->alias .= '-'.date('YmdHi');
                     $app->enqueueMessage(JText::_('K2_WARNING_DUPLICATE_TITLE_ALIAS_DETECTED'), 'notice');
@@ -205,7 +207,8 @@ class TableK2Item extends K2Table
         $k = $this->_tbl_key;
         $query = "SELECT {$this->_tbl_key}, {$column} FROM #__k2_items WHERE {$column} > 0 {$w} ORDER BY {$column}";
         $this->_db->setQuery($query);
-        if (!($orders = $this->_db->loadObjectList())) {
+        $orders = $this->_db->loadObjectList();
+        if (!is_array($orders) || count($orders) == 0) {
             $this->setError($this->_db->getErrorMsg());
             return false;
         }

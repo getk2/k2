@@ -746,7 +746,7 @@ class plgSystemK2 extends JPlugin
             $value = $currentValue;
         } elseif ($row->type == 'multipleSelect' || $row->type == 'link') {
             foreach ($jsonObject as $option) {
-                if (@in_array($option->value, $currentValue)) {
+                if (is_array($currentValue) && in_array($option->value, $currentValue)) {
                     $value .= $option->name.' ';
                 }
             }
@@ -849,7 +849,7 @@ class plgSystemK2 extends JPlugin
         $db->setQuery($query);
         $result = $db->loadResult();
         $currentValues = json_decode($result);
-        if (count($currentValues)) {
+        if (is_array($currentValues) && count($currentValues)) {
             foreach ($currentValues as $value) {
                 if ($value->id == $extraField->id) {
                     $active = $value->value;

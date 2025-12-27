@@ -355,7 +355,7 @@ class K2ModelCategories extends K2Model
         K2Model::addIncludePath(JPATH_SITE . '/components/com_k2/models');
         $model      = K2Model::getInstance('Itemlist', 'K2Model');
         $categories = $model->getCategoryTree($cid);
-        $sql        = @implode(',', $categories);
+        $sql        = (is_array($categories) && count($categories)) ? implode(',', $categories) : '0';
         $db         = JFactory::getDbo();
         $query      = "UPDATE #__k2_categories SET trash=1  WHERE id IN ({$sql})";
         $db->setQuery($query);

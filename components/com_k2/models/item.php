@@ -1245,7 +1245,7 @@ class K2ModelItem extends K2Model
             $extraFieldsIDs[] = $object->id;
         }
         JArrayHelper::toInteger($extraFieldsIDs);
-        $condition = @implode(',', $extraFieldsIDs);
+        $condition = (is_array($extraFieldsIDs) && count($extraFieldsIDs)) ? implode(',', $extraFieldsIDs) : '0';
 
         $query = "SELECT extraFieldsGroup FROM #__k2_categories WHERE id=".(int)$item->catid;
         $db->setQuery($query);
@@ -1308,7 +1308,7 @@ class K2ModelItem extends K2Model
                                 $values[] = $option->name;
                             }
                         }
-                        $value = @implode(', ', $values);
+                        $value = (is_array($values) && count($values)) ? implode(', ', $values) : '';
                     } elseif ($rows[$i]->type == 'csv') {
                         $array = $object->value;
                         if (isset($array) && count($array)) {

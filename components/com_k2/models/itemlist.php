@@ -117,7 +117,7 @@ class K2ModelItemlist extends K2Model
                 } else {
                     $categories = $this->getCategoryTree($id);
                     sort($categories);
-                    $sql = @implode(',', $categories);
+                    $sql = (is_array($categories) && count($categories)) ? implode(',', $categories) : '0';
                     $query .= " AND c.id IN({$sql})";
                 }
 
@@ -228,13 +228,13 @@ class K2ModelItemlist extends K2Model
                 if (is_array($searchIDs) && count($searchIDs)) {
                     if ($params->get('catCatalogMode')) {
                         sort($searchIDs);
-                        $sql = @implode(',', $searchIDs);
+                        $sql = implode(',', $searchIDs);
                         $query .= " AND c.id IN({$sql})";
                     } else {
                         $result = $this->getCategoryTree($searchIDs);
-                        if (count($result)) {
+                        if (is_array($result) && count($result)) {
                             sort($result);
-                            $sql = @implode(',', $result);
+                            $sql = implode(',', $result);
                             $query .= " AND c.id IN({$sql})";
                         }
                     }
@@ -673,10 +673,12 @@ class K2ModelItemlist extends K2Model
         $sql = '';
 
         if (JRequest::getVar('categories')) {
-            $categories = @explode(',', JRequest::getVar('categories'));
+            $categories = explode(',', JRequest::getVar('categories'));
             JArrayHelper::toInteger($categories);
-            sort($categories);
-            $sql .= " AND c.id IN(" . @implode(',', $categories) . ")";
+            if (is_array($categories) && count($categories)) {
+                sort($categories);
+                $sql .= " AND c.id IN(" . implode(',', $categories) . ")";
+            }
         }
 
         $search = trim($search);

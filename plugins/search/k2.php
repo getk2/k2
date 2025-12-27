@@ -168,13 +168,13 @@ class plgSearchK2 extends JPlugin
             $db->setQuery($query, 0, $limit);
             $list = $db->loadObjectList();
 
-            $limit -= count($list);
-            if (isset($list)) {
+            if (is_array($list)) {
+                $limit -= count($list);
                 foreach ($list as $key => $item) {
                     $list[$key]->href = JRoute::_(K2HelperRoute::getItemRoute($item->slug, $item->catslug));
                 }
+                $rows[] = $list;
             }
-            $rows[] = $list;
         }
 
         $results = [];
