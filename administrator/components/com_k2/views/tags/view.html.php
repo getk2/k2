@@ -52,8 +52,7 @@ class K2ViewTags extends K2View
         }
         $this->assignRef('rows', $tags);
 
-        jimport('joomla.html.pagination');
-        $pageNav = new JPagination($total, $limitstart, $limit);
+        $pageNav = new K2Pagination($total, $limitstart, $limit);
         $this->assignRef('page', $pageNav);
 
         $lists = array();

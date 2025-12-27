@@ -121,10 +121,8 @@ class K2ModelCategories extends K2Model
             $categories = $this->indentRows($rows, $root);
         }
 
-        // Pagination
-        jimport('joomla.html.pagination');
         $total   = count($categories);
-        $pageNav = new JPagination($total, $limitstart, $limit);
+        $pageNav = new K2Pagination($total, $limitstart, $limit);
 
         // Display category inheritance
         $categories = @array_slice($categories, $pageNav->limitstart, $pageNav->limit);

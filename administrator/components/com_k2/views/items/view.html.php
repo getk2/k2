@@ -243,9 +243,7 @@ class K2ViewItems extends K2View
         $lists['batchAuthor'] = JHTML::_('select.genericlist', $options, 'batchAuthor', '', 'value', 'text', null);
         $this->assignRef('lists', $lists);
 
-        // Pagination
-        jimport('joomla.html.pagination');
-        $pageNav = new JPagination($total, $limitstart, $limit);
+        $pageNav = new K2Pagination($total, $limitstart, $limit);
         $this->assignRef('page', $pageNav);
 
         // Augment with plugin events

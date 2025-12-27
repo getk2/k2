@@ -118,8 +118,7 @@ class K2ViewCategories extends K2View
             $app->enqueueMessage(JText::_('K2_ALL_TRASHED_ITEMS_IN_A_CATEGORY_MUST_BE_DELETED_FIRST'));
         }
 
-        jimport('joomla.html.pagination');
-        $pageNav = new JPagination($total, $limitstart, $limit);
+        $pageNav = new K2Pagination($total, $limitstart, $limit);
         $this->assignRef('page', $pageNav);
 
         $lists = array();

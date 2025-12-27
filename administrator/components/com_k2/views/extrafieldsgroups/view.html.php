@@ -39,8 +39,7 @@ class K2ViewExtraFieldsGroups extends K2View
 
         $this->assignRef('rows', $extraFieldGroups);
 
-        jimport('joomla.html.pagination');
-        $pageNav = new JPagination($total, $limitstart, $limit);
+        $pageNav = new K2Pagination($total, $limitstart, $limit);
         $this->assignRef('page', $pageNav);
 
         // Toolbar

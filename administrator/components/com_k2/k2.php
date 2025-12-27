@@ -63,6 +63,10 @@ if (K2_JVERSION == '15') {
     }
 }
 
+// Load K2 Pagination class
+require_once JPATH_COMPONENT.'/lib/k2pagination.php';
+
+// Load K2 Global Helper
 JLoader::register('K2GlobalHelper', JPATH_SITE.'/media/k2/assets/helpers/global.php');
 
 $document = JFactory::getDocument();

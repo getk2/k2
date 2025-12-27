@@ -596,7 +596,6 @@ class K2ViewItemlist extends K2View
         }
 
         if ($document->getType() != 'json') {
-            // Pagination
             jimport('joomla.html.pagination');
             $total = (count($items)) ? $itemlistModel->getTotal() : 0;
             $pagination = new JPagination($total, $limitstart, $limit);
