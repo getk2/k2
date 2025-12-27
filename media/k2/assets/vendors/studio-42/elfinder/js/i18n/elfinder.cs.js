@@ -1,6 +1,6 @@
 /**
  * Czech translation
- * @author RobiNN <kelcakrobo@gmail.com>
+ * @author RobiNN <robo@kelcak.com>
  * @author Jay Gridley <gridley.jay@hotmail.com>
  * @version 2021-06-10
  */
@@ -14,7 +14,7 @@
 	}
 }(this, function(elFinder) {
 	elFinder.prototype.i18.cs = {
-		translator : 'RobiNN &lt;kelcakrobo@gmail.com&gt;, Jay Gridley &lt;gridley.jay@hotmail.com&gt;',
+		translator : 'RobiNN &lt;robo@kelcak.com&gt;, Jay Gridley &lt;gridley.jay@hotmail.com&gt;',
 		language   : 'Čeština',
 		direction  : 'ltr',
 		dateFormat : 'd. m. Y H:i', // will show like: 10. 06. 2021 23:37
@@ -175,6 +175,7 @@
 			'btnCancel' : 'Zrušit',
 			'btnNo'     : 'Ne',
 			'btnYes'    : 'Ano',
+			'btnDiscard': 'Discard changes',
 			'btnMount'  : 'Připojit',  // added 18.04.2012
 			'btnApprove': 'Přejít do části 1 $ & schválit', // from v2.1 added 26.04.2012
 			'btnUnmount': 'Odpojit', // from v2.1 added 30.04.2012
@@ -523,6 +524,12 @@
 			'kindTTF'         : 'True Type font',
 			'kindOTF'         : 'Open Type font',
 			'kindRPM'         : 'RPM balíček',
+			// fonts
+			'kindFont'        : 'Font',
+			'kindSFNT'        : 'SFNT font',
+			'kindEOT'         : 'Embedded Open Type font',
+			'kindWOFF'        : 'Web Open Font Format',
+			'kindWOFF2'       : 'Web Open Font Format 2',
 			// texts
 			'kindText'        : 'Textový dokument',
 			'kindTextPlain'   : 'Čistý text',

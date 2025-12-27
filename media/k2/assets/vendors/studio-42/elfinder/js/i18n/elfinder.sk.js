@@ -1,6 +1,6 @@
 /**
  * Slovak translation
- * @author RobiNN <kelcakrobo@gmail.com>
+ * @author RobiNN <robo@kelcak.com>
  * @author Jakub Ďuraš <jkblmr@gmail.com>
  * @version 2021-06-10
  */
@@ -14,7 +14,7 @@
 	}
 }(this, function(elFinder) {
 	elFinder.prototype.i18.sk = {
-		translator : 'RobiNN &lt;kelcakrobo@gmail.com&gt;, Jakub Ďuraš &lt;jkblmr@gmail.com&gt;',
+		translator : 'RobiNN &lt;robo@kelcak.com&gt;, Jakub Ďuraš &lt;jkblmr@gmail.com&gt;',
 		language   : 'Slovenčina',
 		direction  : 'ltr',
 		dateFormat : 'd.m.Y H:i', // will show like: 10.06.2021 23:35
@@ -175,6 +175,7 @@
 			'btnCancel' : 'Zrušiť',
 			'btnNo'     : 'Nie',
 			'btnYes'    : 'Áno',
+			'btnDiscard': 'Discard changes',
 			'btnMount'  : 'Pripojiť',  // added 18.04.2012
 			'btnApprove': 'Ísť na $1 & schváliť', // from v2.1 added 26.04.2012
 			'btnUnmount': 'Odpojiť', // from v2.1 added 30.04.2012
@@ -523,6 +524,12 @@
 			'kindTTF'         : 'True Type font',
 			'kindOTF'         : 'Open Type font',
 			'kindRPM'         : 'RPM balík',
+			// fonts
+			'kindFont'        : 'Font',
+			'kindSFNT'        : 'SFNT font',
+			'kindEOT'         : 'Embedded Open Type font',
+			'kindWOFF'        : 'Web Open Font Format',
+			'kindWOFF2'       : 'Web Open Font Format 2',
 			// texts
 			'kindText'        : 'Textový document',
 			'kindTextPlain'   : 'Obyčajný text',

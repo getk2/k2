@@ -169,7 +169,7 @@ abstract class elFinderVolumeDriver
 
     /**
      * Static var of $this->options['maxArcFilesSize']
-     * 
+     *
      * @var int|string
      */
     protected static $maxArcFilesSize;
@@ -280,6 +280,8 @@ abstract class elFinderVolumeDriver
             'php4:*' => 'text/x-php',
             'php5:*' => 'text/x-php',
             'php7:*' => 'text/x-php',
+            'php8:*' => 'text/x-php',
+            'php9:*' => 'text/x-php',
             'phtml:*' => 'text/x-php',
             'phar:*' => 'text/x-php',
             'cgi:*' => 'text/x-httpd-cgi',
@@ -1288,14 +1290,14 @@ abstract class elFinderVolumeDriver
                 $auto_types[] = 'finfo';
             }
         }
-        
+
         if (function_exists('mime_content_type')) {
             $_mimetypes = explode(';', mime_content_type(__FILE__));
             if (preg_match($regexp, array_shift($_mimetypes))) {
                 $auto_types[] = 'mime_content_type';
             }
         }
-            
+
         $auto_types[] = 'internal';
 
         $type = strtolower($this->options['mimeDetect']);
@@ -3329,7 +3331,7 @@ abstract class elFinderVolumeDriver
             }
         }
         if (empty($file['url']) && $this->URL) {
-            $path = str_replace($this->separator, '/', substr($this->decode($hash), strlen(rtrim($this->root, '/' . $this->separator)) + 1));
+            $path = str_replace($this->separator, '/', substr($this->decode($hash), strlen(trim($this->root, '/' . $this->separator))));
             if ($this->encoding) {
                 $path = $this->convEncIn($path, true);
             }
@@ -3460,9 +3462,8 @@ abstract class elFinderVolumeDriver
             $tempPath = elFinder::getStaticVar('commonTempPath');
         } else if (function_exists('sys_get_temp_dir')) {
             $tempPath = sys_get_temp_dir();
-        } else if ($this->tmbPathWritable) {
-            $tempPath = $this->tmbPath;
         }
+
         if ($tempPath && DIRECTORY_SEPARATOR !== '/') {
             $tempPath = str_replace('/', DIRECTORY_SEPARATOR, $tempPath);
         }
@@ -4536,7 +4537,7 @@ abstract class elFinderVolumeDriver
                     $rootSessCache = true;
                 }
             }
-        } 
+        }
         if ($is_root) {
             if ($ret) {
                 $this->rootModified = false;
@@ -4917,7 +4918,13 @@ abstract class elFinderVolumeDriver
             $pinfo = pathinfo($path);
             $ext = isset($pinfo['extension']) ? strtolower($pinfo['extension']) : '';
         }
-        return ($ext && isset(elFinderVolumeDriver::$mimetypes[$ext])) ? elFinderVolumeDriver::$mimetypes[$ext] : 'unknown';
+        $res = ($ext && isset(elFinderVolumeDriver::$mimetypes[$ext])) ? elFinderVolumeDriver::$mimetypes[$ext] : 'unknown';
+        // Recursive check if MIME type is unknown with multiple extensions
+        if ($res === 'unknown' && strpos($pinfo['filename'], '.')) {
+            return elFinderVolumeDriver::mimetypeInternalDetect($pinfo['filename']);
+        } else {
+            return $res;
+        }
     }
 
     /**
@@ -5321,7 +5328,15 @@ abstract class elFinderVolumeDriver
         $this->rmTmb($stat); // can not do rmTmb() after _move()
         $this->clearcache();
 
-        if ($res = $this->convEncOut($this->_move($this->convEncIn($src), $this->convEncIn($dst), $this->convEncIn($name)))) {
+        $res = $this->convEncOut($this->_move($this->convEncIn($src), $this->convEncIn($dst), $this->convEncIn($name)));
+        // if moving it didn't work try to copy / delete
+        if (!$res) {
+            if ($this->copy($src, $dst, $name)) {
+                $res = $this->remove($src);
+            }
+        }
+
+        if ($res) {
             $this->clearstatcache();
             if ($stat['mime'] === 'directory') {
                 $this->updateSubdirsCache($dst, true);
