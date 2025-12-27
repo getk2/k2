@@ -6,7 +6,7 @@ The latest K2 release is always available from: https://getk2.org/downloads/?f=K
 # Changelog
 
 ### v2.19 - December 27th, 2025
-- Ensure K2 works flawlessly in PHP versions 5.6, 7.4 and 8.x (realistically up to 8.4 as 8.5 is not widely used in production yet).
+- Ensure K2 works flawlessly in PHP versions 5.6, 7.4 and 8.x (realistically up to 8.4 as 8.5 is not widely used in production yet - though these fixes should cover 8.5+ as well).
 - Replaced deprecated code and fixed code that could log warnings.
 
 ### v2.18 - December 26th, 2025
