@@ -55,7 +55,7 @@ defined('_JEXEC') or die;
                                 <tbody>
                                     <tr>
                                         <td><a target="_blank" href="https://github.com/verot/class.upload.php">class.upload.php</a></td>
-                                        <td>0.34dev (modified by JoomlaWorks)</td>
+                                        <td>10/09/2024 (modified by JoomlaWorks)</td>
                                         <td><?php echo JText::_('K2_PHP_LIBRARY'); ?></td>
                                         <td>GNU/GPL v2</td>
                                     </tr>
