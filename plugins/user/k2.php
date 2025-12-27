@@ -60,8 +60,8 @@ class plgUserK2 extends JPlugin
             $row->bind(JRequest::get('post'));
             $row->set('userID', $user['id']);
             $row->set('userName', $user['name']);
-            $row->set('ip', $_SERVER['REMOTE_ADDR']);
-            $row->set('hostname', gethostbyaddr($_SERVER['REMOTE_ADDR']));
+            $row->set('ip', isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '');
+            $row->set('hostname', isset($_SERVER['REMOTE_ADDR']) ? gethostbyaddr($_SERVER['REMOTE_ADDR']) : '');
             if (isset($user['notes'])) {
                 $row->set('notes', $user['notes']);
             }
@@ -177,8 +177,8 @@ class plgUserK2 extends JPlugin
                     $row->set('userName', $user['fullname']);
                     $row->set('group', $params->get('K2UserGroup', 1));
                 }
-                $row->ip = $_SERVER['REMOTE_ADDR'];
-                $row->hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+                $row->ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+                $row->hostname = isset($_SERVER['REMOTE_ADDR']) ? gethostbyaddr($_SERVER['REMOTE_ADDR']) : '';
                 $row->store();
             }
 
@@ -240,7 +240,7 @@ class plgUserK2 extends JPlugin
     public function checkSpammer($user)
     {
         if (!$user['block']) {
-            $ip = $_SERVER['REMOTE_ADDR'];
+            $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1';
             $email = urlencode($user['email']);
             $username = urlencode($user['username']);
             $ch = curl_init();

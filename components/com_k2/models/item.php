@@ -892,7 +892,7 @@ class K2ModelItem extends K2Model
 
         if ($rate >= 1 && $rate <= 5) {
             $db = JFactory::getDbo();
-            $userIP = $_SERVER['REMOTE_ADDR'];
+            $userIP = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '0.0.0.0';
             $query = "SELECT * FROM #__k2_rating WHERE itemID =".(int)$item->id;
             $db->setQuery($query);
             $rating = $db->loadObject();

@@ -70,7 +70,7 @@ class TableK2Tag extends K2Table
             return false;
         }
 
-        if (strlen(utf8_decode($this->name)) < 2) {
+        if (strlen($this->name) < 2) {
             $this->setError(JText::_('K2_TAG_CANNOT_BE_A_SINGLE_CHARACTER'));
             return false;
         }

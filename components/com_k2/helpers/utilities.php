@@ -296,7 +296,7 @@ class K2HelperUtilities
         $params = JComponentHelper::getParams('com_k2');
         $vars = array();
         $vars['secret'] = $params->get('recaptcha_private_key');
-        $vars['response'] = $_POST['g-recaptcha-response'];
+        $vars['response'] = isset($_POST['g-recaptcha-response']) ? $_POST['g-recaptcha-response'] : '';
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://www.google.com/recaptcha/api/siteverify');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
