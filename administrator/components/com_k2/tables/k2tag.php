@@ -19,7 +19,7 @@ class TableK2Tag extends K2Table
     public $description = null;
     public $published = null;
 
-    public function __construct(&$db)
+    public function __construct($db)
     {
         parent::__construct('#__k2_tags', 'id', $db);
     }

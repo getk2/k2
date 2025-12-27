@@ -23,7 +23,7 @@ class TableK2ExtraField extends K2Table
     var $published = null;
     var $ordering = null;
 
-    function __construct(&$db)
+    function __construct($db)
     {
         parent::__construct('#__k2_extra_fields', 'id', $db);
     }

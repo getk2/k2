@@ -237,7 +237,7 @@ class plgUserK2 extends JPlugin
         return $result;
     }
 
-    public function checkSpammer(&$user)
+    public function checkSpammer($user)
     {
         if (!$user['block']) {
             $ip = $_SERVER['REMOTE_ADDR'];

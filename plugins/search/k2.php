@@ -97,13 +97,13 @@ class plgSearchK2 extends JPlugin
                 $query    = "SELECT id FROM #__k2_tags WHERE published = 1 AND LOWER(name) LIKE " . $quoted;
                 $db->setQuery($query);
                 $tagIDs = (K2_JVERSION == '30') ? $db->loadColumn() : $db->loadResultArray();
-                if (count($tagIDs)) {
+                if (is_array($tagIDs) && count($tagIDs)) {
                     sort($tagIDs);
                     $query = "SELECT itemID FROM #__k2_tags_xref WHERE tagID IN (" . implode(',', $tagIDs) . ")";
                     $db->setQuery($query);
                     $itemIDs = (K2_JVERSION == '30') ? $db->loadColumn() : $db->loadResultArray();
                     $itemIDs = array_unique($itemIDs);
-                    if (count($itemIDs)) {
+                    if (is_array($itemIDs) && count($itemIDs)) {
                         sort($itemIDs);
                         // Trim the last closing parenthesis and add OR condition for items with matching tags to close the AND (...) clause
                         $where = substr($where, 0, strlen($where) - 1) . " OR i.id IN (" . implode(',', $itemIDs) . "))";
@@ -179,7 +179,7 @@ class plgSearchK2 extends JPlugin
 
         $results = [];
 
-        if (count($rows)) {
+        if (is_array($rows) && count($rows)) {
             foreach ($rows as $row) {
                 $new_row = [];
                 foreach ($row as $key => $item) {

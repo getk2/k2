@@ -231,7 +231,7 @@ class K2ModelItem extends K2Model
         return $item;
     }
 
-    public function prepareFeedItem(&$item)
+    public function prepareFeedItem($item)
     {
         JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
         $params = K2HelperUtilities::getParams('com_k2');
@@ -1417,7 +1417,7 @@ class K2ModelItem extends K2Model
         return $K2ItemExtraFieldsInstances[$item->id];
     }
 
-    public function buildAliasBasedExtraFields($extraFields, &$item)
+    public function buildAliasBasedExtraFields($extraFields, $item)
     {
         if (is_null($item)) {
             return false;

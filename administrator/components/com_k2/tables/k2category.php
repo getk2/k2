@@ -29,7 +29,7 @@ class TableK2Category extends K2Table
     public $plugins = null;
     public $language = null;
 
-    public function __construct(&$db)
+    public function __construct($db)
     {
         parent::__construct('#__k2_categories', 'id', $db);
     }
@@ -171,13 +171,13 @@ class TableK2Category extends K2Table
 
     public function bind($array, $ignore = '')
     {
-        if (key_exists('params', $array) && is_array($array['params'])) {
+        if (array_key_exists('params', $array) && is_array($array['params'])) {
             $registry = new JRegistry();
             $registry->loadArray($array['params']);
             $array['params'] = $registry->toString();
         }
 
-        if (key_exists('plugins', $array) && is_array($array['plugins'])) {
+        if (array_key_exists('plugins', $array) && is_array($array['plugins'])) {
             $registry = new JRegistry();
             $registry->loadArray($array['plugins']);
             $array['plugins'] = $registry->toString();

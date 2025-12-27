@@ -27,7 +27,7 @@ class TableK2User extends K2Table
     public $hostname = null;
     public $notes = null;
 
-    public function __construct(&$db)
+    public function __construct($db)
     {
         parent::__construct('#__k2_users', 'id', $db);
     }
@@ -42,7 +42,7 @@ class TableK2User extends K2Table
 
     public function bind($array, $ignore = '')
     {
-        if (key_exists('plugins', $array) && is_array($array['plugins'])) {
+        if (array_key_exists('plugins', $array) && is_array($array['plugins'])) {
             $registry = new JRegistry();
             $registry->loadArray($array['plugins']);
             $array['plugins'] = $registry->toString();

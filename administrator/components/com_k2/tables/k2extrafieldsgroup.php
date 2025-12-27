@@ -18,7 +18,7 @@ class TableK2ExtraFieldsGroup extends K2Table
     var $id = null;
     var $name = null;
 
-    function __construct(&$db)
+    function __construct($db)
     {
         parent::__construct('#__k2_extra_fields_groups', 'id', $db);
     }
