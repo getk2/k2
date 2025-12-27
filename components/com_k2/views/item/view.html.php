@@ -517,10 +517,10 @@ class K2ViewItem extends K2View
             $metaDesc = $document->getMetadata('description');
 
             if ($item->metadesc) {
-                $metaDesc = filter_var($item->metadesc, FILTER_SANITIZE_STRING);
+                $metaDesc = htmlspecialchars(strip_tags($item->metadesc), ENT_QUOTES, 'UTF-8');
             } else {
                 $metaDesc = preg_replace("#{(.*?)}(.*?){/(.*?)}#s", '', $itemTextBeforePlugins);
-                $metaDesc = filter_var($metaDesc, FILTER_SANITIZE_STRING);
+                $metaDesc = htmlspecialchars(strip_tags($metaDesc), ENT_QUOTES, 'UTF-8');
             }
 
             if ($menuItemMatch && K2_JVERSION != '15') {
@@ -597,7 +597,7 @@ class K2ViewItem extends K2View
             if ($params->get('facebookMetatags', 1)) {
                 $document->setMetaData('og:url', $item->absoluteURL);
                 $document->setMetaData('og:type', 'article');
-                $document->setMetaData('og:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                $document->setMetaData('og:title', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                 $document->setMetaData('og:description', K2HelperUtilities::characterLimit($metaDesc, 300)); // 300 chars limit for Facebook post sharing
                 $facebookImage = 'image'.$params->get('facebookImage', 'Medium');
                 if ($item->$facebookImage) {
@@ -622,7 +622,7 @@ class K2ViewItem extends K2View
                 if ($params->get('twitterUsername')) {
                     $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
                 }
-                $document->setMetaData('twitter:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                $document->setMetaData('twitter:title', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                 $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($metaDesc, 200)); // 200 chars limit for Twitter post sharing
                 $twitterImage = 'image'.$params->get('twitterImage', 'Medium');
                 if ($item->$twitterImage) {
@@ -636,7 +636,7 @@ class K2ViewItem extends K2View
                     if (JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.$basenameWithNoTimestamp)) {
                         $image = JURI::root().'media/k2/items/cache/'.$basename;
                         $document->setMetaData('twitter:image', $image);
-                        $document->setMetaData('twitter:image:alt', (!empty($item->image_caption)) ? filter_var($item->image_caption, FILTER_SANITIZE_STRING) : filter_var($item->title, FILTER_SANITIZE_STRING));
+                        $document->setMetaData('twitter:image:alt', (!empty($item->image_caption)) ? htmlspecialchars(strip_tags($item->image_caption), ENT_QUOTES, 'UTF-8') : htmlspecialchars(strip_tags($item->title), ENT_QUOTES, 'UTF-8'));
                         if (!$params->get('facebookMetatags')) {
                             $document->setMetaData('image', $image); // Generic meta (if not already set in Facebook meta tags)
                         }

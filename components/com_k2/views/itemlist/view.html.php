@@ -446,7 +446,7 @@ class K2ViewItemlist extends K2View
                         $dateFromRequest = strtotime(JRequest::getInt('year').'-'.JRequest::getInt('month'));
                         $dateFormat = (K2_JVERSION == '15') ? '%B %Y' : 'F Y';
                     }
-                    $title = filter_var(JHTML::_('date', $dateFromRequest, $dateFormat), FILTER_SANITIZE_STRING);
+                    $title = htmlspecialchars(strip_tags(JHTML::_('date', $dateFromRequest, $dateFormat)), ENT_QUOTES, 'UTF-8');
                     $this->assignRef('title', $title);
 
                     // Restore the original timezone
@@ -475,7 +475,7 @@ class K2ViewItemlist extends K2View
                     $limit = $params->get('genericItemCount');
 
                     // Set title
-                    $title = filter_var(JRequest::getVar('searchword'), FILTER_SANITIZE_STRING);
+                    $title = htmlspecialchars(strip_tags(JRequest::getVar('searchword')), ENT_QUOTES, 'UTF-8');
                     $this->assignRef('title', $title);
 
                     // Set search form data
@@ -854,10 +854,10 @@ class K2ViewItemlist extends K2View
                     $metaDesc = $document->getMetadata('description');
 
                     if ($category->metaDescription) {
-                        $metaDesc = filter_var($category->metaDescription, FILTER_SANITIZE_STRING);
+                        $metaDesc = htmlspecialchars(strip_tags($category->metaDescription), ENT_QUOTES, 'UTF-8');
                     } else {
                         $metaDesc = preg_replace("#{(.*?)}(.*?){/(.*?)}#s", '', $category->description);
-                        $metaDesc = filter_var($metaDesc, FILTER_SANITIZE_STRING);
+                        $metaDesc = htmlspecialchars(strip_tags($metaDesc), ENT_QUOTES, 'UTF-8');
                     }
 
                     if ($menuItemMatch && K2_JVERSION != '15') {
@@ -920,7 +920,7 @@ class K2ViewItemlist extends K2View
                     if ($params->get('facebookMetatags', 1)) {
                         $document->setMetaData('og:url', $currentAbsoluteUrl);
                         $document->setMetaData('og:type', 'website');
-                        $document->setMetaData('og:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                        $document->setMetaData('og:title', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                         $document->setMetaData('og:description', K2HelperUtilities::characterLimit($metaDesc, 300)); // 300 chars limit for Facebook post sharing
                         if ($metaImage) {
                             $document->setMetaData('og:image', $metaImage);
@@ -934,11 +934,11 @@ class K2ViewItemlist extends K2View
                         if ($params->get('twitterUsername')) {
                             $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
                         }
-                        $document->setMetaData('twitter:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                        $document->setMetaData('twitter:title', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                         $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($metaDesc, 200)); // 200 chars limit for Twitter post sharing
                         if ($metaImage) {
                             $document->setMetaData('twitter:image', $metaImage);
-                            $document->setMetaData('twitter:image:alt', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                            $document->setMetaData('twitter:image:alt', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                             if (!$params->get('facebookMetatags')) {
                                 $document->setMetaData('image', $metaImage); // Generic meta (if not already set in Facebook meta tags)
                             }
@@ -1033,7 +1033,7 @@ class K2ViewItemlist extends K2View
                     if ($params->get('facebookMetatags', 1)) {
                         $document->setMetaData('og:url', $currentAbsoluteUrl);
                         $document->setMetaData('og:type', 'website');
-                        $document->setMetaData('og:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                        $document->setMetaData('og:title', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                         $document->setMetaData('og:description', K2HelperUtilities::characterLimit($metaDesc, 300)); // 300 chars limit for Facebook post sharing
                     }
 
@@ -1043,7 +1043,7 @@ class K2ViewItemlist extends K2View
                         if ($params->get('twitterUsername')) {
                             $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
                         }
-                        $document->setMetaData('twitter:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                        $document->setMetaData('twitter:title', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                         $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($metaDesc, 200)); // 200 chars limit for Twitter post sharing
                     }
 
@@ -1051,7 +1051,7 @@ class K2ViewItemlist extends K2View
                 case 'user':
                     $menuItemMatch = $this->menuItemMatchesK2Entity('itemlist', 'user', $userObject->name);
 
-                    $filteredUserName = filter_var($userObject->name, FILTER_SANITIZE_STRING);
+                    $filteredUserName = htmlspecialchars(strip_tags($userObject->name), ENT_QUOTES, 'UTF-8');
 
                     // Set canonical link
                     $this->setCanonicalUrl($link);
@@ -1095,7 +1095,7 @@ class K2ViewItemlist extends K2View
                     }
 
                     if (!empty($userObject->profile->description)) {
-                        $metaDesc = filter_var($userObject->profile->description, FILTER_SANITIZE_STRING);
+                        $metaDesc = htmlspecialchars(strip_tags($userObject->profile->description), ENT_QUOTES, 'UTF-8');
                     }
 
                     if ($menuItemMatch && K2_JVERSION != '15') {
@@ -1149,7 +1149,7 @@ class K2ViewItemlist extends K2View
                     if ($params->get('facebookMetatags', 1)) {
                         $document->setMetaData('og:url', $link);
                         $document->setMetaData('og:type', 'website');
-                        $document->setMetaData('og:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                        $document->setMetaData('og:title', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                         $document->setMetaData('og:description', K2HelperUtilities::characterLimit($metaDesc, 300)); // 300 chars limit for Facebook post sharing
                         if ($metaImage) {
                             $document->setMetaData('og:image', $metaImage);
@@ -1163,11 +1163,11 @@ class K2ViewItemlist extends K2View
                         if ($params->get('twitterUsername')) {
                             $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
                         }
-                        $document->setMetaData('twitter:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                        $document->setMetaData('twitter:title', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                         $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($metaDesc, 200)); // 200 chars limit for Twitter post sharing
                         if ($metaImage) {
                             $document->setMetaData('twitter:image', $metaImage);
-                            $document->setMetaData('twitter:image:alt', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                            $document->setMetaData('twitter:image:alt', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                             if (!$params->get('facebookMetatags')) {
                                 $document->setMetaData('image', $metaImage); // Generic meta (if not already set in Facebook meta tags)
                             }
@@ -1212,7 +1212,7 @@ class K2ViewItemlist extends K2View
                     if ($params->get('facebookMetatags', 1)) {
                         $document->setMetaData('og:url', $currentAbsoluteUrl);
                         $document->setMetaData('og:type', 'website');
-                        $document->setMetaData('og:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                        $document->setMetaData('og:title', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                         $document->setMetaData('og:description', K2HelperUtilities::characterLimit($metaDesc, 300)); // 300 chars limit for Facebook post sharing
                     }
 
@@ -1222,7 +1222,7 @@ class K2ViewItemlist extends K2View
                         if ($params->get('twitterUsername')) {
                             $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
                         }
-                        $document->setMetaData('twitter:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                        $document->setMetaData('twitter:title', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                         $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($metaDesc, 200)); // 200 chars limit for Twitter post sharing
                     }
 
@@ -1264,7 +1264,7 @@ class K2ViewItemlist extends K2View
                     if ($params->get('facebookMetatags', 1)) {
                         $document->setMetaData('og:url', $currentAbsoluteUrl);
                         $document->setMetaData('og:type', 'website');
-                        $document->setMetaData('og:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                        $document->setMetaData('og:title', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                         $document->setMetaData('og:description', K2HelperUtilities::characterLimit($metaDesc, 300)); // 300 chars limit for Facebook post sharing
                     }
 
@@ -1274,7 +1274,7 @@ class K2ViewItemlist extends K2View
                         if ($params->get('twitterUsername')) {
                             $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
                         }
-                        $document->setMetaData('twitter:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                        $document->setMetaData('twitter:title', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                         $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($metaDesc, 200)); // 200 chars limit for Twitter post sharing
                     }
 
@@ -1339,7 +1339,7 @@ class K2ViewItemlist extends K2View
                     if ($params->get('facebookMetatags', 1)) {
                         $document->setMetaData('og:url', $currentAbsoluteUrl);
                         $document->setMetaData('og:type', 'website');
-                        $document->setMetaData('og:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                        $document->setMetaData('og:title', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                         $document->setMetaData('og:description', K2HelperUtilities::characterLimit($metaDesc, 300)); // 300 chars limit for Facebook post sharing
                     }
 
@@ -1349,7 +1349,7 @@ class K2ViewItemlist extends K2View
                         if ($params->get('twitterUsername')) {
                             $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
                         }
-                        $document->setMetaData('twitter:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                        $document->setMetaData('twitter:title', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                         $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($metaDesc, 200)); // 200 chars limit for Twitter post sharing
                     }
                     break;

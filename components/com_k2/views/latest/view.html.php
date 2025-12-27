@@ -262,7 +262,7 @@ class K2ViewLatest extends K2View
             if ($params->get('facebookMetatags', 1)) {
                 $document->setMetaData('og:url', $currentAbsoluteUrl);
                 $document->setMetaData('og:type', 'website');
-                $document->setMetaData('og:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                $document->setMetaData('og:title', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                 $document->setMetaData('og:description', K2HelperUtilities::characterLimit($metaDesc, 300)); // 300 chars limit for Facebook post sharing
             }
 
@@ -272,7 +272,7 @@ class K2ViewLatest extends K2View
                 if ($params->get('twitterUsername')) {
                     $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
                 }
-                $document->setMetaData('twitter:title', filter_var($metaTitle, FILTER_SANITIZE_STRING));
+                $document->setMetaData('twitter:title', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                 $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($metaDesc, 200)); // 200 chars limit for Twitter post sharing
             }
         }
