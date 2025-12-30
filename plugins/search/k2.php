@@ -79,6 +79,7 @@ class plgSearchK2 extends JPlugin
 
             $where .= K2GlobalHelper::search($search, [
                 'i.title',
+                'i.alias',
                 'i.introtext',
                 'i.`fulltext`',
                 'i.extra_fields_search',
@@ -112,6 +113,7 @@ class plgSearchK2 extends JPlugin
             }
 
             $query = "SELECT i.title AS title,
+                    i.alias,
                     i.metadesc,
                     i.metakey,
                     c.name as section,

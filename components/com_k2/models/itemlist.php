@@ -789,6 +789,7 @@ class K2ModelItemlist extends K2Model
 
             $sql .= K2GlobalHelper::search($search, [
                 'i.title',
+                'i.alias',
                 'i.introtext',
                 'i.`fulltext`',
                 'i.extra_fields_search',

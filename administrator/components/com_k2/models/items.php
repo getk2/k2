@@ -72,6 +72,7 @@ class K2ModelItems extends K2Model
             if ($params->get('adminSearch') == 'full') {
                 $query .= K2GlobalHelper::search($search, [
                     'i.title',
+                    'i.alias',
                     'i.introtext',
                     'i.`fulltext`',
                     'i.extra_fields_search',
@@ -85,6 +86,7 @@ class K2ModelItems extends K2Model
             } else {
                 $query .= K2GlobalHelper::search($search, [
                     'i.title',
+                    'i.alias',
                 ]);
             }
         }

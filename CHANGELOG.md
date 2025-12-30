@@ -5,6 +5,9 @@ The latest K2 release is always available from: https://getk2.org/downloads/?f=K
 
 # Changelog
 
+### v2.20 - December 30th, 2025
+- K2 search has been extended to the "alias" field in items and categories and the "username" field for users. This is especially helpful when redirecting old URLs (e.g. after a site/CMS migration) where some cannot be matched to new URLs and redirecting immediately to the K2 search is a valid option.
+
 ### v2.19 - December 27th, 2025
 - Ensure K2 works flawlessly in PHP versions 5.6, 7.4 and 8.x (realistically up to 8.4 as 8.5 is not widely used in production yet - though these fixes should cover 8.5+ as well).
 - Replaced deprecated code and fixed code that could log warnings.

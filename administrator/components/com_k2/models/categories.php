@@ -69,11 +69,13 @@ class K2ModelCategories extends K2Model
             if ($params->get('adminSearch') == 'full') {
                 $query .= K2GlobalHelper::search($search, [
                     'c.name',
+                    'c.alias',
                     'c.description',
                 ]);
             } else {
                 $query .= K2GlobalHelper::search($search, [
                     'c.name',
+                    'c.alias',
                 ]);
             }
         }

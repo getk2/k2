@@ -76,6 +76,7 @@ class K2ModelUsers extends K2Model
         if ($search) {
             $query .= K2GlobalHelper::search($search, [
                 'juser.name',
+                'juser.username',
                 'juser.email',
             ]);
         }
@@ -126,13 +127,17 @@ class K2ModelUsers extends K2Model
 
         $search = $app->getUserStateFromRequest($option . $view . 'search', 'search', '', 'string');
 
-        $query = "SELECT COUNT(DISTINCT juser.id) FROM #__users as juser " . "LEFT JOIN #__k2_users as k2user ON juser.id=k2user.userID " . "LEFT JOIN #__k2_user_groups as k2group ON k2user.group=k2group.id ";
+        $query = "SELECT COUNT(DISTINCT juser.id)
+            FROM #__users as juser
+            LEFT JOIN #__k2_users as k2user ON juser.id=k2user.userID
+            LEFT JOIN #__k2_user_groups as k2group ON k2user.group=k2group.id
+        ";
 
         if (K2_JVERSION != '15' && $filter_group) {
             $query .= " LEFT JOIN #__user_usergroup_map as `map` ON juser.id=map.user_id ";
         }
 
-        $query .= " WHERE juser.id>0";
+        $query .= " WHERE juser.id > 0";
 
         if ($filter_status > -1) {
             $query .= " AND juser.block = {$filter_status}";
@@ -165,6 +170,7 @@ class K2ModelUsers extends K2Model
         if ($search) {
             $query .= K2GlobalHelper::search($search, [
                 'juser.name',
+                'juser.username',
                 'juser.email',
             ]);
         }
