@@ -5,6 +5,9 @@ The latest K2 release is always available from: https://getk2.org/downloads/?f=K
 
 # Changelog
 
+### v2.21 - January 9th, 2026
+- Fixed variable typo in the K2 Search plugin which caused search results from the "Search" component in the frontend (not K2's direct search though) to essentially return all K2 items.
+
 ### v2.20 - December 30th, 2025
 - K2 search has been extended to the "alias" field in items and categories and the "username" field for users. This is especially helpful when redirecting old URLs (e.g. after a site/CMS migration) where some cannot be matched to new URLs and redirecting immediately to the K2 search is a valid option.
 

@@ -77,7 +77,7 @@ class plgSearchK2 extends JPlugin
                 return [];
             }
 
-            $where .= K2GlobalHelper::search($search, [
+            $where .= K2GlobalHelper::search($searchText, [
                 'i.title',
                 'i.alias',
                 'i.introtext',
