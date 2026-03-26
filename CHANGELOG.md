@@ -5,6 +5,9 @@ The latest K2 release is always available from: https://getk2.org/downloads/?f=K
 
 # Changelog
 
+### v2.22 - March 26th, 2026
+- Added sorting for the user (author) view in K2's Settings.
+
 ### v2.21 - January 9th, 2026
 - Fixed variable typo in the K2 Search plugin which caused search results from the "Search" component in the frontend (not K2's direct search though) to essentially return all K2 items.
 
