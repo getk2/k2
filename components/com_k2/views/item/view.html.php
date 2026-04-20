@@ -256,6 +256,9 @@ class K2ViewItem extends K2View
                     jimport('joomla.html.pagination');
                     $total = $item->numOfComments;
                     $pagination = new JPagination($total, $limitstart, $limit);
+                    if (method_exists($pagination, 'setAdditionalUrlParam')) {
+                        $pagination->setAdditionalUrlParam('id', JRequest::getVar('id'));
+                    }
                 }
             }
         }
@@ -306,7 +309,7 @@ class K2ViewItem extends K2View
                 $imageTimestamp = '';
                 $dateModified = ((int) $previousItem->modified) ? $previousItem->modified : '';
                 if ($params->get('imageTimestamp', 1) && $dateModified) {
-                    $imageTimestamp = '?t='.strftime("%Y%m%d_%H%M%S", strtotime($dateModified));
+                    $imageTimestamp = '?t='.date('Ymd_His', strtotime($dateModified));
                 }
 
                 $imageFilenamePrefix = md5("Image".$previousItem->id);
@@ -347,7 +350,7 @@ class K2ViewItem extends K2View
                 $imageTimestamp = '';
                 $dateModified = ((int) $nextItem->modified) ? $nextItem->modified : '';
                 if ($params->get('imageTimestamp', 1) && $dateModified) {
-                    $imageTimestamp = '?t='.strftime("%Y%m%d_%H%M%S", strtotime($dateModified));
+                    $imageTimestamp = '?t='.date('Ymd_His', strtotime($dateModified));
                 }
 
                 $imageFilenamePrefix = md5("Image".$nextItem->id);
@@ -454,7 +457,7 @@ class K2ViewItem extends K2View
         JResponse::allowCache(true);
 
         $itemCreatedOrModifiedDate = ((int) $item->modified) ? $item->modified : $item->created;
-        $itemCreatedOrModifiedDate = strftime("%a, %d %b %Y %H:%M:%S GMT", strtotime($itemCreatedOrModifiedDate));
+        $itemCreatedOrModifiedDate = gmdate('D, d M Y H:i:s', strtotime($itemCreatedOrModifiedDate)).' GMT';
 
         // Last-Modified HTTP header
         JResponse::setHeader('Last-Modified', $itemCreatedOrModifiedDate);

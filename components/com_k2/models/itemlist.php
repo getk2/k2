@@ -557,7 +557,7 @@ class K2ModelItemlist extends K2Model
             $imageTimestamp = '';
             $dateModified   = ((int) $item->modified) ? $item->modified : '';
             if ($params->get('imageTimestamp', 1) && $dateModified) {
-                $imageTimestamp = '?t=' . strftime("%Y%m%d_%H%M%S", strtotime($dateModified));
+                $imageTimestamp = '?t=' . date('Ymd_His', strtotime($dateModified));
             }
 
             $imageFilenamePrefix = md5("Image" . $item->id);

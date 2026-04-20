@@ -599,6 +599,38 @@ class K2ViewItemlist extends K2View
             jimport('joomla.html.pagination');
             $total = (count($items)) ? $itemlistModel->getTotal() : 0;
             $pagination = new JPagination($total, $limitstart, $limit);
+            if (method_exists($pagination, 'setAdditionalUrlParam')) {
+                switch ($task) {
+                    case 'category':
+                        // 'task' is not in Joomla's default whitelist - must be set explicitly
+                        $pagination->setAdditionalUrlParam('task', 'category');
+                        // Override 'id': default filter is INT which strips K2's {id}:{alias} format
+                        $pagination->setAdditionalUrlParam('id', JRequest::getVar('id'));
+                        break;
+                    case 'tag':
+                        $pagination->setAdditionalUrlParam('task', 'tag');
+                        $pagination->setAdditionalUrlParam('tag', $tag->name);
+                        break;
+                    case 'user':
+                        $pagination->setAdditionalUrlParam('task', 'user');
+                        // Override 'id': default filter is INT, which is fine for user IDs but
+                        // we set it explicitly here for consistency and forward-compatibility
+                        $pagination->setAdditionalUrlParam('id', JRequest::getInt('id'));
+                        break;
+                    case 'date':
+                        $pagination->setAdditionalUrlParam('task', 'date');
+                        $pagination->setAdditionalUrlParam('year', JRequest::getInt('year'));
+                        $pagination->setAdditionalUrlParam('month', JRequest::getInt('month'));
+                        if (JRequest::getInt('day')) {
+                            $pagination->setAdditionalUrlParam('day', JRequest::getInt('day'));
+                        }
+                        break;
+                    case 'search':
+                        $pagination->setAdditionalUrlParam('task', 'search');
+                        $pagination->setAdditionalUrlParam('searchword', JRequest::getVar('searchword'));
+                        break;
+                }
+            }
         }
 
         $rowsForJSON = array();
