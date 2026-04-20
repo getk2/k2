@@ -256,7 +256,7 @@ class K2ViewItem extends K2View
                     jimport('joomla.html.pagination');
                     $total = $item->numOfComments;
                     $pagination = new JPagination($total, $limitstart, $limit);
-                    if (method_exists($pagination, 'setAdditionalUrlParam')) {
+                    if (version_compare(JVERSION, '3.10.12', '>') && method_exists($pagination, 'setAdditionalUrlParam')) {
                         $pagination->setAdditionalUrlParam('id', JRequest::getVar('id'));
                     }
                 }

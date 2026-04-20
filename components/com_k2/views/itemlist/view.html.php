@@ -599,7 +599,7 @@ class K2ViewItemlist extends K2View
             jimport('joomla.html.pagination');
             $total      = (count($items)) ? $itemlistModel->getTotal() : 0;
             $pagination = new JPagination($total, $limitstart, $limit);
-            if (method_exists($pagination, 'setAdditionalUrlParam')) {
+            if (version_compare(JVERSION, '3.10.12', '>') && method_exists($pagination, 'setAdditionalUrlParam')) {
                 // Note on overriding 'id': Joomla's default INT filter strips K2's {id}:{alias} format
                 switch ($task) {
                     case 'category':
