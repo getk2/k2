@@ -16,32 +16,32 @@ class K2ViewItemlist extends K2View
 {
     public function display($tpl = null)
     {
-        $app = JFactory::getApplication();
-        $document = JFactory::getDocument();
-        $db = JFactory::getDbo();
-        $config = JFactory::getConfig();
-        $user = JFactory::getUser();
-        $view = JRequest::getCmd('view');
-        $task = JRequest::getCmd('task');
+        $app        = JFactory::getApplication();
+        $document   = JFactory::getDocument();
+        $db         = JFactory::getDbo();
+        $config     = JFactory::getConfig();
+        $user       = JFactory::getUser();
+        $view       = JRequest::getCmd('view');
+        $task       = JRequest::getCmd('task');
         $limitstart = JRequest::getInt('limitstart', 0);
-        $limit = JRequest::getInt('limit', 10);
-        $moduleID = JRequest::getInt('moduleID');
+        $limit      = JRequest::getInt('limit', 10);
+        $moduleID   = JRequest::getInt('moduleID');
 
         $params = K2HelperUtilities::getParams('com_k2');
-        $cache = JFactory::getCache('com_k2_extended');
-        JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
+        $cache  = JFactory::getCache('com_k2_extended');
+        JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR . '/tables');
 
         $itemlistModel = $this->getModel('itemlist');
-        $itemModel = $this->getModel('item');
+        $itemModel     = $this->getModel('item');
 
         // Menu
-        $menu = $app->getMenu();
+        $menu        = $app->getMenu();
         $menuDefault = $menu->getDefault();
-        $menuActive = $menu->getActive();
+        $menuActive  = $menu->getActive();
 
         // Important URLs
         $currentAbsoluteUrl = JUri::getInstance()->toString();
-        $currentRelativeUrl = JUri::root(true).str_replace(substr(JUri::root(), 0, -1), '', $currentAbsoluteUrl);
+        $currentRelativeUrl = JUri::root(true) . str_replace(substr(JUri::root(), 0, -1), '', $currentAbsoluteUrl);
         /*
         $currentMenuItemUrl = '';
         if (!is_null($menuActive) && isset($menuActive->link)) {
@@ -55,7 +55,7 @@ class K2ViewItemlist extends K2View
 
         // Dates
         $date = JFactory::getDate();
-        $now = (K2_JVERSION == '15') ? $date->toMySQL() : $date->toSql();
+        $now  = (K2_JVERSION == '15') ? $date->toMySQL() : $date->toSql();
         $this->assignRef('now', $now);
 
         $nullDate = $db->getNullDate();
@@ -70,8 +70,8 @@ class K2ViewItemlist extends K2View
         if ($document->getType() == 'feed') {
             if ($moduleID) {
                 $result = $itemlistModel->getModuleItems($moduleID);
-                $title = $result->title;
-                $items = $result->items;
+                $title  = $result->title;
+                $items  = $result->items;
             }
         }
         // --- Feed Output [finish] ---
@@ -84,24 +84,24 @@ class K2ViewItemlist extends K2View
         }
         if ($document->getType() == 'json') {
             // Prepare JSON output
-            $uri = JURI::getInstance();
-            $response = new stdClass();
-            $response->site = new stdClass();
-            $response->site->url = $uri->toString(array('scheme', 'host', 'port'));
+            $uri                  = JURI::getInstance();
+            $response             = new stdClass();
+            $response->site       = new stdClass();
+            $response->site->url  = $uri->toString(['scheme', 'host', 'port']);
             $response->site->name = (K2_JVERSION == '30') ? $config->get('sitename') : $config->getValue('config.sitename');
 
             // Handle K2 Content (module)
             if ($moduleID) {
                 $result = $itemlistModel->getModuleItems($moduleID);
-                $items = $result->items;
-                $title = $result->title;
+                $items  = $result->items;
+                $title  = $result->title;
                 $prefix = 'cat';
             }
         }
         // --- JSON Output [finish] ---
 
         // Get data based on task
-        if (!$moduleID) {
+        if (! $moduleID) {
             switch ($task) {
                 case 'category':
                     // Get category
@@ -111,16 +111,16 @@ class K2ViewItemlist extends K2View
                     $category->load($id);
 
                     // State check
-                    if (!$category->published || $category->trash) {
+                    if (! $category->published || $category->trash) {
                         JError::raiseError(404, JText::_('K2_CATEGORY_NOT_FOUND'));
                     }
 
                     // Access check
                     if (K2_JVERSION != '15') {
-                        if (!in_array($category->access, $user->getAuthorisedViewLevels())) {
+                        if (! in_array($category->access, $user->getAuthorisedViewLevels())) {
                             if ($user->guest) {
                                 $uri = JFactory::getURI();
-                                $url = 'index.php?option=com_users&view=login&return='.base64_encode($uri->toString());
+                                $url = 'index.php?option=com_users&view=login&return=' . base64_encode($uri->toString());
                                 $app->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
                                 $app->redirect(JRoute::_($url, false));
                             } else {
@@ -129,7 +129,7 @@ class K2ViewItemlist extends K2View
                             }
                         }
                         $languageFilter = $app->getLanguageFilter();
-                        $languageTag = JFactory::getLanguage()->getTag();
+                        $languageTag    = JFactory::getLanguage()->getTag();
                         if ($languageFilter && $category->language != $languageTag && $category->language != '*') { // Test logic
                             return;
                         }
@@ -137,7 +137,7 @@ class K2ViewItemlist extends K2View
                         if ($category->access > $user->get('aid', 0)) {
                             if ($user->guest) {
                                 $uri = JFactory::getURI();
-                                $url = 'index.php?option=com_user&view=login&return='.base64_encode($uri->toString());
+                                $url = 'index.php?option=com_user&view=login&return=' . base64_encode($uri->toString());
                                 $app->enqueueMessage(JText::_('K2_YOU_NEED_TO_LOGIN_FIRST'), 'notice');
                                 $app->redirect(JRoute::_($url, false));
                             } else {
@@ -155,9 +155,9 @@ class K2ViewItemlist extends K2View
 
                     // Get the meta information before merging params since we do not want them to be inherited
                     $category->metaDescription = $cparams->get('catMetaDesc');
-                    $category->metaKeywords = $cparams->get('catMetaKey');
-                    $category->metaRobots = $cparams->get('catMetaRobots');
-                    $category->metaAuthor = $cparams->get('catMetaAuthor');
+                    $category->metaKeywords    = $cparams->get('catMetaKey');
+                    $category->metaRobots      = $cparams->get('catMetaRobots');
+                    $category->metaAuthor      = $cparams->get('catMetaAuthor');
 
                     if ($cparams->get('inheritFrom')) {
                         $masterCategory = JTable::getInstance('K2Category', 'Table');
@@ -172,7 +172,7 @@ class K2ViewItemlist extends K2View
                     }
 
                     // Category link
-                    $category->link = urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($category->id.':'.urlencode($category->alias))));
+                    $category->link = urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($category->id . ':' . urlencode($category->alias))));
 
                     // Category image
                     $category->image = K2HelperUtilities::getCategoryImage($category->image, $params);
@@ -180,18 +180,18 @@ class K2ViewItemlist extends K2View
                     // Category plugins
                     $category->text = $category->description;
                     if (K2_JVERSION != '15') {
-                        $dispatcher->trigger('onContentPrepare', array(
+                        $dispatcher->trigger('onContentPrepare', [
                             'com_k2.category',
                             &$category,
                             &$params,
-                            $limitstart
-                        ));
+                            $limitstart,
+                        ]);
                     } else {
-                        $dispatcher->trigger('onPrepareContent', array(
+                        $dispatcher->trigger('onPrepareContent', [
                             &$category,
                             &$params,
-                            $limitstart
-                        ));
+                            $limitstart,
+                        ]);
                     }
                     $category->description = $category->text;
 
@@ -199,36 +199,36 @@ class K2ViewItemlist extends K2View
                     $category->event = new stdClass();
 
                     $category->event->K2CategoryDisplay = '';
-                    $results = $dispatcher->trigger('onK2CategoryDisplay', array(
+                    $results                            = $dispatcher->trigger('onK2CategoryDisplay', [
                         &$category,
                         &$params,
-                        $limitstart
-                    ));
+                        $limitstart,
+                    ]);
 
                     $category->event->K2CategoryDisplay = trim(implode("\n", $results));
-                    $category->text = $category->description;
-                    $dispatcher->trigger('onK2PrepareContent', array(
+                    $category->text                     = $category->description;
+                    $dispatcher->trigger('onK2PrepareContent', [
                         &$category,
                         &$params,
-                        $limitstart
-                    ));
+                        $limitstart,
+                    ]);
                     $category->description = $category->text;
 
                     $this->assignRef('category', $category);
                     $this->assignRef('user', $user);
 
                     // Category children
-                    $subCategories = array();
-                    $ordering = $params->get('subCatOrdering');
-                    $children = $itemlistModel->getCategoryFirstChildren($id, $ordering);
+                    $subCategories = [];
+                    $ordering      = $params->get('subCatOrdering');
+                    $children      = $itemlistModel->getCategoryFirstChildren($id, $ordering);
                     if (count($children)) {
                         foreach ($children as $child) {
                             if ($params->get('subCatTitleItemCounter')) {
                                 $child->numOfItems = $itemlistModel->countCategoryItems($child->id);
                             }
-                            $child->image = K2HelperUtilities::getCategoryImage($child->image, $params);
-                            $child->name = htmlspecialchars($child->name, ENT_QUOTES, 'utf-8');
-                            $child->link = urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($child->id.':'.urlencode($child->alias))));
+                            $child->image    = K2HelperUtilities::getCategoryImage($child->image, $params);
+                            $child->name     = htmlspecialchars($child->name, ENT_QUOTES, 'utf-8');
+                            $child->link     = urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($child->id . ':' . urlencode($child->alias))));
                             $subCategories[] = $child;
                         }
                         $this->assignRef('subCategories', $subCategories);
@@ -251,7 +251,7 @@ class K2ViewItemlist extends K2View
                     }
 
                     // Set title
-                    $title = $category->name;
+                    $title          = $category->name;
                     $category->name = htmlspecialchars($category->name, ENT_QUOTES, 'utf-8'); // Check this
 
                     // Set head feed link
@@ -263,18 +263,18 @@ class K2ViewItemlist extends K2View
                         $prefix = 'cat';
 
                         // Prepare the JSON category object
-                        $row = new stdClass();
-                        $row->id = $category->id;
-                        $row->alias = $category->alias;
-                        $row->link = $category->link;
-                        $row->name = $category->name;
-                        $row->description = $category->description;
-                        $row->image = $category->image;
+                        $row                   = new stdClass();
+                        $row->id               = $category->id;
+                        $row->alias            = $category->alias;
+                        $row->link             = $category->link;
+                        $row->name             = $category->name;
+                        $row->description      = $category->description;
+                        $row->image            = $category->image;
                         $row->extraFieldsGroup = $category->extraFieldsGroup;
-                        $row->ordering = $category->ordering;
-                        $row->parent = $category->parent;
-                        $row->children = $subCategories;
-                        $row->events = $category->event;
+                        $row->ordering         = $category->ordering;
+                        $row->parent           = $category->parent;
+                        $row->children         = $subCategories;
+                        $row->events           = $category->event;
 
                         $response->category = $row;
                     }
@@ -284,22 +284,22 @@ class K2ViewItemlist extends K2View
                 case 'tag':
                     // Prevent spammers from using the tag view
                     $tag = JRequest::getString('tag');
-                    $db->setQuery('SELECT id, name, description FROM #__k2_tags WHERE name = '.$db->quote($tag));
+                    $db->setQuery('SELECT id, name, description FROM #__k2_tags WHERE name = ' . $db->quote($tag));
                     $tag = $db->loadObject();
-                    if (!$tag || !$tag->id) {
+                    if (! $tag || ! $tag->id) {
                         jimport('joomla.filesystem.file');
 
-                        if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_joomfish/joomfish.php')) {
-                            $db->setQuery('SELECT id, value FROM #__jf_content WHERE value = '.$db->quote($tag));
+                        if (JFile::exists(JPATH_ADMINISTRATOR . '/components/com_joomfish/joomfish.php')) {
+                            $db->setQuery('SELECT id, value FROM #__jf_content WHERE value = ' . $db->quote($tag));
                             $tag = $db->loadObject();
                         }
 
-                        if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_falang/falang.php')) {
-                            $db->setQuery('SELECT id, value FROM #__falang_content WHERE value = '.$db->quote($tag));
+                        if (JFile::exists(JPATH_ADMINISTRATOR . '/components/com_falang/falang.php')) {
+                            $db->setQuery('SELECT id, value FROM #__falang_content WHERE value = ' . $db->quote($tag));
                             $tag = $db->loadObject();
                         }
 
-                        if (!$tag || !$tag->id) {
+                        if (! $tag || ! $tag->id) {
                             if ($document->getType() == 'feed' || $document->getType() == 'json') {
                                 $app->redirect(JUri::root());
                             } else {
@@ -320,9 +320,9 @@ class K2ViewItemlist extends K2View
 
                     // Set title
                     $this->assignRef('name', $tag->name);
-                    $title = $tag->name;
+                    $title      = $tag->name;
                     $page_title = $params->get('page_title');
-                    if ($this->menuItemMatchesK2Entity('itemlist', 'tag', $tag->name) && !empty($page_title)) {
+                    if ($this->menuItemMatchesK2Entity('itemlist', 'tag', $tag->name) && ! empty($page_title)) {
                         $title = $params->get('page_title');
                     }
                     $this->assignRef('title', $title);
@@ -351,7 +351,7 @@ class K2ViewItemlist extends K2View
                     break;
                 case 'user':
                     // Get user
-                    $id = JRequest::getInt('id');
+                    $id         = JRequest::getInt('id');
                     $userObject = JFactory::getUser($id);
 
                     // Check user status
@@ -370,13 +370,13 @@ class K2ViewItemlist extends K2View
 
                     $userObject->event->K2UserDisplay = '';
                     if (is_object($userObject->profile) && $userObject->profile->id > 0) {
-                        $results = $dispatcher->trigger('onK2UserDisplay', array(
+                        $results = $dispatcher->trigger('onK2UserDisplay', [
                             &$userObject->profile,
                             &$params,
-                            $limitstart
-                        ));
+                            $limitstart,
+                        ]);
                         $userObject->event->K2UserDisplay = trim(implode("\n", $results));
-                        $userObject->profile->url = htmlspecialchars($userObject->profile->url, ENT_QUOTES, 'utf-8');
+                        $userObject->profile->url         = htmlspecialchars($userObject->profile->url, ENT_QUOTES, 'utf-8');
                     }
                     $this->assignRef('user', $userObject);
 
@@ -406,9 +406,9 @@ class K2ViewItemlist extends K2View
                         $prefix = 'user';
 
                         // Prepare the JSON user object
-                        $row = new stdClass();
-                        $row->name = $userObject->name;
-                        $row->avatar = $userObject->avatar;
+                        $row          = new stdClass();
+                        $row->name    = $userObject->name;
+                        $row->avatar  = $userObject->avatar;
                         $row->profile = $userObject->profile;
                         if (isset($userObject->profile->plugins)) {
                             unset($userObject->profile->plugins);
@@ -440,11 +440,11 @@ class K2ViewItemlist extends K2View
 
                     // Set title
                     if (JRequest::getInt('day')) {
-                        $dateFromRequest = strtotime(JRequest::getInt('year').'-'.JRequest::getInt('month').'-'.JRequest::getInt('day'));
-                        $dateFormat = (K2_JVERSION == '15') ? '%A, %d %B %Y' : 'l, d F Y';
+                        $dateFromRequest = strtotime(JRequest::getInt('year') . '-' . JRequest::getInt('month') . '-' . JRequest::getInt('day'));
+                        $dateFormat      = (K2_JVERSION == '15') ? '%A, %d %B %Y' : 'l, d F Y';
                     } else {
-                        $dateFromRequest = strtotime(JRequest::getInt('year').'-'.JRequest::getInt('month'));
-                        $dateFormat = (K2_JVERSION == '15') ? '%B %Y' : 'F Y';
+                        $dateFromRequest = strtotime(JRequest::getInt('year') . '-' . JRequest::getInt('month'));
+                        $dateFormat      = (K2_JVERSION == '15') ? '%B %Y' : 'F Y';
                     }
                     $title = htmlspecialchars(strip_tags(JHTML::_('date', $dateFromRequest, $dateFormat)), ENT_QUOTES, 'UTF-8');
                     $this->assignRef('title', $title);
@@ -479,11 +479,11 @@ class K2ViewItemlist extends K2View
                     $this->assignRef('title', $title);
 
                     // Set search form data
-                    $form = new stdClass();
-                    $form->action = JRoute::_(K2HelperRoute::getSearchRoute());
-                    $form->input = ($title) ? $title : JText::_('K2_SEARCH');
+                    $form             = new stdClass();
+                    $form->action     = JRoute::_(K2HelperRoute::getSearchRoute());
+                    $form->input      = ($title) ? $title : JText::_('K2_SEARCH');
                     $form->attributes = '';
-                    if (!$app->getCfg('sef')) {
+                    if (! $app->getCfg('sef')) {
                         $form->attributes .= '
                             <input type="hidden" name="option" value="com_k2" />
                             <input type="hidden" name="view" value="itemlist" />
@@ -492,7 +492,7 @@ class K2ViewItemlist extends K2View
                     }
                     if ($params->get('searchMenuItemId', '')) {
                         $form->attributes .= '
-                            <input type="hidden" name="Itemid" value="'.$params->get('searchMenuItemId', '').'" />
+                            <input type="hidden" name="Itemid" value="' . $params->get('searchMenuItemId', '') . '" />
                         ';
                     }
 
@@ -550,7 +550,7 @@ class K2ViewItemlist extends K2View
             // --- Feed Output [finish] ---
 
             // Set a default limit (for the model) if none is found
-            if (!$limit) {
+            if (! $limit) {
                 $limit = 10;
             }
             // Allow Feed & JSON outputs to request more items that the preset limit
@@ -572,7 +572,7 @@ class K2ViewItemlist extends K2View
             }
 
             // Get items
-            if (!isset($ordering)) {
+            if (! isset($ordering)) {
                 $items = $itemlistModel->getData();
             } else {
                 $items = $itemlistModel->getData($ordering);
@@ -597,21 +597,21 @@ class K2ViewItemlist extends K2View
 
         if ($document->getType() != 'json') {
             jimport('joomla.html.pagination');
-            $total = (count($items)) ? $itemlistModel->getTotal() : 0;
+            $total      = (count($items)) ? $itemlistModel->getTotal() : 0;
             $pagination = new JPagination($total, $limitstart, $limit);
             if (method_exists($pagination, 'setAdditionalUrlParam')) {
                 // Note on overriding 'id': Joomla's default INT filter strips K2's {id}:{alias} format
                 switch ($task) {
                     case 'category':
                         $menuCoversCurrentCategory = (
-                            !is_null($menuActive) &&
+                            ! is_null($menuActive) &&
                             @$menuActive->query['view'] === 'itemlist' &&
                             (int) @$menuActive->query['id'] === (int) JRequest::getVar('id')
                         );
-                        if (!$menuCoversCurrentCategory) {
+                        if (! $menuCoversCurrentCategory) {
                             $pagination->setAdditionalUrlParam('task', 'category');
+                            $pagination->setAdditionalUrlParam('id', JRequest::getVar('id'));
                         }
-                        $pagination->setAdditionalUrlParam('id', JRequest::getVar('id'));
                         break;
                     case 'tag':
                         $pagination->setAdditionalUrlParam('task', 'tag');
@@ -637,7 +637,7 @@ class K2ViewItemlist extends K2View
             }
         }
 
-        $rowsForJSON = array();
+        $rowsForJSON = [];
 
         for ($i = 0; $i < count($items); $i++) {
             // Ensure that all items have a group. Group-less items get assigned to the leading group
@@ -664,7 +664,7 @@ class K2ViewItemlist extends K2View
                 $item = $itemModel->prepareFeedItem($items[$i]);
 
                 // Manipulate tag rendering in the feed URL
-                if (JRequest::getBool('tagsontitle', false) && !empty($item->tags) && count($item->tags)) {
+                if (JRequest::getBool('tagsontitle', false) && ! empty($item->tags) && count($item->tags)) {
 
                     // Limit no. of rendered tags in the title (if set)
                     $tagLimit = JRequest::getInt('taglimit', 0);
@@ -673,16 +673,16 @@ class K2ViewItemlist extends K2View
                     }
 
                     // Append tags to the title
-                    $item->title = html_entity_decode($this->escape($item->title.' '.implode(' ', $item->tags)));
+                    $item->title = html_entity_decode($this->escape($item->title . ' ' . implode(' ', $item->tags)));
                 }
 
-                $feedItem = new JFeedItem();
-                $feedItem->link = $item->link;
-                $feedItem->title = html_entity_decode($this->escape($item->title));
+                $feedItem              = new JFeedItem();
+                $feedItem->link        = $item->link;
+                $feedItem->title       = html_entity_decode($this->escape($item->title));
                 $feedItem->description = $item->description;
-                $feedItem->date = (isset($ordering) && $ordering == 'modified') ? $item->modified : $item->created;
-                $feedItem->category = $item->category->name;
-                $feedItem->author = $item->author->name;
+                $feedItem->date        = (isset($ordering) && $ordering == 'modified') ? $item->modified : $item->created;
+                $feedItem->category    = $item->category->name;
+                $feedItem->author      = $item->author->name;
                 if ($params->get('feedBogusEmail')) {
                     $feedItem->authorEmail = $params->get('feedBogusEmail');
                 } else {
@@ -692,7 +692,7 @@ class K2ViewItemlist extends K2View
                         $feedItem->authorEmail = $app->getCfg('mailfrom');
                     }
                 }
-                if ($params->get('feedItemImage') && JFile::exists(JPATH_SITE.'/media/k2/items/cache/'.md5("Image".$item->id).'_'.$params->get('feedImgSize').'.jpg')) {
+                if ($params->get('feedItemImage') && JFile::exists(JPATH_SITE . '/media/k2/items/cache/' . md5("Image" . $item->id) . '_' . $params->get('feedImgSize') . '.jpg')) {
                     $feedItem->setEnclosure($item->enclosure);
                 }
 
@@ -705,16 +705,16 @@ class K2ViewItemlist extends K2View
             if ($document->getType() == 'json') {
                 // Override some display parameters to show a minimum of content elements
                 $itemParams = class_exists('JParameter') ? new JParameter($items[$i]->params) : new JRegistry($items[$i]->params);
-                $itemParams->set($prefix.'ItemIntroText', true);
-                $itemParams->set($prefix.'ItemFullText', true);
-                $itemParams->set($prefix.'ItemTags', true);
-                $itemParams->set($prefix.'ItemExtraFields', true);
-                $itemParams->set($prefix.'ItemAttachments', true);
-                $itemParams->set($prefix.'ItemRating', true);
-                $itemParams->set($prefix.'ItemAuthor', true);
-                $itemParams->set($prefix.'ItemImageGallery', true);
-                $itemParams->set($prefix.'ItemVideo', true);
-                $itemParams->set($prefix.'ItemImage', true);
+                $itemParams->set($prefix . 'ItemIntroText', true);
+                $itemParams->set($prefix . 'ItemFullText', true);
+                $itemParams->set($prefix . 'ItemTags', true);
+                $itemParams->set($prefix . 'ItemExtraFields', true);
+                $itemParams->set($prefix . 'ItemAttachments', true);
+                $itemParams->set($prefix . 'ItemRating', true);
+                $itemParams->set($prefix . 'ItemAuthor', true);
+                $itemParams->set($prefix . 'ItemImageGallery', true);
+                $itemParams->set($prefix . 'ItemVideo', true);
+                $itemParams->set($prefix . 'ItemImage', true);
                 $items[$i]->params = $itemParams->toString();
             }
             // --- JSON Output [finish] ---
@@ -731,13 +731,13 @@ class K2ViewItemlist extends K2View
 
             // Prepare item
             if ($cacheFlag) {
-                $hits = $items[$i]->hits;
+                $hits            = $items[$i]->hits;
                 $items[$i]->hits = 0;
                 JTable::getInstance('K2Category', 'Table');
-                $items[$i] = $cache->call(array(
+                $items[$i] = $cache->call([
                     $itemModel,
-                    'prepareItem'
-                ), $items[$i], $view, $task);
+                    'prepareItem',
+                ], $items[$i], $view, $task);
                 $items[$i]->hits = $hits;
             } else {
                 $items[$i] = $itemModel->prepareItem($items[$i], $view, $task);
@@ -751,11 +751,11 @@ class K2ViewItemlist extends K2View
                 $params->get('catItemK2Plugins') &&
                 ($params->get('catItemCommentsAnchor') || $params->get('itemCommentsAnchor') || $params->get('itemComments'))
             ) {
-                $results = $dispatcher->trigger('onK2CommentsCounter', array(
+                $results = $dispatcher->trigger('onK2CommentsCounter', [
                     &$items[$i],
                     &$params,
-                    $limitstart
-                ));
+                    $limitstart,
+                ]);
                 $items[$i]->event->K2CommentsCounter = trim(implode("\n", $results));
             }
 
@@ -765,7 +765,7 @@ class K2ViewItemlist extends K2View
                 if ($task == 'date' || $task == 'search' || $task == 'tag' || $task == 'user') {
                     $items[$i]->image = (isset($items[$i]->imageGeneric)) ? $items[$i]->imageGeneric : '';
                 } else {
-                    if (!$moduleID) {
+                    if (! $moduleID) {
                         K2HelperUtilities::setDefaultImage($items[$i], $view, $params);
                     }
                 }
@@ -780,11 +780,11 @@ class K2ViewItemlist extends K2View
             $response->items = $rowsForJSON;
 
             // Output
-            $json = json_encode($response);
+            $json     = json_encode($response);
             $callback = JRequest::getCmd('callback');
             if ($callback) {
                 $document->setMimeEncoding('application/javascript');
-                echo $callback.'('.$json.')';
+                echo $callback . '(' . $json . ')';
             } else {
                 echo $json;
             }
@@ -799,8 +799,8 @@ class K2ViewItemlist extends K2View
 
         // Pathway
         $pathway = $app->getPathWay();
-        if (!empty($menuActive)) {
-            if (!isset($menuActive->query['task'])) {
+        if (! empty($menuActive)) {
+            if (! isset($menuActive->query['task'])) {
                 $menuActive->query['task'] = '';
             }
             switch ($task) {
@@ -841,9 +841,9 @@ class K2ViewItemlist extends K2View
         // --- B/C stuff [finish] ---
 
         // Head Stuff
-        if (!in_array($document->getType(), ['feed', 'json', 'raw'])) {
+        if (! in_array($document->getType(), ['feed', 'json', 'raw'])) {
             $menuItemMatch = false;
-            $metaTitle = '';
+            $metaTitle     = '';
 
             switch ($task) {
                 case 'category':
@@ -924,11 +924,11 @@ class K2ViewItemlist extends K2View
                     $metaRobots = (K2_JVERSION != '15') ? $document->getMetadata('robots') : '';
                     $metaAuthor = '';
 
-                    if (!empty($category->metaRobots)) {
+                    if (! empty($category->metaRobots)) {
                         $metaRobots = $category->metaRobots;
                     }
 
-                    if (!empty($category->metaAuthor)) {
+                    if (! empty($category->metaAuthor)) {
                         $metaAuthor = $category->metaAuthor;
                     }
 
@@ -947,8 +947,8 @@ class K2ViewItemlist extends K2View
 
                     // Common for Facebook & Twitter meta tags
                     $metaImage = '';
-                    if (!empty($category->image) && strpos($category->image, 'placeholder/category.png') === false) {
-                        $metaImage = substr(JURI::root(), 0, -1).str_replace(JURI::root(true), '', $category->image);
+                    if (! empty($category->image) && strpos($category->image, 'placeholder/category.png') === false) {
+                        $metaImage = substr(JURI::root(), 0, -1) . str_replace(JURI::root(true), '', $category->image);
                     }
 
                     // Set Facebook meta tags
@@ -967,14 +967,14 @@ class K2ViewItemlist extends K2View
                     if ($params->get('twitterMetatags', 1)) {
                         $document->setMetaData('twitter:card', $params->get('twitterCardType', 'summary'));
                         if ($params->get('twitterUsername')) {
-                            $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
+                            $document->setMetaData('twitter:site', '@' . $params->get('twitterUsername'));
                         }
                         $document->setMetaData('twitter:title', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                         $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($metaDesc, 200)); // 200 chars limit for Twitter post sharing
                         if ($metaImage) {
                             $document->setMetaData('twitter:image', $metaImage);
                             $document->setMetaData('twitter:image:alt', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
-                            if (!$params->get('facebookMetatags')) {
+                            if (! $params->get('facebookMetatags')) {
                                 $document->setMetaData('image', $metaImage); // Generic meta (if not already set in Facebook meta tags)
                             }
                         }
@@ -1020,9 +1020,9 @@ class K2ViewItemlist extends K2View
                     $document->setTitle($metaTitle);
 
                     // Set meta description
-                    $metaDesc = JText::_('K2_TAG_VIEW_DEFAULT_METADESC').' \''.$tag->name.'\'';
+                    $metaDesc = JText::_('K2_TAG_VIEW_DEFAULT_METADESC') . ' \'' . $tag->name . '\'';
                     if ($document->getMetadata('description', '')) {
-                        $metaDesc .= ' - '.$document->getMetadata('description');
+                        $metaDesc .= ' - ' . $document->getMetadata('description');
                     }
 
                     if ($menuItemMatch && K2_JVERSION != '15') {
@@ -1031,7 +1031,7 @@ class K2ViewItemlist extends K2View
                         }
                     }
 
-                    if (!empty($tag->description)) {
+                    if (! empty($tag->description)) {
                         $metaDesc = $tag->description;
                     }
 
@@ -1041,7 +1041,7 @@ class K2ViewItemlist extends K2View
                     // Set meta keywords
                     $metaKeywords = $tag->name;
                     if ($document->getMetadata('keywords', '')) {
-                        $metaKeywords .= ', '.$document->getMetadata('keywords');
+                        $metaKeywords .= ', ' . $document->getMetadata('keywords');
                     }
 
                     if ($menuItemMatch && K2_JVERSION != '15') {
@@ -1076,7 +1076,7 @@ class K2ViewItemlist extends K2View
                     if ($params->get('twitterMetatags', 1)) {
                         $document->setMetaData('twitter:card', 'summary');
                         if ($params->get('twitterUsername')) {
-                            $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
+                            $document->setMetaData('twitter:site', '@' . $params->get('twitterUsername'));
                         }
                         $document->setMetaData('twitter:title', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                         $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($metaDesc, 200)); // 200 chars limit for Twitter post sharing
@@ -1124,12 +1124,12 @@ class K2ViewItemlist extends K2View
                     $document->setTitle($metaTitle);
 
                     // Set meta description
-                    $metaDesc = JText::_('K2_USER_VIEW_DEFAULT_METADESC').' \''.$filteredUserName.'\'';
+                    $metaDesc = JText::_('K2_USER_VIEW_DEFAULT_METADESC') . ' \'' . $filteredUserName . '\'';
                     if ($document->getMetadata('description', '')) {
-                        $metaDesc .= ' - '.$document->getMetadata('description');
+                        $metaDesc .= ' - ' . $document->getMetadata('description');
                     }
 
-                    if (!empty($userObject->profile->description)) {
+                    if (! empty($userObject->profile->description)) {
                         $metaDesc = htmlspecialchars(strip_tags($userObject->profile->description), ENT_QUOTES, 'UTF-8');
                     }
 
@@ -1172,11 +1172,11 @@ class K2ViewItemlist extends K2View
 
                     // Common for Facebook & Twitter meta tags
                     $metaImage = '';
-                    if (!empty($userObject->avatar) && strpos($userObject->avatar, 'placeholder/user.png') === false) {
+                    if (! empty($userObject->avatar) && strpos($userObject->avatar, 'placeholder/user.png') === false) {
                         if (strpos($userObject->avatar, 'http://') !== false || strpos($userObject->avatar, 'https://') !== false) {
                             $metaImage = $userObject->avatar;
                         } else {
-                            $metaImage = substr(JURI::root(), 0, -1).str_replace(JURI::root(true), '', $userObject->avatar);
+                            $metaImage = substr(JURI::root(), 0, -1) . str_replace(JURI::root(true), '', $userObject->avatar);
                         }
                     }
 
@@ -1196,14 +1196,14 @@ class K2ViewItemlist extends K2View
                     if ($params->get('twitterMetatags', 1)) {
                         $document->setMetaData('twitter:card', $params->get('twitterCardType', 'summary'));
                         if ($params->get('twitterUsername')) {
-                            $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
+                            $document->setMetaData('twitter:site', '@' . $params->get('twitterUsername'));
                         }
                         $document->setMetaData('twitter:title', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                         $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($metaDesc, 200)); // 200 chars limit for Twitter post sharing
                         if ($metaImage) {
                             $document->setMetaData('twitter:image', $metaImage);
                             $document->setMetaData('twitter:image:alt', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
-                            if (!$params->get('facebookMetatags')) {
+                            if (! $params->get('facebookMetatags')) {
                                 $document->setMetaData('image', $metaImage); // Generic meta (if not already set in Facebook meta tags)
                             }
                         }
@@ -1231,7 +1231,7 @@ class K2ViewItemlist extends K2View
                     $document->setTitle($metaTitle);
 
                     // Set meta description
-                    $metaDesc = ($document->getMetadata('description')) ? $document->getMetadata('description') : JText::_('K2_ITEMS_FILTERED_BY_DATE').' '.$metaTitle;
+                    $metaDesc = ($document->getMetadata('description')) ? $document->getMetadata('description') : JText::_('K2_ITEMS_FILTERED_BY_DATE') . ' ' . $metaTitle;
                     $metaDesc = trim($metaDesc);
                     $document->setDescription(K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150)));
 
@@ -1255,7 +1255,7 @@ class K2ViewItemlist extends K2View
                     if ($params->get('twitterMetatags', 1)) {
                         $document->setMetaData('twitter:card', 'summary');
                         if ($params->get('twitterUsername')) {
-                            $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
+                            $document->setMetaData('twitter:site', '@' . $params->get('twitterUsername'));
                         }
                         $document->setMetaData('twitter:title', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                         $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($metaDesc, 200)); // 200 chars limit for Twitter post sharing
@@ -1283,7 +1283,7 @@ class K2ViewItemlist extends K2View
                     $document->setTitle($metaTitle);
 
                     // Set meta description
-                    $metaDesc = ($document->getMetadata('description')) ? $document->getMetadata('description') : JText::_('K2_SEARCH_RESULTS_FOR').' '.$metaTitle;
+                    $metaDesc = ($document->getMetadata('description')) ? $document->getMetadata('description') : JText::_('K2_SEARCH_RESULTS_FOR') . ' ' . $metaTitle;
                     $metaDesc = trim($metaDesc);
                     $document->setDescription(K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150)));
 
@@ -1307,7 +1307,7 @@ class K2ViewItemlist extends K2View
                     if ($params->get('twitterMetatags', 1)) {
                         $document->setMetaData('twitter:card', 'summary');
                         if ($params->get('twitterUsername')) {
-                            $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
+                            $document->setMetaData('twitter:site', '@' . $params->get('twitterUsername'));
                         }
                         $document->setMetaData('twitter:title', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                         $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($metaDesc, 200)); // 200 chars limit for Twitter post sharing
@@ -1382,7 +1382,7 @@ class K2ViewItemlist extends K2View
                     if ($params->get('twitterMetatags', 1)) {
                         $document->setMetaData('twitter:card', 'summary');
                         if ($params->get('twitterUsername')) {
-                            $document->setMetaData('twitter:site', '@'.$params->get('twitterUsername'));
+                            $document->setMetaData('twitter:site', '@' . $params->get('twitterUsername'));
                         }
                         $document->setMetaData('twitter:title', htmlspecialchars(strip_tags($metaTitle), ENT_QUOTES, 'UTF-8'));
                         $document->setMetaData('twitter:description', K2HelperUtilities::characterLimit($metaDesc, 200)); // 200 chars limit for Twitter post sharing
@@ -1392,11 +1392,11 @@ class K2ViewItemlist extends K2View
 
             // Feed URLs (use the $link variable set previously)
             $feedLink = $link;
-            $joiner = '?';
+            $joiner   = '?';
             if (strpos($feedLink, '?') !== false) {
                 $joiner = '&';
             }
-            $feedLink .= $joiner.'format=feed';
+            $feedLink .= $joiner . 'format=feed';
 
             /*
             if (!is_null($menuActive) && isset($menuActive->id)) {
@@ -1408,76 +1408,76 @@ class K2ViewItemlist extends K2View
 
             if ($addHeadFeedLink) {
                 if ($metaTitle) {
-                    $metaTitle = $metaTitle.' | ';
+                    $metaTitle = $metaTitle . ' | ';
                 }
-                $document->addHeadLink(JRoute::_($feedLink), 'alternate', 'rel', array(
-                    'type' => 'application/rss+xml',
-                    'title' => $metaTitle.''.JText::_('K2_FEED')
-                ));
-                $document->addHeadLink(JRoute::_($feedLink.'&type=rss'), 'alternate', 'rel', array(
-                    'type' => 'application/rss+xml',
-                    'title' => $metaTitle.'RSS 2.0'
-                ));
-                $document->addHeadLink(JRoute::_($feedLink.'&type=atom'), 'alternate', 'rel', array(
-                    'type' => 'application/atom+xml',
-                    'title' => $metaTitle.'Atom 1.0'
-                ));
+                $document->addHeadLink(JRoute::_($feedLink), 'alternate', 'rel', [
+                    'type'  => 'application/rss+xml',
+                    'title' => $metaTitle . '' . JText::_('K2_FEED'),
+                ]);
+                $document->addHeadLink(JRoute::_($feedLink . '&type=rss'), 'alternate', 'rel', [
+                    'type'  => 'application/rss+xml',
+                    'title' => $metaTitle . 'RSS 2.0',
+                ]);
+                $document->addHeadLink(JRoute::_($feedLink . '&type=atom'), 'alternate', 'rel', [
+                    'type'  => 'application/atom+xml',
+                    'title' => $metaTitle . 'Atom 1.0',
+                ]);
             }
 
             $feedLink = JRoute::_($feedLink);
             $this->assignRef('feed', $feedLink);
         }
 
-        if (!in_array($document->getType(), ['feed', 'json'])) {
+        if (! in_array($document->getType(), ['feed', 'json'])) {
             // Lookup template folders
-            $this->_addPath('template', JPATH_COMPONENT.'/templates');
-            $this->_addPath('template', JPATH_COMPONENT.'/templates/default');
+            $this->_addPath('template', JPATH_COMPONENT . '/templates');
+            $this->_addPath('template', JPATH_COMPONENT . '/templates/default');
 
-            $this->_addPath('template', JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2/templates');
-            $this->_addPath('template', JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2/templates/default');
+            $this->_addPath('template', JPATH_SITE . '/templates/' . $app->getTemplate() . '/html/com_k2/templates');
+            $this->_addPath('template', JPATH_SITE . '/templates/' . $app->getTemplate() . '/html/com_k2/templates/default');
 
-            $this->_addPath('template', JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2');
-            $this->_addPath('template', JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2/default');
+            $this->_addPath('template', JPATH_SITE . '/templates/' . $app->getTemplate() . '/html/com_k2');
+            $this->_addPath('template', JPATH_SITE . '/templates/' . $app->getTemplate() . '/html/com_k2/default');
 
             $theme = $params->get('theme');
             if ($theme) {
-                $this->_addPath('template', JPATH_COMPONENT.'/templates/'.$theme);
-                $this->_addPath('template', JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2/templates/'.$theme);
-                $this->_addPath('template', JPATH_SITE.'/templates/'.$app->getTemplate().'/html/com_k2/'.$theme);
+                $this->_addPath('template', JPATH_COMPONENT . '/templates/' . $theme);
+                $this->_addPath('template', JPATH_SITE . '/templates/' . $app->getTemplate() . '/html/com_k2/templates/' . $theme);
+                $this->_addPath('template', JPATH_SITE . '/templates/' . $app->getTemplate() . '/html/com_k2/' . $theme);
             }
 
             // Allow temporary template loading with ?template=
             $template = JRequest::getCmd('template');
             if (isset($template)) {
                 // Look for overrides in template folder (new K2 template structure)
-                $this->_addPath('template', JPATH_SITE.'/templates/'.$template.'/html/com_k2');
-                $this->_addPath('template', JPATH_SITE.'/templates/'.$template.'/html/com_k2/default');
+                $this->_addPath('template', JPATH_SITE . '/templates/' . $template . '/html/com_k2');
+                $this->_addPath('template', JPATH_SITE . '/templates/' . $template . '/html/com_k2/default');
                 if ($theme) {
-                    $this->_addPath('template', JPATH_SITE.'/templates/'.$template.'/html/com_k2/'.$theme);
+                    $this->_addPath('template', JPATH_SITE . '/templates/' . $template . '/html/com_k2/' . $theme);
                 }
             }
 
             // Assign data
             if ($task == "category" || $task == "") {
                 // Leading items
-                $offset = 0;
-                $length = $params->get('num_leading_items');
+                $offset  = 0;
+                $length  = $params->get('num_leading_items');
                 $leading = array_slice($items, $offset, $length);
 
                 // Primary
-                $offset = (int)$params->get('num_leading_items');
-                $length = (int)$params->get('num_primary_items');
+                $offset  = (int) $params->get('num_leading_items');
+                $length  = (int) $params->get('num_primary_items');
                 $primary = array_slice($items, $offset, $length);
 
                 // Secondary
-                $offset = (int)($params->get('num_leading_items') + $params->get('num_primary_items'));
-                $length = (int)$params->get('num_secondary_items');
+                $offset    = (int) ($params->get('num_leading_items') + $params->get('num_primary_items'));
+                $length    = (int) $params->get('num_secondary_items');
                 $secondary = array_slice($items, $offset, $length);
 
                 // Links
-                $offset = (int)($params->get('num_leading_items') + $params->get('num_primary_items') + $params->get('num_secondary_items'));
-                $length = (int)$params->get('num_links');
-                $links = array_slice($items, $offset, $length);
+                $offset = (int) ($params->get('num_leading_items') + $params->get('num_primary_items') + $params->get('num_secondary_items'));
+                $length = (int) $params->get('num_links');
+                $links  = array_slice($items, $offset, $length);
 
                 $this->assignRef('leading', $leading);
                 $this->assignRef('primary', $primary);
@@ -1514,7 +1514,7 @@ class K2ViewItemlist extends K2View
 
     public function module()
     {
-        $app = JFactory::getApplication();
+        $app      = JFactory::getApplication();
         $document = JFactory::getDocument();
 
         if ($document->getType() == 'raw') {
@@ -1526,7 +1526,7 @@ class K2ViewItemlist extends K2View
             $moduleID = JRequest::getInt('moduleID');
             if ($moduleID) {
                 $result = $itemlistModel->getModuleItems($moduleID);
-                $items = $result->items;
+                $items  = $result->items;
 
                 if (is_string($result->params)) {
                     $params = class_exists('JParameter') ? new JParameter($result->params) : new JRegistry($result->params);
@@ -1535,9 +1535,9 @@ class K2ViewItemlist extends K2View
                 }
 
                 if ($params->get('getTemplate')) {
-                    require(JModuleHelper::getLayoutPath('mod_k2_content', $params->get('getTemplate').'/default'));
+                    require JModuleHelper::getLayoutPath('mod_k2_content', $params->get('getTemplate') . '/default');
                 } else {
-                    require(JModuleHelper::getLayoutPath($result->module, 'default'));
+                    require JModuleHelper::getLayoutPath($result->module, 'default');
                 }
             }
             $app->close();
@@ -1546,9 +1546,9 @@ class K2ViewItemlist extends K2View
 
     private function setCanonicalUrl($url)
     {
-        $document = JFactory::getDocument();
-        $limitstart = JRequest::getInt('limitstart', 0);
-        $params = K2HelperUtilities::getParams('com_k2');
+        $document     = JFactory::getDocument();
+        $limitstart   = JRequest::getInt('limitstart', 0);
+        $params       = K2HelperUtilities::getParams('com_k2');
         $canonicalURL = $params->get('canonicalURL', 'relative');
         if ($canonicalURL) {
             if ($limitstart) {
@@ -1556,10 +1556,10 @@ class K2ViewItemlist extends K2View
                 if (strpos($url, '?') !== false) {
                     $joiner = '&';
                 }
-                $url = $url.''.$joiner.'start='.$limitstart;
+                $url = $url . '' . $joiner . 'start=' . $limitstart;
             }
             if ($canonicalURL == 'absolute') {
-                $url = substr(str_replace(JUri::root(true), '', JUri::root(false)), 0, -1).$url;
+                $url = substr(str_replace(JUri::root(true), '', JUri::root(false)), 0, -1) . $url;
             }
             $document->addHeadLink($url, 'canonical', 'rel');
         }
@@ -1570,7 +1570,7 @@ class K2ViewItemlist extends K2View
         $app = JFactory::getApplication();
 
         // Menu
-        $menu = $app->getMenu();
+        $menu       = $app->getMenu();
         $menuActive = $menu->getActive();
 
         // Match
