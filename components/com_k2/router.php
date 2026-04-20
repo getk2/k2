@@ -41,7 +41,7 @@ if ($params->get('k2Sef')) {
             unset($query['layout']);
         }
 
-        if ($mView == @$query['view'] && $mTask == @$query['task'] && $mId == @intval($query['id']) && @intval($query['id']) > 0) {
+        if ($mView == @$query['view'] && $mTask == @$query['task'] && (int)$mId == @intval($query['id']) && @intval($query['id']) > 0) {
             unset($query['view']);
             unset($query['task']);
             unset($query['id']);
@@ -535,7 +535,7 @@ if ($params->get('k2Sef')) {
             unset($query['layout']);
         }
 
-        if ($mView == @$query['view'] && $mTask == @$query['task'] && $mId == @intval($query['id']) && @intval($query['id']) > 0) {
+        if ($mView == @$query['view'] && $mTask == @$query['task'] && (int)$mId == @intval($query['id']) && @intval($query['id']) > 0) {
             unset($query['view']);
             unset($query['task']);
             unset($query['id']);
