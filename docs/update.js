@@ -16,7 +16,7 @@
      * versionCompare('1.1', '1.2') => -1
      * versionCompare('1.1', '1.1') =>  0
      * versionCompare('1.2', '1.1') =>  1
-     * versionCompare('2.23.3', '2.22.3') => 1
+     * versionCompare('2.23.3', '2.23.3') => 1
      *
      * Returns:
      * -1 = left is LOWER than right
@@ -74,7 +74,7 @@
     };
 
     /* === K2 App === */
-    var K2_LATEST_VERSION = '2.22';
+    var K2_LATEST_VERSION = '2.23';
     var K2_RELEASE_NOTES = 'https://github.com/getk2/k2/blob/master/CHANGELOG.md';
 
     if (kookie.read('K2_hideUpdateMessage')) return;

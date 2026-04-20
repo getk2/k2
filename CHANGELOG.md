@@ -5,6 +5,11 @@ The latest K2 release is always available from: https://getk2.org/downloads/?f=K
 
 # Changelog
 
+### v2.23 - April 20th, 2026
+- Further improvements for PHP 8.x compatibility: replaced all strftime() occurences with date()
+- Added support for pagination changes introduced in Joomla 3.10.19 eLTS (or newer)
+- Further security hardening: fixed stored XSS in comment username output; fixed comment mass-assignment (force INSERT, prevent POST-based overwrite); fixed guest userID spoofing in comment submission; added CSRF protection to deleteAttachment, tag/addTag and category saveMove actions; expanded media controller file type blocklist to cover additional server-executable extensions (phtml, phar, php3-7, shtml and others).
+
 ### v2.22 - March 26th, 2026
 - Added sorting for the user (author) view in K2's Settings.
 

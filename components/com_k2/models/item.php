@@ -1044,6 +1044,9 @@ class K2ModelItem extends K2Model
                 $app->close();
             }
 
+            // Security: always force an INSERT — never allow a POST to overwrite an existing comment
+            $row->id = null;
+
             $row->commentText = JRequest::getString('commentText', '', 'default');
             $row->commentText = strip_tags($row->commentText);
 
@@ -1065,10 +1068,13 @@ class K2ModelItem extends K2Model
             $datenow = JFactory::getDate();
             $row->commentDate = K2_JVERSION == '15' ? $datenow->toMySQL() : $datenow->toSql();
 
+            // Security: always set userID from the server-side session, never from POST data
             if (!$user->guest) {
                 $row->userID = $user->id;
                 $row->commentEmail = $user->email;
                 $row->userName = $user->name;
+            } else {
+                $row->userID = 0;
             }
 
             $userName = trim($row->userName);

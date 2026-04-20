@@ -607,9 +607,9 @@ defined('_JEXEC') or die;
                 <span class="commentAuthorName">
                     <?php echo JText::_('K2_POSTED_BY'); ?>
                     <?php if (!empty($comment->userLink)): ?>
-                    <a href="<?php echo JFilterOutput::cleanText($comment->userLink); ?>" title="<?php echo JFilterOutput::cleanText($comment->userName); ?>" target="_blank" rel="nofollow"><?php echo $comment->userName; ?></a>
+                    <a href="<?php echo JFilterOutput::cleanText($comment->userLink); ?>" title="<?php echo htmlspecialchars($comment->userName, ENT_QUOTES, 'UTF-8'); ?>" target="_blank" rel="nofollow"><?php echo htmlspecialchars($comment->userName, ENT_QUOTES, 'UTF-8'); ?></a>
                     <?php else: ?>
-                    <?php echo $comment->userName; ?>
+                    <?php echo htmlspecialchars($comment->userName, ENT_QUOTES, 'UTF-8'); ?>
                     <?php endif; ?>
                 </span>
 

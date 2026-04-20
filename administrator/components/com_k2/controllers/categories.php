@@ -133,6 +133,7 @@ class K2ControllerCategories extends K2Controller
 
     public function saveMove()
     {
+        JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('categories');
         $model->move();
     }
