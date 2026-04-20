@@ -16,7 +16,7 @@
      * versionCompare('1.1', '1.2') => -1
      * versionCompare('1.1', '1.1') =>  0
      * versionCompare('1.2', '1.1') =>  1
-     * versionCompare('2.23.3', '2.23.3') => 1
+     * versionCompare('2.23.3', '2.22.3') => 1
      *
      * Returns:
      * -1 = left is LOWER than right
