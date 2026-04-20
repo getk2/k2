@@ -603,7 +603,14 @@ class K2ViewItemlist extends K2View
                 // Note on overriding 'id': Joomla's default INT filter strips K2's {id}:{alias} format
                 switch ($task) {
                     case 'category':
-                        $pagination->setAdditionalUrlParam('task', 'category');
+                        $menuCoversCurrentCategory = (
+                            !is_null($menuActive) &&
+                            @$menuActive->query['view'] === 'itemlist' &&
+                            (int) @$menuActive->query['id'] === (int) JRequest::getVar('id')
+                        );
+                        if (!$menuCoversCurrentCategory) {
+                            $pagination->setAdditionalUrlParam('task', 'category');
+                        }
                         $pagination->setAdditionalUrlParam('id', JRequest::getVar('id'));
                         break;
                     case 'tag':
