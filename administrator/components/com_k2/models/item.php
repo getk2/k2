@@ -579,7 +579,7 @@ class K2ModelItem extends K2Model
         }
 
         // Embed
-        if (JRequest::getVar('embedVideo', '', 'post', 'string', JREQUEST_ALLOWRAW)) {
+        if (array_key_exists('embedVideo', $_POST)) {
             $row->video = JRequest::getVar('embedVideo', '', 'post', 'string', JREQUEST_ALLOWRAW);
         }
 
