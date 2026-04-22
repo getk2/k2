@@ -442,7 +442,9 @@ $K2(document).ready(function() {
                 var log = $K2('#tagsLog');
                 log.empty().addClass('tagsLoading');
                 var tag = $K2('#tag').val();
-                var url = 'index.php?option=com_k2&view=item&task=tag&tag=' + tag;
+                var tokenInput = $K2('#adminForm input[type="hidden"]').filter(function() { return this.name.length === 32; });
+                var token = tokenInput.length ? tokenInput.attr('name') + '=1' : '';
+                var url = 'index.php?option=com_k2&view=item&task=tag&tag=' + tag + (token ? '&' + token : '');
                 $K2.ajax({
                     url: url,
                     type: 'get',

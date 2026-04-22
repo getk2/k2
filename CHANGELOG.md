@@ -5,6 +5,9 @@ The latest K2 release is always available from: https://getk2.org/downloads/?f=K
 
 # Changelog
 
+### v2.24 - April 22nd, 2026
+- Fixed missing token errors with AJAX requests in attachments and tag in the backend forms.
+
 ### v2.23 - April 20th, 2026
 - Further improvements for PHP 8.x compatibility: replaced all strftime() occurences with date()
 - Added support for pagination changes introduced in Joomla 3.10.17 eLTS (or newer)

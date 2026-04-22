@@ -663,7 +663,7 @@ $app = JFactory::getApplication();
                                             <i class="fa fa-download"></i>
                                             <span class="hidden"><?php echo JText::_('K2_DOWNLOAD'); ?></span>
                                         </a>
-                                        <a class="deleteAttachmentButton" title="<?php echo JText::_('K2_DELETE'); ?>" href="<?php echo JURI::base(true); ?>/index.php?option=com_k2&amp;view=item&amp;task=deleteAttachment&amp;id=<?php echo $attachment->id?>&amp;cid=<?php echo $this->row->id; ?>">
+                                        <a class="deleteAttachmentButton" title="<?php echo JText::_('K2_DELETE'); ?>" href="<?php echo JURI::base(true); ?>/index.php?option=com_k2&amp;view=item&amp;task=deleteAttachment&amp;id=<?php echo $attachment->id?>&amp;cid=<?php echo $this->row->id; ?>&amp;<?php echo JSession::getFormToken(); ?>=1">
                                             <i class="fa fa-remove"></i>
                                             <span class="hidden"><?php echo JText::_('K2_DELETE'); ?></span>
                                         </a>
