@@ -310,8 +310,9 @@ if ($params->get('k2Sef')) {
             }
             // Category path, without a prefix
             elseif (
-                isset(getCategoryProps($request_url_parts[0])->alias) &&
-                $request_url_parts[0] == getCategoryProps($request_url_parts[0])->alias &&
+                ($firstSegmentCategoryProps = getCategoryProps($request_url_parts[0])) &&
+                is_object($firstSegmentCategoryProps) &&
+                $request_url_parts[0] == $firstSegmentCategoryProps->alias &&
                 (
                     array_reverse($request_url_parts)[0] != @getItemProps(array_reverse($request_url_parts)[0])->alias &&
                     array_reverse($request_url_parts)[0] != @getItemProps((int) array_reverse($request_url_parts)[0])->id
