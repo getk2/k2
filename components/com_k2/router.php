@@ -12,6 +12,8 @@ defined('_JEXEC') or die;
 
 $params = JComponentHelper::getParams('com_k2');
 
+require_once JPATH_SITE . '/components/com_k2/helpers/route.php';
+
 if ($params->get('k2Sef')) {
     function k2BuildRoute(&$query)
     {
@@ -41,7 +43,7 @@ if ($params->get('k2Sef')) {
             unset($query['layout']);
         }
 
-        if ($mView == @$query['view'] && $mTask == @$query['task'] && (int)$mId == @intval($query['id']) && @intval($query['id']) > 0) {
+        if ($mView == @$query['view'] && $mTask == @$query['task'] && (int)$mId == @intval($query['id']) && ((int)$mId > 0 || (empty($mId) && empty($query['id'])))) {
             unset($query['view']);
             unset($query['task']);
             unset($query['id']);
@@ -240,6 +242,12 @@ if ($params->get('k2Sef')) {
                     case 'user':
                         $segments[0] = $params->get('k2SefLabelUser', 'author');
                         unset($segments[1]);
+                        if (isset($segments[2]) && is_numeric($segments[2])) {
+                            $userProps = getUserProps((int) $segments[2]);
+                            if ($userProps) {
+                                $segments[2] = $segments[2] . '-' . $userProps->alias;
+                            }
+                        }
                         break;
                     case 'date':
                         $segments[0] = $params->get('k2SefLabelDate', 'date');
@@ -516,6 +524,24 @@ if ($params->get('k2Sef')) {
         }
         return array_reverse($path);
     }
+
+    function getUserProps($userID = null)
+    {
+        $user = null;
+        if (!empty($userID)) {
+            $link = K2HelperRoute::getUserRoute((int) $userID);
+            parse_str(parse_url($link, PHP_URL_QUERY), $queryParts);
+            if (!empty($queryParts['id'])) {
+                $parts = explode(':', $queryParts['id']);
+                if (count($parts) === 2) {
+                    $user = new stdClass();
+                    $user->id    = (int) $parts[0];
+                    $user->alias = $parts[1];
+                }
+            }
+        }
+        return $user;
+    }
 } else {
     function K2BuildRoute(&$query)
     {
@@ -536,7 +562,7 @@ if ($params->get('k2Sef')) {
             unset($query['layout']);
         }
 
-        if ($mView == @$query['view'] && $mTask == @$query['task'] && (int)$mId == @intval($query['id']) && @intval($query['id']) > 0) {
+        if ($mView == @$query['view'] && $mTask == @$query['task'] && (int)$mId == @intval($query['id']) && ((int)$mId > 0 || (empty($mId) && empty($query['id'])))) {
             unset($query['view']);
             unset($query['task']);
             unset($query['id']);
