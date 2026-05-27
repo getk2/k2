@@ -603,9 +603,11 @@ class K2ViewItemlist extends K2View
                 // Note on overriding 'id': Joomla's default INT filter strips K2's {id}:{alias} format
                 switch ($task) {
                     case 'category':
+                        $menuTask = (!is_null($menuActive) && isset($menuActive->query['task'])) ? $menuActive->query['task'] : '';
                         $menuCoversCurrentCategory = (
                             !is_null($menuActive) &&
                             @$menuActive->query['view'] === 'itemlist' &&
+                            $menuTask === '' &&
                             (int) @$menuActive->query['id'] === (int) JRequest::getVar('id')
                         );
                         if (!$menuCoversCurrentCategory) {
@@ -620,7 +622,8 @@ class K2ViewItemlist extends K2View
                         $menuCoversCurrentTag = (
                             !is_null($menuActive) &&
                             @$menuActive->query['view'] === 'itemlist' &&
-                            ($menuTask === 'tag' || ($menuTask === '' && $menuTag !== '')) &&
+                            $menuTask === '' &&
+                            $menuTag !== '' &&
                             $menuTag === $currentTag
                         );
                         if (!$menuCoversCurrentTag) {
@@ -635,7 +638,8 @@ class K2ViewItemlist extends K2View
                         $menuCoversCurrentUser = (
                             !is_null($menuActive) &&
                             @$menuActive->query['view'] === 'itemlist' &&
-                            ($menuTask === 'user' || ($menuTask === '' && $menuUserId > 0)) &&
+                            $menuTask === '' &&
+                            $menuUserId > 0 &&
                             $menuUserId === $currentUserId
                         );
                         if (!$menuCoversCurrentUser) {
