@@ -44,6 +44,7 @@ if ($params->get('k2Sef')) {
         }
 
         if (
+            !isset($query['tag']) &&
             $mView == @$query['view'] &&
             ($mTask == @$query['task'] || (empty($mTask) && in_array(@$query['task'], ['category', 'user']))) &&
             (int)$mId == @intval($query['id']) &&
@@ -552,6 +553,7 @@ if ($params->get('k2Sef')) {
         }
 
         if (
+            !isset($query['tag']) &&
             $mView == @$query['view'] &&
             ($mTask == @$query['task'] || (empty($mTask) && in_array(@$query['task'], ['category', 'user']))) &&
             (int)$mId == @intval($query['id']) &&
