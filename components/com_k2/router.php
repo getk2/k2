@@ -49,7 +49,12 @@ if ($params->get('k2Sef')) {
             unset($query['id']);
         }
 
-        if ($mView == @$query['view'] && $mTask == @$query['task'] && $mTagNormalized == $qTagNormalized && isset($query['tag'])) {
+        if (
+            $mView == @$query['view'] &&
+            ($mTask == @$query['task'] || (empty($mTask) && @$query['task'] == 'tag')) &&
+            $mTagNormalized == $qTagNormalized &&
+            isset($query['tag'])
+        ) {
             unset($query['view']);
             unset($query['task']);
             unset($query['tag']);
@@ -547,7 +552,12 @@ if ($params->get('k2Sef')) {
             unset($query['id']);
         }
 
-        if ($mView == @$query['view'] && $mTask == @$query['task'] && $mTagNormalized == $qTagNormalized && isset($query['tag'])) {
+        if (
+            $mView == @$query['view'] &&
+            ($mTask == @$query['task'] || (empty($mTask) && @$query['task'] == 'tag')) &&
+            $mTagNormalized == $qTagNormalized &&
+            isset($query['tag'])
+        ) {
             unset($query['view']);
             unset($query['task']);
             unset($query['tag']);
