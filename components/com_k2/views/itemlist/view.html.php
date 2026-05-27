@@ -619,16 +619,33 @@ class K2ViewItemlist extends K2View
                         $currentTag = isset($tag->name) ? trim((string) $tag->name) : trim((string) JRequest::getVar('tag'));
                         $menuTag = (!is_null($menuActive) && isset($menuActive->query['tag'])) ? trim(str_replace('+', ' ', urldecode($menuActive->query['tag']))) : '';
                         $menuTask = (!is_null($menuActive) && isset($menuActive->query['task'])) ? $menuActive->query['task'] : '';
-                        $menuCoversCurrentTag = (
+                        $menuIsTagWithTask = (
+                            !is_null($menuActive) &&
+                            @$menuActive->query['view'] === 'itemlist' &&
+                            $menuTask === 'tag' &&
+                            $menuTag !== ''
+                        );
+                        $menuIsTagWithoutTask = (
                             !is_null($menuActive) &&
                             @$menuActive->query['view'] === 'itemlist' &&
                             $menuTask === '' &&
                             $menuTag !== '' &&
                             $menuTag === $currentTag
                         );
-                        if (!$menuCoversCurrentTag) {
+
+                        if ($menuIsTagWithoutTask) {
+                            // Do not force task/tag for taskless menu-tag items. This keeps
+                            // clean menu-anchored pagination URLs and avoids '/<tag-name>' suffixes.
+                            break;
+                        }
+
+                        if ($menuIsTagWithTask) {
+                            // Use the menu tag value to ensure exact router match and stripping.
                             $pagination->setAdditionalUrlParam('task', 'tag');
-                            $pagination->setAdditionalUrlParam('tag', $tag->name);
+                            $pagination->setAdditionalUrlParam('tag', $menuTag);
+                        } else {
+                            $pagination->setAdditionalUrlParam('task', 'tag');
+                            $pagination->setAdditionalUrlParam('tag', $currentTag);
                         }
                         break;
                     case 'user':
