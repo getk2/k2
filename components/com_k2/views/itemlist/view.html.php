@@ -603,16 +603,45 @@ class K2ViewItemlist extends K2View
                 // Note on overriding 'id': Joomla's default INT filter strips K2's {id}:{alias} format
                 switch ($task) {
                     case 'category':
-                        $pagination->setAdditionalUrlParam('task', 'category');
-                        $pagination->setAdditionalUrlParam('id', JRequest::getVar('id'));
+                        $menuCoversCurrentCategory = (
+                            !is_null($menuActive) &&
+                            @$menuActive->query['view'] === 'itemlist' &&
+                            (int) @$menuActive->query['id'] === (int) JRequest::getVar('id')
+                        );
+                        if (!$menuCoversCurrentCategory) {
+                            $pagination->setAdditionalUrlParam('task', 'category');
+                            $pagination->setAdditionalUrlParam('id', JRequest::getVar('id'));
+                        }
                         break;
                     case 'tag':
-                        $pagination->setAdditionalUrlParam('task', 'tag');
-                        $pagination->setAdditionalUrlParam('tag', $tag->name);
+                        $currentTag = isset($tag->name) ? trim((string) $tag->name) : trim((string) JRequest::getVar('tag'));
+                        $menuTag = (!is_null($menuActive) && isset($menuActive->query['tag'])) ? trim(str_replace('+', ' ', urldecode($menuActive->query['tag']))) : '';
+                        $menuTask = (!is_null($menuActive) && isset($menuActive->query['task'])) ? $menuActive->query['task'] : '';
+                        $menuCoversCurrentTag = (
+                            !is_null($menuActive) &&
+                            @$menuActive->query['view'] === 'itemlist' &&
+                            ($menuTask === 'tag' || ($menuTask === '' && $menuTag !== '')) &&
+                            $menuTag === $currentTag
+                        );
+                        if (!$menuCoversCurrentTag) {
+                            $pagination->setAdditionalUrlParam('task', 'tag');
+                            $pagination->setAdditionalUrlParam('tag', $tag->name);
+                        }
                         break;
                     case 'user':
-                        $pagination->setAdditionalUrlParam('task', 'user');
-                        $pagination->setAdditionalUrlParam('id', JRequest::getInt('id'));
+                        $currentUserId = (int) JRequest::getInt('id');
+                        $menuUserId = (!is_null($menuActive) && isset($menuActive->query['id'])) ? (int) $menuActive->query['id'] : 0;
+                        $menuTask = (!is_null($menuActive) && isset($menuActive->query['task'])) ? $menuActive->query['task'] : '';
+                        $menuCoversCurrentUser = (
+                            !is_null($menuActive) &&
+                            @$menuActive->query['view'] === 'itemlist' &&
+                            ($menuTask === 'user' || ($menuTask === '' && $menuUserId > 0)) &&
+                            $menuUserId === $currentUserId
+                        );
+                        if (!$menuCoversCurrentUser) {
+                            $pagination->setAdditionalUrlParam('task', 'user');
+                            $pagination->setAdditionalUrlParam('id', $currentUserId);
+                        }
                         break;
                     case 'date':
                         $pagination->setAdditionalUrlParam('task', 'date');

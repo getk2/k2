@@ -12,8 +12,6 @@ defined('_JEXEC') or die;
 
 $params = JComponentHelper::getParams('com_k2');
 
-require_once JPATH_SITE . '/components/com_k2/helpers/route.php';
-
 if ($params->get('k2Sef')) {
     function k2BuildRoute(&$query)
     {
@@ -38,6 +36,8 @@ if ($params->get('k2Sef')) {
         $mTask = (empty($menuItem->query['task'])) ? null : $menuItem->query['task'];
         $mId = (empty($menuItem->query['id'])) ? null : $menuItem->query['id'];
         $mTag = (empty($menuItem->query['tag'])) ? null : $menuItem->query['tag'];
+        $mTagNormalized = is_null($mTag) ? null : trim(str_replace('+', ' ', urldecode($mTag)));
+        $qTagNormalized = isset($query['tag']) ? trim(str_replace('+', ' ', urldecode($query['tag']))) : null;
 
         if (isset($query['layout'])) {
             unset($query['layout']);
@@ -49,7 +49,7 @@ if ($params->get('k2Sef')) {
             unset($query['id']);
         }
 
-        if ($mView == @$query['view'] && $mTask == @$query['task'] && $mTag == @$query['tag'] && isset($query['tag'])) {
+        if ($mView == @$query['view'] && $mTask == @$query['task'] && $mTagNormalized == $qTagNormalized && isset($query['tag'])) {
             unset($query['view']);
             unset($query['task']);
             unset($query['tag']);
@@ -242,12 +242,6 @@ if ($params->get('k2Sef')) {
                     case 'user':
                         $segments[0] = $params->get('k2SefLabelUser', 'author');
                         unset($segments[1]);
-                        if (isset($segments[2]) && is_numeric($segments[2])) {
-                            $userProps = getUserProps((int) $segments[2]);
-                            if ($userProps) {
-                                $segments[2] = $segments[2] . '-' . $userProps->alias;
-                            }
-                        }
                         break;
                     case 'date':
                         $segments[0] = $params->get('k2SefLabelDate', 'date');
@@ -525,23 +519,6 @@ if ($params->get('k2Sef')) {
         return array_reverse($path);
     }
 
-    function getUserProps($userID = null)
-    {
-        $user = null;
-        if (!empty($userID)) {
-            $link = K2HelperRoute::getUserRoute((int) $userID);
-            parse_str(parse_url($link, PHP_URL_QUERY), $queryParts);
-            if (!empty($queryParts['id'])) {
-                $parts = explode(':', $queryParts['id']);
-                if (count($parts) === 2) {
-                    $user = new stdClass();
-                    $user->id    = (int) $parts[0];
-                    $user->alias = $parts[1];
-                }
-            }
-        }
-        return $user;
-    }
 } else {
     function K2BuildRoute(&$query)
     {
@@ -557,6 +534,8 @@ if ($params->get('k2Sef')) {
         $mTask = (empty($menuItem->query['task'])) ? null : $menuItem->query['task'];
         $mId = (empty($menuItem->query['id'])) ? null : $menuItem->query['id'];
         $mTag = (empty($menuItem->query['tag'])) ? null : $menuItem->query['tag'];
+        $mTagNormalized = is_null($mTag) ? null : trim(str_replace('+', ' ', urldecode($mTag)));
+        $qTagNormalized = isset($query['tag']) ? trim(str_replace('+', ' ', urldecode($query['tag']))) : null;
 
         if (isset($query['layout'])) {
             unset($query['layout']);
@@ -568,7 +547,7 @@ if ($params->get('k2Sef')) {
             unset($query['id']);
         }
 
-        if ($mView == @$query['view'] && $mTask == @$query['task'] && $mTag == @$query['tag'] && isset($query['tag'])) {
+        if ($mView == @$query['view'] && $mTask == @$query['task'] && $mTagNormalized == $qTagNormalized && isset($query['tag'])) {
             unset($query['view']);
             unset($query['task']);
             unset($query['tag']);
