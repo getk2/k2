@@ -5,6 +5,9 @@ The latest K2 release is always available from: https://getk2.org/downloads/?f=K
 
 # Changelog
 
+### v2.25 - May 27th, 2026
+- URL router improvements.
+
 ### v2.24 - April 22nd, 2026
 - Fixed missing token errors with AJAX requests in attachments and tag in the backend forms.
 
