@@ -43,7 +43,12 @@ if ($params->get('k2Sef')) {
             unset($query['layout']);
         }
 
-        if ($mView == @$query['view'] && $mTask == @$query['task'] && (int)$mId == @intval($query['id']) && ((int)$mId > 0 || (empty($mId) && empty($query['id'])))) {
+        if (
+            $mView == @$query['view'] &&
+            ($mTask == @$query['task'] || (empty($mTask) && in_array(@$query['task'], ['category', 'user']))) &&
+            (int)$mId == @intval($query['id']) &&
+            ((int)$mId > 0 || (empty($mId) && empty($query['id'])))
+        ) {
             unset($query['view']);
             unset($query['task']);
             unset($query['id']);
@@ -546,7 +551,12 @@ if ($params->get('k2Sef')) {
             unset($query['layout']);
         }
 
-        if ($mView == @$query['view'] && $mTask == @$query['task'] && (int)$mId == @intval($query['id']) && ((int)$mId > 0 || (empty($mId) && empty($query['id'])))) {
+        if (
+            $mView == @$query['view'] &&
+            ($mTask == @$query['task'] || (empty($mTask) && in_array(@$query['task'], ['category', 'user']))) &&
+            (int)$mId == @intval($query['id']) &&
+            ((int)$mId > 0 || (empty($mId) && empty($query['id'])))
+        ) {
             unset($query['view']);
             unset($query['task']);
             unset($query['id']);
