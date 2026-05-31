@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.model');
 
-JTable::addIncludePath(JPATH_COMPONENT . '/tables');
+JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_k2/tables');
 
 class K2ModelUsers extends K2Model
 {
@@ -63,8 +63,8 @@ class K2ModelUsers extends K2Model
                         break;
 
                     default:
-                        $filter_group = strtolower(trim($filter_group));
-                        $query .= " AND juser.usertype = " . $db->Quote($filter_group);
+                        $filter_group  = strtolower(trim($filter_group));
+                        $query        .= " AND juser.usertype = " . $db->Quote($filter_group);
                 }
             }
         }
@@ -157,8 +157,8 @@ class K2ModelUsers extends K2Model
                         break;
 
                     default:
-                        $filter_group = strtolower(trim($filter_group));
-                        $query .= " AND juser.usertype = " . $db->Quote($filter_group);
+                        $filter_group  = strtolower(trim($filter_group));
+                        $query        .= " AND juser.usertype = " . $db->Quote($filter_group);
                 }
             }
         }
@@ -176,7 +176,7 @@ class K2ModelUsers extends K2Model
         }
 
         $db->setQuery($query);
-        $total = $db->loadResult();
+        $total  = $db->loadResult();
         return $total;
     }
 

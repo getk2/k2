@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.model');
 
-JTable::addIncludePath(JPATH_COMPONENT . '/tables');
+JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_k2/tables');
 
 class K2ModelExtraFields extends K2Model
 {

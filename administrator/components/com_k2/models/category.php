@@ -13,8 +13,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.model');
 
-JTable::addIncludePath(JPATH_COMPONENT.'/tables');
-
+JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_k2/tables');
 class K2ModelCategory extends K2Model
 {
     public function getData()
@@ -29,7 +28,7 @@ class K2ModelCategory extends K2Model
     {
         $app = JFactory::getApplication();
         jimport('joomla.filesystem.file');
-        $row = JTable::getInstance('K2Category', 'Table');
+        $row    = JTable::getInstance('K2Category', 'Table');
         $params = JComponentHelper::getParams('com_k2');
 
         // Plugin Events
@@ -38,7 +37,7 @@ class K2ModelCategory extends K2Model
         JPluginHelper::importPlugin('finder');
         $dispatcher = JDispatcher::getInstance();
 
-        if (!$row->bind(JRequest::get('post'))) {
+        if (! $row->bind(JRequest::get('post'))) {
             $app->enqueueMessage($row->getError(), 'error');
             $app->redirect('index.php?option=com_k2&view=categories');
         }
@@ -46,7 +45,7 @@ class K2ModelCategory extends K2Model
         $isNew = ($row->id) ? false : true;
 
         // Trigger K2 plugins
-        $result = $dispatcher->trigger('onBeforeK2Save', array(&$row, $isNew));
+        $result = $dispatcher->trigger('onBeforeK2Save', [&$row, $isNew]);
 
         if (in_array(false, $result, true)) {
             JError::raiseError(500, $row->getError());
@@ -54,64 +53,64 @@ class K2ModelCategory extends K2Model
         }
 
         // Trigger content & finder plugins before the save event
-        $dispatcher->trigger('onContentBeforeSave', array('com_k2.category', $row, $isNew));
-        $dispatcher->trigger('onFinderBeforeSave', array('com_k2.category', $row, $isNew));
+        $dispatcher->trigger('onContentBeforeSave', ['com_k2.category', $row, $isNew]);
+        $dispatcher->trigger('onFinderBeforeSave', ['com_k2.category', $row, $isNew]);
 
         $row->description = JRequest::getVar('description', '', 'post', 'string', 2);
         if ($params->get('xssFiltering')) {
-            $filter = new JFilterInput(array(), array(), 1, 1, 0);
+            $filter           = new JFilterInput([], [], 1, 1, 0);
             $row->description = $filter->clean($row->description);
         }
 
-        if (!$row->id) {
-            $row->ordering = $row->getNextOrder('parent = '.(int)$row->parent.' AND trash=0');
+        if (! $row->id) {
+            $row->ordering = $row->getNextOrder('parent = ' . (int) $row->parent . ' AND trash=0');
         }
 
-        if (!$row->check()) {
+        if (! $row->check()) {
             $app->enqueueMessage($row->getError(), 'error');
-            $app->redirect('index.php?option=com_k2&view=category&cid='.$row->id);
+            $app->redirect('index.php?option=com_k2&view=category&cid=' . $row->id);
         }
 
-        if (!$row->store()) {
+        if (! $row->store()) {
             $app->enqueueMessage($row->getError(), 'error');
             $app->redirect('index.php?option=com_k2&view=categories');
         }
 
-        if (!$params->get('disableCompactOrdering')) {
-            $row->reorder('parent = '.(int)$row->parent.' AND trash=0');
+        if (! $params->get('disableCompactOrdering')) {
+            $row->reorder('parent = ' . (int) $row->parent . ' AND trash=0');
         }
 
-        if ((int)$params->get('imageMemoryLimit')) {
-            ini_set('memory_limit', (int)$params->get('imageMemoryLimit').'M');
+        if ((int) $params->get('imageMemoryLimit')) {
+            ini_set('memory_limit', (int) $params->get('imageMemoryLimit') . 'M');
         }
 
         $files = JRequest::get('files');
 
         $existingImage = JRequest::getVar('existingImage');
-        if (($files['image']['error'] == 0 || $existingImage) && !JRequest::getBool('del_image')) {
+        if (($files['image']['error'] == 0 || $existingImage) && ! JRequest::getBool('del_image')) {
             if ($files['image']['error'] == 0) {
                 $image = $files['image'];
             } else {
-                $image = JPATH_SITE.'/'.JPath::clean($existingImage);
+                $image = JPATH_SITE . '/' . JPath::clean($existingImage);
             }
 
-            require_once JPATH_SITE.'/media/k2/assets/vendors/verot/class.upload.php/src/class.upload.php';
-            $savepath = JPATH_ROOT.'/media/k2/categories/';
+            require_once JPATH_SITE . '/media/k2/assets/vendors/verot/class.upload.php/src/class.upload.php';
+            $savepath = JPATH_ROOT . '/media/k2/categories/';
 
             try {
-                $handle = new \Verot\Upload\Upload($image);
-                $handle->allowed = array('image/*');
-                $handle->forbidden = array('image/bmp', 'image/tiff');
+                $handle            = new \Verot\Upload\Upload($image);
+                $handle->allowed   = ['image/*'];
+                $handle->forbidden = ['image/bmp', 'image/tiff'];
 
                 if ($handle->uploaded) {
-                    $handle->file_auto_rename = false;
+                    $handle->file_auto_rename   = false;
                     $handle->file_new_name_body = $row->id;
-                    $handle->file_overwrite = true;
-                    $handle->image_convert = 'webp';
-                    $handle->image_ratio_y = true;
-                    $handle->image_resize = true;
-                    $handle->image_x = $params->get('catImageWidth', '100');
-                    $handle->webp_quality = $params->get('imagesQuality', '90');
+                    $handle->file_overwrite     = true;
+                    $handle->image_convert      = 'webp';
+                    $handle->image_ratio_y      = true;
+                    $handle->image_resize       = true;
+                    $handle->image_x            = $params->get('catImageWidth', '100');
+                    $handle->webp_quality       = $params->get('imagesQuality', '90');
 
                     $handle->process($savepath);
 
@@ -125,7 +124,7 @@ class K2ModelCategory extends K2Model
                     }
                 }
             } catch (\Exception $e) {
-                $app->enqueueMessage(JText::_('K2_COULD_NOT_UPLOAD_YOUR_IMAGE').$e->getMessage(), 'error');
+                $app->enqueueMessage(JText::_('K2_COULD_NOT_UPLOAD_YOUR_IMAGE') . $e->getMessage(), 'error');
                 $app->redirect('index.php?option=com_k2&view=categories');
             }
         }
@@ -133,13 +132,13 @@ class K2ModelCategory extends K2Model
         if (JRequest::getBool('del_image')) {
             $savedRow = JTable::getInstance('K2Category', 'Table');
             $savedRow->load($row->id);
-            if (JFile::exists(JPATH_ROOT.'/media/k2/categories/'.$savedRow->image)) {
-                JFile::delete(JPATH_ROOT.'/media/k2/categories/'.$savedRow->image);
+            if (JFile::exists(JPATH_ROOT . '/media/k2/categories/' . $savedRow->image)) {
+                JFile::delete(JPATH_ROOT . '/media/k2/categories/' . $savedRow->image);
             }
             $row->image = '';
         }
 
-        if (!$row->store()) {
+        if (! $row->store()) {
             $app->enqueueMessage($row->getError(), 'error');
             $app->redirect('index.php?option=com_k2&view=categories');
         }
@@ -148,28 +147,28 @@ class K2ModelCategory extends K2Model
         $cache->clean();
 
         // Trigger K2 plugins
-        $dispatcher->trigger('onAfterK2Save', array(&$row, $isNew));
+        $dispatcher->trigger('onAfterK2Save', [&$row, $isNew]);
 
         // Trigger content & finder plugins after the save event
         if (K2_JVERSION != '15') {
-            $dispatcher->trigger('onContentAfterSave', array('com_k2.category', &$row, $isNew));
+            $dispatcher->trigger('onContentAfterSave', ['com_k2.category', &$row, $isNew]);
         } else {
-            $dispatcher->trigger('onAfterContentSave', array(&$row, $isNew));
+            $dispatcher->trigger('onAfterContentSave', [&$row, $isNew]);
         }
-        $results = $dispatcher->trigger('onFinderAfterSave', array('com_k2.category', $row, $isNew));
+        $results = $dispatcher->trigger('onFinderAfterSave', ['com_k2.category', $row, $isNew]);
 
         switch (JRequest::getCmd('task')) {
             case 'apply':
-                $msg = JText::_('K2_CHANGES_TO_CATEGORY_SAVED');
-                $link = 'index.php?option=com_k2&view=category&cid='.$row->id;
+                $msg  = JText::_('K2_CHANGES_TO_CATEGORY_SAVED');
+                $link = 'index.php?option=com_k2&view=category&cid=' . $row->id;
                 break;
             case 'saveAndNew':
-                $msg = JText::_('K2_CATEGORY_SAVED');
+                $msg  = JText::_('K2_CATEGORY_SAVED');
                 $link = 'index.php?option=com_k2&view=category';
                 break;
             case 'save':
             default:
-                $msg = JText::_('K2_CATEGORY_SAVED');
+                $msg  = JText::_('K2_CATEGORY_SAVED');
                 $link = 'index.php?option=com_k2&view=categories';
                 break;
         }
@@ -179,9 +178,9 @@ class K2ModelCategory extends K2Model
 
     public function countCategoryItems($catid, $trash = 0)
     {
-        $db = JFactory::getDbo();
-        $catid = (int)$catid;
-        $query = "SELECT COUNT(*) FROM #__k2_items WHERE catid={$catid} AND trash = ".(int)$trash;
+        $db    = JFactory::getDbo();
+        $catid = (int) $catid;
+        $query = "SELECT COUNT(*) FROM #__k2_items WHERE catid={$catid} AND trash = " . (int) $trash;
         $db->setQuery($query);
         $result = $db->loadResult();
         return $result;

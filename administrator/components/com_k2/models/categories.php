@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.model');
 
-JTable::addIncludePath(JPATH_COMPONENT . '/tables');
+JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_k2/tables');
 
 class K2ModelCategories extends K2Model
 {
@@ -51,9 +51,9 @@ class K2ModelCategories extends K2Model
 
         if ($filter_category) {
             K2Model::addIncludePath(JPATH_SITE . '/components/com_k2/models');
-            $ItemlistModel = K2Model::getInstance('Itemlist', 'K2Model');
-            $tree          = $ItemlistModel->getCategoryTree($filter_category);
-            $query .= " AND c.id IN (" . implode(',', $tree) . ")";
+            $ItemlistModel  = K2Model::getInstance('Itemlist', 'K2Model');
+            $tree           = $ItemlistModel->getCategoryTree($filter_category);
+            $query         .= " AND c.id IN (" . implode(',', $tree) . ")";
         }
         if ($filter_state > -1) {
             $query .= " AND c.published = {$filter_state}";
@@ -83,9 +83,9 @@ class K2ModelCategories extends K2Model
         $queryEnd = " ORDER BY {$filter_order} {$filter_order_Dir}";
 
         // --- Final query ---
-        $combinedQuery = $queryStart . $query . $queryEnd;
+        $combinedQuery  = $queryStart . $query . $queryEnd;
         $db->setQuery($combinedQuery);
-        $rows = $db->loadObjectList();
+        $rows  = $db->loadObjectList();
 
         // --- Row counter ---
         if (count($rows)) {

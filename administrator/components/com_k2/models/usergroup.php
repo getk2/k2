@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.model');
 
-JTable::addIncludePath(JPATH_COMPONENT.'/tables');
+JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_k2/tables');
 
 class K2ModelUserGroup extends K2Model
 {
@@ -29,17 +29,17 @@ class K2ModelUserGroup extends K2Model
         $app = JFactory::getApplication();
         $row = JTable::getInstance('K2UserGroup', 'Table');
 
-        if (!$row->bind(JRequest::get('post'))) {
+        if (! $row->bind(JRequest::get('post'))) {
             $app->enqueueMessage($row->getError(), 'error');
             $app->redirect('index.php?option=com_k2&view=usergroups');
         }
 
-        if (!$row->check()) {
+        if (! $row->check()) {
             $app->enqueueMessage($row->getError(), 'error');
-            $app->redirect('index.php?option=com_k2&view=usergroup&cid='.$row->id);
+            $app->redirect('index.php?option=com_k2&view=usergroup&cid=' . $row->id);
         }
 
-        if (!$row->store()) {
+        if (! $row->store()) {
             $app->enqueueMessage($row->getError(), 'error');
             $app->redirect('index.php?option=com_k2&view=usergroups');
         }
@@ -49,16 +49,16 @@ class K2ModelUserGroup extends K2Model
 
         switch (JRequest::getCmd('task')) {
             case 'apply':
-                $msg = JText::_('K2_CHANGES_TO_USER_GROUP_SAVED');
-                $link = 'index.php?option=com_k2&view=usergroup&cid='.$row->id;
+                $msg  = JText::_('K2_CHANGES_TO_USER_GROUP_SAVED');
+                $link = 'index.php?option=com_k2&view=usergroup&cid=' . $row->id;
                 break;
             case 'saveAndNew':
-                $msg = JText::_('K2_USER_GROUP_SAVED');
+                $msg  = JText::_('K2_USER_GROUP_SAVED');
                 $link = 'index.php?option=com_k2&view=usergroup';
                 break;
             case 'save':
             default:
-                $msg = JText::_('K2_USER_GROUP_SAVED');
+                $msg  = JText::_('K2_USER_GROUP_SAVED');
                 $link = 'index.php?option=com_k2&view=usergroups';
                 break;
         }

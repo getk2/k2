@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.model');
 
-JTable::addIncludePath(JPATH_COMPONENT . '/tables');
+JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_k2/tables');
 
 class K2ModelTags extends K2Model
 {
@@ -50,7 +50,7 @@ class K2ModelTags extends K2Model
         $query .= " ORDER BY {$filter_order} {$filter_order_Dir}";
 
         $db->setQuery($query, $limitstart, $limit);
-        $rows = $db->loadObjectList();
+        $rows  = $db->loadObjectList();
         return $rows;
     }
 

@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.model');
 
-JTable::addIncludePath(JPATH_COMPONENT . '/tables');
+JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_k2/tables');
 
 class K2ModelItems extends K2Model
 {
@@ -102,10 +102,10 @@ class K2ModelItems extends K2Model
         if ($filter_category > 0) {
             if ($params->get('showChildCatItems')) {
                 K2Model::addIncludePath(JPATH_SITE . '/components/com_k2/models');
-                $itemListModel = K2Model::getInstance('Itemlist', 'K2Model');
-                $categories    = $itemListModel->getCategoryTree($filter_category);
-                $sql           = (is_array($categories) && count($categories)) ? implode(',', $categories) : '0';
-                $query .= " AND i.catid IN ({$sql})";
+                $itemListModel  = K2Model::getInstance('Itemlist', 'K2Model');
+                $categories     = $itemListModel->getCategoryTree($filter_category);
+                $sql            = (is_array($categories) && count($categories)) ? implode(',', $categories) : '0';
+                $query         .= " AND i.catid IN ({$sql})";
             } else {
                 $query .= " AND i.catid = {$filter_category}";
             }
@@ -140,7 +140,7 @@ class K2ModelItems extends K2Model
         $dispatcher = JDispatcher::getInstance();
 
         // Trigger K2 plugins
-        $dispatcher->trigger('onK2BeforeSetQuery', [&$combinedQuery]);
+        $dispatcher->trigger('onK2BeforeSetQuery', [ &$combinedQuery]);
 
         $db->setQuery($combinedQuery, $limitstart, $limit);
         $rows = $db->loadObjectList();

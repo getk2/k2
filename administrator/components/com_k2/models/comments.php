@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.model');
 
-JTable::addIncludePath(JPATH_COMPONENT . '/tables');
+JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_k2/tables');
 
 class K2ModelComments extends K2Model
 {
@@ -75,7 +75,7 @@ class K2ModelComments extends K2Model
         if (! $filter_order) {
             $filter_order = "c.commentDate";
         }
-        $queryEnd = " ORDER BY {$filter_order} {$filter_order_Dir}";
+        $queryEnd  = " ORDER BY {$filter_order} {$filter_order_Dir}";
 
         // --- Final query ---
         $combinedQuery = $queryStart . $query . $queryEnd;
