@@ -5,6 +5,9 @@ The latest K2 release is always available from: https://getk2.org/downloads/?f=K
 
 # Changelog
 
+### v2.26 - May 27th, 2026
+- Improve compatibility with YooTheme Pro on PHP 8.x.
+
 ### v2.25 - May 27th, 2026
 - URL router improvements.
 
