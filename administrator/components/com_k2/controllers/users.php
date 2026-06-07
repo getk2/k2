@@ -80,6 +80,7 @@ class K2ControllerUsers extends K2Controller
 
     public function import()
     {
+        JRequest::checkToken('get') or jexit('Invalid Token');
         $model = $this->getModel('users');
         $model->import();
     }

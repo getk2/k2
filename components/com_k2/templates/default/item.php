@@ -599,7 +599,7 @@ defined('_JEXEC') or die;
                 </span>
 
                 <?php if ($comment->userImage): ?>
-                <img src="<?php echo $comment->userImage; ?>" alt="<?php echo JFilterOutput::cleanText($comment->userName); ?>" width="<?php echo $this->item->params->get('commenterImgWidth'); ?>" />
+                <img src="<?php echo htmlspecialchars($comment->userImage, ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo JFilterOutput::cleanText($comment->userName); ?>" width="<?php echo $this->item->params->get('commenterImgWidth'); ?>" />
                 <?php endif; ?>
 
                 <span class="commentDate"><?php echo JHTML::_('date', $comment->commentDate, JText::_('K2_DATE_FORMAT_LC2')); ?></span>

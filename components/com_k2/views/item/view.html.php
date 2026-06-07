@@ -241,7 +241,7 @@ class K2ViewItem extends K2View
                             $comments[$i]->userLink = $comments[$i]->commentURL;
                         }
                         if ($reportSpammerFlag && $comments[$i]->userID > 0) {
-                            $comments[$i]->reportUserLink = JRoute::_('index.php?option=com_k2&view=comments&task=reportSpammer&id='.$comments[$i]->userID.'&format=raw');
+                            $comments[$i]->reportUserLink = JRoute::_('index.php?option=com_k2&view=comments&task=reportSpammer&id='.$comments[$i]->userID.'&format=raw&'.JSession::getFormToken().'=1');
                         } else {
                             $comments[$i]->reportUserLink = false;
                         }
@@ -783,7 +783,7 @@ class K2ViewItem extends K2View
 
     private function filterHTML($str)
     {
-        return htmlspecialchars(trim($str), ENT_QUOTES, 'utf-8');
+        return htmlspecialchars(trim($str), ENT_QUOTES, 'UTF-8');
     }
 
     private function setCanonicalUrl($url)

@@ -121,7 +121,7 @@ class K2ElementK2modalselector extends K2Element
                     $db->setQuery($query);
                     $row = $db->loadObject();
                     $entryName = $row->name;
-                    $entryValue = htmlspecialchars($row->name, ENT_QUOTES, 'utf-8');
+                    $entryValue = htmlspecialchars($row->name, ENT_QUOTES, 'UTF-8');
                 }
 
                 $output .= '<li class="handle'.$entryClass.'">';
@@ -176,7 +176,7 @@ class K2ElementK2modalselector extends K2Element
                     $db->setQuery($query);
                     $row = $db->loadObject();
                     $entryName = $row->name;
-                    $entryValue = htmlspecialchars($row->name, ENT_QUOTES, 'utf-8');
+                    $entryValue = htmlspecialchars($row->name, ENT_QUOTES, 'UTF-8');
                 }
                 $view = "tags";
             }

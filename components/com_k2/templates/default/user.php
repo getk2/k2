@@ -46,7 +46,7 @@ $user = JFactory::getUser();
         <?php endif; ?>
 
         <?php if ($this->params->get('userImage') && !empty($this->user->avatar)): ?>
-        <img src="<?php echo $this->user->avatar; ?>" alt="<?php echo htmlspecialchars($this->user->name, ENT_QUOTES, 'UTF-8'); ?>" style="width:<?php echo $this->params->get('userImageWidth'); ?>px;height:auto;" />
+        <img src="<?php echo htmlspecialchars($this->user->avatar, ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($this->user->name, ENT_QUOTES, 'UTF-8'); ?>" style="width:<?php echo $this->params->get('userImageWidth'); ?>px;height:auto;" />
         <?php endif; ?>
 
         <?php if ($this->params->get('userName')): ?>

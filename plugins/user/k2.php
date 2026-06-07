@@ -54,34 +54,30 @@ class plgUserK2 extends JPlugin
         if ($app->isSite() && $task != 'activate' && JRequest::getInt('K2UserForm')) {
             JPlugin::loadLanguage('com_k2');
             JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
-            $row = JTable::getInstance('K2User', 'Table');
             $k2id = $this->getK2UserID($user['id']);
+            $row = JTable::getInstance('K2User', 'Table');
+            $row->load($k2id);
             JRequest::setVar('id', $k2id, 'post');
             $row->bind(JRequest::get('post'));
+            // Override columns that must never come from POST
             $row->set('userID', $user['id']);
             $row->set('userName', $user['name']);
             $row->set('ip', isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '');
             $row->set('hostname', isset($_SERVER['REMOTE_ADDR']) ? gethostbyaddr($_SERVER['REMOTE_ADDR']) : '');
-            if (isset($user['notes'])) {
-                $row->set('notes', $user['notes']);
-            }
+            $row->set('notes', isset($user['notes']) ? $user['notes'] : $row->notes);  // preserve K2-set notes (e.g. spammer flag); ignore any POST value
             if ($isnew) {
                 $row->set('group', $params->get('K2UserGroup', 1));
             } else {
                 $row->set('group', null);
                 $row->set('gender', JRequest::getVar('gender', 'n'));
-                $row->set('url', JRequest::getString('url'));
+                $url = JRequest::getString('url');
+                $url = JString::str_ireplace(' ', '', $url);
+                $url = JString::str_ireplace('"', '', $url);
+                $url = JString::str_ireplace('<', '', $url);
+                $url = JString::str_ireplace('>', '', $url);
+                $url = JString::str_ireplace('\'', '', $url);
+                $row->set('url', $url);
             }
-            /*
-            if ($row->gender != 'm' && $row->gender != 'f') {
-                $row->gender = 'n';
-            }
-            */
-            $row->url = JString::str_ireplace(' ', '', $row->url);
-            $row->url = JString::str_ireplace('"', '', $row->url);
-            $row->url = JString::str_ireplace('<', '', $row->url);
-            $row->url = JString::str_ireplace('>', '', $row->url);
-            $row->url = JString::str_ireplace('\'', '', $row->url);
             $row->set('description', JRequest::getVar('description', '', 'post', 'string', 4));
             if ($params->get('xssFiltering')) {
                 $filter = new JFilterInput(array(), array(), 1, 1, 0);

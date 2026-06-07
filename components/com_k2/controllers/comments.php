@@ -154,6 +154,7 @@ class K2ControllerComments extends K2Controller
 
     public function reportSpammer()
     {
+        JRequest::checkToken('get') or jexit('Invalid Token');
         $app = JFactory::getApplication();
         $user = JFactory::getUser();
         $format = JRequest::getVar('format');

@@ -197,8 +197,8 @@ class K2ModelItem extends K2Model
 
         $item->rawTitle = $item->title;
         $item->title = str_ireplace('&nbsp;', ' ', $item->title);
-        $item->title = htmlspecialchars($item->title, ENT_QUOTES, 'utf-8');
-        $item->image_caption = htmlspecialchars($item->image_caption, ENT_QUOTES, 'utf-8');
+        $item->title = htmlspecialchars($item->title, ENT_QUOTES, 'UTF-8');
+        $item->image_caption = htmlspecialchars($item->image_caption, ENT_QUOTES, 'UTF-8');
 
         // Author
         if (!empty($item->created_by_alias)) {
@@ -475,7 +475,7 @@ class K2ModelItem extends K2Model
             }
             $row->author->profile = (!empty($item->author->profile)) ? $item->author->profile : '';
             if (isset($row->author->profile->url)) {
-                $row->author->profile->url = htmlspecialchars($row->author->profile->url, ENT_QUOTES, 'utf-8');
+                $row->author->profile->url = htmlspecialchars($row->author->profile->url, ENT_QUOTES, 'UTF-8');
             }
         }
         $row->numOfComments = (!empty($item->numOfComments)) ? $item->numOfComments : null;

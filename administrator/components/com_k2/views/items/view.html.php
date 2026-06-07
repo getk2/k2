@@ -286,7 +286,7 @@ class K2ViewItems extends K2View
 
             // Display import button for Joomla content
             if ($user->gid > 23 && !$params->get('hideImportButton')) {
-                $buttonUrl = JURI::base().'index.php?option=com_k2&amp;view=items&amp;task=import';
+                $buttonUrl = JURI::base().'index.php?option=com_k2&amp;view=items&amp;task=import&amp;'.JSession::getFormToken().'=1';
                 $buttonText = JText::_('K2_IMPORT_JOOMLA_CONTENT');
                 if (K2_JVERSION == '30') {
                     $button = '<a id="K2ImportContentButton" class="btn btn-small" href="'.$buttonUrl.'"><i class="icon-archive"></i>'.$buttonText.'</a>';

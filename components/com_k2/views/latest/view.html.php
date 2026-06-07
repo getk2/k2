@@ -115,7 +115,7 @@ class K2ViewLatest extends K2View
                         JRequest::setVar('limit', $limit);
                         JRequest::setVar('clearFlag', true);
 
-                        $category->name = htmlspecialchars($category->name, ENT_QUOTES, 'utf-8');
+                        $category->name = htmlspecialchars($category->name, ENT_QUOTES, 'UTF-8');
                         if ($limit) {
                             $category->items = $model->getData('rdate');
 
@@ -168,13 +168,13 @@ class K2ViewLatest extends K2View
                         if (is_object($userObject->profile) && $userObject->profile->id > 0) {
                             $results = $dispatcher->trigger('onK2UserDisplay', array(&$userObject->profile, &$params, $limitstart));
                             $userObject->event->K2UserDisplay = trim(implode("\n", $results));
-                            $userObject->profile->url = htmlspecialchars($userObject->profile->url, ENT_QUOTES, 'utf-8');
+                            $userObject->profile->url = htmlspecialchars($userObject->profile->url, ENT_QUOTES, 'UTF-8');
                         }
 
                         $link = K2HelperRoute::getUserRoute($userObject->id);
                         $userObject->link = JRoute::_($link);
                         $userObject->feed = JRoute::_($link.'&format=feed');
-                        $userObject->name = htmlspecialchars($userObject->name, ENT_QUOTES, 'utf-8');
+                        $userObject->name = htmlspecialchars($userObject->name, ENT_QUOTES, 'UTF-8');
                         if ($limit) {
                             $userObject->items = $model->getAuthorLatest(0, $limit, $userID);
 

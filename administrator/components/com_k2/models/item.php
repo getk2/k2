@@ -512,11 +512,14 @@ class K2ModelItem extends K2Model
                         while ($filename = readdir($galleryDir)) {
                             if ($filename != "." && $filename != "..") {
                                 $ext         = strtolower(JFile::getExt($filename));
-                                $allowedExts = ['gif', 'jpg', 'jpeg', 'png', 'webp'];
+                                $allowedExts = ['avif', 'gif', 'jpg', 'jpeg', 'png', 'webp', 'txt'];
                                 if (in_array($ext, $allowedExts)) {
                                     $file         = str_replace(" ", "_", $filename);
                                     $safefilename = JFile::makeSafe($file);
                                     rename($imageDir . '/' . $filename, $imageDir . '/' . $safefilename);
+                                } else {
+                                    // Delete any non-gallery file extracted from the archive (prevents RCE via shell.php etc.)
+                                    JFile::delete($imageDir . '/' . $filename);
                                 }
                             }
                         }
@@ -721,8 +724,27 @@ class K2ModelItem extends K2Model
         if (is_array($attPost) && count($attPost)) {
             foreach ($attPost as $key => $attachment) { /* Use the POST array's key as reference */
                 if (! empty($attachment['existing'])) {
-                    $src      = JPATH_SITE . '/' . JPath::clean($attachment['existing']);
-                    $filename = basename($src);
+                    $src     = JPATH_SITE . '/' . JPath::clean($attachment['existing']);
+                    $realSrc = realpath($src);
+                    $realSiteRoot = realpath(JPATH_SITE);
+                    // Block path traversal outside the site root
+                    if ($realSrc === false || $realSiteRoot === false || strpos($realSrc, $realSiteRoot . DIRECTORY_SEPARATOR) !== 0) {
+                        $app->enqueueMessage(JText::_('K2_INVALID_ATTACHMENT_PATH'), 'error');
+                        continue;
+                    }
+                    // Block server-executable file types
+                    $existingExt = strtolower(JFile::getExt($realSrc));
+                    $blockedExts = [
+                        'php', 'php3', 'php4', 'php5', 'php7', 'php8', 'phtml', 'phar',
+                        'pl', 'py', 'rb', 'sh', 'bash', 'cgi',
+                        'asp', 'aspx', 'jsp', 'jspx',
+                        'htaccess', 'htpasswd',
+                    ];
+                    if (in_array($existingExt, $blockedExts)) {
+                        $app->enqueueMessage(JText::_('K2_INVALID_FILE_TYPE'), 'error');
+                        continue;
+                    }
+                    $filename = basename($realSrc);
                     $dest     = $savepath . '/' . $filename;
 
                     if (JFile::exists($dest)) {
@@ -734,7 +756,7 @@ class K2ModelItem extends K2Model
                         $dest             = $savepath . '/' . $newFilename;
                     }
 
-                    JFile::copy($src, $dest);
+                    JFile::copy($realSrc, $dest);
 
                     $attachmentToSave                 = JTable::getInstance('K2Attachment', 'Table');
                     $attachmentToSave->itemID         = $row->id;
@@ -747,9 +769,19 @@ class K2ModelItem extends K2Model
                         $handle   = new \Verot\Upload\Upload($attFiles['tmp_name'][$key]['upload']);
                         $filename = $attFiles['name'][$key]['upload'];
                         if ($handle->uploaded) {
+                            $blockedExts = [
+                                'php', 'php3', 'php4', 'php5', 'php7', 'php8', 'phtml', 'phar',
+                                'pl', 'py', 'rb', 'sh', 'bash', 'cgi',
+                                'asp', 'aspx', 'jsp', 'jspx',
+                                'htaccess', 'htpasswd',
+                            ];
+                            $uploadExt = strtolower(JFile::getExt($filename));
+                            if (in_array($uploadExt, $blockedExts)) {
+                                throw new \RuntimeException(JText::_('K2_INVALID_FILE_TYPE'));
+                            }
                             $handle->file_auto_rename   = true;
                             $handle->file_new_name_body = JFile::stripExt($filename);
-                            $handle->file_new_name_ext  = JFile::getExt($filename);
+                            $handle->file_new_name_ext  = $uploadExt;
                             $handle->file_safe_name     = true;
                             $handle->forbidden          = [
                                 "application/java-archive",

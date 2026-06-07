@@ -217,6 +217,11 @@ class K2ControllerItem extends K2Controller
 
     public function checkin()
     {
+        $user = JFactory::getUser();
+        if ($user->guest) {
+            JError::raiseError(403, JText::_('K2_ALERTNOTAUTH'));
+            return;
+        }
         $model = $this->getModel('item');
         $model->checkin();
     }

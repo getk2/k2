@@ -161,6 +161,7 @@ class K2ControllerItems extends K2Controller
 
     public function import()
     {
+        JRequest::checkToken('get') or jexit('Invalid Token');
         $model = $this->getModel('items');
         if (K2_JVERSION != '15') {
             $model->importJ16();

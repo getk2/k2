@@ -227,7 +227,7 @@ class K2ViewItemlist extends K2View
                                 $child->numOfItems = $itemlistModel->countCategoryItems($child->id);
                             }
                             $child->image    = K2HelperUtilities::getCategoryImage($child->image, $params);
-                            $child->name     = htmlspecialchars($child->name, ENT_QUOTES, 'utf-8');
+                            $child->name     = htmlspecialchars($child->name, ENT_QUOTES, 'UTF-8');
                             $child->link     = urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($child->id . ':' . urlencode($child->alias))));
                             $subCategories[] = $child;
                         }
@@ -252,7 +252,7 @@ class K2ViewItemlist extends K2View
 
                     // Set title
                     $title          = $category->name;
-                    $category->name = htmlspecialchars($category->name, ENT_QUOTES, 'utf-8'); // Check this
+                    $category->name = htmlspecialchars($category->name, ENT_QUOTES, 'UTF-8'); // Check this
 
                     // Set head feed link
                     $addHeadFeedLink = $params->get('catFeedLink');
@@ -376,7 +376,7 @@ class K2ViewItemlist extends K2View
                             $limitstart,
                         ]);
                         $userObject->event->K2UserDisplay = trim(implode("\n", $results));
-                        $userObject->profile->url         = htmlspecialchars($userObject->profile->url, ENT_QUOTES, 'utf-8');
+                        $userObject->profile->url         = htmlspecialchars($userObject->profile->url, ENT_QUOTES, 'UTF-8');
                     }
                     $this->assignRef('user', $userObject);
 

@@ -166,7 +166,7 @@ class K2ViewUsers extends K2View
             }
             if ($canImport) {
                 if (!$params->get('hideImportButton')) {
-                    $buttonUrl = JURI::base().'index.php?option=com_k2&amp;view=users&amp;task=import';
+                    $buttonUrl = JURI::base().'index.php?option=com_k2&amp;view=users&amp;task=import&amp;'.JSession::getFormToken().'=1';
                     $buttonText = JText::_('K2_IMPORT_JOOMLA_USERS');
                     if (K2_JVERSION == '30') {
                         $button = '<a id="K2ImportUsersButton" class="btn btn-small" href="'.$buttonUrl.'"><i class="icon-archive "></i>'.$buttonText.'</a>';
