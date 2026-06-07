@@ -41,7 +41,7 @@ class K2ModelTag extends K2Model
         $isNew = ($row->id) ? false : true;
 
         // Trigger K2 plugins
-        $dispatcher->trigger('onBeforeK2Save', [&$row, $isNew]);
+        $dispatcher->trigger('onBeforeK2Save', [ &$row, $isNew]);
 
         if (! $row->check()) {
             $app->enqueueMessage($row->getError(), 'error');
@@ -57,7 +57,7 @@ class K2ModelTag extends K2Model
         $cache->clean();
 
         // Trigger K2 plugins
-        $dispatcher->trigger('onAfterK2Save', [&$row, $isNew]);
+        $dispatcher->trigger('onAfterK2Save', [ &$row, $isNew]);
 
         switch (JRequest::getCmd('task')) {
             case 'apply':
@@ -135,9 +135,9 @@ class K2ModelTag extends K2Model
         $word = JRequest::getString('q', null);
         $id   = JRequest::getInt('id');
         if (K2_JVERSION == '15') {
-            $word = $db->Quote($db->getEscaped($word, true) . '%', false);
+            $word = $db->Quote('%' . $db->getEscaped($word, true) . '%', false);
         } else {
-            $word = $db->Quote($db->escape($word, true) . '%', false);
+            $word = $db->Quote('%' . $db->escape($word, true) . '%', false);
         }
 
         if ($id) {
