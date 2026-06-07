@@ -5,6 +5,12 @@ The latest K2 release is always available from: https://getk2.org/downloads/?f=K
 
 # Changelog
 
+### v2.28 - June 7th, 2026
+- Improved tag searching in the item edit form (previously it would only search tags by how they started, not by any word or characters they may have contained)
+- Likewise, we've whitelisted more allowed characters when searching in backend lists (items, categories, tags, extra fields and users)
+- The "all" option in the pagination drop-down is now visible only to admins. This is to prevent in-experienced users from listing all entries by accident, causing browser crashes.
+- Updated elFinder to the latest version 2.1.69 (from version 2.1.66). See elFinder's changelog here: https://github.com/Studio-42/elFinder/blob/master/Changelog
+
 ### v2.27 - June 7th, 2026
 This is a security release addressing issues reported via the Joomla VEL programme.
 
