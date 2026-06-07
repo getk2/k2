@@ -55,7 +55,41 @@ class K2ControllerMedia extends K2Controller
         JPath::check($path);
 
         // Disallow force downloading sensitive file types
-        $disallowedFileTypes = array('php', 'php3', 'php4', 'php5', 'php7', 'phtml', 'phar', 'ini', 'sql', 'htaccess', 'shtml', 'asp', 'aspx', 'jsp');
+        $disallowedFileTypes = [
+            'asp',
+            'aspx',
+            'bash',
+            'bat',
+            'cgi',
+            'htaccess',
+            'htm',
+            'html',
+            'htpasswd',
+            'inc',
+            'ini',
+            'js',
+            'jsp',
+            'jspx',
+            'phar',
+            'php',
+            'php3',
+            'php4',
+            'php5',
+            'php6',
+            'php7',
+            'php8',
+            'phps',
+            'phpt',
+            'pht',
+            'phtm',
+            'phtml',
+            'pl',
+            'py',
+            'rb',
+            'sh',
+            'sql',
+            'wsdl',
+        ];
         $target = JRequest::getCmd('target');
         $download = JRequest::getCmd('download');
         if ($target && $download) {

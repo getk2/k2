@@ -43,9 +43,9 @@ class plgUserK2 extends JPlugin
     public function onAfterStoreUser($user, $isnew, $success, $msg)
     {
         jimport('joomla.filesystem.file');
-        $app = JFactory::getApplication();
+        $app    = JFactory::getApplication();
         $params = JComponentHelper::getParams('com_k2');
-        $task = JRequest::getCmd('task');
+        $task   = JRequest::getCmd('task');
 
         if ($app->isSite() && ($task == 'activate' || $isnew) && $params->get('stopForumSpam')) {
             $this->checkSpammer($user);
@@ -53,10 +53,17 @@ class plgUserK2 extends JPlugin
 
         if ($app->isSite() && $task != 'activate' && JRequest::getInt('K2UserForm')) {
             JPlugin::loadLanguage('com_k2');
-            JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
+            JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_k2/tables');
             $k2id = $this->getK2UserID($user['id']);
-            $row = JTable::getInstance('K2User', 'Table');
+            $row  = JTable::getInstance('K2User', 'Table');
             $row->load($k2id);
+            // Snapshot server-owned columns from the loaded row BEFORE bind(), so a crafted
+            // POST cannot overwrite them. 'image' is only ever set by the upload handler /
+            // del_image below; 'notes' is a K2 backend-only annotation (e.g. spammer flag).
+            // NOTE: do not restore 'plugins' here - it is the legitimate channel for K2 user
+            // plugin fields and must remain bindable.
+            $origImage = $row->image;
+            $origNotes = $row->notes;
             JRequest::setVar('id', $k2id, 'post');
             $row->bind(JRequest::get('post'));
             // Override columns that must never come from POST
@@ -64,7 +71,8 @@ class plgUserK2 extends JPlugin
             $row->set('userName', $user['name']);
             $row->set('ip', isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '');
             $row->set('hostname', isset($_SERVER['REMOTE_ADDR']) ? gethostbyaddr($_SERVER['REMOTE_ADDR']) : '');
-            $row->set('notes', isset($user['notes']) ? $user['notes'] : $row->notes);  // preserve K2-set notes (e.g. spammer flag); ignore any POST value
+            $row->set('image', $origImage);                                          // only the upload handler / del_image (below) may change this
+            $row->set('notes', isset($user['notes']) ? $user['notes'] : $origNotes); // preserve K2-set notes (e.g. spammer flag); ignore any POST value
             if ($isnew) {
                 $row->set('group', $params->get('K2UserGroup', 1));
             } else {
@@ -80,32 +88,32 @@ class plgUserK2 extends JPlugin
             }
             $row->set('description', JRequest::getVar('description', '', 'post', 'string', 4));
             if ($params->get('xssFiltering')) {
-                $filter = new JFilterInput(array(), array(), 1, 1, 0);
+                $filter           = new JFilterInput([], [], 1, 1, 0);
                 $row->description = $filter->clean($row->description);
             }
             $row->store();
 
             $file = JRequest::get('files');
 
-            if (isset($file['image']) && $file['image']['error'] == 0 && !JRequest::getBool('del_image')) {
+            if (isset($file['image']) && $file['image']['error'] == 0 && ! JRequest::getBool('del_image')) {
 
-                require_once JPATH_SITE.'/media/k2/assets/vendors/verot/class.upload.php/src/class.upload.php';
-                $savepath = JPATH_ROOT.'/media/k2/users/';
+                require_once JPATH_SITE . '/media/k2/assets/vendors/verot/class.upload.php/src/class.upload.php';
+                $savepath = JPATH_ROOT . '/media/k2/users/';
 
                 try {
-                    $handle = new \Verot\Upload\Upload($file['image']);
-                    $handle->allowed = array('image/*');
-                    $handle->forbidden = array('image/bmp', 'image/tiff');
+                    $handle            = new \Verot\Upload\Upload($file['image']);
+                    $handle->allowed   = ['image/*'];
+                    $handle->forbidden = ['image/bmp', 'image/tiff'];
 
                     if ($handle->uploaded) {
-                        $handle->file_auto_rename = false;
+                        $handle->file_auto_rename   = false;
                         $handle->file_new_name_body = $row->id;
-                        $handle->file_overwrite = true;
-                        $handle->image_convert = 'webp';
-                        $handle->image_ratio_y = true;
-                        $handle->image_resize = true;
-                        $handle->image_x = $params->get('userImageWidth', '100');
-                        $handle->webp_quality = $params->get('imagesQuality', '90');
+                        $handle->file_overwrite     = true;
+                        $handle->image_convert      = 'webp';
+                        $handle->image_ratio_y      = true;
+                        $handle->image_resize       = true;
+                        $handle->image_x            = $params->get('userImageWidth', '100');
+                        $handle->webp_quality       = $params->get('imagesQuality', '90');
 
                         $handle->process($savepath);
 
@@ -117,14 +125,14 @@ class plgUserK2 extends JPlugin
                         }
                     }
                 } catch (\Exception $e) {
-                    $app->enqueueMessage(JText::_('K2_COULD_NOT_UPLOAD_YOUR_IMAGE').$e->getMessage(), 'error');
+                    $app->enqueueMessage(JText::_('K2_COULD_NOT_UPLOAD_YOUR_IMAGE') . $e->getMessage(), 'error');
                 }
             }
 
             if (JRequest::getBool('del_image')) {
                 $currentImage = basename($row->image);
-                if (JFile::exists(JPATH_ROOT.'/media/k2/users/'.$currentImage)) {
-                    JFile::delete(JPATH_ROOT.'/media/k2/users/'.$currentImage);
+                if (JFile::exists(JPATH_ROOT . '/media/k2/users/' . $currentImage)) {
+                    JFile::delete(JPATH_ROOT . '/media/k2/users/' . $currentImage);
                 }
                 $image = '';
             }
@@ -134,10 +142,10 @@ class plgUserK2 extends JPlugin
             }
 
             $itemid = $params->get('redirect');
-            if (!$isnew && $itemid) {
+            if (! $isnew && $itemid) {
                 $menu = $app->getMenu();
                 $item = $menu->getItem($itemid);
-                $url = JRoute::_($item->link.'&Itemid='.$itemid, false);
+                $url  = JRoute::_($item->link . '&Itemid=' . $itemid, false);
 
                 if (K2_JVERSION == '15') {
                     if (JURI::isInternal($url)) {
@@ -154,17 +162,17 @@ class plgUserK2 extends JPlugin
     public function onLoginUser($user, $options)
     {
         $params = JComponentHelper::getParams('com_k2');
-        $app = JFactory::getApplication();
+        $app    = JFactory::getApplication();
         if ($app->isSite()) {
             // Get the user id
             $db = JFactory::getDbo();
-            $db->setQuery("SELECT id FROM #__users WHERE username = ".$db->Quote($user['username']));
+            $db->setQuery("SELECT id FROM #__users WHERE username = " . $db->Quote($user['username']));
             $id = $db->loadResult();
 
             // If K2 profiles are enabled assign non-existing K2 users to the default K2 group. Update user info for existing K2 users.
             if ($params->get('K2UserProfile') && $id) {
                 $k2id = $this->getK2UserID($id);
-                JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');
+                JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_k2/tables');
                 $row = JTable::getInstance('K2User', 'Table');
                 if ($k2id) {
                     $row->load($k2id);
@@ -173,7 +181,7 @@ class plgUserK2 extends JPlugin
                     $row->set('userName', $user['fullname']);
                     $row->set('group', $params->get('K2UserGroup', 1));
                 }
-                $row->ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+                $row->ip       = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
                 $row->hostname = isset($_SERVER['REMOTE_ADDR']) ? gethostbyaddr($_SERVER['REMOTE_ADDR']) : '';
                 $row->store();
             }
@@ -189,7 +197,7 @@ class plgUserK2 extends JPlugin
     public function onLogoutUser($user)
     {
         $params = JComponentHelper::getParams('com_k2');
-        $app = JFactory::getApplication();
+        $app    = JFactory::getApplication();
         if ($app->isSite() && $params->get('cookieDomain')) {
             setcookie("userID", "", time() - 3600, '/', $params->get('cookieDomain'), 0);
         }
@@ -198,8 +206,8 @@ class plgUserK2 extends JPlugin
 
     public function onAfterDeleteUser($user, $succes, $msg)
     {
-        $app = JFactory::getApplication();
-        $db = JFactory::getDbo();
+        $app   = JFactory::getApplication();
+        $db    = JFactory::getDbo();
         $query = "DELETE FROM #__k2_users WHERE userID={$user['id']}";
         $db->setQuery($query);
         $db->query();
@@ -207,12 +215,12 @@ class plgUserK2 extends JPlugin
 
     public function onBeforeStoreUser($user, $isNew)
     {
-        $app = JFactory::getApplication();
-        $params = JComponentHelper::getParams('com_k2');
+        $app     = JFactory::getApplication();
+        $params  = JComponentHelper::getParams('com_k2');
         $session = JFactory::getSession();
-        if ($params->get('K2UserProfile') && $isNew && $params->get('recaptchaOnRegistration') && $app->isSite() && !$session->get('socialConnectData')) {
-            require_once JPATH_SITE.'/components/com_k2/helpers/utilities.php';
-            if (!K2HelperUtilities::verifyRecaptcha()) {
+        if ($params->get('K2UserProfile') && $isNew && $params->get('recaptchaOnRegistration') && $app->isSite() && ! $session->get('socialConnectData')) {
+            require_once JPATH_SITE . '/components/com_k2/helpers/utilities.php';
+            if (! K2HelperUtilities::verifyRecaptcha()) {
                 if (K2_JVERSION != '15') {
                     $url = 'index.php?option=com_users&view=registration';
                 } else {
@@ -226,7 +234,7 @@ class plgUserK2 extends JPlugin
 
     public function getK2UserID($id)
     {
-        $db = JFactory::getDbo();
+        $db    = JFactory::getDbo();
         $query = "SELECT id FROM #__k2_users WHERE userID={$id}";
         $db->setQuery($query);
         $result = $db->loadResult();
@@ -235,12 +243,12 @@ class plgUserK2 extends JPlugin
 
     public function checkSpammer($user)
     {
-        if (!$user['block']) {
-            $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1';
-            $email = urlencode($user['email']);
+        if (! $user['block']) {
+            $ip       = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1';
+            $email    = urlencode($user['email']);
             $username = urlencode($user['username']);
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, 'http://www.stopforumspam.com/api?ip='.$ip.'&email='.$email.'&username='.$username.'&f=json');
+            $ch       = curl_init();
+            curl_setopt($ch, CURLOPT_URL, 'http://www.stopforumspam.com/api?ip=' . $ip . '&email=' . $email . '&username=' . $username . '&f=json');
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_TIMEOUT, 5);
@@ -251,7 +259,7 @@ class plgUserK2 extends JPlugin
                 $response = json_decode($response);
                 if ($response->ip->appears || $response->email->appears || $response->username->appears) {
                     $db = JFactory::getDbo();
-                    $db->setQuery("UPDATE #__users SET block = 1 WHERE id = ".$user['id']);
+                    $db->setQuery("UPDATE #__users SET block = 1 WHERE id = " . $user['id']);
                     $db->query();
                     $user['notes'] = JText::_('K2_POSSIBLE_SPAMMER_DETECTED_BY_STOPFORUMSPAM');
                 }
