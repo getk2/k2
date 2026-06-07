@@ -38,9 +38,10 @@ class K2ViewCategories extends K2View
         $filter_state = $app->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
 
         $language = $app->getUserStateFromRequest($option.$view.'language', 'language', '', 'string');
+
         $search = $app->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
-        $search = trim(preg_replace('/[^\p{L}\p{N}\s\-.,:!?\'"()]/u', '', $search));
+        $search = JString::trim(preg_replace('/[^\p{L}\p{N}\s\-.,:!?\'"()]/u', '', $search));
 
         $model = $this->getModel();
         $categories = $model->getData();

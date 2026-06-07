@@ -37,9 +37,10 @@ class K2ViewUsers extends K2View
         $filter_status = $app->getUserStateFromRequest($option.$view.'filter_status', 'filter_status', -1, 'int');
         $filter_group = $app->getUserStateFromRequest($option.$view.'filter_group', 'filter_group', '', 'string');
         $filter_group_k2 = $app->getUserStateFromRequest($option.$view.'filter_group_k2', 'filter_group_k2', '', 'string');
+
         $search = $app->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
-        $search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
+        $search = JString::trim(preg_replace('/[^\p{L}\p{N}\s\-.,:!?\'"()]/u', '', $search));
 
         K2Model::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
         $model = K2Model::getInstance('Users', 'K2Model');

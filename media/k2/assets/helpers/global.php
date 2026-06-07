@@ -15,7 +15,7 @@ class K2GlobalHelper
     public static function search($text, $fields = [])
     {
         $sql    = '';
-        $text   = trim(preg_replace('/[^\p{L}\p{N}\s\-.,:!?\'"()]/u', '', $text));
+        $text   = JString::trim(preg_replace('/[^\p{L}\p{N}\s\-.,:!?\'"()]/u', '', $text));
         $length = JString::strlen($text);
         if ($length > 2) {
             $db = JFactory::getDbo();

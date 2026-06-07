@@ -34,9 +34,10 @@ class K2ViewTags extends K2View
         $filter_order = $app->getUserStateFromRequest($option.$view.'filter_order', 'filter_order', 'id', 'cmd');
         $filter_order_Dir = $app->getUserStateFromRequest($option.$view.'filter_order_Dir', 'filter_order_Dir', 'DESC', 'word');
         $filter_state = $app->getUserStateFromRequest($option.$view.'filter_state', 'filter_state', -1, 'int');
+
         $search = $app->getUserStateFromRequest($option.$view.'search', 'search', '', 'string');
         $search = JString::strtolower($search);
-        $search = trim(preg_replace('/[^\p{L}\p{N}\s\-_]/u', '', $search));
+        $search = JString::trim(preg_replace('/[^\p{L}\p{N}\s\-]/u', '', $search));
 
         $model = $this->getModel();
         $total = $model->getTotal();
