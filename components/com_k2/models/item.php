@@ -1399,8 +1399,8 @@ class K2ModelItem extends K2Model
                 }
             }
 
-            if (trim($value) != '') {
-                if (trim($rawValue) != '') {
+            if (trim((string)$value) != '') {
+                if (trim((string)$rawValue) != '') {
                     $rows[$i]->rawValue = $rawValue;
                 }
                 $rows[$i]->value = $value;
