@@ -695,9 +695,9 @@ $K2(document).ready(function() {
             this.form.submit();
         });
 
-        // Hide system messages after 3 seconds in frontend editing
-        if ($('#k2ModalContainer').length && $('#system-message-container').length) {
-            $('#system-message-container').delay(3000).fadeOut('fast', function() {
+        // Hide system messages after 3 seconds in frontend editing (only those shown on load, so the container still takes later ones)
+        if ($('#k2ModalContainer').length) {
+            $('#system-message-container > .alert, #system-message').delay(3000).fadeOut('fast', function() {
                 $(this).remove();
             });
         }
@@ -784,15 +784,13 @@ $K2(document).ready(function() {
             });
         }
 
-        // Hide system messages (if any)
-        var msgContainers = ['#system-message-container', '#system-message'];
-        $(msgContainers).each(function(i) {
-            if ($(msgContainers[i])) {
-                $(msgContainers[i]).delay(3000).fadeOut(500, function() {
-                    $(this).html('');
-                });
-            }
-        });
+        // Hide system messages (if any) in K2's own views, leaving the container for messages added later
+        // (e.g. Joomla's update notifications on the Control Panel, where the K2 admin modules load this script too)
+        if ($('#k2AdminContainer').length) {
+            $('#system-message-container > .alert, #system-message').delay(3000).fadeOut(500, function() {
+                $(this).remove();
+            });
+        }
 
         // Responsive
         if ($('#k2ui-menu-control').css('display') == 'block') {
