@@ -661,7 +661,7 @@ class K2ViewItem extends K2View
                 // Prepare content snippets
                 $itemSD_SiteName = (version_compare(JVERSION, '2.5', 'ge')) ? $config->get('sitename') : $config->getValue('config.sitename');
                 $itemSD_SiteName = ($params->get('k2SeoGsdOrgName')) ? $params->get('k2SeoGsdOrgName') : $itemSD_SiteName;
-                $itemSD_SiteLogo = JURI::root().trim($params->get('k2SeoGsdOrgLogo'));
+                $itemSD_SiteLogo = (!empty($params->get('k2SeoGsdOrgLogo'))) ? rtrim(JURI::root(), '/').trim($params->get('k2SeoGsdOrgLogo')) : '';
 
                 $itemSD_Description = str_replace($sdStrSearch, $sdStrReplace, strip_tags($item->introtext, $allowedTags));
                 $itemSD_ArticleBody = str_replace($sdStrSearch, $sdStrReplace, strip_tags($item->text, $allowedTags));
