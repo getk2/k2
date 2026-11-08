@@ -97,7 +97,7 @@ class K2ViewItem extends K2View
                 $limitstart
             ));
             $item->event->K2UserDisplay = trim(implode("\n", $results));
-            $item->author->profile->url = htmlspecialchars($item->author->profile->url, ENT_QUOTES, 'UTF-8');
+            $item->author->profile->url = htmlspecialchars((string) $item->author->profile->url, ENT_QUOTES, 'UTF-8');
         }
 
         // Access check
@@ -513,7 +513,7 @@ class K2ViewItem extends K2View
                 }
             }
 
-            $metaTitle = trim($params->get('page_title'));
+            $metaTitle = trim((string) $params->get('page_title'));
             $document->setTitle($metaTitle);
 
             // Set meta description
@@ -532,11 +532,11 @@ class K2ViewItem extends K2View
                 }
             }
 
-            $metaDesc = trim($metaDesc);
+            $metaDesc = trim((string) $metaDesc);
             $document->setDescription(K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150)));
 
             // Set meta keywords
-            $metaKeywords = trim($document->getMetadata('keywords'));
+            $metaKeywords = trim((string) $document->getMetadata('keywords'));
 
             if ($item->metakey) {
                 $metaKeywords = $item->metakey;
@@ -556,7 +556,7 @@ class K2ViewItem extends K2View
                 }
             }
 
-            $metaKeywords = trim($metaKeywords);
+            $metaKeywords = trim((string) $metaKeywords);
             $document->setMetadata('keywords', $metaKeywords);
 
             // Set meta robots & author
