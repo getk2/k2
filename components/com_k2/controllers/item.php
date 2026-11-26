@@ -338,6 +338,8 @@ class K2ControllerItem extends K2Controller
 
         $this->addViewPath(JPATH_COMPONENT_ADMINISTRATOR.'/views');
         $this->addModelPath(JPATH_COMPONENT_ADMINISTRATOR.'/models');
+        require_once JPATH_COMPONENT_ADMINISTRATOR.'/lib/k2pagination.php';
+        
         $view = $this->getView('users', 'html');
         $view->addTemplatePath(JPATH_COMPONENT_ADMINISTRATOR.'/views/users/tmpl');
         $view->display();
