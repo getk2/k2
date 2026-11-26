@@ -32,7 +32,7 @@ $context = JRequest::getCmd('context');
     </div>
 <?php endif; ?>
 
-    <form action="index.php" method="post" name="adminForm" id="adminForm">
+    <form action="<?php echo $app->isSite() ? htmlspecialchars(JURI::root().'index.php', ENT_QUOTES, 'UTF-8') : 'index.php'; ?>" method="post" name="adminForm" id="adminForm">
         <table class="k2AdminTableFilters table">
             <tr>
                 <td class="k2AdminTableFiltersSearch">
@@ -193,6 +193,9 @@ $context = JRequest::getCmd('context');
         <input type="hidden" name="filter_order_Dir" value="<?php echo $this->lists['order_Dir']; ?>" />
         <input type="hidden" name="boxchecked" value="0" />
         <?php if ($context == "modalselector"): ?>
+        <?php if ($app->isSite()): ?>
+        <input type="hidden" name="itemID" value="<?php echo JRequest::getInt('itemID'); ?>" />
+        <?php endif; ?>
         <input type="hidden" name="context" value="modalselector" />
         <input type="hidden" name="tmpl" value="component" />
         <input type="hidden" name="fid" value="<?php echo JRequest::getCmd('fid'); ?>" />
