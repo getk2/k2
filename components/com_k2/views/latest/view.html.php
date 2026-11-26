@@ -168,7 +168,7 @@ class K2ViewLatest extends K2View
                         if (is_object($userObject->profile) && $userObject->profile->id > 0) {
                             $results = $dispatcher->trigger('onK2UserDisplay', array(&$userObject->profile, &$params, $limitstart));
                             $userObject->event->K2UserDisplay = trim(implode("\n", $results));
-                            $userObject->profile->url = htmlspecialchars($userObject->profile->url, ENT_QUOTES, 'UTF-8');
+                            $userObject->profile->url = htmlspecialchars((string) $userObject->profile->url, ENT_QUOTES, 'UTF-8');
                         }
 
                         $link = K2HelperRoute::getUserRoute($userObject->id);
@@ -220,7 +220,7 @@ class K2ViewLatest extends K2View
                 $params->set('show_page_title', $params->get('show_page_heading'));
             }
 
-            $metaTitle = trim($params->get('page_title'));
+            $metaTitle = trim((string) $params->get('page_title'));
             $document->setTitle($metaTitle);
 
             // Set meta description
@@ -232,7 +232,7 @@ class K2ViewLatest extends K2View
                 }
             }
 
-            $metaDesc = trim($metaDesc);
+            $metaDesc = trim((string) $metaDesc);
             $document->setDescription(K2HelperUtilities::characterLimit($metaDesc, $params->get('metaDescLimit', 150)));
 
             // Set meta keywords
@@ -244,7 +244,7 @@ class K2ViewLatest extends K2View
                 }
             }
 
-            $metaKeywords = trim($metaKeywords);
+            $metaKeywords = trim((string) $metaKeywords);
             $document->setMetadata('keywords', $metaKeywords);
 
             // Set meta robots

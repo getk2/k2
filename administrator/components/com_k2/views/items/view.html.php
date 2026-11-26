@@ -195,6 +195,8 @@ class K2ViewItems extends K2View
         $filter_state_options[] = JHTML::_('select.option', -1, JText::_('K2_SELECT_PUBLISHING_STATE'));
         $filter_state_options[] = JHTML::_('select.option', 1, JText::_('K2_PUBLISHED'));
         $filter_state_options[] = JHTML::_('select.option', 0, JText::_('K2_UNPUBLISHED'));
+        // 2 is not a stored published value. The model treats it as published items whose finish date has passed.
+        $filter_state_options[] = JHTML::_('select.option', 2, JText::_('K2_EXPIRED'));
         $lists['state'] = JHTML::_('select.genericlist', $filter_state_options, 'filter_state', '', 'value', 'text', $filter_state);
 
         $filter_featured_options[] = JHTML::_('select.option', -1, JText::_('K2_SELECT_FEATURED_STATE'));

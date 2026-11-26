@@ -91,7 +91,14 @@ class K2ModelItems extends K2Model
             }
         }
 
-        if ($filter_state > -1) {
+        if ((int) $filter_state === 2) {
+            $nullDate = $db->getNullDate();
+            $now = JFactory::getDate();
+            $now = (K2_JVERSION == '15') ? $now->toMySQL() : $now->toSql();
+            $query .= " AND i.published = 1";
+            $query .= " AND i.publish_down > " . $db->Quote($nullDate);
+            $query .= " AND i.publish_down < " . $db->Quote($now);
+        } elseif ($filter_state > -1) {
             $query .= " AND i.published = {$filter_state}";
         }
 

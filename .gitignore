@@ -2,3 +2,5 @@
 /.project
 .ftpconfig
 .DS_Store
+/build/*
+!/build/build.php
